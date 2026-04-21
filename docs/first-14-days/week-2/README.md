@@ -41,25 +41,25 @@ If any one of the three is no — also valid. We'll get you to a clear answer.
 
 ## The 7 days
 
-- [ ] [[day-08|Day 8 — Why the Agency Matters More Than Most People Realise]]
+- [Day 8 — Why the Agency Matters More Than Most People Realise](/learning-track/first-14-days/day/8)
   *The 3 lies most agencies tell. The Tripod Support System (TSS). The Right People × Right Systems matrix. Why I built what I built.*
 
-- [ ] [[day-09|Day 9 — The 6 C's — Honest Self-Assessment]]
+- [Day 9 — The 6 C's — Honest Self-Assessment](/learning-track/first-14-days/day/9)
   *Consistency of Actions, Constancy of Emotions, Continuous Improvement, Creativity, Can-do Spirit, CEO Mindset. Rate yourself honestly.*
 
-- [ ] [[day-10|Day 10 — Warm + Cold Market: Your Full Pipeline]]
+- [Day 10 — Warm + Cold Market: Your Full Pipeline](/learning-track/first-14-days/day/10)
   *We settle the cold market for you. Warm is your 50% contribution — and a good one. Pride in serving people you love, done professionally. Other agencies force warm-only; we do both.*
 
-- [ ] [[day-11|Day 11 — "I Have No Experience / I'm Too Introverted"]]
+- [Day 11 — "I Have No Experience / I'm Too Introverted"](/learning-track/first-14-days/day/11)
   *Gabriel Kow — ORD NSF, $10K/month in his first month. Benjamin Gnoh — NTU Maritime Studies, $10K/month in 2 months. No experience needed. Introverts win in this career.*
 
-- [ ] [[day-12|Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"]]
+- [Day 12 — "I Don't Have Time / I Need a Big Office / I Need IFA Range"](/learning-track/first-14-days/day/12)
   *I did this at 80/20 split during NUS GEP engineering. No big office. No IFA range. 2-3 hours a day. Here's the math.*
 
-- [ ] [[day-13|Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs]]
+- [Day 13 — The FLEXI Scheme + 15 Rapid-Fire FAQs](/learning-track/first-14-days/day/13)
   *FLEXI 0 / 10 / 20 hours tiers. The $2K/$4K income guarantee. Every residual question — hourly rate, cash flow, leads, warm/cold math, calls-per-day — answered tight.*
 
-- [ ] [[day-14|Day 14 — Your Decision + Your Timeline With Us]]
+- [Day 14 — Your Decision + Your Timeline With Us](/learning-track/first-14-days/day/14)
   *The honest four-outcome decision. The full timeline — onboarding call, CMFAS exams, RNF, FTS/EPS/BTS. The $1,000 onboarding incentive. The commitment I make to you.*
 
 ---
@@ -77,10 +77,3 @@ By end of Day 14 you should land on one of these:
 
 All four are legitimate. I'd rather you land honestly on *No* than commit on momentum.
 
----
-
-## Related
-
-- Previous week: [[../week-1/README|Week 1 — The Opportunity]]
-- [[../INDEX|Your First 14 Days — Index]]
-- The beginning: [[../week-1/day-01|Day 1 — Why You're Even Reading This]]

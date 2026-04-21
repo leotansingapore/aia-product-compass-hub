@@ -35,25 +35,25 @@ Just *"is this model good?"*
 
 ## The 7 days
 
-- [ ] [[day-01|Day 1 — Why You're Even Reading This]]
+- [Day 1 — Why You're Even Reading This](/learning-track/first-14-days/day/1)
   *The 9-to-5 ceiling. My NS-era story. Why caution is a strength. What this 14-day read really is.*
 
-- [ ] [[day-02|Day 2 — The Franchise Without the $200K Fee]]
+- [Day 2 — The Franchise Without the $200K Fee](/learning-track/first-14-days/day/2)
   *Ya Kun is $200K + 10% royalty. GP clinic is $650K + 6-year break-even. FA gives you the same franchise structure with $0 upfront.*
 
-- [ ] [[day-03|Day 3 — High-Income Skills You Build Either Way]]
+- [Day 3 — High-Income Skills You Build Either Way](/learning-track/first-14-days/day/3)
   *Sales psychology, trust-based communication, financial IQ — the three skills every entrepreneur needs. Even if you leave year 2, you keep them for life.*
 
-- [ ] [[day-04|Day 4 — The Risk-Reversal Card]]
+- [Day 4 — The Risk-Reversal Card](/learning-track/first-14-days/day/4)
   *Everything to gain, nothing to lose. Why this is the rare bet where the "worst case" is still a win.*
 
-- [ ] [[day-05|Day 5 — The Hidden Math: $40 vs $667 an Hour]]
+- [Day 5 — The Hidden Math: $40 vs $667 an Hour](/learning-track/first-14-days/day/5)
   *Interior designer at ~$40/hour. Financial consultant at ~$667/hour. Same effort, completely different ceiling. Why model beats hustle.*
 
-- [ ] [[day-06|Day 6 — Stickiness and Scalability]]
+- [Day 6 — Stickiness and Scalability](/learning-track/first-14-days/day/6)
   *Why insurance clients stay for decades. Why this business scales like SAAS, not like a service business. Why year 5 looks nothing like year 1.*
 
-- [ ] [[day-07|Day 7 — The Three I's: Income, Independence, Impact]]
+- [Day 7 — The Three I's: Income, Independence, Impact](/learning-track/first-14-days/day/7)
   *Three things most careers promise, this one delivers. Which of the three pulls you hardest — and why that shapes how you'd build.*
 
 ---
@@ -72,9 +72,3 @@ If the model is a no for you — stop here. You've saved yourself 12 months. Gen
 
 If it's a yes or a *"maybe, but which agency?"* — Week 2 is for you. That's where the fit question gets real.
 
----
-
-## Related
-
-- [[../INDEX|Your First 14 Days — Index]]
-- Next week: [[../week-2/README|Week 2 — The Fit Test]]

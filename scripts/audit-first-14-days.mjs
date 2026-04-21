@@ -99,6 +99,7 @@ const report = {
     // Check for "Loading..." stuck state
     const bodyText = await page.locator("body").innerText();
     const stillLoading = bodyText.trim().startsWith("Loading...") && bodyText.length < 50;
+    const rawWikilinkHits = (bodyText.match(/\[\[[^\]]+\]\]/g) ?? []).slice(0, 5);
 
     const dayShot = path.join(OUT_DIR, `day-${String(day).padStart(2, "0")}.png`);
     await page.screenshot({ path: dayShot, fullPage: true });
@@ -131,13 +132,14 @@ const report = {
       day,
       url,
       stillLoading,
+      rawWikilinkHits,
       screenshot: dayShot,
       quizScreenshot: quizShot,
       worksheetScreenshot: wsShot,
       consoleErrors: [...consoleErrors],
       networkErrors: [...networkErrors],
     });
-    console.log(`day ${day}: ${stillLoading ? "STUCK LOADING" : "ok"} | console=${consoleErrors.length} | network=${networkErrors.length}`);
+    console.log(`day ${day}: ${stillLoading ? "STUCK LOADING" : "ok"} | console=${consoleErrors.length} | network=${networkErrors.length} | wikilinks=${rawWikilinkHits.length}${rawWikilinkHits.length ? " " + rawWikilinkHits[0].slice(0, 60) : ""}`);
   }
 
   const reportPath = path.join(OUT_DIR, "report.json");

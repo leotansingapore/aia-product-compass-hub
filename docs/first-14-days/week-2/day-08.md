@@ -129,6 +129,36 @@ Plus — the foundation under all three: **proper training + value-adding + 1-1 
 
 ---
 
+## 4a. The 6-Tier Power Pyramid — what's actually plugged in behind TSS
+
+TSS names the three pillars. The 6-Tier Pyramid shows the *stack* — the layers of support sitting under every meeting you'll ever run.
+
+```
+   Tier 6 — Post-sale (renewals, referrals, monthly updates, community)
+   Tier 5 — Frontline tools (TWC presenter, DBI calculator, retirement calc)
+   Tier 4 — Infrastructure (Lark DB, SOPs, objection library, chatbots)
+   Tier 3 — Team (mentor + VA ops + in-house telemarketer + appointment setter)
+   Tier 2 — District (Wind Financial Group — ad subsidy, events, roadshows)
+   Tier 1 — Company (AIA — EPS, career benefit, products, brand, claims)
+ ─────────────────────────────────────────────────────────────
+  ⬤ YOU (hunger, discipline, follow-through)
+```
+
+| Tier | What it gives you | Failure mode it solves |
+|---|---|---|
+| **1. Company (AIA)** | EPS allowance, career benefit (1.5x years 2-6, perpetual APF year 7+), #1 hospitalisation + HNW + corporate, $1B+ claims approved/year, 50-60% ad subsidy | "My company doesn't back me up." |
+| **2. District (WFG)** | More ad subsidy stacking on AIA, corporate talks, roadshows, overseas trips, smaller office → more marketing budget | "My district's marketing budget is on rent, not leads." |
+| **3. Team** | Weekly 1-1s, VAs for ops (Ira), graphic designer, content writer, appointment setter, telemarketer, in-house web dev | "I'm a one-person circus — ops + sales + marketing." |
+| **4. Infrastructure** | Lark DB with SEO-named searchable articles, 34 objections × 43 responses, SOPs, chatbots | "I have to figure out every objection from scratch." |
+| **5. Frontline tools** | TWC presenter, DBI adequacy calculator, retirement calc, welcome-bonus calc, enhanced AIA presenter | "I have to pause mid-meeting to look things up." |
+| **6. Post-sale** | Auto onboarding kit, monthly market updates, media-agency blog, telegram communities, expense tracker | "My client forgot I exist by year 2." |
+
+A typical Wednesday runs the pyramid top-to-bottom: Tier 3 books the appointments overnight → Tier 5 is open when you walk in → Tier 4 catches the tricky objection → Tier 1 handles the submission → Tier 3 processes the summary → Tier 6 starts the lifecycle. Every step plumbed into the next.
+
+If an agency can't name something concrete at each tier — that tier is missing, and you'll feel the gap within 90 days.
+
+---
+
 ## 5. The Right People × Right Systems matrix
 
 Here's the honest framing of why agency choice matters so much.
