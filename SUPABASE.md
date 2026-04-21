@@ -6,7 +6,46 @@
 
 ## Pending
 
-_(none — all prior items completed)_
+### `first_14_days_progress` table — prospect-facing course progress needs cross-device sync
+
+**Context:** The First 14 Days learning track (`/learning-track/first-14-days`) currently uses localStorage for progress via `src/hooks/first-14-days/useFirst14DaysProgress.ts`. Works per-device but loses state when prospects switch phones/laptops or clear browser data.
+
+**Request for Lovable:** Create `first_14_days_progress` table mirroring the shape of `first_60_days_progress` (minus the `slides_viewed_at` / `video_watched_at` columns — those aren't used in the 14-day curriculum).
+
+**Proposed schema:**
+
+```sql
+CREATE TABLE public.first_14_days_progress (
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  day_number INTEGER NOT NULL CHECK (day_number BETWEEN 1 AND 14),
+  read_at TIMESTAMPTZ,
+  quiz_score INTEGER,
+  quiz_attempts INTEGER NOT NULL DEFAULT 0,
+  quiz_passed_at TIMESTAMPTZ,
+  reflection_answers JSONB,
+  reflection_saved_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (user_id, day_number)
+);
+```
+
+**RLS policies** (match the pattern from `first_60_days_progress`):
+
+- SELECT / INSERT / UPDATE / DELETE: `auth.uid() = user_id`
+- Admins (`user_admin_roles` lookup) can SELECT all rows for roster/heatmap visibility
+
+**Trigger:** `updated_at = NOW()` on UPDATE (same pattern as other progress tables).
+
+**Important FK note:** Point `user_id` at `auth.users(id)` directly, NOT `profiles(id)`. The prior `first_60_days_progress` bug (fixed via migration `20260421041541_...`) came from pointing at `profiles(id)` while the client writes `auth.uid()`. Avoid repeating.
+
+**Client migration** (Claude Code will handle after Lovable ships the table):
+
+1. Update `src/hooks/first-14-days/useFirst14DaysProgress.ts` to mirror `useFirst60DaysProgress.ts` — TanStack Query against Supabase, with legacy localStorage migration (read the old `first-14-days-progress-v1` key once, upsert rows, flag as migrated).
+2. Regenerate `src/integrations/supabase/types.ts` (Lovable will do this automatically).
+
+**Why this matters:** Prospects on this track are unpaid candidates evaluating the career. If they drop off because localStorage got cleared, we lose them. Cross-device persistence is the baseline experience for a 14-day reading path.
+
+---
 
 ### `first_60_days_progress.user_id` FK now points at `auth.users(id)` — DONE 2026-04-21
 
