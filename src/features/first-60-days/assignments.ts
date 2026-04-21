@@ -105,11 +105,12 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
   for (const entry of raw) {
     if (typeof entry !== "string") continue;
     const parts = entry.split("|").map((p) => p.trim());
-    const [label, kindStr = "textarea", hint = "", rowsStr = ""] = parts;
+    const [label, kindStr = "textarea", hintRaw = "", rowsStr = ""] = parts;
     if (!label) continue;
     const kind: AssignmentFormFieldKind = kindStr === "text" ? "text" : "textarea";
     const rows = rowsStr ? Math.max(2, Math.min(12, Number(rowsStr) || 0)) : undefined;
-    fields.push({ label, kind, hint: hint || undefined, rows });
+    const hint = hintRaw ? hintRaw.replace(/\\n/g, "\n") : undefined;
+    fields.push({ label, kind, hint, rows });
   }
   return fields.length ? fields : undefined;
 }

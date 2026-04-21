@@ -4,12 +4,23 @@ order: 2
 title: "Contact List + Personal Outreach Playbook"
 short: "Build a 100-name list and write your own customised outreach, objection, and follow-up scripts."
 icon: users
-deliverable: "Spreadsheet (100 contacts) + a playbook document (PDF or Doc)"
-submission_type: "file"
+deliverable: "Sheet link + playbook sections (submitted inline)"
+submission_type: "form"
 estimated_time: "4 to 6 hours"
 weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
+form_fields:
+  - "Your Project 100 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
+  - "Sheet filled-in count|text|How many names have you loaded so far? e.g. 42 named, 18 Priority A, 25 Semi-Warm"
+  - "Outreach 1: 'What I'm doing now' (close friends)|textarea|2 to 4 sentences. No ask, just an update. In your voice.|4"
+  - "Outreach 2: 'By the way' (lunch / coffee)|textarea|How you naturally raise the career when you're already meeting someone for another reason.|4"
+  - "Outreach 3: Market survey script (warm-but-not-close)|textarea|The phone call or WhatsApp asking 5 minutes for research. Low-pressure framing.|4"
+  - "Outreach 4: Reconnect message (2+ years quiet)|textarea|What you write to someone you haven't spoken to in a long time. Don't lead with insurance.|4"
+  - "Objection responses (minimum 6)|textarea|For each objection below, write your 3-beat response (Acknowledge, Reframe, Redirect) in your own words:\n1. Not interested right now\n2. I already have an FC\n3. Send me info first\n4. Can't afford anything now\n5. Need to check with spouse\n6. Let me think about it|10"
+  - "Follow-up cadence|textarea|Write the actual messages you'll send, with timing.\n- After no-response outreach: Day 3, Day 10, Day 30\n- After meeting, need time: Day 2, Day 7, Day 21, Day 60\n- After policy issued: Day 3, Day 30, Day 90, annual\n- After a NO: Day 90, annual|10"
+  - "Referral ask scripts (2 versions)|textarea|1. End of a good meeting (closed)\n2. End of a meeting where they said 'not right now'\nBoth must name a SPECIFIC type of person (not 'anyone who needs insurance').|6"
+  - "The script you're least confident about|textarea|Name one and say why. This is the one you want feedback on.|3"
 ---
 
 # Assignment 2 — Contact List + Personal Outreach Playbook
@@ -124,7 +135,7 @@ Both should specify **exactly who** you're asking about — "two colleagues at y
 
 ## What a passing playbook looks like
 
-- 100 contacts with at least 30 priority-A, context filled in for all A's
+- 100 contacts with at least 30 priority-A, ≥40 Semi-Warm, context filled in for all A's
 - Each outreach script is clearly in your own voice — not a trainer template
 - Objection responses use the 3-beat structure visibly
 - Follow-up cadence gives specific day markers, not "follow up later"
@@ -132,4 +143,4 @@ Both should specify **exactly who** you're asking about — "two colleagues at y
 
 ## Submission
 
-Upload both files as a ZIP, or paste Google Drive links for each. Include a 2 to 3 sentence note: which script you're least confident about and want feedback on.
+Fill in the form below. You only need to paste your Project 100 Sheet link — the playbook sections go straight into the fields on this page. No uploads required.

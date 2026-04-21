@@ -372,11 +372,14 @@ function SubmissionPanel({
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setEditing(!submission);
+    const parsed = parseFormValues(submission?.submission_text);
+    const staleNonFormSubmission =
+      isFormMode && submission && Object.keys(parsed).length === 0;
+    setEditing(!submission || !!staleNonFormSubmission);
     setText(submission?.submission_text ?? "");
-    setFormValues(parseFormValues(submission?.submission_text));
+    setFormValues(parsed);
     setFile(null);
-  }, [submission?.id, assignment.slug]);
+  }, [submission?.id, assignment.slug, isFormMode]);
 
   const MAX_MB = 500;
 
@@ -628,7 +631,7 @@ function FormFieldRenderer({
     <div className="space-y-1.5">
       <label className="text-sm font-semibold text-foreground">{field.label}</label>
       {field.hint && (
-        <p className="text-xs text-muted-foreground">{field.hint}</p>
+        <p className="text-xs text-muted-foreground whitespace-pre-wrap">{field.hint}</p>
       )}
       {field.kind === "text" ? (
         <Input
