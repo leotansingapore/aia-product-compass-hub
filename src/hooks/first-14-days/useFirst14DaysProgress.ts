@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
-import { usePermissions } from "@/hooks/usePermissions";
+import { useAdmin } from "@/hooks/useAdmin";
 import { TOTAL_DAYS } from "@/features/first-14-days/summaries";
 
 const LEGACY_KEY = "first-14-days-progress-v1";
