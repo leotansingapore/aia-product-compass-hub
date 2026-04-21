@@ -11,6 +11,8 @@ export type PointBreakdown = {
   questionBank: number;
   productQuizzes: number;
   videos: number;
+  learningTrackItems: number;
+  learningTrackSubmissions: number;
 };
 
 export type LeaderboardRow = {
@@ -85,7 +87,7 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
 
   // Step 2: aggregate activity in parallel. Scope every query to relevant
   // user IDs so we're not pulling the whole org.
-  const [f14, f60, assigns, banks, quizzes, vids] = await Promise.all([
+  const [f14, f60, assigns, banks, quizzes, vids, ltProg, ltSubs] = await Promise.all([
     supabase
       .from("first_14_days_progress")
       .select("user_id, quiz_passed_at, reflection_saved_at, updated_at")
@@ -119,6 +121,17 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
       .eq("completed", true)
       .in("user_id", relevantIds)
       .range(0, 9999),
+    supabase
+      .from("learning_track_progress")
+      .select("user_id, status, completed_at, updated_at")
+      .eq("status", "completed")
+      .in("user_id", relevantIds)
+      .range(0, 9999),
+    supabase
+      .from("learning_track_submissions")
+      .select("user_id, review_status, submitted_at")
+      .in("user_id", relevantIds)
+      .range(0, 9999),
   ]);
 
   if (f14.error) throw f14.error;
@@ -127,6 +140,8 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
   if (banks.error) throw banks.error;
   if (quizzes.error) throw quizzes.error;
   if (vids.error) throw vids.error;
+  if (ltProg.error) throw ltProg.error;
+  if (ltSubs.error) throw ltSubs.error;
 
   type Bucket = {
     breakdown: PointBreakdown;
@@ -147,6 +162,8 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
           questionBank: 0,
           productQuizzes: 0,
           videos: 0,
+          learningTrackItems: 0,
+          learningTrackSubmissions: 0,
         },
         days: new Set(),
         seenAssignments: new Set(),
@@ -235,6 +252,31 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
     addDate(b.days, r.completed_at ?? r.updated_at);
   }
 
+  // Learning track items — 1pt per completed item. Covers Post-RNF curriculum
+  // and the legacy Pre-RNF "Assignment 1–4" rows that still live here.
+  for (const r of (ltProg.data ?? []) as Array<{
+    user_id: string;
+    status: string;
+    completed_at: string | null;
+    updated_at: string;
+  }>) {
+    const b = bucketFor(r.user_id);
+    b.breakdown.learningTrackItems += 1;
+    addDate(b.days, r.completed_at ?? r.updated_at);
+  }
+
+  // Learning track submissions — 3pt per submission, +2pt bonus if approved.
+  for (const r of (ltSubs.data ?? []) as Array<{
+    user_id: string;
+    review_status: string;
+    submitted_at: string | null;
+  }>) {
+    const b = bucketFor(r.user_id);
+    b.breakdown.learningTrackSubmissions += 3;
+    if (r.review_status === "approved") b.breakdown.learningTrackSubmissions += 2;
+    addDate(b.days, r.submitted_at);
+  }
+
   // Step 3: assemble rows, sort, rank.
   const rows: LeaderboardRow[] = [];
   for (const userId of relevantIds) {
@@ -249,6 +291,8 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
       questionBank: 0,
       productQuizzes: 0,
       videos: 0,
+      learningTrackItems: 0,
+      learningTrackSubmissions: 0,
     };
     const totalPoints =
       breakdown.first14Days +
@@ -258,7 +302,9 @@ async function fetchLeaderboard(currentUserId: string | null): Promise<Leaderboa
       breakdown.assignments +
       breakdown.questionBank +
       breakdown.productQuizzes +
-      breakdown.videos;
+      breakdown.videos +
+      breakdown.learningTrackItems +
+      breakdown.learningTrackSubmissions;
     const daysActive = b?.days.size ?? 0;
     const profile = profileMap.get(userId);
     rows.push({

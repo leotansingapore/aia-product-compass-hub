@@ -14,9 +14,9 @@
 - `profiles`: Add column `show_in_leaderboard boolean NOT NULL DEFAULT true`
 
 **Functions (RPC):**
-- `get_learner_leaderboard(p_tier text)` → table(user_id uuid, name text, email text, total_points numeric, days_active int, first_14_days numeric, first_14_reflections numeric, first_60_days numeric, first_60_reflections numeric, assignments numeric, question_bank numeric, product_quizzes numeric, videos numeric)
-  - Purpose: Server-side aggregation of points across all learning tables for a given tier (`papers_taker` or `post_rnf`), so the client doesn't need 7 parallel queries + joins
-  - Logic: Join `user_access_tiers` → `profiles` (respect `show_in_leaderboard = true` unless caller is admin); LEFT JOIN aggregated counts from `first_14_days_progress`, `first_60_days_progress`, `assignment_submissions` (product_id = `first-60-days-assignments`, distinct item_id), `user_question_progress` (mastered = true), `quiz_attempts`, `video_progress` (completed = true). Points formula:
+- `get_learner_leaderboard(p_tier text)` → table(user_id uuid, name text, email text, total_points numeric, days_active int, first_14_days numeric, first_14_reflections numeric, first_60_days numeric, first_60_reflections numeric, assignments numeric, question_bank numeric, product_quizzes numeric, videos numeric, learning_track_items numeric, learning_track_submissions numeric)
+  - Purpose: Server-side aggregation of points across all learning tables for a given tier (`papers_taker` or `post_rnf`), so the client doesn't need 9 parallel queries + joins
+  - Logic: Join `user_access_tiers` → `profiles` (respect `show_in_leaderboard = true` unless caller is admin); LEFT JOIN aggregated counts from `first_14_days_progress`, `first_60_days_progress`, `assignment_submissions` (product_id = `first-60-days-assignments`, distinct item_id), `user_question_progress` (mastered = true), `quiz_attempts`, `video_progress` (completed = true), `learning_track_progress` (status = 'completed'), `learning_track_submissions`. Points formula:
     - first_14_days = count(quiz_passed_at) × 1
     - first_14_reflections = count(reflection_saved_at) × 0.5
     - first_60_days = count(quiz_passed_at) × 1
@@ -25,6 +25,8 @@
     - question_bank = count(mastered=true) × 0.5
     - product_quizzes = count(*) × 1
     - videos = count(completed=true) × 0.5
+    - learning_track_items = count(status='completed') × 1
+    - learning_track_submissions = count(*) × 3 + count(review_status='approved') × 2
   - Tiebreaker: `days_active` = count distinct DATE(updated_at / completed_at / last_answered_at / submitted_at) across all source tables per user
   - Filter current user's own row OUT of the opt-out check (admins and the learner themselves always see their row)
   - SECURITY DEFINER so RLS doesn't block the joins

@@ -46,6 +46,8 @@ const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
   { key: "questionBank", label: "Question bank mastery" },
   { key: "productQuizzes", label: "Product quizzes" },
   { key: "videos", label: "Videos completed" },
+  { key: "learningTrackItems", label: "Learning track items" },
+  { key: "learningTrackSubmissions", label: "Learning track submissions" },
 ];
 
 function formatPoints(n: number): string {
@@ -271,6 +273,7 @@ export default function Leaderboard() {
           <div>First 14/60 Days day complete: 1 pt · reflection: +0.5 pt</div>
           <div>Assignment submitted: 5 pt · question bank mastery: 0.5 pt each</div>
           <div>Product quiz: 1 pt · video completed: 0.5 pt</div>
+          <div>Learning track item complete: 1 pt · submission: 3 pt (+2 pt if approved)</div>
         </CardContent>
       </Card>
     </div>
