@@ -352,6 +352,7 @@ function ResultCard({
   passed,
   pct,
   onRetry,
+  basePath,
 }: {
   dayNumber: number;
   correct: number;
@@ -359,6 +360,7 @@ function ResultCard({
   passed: boolean;
   pct: number;
   onRetry: () => void;
+  basePath: string;
 }) {
   return (
     <Card
