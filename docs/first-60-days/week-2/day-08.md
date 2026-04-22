@@ -41,20 +41,27 @@ Few careers score well on all 5. This one has the architecture to, **if you buil
 
 Here is the single most important chart a new FC must internalise.
 
-```
- Your income
- ↑
- | ╱╱╱╱
- | ╱╱╱╱
- | ╱╱╱╱ ← Year 3+ (compounding begins)
- | ╱╱╱╱
- | ╱╱╱╱
- Corporate peer ─────────────────────── (flat)
- | ╱╱ (Year 1: lower than peer)
- | ╱
- └──────────────────────────────────→ Time
- Y1 Y2 Y3 Y4 Y5 Y6 Y7 Y8
-```
+<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:12px;padding:20px;">
+  <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:12px;text-align:center;">FC vs Corporate peer · income over time</div>
+  <div style="position:relative;height:240px;display:flex;align-items:flex-end;gap:8px;padding:0 8px 32px 40px;border-left:2px solid hsl(var(--border));border-bottom:2px solid hsl(var(--border));">
+    <div style="position:absolute;left:-8px;top:-4px;font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">$</div>
+    <div style="position:absolute;right:0;bottom:-26px;font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Time →</div>
+    <div style="position:absolute;left:40px;right:8px;top:65%;border-top:2px dashed hsl(220,15%,55%);"><span style="position:absolute;right:0;top:-22px;font-size:11px;color:hsl(220,15%,40%);font-weight:600;background:hsl(var(--muted)/0.4);padding:0 6px;">Corporate peer (flat)</span></div>
+    <!-- FC bars: rising curve -->
+    <div style="flex:1;height:18%;background:linear-gradient(to top,hsl(0,72%,55%),hsl(0,72%,65%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y1</span></div>
+    <div style="flex:1;height:32%;background:linear-gradient(to top,hsl(0,72%,55%),hsl(38,92%,55%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y2</span></div>
+    <div style="flex:1;height:48%;background:linear-gradient(to top,hsl(38,92%,50%),hsl(38,92%,60%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(38,92%,38%);font-weight:700;white-space:nowrap;">↑ compounding</span><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y3</span></div>
+    <div style="flex:1;height:62%;background:linear-gradient(to top,hsl(38,92%,50%),hsl(160,84%,42%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y4</span></div>
+    <div style="flex:1;height:74%;background:linear-gradient(to top,hsl(160,84%,38%),hsl(160,84%,48%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y5</span></div>
+    <div style="flex:1;height:84%;background:linear-gradient(to top,hsl(160,84%,38%),hsl(160,84%,50%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y6</span></div>
+    <div style="flex:1;height:92%;background:linear-gradient(to top,hsl(217,91%,50%),hsl(217,91%,62%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y7</span></div>
+    <div style="flex:1;height:100%;background:linear-gradient(to top,hsl(217,91%,45%),hsl(262,83%,60%));border-radius:4px 4px 0 0;position:relative;"><span style="position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;color:hsl(var(--muted-foreground));font-weight:600;">Y8</span></div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:20px;margin-top:14px;font-size:12px;">
+    <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;background:linear-gradient(135deg,hsl(0,72%,55%),hsl(217,91%,50%));border-radius:3px;"></span><span style="color:hsl(var(--foreground));font-weight:500;">Your FC income</span></div>
+    <div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:2px;border-top:2px dashed hsl(220,15%,55%);"></span><span style="color:hsl(var(--foreground));font-weight:500;">Corporate peer (flat)</span></div>
+  </div>
+</div>
 
 **What this chart shows:**
 

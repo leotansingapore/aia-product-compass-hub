@@ -34,11 +34,23 @@ Today is the **second half.** Two things happen here:
 
 **The emotional arc of a full SPIN meeting:**
 
-```
-Neutral → Slight unease → Real concern → Explicit need → Hopeful → Decisive
-   ↑          ↑               ↑               ↑            ↑         ↑
-Situation  Problem     Implication      Implication   Need-Payoff  Close
-```
+<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:12px;padding:18px;overflow-x:auto;">
+  <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:14px;text-align:center;">Emotional arc · full SPIN meeting</div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;min-width:560px;">
+    <div style="background:hsl(220,15%,92%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(220,15%,35%);">Neutral</div></div>
+    <div style="background:hsl(217,91%,93%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(217,91%,38%);">Slight unease</div></div>
+    <div style="background:hsl(38,92%,90%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(38,92%,35%);">Real concern</div></div>
+    <div style="background:hsl(0,72%,92%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(0,72%,38%);">Explicit need</div></div>
+    <div style="background:hsl(160,84%,90%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(160,84%,25%);">Hopeful</div></div>
+    <div style="background:hsl(262,83%,93%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(262,83%,42%);">Decisive</div></div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Situation</div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Problem</div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Implication</div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Implication</div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Need-Payoff</div>
+    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Close</div>
+  </div>
+</div>
 
 ```mermaid
 flowchart LR

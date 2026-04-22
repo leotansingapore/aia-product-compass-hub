@@ -93,15 +93,31 @@ Prospecting is fundamentally a numbers game. Not a mindset game.
 
 ### The standard ratios (roughly, for a new FC)
 
-```
-100 Opening Approaches (e.g., calls)
- ↓ (3% conversion)
- 3 Appointments set
- ↓ (50% conversion)
- 1–2 Meetings actually happen
- ↓ (20–40% conversion)
- <1 Close per 100 opening approaches
-```
+<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:0;">
+  <div style="width:100%;background:linear-gradient(135deg,hsl(217,91%,50%),hsl(217,91%,62%));color:white;padding:14px 20px;border-radius:12px 12px 4px 4px;box-shadow:0 4px 12px hsl(217,91%,50%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,94% 100%,6% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.85;font-weight:700;">TOP OF FUNNEL</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">100</div>
+    <div style="font-size:13px;opacity:0.95;">Opening Approaches <span style="opacity:0.75;">(e.g., calls)</span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">3% conversion</span></div>
+  <div style="width:78%;background:linear-gradient(135deg,hsl(160,84%,32%),hsl(160,84%,42%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,32%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,93% 100%,7% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">APPOINTMENTS</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">3</div>
+    <div style="font-size:13px;opacity:0.95;">Appointments set</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">50% conversion</span></div>
+  <div style="width:58%;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,92% 100%,8% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">MEETINGS</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">1–2</div>
+    <div style="font-size:13px;opacity:0.95;">Meetings actually happen</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">20–40% conversion</span></div>
+  <div style="width:38%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:14px 16px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">CLOSE</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">&lt;1</div>
+    <div style="font-size:12px;opacity:0.95;">per 100 approaches</div>
+  </div>
+</div>
 
 These ratios improve as your skills develop. A strong Year-2 FC might close 1 in 30 approaches. A Year-1 FC closing 1 in 100 is normal.
 

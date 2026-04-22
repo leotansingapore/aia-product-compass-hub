@@ -29,13 +29,13 @@ A **Client Strategy Talk (CST)** is a short, structured mini-presentation — us
 
 It sits **between** fact-finding and recommendation:
 
-```
-Fact-finding (SPIN + CFR)
-       ↓
- CST (reframe a concept)
-       ↓
-Recommendation (products)
-```
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;">
+  <div style="background:hsl(217,91%,96%);border:1px solid hsl(217,91%,70%);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">Step 1</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Fact-finding</div><div style="font-size:11px;color:hsl(var(--muted-foreground));margin-top:2px;">SPIN + CFR</div></div>
+  <div style="font-size:22px;color:hsl(var(--muted-foreground));font-weight:700;">→</div>
+  <div style="background:linear-gradient(135deg,hsl(38,92%,94%),hsl(38,92%,88%));border:2px solid hsl(38,92%,50%);border-radius:10px;padding:14px;text-align:center;box-shadow:0 4px 12px hsl(38,92%,50%,0.15);"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(38,92%,38%);text-transform:uppercase;">Step 2 · CST</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Reframe a concept</div><div style="font-size:11px;color:hsl(38,92%,32%);margin-top:2px;font-weight:600;">the bridge</div></div>
+  <div style="font-size:22px;color:hsl(var(--muted-foreground));font-weight:700;">→</div>
+  <div style="background:hsl(160,84%,94%);border:1px solid hsl(160,84%,55%);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(160,84%,28%);text-transform:uppercase;">Step 3</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Recommendation</div><div style="font-size:11px;color:hsl(var(--muted-foreground));margin-top:2px;">products</div></div>
+</div>
 
 ```mermaid
 flowchart TD
