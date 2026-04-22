@@ -18,6 +18,8 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useCategories, useProducts, invalidateCategoriesCache } from "@/hooks/useProducts";
 import { useUsefulLinks } from "@/hooks/useUsefulLinks";
+import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
+import { getCMFASModuleVideos } from "@/data/cmfasModuleData";
 import type { UsefulLink } from "@/hooks/useProducts";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
@@ -232,10 +234,27 @@ export default function CMFASExams() {
     if (field === "useful_links") await updateUsefulLinks(value as UsefulLink[]);
   };
 
-  // Check if user completed the CMFAS onboarding wizard steps
+  // Onboarding is considered complete when EITHER:
+  //   (a) the user watched every video inside the CMFAS Onboarding module
+  //       (`video_progress` rows with product_id='onboarding', tracked by
+  //       `CMFASModuleCourseLayout` when they hit "Mark complete"), OR
+  //   (b) they ticked all 6 wizard steps in `CMFASOnboardingWizard` (stored in
+  //       localStorage via `useChecklistProgress`).
+  // Previously this only checked (b), so learners who completed the module the
+  // natural way (mark-all-lessons-complete) stayed locked out of exam modules.
   const { isItemCompleted } = useChecklistProgress();
-  const ONBOARDING_STEPS = ['welcome', 'create-student-account', 'access-question-bank', 'understand-costs-timeline', 'register-m9-exam', 'first-practice'];
-  const onboardingComplete = ONBOARDING_STEPS.every((id) => isItemCompleted(id));
+  const ONBOARDING_WIZARD_STEPS = ['welcome', 'create-student-account', 'access-question-bank', 'understand-costs-timeline', 'register-m9-exam', 'first-practice'];
+  const wizardComplete = ONBOARDING_WIZARD_STEPS.every((id) => isItemCompleted(id));
+
+  const onboardingVideoCount = useMemo(() => getCMFASModuleVideos('onboarding').length, []);
+  const onboardingProgress = useBatchVideoProgress(
+    ['onboarding'],
+    { onboarding: onboardingVideoCount },
+  );
+  const videosComplete = onboardingVideoCount > 0
+    && (onboardingProgress['onboarding']?.percentage ?? 0) >= 100;
+
+  const onboardingComplete = wizardComplete || videosComplete;
 
   // Split products into Getting Started (onboarding) and exam modules
   const onboardingProduct = filteredProducts.find((p) => p.id === 'onboarding');
