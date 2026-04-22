@@ -121,14 +121,21 @@ These exist precisely so you don't have to improvise credibility. Build them onc
 
 ### Step 4 — Run the presentation → three outcomes
 
-```mermaid
-flowchart TD
-    P["Financial Planning<br/>presentation"] --> Q1["Find out their<br/>current coverage"]
-    Q1 --> Q2["Learn why planning<br/>matters to them"]
-    Q2 --> O1["Outcome 1<br/>Take action if not yet planned"]
-    Q2 --> O2["Outcome 2<br/>Review and restructure portfolio"]
-    Q2 --> O3["Outcome 3<br/>No need now, collect referrals"]
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 24px;border-radius:14px;font-weight:700;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);text-align:center;">Financial Planning presentation</div>
+    <div style="width:2px;height:18px;background:hsl(var(--border));"></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:hsl(var(--foreground));text-align:center;">Find out their current coverage</div>
+    <div style="width:2px;height:18px;background:hsl(var(--border));"></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:hsl(var(--foreground));text-align:center;">Learn why planning matters to them</div>
+    <div style="width:2px;height:18px;background:linear-gradient(to bottom,hsl(var(--border)),hsl(var(--primary)/0.4));"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:4px;">
+    <div style="background:hsl(160,84%,96%);border:1px solid hsl(160,84%,40%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(160,84%,28%);text-transform:uppercase;margin-bottom:6px;">Outcome 1</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">Take action if not yet planned</div></div>
+    <div style="background:hsl(217,91%,96%);border:1px solid hsl(217,91%,55%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(217,91%,42%);text-transform:uppercase;margin-bottom:6px;">Outcome 2</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">Review and restructure portfolio</div></div>
+    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,50%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(38,92%,38%);text-transform:uppercase;margin-bottom:6px;">Outcome 3</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">No need now, collect referrals</div></div>
+  </div>
+</div>
 
 There is **no fourth outcome**. Even the "no immediate need" case is still productive — the referral ask is the way this industry's top performers compound. A meeting that ends with 5 names in your notebook is a meeting that paid for itself.
 

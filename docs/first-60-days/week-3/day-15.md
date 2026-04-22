@@ -39,20 +39,19 @@ If **one stream is cut off**, a wealthy client's lifestyle isn't affected. If a 
 
 **Your job with clients:** build at least three streams. Most start with one (salary) and never add a second.
 
-```mermaid
-flowchart TD
-    W["Wealth = Diversified income streams"]
-    C["CPF<br/>mandatory, compounding"]
-    P["Property<br/>rental income generating"]
-    I["Investments<br/>stocks, bonds, ETFs"]
-    IA["Insurance accumulation<br/>endowment, ILP, retirement"]
-    B["Business / self-employment<br/>renewals, ventures"]
-    W --> C
-    W --> P
-    W --> I
-    W --> IA
-    W --> B
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:flex;justify-content:center;">
+    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 28px;border-radius:14px;font-weight:700;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);text-align:center;">Wealth = Diversified income streams</div>
+  </div>
+  <div style="display:flex;justify-content:center;"><div style="width:2px;height:22px;background:linear-gradient(to bottom,hsl(var(--primary)/0.6),hsl(var(--border)));"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(217,91%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(217,91%,45%);text-transform:uppercase;margin-bottom:6px;">CPF</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Mandatory, compounding</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(160,84%,40%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(160,84%,30%);text-transform:uppercase;margin-bottom:6px;">Property</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Rental income generating</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(280,70%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(280,70%,45%);text-transform:uppercase;margin-bottom:6px;">Investments</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Stocks, bonds, ETFs</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(38,92%,50%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(38,92%,38%);text-transform:uppercase;margin-bottom:6px;">Insurance accumulation</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Endowment, ILP, retirement</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(340,75%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(340,75%,45%);text-transform:uppercase;margin-bottom:6px;">Business / self-employment</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Renewals, ventures</div></div>
+  </div>
+</div>
 
 ## 2. Wealth Accumulation vs Wealth Preservation
 
