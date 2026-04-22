@@ -59,23 +59,33 @@ Most clients only think about (1). The best advisors teach (2) without moralisin
 
 Every financial plan should be built bottom-up, not top-down. This is the order.
 
-```
- ┌─────────────────────────────┐
- │ Wealth Legacy │ ← Level 5: Give, inherit, distribute
- └─────────────────────────────┘
- ┌───────────────────────────────┐
- │ Wealth Preservation │ ← Level 4: Keep what you've built
- └───────────────────────────────┘
- ┌─────────────────────────────────┐
- │ Wealth Accumulation │ ← Level 3: Grow through investing
- └─────────────────────────────────┘
- ┌───────────────────────────────────┐
- │ Short-Term Savings / Emergency │ ← Level 2: 3–6 months expenses
- └───────────────────────────────────┘
- ┌─────────────────────────────────────┐
- │ Risk Management │ ← Level 1: Foundation
- └─────────────────────────────────────┘
-```
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:1.5rem 0;font-family:system-ui,sans-serif;">
+  <div style="width:40%;background:hsl(262,83%,58%);color:white;padding:14px 16px;border-radius:6px;text-align:center;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <div style="font-size:11px;letter-spacing:0.08em;opacity:0.85;text-transform:uppercase;">Level 5</div>
+    <div>Wealth Legacy</div>
+    <div style="font-size:12px;font-weight:400;opacity:0.9;margin-top:2px;">Give, inherit, distribute</div>
+  </div>
+  <div style="width:55%;background:hsl(252,75%,55%);color:white;padding:14px 16px;border-radius:6px;text-align:center;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <div style="font-size:11px;letter-spacing:0.08em;opacity:0.85;text-transform:uppercase;">Level 4</div>
+    <div>Wealth Preservation</div>
+    <div style="font-size:12px;font-weight:400;opacity:0.9;margin-top:2px;">Keep what you've built</div>
+  </div>
+  <div style="width:70%;background:hsl(217,91%,55%);color:white;padding:14px 16px;border-radius:6px;text-align:center;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <div style="font-size:11px;letter-spacing:0.08em;opacity:0.85;text-transform:uppercase;">Level 3</div>
+    <div>Wealth Accumulation</div>
+    <div style="font-size:12px;font-weight:400;opacity:0.9;margin-top:2px;">Grow through investing</div>
+  </div>
+  <div style="width:85%;background:hsl(187,85%,42%);color:white;padding:14px 16px;border-radius:6px;text-align:center;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <div style="font-size:11px;letter-spacing:0.08em;opacity:0.85;text-transform:uppercase;">Level 2</div>
+    <div>Short-Term Savings / Emergency</div>
+    <div style="font-size:12px;font-weight:400;opacity:0.9;margin-top:2px;">3–6 months of expenses</div>
+  </div>
+  <div style="width:100%;background:hsl(160,84%,39%);color:white;padding:16px 16px;border-radius:6px;text-align:center;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+    <div style="font-size:11px;letter-spacing:0.08em;opacity:0.85;text-transform:uppercase;">Level 1 — Foundation</div>
+    <div>Risk Management</div>
+    <div style="font-size:12px;font-weight:400;opacity:0.9;margin-top:2px;">Protection first — everything else rests on this</div>
+  </div>
+</div>
 
 ### The rules of the pyramid
 
