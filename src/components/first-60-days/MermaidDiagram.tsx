@@ -6,27 +6,26 @@ type Props = {
 
 const LIGHT_THEME_VARS = {
   background: "transparent",
-  // White node bodies with a strong navy border — each box pops against the
-  // soft-blue cluster tint behind it.
+  // Crisp white nodes with deep navy borders — high contrast, premium feel.
   primaryColor: "#ffffff",
-  primaryTextColor: "#0f172a",
-  primaryBorderColor: "#1b4fa4",
-  secondaryColor: "#fff5d6",
-  secondaryTextColor: "#0f172a",
-  secondaryBorderColor: "#c99a2a",
-  tertiaryColor: "#f4f1ea",
-  tertiaryTextColor: "#0f172a",
-  tertiaryBorderColor: "#cbd1e0",
+  primaryTextColor: "#0b1220",
+  primaryBorderColor: "#1e40af",
+  secondaryColor: "#fffaeb",
+  secondaryTextColor: "#0b1220",
+  secondaryBorderColor: "#b8860b",
+  tertiaryColor: "#f8fafc",
+  tertiaryTextColor: "#0b1220",
+  tertiaryBorderColor: "#cbd5e1",
   mainBkg: "#ffffff",
-  secondBkg: "#fff5d6",
-  lineColor: "#94a3b8",
-  // Edge labels on white so they match nodes instead of looking like dark pills.
+  secondBkg: "#fffaeb",
+  // Edges: warmer grey, more visible against the soft background.
+  lineColor: "#64748b",
   edgeLabelBackground: "#ffffff",
-  nodeBorder: "#1b4fa4",
-  // Clusters get a soft blue tint that sits underneath the white nodes.
-  clusterBkg: "#eef3fb",
-  clusterBorder: "#c7d2fe",
-  titleColor: "#0f172a",
+  nodeBorder: "#1e40af",
+  // Clusters: distinctly recessed so the white nodes lift above them.
+  clusterBkg: "#eef4ff",
+  clusterBorder: "#bfd0f5",
+  titleColor: "#0b1220",
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
@@ -34,27 +33,25 @@ const LIGHT_THEME_VARS = {
 
 const DARK_THEME_VARS = {
   background: "transparent",
-  // Nodes sit clearly above the cluster: elevated slate, bright blue border.
-  primaryColor: "#2a3a58",
-  primaryTextColor: "#e7ebf3",
-  primaryBorderColor: "#6b9bff",
-  secondaryColor: "#3a2d1a",
-  secondaryTextColor: "#e7ebf3",
-  secondaryBorderColor: "#e0b94f",
-  tertiaryColor: "#1e2533",
-  tertiaryTextColor: "#e7ebf3",
-  tertiaryBorderColor: "#3a4050",
-  mainBkg: "#2a3a58",
-  secondBkg: "#3a2d1a",
-  lineColor: "#8892a8",
-  // Match edge label to node body — no more near-black pills.
-  edgeLabelBackground: "#2a3a58",
-  nodeBorder: "#6b9bff",
-  // Clusters drop deeper than nodes to read as containers, not siblings.
-  clusterBkg: "#161b29",
+  // Nodes read as elevated cards on a deep slate canvas.
+  primaryColor: "#2e3d5c",
+  primaryTextColor: "#f1f5fb",
+  primaryBorderColor: "#7ea8ff",
+  secondaryColor: "#3d2f1d",
+  secondaryTextColor: "#f1f5fb",
+  secondaryBorderColor: "#f0c95f",
+  tertiaryColor: "#1f2737",
+  tertiaryTextColor: "#f1f5fb",
+  tertiaryBorderColor: "#3a4258",
+  mainBkg: "#2e3d5c",
+  secondBkg: "#3d2f1d",
+  lineColor: "#94a3b8",
+  edgeLabelBackground: "#2e3d5c",
+  nodeBorder: "#7ea8ff",
+  clusterBkg: "#141a28",
   clusterBorder: "#3a4258",
-  titleColor: "#e7ebf3",
-  labelBackground: "#2a3a58",
+  titleColor: "#f1f5fb",
+  labelBackground: "#2e3d5c",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
 };
