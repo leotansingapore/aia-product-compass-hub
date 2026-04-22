@@ -121,19 +121,13 @@ These exist precisely so you don't have to improvise credibility. Build them onc
 
 ### Step 4 — Run the presentation → three outcomes
 
-<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
-    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 24px;border-radius:14px;font-weight:700;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);text-align:center;">Financial Planning presentation</div>
-    <div style="width:2px;height:18px;background:hsl(var(--border));"></div>
-    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:hsl(var(--foreground));text-align:center;">Find out their current coverage</div>
-    <div style="width:2px;height:18px;background:hsl(var(--border));"></div>
-    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:hsl(var(--foreground));text-align:center;">Learn why planning matters to them</div>
-    <div style="width:2px;height:18px;background:linear-gradient(to bottom,hsl(var(--border)),hsl(var(--primary)/0.4));"></div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:4px;">
-    <div style="background:hsl(160,84%,96%);border:1px solid hsl(160,84%,40%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(160,84%,28%);text-transform:uppercase;margin-bottom:6px;">Outcome 1</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">Take action if not yet planned</div></div>
-    <div style="background:hsl(217,91%,96%);border:1px solid hsl(217,91%,55%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(217,91%,42%);text-transform:uppercase;margin-bottom:6px;">Outcome 2</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">Review and restructure portfolio</div></div>
-    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,50%);border-radius:12px;padding:14px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(38,92%,38%);text-transform:uppercase;margin-bottom:6px;">Outcome 3</div><div style="font-size:13px;color:hsl(var(--foreground));font-weight:600;line-height:1.45;">No need now, collect referrals</div></div>
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">the financial planning presentation leads to —</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-size:14px;color:hsl(var(--foreground));margin-bottom:1.25rem;">find current coverage · learn why planning matters</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;">
+    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Take action if not yet planned</div></div>
+    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Review and restructure portfolio</div></div>
+    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">No need now — collect referrals</div></div>
   </div>
 </div>
 
