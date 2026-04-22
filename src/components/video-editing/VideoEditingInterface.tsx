@@ -149,6 +149,40 @@ export function VideoEditingInterface({
     handleAddPageToFolder('');
   };
 
+  // Delete a video/page by its index into pendingVideos (what the tree renders).
+  // Going through pendingVideos — not parent editVideos — prevents wrong-item
+  // deletion when drag-reorders haven't been saved yet, since the two arrays
+  // can disagree on ordering until the sync runs.
+  const handleRemoveVideo = async (index: number) => {
+    const current = videoOrderChanges.pendingVideos;
+    const target = current[index];
+    if (!target) {
+      console.warn('🗑️ handleRemoveVideo: no video at index', index);
+      return;
+    }
+    const filtered = current
+      .filter((v) => v.id !== target.id)
+      .map((v, i) => ({ ...v, order: i }));
+    videoOrderChanges.updatePendingVideos(filtered);
+    onSetEditVideos(filtered);
+    if (editingIndex === index) {
+      onEditingIndexChange(null);
+    } else if (editingIndex !== null && editingIndex > index) {
+      onEditingIndexChange(editingIndex - 1);
+    }
+    try {
+      await onSave(filtered);
+      videoOrderChanges.clearChangeTracking();
+    } catch (error) {
+      console.error('🗑️ handleRemoveVideo: save failed', error);
+      toast({
+        title: 'Delete failed',
+        description: 'Could not save the deletion. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const handleReorderFolders = (folderOrder: string[]) => {
     const currentVideos = videoOrderChanges.pendingVideos;
     
@@ -232,7 +266,7 @@ export function VideoEditingInterface({
           isEditorEditing={isEditorEditing}
           onEditingIndexChange={onEditingIndexChange}
           onUpdateVideo={handleUpdateVideo}
-          onRemoveVideo={onRemoveVideo}
+          onRemoveVideo={handleRemoveVideo}
           onMoveVideo={onMoveVideo}
           onNewVideoChange={onNewVideoChange}
           onAddVideo={onAddVideo}
