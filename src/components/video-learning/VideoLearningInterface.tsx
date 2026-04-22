@@ -638,7 +638,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </TooltipTrigger>
                 {actionStepsBlockComplete && !currentProgress?.completed && (
                   <TooltipContent side="top">
-                    <p className="text-xs">Check off every action step above first.</p>
+                    <p className="text-xs">Tick each action step to finish this lesson — you're almost there.</p>
                   </TooltipContent>
                 )}
               </Tooltip>

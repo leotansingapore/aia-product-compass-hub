@@ -12,6 +12,8 @@ import { ViewModeProvider, AdminViewSwitcher } from "@/components/admin/AdminVie
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
+import { CMFASStudyProvider } from "@/components/cmfas/CMFASStudyProvider";
+import { PomodoroDock } from "@/components/cmfas/PomodoroDock";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
@@ -113,6 +115,8 @@ const App = () => (
             <BrowserRouter>
               <OnboardingProvider>
                 <ChecklistProvider>
+                  <CMFASStudyProvider>
+                  <PomodoroDock />
                   <AppLayout>
                   <RouteTracker />
                   <Suspense fallback={<SkeletonLoader type="product" />}>
@@ -223,6 +227,7 @@ const App = () => (
                     <NewVersionBanner />
                   </Suspense>
                   </AppLayout>
+                  </CMFASStudyProvider>
                 </ChecklistProvider>
               </OnboardingProvider>
               {/* Admin View Switcher - outside AppLayout so it's never clipped */}

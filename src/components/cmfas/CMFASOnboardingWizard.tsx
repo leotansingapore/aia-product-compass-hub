@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -35,68 +35,70 @@ interface OnboardingStep {
 
 interface CMFASOnboardingWizardProps {
   onUpdate?: (field: string, value: any) => Promise<void>;
+  /**
+   * From `/cmfas/module/onboarding?step=welcome` (etc.) so outline links open the right wizard step.
+   * Must match a step `id` in the checklist / wizard.
+   */
+  initialStepId?: string | null;
 }
 
-export function CMFASOnboardingWizard({ onUpdate }: CMFASOnboardingWizardProps) {
+export function CMFASOnboardingWizard({ onUpdate, initialStepId }: CMFASOnboardingWizardProps) {
   const navigate = useNavigate();
   const { completeItem, isItemCompleted } = useChecklistProgress();
   const { isAdmin: isAdminMode } = useAdmin();
   
   const [currentStep, setCurrentStep] = useState(0);
-  
+
   const [wizardData, setWizardData] = useState({
     title: "🎯 Get Ready for CMFAS Success!",
     subtitle: "Follow these simple steps to start your certification journey",
     steps: [
       {
         id: 'welcome',
-        title: 'Welcome to CMFAS',
-        description: 'Your journey to becoming a certified financial advisor starts here!',
+        title: 'Rules of the Game',
+        description: 'Program philosophy, study pace, and what each level unlocks.',
         icon: Sparkles,
         points: 0,
         media: [] as MediaItem[],
-        content: `# Welcome! 🎉
+        content: `# Rules of the Game
 
 It is puzzling to me how people spend years on a degree just to earn $3-4k/mth but don't have the patience to spend a few months clearing some certifications to have the chance to earn a 5 figure income within a few months.
 
-## 🎯 Your CMFAS Journey Starts Here
-
 In the next few months, you will be spending the majority of the time studying financial certifications, called the **CMFAS exams**.
 
-### 📖 Study Commitment
 I would suggest that you spend **at least 1 hour a day** studying for the exams.
 
 There are **4 exams**, and it should take **at most 1 month** to study for each exam.
 
-## 💪 Tests of Conviction
+Treat these as *obstacles* or *tests* of your conviction and commitment.
 
-Treat these as **"obstacles"** or **"tests"** of your conviction and commitment.
-
-The more you pass these exams, the more content I will **"unlock"** for you.
+The more you pass these exams, the more content I will *unlock* for you.
 
 Just as how anyone and everyone can enter into BMT, not everyone can go into OCS, or make it to becoming a commando.
 
-## 🔄 Two-Way Test
+So treat this as a **two-way test**: for yourself, to learn more about the business before placing your bets, and for myself, to check for your convictions and commitment to us.
 
-So treat this as a **two way test**:
-- **For yourself:** to learn more about the business before placing your bets
-- **For myself:** to check for your convictions and commitment to us
+The more you study and pass the exams, the more courses you will unlock, and you will progress to the next level. Think of it this way: anyone can join BMT, but not everyone will enter OCS Foundation Term, and OCS Pro Term, and eventually commission as an officer.
 
-The more you study and pass the exams, the more courses you will unlock, and you will progress to the next level.
+## Finternship™ Bootcamp — everyone starts here
 
-Think of it this way: Anyone can join BMT, but not everyone will enter OCS Foundation Term, and OCS Pro Term, and eventually commission as an Officer.
+Just focus your time: study around **2 hours per day** for the exams.
 
-## 🎓 Progression Levels
+- Unlock basic financial planning modules
 
-**Finternship™ Bootcamp** → Everyone Starts here
+## Finternship™ Fastrack — progress here after passing 1 exam
 
-**Finternship™ Fastrack** → Progress here after passing 1 exam
+- Unlock more financial planning modules
+- Start to shadow me for my appointments to learn on the job
 
-**Finternship™ Accelerator** → Progress here after passing 4 exams
+## Finternship™ Accelerator — progress here after passing 4 exams
+
+- Start to learn how to do cold prospecting
+- Unlock my scripts and presentation templates
 
 ---
 
-Ready to prove your commitment? Let's begin your certification journey! 🚀`
+**Next Step:** When you're done reading, tap the **Next Step** button below to mark this checked.`
       },
       {
         id: 'create-student-account',
@@ -107,15 +109,30 @@ Ready to prove your commitment? Let's begin your certification journey! 🚀`
         media: [] as MediaItem[],
         content: `# Create Your Student Account
 
-Create a student account here on SCI College.
+You need an SCI College student account before you can book any CMFAS paper. This takes about 5 minutes.
 
-**Registration Details:**
-- Training Co-ordinator: **NG CHUN HIONG**
-- Email: **junxiong@aiafa.com.sg**
-- Agency: **JUNXIONG-WFG ORG**
-- Company: **AIA Financial Advisers Pte Ltd**
+## 1. Register at SCI College
 
-**After registration:** Send me a screenshot of the email confirmation of student account creation completion.`,
+Go to [scicollege.org.sg](https://www.scicollege.org.sg/Account/Register) and fill in:
+
+- **Training Co-ordinator:** NA
+- **Email:** NA
+- **Agency:** NA
+- **Company:** AIA Financial Advisers Pte Ltd
+
+## 2. Send the confirmation screenshot
+
+Once SCI emails you the account-creation confirmation, send a screenshot to your FINternship support chat so we can verify it.
+
+## 3. Unlock the exam resources
+
+After your account is active, [open the exam resources here](https://www.skool.com/finternship/classroom/e49e2efc?md=d36f1dca8ade4d22aef3f433b7caf7e4) to get into the question bank and study materials.
+
+## 4. Book when you're semi-confident
+
+You don't need to book an exam yet — but once you feel roughly ready, [register for the CMFAS exams here](https://tinyurl.com/CMFASregistration2025). A real exam date is the best study motivator.
+
+**Next Step:** When you're done, tap the **Next Step** button below to mark this checked.`,
         actionTitle: 'Register at SCI College',
         actionUrl: 'https://www.scicollege.org.sg/Account/Register'
       },
@@ -188,24 +205,36 @@ We **subsidize only the first attempt** of each exam. Subsequent attempts will b
         icon: Calendar,
         points: 20,
         media: [] as MediaItem[],
-        content: `# Step 5: Register for M9 Exam 📅
+        content: `# Register for the M9 Exam
 
-**Book your M9 exam first** to create a study deadline and build momentum.
+Book your first paper. A real exam date is the single biggest thing that pulls you through 20–30 hours of study.
 
-## Why Start with M9?
-- 🎯 **Foundation Module** - Essential knowledge for all advisors
-- ⏰ **Quick Win** - Can be completed in 2-3 weeks
-- 🚀 **Momentum Builder** - Success breeds success
+## How to register
 
-## Study Timeline:
-- **Aim for 1-2 exams per month**
-- **M9 → M9A → HI → RES5** (recommended sequence)
-- **20-30 hours study time** per exam
+Register for M9 at [tinyurl.com/CMFASregistration2025](https://tinyurl.com/CMFASregistration2025), or message [@cmfas_bot](https://t.me/cmfas_bot) on Telegram.
 
-### 💡 Pro Tip:
-Book your exam **before you start studying** to create accountability and motivation!
+## When to book
 
-Having a deadline makes you more focused and committed to your study schedule.`
+- Each paper is about **20–30 hours** of study.
+- Aim for **1–2 papers per month**, starting with M9.
+- Book **before** you start studying so you have a real deadline — or, if you'd rather warm up first, book once you've done **500 questions** on iRecruit. Either works; just pick one and commit.
+
+## Exam costs (first attempt — we cover it)
+
+| Paper | Cost |
+| --- | --- |
+| M9 | S$109.00 |
+| M9A | S$109.00 |
+| HI | S$76.30 |
+| RES5 | S$185.30 |
+
+Retakes are on you. That's the whole reason we push you to pass on the first attempt.
+
+## Our support
+
+With everything we give you — Flashcards, Personal Tutoring, Question Bank, Chatbot, Key Concepts, Study Tips — passing first time is very doable.
+
+**Next Step:** Once you've booked your M9 exam, tap the **Next Step** button below to mark this checked.`
       },
       {
         id: 'first-practice',
@@ -237,6 +266,17 @@ Click "Complete Step" and start your first practice session!`
       }
     ] as OnboardingStep[]
   });
+
+  useLayoutEffect(() => {
+    if (!initialStepId) return;
+    const idx = wizardData.steps.findIndex((s) => s.id === initialStepId);
+    if (idx >= 0) {
+      setCurrentStep(idx);
+      announceToScreenReader(`Opened step: ${wizardData.steps[idx].title}`);
+    }
+    // URL query only: step ids are fixed; do not re-run on wizardData edits.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialStepId]);
 
   const currentStepData = wizardData.steps[currentStep];
   const completedSteps = wizardData.steps.filter(step => isItemCompleted(step.id));

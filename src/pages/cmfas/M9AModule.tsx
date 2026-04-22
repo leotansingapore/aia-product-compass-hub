@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { CMFASModuleHeader } from "@/components/cmfas/CMFASHubHero";
 import { CMFASModuleCourseLayout } from "@/components/cmfas/CMFASModuleCourseLayout";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
@@ -170,16 +170,17 @@ export default function M9AModule() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <BrandedPageHeader
-        layout="course"
-        title="CMFAS M9A Module"
-        subtitle="Life Insurance & Investment-Linked Policies II"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "CMFAS Exams", href: "/cmfas-exams" },
-          { label: "M9A Module" },
-        ]}
-      />
+      <header role="banner">
+        <CMFASModuleHeader
+          title="CMFAS M9A Module"
+          subtitle="Life Insurance & Investment-Linked Policies II"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "CMFAS Exams", href: "/cmfas-exams" },
+            { label: "M9A Module" },
+          ]}
+        />
+      </header>
 
       <CMFASModuleCourseLayout
         routeModuleId="m9a"

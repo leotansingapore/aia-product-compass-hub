@@ -102,6 +102,18 @@ export function LessonActionStepsPanel({
                       {step.hint}
                     </p>
                   )}
+                  {(step.minutes || step.outcome) && !checked && (
+                    <p className="mt-1 text-[11px] text-muted-foreground">
+                      {step.minutes != null && <span className="tabular-nums">~{step.minutes} min</span>}
+                      {step.minutes != null && step.outcome && <span className="mx-1.5">·</span>}
+                      {step.outcome && <span>After this: {step.outcome}</span>}
+                    </p>
+                  )}
+                  {step.socialProof && !checked && (
+                    <p className="mt-1 text-[11px] italic text-muted-foreground/80">
+                      {step.socialProof}
+                    </p>
+                  )}
                   {hasLink && (
                     <a
                       href={step.url}

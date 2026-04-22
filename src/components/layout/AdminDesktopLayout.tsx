@@ -35,7 +35,7 @@ function AdminDesktopLayoutImpl({
             </button>
           </header>
 
-          <main className="flex-1 page-transition">{children}</main>
+          <main className="min-h-0 flex-1 page-transition">{children}</main>
         </SidebarInset>
       </div>
     </SidebarProvider>

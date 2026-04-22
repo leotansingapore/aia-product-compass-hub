@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { CMFASModuleHeader } from "@/components/cmfas/CMFASHubHero";
 import { CMFASModuleCourseLayout } from "@/components/cmfas/CMFASModuleCourseLayout";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
@@ -199,16 +199,17 @@ export default function HIModule() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <BrandedPageHeader
-        layout="course"
-        title="CMFAS HI Module"
-        subtitle="Health Insurance"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "CMFAS Exams", href: "/cmfas-exams" },
-          { label: "HI Module" },
-        ]}
-      />
+      <header role="banner">
+        <CMFASModuleHeader
+          title="CMFAS HI Module"
+          subtitle="Health Insurance"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "CMFAS Exams", href: "/cmfas-exams" },
+            { label: "HI Module" },
+          ]}
+        />
+      </header>
 
       <CMFASModuleCourseLayout
         routeModuleId="hi"

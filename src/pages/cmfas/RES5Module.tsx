@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { CMFASModuleHeader } from "@/components/cmfas/CMFASHubHero";
 import { CMFASModuleCourseLayout } from "@/components/cmfas/CMFASModuleCourseLayout";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
@@ -189,16 +189,17 @@ export default function RES5Module() {
         <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
       </Helmet>
 
-      <BrandedPageHeader
-        layout="course"
-        title="CMFAS RES5 Module"
-        subtitle="Rules, Ethics & Skills for Financial Advisory Services"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "CMFAS Exams", href: "/cmfas-exams" },
-          { label: "RES5 Module" },
-        ]}
-      />
+      <header role="banner">
+        <CMFASModuleHeader
+          title="CMFAS RES5 Module"
+          subtitle="Rules, Ethics & Skills for Financial Advisory Services"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "CMFAS Exams", href: "/cmfas-exams" },
+            { label: "RES5 Module" },
+          ]}
+        />
+      </header>
 
       <CMFASModuleCourseLayout
         routeModuleId="res5"

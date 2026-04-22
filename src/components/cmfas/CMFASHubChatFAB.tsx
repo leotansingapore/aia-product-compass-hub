@@ -25,7 +25,7 @@ export function CMFASHubChatFAB({ className, moduleId }: CMFASHubChatFABProps) {
     <div
       className={cn(
         "pointer-events-none fixed z-[9985] flex flex-col items-end gap-2",
-        // Mobile: above bottom nav; desktop: comfortable inset (Feedback lives in sidebar)
+        // Mobile: above bottom nav; desktop: comfortable inset (FloatingFeedbackButton stacks above this on /cmfas)
         "bottom-24 right-4 sm:bottom-8 sm:right-8",
         className
       )}

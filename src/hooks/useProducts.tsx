@@ -28,10 +28,13 @@ export interface AssignmentConfig {
 }
 
 export interface LessonActionStep {
-  id: string;     // stable uuid; keyed against per-user completion
-  title: string;  // required
-  hint?: string;  // 1-line helper text shown beneath the title
-  url?: string;   // opened in a new tab when the row is clicked
+  id: string;         // stable uuid; keyed against per-user completion
+  title: string;      // required
+  hint?: string;      // 1-line helper text shown beneath the title
+  url?: string;       // opened in a new tab when the row is clicked
+  minutes?: number;   // rough time cost — renders as "~20 min"
+  outcome?: string;   // what the learner gets — "After this: you can log into SCI"
+  socialProof?: string; // optional normalising line — "Most consultants finish this in 20 min"
 }
 
 export interface TrainingVideo {

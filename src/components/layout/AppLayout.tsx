@@ -200,7 +200,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
     <div className="min-h-screen flex flex-col">
       <TopNav onProfileClick={() => setProfileOpen(true)} />
 
-      <main className="flex-1 page-transition">
+      <main className="min-h-0 flex-1 page-transition">
         {children}
       </main>
 

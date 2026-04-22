@@ -89,11 +89,11 @@ export function CMFASExamModuleList({
             Exam modules
           </h2>
           {total > 0 && (
-            <p className="text-xs text-muted-foreground mt-0.5 tabular-nums">
-              {completed} of {total} complete
+            <p className="text-xs text-muted-foreground mt-0.5">
+              <span className="tabular-nums">{completed} of {total}</span> complete
               {locked && (
                 <span className="ml-2 inline-flex items-center gap-1">
-                  <Lock className="h-3 w-3" /> Complete Getting Started to unlock
+                  <Lock className="h-3 w-3" /> Finish setup to open these papers
                 </span>
               )}
             </p>

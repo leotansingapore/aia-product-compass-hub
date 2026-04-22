@@ -620,4 +620,32 @@
     );
     animation: countdown-sweep var(--countdown-duration, 5s) linear forwards;
   }
+
+  /* ===== CMFAS hub: study / exam room hero (orbital + tiles) ===== */
+  @keyframes cmfas-study-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  @keyframes cmfas-study-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-cmfas-study-float {
+    animation: cmfas-study-float 4.2s ease-in-out infinite;
+  }
+  .animate-cmfas-study-spin-slow {
+    animation: cmfas-study-spin 22s linear infinite;
+  }
+  .animate-cmfas-study-spin-slow-reverse {
+    animation: cmfas-study-spin 30s linear infinite reverse;
+  }
 }

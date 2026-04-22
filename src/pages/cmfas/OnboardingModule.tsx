@@ -1,14 +1,18 @@
 import { Helmet } from "react-helmet-async";
-import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { CMFASModuleHeader } from "@/components/cmfas/CMFASHubHero";
 import { CMFASModuleCourseLayout } from "@/components/cmfas/CMFASModuleCourseLayout";
 import { CMFASOnboardingWizard } from "@/components/cmfas/CMFASOnboardingWizard";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { SkipNavigation } from "@/components/SkipNavigation";
 import { useState } from "react";
 import { getCMFASModuleVideos } from "@/data/cmfasModuleData";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 
 const OnboardingModule = () => {
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const stepParam = searchParams.get("step")?.trim() || null;
+
   const moduleId = "onboarding";
   const [tutorialLectures, setTutorialLectures] = useState(getCMFASModuleVideos(moduleId));
 
@@ -32,8 +36,7 @@ const OnboardingModule = () => {
       <SkipNavigation />
 
       <header role="banner">
-        <BrandedPageHeader
-          layout="course"
+        <CMFASModuleHeader
           title="CMFAS Onboarding"
           subtitle="Essential setup steps to begin your certification journey"
           breadcrumbs={[
@@ -46,10 +49,11 @@ const OnboardingModule = () => {
 
       <main id="main-content" role="main" aria-label="CMFAS Onboarding Content">
         <CMFASModuleCourseLayout
+          key={`${location.pathname}${location.search}`}
           routeModuleId="onboarding"
           videos={tutorialLectures}
           moduleName="CMFAS Onboarding"
-          defaultTab="overview"
+          defaultTab={stepParam ? "course-content" : "overview"}
           tabCourseContent={
             <>
               <div className="flex items-center gap-3 md:gap-4 mb-6 p-4 rounded-2xl border bg-card">
@@ -72,7 +76,10 @@ const OnboardingModule = () => {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-bold mb-4">Onboarding checklist</h3>
-                  <CMFASOnboardingWizard onUpdate={handleUpdate} />
+                  <CMFASOnboardingWizard
+                    onUpdate={handleUpdate}
+                    initialStepId={stepParam}
+                  />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-4">Setup instructions</h3>

@@ -201,6 +201,61 @@ function ActionStepRow({ step, index, onUpdate, onRemove }: ActionStepRowProps) 
               />
             </div>
           </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <div className="space-y-1">
+              <Label
+                htmlFor={`step-minutes-${step.id}`}
+                className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
+              >
+                ~ Minutes (optional)
+              </Label>
+              <Input
+                id={`step-minutes-${step.id}`}
+                type="number"
+                min={0}
+                max={240}
+                value={step.minutes ?? ''}
+                onChange={(e) => {
+                  const raw = e.target.value;
+                  if (raw === '') return onUpdate({ minutes: undefined });
+                  const n = Number.parseInt(raw, 10);
+                  onUpdate({ minutes: Number.isFinite(n) && n >= 0 ? n : undefined });
+                }}
+                placeholder="e.g. 20"
+                className="h-9"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label
+                htmlFor={`step-outcome-${step.id}`}
+                className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
+              >
+                Outcome (optional)
+              </Label>
+              <Input
+                id={`step-outcome-${step.id}`}
+                value={step.outcome ?? ''}
+                onChange={(e) => onUpdate({ outcome: e.target.value || undefined })}
+                placeholder="e.g. you can log into SCI"
+                className="h-9"
+              />
+            </div>
+          </div>
+          <div className="space-y-1">
+            <Label
+              htmlFor={`step-social-${step.id}`}
+              className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
+            >
+              Social proof (optional)
+            </Label>
+            <Input
+              id={`step-social-${step.id}`}
+              value={step.socialProof ?? ''}
+              onChange={(e) => onUpdate({ socialProof: e.target.value || undefined })}
+              placeholder="e.g. Most consultants finish this in 20 min — #1 place people get stuck."
+              className="h-9"
+            />
+          </div>
         </div>
         <Button
           type="button"
