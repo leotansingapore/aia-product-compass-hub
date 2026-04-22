@@ -78,6 +78,19 @@ export function stripAppendix(body: string): string {
   return out.trimEnd();
 }
 
+// Obsidian wikilinks like `[[day-07|Title]]` or table-escaped `[[day-07\|Title]]`
+// must be rewritten to standard markdown links so ReactMarkdown can render them
+// as React Router <Link>s.
+const WIKILINK_RE = /\[\[day-(\d+)(?:\\?\|([^\]]+))?\]\]/g;
+
+export function convertWikilinks(body: string): string {
+  return body.replace(WIKILINK_RE, (_match, num: string, label?: string) => {
+    const dayNumber = Number(num);
+    const text = (label ?? `Day ${dayNumber}`).trim();
+    return `[${text}](/learning-track/first-60-days/day/${dayNumber})`;
+  });
+}
+
 export function parseReflection(body: string): ReflectionPrompt[] {
   const heading = body.match(REFLECTION_HEADING_RE);
   if (!heading || heading.index === undefined) return [];

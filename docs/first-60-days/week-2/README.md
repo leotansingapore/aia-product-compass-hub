@@ -13,7 +13,7 @@ tags: [first-60-days, week-2]
 
 | Day | Title | Focus |
 |---:|---|---|
-| 7 | [[day-07\|The Insurance Industry & AIA Singapore]] | The four insurance segments, AIA positioning, digital toolkit |
+| 7 | [[day-07\|The Insurance Industry & AIA Singapore]] | The five insurance segments, AIA positioning, digital toolkit |
 | 8 | [[day-08\|Career Sharing — The Path Ahead]] | The earning-pattern curve, infrastructure, impact |
 | 9 | [[day-09\|The Poor, The Middle Class, and The Rich]] | Class defined by cash-flow behaviour, not salary |
 | 10 | [[day-10\|Your Greatest Purchase = Freedom]] | The freedom formula, the pyramid, the freedom number |
@@ -22,7 +22,7 @@ tags: [first-60-days, week-2]
 
 ## What you should have learnt by now
 
-- The [**four segments**](/learning-track/first-60-days/day/7) of the insurance industry and how AIA is positioned inside them.
+- The [**five segments**](/learning-track/first-60-days/day/7) of the insurance industry and how AIA is positioned inside them.
 - Why [**class is a cashflow behaviour**](/learning-track/first-60-days/day/9), not a salary figure — and how that changes the conversation with a client.
 - The [**freedom formula**](/learning-track/first-60-days/day/10) and what the **freedom number** actually represents for an individual or household.
 - How to map any household onto the [**5-level Financial Freedom Pyramid**](/learning-track/first-60-days/day/12) (Security → Freedom → Wealth).

@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
+import { convertWikilinks, parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
 import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
 // Lazy per-day raw loaders. Each day becomes its own chunk — only the day being
@@ -60,7 +60,8 @@ export async function loadWeekReadme(weekNumber: number): Promise<string | undef
   if (!loader) return undefined;
   const raw = await loader();
   // Strip frontmatter before rendering.
-  const body = raw.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, "").trim();
+  const stripped = raw.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, "").trim();
+  const body = convertWikilinks(stripped);
   weekReadmeCache.set(weekNumber, body);
   return body;
 }
@@ -79,7 +80,7 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
     title: frontmatter.title,
     path: `week-${frontmatter.week}/day-${String(frontmatter.day).padStart(2, "0")}.md`,
     frontmatter,
-    markdown: stripAppendix(body),
+    markdown: convertWikilinks(stripAppendix(body)),
     quiz: parseQuiz(body),
     reflection: parseReflection(body),
   };
