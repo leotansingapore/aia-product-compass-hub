@@ -214,31 +214,31 @@ const POINT_ROWS: readonly PointRow[] = [
   {
     icon: CalendarCheck,
     activity: "First 14 Days — daily page completed",
-    points: "1 pt",
+    points: "5 pt",
     note: "pass the day's quiz on the 14-day track",
   },
   {
     icon: CalendarCheck,
     activity: "First 60 Days — daily page completed",
-    points: "1 pt",
+    points: "5 pt",
     note: "pass the day's quiz on the 60-day track",
   },
   {
     icon: FileCheck2,
     activity: "Pre-RNF assignment submitted",
-    points: "5 pt",
+    points: "25 pt",
     note: "per assignment uploaded for review",
   },
   {
     icon: Brain,
     activity: "Question bank — question answered correctly",
-    points: "0.2 pt",
+    points: "1 pt",
     note: "any correct answer counts once per question",
   },
   {
     icon: PlayCircle,
     activity: "Training video completed",
-    points: "0.5 pt",
+    points: "2.5 pt",
     note: "watch a product or CMFAS video to the end",
   },
 ];

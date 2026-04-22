@@ -8,11 +8,11 @@
 
 #### Update `get_learner_leaderboard` scoring — 2026-04-22
 
-**What:** Three changes to the point-weighting and breakdown surface of the existing `public.get_learner_leaderboard(p_tier text)` function. The Leaderboard page already shows this new scoring — the RPC needs to match so the numbers are honest.
+**What:** Rework the point-weighting and breakdown surface of `public.get_learner_leaderboard(p_tier text)`. The Leaderboard page already shows the new scoring — the RPC needs to match so the numbers are honest. Apply all of these together; do not land them as separate migrations.
 
-1. **Remove product-quiz points.** Drop the `pq` CTE and the `a.pq_count * 1` term from `total_points`. Remove `product_quizzes` from both the `RETURNS TABLE` signature and the final `SELECT`. Also drop the `quiz_attempts` contribution to the `days` (distinct activity days) CTE so a pure quiz attempt no longer bumps `days_active`.
+1. **Remove product-quiz points.** Drop the `pq` CTE and the `a.pq_count` term from `total_points`. Remove `product_quizzes` from both the `RETURNS TABLE` signature and the final `SELECT`. Drop the `quiz_attempts` UNION branch from the `days` (distinct activity days) CTE so a pure quiz attempt no longer bumps `days_active`.
 
-2. **Question bank: per correct answer, not per mastery.** Replace the `qb` CTE:
+2. **Question bank: per correct answer, not per mastery.** Replace the `qb` CTE so it counts questions the user has ever gotten right, not mastered ones:
 
    ```sql
    qb AS (
@@ -25,11 +25,43 @@
    ),
    ```
 
-   Update the `total_points` term from `a.qb_count * 0.5` to `a.qb_count * 0.2`, and the returned `question_bank` column from `(a.qb_count * 0.5)` to `(a.qb_count * 0.2)`. Also update the corresponding UNION branch in the `days` CTE filter from `mastered = true` to `total_correct > 0`.
+   Update the corresponding UNION branch in the `days` CTE filter from `mastered = true` to `total_correct > 0`.
 
-3. **Drop reflection points** (leaderboard no longer surfaces them, feature retired). Remove `f14_refl`, `f60_refl`, `first_14_reflections`, `first_60_reflections` from the CTEs, the `total_points` formula, the `RETURNS TABLE` signature, and the final `SELECT`. Also remove the corresponding UNION branches from the `days` CTE (both `reflection_saved_at` for 14-days and `reflection_submitted_at` for 60-days).
+3. **Drop reflection points** (feature retired). Remove `f14_refl`, `f60_refl`, `first_14_reflections`, `first_60_reflections` from the CTEs, the `total_points` formula, the `RETURNS TABLE` signature, and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (both `reflection_saved_at` for 14-days and `reflection_submitted_at` for 60-days).
 
-4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice and clutter the breakdown. Remove the `lti` and `lts` CTEs entirely. Remove `a.lti_count * 1`, `a.lts_count * 3`, and `a.lts_approved_count * 2` from the `total_points` formula. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Also drop those two terms from the final `WHERE … OR (sum…) > 0` clause.
+4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice. Remove the `lti` and `lts` CTEs entirely. Remove the `a.lti_count`, `a.lts_count`, and `a.lts_approved_count` terms from `total_points`. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Drop those two terms from the final `WHERE … OR (sum…) > 0` clause too.
+
+5. **New point weights (target totals after ×5 rescale).** Use these exact per-unit weights in the final `total_points` expression and in each returned breakdown column:
+
+   | Breakdown column | Source CTE term | Weight |
+   | --- | --- | --- |
+   | `first_14_days` | `a.f14_quiz` | **5** |
+   | `first_60_days` | `a.f60_quiz` | **5** |
+   | `assignments` | `a.asg_count` | **25** |
+   | `question_bank` | `a.qb_count` | **1** |
+   | `videos` | `a.vid_count` | **2.5** |
+
+   Final formula:
+
+   ```sql
+   ROUND((
+     a.f14_quiz * 5 +
+     a.f60_quiz * 5 +
+     a.asg_count * 25 +
+     a.qb_count * 1 +
+     a.vid_count * 2.5
+   )::numeric, 1) AS total_points
+   ```
+
+   And the matching `SELECT` breakdown:
+
+   ```sql
+   (a.f14_quiz * 5)::numeric AS first_14_days,
+   (a.f60_quiz * 5)::numeric AS first_60_days,
+   (a.asg_count * 25)::numeric AS assignments,
+   (a.qb_count * 1)::numeric AS question_bank,
+   (a.vid_count * 2.5)::numeric AS videos,
+   ```
 
 **Why:** User feedback — product-quiz attempts and question-bank mastery are no longer appropriate point categories (mastery requires multiple consecutive corrects; one correct answer is enough now). Reflections feature was retired.
 
