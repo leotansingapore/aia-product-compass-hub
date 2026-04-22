@@ -6,6 +6,35 @@
 
 ## Pending
 
+#### Update `get_learner_leaderboard` scoring — 2026-04-22
+
+**What:** Three changes to the point-weighting and breakdown surface of the existing `public.get_learner_leaderboard(p_tier text)` function. The Leaderboard page already shows this new scoring — the RPC needs to match so the numbers are honest.
+
+1. **Remove product-quiz points.** Drop the `pq` CTE and the `a.pq_count * 1` term from `total_points`. Remove `product_quizzes` from both the `RETURNS TABLE` signature and the final `SELECT`. Also drop the `quiz_attempts` contribution to the `days` (distinct activity days) CTE so a pure quiz attempt no longer bumps `days_active`.
+
+2. **Question bank: per correct answer, not per mastery.** Replace the `qb` CTE:
+
+   ```sql
+   qb AS (
+     SELECT
+       user_id::uuid AS user_id,
+       COUNT(*)::numeric AS qb_count
+     FROM public.user_question_progress
+     WHERE total_correct > 0
+     GROUP BY user_id
+   ),
+   ```
+
+   Update the `total_points` term from `a.qb_count * 0.5` to `a.qb_count * 0.2`, and the returned `question_bank` column from `(a.qb_count * 0.5)` to `(a.qb_count * 0.2)`. Also update the corresponding UNION branch in the `days` CTE filter from `mastered = true` to `total_correct > 0`.
+
+3. **Drop reflection points** (leaderboard no longer surfaces them, feature retired). Remove `f14_refl`, `f60_refl`, `first_14_reflections`, `first_60_reflections` from the CTEs, the `total_points` formula, the `RETURNS TABLE` signature, and the final `SELECT`. Also remove the corresponding UNION branches from the `days` CTE (both `reflection_saved_at` for 14-days and `reflection_submitted_at` for 60-days).
+
+**Why:** User feedback — product-quiz attempts and question-bank mastery are no longer appropriate point categories (mastery requires multiple consecutive corrects; one correct answer is enough now). Reflections feature was retired.
+
+**After the migration:** The `useLearnerLeaderboard` hook's `RpcRow` / `PointBreakdown` types in [`src/hooks/useLearnerLeaderboard.ts`](src/hooks/useLearnerLeaderboard.ts) can be trimmed (drop `product_quizzes`, `productQuizzes`, `first_14_reflections`, `first_60_reflections`, `first14Reflections`, `first60Reflections`) — Claude Code will handle that once the RPC is live.
+
+---
+
 #### Fix `get_learner_leaderboard` ambiguous column — 2026-04-22 — **BLOCKING**
 
 **What:** Calling the RPC returns HTTP 400 with Postgres error `42702`:

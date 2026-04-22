@@ -10,7 +10,6 @@ import {
   CalendarCheck,
   FileCheck2,
   Brain,
-  BookOpen,
   PlayCircle,
   Route,
   Upload,
@@ -51,14 +50,13 @@ function RankIcon({ rank }: { rank: number }) {
 }
 
 const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
-  { key: "first14Days", label: "First 14 Days — days complete" },
-  { key: "first60Days", label: "First 60 Days — days complete" },
-  { key: "assignments", label: "Assignments submitted" },
-  { key: "questionBank", label: "Question bank mastery" },
-  { key: "productQuizzes", label: "Product quizzes" },
-  { key: "videos", label: "Videos completed" },
-  { key: "learningTrackItems", label: "Learning track items" },
-  { key: "learningTrackSubmissions", label: "Learning track submissions" },
+  { key: "first14Days", label: "First 14 Days — days completed" },
+  { key: "first60Days", label: "First 60 Days — days completed" },
+  { key: "assignments", label: "Pre-RNF assignments submitted" },
+  { key: "questionBank", label: "Question bank — correct answers" },
+  { key: "videos", label: "Training videos completed" },
+  { key: "learningTrackItems", label: "Learning-track lessons completed" },
+  { key: "learningTrackSubmissions", label: "Learning-track work submitted" },
 ];
 
 function formatPoints(n: number): string {
@@ -218,15 +216,54 @@ type PointRow = {
 };
 
 const POINT_ROWS: readonly PointRow[] = [
-  { icon: CalendarCheck, activity: "First 14 Days — day complete", points: "1 pt", note: "per day" },
-  { icon: CalendarCheck, activity: "First 60 Days — day complete", points: "1 pt", note: "per day" },
-  { icon: FileCheck2, activity: "Assignment submitted", points: "5 pt", note: "per assignment" },
-  { icon: Brain, activity: "Question bank mastery", points: "0.5 pt", note: "per question" },
-  { icon: BookOpen, activity: "Product quiz attempt", points: "1 pt", note: "per attempt" },
-  { icon: PlayCircle, activity: "Video completed", points: "0.5 pt", note: "per video" },
-  { icon: Route, activity: "Learning track item", points: "1 pt", note: "per item" },
-  { icon: Upload, activity: "Learning track submission", points: "3 pt", note: "per submission" },
-  { icon: CheckCircle2, activity: "Submission approved", points: "+2 pt", note: "bonus on approval" },
+  {
+    icon: CalendarCheck,
+    activity: "First 14 Days — daily page completed",
+    points: "1 pt",
+    note: "pass the day's quiz on the 14-day track",
+  },
+  {
+    icon: CalendarCheck,
+    activity: "First 60 Days — daily page completed",
+    points: "1 pt",
+    note: "pass the day's quiz on the 60-day track",
+  },
+  {
+    icon: FileCheck2,
+    activity: "Pre-RNF assignment submitted",
+    points: "5 pt",
+    note: "per assignment uploaded for review",
+  },
+  {
+    icon: Brain,
+    activity: "Question bank — question answered correctly",
+    points: "0.2 pt",
+    note: "any correct answer counts once per question",
+  },
+  {
+    icon: PlayCircle,
+    activity: "Training video completed",
+    points: "0.5 pt",
+    note: "watch a product or CMFAS video to the end",
+  },
+  {
+    icon: Route,
+    activity: "Learning-track lesson completed",
+    points: "1 pt",
+    note: "admin-curated Pre-RNF / Post-RNF module (separate from the 14/60 Days pages)",
+  },
+  {
+    icon: Upload,
+    activity: "Learning-track work submitted",
+    points: "3 pt",
+    note: "file, text, or URL uploaded to a lesson that requires admin review",
+  },
+  {
+    icon: CheckCircle2,
+    activity: "Submission approved by admin",
+    points: "+2 pt",
+    note: "bonus on top of the 3 pt submission reward",
+  },
 ];
 
 function PointsReferenceTable() {
