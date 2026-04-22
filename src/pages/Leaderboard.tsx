@@ -8,7 +8,6 @@ import {
   ChevronDown,
   ChevronRight,
   CalendarCheck,
-  Pencil,
   FileCheck2,
   Brain,
   BookOpen,
@@ -53,9 +52,7 @@ function RankIcon({ rank }: { rank: number }) {
 
 const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
   { key: "first14Days", label: "First 14 Days — days complete" },
-  { key: "first14Reflections", label: "First 14 Days — reflections" },
   { key: "first60Days", label: "First 60 Days — days complete" },
-  { key: "first60Reflections", label: "First 60 Days — reflections" },
   { key: "assignments", label: "Assignments submitted" },
   { key: "questionBank", label: "Question bank mastery" },
   { key: "productQuizzes", label: "Product quizzes" },
@@ -222,9 +219,7 @@ type PointRow = {
 
 const POINT_ROWS: readonly PointRow[] = [
   { icon: CalendarCheck, activity: "First 14 Days — day complete", points: "1 pt", note: "per day" },
-  { icon: Pencil, activity: "First 14 Days — reflection", points: "0.5 pt", note: "per reflection" },
   { icon: CalendarCheck, activity: "First 60 Days — day complete", points: "1 pt", note: "per day" },
-  { icon: Pencil, activity: "First 60 Days — reflection", points: "0.5 pt", note: "per reflection" },
   { icon: FileCheck2, activity: "Assignment submitted", points: "5 pt", note: "per assignment" },
   { icon: Brain, activity: "Question bank mastery", points: "0.5 pt", note: "per question" },
   { icon: BookOpen, activity: "Product quiz attempt", points: "1 pt", note: "per attempt" },
