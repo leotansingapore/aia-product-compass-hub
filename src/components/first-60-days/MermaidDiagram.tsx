@@ -160,24 +160,30 @@ export function MermaidDiagram({ code }: Props) {
         className={[
           "relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
           "[&_svg]:h-auto [&_svg]:max-w-full",
-          // Node polish: softer corners, subtle elevation so boxes feel lifted.
-          "[&_.node_rect]:![stroke-width:1.5] [&_.node_rect]:![rx:10] [&_.node_rect]:![ry:10]",
-          "[&_.node]:[filter:drop-shadow(0_1px_2px_rgba(15,23,42,0.12))]",
-          "dark:[&_.node]:[filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.45))]",
-          // Cluster (subgraph) polish: rounded + subtly dashed border so the
-          // container reads as a group without competing with the nodes.
-          "[&_.cluster_rect]:![rx:14] [&_.cluster_rect]:![ry:14]",
-          "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:4_4]",
-          // Subgraph title: small-caps and lighter weight so it reads as a header.
-          "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-wider",
-          "[&_.cluster-label_.nodeLabel]:!text-[12px] [&_.cluster-label_.nodeLabel]:!uppercase",
-          "[&_.cluster-label_.nodeLabel]:!opacity-75",
+          // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
+          "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
+          "[&_.node_polygon]:![stroke-width:2]",
+          "[&_.node_circle]:![stroke-width:2]",
+          "[&_.node]:[filter:drop-shadow(0_2px_4px_rgba(15,23,42,0.10))_drop-shadow(0_1px_2px_rgba(15,23,42,0.06))]",
+          "dark:[&_.node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.50))_drop-shadow(0_1px_2px_rgba(0,0,0,0.30))]",
+          // Node labels: tighter leading, slightly heavier weight for legibility.
+          "[&_.nodeLabel]:!leading-snug [&_.nodeLabel]:!font-medium",
+          "[&_.node_.nodeLabel_strong]:!font-semibold",
+          // Cluster (subgraph) polish: pillowy rounded container with dashed border.
+          "[&_.cluster_rect]:![rx:16] [&_.cluster_rect]:![ry:16]",
+          "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:5_4]",
+          // Subgraph title: small-caps header.
+          "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-[0.08em]",
+          "[&_.cluster-label_.nodeLabel]:!text-[11px] [&_.cluster-label_.nodeLabel]:!uppercase",
+          "[&_.cluster-label_.nodeLabel]:!opacity-70",
           // Edge labels: snug pill with matching bg.
-          "[&_.edgeLabel]:!text-[13px] [&_.edgeLabel]:!font-medium",
+          "[&_.edgeLabel]:!text-[12.5px] [&_.edgeLabel]:!font-medium",
           "[&_.edgeLabel_rect]:![rx:6] [&_.edgeLabel_rect]:![ry:6]",
-          "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[1px]",
-          // Edges: thicker rounded strokes feel less wiry.
-          "[&_.flowchart-link]:![stroke-width:1.75] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
+          "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[2px]",
+          // Edges: thicker rounded strokes, calm but present.
+          "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
+          // Arrowheads: match line color, slightly larger.
+          "[&_.marker]:![fill:currentColor]",
         ].join(" ")}
         dangerouslySetInnerHTML={{ __html: svg }}
       />
