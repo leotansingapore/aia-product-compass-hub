@@ -3,7 +3,6 @@ import { useVideoManagement } from '@/hooks/useVideoManagement';
 import { VideoDisplay } from './video-editing/VideoDisplay';
 import { VideoEditingInterface } from './video-editing/VideoEditingInterface';
 import { AdminVideoPreview } from './video-editing/AdminVideoPreview';
-import { useFolderManagement } from '@/hooks/useFolderManagement';
 import { useVideoActions } from '@/hooks/useVideoActions';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
