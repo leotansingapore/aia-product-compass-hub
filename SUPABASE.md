@@ -6,7 +6,22 @@
 
 ## Pending
 
-_Nothing pending. See "Completed (recent)" for history._
+### Optional: persist per-lesson action-step completions to Supabase
+
+CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
+
+To upgrade to cross-device Supabase persistence, add a column to `video_progress`:
+
+```sql
+ALTER TABLE video_progress
+  ADD COLUMN completed_action_step_ids text[] NOT NULL DEFAULT '{}';
+```
+
+Existing RLS policies are sufficient (owner-only; the column is part of the same row). No new indexes needed — reads are already scoped by `(user_id, product_id, video_id)`.
+
+After this lands, swap the hook body: fetch the `video_progress` row for `(userId, productId, videoId)`, read `completed_action_step_ids`, toggle by upserting with array-append/remove. Keep the same public API so callers don't change. Run a one-time migration from localStorage to Supabase on first auth after deploy (same pattern used for `first-60-days-progress-v1`).
+
+Not blocking: localStorage works for single-device study sessions and is what `useChecklistProgress` already uses for CMFAS wizard steps.
 
 ---
 

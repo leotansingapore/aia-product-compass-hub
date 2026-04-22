@@ -11,6 +11,7 @@ import { ProductModuleCourseLayout } from "@/components/product-detail/ProductMo
 import { ProductContinueLearning } from "@/components/product-detail/ProductContinueLearning";
 import { SubModulesSection } from "@/components/product-detail/SubModulesSection";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
+import { moduleIdToProductId } from "@/data/cmfasModuleData";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { BookmarkButton } from "@/components/BookmarkButton";
@@ -44,6 +45,9 @@ const PRODUCTS_WITH_STUDY = new Set([
 
 // Map core product IDs to their original slug for study/exam routes
 const getOriginalSlug = (id: string) => id.replace(/^core-/, '');
+
+// CMFAS lesson products — surface the ActionStepsEditor only for these.
+const CMFAS_PRODUCT_IDS = new Set<string>(Object.values(moduleIdToProductId));
 
 export default function ProductDetail() {
   const {
@@ -244,6 +248,7 @@ export default function ProductDetail() {
                     onSave={videoManagement.handleSave}
                     onCancel={() => videoManagement.handleCancel()}
                     onCreateCategory={videoManagement.addEmptyFolder}
+                    showActionSteps={product ? CMFAS_PRODUCT_IDS.has(product.id) : false}
                   />
                 </ErrorBoundary>
               ) : (

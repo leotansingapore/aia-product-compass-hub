@@ -18,6 +18,9 @@ import rehypeRaw from 'rehype-raw';
 import { markdownComponents } from '@/lib/markdown-config';
 import { areSameVideoEmbedSource, detectVideoEmbed, VideoEmbed } from '@/lib/video-embed-utils';
 import { useAdmin } from '@/hooks/useAdmin';
+import { useLessonActionStepProgress } from '@/hooks/useLessonActionStepProgress';
+import { LessonActionStepsPanel } from '@/components/cmfas/LessonActionStepsPanel';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
 const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment'));
@@ -107,6 +110,20 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     [getVideoProgress, currentVideoId]
   );
   const courseProgress = useMemo(() => getCourseProgress(videos.length), [getCourseProgress, videos.length]);
+
+  // Action-step gating. Only CMFAS lessons currently author action steps; for
+  // other products `action_steps` is undefined and the gate collapses to a
+  // no-op (no panel rendered, Mark Complete stays un-gated).
+  const actionSteps = currentVideo?.action_steps ?? [];
+  const { allCompleted: allActionStepsCompleted } = useLessonActionStepProgress(
+    productId,
+    currentVideoId ?? '',
+  );
+  const actionStepsBlockComplete =
+    !isAdmin
+    && moduleType === 'cmfas'
+    && actionSteps.length > 0
+    && !allActionStepsCompleted(actionSteps.map((s) => s.id));
 
   useEffect(() => {
     setCurrentVideoIndex(initialVideoIndex);
@@ -367,6 +384,16 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 </Suspense>
               ) : (
               <>
+              {/* Action steps — pinned at the top so the learner can't skim
+                  past the real required actions. Only rendered for CMFAS
+                  lessons that have action_steps authored. */}
+              {moduleType === 'cmfas' && currentVideo && actionSteps.length > 0 && (
+                <LessonActionStepsPanel
+                  steps={actionSteps}
+                  productId={productId}
+                  videoId={currentVideo.id}
+                />
+              )}
               {/* Video player — primary lesson URL; markdown duplicates same clip are collapsed to a note */}
               {videoInfo && (
                 <Card>
@@ -579,24 +606,43 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
               <ChevronLeft className="h-5 w-5" />
             </Button>
 
-            {/* Mark complete / Completed indicator */}
-            <Button
-              className={`h-11 ${currentProgress?.completed && currentVideoIndex < videos.length - 1 ? 'flex-shrink-0' : 'flex-1 max-w-md mx-auto'}`}
-              onClick={handleToggleStickyComplete}
-              variant={currentProgress?.completed ? "secondary" : "default"}
-            >
-              {currentProgress?.completed ? (
-                <>
-                  <CheckCircle2 className="h-5 w-5 mr-2" />
-                  <span>Completed</span>
-                </>
-              ) : (
-                <>
-                  <Circle className="h-5 w-5 mr-2" />
-                  <span>Mark Complete</span>
-                </>
-              )}
-            </Button>
+            {/* Mark complete / Completed indicator. For CMFAS lessons with
+                action steps, we block Mark Complete until every step is
+                ticked — admins bypass via `actionStepsBlockComplete`. */}
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span
+                    className={`inline-flex ${currentProgress?.completed && currentVideoIndex < videos.length - 1 ? 'flex-shrink-0' : 'flex-1 max-w-md mx-auto'}`}
+                  >
+                    <Button
+                      className="h-11 w-full"
+                      onClick={handleToggleStickyComplete}
+                      variant={currentProgress?.completed ? 'secondary' : 'default'}
+                      disabled={actionStepsBlockComplete && !currentProgress?.completed}
+                      aria-disabled={actionStepsBlockComplete && !currentProgress?.completed}
+                    >
+                      {currentProgress?.completed ? (
+                        <>
+                          <CheckCircle2 className="h-5 w-5 mr-2" />
+                          <span>Completed</span>
+                        </>
+                      ) : (
+                        <>
+                          <Circle className="h-5 w-5 mr-2" />
+                          <span>Mark Complete</span>
+                        </>
+                      )}
+                    </Button>
+                  </span>
+                </TooltipTrigger>
+                {actionStepsBlockComplete && !currentProgress?.completed && (
+                  <TooltipContent side="top">
+                    <p className="text-xs">Check off every action step above first.</p>
+                  </TooltipContent>
+                )}
+              </Tooltip>
+            </TooltipProvider>
 
             {/* Next Lesson — prominent, shown when current is completed and there's a next */}
             {currentProgress?.completed && currentVideoIndex < videos.length - 1 && (

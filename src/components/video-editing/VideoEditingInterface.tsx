@@ -28,6 +28,9 @@ interface VideoEditingInterfaceProps {
   onSave: (videos?: TrainingVideo[]) => void;
   onCancel: () => void;
   onCreateCategory: (categoryName: string) => void;
+  /** Enables the ActionStepsEditor above the rich-content editor. Parent
+   *  page sets this to `true` for CMFAS products only. */
+  showActionSteps?: boolean;
 }
 
 export function VideoEditingInterface({
@@ -48,7 +51,8 @@ export function VideoEditingInterface({
   onAddAssignment,
   onSave,
   onCancel,
-  onCreateCategory
+  onCreateCategory,
+  showActionSteps = false,
 }: VideoEditingInterfaceProps) {
   console.log('🎬 VideoEditingInterface: Rendering editing interface', {
     editVideosCount: editVideos?.length || 0,
@@ -326,6 +330,7 @@ export function VideoEditingInterface({
           onEditorEditingStateChange={setIsEditorEditing}
           sidebarSaveStatus={sidebarSaveStatus}
           onSidebarSave={handleSidebarSave}
+          showActionSteps={showActionSteps}
         />
         
         {(videoOrderChanges.hasPendingChanges || hasContentChanges) && (

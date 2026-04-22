@@ -10,6 +10,11 @@ import { VideoEditingInterface } from '@/components/video-editing/VideoEditingIn
 import { useVideoManagement } from '@/hooks/useVideoManagement';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import type { TrainingVideo } from '@/hooks/useProducts';
+import { moduleIdToProductId } from '@/data/cmfasModuleData';
+
+// CMFAS lesson products — the 5 modules map to these product IDs. Used to
+// surface the Action Steps editor only for CMFAS lessons, per plan scope.
+const CMFAS_PRODUCT_IDS = new Set<string>(Object.values(moduleIdToProductId));
 
 export default function ManageProductVideos() {
   const { productSlugOrId } = useParams();
@@ -115,6 +120,7 @@ export default function ManageProductVideos() {
               onSave={videoManagement.handleSave}
               onCancel={handleBack}
               onCreateCategory={videoManagement.addEmptyFolder}
+              showActionSteps={product ? CMFAS_PRODUCT_IDS.has(product.id) : false}
             />
           </ErrorBoundary>
         </div>

@@ -27,6 +27,13 @@ export interface AssignmentConfig {
   max_file_size_mb?: number; // default 10
 }
 
+export interface LessonActionStep {
+  id: string;     // stable uuid; keyed against per-user completion
+  title: string;  // required
+  hint?: string;  // 1-line helper text shown beneath the title
+  url?: string;   // opened in a new tab when the row is clicked
+}
+
 export interface TrainingVideo {
   id: string;
   title: string;
@@ -54,6 +61,9 @@ export interface TrainingVideo {
   type?: 'video' | 'quiz' | 'assignment';
   quiz_config?: QuizConfig;
   assignment_config?: AssignmentConfig;
+  // Ordered list of explicit actions the learner must tick before marking
+  // the lesson complete. CMFAS-only for v1 (admin UI gates on category).
+  action_steps?: LessonActionStep[];
 }
 
 export interface VideoAttachment {

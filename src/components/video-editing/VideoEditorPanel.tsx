@@ -25,6 +25,7 @@ interface VideoEditorPanelProps {
   onCreateCategory: (categoryName: string) => void;
   lastSavedAt?: number;
   onEditingStateChange?: (isEditing: boolean) => void;
+  showActionSteps?: boolean;
 }
 
 export function VideoEditorPanel({
@@ -35,6 +36,7 @@ export function VideoEditorPanel({
   onUpdateVideo,
   lastSavedAt,
   onEditingStateChange,
+  showActionSteps = false,
 }: VideoEditorPanelProps) {
   const [isEditing, setIsEditingLocal] = useState(false);
 
@@ -154,6 +156,7 @@ export function VideoEditorPanel({
               existingCategories={existingCategories}
               hideTranscript={true}
               hideResources={true}
+              showActionSteps={showActionSteps}
             />
           </div>
         ) : (

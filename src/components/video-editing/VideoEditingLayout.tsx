@@ -50,6 +50,7 @@ interface VideoEditingLayoutProps {
   onEditorEditingStateChange?: (isEditing: boolean) => void;
   sidebarSaveStatus?: 'idle' | 'saving' | 'saved';
   onSidebarSave?: () => void;
+  showActionSteps?: boolean;
 }
 
 export function VideoEditingLayout({
@@ -91,7 +92,8 @@ export function VideoEditingLayout({
   lastSavedAt,
   onEditorEditingStateChange,
   sidebarSaveStatus = 'idle',
-  onSidebarSave
+  onSidebarSave,
+  showActionSteps = false,
 }: VideoEditingLayoutProps) {
   const isMobile = useIsMobile();
   const [showMobileEditor, setShowMobileEditor] = useState(false);
@@ -319,6 +321,7 @@ export function VideoEditingLayout({
                 onCreateCategory={onCreateCategory}
                 lastSavedAt={lastSavedAt}
                 onEditingStateChange={onEditorEditingStateChange}
+                showActionSteps={showActionSteps}
               />
             </div>
             {/* Transcript + Resources panels below the editor on mobile — the
@@ -438,6 +441,7 @@ export function VideoEditingLayout({
             onCreateCategory={onCreateCategory}
             lastSavedAt={lastSavedAt}
             onEditingStateChange={onEditorEditingStateChange}
+            showActionSteps={showActionSteps}
           />
         </div>
       </main>

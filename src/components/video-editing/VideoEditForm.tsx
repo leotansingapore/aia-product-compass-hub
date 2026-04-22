@@ -7,8 +7,9 @@ import { Suspense, lazy, useCallback } from 'react';
 import { useVideoForm } from '@/hooks/useVideoForm';
 import { VideoBasicInfo } from './VideoBasicInfo';
 import { VideoContentTabs } from './VideoContentTabs';
+import { ActionStepsEditor } from './ActionStepsEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
-import type { TrainingVideo, VideoAttachment, UsefulLink } from '@/hooks/useProducts';
+import type { TrainingVideo, VideoAttachment, UsefulLink, LessonActionStep } from '@/hooks/useProducts';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Lazy-load the rich editor for performance
@@ -24,6 +25,10 @@ interface VideoEditFormProps {
   existingCategories?: string[];
   hideTranscript?: boolean;
   hideResources?: boolean;
+  /** When true, surfaces the ActionStepsEditor above the rich editor. CMFAS
+   *  products opt-in via the parent page's category check; other products
+   *  keep the generic editor unchanged. */
+  showActionSteps?: boolean;
 }
 
 export function VideoEditForm({
@@ -32,6 +37,7 @@ export function VideoEditForm({
   existingCategories = [],
   hideTranscript = false,
   hideResources = false,
+  showActionSteps = false,
 }: VideoEditFormProps) {
   const {
     editVideo,
@@ -86,28 +92,43 @@ export function VideoEditForm({
     handleChange('attachments', currentAttachments.filter(a => a.id !== id));
   }, [editVideo.attachments, handleChange]);
 
+  const handleActionStepsChange = useCallback(
+    (next: LessonActionStep[]) => {
+      handleChange('action_steps', next);
+    },
+    [handleChange],
+  );
+
   // Rich Editor Mode — Skool-style: inline title + content + transcript all in one card
   if (isRichMode) {
     return (
-      <Suspense fallback={<Skeleton className="h-[500px] w-full rounded-lg" />}>
-        <RichContentEditor
-          value={editVideo.rich_content || ''}
-          onChange={(value) => handleChange('rich_content', value)}
-          placeholder="Start writing, or type '/' for commands..."
-          title={editVideo.title || ''}
-          onTitleChange={(title) => handleChange('title', title)}
-          transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
-          onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
-          usefulLinks={hideResources ? undefined : (editVideo.useful_links || [])}
-          attachments={hideResources ? undefined : (editVideo.attachments || [])}
-          onAddLink={hideResources ? undefined : handleAddLink}
-          onAddFile={hideResources ? undefined : handleAddFile}
-          onDeleteLink={hideResources ? undefined : handleDeleteLink}
-          onDeleteAttachment={hideResources ? undefined : handleDeleteAttachment}
-          published={editVideo.published ?? true}
-          onPublishedChange={(val) => handleChange('published', val)}
-        />
-      </Suspense>
+      <div className="space-y-4">
+        {showActionSteps && (
+          <ActionStepsEditor
+            steps={editVideo.action_steps ?? []}
+            onChange={handleActionStepsChange}
+          />
+        )}
+        <Suspense fallback={<Skeleton className="h-[500px] w-full rounded-lg" />}>
+          <RichContentEditor
+            value={editVideo.rich_content || ''}
+            onChange={(value) => handleChange('rich_content', value)}
+            placeholder="Start writing, or type '/' for commands..."
+            title={editVideo.title || ''}
+            onTitleChange={(title) => handleChange('title', title)}
+            transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
+            onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
+            usefulLinks={hideResources ? undefined : (editVideo.useful_links || [])}
+            attachments={hideResources ? undefined : (editVideo.attachments || [])}
+            onAddLink={hideResources ? undefined : handleAddLink}
+            onAddFile={hideResources ? undefined : handleAddFile}
+            onDeleteLink={hideResources ? undefined : handleDeleteLink}
+            onDeleteAttachment={hideResources ? undefined : handleDeleteAttachment}
+            published={editVideo.published ?? true}
+            onPublishedChange={(val) => handleChange('published', val)}
+          />
+        </Suspense>
+      </div>
     );
   }
 
