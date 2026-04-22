@@ -42,16 +42,33 @@ The four primary styles:
 | **S** | Steadiness | "The Peacekeeper" | Relationships, stability |
 | **C** | Conscientiousness | "The Analyst" | Accuracy, data, standards |
 
-```mermaid
-quadrantChart
-    title DISC Profiles
-    x-axis People --> Task
-    y-axis Reserved --> Outgoing
-    quadrant-1 "D - Dominant<br/>Results · Control"
-    quadrant-2 "I - Influential<br/>Recognition · Fun"
-    quadrant-3 "S - Steady<br/>Relationships · Stability"
-    quadrant-4 "C - Conscientious<br/>Accuracy · Data"
-```
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto auto auto;gap:8px;">
+  <div></div>
+  <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Task-oriented</div>
+  <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">People-oriented</div>
+  <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Outgoing</div>
+  <div style="background:linear-gradient(135deg,hsl(0,72%,97%),hsl(0,72%,93%));border:2px solid hsl(0,72%,55%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:32px;font-weight:800;color:hsl(0,72%,45%);line-height:1;">D</div>
+    <div style="font-weight:700;font-size:14px;margin-top:6px;color:hsl(var(--foreground));">Dominant</div>
+    <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;">Results · Control</div>
+  </div>
+  <div style="background:linear-gradient(135deg,hsl(38,92%,96%),hsl(38,92%,90%));border:2px solid hsl(38,92%,50%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:32px;font-weight:800;color:hsl(38,92%,40%);line-height:1;">I</div>
+    <div style="font-weight:700;font-size:14px;margin-top:6px;color:hsl(var(--foreground));">Influential</div>
+    <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;">Recognition · Fun</div>
+  </div>
+  <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Reserved</div>
+  <div style="background:linear-gradient(135deg,hsl(217,91%,97%),hsl(217,91%,93%));border:2px solid hsl(217,91%,55%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:32px;font-weight:800;color:hsl(217,91%,45%);line-height:1;">C</div>
+    <div style="font-weight:700;font-size:14px;margin-top:6px;color:hsl(var(--foreground));">Conscientious</div>
+    <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;">Accuracy · Data</div>
+  </div>
+  <div style="background:linear-gradient(135deg,hsl(160,84%,96%),hsl(160,84%,90%));border:2px solid hsl(160,84%,39%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:32px;font-weight:800;color:hsl(160,84%,28%);line-height:1;">S</div>
+    <div style="font-weight:700;font-size:14px;margin-top:6px;color:hsl(var(--foreground));">Steady</div>
+    <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;">Relationships · Stability</div>
+  </div>
+</div>
 
 **Rule:** DISC is **descriptive, not prescriptive.** It describes patterns you're likely to see. It doesn't define the person.
 

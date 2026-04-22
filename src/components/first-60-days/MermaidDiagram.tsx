@@ -6,27 +6,26 @@ type Props = {
 
 const LIGHT_THEME_VARS = {
   background: "transparent",
-  // White node bodies with a strong navy border — each box pops against the
-  // soft-blue cluster tint behind it.
+  // Crisp white nodes with deep navy borders — high contrast, premium feel.
   primaryColor: "#ffffff",
-  primaryTextColor: "#0f172a",
-  primaryBorderColor: "#1b4fa4",
-  secondaryColor: "#fff5d6",
-  secondaryTextColor: "#0f172a",
-  secondaryBorderColor: "#c99a2a",
-  tertiaryColor: "#f4f1ea",
-  tertiaryTextColor: "#0f172a",
-  tertiaryBorderColor: "#cbd1e0",
+  primaryTextColor: "#0b1220",
+  primaryBorderColor: "#1e40af",
+  secondaryColor: "#fffaeb",
+  secondaryTextColor: "#0b1220",
+  secondaryBorderColor: "#b8860b",
+  tertiaryColor: "#f8fafc",
+  tertiaryTextColor: "#0b1220",
+  tertiaryBorderColor: "#cbd5e1",
   mainBkg: "#ffffff",
-  secondBkg: "#fff5d6",
-  lineColor: "#94a3b8",
-  // Edge labels on white so they match nodes instead of looking like dark pills.
+  secondBkg: "#fffaeb",
+  // Edges: warmer grey, more visible against the soft background.
+  lineColor: "#64748b",
   edgeLabelBackground: "#ffffff",
-  nodeBorder: "#1b4fa4",
-  // Clusters get a soft blue tint that sits underneath the white nodes.
-  clusterBkg: "#eef3fb",
-  clusterBorder: "#c7d2fe",
-  titleColor: "#0f172a",
+  nodeBorder: "#1e40af",
+  // Clusters: distinctly recessed so the white nodes lift above them.
+  clusterBkg: "#eef4ff",
+  clusterBorder: "#bfd0f5",
+  titleColor: "#0b1220",
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
@@ -34,27 +33,25 @@ const LIGHT_THEME_VARS = {
 
 const DARK_THEME_VARS = {
   background: "transparent",
-  // Nodes sit clearly above the cluster: elevated slate, bright blue border.
-  primaryColor: "#2a3a58",
-  primaryTextColor: "#e7ebf3",
-  primaryBorderColor: "#6b9bff",
-  secondaryColor: "#3a2d1a",
-  secondaryTextColor: "#e7ebf3",
-  secondaryBorderColor: "#e0b94f",
-  tertiaryColor: "#1e2533",
-  tertiaryTextColor: "#e7ebf3",
-  tertiaryBorderColor: "#3a4050",
-  mainBkg: "#2a3a58",
-  secondBkg: "#3a2d1a",
-  lineColor: "#8892a8",
-  // Match edge label to node body — no more near-black pills.
-  edgeLabelBackground: "#2a3a58",
-  nodeBorder: "#6b9bff",
-  // Clusters drop deeper than nodes to read as containers, not siblings.
-  clusterBkg: "#161b29",
+  // Nodes read as elevated cards on a deep slate canvas.
+  primaryColor: "#2e3d5c",
+  primaryTextColor: "#f1f5fb",
+  primaryBorderColor: "#7ea8ff",
+  secondaryColor: "#3d2f1d",
+  secondaryTextColor: "#f1f5fb",
+  secondaryBorderColor: "#f0c95f",
+  tertiaryColor: "#1f2737",
+  tertiaryTextColor: "#f1f5fb",
+  tertiaryBorderColor: "#3a4258",
+  mainBkg: "#2e3d5c",
+  secondBkg: "#3d2f1d",
+  lineColor: "#94a3b8",
+  edgeLabelBackground: "#2e3d5c",
+  nodeBorder: "#7ea8ff",
+  clusterBkg: "#141a28",
   clusterBorder: "#3a4258",
-  titleColor: "#e7ebf3",
-  labelBackground: "#2a3a58",
+  titleColor: "#f1f5fb",
+  labelBackground: "#2e3d5c",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
 };
@@ -163,24 +160,30 @@ export function MermaidDiagram({ code }: Props) {
         className={[
           "relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
           "[&_svg]:h-auto [&_svg]:max-w-full",
-          // Node polish: softer corners, subtle elevation so boxes feel lifted.
-          "[&_.node_rect]:![stroke-width:1.5] [&_.node_rect]:![rx:10] [&_.node_rect]:![ry:10]",
-          "[&_.node]:[filter:drop-shadow(0_1px_2px_rgba(15,23,42,0.12))]",
-          "dark:[&_.node]:[filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.45))]",
-          // Cluster (subgraph) polish: rounded + subtly dashed border so the
-          // container reads as a group without competing with the nodes.
-          "[&_.cluster_rect]:![rx:14] [&_.cluster_rect]:![ry:14]",
-          "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:4_4]",
-          // Subgraph title: small-caps and lighter weight so it reads as a header.
-          "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-wider",
-          "[&_.cluster-label_.nodeLabel]:!text-[12px] [&_.cluster-label_.nodeLabel]:!uppercase",
-          "[&_.cluster-label_.nodeLabel]:!opacity-75",
+          // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
+          "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
+          "[&_.node_polygon]:![stroke-width:2]",
+          "[&_.node_circle]:![stroke-width:2]",
+          "[&_.node]:[filter:drop-shadow(0_2px_4px_rgba(15,23,42,0.10))_drop-shadow(0_1px_2px_rgba(15,23,42,0.06))]",
+          "dark:[&_.node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.50))_drop-shadow(0_1px_2px_rgba(0,0,0,0.30))]",
+          // Node labels: tighter leading, slightly heavier weight for legibility.
+          "[&_.nodeLabel]:!leading-snug [&_.nodeLabel]:!font-medium",
+          "[&_.node_.nodeLabel_strong]:!font-semibold",
+          // Cluster (subgraph) polish: pillowy rounded container with dashed border.
+          "[&_.cluster_rect]:![rx:16] [&_.cluster_rect]:![ry:16]",
+          "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:5_4]",
+          // Subgraph title: small-caps header.
+          "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-[0.08em]",
+          "[&_.cluster-label_.nodeLabel]:!text-[11px] [&_.cluster-label_.nodeLabel]:!uppercase",
+          "[&_.cluster-label_.nodeLabel]:!opacity-70",
           // Edge labels: snug pill with matching bg.
-          "[&_.edgeLabel]:!text-[13px] [&_.edgeLabel]:!font-medium",
+          "[&_.edgeLabel]:!text-[12.5px] [&_.edgeLabel]:!font-medium",
           "[&_.edgeLabel_rect]:![rx:6] [&_.edgeLabel_rect]:![ry:6]",
-          "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[1px]",
-          // Edges: thicker rounded strokes feel less wiry.
-          "[&_.flowchart-link]:![stroke-width:1.75] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
+          "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[2px]",
+          // Edges: thicker rounded strokes, calm but present.
+          "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
+          // Arrowheads: match line color, slightly larger.
+          "[&_.marker]:![fill:currentColor]",
         ].join(" ")}
         dangerouslySetInnerHTML={{ __html: svg }}
       />
