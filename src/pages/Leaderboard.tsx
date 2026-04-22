@@ -51,7 +51,7 @@ const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
   { key: "first60Days", label: "First 60 Days — days completed" },
   { key: "assignments", label: "Pre-RNF assignments submitted" },
   { key: "questionBank", label: "Question bank — correct answers" },
-  { key: "videos", label: "Training videos completed" },
+  { key: "videos", label: "Core Products videos completed" },
 ];
 
 function formatPoints(n: number): string {
@@ -237,9 +237,9 @@ const POINT_ROWS: readonly PointRow[] = [
   },
   {
     icon: PlayCircle,
-    activity: "Training video completed",
+    activity: "Core Products training video completed",
     points: "2.5 pt",
-    note: "watch a product or CMFAS video to the end",
+    note: "only videos under Core Products count — CMFAS and supplementary tracks don't",
   },
 ];
 

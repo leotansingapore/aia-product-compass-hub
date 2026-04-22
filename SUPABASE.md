@@ -31,19 +31,34 @@
 
 4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice. Remove the `lti` and `lts` CTEs entirely. Remove the `a.lti_count`, `a.lts_count`, and `a.lts_approved_count` terms from `total_points`. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Drop those two terms from the final `WHERE … OR (sum…) > 0` clause too.
 
-5. **Exclude CMFAS videos from the video count.** The 5 CMFAS module IDs used as `product_id` in `video_progress` are `'onboarding'`, `'m9'`, `'m9a'`, `'hi'`, `'res5'` (from [`src/data/cmfasModuleData.ts`](src/data/cmfasModuleData.ts)). Filter them out in the `vid` CTE:
+5. **Only count videos from products in the "Core Products" category.** Everything else — CMFAS modules, Supplementary Products, Supplementary Training, etc. — is excluded. Rewrite the `vid` CTE to join through `products` and filter by category name (stable against category UUID changes):
 
    ```sql
    vid AS (
-     SELECT user_id, COUNT(*)::numeric AS vid_count
-     FROM public.video_progress
-     WHERE completed = true
-       AND product_id NOT IN ('onboarding', 'm9', 'm9a', 'hi', 'res5')
-     GROUP BY user_id
+     SELECT vp.user_id, COUNT(*)::numeric AS vid_count
+     FROM public.video_progress vp
+     JOIN public.products p ON p.id = vp.product_id
+     JOIN public.categories c ON c.id = p.category_id
+     WHERE vp.completed = true
+       AND c.name = 'Core Products'
+     GROUP BY vp.user_id
    ),
    ```
 
-   Apply the same `product_id NOT IN (…)` filter to the `video_progress` UNION branch in the `days` CTE so a CMFAS-only viewing day doesn't bump `days_active` either.
+   Apply the same category gate to the `video_progress` UNION branch in the `days` CTE so a non-core viewing day doesn't bump `days_active`:
+
+   ```sql
+   UNION
+   SELECT vp.user_id, DATE(COALESCE(vp.completed_at, vp.updated_at)) AS activity_day
+   FROM public.video_progress vp
+   JOIN public.products p ON p.id = vp.product_id
+   JOIN public.categories c ON c.id = p.category_id
+   WHERE vp.completed = true
+     AND c.name = 'Core Products'
+     AND COALESCE(vp.completed_at, vp.updated_at) IS NOT NULL
+   ```
+
+   Note: CMFAS modules (`product_id` values `onboarding`, `m9`, `m9a`, `hi`, `res5`) are not rows in `products`, so the JOIN already filters them out — no separate exclusion list needed.
 
 6. **New point weights (target totals after ×5 rescale).** Use these exact per-unit weights in the final `total_points` expression and in each returned breakdown column:
 
@@ -53,7 +68,7 @@
    | `first_60_days` | `a.f60_quiz` | **5** |
    | `assignments` | `a.asg_count` | **50** |
    | `question_bank` | `a.qb_count` | **1** |
-   | `videos` | `a.vid_count` | **2.5** (non-CMFAS only) |
+   | `videos` | `a.vid_count` | **2.5** (Core Products only) |
 
    Final formula:
 
