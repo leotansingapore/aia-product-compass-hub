@@ -11,9 +11,6 @@ import {
   FileCheck2,
   Brain,
   PlayCircle,
-  Route,
-  Upload,
-  CheckCircle2,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -55,8 +52,6 @@ const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
   { key: "assignments", label: "Pre-RNF assignments submitted" },
   { key: "questionBank", label: "Question bank — correct answers" },
   { key: "videos", label: "Training videos completed" },
-  { key: "learningTrackItems", label: "Learning-track lessons completed" },
-  { key: "learningTrackSubmissions", label: "Learning-track work submitted" },
 ];
 
 function formatPoints(n: number): string {
@@ -245,24 +240,6 @@ const POINT_ROWS: readonly PointRow[] = [
     activity: "Training video completed",
     points: "0.5 pt",
     note: "watch a product or CMFAS video to the end",
-  },
-  {
-    icon: Route,
-    activity: "Learning-track lesson completed",
-    points: "1 pt",
-    note: "admin-curated Pre-RNF / Post-RNF module (separate from the 14/60 Days pages)",
-  },
-  {
-    icon: Upload,
-    activity: "Learning-track work submitted",
-    points: "3 pt",
-    note: "file, text, or URL uploaded to a lesson that requires admin review",
-  },
-  {
-    icon: CheckCircle2,
-    activity: "Submission approved by admin",
-    points: "+2 pt",
-    note: "bonus on top of the 3 pt submission reward",
   },
 ];
 

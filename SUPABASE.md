@@ -29,9 +29,11 @@
 
 3. **Drop reflection points** (leaderboard no longer surfaces them, feature retired). Remove `f14_refl`, `f60_refl`, `first_14_reflections`, `first_60_reflections` from the CTEs, the `total_points` formula, the `RETURNS TABLE` signature, and the final `SELECT`. Also remove the corresponding UNION branches from the `days` CTE (both `reflection_saved_at` for 14-days and `reflection_submitted_at` for 60-days).
 
+4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice and clutter the breakdown. Remove the `lti` and `lts` CTEs entirely. Remove `a.lti_count * 1`, `a.lts_count * 3`, and `a.lts_approved_count * 2` from the `total_points` formula. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Also drop those two terms from the final `WHERE … OR (sum…) > 0` clause.
+
 **Why:** User feedback — product-quiz attempts and question-bank mastery are no longer appropriate point categories (mastery requires multiple consecutive corrects; one correct answer is enough now). Reflections feature was retired.
 
-**After the migration:** The `useLearnerLeaderboard` hook's `RpcRow` / `PointBreakdown` types in [`src/hooks/useLearnerLeaderboard.ts`](src/hooks/useLearnerLeaderboard.ts) can be trimmed (drop `product_quizzes`, `productQuizzes`, `first_14_reflections`, `first_60_reflections`, `first14Reflections`, `first60Reflections`) — Claude Code will handle that once the RPC is live.
+**After the migration:** The `useLearnerLeaderboard` hook's `RpcRow` / `PointBreakdown` types in [`src/hooks/useLearnerLeaderboard.ts`](src/hooks/useLearnerLeaderboard.ts) can be trimmed (drop `product_quizzes`, `productQuizzes`, `first_14_reflections`, `first_60_reflections`, `first14Reflections`, `first60Reflections`, `learning_track_items`, `learning_track_submissions`, `learningTrackItems`, `learningTrackSubmissions`) — Claude Code will handle that once the RPC is live.
 
 ---
 
