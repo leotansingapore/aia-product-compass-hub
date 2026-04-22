@@ -37,7 +37,7 @@
    | --- | --- | --- |
    | `first_14_days` | `a.f14_quiz` | **5** |
    | `first_60_days` | `a.f60_quiz` | **5** |
-   | `assignments` | `a.asg_count` | **25** |
+   | `assignments` | `a.asg_count` | **50** |
    | `question_bank` | `a.qb_count` | **1** |
    | `videos` | `a.vid_count` | **2.5** |
 
@@ -47,7 +47,7 @@
    ROUND((
      a.f14_quiz * 5 +
      a.f60_quiz * 5 +
-     a.asg_count * 25 +
+     a.asg_count * 50 +
      a.qb_count * 1 +
      a.vid_count * 2.5
    )::numeric, 1) AS total_points
@@ -58,7 +58,7 @@
    ```sql
    (a.f14_quiz * 5)::numeric AS first_14_days,
    (a.f60_quiz * 5)::numeric AS first_60_days,
-   (a.asg_count * 25)::numeric AS assignments,
+   (a.asg_count * 50)::numeric AS assignments,
    (a.qb_count * 1)::numeric AS question_bank,
    (a.vid_count * 2.5)::numeric AS videos,
    ```

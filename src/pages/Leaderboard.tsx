@@ -226,7 +226,7 @@ const POINT_ROWS: readonly PointRow[] = [
   {
     icon: FileCheck2,
     activity: "Pre-RNF assignment submitted",
-    points: "25 pt",
+    points: "50 pt",
     note: "per assignment uploaded for review",
   },
   {
