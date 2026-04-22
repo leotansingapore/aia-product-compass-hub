@@ -164,16 +164,21 @@ If you're hitting the targets, you're on track. If not, review what's blocking a
 
 From Day 61 onward, your week is no longer a series of lessons — it's a repeating loop. Every client relationship moves through the same stages, in the same order. Your job is to run the loop cleanly, over and over, for every name on your list.
 
-```mermaid
-flowchart LR
-    A[Reconnect<br/>warm circle + referrals] --> B[Introduce<br/>the approach, elevator pitch]
-    B --> C[Review<br/>gather the policy summary]
-    C --> D[Needs Analysis<br/>CST / fact-find]
-    D --> E[Solution<br/>proposal + close]
-    E --> F[Service<br/>claims, annual reviews]
-    F --> G[Referral<br/>feedback form, names]
-    G --> A
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;position:relative;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(217,91%,55%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(217,91%,55%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">1</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Reconnect</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">Warm circle + referrals</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(280,70%,55%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(280,70%,55%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">2</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Introduce</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">The approach, elevator pitch</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(190,80%,45%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(190,80%,45%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">3</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Review</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">Gather the policy summary</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(160,84%,40%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(160,84%,40%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">4</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Needs Analysis</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">CST / fact-find</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(90,60%,45%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(90,60%,45%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">5</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Solution</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">Proposal + close</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(38,92%,50%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(38,92%,50%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">6</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Service</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">Claims, annual reviews</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;border-top:3px solid hsl(340,75%,55%);"><div style="position:absolute;top:-10px;right:10px;background:hsl(340,75%,55%);color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">7</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-bottom:4px;">Referral</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.4;">Feedback form, names</div></div>
+  </div>
+  <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 16px;background:hsl(var(--primary)/0.08);border:1px dashed hsl(var(--primary)/0.4);border-radius:999px;width:fit-content;margin-left:auto;margin-right:auto;">
+    <span style="font-size:14px;">↻</span>
+    <span style="font-size:12px;font-weight:600;color:hsl(var(--primary));letter-spacing:0.04em;text-transform:uppercase;">Loop back to Reconnect</span>
+  </div>
+</div>
 
 The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your book of business is just the sum of how many people are moving through this loop at any given time.
 
@@ -237,13 +242,18 @@ Client's life keeps moving. You show up when it matters.
 
 Your service calendar isn't optional. These touchpoints should be recurring in your calendar for every client — scheduled once, fired yearly.
 
-```mermaid
-flowchart LR
-    J["Dec to Jan<br/>CNY + year-end + renewals"] --> M["Mar to May<br/>Birthdays + policy refresh"]
-    M --> J2["Jun to Aug<br/>Mid-year review + referrals"]
-    J2 --> S["Sep to Nov<br/>Mooncake + hampers + renewals"]
-    S --> J
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-top:3px solid hsl(217,91%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(217,91%,45%);text-transform:uppercase;margin-bottom:6px;">Dec → Jan</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;font-weight:500;">CNY + year-end + renewals</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-top:3px solid hsl(160,84%,40%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(160,84%,30%);text-transform:uppercase;margin-bottom:6px;">Mar → May</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;font-weight:500;">Birthdays + policy refresh</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-top:3px solid hsl(38,92%,50%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(38,92%,38%);text-transform:uppercase;margin-bottom:6px;">Jun → Aug</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;font-weight:500;">Mid-year review + referrals</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-top:3px solid hsl(340,75%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(340,75%,45%);text-transform:uppercase;margin-bottom:6px;">Sep → Nov</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;font-weight:500;">Mooncake + hampers + renewals</div></div>
+  </div>
+  <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 16px;background:hsl(var(--primary)/0.08);border:1px dashed hsl(var(--primary)/0.4);border-radius:999px;width:fit-content;margin-left:auto;margin-right:auto;">
+    <span style="font-size:14px;">↻</span>
+    <span style="font-size:12px;font-weight:600;color:hsl(var(--primary));letter-spacing:0.04em;text-transform:uppercase;">Repeats every year</span>
+  </div>
+</div>
 
 Every client should touch at least one bucket per quarter. Most will touch two. The ones who go a full year without a real touchpoint are the ones who leave for another FC at renewal.
 
