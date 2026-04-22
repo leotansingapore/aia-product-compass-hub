@@ -9,6 +9,7 @@ import {
   Eye,
   FileText,
   Loader2,
+  Target,
   Upload,
   Users,
   Video,
@@ -36,12 +37,22 @@ import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
+const NUMBER_WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+  "Eleven", "Twelve",
+];
+
+function countLabel(n: number): string {
+  return NUMBER_WORDS[n] ?? String(n);
+}
+
 const ICON_MAP: Record<string, typeof Video> = {
   video: Video,
   users: Users,
   eye: Eye,
   "book-open": BookOpen,
   clipboard: ClipboardList,
+  target: Target,
 };
 
 type Submission = {
@@ -121,6 +132,7 @@ export default function First60DaysAssignments() {
         submission={latestBySlug[active.frontmatter.status_key]}
         onSubmitted={() => refetchSubmissions()}
         userId={user?.id}
+        totalCount={assignments.length}
       />
     );
   }
@@ -138,7 +150,7 @@ export default function First60DaysAssignments() {
               First 60 Days · Assignments
             </p>
             <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
-              Four deliverables to prove you're ready for the field.
+              {countLabel(assignments.length)} deliverables to prove you're ready for the field.
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Each assignment turns study into a practical artifact. Link back to the day material any time.
@@ -234,11 +246,13 @@ function AssignmentDetail({
   submission,
   onSubmitted,
   userId,
+  totalCount,
 }: {
   assignment: Assignment;
   submission: Submission | undefined;
   onSubmitted: () => void;
   userId: string | undefined;
+  totalCount: number;
 }) {
   const Icon = ICON_MAP[assignment.frontmatter.icon] ?? ClipboardList;
   return (
@@ -259,7 +273,7 @@ function AssignmentDetail({
             </div>
             <div className="flex-1 min-w-0 space-y-2">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
-                Assignment {assignment.frontmatter.order} of 4
+                Assignment {assignment.frontmatter.order} of {totalCount}
               </p>
               <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
                 {assignment.frontmatter.title}
