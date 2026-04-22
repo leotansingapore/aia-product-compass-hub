@@ -63,19 +63,37 @@ Robert Kiyosaki's framework, stripped to its bones:
 
 **The compounding truth:** most wealth is built in the right-hand column. Most paycheques come from the left.
 
-```mermaid
-quadrantChart
-    x-axis "Active income (trade time)" --> "Passive income (money works)"
-    y-axis "Works for others" --> "Works for self / owns system"
-    quadrant-1 "B - Business owner"
-    quadrant-2 "I - Investor"
-    quadrant-3 "E - Employee"
-    quadrant-4 "S - Self-employed"
-    Employee: [0.15, 0.15]
-    Self-employed: [0.25, 0.75]
-    Business owner: [0.75, 0.85]
-    Investor: [0.85, 0.25]
-```
+<div style="margin:1.5rem 0;font-family:system-ui,sans-serif;max-width:560px;">
+  <div style="display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto;gap:8px;align-items:stretch;">
+    <div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:hsl(220,15%,45%);">
+      <div style="text-align:center;">Active income<div style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;">trade time</div></div>
+      <div style="text-align:center;">Passive income<div style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;">money works</div></div>
+    </div>
+    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:hsl(220,15%,45%);display:flex;flex-direction:column;justify-content:space-around;padding:8px 0;">
+      <span>Owns system</span>
+      <span>Works for others</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;border:2px solid hsl(220,15%,85%);border-radius:10px;overflow:hidden;background:white;">
+      <div style="padding:18px;border-right:1px solid hsl(220,15%,90%);border-bottom:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(38,95%,97%),hsl(38,95%,93%));">
+        <div style="font-weight:700;font-size:14px;color:hsl(28,80%,35%);">S — Self-employed</div>
+        <div style="font-size:11px;color:hsl(28,25%,40%);margin-top:4px;line-height:1.4;">Owns a job. You are the product.</div>
+      </div>
+      <div style="padding:18px;border-bottom:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(160,70%,96%),hsl(160,70%,90%));">
+        <div style="font-weight:700;font-size:14px;color:hsl(160,84%,25%);">B — Business owner</div>
+        <div style="font-size:11px;color:hsl(160,30%,30%);margin-top:4px;line-height:1.4;">System runs without you.</div>
+      </div>
+      <div style="padding:18px;border-right:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(217,91%,97%),hsl(217,91%,92%));">
+        <div style="font-weight:700;font-size:14px;color:hsl(217,91%,35%);">E — Employee</div>
+        <div style="font-size:11px;color:hsl(217,30%,35%);margin-top:4px;line-height:1.4;">Trades hours for a paycheque.</div>
+      </div>
+      <div style="padding:18px;background:linear-gradient(135deg,hsl(262,83%,97%),hsl(262,83%,92%));">
+        <div style="font-weight:700;font-size:14px;color:hsl(262,70%,40%);">I — Investor</div>
+        <div style="font-size:11px;color:hsl(262,25%,35%);margin-top:4px;line-height:1.4;">Capital does the work.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## 2. Where this career lives
 
