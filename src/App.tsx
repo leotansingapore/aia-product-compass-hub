@@ -74,6 +74,7 @@ const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-tr
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackFirst30Days = lazyWithRetry(() => import("./pages/learning-track/First30Days"));
 const LearningTrackFirst30DaysDay = lazyWithRetry(() => import("./pages/learning-track/First30DaysDay"));
+const LearningTrackNext60DaysAssignments = lazyWithRetry(() => import("./pages/learning-track/Next60DaysAssignments"));
 const LearningTrackFirst14Days = lazyWithRetry(() => import("./pages/learning-track/First14Days"));
 const LearningTrackFirst14DaysDay = lazyWithRetry(() => import("./pages/learning-track/First14DaysDay"));
 const LearningTrackAdminLayout = lazyWithRetry(() => import("./pages/learning-track/admin/AdminLayout"));
@@ -179,6 +180,8 @@ const App = () => (
                       <Route path="post-rnf/first-30-days" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/assignments" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/assignments/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/next-60-days/assignments" element={<RequireTier feature="post-rnf-track"><LearningTrackNext60DaysAssignments /></RequireTier>} />
+                      <Route path="post-rnf/next-60-days/assignments/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackNext60DaysAssignments /></RequireTier>} />
                       <Route path="post-rnf/:itemId" element={<Navigate to="/learning-track/post-rnf/first-30-days" replace />} />
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
