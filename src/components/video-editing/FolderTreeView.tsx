@@ -75,7 +75,8 @@ interface FolderNode {
 
 function buildTree(
   videos: TrainingVideo[],
-  emptyFolders: string[]
+  emptyFolders: string[],
+  folderOrders: Record<string, number>
 ): { root: FolderNode; rootVideos: Array<{ video: TrainingVideo; index: number }> } {
   const folderMap: Map<string, FolderNode> = new Map();
 
@@ -131,6 +132,12 @@ function buildTree(
     let min = Infinity;
     for (const { video } of n.videos) min = Math.min(min, video.order ?? Infinity);
     for (const child of n.children) min = Math.min(min, getMinOrder(child));
+    // If the folder (and its descendants) has no videos, fall back to a
+    // tracked empty-folder order so it keeps its creation-time position
+    // instead of sinking to the bottom of its sibling list.
+    if (min === Infinity && n.path && folderOrders[n.path] !== undefined) {
+      return folderOrders[n.path];
+    }
     return min;
   };
 
@@ -154,10 +161,13 @@ function findNode(node: FolderNode, path: string): FolderNode | null {
   return null;
 }
 
-function getNodeMinOrder(n: FolderNode): number {
+function getNodeMinOrder(n: FolderNode, folderOrders: Record<string, number>): number {
   let min = Infinity;
   for (const { video } of n.videos) min = Math.min(min, video.order ?? Infinity);
-  for (const child of n.children) min = Math.min(min, getNodeMinOrder(child));
+  for (const child of n.children) min = Math.min(min, getNodeMinOrder(child, folderOrders));
+  if (min === Infinity && n.path && folderOrders[n.path] !== undefined) {
+    return folderOrders[n.path];
+  }
   return min;
 }
 
@@ -419,6 +429,7 @@ function RecursiveFolderItem({
 export interface FolderTreeViewProps {
   videos: TrainingVideo[];
   emptyFolders: string[];
+  folderOrders?: Record<string, number>;
   expandedFolders: Set<string>;
   onExpandedChange: (expanded: Set<string>) => void;
   onVideoSelect: (index: number) => void;
@@ -432,12 +443,14 @@ export interface FolderTreeViewProps {
   onAddPageToFolder: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  onFolderOrdersChange?: (orders: Record<string, number>) => void;
   onCreateSubFolder?: (parentPath: string) => void;
 }
 
 export function FolderTreeView({
   videos,
   emptyFolders,
+  folderOrders = {},
   expandedFolders,
   onExpandedChange,
   onVideoSelect,
@@ -451,6 +464,7 @@ export function FolderTreeView({
   onAddPageToFolder,
   onReorderVideos,
   onReorderFolders,
+  onFolderOrdersChange,
   onCreateSubFolder,
 }: FolderTreeViewProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -463,7 +477,7 @@ export function FolderTreeView({
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
-  const { root } = buildTree(videos, emptyFolders);
+  const { root } = buildTree(videos, emptyFolders, folderOrders);
 
   const toggleFolder = useCallback(
     (path: string) => {
@@ -560,27 +574,42 @@ export function FolderTreeView({
                 return cat === fp || cat.startsWith(fp + '/');
               };
 
-              const groups: TrainingVideo[][] = siblingPaths.map(sp =>
-                videos.filter(v => belongsTo(v, sp)).sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-              );
-
-              const reordered: TrainingVideo[] = [];
-              for (const sp of newSiblingOrder) {
-                reordered.push(...groups[siblingPaths.indexOf(sp)]);
+              // Each sibling consumes either its video count's worth of order
+              // slots, or 1 slot for an empty folder. Collect all existing
+              // order values across the siblings so we can redistribute them
+              // to the new sibling order — this is how an empty folder's
+              // position gets committed (it now holds one of those slots).
+              const existingOrders: number[] = [];
+              for (const sp of siblingPaths) {
+                const group = videos.filter(v => belongsTo(v, sp));
+                if (group.length > 0) {
+                  for (const v of group) existingOrders.push(v.order ?? 0);
+                } else {
+                  existingOrders.push(folderOrders[sp] ?? existingOrders.length);
+                }
               }
+              existingOrders.sort((a, b) => a - b);
 
-              const orderValues = groups.flat()
-                .map(v => v.order ?? 0)
-                .sort((a, b) => a - b);
-
+              let idx = 0;
               const idToOrder = new Map<string, number>();
-              reordered.forEach((v, i) => idToOrder.set(v.id, orderValues[i]));
+              const nextFolderOrders = { ...folderOrders };
+              for (const sp of newSiblingOrder) {
+                const group = videos
+                  .filter(v => belongsTo(v, sp))
+                  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+                if (group.length > 0) {
+                  for (const v of group) idToOrder.set(v.id, existingOrders[idx++]);
+                } else {
+                  nextFolderOrders[sp] = existingOrders[idx++];
+                }
+              }
 
               const updatedVideos = videos
                 .map(v => idToOrder.has(v.id) ? { ...v, order: idToOrder.get(v.id)! } : v)
                 .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
               onReorderVideos(updatedVideos);
+              onFolderOrdersChange?.(nextFolderOrders);
             }
           }
         } else {
@@ -698,7 +727,7 @@ export function FolderTreeView({
       type: 'folder' as const,
       id: `folder-${node.path}`,
       node,
-      sortKey: getNodeMinOrder(node),
+      sortKey: getNodeMinOrder(node, folderOrders),
     })),
   ].sort((a, b) => a.sortKey - b.sortKey);
 

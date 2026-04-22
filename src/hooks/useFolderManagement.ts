@@ -8,14 +8,18 @@ interface UseFolderManagementProps {
   onCreateCategory: (categoryName: string) => void;
   emptyFolders: string[];
   setEmptyFolders: (folders: string[]) => void;
+  folderOrders: Record<string, number>;
+  setFolderOrders: (orders: Record<string, number>) => void;
 }
 
-export function useFolderManagement({ 
-  editVideos, 
-  onUpdateVideo, 
+export function useFolderManagement({
+  editVideos,
+  onUpdateVideo,
   onCreateCategory,
   emptyFolders,
-  setEmptyFolders
+  setEmptyFolders,
+  folderOrders,
+  setFolderOrders,
 }: UseFolderManagementProps) {
   const [folderDialogOpen, setFolderDialogOpen] = useState(false);
   const [folderDialogMode, setFolderDialogMode] = useState<'create' | 'edit'>('create');
@@ -80,6 +84,14 @@ export function useFolderManagement({
     // Remove folder and all sub-folder paths from emptyFolders
     setEmptyFolders(emptyFolders.filter(f => f !== folderPath && !f.startsWith(folderPath + '/')));
 
+    // Drop any tracked orders for the deleted folder + descendants
+    const nextOrders: Record<string, number> = {};
+    for (const [path, order] of Object.entries(folderOrders)) {
+      if (path === folderPath || path.startsWith(folderPath + '/')) continue;
+      nextOrders[path] = order;
+    }
+    setFolderOrders(nextOrders);
+
     setExpandedFolders(prev => {
       const next = new Set(prev);
       next.delete(folderPath);
@@ -113,6 +125,30 @@ export function useFolderManagement({
       const fullPath = pendingSubFolderParent
         ? `${pendingSubFolderParent}/${folderName}`
         : folderName;
+
+      // Assign the new empty folder an order one past the current max so it
+      // sorts at the end of its sibling list — not to Infinity, which is what
+      // a missing order implicitly produces and is what used to drop empty
+      // folders to the bottom of the entire tree.
+      const siblingParent = pendingSubFolderParent ?? '';
+      const isSibling = (cat: string) => {
+        if (siblingParent === '') return !cat.includes('/');
+        const prefix = siblingParent + '/';
+        if (!cat.startsWith(prefix)) return false;
+        return !cat.slice(prefix.length).includes('/');
+      };
+      const videoSiblingOrders = editVideos
+        .filter((v) => isSibling(v.category ?? ''))
+        .map((v) => v.order ?? 0);
+      const folderSiblingOrders = Object.entries(folderOrders)
+        .filter(([path]) => {
+          const parent = path.split('/').slice(0, -1).join('/');
+          return parent === siblingParent;
+        })
+        .map(([, order]) => order);
+      const allSiblingOrders = [...videoSiblingOrders, ...folderSiblingOrders];
+      const nextOrder = allSiblingOrders.length > 0 ? Math.max(...allSiblingOrders) + 1 : 0;
+      setFolderOrders({ ...folderOrders, [fullPath]: nextOrder });
 
       setEmptyFolders([...emptyFolders, fullPath]);
       setExpandedFolders(prev => {
@@ -158,6 +194,15 @@ export function useFolderManagement({
           return f;
         })
       );
+
+      // Repath folderOrders keys
+      const renamedOrders: Record<string, number> = {};
+      for (const [path, order] of Object.entries(folderOrders)) {
+        if (path === oldPath) renamedOrders[newPath] = order;
+        else if (path.startsWith(oldPath + '/')) renamedOrders[newPath + path.slice(oldPath.length)] = order;
+        else renamedOrders[path] = order;
+      }
+      setFolderOrders(renamedOrders);
 
       // Update expandedFolders
       setExpandedFolders(prev => {

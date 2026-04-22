@@ -4,6 +4,7 @@ import type { TrainingVideo } from '@/hooks/useProducts';
 interface CourseStructurePanelProps {
   videos: TrainingVideo[];
   emptyFolders: string[];
+  folderOrders?: Record<string, number>;
   expandedFolders: Set<string>;
   onExpandedChange: (expanded: Set<string>) => void;
   onVideoSelect: (index: number) => void;
@@ -17,12 +18,14 @@ interface CourseStructurePanelProps {
   onAddPageToFolder: (folderName: string) => void;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  onFolderOrdersChange?: (orders: Record<string, number>) => void;
   onCreateSubFolder?: (parentPath: string) => void;
 }
 
 export function CourseStructurePanel({
   videos,
   emptyFolders,
+  folderOrders,
   expandedFolders,
   onExpandedChange,
   onVideoSelect,
@@ -36,12 +39,14 @@ export function CourseStructurePanel({
   onAddPageToFolder,
   onReorderVideos,
   onReorderFolders,
+  onFolderOrdersChange,
   onCreateSubFolder,
 }: CourseStructurePanelProps) {
   return (
     <FolderTreeView
       videos={videos}
       emptyFolders={emptyFolders}
+      folderOrders={folderOrders}
       expandedFolders={expandedFolders}
       onExpandedChange={onExpandedChange}
       onVideoSelect={onVideoSelect}
@@ -55,6 +60,7 @@ export function CourseStructurePanel({
       onAddPageToFolder={onAddPageToFolder}
       onReorderVideos={onReorderVideos}
       onReorderFolders={onReorderFolders}
+      onFolderOrdersChange={onFolderOrdersChange}
       onCreateSubFolder={onCreateSubFolder}
     />
   );

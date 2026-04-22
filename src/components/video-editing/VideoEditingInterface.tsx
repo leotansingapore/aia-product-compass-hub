@@ -59,6 +59,7 @@ export function VideoEditingInterface({
 
   // Use empty arrays as default since this interface manages its own state
   const [emptyFolders, setEmptyFolders] = useState<string[]>([]);
+  const [folderOrders, setFolderOrders] = useState<Record<string, number>>({});
   const [lastSavedAt, setLastSavedAt] = useState(0);
   const [isEditorEditing, setIsEditorEditing] = useState(false);
   const [sidebarSaveStatus, setSidebarSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
@@ -112,7 +113,9 @@ export function VideoEditingInterface({
     onUpdateVideo: handleUpdateVideo,
     onCreateCategory,
     emptyFolders,
-    setEmptyFolders
+    setEmptyFolders,
+    folderOrders,
+    setFolderOrders,
   });
 
   const videoActions = useVideoActions({
@@ -317,6 +320,8 @@ export function VideoEditingInterface({
           }}
           onReorderVideos={videoOrderChanges.updatePendingVideos}
           onReorderFolders={handleReorderFolders}
+          folderOrders={folderOrders}
+          onFolderOrdersChange={setFolderOrders}
           lastSavedAt={lastSavedAt}
           onEditorEditingStateChange={setIsEditorEditing}
           sidebarSaveStatus={sidebarSaveStatus}

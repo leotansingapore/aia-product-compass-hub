@@ -41,8 +41,10 @@ interface VideoEditingLayoutProps {
   onFolderDialogOpenChange: (open: boolean) => void;
   onFolderSave: (folderName: string) => void;
   pendingSubFolderParent?: string | null;
+  folderOrders?: Record<string, number>;
   onReorderVideos?: (updatedVideos: TrainingVideo[]) => void;
   onReorderFolders?: (folderOrder: string[]) => void;
+  onFolderOrdersChange?: (orders: Record<string, number>) => void;
   onCreateSubFolder?: (parentPath: string) => void;
   lastSavedAt?: number;
   onEditorEditingStateChange?: (isEditing: boolean) => void;
@@ -81,8 +83,10 @@ export function VideoEditingLayout({
   onFolderDialogOpenChange,
   onFolderSave,
   pendingSubFolderParent,
+  folderOrders,
   onReorderVideos,
   onReorderFolders,
+  onFolderOrdersChange,
   onCreateSubFolder,
   lastSavedAt,
   onEditorEditingStateChange,
@@ -174,6 +178,8 @@ export function VideoEditingLayout({
                 onAddPageToFolder={onAddPageToFolder}
                 onReorderVideos={onReorderVideos}
                 onReorderFolders={onReorderFolders}
+                onFolderOrdersChange={onFolderOrdersChange}
+                folderOrders={folderOrders}
                 onCreateSubFolder={onCreateSubFolder}
               />
             </div>
@@ -281,6 +287,8 @@ export function VideoEditingLayout({
               onAddPageToFolder={onAddPageToFolder}
               onReorderVideos={onReorderVideos}
               onReorderFolders={onReorderFolders}
+              onFolderOrdersChange={onFolderOrdersChange}
+              folderOrders={folderOrders}
               onCreateSubFolder={onCreateSubFolder}
             />
           </div>
