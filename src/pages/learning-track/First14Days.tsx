@@ -48,7 +48,7 @@ export default function First14Days() {
             </h1>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
               14 days, ~15 minutes each. By the end you'll have the honest answer — Commit, Delay,
-              Keep Exploring, or an informed No. Written by Leo.
+              Keep Exploring, or an informed No.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">
