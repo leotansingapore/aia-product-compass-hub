@@ -92,17 +92,29 @@ Every purchase decision is a scale weighing two things:
 
 Here's the flow — from discovery to decision. All 4 question types, in order.
 
-```mermaid
-flowchart TD
-    S["Situation Questions<br/>Uncover facts and background"]
-    P["Problem Questions<br/>Surface difficulties and gaps"]
-    I["Implication Questions<br/>Make the client feel the weight"]
-    N["Need-Payoff Questions<br/>Client articulates the benefit themselves"]
-    BUY["Client decides to buy"]
-    S --> P --> I --> N --> BUY
-    style I fill:#4a1a1a,color:#fff
-    style N fill:#1a3a1a,color:#fff
-```
+<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:0;">
+  <div style="width:100%;background:linear-gradient(135deg,hsl(217,91%,55%),hsl(217,91%,65%));color:white;padding:14px 20px;border-radius:12px 12px 4px 4px;box-shadow:0 4px 12px hsl(217,91%,55%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,92% 100%,8% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.85;font-weight:700;">S · SITUATION</div>
+    <div style="font-weight:700;font-size:15px;margin-top:2px;">Uncover facts and background</div>
+  </div>
+  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">↓</div>
+  <div style="width:88%;background:linear-gradient(135deg,hsl(38,92%,50%),hsl(38,92%,60%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,50%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,91% 100%,9% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">P · PROBLEM</div>
+    <div style="font-weight:700;font-size:15px;margin-top:2px;">Surface difficulties and gaps</div>
+  </div>
+  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">↓</div>
+  <div style="width:76%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;clip-path:polygon(0 0,100% 0,90% 100%,10% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">I · IMPLICATION</div>
+    <div style="font-weight:700;font-size:15px;margin-top:2px;">Make the client feel the weight</div>
+  </div>
+  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">↓</div>
+  <div style="width:64%;background:linear-gradient(135deg,hsl(160,84%,32%),hsl(160,84%,42%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 6px 16px hsl(160,84%,32%,0.3);text-align:center;clip-path:polygon(0 0,100% 0,89% 100%,11% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">N · NEED-PAYOFF</div>
+    <div style="font-weight:700;font-size:15px;margin-top:2px;">Client articulates the benefit themselves</div>
+  </div>
+  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">↓</div>
+  <div style="width:48%;background:hsl(var(--foreground));color:hsl(var(--background));padding:12px 20px;border-radius:4px 4px 12px 12px;text-align:center;font-weight:700;font-size:14px;letter-spacing:0.05em;">CLIENT DECIDES TO BUY</div>
+</div>
 
 ### 1. Situation Questions
 **Purpose:** Uncover facts and background about the buyer's situation and lifestyle.
