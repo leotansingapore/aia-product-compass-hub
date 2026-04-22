@@ -11,43 +11,47 @@ tags: [first-60-days, week-2, knowledge]
 
 # Day 7 — The Insurance Industry & AIA Singapore
 
-> **The one idea for today:** Insurance is not a product category. It's four different jobs — replacing income at death, paying for recovery after illness, covering medical bills, and funding retirement. Every conversation you have will map to one of these four.
+> **The one idea for today:** Insurance is not a product category. It's five different jobs — replacing income at death, paying for recovery after illness, covering hospital bills, reimbursing accident medical costs, and funding retirement. Every conversation you have will map to one of these five.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Name** the four segments of personal insurance and describe the problem each one solves.
+1. **Name** the five segments of personal insurance and describe the problem each one solves.
 2. **Explain** AIA Singapore's positioning in the market in one minute.
 3. **Locate** the two digital tools you'll live in every day — **iPos (iMO)** and **iSmart** — and know when each is used.
 
 ---
 
-## 1. The four segments of personal insurance
+## 1. The five segments of personal insurance
 
-When a client says "I need insurance," your first job is clarification. Which kind? There are four, and the needs behind each are different.
+When a client says "I need insurance," your first job is clarification. Which kind? There are five, and the needs behind each are different.
 
 | Segment | Problem it solves | Typical coverage |
 |---|---|---|
 | **Death / TPD** | Your dependents lose your income | **10× annual income** (replaces ~10 years of earnings) |
 | **Critical Illness** | 3–5 year recovery period without income; home modifications | **5× annual income (Major CI)** + **2× (Early CI)** |
-| **Hospitalisation & Accident** | Medical bills; choice of treatment quality | **Maximum limit** (private or restructured hospital tier) |
+| **Hospitalisation** | Inpatient medical bills — surgery, ward stays, and in-hospital treatment | **Maximum limit** (private or restructured hospital tier) |
+| **Personal Accident** | Outpatient medical bills from accidents — clinic visits, physio, dental after a fall, etc. | **Reimbursement** of accident-related medical expenses up to policy limits |
 | **Savings / Investments** | Retirement — no income, still alive and healthy | Depends on target retirement income × longevity |
 
-**The pattern:** the first three are **protection** (bad things happening). The fourth is **accumulation** (good things taking time).
+**The pattern:** the first four are **protection** (bad things happening). The fifth is **accumulation** (good things taking time).
+
+**Hospitalisation vs Personal Accident — don't conflate them.** Hospitalisation (e.g. an Integrated Shield Plan) pays inpatient bills when the client is admitted. Personal Accident reimburses outpatient medical expenses that follow an accident — the GP visit, X-ray, physio sessions, dental work after a chipped tooth. A client who trips and sprains an ankle doesn't get admitted, so the shield plan doesn't pay — but the PA plan reimburses the clinic bill.
 
 ```mermaid
 flowchart LR
     D["Death / TPD<br/>10x annual income"]
     CI["Critical Illness<br/>5x Major + 2x Early CI"]
-    H["Hospitalisation<br/>Maximum limit by tier"]
+    H["Hospitalisation<br/>Inpatient - maximum limit by tier"]
+    AC["Personal Accident<br/>Outpatient reimbursement"]
     S["Savings / Investments<br/>Retirement income target"]
 
-    D & CI & H --> P["Protection<br/>(bad events)"]
+    D & CI & H & AC --> P["Protection<br/>(bad events)"]
     S --> A["Accumulation<br/>(good things take time)"]
 ```
 
-A financially prepared person has all four. Most clients walk in with **one or two at best** — usually hospitalisation (because their employer offers it) and some savings. Your job is to map out what's missing without turning the meeting into a pitch.
+A financially prepared person has all five. Most clients walk in with **one or two at best** — usually hospitalisation (because their employer offers it) and some savings. Your job is to map out what's missing without turning the meeting into a pitch.
 
 ## 2. AIA Singapore — the 60-second positioning
 
@@ -94,15 +98,16 @@ You'll get asked this. A simple mental model:
 
 If a client strongly wants a product AIA doesn't have, the right answer is to say so, not to sell around it.
 
-## 5. The four segments — how to use this frame in every meeting
+## 5. The five segments — how to use this frame in every meeting
 
-Every meeting maps to one or more of the four segments. Make a habit of silently labelling what you hear:
+Every meeting maps to one or more of the five segments. Make a habit of silently labelling what you hear:
 
 | Client says | Segment |
 |---|---|
 | "I just had my second kid" | Death/TPD ↑ (more dependents) |
 | "My mum was just diagnosed with cancer" | Critical Illness ↑ (salience) |
 | "My company hospital plan ended when I left" | Hospitalisation ↑ (gap) |
+| "I sprained my ankle playing football last month — clinic and physio bills added up" | Personal Accident ↑ (outpatient reimbursement gap) |
 | "I'm worried about retirement" | Savings/Investments ↑ |
 | "I got a big promotion" | Death/TPD ↑, Savings ↑ (higher income to protect) |
 
@@ -117,7 +122,7 @@ This silent labelling sharpens your listening. Do it on every call for a month a
  - C) Death / TPD ✓
  - D) Savings / Investments
 
- **Why:** The 10× annual income rule replaces approximately 10 years of earnings for dependents after a death or TPD event. Critical Illness uses 5× (Major CI) plus 2× (Early CI) to cover the recovery period. Hospitalisation targets maximum limits by hospital tier, not a salary multiple. Savings and Investments are sized against the retirement income target, not a fixed income multiple.
+ **Why:** The 10× annual income rule replaces approximately 10 years of earnings for dependents after a death or TPD event. Critical Illness uses 5× (Major CI) plus 2× (Early CI) to cover the recovery period. Hospitalisation targets maximum limits by hospital tier, not a salary multiple. Personal Accident reimburses outpatient accident expenses, also not a salary multiple. Savings and Investments are sized against the retirement income target, not a fixed income multiple.
 
 2. **Which tool would you use to submit an application on the spot at a client's home?**
  - A) iSmart (mobile app for sharing campaigns)
@@ -141,7 +146,7 @@ This silent labelling sharpens your listening. Do it on every call for a month a
  - C) Savings / Investments — medical costs will deplete her retirement fund
  - D) Hospitalisation — this is purely a medical-bill problem
 
- **Why:** A family CI event is a classic salience trigger — the client suddenly imagines the same happening to them, making this the moment to review their own CI gap. Death/TPD (A) would be relevant if the client themselves were ill, not a parent. Savings depletion (C) is a secondary concern, not the primary signal. Hospitalisation (D) addresses medical bills but misses the 3-5 year income-replacement problem that CI is designed to solve.
+ **Why:** A family CI event is a classic salience trigger — the client suddenly imagines the same happening to them, making this the moment to review their own CI gap. Death/TPD (A) would be relevant if the client themselves were ill, not a parent. Savings depletion (C) is a secondary concern, not the primary signal. Hospitalisation (D) addresses inpatient medical bills but misses the 3-5 year income-replacement problem that CI is designed to solve.
 
 5. **A prospect asks, "Why AIA instead of a broker?" The most honest and accurate response is:**
  - A) AIA products are always cheaper than what a broker can source
@@ -157,7 +162,7 @@ This silent labelling sharpens your listening. Do it on every call for a month a
  - C) Opening iPos the moment you arrive at a client's home
  - D) Sending a campaign link via iSmart before the meeting starts
 
- **Why:** Silent labelling means mapping what a client says to one of the four segments in real time without interrupting the conversation. A promotion raises income, which raises both the death/TPD protection gap and the savings capacity — exactly the mapping the table shows. Memorising coverage amounts (A) is product knowledge, not listening skill. Opening iPos (C) and sending iSmart links (D) are workflow steps, not segment-labelling habits.
+ **Why:** Silent labelling means mapping what a client says to one of the five segments in real time without interrupting the conversation. A promotion raises income, which raises both the death/TPD protection gap and the savings capacity — exactly the mapping the table shows. Memorising coverage amounts (A) is product knowledge, not listening skill. Opening iPos (C) and sending iSmart links (D) are workflow steps, not segment-labelling habits.
 
 7. **You are about to meet a new client. You have iSmart on your phone but forgot to charge the iPad with iPos. What is the impact?**
  - A) None — iSmart can do everything iPos can
