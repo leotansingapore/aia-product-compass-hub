@@ -4,15 +4,10 @@ import type { TierLevel } from "@/lib/tiers";
 
 export type PointBreakdown = {
   first14Days: number;
-  first14Reflections: number;
   first60Days: number;
-  first60Reflections: number;
   assignments: number;
   questionBank: number;
-  productQuizzes: number;
   videos: number;
-  learningTrackItems: number;
-  learningTrackSubmissions: number;
 };
 
 export type LeaderboardRow = {
@@ -34,15 +29,10 @@ type RpcRow = {
   total_points: number | string;
   days_active: number;
   first_14_days: number | string;
-  first_14_reflections: number | string;
   first_60_days: number | string;
-  first_60_reflections: number | string;
   assignments: number | string;
   question_bank: number | string;
-  product_quizzes: number | string;
   videos: number | string;
-  learning_track_items: number | string;
-  learning_track_submissions: number | string;
 };
 
 const toNum = (v: number | string | null | undefined): number =>
@@ -74,15 +64,10 @@ async function fetchLeaderboard(
   const rows: LeaderboardRow[] = ((data ?? []) as RpcRow[]).map((r, idx) => {
     const breakdown: PointBreakdown = {
       first14Days: toNum(r.first_14_days),
-      first14Reflections: toNum(r.first_14_reflections),
       first60Days: toNum(r.first_60_days),
-      first60Reflections: toNum(r.first_60_reflections),
       assignments: toNum(r.assignments),
       questionBank: toNum(r.question_bank),
-      productQuizzes: toNum(r.product_quizzes),
       videos: toNum(r.videos),
-      learningTrackItems: toNum(r.learning_track_items),
-      learningTrackSubmissions: toNum(r.learning_track_submissions),
     };
     return {
       userId: r.user_id,

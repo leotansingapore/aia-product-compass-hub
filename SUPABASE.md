@@ -6,142 +6,21 @@
 
 ## Pending
 
-#### Update `get_learner_leaderboard` scoring — 2026-04-22
-
-**What:** Rework the point-weighting and breakdown surface of `public.get_learner_leaderboard(p_tier text)`. The Leaderboard page already shows the new scoring — the RPC needs to match so the numbers are honest. Apply all of these together; do not land them as separate migrations.
-
-1. **Remove product-quiz points.** Drop the `pq` CTE and the `a.pq_count` term from `total_points`. Remove `product_quizzes` from both the `RETURNS TABLE` signature and the final `SELECT`. Drop the `quiz_attempts` UNION branch from the `days` (distinct activity days) CTE so a pure quiz attempt no longer bumps `days_active`.
-
-2. **Question bank: per correct answer, not per mastery.** Replace the `qb` CTE so it counts questions the user has ever gotten right, not mastered ones:
-
-   ```sql
-   qb AS (
-     SELECT
-       user_id::uuid AS user_id,
-       COUNT(*)::numeric AS qb_count
-     FROM public.user_question_progress
-     WHERE total_correct > 0
-     GROUP BY user_id
-   ),
-   ```
-
-   Update the corresponding UNION branch in the `days` CTE filter from `mastered = true` to `total_correct > 0`.
-
-3. **Drop reflection points** (feature retired). Remove `f14_refl`, `f60_refl`, `first_14_reflections`, `first_60_reflections` from the CTEs, the `total_points` formula, the `RETURNS TABLE` signature, and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (both `reflection_saved_at` for 14-days and `reflection_submitted_at` for 60-days).
-
-4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice. Remove the `lti` and `lts` CTEs entirely. Remove the `a.lti_count`, `a.lts_count`, and `a.lts_approved_count` terms from `total_points`. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Drop those two terms from the final `WHERE … OR (sum…) > 0` clause too.
-
-5. **Only count videos from products in the "Core Products" category.** Everything else — CMFAS modules, Supplementary Products, Supplementary Training, etc. — is excluded. Rewrite the `vid` CTE to join through `products` and filter by category name (stable against category UUID changes):
-
-   ```sql
-   vid AS (
-     SELECT vp.user_id, COUNT(*)::numeric AS vid_count
-     FROM public.video_progress vp
-     JOIN public.products p ON p.id = vp.product_id
-     JOIN public.categories c ON c.id = p.category_id
-     WHERE vp.completed = true
-       AND c.name = 'Core Products'
-     GROUP BY vp.user_id
-   ),
-   ```
-
-   Apply the same category gate to the `video_progress` UNION branch in the `days` CTE so a non-core viewing day doesn't bump `days_active`:
-
-   ```sql
-   UNION
-   SELECT vp.user_id, DATE(COALESCE(vp.completed_at, vp.updated_at)) AS activity_day
-   FROM public.video_progress vp
-   JOIN public.products p ON p.id = vp.product_id
-   JOIN public.categories c ON c.id = p.category_id
-   WHERE vp.completed = true
-     AND c.name = 'Core Products'
-     AND COALESCE(vp.completed_at, vp.updated_at) IS NOT NULL
-   ```
-
-   Note: CMFAS modules (`product_id` values `onboarding`, `m9`, `m9a`, `hi`, `res5`) are not rows in `products`, so the JOIN already filters them out — no separate exclusion list needed.
-
-6. **New point weights (target totals after ×5 rescale).** Use these exact per-unit weights in the final `total_points` expression and in each returned breakdown column:
-
-   | Breakdown column | Source CTE term | Weight |
-   | --- | --- | --- |
-   | `first_14_days` | `a.f14_quiz` | **5** |
-   | `first_60_days` | `a.f60_quiz` | **5** |
-   | `assignments` | `a.asg_count` | **50** |
-   | `question_bank` | `a.qb_count` | **1** |
-   | `videos` | `a.vid_count` | **2.5** (Core Products only) |
-
-   Final formula:
-
-   ```sql
-   ROUND((
-     a.f14_quiz * 5 +
-     a.f60_quiz * 5 +
-     a.asg_count * 50 +
-     a.qb_count * 1 +
-     a.vid_count * 2.5
-   )::numeric, 1) AS total_points
-   ```
-
-   And the matching `SELECT` breakdown:
-
-   ```sql
-   (a.f14_quiz * 5)::numeric AS first_14_days,
-   (a.f60_quiz * 5)::numeric AS first_60_days,
-   (a.asg_count * 50)::numeric AS assignments,
-   (a.qb_count * 1)::numeric AS question_bank,
-   (a.vid_count * 2.5)::numeric AS videos,
-   ```
-
-**Why:** User feedback — product-quiz attempts and question-bank mastery are no longer appropriate point categories (mastery requires multiple consecutive corrects; one correct answer is enough now). Reflections feature was retired.
-
-**After the migration:** The `useLearnerLeaderboard` hook's `RpcRow` / `PointBreakdown` types in [`src/hooks/useLearnerLeaderboard.ts`](src/hooks/useLearnerLeaderboard.ts) can be trimmed (drop `product_quizzes`, `productQuizzes`, `first_14_reflections`, `first_60_reflections`, `first14Reflections`, `first60Reflections`, `learning_track_items`, `learning_track_submissions`, `learningTrackItems`, `learningTrackSubmissions`) — Claude Code will handle that once the RPC is live.
-
----
-
-#### Fix `get_learner_leaderboard` ambiguous column — 2026-04-22 — **BLOCKING**
-
-**What:** Calling the RPC returns HTTP 400 with Postgres error `42702`:
-
-```
-{"code":"42702","message":"column reference \"user_id\" is ambiguous","details":"It could refer to either a PL/pgSQL variable or a table column."}
-```
-
-**Why:** The function is declared `RETURNS TABLE (user_id uuid, name text, ...)`. Those TABLE column names become in-scope variables inside the function body. CTEs such as `f14`, `f60`, `asg`, `qb`, `pq`, `vid`, `lti`, `lts`, and `days` all contain bare `user_id` references in their `SELECT` and `GROUP BY` clauses (e.g. `SELECT user_id, COUNT(*) FROM first_14_days_progress GROUP BY user_id`) — those are now ambiguous against the return-table variable.
-
-**Fix:** Add `#variable_conflict use_column` directive at the top of the function body. That tells plpgsql to prefer the column reference when a bare name matches both a variable and a column — which is what every one of those CTEs wants.
-
-```sql
-CREATE OR REPLACE FUNCTION public.get_learner_leaderboard(p_tier text)
-RETURNS TABLE (user_id uuid, name text, email text, ...)
-LANGUAGE plpgsql
-STABLE
-SECURITY DEFINER
-SET search_path = public
-AS $$
-#variable_conflict use_column
-DECLARE
-  v_caller uuid := auth.uid();
-  ...
-BEGIN
-  ...
-END;
-$$;
-```
-
-No other change needed — the query body is correct, just this directive.
-
-**Verify after deploy:**
-```bash
-curl -X POST "$SUPABASE_URL/rest/v1/rpc/get_learner_leaderboard" \
-  -H "apikey: $ANON_KEY" -H "Authorization: Bearer $ANON_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"p_tier":"papers_taker"}'
-```
-Should return HTTP 200 with an array of rows.
+_Nothing pending. See "Completed (recent)" for history._
 
 ---
 
 ## Completed (recent)
+
+#### Update `get_learner_leaderboard` scoring — landed 2026-04-22
+
+Migration `20260422063734_a701ae62-*.sql` rewrote the RPC with: new weights (f14×5, f60×5, assignments×50, question_bank×1, videos×2.5), question-bank filter on `total_correct > 0`, videos restricted to products in the "Core Products" category (CMFAS auto-excluded because its module IDs aren't in `products`), and the removal of product-quiz / reflections / learning-track contributions. TypeScript types in `src/hooks/useLearnerLeaderboard.ts` also trimmed to match the new shape.
+
+#### Fix `get_learner_leaderboard` ambiguous column — landed 2026-04-22
+
+Superseded by the scoring rewrite above. The new function body starts with `#variable_conflict use_column`, so the HTTP 400 / `42702` error no longer reproduces.
+
+---
 
 ### Learner Leaderboard RPC + `profiles.show_in_leaderboard` — DONE 2026-04-22
 
