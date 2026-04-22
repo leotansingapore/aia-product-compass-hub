@@ -329,7 +329,7 @@ export function VideoEditingInterface({
         />
         
         {(videoOrderChanges.hasPendingChanges || hasContentChanges) && (
-          <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
+          <div className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t bottom-[calc(3.5rem+env(safe-area-inset-bottom))] md:bottom-0">
             <div className="max-w-[1600px] mx-auto px-6 py-4">
               <VideoEditingActions
                 saving={saving || videoOrderChanges.isSaving}

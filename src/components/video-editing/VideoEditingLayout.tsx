@@ -161,7 +161,7 @@ export function VideoEditingLayout({
                 </DropdownMenu>
               </div>
             </div>
-            <div className="p-4">
+            <div className="p-4 pb-48">
               <CourseStructurePanel
                 videos={editVideos}
                 emptyFolders={emptyFolders}
@@ -193,7 +193,10 @@ export function VideoEditingLayout({
                 Back to Course
               </Button>
             </div>
-            <div className="p-4">
+            {/* pb-48 so the last content can scroll past the fixed save bar
+                (~76px) AND the MobileBottomNav (~60px + safe-area) stacked
+                at the bottom of the viewport. */}
+            <div className="p-4 pb-48">
               <VideoEditorPanel
                 editVideos={editVideos}
                 editingIndex={editingIndex}
