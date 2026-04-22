@@ -3,7 +3,6 @@ import { useVideoManagement } from '@/hooks/useVideoManagement';
 import { VideoDisplay } from './video-editing/VideoDisplay';
 import { VideoEditingInterface } from './video-editing/VideoEditingInterface';
 import { AdminVideoPreview } from './video-editing/AdminVideoPreview';
-import { useFolderManagement } from '@/hooks/useFolderManagement';
 import { useVideoActions } from '@/hooks/useVideoActions';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
@@ -44,15 +43,6 @@ export function EditableVideos({ videos, onSave, className = "", onExitEditMode 
     console.log('🗂️ Created new category:', categoryName);
   };
 
-  const folderManagement = useFolderManagement({
-    editVideos: videoManagement.editVideos,
-    onUpdateVideo: videoManagement.updateVideo,
-    onCreateCategory: handleCreateCategory,
-    emptyFolders: videoManagement.emptyFolders,
-    setEmptyFolders: (folders: string[]) => {
-      // This will be handled through the individual add/remove methods
-    }
-  });
 
   const videoActions = useVideoActions({
     newVideo: videoManagement.newVideo,
