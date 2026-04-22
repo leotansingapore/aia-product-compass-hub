@@ -108,16 +108,20 @@ Most new FCs obsess about **effort** (hours worked, calls made). The ones who br
 
 You can work 60 hours a week with poor infrastructure and stay broke. You can work 35 hours a week with good infrastructure and outperform them.
 
-```mermaid
-flowchart TD
-    I["Infrastructure"]
-    I --> CRM["CRM discipline<br/>Note every meeting within 24h"]
-    I --> CON["Content system<br/>One post per week, repeatable"]
-    I --> REF["Referral workflow<br/>Ask within 60 days of close"]
-    I --> STU["Study rhythm<br/>Fixed weekly product + SPIN time"]
-    I --> MEN["Mentor access<br/>Weekly 1-1 with agenda"]
-    I --> REV["Review cadence<br/>Sunday 30-min week review"]
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:flex;justify-content:center;margin-bottom:0;">
+    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 28px;border-radius:14px;font-weight:700;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);">Infrastructure</div>
+  </div>
+  <div style="display:flex;justify-content:center;"><div style="width:2px;height:22px;background:linear-gradient(to bottom,hsl(var(--primary)/0.6),hsl(var(--border)));"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(217,91%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(217,91%,45%);text-transform:uppercase;margin-bottom:6px;">CRM discipline</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Note every meeting within 24h</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(280,70%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(280,70%,45%);text-transform:uppercase;margin-bottom:6px;">Content system</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">One post per week, repeatable</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(160,84%,40%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(160,84%,30%);text-transform:uppercase;margin-bottom:6px;">Referral workflow</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Ask within 60 days of close</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(38,92%,50%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(38,92%,38%);text-transform:uppercase;margin-bottom:6px;">Study rhythm</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Fixed weekly product + SPIN time</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(340,75%,55%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(340,75%,45%);text-transform:uppercase;margin-bottom:6px;">Mentor access</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Weekly 1-1 with agenda</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;border-left:3px solid hsl(190,80%,45%);"><div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:hsl(190,80%,35%);text-transform:uppercase;margin-bottom:6px;">Review cadence</div><div style="font-size:13px;color:hsl(var(--foreground));line-height:1.45;">Sunday 30-min week review</div></div>
+  </div>
+</div>
 
 ## 5. Impact is the part no one talks about
 
