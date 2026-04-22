@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, ChevronRight, ExternalLink, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,28 @@ import { GET_READY_STEPS } from './getReadyData';
 import { getReadySlideContent, type GetReadyLinkResource } from './getReadySlideContent';
 
 const DESK_STEP_PARAM = 'deskStep';
-const STEP_COUNT = GET_READY_STEPS.length;
+
+/** IDs whose content is folded into another slide on the study desk (e.g.
+ *  register-m9-exam is part 2 of the Student-account slide). They remain in
+ *  GET_READY_STEPS for the onboarding-wizard module but are skipped here —
+ *  completion is propagated by the slide that subsumes them. */
+const HIDDEN_DESK_STEP_IDS: ReadonlySet<string> = new Set(['register-m9-exam']);
+
+/** The slide that owns a hidden step's content. When we mark the owner done,
+ *  we also mark the hidden step done so the Ready checklist stays in sync. */
+const HIDDEN_STEP_OWNERS: Readonly<Record<string, string>> = {
+  'register-m9-exam': 'create-student-account',
+};
+
+const STUDY_DESK_STEPS = GET_READY_STEPS.filter((s) => !HIDDEN_DESK_STEP_IDS.has(s.id));
+const STEP_COUNT = STUDY_DESK_STEPS.length;
+
+/** Inverse map: which hidden step IDs does this owner step subsume? */
+function subsumedStepIds(ownerId: string): string[] {
+  return Object.entries(HIDDEN_STEP_OWNERS)
+    .filter(([, owner]) => owner === ownerId)
+    .map(([hidden]) => hidden);
+}
 
 function parseStepIndex(raw: string | null): number {
   if (raw == null) return 0;
@@ -27,7 +48,7 @@ function canAccessStepIndex(
   if (k === stepIndex) return true;
   if (k < stepIndex) return true;
   for (let j = 0; j < k; j++) {
-    if (!isItemCompleted(GET_READY_STEPS[j].id)) return false;
+    if (!isItemCompleted(STUDY_DESK_STEPS[j].id)) return false;
   }
   return true;
 }
@@ -142,19 +163,25 @@ export function StudyDeskStepFlow({
     () => parseStepIndex(searchParams.get(DESK_STEP_PARAM)),
     [searchParams],
   );
-  const step = GET_READY_STEPS[stepIndex];
+  const step = STUDY_DESK_STEPS[stepIndex];
   const slide = getReadySlideContent(step.id);
   const linkResources = slide.linkResources ?? [];
   const done = isItemCompleted(step.id);
   const isLast = stepIndex === STEP_COUNT - 1;
   const canGoToNextSlide =
     done && !isLast && canAccessStepIndex(stepIndex + 1, stepIndex, isItemCompleted);
-  const nextStepTitle = !isLast ? GET_READY_STEPS[stepIndex + 1]?.title : null;
+  const nextStepTitle = !isLast ? STUDY_DESK_STEPS[stepIndex + 1]?.title : null;
+  /** Anchor for the Continue button to scroll to: the first `partDivider`
+   *  block in the current slide's blocks, if any. When present, Continue
+   *  scrolls to this element; when absent, Continue navigates to the next
+   *  slide (or is disabled until the step is marked done). */
+  const continueTargetRef = useRef<HTMLElement | null>(null);
+  const hasInSlidePart2 = (slide.blocks ?? []).some((b) => b.kind === 'partDivider');
 
   /** Section-part awareness: when multiple steps share the same `slide.section`
    *  string, show "Part X of Y" so the learner knows there's more coming. */
   const sectionPart = useMemo(() => {
-    const sameSectionSteps = GET_READY_STEPS.filter(
+    const sameSectionSteps = STUDY_DESK_STEPS.filter(
       (s) => getReadySlideContent(s.id).section === slide.section,
     );
     if (sameSectionSteps.length <= 1) return null;
@@ -164,7 +191,7 @@ export function StudyDeskStepFlow({
 
   useEffect(() => {
     if (searchParams.get(DESK_STEP_PARAM) != null) return;
-    const firstIncomplete = GET_READY_STEPS.findIndex((s) => !isItemCompleted(s.id));
+    const firstIncomplete = STUDY_DESK_STEPS.findIndex((s) => !isItemCompleted(s.id));
     const initial = firstIncomplete === -1 ? 0 : firstIncomplete;
     setSearchParams(
       (prev) => {
@@ -194,6 +221,12 @@ export function StudyDeskStepFlow({
   /** Mark current step and immediately go to the next slide, or to exam tutorials on the last step. */
   const handleMarkDone = useCallback(() => {
     completeItem(step.id);
+    // If this slide subsumes hidden steps (e.g. create-student-account also
+    // covers register-m9-exam), mark them complete so the shared checklist
+    // stays in sync with the onboarding course module.
+    for (const hiddenId of subsumedStepIds(step.id)) {
+      completeItem(hiddenId);
+    }
     if (isLast) {
       onSelectWorkspaceMode('papers');
       return;
@@ -207,6 +240,23 @@ export function StudyDeskStepFlow({
       { replace: true },
     );
   }, [completeItem, isLast, onSelectWorkspaceMode, setSearchParams, step.id, stepIndex]);
+
+  const handleContinue = useCallback(() => {
+    // If the current slide has a Part 2 divider inline, scroll to it first.
+    // Only on the second click (or when the divider is already above the
+    // viewport) do we fall through to navigating to the next slide.
+    if (hasInSlidePart2 && continueTargetRef.current) {
+      const el = continueTargetRef.current;
+      const rect = el.getBoundingClientRect();
+      const alreadyVisibleAbove = rect.bottom < 80; // scrolled past Part 2
+      if (!alreadyVisibleAbove) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+    if (!canGoToNextSlide) return;
+    goToIndex(stepIndex + 1);
+  }, [canGoToNextSlide, goToIndex, hasInSlidePart2, stepIndex]);
 
   return (
     <div
@@ -224,7 +274,7 @@ export function StudyDeskStepFlow({
           className="flex min-h-[36px] min-w-0 flex-1 flex-wrap items-center sm:justify-end gap-2"
           aria-label="Get ready steps"
         >
-          {GET_READY_STEPS.map((s, i) => {
+          {STUDY_DESK_STEPS.map((s, i) => {
             const complete = isItemCompleted(s.id);
             const current = i === stepIndex;
             const reachable = canAccessStepIndex(i, stepIndex, isItemCompleted);
@@ -334,6 +384,33 @@ export function StudyDeskStepFlow({
                           >
                             {block.text}
                           </h3>
+                        );
+                      }
+                      if (block.kind === 'partDivider') {
+                        return (
+                          <section
+                            key={idx}
+                            ref={continueTargetRef}
+                            className="mt-6 rounded-2xl border-2 border-[#d4a574]/30 bg-[#d4a574]/5 p-5 scroll-mt-4 sm:p-6"
+                            aria-label={`${block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`} · ${block.title}`}
+                          >
+                            <p
+                              className={cn(
+                                'text-[10px] font-bold uppercase tracking-[0.25em]',
+                                'text-[#d4a574]',
+                              )}
+                            >
+                              {block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`}
+                            </p>
+                            <h2
+                              className={cn(
+                                'mt-1 font-serif text-2xl font-bold leading-tight tracking-tight sm:text-3xl',
+                                cmfasRoom.text,
+                              )}
+                            >
+                              {block.title}
+                            </h2>
+                          </section>
                         );
                       }
                       if (block.kind === 'paragraph') {
@@ -467,20 +544,20 @@ export function StudyDeskStepFlow({
                   </p>
                 ))}
 
-                {/* Continue-cue: a line + bouncing chevron at the very bottom
-                    of the scroll area. When the step is done and the next
-                    slide is accessible, clicking navigates — so the learner
-                    can reach the next part (e.g. Section 2 Part 2) without
-                    hunting for the aside's Mark-as-done button. Otherwise
-                    it's a dimmed hint pointing to Mark-as-done on the right. */}
+                {/* Bottom continue cue. On a slide with a Part-2 divider
+                    (e.g. create-student-account), clicking scrolls the
+                    divider into view first; on second click (or if already
+                    below Part 2) it advances to the next slide. If the step
+                    isn't marked done yet, shown dimmed + points at the
+                    aside's Mark-as-done button. */}
                 {!isLast && (
                   <div className="mt-10 flex flex-col items-center gap-2 pb-2">
                     <div className="h-px w-16 bg-[#b8894f]/30" aria-hidden />
-                    {canGoToNextSlide ? (
+                    {(hasInSlidePart2 || canGoToNextSlide) ? (
                       <button
                         type="button"
-                        onClick={() => goToIndex(stepIndex + 1)}
-                        aria-label="Continue to next slide"
+                        onClick={handleContinue}
+                        aria-label="Continue"
                         className={cn(
                           'group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors',
                           'border-[#d4a574]/40 text-[#d4a574] hover:border-[#d4a574] hover:bg-[#d4a574]/10',

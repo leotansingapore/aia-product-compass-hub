@@ -20,7 +20,9 @@ export type SlideContentBlock =
   | { kind: 'heading'; text: string }
   | { kind: 'paragraph'; text: string }
   | { kind: 'list'; items: readonly string[] }
-  | { kind: 'table'; headers: readonly string[]; rows: readonly (readonly string[])[] };
+  | { kind: 'table'; headers: readonly string[]; rows: readonly (readonly string[])[] }
+  /** Strong visual break between sub-parts of a slide. Used as the Continue-button scroll anchor. */
+  | { kind: 'partDivider'; partIndex: number; partTotal: number; title: string; eyebrow?: string };
 
 type ReadySlide = {
   section: string;
@@ -122,11 +124,59 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         kind: 'paragraph',
         text: "You don't need to book an exam yet — but once you feel roughly ready, [register at the CMFAS exam registration link](https://tinyurl.com/CMFASregistration2025). A real exam date is the best study motivator.",
       },
+
+      // ───── Part 2 / 2 — Register & book the M9 exam ────────────────────
+      {
+        kind: 'partDivider',
+        partIndex: 2,
+        partTotal: 2,
+        title: 'Register & book the M9 exam',
+        eyebrow: 'Part 2 of 2',
+      },
+      {
+        kind: 'intro',
+        text: 'Book your first paper. A real exam date is the single biggest thing that pulls you through 20-30 hours of study.',
+      },
+      { kind: 'heading', text: 'How to register' },
+      {
+        kind: 'paragraph',
+        text: 'Use the [CMFAS registration link](https://tinyurl.com/CMFASregistration2025), or message [@cmfas_bot](https://t.me/cmfas_bot) on Telegram. Either path works — pick one and do it.',
+      },
+      { kind: 'heading', text: 'When to book' },
+      {
+        kind: 'list',
+        items: [
+          'Each paper is about 20-30 hours of study.',
+          'Aim for 1-2 papers per month, starting with M9.',
+          "Book before you start studying so you have a real deadline, or — if you'd rather warm up first — book once you've done 500 questions on iRecruit. Either way, lock in a date.",
+        ],
+      },
+      { kind: 'heading', text: 'Exam costs (first attempt — we cover it)' },
+      {
+        kind: 'table',
+        headers: ['Paper', 'Cost'],
+        rows: [
+          ['M9', 'S$109.00'],
+          ['M9A', 'S$109.00'],
+          ['HI', 'S$76.30'],
+          ['RES5', 'S$185.30'],
+        ],
+      },
+      {
+        kind: 'paragraph',
+        text: 'Retakes are on you. That is the whole reason we push you to pass on the first attempt.',
+      },
+      { kind: 'heading', text: 'Our support' },
+      {
+        kind: 'paragraph',
+        text: 'With everything we give you — Flashcards, Personal Tutoring, Question Bank, Chatbot, Key Concepts, Study Tips — passing first time is very doable.',
+      },
     ],
     linkResources: [
       { label: 'Create student account (SCI College)', href: 'https://www.scicollege.org.sg/Account/Register' },
       { label: 'Open exam resources (Skool classroom)', href: 'https://www.skool.com/finternship/classroom/e49e2efc?md=d36f1dca8ade4d22aef3f433b7caf7e4' },
       { label: 'Register for CMFAS exams', href: 'https://tinyurl.com/CMFASregistration2025' },
+      { label: 'Ask @cmfas_bot on Telegram', href: 'https://t.me/cmfas_bot' },
     ],
   },
   'access-question-bank': {
