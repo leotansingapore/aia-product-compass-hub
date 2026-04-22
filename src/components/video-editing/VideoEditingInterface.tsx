@@ -328,7 +328,7 @@ export function VideoEditingInterface({
           onSidebarSave={handleSidebarSave}
         />
         
-        {(videoOrderChanges.hasPendingChanges || (hasContentChanges && isEditorEditing)) && (
+        {(videoOrderChanges.hasPendingChanges || hasContentChanges) && (
           <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-t">
             <div className="max-w-[1600px] mx-auto px-6 py-4">
               <VideoEditingActions
