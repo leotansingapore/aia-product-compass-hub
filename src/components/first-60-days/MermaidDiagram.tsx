@@ -242,6 +242,27 @@ export function MermaidDiagram({ code }: Props) {
           "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
           // Arrowheads: match line color, slightly larger.
           "[&_.marker]:![fill:currentColor]",
+          // Quadrant chart polish — premium typography, rounded edges, breathing point labels
+          "[&_.quadrant-title]:!text-[18px] [&_.quadrant-title]:!font-bold [&_.quadrant-title]:!tracking-tight",
+          "[&_.quadrant-bg-quadrant]:![rx:14] [&_.quadrant-bg-quadrant]:![ry:14]",
+          "[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_10px_rgba(15,23,42,0.10))]",
+          "dark:[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.4))]",
+          "[&_.quadrant-quadrant-text]:!text-[15px] [&_.quadrant-quadrant-text]:!font-bold [&_.quadrant-quadrant-text]:!tracking-wide [&_.quadrant-quadrant-text]:!uppercase",
+          "[&_.quadrant-x-axis-text-top]:!text-[12px] [&_.quadrant-x-axis-text-top]:!font-semibold [&_.quadrant-x-axis-text-top]:!uppercase [&_.quadrant-x-axis-text-top]:!tracking-[0.12em]",
+          "[&_.quadrant-y-axis-text-left]:!text-[12px] [&_.quadrant-y-axis-text-left]:!font-semibold [&_.quadrant-y-axis-text-left]:!uppercase [&_.quadrant-y-axis-text-left]:!tracking-[0.12em]",
+          "[&_.quadrant-point]:![r:7] [&_.quadrant-point]:![stroke:white] [&_.quadrant-point]:![stroke-width:2]",
+          "dark:[&_.quadrant-point]:![stroke:#1f2737]",
+          "[&_.quadrant-point-text]:!text-[12px] [&_.quadrant-point-text]:!font-semibold",
+          // Pie chart polish
+          "[&_.pieTitleText]:!font-bold [&_.pieTitleText]:!tracking-tight",
+          "[&_.slice]:!stroke-2",
+          "[&_.legend-text]:!text-[13px] [&_.legend-text]:!font-medium",
+          // Mindmap polish — rounded nodes with shadow, distinctive root
+          "[&_.mindmap-node_rect]:![rx:12] [&_.mindmap-node_rect]:![ry:12] [&_.mindmap-node_rect]:![stroke-width:2]",
+          "[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(15,23,42,0.10))]",
+          "dark:[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))]",
+          "[&_.mindmap-edge]:![stroke-width:2.5] [&_.mindmap-edge]:![opacity:0.7]",
+          "[&_.section-root_rect]:![stroke-width:3]",
         ].join(" ")}
         dangerouslySetInnerHTML={{ __html: svg }}
       />
