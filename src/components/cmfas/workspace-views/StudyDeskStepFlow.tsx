@@ -37,6 +37,68 @@ function isInternalAppPath(href: string) {
   return href.startsWith('/') && !href.startsWith('//');
 }
 
+/**
+ * Parses inline `[text](url)` markdown-style links out of a paragraph string
+ * and returns a mixed array of plain-text and link segments. Kept minimal —
+ * no nested formatting, no other markdown. Just enough so learners can click
+ * the URL right where it's mentioned in the prose.
+ */
+function parseInlineLinks(
+  text: string,
+): Array<{ kind: 'text'; value: string } | { kind: 'link'; value: string; href: string }> {
+  const out: Array<{ kind: 'text'; value: string } | { kind: 'link'; value: string; href: string }> = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      out.push({ kind: 'text', value: text.slice(lastIndex, match.index) });
+    }
+    out.push({ kind: 'link', value: match[1], href: match[2] });
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    out.push({ kind: 'text', value: text.slice(lastIndex) });
+  }
+  return out;
+}
+
+/** Renders a paragraph string that may contain `[text](url)` spans. */
+function InlineRichText({ text, className }: { text: string; className?: string }) {
+  const parts = parseInlineLinks(text);
+  if (parts.length === 1 && parts[0].kind === 'text') {
+    return <>{text}</>;
+  }
+  return (
+    <span className={className}>
+      {parts.map((part, i) => {
+        if (part.kind === 'text') return <span key={i}>{part.value}</span>;
+        const external = /^https?:\/\//i.test(part.href);
+        const linkClass =
+          'font-semibold text-[#d4a574] underline decoration-[#d4a574]/40 underline-offset-[3px] transition-colors hover:text-[#e8bb82] hover:decoration-[#e8bb82]/80';
+        if (external) {
+          return (
+            <a
+              key={i}
+              href={part.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              {part.value}
+            </a>
+          );
+        }
+        return (
+          <Link key={i} to={part.href} className={linkClass}>
+            {part.value}
+          </Link>
+        );
+      })}
+    </span>
+  );
+}
+
 function GetReadyResourceLink({ item }: { item: GetReadyLinkResource }) {
   const className = cn(
     'flex w-full items-center justify-between gap-2 rounded-md border border-[#b8894f]/20 px-3 py-2 text-left text-xs font-medium',
@@ -257,7 +319,7 @@ export function StudyDeskStepFlow({
                               cmfasRoom.text,
                             )}
                           >
-                            {block.text}
+                            <InlineRichText text={block.text} />
                           </p>
                         );
                       }
@@ -283,7 +345,7 @@ export function StudyDeskStepFlow({
                               cmfasRoom.text,
                             )}
                           >
-                            {block.text}
+                            <InlineRichText text={block.text} />
                           </p>
                         );
                       }
@@ -297,7 +359,9 @@ export function StudyDeskStepFlow({
                             )}
                           >
                             {block.items.map((item, i) => (
-                              <li key={i}>{item}</li>
+                              <li key={i}>
+                                <InlineRichText text={item} />
+                              </li>
                             ))}
                           </ul>
                         );
@@ -403,16 +467,39 @@ export function StudyDeskStepFlow({
                   </p>
                 ))}
 
-                {/* Scroll-more cue: a line + bouncing chevron at the very
-                    bottom of the scroll area. Purely visual — tells the eye
-                    "keep going" without being a click-to-next-slide card. */}
+                {/* Continue-cue: a line + bouncing chevron at the very bottom
+                    of the scroll area. When the step is done and the next
+                    slide is accessible, clicking navigates — so the learner
+                    can reach the next part (e.g. Section 2 Part 2) without
+                    hunting for the aside's Mark-as-done button. Otherwise
+                    it's a dimmed hint pointing to Mark-as-done on the right. */}
                 {!isLast && (
                   <div className="mt-10 flex flex-col items-center gap-2 pb-2">
                     <div className="h-px w-16 bg-[#b8894f]/30" aria-hidden />
-                    <ChevronDown
-                      className={cn('h-5 w-5 animate-bounce', cmfasRoom.brassText)}
-                      aria-hidden
-                    />
+                    {canGoToNextSlide ? (
+                      <button
+                        type="button"
+                        onClick={() => goToIndex(stepIndex + 1)}
+                        aria-label="Continue to next slide"
+                        className={cn(
+                          'group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors',
+                          'border-[#d4a574]/40 text-[#d4a574] hover:border-[#d4a574] hover:bg-[#d4a574]/10',
+                        )}
+                      >
+                        <span>Continue</span>
+                        <ChevronDown className="h-4 w-4 animate-bounce" aria-hidden />
+                      </button>
+                    ) : (
+                      <div
+                        className={cn(
+                          'inline-flex items-center gap-1.5 text-[11px] font-medium',
+                          cmfasRoom.textFaint,
+                        )}
+                      >
+                        <span>Mark as done on the right to continue</span>
+                        <ChevronDown className="h-4 w-4" aria-hidden />
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

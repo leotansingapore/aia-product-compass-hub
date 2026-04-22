@@ -96,7 +96,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { kind: 'heading', text: 'Step 1 · Register at SCI College' },
       {
         kind: 'paragraph',
-        text: 'Go to scicollege.org.sg/Account/Register (link in the right column). When the form asks, fill in:',
+        text: 'Go to [scicollege.org.sg/Account/Register](https://www.scicollege.org.sg/Account/Register). When the form asks, fill in:',
       },
       {
         kind: 'list',
@@ -115,17 +115,13 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { kind: 'heading', text: 'Step 3 · Unlock the exam resources' },
       {
         kind: 'paragraph',
-        text: 'After your account is active, open the Skool exam-resources classroom (link on the right) to get into the question bank and study materials.',
+        text: 'After your account is active, open the [Skool exam-resources classroom](https://www.skool.com/finternship/classroom/e49e2efc?md=d36f1dca8ade4d22aef3f433b7caf7e4) to get into the question bank and study materials.',
       },
       { kind: 'heading', text: "Step 4 · Book when you're semi-confident" },
       {
         kind: 'paragraph',
-        text: "You don't need to book an exam yet — but once you feel roughly ready, register at the CMFAS exam registration link (also on the right). A real exam date is the best study motivator.",
+        text: "You don't need to book an exam yet — but once you feel roughly ready, [register at the CMFAS exam registration link](https://tinyurl.com/CMFASregistration2025). A real exam date is the best study motivator.",
       },
-    ],
-    closingParagraphs: [
-      'NEXT STEPS:',
-      'When you are done, hit Mark as done — next slide on the right to move on.',
     ],
     linkResources: [
       { label: 'Create student account (SCI College)', href: 'https://www.scicollege.org.sg/Account/Register' },
@@ -163,7 +159,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { kind: 'heading', text: 'How to register' },
       {
         kind: 'paragraph',
-        text: 'Use the CMFAS registration link on the right, or message @cmfas_bot on Telegram. Either path works — pick one and do it.',
+        text: 'Use the [CMFAS registration link](https://tinyurl.com/CMFASregistration2025), or message [@cmfas_bot](https://t.me/cmfas_bot) on Telegram. Either path works — pick one and do it.',
       },
       { kind: 'heading', text: 'When to book' },
       {
@@ -194,10 +190,6 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         kind: 'paragraph',
         text: 'With everything we give you — Flashcards, Personal Tutoring, Question Bank, Chatbot, Key Concepts, Study Tips — passing first time is very doable.',
       },
-    ],
-    closingParagraphs: [
-      'NEXT STEPS:',
-      'Once you have booked your M9 exam, hit Mark as done — next slide on the right to move on.',
     ],
     linkResources: [
       { label: 'Register for CMFAS exams', href: 'https://tinyurl.com/CMFASregistration2025' },
