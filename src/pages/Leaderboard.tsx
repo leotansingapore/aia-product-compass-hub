@@ -46,12 +46,19 @@ function RankIcon({ rank }: { rank: number }) {
   );
 }
 
-const BREAKDOWN_ROWS: Array<{ key: keyof PointBreakdown; label: string }> = [
-  { key: "first14Days", label: "First 14 Days — days completed" },
-  { key: "first60Days", label: "First 60 Days — days completed" },
-  { key: "assignments", label: "Pre-RNF assignments submitted" },
-  { key: "questionBank", label: "Question bank — correct answers" },
-  { key: "videos", label: "Core Products videos completed" },
+type BreakdownRow = {
+  key: keyof PointBreakdown;
+  label: string;
+  weight: number;
+  unit: string;
+};
+
+const BREAKDOWN_ROWS: readonly BreakdownRow[] = [
+  { key: "first14Days", label: "First 14 Days — days completed", weight: 5, unit: "days" },
+  { key: "first60Days", label: "First 60 Days — days completed", weight: 5, unit: "days" },
+  { key: "assignments", label: "Pre-RNF assignments submitted", weight: 50, unit: "assignments" },
+  { key: "questionBank", label: "Question bank — correct answers", weight: 1, unit: "questions" },
+  { key: "videos", label: "Core Products videos completed", weight: 2.5, unit: "videos" },
 ];
 
 function formatPoints(n: number): string {
@@ -143,21 +150,30 @@ function LeaderboardTable({
                   <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                     Point breakdown
                   </div>
-                  <div className="mt-2 grid grid-cols-1 gap-1 sm:grid-cols-2">
-                    {BREAKDOWN_ROWS.map(({ key, label }) => {
-                      const val = row.breakdown[key];
-                      if (val === 0) return null;
+                  <div className="mt-2 flex flex-col gap-1.5">
+                    {BREAKDOWN_ROWS.map(({ key, label, weight, unit }) => {
+                      const points = row.breakdown[key];
+                      if (points === 0) return null;
+                      const count = points / weight;
                       return (
-                        <div key={key} className="flex items-center justify-between text-xs">
-                          <span className="text-muted-foreground">{label}</span>
-                          <span className="font-medium tabular-nums">
-                            {formatPoints(val)}
+                        <div
+                          key={key}
+                          className="flex items-baseline justify-between gap-3 text-xs"
+                        >
+                          <span className="min-w-0 flex-1 truncate text-muted-foreground">
+                            {label}
+                          </span>
+                          <span className="shrink-0 tabular-nums text-muted-foreground">
+                            {formatPoints(count)} {unit} × {formatPoints(weight)} pt
+                          </span>
+                          <span className="w-16 shrink-0 text-right font-semibold tabular-nums">
+                            {formatPoints(points)} pt
                           </span>
                         </div>
                       );
                     })}
                     {BREAKDOWN_ROWS.every(({ key }) => row.breakdown[key] === 0) && (
-                      <div className="col-span-full text-xs italic text-muted-foreground">
+                      <div className="text-xs italic text-muted-foreground">
                         No points yet — time to get started.
                       </div>
                     )}
