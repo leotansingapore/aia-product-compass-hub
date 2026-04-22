@@ -23,13 +23,15 @@ function RankIcon({ rank }: { rank: number }) {
 /**
  * Compact card showing the learner's current leaderboard rank with a CTA
  * to the full leaderboard page. Hides itself when the user isn't on a
- * ranked tier (explorer) or before the leaderboard query resolves.
+ * ranked tier or before the leaderboard query resolves.
  */
 export function LeaderboardRankCard({ className }: { className?: string }) {
   const { user } = useSimplifiedAuth();
   const { tier } = useUserTier();
   const scopedTier =
-    tier === "papers_taker" || tier === "post_rnf" ? tier : null;
+    tier === "explorer" || tier === "papers_taker" || tier === "post_rnf"
+      ? tier
+      : null;
   const query = useLearnerLeaderboard(user?.id ?? null, scopedTier);
 
   if (!scopedTier) return null;

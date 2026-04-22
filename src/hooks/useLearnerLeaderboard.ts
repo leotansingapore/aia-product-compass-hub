@@ -103,7 +103,8 @@ export function useLearnerLeaderboard(
   currentUserId: string | null,
   tier: TierLevel | null,
 ) {
-  const isScoped = tier === "papers_taker" || tier === "post_rnf";
+  const isScoped =
+    tier === "explorer" || tier === "papers_taker" || tier === "post_rnf";
   return useQuery({
     queryKey: ["learner-leaderboard", tier, currentUserId],
     queryFn: () => fetchLeaderboard(currentUserId, tier as TierLevel),
