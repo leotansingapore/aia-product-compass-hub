@@ -31,7 +31,21 @@
 
 4. **Drop learning-track contributions.** No learner surface currently renders `learning_track_items` / `learning_track_submissions` — the pre_rnf / post_rnf phase UIs are admin-only and the explorer track has no seeded phases — so these rows always award 0 in practice. Remove the `lti` and `lts` CTEs entirely. Remove the `a.lti_count`, `a.lts_count`, and `a.lts_approved_count` terms from `total_points`. Remove `learning_track_items` and `learning_track_submissions` from both the `RETURNS TABLE` signature and the final `SELECT`. Remove the corresponding UNION branches from the `days` CTE (the `learning_track_progress` and `learning_track_submissions` selects). Drop those two terms from the final `WHERE … OR (sum…) > 0` clause too.
 
-5. **New point weights (target totals after ×5 rescale).** Use these exact per-unit weights in the final `total_points` expression and in each returned breakdown column:
+5. **Exclude CMFAS videos from the video count.** The 5 CMFAS module IDs used as `product_id` in `video_progress` are `'onboarding'`, `'m9'`, `'m9a'`, `'hi'`, `'res5'` (from [`src/data/cmfasModuleData.ts`](src/data/cmfasModuleData.ts)). Filter them out in the `vid` CTE:
+
+   ```sql
+   vid AS (
+     SELECT user_id, COUNT(*)::numeric AS vid_count
+     FROM public.video_progress
+     WHERE completed = true
+       AND product_id NOT IN ('onboarding', 'm9', 'm9a', 'hi', 'res5')
+     GROUP BY user_id
+   ),
+   ```
+
+   Apply the same `product_id NOT IN (…)` filter to the `video_progress` UNION branch in the `days` CTE so a CMFAS-only viewing day doesn't bump `days_active` either.
+
+6. **New point weights (target totals after ×5 rescale).** Use these exact per-unit weights in the final `total_points` expression and in each returned breakdown column:
 
    | Breakdown column | Source CTE term | Weight |
    | --- | --- | --- |
@@ -39,7 +53,7 @@
    | `first_60_days` | `a.f60_quiz` | **5** |
    | `assignments` | `a.asg_count` | **50** |
    | `question_bank` | `a.qb_count` | **1** |
-   | `videos` | `a.vid_count` | **2.5** |
+   | `videos` | `a.vid_count` | **2.5** (non-CMFAS only) |
 
    Final formula:
 
