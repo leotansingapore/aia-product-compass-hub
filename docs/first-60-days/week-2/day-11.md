@@ -28,28 +28,30 @@ By the end of today you should be able to:
 
 Robert Kiyosaki's framework, stripped to its bones:
 
-```
- ACTIVE INCOME | PASSIVE INCOME
- (trade time for money) | (money works for you)
- ──────────────────────────────────────────────────────────
- |
- E — Employee | B — Business owner
- ──────────── | ──────────────────
- Works for someone else. | Owns a system that
- Income = hours × rate. | others operate.
- Tax: highest. | Tax: best structures.
- |
- ──────────────────────────────────────────────────────────
- |
- S — Self-employed | I — Investor
- ──────────────── | ──────────────
- Works for themselves. | Money generates money.
- Income = hours × rate | Dividends, rent,
- (usually higher rate). | capital gains.
- Tax: high. | Tax: favoured.
- |
- ──────────────────────────────────────────────────────────
-```
+<div style="margin:1.5rem 0;font-family:system-ui,sans-serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+    <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(217,30%,40%);">Active Income<div style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;margin-top:2px;">trade time for money</div></div>
+    <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(160,40%,35%);">Passive Income<div style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;margin-top:2px;">money works for you</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:hsl(217,91%,97%);border:1px solid hsl(217,91%,85%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:14px 16px;">
+      <div style="font-weight:700;font-size:15px;color:hsl(217,91%,35%);margin-bottom:6px;">E — Employee</div>
+      <div style="font-size:13px;line-height:1.55;color:hsl(217,20%,25%);">Works for someone else.<br/>Income = hours × rate.<br/><span style="opacity:0.75;">Tax: highest.</span></div>
+    </div>
+    <div style="background:hsl(160,84%,96%);border:1px solid hsl(160,60%,80%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:14px 16px;">
+      <div style="font-weight:700;font-size:15px;color:hsl(160,84%,25%);margin-bottom:6px;">B — Business owner</div>
+      <div style="font-size:13px;line-height:1.55;color:hsl(160,20%,20%);">Owns a system that others operate.<br/><span style="opacity:0.75;">Tax: best structures.</span></div>
+    </div>
+    <div style="background:hsl(38,95%,96%);border:1px solid hsl(38,90%,80%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:14px 16px;">
+      <div style="font-weight:700;font-size:15px;color:hsl(28,80%,35%);margin-bottom:6px;">S — Self-employed</div>
+      <div style="font-size:13px;line-height:1.55;color:hsl(28,25%,22%);">Works for themselves.<br/>Income = hours × rate (usually higher).<br/><span style="opacity:0.75;">Tax: high.</span></div>
+    </div>
+    <div style="background:hsl(262,83%,97%);border:1px solid hsl(262,70%,85%);border-left:4px solid hsl(262,83%,58%);border-radius:8px;padding:14px 16px;">
+      <div style="font-weight:700;font-size:15px;color:hsl(262,70%,40%);margin-bottom:6px;">I — Investor</div>
+      <div style="font-size:13px;line-height:1.55;color:hsl(262,20%,22%);">Money generates money.<br/>Dividends, rent, capital gains.<br/><span style="opacity:0.75;">Tax: favoured.</span></div>
+    </div>
+  </div>
+</div>
 
 **E (Employee):** 90% of the world's workforce. Predictable. Low autonomy. Capped income. Taxed the hardest.
 
