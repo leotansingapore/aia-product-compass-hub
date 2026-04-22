@@ -125,7 +125,7 @@ The stories that bring FCs back 20 years later are not about income. They are ab
 
 - The single mum whose CI claim paid for her child to stay in school.
 - The retiree who didn't have to sell his home because his savings plan matured.
-- The young family whose hospital plan covered a NICU stay that would have otherwise bankrupted them.
+- The young family whose hospital plan covered an ICU stay that would have otherwise bankrupted them.
 
 Impact is slow to arrive and uneven in distribution. You may work for 18 months before a claim moment happens to one of your clients. When it does, you'll remember why you started.
 
