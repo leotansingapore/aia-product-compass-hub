@@ -63,9 +63,6 @@ Why this matters: when a prospect's first question is "why AIA?" — you don't w
 
 AIA's systems are genuinely ahead of most of the industry. Learn where each tool fits; don't memorise screens — memorise workflows.
 
-![AIA iMO (Interactive Mobile Office) dashboard — Contacts, FNA, Quotation, E-Application, E-Submission, Forms, AIA Vitality and more all live here|width=520](/first-60-days/images/aia-imo-dashboard.webp)
-
-*The iPos iPad platform now sits inside iMO — the Interactive Mobile Office. From one dashboard you reach Contacts, FNA, Quotation, E-Application, E-Submission, Forms, AIA Vitality, and Biz Planner. Learn the shape of this home screen; the rest of your career on the iPad radiates from it.*
 
 ### AIA iSmart (mobile app)
 - **What it is:** mobile app with real-time client information and campaign updates.
