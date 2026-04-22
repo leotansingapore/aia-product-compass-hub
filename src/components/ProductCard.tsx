@@ -19,6 +19,7 @@ import {
 import { useBookmarks } from "@/hooks/useBookmarks";
 import { useAdmin } from "@/hooks/useAdmin";
 import { cn } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import {
   DropdownMenu,
@@ -173,13 +174,25 @@ export const ProductCard = memo(function ProductCard({
               >
                 <span className="truncate">{category}</span>
               </Badge>
-              {published === false && isAdmin && (
-                <Badge
-                  variant="outline"
-                  className="h-5 shrink-0 px-1.5 text-[10px] font-medium text-muted-foreground"
+              {isAdmin && productId && onTogglePublish && (
+                <label
+                  className="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-md border bg-background px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  Draft
-                </Badge>
+                  <Switch
+                    checked={published !== false}
+                    onCheckedChange={(checked) => onTogglePublish(productId, checked)}
+                    className="h-3.5 w-6 data-[state=checked]:bg-emerald-500 [&>span]:h-2.5 [&>span]:w-2.5 [&>span]:data-[state=checked]:translate-x-2.5"
+                    aria-label={published === false ? "Publish product" : "Unpublish product"}
+                  />
+                  <span
+                    className={cn(
+                      published === false ? "text-muted-foreground" : "text-emerald-600 dark:text-emerald-400",
+                    )}
+                  >
+                    {published === false ? "Draft" : "Live"}
+                  </span>
+                </label>
               )}
             </div>
 

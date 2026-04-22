@@ -39,7 +39,7 @@ export function CreateModuleForm({
     description: '',
     tags: '',
     highlights: '',
-    publishImmediately: false,
+    publishImmediately: true,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,7 +104,7 @@ export function CreateModuleForm({
         description: '',
         tags: '',
         highlights: '',
-        publishImmediately: false,
+        publishImmediately: true,
       });
 
       onModuleCreated?.();
@@ -179,7 +179,7 @@ export function CreateModuleForm({
 
       <div className="flex items-center justify-between">
         <Label htmlFor="create-module-publish" className="text-sm cursor-pointer">
-          Publish immediately
+          Publish immediately (uncheck to save as draft)
         </Label>
         <Switch
           id="create-module-publish"
