@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import {
   ArrowLeft,
   ArrowRight,
@@ -92,7 +93,7 @@ function WeekWrapup({ weekNumber }: { weekNumber: number }) {
           Week {weekNumber} wrap-up
         </div>
         <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={dayMarkdownComponents}>
             {body}
           </ReactMarkdown>
         </article>
@@ -392,7 +393,7 @@ export default function First60DaysDay() {
         <TabsContent value="read" className="mt-5 animate-fade-in">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={dayMarkdownComponents}>
                 {day.markdown}
               </ReactMarkdown>
             </CardContent>
