@@ -74,10 +74,17 @@ They've decided to act. They'll buy **from someone** — question is who.
 
 Every purchase decision is a scale weighing two things:
 
-```
- Seriousness of problem vs Cost of solution
- (emotional weight) (financial + effort)
-```
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;">
+  <div style="background:linear-gradient(135deg,hsl(0,72%,96%),hsl(0,72%,92%));border:2px solid hsl(0,72%,55%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(0,72%,42%);text-transform:uppercase;">Seriousness of problem</div>
+    <div style="font-size:13px;color:hsl(var(--foreground));margin-top:6px;font-style:italic;">emotional weight</div>
+  </div>
+  <div style="font-size:28px;font-weight:800;color:hsl(var(--muted-foreground));">vs</div>
+  <div style="background:linear-gradient(135deg,hsl(217,91%,96%),hsl(217,91%,92%));border:2px solid hsl(217,91%,55%);border-radius:12px;padding:18px;text-align:center;">
+    <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">Cost of solution</div>
+    <div style="font-size:13px;color:hsl(var(--foreground));margin-top:6px;font-style:italic;">financial + effort</div>
+  </div>
+</div>
 
 **BUY** when: seriousness of problem > cost of solution.
 **DON'T BUY** when: cost of solution > seriousness of problem.
@@ -172,21 +179,21 @@ Here's the flow — from discovery to decision. All 4 question types, in order.
 
 A typical fact-finding meeting using SPIN:
 
-```
-[Opening]
- ↓
-[5 min rapport]
- ↓
-Situation questions (5-10 min)
- ↓
-Problem questions (10-15 min)
- ↓
-Implication questions (10-15 min) ← This is where the emotional shift happens
- ↓
-Need-Payoff questions (5 min) ← Client now wants a solution
- ↓
-[Transition to present your recommendation]
-```
+<div style="margin:1.5rem 0;display:flex;flex-direction:column;gap:4px;">
+  <div style="background:hsl(var(--muted));border-radius:8px;padding:10px 14px;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;text-align:center;">[ Opening ]</div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(var(--muted));border-radius:8px;padding:10px 14px;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;text-align:center;">[ 5 min rapport ]</div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(217,91%,96%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:600;color:hsl(var(--foreground));">Situation questions</span><span style="font-size:12px;color:hsl(217,91%,40%);font-weight:600;">5–10 min</span></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(38,92%,96%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:600;color:hsl(var(--foreground));">Problem questions</span><span style="font-size:12px;color:hsl(38,92%,38%);font-weight:600;">10–15 min</span></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(0,72%,96%);border-left:4px solid hsl(0,72%,55%);border-radius:8px;padding:10px 14px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;color:hsl(0,72%,42%);">Implication questions</span><span style="font-size:12px;color:hsl(0,72%,42%);font-weight:600;">10–15 min</span></div><div style="font-size:12px;color:hsl(0,72%,38%);margin-top:3px;font-style:italic;">← emotional shift happens here</div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(160,84%,94%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:10px 14px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;color:hsl(160,84%,25%);">Need-Payoff questions</span><span style="font-size:12px;color:hsl(160,84%,28%);font-weight:600;">5 min</span></div><div style="font-size:12px;color:hsl(160,84%,25%);margin-top:3px;font-style:italic;">← client now wants a solution</div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
+  <div style="background:hsl(var(--foreground));color:hsl(var(--background));border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;text-align:center;letter-spacing:0.03em;">Transition to present your recommendation</div>
+</div>
 
 Total: 45-60 min of questions before you ever show a product.
 

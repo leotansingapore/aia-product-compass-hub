@@ -155,16 +155,19 @@ After 60 days, this becomes reflex. You'll find yourself doing it during client 
 
 Post this table next to your monitor:
 
-```
-2% → 36y doubling
-3% → 24y
-4% → 18y
-5% → 14y
-6% → 12y ← CPF OA
-7% → 10y
-8% → 9y
-9% → 8y
-```
+<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
+  <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:12px;text-align:center;">Rule of 72 · Years to double</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+    <div style="background:hsl(0,72%,96%);border:1px solid hsl(0,72%,80%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(0,72%,40%);letter-spacing:0.05em;">2%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">36y</div></div>
+    <div style="background:hsl(0,72%,96%);border:1px solid hsl(0,72%,80%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(0,72%,40%);letter-spacing:0.05em;">3%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">24y</div></div>
+    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(38,92%,38%);letter-spacing:0.05em;">4%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">18y</div></div>
+    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(38,92%,38%);letter-spacing:0.05em;">5%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">14y</div></div>
+    <div style="background:hsl(160,84%,94%);border:2px solid hsl(160,84%,40%);border-radius:8px;padding:10px;text-align:center;position:relative;"><div style="font-size:11px;font-weight:700;color:hsl(160,84%,28%);letter-spacing:0.05em;">6% · CPF OA</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">12y</div></div>
+    <div style="background:hsl(160,84%,94%);border:1px solid hsl(160,84%,60%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(160,84%,28%);letter-spacing:0.05em;">7%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">10y</div></div>
+    <div style="background:hsl(217,91%,95%);border:1px solid hsl(217,91%,70%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(217,91%,42%);letter-spacing:0.05em;">8%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">9y</div></div>
+    <div style="background:hsl(262,83%,96%);border:1px solid hsl(262,83%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(262,83%,48%);letter-spacing:0.05em;">9%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">8y</div></div>
+  </div>
+</div>
 
 See it daily for 10 days. It becomes permanent.
 
