@@ -171,12 +171,9 @@ export function StudyDeskStepFlow({
   const canGoToNextSlide =
     done && !isLast && canAccessStepIndex(stepIndex + 1, stepIndex, isItemCompleted);
   const nextStepTitle = !isLast ? STUDY_DESK_STEPS[stepIndex + 1]?.title : null;
-  /** Anchor for the Continue button to scroll to: the first `partDivider`
-   *  block in the current slide's blocks, if any. When present, Continue
-   *  scrolls to this element; when absent, Continue navigates to the next
-   *  slide (or is disabled until the step is marked done). */
+  /** Anchor for the inline Continue buttons that scroll to a `partDivider`
+   *  block. No navigation — pure smooth-scroll within the current slide. */
   const continueTargetRef = useRef<HTMLElement | null>(null);
-  const hasInSlidePart2 = (slide.blocks ?? []).some((b) => b.kind === 'partDivider');
 
   /** Section-part awareness: when multiple steps share the same `slide.section`
    *  string, show "Part X of Y" so the learner knows there's more coming. */
@@ -240,23 +237,6 @@ export function StudyDeskStepFlow({
       { replace: true },
     );
   }, [completeItem, isLast, onSelectWorkspaceMode, setSearchParams, step.id, stepIndex]);
-
-  const handleContinue = useCallback(() => {
-    // If the current slide has a Part 2 divider inline, scroll to it first.
-    // Only on the second click (or when the divider is already above the
-    // viewport) do we fall through to navigating to the next slide.
-    if (hasInSlidePart2 && continueTargetRef.current) {
-      const el = continueTargetRef.current;
-      const rect = el.getBoundingClientRect();
-      const alreadyVisibleAbove = rect.bottom < 80; // scrolled past Part 2
-      if (!alreadyVisibleAbove) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    }
-    if (!canGoToNextSlide) return;
-    goToIndex(stepIndex + 1);
-  }, [canGoToNextSlide, goToIndex, hasInSlidePart2, stepIndex]);
 
   return (
     <div
@@ -388,29 +368,55 @@ export function StudyDeskStepFlow({
                       }
                       if (block.kind === 'partDivider') {
                         return (
-                          <section
-                            key={idx}
-                            ref={continueTargetRef}
-                            className="mt-6 rounded-2xl border-2 border-[#d4a574]/30 bg-[#d4a574]/5 p-5 scroll-mt-4 sm:p-6"
-                            aria-label={`${block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`} · ${block.title}`}
-                          >
-                            <p
-                              className={cn(
-                                'text-[10px] font-bold uppercase tracking-[0.25em]',
-                                'text-[#d4a574]',
-                              )}
+                          <div key={idx} className="space-y-4">
+                            {/* Horizontal divider + scroll-only Continue cue,
+                                rendered immediately BEFORE the part card so
+                                clicking the button smoothly scrolls the card
+                                into view. Never navigates to another slide. */}
+                            <div className="mt-8 flex flex-col items-center gap-3 pb-1">
+                              <div className="h-px w-16 bg-[#b8894f]/30" aria-hidden />
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  continueTargetRef.current?.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                  });
+                                }}
+                                aria-label={`Continue to ${block.eyebrow ?? `part ${block.partIndex}`}`}
+                                className={cn(
+                                  'group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors',
+                                  'border-[#d4a574]/40 text-[#d4a574] hover:border-[#d4a574] hover:bg-[#d4a574]/10',
+                                )}
+                              >
+                                <span>Continue</span>
+                                <ChevronDown className="h-4 w-4 animate-bounce" aria-hidden />
+                              </button>
+                            </div>
+
+                            <section
+                              ref={continueTargetRef}
+                              className="rounded-2xl border-2 border-[#d4a574]/30 bg-[#d4a574]/5 p-5 scroll-mt-4 sm:p-6"
+                              aria-label={`${block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`} · ${block.title}`}
                             >
-                              {block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`}
-                            </p>
-                            <h2
-                              className={cn(
-                                'mt-1 font-serif text-2xl font-bold leading-tight tracking-tight sm:text-3xl',
-                                cmfasRoom.text,
-                              )}
-                            >
-                              {block.title}
-                            </h2>
-                          </section>
+                              <p
+                                className={cn(
+                                  'text-[10px] font-bold uppercase tracking-[0.25em]',
+                                  'text-[#d4a574]',
+                                )}
+                              >
+                                {block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`}
+                              </p>
+                              <h2
+                                className={cn(
+                                  'mt-1 font-serif text-2xl font-bold leading-tight tracking-tight sm:text-3xl',
+                                  cmfasRoom.text,
+                                )}
+                              >
+                                {block.title}
+                              </h2>
+                            </section>
+                          </div>
                         );
                       }
                       if (block.kind === 'paragraph') {
@@ -544,41 +550,6 @@ export function StudyDeskStepFlow({
                   </p>
                 ))}
 
-                {/* Bottom continue cue. On a slide with a Part-2 divider
-                    (e.g. create-student-account), clicking scrolls the
-                    divider into view first; on second click (or if already
-                    below Part 2) it advances to the next slide. If the step
-                    isn't marked done yet, shown dimmed + points at the
-                    aside's Mark-as-done button. */}
-                {!isLast && (
-                  <div className="mt-10 flex flex-col items-center gap-2 pb-2">
-                    <div className="h-px w-16 bg-[#b8894f]/30" aria-hidden />
-                    {(hasInSlidePart2 || canGoToNextSlide) ? (
-                      <button
-                        type="button"
-                        onClick={handleContinue}
-                        aria-label="Continue"
-                        className={cn(
-                          'group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors',
-                          'border-[#d4a574]/40 text-[#d4a574] hover:border-[#d4a574] hover:bg-[#d4a574]/10',
-                        )}
-                      >
-                        <span>Continue</span>
-                        <ChevronDown className="h-4 w-4 animate-bounce" aria-hidden />
-                      </button>
-                    ) : (
-                      <div
-                        className={cn(
-                          'inline-flex items-center gap-1.5 text-[11px] font-medium',
-                          cmfasRoom.textFaint,
-                        )}
-                      >
-                        <span>Mark as done on the right to continue</span>
-                        <ChevronDown className="h-4 w-4" aria-hidden />
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
           </div>
