@@ -115,6 +115,119 @@ export function VideoEditingLayout({
     setShowMobileEditor(false);
   };
 
+  // Transcript + Resources panels — rendered in the desktop sidebar and, on
+  // mobile, below the editor (mobile has no sidebar, so without this the
+  // admin has no way to add transcripts or per-page resources).
+  const renderSidebarPanels = () =>
+    editingIndex !== null && currentVideo ? (
+      <>
+        <div className="border-b">
+          <details className="group" open>
+            <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                <FileText className="h-4 w-4" />
+                Transcript
+              </div>
+              <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+            </summary>
+            <div className="px-4 pb-4 space-y-2">
+              {isTranscriptOpen || isEditorEditing ? (
+                <>
+                  <textarea
+                    value={currentVideo?.transcript || ''}
+                    autoFocus={isTranscriptOpen && !isEditorEditing}
+                    onChange={(e) => {
+                      if (editingIndex !== null && currentVideo) {
+                        onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
+                        setSidebarDirty(true);
+                      }
+                    }}
+                    placeholder="Paste or type your transcript here..."
+                    rows={6}
+                    className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
+                  />
+                  {sidebarSaveStatus === 'saved' ? (
+                    <p className="text-xs text-primary/70">Saved</p>
+                  ) : sidebarDirty ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-xs h-7"
+                      disabled={sidebarSaveStatus === 'saving'}
+                      onClick={() => { onSidebarSave?.(); setIsTranscriptOpen(false); }}
+                    >
+                      {sidebarSaveStatus === 'saving' ? 'Saving...' : 'Save'}
+                    </Button>
+                  ) : null}
+                </>
+              ) : currentVideo?.transcript ? (
+                <div
+                  className="max-h-[300px] overflow-y-auto overflow-x-hidden cursor-pointer rounded-lg hover:bg-muted/30 p-2 -mx-2 transition-colors"
+                  onClick={() => setIsTranscriptOpen(true)}
+                >
+                  <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed break-words">
+                    {currentVideo.transcript}
+                  </p>
+                </div>
+              ) : (
+                <div
+                  className="flex items-center gap-1.5 w-full px-3 py-1.5 text-sm text-muted-foreground/70 border border-dashed border-border rounded-md cursor-pointer hover:border-muted-foreground/40 hover:text-muted-foreground transition-colors"
+                  onClick={() => setIsTranscriptOpen(true)}
+                >
+                  <span className="text-xs">+</span>
+                  Add transcript
+                </div>
+              )}
+            </div>
+          </details>
+        </div>
+
+        <div className="border-b">
+          <details className="group" open>
+            <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
+              <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                <Link2 className="h-4 w-4" />
+                Resources
+              </div>
+              <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
+            </summary>
+            <div className="px-4 pb-4 space-y-3">
+              <ModuleResourcesSection
+                links={currentVideo.useful_links || []}
+                attachments={currentVideo.attachments || []}
+                isAdmin={true}
+                onDeleteLink={(index) => {
+                  if (editingIndex !== null && currentVideo) {
+                    const updatedLinks = (currentVideo.useful_links || []).filter((_, i) => i !== index);
+                    onUpdateVideo(editingIndex, { ...currentVideo, useful_links: updatedLinks });
+                  }
+                }}
+                onDeleteAttachment={(id) => {
+                  if (editingIndex !== null && currentVideo) {
+                    const updatedAttachments = (currentVideo.attachments || []).filter(a => a.id !== id);
+                    onUpdateVideo(editingIndex, { ...currentVideo, attachments: updatedAttachments });
+                  }
+                }}
+              />
+              <AddResourceDropdown
+                onAddLink={(label, url) => {
+                  if (editingIndex !== null && currentVideo) {
+                    const newLink: UsefulLink = { name: label, url, icon: '🔗' };
+                    onUpdateVideo(editingIndex, { ...currentVideo, useful_links: [...(currentVideo.useful_links || []), newLink] });
+                  }
+                }}
+                onAddFile={(attachment) => {
+                  if (editingIndex !== null && currentVideo) {
+                    onUpdateVideo(editingIndex, { ...currentVideo, attachments: [...(currentVideo.attachments || []), attachment] });
+                  }
+                }}
+              />
+            </div>
+          </details>
+        </div>
+      </>
+    ) : null;
+
   // Mobile layout: show either list or editor
   if (isMobile) {
     return (
@@ -193,10 +306,7 @@ export function VideoEditingLayout({
                 Back to Course
               </Button>
             </div>
-            {/* pb-48 so the last content can scroll past the fixed save bar
-                (~76px) AND the MobileBottomNav (~60px + safe-area) stacked
-                at the bottom of the viewport. */}
-            <div className="p-4 pb-48">
+            <div className="p-4">
               <VideoEditorPanel
                 editVideos={editVideos}
                 editingIndex={editingIndex}
@@ -211,6 +321,14 @@ export function VideoEditingLayout({
                 onEditingStateChange={onEditorEditingStateChange}
               />
             </div>
+            {/* Transcript + Resources panels below the editor on mobile — the
+                desktop layout shows these in the aside sidebar, but mobile
+                has no aside, so without this the admin can't add transcripts
+                or per-page resources from a phone. */}
+            {renderSidebarPanels()}
+            {/* Bottom spacer so the last panel can scroll above the stacked
+                save bar (~76px) + MobileBottomNav (~60px + safe-area). */}
+            <div className="h-48" aria-hidden />
           </div>
         )}
 
@@ -297,116 +415,7 @@ export function VideoEditingLayout({
           </div>
         </div>
 
-        {/* Transcript Accordion */}
-        {editingIndex !== null && currentVideo && (
-          <div className="border-b">
-            <details className="group" open>
-              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <FileText className="h-4 w-4" />
-                  Transcript
-                </div>
-                <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
-              </summary>
-              <div className="px-4 pb-4 space-y-2">
-                {isTranscriptOpen || isEditorEditing ? (
-                  <>
-                    <textarea
-                      value={currentVideo?.transcript || ''}
-                      autoFocus={isTranscriptOpen && !isEditorEditing}
-                      onChange={(e) => {
-                        if (editingIndex !== null && currentVideo) {
-                          onUpdateVideo(editingIndex, { ...currentVideo, transcript: e.target.value });
-                          setSidebarDirty(true);
-                        }
-                      }}
-                      placeholder="Paste or type your transcript here..."
-                      rows={6}
-                      className="w-full bg-muted/20 border border-border rounded-lg p-3 text-sm text-foreground resize-y focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 placeholder:text-muted-foreground/50 break-words overflow-x-hidden"
-                    />
-                    {sidebarSaveStatus === 'saved' ? (
-                      <p className="text-xs text-primary/70">Saved</p>
-                    ) : sidebarDirty ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-xs h-7"
-                        disabled={sidebarSaveStatus === 'saving'}
-                        onClick={() => { onSidebarSave?.(); setIsTranscriptOpen(false); }}
-                      >
-                        {sidebarSaveStatus === 'saving' ? 'Saving...' : 'Save'}
-                      </Button>
-                    ) : null}
-                  </>
-                ) : currentVideo?.transcript ? (
-                  <div
-                    className="max-h-[300px] overflow-y-auto overflow-x-hidden cursor-pointer rounded-lg hover:bg-muted/30 p-2 -mx-2 transition-colors"
-                    onClick={() => setIsTranscriptOpen(true)}
-                  >
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed break-words">
-                      {currentVideo.transcript}
-                    </p>
-                  </div>
-                ) : (
-                  <div
-                    className="flex items-center gap-1.5 w-full px-3 py-1.5 text-sm text-muted-foreground/70 border border-dashed border-border rounded-md cursor-pointer hover:border-muted-foreground/40 hover:text-muted-foreground transition-colors"
-                    onClick={() => setIsTranscriptOpen(true)}
-                  >
-                    <span className="text-xs">+</span>
-                    Add transcript
-                  </div>
-                )}
-              </div>
-            </details>
-          </div>
-        )}
-
-        {/* Resources */}
-        {editingIndex !== null && currentVideo && (
-          <div className="border-b">
-            <details className="group" open>
-              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <Link2 className="h-4 w-4" />
-                  Resources
-                </div>
-                <ChevronDown className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-open:rotate-180" />
-              </summary>
-              <div className="px-4 pb-4 space-y-3">
-                <ModuleResourcesSection
-                  links={currentVideo.useful_links || []}
-                  attachments={currentVideo.attachments || []}
-                  isAdmin={true}
-                  onDeleteLink={(index) => {
-                    if (editingIndex !== null && currentVideo) {
-                      const updatedLinks = (currentVideo.useful_links || []).filter((_, i) => i !== index);
-                      onUpdateVideo(editingIndex, { ...currentVideo, useful_links: updatedLinks });
-                    }
-                  }}
-                  onDeleteAttachment={(id) => {
-                    if (editingIndex !== null && currentVideo) {
-                      const updatedAttachments = (currentVideo.attachments || []).filter(a => a.id !== id);
-                      onUpdateVideo(editingIndex, { ...currentVideo, attachments: updatedAttachments });
-                    }
-                  }}
-                />
-                <AddResourceDropdown
-                  onAddLink={(label, url) => {
-                    if (editingIndex !== null && currentVideo) {
-                      const newLink: UsefulLink = { name: label, url, icon: '🔗' };
-                      onUpdateVideo(editingIndex, { ...currentVideo, useful_links: [...(currentVideo.useful_links || []), newLink] });
-                    }
-                  }}
-                  onAddFile={(attachment) => {
-                    if (editingIndex !== null && currentVideo) {
-                      onUpdateVideo(editingIndex, { ...currentVideo, attachments: [...(currentVideo.attachments || []), attachment] });
-                    }
-                  }}
-                />
-              </div>
-            </details>
-          </div>
-        )}
+        {renderSidebarPanels()}
 
         {/* Spacer so the last section (Add resource, transcript, etc.) never
             sits behind the fixed save bar (~76px tall). The main editor pane
