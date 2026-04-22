@@ -188,22 +188,42 @@ If an agency can't name something concrete at each tier, that tier is missing, a
 
 Here's the framing of why agency choice matters so much.
 
-```mermaid
-quadrantChart
-    title Right People × Right Systems
-    x-axis Wrong Systems --> Right Systems
-    y-axis Wrong People --> Right People
-    quadrant-1 Compound Growth
-    quadrant-2 Capable Burn-Out
-    quadrant-3 Total Failure
-    quadrant-4 No Discipline
-    Top producers we build: [0.82, 0.85]
-    Our small-by-design team: [0.75, 0.78]
-    Year-1 dropouts at broken agencies: [0.22, 0.75]
-    Warm-market-only agencies: [0.18, 0.45]
-    Fast failures: [0.15, 0.15]
-    Coasting hires at good agencies: [0.78, 0.2]
-```
+<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:14px;padding:20px;">
+  <div style="font-size:11px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;text-align:center;margin-bottom:14px;">Right People × Right Systems</div>
+  <div style="display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr auto;gap:6px;">
+    <div></div>
+    <div style="text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Wrong Systems</div>
+    <div style="text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Right Systems</div>
+    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Right People</div>
+    <div style="background:linear-gradient(135deg,hsl(38,92%,94%),hsl(38,92%,88%));border:2px solid hsl(38,92%,50%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsl(38,92%,50%,0.12);">
+      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(38,92%,38%);text-transform:uppercase;">Q2 · Capable Burn-Out</div></div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(38,92%,42%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Year-1 dropouts at broken agencies</div>
+        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(38,92%,42%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Warm-market-only agencies</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,hsl(160,84%,94%),hsl(160,84%,88%));border:2px solid hsl(160,84%,39%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 14px hsl(160,84%,39%,0.18);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(160,84%,25%);text-transform:uppercase;">Q1 · Compound Growth</div><span style="font-size:9px;background:hsl(160,84%,32%);color:white;padding:2px 7px;border-radius:8px;font-weight:700;letter-spacing:0.05em;">TARGET</span></div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="font-size:12px;color:hsl(var(--foreground));font-weight:600;"><span style="display:inline-block;width:8px;height:8px;background:hsl(160,84%,32%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Top producers we build</div>
+        <div style="font-size:12px;color:hsl(var(--foreground));font-weight:600;"><span style="display:inline-block;width:8px;height:8px;background:hsl(160,84%,32%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Our small-by-design team</div>
+      </div>
+    </div>
+    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Wrong People</div>
+    <div style="background:linear-gradient(135deg,hsl(0,72%,95%),hsl(0,72%,89%));border:2px solid hsl(0,72%,55%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsl(0,72%,55%,0.12);">
+      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(0,72%,40%);text-transform:uppercase;">Q3 · Total Failure</div></div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(0,72%,45%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Fast failures</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,hsl(217,91%,95%),hsl(217,91%,89%));border:2px solid hsl(217,91%,55%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsl(217,91%,55%,0.12);">
+      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">Q4 · No Discipline</div></div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(217,91%,48%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Coasting hires at good agencies</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 - Wrong people, wrong systems: total fail, fast.
 - Wrong people, right systems: no discipline, not proactive, still fail even with good infrastructure.

@@ -29,6 +29,35 @@ const LIGHT_THEME_VARS = {
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
+  // Quadrant chart specifics
+  quadrant1Fill: "#dcfce7",
+  quadrant2Fill: "#dbeafe",
+  quadrant3Fill: "#fef3c7",
+  quadrant4Fill: "#fee2e2",
+  quadrant1TextFill: "#14532d",
+  quadrant2TextFill: "#1e3a8a",
+  quadrant3TextFill: "#78350f",
+  quadrant4TextFill: "#7f1d1d",
+  quadrantPointFill: "#0b1220",
+  quadrantPointTextFill: "#0b1220",
+  quadrantXAxisTextFill: "#475569",
+  quadrantYAxisTextFill: "#475569",
+  quadrantInternalBorderStrokeFill: "#94a3b8",
+  quadrantExternalBorderStrokeFill: "#1e40af",
+  quadrantTitleFill: "#0b1220",
+  // Pie chart
+  pie1: "#3b82f6",
+  pie2: "#10b981",
+  pie3: "#f59e0b",
+  pie4: "#ef4444",
+  pie5: "#8b5cf6",
+  pie6: "#ec4899",
+  pieTitleTextSize: "18px",
+  pieTitleTextColor: "#0b1220",
+  pieSectionTextColor: "#ffffff",
+  pieLegendTextColor: "#0b1220",
+  pieStrokeColor: "#ffffff",
+  pieStrokeWidth: "2px",
 };
 
 const DARK_THEME_VARS = {
@@ -54,6 +83,35 @@ const DARK_THEME_VARS = {
   labelBackground: "#2e3d5c",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
   fontSize: "15px",
+  // Quadrant chart specifics — translucent washes that read on slate canvas
+  quadrant1Fill: "#14532d",
+  quadrant2Fill: "#1e3a8a",
+  quadrant3Fill: "#78350f",
+  quadrant4Fill: "#7f1d1d",
+  quadrant1TextFill: "#bbf7d0",
+  quadrant2TextFill: "#bfdbfe",
+  quadrant3TextFill: "#fde68a",
+  quadrant4TextFill: "#fecaca",
+  quadrantPointFill: "#f1f5fb",
+  quadrantPointTextFill: "#f1f5fb",
+  quadrantXAxisTextFill: "#cbd5e1",
+  quadrantYAxisTextFill: "#cbd5e1",
+  quadrantInternalBorderStrokeFill: "#475569",
+  quadrantExternalBorderStrokeFill: "#7ea8ff",
+  quadrantTitleFill: "#f1f5fb",
+  // Pie chart
+  pie1: "#60a5fa",
+  pie2: "#34d399",
+  pie3: "#fbbf24",
+  pie4: "#f87171",
+  pie5: "#a78bfa",
+  pie6: "#f472b6",
+  pieTitleTextSize: "18px",
+  pieTitleTextColor: "#f1f5fb",
+  pieSectionTextColor: "#0b1220",
+  pieLegendTextColor: "#f1f5fb",
+  pieStrokeColor: "#1f2737",
+  pieStrokeWidth: "2px",
 };
 
 function detectDark() {
@@ -184,6 +242,27 @@ export function MermaidDiagram({ code }: Props) {
           "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
           // Arrowheads: match line color, slightly larger.
           "[&_.marker]:![fill:currentColor]",
+          // Quadrant chart polish — premium typography, rounded edges, breathing point labels
+          "[&_.quadrant-title]:!text-[18px] [&_.quadrant-title]:!font-bold [&_.quadrant-title]:!tracking-tight",
+          "[&_.quadrant-bg-quadrant]:![rx:14] [&_.quadrant-bg-quadrant]:![ry:14]",
+          "[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_10px_rgba(15,23,42,0.10))]",
+          "dark:[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.4))]",
+          "[&_.quadrant-quadrant-text]:!text-[15px] [&_.quadrant-quadrant-text]:!font-bold [&_.quadrant-quadrant-text]:!tracking-wide [&_.quadrant-quadrant-text]:!uppercase",
+          "[&_.quadrant-x-axis-text-top]:!text-[12px] [&_.quadrant-x-axis-text-top]:!font-semibold [&_.quadrant-x-axis-text-top]:!uppercase [&_.quadrant-x-axis-text-top]:!tracking-[0.12em]",
+          "[&_.quadrant-y-axis-text-left]:!text-[12px] [&_.quadrant-y-axis-text-left]:!font-semibold [&_.quadrant-y-axis-text-left]:!uppercase [&_.quadrant-y-axis-text-left]:!tracking-[0.12em]",
+          "[&_.quadrant-point]:![r:7] [&_.quadrant-point]:![stroke:white] [&_.quadrant-point]:![stroke-width:2]",
+          "dark:[&_.quadrant-point]:![stroke:#1f2737]",
+          "[&_.quadrant-point-text]:!text-[12px] [&_.quadrant-point-text]:!font-semibold",
+          // Pie chart polish
+          "[&_.pieTitleText]:!font-bold [&_.pieTitleText]:!tracking-tight",
+          "[&_.slice]:!stroke-2",
+          "[&_.legend-text]:!text-[13px] [&_.legend-text]:!font-medium",
+          // Mindmap polish — rounded nodes with shadow, distinctive root
+          "[&_.mindmap-node_rect]:![rx:12] [&_.mindmap-node_rect]:![ry:12] [&_.mindmap-node_rect]:![stroke-width:2]",
+          "[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(15,23,42,0.10))]",
+          "dark:[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))]",
+          "[&_.mindmap-edge]:![stroke-width:2.5] [&_.mindmap-edge]:![opacity:0.7]",
+          "[&_.section-root_rect]:![stroke-width:3]",
         ].join(" ")}
         dangerouslySetInnerHTML={{ __html: svg }}
       />
