@@ -37,7 +37,7 @@ export default function PostRnfTrack() {
             aria-selected={view === "assignments"}
             className={tabClass(view === "assignments")}
           >
-            First 60 Days Assignments
+            Assignments
           </NavLink>
         </div>
       </div>
