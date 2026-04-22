@@ -115,26 +115,31 @@ export default function ProductDetail() {
     setEditingIndexFromUrl(index);
   };
 
-  // Initialize editing index from URL on mount or auto-select first video
+  // Resolve the URL slug to an editing index when the URL/product loads.
+  // Deliberately NOT depending on `videoManagement.editVideos` — every local
+  // edit (adding a resource link, typing a title, etc.) mutates editVideos,
+  // which would re-run this effect. If an in-flight edit lands while pageId
+  // resolves to -1 for a beat (e.g., user renames a page whose slug hasn't
+  // been committed to the URL yet), we'd then hit the `else if` auto-redirect
+  // and boot the admin back to the first page mid-edit.
   useEffect(() => {
-    const currentVideos = videoManagement.editVideos.length > 0 
-      ? videoManagement.editVideos 
-      : product?.training_videos || [];
-      
-    if (currentVideos.length > 0 && isAdminMode) {
-      if (pageId) {
-        const index = currentVideos.findIndex(v => getVideoSlug(v.title) === pageId);
-        if (index !== -1) {
-          setEditingIndexFromUrl(index);
-        }
-      } else if (editingIndexFromUrl === null) {
-        const firstVideo = currentVideos[0];
-        const slug = getVideoSlug(firstVideo.title);
-        navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
-        setEditingIndexFromUrl(0);
+    if (!isAdminMode) return;
+    const serverVideos = product?.training_videos || [];
+    if (serverVideos.length === 0) return;
+
+    if (pageId) {
+      const index = serverVideos.findIndex(v => getVideoSlug(v.title) === pageId);
+      if (index !== -1) {
+        setEditingIndexFromUrl(prev => (prev === index ? prev : index));
       }
+    } else if (editingIndexFromUrl === null) {
+      const firstVideo = serverVideos[0];
+      const slug = getVideoSlug(firstVideo.title);
+      navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
+      setEditingIndexFromUrl(0);
     }
-  }, [videoManagement.editVideos, product?.training_videos, pageId, isAdminMode, productSlugOrId, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageId, isAdminMode, productSlugOrId, navigate, product?.training_videos?.length]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
