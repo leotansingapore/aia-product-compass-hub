@@ -3103,13 +3103,8 @@ export type Database = {
           days_active: number
           email: string
           first_14_days: number
-          first_14_reflections: number
           first_60_days: number
-          first_60_reflections: number
-          learning_track_items: number
-          learning_track_submissions: number
           name: string
-          product_quizzes: number
           question_bank: number
           total_points: number
           user_id: string
