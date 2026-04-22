@@ -404,6 +404,11 @@ export function VideoEditingLayout({
             </details>
           </div>
         )}
+
+        {/* Spacer so the last section (Add resource, transcript, etc.) never
+            sits behind the fixed save bar (~76px tall). The main editor pane
+            uses `pb-24` for the same reason — keep the two in sync. */}
+        <div className="h-24" aria-hidden />
       </aside>
 
       {/* Main Content Area - Video Editor */}
