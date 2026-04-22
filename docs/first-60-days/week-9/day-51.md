@@ -67,15 +67,20 @@ Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 
 ## 4. The 6 categories of financial data
 
-```mermaid
-flowchart LR
-    A["Section 3<br/>Financial Data"] --> B["1 · Income<br/>Salary + bonus + stability"]
-    A --> C["2 · Expenses<br/>Essential + lifestyle + annual"]
-    A --> D["3 · Assets<br/>Cash, CPF, property, investments"]
-    A --> E["4 · Liabilities<br/>Mortgage, loans, credit cards"]
-    A --> F["5 · Existing cover<br/>Life, CI, hospital, disability"]
-    A --> G["6 · Budget capacity<br/>Offer ranges, not open question"]
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:flex;justify-content:center;">
+    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 28px;border-radius:14px;font-weight:700;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);text-align:center;">Section 3 · Financial Data</div>
+  </div>
+  <div style="display:flex;justify-content:center;"><div style="width:2px;height:22px;background:linear-gradient(to bottom,hsl(var(--primary)/0.6),hsl(var(--border)));"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;padding-top:6px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(217,91%,55%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Income</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Salary + bonus + stability</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(280,70%,55%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Expenses</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Essential + lifestyle + annual</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(160,84%,40%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Assets</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Cash, CPF, property, investments</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(38,92%,50%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">4</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Liabilities</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Mortgage, loans, credit cards</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(340,75%,55%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">5</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Existing cover</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Life, CI, hospital, disability</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;position:relative;"><div style="position:absolute;top:-10px;left:12px;background:hsl(190,80%,45%);color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">6</div><div style="font-size:13px;font-weight:700;color:hsl(var(--foreground));margin-top:4px;margin-bottom:4px;">Budget capacity</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Offer ranges, not open question</div></div>
+  </div>
+</div>
 
 ### 1. Income
 - Gross monthly income.

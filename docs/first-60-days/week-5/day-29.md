@@ -69,15 +69,19 @@ Read that last row carefully. **$10,000 compounded at 9% over 40 years = $314,00
 
 ## 3. The Rule of 72 — the advisor's shortcut
 
-```mermaid
-flowchart LR
-    A["72 / rate = years to double"]
-    A --> B["2% - 36 yrs"]
-    A --> C["4% - 18 yrs"]
-    A --> D["6% - 12 yrs"]
-    A --> E["8% - 9 yrs"]
-    A --> F["12% - 6 yrs"]
-```
+<div style="margin:1.5rem 0;padding:24px;background:hsl(var(--muted)/0.3);border:1px solid hsl(var(--border));border-radius:16px;">
+  <div style="display:flex;justify-content:center;">
+    <div style="background:linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary)/0.82));color:hsl(var(--primary-foreground));padding:12px 28px;border-radius:14px;font-weight:700;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;box-shadow:0 8px 24px -8px hsl(var(--primary)/0.55);text-align:center;">72 / rate = years to double</div>
+  </div>
+  <div style="display:flex;justify-content:center;"><div style="width:2px;height:22px;background:linear-gradient(to bottom,hsl(var(--primary)/0.6),hsl(var(--border)));"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;text-align:center;border-top:3px solid hsl(0,72%,55%);"><div style="font-size:22px;font-weight:800;color:hsl(0,72%,45%);line-height:1;">2%</div><div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;font-weight:600;">36 yrs</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;text-align:center;border-top:3px solid hsl(20,85%,55%);"><div style="font-size:22px;font-weight:800;color:hsl(20,85%,45%);line-height:1;">4%</div><div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;font-weight:600;">18 yrs</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;text-align:center;border-top:3px solid hsl(38,92%,50%);"><div style="font-size:22px;font-weight:800;color:hsl(38,92%,40%);line-height:1;">6%</div><div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;font-weight:600;">12 yrs</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;text-align:center;border-top:3px solid hsl(90,60%,45%);"><div style="font-size:22px;font-weight:800;color:hsl(90,60%,35%);line-height:1;">8%</div><div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;font-weight:600;">9 yrs</div></div>
+    <div style="background:hsl(var(--card));border:1px solid hsl(var(--border));border-radius:12px;padding:14px;text-align:center;border-top:3px solid hsl(160,84%,40%);"><div style="font-size:22px;font-weight:800;color:hsl(160,84%,30%);line-height:1;">12%</div><div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:4px;font-weight:600;">6 yrs</div></div>
+  </div>
+</div>
 
 You'll need to project compound growth in client meetings *without* a calculator. Use the Rule of 72:
 
