@@ -25,15 +25,24 @@ By the end of today you should be able to:
 
 ## 1. The two halves of SPIN
 
-```
-FIRST HALF (Exploration) SECOND HALF (Intensification)
-───────────────────── ─────────────────────────────
-1. Situation 3. Implication
-2. Problem 4. Need-Payoff
-
-Purpose: understand Purpose: help client feel
-(facts + gaps) the weight of the gap
-```
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+  <div style="background:linear-gradient(135deg,hsl(217,91%,96%),hsl(217,91%,92%));border:2px solid hsl(217,91%,55%);border-radius:12px;overflow:hidden;">
+    <div style="background:hsl(217,91%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">FIRST HALF · Exploration</div>
+    <div style="padding:14px;">
+      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(217,91%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">1</span><span style="font-weight:600;color:hsl(var(--foreground));">Situation</span></div>
+      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">2</span><span style="font-weight:600;color:hsl(var(--foreground));">Problem</span></div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px dashed hsl(217,91%,75%);font-size:12.5px;color:hsl(217,91%,38%);"><strong>Purpose:</strong> understand <span style="opacity:0.8;">(facts + gaps)</span></div>
+    </div>
+  </div>
+  <div style="background:linear-gradient(135deg,hsl(0,72%,96%),hsl(0,72%,92%));border:2px solid hsl(0,72%,55%);border-radius:12px;overflow:hidden;">
+    <div style="background:hsl(0,72%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">SECOND HALF · Intensification</div>
+    <div style="padding:14px;">
+      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(0,72%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">3</span><span style="font-weight:600;color:hsl(var(--foreground));">Implication</span></div>
+      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">4</span><span style="font-weight:600;color:hsl(var(--foreground));">Need-Payoff</span></div>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px dashed hsl(0,72%,75%);font-size:12.5px;color:hsl(0,72%,42%);"><strong>Purpose:</strong> help client feel the weight of the gap</div>
+    </div>
+  </div>
+</div>
 
 ```mermaid
 flowchart LR
