@@ -351,12 +351,16 @@ export default function CMFASExams() {
 
             <TabsContent value="modules" className="space-y-4 outline-none">
               <section id="cmf-modules" className="space-y-5" aria-labelledby="cmf-modules-heading">
-                {/* Getting Started hero — always prominent */}
-                {onboardingProduct && (
-                  <div
-                    className={`relative overflow-hidden rounded-xl border-2 ${onboardingComplete ? "border-green-200 dark:border-green-800/40 bg-green-50/50 dark:bg-green-950/10" : "border-primary/30 bg-primary/5"} p-5 sm:p-6 cursor-pointer transition-all hover:shadow-md`}
-                    onClick={() => navigate("/cmfas/module/onboarding")}
-                  >
+                {/* Getting Started hero — ALWAYS visible. The `/cmfas/module/onboarding`
+                    route is a first-class page (OnboardingModule.tsx) and doesn't
+                    need a DB `onboarding` product row to exist. Previously we
+                    hid this card whenever that DB row was missing, which left
+                    learners with a "Complete Getting Started to unlock" hint
+                    and no visible target. */}
+                <div
+                  className={`relative overflow-hidden rounded-xl border-2 ${onboardingComplete ? "border-green-200 dark:border-green-800/40 bg-green-50/50 dark:bg-green-950/10" : "border-primary/30 bg-primary/5"} p-5 sm:p-6 cursor-pointer transition-all hover:shadow-md`}
+                  onClick={() => navigate("/cmfas/module/onboarding")}
+                >
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                       <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${onboardingComplete ? "bg-green-100 dark:bg-green-950/40" : "bg-primary/15"}`}>
                         {onboardingComplete ? (
@@ -372,7 +376,7 @@ export default function CMFASExams() {
                           </span>
                         </div>
                         <h3 className="text-lg font-bold font-serif tracking-tight mb-1">
-                          {onboardingProduct.title || "Getting Started"}
+                          {onboardingProduct?.title || "Getting Started"}
                         </h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           {onboardingComplete
@@ -389,7 +393,6 @@ export default function CMFASExams() {
                       </Button>
                     </div>
                   </div>
-                )}
 
                 {/* Search — always visible */}
                 <div className="relative">
