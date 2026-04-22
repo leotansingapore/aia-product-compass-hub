@@ -1,13 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { EyeOff, Plus, Search, Lock, ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { EyeOff, Search, ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { useChecklistProgress } from "@/hooks/useChecklistProgress";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { Input } from "@/components/ui/input";
-import { ProductsGrid } from "@/components/category/ProductsGrid";
+import { CMFASExamModuleList } from "@/components/cmfas/CMFASExamModuleList";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -391,48 +391,23 @@ export default function CMFASExams() {
                   </div>
                 )}
 
-                {/* Exam modules header */}
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h2 id="cmf-modules-heading" className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                      Exam modules
-                    </h2>
-                    {!onboardingComplete && !isAdminUser && (
-                      <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
-                        <Lock className="h-3 w-3" />
-                        Complete Getting Started to unlock
-                      </p>
-                    )}
-                  </div>
-                  {isAdminUser && categoryId && (
-                    <Button type="button" className="h-11 w-full shrink-0 gap-2 sm:h-10 sm:w-auto" onClick={() => setCreateModuleOpen(true)}>
-                      <Plus className="h-4 w-4" /> New module
-                    </Button>
-                  )}
-                </div>
-
                 {/* Search — always visible */}
                 <div className="relative">
                   <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input type="search" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search CMFAS modules..." className="pl-9" aria-label="Search CMFAS modules" />
                 </div>
 
-                {/* Exam modules — locked or unlocked */}
-                <div className={!onboardingComplete && !isAdminUser ? "opacity-50 pointer-events-none select-none" : ""}>
-                  <ProductsGrid
-                    products={examModules}
-                    categoryName={cmfasCategory.name}
-                    onProductClick={(id) => {
-                      if (!onboardingComplete && !isAdminUser) return;
-                      navigate(`/cmfas/module/${id.replace(/-module$/, "")}`);
-                    }}
-                    onClearFilters={() => setSearchQuery("")}
-                    onEditProduct={isAdminUser ? handleEditProduct : undefined}
-                    onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
-                    onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
-                    onNestingChange={refetchProducts}
-                  />
-                </div>
+                <div id="cmf-modules-heading" className="sr-only">Exam modules</div>
+                <CMFASExamModuleList
+                  modules={examModules}
+                  locked={!onboardingComplete}
+                  isAdmin={isAdminUser}
+                  onProductClick={(id) => navigate(`/cmfas/module/${id.replace(/-module$/, "")}`)}
+                  onEditProduct={isAdminUser ? handleEditProduct : undefined}
+                  onDeleteProduct={isAdminUser ? handleDeleteProduct : undefined}
+                  onTogglePublish={isAdminUser ? handleTogglePublish : undefined}
+                  onCreateModule={isAdminUser && categoryId ? () => setCreateModuleOpen(true) : undefined}
+                />
               </section>
             </TabsContent>
 

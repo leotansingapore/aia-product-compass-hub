@@ -51,28 +51,20 @@ export function useFeatureAccess() {
     staleTime: 5 * 60_000,
   });
 
-  // Build tier → Set<featureKey> lookup. DB rows win per tier when present,
-  // but we always start from the static `TIER_FEATURE_MATRIX` so a partially
-  // seeded (or legacy-valued) `tier_permissions` table can't accidentally
-  // lock users out. If the DB only has rows for 'explorer' and 'level_1',
-  // 'papers_taker' and 'post_rnf' still get their full static feature set.
+  // Build tier → Set<featureKey> lookup. Static `TIER_FEATURE_MATRIX` is
+  // always the floor (Explorer ⊂ Papers-taker ⊂ Post-RNF). `tier_permissions`
+  // rows are **unioned** on top so the DB can grant extra `resource_id`s
+  // without ever stripping a feature that the static matrix guarantees.
   const permissionsByTier = useMemo(() => {
     const map = new Map<string, Set<string>>();
-    // Seed every known tier from the static matrix first.
     for (const [t, features] of Object.entries(TIER_FEATURE_MATRIX)) {
-      map.set(t, new Set(features));
-    }
-    // DB rows: for any tier that appears in rows, clear the static set and
-    // rebuild it from the DB (so DB is authoritative when seeded). Tiers
-    // absent from rows keep their static fallback.
-    if (rows && rows.length > 0) {
-      const tiersInRows = new Set(rows.map((r) => r.tier_level));
-      for (const t of tiersInRows) {
-        map.set(t, new Set());
+      const set = new Set<string>(features);
+      if (rows) {
+        for (const row of rows) {
+          if (row.tier_level === t) set.add(row.resource_id);
+        }
       }
-      for (const row of rows) {
-        map.get(row.tier_level)!.add(row.resource_id);
-      }
+      map.set(t, set);
     }
     return map;
   }, [rows]);
@@ -80,12 +72,11 @@ export function useFeatureAccess() {
   const can = useCallback(
     (featureKey: FeatureKey): boolean => {
       if (isAdminBypass) return true;
-      // Hard exclusions overriding any stale `tier_permissions` rows.
-      // Explorer-tier learners don't get Bookmarks.
+      // Hard exclusions: Roleplay and Bookmarks are Post-RNF and Papers-taker
+      // features respectively — Explorer cannot get bookmarks; Papers-taker
+      // cannot get roleplay (Post-RNF-only). Mirrors static matrix, applied
+      // here so stale DB rows cannot widen access beyond tier intent.
       if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
-      // Post-RNF consultants have already passed CMFAS — hide the exam module.
-      if (tier === 'post_rnf' && featureKey === FEATURES.CMFAS) return false;
-      // Papers-takers focus on exams — no Roleplay until they clear RNF.
       if (tier === 'papers_taker' && featureKey === FEATURES.ROLEPLAY) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
@@ -98,15 +89,8 @@ export function useFeatureAccess() {
       const allowed = permissionsByTier.get(tier);
       if (!allowed) return false;
       return featureKeys.some((key) => {
-        // Mirror hard exclusions from `can` so nav items can't leak in via
-        // stale `tier_permissions` rows.
         if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
-        if (tier === 'post_rnf' && key === FEATURES.CMFAS) return false;
         if (tier === 'papers_taker' && key === FEATURES.ROLEPLAY) return false;
-        // Papers-takers reach CMFAS from inside the Pre-RNF learning track,
-        // not the global nav — hide nav entry only, keep the route reachable
-        // (so this exclusion is NOT mirrored in `can`).
-        if (tier === 'papers_taker' && key === FEATURES.CMFAS) return false;
         return allowed.has(key);
       });
     },

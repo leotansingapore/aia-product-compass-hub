@@ -104,44 +104,61 @@ export const FEATURES = {
 export type FeatureKey = (typeof FEATURES)[keyof typeof FEATURES];
 
 /**
- * Source-of-truth feature matrix. Mirrors the rows seeded into
- * `tier_permissions` in the Phase 2 DB migration. Kept here as a fallback so
+ * Deduplicate feature keys in tier order.
+ */
+function featureUnion(...groups: FeatureKey[][]): readonly FeatureKey[] {
+  return [...new Set(groups.flat())];
+}
+
+/**
+ * Base tier — learning orientation only.
+ */
+const EXPLORER_FEATURES: readonly FeatureKey[] = [
+  FEATURES.HOME,
+  FEATURES.MY_ACCOUNT,
+  FEATURES.EXPLORER_TRACK,
+];
+
+/**
+ * Unlocks when upgrading Explorer → Papers-taker.
+ */
+const PAPERS_TAKER_ADDITIONS: readonly FeatureKey[] = [
+  FEATURES.BOOKMARKS,
+  FEATURES.PRE_RNF_TRACK,
+  FEATURES.CMFAS,
+  FEATURES.PRODUCTS,
+  FEATURES.QUESTION_BANKS,
+  FEATURES.KB,
+];
+
+/**
+ * Unlocks when upgrading Papers-taker → Post-RNF.
+ */
+const POST_RNF_ADDITIONS: readonly FeatureKey[] = [
+  FEATURES.POST_RNF_TRACK,
+  FEATURES.ROLEPLAY,
+  FEATURES.PLAYBOOKS,
+  FEATURES.FLOWS,
+  FEATURES.SCRIPTS,
+  FEATURES.SERVICING,
+  FEATURES.CONCEPT_CARDS,
+  FEATURES.CONSULTANT_LANDING,
+];
+
+/**
+ * Source-of-truth feature matrix. Each tier is a superset of the previous:
+ * Explorer < Papers-taker (Explorer + papers additions) < Post-RNF (+ post additions, includes all papers features e.g. CMFAS).
+ *
+ * Mirrors the rows seeded into `tier_permissions` in the Phase 2 DB migration. Kept here as a fallback so
  * the UI can still gate features correctly if the DB query fails, and to
  * document intent alongside the type system.
  */
 export const TIER_FEATURE_MATRIX: Record<TierLevel, readonly FeatureKey[]> = {
-  explorer: [
-    FEATURES.HOME,
-    FEATURES.MY_ACCOUNT,
-    FEATURES.EXPLORER_TRACK,
-  ],
-  papers_taker: [
-    FEATURES.HOME,
-    FEATURES.BOOKMARKS,
-    FEATURES.MY_ACCOUNT,
-    FEATURES.EXPLORER_TRACK,
-    FEATURES.PRE_RNF_TRACK,
-    FEATURES.CMFAS,
-    FEATURES.PRODUCTS,
-    FEATURES.QUESTION_BANKS,
-    FEATURES.KB,
-  ],
-  post_rnf: [
-    FEATURES.HOME,
-    FEATURES.BOOKMARKS,
-    FEATURES.MY_ACCOUNT,
-    FEATURES.EXPLORER_TRACK,
-    FEATURES.PRE_RNF_TRACK,
-    FEATURES.POST_RNF_TRACK,
-    FEATURES.PRODUCTS,
-    FEATURES.QUESTION_BANKS,
-    FEATURES.ROLEPLAY,
-    FEATURES.KB,
-    FEATURES.PLAYBOOKS,
-    FEATURES.FLOWS,
-    FEATURES.SCRIPTS,
-    FEATURES.SERVICING,
-    FEATURES.CONCEPT_CARDS,
-    FEATURES.CONSULTANT_LANDING,
-  ],
+  explorer: EXPLORER_FEATURES,
+  papers_taker: featureUnion([...EXPLORER_FEATURES], [...PAPERS_TAKER_ADDITIONS]),
+  post_rnf: featureUnion(
+    [...EXPLORER_FEATURES],
+    [...PAPERS_TAKER_ADDITIONS],
+    [...POST_RNF_ADDITIONS],
+  ),
 };
