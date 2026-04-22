@@ -174,8 +174,11 @@ const App = () => (
                       <Route path="pre-rnf/assignments" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/:itemId" element={<Navigate to="/learning-track/pre-rnf/assignments" replace />} />
-                      <Route path="post-rnf" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
-                      <Route path="post-rnf/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf" element={<Navigate to="/learning-track/post-rnf/first-30-days" replace />} />
+                      <Route path="post-rnf/first-30-days" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/assignments" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/assignments/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/:itemId" element={<Navigate to="/learning-track/post-rnf/first-30-days" replace />} />
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
