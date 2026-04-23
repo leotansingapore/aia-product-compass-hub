@@ -121,7 +121,7 @@ export function PapersView() {
             type="button"
             variant="ghost"
             onClick={() => selectPaper(null)}
-            className={cn('h-9 gap-2', cmfasRoom.textMuted, 'hover:text-[#e8d4b8]')}
+            className={cn('h-9 gap-2', cmfasRoom.textMuted, 'hover:text-foreground')}
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             All papers
@@ -140,17 +140,15 @@ export function PapersView() {
             </p>
           </div>
         </div>
-        <div className="dark">
-          <Suspense
-            fallback={
-              <div className={cn('rounded-2xl border px-5 py-10 text-center text-sm', cmfasRoom.surface, cmfasRoom.textMuted)}>
-                Loading module…
-              </div>
-            }
-          >
-            {renderEmbeddedModule(selectedPaperId)}
-          </Suspense>
-        </div>
+        <Suspense
+          fallback={
+            <div className={cn('rounded-2xl border px-5 py-10 text-center text-sm', cmfasRoom.surface, cmfasRoom.textMuted)}>
+              Loading module…
+            </div>
+          }
+        >
+          {renderEmbeddedModule(selectedPaperId)}
+        </Suspense>
       </div>
     );
   }
@@ -232,7 +230,7 @@ export function PapersView() {
                 />
               </div>
               {started && !done && (
-                <div className={cn('mt-4 h-1 w-full overflow-hidden rounded-full', 'bg-[#8b7355]/15')}>
+                <div className={cn('mt-4 h-1 w-full overflow-hidden rounded-full', 'bg-muted')}>
                   <div
                     className={cn('h-full', cmfasRoom.brassBg)}
                     style={{ width: `${pct}%` }}

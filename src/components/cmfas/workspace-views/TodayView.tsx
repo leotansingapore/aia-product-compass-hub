@@ -150,7 +150,7 @@ export function TodayView({ onOpenCountdown }: { onOpenCountdown: () => void }) 
         <div className="flex items-center justify-center md:justify-start">
           <div className="relative flex h-40 w-40 items-center justify-center">
             <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 144 144" aria-hidden>
-              <circle cx="72" cy="72" r="64" fill="none" strokeWidth="6" className="stroke-[#8b7355]/20" />
+              <circle cx="72" cy="72" r="64" fill="none" strokeWidth="6" className="stroke-muted-foreground/20" />
               <circle
                 cx="72"
                 cy="72"
@@ -162,7 +162,7 @@ export function TodayView({ onOpenCountdown }: { onOpenCountdown: () => void }) 
                 strokeDashoffset={offset}
                 className={cn(
                   'transition-[stroke-dashoffset] duration-1000 ease-linear',
-                  phase === 'focus' ? 'stroke-[#d4a574]' : 'stroke-emerald-400',
+                  phase === 'focus' ? 'stroke-primary' : 'stroke-emerald-400',
                 )}
               />
             </svg>
@@ -205,7 +205,7 @@ export function TodayView({ onOpenCountdown }: { onOpenCountdown: () => void }) 
               <Button
                 size="lg"
                 onClick={handleStart}
-                className={cn('gap-2 text-sm font-semibold', 'bg-[#d4a574] text-[#0a1424] hover:bg-[#e8bb82]')}
+                className={cn('gap-2 text-sm font-semibold', 'bg-primary text-primary-foreground hover:bg-primary')}
               >
                 <Play className="h-4 w-4" />
                 Start 25-min session
@@ -223,7 +223,7 @@ export function TodayView({ onOpenCountdown }: { onOpenCountdown: () => void }) 
                   {isRunning ? 'Pause' : 'Resume'}
                 </Button>
                 {resume && (
-                  <Button size="lg" onClick={handleOpen} className={cn('gap-2', 'bg-[#d4a574] text-[#0a1424] hover:bg-[#e8bb82]')}>
+                  <Button size="lg" onClick={handleOpen} className={cn('gap-2', 'bg-primary text-primary-foreground hover:bg-primary')}>
                     <BookOpen className="h-4 w-4" />
                     Open lesson
                   </Button>

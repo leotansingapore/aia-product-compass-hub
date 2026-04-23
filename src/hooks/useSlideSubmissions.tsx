@@ -51,6 +51,10 @@ export interface SubmitSlidePayload {
 
 interface SlideSubmissionsContextType {
   submissions: Map<string, SlideSubmission>;
+  /** True once the initial Supabase fetch has settled (success OR failure).
+   *  Consumers gate URL-positioning effects on this so they don't evaluate
+   *  progress before the row set is loaded. */
+  hasHydrated: boolean;
   isSubmitted: (slideId: string) => boolean;
   submitSlide: (slideId: string, payload: SubmitSlidePayload) => Promise<void>;
   getScreenshotSignedUrl: (path: string) => Promise<string | null>;
@@ -61,6 +65,7 @@ const SIGNED_URL_TTL_SECONDS = 60 * 60;
 
 const SlideSubmissionsContext = createContext<SlideSubmissionsContextType>({
   submissions: new Map(),
+  hasHydrated: false,
   isSubmitted: () => false,
   submitSlide: async () => {},
   getScreenshotSignedUrl: async () => null,
@@ -79,16 +84,35 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
   const { user } = useAuth();
   const { completeItem } = useChecklistProgress();
   const [submissions, setSubmissions] = useState<Map<string, SlideSubmission>>(new Map());
+  const [hasHydrated, setHasHydrated] = useState(false);
   const hydrationRanForUser = useRef<string | null>(null);
+  /** Mirror of `submissions` that always points at the freshest map, so
+   *  rapidly-sequential `submitSlide` calls can't each capture a stale
+   *  closure and overwrite each other's optimistic entries. Used for both
+   *  the optimistic merge and the section-rollup check. */
+  const submissionsRef = useRef<Map<string, SlideSubmission>>(new Map());
+
+  useEffect(() => {
+    submissionsRef.current = submissions;
+  }, [submissions]);
 
   useEffect(() => {
     if (!user) {
       setSubmissions(new Map());
+      submissionsRef.current = new Map();
+      // Don't prematurely mark hydrated on initial mount with null user
+      // (auth still resolving). Only mark hydrated when we affirmatively
+      // know the user state.
+      if (hydrationRanForUser.current !== null) {
+        // User was previously signed in — they've now signed out. Reset.
+        setHasHydrated(true);
+      }
       hydrationRanForUser.current = null;
       return;
     }
     if (hydrationRanForUser.current === user.id) return;
     hydrationRanForUser.current = user.id;
+    setHasHydrated(false);
 
     let cancelled = false;
 
@@ -112,12 +136,15 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
             submittedAt: row.submitted_at,
           });
         }
+        submissionsRef.current = next;
         setSubmissions(next);
       } catch (err) {
         console.warn(
           '[useSlideSubmissions] Supabase read failed, starting with empty in-memory state.',
           err,
         );
+      } finally {
+        if (!cancelled) setHasHydrated(true);
       }
     })();
 
@@ -154,16 +181,19 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
         }
       }
 
-      // Optimistic local update — consumers re-render immediately.
-      const prior = submissions.get(slideId);
+      // Optimistic local update — read from and write to the ref so
+      // rapid consecutive submits don't each see a stale closure.
+      const priorMap = submissionsRef.current;
+      const prior = priorMap.get(slideId);
       const optimistic: SlideSubmission = {
         slideId,
         answerText: textValue ?? prior?.answerText ?? null,
         screenshotUrl: storagePath ?? prior?.screenshotUrl ?? null,
         submittedAt: now,
       };
-      const nextMap = new Map(submissions);
+      const nextMap = new Map(priorMap);
       nextMap.set(slideId, optimistic);
+      submissionsRef.current = nextMap;
       setSubmissions(nextMap);
 
       // Roll up to the section tick when every slide in the section is done.
@@ -212,8 +242,8 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
   }, []);
 
   const value = useMemo(
-    () => ({ submissions, isSubmitted, submitSlide, getScreenshotSignedUrl }),
-    [submissions, isSubmitted, submitSlide, getScreenshotSignedUrl],
+    () => ({ submissions, hasHydrated, isSubmitted, submitSlide, getScreenshotSignedUrl }),
+    [submissions, hasHydrated, isSubmitted, submitSlide, getScreenshotSignedUrl],
   );
 
   return (

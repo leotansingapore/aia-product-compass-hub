@@ -298,7 +298,7 @@ export function CourseOutlineView({ variant = 'default' }: { variant?: CourseOut
               )}
             </header>
 
-            <ul className="divide-y divide-[#b8894f]/10">
+            <ul className="divide-y divide-primary/10">
               {section.lessons.map((lesson) => {
                 const completed = isItemCompleted(lesson.id);
                 const locked = lesson.locked?.(readyComplete) ?? false;
@@ -336,7 +336,7 @@ export function CourseOutlineView({ variant = 'default' }: { variant?: CourseOut
                         ) : completed ? (
                           <CheckCircle2 className={cn('h-5 w-5', cmfasRoom.positiveText)} />
                         ) : (
-                          <Circle className={cn('h-5 w-5 transition-colors', cmfasRoom.textFaint, 'group-hover:text-[#d4a574]')} />
+                          <Circle className={cn('h-5 w-5 transition-colors', cmfasRoom.textFaint, 'group-hover:text-primary')} />
                         )}
                       </span>
 

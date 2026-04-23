@@ -96,7 +96,7 @@ export function CMFASWorkspaceTopBar({ brandingEyebrow, brandingTitle }: CMFASWo
     <header
       className={cn(
         'relative z-20 hidden w-full shrink-0 border-b px-3 py-2.5',
-        'bg-[#0a1424]/90 backdrop-blur-sm',
+        'bg-background/90 backdrop-blur-sm',
         cmfasRoom.brassBorderSoft,
         'lg:block',
         'xl:px-5 xl:py-3',
@@ -136,7 +136,7 @@ const primaryBtnClass = (isActive: boolean, locked: boolean) =>
       ? cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText, 'font-semibold shadow-sm')
       : locked
         ? cn(cmfasRoom.dimmedText, 'cursor-not-allowed')
-        : cn(cmfasRoom.textMuted, 'hover:bg-[#b8894f]/10 hover:text-[#d4a574]'),
+        : cn(cmfasRoom.textMuted, 'hover:bg-primary/10 hover:text-primary'),
   );
 
 /** 40×40 hit area; Lucide SVGs often sit off-center in flex — pin with translate for true center. */
@@ -170,11 +170,11 @@ export function CMFASWorkspaceFloatingNav({
     <nav
       className={cn(
         'group/nav pointer-events-auto fixed left-3 top-28 z-40 hidden w-14 max-h-[min(calc(100vh-7.5rem),44rem)] flex-col gap-0.5 overflow-y-auto overflow-x-hidden rounded-2xl border p-1.5',
-        'border-[#b8894f]/20 bg-[#0a1424]/30 backdrop-blur-md',
-        'shadow-[0_8px_40px_rgba(0,0,0,0.18)]',
+        'border-border bg-card/90 backdrop-blur-md',
+        'shadow-sm',
         'transition-[width,background-color,box-shadow] duration-100 ease-out',
-        'hover:w-56 hover:bg-[#0a1424]/45 hover:shadow-[0_12px_48px_rgba(0,0,0,0.22)]',
-        'focus-within:w-56 focus-within:bg-[#0a1424]/45 focus-within:shadow-[0_12px_48px_rgba(0,0,0,0.22)]',
+        'hover:w-56 hover:bg-card/95 hover:shadow-md',
+        'focus-within:w-56 focus-within:bg-card/95 focus-within:shadow-md',
         'lg:flex',
       )}
       aria-label="Workspace"
@@ -218,7 +218,7 @@ export function CMFASWorkspaceFloatingNav({
         );
       })}
 
-      <div className="my-1.5 h-px w-full shrink-0 bg-[#b8894f]/20" role="separator" aria-hidden />
+      <div className="my-1.5 h-px w-full shrink-0 bg-primary/20" role="separator" aria-hidden />
 
       {groups.resources.map((item) => {
         const Icon = item.locked ? Lock : item.icon;
@@ -241,8 +241,8 @@ export function CMFASWorkspaceFloatingNav({
               navTransitionFast,
               'transition-[background-color,border-color,color,box-shadow]',
               'group-hover/nav:justify-start group-focus-within/nav:justify-start',
-              'text-[#c9b896] hover:border-[#b8894f]/35 hover:bg-[#b8894f]/5',
-              isActive && 'border-[#b8894f]/45 bg-[#b8894f]/8 text-[#d4a574]',
+              'text-muted-foreground hover:border-primary/35 hover:bg-primary/5',
+              isActive && 'border-primary/45 bg-primary/8 text-primary',
               item.locked && 'cursor-not-allowed opacity-40',
             )}
             title={item.locked ? 'Locked' : item.label}
@@ -306,7 +306,7 @@ export function CMFASWorkspaceMobileMenu({
             ? cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText, 'font-semibold')
             : item.locked
               ? cn(cmfasRoom.dimmedText, 'cursor-not-allowed')
-              : cn(cmfasRoom.textMuted, 'hover:bg-[#b8894f]/10 hover:text-[#d4a574]'),
+              : cn(cmfasRoom.textMuted, 'hover:bg-primary/10 hover:text-primary'),
         )}
       >
         <Icon className="h-4 w-4 shrink-0" aria-hidden />
@@ -335,10 +335,10 @@ export function CMFASWorkspaceMobileMenu({
           aria-label="Open CMFAS workspace menu"
           className={cn(
             'pointer-events-auto fixed left-3 top-20 z-40 flex h-11 w-11 items-center justify-center rounded-full border lg:hidden',
-            'border-[#b8894f]/25 bg-[#0a1424]/75 backdrop-blur-md',
-            'shadow-[0_8px_40px_rgba(0,0,0,0.25)]',
+            'border-border bg-card/95 backdrop-blur-md',
+            'shadow-md',
             cmfasRoom.brassText,
-            'hover:bg-[#0a1424]/90',
+            'hover:bg-card',
           )}
         >
           <Menu className="h-5 w-5" aria-hidden />
@@ -346,7 +346,7 @@ export function CMFASWorkspaceMobileMenu({
       </SheetTrigger>
       <SheetContent
         side="left"
-        className={cn('w-80 border-r p-5', cmfasRoom.canvas, cmfasRoom.text, 'border-[#b8894f]/25')}
+        className={cn('w-80 border-r p-5', cmfasRoom.canvas, cmfasRoom.text, 'border-primary/25')}
       >
         <SheetHeader className="text-left">
           <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
@@ -358,7 +358,7 @@ export function CMFASWorkspaceMobileMenu({
         </SheetHeader>
         <div className="mt-5 flex flex-col gap-1">
           {groups.primary.map((item) => renderItem(item, true))}
-          <div className="my-2 h-px bg-[#b8894f]/20" role="separator" aria-hidden />
+          <div className="my-2 h-px bg-primary/20" role="separator" aria-hidden />
           {groups.resources.map((item) => renderItem(item, false))}
         </div>
       </SheetContent>

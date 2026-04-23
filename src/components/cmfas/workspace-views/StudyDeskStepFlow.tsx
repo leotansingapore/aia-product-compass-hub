@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
 import { useChecklistProgress } from '@/hooks/useChecklistProgress';
 import { useSlideSubmissions } from '@/hooks/useSlideSubmissions';
 import { cmfasRoom } from '../cmfasTheme';
@@ -36,6 +37,7 @@ import {
 
 const DESK_SLIDE_PARAM = 'deskSlide';
 const SLIDE_COUNT = GET_READY_SLIDES.length;
+const DESK_SLIDE_STORAGE_PREFIX = 'cmfas-desk-slide';
 
 function parseSlideIndex(raw: string | null): number {
   if (raw == null) return 0;
@@ -94,7 +96,7 @@ function InlineRichText({ text, className }: { text: string; className?: string 
         if (part.kind === 'text') return <span key={i}>{part.value}</span>;
         const external = /^https?:\/\//i.test(part.href);
         const linkClass =
-          'font-semibold text-[#d4a574] underline decoration-[#d4a574]/40 underline-offset-[3px] transition-colors hover:text-[#e8bb82] hover:decoration-[#e8bb82]/80';
+          'font-semibold text-primary underline decoration-primary/40 underline-offset-[3px] transition-colors hover:text-primary hover:decoration-primary/80';
         if (external) {
           return (
             <a
@@ -120,8 +122,8 @@ function InlineRichText({ text, className }: { text: string; className?: string 
 
 function GetReadyResourceLink({ item }: { item: GetReadyLinkResource }) {
   const className = cn(
-    'flex w-full items-center justify-between gap-2 rounded-md border border-[#b8894f]/20 px-3 py-2 text-left text-xs font-medium',
-    'text-[#e8d4b8] transition-colors hover:border-[#b8894f]/40 hover:bg-[#b8894f]/8',
+    'flex w-full items-center justify-between gap-2 rounded-md border border-primary/20 px-3 py-2 text-left text-xs font-medium',
+    'text-foreground transition-colors hover:border-primary/40 hover:bg-primary/8',
   );
   if (isInternalAppPath(item.href)) {
     return (
@@ -246,7 +248,7 @@ function ScreenshotPicker({
         )}
       </label>
       {previewUrl ? (
-        <div className="relative overflow-hidden rounded-md border border-[#b8894f]/25 bg-[#0a1424]/40">
+        <div className="relative overflow-hidden rounded-md border border-primary/25 bg-background/40">
           <img src={previewUrl} alt="Screenshot preview" className="block h-auto w-full" />
           <button
             type="button"
@@ -254,7 +256,7 @@ function ScreenshotPicker({
               onChange({ file: null, existingScreenshot: null });
               if (inputRef.current) inputRef.current.value = '';
             }}
-            className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-[#0a1424]/85 text-[#e8d4b8] hover:bg-[#0a1424]"
+            className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground hover:bg-background"
             aria-label="Remove screenshot"
           >
             <X className="h-4 w-4" aria-hidden />
@@ -266,7 +268,7 @@ function ScreenshotPicker({
           onClick={() => inputRef.current?.click()}
           className={cn(
             'flex w-full flex-col items-center justify-center gap-1.5 rounded-md border border-dashed px-3 py-6 text-xs',
-            'border-[#b8894f]/40 text-[#c9b896] hover:border-[#d4a574] hover:bg-[#b8894f]/5',
+            'border-primary/40 text-muted-foreground hover:border-primary hover:bg-primary/5',
           )}
         >
           <Upload className="h-4 w-4" aria-hidden />
@@ -301,7 +303,7 @@ function VerificationAside({
 
   if (field.kind === 'checkbox') {
     return (
-      <label className="flex cursor-pointer items-start gap-2 rounded-md border border-[#b8894f]/20 bg-[#0a1424]/30 px-3 py-2.5">
+      <label className="flex cursor-pointer items-start gap-2 rounded-md border border-primary/20 bg-background/30 px-3 py-2.5">
         <Checkbox
           checked={state.checked}
           onCheckedChange={(v) => onChange({ checked: v === true })}
@@ -321,7 +323,7 @@ function VerificationAside({
           maxLength={field.maxLength}
           placeholder={field.placeholder}
           onChange={(e) => onChange({ text: e.target.value })}
-          className={cn('border-[#b8894f]/30 bg-[#0a1424]/40 text-sm', cmfasRoom.text)}
+          className={cn('border-primary/30 bg-background/40 text-sm', cmfasRoom.text)}
         />
       </div>
     );
@@ -350,9 +352,12 @@ export function StudyDeskStepFlow({
   roomEyebrow: string;
   roomTitle: string;
 }) {
+  const { user } = useAuth();
   const { isItemCompleted } = useChecklistProgress();
-  const { submissions, isSubmitted, submitSlide, getScreenshotSignedUrl } = useSlideSubmissions();
+  const { submissions, hasHydrated, isSubmitted, submitSlide, getScreenshotSignedUrl } =
+    useSlideSubmissions();
   const [searchParams, setSearchParams] = useSearchParams();
+  const deskSlideStorageKey = `${DESK_SLIDE_STORAGE_PREFIX}:${user?.id ?? 'anon'}`;
 
   /** A slide is "effectively done" when EITHER its sub-slide submission exists
    *  OR its parent section is already ticked in `user_checklist_progress` (the
@@ -404,19 +409,51 @@ export function StudyDeskStepFlow({
   const vField = slide.verification[0];
   const formValid = isValid(vField, vState);
 
+  /** Landing effect: waits until submissions have hydrated from Supabase, then
+   *  either (a) sets the URL to the first-incomplete slide if it's missing, or
+   *  (b) bumps the URL FORWARD if the learner is parked on a slide they've
+   *  already finished (covers first-render-with-stale-hooks, pre-refactor users
+   *  whose section ticks land only after first mount, and across-browser resume).
+   *  Never bumps BACKWARD — user navigating manually to a later section is fine. */
   useEffect(() => {
-    if (searchParams.get(DESK_SLIDE_PARAM) != null) return;
+    if (!hasHydrated) return;
     const firstIncomplete = GET_READY_SLIDES.findIndex((s) => !isSlideDone(s.slideId));
-    const initial = firstIncomplete === -1 ? 0 : firstIncomplete;
-    setSearchParams(
-      (prev) => {
-        const next = new URLSearchParams(prev);
-        next.set(DESK_SLIDE_PARAM, String(initial));
-        return next;
-      },
-      { replace: true },
-    );
-  }, [searchParams, isSlideDone, setSearchParams]);
+    const target = firstIncomplete === -1 ? SLIDE_COUNT - 1 : firstIncomplete;
+    const currentParam = searchParams.get(DESK_SLIDE_PARAM);
+
+    if (currentParam == null) {
+      const persistedRaw = localStorage.getItem(deskSlideStorageKey);
+      const persistedIndex =
+        persistedRaw == null ? null : parseSlideIndex(persistedRaw);
+      const initialIndex = persistedIndex ?? target;
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          next.set(DESK_SLIDE_PARAM, String(initialIndex));
+          return next;
+        },
+        { replace: true },
+      );
+      return;
+    }
+
+    const currentIndex = parseSlideIndex(currentParam);
+    const currentSlideId = GET_READY_SLIDES[currentIndex]?.slideId;
+    if (currentIndex < target && currentSlideId && isSlideDone(currentSlideId)) {
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          next.set(DESK_SLIDE_PARAM, String(target));
+          return next;
+        },
+        { replace: true },
+      );
+    }
+  }, [deskSlideStorageKey, hasHydrated, searchParams, isSlideDone, setSearchParams]);
+
+  useEffect(() => {
+    localStorage.setItem(deskSlideStorageKey, String(slideIndex));
+  }, [deskSlideStorageKey, slideIndex]);
 
   const goToIndex = useCallback(
     (k: number) => {
@@ -499,19 +536,19 @@ export function StudyDeskStepFlow({
               const reachable = canAccessSlideIndex(targetIdx, slideIndex, isSlideDone);
               return (
                 <li key={sectionStep.id} className="flex items-center gap-2">
-                  {sectionIdx > 0 && <span className="text-[#b8894f]/25" aria-hidden>·</span>}
+                  {sectionIdx > 0 && <span className="text-primary/25" aria-hidden>·</span>}
                   <button
                     type="button"
                     onClick={() => reachable && goToIndex(targetIdx)}
                     className={cn(
                       'flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold tabular-nums transition-colors',
-                      current && 'ring-2 ring-[#d4a574] ring-offset-2 ring-offset-[#0a1424]',
+                      current && 'ring-2 ring-primary ring-offset-2 ring-offset-background',
                       complete && cmfasRoom.positiveText,
                       !complete &&
                         !current &&
                         reachable &&
-                        cn('border border-[#b8894f]/30', cmfasRoom.textMuted, 'hover:bg-[#b8894f]/10'),
-                      !reachable && 'cursor-not-allowed border border-dashed border-[#8b7355]/25 text-[#8b7355]/50',
+                        cn('border border-primary/30', cmfasRoom.textMuted, 'hover:bg-primary/10'),
+                      !reachable && 'cursor-not-allowed border border-dashed border-muted-foreground/25 text-muted-foreground/50',
                     )}
                     title={!reachable ? 'Complete the earlier sections first' : sectionStep.title}
                   >
@@ -535,7 +572,7 @@ export function StudyDeskStepFlow({
 
         {/* Sub-slide dots — shown only when the current section has >1 slide */}
         {sectionSlides.length > 1 && (
-          <div className="flex min-h-[24px] items-center gap-3 rounded-md border border-[#b8894f]/15 bg-[#0a1424]/30 px-3 py-1.5">
+          <div className="flex min-h-[24px] items-center gap-3 rounded-md border border-primary/15 bg-background/30 px-3 py-1.5">
             <span className={cn('text-[10px] font-bold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
               {slide.section} · Slide {slide.indexWithinSection} of {slide.totalInSection}
             </span>
@@ -555,18 +592,18 @@ export function StudyDeskStepFlow({
                       className={cn(
                         'flex h-5 items-center justify-center rounded-full transition-all',
                         subCurrent ? 'w-6 px-0' : 'w-2.5',
-                        subDone && !subCurrent && 'bg-[#6b8e5f]',
-                        !subDone && !subCurrent && subReachable && 'bg-[#b8894f]/35 hover:bg-[#b8894f]/55',
-                        !subReachable && 'cursor-not-allowed bg-[#8b7355]/15',
-                        subCurrent && 'bg-[#d4a574]',
+                        subDone && !subCurrent && 'bg-emerald-500',
+                        !subDone && !subCurrent && subReachable && 'bg-primary/35 hover:bg-primary/55',
+                        !subReachable && 'cursor-not-allowed bg-muted-foreground/15',
+                        subCurrent && 'bg-primary',
                       )}
                       title={sub.slideHeading}
                       disabled={!subReachable}
                     >
                       {subDone && !subCurrent ? (
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[#0a1424]" aria-hidden />
+                        <CheckCircle2 className="h-3.5 w-3.5 text-background" aria-hidden />
                       ) : subCurrent ? (
-                        <span className="text-[10px] font-bold text-[#0a1424]">
+                        <span className="text-[10px] font-bold text-background">
                           {sub.indexWithinSection}
                         </span>
                       ) : null}
@@ -586,18 +623,18 @@ export function StudyDeskStepFlow({
           'flex min-h-[min(72vh,760px)] max-h-[calc(100vh-14rem)] flex-col overflow-hidden rounded-2xl border-2 shadow-2xl',
           'lg:min-h-0 lg:max-h-none lg:flex-1',
           cmfasRoom.brassBorderSoft,
-          'bg-gradient-to-b from-[#131c32] via-[#101a30] to-[#0c1528]',
-          'shadow-[0_12px_48px_rgba(0,0,0,0.45),inset_0_1px_0_0_rgba(212,165,116,0.12)]',
+          'bg-card',
+          'shadow-md',
         )}
       >
         <div className="flex min-h-0 flex-1 flex-col sm:flex-row lg:min-h-0">
           <div
             className={cn(
               'flex min-h-0 flex-1 flex-col border-b sm:border-b-0 sm:border-r',
-              'border-[#b8894f]/20',
+              'border-primary/20',
             )}
           >
-            <div className="shrink-0 border-b border-[#b8894f]/15 px-5 py-4 sm:px-7 sm:py-5">
+            <div className="shrink-0 border-b border-primary/15 px-5 py-4 sm:px-7 sm:py-5">
               <div className="flex flex-wrap items-center gap-2">
                 <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
                   {slide.section}
@@ -606,7 +643,7 @@ export function StudyDeskStepFlow({
                   <span
                     className={cn(
                       'inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold tabular-nums',
-                      'border-[#d4a574]/40 bg-[#d4a574]/10 text-[#d4a574]',
+                      'border-primary/40 bg-primary/10 text-primary',
                     )}
                   >
                     {slide.eyebrow}
@@ -656,15 +693,15 @@ export function StudyDeskStepFlow({
                       if (block.kind === 'partDivider') {
                         return (
                           <div key={idx} className="space-y-4">
-                            <div className="mt-8 h-px w-full bg-[#b8894f]/30" aria-hidden />
+                            <div className="mt-8 h-px w-full bg-primary/30" aria-hidden />
                             <section
-                              className="rounded-2xl border-2 border-[#d4a574]/30 bg-[#d4a574]/5 p-5 scroll-mt-4 sm:p-6"
+                              className="rounded-2xl border-2 border-primary/30 bg-primary/5 p-5 scroll-mt-4 sm:p-6"
                               aria-label={`${block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`} · ${block.title}`}
                             >
                               <p
                                 className={cn(
                                   'text-[10px] font-bold uppercase tracking-[0.25em]',
-                                  'text-[#d4a574]',
+                                  'text-primary',
                                 )}
                               >
                                 {block.eyebrow ?? `Part ${block.partIndex} of ${block.partTotal}`}
@@ -696,7 +733,7 @@ export function StudyDeskStepFlow({
                           <ul
                             key={idx}
                             className={cn(
-                              'list-disc space-y-1.5 pl-6 text-base leading-[1.65] marker:text-[#d4a574] sm:text-lg',
+                              'list-disc space-y-1.5 pl-6 text-base leading-[1.65] marker:text-primary sm:text-lg',
                               cmfasRoom.text,
                             )}
                           >
@@ -712,7 +749,7 @@ export function StudyDeskStepFlow({
                         return (
                           <figure
                             key={idx}
-                            className="overflow-hidden rounded-lg border border-[#b8894f]/25 bg-[#0a1424]/40"
+                            className="overflow-hidden rounded-lg border border-primary/25 bg-background/40"
                           >
                             <a
                               href={block.src}
@@ -730,7 +767,7 @@ export function StudyDeskStepFlow({
                             {block.caption && (
                               <figcaption
                                 className={cn(
-                                  'border-t border-[#b8894f]/20 px-3 py-2 text-xs',
+                                  'border-t border-primary/20 px-3 py-2 text-xs',
                                   cmfasRoom.textMuted,
                                 )}
                               >
@@ -744,7 +781,7 @@ export function StudyDeskStepFlow({
                         return (
                           <div
                             key={idx}
-                            className="relative w-full overflow-hidden rounded-lg border border-[#b8894f]/25 bg-black"
+                            className="relative w-full overflow-hidden rounded-lg border border-primary/25 bg-black"
                             style={{ aspectRatio: '16 / 9' }}
                           >
                             <iframe
@@ -769,21 +806,21 @@ export function StudyDeskStepFlow({
                             key={idx}
                             className={cn(
                               'relative overflow-hidden rounded-2xl border-2 p-5 sm:p-6',
-                              'border-[#d4a574]/35 bg-gradient-to-br from-[#1a2744] via-[#141f38] to-[#0f1a2f]',
-                              'shadow-[inset_0_1px_0_0_rgba(212,165,116,0.15)]',
+                              'border-primary/35 bg-primary/5',
+                              'shadow-sm',
                             )}
                             aria-label={block.title}
                           >
                             {/* Decorative brass glow behind the icon */}
                             <div
-                              className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#d4a574]/10 blur-3xl"
+                              className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary/10 blur-3xl"
                               aria-hidden
                             />
                             <div className="relative flex items-start gap-4">
                               <div
                                 className={cn(
                                   'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
-                                  'border-[#d4a574]/45 bg-[#d4a574]/15 text-[#e8bb82]',
+                                  'border-primary/45 bg-primary/15 text-primary',
                                 )}
                               >
                                 <IconCmp className="h-6 w-6" aria-hidden />
@@ -818,7 +855,7 @@ export function StudyDeskStepFlow({
                                   <p
                                     className={cn(
                                       'font-serif text-2xl font-extrabold leading-none tabular-nums sm:text-3xl',
-                                      'text-[#f4d9a6]',
+                                      'text-primary',
                                     )}
                                   >
                                     {block.headlineAmount}
@@ -829,14 +866,14 @@ export function StudyDeskStepFlow({
                             {block.conditions && block.conditions.length > 0 && (
                               <ul
                                 className={cn(
-                                  'relative mt-4 space-y-1.5 border-t border-[#b8894f]/15 pt-4 text-sm leading-[1.55]',
+                                  'relative mt-4 space-y-1.5 border-t border-primary/15 pt-4 text-sm leading-[1.55]',
                                   cmfasRoom.text,
                                 )}
                               >
                                 {block.conditions.map((c, ci) => (
                                   <li key={ci} className="flex items-start gap-2">
                                     <CheckCircle2
-                                      className="mt-0.5 h-4 w-4 shrink-0 text-[#d4a574]"
+                                      className="mt-0.5 h-4 w-4 shrink-0 text-primary"
                                       aria-hidden
                                     />
                                     <InlineRichText text={c} />
@@ -863,11 +900,11 @@ export function StudyDeskStepFlow({
                         return (
                           <div
                             key={idx}
-                            className={cn('overflow-hidden rounded-lg border', 'border-[#b8894f]/25')}
+                            className={cn('overflow-hidden rounded-lg border', 'border-primary/25')}
                           >
                             <table className="w-full text-sm sm:text-base">
                               <thead>
-                                <tr className="bg-[#b8894f]/10">
+                                <tr className="bg-primary/10">
                                   {block.headers.map((h, i) => (
                                     <th
                                       key={i}
@@ -885,7 +922,7 @@ export function StudyDeskStepFlow({
                                 {block.rows.map((row, ri) => (
                                   <tr
                                     key={ri}
-                                    className={cn(ri > 0 && 'border-t border-[#b8894f]/15')}
+                                    className={cn(ri > 0 && 'border-t border-primary/15')}
                                   >
                                     {row.map((cell, ci) => (
                                       <td
@@ -919,7 +956,7 @@ export function StudyDeskStepFlow({
                     ))}
 
                 {slide.pathStages && slide.pathStages.length > 0 && (
-                  <div className={cn('mt-2 space-y-8 border-t border-[#b8894f]/20 pt-8', cmfasRoom.text)}>
+                  <div className={cn('mt-2 space-y-8 border-t border-primary/20 pt-8', cmfasRoom.text)}>
                     {slide.pathStages.map((stage) => (
                       <section key={stage.title} className="space-y-2">
                         <h3
@@ -933,7 +970,7 @@ export function StudyDeskStepFlow({
                         <p className={cn('text-sm font-medium', cmfasRoom.textMuted)}>{stage.tagline}</p>
                         <ul
                           className={cn(
-                            'list-disc space-y-1.5 pl-6 text-base leading-[1.65] marker:text-[#d4a574] sm:text-lg',
+                            'list-disc space-y-1.5 pl-6 text-base leading-[1.65] marker:text-primary sm:text-lg',
                             cmfasRoom.text,
                           )}
                         >
@@ -965,8 +1002,8 @@ export function StudyDeskStepFlow({
 
           <aside
             className={cn(
-              'flex w-full shrink-0 flex-col justify-between border-t border-[#b8894f]/15 sm:w-72 sm:border-l sm:border-t-0 lg:w-80',
-              'bg-[#0a1424]/40',
+              'flex w-full shrink-0 flex-col justify-between border-t border-primary/15 sm:w-72 sm:border-l sm:border-t-0 lg:w-80',
+              'bg-background/40',
             )}
           >
             <div className="space-y-4 px-4 py-4 sm:px-5 sm:py-5">
@@ -997,7 +1034,7 @@ export function StudyDeskStepFlow({
                     className={cn(
                       'mb-2 flex cursor-pointer list-none items-center justify-between gap-2 rounded-md',
                       '[&::-webkit-details-marker]:hidden',
-                      'hover:text-[#e8d4b8]',
+                      'hover:text-foreground',
                       cmfasRoom.textFaint,
                     )}
                   >
@@ -1018,7 +1055,7 @@ export function StudyDeskStepFlow({
               )}
             </div>
 
-            <div className="mt-auto space-y-2 border-t border-[#b8894f]/10 px-4 py-3 sm:px-5">
+            <div className="mt-auto space-y-2 border-t border-primary/10 px-4 py-3 sm:px-5">
               {!done && slideIndex > 0 && (
                 <Button
                   type="button"
@@ -1036,12 +1073,18 @@ export function StudyDeskStepFlow({
                   disabled={!formValid || submitting}
                   className={cn(
                     'w-full gap-2 font-semibold',
-                    'bg-[#d4a574] text-[#0a1424] hover:bg-[#e8bb82] disabled:opacity-55',
+                    'bg-primary text-background hover:bg-primary disabled:opacity-55',
                   )}
                   onClick={handleSubmitAndAdvance}
                 >
                   {submitting && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
-                  {isLast ? 'Submit & go to exam tutorials' : 'Submit & next slide'}
+                  {isLast
+                    ? vField
+                      ? 'Submit & go to exam tutorials'
+                      : 'Mark as done & go to exam tutorials'
+                    : vField
+                      ? 'Submit & next slide'
+                      : 'Mark as done & next slide'}
                 </Button>
               )}
               {done && canGoToNextSlide && (
@@ -1061,7 +1104,7 @@ export function StudyDeskStepFlow({
                     type="button"
                     className={cn(
                       'h-9 min-w-0 gap-1.5 font-semibold',
-                      'bg-[#d4a574] text-[#0a1424] hover:bg-[#e8bb82]',
+                      'bg-primary text-background hover:bg-primary',
                       slideIndex > 0 ? 'flex-1' : 'w-full',
                     )}
                     onClick={() => goToIndex(slideIndex + 1)}
@@ -1086,8 +1129,8 @@ export function StudyDeskStepFlow({
                     type="button"
                     variant="secondary"
                     className={cn(
-                      'h-9 min-w-0 flex-1 border border-[#b8894f]/35',
-                      'bg-[#0a1424]/60 text-[#e8d4b8] hover:bg-[#b8894f]/15',
+                      'h-9 min-w-0 flex-1 border border-primary/35',
+                      'bg-background/60 text-foreground hover:bg-primary/15',
                     )}
                     onClick={() => onSelectWorkspaceMode('papers')}
                   >
@@ -1098,7 +1141,7 @@ export function StudyDeskStepFlow({
               {done && (
                 <p
                   className={cn(
-                    'flex min-h-9 w-full items-center justify-center gap-2 rounded-md border border-[#b8894f]/20 bg-[#0a1424]/50 px-3 py-2 text-center text-xs font-semibold',
+                    'flex min-h-9 w-full items-center justify-center gap-2 rounded-md border border-primary/20 bg-background/50 px-3 py-2 text-center text-xs font-semibold',
                     cmfasRoom.positiveText,
                   )}
                 >

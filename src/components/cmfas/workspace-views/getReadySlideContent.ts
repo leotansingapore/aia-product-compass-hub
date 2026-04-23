@@ -401,7 +401,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       "When you have completed a first practice set and you have reviewed the answers, mark this step. After this, the hub unlocks the next phase of your exam prep (tutorials, papers, and practice) as configured for your path.",
     ],
     linkResources: [
-      { label: 'Open Practice in this hub', href: '/cmfas-exams?mode=practice' },
+      { label: 'Open the in-app question bank', href: '/library?tab=banks' },
     ],
   },
 };
@@ -483,13 +483,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     paragraphs: GET_READY_SLIDE.welcome.paragraphs,
     pathStages: GET_READY_SLIDE.welcome.pathStages,
     closingParagraphs: GET_READY_SLIDE.welcome.closingParagraphs,
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I understand the expectations and am ready to commit to the FINternship program.',
-      },
-    ],
+    verification: [],
   },
 
   // ── Section 2 · Student account ──────────────────────────────────────────
@@ -523,15 +517,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     linkResources: [
       { label: 'Create student account (SCI College)', href: 'https://www.scicollege.org.sg/Account/Register' },
     ],
-    verification: [
-      {
-        id: 'email-used',
-        kind: 'text',
-        label: 'The email you registered the SCI College account with',
-        placeholder: 'name@example.com',
-        maxLength: 120,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-2.step-2-send-screenshot',
@@ -577,13 +563,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     linkResources: [
       { label: 'Open exam resources (Skool classroom)', href: 'https://www.skool.com/finternship/classroom/e49e2efc?md=d36f1dca8ade4d22aef3f433b7caf7e4' },
     ],
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I am inside the Skool exam-resources classroom.',
-      },
-    ],
+    verification: [],
   },
 
   // ── Section 3 · Exam Resources ───────────────────────────────────────────
@@ -605,15 +585,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         text: 'On your FINternship support chat, send Leo your **name, email, and mobile number** so he can create your account. While you wait, start Step 2.',
       },
     ],
-    verification: [
-      {
-        id: 'date-messaged',
-        kind: 'text',
-        label: 'The date you messaged Leo (YYYY-MM-DD)',
-        placeholder: '2026-04-23',
-        maxLength: 20,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-3.step-2-login-irecruit',
@@ -639,13 +611,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     linkResources: [
       { label: 'Log in to iRecruit', href: 'https://joinus.aia.com.sg/app/login' },
     ],
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I am signed into iRecruit.',
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-3.step-3-navigate',
@@ -730,13 +696,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         alt: 'iLearn mobile-app download prompt',
       },
     ],
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I installed the iLearn mobile app and can sign in on my phone.',
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-3.part-2-study-tips',
@@ -764,15 +724,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
       { label: 'Exam resources (Google Drive)', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ?usp=sharing' },
       { label: 'Exam resources (Lark wiki)', href: 'https://xsgmrpwnwfee.sg.larksuite.com/wiki/HXsywc2UFijeSaktJ8dlbIKNgXf' },
     ],
-    verification: [
-      {
-        id: 'tip-to-use',
-        kind: 'text',
-        label: 'One study tip from the walkthrough you will actually use',
-        placeholder: 'e.g. Drill chapter-by-chapter before mixed papers',
-        maxLength: 240,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-3.part-3-chatbot',
@@ -792,15 +744,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     linkResources: [
       { label: 'Chat with @cmfas_bot on Telegram', href: 'https://t.me/cmfas_bot' },
     ],
-    verification: [
-      {
-        id: 'first-question',
-        kind: 'text',
-        label: 'One question you have asked (or will ask) @cmfas_bot',
-        placeholder: 'e.g. What is the difference between ILP and endowment?',
-        maxLength: 240,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-3.part-4-flashcards',
@@ -829,15 +773,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
       { label: 'HI flashcards', href: 'https://revisely.com/flashcards/decks/4Bz9fm' },
       { label: 'RES5 flashcards', href: 'https://revisely.com/flashcards/decks/1KxDpT' },
     ],
-    verification: [
-      {
-        id: 'deck-choice',
-        kind: 'text',
-        label: 'Which flashcard deck you will use first (M9 / M9A / HI / RES5)',
-        placeholder: 'M9',
-        maxLength: 8,
-      },
-    ],
+    verification: [],
   },
 
   // ── Section 4 · Rewards ──────────────────────────────────────────────────
@@ -850,13 +786,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     slideHeading: 'Challenges & rewards — cash for passing well',
     paragraphs: GET_READY_SLIDE['understand-costs-timeline'].paragraphs,
     blocks: GET_READY_SLIDE['understand-costs-timeline'].blocks,
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I know what cash rewards I am working toward.',
-      },
-    ],
+    verification: [],
   },
 
   // ── Section 5 · Register M9 ──────────────────────────────────────────────
@@ -882,15 +812,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
       { label: 'Register for CMFAS exams', href: 'https://tinyurl.com/CMFASregistration2025' },
       { label: 'Ask @cmfas_bot on Telegram', href: 'https://t.me/cmfas_bot' },
     ],
-    verification: [
-      {
-        id: 'path-chosen',
-        kind: 'text',
-        label: 'Which registration path you chose',
-        placeholder: 'CMFAS link · @cmfas_bot · other',
-        maxLength: 80,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-5.step-2-book-date',
@@ -911,15 +833,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         ],
       },
     ],
-    verification: [
-      {
-        id: 'target-date',
-        kind: 'text',
-        label: 'Your target M9 exam date (YYYY-MM-DD)',
-        placeholder: '2026-06-15',
-        maxLength: 20,
-      },
-    ],
+    verification: [],
   },
   {
     slideId: 'section-5.step-3-costs-support',
@@ -951,13 +865,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         text: 'With everything we give you — Flashcards, Personal Tutoring, Question Bank, Chatbot, Key Concepts, Study Tips — passing first time is very doable.',
       },
     ],
-    verification: [
-      {
-        id: 'confirm',
-        kind: 'checkbox',
-        label: 'I have seen the costs and know where to ask for help.',
-      },
-    ],
+    verification: [],
   },
 
   // ── Section 6 · First practice ───────────────────────────────────────────
@@ -970,15 +878,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     slideHeading: 'First practice set',
     paragraphs: GET_READY_SLIDE['first-practice'].paragraphs,
     linkResources: GET_READY_SLIDE['first-practice'].linkResources,
-    verification: [
-      {
-        id: 'score',
-        kind: 'text',
-        label: 'How many questions you got right out of 10',
-        placeholder: '7',
-        maxLength: 3,
-      },
-    ],
+    verification: [],
   },
 ];
 

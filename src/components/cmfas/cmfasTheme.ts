@@ -1,48 +1,48 @@
 /**
- * CMFAS brand palette — "study room at night" lane.
- *
- * The hub workspace runs on a deep navy/slate canvas with warm brass accents
- * (desk-lamp glow). Cyan remains for in-lesson learner chrome so the action
- * steps panel and module list feel connected to the original CMFAS visual
- * language. Emerald = positive progress; muted = locked / inactive.
+ * CMFAS palette — collapsed onto the app-wide shadcn semantic tokens so the
+ * exam workspace reads as "same product, different section" rather than "a
+ * separate dark-mode microsite". Interface is unchanged from the legacy
+ * "library at night" palette — every `cmfasRoom.canvas`, `cmfasRoom.brassText`
+ * etc. callsite downstream continues working — only the underlying classes
+ * are swapped to `bg-background`, `text-primary`, etc.
  */
 
-/** Workspace canvas tokens — the immersive hub shell. */
+/** Workspace canvas tokens — the exam-prep hub shell, matching the rest of the app. */
 export const cmfasRoom = {
-  // Base ink: deep navy, like a library at night.
-  canvas: 'bg-[#0a1424]',
-  canvasSoft: 'bg-[#0f1c33]',
+  // Base canvas — app's default near-white background.
+  canvas: 'bg-background',
+  canvasSoft: 'bg-muted/30',
 
-  // Surface cards sitting on the canvas — subtly lifted, warm.
-  surface: 'bg-[#131f38]/80 backdrop-blur-sm border-[#b8894f]/15',
-  surfaceStrong: 'bg-[#17253f]/90 backdrop-blur-sm border-[#b8894f]/25',
-  surfaceHover: 'hover:bg-[#17253f]/90',
+  // Card / surface — shadcn signature: white card with soft border + subtle shadow.
+  surface: 'bg-card border border-border shadow-sm',
+  surfaceStrong: 'bg-card border border-border shadow-md',
+  surfaceHover: 'hover:bg-muted/40',
 
-  // Text on the canvas — warm cream, not stark white.
-  text: 'text-[#f5e8d0]',
-  textMuted: 'text-[#c9b896]',
-  textFaint: 'text-[#8b7355]',
+  // Text on the canvas — app's charcoal foreground.
+  text: 'text-foreground',
+  textMuted: 'text-muted-foreground',
+  textFaint: 'text-muted-foreground/70',
 
-  // Brass accent — the desk-lamp warmth. Primary CTA + active nav item.
-  brassText: 'text-[#d4a574]',
-  brassTextStrong: 'text-[#e8bb82]',
-  brassBg: 'bg-[#d4a574]',
-  brassBgSoft: 'bg-[#d4a574]/10',
-  brassBgHover: 'hover:bg-[#d4a574]/20',
-  brassBorder: 'border-[#d4a574]/40',
-  brassBorderSoft: 'border-[#b8894f]/20',
-  brassRing: 'ring-[#d4a574]',
+  // Primary accent — app's blue primary replaces the old brass.
+  brassText: 'text-primary',
+  brassTextStrong: 'text-primary',
+  brassBg: 'bg-primary',
+  brassBgSoft: 'bg-primary/10',
+  brassBgHover: 'hover:bg-primary/15',
+  brassBorder: 'border-primary/40',
+  brassBorderSoft: 'border-border',
+  brassRing: 'ring-primary',
 
-  // Positive — emerald, kept from before.
-  positiveText: 'text-emerald-400',
+  // Positive — emerald, tuned for a light canvas with dark-mode fallback.
+  positiveText: 'text-emerald-600 dark:text-emerald-400',
   positiveBg: 'bg-emerald-500',
-  positiveBgSoft: 'bg-emerald-500/10',
-  positiveBorder: 'border-emerald-500/40',
+  positiveBgSoft: 'bg-emerald-50 dark:bg-emerald-950/30',
+  positiveBorder: 'border-emerald-300 dark:border-emerald-800',
 
   // Locked / dimmed.
-  dim: 'opacity-40',
-  dimmedText: 'text-[#8b7355]',
-  dimmedBorder: 'border-[#8b7355]/20',
+  dim: 'opacity-50',
+  dimmedText: 'text-muted-foreground/60',
+  dimmedBorder: 'border-muted',
 } as const;
 
 /**
@@ -50,7 +50,6 @@ export const cmfasRoom = {
  * and CMFASExamModuleList so those surfaces feel consistent with
  * OnboardingChecklist. The hub workspace uses `cmfasRoom` above.
  */
-
 export const cmfasTone = {
   // Accent — headers, active states, primary chrome on CMFAS surfaces.
   accentText: 'text-cyan-700 dark:text-cyan-300',

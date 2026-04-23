@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdrop";
+import { CMFASAdminLayout } from "@/components/cmfas/admin/CMFASAdminLayout";
 import {
   CMFASWorkspaceFloatingNav,
   CMFASWorkspaceMobileMenu,
@@ -199,6 +200,25 @@ export default function CMFASExams() {
     return <StudyDeskView onSelectWorkspaceMode={setMode} />;
   };
 
+  // Admin-only surface — 3-tab content-management layout (Modules, Exam
+  // resources, Admin progress). Admins "View as user" to drop into the
+  // learner flow for testing.
+  if (isAdminUser) {
+    return (
+      <ProtectedPage pageId="cmfas-exams">
+        <PageLayout
+          title="CMFAS Exam Preparation - FINternship (Admin)"
+          description="Admin content management for CMFAS Exam Preparation modules, resources, and learner progress."
+          keywords="CMFAS exam, admin, content management, learner progress"
+          structuredData={structuredData}
+          className={cn("flex min-h-dvh flex-col bg-background text-foreground")}
+        >
+          <CMFASAdminLayout />
+        </PageLayout>
+      </ProtectedPage>
+    );
+  }
+
   return (
     <ProtectedPage pageId="cmfas-exams">
       <PageLayout
@@ -228,7 +248,7 @@ export default function CMFASExams() {
               className={cn(
                 "relative z-20 flex items-center justify-between gap-3 border-b px-4 py-2",
                 cmfasRoom.brassBorderSoft,
-                "bg-[#0a1424]/80 backdrop-blur-sm",
+                "bg-card/90 backdrop-blur-sm",
               )}
             >
               <div className={cn("flex items-center gap-2 text-xs", cmfasRoom.textMuted)}>
