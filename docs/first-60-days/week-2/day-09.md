@@ -50,7 +50,11 @@ Forget income brackets. The three classes are behavioural.
 
 ### The cash flow tells the story
 
-The clearest way to see the three classes is to draw what happens to a single dollar that lands in their hands.
+The clearest way to see the three classes is to draw what happens to a single dollar that lands in their hands. The classic illustration:
+
+![The three cash-flow patterns — Poor, Middle Class, and Rich](/first-60-days/images/cashflow-poor-middle-rich.webp)
+
+The same idea, rebuilt in our own visual language:
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
   <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— three cash-flow patterns —</div>
