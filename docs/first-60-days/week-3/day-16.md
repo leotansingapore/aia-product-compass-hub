@@ -42,21 +42,27 @@ By the end of today you should be able to:
 
 **Why this matters:** non-recurring income is inherently unstable. You have to re-sell every month. Recurring income is inherently stable. You sell once and the same customer pays again and again, if the service is kept up.
 
-```mermaid
-flowchart LR
-    subgraph NR["Non-Recurring"]
-        NR1["One transaction<br/>one payment"]
-        NR2["Must re-sell<br/>every month"]
-        NR3["Business value<br/>1-2x revenue"]
-    end
-    subgraph R["Recurring"]
-        R1["One decision<br/>many payments over time"]
-        R2["Sell once<br/>customer pays again and again"]
-        R3["Business value<br/>5-10x revenue"]
-    end
-    NR1 --> NR2 --> NR3
-    R1 --> R2 --> R3
-```
+<div style="margin:1.75rem 0;font-family:system-ui,sans-serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(0,65%,55%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(0,65%,45%);margin-bottom:10px;">Non-Recurring</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">One transaction</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">One payment, then it's over.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Must re-sell every month</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Income resets to zero on day 1.</div></div>
+        <div style="border-top:1px dashed hsl(var(--border));padding-top:10px;margin-top:2px;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(var(--muted-foreground));">Business value</div><div style="font-weight:700;font-size:18px;color:hsl(0,65%,45%);font-family:ui-serif,Georgia,serif;">1–2× revenue</div></div>
+      </div>
+    </div>
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(160,70%,38%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(160,70%,30%);margin-bottom:10px;">Recurring</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">One decision</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Many payments over time.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Sell once</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Same customer pays again and again.</div></div>
+        <div style="border-top:1px dashed hsl(var(--border));padding-top:10px;margin-top:2px;"><div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(var(--muted-foreground));">Business value</div><div style="font-weight:700;font-size:18px;color:hsl(160,70%,30%);font-family:ui-serif,Georgia,serif;">5–10× revenue</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));margin-top:10px;font-style:italic;">Same revenue. Different multiple. Predictability is the premium.</div>
+</div>
 
 ## 2. The subscription economy is everywhere
 
@@ -107,27 +113,28 @@ By Year 15, **more than half your income is arriving regardless of this month's 
 
 ## 5. The flip side — what kills a renewal book
 
-```mermaid
-flowchart TD
-    subgraph Kill["What kills renewals"]
-        K1["Over-sold clients<br/>premiums unsustainable"]
-        K2["Poor product fit<br/>client surrenders later"]
-        K3["No service touchpoints<br/>client moves advisor"]
-    end
-    subgraph Keep["What keeps renewals"]
-        P1["Honest fit<br/>premiums client can sustain"]
-        P2["Annual touchpoints<br/>birthday call, review, claims"]
-        P3["Life-stage updates<br/>new baby, new job"]
-    end
-    K1 -->|"lapse + clawback"| Loss["Lost renewal income"]
-    K2 --> Loss
-    K3 --> Loss
-    P1 --> Gain["Compounding renewal book"]
-    P2 --> Gain
-    P3 --> Gain
-    style Loss fill:#7f1d1d,color:#fca5a5
-    style Gain fill:#14532d,color:#86efac
-```
+<div style="margin:1.75rem 0;font-family:system-ui,sans-serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(0,65%,55%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(0,65%,45%);margin-bottom:12px;">What kills renewals</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Over-sold clients</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums unsustainable → lapse.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Poor product fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client surrenders later.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">No service touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client moves to another advisor.</div></div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(0,65%,45%);">→ Lost renewal income + clawback</div>
+    </div>
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(160,70%,38%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(160,70%,30%);margin-bottom:12px;">What keeps renewals</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Honest fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums client can sustain in bad years.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Annual touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Birthday call, review, claims help.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Life-stage updates</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">New baby, new job, new home.</div></div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(160,70%,30%);">→ Compounding renewal book</div>
+    </div>
+  </div>
+</div>
 
 
 
