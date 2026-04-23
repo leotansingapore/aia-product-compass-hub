@@ -24,14 +24,33 @@ By the end of today you should be able to:
 
 ---
 
-```mermaid
-flowchart TD
-    A["Autonomy &amp; Work-Life Balance<br/>You set your hours, income, and clients"]
-    B["Personal Development<br/>6 capabilities most jobs never build"]
-    C["Job Security<br/>Passive income through renewal commissions"]
-    D["Job Fulfillment<br/>The reason people stay 20+ years"]
-    A --> B --> C --> D
-```
+<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
+    — the four assurances —
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0;">
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">i.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Autonomy &amp; Work-Life Balance</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">You set your hours, income, and clients.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">ii.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Personal Development</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Six capabilities most jobs never build.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">iii.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Job Security</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Passive income through renewal commissions.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">iv.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Job Fulfillment</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">The reason people stay 20+ years.</div>
+    </div>
+  </div>
+</div>
 
 ## 1. Autonomy & Work-Life Balance
 
