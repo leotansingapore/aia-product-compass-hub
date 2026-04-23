@@ -113,27 +113,28 @@ By Year 15, **more than half your income is arriving regardless of this month's 
 
 ## 5. The flip side — what kills a renewal book
 
-```mermaid
-flowchart TD
-    subgraph Kill["What kills renewals"]
-        K1["Over-sold clients<br/>premiums unsustainable"]
-        K2["Poor product fit<br/>client surrenders later"]
-        K3["No service touchpoints<br/>client moves advisor"]
-    end
-    subgraph Keep["What keeps renewals"]
-        P1["Honest fit<br/>premiums client can sustain"]
-        P2["Annual touchpoints<br/>birthday call, review, claims"]
-        P3["Life-stage updates<br/>new baby, new job"]
-    end
-    K1 -->|"lapse + clawback"| Loss["Lost renewal income"]
-    K2 --> Loss
-    K3 --> Loss
-    P1 --> Gain["Compounding renewal book"]
-    P2 --> Gain
-    P3 --> Gain
-    style Loss fill:#7f1d1d,color:#fca5a5
-    style Gain fill:#14532d,color:#86efac
-```
+<div style="margin:1.75rem 0;font-family:system-ui,sans-serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(0,65%,55%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(0,65%,45%);margin-bottom:12px;">What kills renewals</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Over-sold clients</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums unsustainable → lapse.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Poor product fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client surrenders later.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">No service touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client moves to another advisor.</div></div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(0,65%,45%);">→ Lost renewal income + clawback</div>
+    </div>
+    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(160,70%,38%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(160,70%,30%);margin-bottom:12px;">What keeps renewals</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Honest fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums client can sustain in bad years.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Annual touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Birthday call, review, claims help.</div></div>
+        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Life-stage updates</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">New baby, new job, new home.</div></div>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(160,70%,30%);">→ Compounding renewal book</div>
+    </div>
+  </div>
+</div>
 
 
 
