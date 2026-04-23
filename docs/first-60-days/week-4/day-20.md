@@ -153,7 +153,7 @@ The perfectly structured proposal delivered 3 days late is worse than the 80% pr
 
 Start before you feel ready. Publish before it's polished. Send before you've re-read it the fifth time.
 
-**Velocity matters more than polish** in Year 1. Polish comes from reps. Reps come from velocity.
+**Velocity matters more than polish** in Year 1. Polish is built through reps — and reps only happen when you stop polishing the first attempt and ship the tenth.
 
 ---
 
