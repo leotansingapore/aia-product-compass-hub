@@ -132,6 +132,47 @@ Over time, your renewal book gets large enough that it can cover:
   </div>
 </div>
 
+### Real numbers: what a renewal book actually pays
+
+Take one product line — personal accident insurance. A typical PA plan runs around **$50/month** in premium. Commission sits at roughly **30% of premium**, and most of that recurs as renewal income for as long as the client keeps paying.
+
+Do the math on a single product:
+
+| Clients on one PA plan | Premium each | Recurring monthly commission |
+|---|---|---|
+| 100 | $50 | ~$1,000–1,500 |
+| 250 | $50 | ~$2,500–3,750 |
+| 500 | $50 | ~$5,000–7,500 |
+
+That's **one product line**. The same compounding happens in parallel across:
+
+- **Hospitalisation plans** — usually larger premiums, similar recurring structure
+- **Whole life policies** — multi-decade premium terms, renewals for 20+ years
+- **Investment-linked plans (ILPs)** — ongoing service income on the AUM you've placed
+- **Term and critical illness riders** — paid every year the policy stays in force
+
+By **Year 5 of consistent production**, more than half of an FC's monthly income is typically true passive renewals — money that arrives whether or not a new case was written that month.
+
+### The other passive levers AIA gives you
+
+Renewal commissions are the base. AIA layers three more streams on top:
+
+1. **Career Benefit (CB)** — for **Years 2 through 6**, your renewal income is effectively boosted by **~100%** as a career-building reward. During the most critical compounding window, CB roughly **doubles** your passive income.
+2. **Agent Provident Fund (APF)** — from **Year 7 onwards**, you receive **~1.5% per month** of every regular-premium policy still in force on your book. The longer you've been producing, the larger the base that 1.5% multiplies against.
+3. **Team override** — once you build an agency, you earn a **percentage of your team's total production**. Income stops being capped by the hours in your day.
+
+### One client is rarely just one policy
+
+The biggest underestimation new FCs make isn't the renewal rate — it's the **lifetime value of a client**. A well-served household typically:
+
+- **Buys more policies as life events stack up** — marriage, kids, mortgage, business, parents' care
+- **Refers family and friends** who become your next clients
+- **Stays for decades**, with every renewal year stacking on top of the last
+
+A single household can end up worth **20–50× the first sale** once you trace its full lifetime value across new policies, riders, top-ups, and referrals.
+
+**The picture to hold:** every policy you write is a golden goose. It pays once at the sale and then lays golden eggs every month, for years — compounded by Career Benefit, APF, team overrides, and the new clients each goose hatches through referrals.
+
 Most FCs underestimate how quickly this compounds. A modest book after 5–7 years of consistent production can throw off enough renewal income to remove the pressure of needing to sell.
 
 ## 4. Job Fulfillment (The One That Keeps You)
