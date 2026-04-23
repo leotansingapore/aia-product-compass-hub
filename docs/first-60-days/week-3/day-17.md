@@ -192,21 +192,21 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
 
 ## Quick quiz
 
-1. **Day 17 uses a strict one-sentence test that deliberately overrides the everyday meaning of "asset." What is the test?**
- - A) Does it cost more than $10,000?
- - B) Does it put money *into* your pocket each year? ✓
- - C) Does it appreciate in market value over time?
- - D) Do you own it outright?
+1. **Day 17 introduces the term *pseudo-asset* — items typically counted as assets in everyday conversation but that fail the cash-flow test. Which of these is NOT a pseudo-asset?**
+ - A) The family car
+ - B) A primary home with an outstanding mortgage
+ - C) Cash savings in a high-interest savings account ✓
+ - D) A $50,000 luxury watch held for personal use
 
- **Why:** Day 17 defines an asset by **cash flow**, not by price, market appreciation, or ownership status. This is intentional. The everyday definitions of "asset" — *"my house is an asset," "my car is an asset," "my Rolex is an asset"* — mostly measure things that *look* valuable but don't *pay* the owner anything monthly. **C is the most defensible-sounding distractor**, because traditional accounting does treat appreciating items as assets — but Day 17's whole point is that an item appreciating on paper while consuming cash every month (a primary home with mortgage, tax, and maintenance — a car losing value but costing petrol and insurance) functions as a **liability in your monthly life.** Until the appreciating item is sold and the gain realised as cash, it doesn't pay you. A sets an arbitrary cost threshold. D measures legal title, not cash flow — a fully-paid car still costs petrol, insurance, and depreciation every month.
+ **Why:** Cash savings put money into your pocket each month (interest), so they pass the cash-flow test — they're real assets, even if the yield is low. Day 17's pseudo-asset category captures items that *look* like wealth but produce monthly outflows: a car (fuel, insurance, parking, depreciation), a primary home with a mortgage (mortgage payment, property tax, maintenance), and a luxury watch (no income, depreciates 70–80% of stated value on resale). Spotting pseudo-assets is the diagnostic that makes the gap between "looks rich" and "is rich" visible — and it's the move that turns a $1.5M-on-paper client into a $300K-real-net-worth client in front of their own eyes.
 
-2. **A primary home with a mortgage is classified as:**
- - A) Asset (always)
- - B) Liability (always)
- - C) Mostly liability — the mortgage, tax, and upkeep flow outward ✓
- - D) Neither — it's a "shelter expense"
+2. **Two FCs both earn $180K/year. FC A drives a Tesla on a loan, has a $1.1M condo with a $900K mortgage, and a watch collection. FC B has a paid-off HDB, a used car, and most savings in CPF plus diversified investments. Same income, same time in the industry — who has the higher real net worth, and roughly by how much?**
+ - A) FC A — the condo and watches signal greater wealth accumulation
+ - B) FC B — by roughly 4× ✓
+ - C) Roughly equal — different lifestyles, same wealth
+ - D) FC A — the Tesla and ILP indicate higher cash flow
 
- **Why:** The content classifies a primary home with a mortgage as "mostly liability" because mortgage repayments, property tax, maintenance, and insurance all flow outward — it only becomes a modest asset once fully paid off, and even then carrying costs continue. A is the common misclassification this lesson corrects. B overstates it — "mostly" is the key word; there is equity building even with a mortgage. D invents a category that does not appear in the lesson's framework.
+ **Why:** Day 17's worked example shows exactly this pattern. Person A nets out at $300–350K (condo equity ~$200K, near-zero net on the car, depreciated watches at ~$15–20K resale, modest CPF + ILP). Person B nets out at ~$1.3M (paid-off HDB $800K + CPF $200K + investments $250K + retirement plan $80K). Same income; **roughly 4× the real net worth**. A and D mistake visible status signals for accumulated wealth — the exact "looking rich" trap the lesson dissects. C ignores the math entirely.
 
 3. **Why does "looking rich" rarely mean "being rich"?**
  - A) Because rich people don't display their wealth
@@ -224,13 +224,13 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
 
  **Why:** Net of the $900K mortgage the condo contributes $200K equity; the car contributes roughly zero once the $60K loan is netted against a depreciated value; CPF adds $150K — total approximately $290K. A and D count the condo at gross value without netting the mortgage, which inflates the figure. B overstates the net by roughly $200K.
 
-5. **A client who earns $150K/year drives a Mercedes, wears a Rolex, and takes three overseas holidays per year gets defensive when you suggest their net worth may be lower than expected. The right move is:**
- - A) Show them a comparison of their lifestyle vs a peer's investment portfolio
- - B) Back off, reschedule, and return when they're ready — shame loses clients ✓
- - C) Proceed anyway — the numbers are facts, not opinions
- - D) Focus the meeting on protection products instead of net worth
+5. **Applied to a Year-3 FC's own balance sheet, which of the following counts as a real asset under Day 17's cash-flow test?**
+ - A) The leased car the FC uses to visit clients
+ - B) The recurring renewal commissions on policies the FC has placed in prior years ✓
+ - C) The phone and laptop the FC uses for prospecting
+ - D) The condo the FC bought with a 75% mortgage two years ago
 
- **Why:** The content explicitly says some defensive clients need time — back off and reschedule, because shame loses clients and the goal is to eventually put real numbers in their hands, not win an argument today. A risks doubling the defensiveness by introducing a social comparison. C is technically true but practically counterproductive; a defensive client who shuts down is not a client who takes action. D sidesteps the conversation rather than creating the conditions to have it later.
+ **Why:** Day 17 explicitly lists *recurring renewal commissions (for FCs)* as an asset — they pay you whether you show up this month or not, money flowing in from work already done. A is a vehicle the FC pays for monthly (lease, fuel, insurance, parking) — pure liability. C are tools that depreciate; useful business expenses, not assets. D is the textbook *looks like an asset, behaves like a liability* trap — mortgage interest, property tax, and maintenance flow outward every month. The biggest application of Day 17 to an FC's own life is recognising that the renewal layer they're building IS the real asset of the career.
 
 6. **Which of the following items is correctly classified as an ASSET using the one-sentence test?**
  - A) A primary home with $400K outstanding mortgage and $2,000/month in maintenance costs
@@ -240,7 +240,7 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
 
  **Why:** C passes the one-sentence test cleanly — $800/month net flows into the owner's pocket, making it an asset by definition. A has a mortgage and $2,000/month in outflows — money flows out, so it is mostly a liability. B generates no income and incurs fuel, insurance, and depreciation costs. D is a designer item that depreciates; the content classifies luxury goods as liabilities unless held for resale at scale.
 
-7. **According to Day 17's five-action framework for moving from liability accumulation to asset accumulation, what's the *behavioural* shift that protects all the other four actions?**
+7. **According to Day 17's five-action framework for moving from liability accumulation to asset accumulation, what's the behavioural shift that protects all the other four actions?**
  - A) Track expenses to the dollar in a budget app
  - B) Earn more so the gap closes faster
  - C) Stop measuring progress by lifestyle visible to others — measure by net worth in your own ledger ✓
