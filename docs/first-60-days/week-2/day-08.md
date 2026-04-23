@@ -68,6 +68,21 @@ Here is the single most important chart a new FC must internalise.
 
 **The honest framing:** if you evaluate this career on Year 1 income, you will quit. If you evaluate it on Year 5+, you will stay.
 
+### Active vs passive over the first 10 years
+
+The AIA income model makes the shape of this curve very concrete. For an FC who consistently produces, the share of income arriving *passively* (renewals + Career Benefit + APF + PA-renewals) climbs aggressively year over year:
+
+| Year | Total income | Passive % |
+|---:|---:|---:|
+| 1 | ~$85K | ~2% |
+| 3 | ~$95K | ~50% |
+| 5 | ~$116K | ~59% |
+| 10 | ~$140K | **~66%** |
+
+By Year 3 half your income is already passive. By Year 10 roughly **two-thirds** arrives whether or not you write a new case that month. That's the real reason consistent FCs eventually stop chasing FYC — the renewal layers carry the household.
+
+> Run the live numbers for your own assumed production at the **Income Layers — Detailed** view in the Engage Point Play tool.
+
 ```mermaid
 flowchart LR
     Y1["Year 1<br/>Below corporate peer"]
