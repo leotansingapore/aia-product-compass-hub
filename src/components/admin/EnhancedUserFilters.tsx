@@ -106,6 +106,20 @@ export function EnhancedUserFilters({
               <SelectItem value="no_roles">No Roles</SelectItem>
             </SelectContent>
           </Select>
+
+          <Select value={filters.tier} onValueChange={(value) => updateFilter('tier', value)}>
+            <SelectTrigger className="w-full sm:w-44">
+              <SelectValue placeholder="All Tiers" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Tiers</SelectItem>
+              {TIER_LEVELS.map((tier) => (
+                <SelectItem key={tier} value={tier}>
+                  {TIER_META[tier].label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
