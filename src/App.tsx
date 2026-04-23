@@ -13,7 +13,9 @@ import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
 import { CMFASStudyProvider } from "@/components/cmfas/CMFASStudyProvider";
-import { PomodoroDock } from "@/components/cmfas/PomodoroDock";
+// PomodoroDock is only meaningful inside CMFASStudyProvider — keep it out of
+// the app-shell bundle for non-CMFAS sessions.
+const PomodoroDock = lazyWithRetry(() => import("@/components/cmfas/PomodoroDock").then(m => ({ default: m.PomodoroDock })));
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
@@ -116,7 +118,9 @@ const App = () => (
               <OnboardingProvider>
                 <ChecklistProvider>
                   <CMFASStudyProvider>
-                  <PomodoroDock />
+                  <Suspense fallback={null}>
+                    <PomodoroDock />
+                  </Suspense>
                   <AppLayout>
                   <RouteTracker />
                   <Suspense fallback={<SkeletonLoader type="product" />}>

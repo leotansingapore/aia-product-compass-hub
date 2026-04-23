@@ -126,7 +126,14 @@ export function useFirst60DaysProgress() {
     queryKey: ["first-60-days-progress", userId],
     queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
     enabled: Boolean(userId),
-    staleTime: 30_000,
+    // Mutations always invalidate this key, so we don't need a short stale
+    // window. Keep the hub instant on revisits — most users navigate hub →
+    // day → hub many times per session.
+    staleTime: 5 * 60_000,
+    gcTime: 30 * 60_000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    placeholderData: (prev) => prev,
   });
 
   useEffect(() => {
