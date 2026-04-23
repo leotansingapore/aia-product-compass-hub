@@ -209,13 +209,13 @@ Start stupid small. Momentum handles the rest.
 
  **Why:** The lesson cites the "resistance" insight directly — the problem is not doing the work but starting it, and once you are inside a task, flow usually carries you forward. This is why the tactical advice is to lower activation energy by scheduling something stupidly small ("dial the first number" rather than "make calls"). Finishing (A) and mid-task concentration (D) are not identified as the primary resistance point. Deciding what to work on (B) is addressed in the weekly planning ritual, not named as the daily friction point.
 
-4. **Sarah spends her Sunday evening planning next week. She has 10 things she wants to achieve. Applying today's lesson, how many should she designate as her weekly priorities?**
- - A) All 10 — ambition is good
- - B) 5, ranked by urgency
- - C) 3, specific and measurable ✓
- - D) 1 stretch goal and the rest as stretch targets
+4. **An FC's Sunday plan for next week reads: "Get better at prospecting. Improve LinkedIn. Be more consistent with follow-ups." Applying today's ritual, the main problem with this list is:**
+ - A) There are too few items — three is light for a full week
+ - B) The items are not specific or measurable, so they can't be calendar-blocked or verified at week's end ✓
+ - C) Personal development goals shouldn't be mixed with work goals
+ - D) The list should be ranked by urgency before being acted on
 
- **Why:** The weekly planning ritual specifies three priorities — not ten, not five — because a short list forces genuine trade-off thinking and makes it possible to actually protect calendar blocks for each one. Ten priorities (A) is no priority at all; each item competes for attention and none gets defended. Five ranked by urgency (B) still defeats the purpose because urgency is not importance. One stretch goal (D) under-specifies the week and leaves daily execution undefined.
+ **Why:** The ritual requires priorities to be both **specific and measurable** — the lesson's own example reads "15 outreach calls Mon–Wed, 2 proposals written by Thursday, 1 LinkedIn article posted by Friday." Vague verbs like "get better" or "be more consistent" can't be scheduled into a calendar block, can't be defended against intrusions, and produce no clear yes/no at week's end — the FC finishes the week feeling busy but unable to prove anything moved. Three is the correct number, not too few (A). Mixing personal and work priorities is fine (C) — what matters is concreteness, not category. Ranking by urgency (D) is the wrong selection criterion entirely; urgency confuses what's loudest with what's most important.
 
 5. **An FC rewrites their cold-call opener for the fourth time without having tested it on a real prospect. According to the MVP principle, the better action is:**
  - A) Refine one more time until it feels perfect
