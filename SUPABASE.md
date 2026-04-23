@@ -6,6 +6,43 @@
 
 ## Pending
 
+### Cross-device CMFAS checklist progress — `user_checklist_progress` table
+
+The CMFAS study-desk ticks ("Rules of the Game", "Create student account", "Register M9", "Question bank", "Costs", "First practice") are currently persisted by [`useChecklistProgress`](src/hooks/useChecklistProgress.tsx) to localStorage only. Learners see different progress across browsers on the same account (reported for `avyltest@gmail.com` — marked sections in Cursor's browser, saw fresh state in Chrome).
+
+Please ship the following table + RLS. Mirrors the shape of `first_14_days_progress` / `first_60_days_progress`:
+
+```sql
+CREATE TABLE user_checklist_progress (
+  user_id      uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  item_id      text NOT NULL,
+  completed_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, item_id)
+);
+CREATE INDEX idx_user_checklist_progress_user ON user_checklist_progress(user_id);
+
+ALTER TABLE user_checklist_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "user_checklist_progress_select_own"
+  ON user_checklist_progress FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "user_checklist_progress_insert_own"
+  ON user_checklist_progress FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "user_checklist_progress_delete_own"
+  ON user_checklist_progress FOR DELETE USING (auth.uid() = user_id);
+
+-- Admins can read any row for future rollup dashboards.
+CREATE POLICY "user_checklist_progress_select_admin"
+  ON user_checklist_progress FOR SELECT
+  USING (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'));
+```
+
+Notes:
+- Composite PK `(user_id, item_id)` naturally de-dupes ticks; no UPDATE policy needed because ticks are immutable.
+- `ON DELETE CASCADE` on the FK cleans up when a user is deleted.
+- No trigger for `updated_at` — we only care about `completed_at`.
+
+Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
+
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).

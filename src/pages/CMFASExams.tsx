@@ -43,8 +43,6 @@ import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 
 import { useChecklistProgress } from "@/hooks/useChecklistProgress";
 import { useCategories, invalidateCategoriesCache } from "@/hooks/useProducts";
-import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
-import { getCMFASModuleVideos } from "@/data/cmfasModuleData";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
@@ -79,24 +77,7 @@ export default function CMFASExams() {
     const done = READY_STEP_IDS.filter((id) => isItemCompleted(id)).length;
     return { done, total: READY_STEP_IDS.length };
   }, [isItemCompleted]);
-  const wizardReady = readyProgress.done >= readyProgress.total;
-
-  // Also accept "all onboarding videos watched" as a proxy for Ready complete —
-  // matches the fix we shipped earlier so learners who did the natural flow
-  // (Mark complete on every lesson) don't stay locked out.
-  const onboardingVideoCount = useMemo(
-    () => getCMFASModuleVideos("onboarding").length,
-    [],
-  );
-  const onboardingProgress = useBatchVideoProgress(
-    ["onboarding"],
-    { onboarding: onboardingVideoCount },
-  );
-  const videosReady =
-    onboardingVideoCount > 0
-    && (onboardingProgress["onboarding"]?.percentage ?? 0) >= 100;
-
-  const readyComplete = wizardReady || videosReady;
+  const readyComplete = readyProgress.done >= readyProgress.total;
 
   /** Home with no `?mode=` is always the study desk (merged outline + get-ready). */
   const defaultWorkspaceMode: WorkspaceMode = "today";
