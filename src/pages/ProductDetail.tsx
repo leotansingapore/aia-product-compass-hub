@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
@@ -46,6 +46,20 @@ const PRODUCTS_WITH_STUDY = new Set([
 // Map core product IDs to their original slug for study/exam routes
 const getOriginalSlug = (id: string) => id.replace(/^core-/, '');
 
+// Legacy Supplementary-category product slugs → their Core Products twin.
+// The Supplementary duplicates are unpublished; redirect any stale links so
+// learners land on the canonical Core version (which also credits the
+// leaderboard). Study pages keep their own `/study` routes — only bare
+// `/product/<legacy>` and `/product/<legacy>/<pageId>` redirect.
+const LEGACY_TO_CORE_SLUG: Record<string, string> = {
+  'pro-achiever': 'core-pro-achiever',
+  'pro-lifetime-protector': 'core-pro-lifetime-protector',
+  'platinum-wealth-venture': 'core-platinum-wealth-venture',
+  'healthshield-gold-max': 'core-healthshield-gold-max',
+  'solitaire-pa': 'core-solitaire-pa',
+  'ultimate-critical-cover': 'core-ultimate-critical-cover',
+};
+
 // CMFAS lesson products — surface the ActionStepsEditor only for these.
 const CMFAS_PRODUCT_IDS = new Set<string>(Object.values(moduleIdToProductId));
 
@@ -64,6 +78,12 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { isAdmin } = useAdmin();
   const isAdminMode = isAdmin;
+
+  const coreRedirect = productSlugOrId ? LEGACY_TO_CORE_SLUG[productSlugOrId] : undefined;
+  if (coreRedirect) {
+    const dest = pageId ? `/product/${coreRedirect}/${pageId}` : `/product/${coreRedirect}`;
+    return <Navigate to={dest} replace />;
+  }
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
