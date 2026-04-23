@@ -132,7 +132,39 @@ Stack that across 200 clients over 10 years, and you have a machine.
 
 **Subscription economics show up everywhere.** Before you quit on Year 1, list the subscription businesses you already use — Netflix, Spotify, gym memberships, mobile plans, software, streaming. Their owners love them for the same reason your future self will love a well-serviced client book: **predictable, recurring income.**
 
-## 4. Why most people never leave the left-hand side
+## 4. The other passive lever — building a team
+
+The renewal book is one passive layer. There's a second one most new FCs don't think about until later — and underestimating it is one of the more common reasons FCs cap their income at the S-quadrant ceiling.
+
+**Override commissions.** When you recruit and mentor a new FC under your line and they sell a policy, AIA pays you an override — a percentage of their commission. The mechanics are simple, the math compounds fast:
+
+- One associate writing $10K FYC/month at a ~30% override ≈ $3K/month flowing to you, on top of your own production.
+- Three productive associates ≈ $9K/month before you do anything personally.
+- A team of ten producing consistently is a layer of income that scales without scaling your own hours.
+
+That is the textbook **B-quadrant move**: you're no longer trading hours for income, you're earning on a system of people you've recruited, trained, and mentored. The income arrives whether or not you sell anything personally that month.
+
+**The two passive layers compound together:**
+
+| Lever | Source of income | Scales when you... |
+|---|---|---|
+| **Renewal book** | Your past work paying you forward (your sold policies, every year the client keeps them) | Sell consistently and service well |
+| **Team overrides** | Other people's current work paying you (a percentage of every policy your downline writes) | Recruit, train, and mentor producers |
+
+Most senior FCs who reach Year 7+ in good standing have both. The ones who reach $1M+ income have built the team layer deliberately — usually starting in Year 3 or 4 once their own production is stable.
+
+### When to start — and when not to
+
+There's a real trap here: recruiting too early, before you've personally hit a productive rhythm. If you can't yet sell consistently, you can't credibly mentor someone else to do it — and a downline you can't mentor produces nothing for either of you. The honest sequence:
+
+1. **Year 1–2** — Build your own production muscle. You have to do the thing before you can teach the thing.
+2. **Year 3+** — Once your weekly rhythm is solid (consistent appointments, consistent closes), start recruiting selectively. **Quality over quantity.**
+3. **Year 5+** — A small team (3–6 productive associates) generating enough override that you could survive a slow personal month.
+4. **Year 10+** — A full agency, with overrides as a major part of total income, time spent mostly on mentoring rather than selling.
+
+You are not committing to becoming an agency leader on Day 1. You are just acknowledging that **the option exists, that it's a deliberate B-quadrant move, and that the ceiling on what you can earn lifts dramatically when you build people, not just policies.**
+
+## 5. Why most people never leave the left-hand side
 
 Three reasons. None of them are about intelligence or effort.
 
@@ -147,7 +179,7 @@ Three reasons. None of them are about intelligence or effort.
 
 That's why this career is a genuine quadrant-crossing vehicle — if you last long enough to see it happen.
 
-## 5. The honest starting point
+## 6. The honest starting point
 
 Don't pretend you're further along than you are. Most people in Week 2 of this program:
 
@@ -182,13 +214,13 @@ flowchart LR
 
  **Why:** S is defined as self-employed — you work for yourself, your income equals hours times rate, and income stops when you stop. A doctor in their own practice is the textbook S example: higher rate per hour than an employee, but still the sole productive unit. E requires working for someone else. B requires owning a system that others operate without you. I requires capital generating returns independently of your effort.
 
-2. **What's the mechanism that turns an FC from S into B over time?**
- - A) Hiring juniors
- - B) Making more cold calls
+2. **Which of these are mechanisms that turn an FC from S into B over time? (Select all that apply.)**
+ - A) Recruiting and mentoring a team of advisors whose production you earn override commissions on ✓
+ - B) Making more cold calls each week
  - C) A renewal book that produces recurring income regardless of daily effort ✓
  - D) Selling the business
 
- **Why:** The S-to-B transition for FCs is explicitly described as the renewal book — each serviced policy generates income every year the client keeps it, independent of that month's prospecting. Hiring juniors (A) accelerates the shift but is not the mechanism; the renewal book is. Cold calls (B) generate new income but are active, not passive. Selling the business (D) exits the career, not a quadrant transition.
+ **Why:** Both A and C are real S→B mechanisms — Day 11 names them as the two passive layers that compound together. The renewal book (C) is your past work paying you forward: every serviced policy generates income each year the client keeps it. Team overrides (A) are other people's current work paying you: when an FC you recruited and mentored sells a policy, you earn a percentage — income that arrives whether or not you sold anything personally. Most senior FCs who break the S-quadrant ceiling have built both layers deliberately. Cold calls (B) generate new active income but stay firmly in S — every dollar is one you personally produced. Selling the business (D) exits the career rather than transitioning quadrants.
 
 3. **Non-recurring revenue means:**
  - A) Monthly income
@@ -229,6 +261,14 @@ flowchart LR
  - D) "Is my hourly rate competitive with my corporate peer's salary?"
 
  **Why:** The quadrant lesson reframes the career decision from monthly commission (S thinking) to whether the recurring-revenue engine is being built (B trajectory). A renewal book growing now will pay into the future regardless of this month's production. Closing count (A) and hourly rate (D) both measure S-quadrant performance. Moving to an IFA model (C) is a product-access question that doesn't change the quadrant logic.
+
+8. **A Year-2 FC is excited about override income and wants to start recruiting a downline immediately. Based on Day 11's sequencing rule, what's the strongest counsel?**
+ - A) Recruit early — every month delayed is override income lost
+ - B) Don't ever recruit; the renewal book is enough
+ - C) Build personal production first; you can't credibly mentor someone in a craft you haven't yet stabilised yourself ✓
+ - D) Wait until Year 5 minimum before considering recruitment
+
+ **Why:** Day 11's sequencing is explicit: build your own production muscle in Years 1–2 before recruiting, because you have to do the thing before you can teach it. A skips the credibility step — a downline you can't mentor produces nothing for either of you. B treats team override as optional, but Day 11 names it as the second passive layer that lifts the income ceiling. D is too rigid; the section recommends starting selective recruitment in Year 3+, not Year 5+.
 
 ---
 
