@@ -124,7 +124,31 @@ This is where most clients need your guidance. A rough rule of thumb for a Singa
 
 Wealth accumulation uses a different calculation: work backwards from your target retirement age and income, account for 2% p.a. inflation, then solve for the monthly savings rate.
 
-## 5. The frame to use with every prospect
+## 5. When to buy — the cost of waiting
+
+The most common pushback you'll hear is *"I'm still young and healthy, I'll buy later."* It sounds prudent. It's actually the most expensive choice on the table.
+
+Two things change against the client every year they wait:
+
+**Premiums get more expensive with age.** Insurers price on mortality and morbidity risk, both of which rise sharply after the mid-30s. The exact same coverage bought at 32 vs 42 can cost 40–80% more in annual premium, and you pay that gap every year for the life of the policy.
+
+**Insurability is not guaranteed forever.** Today, the client is healthy and gets standard rates. After one diagnosis — even something they recover from fully — the insurer can:
+
+- **Load the premium** (e.g. +50% to +200% for elevated risk)
+- **Exclude the condition** from coverage (so the very thing they're worried about is no longer covered)
+- **Decline the application entirely** (no insurer will take the risk at any price)
+
+| When you buy | Cost | Insurability | Exclusions |
+|---|---|---|---|
+| Young and healthy | Cheapest | Guaranteed at standard rates | None |
+| 10 years later, still healthy | 40–80% more | Still likely standard | None |
+| After a diagnosis | Loaded or declined | Not guaranteed | Likely on the diagnosed condition |
+
+**The reframe to give the client:** "Buying insurance now isn't a cost — it's the act of locking in today's price and today's health. Wait, and you're betting that nothing in your body will change before you finally decide. The insurer takes that bet every day, and the house wins more often than people think."
+
+This is also why the textbook objection — *"I'll save the premium and invest it instead"* — fails on its own terms. The premium gap from waiting often exceeds whatever investment return the savings would have earned, and no investment return brings back lost insurability.
+
+## 6. The frame to use with every prospect
 
 You'll use this three-layer model in every client conversation for the rest of your career:
 
@@ -165,13 +189,13 @@ A client who tries to jump to Layer 2 without Layer 1 is building a house on san
 
  **Why:** Temporary job loss is the textbook case for retention — the planning response is a 3–6 month emergency fund, which is exactly the self-insure tool. The other three (critical illness, permanent disability, hospitalisation) are permanent or catastrophic risks that would exhaust any emergency fund and destroy long-term financial plans — Day 2's rule is clear: transfer what you cannot afford to retain.
 
-4. **A 32-year-old client earns $6,000/month. He has $20,000 in savings and no insurance. He says "I'm healthy, so I don't need insurance yet." What's the most accurate reframe?**
+4. **A 32-year-old client earns $6,000/month. He has $20,000 in savings and no insurance. He says "I'm healthy, so I don't need insurance yet." Which reframes are accurate? (Select all that apply.)**
  - A) "You're right — start investing first, then protect later."
  - B) "Your emergency fund covers temporary income loss, but it can't replace your income if you're critically ill for years." ✓
  - C) "Insurance is compulsory under MAS rules for working adults."
- - D) "At your age, premiums are cheapest, so it's financially optimal to buy now."
+ - D) "Buying now locks in today's price and today's health — wait until after a diagnosis and you may face loaded premiums, exclusions on that condition, or be declined entirely." ✓
 
- **Why:** B targets the exact blind spot Day 2 identifies — clients confuse their emergency fund (designed for temporary income loss) with a substitute for permanent-risk coverage. $20,000 cannot fund years of critical illness recovery or replace a family's income after death. A validates the wrong sequencing. C is factually false — health insurance is not legally compulsory for working adults. D may be true but it's a commission-motivated angle, not the honest client-centred reframe.
+ **Why:** Both B and D are accurate. B targets the blind spot in Section 2 — the client is confusing his $20k emergency fund (designed for temporary income loss) with a substitute for permanent-risk coverage; $20k cannot fund years of critical illness recovery or replace a family's income after death. D targets the cost-of-waiting trap from Section 5 — every year of delay raises the premium, and one diagnosis can make him uninsurable for the very condition he's worried about. A validates the wrong sequencing. C is factually false — health insurance is not legally compulsory for working adults.
 
 5. **Under the one-third rule, where do insurance premiums belong?**
  - A) Short-term third, because they are a monthly expense
