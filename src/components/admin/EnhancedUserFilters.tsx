@@ -46,6 +46,7 @@ export function EnhancedUserFilters({
       search: '',
       status: 'all',
       role: 'all',
+      tier: 'all',
       sortBy: 'created_at',
       sortOrder: 'desc'
     });
@@ -54,7 +55,8 @@ export function EnhancedUserFilters({
   const activeFiltersCount = [
     filters.search && 'search',
     filters.status !== 'all' && 'status',
-    filters.role !== 'all' && 'role'
+    filters.role !== 'all' && 'role',
+    filters.tier !== 'all' && 'tier'
   ].filter(Boolean).length;
 
   return (
