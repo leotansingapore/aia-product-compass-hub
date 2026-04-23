@@ -208,11 +208,11 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 
 4. **A friend tells you your job is risky because there's no guaranteed salary. What is the most accurate counter-argument based on Day 3?**
  - A) "AIA provides a base allowance for the first 2 years."
- - B) "Fixed salaries are also at risk — one reorg and they're gone. Renewal commissions compound over time regardless of where I work." ✓
+ - B) "Fixed salaries are also at risk — one reorg and they're gone. Renewals compound year after year, and by Year 5 they often make up more than half of an FC's total income." ✓
  - C) "Top FCs earn far more than salaried employees, so the risk is worth it."
  - D) "You're right, but the career fulfillment makes up for the instability."
 
- **Why:** B directly applies Day 3's argument that salaried jobs carry their own hidden risk (reorg, redundancy, AI replacement) while renewal commissions are an owned, compounding asset independent of your employer. A may be factually true but it concedes the frame that a base is what makes the job safe. C is a comparison argument, not a structural one. D concedes the instability point rather than refuting it.
+ **Why:** B directly applies Day 3's argument that salaried jobs carry their own hidden risk (reorg, redundancy, AI replacement) while the renewal book is a compounding asset that, for a consistent producer, can throw off more than 50% of total income by Year 5. A may be factually true but it concedes the frame that a base is what makes the job safe. C is a comparison argument, not a structural one. D concedes the instability point rather than refuting it.
 
 5. **Which of the six development capabilities listed in Day 3 is described as "what you do when no one is watching"?**
  - A) Entrepreneurial spirit
@@ -222,7 +222,7 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 
  **Why:** Day 3 lists moral compass with the exact phrase "what you do when no one is watching." Discipline and grit (B) is about showing up on hard days — it's behavioural, not ethical. Entrepreneurial spirit (A) is about treating yourself as a business. Influence (D) is about moving people from hesitation to decision.
 
-6. **An FC has been in the role for 8 months. His renewal commissions now cover half his monthly expenses. According to Day 3's definitions, which stage has he reached?**
+6. **An FC has been in the role for 3 years. His renewal commissions now cover half his monthly expenses. According to Day 3's definitions, which stage has he reached?**
  - A) Financially free
  - B) Financially independent
  - C) Neither — he needs full coverage before either term applies ✓
