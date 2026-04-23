@@ -48,6 +48,95 @@ Forget income brackets. The three classes are behavioural.
 - **Defining feature:** **financial security is independent of their job.** They can quit tomorrow and not starve.
 - **Next move:** preserve wealth, pass it on, sometimes re-invest.
 
+### The cash flow tells the story
+
+The clearest way to see the three classes is to draw what happens to a single dollar that lands in their hands.
+
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— three cash-flow patterns —</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;">
+    <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:1.1rem 1.1rem 0.9rem;background:hsl(var(--background));">
+      <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:0.85rem;">Poor</div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;margin-bottom:0.7rem;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Income Statement</div>
+        <div style="padding:0.55rem 0.75rem;">
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Income</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;margin-bottom:0.5rem;">Salary</div>
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Expenses</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;line-height:1.65;">Taxes<br/>Rent<br/>Food<br/>Transport<br/>Clothes</div>
+        </div>
+      </div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Balance Sheet</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:0.55rem 0.75rem;gap:0.5rem;">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Assets</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));font-style:italic;">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Liabilities</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));font-style:italic;">—</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11.5px;color:hsl(var(--muted-foreground));margin-top:0.85rem;">Salary in → all of it back out</div>
+    </div>
+    <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:1.1rem 1.1rem 0.9rem;background:hsl(var(--background));">
+      <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:0.85rem;">Middle Class</div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;margin-bottom:0.7rem;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Income Statement</div>
+        <div style="padding:0.55rem 0.75rem;">
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Income</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;margin-bottom:0.5rem;">Salary</div>
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Expenses</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;line-height:1.65;">Taxes<br/>Mortgage payment<br/>Car payment<br/>Credit card<br/>School loan</div>
+        </div>
+      </div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Balance Sheet</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:0.55rem 0.75rem;gap:0.5rem;">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Assets</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));font-style:italic;">—</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Liabilities</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));line-height:1.65;">Mortgage<br/>Car loan<br/>Credit card<br/>School loan</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11.5px;color:hsl(var(--muted-foreground));margin-top:0.85rem;">Salary in → out → servicing liabilities</div>
+    </div>
+    <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:1.1rem 1.1rem 0.9rem;background:hsl(var(--background));">
+      <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:0.85rem;">Rich</div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;margin-bottom:0.7rem;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Income Statement</div>
+        <div style="padding:0.55rem 0.75rem;">
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Income</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;margin-bottom:0.5rem;line-height:1.65;">Rental income<br/>Dividends<br/>Interest<br/>Royalties</div>
+          <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Expenses</div>
+          <div style="font-size:11.5px;color:hsl(var(--muted-foreground));padding-left:0.5rem;line-height:1.65;">Taxes<br/>Mortgage payment</div>
+        </div>
+      </div>
+      <div style="border:1px solid hsl(var(--border));border-radius:8px;overflow:hidden;">
+        <div style="padding:0.35rem 0.7rem;border-bottom:1px solid hsl(var(--border));font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--muted)/0.3);">Balance Sheet</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;padding:0.55rem 0.75rem;gap:0.5rem;">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Assets</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));line-height:1.65;">Real estate<br/>Stocks<br/>Bonds<br/>Notes<br/>Intellectual property</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:hsl(var(--foreground));margin-bottom:0.15rem;">Liabilities</div>
+            <div style="font-size:11.5px;color:hsl(var(--muted-foreground));line-height:1.65;">Mortgage<br/>Consumer loans<br/>Credit cards</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11.5px;color:hsl(var(--muted-foreground));margin-top:0.85rem;">Assets → income → expenses → margin → more assets</div>
+    </div>
+  </div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.5rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;">The poor and middle class trade time for income. The rich own things that produce income while they sleep. Same currency, opposite direction.</div>
+</div>
+
 **The key insight:** some people earning $15K/month are poor (by behaviour). Some earning $6K/month are on a clear path to wealth (by behaviour). Your job isn't to judge income — it's to read the pattern.
 
 ```mermaid
