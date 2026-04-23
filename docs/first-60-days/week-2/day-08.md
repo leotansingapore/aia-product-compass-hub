@@ -145,13 +145,13 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
 
  **Why:** The earning-pattern chart shows Year 1 income below the corporate peer, a crossover around Year 2-3, and a widening gap from Year 3 onward as skill and renewal commissions compound. Month 6 (A) is still deep in the slow ramp. End of Year 1 (B) is too early — most FCs are still building their book. Year 5 (D) would mean five years of under-earning before any advantage, which contradicts the chart.
 
-2. **What is the real purpose of an income guarantee for a new FC?**
- - A) A floor on earnings so you never earn less than peers
- - B) Runway to focus on skill-building before the book sustains itself ✓
- - C) A safety net that lasts until MDRT
- - D) A replacement for commission
+2. **Day 8 closes with the line: "Be the advisor your clients talk about at funerals." What's the actual lesson behind it?**
+ - A) Funeral preplanning is a high-impact product line to lead with
+ - B) Impact is the part of the career no one talks about — slow to arrive, but it's why FCs are still in the chair 20 years in ✓
+ - C) Estate planning is the highest-margin segment, so prioritise affluent clients
+ - D) Maintain a record of which clients pass away each year for accurate book metrics
 
- **Why:** Today's content frames the income guarantee explicitly as a bridge — bought time for skill-building, not a permanent floor. It runs out, which is why squandering Year 1 on unproductive activity is fatal. It does not guarantee parity with peers (A), does not last until MDRT (C), and does not replace commission (D) — it supplements income while the book is still small.
+ **Why:** The "Impact" section reads the line literally — an FC's work surfaces at a family's gravest moments (CI claims that keep a child in school, savings plans that prevent a forced home sale, hospital plans that absorb an ICU bill). Those moments are what bring FCs back to the office decade after decade. The earnings chart explains why you stay *financially*; impact explains why you stay *emotionally*. A and C misread the line as product or segment advice — neither belongs to this section. D reduces an emotional anchor of the career to a bookkeeping task.
 
 3. **Which of these is NOT infrastructure?**
  - A) Sunday 30-min review of the week
