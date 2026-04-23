@@ -52,7 +52,7 @@ This assignment forces three things most new FCs avoid:
 
 Open the worksheet here:
 
-**[Audience & Differentiation Worksheet — open the tool](https://growing-age-calculator.vercel.app/financial-advisor-differentiation/solutions)**
+**[Audience & Differentiation Worksheet — open the tool](https://present.financeillustrator.com/financial-advisor-differentiation)**
 
 The tool gives you:
 
