@@ -193,13 +193,13 @@ You'll fail at some of these. That's the point.
 
  **Why:** Section 1 names the tell directly — fixed-mindset responses usually contain the word "I'm" because they convert a temporary situation into a permanent identity statement ("I'm not cut out for sales", "I'm not a finance person"). Growth-mindset responses contain a specific concrete next action instead. "Maybe" (A) is a hedge that doesn't signal mindset either way. "Difficult" (C) describes the situation, not the response style. "Not" (D) is misleading because it shows up in both fixed and growth responses ("I'm not cut out" vs "Not yet — what do I need to read?") — it's the surrounding identity claim that matters, not the negation itself.
 
-7. **An FC who feels they've cracked the code after a great Week 3 should:**
- - A) Lock in their pipeline strategy immediately — consistency matters
- - B) Set a new stretch target to capitalise on momentum
- - C) Treat the feeling as data and keep running the same reps, not making big promises ✓
- - D) Share the technique with the team before testing it further
+7. **You just had your best week ever — three closes and a packed calendar. What's the right response?**
+ - A) Take a few easier days to celebrate; you've earned a breather
+ - B) Set a higher monthly target to capitalise on the momentum
+ - C) Keep running the exact same reps at the same intensity — a great week is no reason to ease off ✓
+ - D) Pivot to working only with higher-value prospects from now on
 
- **Why:** Day 4 warns against making big promises on good weeks just as much as it warns against quitting on bad ones — both are emotional overreactions to what is fundamentally just one week's data. The right move is to keep running the reps and let the trend confirm itself. A and B both act on the feeling rather than treating it sceptically. D is premature sharing before the approach has been stress-tested beyond a single good week.
+ **Why:** The biggest trap after a great week isn't celebration — it's **complacency**. The wins you're enjoying this week came from reps you ran weeks ago; the pipeline that fills next month depends on the reps you run *this* week. Easing off now creates an empty pipeline 6–8 weeks later, which the FC will then misread as "the market got harder." A is the textbook complacency move. B reframes one good week as a forecast and sets you up to disappoint yourself. D narrows the funnel based on a single week's data and quietly cuts the volume that produced the win in the first place. The discipline is to ignore the feeling and keep doing exactly what worked.
 
 8. **"Successful people form the habit of doing what unsuccessful people don't like to do." What is this principle actually saying?**
  - A) Successful people happen to enjoy hard work more than others do
