@@ -1,16 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { VideoEditForm } from './VideoEditForm';
 import QuizEditor from './QuizEditor';
 import { AssignmentEditor } from './AssignmentEditor';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { SquarePen, Eye, Brain, ClipboardList } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { markdownComponents } from '@/lib/markdown-config';
-import { getVideoEmbedInfo } from './videoUtils';
+import { Brain, ClipboardList } from 'lucide-react';
 import type { TrainingVideo } from '@/hooks/useProducts';
 
 interface VideoEditorPanelProps {
@@ -34,40 +28,17 @@ export function VideoEditorPanel({
   existingCategories,
   onEditingIndexChange,
   onUpdateVideo,
-  lastSavedAt,
   onEditingStateChange,
   showActionSteps = false,
 }: VideoEditorPanelProps) {
-  const [isEditing, setIsEditingLocal] = useState(false);
-
-  const setIsEditing = (val: boolean) => {
-    setIsEditingLocal(val);
-    onEditingStateChange?.(val);
-  };
   const currentVideo = editingIndex !== null ? editVideos[editingIndex] : null;
 
-  // Auto-enter edit mode for new pages (empty content)
-  const shouldAutoEdit = currentVideo && !currentVideo.rich_content && !currentVideo.description;
-
-  // Reset edit state when switching between pages
+  // Signal to parent that the editor is always in "editing mode" — there is
+  // no separate preview. Keeps sidebar + autosave wiring that used to hinge
+  // on `isEditing` working correctly.
   useEffect(() => {
-    if (shouldAutoEdit) {
-      // New pages auto-enter edit mode — notify parent so sidebar sections become editable
-      setIsEditingLocal(true);
-      onEditingStateChange?.(true);
-    } else {
-      setIsEditingLocal(false);
-      onEditingStateChange?.(false);
-    }
-  }, [editingIndex]);
-
-  // Switch to preview mode after save completes
-  useEffect(() => {
-    if (lastSavedAt) {
-      setIsEditingLocal(false);
-      onEditingStateChange?.(false);
-    }
-  }, [lastSavedAt]);
+    onEditingStateChange?.(currentVideo != null);
+  }, [currentVideo, onEditingStateChange]);
 
   return (
     <div className="flex-1 h-full">
@@ -132,94 +103,16 @@ export function VideoEditorPanel({
               onChange={(config) => onUpdateVideo(editingIndex, { ...currentVideo, assignment_config: config })}
             />
           </div>
-        ) :
-        isEditing || shouldAutoEdit ? (
-          /* ========== VIDEO EDIT MODE ========== */
-          <div className="h-full">
-            {/* Preview toggle — only show when page has content */}
-            {currentVideo.rich_content || currentVideo.description ? (
-              <div className="flex justify-end px-2 py-1.5">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsEditing(false)}
-                  className="gap-1.5 text-muted-foreground hover:text-foreground"
-                >
-                  <Eye className="h-4 w-4" />
-                  Preview
-                </Button>
-              </div>
-            ) : null}
-            <VideoEditForm
-              video={editVideos[editingIndex]}
-              onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
-              existingCategories={existingCategories}
-              hideTranscript={true}
-              hideResources={true}
-              showActionSteps={showActionSteps}
-            />
-          </div>
         ) : (
-          /* ========== PREVIEW MODE ========== */
-          <div className="border rounded-lg bg-card">
-            <div className="p-8">
-              {/* Title + Edit Button */}
-              <div className="flex items-start justify-between mb-6">
-                <h1 className="text-2xl font-bold text-foreground leading-tight">
-                  {currentVideo.title || 'Untitled'}
-                </h1>
-                <Button
-                  variant="default"
-                  size="sm"
-                  onClick={() => setIsEditing(true)}
-                  className="shrink-0"
-                  title="Edit"
-                >
-                  <SquarePen className="h-4 w-4" />
-                  Edit
-                </Button>
-              </div>
-
-              {/* Video Player */}
-              {(() => {
-                const embedInfo = currentVideo.url ? getVideoEmbedInfo(currentVideo.url) : null;
-                if (!embedInfo) return null;
-                return (
-                  <div className="relative rounded-lg overflow-hidden bg-muted aspect-video mb-6">
-                    {embedInfo.type === 'mp4' ? (
-                      <video
-                        src={embedInfo.embedUrl}
-                        title={currentVideo.title}
-                        className="w-full h-full"
-                        controls
-                        controlsList="nodownload"
-                        preload="metadata"
-                      />
-                    ) : (
-                      <iframe
-                        src={embedInfo.embedUrl}
-                        title={currentVideo.title}
-                        className="w-full h-full"
-                        allowFullScreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      />
-                    )}
-                  </div>
-                );
-              })()}
-
-              {/* Rendered Content */}
-              <div className="prose prose-sm max-w-none dark:prose-invert">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw]}
-                  components={markdownComponents}
-                >
-                  {currentVideo.rich_content || currentVideo.description || ''}
-                </ReactMarkdown>
-              </div>
-            </div>
-          </div>
+          /* ========== RICH EDITOR (single mode, no preview/edit toggle) ========== */
+          <VideoEditForm
+            video={editVideos[editingIndex]}
+            onUpdate={(updatedVideo) => onUpdateVideo(editingIndex, updatedVideo)}
+            existingCategories={existingCategories}
+            hideTranscript={true}
+            hideResources={true}
+            showActionSteps={showActionSteps}
+          />
         )
       ) : (
         /* ========== EMPTY STATE ========== */

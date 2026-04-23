@@ -1,12 +1,5 @@
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Sparkles } from 'lucide-react';
-import { Suspense, lazy, useCallback } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useRef } from 'react';
 import { useVideoForm } from '@/hooks/useVideoForm';
-import { VideoBasicInfo } from './VideoBasicInfo';
-import { VideoContentTabs } from './VideoContentTabs';
 import { ActionStepsEditor } from './ActionStepsEditor';
 import { structuredToMarkdown, createLegacyBackup } from '@/utils/videoContentConverter';
 import type { TrainingVideo, VideoAttachment, UsefulLink, LessonActionStep } from '@/hooks/useProducts';
@@ -41,34 +34,23 @@ export function VideoEditForm({
 }: VideoEditFormProps) {
   const {
     editVideo,
-    isDetectingDuration,
-    newCategoryName,
-    showNewCategoryInput,
-    setNewCategoryName,
-    setShowNewCategoryInput,
-    handleChange
+    handleChange,
   } = useVideoForm({ initialVideo: video, onUpdate });
 
-  // Mode detection: Determine if we should use rich editor or structured form
-  const shouldUseRichEditor = (video: TrainingVideo): boolean => {
-    return video.rich_content !== undefined;
-  };
-
-  const isRichMode = shouldUseRichEditor(editVideo);
-
-  // Conversion function: Switch from structured → rich editor
-  const handleSwitchToRichEditor = () => {
+  // Auto-migrate legacy videos to rich editor on first open: if this video
+  // doesn't have `rich_content` yet, convert its structured fields
+  // (description / transcript / etc.) to markdown once so admins never see
+  // the old bifurcated form. Backs the original fields up in `legacy_fields`
+  // before the conversion so nothing is destroyed.
+  const migrationRanForVideoIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (editVideo.rich_content !== undefined) return;
+    if (migrationRanForVideoIdRef.current === editVideo.id) return;
+    migrationRanForVideoIdRef.current = editVideo.id;
     const markdown = structuredToMarkdown(editVideo);
     const backup = createLegacyBackup(editVideo);
-
-    const updatedVideo = {
-      ...editVideo,
-      rich_content: markdown,
-      legacy_fields: backup
-    };
-
-    onUpdate(updatedVideo);
-  };
+    onUpdate({ ...editVideo, rich_content: markdown, legacy_fields: backup });
+  }, [editVideo, onUpdate]);
 
   // Resource handlers
   const handleAddLink = useCallback((label: string, url: string) => {
@@ -99,78 +81,37 @@ export function VideoEditForm({
     [handleChange],
   );
 
-  // Rich Editor Mode — Skool-style: inline title + content + transcript all in one card
-  if (isRichMode) {
-    return (
-      <div className="space-y-4">
-        {showActionSteps && (
-          <ActionStepsEditor
-            steps={editVideo.action_steps ?? []}
-            onChange={handleActionStepsChange}
-          />
-        )}
-        <Suspense fallback={<Skeleton className="h-[500px] w-full rounded-lg" />}>
-          <RichContentEditor
-            value={editVideo.rich_content || ''}
-            onChange={(value) => handleChange('rich_content', value)}
-            placeholder="Start writing, or type '/' for commands..."
-            title={editVideo.title || ''}
-            onTitleChange={(title) => handleChange('title', title)}
-            transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
-            onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
-            usefulLinks={hideResources ? undefined : (editVideo.useful_links || [])}
-            attachments={hideResources ? undefined : (editVideo.attachments || [])}
-            onAddLink={hideResources ? undefined : handleAddLink}
-            onAddFile={hideResources ? undefined : handleAddFile}
-            onDeleteLink={hideResources ? undefined : handleDeleteLink}
-            onDeleteAttachment={hideResources ? undefined : handleDeleteAttachment}
-            published={editVideo.published ?? true}
-            onPublishedChange={(val) => handleChange('published', val)}
-          />
-        </Suspense>
-      </div>
-    );
-  }
-
-  // Structured Form Mode: Show traditional form (backwards compatible)
+  // Only ever the Skool-style rich editor — legacy structured form removed.
+  // The migration effect above ensures `rich_content` is populated before
+  // render, so the editor always opens with the learner's view of the
+  // content pre-filled (title inline, media embeds rendered, markdown live).
   return (
     <div className="space-y-4">
-      <Alert className="bg-primary/5 border-primary/20">
-        <Sparkles className="h-4 w-4 text-primary" />
-        <AlertDescription className="text-sm">
-          Try the new Rich Editor for a better editing experience!
-          <Button
-            onClick={handleSwitchToRichEditor}
-            variant="outline"
-            size="sm"
-            className="ml-3"
-          >
-            <Sparkles className="mr-2 h-4 w-4" />
-            Switch to Rich Editor
-          </Button>
-        </AlertDescription>
-      </Alert>
-
-      <VideoBasicInfo
-        video={editVideo}
-        isDetectingDuration={isDetectingDuration}
-        onChange={handleChange}
-      />
-
-      <div>
-        <Label>Description</Label>
-        <Textarea
-          value={editVideo.description || ''}
-          onChange={(e) => handleChange('description', e.target.value)}
-          placeholder="Optional description"
-          rows={2}
+      {showActionSteps && (
+        <ActionStepsEditor
+          steps={editVideo.action_steps ?? []}
+          onChange={handleActionStepsChange}
         />
-      </div>
-
-      <VideoContentTabs
-        video={editVideo}
-        onChange={handleChange}
-      />
+      )}
+      <Suspense fallback={<Skeleton className="h-[500px] w-full rounded-lg" />}>
+        <RichContentEditor
+          value={editVideo.rich_content ?? ''}
+          onChange={(value) => handleChange('rich_content', value)}
+          placeholder="Start writing, or type '/' for commands..."
+          title={editVideo.title || ''}
+          onTitleChange={(title) => handleChange('title', title)}
+          transcript={hideTranscript ? undefined : (editVideo.transcript || '')}
+          onTranscriptChange={hideTranscript ? undefined : ((transcript) => handleChange('transcript', transcript))}
+          usefulLinks={hideResources ? undefined : (editVideo.useful_links || [])}
+          attachments={hideResources ? undefined : (editVideo.attachments || [])}
+          onAddLink={hideResources ? undefined : handleAddLink}
+          onAddFile={hideResources ? undefined : handleAddFile}
+          onDeleteLink={hideResources ? undefined : handleDeleteLink}
+          onDeleteAttachment={hideResources ? undefined : handleDeleteAttachment}
+          published={editVideo.published ?? true}
+          onPublishedChange={(val) => handleChange('published', val)}
+        />
+      </Suspense>
     </div>
   );
 }
