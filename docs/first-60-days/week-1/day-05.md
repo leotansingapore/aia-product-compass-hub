@@ -169,6 +169,8 @@ A prospect who hears this understands:
 
 **Everyone loves rooting for an underdog. Everyone loves discovering the next big thing before it blows up.** Pre-framing is how you give them that role.
 
+> **What this matures into:** the elevator pitch is the personal layer. The next layer is *audience-specific* — being clear about which two or three groups you serve, and the exact transformation each one buys when they work with you. That's the work of [Day 54 — Concept Selling](../week-9/day-54.md), and it's run as a structured exercise in [Assignment 8 — Audience & Differentiation Worksheet](../assignments/assignment-08.md). For now, lock in the personal pitch — the audience layer comes once you've had your first 5–10 conversations.
+
 ## 5. The underdog advantage
 
 If you're new, your instinct is to hide it. That's the wrong move.

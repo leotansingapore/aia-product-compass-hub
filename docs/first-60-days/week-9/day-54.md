@@ -233,6 +233,42 @@ A clean concept close transitions into product specifics:
 
 Clean handoff = clean decision.
 
+## 10. Mapping concepts to audiences — tangible, intangible, and your differentiator
+
+Concepts deliver more closes than product pitches. But concepts only land when they hit a problem the audience actually has. The next layer of skill is **mapping the right concept to the right audience** — and being clear on what makes *your* version of the concept different from every other advisor's.
+
+There are three mindset shifts under this layer. Most FCs miss at least one.
+
+### Three shifts
+
+1. **Don't sell products. Sell the transformation.** A product brochure is "here are the features." A transformation pitch is "here's where you are now → here's where you'll be → here's how the plan gets you there." Same product, very different conversation.
+2. **Tangible problems take tangible solutions. Intangible problems take *you.*** A protection gap is tangible — a product solves it. The anxiety about not being there for the kids is intangible — only the *advisor relationship* solves that. Most FCs only sell to the tangible side and wonder why the close rate stalls.
+3. **Your differentiator is not your product.** Every advisor in Singapore can sell the same plans at similar premiums. What makes a client choose you, refer you, and stay with you for twenty years is **the specific way you work with them** — your process, your reliability, your point of view.
+
+### The audience map — four quadrants and a differentiator
+
+For each audience you intend to serve, map five things:
+
+| Layer | What it is | Example (busy professional, age 35–45) |
+|---|---|---|
+| **Tangible problem** | The visible, measurable issue | Working 60–70h weeks, $30–50k idle in low-yield accounts, no plan |
+| **Tangible solution** | The concrete service or product you provide | Passive income roadmap, automated DCA, comprehensive protection audit |
+| **Intangible problem** | The emotional weight they carry but rarely name | Anxiety about market drops, guilt about not being present for family |
+| **Intangible solution** | The peace of mind you deliver alongside the plan | Sleep-well portfolio design, proactive weekly updates, on-call reassurance during volatility |
+| **Your differentiator** | What you do that no other advisor in their inbox does | Quarterly one-page plan with a written decision log; proactive check-ins after life events (new baby, job change, market crash) |
+
+The same exercise for a young adult (24–32) audience produces a completely different map: tangible problems around discipline and idle savings, intangible problems around social comparison and adulting overwhelm, tangible solutions around starter safety stacks and small-amount DCA, intangible solutions around bite-size learning and 1-on-1 coaching, and a differentiator like a structured 90-day setup program with weekly check-ins.
+
+### Why this matters before you start prospecting
+
+A new FC who can only describe themselves as *"I do financial planning for everyone"* sounds like every other agent. A new FC who can say *"I work with two specific groups — busy professionals in their late 30s who don't have time to think about money, and young adults in their first three years of work who want to start right — and here's exactly how I work with each"* sounds like a different category of person.
+
+That clarity is what gets the second meeting, the introduction, and the long-term client.
+
+### The worksheet
+
+There's a structured worksheet that walks through this entire mapping for two audiences side-by-side, with pre-built profiles (busy professional, young adult, parents) you can adapt: see **[Assignment 8 — Audience & Differentiation Worksheet](../assignments/assignment-08.md)**. Run it before Week 8 — it sharpens every approach script you'll write later.
+
 
 ## Quick quiz
 
@@ -291,6 +327,14 @@ Clean handoff = clean decision.
    - D) Tax Savings — CPF top-ups and SRS are the highest-leverage entry point
 
    **Why:** The rule of thumb is that the right concept matches the client's current life moment — and a couple actively applying for a BTO is squarely in a home-budgeting conversation. Home Budgeting (BTO/Property) covers the good-debt concept and leveraging the housing loan, which is immediately relevant and actionable. Retirement (A) and investments (B) are important but premature given where the clients are emotionally and financially right now. Tax savings (D) may be relevant later but is not the natural entry point for this life stage.
+
+8. **In the audience-mapping framework from Section 10, which kind of problem is solved by the *advisor relationship itself* rather than by a product?**
+   - A) The tangible problem (e.g., a $300k protection gap)
+   - B) The intangible problem (e.g., the anxiety that the family isn't safe) ✓
+   - C) Both — every problem is solved by the product
+   - D) Neither — the product solves everything; the advisor is a delivery channel
+
+   **Why:** Day 54's mapping framework draws a sharp line: tangible problems (the protection gap, the idle cash, the missing income stream) are solved by tangible solutions — the products you place. Intangible problems (anxiety, guilt, overwhelm, social comparison pressure) are solved by *you* — the way you work, the proactive check-ins, the on-call reassurance, the framework that makes them feel oriented. C and D both collapse this distinction and reduce the advisor to a product distributor — exactly the move that makes a new FC sound like every other agent in the inbox.
 
 ---
 
