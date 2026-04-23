@@ -110,49 +110,34 @@ By Year 15, **more than half your income is arriving regardless of this month's 
 
 ## 5. The flip side — what kills a renewal book
 
-<div style="margin:1.75rem 0;font-family:system-ui,sans-serif;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(0,65%,55%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
-      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(0,65%,45%);margin-bottom:12px;">What kills renewals</div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Over-sold clients</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums unsustainable → lapse.</div></div>
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Poor product fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client surrenders later.</div></div>
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">No service touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Client moves to another advisor.</div></div>
+Renewal income isn't guaranteed. A policy cancelled early, lapsed, or surrendered produces zero future renewal commission, often a clawback of the first-year commission, and — if it happens repeatedly — reputational damage that follows you across the next decade of prospecting.
+
+The pattern is consistent enough to draw two lists.
+
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:start;">
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.75rem;">What quietly kills a renewal book</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:16px;line-height:1.55;color:hsl(var(--foreground));">
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Premiums the client can't sustain in a bad year.</div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">A product that never quite fitted, sold anyway.</div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Silence between Year 1 and the day the client wants to claim.</div>
+        <div style="padding:0.5rem 0;">An advisor who left the industry without warming the handover.</div>
       </div>
-      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(0,65%,45%);">→ Lost renewal income + clawback</div>
     </div>
-    <div style="border:1px solid hsl(var(--border));border-top:3px solid hsl(160,70%,38%);border-radius:10px;padding:18px 20px;background:hsl(var(--card));">
-      <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:hsl(160,70%,30%);margin-bottom:12px;">What keeps renewals</div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Honest fit</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Premiums client can sustain in bad years.</div></div>
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Annual touchpoints</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">Birthday call, review, claims help.</div></div>
-        <div><div style="font-weight:600;font-size:13px;color:hsl(var(--foreground));">Life-stage updates</div><div style="font-size:12px;color:hsl(var(--muted-foreground));line-height:1.45;">New baby, new job, new home.</div></div>
+    <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.75rem;">What keeps it compounding</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:16px;line-height:1.55;color:hsl(var(--foreground));">
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">A premium that survives a salary cut.</div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">One honest annual review — birthday, anniversary, anything.</div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Life-stage updates: new baby, new job, new mortgage.</div>
+        <div style="padding:0.5rem 0;">Staying in the industry long enough for the math to work.</div>
       </div>
-      <div style="margin-top:14px;padding-top:12px;border-top:1px dashed hsl(var(--border));font-size:11px;font-style:italic;color:hsl(160,70%,30%);">→ Compounding renewal book</div>
     </div>
   </div>
+  <div style="margin-top:1.25rem;text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Sell slightly less. Service a lot more. Year-15 income depends on it.</div>
 </div>
-
-
-
-Renewal income isn't guaranteed. A policy cancelled early, lapsed, or surrendered produces:
-- Zero future renewal commission.
-- Clawback of first-year commission (often).
-- Reputation damage if multiple policies drop.
-
-**What kills renewals:**
-1. **Over-sold clients** — premiums they can't sustain → lapsed policy.
-2. **Poor fit products** — client realises later it's wrong → surrenders.
-3. **No service** — client doesn't feel the relationship → moves advisor.
-4. **Advisor disappears** — leaves the industry → clients orphaned.
-
-**What keeps renewals:**
-1. **Honest fit** — premiums the client can sustain even in bad years.
-2. **Annual touchpoints** — birthday call, annual review, claims help.
-3. **Life-stage updates** — new baby = policy review, new job = update.
-4. **Staying in the industry.**
-
-**The mindset:** sell slightly less, service a lot more. Your Year-15 income depends on it.
 
 ## 6. Teaching this to clients
 
