@@ -36,11 +36,25 @@ The reason for two deliverables this week: content is half the pipeline (pull) a
 
 Each post has to answer a different silent question from Day 13. The minimum mix:
 
-| Post | Must answer | Format |
-|---|---|---|
-| **Post 1** | **Q5** — easy to approach | Offer post with a DM keyword CTA |
-| **Post 2** | **Q1 or Q3** — social proof OR origin story | Pre-during-post testimonial OR 60-sec origin reel |
-| **Post 3** | **Q2 or Q4** — expertise OR get along | Educational carousel OR PPVV lifestyle post |
+<div style="display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:1.75rem;align-items:start;margin:1.5rem 0;">
+  <div>
+    <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Post 1</div>
+    <div style="margin-top:.5rem;font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.25;">Q5 — easy to approach</div>
+    <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid hsl(var(--border));font-size:13px;color:hsl(var(--muted-foreground));">Offer post with a DM keyword CTA</div>
+  </div>
+  <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
+  <div>
+    <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Post 2</div>
+    <div style="margin-top:.5rem;font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.25;">Q1 or Q3 — social proof <span style="font-style:italic;">or</span> origin story</div>
+    <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid hsl(var(--border));font-size:13px;color:hsl(var(--muted-foreground));">Pre-during-post testimonial or 60-sec origin reel</div>
+  </div>
+  <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
+  <div>
+    <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Post 3</div>
+    <div style="margin-top:.5rem;font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.25;">Q2 or Q4 — expertise <span style="font-style:italic;">or</span> get along</div>
+    <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid hsl(var(--border));font-size:13px;color:hsl(var(--muted-foreground));">Educational carousel or PPVV lifestyle post</div>
+  </div>
+</div>
 
 **Why the mix:** if all three posts answer Q2 (expertise) — which is the new-FC default — you won't build social proof or connection. The 3 posts need to *stretch* your content across at least three of the five questions.
 
