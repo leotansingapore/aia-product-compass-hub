@@ -3011,6 +3011,30 @@ export type Database = {
         }
         Relationships: []
       }
+      user_slide_submissions: {
+        Row: {
+          answer_text: string | null
+          screenshot_url: string | null
+          slide_id: string
+          submitted_at: string
+          user_id: string
+        }
+        Insert: {
+          answer_text?: string | null
+          screenshot_url?: string | null
+          slide_id: string
+          submitted_at?: string
+          user_id: string
+        }
+        Update: {
+          answer_text?: string | null
+          screenshot_url?: string | null
+          slide_id?: string
+          submitted_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_tiers: {
         Row: {
           created_at: string
