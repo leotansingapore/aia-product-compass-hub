@@ -93,75 +93,30 @@ Prospecting is fundamentally a numbers game. Not a mindset game.
 
 ### The standard ratios (roughly, for a new FC)
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;">The Law of Large Numbers — a Year-1 funnel</div>
-  <div style="display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:1.5rem;align-items:center;">
-    <div style="text-align:right;">
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Top of funnel</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:17px;line-height:1.3;margin-top:0.3rem;">Opening approaches</div>
-      <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:0.2rem;">e.g. cold calls, DMs</div>
-    </div>
-    <div style="text-align:center;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));padding:0.5rem 0;">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:64px;line-height:1;font-weight:500;">100</div>
-    </div>
-    <div style="font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">100 dials a week is roughly 20/day, 5 days. The Year-1 baseline.</div>
+<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:0;">
+  <div style="width:100%;background:linear-gradient(135deg,hsl(217,91%,50%),hsl(217,91%,62%));color:white;padding:14px 20px;border-radius:12px 12px 4px 4px;box-shadow:0 4px 12px hsl(217,91%,50%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,94% 100%,6% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.85;font-weight:700;">TOP OF FUNNEL</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">100</div>
+    <div style="font-size:13px;opacity:0.95;">Opening Approaches <span style="opacity:0.75;">(e.g., calls)</span></div>
   </div>
-
-  <div style="display:flex;justify-content:center;align-items:center;gap:0.75rem;margin:0.5rem 0;color:hsl(var(--muted-foreground));font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
-    <span style="font-family:ui-serif,Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;">~3% convert</span>
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">3% conversion</span></div>
+  <div style="width:78%;background:linear-gradient(135deg,hsl(160,84%,32%),hsl(160,84%,42%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,32%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,93% 100%,7% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">APPOINTMENTS</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">3</div>
+    <div style="font-size:13px;opacity:0.95;">Appointments set</div>
   </div>
-
-  <div style="display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:1.5rem;align-items:center;">
-    <div style="text-align:right;">
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Stage 2</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:17px;line-height:1.3;margin-top:0.3rem;">Appointments set</div>
-      <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:0.2rem;">prospect agrees to meet</div>
-    </div>
-    <div style="text-align:center;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));padding:0.5rem 0;">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:52px;line-height:1;font-weight:500;">3</div>
-    </div>
-    <div style="font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">A short call that lands a coffee or Zoom is the rep that matters.</div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">50% conversion</span></div>
+  <div style="width:58%;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,92% 100%,8% 100%);">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">MEETINGS</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">1–2</div>
+    <div style="font-size:13px;opacity:0.95;">Meetings actually happen</div>
   </div>
-
-  <div style="display:flex;justify-content:center;align-items:center;gap:0.75rem;margin:0.5rem 0;color:hsl(var(--muted-foreground));font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
-    <span style="font-family:ui-serif,Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;">~50% show up</span>
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">20–40% conversion</span></div>
+  <div style="width:38%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:14px 16px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
+    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">CLOSE</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">&lt;1</div>
+    <div style="font-size:12px;opacity:0.95;">per 100 approaches</div>
   </div>
-
-  <div style="display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:1.5rem;align-items:center;">
-    <div style="text-align:right;">
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Stage 3</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:17px;line-height:1.3;margin-top:0.3rem;">Meetings actually happen</div>
-      <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:0.2rem;">no-shows are normal</div>
-    </div>
-    <div style="text-align:center;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));padding:0.5rem 0;">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:44px;line-height:1;font-weight:500;">1–2</div>
-    </div>
-    <div style="font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">Half your set appointments will fall through. Plan for it.</div>
-  </div>
-
-  <div style="display:flex;justify-content:center;align-items:center;gap:0.75rem;margin:0.5rem 0;color:hsl(var(--muted-foreground));font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
-    <span style="font-family:ui-serif,Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;">~20–40% close</span>
-    <div style="height:1px;width:40px;background:hsl(var(--border));"></div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:1.5rem;align-items:center;">
-    <div style="text-align:right;">
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bottom</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:17px;line-height:1.3;margin-top:0.3rem;font-weight:600;">Closed clients</div>
-      <div style="font-size:12px;color:hsl(var(--muted-foreground));margin-top:0.2rem;">per 100 approaches</div>
-    </div>
-    <div style="text-align:center;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));padding:0.5rem 0;">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:64px;line-height:1;font-weight:600;">&lt;1</div>
-    </div>
-    <div style="font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">Year-2 FCs hit 1 in 30. Year-1 closing 1 in 100 is the norm.</div>
-  </div>
-
-  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Ratios improve with skill — but the volume bar holds. To hit $50K FYC, the math wants ~3,000 approaches a year.</div>
 </div>
 
 These ratios improve as your skills develop. A strong Year-2 FC might close 1 in 30 approaches. A Year-1 FC closing 1 in 100 is normal.
