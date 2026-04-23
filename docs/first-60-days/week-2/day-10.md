@@ -106,6 +106,7 @@ Every financial plan should be built bottom-up, not top-down. This is the order.
 Your job as an advisor: diagnose which level your client is *actually* on — not the level their lifestyle pretends they're on — then build up from there.
 
 
+## 4. Calculating a "freedom number"
 
 A concrete example. Meet a hypothetical client — Mr Tan, 35 years old.
 
