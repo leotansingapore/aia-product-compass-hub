@@ -75,6 +75,14 @@ describe("parseQuiz", () => {
     const noQuiz = SAMPLE.split("## Quick quiz")[0];
     expect(parseQuiz(noQuiz)).toEqual([]);
   });
+
+  it("flags every option marked with ✓ as correct (multi-correct questions)", () => {
+    const multi = `## Quick quiz\n\n1. **Pick all that apply?**\n - A) right ✓\n - B) wrong\n - C) also right ✓\n - D) nope\n`;
+    const quiz = parseQuiz(multi);
+    expect(quiz).toHaveLength(1);
+    const correct = quiz[0].options.filter((o) => o.correct).map((o) => o.key);
+    expect(correct).toEqual(["A", "C"]);
+  });
 });
 
 describe("parseReflection", () => {

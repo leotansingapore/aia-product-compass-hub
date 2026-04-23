@@ -33,14 +33,19 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
 
   const total = questions.length;
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [selected, setSelected] = useState<string | undefined>(undefined);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [verdict, setVerdict] = useState<Verdict>("pending");
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
   const recordedRef = useRef(false);
 
   const q = questions[currentIdx];
-  const correctOpt = useMemo(() => q?.options.find((o) => o.correct), [q]);
+  const correctOpts = useMemo(() => q?.options.filter((o) => o.correct) ?? [], [q]);
+  const correctKeysSorted = useMemo(
+    () => correctOpts.map((o) => o.key).sort(),
+    [correctOpts],
+  );
+  const isMulti = correctOpts.length > 1;
   const pct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
   const passed100 = finished && correctCount === total;
 
@@ -63,16 +68,29 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
 
   const onReset = () => {
     setCurrentIdx(0);
-    setSelected(undefined);
+    setSelectedKeys([]);
     setVerdict("pending");
     setCorrectCount(0);
     setFinished(false);
     recordedRef.current = false;
   };
 
+  const toggleKey = (key: string) => {
+    if (verdict !== "pending") return;
+    setSelectedKeys((prev) => {
+      if (isMulti) {
+        return prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key];
+      }
+      return [key];
+    });
+  };
+
   const onCheck = () => {
-    if (!selected || verdict !== "pending") return;
-    const isCorrect = selected === correctOpt?.key;
+    if (selectedKeys.length === 0 || verdict !== "pending") return;
+    const sorted = [...selectedKeys].sort();
+    const isCorrect =
+      sorted.length === correctKeysSorted.length &&
+      sorted.every((k, i) => k === correctKeysSorted[i]);
     setVerdict(isCorrect ? "correct" : "incorrect");
     if (isCorrect) setCorrectCount((c) => c + 1);
   };
@@ -83,7 +101,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
       return;
     }
     setCurrentIdx((i) => i + 1);
-    setSelected(undefined);
+    setSelectedKeys([]);
     setVerdict("pending");
   };
 
@@ -162,8 +180,13 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
       >
         <CardContent className="space-y-5 p-6 sm:p-8">
           <div className="space-y-1.5">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              Question {q.index}
+            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+              <span>Question {q.index}</span>
+              {isMulti && (
+                <span className="rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5 text-[9px] tracking-[0.18em] text-primary">
+                  Select all that apply
+                </span>
+              )}
             </div>
             <h3 className="font-serif text-xl font-semibold leading-snug text-foreground sm:text-2xl">
               {q.question}
@@ -173,7 +196,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
           <div className="space-y-2">
             {q.options.map((opt) => {
               const id = `day${dayNumber}-q${q.index}-${opt.key}`;
-              const isChosen = selected === opt.key;
+              const isChosen = selectedKeys.includes(opt.key);
               const isCorrect = opt.correct;
               const locked = verdict !== "pending";
               const showCorrect = locked && isCorrect;
@@ -194,13 +217,13 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
                   )}
                 >
                   <input
-                    type="radio"
+                    type={isMulti ? "checkbox" : "radio"}
                     id={id}
                     name={`day${dayNumber}-q${q.index}`}
                     value={opt.key}
                     checked={isChosen}
                     disabled={locked}
-                    onChange={() => setSelected(opt.key)}
+                    onChange={() => toggleKey(opt.key)}
                     className="sr-only"
                   />
                   <span
@@ -229,8 +252,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
           {verdict !== "pending" && (
             <FeedbackPanel
               verdict={verdict}
-              correctKey={correctOpt?.key}
-              correctText={correctOpt?.text}
+              correctOpts={correctOpts}
               explanation={q.explanation}
               dayNumber={dayNumber}
             />
@@ -243,15 +265,15 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
                 <Button
                   size="lg"
                   onClick={onCheck}
-                  disabled={!selected}
+                  disabled={selectedKeys.length === 0}
                   className="bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
                 >
                   <Sparkles className="mr-2 h-4 w-4" />
                   Submit answer
                 </Button>
-                {!selected && (
+                {selectedKeys.length === 0 && (
                   <span className="text-xs text-muted-foreground">
-                    Pick one option to continue.
+                    {isMulti ? "Pick every option that applies to continue." : "Pick one option to continue."}
                   </span>
                 )}
               </>
@@ -274,18 +296,17 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
 
 function FeedbackPanel({
   verdict,
-  correctKey,
-  correctText,
+  correctOpts,
   explanation,
   dayNumber,
 }: {
   verdict: Exclude<Verdict, "pending">;
-  correctKey?: string;
-  correctText?: string;
+  correctOpts: { key: string; text: string }[];
   explanation?: string;
   dayNumber: number;
 }) {
   const isCorrect = verdict === "correct";
+  const isMulti = correctOpts.length > 1;
   const fallback = isCorrect
     ? "You've got it. This concept is a foundation — the next question builds on it."
     : `Revisit the Day ${dayNumber} reading for this concept. The correct framing is stated directly in the lesson.`;
@@ -327,12 +348,17 @@ function FeedbackPanel({
           >
             {isCorrect ? "Correct" : "Not quite"}
           </div>
-          {!isCorrect && correctKey && correctText && (
+          {!isCorrect && correctOpts.length > 0 && (
             <div className="text-sm text-foreground/85">
-              The correct answer is{" "}
-              <span className="font-semibold text-foreground">
-                {correctKey}) {correctText}
-              </span>
+              {isMulti ? "The correct answers are" : "The correct answer is"}{" "}
+              {correctOpts.map((opt, i) => (
+                <span key={opt.key}>
+                  {i > 0 && (i === correctOpts.length - 1 ? " and " : ", ")}
+                  <span className="font-semibold text-foreground">
+                    {opt.key}) {opt.text}
+                  </span>
+                </span>
+              ))}
               .
             </div>
           )}
