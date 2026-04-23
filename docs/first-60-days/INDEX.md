@@ -38,7 +38,7 @@ tags: [first-60-days]
 - [ ] [[week-3/day-14|Day 14 — Bank A vs Bank B]]
 - [ ] [[week-3/day-15|Day 15 — Wealth Building Principles]]
 - [ ] [[week-3/day-16|Day 16 — Recurring vs Non-Recurring Revenue]]
-- [ ] [[week-3/day-17|Day 17 — Assets vs Liabilities]]
+- [ ] [[week-3/day-17|Day 17 — The Wealth-Builder's Mindset]]
 - [ ] [[week-3/day-18|Day 18 — The 10X Rule]]
 - → [[week-3/README|Week 3 Summary]]
 

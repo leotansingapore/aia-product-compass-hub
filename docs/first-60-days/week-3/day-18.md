@@ -233,6 +233,6 @@ Your first 60 days is one of those 10X sprints. After that, you'll find the cade
 
 ## Related
 
-- Previous: [[day-17|Day 17 — Assets vs Liabilities]]
+- Previous: [[day-17|Day 17 — The Wealth-Builder's Mindset]]
 - Next: [[../week-4/day-19|Day 19 — Prospecting: The Lifeblood]]
 - Week 3 summary: [[README|Week 3 — Wealth Building Principles]]

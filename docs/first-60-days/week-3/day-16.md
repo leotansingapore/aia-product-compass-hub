@@ -262,4 +262,4 @@ The recurring/non-recurring frame helps clients understand why:
 ## Related
 
 - Previous: [[day-15|Day 15 — Wealth Building Principles]]
-- Next: [[day-17|Day 17 — Assets vs Liabilities]]
+- Next: [[day-17|Day 17 — The Wealth-Builder's Mindset]]

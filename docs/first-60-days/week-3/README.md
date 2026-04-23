@@ -17,7 +17,7 @@ tags: [first-60-days, week-3]
 | 14 | [[day-14\|Total Wealth Concept]] | The opportunity cost of "safe" bank savings |
 | 15 | [[day-15\|Wealth Building Principles]] | Multiple streams, accumulation vs preservation, early-start math |
 | 16 | [[day-16\|Recurring vs Non-Recurring Revenue]] | The economics of your future renewal book |
-| 17 | [[day-17\|Assets vs Liabilities]] | The one-sentence test, real net worth, the looking-rich problem |
+| 17 | [[day-17\|The Wealth-Builder's Mindset]] | Definite aim, obsession, total accountability, control what you control, comfort is the early death |
 | 18 | [[day-18\|The 10X Rule]] | Massive goals + massive action, the shadow side, 60-day sprints |
 
 ## What you should have learnt by now
