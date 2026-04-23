@@ -184,8 +184,9 @@ export function useUserManagement() {
       const roleMatch = filters.role === "all" || 
         (filters.role === "no_roles" && user.admin_role === 'user') ||
         user.admin_role === filters.role;
+      const tierMatch = filters.tier === "all" || normalizeTier(user.access_tier) === filters.tier;
       
-      return searchMatch && statusMatch && roleMatch;
+      return searchMatch && statusMatch && roleMatch && tierMatch;
     });
 
     filtered.sort((a, b) => {
