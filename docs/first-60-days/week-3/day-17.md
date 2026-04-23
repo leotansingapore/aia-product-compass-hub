@@ -192,13 +192,13 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
 
 ## Quick quiz
 
-1. **The one-sentence test for an asset:**
+1. **Day 17 uses a strict one-sentence test that deliberately overrides the everyday meaning of "asset." What is the test?**
  - A) Does it cost more than $10,000?
- - B) Does it put money into your pocket? ✓
- - C) Does it appreciate over time?
+ - B) Does it put money *into* your pocket each year? ✓
+ - C) Does it appreciate in market value over time?
  - D) Do you own it outright?
 
- **Why:** The lesson defines an asset as anything that puts money into your pocket and a liability as anything that takes money out — price and ownership status are not the criteria. A sets a cost threshold that has nothing to do with cash flow. C is a common misconception; an appreciating item that generates no cash inflow (e.g., a primary home) is still mostly a liability by this framework. D ignores the cash-flow test entirely — something owned outright but generating no income is still not an asset under this definition.
+ **Why:** Day 17 defines an asset by **cash flow**, not by price, market appreciation, or ownership status. This is intentional. The everyday definitions of "asset" — *"my house is an asset," "my car is an asset," "my Rolex is an asset"* — mostly measure things that *look* valuable but don't *pay* the owner anything monthly. **C is the most defensible-sounding distractor**, because traditional accounting does treat appreciating items as assets — but Day 17's whole point is that an item appreciating on paper while consuming cash every month (a primary home with mortgage, tax, and maintenance — a car losing value but costing petrol and insurance) functions as a **liability in your monthly life.** Until the appreciating item is sold and the gain realised as cash, it doesn't pay you. A sets an arbitrary cost threshold. D measures legal title, not cash flow — a fully-paid car still costs petrol, insurance, and depreciation every month.
 
 2. **A primary home with a mortgage is classified as:**
  - A) Asset (always)
