@@ -32,15 +32,36 @@ From Grant Cardone's book of the same name, stripped to mechanics:
 
 This is not a motivational slogan. It's a planning discipline with specific rules.
 
-```mermaid
-flowchart TD
-    P1["1 - Set massive goals<br/>10x your target"]
-    P2["2 - Take massive action<br/>10x your activity"]
-    P3["3 - Never reduce the target<br/>increase action instead"]
-    P4["4 - Expect failures<br/>failure is feedback, not a stop sign"]
-    P5["5 - Overcome fear with action<br/>move your way out, not think your way out"]
-    P1 --> P2 --> P3 --> P4 --> P5
-```
+<div style="margin:1.5rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));text-align:center;margin-bottom:1.5rem;letter-spacing:.05em;text-transform:uppercase;">The five principles, in sequence</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;">
+    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
+      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Set massive goals</div>
+      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">10× your target</div>
+    </div>
+    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
+      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Take massive action</div>
+      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">10× your activity</div>
+    </div>
+    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
+      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Never reduce the target</div>
+      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Increase action instead</div>
+    </div>
+    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
+      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Expect failures</div>
+      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Feedback, not a stop sign</div>
+    </div>
+    <div style="padding:0 1rem;">
+      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
+      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Overcome fear with action</div>
+      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Move out, don't think out</div>
+    </div>
+  </div>
+</div>
 
 ## 2. The 5 principles
 
@@ -105,20 +126,49 @@ The learning happens in the doing. The plan refines itself as you move.
 
 ## 4. Where 10X thinking actually fails
 
-```mermaid
-flowchart LR
-    subgraph Works["10X works for (inputs you control)"]
-        W1["Activity volume<br/>calls, outreach, content"]
-        W2["Study volume<br/>products, objections, skills"]
-        W3["Preparation intensity<br/>role-plays, scripts"]
-        W4["Fear thresholds<br/>difficult conversations"]
-    end
-    subgraph Fails["10X does NOT work for"]
-        F1["Client buying decisions<br/>you don't control these"]
-        F2["Skill acquisition speed<br/>some skills need reps over time"]
-        F3["Relationships<br/>these need time, not 10x effort"]
-    end
-```
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:stretch;">
+  <div>
+    <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));letter-spacing:.05em;text-transform:uppercase;">Where it works</div>
+    <div style="margin-top:.5rem;font-family:ui-serif,serif;font-size:22px;line-height:1.3;">Inputs you control</div>
+    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));display:grid;gap:1rem;">
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Activity volume</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">calls, outreach, content</div>
+      </div>
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Study volume</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">products, objections, skills</div>
+      </div>
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Preparation intensity</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">role-plays, scripts</div>
+      </div>
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Fear thresholds</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">difficult conversations</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
+  <div>
+    <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));letter-spacing:.05em;text-transform:uppercase;">Where it fails</div>
+    <div style="margin-top:.5rem;font-family:ui-serif,serif;font-size:22px;line-height:1.3;">Outcomes you don't</div>
+    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));display:grid;gap:1rem;">
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Client buying decisions</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">not yours to 10×</div>
+      </div>
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Skill acquisition speed</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">some skills need reps over time</div>
+      </div>
+      <div>
+        <div style="font-family:ui-serif,serif;font-size:16px;">Relationships</div>
+        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">need time, not 10× effort</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
