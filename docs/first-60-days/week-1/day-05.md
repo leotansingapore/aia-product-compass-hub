@@ -189,9 +189,9 @@ Three of the most common new-FC instincts — and the honest, stronger version o
 
 There's a deeper underdog advantage that rarely gets named: **as a new FC, you have something a senior FC physically cannot have — time and attention to spare for the people closest to you.**
 
-A 15-year veteran with 400 clients can't pick up the phone every time a friend has a tax question. You can. The first people you'll genuinely *want* to help are also the people most likely to be neglected by their existing advisors — your parents, your siblings, your closest friends, the cousin who got married last year, the colleague who just had a kid. They've been getting generic advice from someone running a 400-client book on autopilot. You can give them custom thinking, slow conversations, and the patience to actually understand their situation.
+A 15-year veteran with 400 clients can't pick up the phone every time a friend has a tax question. You can. The first people you'll genuinely *want* to help are also the people most likely to be neglected by their existing advisors — your parents, your siblings, your closest friends, the cousin who got married last year, the colleague who just had a kid. They've been getting generic advice from someone running a 400-client base on autopilot. You can give them custom thinking, slow conversations, and the patience to actually understand their situation.
 
-That isn't a consolation prize for being new. It's a window that closes. In five years your book will be larger and your time per client will shrink. Right now is the only chapter where the people closest to you can also be the ones you serve best.
+That isn't a consolation prize for being new. It's a window that closes. In five years your client base will be larger and your time per client will shrink. Right now is the only chapter where the people closest to you can also be the ones you serve best.
 
 > Prospects who work with hungry, honest new FCs often become the most loyal clients. They watched you earn it.
 
@@ -231,7 +231,7 @@ This is the most important thing on this page.
 
 Pay and prestige are easy to measure. They are also unreliable proxies for whether the work was done right. Two markers are more honest:
 
-1. **Contribution.** What has been *given* to the people served — and to the colleagues who came up alongside. The size of a renewal book is one measure. The number of households whose financial life is materially better is the more important one.
+1. **Contribution.** What has been *given* to the people served — and to the colleagues who came up alongside. The size of a renewal income is one measure. The number of households whose financial life is materially better is the more important one.
 2. **Balance.** This career rewards monomania for a few years and punishes it forever after. The FCs who last 20+ years are not the ones who burned the brightest in Year 3. They are the ones who built a life — health, family, learning, time — *around* the work, not the other way around.
 
 Money will come. The question Day 5 is asking you to answer, before you write the first policy, is: **what kind of life is the money for?**

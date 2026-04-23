@@ -16,7 +16,7 @@ form_fields:
   - "Prospect profile|textarea|Age range, occupation, life stage, your read on their DISC style|3"
   - "Opening: what did the senior FC do in the first 5 minutes?|textarea|Rapport, mission statement, agenda - what specifically did they say?|4"
   - "The best question you heard|textarea|Write it word-for-word if you can. Then say why it worked.|4"
-  - "The concept they led with|textarea|Which concept - Total Wealth, Bank A/B, Protection ladder, CST Risk, etc. - and why do you think they picked it?|4"
+  - "The concept they led with|textarea|Which concept - Total Wealth, Total Wealth, Protection ladder, CST Risk, etc. - and why do you think they picked it?|4"
   - "First objection + how it was handled|textarea|The prospect's exact words, then the senior FC's 3-beat response|4"
   - "The close|textarea|How did they move to the close? Was there silence? Who broke it? Closed on product or on appointment?|4"
   - "The one thing you're stealing|textarea|Name one move, phrase, or technique you're using in your next 3 meetings.|3"

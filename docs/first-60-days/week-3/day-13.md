@@ -193,7 +193,7 @@ Never recommend based on the story alone. Use it to open a conversation, then do
 6. **A new FC finds the Job A/B story works beautifully — clients consistently identify their own gaps. They start using it as a closing tool, recommending products in the same meeting based on the columns the client flagged. According to Day 13, what's the issue?**
  - A) Nothing — if the story works, ride the momentum and close
  - B) The story is a diagnostic for *opening* a conversation, not a basis for product recommendations — proper fact-finding still has to happen before suggesting anything ✓
- - C) Switch to the Bank A/B story before closing — Job A/B can't carry a close
+ - C) Switch to the Total Wealth concept before closing — Job A/B can't carry a close
  - D) Use the Job A/B story only on first-meeting prospects, never on existing clients
 
  **Why:** Day 13's Section 6 is explicit: Job A/B is a *simplification*. Real clients have partial employer benefits, a spouse's coverage, kids at different ages, and existing policies that may or may not still fit. The story is for surfacing the gap conversation; the actual fact-finding (Weeks 8–9) must happen before any product is recommended. Closing on the story alone risks placing products that don't actually fit. A treats a powerful diagnostic as a closing tool. C swaps frameworks without addressing the missing fact-finding step. D invents a meeting-stage rule the lesson never makes.
@@ -211,4 +211,4 @@ Never recommend based on the story alone. Use it to open a conversation, then do
 ## Related
 
 - Previous: [[../week-2/day-12|Day 12 — The Financial Freedom Pyramid]]
-- Next: [[day-14|Day 14 — Bank A vs Bank B]]
+- Next: [[day-14|Day 14 — The Total Wealth Concept]]

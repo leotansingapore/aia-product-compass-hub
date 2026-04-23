@@ -33,7 +33,7 @@ Real wealth is a **portfolio of income sources** that includes:
 2. **Property** — if it genuinely generates rental income (primary home usually doesn't).
 3. **Investments** — stocks, bonds, unit trusts, ETFs. Liquid, growth-oriented.
 4. **Insurance-based accumulation** — endowment plans, ILPs, retirement plans. Forced savings with guarantees.
-5. **Business / self-employment income** — your own ventures, renewal books, royalties.
+5. **Business / self-employment income** — your own ventures, renewal incomes, royalties.
 
 If **one stream is cut off**, a wealthy client's lifestyle isn't affected. If a single-stream client loses their income, everything collapses.
 
@@ -178,13 +178,13 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
 
  **Why:** $4,000 compounded at 2% inflation for 40 years equals roughly $8,830/month — this is the worked example given in the lesson. A applies almost no inflation adjustment; a 2% difference over 40 years is far more than $200/month. B underestimates the power of compounding inflation over a 40-year horizon. D overstates it — $12,000 would require a higher inflation rate than the 2% stated.
 
-5. **A 45-year-old client says they'll start investing "in a couple of years." What's the most accurate way to quantify the cost of delay?**
+5. **A 45-year-old client says they'll start investing "in 3 years." What's the most accurate way to quantify the cost of that delay?**
  - A) Tell them compounding doesn't really kick in until after 30 years anyway
- - B) Use a retirement calculator to show that delaying 2 years typically costs 20-30% of total retirement capital ✓
+ - B) Use a retirement calculator to show the gap between "start now" and "start in 3 years" — typically 20–30% of total retirement capital ✓
  - C) Remind them that markets are unpredictable, so timing isn't critical
  - D) Reassure them that CPF will cover most of the gap
 
- **Why:** The content instructs FCs to use iResource's retirement calculator to show the gap between "start now" and "start in 3 years" — it's often 20–30% of final retirement capital, which is a concrete and sobering figure. A is false; compounding is exponential and every additional year adds to the base that compounds from that point. C actively discourages urgency, which is the opposite of what the lesson teaches. D overstates CPF's adequacy — most Singaporeans under-save, and the content says so explicitly.
+ **Why:** The lesson gives this instruction directly: use iResource's retirement calculator to show the gap between "start now" and "start in 3 years" — often 20–30% of final retirement capital. The previous version of this question said "a couple of years" / "delaying 2 years," which doesn't match the lesson's 3-year worked example. A is false; compounding is exponential and every additional year adds to the base that compounds from that point. C actively discourages urgency, the opposite of what the lesson teaches. D overstates CPF's adequacy — most Singaporeans under-save, and the lesson says so explicitly.
 
 6. **Which of the following is a SMART retirement goal?**
  - A) "I want to be financially comfortable when I stop working"
@@ -206,5 +206,5 @@ Clients who can state their goal in SMART form are 10x more likely to follow the
 
 ## Related
 
-- Previous: [[day-14|Day 14 — Bank A vs Bank B]]
+- Previous: [[day-14|Day 14 — The Total Wealth Concept]]
 - Next: [[day-16|Day 16 — Recurring vs Non-Recurring Revenue]]

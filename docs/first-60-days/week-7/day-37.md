@@ -12,7 +12,7 @@ tags: [first-60-days, week-7, skills]
 
 # Day 37 — The Approach: Why It Matters
 
-> **The one idea for today:** Most of the financial planning process happens *after* the first sale. The Approach is not the first step to a sale — it's the first step to a **lifetime relationship.** Frame it accordingly and your Year 5 book reflects the difference.
+> **The one idea for today:** Most of the financial planning process happens *after* the first sale. The Approach is not the first step to a sale — it's the first step to a **lifetime relationship.** Frame it accordingly and your Year 5 client base reflects the difference.
 
 ## What you'll walk away with
 
@@ -68,7 +68,7 @@ If you try to close all of that in meeting #1, you destroy the 20-year relations
 
 Here's the math that should govern how you treat every first meeting.
 
-**Typical numbers for a well-serviced FC's book:**
+**Typical numbers for a well-serviced FC's client base:**
 
 - Average client: **~$1,000** of commission in Year 1.
 - Cross-sells + upgrades over 30-year relationship: **~20–30× the initial commission.**
@@ -85,7 +85,7 @@ flowchart LR
     A["Year 1 commission<br/>~$1,000"]
     B["CLV multiplier<br/>20-30x"]
     C["Lifetime value<br/>~$25,000 per client"]
-    D["300 clients<br/>$7.5M total book"]
+    D["300 clients<br/>$7.5M total in-force premium"]
     A --> B --> C --> D
 ```
 
@@ -95,7 +95,7 @@ flowchart LR
 - You say no to oversold first meetings (they don't produce CLV).
 - You invest in service after the first sale (annual reviews, birthday calls, claim help).
 - You ask for referrals earlier and more confidently (each referral can be another $25K CLV).
-- You treat a "small" first policy as the foundation of a lifetime book, not a disappointing sale.
+- You treat a "small" first policy as the foundation of a lifetime client base, not a disappointing sale.
 
 ## 4. The three audiences for the Approach
 
@@ -210,7 +210,7 @@ Fix these four mental errors before learning a single script — and everything 
  - C) Skipping directly to Step 5 (implementation)
  - D) Getting a faster referral
 
- **Why:** Overselling the first meeting signals that the FC is chasing commission, not genuinely helping — this breaks the trust required for the candid data-sharing needed in Step 2. A is what the FC thinks they're gaining, but it sacrifices the CLV that makes a long-term book valuable. Skipping to Step 5 (C) is a different error. A forced, over-pitched first meeting actually reduces referral likelihood (D), not increases it.
+ **Why:** Overselling the first meeting signals that the FC is chasing commission, not genuinely helping — this breaks the trust required for the candid data-sharing needed in Step 2. A is what the FC thinks they're gaining, but it sacrifices the CLV that makes a long-term client base valuable. Skipping to Step 5 (C) is a different error. A forced, over-pitched first meeting actually reduces referral likelihood (D), not increases it.
 
 5. **Your warm market of 300 contacts realistically yields roughly how many clients?**
  - A) 150–200

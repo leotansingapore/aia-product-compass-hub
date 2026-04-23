@@ -98,7 +98,7 @@ When you sell a policy:
 - You earn a first-year commission.
 - You also earn **renewal commissions** — smaller amounts paid to you every year the client continues the policy. For 6, 10, sometimes 20+ years.
 
-Over time, your renewal book gets large enough that it can cover:
+Over time, your renewal income gets large enough that it can cover:
 - Your monthly expenses (you become *financially independent*)
 - And then exceed them (you become *financially free*)
 
@@ -132,7 +132,7 @@ Over time, your renewal book gets large enough that it can cover:
   </div>
 </div>
 
-### Real numbers: what a renewal book actually pays
+### Real numbers: what a renewal income actually pays
 
 Take one product line — personal accident insurance. A typical PA plan runs around **$50/month** in premium. Commission sits at roughly **30% of premium**, and most of that recurs as renewal income for as long as the client keeps paying.
 
@@ -158,7 +158,7 @@ By **Year 5 of consistent production**, more than half of an FC's monthly income
 Renewal commissions are the base. AIA layers three more streams on top:
 
 1. **Career Benefit (CB)** — for **Years 2 through 6**, your renewal income is effectively boosted by **~100%** as a career-building reward. During the most critical compounding window, CB roughly **doubles** your passive income.
-2. **Agent Provident Fund (APF)** — from **Year 7 onwards**, you receive **~1.5% per month** of every regular-premium policy still in force on your book. The longer you've been producing, the larger the base that 1.5% multiplies against.
+2. **Agent Provident Fund (APF)** — from **Year 7 onwards**, you receive **~1.5% per month** of every regular-premium policy still in force on your client base. The longer you've been producing, the larger the base that 1.5% multiplies against.
 3. **Team override** — once you build an agency, you earn a **percentage of your team's total production**. Income stops being capped by the hours in your day.
 
 ### One client is rarely just one policy
@@ -173,7 +173,7 @@ A single household can end up worth **20–50× the first sale** once you trace 
 
 **The picture to hold:** every policy you write is a golden goose. It pays once at the sale and then lays golden eggs every month, for years — compounded by Career Benefit, APF, team overrides, and the new clients each goose hatches through referrals.
 
-Most FCs underestimate how quickly this compounds. A modest book after 5–7 years of consistent production can throw off enough renewal income to remove the pressure of needing to sell.
+Most FCs underestimate how quickly this compounds. A modest client base after 5–7 years of consistent production can throw off enough renewal income to remove the pressure of needing to sell.
 
 ## 4. Job Fulfillment (The One That Keeps You)
 
@@ -245,7 +245,7 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) Multiple income streams including renewal commissions ✓
  - D) A base salary component
 
- **Why:** Day 3 argues that real security comes from multiple income streams, specifically the renewal commission book that keeps paying years after the original sale. A large agency (A) and MDRT status (B) are external markers that can be lost or that don't pay your bills when activity dips. A base salary component (D) is exactly the "security in a job" that Day 3 calls an illusion — one reorg ends it.
+ **Why:** Day 3 argues that real security comes from multiple income streams, specifically the recurring renewal commissions that keeps paying years after the original sale. A large agency (A) and MDRT status (B) are external markers that can be lost or that don't pay your bills when activity dips. A base salary component (D) is exactly the "security in a job" that Day 3 calls an illusion — one reorg ends it.
 
 4. **A friend tells you your job is risky because there's no guaranteed salary. What is the most accurate counter-argument based on Day 3?**
  - A) "AIA provides a base allowance for the first 2 years."
@@ -253,7 +253,7 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
  - C) "Top FCs earn far more than salaried employees, so the risk is worth it."
  - D) "You're right, but the career fulfillment makes up for the instability."
 
- **Why:** B directly applies Day 3's argument that salaried jobs carry their own hidden risk (reorg, redundancy, AI replacement) while the renewal book is a compounding asset that, for a consistent producer, can throw off more than 50% of total income by Year 5. A may be factually true but it concedes the frame that a base is what makes the job safe. C is a comparison argument, not a structural one. D concedes the instability point rather than refuting it.
+ **Why:** B directly applies Day 3's argument that salaried jobs carry their own hidden risk (reorg, redundancy, AI replacement) while the renewal income is a compounding asset that, for a consistent producer, can throw off more than 50% of total income by Year 5. A may be factually true but it concedes the frame that a base is what makes the job safe. C is a comparison argument, not a structural one. D concedes the instability point rather than refuting it.
 
 5. **Which of the six development capabilities listed in Day 3 is described as "what you do when no one is watching"?**
  - A) Entrepreneurial spirit

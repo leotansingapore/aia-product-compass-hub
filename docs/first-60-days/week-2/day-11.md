@@ -63,7 +63,7 @@ Robert Kiyosaki's framework, stripped to its bones:
 
 **S (Self-employed):** Freelancers, doctors in own practice, solo consultants. Higher income per hour, but **you are still the product.** If you stop, income stops.
 
-**B (Business):** You own a system that runs without you. Franchise owner, software company founder, and — critically — **a financial advisor with a large renewal book.**
+**B (Business):** You own a system that runs without you. Franchise owner, software company founder, and — critically — **a financial advisor with a large renewal income.**
 
 **I (Investor):** Pure capital at work. Dividends, interest, rent, appreciation.
 
@@ -108,7 +108,7 @@ Many new FCs think of themselves as **S** — self-employed, trading hours for c
 The architecture of this career is actually:
 
 - **Year 1–2:** You're in **S**. You're the only productive unit. Every dollar earned is a dollar you personally generated.
-- **Year 3+:** Your renewal book starts throwing off income that arrives **regardless of today's effort.** You've crossed partway into **B**.
+- **Year 3+:** Your renewal income starts throwing off income that arrives **regardless of today's effort.** You've crossed partway into **B**.
 - **Year 5+:** If you've hired associates, built a content/lead-gen engine, or built a referral partnership network — you're running a small **B** with real passive leverage.
 - **Year 7+:** Your investments (seeded by higher income) start producing **I** income.
 
@@ -136,11 +136,11 @@ You do the work once. You keep getting paid.
 
 Stack that across 200 clients over 10 years, and you have a machine.
 
-**Subscription economics show up everywhere.** Before you quit on Year 1, list the subscription businesses you already use — Netflix, Spotify, gym memberships, mobile plans, software, streaming. Their owners love them for the same reason your future self will love a well-serviced client book: **predictable, recurring income.**
+**Subscription economics show up everywhere.** Before you quit on Year 1, list the subscription businesses you already use — Netflix, Spotify, gym memberships, mobile plans, software, streaming. Their owners love them for the same reason your future self will love a well-serviced client base: **predictable, recurring income.**
 
 ## 4. The other passive lever — building a team
 
-The renewal book is one passive layer. There's a second one most new FCs don't think about until later — and underestimating it is one of the more common reasons FCs cap their income at the S-quadrant ceiling.
+The renewal income is one passive layer. There's a second one most new FCs don't think about until later — and underestimating it is one of the more common reasons FCs cap their income at the S-quadrant ceiling.
 
 **Override commissions.** When you recruit and mentor a new FC under your line and they sell a policy, AIA pays you an override — a percentage of their commission. The mechanics are simple, the math compounds fast:
 
@@ -154,7 +154,7 @@ That is the textbook **B-quadrant move**: you're no longer trading hours for inc
 
 | Lever | Source of income | Scales when you... |
 |---|---|---|
-| **Renewal book** | Your past work paying you forward (your sold policies, every year the client keeps them) | Sell consistently and service well |
+| **Renewal income** | Your past work paying you forward (your sold policies, every year the client keeps them) | Sell consistently and service well |
 | **Team overrides** | Other people's current work paying you (a percentage of every policy your downline writes) | Recruit, train, and mentor producers |
 
 Most senior FCs who reach Year 7+ in good standing have both. The ones who reach $1M+ income have built the team layer deliberately — usually starting in Year 3 or 4 once their own production is stable.
@@ -212,7 +212,7 @@ Three reasons. None of them are about intelligence or effort.
 
 **The FC career quietly solves all three:**
 - Training is structured, not academic — you learn by doing.
-- The S-to-B jump happens gradually through the renewal book, not a risky leap.
+- The S-to-B jump happens gradually through the renewal income, not a risky leap.
 - Higher income creates capital to invest, which builds the I layer over time.
 
 That's why this career is a genuine quadrant-crossing vehicle — if you last long enough to see it happen.
@@ -222,7 +222,7 @@ That's why this career is a genuine quadrant-crossing vehicle — if you last lo
 Don't pretend you're further along than you are. Most people in Week 2 of this program:
 
 - **Source of income today:** 100% E or S (job or freelancing).
-- **Source of income in 5 years, if you stay:** ~60% S, ~30% B (renewal book), ~10% I.
+- **Source of income in 5 years, if you stay:** ~60% S, ~30% B (renewal income), ~10% I.
 - **Source of income in 20 years, if you stay and build:** ~30% S, ~40% B, ~30% I.
 
 The goal isn't to hate your E income. It's to **stop it from being 100% of your income.**
@@ -237,7 +237,7 @@ flowchart LR
     Y5["Year 5<br/>60% S - 30% B - 10% I"]
     Y20["Year 20<br/>30% S - 40% B - 30% I"]
 
-    NOW -->|"Build renewal book"| Y5
+    NOW -->|"Build renewal income"| Y5
     Y5 -->|"Scale team + invest commissions"| Y20
 ```
 
@@ -255,10 +255,10 @@ flowchart LR
 2. **Which of these are mechanisms that turn an FC from S into B over time? (Select all that apply.)**
  - A) Recruiting and mentoring a team of advisors whose production you earn override commissions on ✓
  - B) Making more cold calls each week
- - C) A renewal book that produces recurring income regardless of daily effort ✓
+ - C) A renewal income that produces recurring income regardless of daily effort ✓
  - D) Selling the business
 
- **Why:** Both A and C are real S→B mechanisms — Day 11 names them as the two passive layers that compound together. The renewal book (C) is your past work paying you forward: every serviced policy generates income each year the client keeps it. Team overrides (A) are other people's current work paying you: when an FC you recruited and mentored sells a policy, you earn a percentage — income that arrives whether or not you sold anything personally. Most senior FCs who break the S-quadrant ceiling have built both layers deliberately. Cold calls (B) generate new active income but stay firmly in S — every dollar is one you personally produced. Selling the business (D) exits the career rather than transitioning quadrants.
+ **Why:** Both A and C are real S→B mechanisms — Day 11 names them as the two passive layers that compound together. The renewal income (C) is your past work paying you forward: every serviced policy generates income each year the client keeps it. Team overrides (A) are other people's current work paying you: when an FC you recruited and mentored sells a policy, you earn a percentage — income that arrives whether or not you sold anything personally. Most senior FCs who break the S-quadrant ceiling have built both layers deliberately. Cold calls (B) generate new active income but stay firmly in S — every dollar is one you personally produced. Selling the business (D) exits the career rather than transitioning quadrants.
 
 3. **Non-recurring revenue means:**
  - A) Monthly income
@@ -294,16 +294,16 @@ flowchart LR
 
 7. **A new FC is debating whether to leave because Year 1 commissions are low. The cashflow quadrant lesson suggests the most important question to ask is:**
  - A) "Am I closing enough policies this month?"
- - B) "Is my renewal book growing in a way that will shift me from S toward B over time?" ✓
+ - B) "Is my renewal income growing in a way that will shift me from S toward B over time?" ✓
  - C) "Should I move to an IFA model to access more products?"
  - D) "Is my hourly rate competitive with my corporate peer's salary?"
 
- **Why:** The quadrant lesson reframes the career decision from monthly commission (S thinking) to whether the recurring-revenue engine is being built (B trajectory). A renewal book growing now will pay into the future regardless of this month's production. Closing count (A) and hourly rate (D) both measure S-quadrant performance. Moving to an IFA model (C) is a product-access question that doesn't change the quadrant logic.
+ **Why:** The quadrant lesson reframes the career decision from monthly commission (S thinking) to whether the recurring-revenue engine is being built (B trajectory). A renewal income growing now will pay into the future regardless of this month's production. Closing count (A) and hourly rate (D) both measure S-quadrant performance. Moving to an IFA model (C) is a product-access question that doesn't change the quadrant logic.
 
 8. **A Year-1 FC is wondering when to start thinking about recruitment. Based on Day 11, what's the strongest counsel?**
  - A) Wait until Year 3 — you can't credibly mentor anyone until your own production is stable
  - B) Refer warm-market candidates to your upline from Day 1 — your mentor and the agency system carry the deeper conversations and the training, while you build the recruiting muscle in parallel ✓
- - C) Don't ever recruit — focus only on your own renewal book
+ - C) Don't ever recruit — focus only on your own recurring income
  - D) Wait until you've passed CMFAS and hit your first MDRT before introducing anyone to the team
 
  **Why:** Recruitment is a long-horizon foundation, not a switch you flip in Year 3. The earlier you start passively referring people you'd genuinely want to work with — friends, ex-colleagues, family contacts — the larger your future team. The credibility concern (A) misreads the role: you're not solo-mentoring anyone yet, you're **sourcing** — your upline and the agency system run the recruiting conversations and the early training. C ignores team override as a real B-quadrant lever and caps your income at your own production ceiling. D conflates personal milestones with team-building — they're separate skills built in parallel, and the warm-market window is widest *now*, before friends have heard pitches from other advisors.

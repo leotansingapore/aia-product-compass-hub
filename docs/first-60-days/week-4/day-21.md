@@ -77,7 +77,7 @@ Standard discovery questions (the five "hot buttons"):
 1. **How much do you need for retirement?** (Most clients don't know.)
 2. **Do you know how much medical expenses can be?** (Most underestimate by 10×.)
 3. **What happens if you can't work — hospitalised, sick, retrenched?** (Kids, mortgage, parents all affected.)
-4. **Are you saving in the bank and losing to inflation?** (The Bank A/B frame from Day 14.)
+4. **Are you saving in the bank and losing to inflation?** (The Total Wealth frame from Day 14.)
 5. **Do you want to invest — and do you know how?** (Most clients want to but are paralysed.)
 
 **Your job in this phase:** ask questions, then *pause* after each answer. Don't fill silence. The silence is when the client processes and often adds the most valuable detail.

@@ -33,7 +33,7 @@ Before choosing a career, most people only think about one — income. The riche
 | **Impact** | The work meaningfully changes someone's life | Varies | Direct, visible, durable |
 | **Independence** | You decide scope, strategy, schedule | Very low | High from Day 1 |
 | **Income** | Current and projected earning | Fixed salary + bonus | Uncapped, commission + renewals |
-| **Job security** | Your ability to keep earning through disruption | False sense — tied to employer | Based on your own book + skill |
+| **Job security** | Your ability to keep earning through disruption | False sense — tied to employer | Based on your own client base + skill |
 
 Few careers score well on all 5. This one has the architecture to, **if you build it right.**
 
@@ -73,7 +73,7 @@ flowchart LR
     Y1["Year 1<br/>Below corporate peer"]
     Y2["Year 2-3<br/>Crossover point"]
     Y3["Year 3+<br/>Skill compounding begins"]
-    Y5["Year 5+<br/>Renewal book widens gap"]
+    Y5["Year 5+<br/>Renewal income widens gap"]
 
     Y1 --> Y2 --> Y3 --> Y5
 
@@ -84,7 +84,7 @@ flowchart LR
 
 A common question from recruits: "what if I'm not earning enough in Year 1?"
 
-Many agencies offer an **income guarantee** or allowance for qualifying new advisors. This is not "free money." It's a **bridge** — the agency is betting that you'll stick long enough to build a book that self-sustains.
+Many agencies offer an **income guarantee** or allowance for qualifying new advisors. This is not "free money." It's a **bridge** — the agency is betting that you'll stick long enough to build a client base that self-sustains.
 
 Treat it accordingly:
 - It's not a salary. It runs out.
@@ -143,13 +143,13 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Year 2–3 ✓
  - D) Year 5
 
- **Why:** The earning-pattern chart shows Year 1 income below the corporate peer, a crossover around Year 2-3, and a widening gap from Year 3 onward as skill and renewal commissions compound. Month 6 (A) is still deep in the slow ramp. End of Year 1 (B) is too early — most FCs are still building their book. Year 5 (D) would mean five years of under-earning before any advantage, which contradicts the chart.
+ **Why:** The earning-pattern chart shows Year 1 income below the corporate peer, a crossover around Year 2-3, and a widening gap from Year 3 onward as skill and renewal commissions compound. Month 6 (A) is still deep in the slow ramp. End of Year 1 (B) is too early — most FCs are still building their client base. Year 5 (D) would mean five years of under-earning before any advantage, which contradicts the chart.
 
 2. **Day 8 closes with the line: "Be the advisor your clients talk about at funerals." What's the actual lesson behind it?**
  - A) Funeral preplanning is a high-impact product line to lead with
  - B) Impact is the part of the career no one talks about — slow to arrive, but it's why FCs are still in the chair 20 years in ✓
  - C) Estate planning is the highest-margin segment, so prioritise affluent clients
- - D) Maintain a record of which clients pass away each year for accurate book metrics
+ - D) Maintain a record of which clients pass away each year for accurate client-base metrics
 
  **Why:** The "Impact" section reads the line literally — an FC's work surfaces at a family's gravest moments (CI claims that keep a child in school, savings plans that prevent a forced home sale, hospital plans that absorb an ICU bill). Those moments are what bring FCs back to the office decade after decade. The earnings chart explains why you stay *financially*; impact explains why you stay *emotionally*. A and C misread the line as product or segment advice — neither belongs to this section. D reduces an emotional anchor of the career to a bookkeeping task.
 
@@ -175,7 +175,7 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
  - C) Work-life balance ✓
  - D) Job security
 
- **Why:** The five-factor table explicitly scores work-life balance as "Low in Y1-2, high in Y3+" — the only factor with that trajectory. Impact is direct and visible from the first claim moment, not delayed. Independence is high from Day 1 per the table. Job security is described as being based on your own book and skill, which builds over time but is not the factor with the starkest Y1-vs-Y3 contrast.
+ **Why:** The five-factor table explicitly scores work-life balance as "Low in Y1-2, high in Y3+" — the only factor with that trajectory. Impact is direct and visible from the first claim moment, not delayed. Independence is high from Day 1 per the table. Job security is described as being based on your own client base and skill, which builds over time but is not the factor with the starkest Y1-vs-Y3 contrast.
 
 6. **Two FCs both work 45 hours a week. FC A has a CRM, a weekly mentor review, and a referral workflow. FC B relies on memory and works by instinct. After three years, who is more likely to outperform — and why?**
  - A) FC B, because instinct develops faster than systems
@@ -187,11 +187,11 @@ Impact is slow to arrive and uneven in distribution. You may work for 18 months 
 
 7. **The reason passive income (renewal commissions) is described as a "compounding force" is:**
  - A) Renewal rates increase every year the client ages
- - B) Each well-serviced policy adds to a book that pays regardless of this month's new sales ✓
+ - B) Each well-serviced policy adds to a client base that pays regardless of this month's new sales ✓
  - C) The commission percentage doubles after Year 3
- - D) Clients automatically refer friends, multiplying the book with no extra effort
+ - D) Clients automatically refer friends, multiplying the client base with no extra effort
 
- **Why:** Renewal commissions are passive because the work was done once (the sale and service) and keeps generating income every year the client maintains the policy. Each new policy adds to the book, so the passive layer grows with every year of production. Renewal rates do not increase with age (A). Commission percentages do not double at Year 3 (C). Referrals are a separate benefit — they do not happen automatically without a referral workflow (D).
+ **Why:** Renewal commissions are passive because the work was done once (the sale and service) and keeps generating income every year the client maintains the policy. Each new policy adds to the client base, so the passive layer grows with every year of production. Renewal rates do not increase with age (A). Commission percentages do not double at Year 3 (C). Referrals are a separate benefit — they do not happen automatically without a referral workflow (D).
 
 ---
 

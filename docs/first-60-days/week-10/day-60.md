@@ -177,7 +177,7 @@ From Day 61 onward, your week is no longer a series of lessons — it's a repeat
   <div style="margin-top:18px;text-align:center;font-family:ui-serif,Georgia,serif;font-size:12.5px;font-style:italic;color:hsl(var(--muted-foreground));">— and back to <span style="color:hsl(var(--foreground));">Reconnect</span> —</div>
 </div>
 
-The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your book of business is just the sum of how many people are moving through this loop at any given time.
+The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your client base is just the sum of how many people are moving through this loop at any given time.
 
 ### Weekly target cadence (first 180 days)
 
@@ -196,7 +196,7 @@ These four numbers, run every week for 180 days, produce what most call "a real 
 
 Claims are *reactive* service — you're handling an event that already happened. The other, more important half of service is **proactive**: staying present in the client's life so that when something does happen, they call you first, not their bank, not Google, not another FC.
 
-Proactive service splits into four buckets. Run all four, every year, for every client. This is how you build a book that refers, renews, and never churns.
+Proactive service splits into four buckets. Run all four, every year, for every client. This is how you build a client base that refers, renews, and never churns.
 
 ### Bucket 1 — Immediately after a sale
 The first 30 days after a close set the tone for the next 30 years.
@@ -282,7 +282,7 @@ What does the Year-3 version of you look like?
 - 150–300 active clients.
 - Annual review rhythm running for a year or two.
 - First major claims processed.
-- First real renewal-book income arriving regardless of new sales.
+- First real renewal-income income arriving regardless of new sales.
 - MDRT qualification (or clear path to).
 - A few direct referrers who fund 30%+ of your new business.
 - A publicly visible brand (social, referrals, recognised in your niche).

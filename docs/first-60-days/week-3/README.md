@@ -14,7 +14,7 @@ tags: [first-60-days, week-3]
 | Day | Title | Focus |
 |---:|---|---|
 | 13 | [[day-13\|Job A vs Job B]] | Coverage across all life scenarios, not just when well |
-| 14 | [[day-14\|Bank A vs Bank B]] | The opportunity cost of "safe" bank savings |
+| 14 | [[day-14\|Total Wealth Concept]] | The opportunity cost of "safe" bank savings |
 | 15 | [[day-15\|Wealth Building Principles]] | Multiple streams, accumulation vs preservation, early-start math |
 | 16 | [[day-16\|Recurring vs Non-Recurring Revenue]] | The economics of your future renewal book |
 | 17 | [[day-17\|Assets vs Liabilities]] | The one-sentence test, real net worth, the looking-rich problem |

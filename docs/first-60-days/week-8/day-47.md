@@ -228,9 +228,9 @@ SPIN + DISC + Storytelling sits inside a broader stance: **Consultative Selling.
 - Your primary currency is **trust**, not persuasion.
 - You **help the client buy**, rather than sell them.
 
-A consultative-selling approach in Year 1 feels slower. By Year 5, it compounds into a book that requires fewer new meetings because referrals flow from satisfied clients.
+A consultative-selling approach in Year 1 feels slower. By Year 5, it compounds into a client base that requires fewer new meetings because referrals flow from satisfied clients.
 
-The "hard sell" approach produces faster first-year results but burns out the advisor and the book by Year 3–4.
+The "hard sell" approach produces faster first-year results but burns out the advisor and the client base by Year 3–4.
 
 **You're in this for 20 years. Choose accordingly.**
 

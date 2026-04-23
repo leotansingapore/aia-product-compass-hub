@@ -20,7 +20,7 @@ By the end of today you should be able to:
 
 1. **Classify** any income stream (yours, your clients', any business you see) as recurring or non-recurring.
 2. **Explain** why recurring revenue is disproportionately valuable — for companies and individuals.
-3. **Architect** your own future renewal book as a compounding recurring asset.
+3. **Architect** your own future renewal income as a compounding recurring asset.
 
 ---
 
@@ -42,24 +42,21 @@ By the end of today you should be able to:
 
 **Why this matters:** non-recurring income is inherently unstable. You have to re-sell every month. Recurring income is inherently stable. You sell once and the same customer pays again and again, if the service is kept up.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:start;">
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Non-recurring</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.3;color:hsl(var(--foreground));margin-bottom:0.9rem;">One transaction, one payment, then it's over.</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(var(--muted-foreground));">You re-sell every month. Income resets to zero on day 1.</div>
-      <div style="margin-top:1rem;font-family:ui-serif,Georgia,serif;font-size:28px;color:hsl(var(--foreground));">1–2×<span style="font-size:12px;font-family:system-ui,sans-serif;color:hsl(var(--muted-foreground));margin-left:0.4rem;letter-spacing:0.05em;">revenue, when sold</span></div>
-    </div>
-    <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Recurring</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.3;color:hsl(var(--foreground));margin-bottom:0.9rem;">One decision, many payments over time.</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(var(--muted-foreground));">Sell once. The same customer pays again and again, as long as the service holds.</div>
-      <div style="margin-top:1rem;font-family:ui-serif,Georgia,serif;font-size:28px;color:hsl(var(--foreground));">5–10×<span style="font-size:12px;font-family:system-ui,sans-serif;color:hsl(var(--muted-foreground));margin-left:0.4rem;letter-spacing:0.05em;">revenue, when sold</span></div>
-    </div>
-  </div>
-  <div style="margin-top:1.25rem;text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Same revenue. Different multiple. Predictability is what's being priced.</div>
-</div>
+```mermaid
+flowchart LR
+    subgraph NR["Non-Recurring"]
+        NR1["One transaction<br/>one payment"]
+        NR2["Must re-sell<br/>every month"]
+        NR3["Business value<br/>1-2x revenue"]
+    end
+    subgraph R["Recurring"]
+        R1["One decision<br/>many payments over time"]
+        R2["Sell once<br/>customer pays again and again"]
+        R3["Business value<br/>5-10x revenue"]
+    end
+    NR1 --> NR2 --> NR3
+    R1 --> R2 --> R3
+```
 
 ## 2. The subscription economy is everywhere
 
@@ -83,9 +80,9 @@ If you own a business and sell it:
 
 Same revenue. 5× the value. Why? Because predictability is worth a premium. A buyer can count on recurring revenue continuing; non-recurring revenue might evaporate with the seller.
 
-**What this means for your career:** every policy you service well builds a **compounding asset** — not just a monthly commission. Over 10+ years, the value of your renewal book can exceed the total value of the commissions you earned in that same period.
+**What this means for your career:** every policy you service well builds a **compounding asset** — not just a monthly commission. Over 10+ years, the value of your renewal income can exceed the total value of the commissions you earned in that same period.
 
-## 4. Your renewal book — the math
+## 4. Your renewal income — the math
 
 Let's make this concrete.
 
@@ -94,9 +91,9 @@ Let's make this concrete.
 Assume:
 - You close **30 policies/year** with an average annual premium of $3,000.
 - Year-1 commission is 40% of first-year premium, renewal commission is 5% from Year 2 onwards.
-- Most policies stay on the books for 15+ years.
+- Most policies stay in force for 15+ years.
 
-| Year | New policies | First-year income (40%) | Renewal book income (5% × total book) | Total |
+| Year | New policies | First-year income (40%) | Renewal income (5% × total in-force premium) | Total |
 |---:|---:|---:|---:|---:|
 | 1 | 30 | $36,000 | $0 | $36,000 |
 | 3 | 30 | $36,000 | $9,000 (60 existing) | $45,000 |
@@ -108,36 +105,87 @@ By Year 15, **more than half your income is arriving regardless of this month's 
 
 **This is the B-quadrant transition we discussed on Day 11 — but now with arithmetic.**
 
-## 5. The flip side — what kills a renewal book
+### The full AIA picture — active vs passive % over 10 years
 
-Renewal income isn't guaranteed. A policy cancelled early, lapsed, or surrendered produces zero future renewal commission, often a clawback of the first-year commission, and — if it happens repeatedly — reputational damage that follows you across the next decade of prospecting.
+The simplified table above only shows *renewals*. The actual AIA income structure layers four passive streams on top of FYC:
 
-The pattern is consistent enough to draw two lists.
+- **Renewals** — recurring commission on every in-force regular-premium policy.
+- **Career Benefit (CB)** — boost on Y2–Y6 renewal income.
+- **Agent Provident Fund (APF)** — kicks in from Year 7.
+- **PA-commission renewals** — separate recurring stream from accident plans.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:start;">
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.75rem;">What quietly kills a renewal book</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:16px;line-height:1.55;color:hsl(var(--foreground));">
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Premiums the client can't sustain in a bad year.</div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">A product that never quite fitted, sold anyway.</div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Silence between Year 1 and the day the client wants to claim.</div>
-        <div style="padding:0.5rem 0;">An advisor who left the industry without warming the handover.</div>
-      </div>
-    </div>
-    <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.75rem;">What keeps it compounding</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:16px;line-height:1.55;color:hsl(var(--foreground));">
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">A premium that survives a salary cut.</div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">One honest annual review — birthday, anniversary, anything.</div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Life-stage updates: new baby, new job, new mortgage.</div>
-        <div style="padding:0.5rem 0;">Staying in the industry long enough for the math to work.</div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:1.25rem;text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Sell slightly less. Service a lot more. Year-15 income depends on it.</div>
-</div>
+When all four are added, the **passive share of total income climbs aggressively**:
+
+| Year | Active (FYC + bonuses) | Passive (Renewals + CB + APF + PA renewals) | Passive % |
+|---:|---:|---:|---:|
+| 1 | ~$83,500 | ~$1,500 | **~2%** |
+| 3 | ~$47,500 | ~$47,000 | **~50%** |
+| 5 | ~$47,500 | ~$68,500 | **~59%** |
+| 10 | ~$47,500 | ~$92,500 | **~66%** |
+
+By **Year 3** half your income already arrives passively. By **Year 10** it's roughly **two-thirds.** This is the structural reason consistent FCs eventually stop chasing FYC and start protecting their renewal layers.
+
+> Run the live calculator at the **Income Layers — Detailed** view in the Engage Point Play tool to see the breakdown for your own assumed production.
+
+### The lifetime value of a single client
+
+Most new FCs think of a client as a single sale. Senior FCs think of them as a **lifetime cash flow** — and the difference is enormous.
+
+A typical well-served household kept for 20+ years can produce:
+
+- **Renewals on the original policy** — at 5% of a $3,000 annual premium for 20 years, that's $3,000+ from one policy alone, before counting the FYC.
+- **Career Benefit and APF** on every policy sold — multiplies the base.
+- **Cross-sells as life events stack** — wedding (savings + life cover), kids (education + medical), property (mortgage + life), parents (medical + estate) — each new policy starts its own renewal stream.
+- **Referrals** — a satisfied client typically introduces 1–3 friends or family members across their tenure with you.
+
+Add it all up honestly and a single household, kept long-term, is conservatively worth **20–50× the original first-year commission.**
+
+This is why **being scared off by a small first-year case is one of the most expensive habits a new FC can develop.** The FYC is the first cheque, not the whole sale. The decision isn't "Is this client worth my time today?" — it's "Will this client compound for me over the next twenty years?"
+
+## 5. The flip side — what kills a renewal income
+
+```mermaid
+flowchart TD
+    subgraph Kill["What kills renewals"]
+        K1["Over-sold clients<br/>premiums unsustainable"]
+        K2["Poor product fit<br/>client surrenders later"]
+        K3["No service touchpoints<br/>client moves advisor"]
+    end
+    subgraph Keep["What keeps renewals"]
+        P1["Honest fit<br/>premiums client can sustain"]
+        P2["Annual touchpoints<br/>birthday call, review, claims"]
+        P3["Life-stage updates<br/>new baby, new job"]
+    end
+    K1 -->|"lapse + clawback"| Loss["Lost renewal income"]
+    K2 --> Loss
+    K3 --> Loss
+    P1 --> Gain["Compounding renewal income"]
+    P2 --> Gain
+    P3 --> Gain
+    style Loss fill:#7f1d1d,color:#fca5a5
+    style Gain fill:#14532d,color:#86efac
+```
+
+
+
+Renewal income isn't guaranteed. A policy cancelled early, lapsed, or surrendered produces:
+- Zero future renewal commission.
+- Clawback of first-year commission (often).
+- Reputation damage if multiple policies drop.
+
+**What kills renewals:**
+1. **Over-sold clients** — premiums they can't sustain → lapsed policy.
+2. **Poor fit products** — client realises later it's wrong → surrenders.
+3. **No service** — client doesn't feel the relationship → moves advisor.
+4. **Advisor disappears** — leaves the industry → clients orphaned.
+
+**What keeps renewals:**
+1. **Honest fit** — premiums the client can sustain even in bad years.
+2. **Annual touchpoints** — birthday call, annual review, claims help.
+3. **Life-stage updates** — new baby = policy review, new job = update.
+4. **Staying in the industry.**
+
+**The mindset:** sell slightly less, service a lot more. Your Year-15 income depends on it.
 
 ## 6. Teaching this to clients
 
@@ -153,45 +201,45 @@ The recurring/non-recurring frame helps clients understand why:
 
 ## Quick quiz
 
-1. **Recurring revenue is valued ~5–10× higher than non-recurring because:**
- - A) It's taxed more favourably
- - B) It's more predictable ✓
- - C) It requires less work
- - D) It's from larger customers
+1. **Day 16 reframes the FC career around recurring income. What's the most important mindset shift for a Year-1 FC?**
+ - A) Maximise first-year commission on every case to fund the early grind
+ - B) Treat every well-fit client as a long-term recurring income stream — over a career, renewals will dwarf the original FYC ✓
+ - C) Focus only on big-premium cases; small policies aren't worth the time
+ - D) Build a personal investment portfolio instead of relying on renewals
 
- **Why:** Predictability is the premium — a buyer of a recurring-revenue business can count on that income continuing, whereas non-recurring revenue could evaporate the day the seller leaves. The content states this directly in the valuation comparison ($1M non-recurring = 1–2x; $1M recurring = 5–10x). A is false; revenue type does not change tax treatment in this context. C conflates the result of a mature book with the reason for the valuation multiple. D is not mentioned as a factor in the content.
+ **Why:** Day 16 makes the trajectory explicit — by Year 3 a consistent FC's income is already ~50% passive, by Year 5 around 60%, and by Year 10 roughly **two-thirds** arrives from renewals, Career Benefit, APF, and PA-renewal layers — regardless of this month's new sales. A overweights FYC and produces the over-selling pattern that destroys the renewal layer. C is the lazy/scared mindset that caps a Year-15 income at a Year-1 size — even small policies compound for decades, plus the same client typically buys more plans and refers others. D substitutes a personal investing layer for the career layer; both can exist, but the question is about the FC business model.
 
-2. **What kills a renewal book fastest?**
+2. **What kills a renewal income fastest?**
  - A) A stock market drop
  - B) Policies cancelled, lapsed, or surrendered because of poor fit or over-selling ✓
  - C) Advisor competition
  - D) Company mergers
 
- **Why:** The content lists four killers of renewal income — over-sold clients, poor-fit products, no service, and advisor disappearance — all of which lead to policy cancellations, lapses, or surrenders, often triggering first-year commission clawbacks as well. A is a market-risk factor but not listed as a primary killer of renewals; most insurance policies are not directly tied to equity performance. C and D are external factors not mentioned in the content as primary threats to a well-maintained book.
+ **Why:** The content lists four killers of renewal income — over-sold clients, poor-fit products, no service, and advisor disappearance — all of which lead to policy cancellations, lapses, or surrenders, often triggering first-year commission clawbacks as well. A is a market-risk factor but not listed as a primary killer of renewals; most insurance policies are not directly tied to equity performance. C and D are external factors not mentioned in the content as primary threats to a well-maintained client base.
 
-3. **The mindset that protects long-term renewal income:**
- - A) Sell more, service less
- - B) Sell slightly less, service a lot more ✓
- - C) Focus on the biggest premiums
- - D) Avoid annual reviews (clients re-evaluate)
+3. **Which mindsets protect long-term renewal income? (Select all that apply.)**
+ - A) Take on every well-fit client, even those with small first-year commissions — every long-term client is a recurring income stream that compounds for decades ✓
+ - B) Sell slightly less, service a lot more — your Year-15 income depends on it ✓
+ - C) Skip clients with small premiums to focus only on bigger cases
+ - D) Avoid annual reviews so clients don't reconsider their plans
 
- **Why:** The content states this explicitly as the protective mindset: "sell slightly less, service a lot more — your Year-15 income depends on it." Over-selling leads to lapses and clawbacks that undermine the entire renewal book. A is the exact opposite of the correct mindset. C prioritises premium size over fit, which is one of the listed causes of lapsed policies. D gets it backwards — annual reviews (birthday calls, life-stage updates) are specifically listed as what keeps renewals.
+ **Why:** Both A and B are explicit Day 16 mindsets. A: every client kept long-term throws off renewal income that often exceeds the original FYC many times over — being scared off by a low first-year cheque is the lazy mindset that caps a Year-15 income at a Year-1 size. The same client also typically buys more plans, refers others, and stays for decades. B: over-selling produces the lapses that destroy the renewal layer; service is what keeps the income compounding. C is the exact opposite of A. D would actively harm renewals — annual reviews (birthday calls, life-stage updates) are explicitly named as what keeps them.
 
-4. **An FC has been in the industry for 10 years, consistently closing 30 policies/year with $3,000 average premium. Approximately what portion of their income now arrives from renewals regardless of new sales?**
- - A) Less than 10%
- - B) About 25%
- - C) More than half ✓
- - D) Close to 100%
+4. **According to the AIA income model used in the income calculator, by Year 10 of consistent production, roughly what proportion of an FC's total income arrives passively (renewals + Career Benefit + APF + PA renewals) regardless of new sales that month?**
+ - A) About 25%
+ - B) About 40%
+ - C) About 50%
+ - D) About two-thirds (~66%) ✓
 
- **Why:** The Year-10 row in the content's model table shows first-year income of $36,000 and renewal income of $40,500 — meaning renewals already exceed new-policy income and account for more than half of the total $76,500. A and B dramatically undercount the renewal book that a decade of consistent production builds. D overstates it; at Year 10 the FC is still generating substantial new-policy income in parallel.
+ **Why:** The detailed AIA income breakdown shows that by Year 10, the passive layers — renewals on regular-premium policies, Career Benefit on Y2-6 production, APF starting Y7, and PA-commission renewals — account for roughly **66%** of total income. The crossover happens around **Year 3** (already ~50% passive), accelerates to ~60% by Year 5, and stabilises in the mid-60s by Year 10. A and B significantly understate the speed at which the passive layer compounds. C is closer but is the Year-3 figure, not Year-10.
 
-5. **A client asks why they should put money into a CPF LIFE plan instead of taking a retirement lump sum. The best recurring/non-recurring frame is:**
- - A) CPF LIFE has better returns than lump-sum investments
- - B) A lump sum is harder to manage in old age
- - C) CPF LIFE is recurring income for life — it's more valuable because it cannot be outlived ✓
- - D) Lump sum payouts are taxed more heavily
+5. **Two FCs both join in Year 1. FC A focuses only on cases with the largest first-year commissions and skips smaller clients. FC B serves every well-fit client, including smaller ones, and reviews each one annually. By Year 10, who is more likely to have the higher total income — and why?**
+ - A) FC A — bigger cases produce bigger compounding returns
+ - B) FC B — every long-term client adds renewals, Career Benefit on those policies, future plans, and referrals; the breadth of the base dwarfs FC A's narrow one ✓
+ - C) They tie — first-year commission size is the dominant factor in long-term income
+ - D) FC A — fewer clients means less servicing overhead and a higher net margin
 
- **Why:** The recurring/non-recurring frame is that a payment received for life cannot be outlived — it is recurring income that pays regardless of longevity, which the content explicitly names as the reason an annuity is more valuable than a lump sum. A makes a return comparison that is not part of the frame and may not always be true. B is a practical argument but is not the recurring-vs-non-recurring framing the question asks for. D is false; CPF payouts and lump sums are generally not subject to income tax in Singapore.
+ **Why:** This is the central insight of Day 16. The recurring layer compounds with every long-term client kept on the books, and by Year 10 that layer (renewals + Career Benefit + APF + PA renewals) is roughly two-thirds of total income. FC B's broader base produces more renewal streams, more Career Benefit dollars, a larger APF base, more cross-sells over the client's life events, and far more referral surface area. FC A's larger-FYC focus might win Year 1 but loses every year after. A confuses FYC size with compounding behaviour. C contradicts the entire renewal lesson. D treats client count as overhead rather than as the asset that *produces* the renewal income.
 
 6. **Which of the following advisor behaviours most directly threatens renewal income?**
  - A) Doing annual reviews and suggesting policy upgrades
@@ -199,15 +247,15 @@ The recurring/non-recurring frame helps clients understand why:
  - C) Selling a client a premium they cannot sustain in a bad year, leading to a lapse ✓
  - D) Using renewal commissions as a reason to recommend longer-tenure policies
 
- **Why:** An over-sold client who lapses a policy eliminates all future renewal income from that policy and may trigger a first-year clawback — the most direct financial harm to the renewal book. A is explicitly listed as something that keeps renewals. B is actually protective behaviour — a premium the client can sustain reduces lapse risk. D is an ethical concern but is a secondary issue compared to the direct damage an unaffordable-premium lapse causes.
+ **Why:** An over-sold client who lapses a policy eliminates all future renewal income from that policy and may trigger a first-year clawback — the most direct financial harm to the renewal income. A is explicitly listed as something that keeps renewals. B is actually protective behaviour — a premium the client can sustain reduces lapse risk. D is an ethical concern but is a secondary issue compared to the direct damage an unaffordable-premium lapse causes.
 
-7. **The subscription economy analogy (Netflix, gym, mobile plans) is useful when explaining your business model because:**
- - A) It shows clients that recurring payments are always fair value
- - B) It helps clients understand that you, like those businesses, are paid renewals for continued service — making client retention your business model ✓
- - C) It positions insurance as a consumer product
+7. **The subscription economy analogy (Netflix, gym memberships, mobile plans) appears in Day 16 because:**
+ - A) It helps clients understand why ongoing premiums are fair
+ - B) It positions insurance as a consumer product
+ - C) It helps the FC internalise that their own career *is* a subscription business — clients are the subscribers, service is the product, and retention is the entire game ✓
  - D) It makes the commission conversation less awkward
 
- **Why:** The analogy works because clients already live inside a subscription economy and understand that ongoing payments sustain ongoing service — which is exactly how renewal commissions work for an FC. A overstates it; the analogy is about the model structure, not about justifying every payment as fair. C is a misuse of the analogy that trivialises the advisory relationship. D may be a side effect, but that is not the stated purpose of the analogy in the content.
+ **Why:** The analogy is a mindset tool for the FC, not a sales tool for the client. Day 16 wants the new FC to see their own career through a model they already understand: subscription businesses live and die by retention, and every long-term client is a subscriber who keeps paying as long as service stays good. That mental model reshapes the FC's behaviour — more service, fewer over-sells, more annual reviews, more deliberate referrals — to keep the "subscriber base" healthy. A treats the analogy as a sales line. B trivialises the advisory relationship. D is a side effect at best, not the stated purpose.
 
 ---
 

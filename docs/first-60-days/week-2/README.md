@@ -35,4 +35,4 @@ tags: [first-60-days, week-2]
 
 ## Next week
 
-**Week 3 — Wealth Building Principles.** You'll drill into the mechanics: Job A vs Job B, Bank A vs Bank B, the wealth-building rules, and why the 10X Rule is the only mindset shift that changes outcomes.
+**Week 3 — Wealth Building Principles.** You'll drill into the mechanics: Job A vs Job B, Total Wealth Concept, the wealth-building rules, and why the 10X Rule is the only mindset shift that changes outcomes.

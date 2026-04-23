@@ -41,7 +41,7 @@ That's it. Apply it to anything.
     <div>
       <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Yes — money flows in</div>
       <div style="font-family:ui-serif,Georgia,serif;font-size:26px;line-height:1.2;color:hsl(var(--foreground));margin-bottom:0.75rem;letter-spacing:-0.01em;">Asset</div>
-      <div style="font-size:13px;line-height:1.6;color:hsl(var(--muted-foreground));">Rental property · CPF · dividend stocks · renewal book</div>
+      <div style="font-size:13px;line-height:1.6;color:hsl(var(--muted-foreground));">Rental property · CPF · dividend stocks · renewal income</div>
     </div>
     <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
     <div>
@@ -67,7 +67,7 @@ That's it. Apply it to anything.
 | **Participating endowment in cash-value phase** | **Asset** | Distributes cash value / coupons. |
 | **CPF accumulating with interest** | **Asset** | Compounding in your favour. |
 | **Rental business / small business throwing off profit** | **Asset** | Monthly inflow. |
-| **Renewal commission book (for FCs)** | **Asset** | Pays you whether you show up this month or not. |
+| **Recurring renewal commissions (for FCs)** | **Asset** | Pays you whether you show up this month or not. |
 
 **The failure pattern:** most middle-class clients have **many "assets"** by their own reckoning. Most of them are liabilities in disguise.
 

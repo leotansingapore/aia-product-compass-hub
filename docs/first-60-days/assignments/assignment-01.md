@@ -27,7 +27,7 @@ This assignment forces you to internalise the Total Wealth story end-to-end: the
 Before recording, re-read or re-skim each of these. The **Why** you're delivering sits inside this content — trying to memorise the script without the why produces a flat delivery.
 
 - [Day 10 — Your Greatest Purchase = Freedom](../../first-60-days/week-2/day-10.md) — freedom as the product you actually sell
-- [Day 14 — Bank A vs Bank B](../../first-60-days/week-3/day-14.md) — the pen-and-paper script that makes compounding real
+- [Day 14 — The Total Wealth Concept](../../first-60-days/week-3/day-14.md) — the pen-and-paper script that makes compounding real
 - [Day 15 — Wealth Building Principles](../../first-60-days/week-3/day-15.md) — compounding, time horizon, cost of delay
 - [Day 21 — Closing & Sales Appointment Framework](../../first-60-days/week-4/day-21.md) — the 5-phase structure you will actually run inside the roleplay
 - [Day 43 — Scripting Your Approach](../../first-60-days/week-8/day-43.md) — how to deliver canned tracks without sounding canned
@@ -50,7 +50,7 @@ One sentence of the agenda: *"Today we will understand where you are, share what
 This is the heart of the roleplay. Walk through:
 - **What financial freedom actually means** — passive income > monthly expenses.
 - **The freedom number** — ask them their monthly expenses, multiply by 12, divide their target passive income by an expected yield.
-- **The Bank A vs Bank B illustration** — on paper. $100/month in Bank A at 0.05% vs Bank B at a compounding return. Pause after writing each number. Let the delta land.
+- **The Total Wealth Concept illustration** — on paper. $100/month in Bank A at 0.05% vs Bank B at a compounding return. Pause after writing each number. Let the delta land.
 - **Where they are today vs where they need to be** — the gap surfaces by itself if you've asked their expenses and their current savings.
 
 ### 4. Silence + the appointment close (2 to 3 min)
