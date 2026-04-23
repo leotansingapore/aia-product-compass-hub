@@ -95,18 +95,13 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
     (async () => {
       try {
         const { data, error } = await supabase
-          .from('user_slide_submissions' as never)
+          .from('user_slide_submissions')
           .select('slide_id, answer_text, screenshot_url, submitted_at')
           .eq('user_id', user.id);
         if (error) throw error;
         if (cancelled) return;
 
-        const rows = (data as Array<{
-          slide_id: string;
-          answer_text: string | null;
-          screenshot_url: string | null;
-          submitted_at: string;
-        }> | null) ?? [];
+        const rows = data ?? [];
 
         const next = new Map<string, SlideSubmission>();
         for (const row of rows) {
@@ -181,7 +176,7 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
       // Fire-and-forget upsert. Keep optimistic state on failure.
       try {
         const { error } = await supabase
-          .from('user_slide_submissions' as never)
+          .from('user_slide_submissions')
           .upsert(
             {
               user_id: user.id,
@@ -189,7 +184,7 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
               answer_text: optimistic.answerText,
               screenshot_url: optimistic.screenshotUrl,
               submitted_at: now,
-            } as never,
+            },
             { onConflict: 'user_id,slide_id' },
           );
         if (error) throw error;

@@ -43,75 +43,6 @@ Notes:
 
 Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
 
-### Atomic-slide verification for CMFAS Study Desk — `user_slide_submissions` + `checklist-screenshots` bucket
-
-Boss feedback: learners bulk-tick the get-ready slides without actually doing the steps (especially Section 3 "Unlock the question bank" — his biggest pain). We are breaking Sections 2, 3, and 5 of the study desk into ~14 atomic sub-slides; each sub-slide has a verification form in its aside (checkbox / short text / screenshot upload) that must be submitted before "Mark as done" enables. Submissions become an audit trail for admins.
-
-Please ship the following:
-
-```sql
--- Per-slide submission row. One slide = at most one row per user.
-CREATE TABLE user_slide_submissions (
-  user_id        uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  slide_id       text NOT NULL,
-  answer_text    text,
-  screenshot_url text,
-  submitted_at   timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (user_id, slide_id)
-);
-CREATE INDEX idx_user_slide_submissions_user ON user_slide_submissions(user_id);
-
-ALTER TABLE user_slide_submissions ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "user_slide_submissions_select_own"
-  ON user_slide_submissions FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "user_slide_submissions_insert_own"
-  ON user_slide_submissions FOR INSERT WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "user_slide_submissions_update_own"
-  ON user_slide_submissions FOR UPDATE
-  USING (auth.uid() = user_id)
-  WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "user_slide_submissions_delete_own"
-  ON user_slide_submissions FOR DELETE USING (auth.uid() = user_id);
-
--- Admins read any row for future audit dashboard.
-CREATE POLICY "user_slide_submissions_select_admin"
-  ON user_slide_submissions FOR SELECT
-  USING (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'));
-
--- Private storage bucket for verification screenshots.
-INSERT INTO storage.buckets (id, name, public)
-VALUES ('checklist-screenshots', 'checklist-screenshots', false);
-
--- Learners read/write only inside their own <user_id>/ folder.
-CREATE POLICY "checklist_screenshots_owner_all"
-  ON storage.objects FOR ALL TO authenticated
-  USING (
-    bucket_id = 'checklist-screenshots'
-    AND (storage.foldername(name))[1] = auth.uid()::text
-  )
-  WITH CHECK (
-    bucket_id = 'checklist-screenshots'
-    AND (storage.foldername(name))[1] = auth.uid()::text
-  );
-
--- Admins read any screenshot (admin dashboard, shipping later).
-CREATE POLICY "checklist_screenshots_admin_read"
-  ON storage.objects FOR SELECT TO authenticated
-  USING (
-    bucket_id = 'checklist-screenshots'
-    AND (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'))
-  );
-```
-
-Notes:
-- Composite PK `(user_id, slide_id)` → resubmissions upsert cleanly, no duplicates.
-- Bucket is private — client displays via 1-hour signed URLs.
-- Storage path convention the client will use: `<user_id>/<slide_id>.<ext>` (so the owner-policy `foldername(name)[1]` scope check works).
-- No update/delete policy on storage for admins — read-only is enough for the audit dashboard.
-
-Client ships alongside: `useSlideSubmissions` hook, 18-entry `GET_READY_SLIDES` flat list in `getReadySlideContent.ts`, verification-form aside in `StudyDeskStepFlow`. Until the migration lands, the hook silently falls back (Mark-as-done stays usable, no submissions captured, single `console.warn` on each insert attempt).
-
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
@@ -132,6 +63,10 @@ Not blocking: localStorage works for single-device study sessions and is what `u
 ---
 
 ## Completed (recent)
+
+#### Atomic-slide verification for CMFAS Study Desk — landed 2026-04-23
+
+Migration `20260423100117_3c04dd01-*.sql` shipped: `user_slide_submissions` table (composite PK `(user_id, slide_id)`, FK cascade to `auth.users`, `idx_user_slide_submissions_user` index) with 4 owner RLS policies (SELECT/INSERT/UPDATE/DELETE) + 1 admin SELECT policy (`public.has_role(auth.uid(), 'admin' | 'master_admin')`). Private `checklist-screenshots` bucket (`ON CONFLICT DO NOTHING` for idempotence) with owner-folder ALL + admin SELECT policies on `storage.objects`, scoped via `(storage.foldername(name))[1] = auth.uid()::text`. `types.ts` regenerated; `as never` casts in [`useSlideSubmissions.tsx`](src/hooks/useSlideSubmissions.tsx) dropped. Per-slide verification forms (checkbox / text / screenshot) in `StudyDeskStepFlow` now persist cross-device and roll up section-level ticks in `user_checklist_progress` once every sub-slide of a section is submitted.
 
 #### Update `get_learner_leaderboard` scoring — landed 2026-04-22
 
