@@ -90,7 +90,43 @@ flowchart LR
     C -.->|compound over 100 reps| E([Skill])
 ```
 
-## 5. Step out of the comfort zone — this week
+## 5. The ironic logic of doing what's hard
+
+There's an old observation about success worth memorising: **the only thing successful people have in common is that they form the habit of doing what unsuccessful people don't like to do.**
+
+Read that twice. It does not say successful people *enjoy* the hard things. It says they do them anyway — because the reason behind the action is stronger than the dislike of it.
+
+This applies brutally in this career:
+
+- Cold-calling, dial after dial, is unpleasant for everyone — and that is *exactly why* most FCs avoid it, and *exactly why* the few who do it pull ahead.
+- Studying CMFAS material on a Friday night is not fun — and that is exactly why most won't, and exactly why the ones who do are calm in front of clients twelve months later.
+- Asking for a referral after a difficult conversation feels exposing — and that is exactly why most don't, and exactly why those who do build a pipeline that runs without cold prospecting.
+
+**The pattern:** the activities that feel worst in the short term produce the best results in the long term. The activities that feel best in the short term produce the worst results in the long term.
+
+### The compounding of daily choices
+
+Every day, on every small task, you face the same fork — take the easy version or the hard version. Each choice feels too small to matter. Compounded over months, it's the entire game.
+
+| Easy choice today | Where it lands you in 12 months |
+|---|---|
+| Skip the dials, scroll instead | Empty pipeline, no income, blames "the market" |
+| Wing the meeting, no prep | Loses the case to a peer who prepared |
+| Postpone the awkward referral ask | Stuck cold-prospecting forever |
+| Stay in bed the extra hour | Always behind on follow-ups, always in catch-up mode |
+
+| Hard choice today | Where it lands you in 12 months |
+|---|---|
+| Do the dials anyway | Calendar full, conversations getting easier |
+| Prep the meeting properly | Closes more, fewer redoes |
+| Ask for the referral on the spot | Pipeline runs warm, less cold-calling needed |
+| Up early, run the morning routine | Ahead of schedule, calmer, more confident |
+
+The deeper irony: **the road that feels like hell at the start gets easier the longer you walk it. The road that feels like heaven at the start gets harder the longer you walk it.** Each day's discomfort is small. The decade's worth of compounded ease is enormous.
+
+So the framing isn't "push through the hard part to get to the easy part." There is no easy part — only different roads. This career rewards the FCs who **make doing the hard thing their default**, then go home to a life that's easier than their peers' precisely *because* of it.
+
+## 6. Step out of the comfort zone — this week
 
 "If you want something you never had before, you have to do something you've never done before."
 
@@ -164,6 +200,22 @@ You'll fail at some of these. That's the point.
  - D) Share the technique with the team before testing it further
 
  **Why:** Day 4 warns against making big promises on good weeks just as much as it warns against quitting on bad ones — both are emotional overreactions to what is fundamentally just one week's data. The right move is to keep running the reps and let the trend confirm itself. A and B both act on the feeling rather than treating it sceptically. D is premature sharing before the approach has been stress-tested beyond a single good week.
+
+8. **"Successful people form the habit of doing what unsuccessful people don't like to do." What is this principle actually saying?**
+ - A) Successful people happen to enjoy hard work more than others do
+ - B) Hard work always pays off in the long run
+ - C) Successful people aren't fond of the unpleasant tasks either — but their reason for doing them is stronger than their dislike ✓
+ - D) Liking your job is overrated; just push through
+
+ **Why:** Day 4 spells this out — successful people don't *enjoy* the unpleasant tasks; they do them because the purpose behind the action outweighs the dislike. A misreads the principle as a personality trait. B claims a guarantee the principle never makes — discipline raises the odds, not certainty. D collapses the nuance into a slogan and misses the actual mechanism.
+
+9. **An FC who consistently picks the harder daily choice (dials over scrolling, prep over winging it) over twelve months will most likely find:**
+ - A) The hard choices stay equally hard, but the results justify the strain
+ - B) The hard choices start to feel easier, while peers who took the easy path face harder catch-up work ✓
+ - C) Burnout from sustained discomfort and a need to scale back
+ - D) Roughly the same outcome as peers who took easier daily choices, since results depend mostly on luck
+
+ **Why:** Day 4 makes this explicit — the road that feels like hell at the start gets easier the longer you walk it; the road that feels like heaven at the start gets harder. Compounded daily discomfort produces compounded daily ease later, while compounded daily ease produces a compounded backlog of hard catch-up work. A misses the easing dynamic. C reframes sustainable discipline as burnout. D reduces an entire compounding mechanism to luck.
 
 ---
 
