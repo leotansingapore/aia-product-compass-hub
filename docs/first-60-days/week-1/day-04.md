@@ -185,13 +185,13 @@ You'll fail at some of these. That's the point.
 
  **Why:** Day 4 states directly: "Rejection is the rep. The rep is the skill." The obstacle (rejection) and the skill acquisition are the same thing — you cannot get the skill without running the obstacle. A blames the prospect and produces no learning. C treats rejection as a verdict on the method rather than input to refine it. D conditions the value of the rep on receiving explicit feedback, which most calls will never provide.
 
-6. **The "not yet" reframe works because it:**
- - A) Makes failure feel less serious
- - B) Reassures the client that you will improve
- - C) Separates your current competence level from your permanent identity ✓
- - D) Delays the need to take action on a skill gap
+6. **Day 4 says fixed-mindset responses can usually be spotted by one specific word. What is the tell?**
+ - A) "Maybe"
+ - B) "I'm" — an identity claim ✓
+ - C) "Difficult"
+ - D) "Not"
 
- **Why:** "Not yet" works mechanically: it puts the competence gap in the category of temporary state rather than permanent trait. Day 4 says "the tyranny of the now turns a temporary skill gap into a permanent identity" — "not yet" is the antidote to that. A softens failure but misses the identity-protection mechanism. B is about client communication, not mindset. D reverses the intent: "not yet" keeps you in the game, it does not postpone action.
+ **Why:** Section 1 names the tell directly — fixed-mindset responses usually contain the word "I'm" because they convert a temporary situation into a permanent identity statement ("I'm not cut out for sales", "I'm not a finance person"). Growth-mindset responses contain a specific concrete next action instead. "Maybe" (A) is a hedge that doesn't signal mindset either way. "Difficult" (C) describes the situation, not the response style. "Not" (D) is misleading because it shows up in both fixed and growth responses ("I'm not cut out" vs "Not yet — what do I need to read?") — it's the surrounding identity claim that matters, not the negation itself.
 
 7. **An FC who feels they've cracked the code after a great Week 3 should:**
  - A) Lock in their pipeline strategy immediately — consistency matters
