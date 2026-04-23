@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useProductDetail } from '@/hooks/useProductDetail';
@@ -42,6 +42,18 @@ export default function ManageProductVideos() {
     initialVideos: product?.training_videos || [],
     onSave: handleVideoSave
   });
+
+  // Auto-select the first lesson on load so admins land in the editor with
+  // real content rather than the "Select a page from the sidebar" empty
+  // state. Only runs once per product (productId change resets the hook).
+  const autoSelectedRef = useState({ done: false })[0];
+  useEffect(() => {
+    if (autoSelectedRef.done) return;
+    if (videoManagement.editingIndex !== null) return;
+    if (videoManagement.editVideos.length === 0) return;
+    videoManagement.setEditingIndex(0);
+    autoSelectedRef.done = true;
+  }, [videoManagement.editVideos.length, videoManagement.editingIndex, videoManagement.setEditingIndex, autoSelectedRef]);
 
   if (loading) {
     return <SkeletonLoader type="product" />;
