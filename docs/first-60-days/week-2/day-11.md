@@ -157,10 +157,32 @@ Most senior FCs who reach Year 7+ in good standing have both. The ones who reach
 
 There's a real trap here: recruiting too early, before you've personally hit a productive rhythm. If you can't yet sell consistently, you can't credibly mentor someone else to do it — and a downline you can't mentor produces nothing for either of you. The honest sequence:
 
-1. **Year 1–2** — Build your own production muscle. You have to do the thing before you can teach the thing.
-2. **Year 3+** — Once your weekly rhythm is solid (consistent appointments, consistent closes), start recruiting selectively. **Quality over quantity.**
-3. **Year 5+** — A small team (3–6 productive associates) generating enough override that you could survive a slow personal month.
-4. **Year 10+** — A full agency, with overrides as a major part of total income, time spent mostly on mentoring rather than selling.
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— when to recruit, in honest stages —</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;">
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 1–2</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Build your own muscle</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Do the thing before you teach it. No recruiting yet.</div>
+    </div>
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 3+</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Recruit selectively</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Personal rhythm solid. Quality over quantity.</div>
+    </div>
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 5+</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">A small team carries the slow months</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">3–6 productive associates. Override income shows up.</div>
+    </div>
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 10+</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Full agency</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Time mostly on mentoring. Overrides are a major part of income.</div>
+    </div>
+  </div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.25rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;">You don't commit to becoming an agency leader on Day 1. You just acknowledge the option exists.</div>
+</div>
 
 You are not committing to becoming an agency leader on Day 1. You are just acknowledging that **the option exists, that it's a deliberate B-quadrant move, and that the ceiling on what you can earn lifts dramatically when you build people, not just policies.**
 
