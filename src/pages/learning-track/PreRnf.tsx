@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
-import { GraduationCap, Loader2, ChevronRight } from "lucide-react";
+import { GraduationCap, Loader2, ChevronRight, ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -78,20 +78,37 @@ function PreRnfLearnerView() {
 
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
-      <Link
-        to="/cmfas-exams"
-        className="group relative flex items-center gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 sm:p-5 max-w-3xl mx-auto transition-all hover:border-primary/40 hover:shadow-md"
-      >
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
-          <GraduationCap className="h-6 w-6" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
-          <h3 className="text-base font-bold font-serif leading-snug">CMFAS Exams</h3>
-          <p className="text-xs text-muted-foreground line-clamp-1">Study modules, videos, and the AI tutor that prepare you to clear the papers.</p>
-        </div>
-        <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
-      </Link>
+      <div className="max-w-3xl mx-auto space-y-2.5">
+        <Link
+          to="/cmfas-exams"
+          className="group relative flex items-center gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+            <GraduationCap className="h-6 w-6" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
+            <h3 className="text-base font-bold font-serif leading-snug">CMFAS Exams</h3>
+            <p className="text-xs text-muted-foreground line-clamp-1">Study modules, videos, and the AI tutor that prepare you to clear the papers.</p>
+          </div>
+          <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+        </Link>
+
+        <Link
+          to="/learning-track/pre-rnf/assignments"
+          className="group relative flex items-center gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+            <ClipboardList className="h-6 w-6" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
+            <h3 className="text-base font-bold font-serif leading-snug">Assignments</h3>
+            <p className="text-xs text-muted-foreground line-clamp-1">Weekly deliverables that turn the lessons into real reps with real prospects.</p>
+          </div>
+          <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+        </Link>
+      </div>
 
       <div className="max-w-3xl mx-auto">
         <div
