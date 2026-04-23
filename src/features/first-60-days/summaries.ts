@@ -49,7 +49,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "week": 1,
     "dayInWeek": 5,
     "title": "Purpose-Driven Life — Your Real Why",
-    "duration": 20,
+    "duration": 30,
     "hasReflection": false
   },
   {
