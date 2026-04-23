@@ -105,35 +105,7 @@ Every financial plan should be built bottom-up, not top-down. This is the order.
 
 Your job as an advisor: diagnose which level your client is *actually* on — not the level their lifestyle pretends they're on — then build up from there.
 
-<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
-  <div style="width:38%;min-width:240px;background:linear-gradient(135deg,hsl(262,83%,55%),hsl(262,83%,68%));color:white;padding:14px 18px;border-radius:10px 10px 4px 4px;box-shadow:0 4px 12px hsl(262,83%,55%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 5</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Legacy</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Give · inherit · distribute</div>
-  </div>
-  <div style="width:52%;min-width:280px;background:linear-gradient(135deg,hsl(217,91%,50%),hsl(217,91%,62%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(217,91%,50%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 4</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Preservation</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Keep what you have built</div>
-  </div>
-  <div style="width:66%;min-width:320px;background:linear-gradient(135deg,hsl(160,84%,35%),hsl(160,84%,45%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,35%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 3</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Accumulation</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Grow through investing</div>
-  </div>
-  <div style="width:80%;min-width:360px;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 2</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Short-Term Savings</div>
-    <div style="font-size:12px;opacity:0.95;margin-top:2px;">3 to 6 months expenses</div>
-  </div>
-  <div style="width:100%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:18px 18px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 1 · FOUNDATION</div>
-    <div style="font-weight:700;font-size:16px;margin-top:2px;">Risk Management</div>
-    <div style="font-size:12.5px;opacity:0.95;margin-top:2px;">Protection first — everything else stands on this</div>
-  </div>
-</div>
 
-## 4. Calculating a "freedom number"
 
 A concrete example. Meet a hypothetical client — Mr Tan, 35 years old.
 
