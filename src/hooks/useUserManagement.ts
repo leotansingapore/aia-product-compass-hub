@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { DEFAULT_TIER } from '@/lib/tiers';
+import { DEFAULT_TIER, normalizeTier } from '@/lib/tiers';
 
 export interface UnifiedUser {
   id: string;
