@@ -163,13 +163,13 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
  **Why:** An employer hospital plan is a common Level 1 symptom — it creates the illusion of a solid foundation while leaving Death/TPD, CI, and private-tier hospitalisation uncovered. Today's lesson lists "my company has hospitalisation for me" as a weak-Level-1 symptom. A savings plan (A) and an ILP (D) are Level 2 and 3 respectively, and should not be recommended before Level 1 is checked. Wealth preservation (C) is Level 4 — many levels too early.
 
-3. **What distinguishes Level 2 from Level 1?**
- - A) Level 2 is insurance; Level 1 is savings
- - B) Level 1 handles catastrophic risks; Level 2 handles temporary risks ✓
- - C) Level 2 is CPF; Level 1 is private plans
- - D) Level 1 is for young people; Level 2 is for older people
+3. **A client comes in with $40,000 — half in a bank account, half just lump-summed into last quarter's top-performing tech ETF. Which Level 3 principle is most clearly violated?**
+ - A) Insufficient amount — they need at least $100,000 to invest meaningfully
+ - B) Wrong vehicle — ETFs aren't suitable for retail investors
+ - C) Chasing the hot fund instead of consistency, diversification, and time horizon ✓
+ - D) Tax inefficiency — the capital gains are fully taxable
 
- **Why:** Today's content states clearly that insurance protects you from catastrophe (Level 1) while emergency savings protect you from inconvenience (Level 2) — different problems requiring different tools. A reverses the tools incorrectly. CPF is part of Level 3 accumulation, not Level 2. The pyramid is not age-segmented (D) — every adult needs all four levels regardless of age.
+ **Why:** Day 12's Level 3 section names the three accumulation principles — **consistency** (regular contributions), **diversification** (don't bet on one sector), and **time horizon** (start young, leave alone). A lump-sum into one quarter's hot tech ETF violates all three: no recurring contribution, single-sector concentration, and a 3-month-old position trying to time a trend. The lesson is explicit: *"ten years of consistent investing beats one well-timed bet 99% of the time."* A invents a minimum that isn't in the lesson. B is false — ETFs are perfectly retail-suitable. D conflates accumulation principle with tax, a separate concern.
 
 4. **A client is enthusiastic about starting an ILP (Level 3). During fact-finding you learn he has no CI coverage and only a basic employer hospital plan. What is the correct next step?**
  - A) Start the ILP — the client's enthusiasm means higher retention
