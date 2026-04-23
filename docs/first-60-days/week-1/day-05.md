@@ -35,15 +35,31 @@ In those moments, three things can keep you in the chair:
 
 A purpose-driven FC keeps showing up because the work answers a question bigger than "did I hit my number this week?"
 
-```mermaid
-flowchart TD
-    A["Discipline<br/>Short-term - runs out"] --> D["Showing up"]
-    B["Financial pressure<br/>Negative - collapses in bad months"] --> D
-    C["Purpose<br/>Long-term - compounds"] --> D
-    style C fill:#1a3a2a
-    style A fill:#3a2a1a
-    style B fill:#3a2a1a
-```
+<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.5rem 0;">
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.25rem;">
+    — three things that can keep you in the chair —
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0;">
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">i.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">Discipline</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Short-term. Runs out.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">ii.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">Financial pressure</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Negative. Collapses in bad months.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border)); border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">iii.</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">Purpose</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Long-term. Compounds.</div>
+    </div>
+  </div>
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-top:1.25rem;">
+    only one of these still works in Month 4.
+  </div>
+</div>
 
 **The reframe:** You are not selling insurance. You are building a life around meaningful work that value-adds to the people around you — especially those who matter to you most.
 
@@ -61,12 +77,31 @@ The fix is called **pre-framing.** Pre-framing lets your prospect anticipate the
 2. **What (End)** — the kind of advisor you aspire to be (4 points max)
 3. **What (Now)** — the concrete actions you're taking to get there (4 points max)
 
-```mermaid
-flowchart TD
-    A["Why<br/>Your personal reason for being here"] --> B["What you aspire to be<br/>The advisor you are building toward"]
-    B --> C["What you are doing now<br/>Concrete actions that prove it"]
-    C --> D["Prospect understands:<br/>direction + investment in self"]
-```
+<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.5rem 0;">
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.25rem;">
+    — the three parts of a pre-framing pitch —
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0;">
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">i. Why</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">Your reason</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Your personal reason for being here. One sentence.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">ii. What (End)</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">What you aspire to be</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">The advisor you are building toward. Four points max.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border)); border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.4rem;">iii. What (Now)</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.3rem;">What you're doing now</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Concrete actions that prove the direction.</div>
+    </div>
+  </div>
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-top:1.25rem;">
+    the prospect hears: direction + investment in self.
+  </div>
+</div>
 
 ### Worked example
 
