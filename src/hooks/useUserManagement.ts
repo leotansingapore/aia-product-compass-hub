@@ -39,6 +39,7 @@ export function useUserManagement() {
     search: '',
     status: 'all',
     role: 'all',
+    tier: 'all',
     sortBy: 'created_at',
     sortOrder: 'desc'
   });
