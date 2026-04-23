@@ -159,38 +159,48 @@ That is the textbook **B-quadrant move**: you're no longer trading hours for inc
 
 Most senior FCs who reach Year 7+ in good standing have both. The ones who reach $1M+ income have built the team layer deliberately — usually starting in Year 3 or 4 once their own production is stable.
 
-### When to start — and when not to
+### When to start — actually, from Day 1
 
-There's a real trap here: recruiting too early, before you've personally hit a productive rhythm. If you can't yet sell consistently, you can't credibly mentor someone else to do it — and a downline you can't mentor produces nothing for either of you. The honest sequence:
+The most common mistake new FCs make about recruitment isn't starting too early. It's **waiting too long.**
+
+The instinct is to think *"I'll get good at the work first, then I'll recruit."* By the logic of credibility that sounds right. By the logic of compounding it's expensive — every year you delay sourcing is a year of team production you'll never get back.
+
+Three things make recruitment a Day-1 mindset, not a Year-3 decision:
+
+1. **You're not the mentor — the system and your upline are.** When you introduce a candidate to the team, your upline runs the recruiting conversation, the agency runs the training, and you simply hold the relationship. You don't need to know how to coach a new FC yet. You only need to know how to **make the introduction.**
+2. **The warm-market window is widest right now.** Your friends, ex-colleagues, cousins, and university contacts haven't yet heard a recruitment pitch from another advisor. In Year 3 they'll have heard several. Today they're hearing it from someone whose career they're curious about.
+3. **It's more fun to build a team with people you already like.** Working alongside friends compounds in a way working alongside strangers never quite does. Late-night joint preparations, shared wins, group chat banter — these only happen when the team includes people whose company you'd choose anyway.
+
+Re-framed sequence:
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— when to recruit, in honest stages —</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— recruitment as a long-horizon foundation —</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;">
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 1–2</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Build your own muscle</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Do the thing before you teach it. No recruiting yet.</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 1+</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Refer warm-market early</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Source candidates. Upline + system carry the deeper conversations and training.</div>
     </div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 3+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Recruit selectively</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Personal rhythm solid. Quality over quantity.</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Run the recruit conversation yourself</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Personal rhythm stable. You can now coach the early weeks of someone else's journey.</div>
     </div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 5+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">A small team carries the slow months</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">3–6 productive associates. Override income shows up.</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Small-team mentoring</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">3–6 productive associates. Overrides carry the slow personal months.</div>
     </div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 10+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Full agency</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Time mostly on mentoring. Overrides are a major part of income.</div>
+      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Full agency leadership</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Mentoring is the primary work. Overrides are a major part of income.</div>
     </div>
   </div>
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.25rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;">You don't commit to becoming an agency leader on Day 1. You just acknowledge the option exists.</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.25rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;">Recruitment isn't a switch you flip later. It's a foundation you start laying on Week 1 — by simply <em>referring</em>, while the system carries what you can't yet carry yourself.</div>
 </div>
 
-You are not committing to becoming an agency leader on Day 1. You are just acknowledging that **the option exists, that it's a deliberate B-quadrant move, and that the ceiling on what you can earn lifts dramatically when you build people, not just policies.**
+You're not committing to becoming an agency leader on Day 1. You're just acknowledging that **the team layer takes years to compound — and the earliest action is the lightest one: introducing people you'd genuinely want to work with, and letting the system do the rest.**
 
 ## 5. Why most people never leave the left-hand side
 
@@ -290,13 +300,13 @@ flowchart LR
 
  **Why:** The quadrant lesson reframes the career decision from monthly commission (S thinking) to whether the recurring-revenue engine is being built (B trajectory). A renewal book growing now will pay into the future regardless of this month's production. Closing count (A) and hourly rate (D) both measure S-quadrant performance. Moving to an IFA model (C) is a product-access question that doesn't change the quadrant logic.
 
-8. **A Year-2 FC is excited about override income and wants to start recruiting a downline immediately. Based on Day 11's sequencing rule, what's the strongest counsel?**
- - A) Recruit early — every month delayed is override income lost
- - B) Don't ever recruit; the renewal book is enough
- - C) Build personal production first; you can't credibly mentor someone in a craft you haven't yet stabilised yourself ✓
- - D) Wait until Year 5 minimum before considering recruitment
+8. **A Year-1 FC is wondering when to start thinking about recruitment. Based on Day 11, what's the strongest counsel?**
+ - A) Wait until Year 3 — you can't credibly mentor anyone until your own production is stable
+ - B) Refer warm-market candidates to your upline from Day 1 — your mentor and the agency system carry the deeper conversations and the training, while you build the recruiting muscle in parallel ✓
+ - C) Don't ever recruit — focus only on your own renewal book
+ - D) Wait until you've passed CMFAS and hit your first MDRT before introducing anyone to the team
 
- **Why:** Day 11's sequencing is explicit: build your own production muscle in Years 1–2 before recruiting, because you have to do the thing before you can teach it. A skips the credibility step — a downline you can't mentor produces nothing for either of you. B treats team override as optional, but Day 11 names it as the second passive layer that lifts the income ceiling. D is too rigid; the section recommends starting selective recruitment in Year 3+, not Year 5+.
+ **Why:** Recruitment is a long-horizon foundation, not a switch you flip in Year 3. The earlier you start passively referring people you'd genuinely want to work with — friends, ex-colleagues, family contacts — the larger your future team. The credibility concern (A) misreads the role: you're not solo-mentoring anyone yet, you're **sourcing** — your upline and the agency system run the recruiting conversations and the early training. C ignores team override as a real B-quadrant lever and caps your income at your own production ceiling. D conflates personal milestones with team-building — they're separate skills built in parallel, and the warm-market window is widest *now*, before friends have heard pitches from other advisors.
 
 ---
 
