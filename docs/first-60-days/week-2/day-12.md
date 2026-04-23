@@ -187,13 +187,13 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
  **Why:** Level 2 is the emergency fund — 3-6 months of liquid expenses. A $2,000 surprise triggering credit card debt signals a near-zero emergency buffer, which is the Level 2 symptom listed in today's content. Inadequate death coverage (A), no CI plan (B), and employer-dependent hospital cover (D) are all Level 1 gaps — catastrophic risk exposure, not temporary-expense exposure.
 
-6. **Why is selling an ILP to a client with a clear Level 1 gap described as a risk to your career, not just the client?**
- - A) ILPs are not suitable for clients without existing CI cover under MAS regulations
- - B) A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth ✓
- - C) The ILP commission will be clawed back immediately if the client has no hospitalisation plan
- - D) AIA does not allow ILP sales until Level 1 is complete
+6. **A fact-finding meeting reveals gaps at Levels 1, 2, AND 3 — no CI cover, three weeks of emergency savings, and no investment plan. What's the right move?**
+ - A) Lay out a comprehensive plan addressing all three gaps in this meeting so the client sees the full picture
+ - B) Start with Level 1 first; defer Levels 2 and 3 to a follow-up — most clients can't absorb more than one or two decisions per meeting ✓
+ - C) Start with the Level 3 plan since it has the longest time horizon — every month of delay costs compounding
+ - D) Start with Level 2 because it's the cheapest fix — a quick win builds rapport for the harder conversations
 
- **Why:** Today's "common mistake" section traces the exact causal chain: CI diagnosis forces ILP surrender at a loss, the client relationship breaks, and "the client tells ten friends not to work with you." That reputational damage compounds over a career. There is no MAS rule prohibiting ILPs for uninsured clients (A). Commission clawback (C) is a possibility in some cases but is not the stated reason here. There is no AIA policy requiring Level 1 completion before ILP sales (D).
+ **Why:** Day 12's Section 6 gives the rule directly: *"start at the lowest missing level. Don't try to fill all gaps at once. Most clients can't absorb more than one or two decisions per meeting."* B follows both rules. A overwhelms the client and usually produces decision paralysis — they leave the meeting agreeing to nothing. C inverts the bottom-up rule and ignores that a single CI diagnosis would force surrender of any Level 3 product before it has time to compound. D may earn quick rapport but skips the foundation — exactly the trap Day 12's "common mistake" section warns against.
 
 7. **A client has a will, updated CPF nominations, and is planning a trust structure for her business. Which pyramid level is she working on?**
  - A) Level 2 — short-term savings
