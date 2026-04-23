@@ -2,9 +2,7 @@ import type { Day, Week } from "./types";
 import { convertWikilinks, parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
 import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
-// Feature folder name is kept as "first-30-days" for historical stability,
-// but it now serves the Next 60 Days module (10 weeks × 6 days = 60 days).
-// Content lives at /docs/next-60-days/.
+// Next 60 Days module (10 weeks × 6 days = 60 days). Content at /docs/next-60-days/.
 const rawLoaders = import.meta.glob<string>("/docs/next-60-days/week-*/day-*.md", {
   query: "?raw",
   import: "default",

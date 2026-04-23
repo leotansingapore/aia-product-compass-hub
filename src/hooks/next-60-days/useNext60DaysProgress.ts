@@ -1,16 +1,17 @@
 /**
- * Progress tracking for First 30 Days (Post-RNF).
+ * Progress tracking for Next 60 Days (Post-RNF).
  *
- * Uses localStorage until the `first_30_days_progress` Supabase table is created.
+ * Uses localStorage until the `next_60_days_progress` Supabase table is created.
  * Once the table exists, swap localStorage calls for supabase upserts (same
  * pattern as `useFirst60DaysProgress`).
  */
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
-import { TOTAL_DAYS, DAY_SUMMARIES, DAYS_WITH_REFLECTION } from "@/features/first-30-days/summaries";
+import { TOTAL_DAYS, DAY_SUMMARIES, DAYS_WITH_REFLECTION } from "@/features/next-60-days/summaries";
 
-const STORAGE_KEY = "first-30-days-progress-v1";
+const STORAGE_KEY = "next-60-days-progress-v1";
+const LEGACY_STORAGE_KEY = "first-30-days-progress-v1";
 
 export type ReflectionAnswers = Record<string, string>;
 
@@ -27,8 +28,16 @@ type ProgressMap = Record<number, DayProgress>;
 
 function loadFromStorage(userId: string): ProgressMap {
   try {
-    const raw = localStorage.getItem(`${STORAGE_KEY}-${userId}`);
-    return raw ? JSON.parse(raw) : {};
+    const key = `${STORAGE_KEY}-${userId}`;
+    const raw = localStorage.getItem(key);
+    if (raw) return JSON.parse(raw);
+    // One-time migration from the legacy key written before the rename.
+    const legacyRaw = localStorage.getItem(`${LEGACY_STORAGE_KEY}-${userId}`);
+    if (legacyRaw) {
+      localStorage.setItem(key, legacyRaw);
+      return JSON.parse(legacyRaw);
+    }
+    return {};
   } catch {
     return {};
   }
@@ -38,7 +47,7 @@ function saveToStorage(userId: string, data: ProgressMap) {
   localStorage.setItem(`${STORAGE_KEY}-${userId}`, JSON.stringify(data));
 }
 
-export function useFirst30DaysProgress() {
+export function useNext60DaysProgress() {
   const { user } = useSimplifiedAuth();
   const { isAdmin, isMasterAdmin } = usePermissions();
   const userId = user?.id ?? null;

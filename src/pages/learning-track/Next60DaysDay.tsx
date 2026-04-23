@@ -19,10 +19,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
-import { loadDay, loadWeekReadme, WEEK_META, TOTAL_DAYS } from "@/features/first-30-days/content";
-import { DAY_SUMMARIES } from "@/features/first-30-days/summaries";
-import type { Day } from "@/features/first-30-days/types";
-import { useFirst30DaysProgress } from "@/hooks/first-30-days/useFirst30DaysProgress";
+import { loadDay, loadWeekReadme, WEEK_META, TOTAL_DAYS } from "@/features/next-60-days/content";
+import { DAY_SUMMARIES } from "@/features/next-60-days/summaries";
+import type { Day } from "@/features/next-60-days/types";
+import { useNext60DaysProgress } from "@/hooks/next-60-days/useNext60DaysProgress";
 import { DayQuiz } from "@/components/first-60-days/DayQuiz";
 import { DayReflection } from "@/components/first-60-days/DayReflection";
 
@@ -68,7 +68,7 @@ function WeekWrapup({ weekNumber }: { weekNumber: number }) {
   );
 }
 
-export default function First30DaysDay() {
+export default function Next60DaysDay() {
   const { dayNumber: raw } = useParams<{ dayNumber: string }>();
   const dayNumber = Number(raw);
   const navigate = useNavigate();
@@ -76,12 +76,12 @@ export default function First30DaysDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
-  const progress30 = useFirst30DaysProgress();
-  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } = progress30;
+  const progress = useNext60DaysProgress();
+  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } = progress;
 
   // Adapters for DayQuiz/DayReflection (which default to First 60 Days progress)
-  const quizProgress = { recordQuiz: progress30.recordQuiz, isQuizPassed: progress30.isQuizPassed, getDay: progress30.getDay };
-  const reflectionProgress = { getDay: progress30.getDay, saveReflection: progress30.saveReflection, isReflectionSubmitted: progress30.isReflectionSubmitted };
+  const quizProgress = { recordQuiz: progress.recordQuiz, isQuizPassed: progress.isQuizPassed, getDay: progress.getDay };
+  const reflectionProgress = { getDay: progress.getDay, saveReflection: progress.saveReflection, isReflectionSubmitted: progress.isReflectionSubmitted };
 
   useEffect(() => { setActiveTab("read"); }, [dayNumber]);
 

@@ -74,8 +74,8 @@ const LearningTrackPostRnf = lazyWithRetry(() => import("./pages/learning-track/
 const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-track/Resources"));
 const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
-const LearningTrackFirst30Days = lazyWithRetry(() => import("./pages/learning-track/First30Days"));
-const LearningTrackFirst30DaysDay = lazyWithRetry(() => import("./pages/learning-track/First30DaysDay"));
+const LearningTrackNext60Days = lazyWithRetry(() => import("./pages/learning-track/Next60Days"));
+const LearningTrackNext60DaysDay = lazyWithRetry(() => import("./pages/learning-track/Next60DaysDay"));
 const LearningTrackNext60DaysAssignments = lazyWithRetry(() => import("./pages/learning-track/Next60DaysAssignments"));
 const LearningTrackFirst14Days = lazyWithRetry(() => import("./pages/learning-track/First14Days"));
 const LearningTrackFirst14DaysDay = lazyWithRetry(() => import("./pages/learning-track/First14DaysDay"));
@@ -189,8 +189,8 @@ const App = () => (
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
-                      <Route path="next-60-days" element={<LearningTrackFirst30Days />} />
-                      <Route path="next-60-days/day/:dayNumber" element={<LearningTrackFirst30DaysDay />} />
+                      <Route path="next-60-days" element={<LearningTrackNext60Days />} />
+                      <Route path="next-60-days/day/:dayNumber" element={<LearningTrackNext60DaysDay />} />
                       <Route path="first-30-days" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="first-30-days/day/:dayNumber" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>

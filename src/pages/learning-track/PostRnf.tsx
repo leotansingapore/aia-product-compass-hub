@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import First30Days from "./First30Days";
+import Next60Days from "./Next60Days";
 import Next60DaysAssignments from "./Next60DaysAssignments";
 
 type PostRnfView = "next60" | "assignments";
@@ -42,7 +42,7 @@ export default function PostRnfTrack() {
         </div>
       </div>
 
-      {view === "next60" ? <First30Days /> : <Next60DaysAssignments />}
+      {view === "next60" ? <Next60Days /> : <Next60DaysAssignments />}
     </div>
   );
 }

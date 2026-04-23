@@ -4,12 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { getAllWeeks, TOTAL_DAYS } from "@/features/first-30-days/content";
-import { useFirst30DaysProgress } from "@/hooks/first-30-days/useFirst30DaysProgress";
+import { getAllWeeks, TOTAL_DAYS } from "@/features/next-60-days/content";
+import { useNext60DaysProgress } from "@/hooks/next-60-days/useNext60DaysProgress";
 
-export default function First30Days() {
+export default function Next60Days() {
   const weeks = getAllWeeks();
-  const { completedCount, isDayComplete, isUnlocked } = useFirst30DaysProgress();
+  const { completedCount, isDayComplete, isUnlocked } = useNext60DaysProgress();
 
   const totalDone = completedCount();
   const totalPct = (TOTAL_DAYS as number) === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);

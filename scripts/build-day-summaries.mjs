@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 const TARGETS = [
   { root: "docs/first-60-days", out: "src/features/first-60-days/summaries.ts" },
-  { root: "docs/next-60-days", out: "src/features/first-30-days/summaries.ts" },
+  { root: "docs/next-60-days", out: "src/features/next-60-days/summaries.ts" },
 ];
 
 const FRONT_RE = /^---\s*\n([\s\S]*?)\n---/;
