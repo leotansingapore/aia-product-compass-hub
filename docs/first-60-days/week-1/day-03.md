@@ -104,12 +104,33 @@ Over time, your renewal book gets large enough that it can cover:
 
 **You are financially free when your passive income exceeds your expenses.**
 
-```mermaid
-flowchart LR
-    A["Active sales only<br/>Year 1 to 3"] --> B["Renewals cover<br/>some expenses<br/>Year 4 to 6"]
-    B --> C["Financially independent<br/>Renewals cover all expenses"]
-    C --> D["Financially free<br/>Renewals exceed expenses"]
-```
+<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
+    — the path from active income to financial freedom —
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; position:relative;">
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 1–3</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Active sales only</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Income tracks effort. No cushion yet.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 4–6</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Renewals build</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals cover a portion of expenses.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Threshold</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Financially independent</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals cover all expenses.</div>
+    </div>
+    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Beyond</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Financially free</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals exceed expenses. Selling becomes optional.</div>
+    </div>
+  </div>
+</div>
 
 Most FCs underestimate how quickly this compounds. A modest book after 5–7 years of consistent production can throw off enough renewal income to remove the pressure of needing to sell.
 
@@ -140,12 +161,23 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 
 **The lesson:** evaluate this career on a 5-year horizon, not a 1-year horizon. If you're making a 1-year decision, you're probably going to make the wrong one.
 
-```mermaid
-flowchart LR
-    A["Year 1<br/>FC lower, peer fixed"] --> B["Year 5<br/>FC 2-4x + passive income"]
-    style A fill:#4a1a1a
-    style B fill:#1a3a1a
-```
+<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
+  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
+    — the honest comparison: not Year 1, but Year 5 —
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0;">
+    <div style="padding:0.5rem 1.5rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 1 — the trap</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">FC income below peer fixed salary</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Commission-based, inconsistent. Easy to misread as failure.</div>
+    </div>
+    <div style="padding:0.5rem 1.5rem; border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 5 — the truth</div>
+      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">FC 2–4× starting income + passive renewals</div>
+      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Peers up 10–20% on starting salary. Compounding has begun.</div>
+    </div>
+  </div>
+</div>
 
 
 ## Quick quiz
