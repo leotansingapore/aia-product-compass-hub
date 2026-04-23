@@ -106,6 +106,20 @@ A ritual you don't defend isn't a ritual. It's a suggestion.
 
 Strong rhythms don't feel like effort after a few cycles. They feel like the week would be weird without them. That's when you know they've stuck.
 
+### The other side of "comfortable"
+
+There's a trap on the other side of habit-formation. The same rhythm that protected you in Month 2 can become the thing that quietly kills your growth in Month 8. Day 17 names this: **comfort is the early death** of a commission-and-renewal career.
+
+If a weekly review starts feeling like ten minutes of self-congratulation, the review is no longer doing its job. If your prospecting block has become a comfortable sit at a familiar café where you make a known number of dials to known names, the block has become a holding pattern.
+
+The discipline is the same one that built the rhythm in the first place — every 4-week audit, ask the harder version of the question:
+
+- Not *"did I run my dials?"* but *"am I still calling people who could say no in a way that hurts?"*
+- Not *"did I do my study?"* but *"am I still studying the things I'm avoiding, or only the things I already half-know?"*
+- Not *"did I do my weekly review?"* but *"did the review name something uncomfortable I now have to fix?"*
+
+A rhythm that no longer produces discomfort isn't broken. It's just done its early-stage job. Promote it to the harder version, or replace it.
+
 ---
 
 ## Quick quiz

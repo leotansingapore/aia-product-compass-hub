@@ -144,6 +144,22 @@ This is the counterintuitive move that sets top producers apart.
 
 **The target:** set a weekly rejection quota. **50 no's a week** is a good Year-1 baseline. Celebrate when you hit it.
 
+### Translate external attribution into I-statements
+
+Slow weeks are also the weeks the brain reaches for external explanations: *"the market is bad," "people are tighter," "my upline isn't giving leads."* Each of those is true *and* useless — none of them are levers you can pull next week.
+
+Day 17 frames this as the **total accountability** trade: in exchange for accepting the cause is mostly your behaviour, you get back the only thing that matters — control.
+
+Run the drill at the end of every slow week. Take the three things you blamed and rewrite each as a sentence beginning with **"I."**
+
+| External (no lever) | Internal (lever) |
+|---|---|
+| "The market is tight." | "I let my pipeline thin in Week 2 — I'm running 30 dials a day this week to refill it." |
+| "Prospects aren't responding." | "My opener is stale — I'm rewriting it before tomorrow's batch." |
+| "My upline isn't sending leads." | "I haven't asked for referrals from my last 5 clients — I'm doing those calls today." |
+
+The translated version isn't more comfortable. It's just the only one that points to action.
+
 ## 6. Serve, don't sell
 
 "To sell is to serve, and to serve is to sell."

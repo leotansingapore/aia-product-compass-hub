@@ -265,6 +265,21 @@ Day 60 is not a finish line. It's a checkpoint.
 4. **Add 30 new names to your prospect list.**
 5. **Set a specific production target** for Days 61–120. Not "more" — a number.
 
+### Write your definite aim — before you close this page
+
+Day 17 introduced the four properties of a definite aim. The Day-60 graduation moment is the right time to write yours for the next 12 months. Don't leave this page without doing it on paper or in a note you can re-read weekly.
+
+| Layer | The question | Your answer |
+|---|---|---|
+| **Number** | What is the specific commission income figure for the next 12 months? | $______ |
+| **Deadline** | By exactly what date will it be earned? | __ / __ / ____ |
+| **Exchange** | What will you give in return — in concrete weekly units? | __ dials/week, __ appointments/week, __ hours of study/week |
+| **Daily action** | What is the single non-negotiable daily habit that produces it? | "Every working day I will __." |
+
+A goal without all four layers is a wish. A wish dies the first hard week.
+
+The version you write today will be rough. The version you re-read in Month 3 and adjust is the one that actually pulls you forward. **Re-write quarterly.** Most FCs who hit their numbers re-read the page weekly; almost none who miss do.
+
 ### The big mental shift for Days 61+
 
 The first 60 days were about **learning.** The next 60 are about **repeating.**
@@ -282,7 +297,7 @@ What does the Year-3 version of you look like?
 - 150–300 active clients.
 - Annual review rhythm running for a year or two.
 - First major claims processed.
-- First real renewal-income income arriving regardless of new sales.
+- First real renewal income arriving regardless of new sales.
 - MDRT qualification (or clear path to).
 - A few direct referrers who fund 30%+ of your new business.
 - A publicly visible brand (social, referrals, recognised in your niche).
