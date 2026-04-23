@@ -3,11 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { TIER_LEVELS, TIER_META } from "@/lib/tiers";
 
 interface FilterState {
   search: string;
   status: string;
   role: string;
+  tier: string;
   sortBy: 'name' | 'email' | 'created_at' | 'status';
   sortOrder: 'asc' | 'desc';
 }
