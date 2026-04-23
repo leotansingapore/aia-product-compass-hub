@@ -185,37 +185,76 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
 
 ---
 
-```mermaid
-flowchart LR
-    A["Prospecting touch<br/>Day 0"] --> B["First conversation<br/>+1-2 weeks"]
-    B --> C["Fact-find meeting<br/>+1-2 weeks"]
-    C --> D["Proposal / presentation<br/>+1-2 weeks"]
-    D --> E["Close<br/>same meeting or follow-up"]
-    E --> F["Underwriting<br/>+2-6 weeks"]
-    F --> G["Commission paid<br/>next month"]
-    style A fill:#1e3a5f,color:#fff
-    style G fill:#1a5c3a,color:#fff
-```
-
-*Total: 30-90 days from first touch to commission. Today's prospecting = next quarter's income.*
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
+  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">The Sales Cycle — first touch to commission</div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;align-items:stretch;">
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Prospecting touch</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">DAY 0</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">First conversation</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Fact-find meeting</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Proposal</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Close</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">SAME / FOLLOW-UP</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">06</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Underwriting</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+2–6 WEEKS</div>
+    </div>
+    <div style="padding:0 0.85rem;">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;">07</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;font-weight:600;">Commission paid</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">NEXT MONTH</div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Total: 30–90 days from first touch to commission. Today's prospecting = next quarter's income.</div>
+</div>
 
 ---
 
-```mermaid
-flowchart TD
-    A["All Prospecting Activity"] --> B["A · Getting Leads<br/>fill the pipeline"]
-    A --> C["B · Making Calls<br/>names to conversations"]
-    A --> D["C · Meeting People<br/>conversations to appointments"]
-    B --> E["Warm market · Referrals<br/>Digital · Lead lists"]
-    C --> F["Cold calls · WhatsApp<br/>Networking · Follow-up"]
-    D --> G["First meeting · Fact-find<br/>Proposal / close"]
-    style A fill:#2d2d2d,color:#fff
-    style B fill:#1e3a5f,color:#fff
-    style C fill:#1e3a5f,color:#fff
-    style D fill:#1e3a5f,color:#fff
-```
-
-*Run all three buckets every day - not sequentially.*
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
+  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;">The Three Prospecting Buckets — run in parallel</div>
+  <div style="display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:1.75rem;align-items:start;">
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket A</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Getting leads</div>
+      <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">fill the pipeline</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Warm market · Referrals · Digital inbound · Natural market · Lead lists</div>
+    </div>
+    <div style="background:hsl(var(--border));width:1px;height:100%;min-height:140px;"></div>
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket B</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Making calls</div>
+      <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">names to conversations</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Cold calls · WhatsApp / Telegram DMs · Networking events · Follow-up</div>
+    </div>
+    <div style="background:hsl(var(--border));width:1px;height:100%;min-height:140px;"></div>
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket C</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Meeting people</div>
+      <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">conversations to appointments</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">First meeting · Fact-find · Proposal / closing meeting</div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Run all three buckets every day — not sequentially.</div>
+</div>
 
 ---
 
