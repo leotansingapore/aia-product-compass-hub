@@ -3,11 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { TIER_LEVELS, TIER_META } from "@/lib/tiers";
 
 interface FilterState {
   search: string;
   status: string;
   role: string;
+  tier: string;
   sortBy: 'name' | 'email' | 'created_at' | 'status';
   sortOrder: 'asc' | 'desc';
 }
@@ -44,6 +46,7 @@ export function EnhancedUserFilters({
       search: '',
       status: 'all',
       role: 'all',
+      tier: 'all',
       sortBy: 'created_at',
       sortOrder: 'desc'
     });
@@ -52,7 +55,8 @@ export function EnhancedUserFilters({
   const activeFiltersCount = [
     filters.search && 'search',
     filters.status !== 'all' && 'status',
-    filters.role !== 'all' && 'role'
+    filters.role !== 'all' && 'role',
+    filters.tier !== 'all' && 'tier'
   ].filter(Boolean).length;
 
   return (
@@ -100,6 +104,20 @@ export function EnhancedUserFilters({
               <SelectItem value="basic">Basic</SelectItem>
               <SelectItem value="user">Standard User</SelectItem>
               <SelectItem value="no_roles">No Roles</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Select value={filters.tier} onValueChange={(value) => updateFilter('tier', value)}>
+            <SelectTrigger className="w-full sm:w-44">
+              <SelectValue placeholder="All Tiers" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Tiers</SelectItem>
+              {TIER_LEVELS.map((tier) => (
+                <SelectItem key={tier} value={tier}>
+                  {TIER_META[tier].label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

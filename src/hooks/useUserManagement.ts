@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { DEFAULT_TIER } from '@/lib/tiers';
+import { DEFAULT_TIER, normalizeTier } from '@/lib/tiers';
 
 export interface UnifiedUser {
   id: string;
@@ -26,6 +26,7 @@ interface FilterState {
   search: string;
   status: string;
   role: string;
+  tier: string;
   sortBy: 'name' | 'email' | 'created_at' | 'status';
   sortOrder: 'asc' | 'desc';
 }
@@ -38,6 +39,7 @@ export function useUserManagement() {
     search: '',
     status: 'all',
     role: 'all',
+    tier: 'all',
     sortBy: 'created_at',
     sortOrder: 'desc'
   });
@@ -182,8 +184,9 @@ export function useUserManagement() {
       const roleMatch = filters.role === "all" || 
         (filters.role === "no_roles" && user.admin_role === 'user') ||
         user.admin_role === filters.role;
+      const tierMatch = filters.tier === "all" || normalizeTier(user.access_tier) === filters.tier;
       
-      return searchMatch && statusMatch && roleMatch;
+      return searchMatch && statusMatch && roleMatch && tierMatch;
     });
 
     filtered.sort((a, b) => {
