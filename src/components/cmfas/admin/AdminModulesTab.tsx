@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
+import { lazy, Suspense } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, Pencil } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { supabase } from '@/integrations/supabase/client';
-import { useProductUpdate } from '@/hooks/useProductUpdate';
-import { useVideoManagement } from '@/hooks/useVideoManagement';
-import { VideoEditingInterface } from '@/components/video-editing/VideoEditingInterface';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { moduleIdToProductId, getCMFASModuleName } from '@/data/cmfasModuleData';
-import type { TrainingVideo } from '@/hooks/useProducts';
+
+const M9Module = lazy(() => import('@/pages/cmfas/M9Module'));
+const M9AModule = lazy(() => import('@/pages/cmfas/M9AModule'));
+const HIModule = lazy(() => import('@/pages/cmfas/HIModule'));
+const RES5Module = lazy(() => import('@/pages/cmfas/RES5Module'));
 
 const PAPERS = [
   { id: 'm9', code: 'M9', tagline: 'Life Insurance & Investment-Linked Policies' },
@@ -25,11 +24,30 @@ function isPaperId(v: string | null): v is PaperId {
   return v != null && PAPERS.some((p) => p.id === v);
 }
 
+function renderEmbeddedModule(paperId: PaperId) {
+  switch (paperId) {
+    case 'm9':
+      return <M9Module embedded />;
+    case 'm9a':
+      return <M9AModule embedded />;
+    case 'hi':
+      return <HIModule embedded />;
+    case 'res5':
+      return <RES5Module embedded />;
+  }
+}
+
 /**
- * Admin tab 1 — Modules. Paper picker → canonical `VideoEditingInterface`
- * (same component backing `/product/:id/manage-videos`) wired to the paper's
- * `products` row. Admins add / edit / reorder / categorise lessons here
- * exactly the way they do for every other product in the app.
+ * Admin tab 1 — Modules.
+ *
+ * Paper picker → full embedded per-module view (video player, playlist, 4
+ * tabs: Overview / Course contents / Useful links / Exam format). Admin edit
+ * widgets are already rendered inline inside the "Course contents" panel of
+ * the embedded module — add / edit / reorder / delete lessons happens there.
+ *
+ * A "Manage lessons" button deep-links into `/product/:id/manage-videos` —
+ * the SKOOL-style canonical editor — for admins who want the full-page
+ * CRUD experience (folder view, bulk reorder, action-steps editor).
  */
 export function AdminModulesTab() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,7 +67,46 @@ export function AdminModulesTab() {
   };
 
   if (selected) {
-    return <PaperVideoEditor paperId={selected} onBack={() => select(null)} />;
+    const paper = PAPERS.find((p) => p.id === selected)!;
+    const productId = moduleIdToProductId[selected];
+    return (
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => select(null)}
+            className="h-9 gap-2 text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden />
+            All modules
+          </Button>
+          <div className="flex items-center gap-3">
+            <div className="min-w-0 text-right">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                {paper.code}
+              </p>
+              <p className="truncate text-xs text-muted-foreground">{paper.tagline}</p>
+            </div>
+            <Button asChild size="sm" className="gap-2">
+              <Link to={`/product/${productId}/manage-videos`}>
+                <Pencil className="h-4 w-4" aria-hidden />
+                Manage lessons
+              </Link>
+            </Button>
+          </div>
+        </div>
+        <Suspense
+          fallback={
+            <div className="rounded-2xl border border-border bg-card px-5 py-10 text-center text-sm text-muted-foreground shadow-sm">
+              Loading module…
+            </div>
+          }
+        >
+          {renderEmbeddedModule(selected)}
+        </Suspense>
+      </div>
+    );
   }
 
   return (
@@ -57,8 +114,8 @@ export function AdminModulesTab() {
       <div>
         <h2 className="font-serif text-2xl font-bold">The four CMFAS papers</h2>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Pick a paper to manage its lessons. Add, edit, reorder, and organise videos the same
-          way you do for any other product in the app.
+          Click a paper to see its full content — lessons, syllabus, useful links, exam format
+          — and edit it inline. Use <strong>Manage lessons</strong> for bulk lesson CRUD.
         </p>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -86,7 +143,7 @@ export function AdminModulesTab() {
                   {paper.tagline}
                 </p>
                 <p className="mt-2 text-[11px] text-muted-foreground/70">
-                  Click to add, edit, or reorder this paper's lessons.
+                  Open to see lessons, syllabus, useful links, exam format.
                 </p>
               </div>
               <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/70 transition-transform group-hover:translate-x-0.5" aria-hidden />
@@ -94,112 +151,6 @@ export function AdminModulesTab() {
           </button>
         ))}
       </div>
-    </div>
-  );
-}
-
-function PaperVideoEditor({ paperId, onBack }: { paperId: PaperId; onBack: () => void }) {
-  const paper = PAPERS.find((p) => p.id === paperId)!;
-  const productId = moduleIdToProductId[paperId];
-  const { updateProduct } = useProductUpdate();
-
-  const [initialVideos, setInitialVideos] = useState<TrainingVideo[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      setLoading(true);
-      setLoadError(null);
-      const { data, error } = await supabase
-        .from('products')
-        .select('training_videos')
-        .eq('id', productId)
-        .maybeSingle();
-      if (cancelled) return;
-      if (error) {
-        setLoadError(error.message);
-        setLoading(false);
-        return;
-      }
-      const videos = (data?.training_videos ?? []) as TrainingVideo[];
-      setInitialVideos(videos);
-      setLoading(false);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [productId]);
-
-  const handleVideoSave = async (updatedVideos: TrainingVideo[]) => {
-    await updateProduct(productId, 'training_videos', updatedVideos);
-    setInitialVideos(updatedVideos);
-  };
-
-  const videoManagement = useVideoManagement({
-    initialVideos: initialVideos ?? [],
-    onSave: handleVideoSave,
-    productId,
-  });
-
-  const existingCategories = Array.from(
-    new Set((initialVideos ?? []).map((v) => v.category).filter(Boolean)),
-  ) as string[];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={onBack}
-          className="h-9 gap-2 text-muted-foreground hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden />
-          All modules
-        </Button>
-        <div className="min-w-0 text-right">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
-            {paper.code}
-          </p>
-          <p className="truncate text-xs text-muted-foreground">{paper.tagline}</p>
-        </div>
-      </div>
-
-      {loading ? (
-        <div className="flex items-center justify-center rounded-2xl border border-border bg-card px-5 py-16 text-sm text-muted-foreground shadow-sm">
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Loading {paper.code} content…
-        </div>
-      ) : loadError ? (
-        <div className="rounded-2xl border border-destructive/40 bg-destructive/5 px-5 py-6 text-sm text-destructive">
-          <p className="font-semibold">Couldn't load this paper's content</p>
-          <p className="mt-1 text-xs opacity-80">{loadError}</p>
-        </div>
-      ) : (
-        <ErrorBoundary>
-          <VideoEditingInterface
-            editVideos={videoManagement.editVideos}
-            editingIndex={videoManagement.editingIndex}
-            newVideo={videoManagement.newVideo}
-            saving={videoManagement.saving}
-            existingCategories={existingCategories}
-            hasContentChanges={videoManagement.hasContentChanges}
-            onEditingIndexChange={videoManagement.setEditingIndex}
-            onUpdateVideo={videoManagement.updateVideo}
-            onSetEditVideos={videoManagement.setEditVideos}
-            onRemoveVideo={videoManagement.removeVideo}
-            onMoveVideo={videoManagement.moveVideo}
-            onNewVideoChange={videoManagement.setNewVideo}
-            onAddVideo={videoManagement.addVideo}
-            onSave={videoManagement.handleSave}
-            onCancel={onBack}
-            onCreateCategory={videoManagement.addEmptyFolder}
-            showActionSteps={true}
-          />
-        </ErrorBoundary>
-      )}
     </div>
   );
 }
