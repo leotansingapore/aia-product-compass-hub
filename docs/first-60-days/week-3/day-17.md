@@ -34,16 +34,23 @@ Don't memorise categories. Memorise the test:
 
 That's it. Apply it to anything.
 
-```mermaid
-flowchart LR
-    Test["Does it put money<br/>INTO your pocket?"]
-    Asset["ASSET<br/>Rental property, CPF,<br/>dividend stocks, renewal book"]
-    Liability["LIABILITY<br/>Car, primary home mortgage,<br/>luxury goods, credit card"]
-    Test -->|"Yes"| Asset
-    Test -->|"No - money flows OUT"| Liability
-    style Asset fill:#14532d,color:#86efac
-    style Liability fill:#7f1d1d,color:#fca5a5
-```
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">One question. Apply it to anything you own.</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-size:22px;line-height:1.3;color:hsl(var(--foreground));margin-bottom:1.5rem;">"Does it put money <em>into</em> your pocket?"</div>
+  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:start;">
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Yes — money flows in</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:26px;line-height:1.2;color:hsl(var(--foreground));margin-bottom:0.75rem;letter-spacing:-0.01em;">Asset</div>
+      <div style="font-size:13px;line-height:1.6;color:hsl(var(--muted-foreground));">Rental property · CPF · dividend stocks · renewal book</div>
+    </div>
+    <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">No — money flows out</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:26px;line-height:1.2;color:hsl(var(--foreground));margin-bottom:0.75rem;letter-spacing:-0.01em;">Liability</div>
+      <div style="font-size:13px;line-height:1.6;color:hsl(var(--muted-foreground));">Car · primary home mortgage · luxury goods · credit card</div>
+    </div>
+  </div>
+</div>
 
 ## 2. The classification most people get wrong
 
@@ -90,26 +97,39 @@ Subtract honestly. The result is your **true net worth.** Most people's is much 
 
 ## 4. The looking-rich problem, revisited
 
-```mermaid
-flowchart TD
-    subgraph PA["Person A - looks wealthier"]
-        PA1["$1.1M condo - $900K mortgage<br/>= $200K equity"]
-        PA2["Tesla on car loan<br/>= ~$0 net"]
-        PA3["Watch collection<br/>= ~$15-20K resale"]
-        PA4["CPF $150K + ILP $30K"]
-        PA5["Real net worth: ~$300-350K"]
-    end
-    subgraph PB["Person B - IS wealthier"]
-        PB1["$800K HDB paid off<br/>= $800K"]
-        PB2["Used car, no loan"]
-        PB3["CPF $200K + investments $250K<br/>+ retirement plan $80K"]
-        PB4["Real net worth: ~$1.3M"]
-    end
-    PA1 --> PA5
-    PB1 --> PB4
-    style PA5 fill:#7f1d1d,color:#fca5a5
-    style PB4 fill:#14532d,color:#86efac
-```
+<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;letter-spacing:0.05em;text-transform:uppercase;">Both earning $180K/year in Singapore</div>
+  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:stretch;">
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Person A — looks wealthier</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.7;color:hsl(var(--foreground));">
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">$1.1M condo − $900K mortgage <span style="color:hsl(var(--muted-foreground));">= $200K equity</span></div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Tesla on car loan <span style="color:hsl(var(--muted-foreground));">≈ $0 net</span></div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Watch collection <span style="color:hsl(var(--muted-foreground));">≈ $15–20K resale</span></div>
+        <div style="padding:0.5rem 0;">CPF $150K + ILP $30K</div>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));">
+        <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;text-transform:uppercase;">Real net worth</div>
+        <div style="font-family:ui-serif,Georgia,serif;font-size:32px;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$300–350K</div>
+      </div>
+    </div>
+    <div style="background:hsl(var(--border));width:1px;"></div>
+    <div>
+      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Person B — <em>is</em> wealthier</div>
+      <div style="font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.7;color:hsl(var(--foreground));">
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">$800K HDB paid off <span style="color:hsl(var(--muted-foreground));">= $800K</span></div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Used car, no loan</div>
+        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">CPF $200K + investments $250K</div>
+        <div style="padding:0.5rem 0;">Retirement plan $80K</div>
+      </div>
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));">
+        <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;text-transform:uppercase;">Real net worth</div>
+        <div style="font-family:ui-serif,Georgia,serif;font-size:32px;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$1.3M</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Person A looks richer. Person B is roughly 4× wealthier.</div>
+</div>
 
 
 
