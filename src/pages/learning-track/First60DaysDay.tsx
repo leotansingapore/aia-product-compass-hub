@@ -13,6 +13,7 @@ import {
   ClipboardCheck,
   NotebookPen,
   Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -111,8 +112,16 @@ export default function First60DaysDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
-  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } =
-    useFirst60DaysProgress();
+  const {
+    isUnlocked,
+    isDayComplete,
+    isQuizPassed,
+    isReflectionSubmitted,
+    markRead,
+    isActualAdmin,
+    markDayCompleteAsAdmin,
+    unmarkDayCompleteAsAdmin,
+  } = useFirst60DaysProgress();
 
   // Reset to the Read tab when navigating between days.
   useEffect(() => {
@@ -342,6 +351,35 @@ export default function First60DaysDay() {
                 dim={!quizPassed}
               />
             </div>
+
+            {isActualAdmin && (
+              <div className="flex flex-wrap items-center gap-2 pt-2">
+                {completed ? (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => unmarkDayCompleteAsAdmin(dayNumber)}
+                    className="gap-1.5 border-amber-500/40 bg-amber-500/10 text-amber-700 hover:bg-amber-500/15 dark:text-amber-300"
+                  >
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    Admin: Unmark day
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => markDayCompleteAsAdmin(dayNumber)}
+                    className="gap-1.5 border-primary/40 bg-primary/10 text-primary hover:bg-primary/15"
+                  >
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    Admin: Mark day as done
+                  </Button>
+                )}
+                <span className="text-[11px] text-muted-foreground">
+                  Skips quiz {hasReflection ? "and reflection " : ""}requirements.
+                </span>
+              </div>
+            )}
           </div>
 
         </div>

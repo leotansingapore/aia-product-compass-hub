@@ -146,9 +146,45 @@ export function useNext60DaysProgress() {
   const isQuizPassed = useCallback((dayNumber: number) => !!daysMap[dayNumber]?.quizPassedAt, [daysMap]);
   const isReflectionSubmitted = useCallback((dayNumber: number) => !!daysMap[dayNumber]?.reflectionSubmittedAt, [daysMap]);
 
+  const markDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!adminBypass) return;
+      const existing = daysMap[dayNumber] ?? {};
+      const now = new Date().toISOString();
+      const next = { ...daysMap };
+      next[dayNumber] = {
+        ...existing,
+        quizScore: existing.quizScore ?? 100,
+        quizAttempts: existing.quizAttempts ?? 1,
+        quizPassedAt: existing.quizPassedAt ?? now,
+        reflectionSubmittedAt: DAYS_WITH_REFLECTION.has(dayNumber)
+          ? existing.reflectionSubmittedAt ?? now
+          : existing.reflectionSubmittedAt,
+      };
+      persist(next);
+    },
+    [adminBypass, daysMap, persist],
+  );
+
+  const unmarkDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!adminBypass) return;
+      const existing = daysMap[dayNumber] ?? {};
+      const next = { ...daysMap };
+      next[dayNumber] = {
+        ...existing,
+        quizPassedAt: undefined,
+        reflectionSubmittedAt: undefined,
+      };
+      persist(next);
+    },
+    [adminBypass, daysMap, persist],
+  );
+
   return useMemo(
     () => ({
       isLoading: false,
+      isActualAdmin: adminBypass,
       getDay,
       isDayComplete,
       isQuizPassed,
@@ -159,8 +195,10 @@ export function useNext60DaysProgress() {
       markRead,
       recordQuiz,
       saveReflection,
+      markDayCompleteAsAdmin,
+      unmarkDayCompleteAsAdmin,
       totalDays: TOTAL_DAYS,
     }),
-    [getDay, isDayComplete, isQuizPassed, isReflectionSubmitted, isUnlocked, currentDay, completedCount, markRead, recordQuiz, saveReflection],
+    [adminBypass, getDay, isDayComplete, isQuizPassed, isReflectionSubmitted, isUnlocked, currentDay, completedCount, markRead, recordQuiz, saveReflection, markDayCompleteAsAdmin, unmarkDayCompleteAsAdmin],
   );
 }

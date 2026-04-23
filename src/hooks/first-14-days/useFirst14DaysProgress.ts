@@ -309,11 +309,39 @@ export function useFirst14DaysProgress() {
     qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
   }, [userId, qc]);
 
+  const markDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!userId || !isActualAdmin) return;
+      const existing = daysMap[dayNumber] ?? {};
+      upsertMutation.mutate({
+        dayNumber,
+        patch: {
+          quiz_passed_at: existing.quizPassedAt ?? new Date().toISOString(),
+          quiz_score: existing.quizScore ?? 100,
+          quiz_attempts: existing.quizAttempts ?? 1,
+        },
+      });
+    },
+    [userId, isActualAdmin, daysMap, upsertMutation],
+  );
+
+  const unmarkDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!userId || !isActualAdmin) return;
+      upsertMutation.mutate({
+        dayNumber,
+        patch: { quiz_passed_at: null },
+      });
+    },
+    [userId, isActualAdmin, upsertMutation],
+  );
+
   const progress = useMemo(() => ({ days: daysMap }), [daysMap]);
 
   return {
     progress,
     isLoading: progressQuery.isLoading,
+    isActualAdmin,
     getDay,
     isQuizPassed,
     isDayComplete,
@@ -323,6 +351,8 @@ export function useFirst14DaysProgress() {
     markRead,
     recordQuiz,
     saveReflection,
+    markDayCompleteAsAdmin,
+    unmarkDayCompleteAsAdmin,
     reset,
   };
 }

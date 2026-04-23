@@ -350,11 +350,44 @@ export function useFirst60DaysProgress() {
     qc.invalidateQueries({ queryKey: ["first-60-days-progress", userId] });
   }, [userId, qc]);
 
+  const markDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!userId || !isActualAdmin) return;
+      const existing = daysMap[dayNumber] ?? {};
+      const now = new Date().toISOString();
+      const patch: Parameters<typeof upsertMutation.mutate>[0]["patch"] = {
+        quiz_passed_at: existing.quizPassedAt ?? now,
+        quiz_score: existing.quizScore ?? 100,
+        quiz_attempts: existing.quizAttempts ?? 1,
+      };
+      if (DAYS_WITH_REFLECTION.has(dayNumber)) {
+        patch.reflection_submitted_at = existing.reflectionSubmittedAt ?? now;
+      }
+      upsertMutation.mutate({ dayNumber, patch });
+    },
+    [userId, isActualAdmin, daysMap, upsertMutation],
+  );
+
+  const unmarkDayCompleteAsAdmin = useCallback(
+    (dayNumber: number) => {
+      if (!userId || !isActualAdmin) return;
+      upsertMutation.mutate({
+        dayNumber,
+        patch: {
+          quiz_passed_at: null,
+          reflection_submitted_at: null,
+        },
+      });
+    },
+    [userId, isActualAdmin, upsertMutation],
+  );
+
   const progress = useMemo(() => ({ days: daysMap }), [daysMap]);
 
   return {
     progress,
     isLoading: progressQuery.isLoading,
+    isActualAdmin,
     getDay,
     isQuizPassed,
     isReflectionSubmitted,
@@ -365,6 +398,8 @@ export function useFirst60DaysProgress() {
     markRead,
     recordQuiz,
     saveReflection,
+    markDayCompleteAsAdmin,
+    unmarkDayCompleteAsAdmin,
     reset,
   };
 }
