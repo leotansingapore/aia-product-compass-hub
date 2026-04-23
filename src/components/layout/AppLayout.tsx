@@ -1,18 +1,20 @@
-import React, { ReactNode, useEffect, memo, useState, lazy, Suspense } from "react";
+import React, { ReactNode, useEffect, memo, useState, Suspense } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { TopNav } from "./TopNav";
 import { MobileBottomNav } from "./MobileBottomNav";
 import { MobileHeader } from "./MobileHeader";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
+import { lazyWithRetry } from "@/utils/lazyWithRetry";
 // The entire admin desktop layout (SidebarProvider, AppSidebar, ResizeHandle,
 // shadcn sidebar primitives) is code-split into its own chunk — learners never
-// download any of it.
-const AdminDesktopLayout = lazy(() => import("./AdminDesktopLayout"));
-const FloatingFeedbackButton = lazy(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
+// download any of it. lazyWithRetry recovers from stale chunk errors after a
+// new deploy by triggering a one-shot cache-busting reload.
+const AdminDesktopLayout = lazyWithRetry(() => import("./AdminDesktopLayout"));
+const FloatingFeedbackButton = lazyWithRetry(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 // ProfileSheet is only shown when the user opens the avatar menu; lazy-load so
 // its learning-track queries and sub-forms don't bloat the initial bundle.
-const ProfileSheet = lazy(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
+const ProfileSheet = lazyWithRetry(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useVersionCheck } from "@/hooks/useVersionCheck";
