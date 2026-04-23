@@ -26,8 +26,8 @@ import {
 
 import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdrop";
 import {
-  CMFASWorkspaceBottomNav,
   CMFASWorkspaceFloatingNav,
+  CMFASWorkspaceMobileMenu,
   buildNavSpec,
   type WorkspaceMode,
 } from "@/components/cmfas/CMFASWorkspaceNav";
@@ -187,28 +187,16 @@ export default function CMFASExams() {
     );
   }
 
-  // Active view — Study desk = progress hero + linear slide path (get ready).
+  // Active view — Study desk = linear slide path (get ready).
   const renderActiveView = () => {
     if (activeMode === "today") {
-      return (
-        <StudyDeskView
-          readyComplete={readyComplete}
-          readyProgress={readyProgress}
-          onSelectWorkspaceMode={setMode}
-        />
-      );
+      return <StudyDeskView onSelectWorkspaceMode={setMode} />;
     }
     if (activeMode === "papers") return <PapersView />;
     if (activeMode === "practice") return <PracticeView />;
     if (activeMode === "rewards") return <RewardsView />;
     if (activeMode === "syllabus") return <SyllabusView />;
-    return (
-      <StudyDeskView
-        readyComplete={readyComplete}
-        readyProgress={readyProgress}
-        onSelectWorkspaceMode={setMode}
-      />
-    );
+    return <StudyDeskView onSelectWorkspaceMode={setMode} />;
   };
 
   return (
@@ -270,6 +258,12 @@ export default function CMFASExams() {
               onModeChange={setMode}
               onLockedClick={handleLockedClick}
             />
+            <CMFASWorkspaceMobileMenu
+              groups={navGroups}
+              activeMode={activeMode}
+              onModeChange={setMode}
+              onLockedClick={handleLockedClick}
+            />
             <main
               className={cn(
                 "relative min-h-0 min-w-0 flex-1",
@@ -281,10 +275,10 @@ export default function CMFASExams() {
               <div
                 className={cn(
                   "relative mx-auto w-full max-w-[min(100%,80rem)]",
-                  "px-4 py-5 sm:px-6 md:px-10 md:py-8",
+                  "px-4 pt-20 pb-5 sm:px-6 md:px-10 lg:py-8",
                   activeMode === "today"
-                    ? "flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden pb-32 sm:pb-36 lg:pb-6"
-                    : "pb-40 lg:pb-10",
+                    ? "flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden pb-6"
+                    : "pb-10",
                 )}
               >
                 {/* Admin quick actions */}
@@ -327,14 +321,6 @@ export default function CMFASExams() {
               </div>
             </main>
           </div>
-
-          {/* Mobile bottom nav */}
-          <CMFASWorkspaceBottomNav
-            groups={navGroups}
-            activeMode={activeMode}
-            onModeChange={setMode}
-            onLockedClick={handleLockedClick}
-          />
         </div>
 
         {isAdminUser && categoryId && (

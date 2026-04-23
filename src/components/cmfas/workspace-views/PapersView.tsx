@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import {
   getCMFASModuleName,
@@ -10,6 +11,15 @@ import {
   moduleIdToProductId,
 } from '@/data/cmfasModuleData';
 import { cmfasRoom } from '../cmfasTheme';
+
+// Lazy-load each module body so the 4-cards view isn't dragged down by
+// the video player + tabs + charts bundle until the learner picks a paper.
+const M9Module = lazy(() => import('@/pages/cmfas/M9Module'));
+const M9AModule = lazy(() => import('@/pages/cmfas/M9AModule'));
+const HIModule = lazy(() => import('@/pages/cmfas/HIModule'));
+const RES5Module = lazy(() => import('@/pages/cmfas/RES5Module'));
+
+const PAPER_PARAM = 'paper';
 
 const PAPERS: Array<{
   id: keyof typeof moduleIdToProductId;
@@ -22,10 +32,29 @@ const PAPERS: Array<{
   { id: 'res5', code: 'RES5', tagline: 'Rules, Ethics & Skills for Financial Advisory' },
 ];
 
-/** Picker surface — shows each paper, progress, one-click open. */
+type PaperId = (typeof PAPERS)[number]['id'];
+
+function isPaperId(value: string | null): value is PaperId {
+  return value != null && PAPERS.some((p) => p.id === value);
+}
+
+function renderEmbeddedModule(paperId: PaperId) {
+  switch (paperId) {
+    case 'm9':
+      return <M9Module embedded />;
+    case 'm9a':
+      return <M9AModule embedded />;
+    case 'hi':
+      return <HIModule embedded />;
+    case 'res5':
+      return <RES5Module embedded />;
+  }
+}
+
+/** Picker surface — 4 cards → full view swap into the selected paper's module body. */
 export function PapersView() {
-  const navigate = useNavigate();
   const { user } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [progressMap, setProgressMap] = useState<Record<string, { completed: number; total: number }>>({});
 
   const videoCounts = useMemo(() => {
@@ -67,6 +96,66 @@ export function PapersView() {
     };
   }, [user, videoCounts]);
 
+  const rawPaperParam = searchParams.get(PAPER_PARAM);
+  const selectedPaperId: PaperId | null = isPaperId(rawPaperParam) ? rawPaperParam : null;
+
+  const selectPaper = (id: PaperId | null) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (id == null) next.delete(PAPER_PARAM);
+        else next.set(PAPER_PARAM, id);
+        return next;
+      },
+      { replace: false },
+    );
+  };
+
+  // ── Selected-paper view: back button + embedded module body ─────────────
+  if (selectedPaperId) {
+    const selectedPaper = PAPERS.find((p) => p.id === selectedPaperId)!;
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-3">
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={() => selectPaper(null)}
+            className={cn('h-9 gap-2', cmfasRoom.textMuted, 'hover:text-[#e8d4b8]')}
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden />
+            All papers
+          </Button>
+          <div className="min-w-0 text-right">
+            <p
+              className={cn(
+                'text-[10px] font-bold uppercase tracking-[0.2em]',
+                cmfasRoom.brassText,
+              )}
+            >
+              {selectedPaper.code}
+            </p>
+            <p className={cn('truncate text-xs', cmfasRoom.textMuted)}>
+              {selectedPaper.tagline}
+            </p>
+          </div>
+        </div>
+        <div className="dark">
+          <Suspense
+            fallback={
+              <div className={cn('rounded-2xl border px-5 py-10 text-center text-sm', cmfasRoom.surface, cmfasRoom.textMuted)}>
+                Loading module…
+              </div>
+            }
+          >
+            {renderEmbeddedModule(selectedPaperId)}
+          </Suspense>
+        </div>
+      </div>
+    );
+  }
+
+  // ── 4-card picker view ──────────────────────────────────────────────────
   return (
     <div className="space-y-6">
       <header>
@@ -88,11 +177,12 @@ export function PapersView() {
           const pct = progress.total > 0 ? Math.round((progress.completed / progress.total) * 100) : 0;
           const started = pct > 0;
           const done = pct >= 100;
+
           return (
             <button
               key={paper.id}
               type="button"
-              onClick={() => navigate(`/cmfas/module/${paper.id}`)}
+              onClick={() => selectPaper(paper.id)}
               className={cn(
                 'group relative overflow-hidden rounded-2xl border p-5 text-left transition-all',
                 cmfasRoom.surface,
@@ -133,7 +223,13 @@ export function PapersView() {
                     </p>
                   )}
                 </div>
-                <ArrowRight className={cn('mt-1 h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5', cmfasRoom.textFaint)} />
+                <ArrowRight
+                  className={cn(
+                    'mt-1 h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5',
+                    cmfasRoom.textFaint,
+                  )}
+                  aria-hidden
+                />
               </div>
               {started && !done && (
                 <div className={cn('mt-4 h-1 w-full overflow-hidden rounded-full', 'bg-[#8b7355]/15')}>

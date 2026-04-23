@@ -8,7 +8,7 @@ import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 
-export default function RES5Module() {
+export default function RES5Module({ embedded = false }: { embedded?: boolean } = {}) {
   const productId = "res5-module";
   const { updateProduct } = useProductUpdate();
 
@@ -179,27 +179,31 @@ export default function RES5Module() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
-      <Helmet>
-        <title>CMFAS RES5 - Rules, Ethics & Skills for Financial Advisory Services</title>
-        <meta
-          name="description"
-          content="Complete guide to CMFAS RES5 exam covering rules, ethics, and skills for financial advisory services with detailed syllabus and exam format."
-        />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-      </Helmet>
+    <div className={embedded ? "w-full" : "min-h-screen overflow-x-hidden bg-background"}>
+      {!embedded && (
+        <>
+          <Helmet>
+            <title>CMFAS RES5 - Rules, Ethics & Skills for Financial Advisory Services</title>
+            <meta
+              name="description"
+              content="Complete guide to CMFAS RES5 exam covering rules, ethics, and skills for financial advisory services with detailed syllabus and exam format."
+            />
+            <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          </Helmet>
 
-      <header role="banner">
-        <CMFASModuleHeader
-          title="CMFAS RES5 Module"
-          subtitle="Rules, Ethics & Skills for Financial Advisory Services"
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "CMFAS Exams", href: "/cmfas-exams" },
-            { label: "RES5 Module" },
-          ]}
-        />
-      </header>
+          <header role="banner">
+            <CMFASModuleHeader
+              title="CMFAS RES5 Module"
+              subtitle="Rules, Ethics & Skills for Financial Advisory Services"
+              breadcrumbs={[
+                { label: "Home", href: "/" },
+                { label: "CMFAS Exams", href: "/cmfas-exams" },
+                { label: "RES5 Module" },
+              ]}
+            />
+          </header>
+        </>
+      )}
 
       <CMFASModuleCourseLayout
         routeModuleId="res5"
@@ -336,7 +340,7 @@ export default function RES5Module() {
         }
       />
 
-      <CMFASHubChatFAB moduleId="res5" />
+      {!embedded && <CMFASHubChatFAB moduleId="res5" />}
     </div>
   );
 }

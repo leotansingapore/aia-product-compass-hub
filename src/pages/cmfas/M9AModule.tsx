@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
 
-export default function M9AModule() {
+export default function M9AModule({ embedded = false }: { embedded?: boolean } = {}) {
   const productId = "m9a-module";
   const { updateProduct } = useProductUpdate();
 
@@ -160,27 +160,37 @@ export default function M9AModule() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-background via-background to-muted/20">
-      <Helmet>
-        <title>CMFAS M9A - Life Insurance & Investment-Linked Policies II</title>
-        <meta
-          name="description"
-          content="Complete guide to CMFAS M9A exam covering structured products and investment-linked policies with detailed syllabus and exam format."
-        />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-      </Helmet>
+    <div
+      className={
+        embedded
+          ? "w-full"
+          : "min-h-screen overflow-x-hidden bg-gradient-to-br from-background via-background to-muted/20"
+      }
+    >
+      {!embedded && (
+        <>
+          <Helmet>
+            <title>CMFAS M9A - Life Insurance & Investment-Linked Policies II</title>
+            <meta
+              name="description"
+              content="Complete guide to CMFAS M9A exam covering structured products and investment-linked policies with detailed syllabus and exam format."
+            />
+            <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          </Helmet>
 
-      <header role="banner">
-        <CMFASModuleHeader
-          title="CMFAS M9A Module"
-          subtitle="Life Insurance & Investment-Linked Policies II"
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "CMFAS Exams", href: "/cmfas-exams" },
-            { label: "M9A Module" },
-          ]}
-        />
-      </header>
+          <header role="banner">
+            <CMFASModuleHeader
+              title="CMFAS M9A Module"
+              subtitle="Life Insurance & Investment-Linked Policies II"
+              breadcrumbs={[
+                { label: "Home", href: "/" },
+                { label: "CMFAS Exams", href: "/cmfas-exams" },
+                { label: "M9A Module" },
+              ]}
+            />
+          </header>
+        </>
+      )}
 
       <CMFASModuleCourseLayout
         routeModuleId="m9a"
@@ -354,7 +364,7 @@ export default function M9AModule() {
         }
       />
 
-      <CMFASHubChatFAB moduleId="m9a" />
+      {!embedded && <CMFASHubChatFAB moduleId="m9a" />}
     </div>
   );
 }

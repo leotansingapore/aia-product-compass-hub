@@ -6,7 +6,7 @@ export const GET_READY_STEPS = [
   { id: 'welcome', title: 'Read the welcome briefing', minutes: 5, outcome: "you'll know what CMFAS is and why it matters" },
   { id: 'create-student-account', title: 'Create your SCI College student account', minutes: 10, outcome: "you'll be a recognised exam candidate" },
   { id: 'access-question-bank', title: 'Unlock the question bank (iRecruit)', minutes: 10, outcome: "you can start drilling real exam questions" },
-  { id: 'understand-costs-timeline', title: 'Know the costs + timeline', minutes: 3, outcome: "you'll know what each paper costs and how long to budget" },
+  { id: 'understand-costs-timeline', title: 'Rewards for passing', minutes: 4, outcome: 'you know the cash rewards for passing fast and on first try' },
   { id: 'register-m9-exam', title: 'Register for your first paper (M9)', minutes: 5, outcome: "a real booked exam date to study toward" },
   { id: 'first-practice', title: 'Do your first 10 practice questions', minutes: 15, outcome: "you stop stalling and start learning by doing" },
 ] as const;

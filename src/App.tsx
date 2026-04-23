@@ -12,6 +12,7 @@ import { ViewModeProvider, AdminViewSwitcher } from "@/components/admin/AdminVie
 import { AdminProvider } from "@/hooks/useAdmin";
 import { OnboardingProvider } from "@/hooks/useOnboarding";
 import { ChecklistProvider } from "@/hooks/useChecklistProgress";
+import { SlideSubmissionsProvider } from "@/hooks/useSlideSubmissions";
 import { CMFASStudyProvider } from "@/components/cmfas/CMFASStudyProvider";
 // PomodoroDock is only meaningful inside CMFASStudyProvider — keep it out of
 // the app-shell bundle for non-CMFAS sessions.
@@ -117,6 +118,7 @@ const App = () => (
             <BrowserRouter>
               <OnboardingProvider>
                 <ChecklistProvider>
+                  <SlideSubmissionsProvider>
                   <CMFASStudyProvider>
                   <Suspense fallback={null}>
                     <PomodoroDock />
@@ -233,6 +235,7 @@ const App = () => (
                   </Suspense>
                   </AppLayout>
                   </CMFASStudyProvider>
+                  </SlideSubmissionsProvider>
                 </ChecklistProvider>
               </OnboardingProvider>
               {/* Admin View Switcher - outside AppLayout so it's never clipped */}

@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { BookOpen, Brain, FileText, Home, Lock, Trophy } from 'lucide-react';
+import { BookOpen, Brain, FileText, Home, Lock, Menu, Trophy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
@@ -67,16 +69,6 @@ export function buildNavSpec({
     ],
   };
 }
-
-const resourceTriggerClassMobile = (isActive: boolean, locked: boolean) =>
-  cn(
-    'flex flex-1 items-center justify-center gap-1.5 rounded-md border px-2 py-2 text-center transition-colors',
-    'min-h-[40px] border-[#b8894f]/20 bg-transparent',
-    'text-[10px] font-medium text-[#c9b896] sm:text-[11px]',
-    'hover:border-[#b8894f]/35 hover:bg-[#b8894f]/5 hover:text-[#e8d4b8]',
-    isActive && 'border-[#b8894f]/50 bg-[#b8894f]/8 text-[#d4a574]',
-    locked && 'cursor-not-allowed opacity-40',
-  );
 
 /** Top header — branding only; workspace modes live in {@link CMFASWorkspaceFloatingNav}. */
 export interface CMFASWorkspaceTopBarProps {
@@ -268,113 +260,110 @@ export function CMFASWorkspaceFloatingNav({
   return createPortal(nav, document.body);
 }
 
-interface CMFASWorkspaceBottomNavProps {
+interface CMFASWorkspaceMobileMenuProps {
   groups: CMFASWorkspaceNavGroups;
   activeMode: WorkspaceMode;
   onModeChange: (mode: WorkspaceMode) => void;
   onLockedClick?: (mode: WorkspaceMode) => void;
 }
 
-/** Mobile bottom (below lg). Primary row + a second row of transparent resource triggers. */
-export function CMFASWorkspaceBottomNav({
+/** Mobile/tablet (below lg). Floating hamburger — opens a Sheet listing the same items as the desktop rail.
+ *  Portaled to `document.body` for the same reason as {@link CMFASWorkspaceFloatingNav}: `page-transition`
+ *  uses transform, which breaks `position: fixed` on descendants. */
+export function CMFASWorkspaceMobileMenu({
   groups,
   activeMode,
   onModeChange,
   onLockedClick,
-}: CMFASWorkspaceBottomNavProps) {
-  return (
-    <nav
-      className={cn(
-        'fixed left-0 right-0 z-40 border-t backdrop-blur lg:hidden',
-        cmfasRoom.canvasSoft,
-        cmfasRoom.brassBorderSoft,
-        'bottom-[calc(3.5rem+env(safe-area-inset-bottom))]',
-      )}
-      aria-label="CMFAS workspace"
-    >
-      <div className="mx-auto flex w-full max-w-3xl flex-col">
-        <div className="flex min-h-[52px] items-stretch justify-around overflow-x-auto">
-          {groups.primary.map((item) => {
-            const Icon = item.locked ? Lock : item.icon;
-            const isActive = activeMode === item.id;
-            const handleClick = () => {
-              if (item.locked) {
-                onLockedClick?.(item.id);
-                return;
-              }
-              onModeChange(item.id);
-            };
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={handleClick}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn(
-                  'relative flex min-w-[64px] flex-1 flex-col items-center justify-center gap-0.5 px-1 py-2 transition-colors',
-                  isActive
-                    ? cmfasRoom.brassText
-                    : item.locked
-                      ? cmfasRoom.dimmedText
-                      : cmfasRoom.textMuted,
-                )}
-              >
-                {isActive && (
-                  <span
-                    className={cn('absolute top-0 h-0.5 w-8 rounded-b-full', cmfasRoom.brassBg)}
-                    aria-hidden
-                  />
-                )}
-                <Icon className="h-4 w-4" />
-                <span className="px-0.5 text-center text-[10px] font-medium leading-tight">{item.label}</span>
-                {item.badge && item.badge !== '✓' && (
-                  <span
-                    className={cn(
-                      'absolute right-1 top-0.5 rounded-full px-1 text-[8px] font-bold',
-                      cmfasRoom.brassBg,
-                      'text-[#0a1424]',
-                    )}
-                  >
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-        <div
-          className={cn('flex gap-2 border-t border-[#b8894f]/15 px-2 py-1.5', 'pb-[max(0.5rem,env(safe-area-inset-bottom))]')}
-          role="group"
-          aria-label="Additional resources"
+}: CMFASWorkspaceMobileMenuProps) {
+  const [open, setOpen] = useState(false);
+
+  const select = (id: WorkspaceMode, locked: boolean) => {
+    if (locked) {
+      onLockedClick?.(id);
+      return;
+    }
+    onModeChange(id);
+    setOpen(false);
+  };
+
+  const renderItem = (
+    item: NavItemSpec | ResourceNavItemSpec,
+    isPrimary: boolean,
+  ) => {
+    const Icon = item.locked ? Lock : item.icon;
+    const isActive = activeMode === item.id;
+    const badge = isPrimary ? (item as NavItemSpec).badge : undefined;
+    return (
+      <button
+        key={item.id}
+        type="button"
+        onClick={() => select(item.id, item.locked)}
+        aria-current={isActive ? 'page' : undefined}
+        className={cn(
+          'flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm transition-colors',
+          isActive
+            ? cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText, 'font-semibold')
+            : item.locked
+              ? cn(cmfasRoom.dimmedText, 'cursor-not-allowed')
+              : cn(cmfasRoom.textMuted, 'hover:bg-[#b8894f]/10 hover:text-[#d4a574]'),
+        )}
+      >
+        <Icon className="h-4 w-4 shrink-0" aria-hidden />
+        <span className="flex-1 truncate">{item.label}</span>
+        {badge && (
+          <span
+            className={cn(
+              'shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold tabular-nums',
+              badge === '✓'
+                ? cn(cmfasRoom.positiveBgSoft, cmfasRoom.positiveText)
+                : cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText),
+            )}
+          >
+            {badge}
+          </span>
+        )}
+      </button>
+    );
+  };
+
+  const menu = (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <button
+          type="button"
+          aria-label="Open CMFAS workspace menu"
+          className={cn(
+            'pointer-events-auto fixed left-3 top-20 z-40 flex h-11 w-11 items-center justify-center rounded-full border lg:hidden',
+            'border-[#b8894f]/25 bg-[#0a1424]/75 backdrop-blur-md',
+            'shadow-[0_8px_40px_rgba(0,0,0,0.25)]',
+            cmfasRoom.brassText,
+            'hover:bg-[#0a1424]/90',
+          )}
         >
-          {groups.resources.map((item) => {
-            const Icon = item.locked ? Lock : item.icon;
-            const isActive = activeMode === item.id;
-            const handleClick = () => {
-              if (item.locked) {
-                onLockedClick?.(item.id);
-                return;
-              }
-              onModeChange(item.id);
-            };
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={handleClick}
-                aria-current={isActive ? 'page' : undefined}
-                className={resourceTriggerClassMobile(isActive, item.locked)}
-              >
-                <Icon className="h-3.5 w-3.5 shrink-0" />
-                <span className="line-clamp-2 leading-tight">
-                  <span className="max-[360px]:hidden">{item.label}</span>
-                  <span className="min-[361px]:hidden">{item.shortLabel}</span>
-                </span>
-              </button>
-            );
-          })}
+          <Menu className="h-5 w-5" aria-hidden />
+        </button>
+      </SheetTrigger>
+      <SheetContent
+        side="left"
+        className={cn('w-80 border-r p-5', cmfasRoom.canvas, cmfasRoom.text, 'border-[#b8894f]/25')}
+      >
+        <SheetHeader className="text-left">
+          <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
+            CMFAS
+          </p>
+          <SheetTitle className={cn('font-serif text-lg font-bold', cmfasRoom.text)}>
+            Exam preparation room
+          </SheetTitle>
+        </SheetHeader>
+        <div className="mt-5 flex flex-col gap-1">
+          {groups.primary.map((item) => renderItem(item, true))}
+          <div className="my-2 h-px bg-[#b8894f]/20" role="separator" aria-hidden />
+          {groups.resources.map((item) => renderItem(item, false))}
         </div>
-      </div>
-    </nav>
+      </SheetContent>
+    </Sheet>
   );
+
+  return createPortal(menu, document.body);
 }

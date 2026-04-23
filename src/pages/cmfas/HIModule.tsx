@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
 
-export default function HIModule() {
+export default function HIModule({ embedded = false }: { embedded?: boolean } = {}) {
   const productId = "hi-module";
   const { updateProduct } = useProductUpdate();
 
@@ -189,27 +189,31 @@ export default function HIModule() {
   ];
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
-      <Helmet>
-        <title>CMFAS HI - Health Insurance</title>
-        <meta
-          name="description"
-          content="Complete guide to CMFAS HI exam covering health insurance products including medical expense, disability income, and critical illness insurance."
-        />
-        <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
-      </Helmet>
+    <div className={embedded ? "w-full" : "min-h-screen overflow-x-hidden bg-background"}>
+      {!embedded && (
+        <>
+          <Helmet>
+            <title>CMFAS HI - Health Insurance</title>
+            <meta
+              name="description"
+              content="Complete guide to CMFAS HI exam covering health insurance products including medical expense, disability income, and critical illness insurance."
+            />
+            <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
+          </Helmet>
 
-      <header role="banner">
-        <CMFASModuleHeader
-          title="CMFAS HI Module"
-          subtitle="Health Insurance"
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "CMFAS Exams", href: "/cmfas-exams" },
-            { label: "HI Module" },
-          ]}
-        />
-      </header>
+          <header role="banner">
+            <CMFASModuleHeader
+              title="CMFAS HI Module"
+              subtitle="Health Insurance"
+              breadcrumbs={[
+                { label: "Home", href: "/" },
+                { label: "CMFAS Exams", href: "/cmfas-exams" },
+                { label: "HI Module" },
+              ]}
+            />
+          </header>
+        </>
+      )}
 
       <CMFASModuleCourseLayout
         routeModuleId="hi"
@@ -312,7 +316,7 @@ export default function HIModule() {
         }
       />
 
-      <CMFASHubChatFAB moduleId="hi" />
+      {!embedded && <CMFASHubChatFAB moduleId="hi" />}
     </div>
   );
 }
