@@ -240,13 +240,13 @@ This isn't a 30-day project. It's a 5–10 year rebuild. Your job is to walk alo
 
  **Why:** C passes the one-sentence test cleanly — $800/month net flows into the owner's pocket, making it an asset by definition. A has a mortgage and $2,000/month in outflows — money flows out, so it is mostly a liability. B generates no income and incurs fuel, insurance, and depreciation costs. D is a designer item that depreciates; the content classifies luxury goods as liabilities unless held for resale at scale.
 
-7. **After a client sees their honest balance sheet for the first time and falls quiet, you should:**
- - A) Summarise the gaps and hand them a product brochure
- - B) Fill the silence with reassurance that their situation is common
- - C) Let the silence sit — the realisation is working, and interrupting it breaks the moment ✓
- - D) Suggest they consult their spouse before proceeding
+7. **According to Day 17's five-action framework for moving from liability accumulation to asset accumulation, what's the *behavioural* shift that protects all the other four actions?**
+ - A) Track expenses to the dollar in a budget app
+ - B) Earn more so the gap closes faster
+ - C) Stop measuring progress by lifestyle visible to others — measure by net worth in your own ledger ✓
+ - D) Have quarterly accountability meetings with the FC
 
- **Why:** The content specifically identifies the quiet client as one where the realisation is working, and says the goal is to put real numbers in their hands then ask what they want to do — the silence is productive and should not be interrupted. A jumps to a product pitch before the client has processed the realisation, which breaks trust. B normalises the situation prematurely and defuses the motivation that the silence is building. D introduces a third party before the client has even decided they want to act.
+ **Why:** Day 17 names this as the fifth — and most behaviourally protective — action. Without it, every cash-flow change gets quietly undone by the next visible-status purchase: the upgraded car, the bigger holiday, the watch you "deserve" after a good year. *Looking rich* is the gravitational pull that produced the gap in the first place, and the antidote isn't a budgeting tool, an income increase, or external accountability — it's a deliberate change in **what counts as winning**. A and D are useful operational habits but don't address the social-signalling driver. B sounds plausible but is the most common trap: earning more without changing the measurement frame produces a more expensive lifestyle, not more wealth.
 
 ---
 
