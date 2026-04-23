@@ -1,8 +1,74 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   code: string;
 };
+
+type MermaidApi = {
+  initialize: (config: Record<string, unknown>) => void;
+  render: (id: string, code: string) => Promise<{ svg: string }>;
+};
+
+// Shared module-level state — pay the cost once per session, not per diagram.
+let mermaidPromise: Promise<MermaidApi> | null = null;
+let mermaidCurrentTheme: "light" | "dark" | null = null;
+
+const darkSubscribers = new Set<(dark: boolean) => void>();
+let darkListenerInstalled = false;
+
+function detectDark() {
+  if (typeof document === "undefined") return false;
+  return (
+    document.documentElement.classList.contains("dark") ||
+    window.matchMedia?.("(prefers-color-scheme: dark)").matches
+  );
+}
+
+function ensureDarkListener() {
+  if (darkListenerInstalled || typeof document === "undefined") return;
+  darkListenerInstalled = true;
+  const broadcast = () => {
+    const dark = detectDark();
+    darkSubscribers.forEach((cb) => cb(dark));
+  };
+  const obs = new MutationObserver(broadcast);
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener?.("change", broadcast);
+}
+
+function applyTheme(mermaid: MermaidApi, dark: boolean) {
+  const desired = dark ? "dark" : "light";
+  if (mermaidCurrentTheme === desired) return;
+  mermaidCurrentTheme = desired;
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    securityLevel: "loose",
+    themeVariables: dark ? DARK_THEME_VARS : LIGHT_THEME_VARS,
+    flowchart: {
+      htmlLabels: true,
+      curve: "basis",
+      padding: 24,
+      nodeSpacing: 64,
+      rankSpacing: 72,
+      useMaxWidth: true,
+    },
+    sequence: { useMaxWidth: true },
+    gantt: { useMaxWidth: true },
+  });
+}
+
+function getMermaid(): Promise<MermaidApi> {
+  if (mermaidPromise) return mermaidPromise;
+  // mermaid.core ships only the built-in diagrams (flowchart, sequence, pie,
+  // class, state, ER, gantt, journey, gitGraph, requirement, c4, info) and
+  // omits the heavy externals (wardley, cytoscape, katex, marked) — saves
+  // ~1.5MB on first paint of any day with a diagram.
+  mermaidPromise = import("mermaid/dist/mermaid.core.mjs").then(
+    (mod) => (mod as unknown as { default: MermaidApi }).default,
+  );
+  return mermaidPromise;
+}
 
 const LIGHT_THEME_VARS = {
   background: "transparent",
@@ -114,53 +180,55 @@ const DARK_THEME_VARS = {
   pieStrokeWidth: "2px",
 };
 
-function detectDark() {
-  if (typeof document === "undefined") return false;
-  return (
-    document.documentElement.classList.contains("dark") ||
-    window.matchMedia?.("(prefers-color-scheme: dark)").matches
-  );
-}
-
 export function MermaidDiagram({ code }: Props) {
   const [svg, setSvg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isDark, setIsDark] = useState<boolean>(() => detectDark());
+  const [shouldRender, setShouldRender] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
+  // Subscribe to the shared dark-mode broadcaster (one listener for the whole
+  // app, not one per diagram).
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    const obs = new MutationObserver(() => setIsDark(detectDark()));
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
-    const onMq = () => setIsDark(detectDark());
-    mq?.addEventListener?.("change", onMq);
+    ensureDarkListener();
+    const cb = (d: boolean) => setIsDark(d);
+    darkSubscribers.add(cb);
     return () => {
-      obs.disconnect();
-      mq?.removeEventListener?.("change", onMq);
+      darkSubscribers.delete(cb);
     };
   }, []);
 
+  // Defer rendering until the diagram scrolls into view. Pages with 5+
+  // diagrams used to render them all on mount; now they render as the user
+  // approaches each one.
   useEffect(() => {
+    if (shouldRender) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShouldRender(true);
+      return;
+    }
+    const node = containerRef.current;
+    if (!node) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldRender(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, [shouldRender]);
+
+  useEffect(() => {
+    if (!shouldRender) return;
     let cancelled = false;
     (async () => {
       try {
-        const mermaid = (await import("mermaid")).default;
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: "base",
-          securityLevel: "loose",
-          themeVariables: isDark ? DARK_THEME_VARS : LIGHT_THEME_VARS,
-          flowchart: {
-            htmlLabels: true,
-            curve: "basis",
-            padding: 24,
-            nodeSpacing: 64,
-            rankSpacing: 72,
-            useMaxWidth: true,
-          },
-          sequence: { useMaxWidth: true },
-          gantt: { useMaxWidth: true },
-        });
+        const mermaid = await getMermaid();
+        applyTheme(mermaid, isDark);
         const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
         const { svg: rendered } = await mermaid.render(id, code);
         if (!cancelled) {
@@ -174,11 +242,11 @@ export function MermaidDiagram({ code }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [code, isDark]);
+  }, [code, isDark, shouldRender]);
 
   if (error) {
     return (
-      <div className="my-6 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-xs text-destructive">
+      <div ref={containerRef} className="my-6 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-xs text-destructive">
         Diagram failed to render: {error}
       </div>
     );
@@ -186,17 +254,20 @@ export function MermaidDiagram({ code }: Props) {
 
   if (!svg) {
     return (
-      <div className="my-6 flex items-center justify-center rounded-xl border border-border/60 bg-muted/20 py-12 text-xs text-muted-foreground">
+      <div
+        ref={containerRef}
+        className="my-6 flex items-center justify-center rounded-xl border border-border/60 bg-muted/20 py-12 text-xs text-muted-foreground"
+      >
         <span className="inline-flex items-center gap-2">
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-primary/60" />
-          Rendering diagram…
+          {shouldRender ? "Rendering diagram…" : "Diagram"}
         </span>
       </div>
     );
   }
 
   return (
-    <figure className="relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
+    <figure ref={containerRef} className="relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         aria-hidden
