@@ -157,20 +157,37 @@ Start before you feel ready. Publish before it's polished. Send before you've re
 
 ---
 
-```mermaid
-flowchart LR
-    A["Morning Revenue Block<br/>8:30-10:00am"] --> B["Mid-morning Meeting Block<br/>10:00am-12:30pm"]
-    B --> C["Lunch / Break<br/>12:30-1:30pm"]
-    C --> D["Late Afternoon Admin Block<br/>1:30-3:30pm"]
-    D --> E["End of Day Learning Block<br/>3:30-5:00pm"]
-    style A fill:#1a5c3a,color:#fff
-    style B fill:#1e3a5f,color:#fff
-    style C fill:#3d3d3d,color:#fff
-    style D fill:#5c3a1a,color:#fff
-    style E fill:#3a1a5c,color:#fff
-```
-
-*Each block = one task type. Context-switch tax (~20 min) paid once, not four times.*
+<div style="border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;margin:1.5rem 0;">
+  <div style="font-style:italic;text-transform:uppercase;letter-spacing:0.08em;font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">A day, batched</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;">
+    <div style="padding:0 0.85rem 0 0;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Revenue Block</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">8:30 — 10:00</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Meeting Block</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">10:00 — 12:30</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Lunch / Break</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">12:30 — 13:30</div>
+    </div>
+    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Admin Block</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">13:30 — 15:30</div>
+    </div>
+    <div style="padding:0 0 0 0.85rem;">
+      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
+      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Learning Block</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">15:30 — 17:00</div>
+    </div>
+  </div>
+  <div style="margin-top:1.25rem;font-size:12px;color:hsl(var(--muted-foreground));font-style:italic;">Each block = one task type. Context-switch tax (~20 min) paid once, not four times.</div>
+</div>
 
 ---
 
