@@ -26,6 +26,7 @@ interface FilterState {
   search: string;
   status: string;
   role: string;
+  tier: string;
   sortBy: 'name' | 'email' | 'created_at' | 'status';
   sortOrder: 'asc' | 'desc';
 }
