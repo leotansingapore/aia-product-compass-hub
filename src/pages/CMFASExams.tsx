@@ -180,6 +180,7 @@ export default function CMFASExams() {
     return (
       <PageLayout
         title="CMFAS Exam Preparation | FINternship"
+        description="Prepare for your CMFAS exams with structured modules, videos, and AI tutoring."
         className={cn("min-h-screen min-h-dvh", cmfasRoom.canvas, cmfasRoom.text)}
       >
         <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 py-6">
