@@ -56,7 +56,7 @@ export default function LearningTrack() {
     : location.pathname.includes("/pre-rnf") ? "Pre-RNF Training"
     : location.pathname.includes("/post-rnf") ? "Post-RNF Training"
     : location.pathname.includes("/first-60-days") ? "First 60 Days"
-    : location.pathname.includes("/first-30-days") ? "First 30 Days"
+    : location.pathname.includes("/next-60-days") ? "Next 60 Days"
     : location.pathname.includes("/admin") ? "Admin"
     : "Learning Track";
 

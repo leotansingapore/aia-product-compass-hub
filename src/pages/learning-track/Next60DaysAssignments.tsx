@@ -9,7 +9,6 @@ import {
   Eye,
   FileText,
   Loader2,
-  Lock,
   Target,
   Upload,
   Users,
@@ -31,13 +30,11 @@ import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
 import {
   loadAllAssignments,
-  FIRST_60_DAYS_REQUIRED_KEYS,
   type Assignment,
   type AssignmentFormField,
 } from "@/features/next-60-days/assignments";
 
 const PRODUCT_ID = "next-60-days-assignments";
-const FIRST_60_PRODUCT_ID = "first-60-days-assignments";
 
 const ICON_MAP: Record<string, typeof Video> = {
   video: Video,
@@ -90,33 +87,10 @@ function useSubmissions(userId: string | undefined) {
   });
 }
 
-function useFirst60DaysCompletion(userId: string | undefined) {
-  return useQuery({
-    queryKey: ["first60-completion-gate", userId],
-    enabled: !!userId,
-    queryFn: async () => {
-      if (!userId) return { completed: 0, total: FIRST_60_DAYS_REQUIRED_KEYS.length, locked: true };
-      const { data, error } = await (supabase.from as any)("assignment_submissions")
-        .select("item_id")
-        .eq("product_id", FIRST_60_PRODUCT_ID)
-        .eq("user_id", userId);
-      if (error) throw error;
-      const submittedKeys = new Set((data ?? []).map((r: any) => r.item_id as string));
-      const completed = FIRST_60_DAYS_REQUIRED_KEYS.filter((k) => submittedKeys.has(k)).length;
-      return {
-        completed,
-        total: FIRST_60_DAYS_REQUIRED_KEYS.length,
-        locked: completed < FIRST_60_DAYS_REQUIRED_KEYS.length,
-      };
-    },
-  });
-}
-
 export default function Next60DaysAssignments() {
   const { data: assignments, isLoading } = useAssignments();
   const { user } = useSimplifiedAuth();
   const { data: submissions, refetch: refetchSubmissions } = useSubmissions(user?.id);
-  const { data: gate } = useFirst60DaysCompletion(user?.id);
   const { itemId } = useParams<{ itemId?: string }>();
   const navigate = useNavigate();
 
@@ -136,50 +110,13 @@ export default function Next60DaysAssignments() {
     );
   }
 
-  if (gate?.locked) {
-    return (
-      <div className="max-w-2xl mx-auto space-y-6">
-        <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent p-8 text-center">
-          <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 mb-4">
-            <Lock className="h-8 w-8" />
-          </div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-600 dark:text-amber-400 mb-2">
-            Locked
-          </p>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground mb-4">
-            Complete your First 60 Days assignments first
-          </h1>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-            Next 60 Days assignments build on the foundation of the First 60 Days. Submit all {gate?.total ?? 6} First-60-Days assignments before unlocking this track.
-          </p>
-          <div className="rounded-xl bg-background/80 backdrop-blur border px-4 py-3 inline-flex items-center gap-3 mb-6">
-            <div className="text-3xl font-serif font-bold tabular-nums text-foreground">
-              {gate?.completed ?? 0}/{gate?.total ?? 6}
-            </div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground text-left">
-              First 60 Days<br />submitted
-            </div>
-          </div>
-          <div>
-            <Button asChild>
-              <Link to="/learning-track/pre-rnf/assignments">
-                Go to First 60 Days assignments
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const active = itemId ? assignments.find((a) => a.slug === itemId) : null;
 
   if (itemId && !active) {
     return (
       <div className="max-w-3xl mx-auto rounded-xl border border-dashed bg-muted/20 p-10 text-center">
         <p className="text-sm text-muted-foreground mb-4">Assignment not found.</p>
-        <Button variant="outline" size="sm" onClick={() => navigate("/learning-track/next-60-days/assignments")}>
+        <Button variant="outline" size="sm" onClick={() => navigate("/learning-track/post-rnf/assignments")}>
           Back to all assignments
         </Button>
       </div>
@@ -236,7 +173,7 @@ export default function Next60DaysAssignments() {
           return (
             <Link
               key={a.slug}
-              to={`/learning-track/next-60-days/assignments/${a.slug}`}
+              to={`/learning-track/post-rnf/assignments/${a.slug}`}
               className="block group"
             >
             <Card
@@ -319,7 +256,7 @@ function AssignmentDetail({
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <Link
-        to="/learning-track/next-60-days/assignments"
+        to="/learning-track/post-rnf/assignments"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />

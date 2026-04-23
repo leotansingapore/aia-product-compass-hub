@@ -26,7 +26,7 @@ import { useFirst30DaysProgress } from "@/hooks/first-30-days/useFirst30DaysProg
 import { DayQuiz } from "@/components/first-60-days/DayQuiz";
 import { DayReflection } from "@/components/first-60-days/DayReflection";
 
-const BASE = "/learning-track/first-30-days";
+const BASE = "/learning-track/next-60-days";
 
 type StatusChipProps = { icon: typeof BookOpen; label: string; done: boolean; dim?: boolean };
 
@@ -127,7 +127,7 @@ export default function First30DaysDay() {
     return (
       <div className="py-12 text-center">
         <p className="text-sm text-muted-foreground">Day not found.</p>
-        <Button asChild variant="link" className="mt-2"><Link to={BASE}>Back to 30-day hub</Link></Button>
+        <Button asChild variant="link" className="mt-2"><Link to={BASE}>Back to Next 60 Days hub</Link></Button>
       </div>
     );
   }
@@ -155,10 +155,10 @@ export default function First30DaysDay() {
   const progressPct = Math.round((steps.filter(Boolean).length / steps.length) * 100);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6" data-testid="first-30-days-day">
+    <div className="mx-auto max-w-5xl space-y-6" data-testid="next-60-days-day">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-        <Link to={BASE} className="transition-colors hover:text-primary">30-day hub</Link>
+        <Link to={BASE} className="transition-colors hover:text-primary">Next 60 Days hub</Link>
         <span className="text-muted-foreground/40">/</span>
         <span>Week {day.week}</span>
         <span className="text-muted-foreground/40">/</span>
@@ -244,7 +244,7 @@ export default function First30DaysDay() {
             dayNumber={dayNumber}
             questions={day.quiz}
             progress={quizProgress}
-            basePath="/learning-track/first-30-days"
+            basePath="/learning-track/next-60-days"
           />
         </TabsContent>
       </Tabs>

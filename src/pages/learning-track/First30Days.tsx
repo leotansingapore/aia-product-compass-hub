@@ -15,10 +15,10 @@ export default function First30Days() {
   const totalPct = (TOTAL_DAYS as number) === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
 
   return (
-    <div className="space-y-4 max-w-3xl mx-auto" data-testid="first-30-days-hub">
+    <div className="space-y-4 max-w-3xl mx-auto" data-testid="next-60-days-hub">
       <div className="flex items-center justify-between gap-3 px-1">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Your First 30 Days
+          Your Next 60 Days
         </p>
         <span className="text-xs text-muted-foreground tabular-nums">
           {totalDone} of {TOTAL_DAYS} days · {totalPct}%
@@ -35,7 +35,7 @@ export default function First30Days() {
           const isLocked = !anyUnlocked;
           const firstIncomplete = week.days.find((d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber));
           const entryDay = firstIncomplete ?? week.days[0];
-          const href = `/learning-track/first-30-days/day/${entryDay.dayNumber}`;
+          const href = `/learning-track/next-60-days/day/${entryDay.dayNumber}`;
 
           return (
             <Card

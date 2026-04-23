@@ -1,13 +1,13 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import First30Days from "./First30Days";
-import First60DaysAssignments from "./First60DaysAssignments";
+import Next60DaysAssignments from "./Next60DaysAssignments";
 
-type PostRnfView = "first30" | "assignments";
+type PostRnfView = "next60" | "assignments";
 
 export default function PostRnfTrack() {
   const { pathname } = useLocation();
-  const view: PostRnfView = pathname.includes("/assignments") ? "assignments" : "first30";
+  const view: PostRnfView = pathname.includes("/assignments") ? "assignments" : "next60";
 
   const tabClass = (isActive: boolean) =>
     cn(
@@ -25,11 +25,11 @@ export default function PostRnfTrack() {
         >
           <NavLink
             role="tab"
-            to="/learning-track/post-rnf/first-30-days"
-            aria-selected={view === "first30"}
-            className={tabClass(view === "first30")}
+            to="/learning-track/post-rnf/next-60-days"
+            aria-selected={view === "next60"}
+            className={tabClass(view === "next60")}
           >
-            First 30 Days
+            Next 60 Days
           </NavLink>
           <NavLink
             role="tab"
@@ -42,7 +42,7 @@ export default function PostRnfTrack() {
         </div>
       </div>
 
-      {view === "first30" ? <First30Days /> : <First60DaysAssignments />}
+      {view === "next60" ? <First30Days /> : <Next60DaysAssignments />}
     </div>
   );
 }

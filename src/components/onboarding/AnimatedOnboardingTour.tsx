@@ -620,7 +620,7 @@ function JourneyVisual() {
     <div className="space-y-5">
       {[
         { label: "First 14 Days", sub: "Explorer onboarding", tone: "bg-emerald-400" },
-        { label: "First 30 Days", sub: "Post-RNF launch", tone: "bg-teal-400" },
+        { label: "Next 60 Days", sub: "Post-RNF launch", tone: "bg-teal-400" },
         { label: "First 60 Days", sub: "Pre-RNF mastery", tone: "bg-cyan-400" },
       ].map((track, trackIdx) => (
         <div

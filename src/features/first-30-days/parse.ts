@@ -4,4 +4,5 @@ export {
   parseQuiz,
   parseReflection,
   stripAppendix,
+  convertWikilinks,
 } from "../first-60-days/parse";
