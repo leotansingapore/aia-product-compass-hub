@@ -2895,6 +2895,24 @@ export type Database = {
         }
         Relationships: []
       }
+      user_checklist_progress: {
+        Row: {
+          completed_at: string
+          item_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          item_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          item_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_notes: {
         Row: {
           content: string
