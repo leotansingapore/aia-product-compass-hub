@@ -118,6 +118,58 @@ The rule: **ART handles objections where the real concern is stated explicitly. 
 
 ---
 
+## When the objection keeps moving — looping
+
+You rebut *"too expensive"* cleanly. The prospect nods, says *"makes sense"*, then immediately hits you with *"I need to speak to my wife."* You handle that. Then: *"Actually, maybe I'll compare a bit more."* Then: *"Timing's bad — let me circle back next month."*
+
+Every objection got a clean rebuttal. You still didn't close. Why?
+
+**Because the stated objection was never the real problem.** Objections are smoke screens for **uncertainty**. If the prospect is uncertain about the product, uncertain about you, or uncertain about the company, they will keep generating new objections until one of them sticks — because the underlying uncertainty hasn't moved.
+
+### The Three Certainties
+
+Before a prospect can buy, three things must all sit at a 9 or 10 on their internal certainty scale:
+
+| # | What they must be certain of | What lowers this |
+|---|---|---|
+| **1** | **The product is right for them** | Weak pitch, vague benefits, wrong angle |
+| **2** | **You are trustworthy and competent** | Poor rapport, scripted delivery, no active listening |
+| **3** | **The company behind the product is reliable** | No social proof, no firm story, no claims history shared |
+
+If even one of these sits at a 5 or below, you can rebut every objection perfectly and still not close.
+
+### Looping — the uncertainty-rebuilder
+
+When rebuttals aren't moving the sale, stop rebutting and **loop** back into presentation mode. Rebuild certainty on all three before asking for the order again.
+
+```mermaid
+flowchart LR
+    O["Objection lands"] --> A["Acknowledge<br/>(don't rebut yet)"]
+    A --> L["Loop back into<br/>mini-presentation"]
+    L --> C["Rebuild certainty<br/>on Product + You + Firm"]
+    C --> R["Re-ask for the order"]
+    R --> O
+```
+
+**A looping script template:**
+
+> *"I completely hear you on [objection]. Let me take a step back for a second — because I want to make sure this is actually the right fit for you, and not just a product I'm pushing. So the reason I believe this makes sense for you is [product angle, tailored to their hot button]. Based on everything you shared earlier, [connect to their specific situation — builds certainty #1]. And look — I'm not going to be the advisor who shows up once and disappears. What I do differently is [your service commitment — builds certainty #2]. The firm itself has [claims record / size / history — builds certainty #3]. So — with all that, does the path forward feel clearer now?"*
+
+**The rule of three loops:** loop at most three times on any single call. If after three loops you're still generating objections, the prospect's action threshold is too high for this session — **schedule a follow-up, don't grind**. You're protecting the relationship.
+
+### When to use looping vs. ART vs. Iceberg
+
+| Situation | Tool |
+|---|---|
+| First time the objection appears, specific and clear | **ART** |
+| First time the objection appears, vague ("let me think") | **Iceberg** |
+| The prospect keeps generating new objections after clean rebuttals | **Looping** |
+| Brush-off in the first 30 seconds | **Anchor-Disrupt-Ask** |
+
+Looping is the tool you reach for when the first three have been tried and the sale is drifting. It's the "what's actually going on here?" move.
+
+---
+
 ## *"I need to think about it"* — the 4 meanings
 
 Most common ambiguous objection. Usually one of 4 things:
@@ -211,6 +263,22 @@ Neither profile responds well to *"why not decide today?"* — for opposite reas
 - D) They're testing you
 
 **Why:** I's buy on feel. *"Let me think"* from an I almost never means *"let me run the numbers"* — that'd be a C response. It usually means they feel unsure and want to stall. The fix is an emotional check-in (*"what's feeling off?"*) rather than more data. If the emotional issue surfaces, you handle it. If they can't name one, it's feel-good decay — reschedule for 48–72 hours out before it evaporates entirely.
+
+**Q8. A prospect hits you with *"too expensive"*, then *"need to speak to my wife"*, then *"maybe compare some more"*, then *"bad timing"* — each one after a clean rebuttal. The correct diagnosis is:**
+- A) Four separate objections — rebut each one in turn
+- B) The stated objections are smoke screens; underlying uncertainty on one or more of the three certainties (product / you / firm) hasn't moved — stop rebutting and loop back into presentation mode to rebuild certainty ✓
+- C) The prospect is wasting your time — end the meeting
+- D) Lower the price
+
+**Why:** When objections keep moving, the real problem is never the stated objection — it's uncertainty that hasn't been addressed. Rebutting objection after objection is whack-a-mole: a new one will always appear until the underlying certainty gap is closed. Looping rebuilds certainty on Product + You + Firm before re-asking. Ending the meeting (C) abandons recoverable pipeline. Dropping price (D) rewards stalling and breaks your margin.
+
+**Q9. The rule of three loops says:**
+- A) Loop forever until they close
+- B) Loop at most three times per call; if objections keep coming, schedule a follow-up rather than grind — protect the relationship ✓
+- C) Loop once, then escalate to your manager
+- D) Never loop more than once
+
+**Why:** Looping is a powerful tool but has diminishing returns. Three loops is typically enough to either close or surface that the prospect's action threshold is too high for today. Past three, you're grinding — which burns trust and damages the long-term relationship. Scheduling a follow-up preserves the pipeline and lets their certainty build between sessions. Looping forever or escalating after one loop both miss the right threshold.
 
 ---
 
