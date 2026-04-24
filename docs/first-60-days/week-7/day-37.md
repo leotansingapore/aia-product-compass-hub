@@ -226,6 +226,41 @@ Use a simple Google Sheet or Notion table with columns:
 
 **The goal of nurture is to be the name they remember when life changes.** When their baby arrives, they get a job offer, their parent gets sick — **you are the first call.**
 
+### The Taxi Cab Theory — the mental model behind nurture
+
+There's a useful piece of pop-culture shorthand that explains *why* nurture works the way it does. It's called the **Taxi Cab Theory**, and once you see it, you'll never pitch a cold prospect the same way again.
+
+> **The metaphor:** every prospect is a taxi driving around the city. When they're not available to pick up a passenger, their **light is off**. When they're available — when something in their life has shifted and they're ready to engage — their **light is on**.
+>
+> **The person who gets picked up is not the best-matched passenger in the entire city. It's whoever happens to be standing on the corner when the light switches on.**
+
+### What this means for prospecting
+
+Three implications that quietly change how you work:
+
+1. **You cannot force the light on.** A prospect who isn't ready won't buy no matter how good your pitch is, how tight your illustration is, or how many times you follow up aggressively. The light is an *internal* switch — flipped by a life event (marriage, baby, job change, parent's diagnosis, bonus landing, mortgage approved), not by your persuasion.
+
+2. **You *can* be the one on the corner when it turns on.** This is the entire job of nurture. The 1-1-1-1 cadence isn't about closing — it's about being *visible, casually, non-commercially* so that when their light flips, your name is the one they wave down. Not because you're the perfect fit — because you're *present*.
+
+3. **"Not now" is not a rejection — it's a light-off signal.** A prospect who says *"not now"* is telling you their light is off today. Your job is not to argue them into switching it on. Your job is to stay in their peripheral vision — through one monthly piece of value, one quarterly check-in, one life-event note — so that the day it flips on, you're right there.
+
+### The receipt — why this holds up
+
+Research on relationship commitment shows the same pattern: commitment doesn't build gradually and then tip over. It **jumps sharply within a short window** — often triggered by the perceived cost of *continuing to search* outweighing the cost of *committing to what's in front of them.* The same is true in financial-advisory buying. Most clients don't buy because you convinced them — they buy because life changed, the problem suddenly felt urgent, and you were the person they already knew.
+
+### What this changes about your weekly rhythm
+
+- **Stop measuring by close rate on first meeting.** That's a light-already-on metric. Most of your closes will come 3–18 months after first contact. Measure by *touches retained* and *names in nurture*.
+- **Reframe follow-up anxiety.** When the 7-touch sequence feels pushy, it's not — you're just still trying to flip the light. The moment you move someone to nurture, the pressure is off. You're no longer selling; you're staying visible.
+- **Respect the "not now".** A polite, confident *"totally understand — I'll keep in touch, and if anything changes just let me know"* is worth more than a forced second pitch. The former preserves the option; the latter burns it.
+- **Prioritise life-event touches over calendar touches.** A two-line note when their kid gets into university, when they post a new job on LinkedIn, when their parent's medical news surfaces — those are *worth more* than three generic monthly articles. Life events are the moments the light flips; that's the moment to be there.
+
+### The single-line crib
+
+> *"You're not trying to make them buy. You're trying to be the one on the corner when their light turns on."*
+
+Write that somewhere you'll see it on days when prospecting feels slow. It is the job.
+
 ---
 
 ## 9. Weekly prospecting rhythm
