@@ -1,32 +1,31 @@
 ---
 week: 7
 day: 37
-title: "The Approach — Why It Matters"
+title: "The Approach — Cold, Warm, Follow-Up & Nurture"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
   - internal-reference:46
-duration_minutes: 20
+duration_minutes: 35
 tags: [first-60-days, week-7, skills]
 ---
 
-# Day 37 — The Approach: Why It Matters
+# Day 37 — The Approach: Cold, Warm, Follow-Up & Nurture
 
-> **The one idea for today:** Most of the financial planning process happens *after* the first sale. The Approach is not the first step to a sale — it's the first step to a **lifetime relationship.** Frame it accordingly and your Year 5 client base reflects the difference.
+> **The one idea for today:** The Approach is not the first step to a sale — it's the first step to a **lifetime relationship.** Cold, warm, and referred prospects each need a different opener, a different follow-up rhythm, and a nurture plan that keeps them alive long after "not now."
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Situate** The Approach within the 6-step Financial Planning Process.
-2. **Explain** the concept of Client Lifetime Value — and why a $1,000 first sale is a fraction of what the relationship can produce.
-3. **Adopt** the "no one buys everything at one go" mindset, which shapes every meeting you'll ever run.
+1. **Open** a warm, cold, or referred conversation using a script you'd actually say out loud.
+2. **Run** a 7-touch follow-up sequence after a first meeting — without feeling pushy.
+3. **Nurture** a "not now" prospect for 6–12 months until they're ready.
+4. **Structure** a weekly prospecting rhythm that generates 3–5 first meetings every week.
 
 ---
 
-## 1. The 6-step Financial Planning Process
-
-Every client relationship, from first meeting to 20 years later, follows the same 6 steps:
+## 1. The 6-step Financial Planning Process — where the Approach sits
 
 ```mermaid
 flowchart TD
@@ -39,86 +38,20 @@ flowchart TD
     A --> B --> C --> D --> E --> F --> A
 ```
 
-**The trap most new FCs fall into:** treating the Approach as "selling." It's not. The Approach is establishing the *relationship* — the permission and trust to do Steps 2–6.
+**The trap:** treating the Approach as "selling." It's relationship-building — the permission and trust that unlock Steps 2–6. Rush Step 1 and everything downstream breaks.
 
-**Rush Step 1 and you damage everything downstream.** A forced first meeting that feels like a pitch destroys the trust needed for Step 2's honest fact-finding.
+## 2. The CLV math that should govern every first meeting
 
-## 2. "No one buys everything at one go"
+- Year 1 commission on a typical client: **~$1,000.**
+- Cross-sells + upgrades over 30 years: **20–30× the initial commission.**
+- Average Client Lifetime Value: **~$25,000 per client.**
+- 300 well-serviced clients over a career = **$7.5M in total lifetime value.**
 
-One of the most important mental frames in this career:
+**Implication:** a "small" first policy is the start of a 20-year relationship. You don't oversell the first meeting. You recommend the **one or two highest-priority gaps** and earn the right to return.
 
-> **No one buys everything at one go.**
+**"No one buys everything at one go."** Year 1: hospital + basic term. Year 3: CI after a scare. Year 5: regular savings. Year 8: ILP for the kid. Year 12: retirement top-ups. Year 25: estate planning. Same client, 7+ sales events.
 
-A typical well-served client might:
-- Year 1: Start with a hospital plan + basic term life.
-- Year 3: Add critical illness coverage after a scare.
-- Year 5: Start a regular savings plan when income stabilises.
-- Year 8: Review and increase CI coverage; start an ILP for their kid.
-- Year 12: Consolidate retirement planning; top up SA; begin estate planning.
-- Year 18: Review annuity options; set up CPF LIFE optimally.
-- Year 25: Estate/will review; help an ageing parent.
-
-**Same client. 7+ sales events over 20+ years.**
-
-If you try to close all of that in meeting #1, you destroy the 20-year relationship for a 2-year commission.
-
-**The discipline:** in the first meeting, recommend the **one or two highest-priority gaps.** Leave the rest for future meetings. The relationship and the trust are worth more than one oversized first sale.
-
-## 3. Client Lifetime Value (CLV)
-
-Here's the math that should govern how you treat every first meeting.
-
-**Typical numbers for a well-serviced FC's client base:**
-
-- Average client: **~$1,000** of commission in Year 1.
-- Cross-sells + upgrades over 30-year relationship: **~20–30× the initial commission.**
-- Average CLV: **~$20,000–$30,000 per client** over the relationship.
-
-**On 300 clients over a career:**
-- 300 × $1,000 = **$300,000** in first-year commissions.
-- 300 × $25,000 (average CLV) = **$7,500,000** in total lifetime value.
-
-**Different scale entirely.**
-
-```mermaid
-flowchart LR
-    A["Year 1 commission<br/>~$1,000"]
-    B["CLV multiplier<br/>20-30x"]
-    C["Lifetime value<br/>~$25,000 per client"]
-    D["300 clients<br/>$7.5M total in-force premium"]
-    A --> B --> C --> D
-```
-
-**The implication:** what feels like a "small" first sale is the start of a relationship that can produce 20–30× the initial amount. A $1,000 first-year commission is a $25,000 lifetime commitment — if you service it properly.
-
-**How this changes behaviour:**
-- You say no to oversold first meetings (they don't produce CLV).
-- You invest in service after the first sale (annual reviews, birthday calls, claim help).
-- You ask for referrals earlier and more confidently (each referral can be another $25K CLV).
-- You treat a "small" first policy as the foundation of a lifetime client base, not a disappointing sale.
-
-## 4. The three audiences for the Approach
-
-You won't use the same Approach script for everyone. There are three types of first conversations:
-
-### Type A — Warm market (existing relationship)
-- Friends, family, ex-colleagues, classmates.
-- **Easy to meet, harder to sell.** They already have opinions about you.
-- **Approach angle:** "I'm in a new career — would love your honest feedback on what I'm doing."
-- Leads to **market survey** conversations (Day 38).
-
-### Type B — Referred (introduced by an existing client)
-- Someone your Year-1 client recommended.
-- **Hardest to get, easiest to close.** The referrer has already transferred trust.
-- **Approach angle:** "[Referrer] mentioned you were looking into ___ and thought we should talk."
-- Leads to warm first meetings.
-
-### Type C — Cold (no prior relationship)
-- Digital inbound, events, cold outreach.
-- **Slowest route but scalable.** Requires pre-framing and trust-building before the first meeting.
-- **Approach angle:** "I saw your post/comment about ___. I help people in that situation. Would a 20-min call be useful?"
-
-**Most new FCs focus exclusively on Type A** (warm) in Month 1. That's fine for Month 1. By Month 6, you need at least one of Type B or C running to sustain a pipeline — because your warm market is finite.
+## 3. Three prospect types — three different approaches
 
 ```mermaid
 flowchart LR
@@ -127,26 +60,200 @@ flowchart LR
     C["Type C · Cold<br/>Digital, events, outreach"]
     A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
     B -->|"Hardest to get<br/>easiest to close"| M
-    C -->|"Scalable<br/>trust-building first"| M
+    C -->|"Slowest route<br/>but scalable"| M
 ```
 
-## 5. The honest limits of your warm market
+You cannot use the same opener on all three. The rest of today is the playbook for each.
 
-Most new FCs think their warm market is **300–500 people.** In practice:
+---
 
-- 100 close connections you'd happily call.
-- 50 of those will actually say yes to a first meeting.
-- 25 of those will become clients.
-- 10 of those will give referrals.
-- **The remaining 475 are imaginary.**
+## 4. Warm approach playbook (Type A)
 
-**The math:** 25 clients × $1,000 = $25,000 in FYC from pure warm market. Then you've exhausted it.
+**The problem:** friends and family already have opinions about you. Push too hard and you destroy the relationship. Be too soft and they never take you seriously.
 
-For a career — and even for Year 1's full quota — you need **additional sources:** referrals, digital, natural market, agency leads.
+### The "market survey" opener
 
-Building the Approach skill for cold and referred leads is what separates Year-1 FCs from Year-5 FCs.
+Don't pitch. Ask for feedback.
 
-## 6. The Approach mindset — what you're actually doing
+> "Hey — I've moved into financial advisory and I'm building up my skill. I'm doing **market surveys** with 20 people I trust, just to understand what people actually care about when it comes to money. It's 30 minutes, no product talk. I'd love your honest feedback — can I buy you coffee next Tuesday or Thursday?"
+
+**Why it works:**
+- It's true. You are learning.
+- It removes the sales pressure — they're helping you, not the reverse.
+- It earns permission for a real conversation without needing to "sell" them.
+- 8 out of 10 warm contacts will say yes to this.
+
+### The 3 things you do in a warm first meeting
+
+1. **Ask about them** — career, family, what's on their mind financially, what they worry about.
+2. **Share your "why"** — 90 seconds on why you left your old career for this one.
+3. **Soft ask at the end** — "Based on what you shared, I think there are 1–2 things worth a proper look. Would you be open to a follow-up where I put some numbers together?"
+
+**What NOT to do:**
+- Show up with brochures.
+- Pitch insurance in the first 10 minutes.
+- Ask for a sale before they've asked you a question.
+
+### The transition line you must memorise
+
+When a warm contact asks *"So what do you do now?"* — the moment everyone fumbles:
+
+> "I help people make sense of their money — protection, savings, retirement. Most of my work is sitting down with people, understanding their situation, and showing them what's actually working and what's leaking. I'd love to do that for you one day — no pressure, just a fresh pair of eyes."
+
+Practice this out loud until it sounds like you, not a script.
+
+---
+
+## 5. Referred approach playbook (Type B)
+
+**The rule:** referred prospects arrive with borrowed trust. Don't waste it.
+
+### How to ask for the referral (from an existing client)
+
+Do this at the end of a claim paid out, annual review that went well, or after any "thank you" moment:
+
+> "I'm glad I could help. One favour — I grow my practice through introductions, not cold calls. Is there 1 or 2 people in your life — family, a colleague, a close friend — who you think would benefit from the same conversation we had? No pressure. If someone comes to mind, I'd be grateful for a warm intro."
+
+**Don't:**
+- Ask for "anyone you know." Vague = zero names.
+- Ask for names before you've delivered real value.
+- Accept a phone number without an intro — warm intros close 3× more than cold referrals.
+
+### How the intro should happen
+
+Ask the client to send **one message on your behalf** in front of you:
+
+> "Hey [name], this is Leo — he's my financial advisor and he helped me sort out my protection last month. I thought of you because you mentioned [specific thing]. He's going to reach out — worth 30 minutes, trust me."
+
+Once the client hits send, **you message the referred prospect within 24 hours.**
+
+### Your opening message to the referred prospect
+
+> "Hi [name] — [referrer] just introduced us. He mentioned you were thinking about [specific thing they mentioned]. I helped him with exactly that last month. Happy to grab a coffee or do a 30-min video call — no pitch, just a conversation. Which week works better for you?"
+
+**Why this works:** the referrer has done the trust transfer. You only need to confirm the topic and propose a time.
+
+---
+
+## 6. Cold approach playbook (Type C)
+
+**The challenge:** no pre-existing trust. You build it **before** the first meeting, not in it.
+
+### The 3-step pre-frame sequence
+
+Cold prospects don't agree to meetings. They agree to meetings **with people who seem credible**. Build credibility first:
+
+**Step 1 — Make yourself findable.** LinkedIn + Instagram + one content platform. Three posts a week on a specific topic (CPF, retirement, protection for young families — pick one). The goal: when someone Googles your name, they see a professional, not a stranger.
+
+**Step 2 — Engage before you ask.** When a cold prospect posts something about money, kids, career change, a house purchase — comment thoughtfully. Three interactions over two weeks before any DM.
+
+**Step 3 — The DM that doesn't sound like a pitch.**
+
+> "Hey [name] — saw your post about [topic] last week. I work with quite a few people in a similar spot and noticed [specific observation]. Not pitching anything — just thought you might find [a specific article / calculator / CPF quirk] useful. Want me to send it over?"
+
+**Why this works:** you're offering value, not asking for time. The reply rate is 5–10× higher than a cold "I'm an FC, want to meet?"
+
+### From DM → first meeting
+
+Once they reply and engage with the resource:
+
+> "Glad it was useful. If you ever want a proper walk-through of how it applies to your situation — 30 mins, no pitch — I'm happy to do that. No rush, just keep me in mind."
+
+Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 8).
+
+### Cold sources that actually work in Month 1–6
+
+| Source | Time to first meeting | Notes |
+|---|---|---|
+| LinkedIn DMs (warm-commented first) | 2–4 weeks | Best for working professionals |
+| Instagram content + DMs | 3–6 weeks | Best for young families, lifestyle |
+| Public events, talks, volunteer work | Same day–2 weeks | Face-to-face trust builds fastest |
+| Your content (post → inbound DM) | 6–12 weeks | Slowest to start, biggest compounding |
+
+---
+
+## 7. The 7-touch follow-up sequence (after any first meeting)
+
+Most first meetings don't close. That's normal. What kills conversion isn't the meeting — it's the **dropped follow-up**.
+
+| # | Timing | Channel | Purpose |
+|---|---|---|---|
+| 1 | Within 2 hours | WhatsApp | Thank-you + recap of what they shared |
+| 2 | Day 2 | Email | Proposal / Financial Health Check attached |
+| 3 | Day 4 | WhatsApp | "Any questions on what I sent over?" |
+| 4 | Day 7 | WhatsApp or call | Propose the second meeting |
+| 5 | Day 14 | WhatsApp | Share one relevant resource (not a pitch) |
+| 6 | Day 21 | Short call | Check-in — no pressure, relationship-first |
+| 7 | Day 30 | WhatsApp | Final "open door" message — then move to nurture |
+
+### The "open door" message (touch #7)
+
+> "Hey [name] — totally understand the timing's not right. I won't keep chasing. Just know my door's open whenever you're ready — even if it's 6 months or a year from now. I'll keep sending you the occasional useful thing, and when you're ready to talk, just message me."
+
+**Why 7 and not 3:** industry data consistently shows 60%+ of sales happen after touch 5. Most new FCs quit at touch 2 or 3. The follow-up is the sale.
+
+---
+
+## 8. The nurture system (keeping "not now" prospects alive)
+
+After touch #7, every prospect who didn't convert goes into a **nurture list**. The goal: stay top-of-mind for 6–12 months without being annoying.
+
+### The 1-1-1-1 nurture cadence
+
+- **Monthly**: one piece of non-sales value (article, chart, CPF update, market snapshot).
+- **Quarterly**: one personal check-in message ("How are the kids? How's the new job?").
+- **Per life event**: birthday, promotion, baby, house move → a short personal note.
+- **Annually**: offer a free review — "It's been a year since we spoke, want a quick refresh?"
+
+### A nurture-list tracker you can set up today
+
+Use a simple Google Sheet or Notion table with columns:
+- Name
+- How we met (warm / referred / cold + source)
+- Last meeting date
+- Last touch date
+- Next scheduled touch
+- Key personal details (kids' names, job, interests)
+- Status: `hot` / `warm` / `nurture` / `dormant`
+
+**Every Sunday evening (Day 37 homework):** open this sheet, schedule the week's touches, move status where needed.
+
+### What to never send in nurture
+
+- Generic marketing broadcasts.
+- Anything that looks like a mass forward.
+- Product promos. (Once you're in nurture, you are not selling.)
+
+**The goal of nurture is to be the name they remember when life changes.** When their baby arrives, they get a job offer, their parent gets sick — **you are the first call.**
+
+---
+
+## 9. Weekly prospecting rhythm
+
+The pipeline only works if prospecting is a **habit**, not a mood. The weekly rhythm for a Month 1–6 FC:
+
+```mermaid
+flowchart LR
+    A["Mon–Fri<br/>20 new touches/day"]
+    B["Daily<br/>1–2 first meetings"]
+    C["Sunday evening<br/>Nurture list review"]
+    D["Weekly<br/>3–5 new first meetings booked"]
+    A --> B
+    A --> C
+    C --> D
+    B --> D
+```
+
+**The baseline numbers (from the Next 60 Days block):**
+- 20 dials/day → 1 appointment booked.
+- 100–140 touches a week → 5–7 first meetings.
+- ~100+ "not nows" across the full journey → 1 closed sale.
+
+Do not treat a "no" as a failure. Each "not now" becomes nurture — and nurture becomes Year 2, 3, 5 revenue.
+
+---
+
+## 10. The Approach mindset — what you're actually doing
 
 **You're not:**
 - Trying to close in the first meeting.
@@ -156,85 +263,92 @@ Building the Approach skill for cold and referred leads is what separates Year-1
 
 **You are:**
 - Earning the right to ask harder questions later.
-- Demonstrating that you're trustworthy, knowledgeable, and not pushy.
-- Making the prospect feel heard and understood.
-- Establishing the **relationship** that enables Steps 2–6.
+- Demonstrating you're trustworthy, knowledgeable, not pushy.
+- Making the prospect feel heard.
+- Building a nurture relationship that generates Year 1, 3, 5, and 10 revenue.
 
 **The emotional target of the first meeting:** the prospect walks away thinking, *"That was actually useful. They listened. They didn't pressure me. I want to meet again."*
 
 If they think that, you've won — regardless of whether anything was sold.
 
-## 7. Why this chapter is psychological, not tactical
+---
 
-Many new FCs want scripts, frameworks, and bulletproof openers. You'll get them tomorrow (Day 38 onwards).
+## Today's homework
 
-Today was psychological because **most Approach failures are not tactical.** They are:
+1. **Write your warm-market opener** in your own words — the "market survey" framing, customised to how you actually speak. Say it out loud 10 times.
+2. **Build your nurture-list tracker** (Google Sheet or Notion) with the 7 columns above.
+3. **Draft your follow-up sequence templates** (touches #1–#7) and save them where you can reuse them.
+4. **List 20 warm contacts** you will open the market-survey conversation with this week.
 
-- Rushing the timeline (closing in meeting #1 instead of building for meeting #3).
-- Overestimating the first sale's importance (focusing on FYC instead of CLV).
-- Underestimating warm-market exhaustion (not building cold/referred pipelines).
-- Treating the meeting as a pitch instead of a relationship opener.
+Do all four before Day 38.
 
-Fix these four mental errors before learning a single script — and everything downstream gets easier.
-
+---
 
 ## Quick quiz
 
-1. **The first step of the Financial Planning Process is:**
- - A) Gather data
- - B) Present a recommendation
- - C) Establish / Define the Client–Planner Relationship ✓
- - D) Implement a solution
+1. **The core opener for a warm-market first meeting is:**
+ - A) A direct pitch for term insurance
+ - B) A product brochure walkthrough
+ - C) A market-survey conversation asking for honest feedback ✓
+ - D) A price comparison against competitors
 
- **Why:** Step 1 is Establish / Define — building the client-planner relationship before anything else. Gathering data is Step 2, which only works once trust is established. Presenting a recommendation is Step 4. Implementing a solution is Step 5. Rushing past Step 1 damages everything downstream.
+ **Why:** the warm market already has opinions about you. The market-survey framing is true, removes sales pressure, and earns a real conversation. Direct pitches and brochures trigger the defensive reflex that kills warm relationships.
 
-2. **Typical CLV of a well-serviced client is what multiple of first-year commission?**
- - A) 2–3×
- - B) 5–10×
- - C) 20–30× ✓
- - D) 50–100×
-
- **Why:** The lesson states that cross-sells and upgrades over a 30-year relationship produce roughly 20–30x the initial first-year commission, translating to $20,000–$30,000 per client over their lifetime. 2–3x and 5–10x dramatically understate the long-term value and would lead FCs to under-invest in service. 50–100x is aspirational but not the realistic benchmark cited in the material.
-
-3. **"No one buys everything at one go" means:**
- - A) Clients are indecisive
- - B) You need more meetings to close
- - C) The first meeting should focus on 1–2 highest-priority gaps; the rest unfolds over years ✓
- - D) Clients should be educated before they buy
-
- **Why:** The principle is about disciplined sequencing — address the one or two most urgent gaps first, then return for future meetings as needs evolve over 20+ years. It is not a commentary on client decisiveness (A), which misreads the mindset. Needing "more meetings to close" (B) implies the same sale is dragged out, not that different products are sold across different life stages. Education (D) is a tactic, not what this principle is about.
-
-4. **A new FC who oversells the first meeting — recommending every gap at once — risks:**
- - A) Earning more commission upfront
- - B) Destroying the trust needed for honest fact-finding in Step 2 ✓
- - C) Skipping directly to Step 5 (implementation)
- - D) Getting a faster referral
-
- **Why:** Overselling the first meeting signals that the FC is chasing commission, not genuinely helping — this breaks the trust required for the candid data-sharing needed in Step 2. A is what the FC thinks they're gaining, but it sacrifices the CLV that makes a long-term client base valuable. Skipping to Step 5 (C) is a different error. A forced, over-pitched first meeting actually reduces referral likelihood (D), not increases it.
-
-5. **Your warm market of 300 contacts realistically yields roughly how many clients?**
- - A) 150–200
- - B) 50–75
- - C) 25 ✓
- - D) 5–10
-
- **Why:** The funnel works as follows: 300 contacts → 100 close connections → 50 willing to meet → 25 become clients → 10 give referrals. The other 275 are "imaginary." 150–200 and 50–75 overestimate conversion at each stage. 5–10 is too pessimistic and would undercut planning. 25 is the realistic baseline, which is why warm-market-only pipelines exhaust around Year 1.
-
-6. **A Type B (referred) prospect is described as "hardest to get, easiest to close" because:**
+2. **A referred prospect closes fastest because:**
  - A) They have more money to spend
- - B) The referrer has already transferred trust to you ✓
+ - B) The referrer has already transferred trust ✓
  - C) They respond better to cold scripts
  - D) They are more financially literate
 
- **Why:** Referred prospects arrive with pre-built trust transferred from the person who introduced you, which dramatically shortens the journey from skepticism to decision. Wealth (A) is not the reason — the source of the trust advantage is the referrer, not the prospect's income. Referred leads don't need cold scripts (C); they need warm conversation. Financial literacy (D) is irrelevant to why referrals close faster.
+ **Why:** the trust advantage comes from the referrer, not from the prospect's wealth or literacy. Borrowed trust shortens the journey from skepticism to decision, which is why referred leads convert 3× more than cold.
 
-7. **Which behaviour does the CLV mindset most directly change for a new FC?**
- - A) Quoting higher premiums to maximise first-year commission
- - B) Treating a small first policy as the start of a $25K lifetime relationship ✓
- - C) Rushing prospects to sign before they change their mind
- - D) Avoiding annual reviews to reduce workload
+3. **The correct sequence for a cold prospect is:**
+ - A) DM → meeting → content
+ - B) Content + credibility → warm engagement → value-first DM → meeting ✓
+ - C) Cold call → brochure → meeting
+ - D) Event → business card → email blast
 
- **Why:** When you internalise that a $1,000 first-year commission represents roughly $25,000 of lifetime value, you invest in post-sale service and annual reviews rather than chasing the biggest first sale. A and C reflect the FYC-first mindset that CLV thinking is designed to replace. D is the opposite of what CLV demands — annual reviews are how the 20–30x multiple gets realised.
+ **Why:** cold prospects don't agree to meetings with strangers. They agree to meetings with people who seem credible. Credibility is built via public content and thoughtful engagement *before* any ask is made. A cold DM without pre-frame gets ignored.
+
+4. **Most first meetings that convert do so after:**
+ - A) Touch 1 or 2
+ - B) Touch 3 or 4
+ - C) Touch 5 or later ✓
+ - D) The first phone call
+
+ **Why:** industry data consistently shows over 60% of sales happen after the fifth follow-up touch. Most new FCs quit at touch 2 or 3 and attribute the loss to the prospect — when the real cause is a dropped follow-up.
+
+5. **A "not now" prospect should go into:**
+ - A) A deletion list
+ - B) A nurture list with a monthly value touch and quarterly personal check-in ✓
+ - C) A re-pitch list every week
+ - D) The same pipeline as "hot" prospects
+
+ **Why:** "not now" rarely means "never." A structured nurture cadence (monthly value + quarterly personal + life-event touches) keeps you top-of-mind for 6–12 months so you become the first call when circumstances change. Deleting discards future revenue. Weekly re-pitches burn the relationship.
+
+6. **The "open door" message (touch #7) is designed to:**
+ - A) Force a decision
+ - B) Close the door if they don't reply
+ - C) Release pressure and reposition for a long-term nurture relationship ✓
+ - D) Automatically enroll them in an email sequence
+
+ **Why:** touch #7 is the transition from active follow-up to nurture. It signals respect for the prospect's timeline, removes pressure, and keeps the door open so you remain the person they message when they're ready — which may be 6 or 12 months later.
+
+7. **The weekly baseline for a Month 1–6 FC to sustain a pipeline is roughly:**
+ - A) 5 touches a week, 1 meeting
+ - B) 20 touches a week, 2 meetings
+ - C) 100–140 touches, 5–7 first meetings ✓
+ - D) 500 touches, 30 meetings
+
+ **Why:** the ratio from the Next 60 Days block is ~20 dials per appointment. Sustaining 5–7 first meetings weekly requires 100–140 touches. Lower volumes don't generate enough pipeline for Year 1 production; dramatically higher volumes aren't realistic for a single advisor.
+
+8. **The emotional target of a first meeting is that the prospect feels:**
+ - A) Pressured to decide today
+ - B) Overwhelmed by the amount of information
+ - C) Heard, unpressured, and willing to meet again ✓
+ - D) Obligated because of the relationship
+
+ **Why:** the first meeting is a relationship opener, not a close. If the prospect walks away feeling listened to and unpressured, the door stays open for Steps 2–6 of the financial planning process — where the real value (and CLV) is built.
 
 ---
 

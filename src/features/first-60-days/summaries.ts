@@ -304,8 +304,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 37,
     "week": 7,
     "dayInWeek": 1,
-    "title": "The Approach — Why It Matters",
-    "duration": 20,
+    "title": "The Approach — Cold, Warm, Follow-Up & Nurture",
+    "duration": 35,
     "hasReflection": false
   },
   {
