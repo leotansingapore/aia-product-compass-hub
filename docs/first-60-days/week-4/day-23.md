@@ -162,19 +162,26 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
 ---
 
 ```mermaid
-flowchart TD
-    EN["ENERGISERS<br/>generate energy while working"] --> PL["Play<br/>make it a game"]
-    EN --> PW["Power<br/>build competence daily"]
-    EN --> PE["People<br/>work alongside others"]
-    UB["UNBLOCKERS<br/>when work still isn't happening"] --> PR["Procrastination<br/>name the emotion, start tiny"]
-    UB --> PA["Paralysis<br/>write the exact next action"]
-    UB --> PF["Perfectionism<br/>ship at 80%, revise on feedback"]
-    SU["SUSTAINERS<br/>prevent burnout over 12+ months"] --> CO["Conserve<br/>A/B/C every task"]
-    SU --> RE["Recharge<br/>real rest - sleep + walks"]
-    SU --> AL["Align<br/>daily work to deeper purpose"]
-    style EN fill:#1e3a5f,color:#fff
-    style UB fill:#5c1a1a,color:#fff
-    style SU fill:#1a5c3a,color:#fff
+flowchart LR
+    subgraph ENERGISERS["⚡ ENERGISERS — generate energy while working"]
+        direction TB
+        PL["<b>Play</b><br/>make it a game"]
+        PW["<b>Power</b><br/>build competence daily"]
+        PE["<b>People</b><br/>work alongside others"]
+    end
+    subgraph UNBLOCKERS["🧱 UNBLOCKERS — when work still isn't happening"]
+        direction TB
+        PR["<b>Procrastination</b><br/>name the emotion, start tiny"]
+        PA["<b>Paralysis</b><br/>write the exact next action"]
+        PF["<b>Perfectionism</b><br/>ship at 80%, revise on feedback"]
+    end
+    subgraph SUSTAINERS["🌱 SUSTAINERS — prevent burnout over 12+ months"]
+        direction TB
+        CO["<b>Conserve</b><br/>A/B/C every task"]
+        RE["<b>Recharge</b><br/>real rest — sleep + walks"]
+        AL["<b>Align</b><br/>daily work to deeper purpose"]
+    end
+    ENERGISERS --> UNBLOCKERS --> SUSTAINERS
 ```
 
 ---
