@@ -125,6 +125,12 @@ Client has $200K CI bought in 2014. Now 42 with 2 kids and $1.2M in household in
 **Case B — over-insurance on an obsolete life stage**
 Client bought large whole-life at 25 when single. Now 55, financially independent, no dependants. The life coverage they paid for 30 years is no longer needed. Surrender value is substantial. *Paid-up option or partial surrender* — unlocks capital, maintains some coverage, ends unnecessary premium outflow. Legitimate.
 
+**Case B — pre-retiree variant (the CPF capital trigger).** The same 55-year-old client just hit FRS at 55. That means their CPF excess (typically $100K+) is now withdrawable from OA — and the funds are sitting at 2.5% earning low real return. This *combines* with Case B in a powerful way: the surrender value from the obsolete whole-life PLUS the CPF excess together fund a restructured retirement-income plan (e.g., PWV) that closes the actual income gap from 65. The frame:
+
+> *"You've got two pools of capital that aren't doing their job — the cash value in this old whole-life that no longer matches your situation, plus the CPF excess that crossed the FRS line at 55 and is sitting in OA at 2.5%. Combine them, and we have $X to deploy into something that actually pays you a known monthly income from 65. Let me show you the math."*
+
+This is **legitimate** because (a) the existing whole-life genuinely no longer fits, (b) the CPF excess is genuinely under-deployed at 2.5%, and (c) the new plan fills a quantifiable income gap. **Where it crosses into churning:** if the whole-life still has dependants relying on the death benefit, or if you ignore the CPF lump-sum withdrawal cost (taking $100K out at 55 = ~$112K less in retirement stack at 60 — see [Day 39](../week-7/day-39.md) for the math), or if the new plan's premium is structured to consume both pools with no margin. Show the full math; let the client decide.
+
 **Case C — fragmented plans**
 Client has 5 tiny ILPs from different advisors, each with different funds, different charges, different surrender periods. Combined into 1 well-structured plan, total cost drops, visibility improves. Legitimate restructure.
 

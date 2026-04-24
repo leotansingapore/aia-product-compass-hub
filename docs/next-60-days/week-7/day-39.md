@@ -128,6 +128,12 @@ Different hot buttons respond to different visualisation formats:
 ### Dreams / Goals — "the retirement you wanted vs the one you'd get"
 > *"You said you wanted to retire at 58 to travel. Picture that with the current plan. Now picture if a health event in year 3 of retirement forces you to draw down faster than planned. Where does that leave you at 68?"*
 
+**Pre-retiree variant — concrete CPF math version.** When the prospect is 53–58 and you've established CPF balances in Fact-Find, the visualisation can be quantitative — which lands harder than the abstract version above for analytical prospects:
+
+> *"You said you'd want to take $100K out of your CPF excess at 55 to help your son with his property deposit. Here's the math: $100K out today = roughly **$112K less in your retirement stack at 60**. The $12K is the foregone interest. Picture you and your wife at 65 — five years into the retirement we just planned — and that $12K shortfall is what makes the difference between the trip you wanted and the trip you settle for."*
+
+The specific numbers (drawn from the Albert Seah retirement-cashflow planner, Miss Singer case) make the trade-off real. Vague "you'd lose some interest" doesn't activate loss aversion. *"$12K is the difference between the trip you wanted and the trip you settle for"* does. Always ground the visualisation in their actual situation, not a hypothetical.
+
 ### Bad Experiences / Fear — direct callback
 > *"The thing your parents went through when your dad got sick — imagine that, but it's Ruth in your mum's position. With CI coverage at $500K, here's how the next 2 years look. Without it…"*
 

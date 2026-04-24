@@ -171,6 +171,12 @@ Most prospects have a **primary angle** (the #1 motivator) and a **secondary ang
 **Pitch opener (Lifestyle):**
 > *"You mentioned earlier you'd love to do that 3-month trip around Europe with your wife — and you've been saying 'next year' for 5 years. Here's what I want to show you. This isn't about retirement in general. It's about the specific trip. Let me show you the $X/month that gets you on that plane within the next 2 years."*
 
+**Pre-retiree variant — CPF-floor framing.** For a 50–60 prospect with their CPF position established in Fact-Find, the Lifestyle pitch lands harder when the CPF *floor* is named explicitly — because then the gap between the floor and the desired lifestyle is the precise size of the product:
+
+> *"At 65 your CPF LIFE will pay you about $1,600/mo guaranteed for life — that's the floor. Your target is $4,500/mo to live the way you described. So the gap is $2,900/mo, every month from 65 onward, growing with inflation. This plan is what closes that specific gap. It's not 'retirement insurance' — it's the $2,900/mo machine."*
+
+Naming the CPF floor signals you've done the work. Most pre-retirees have never had an advisor quote their floor at all — let alone use it to size the gap. That single move differentiates you.
+
 ---
 
 ## The primary + secondary angle pattern

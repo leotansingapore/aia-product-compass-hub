@@ -156,6 +156,9 @@ Paint the future in detail. Not abstract. *Specific*.
 
 - Weak: *"You'll have a comfortable retirement."*
 - Strong: *"You'll be 62, you and Ruth, taking the 3-month Europe trip you've been putting off for 5 years, knowing the monthly payouts from this plan cover everything."*
+- **Strongest (with CPF math anchor):** *"At 65, your CPF LIFE pays $1,600. This plan adds another $2,200 — you and Ruth land at $3,800/mo guaranteed, $4,500 once we layer in the SRS drawdown between 62 and 65. That's the lifestyle you mapped out in the Fact-Find. Specifically — that's the Europe trip in year 1, the Tokyo trip in year 3, the helping-Sarah-with-the-deposit moment in year 5, and the buffer for the medical contingency throughout."*
+
+The third version anchors the lifestyle to specific CPF math (so it's not vague "comfortable") AND to specific moments the prospect surfaced in Fact-Find (so it's not a generic Europe trip — it's *their* Europe trip). Specific math + specific personal callbacks = the pitch that lands hardest. Use this version whenever the prospect is 50+ and their CPF position is on the table.
 
 ### Rule 4 — Avoid taboo phrases
 Specific phrases to never say:
