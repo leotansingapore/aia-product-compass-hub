@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, MessageSquare, Lightbulb, BookOpen, Loader2, Sparkles, Copy, CheckCircle2, Trophy, Flame, Heart, Star, Shield, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { supabase } from "@/integrations/supabase/client";
 
 // Base path inside the Pre-RNF assignment shell. Tab segment is appended.
 const BASE_PATH = "/learning-track/pre-rnf/assignments/assignment-08/tool";
@@ -644,23 +645,39 @@ export default function FinancialAdvisorDifferentiation() {
     };
   };
 
-  // Generate brand template — renders the structured JSON brief locally as
-  // markdown. AI-polish via the `generate-brand-template` edge function is
-  // pending port; for now this gives the learner a fully usable export they
-  // can paste into ChatGPT or any LLM themselves.
+  // Generate brand template via the `generate-brand-template` edge function
+  // (calls OpenAI server-side using the project's API key). Falls back to a
+  // local structured JSON brief if the edge function is unavailable so the
+  // learner is never blocked.
   const generateBrandTemplate = async () => {
     setIsGenerating(true);
     try {
       const brief = buildBrandBrief();
-      const md = `# ${brief.identity?.name || "Your Brand"} — Brand Template\n\n` +
-        `Generated from the F.A.D.S. inputs. Paste into any LLM with the prompt: "Polish this into 3 LinkedIn posts and 1 LinkedIn About section."\n\n` +
-        "```json\n" + JSON.stringify(brief, null, 2) + "\n```\n";
-      setGeneratedTemplate(md);
-      setShowTemplateModal(true);
-      toast.success('Brand template generated locally — AI polish pending.');
-    } catch (e) {
-      console.warn('FADS tool: buildBrandBrief failed', e);
-      toast.error('Failed to build brand brief.');
+      const { data, error } = await supabase.functions.invoke("generate-brand-template", {
+        body: { ...formData, brandBrief: brief },
+      });
+      if (error) throw error;
+      if (data?.brandTemplate) {
+        setGeneratedTemplate(data.brandTemplate);
+        setShowTemplateModal(true);
+        toast.success("Brand template generated.");
+        return;
+      }
+      throw new Error("No brandTemplate in response");
+    } catch (err) {
+      console.warn("FADS tool: AI generation failed, falling back to local JSON brief", err);
+      try {
+        const brief = buildBrandBrief();
+        const md = `# ${brief.identity?.name || "Your Brand"} — Brand Brief (offline fallback)\n\n` +
+          `AI polish is unavailable right now. Below is the structured brief you built. Paste it into any LLM with the prompt: "Polish this into 3 LinkedIn posts and 1 LinkedIn About section."\n\n` +
+          "```json\n" + JSON.stringify(brief, null, 2) + "\n```\n";
+        setGeneratedTemplate(md);
+        setShowTemplateModal(true);
+        toast.message("Showing offline brief — AI polish failed.");
+      } catch (e) {
+        console.warn("FADS tool: buildBrandBrief failed", e);
+        toast.error("Failed to build brand brief.");
+      }
     } finally {
       setIsGenerating(false);
     }
