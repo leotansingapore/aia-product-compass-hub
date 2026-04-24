@@ -130,7 +130,7 @@ export function AdminProgressTab() {
           product_id: string;
           completed: boolean;
         }>;
-        const products = (productsRes.data ?? []) as Array<{
+        const products = (productsRes.data ?? []) as unknown as Array<{
           id: string;
           training_videos: TrainingVideo[] | null;
         }>;
