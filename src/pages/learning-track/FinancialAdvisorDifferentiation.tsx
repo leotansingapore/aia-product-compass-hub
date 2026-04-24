@@ -668,7 +668,7 @@ export default function FinancialAdvisorDifferentiation() {
       console.warn("FADS tool: AI generation failed, falling back to local JSON brief", err);
       try {
         const brief = buildBrandBrief();
-        const md = `# ${brief.identity?.name || "Your Brand"} — Brand Brief (offline fallback)\n\n` +
+        const md = `# Your Brand — Brand Brief (offline fallback)\n\n` +
           `AI polish is unavailable right now. Below is the structured brief you built. Paste it into any LLM with the prompt: "Polish this into 3 LinkedIn posts and 1 LinkedIn About section."\n\n` +
           "```json\n" + JSON.stringify(brief, null, 2) + "\n```\n";
         setGeneratedTemplate(md);
