@@ -341,7 +341,220 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
 
 ---
 
-## Appendix — The full Canned Sales Track (CST), end-to-end
+## Appendix A — The OST Script (Page 1 + Page 2)
+
+> **OST = Odyssey Sales Track.** The canonical 2-page hand-drawn script delivered live at the prospect's first appointment. The pages are the actual artefact you draw in front of the client and hand to them at the end.
+>
+> Full source: **[OST Script — Full Reference](../_source-supplementary/ost-script-full.md)** (every line, every pause). The condensed version below is what you carry into the meeting.
+
+### Page 1 — Risk Management & The Pyramid
+
+#### Opening — what financial planning IS
+
+> *"NAME, my role as a Financial Planner is to help my clients with financial planning. What does financial planning entail? Two things: first, **protect**; second, **grow**. We're protecting and growing two things — (1) your existing wealth, and (2) your future potential wealth."*
+
+#### The 4 financial instruments
+
+Insurance, Savings, Investments, Wealth Management. Wealth Management isn't relevant yet — for now we focus on **1, 2, 3**.
+
+#### Inflation anchor
+
+> *"For this discussion, can we agree inflation in Singapore is about 2–4%? Let's average 3%. Inflation will eat into your returns if you leave money in the bank as liquid cash, right?"*
+
+#### The 3-level pyramid
+
+```
+              ▲
+             / \           Wealth Management (later)
+            /   \
+           /     \         Wealth Accumulation
+          /       \
+         /         \       Risk Management ← BUILD FROM HERE
+        /___________\
+```
+
+> *"Where do you build a pyramid from? The base, right? Do you expect to build it overnight? No. My job is to work with you to build it wider and taller over the years."*
+
+#### The risk hierarchy — small / medium / major (5+1)
+
+| Size | Examples | Cost | Solution |
+|---|---|---|---|
+| **Small** | Cough, flu, GP visit | $30–$100 | Pay yourself |
+| **Medium** | Job loss / between jobs | A few thousand / few months income | **3–6 months expenses** as emergency cash |
+| **Major (5+1)** | Premature death · Disability · Critical Illness · Accident · Hospitalisation · **+ Retirement** | $$$$ | **Insurance for 1–5; planned wealth accumulation for 6** |
+
+#### The "important AND urgent" trap (this is where the close lives)
+
+> *"Numbers 1–5 — important AND urgent? Yes. They have to be handled ASAP. What about Number 6 (retirement) — important AND urgent? Important yes, urgent no. What do most people do with things that are important but not urgent? They procrastinate. Do you see a lot of Singaporeans in their 40s and 50s who don't have enough to retire? It's too late. The reason — they didn't start in their 20s. **Which is exactly what we want to avoid here.**"*
+
+#### The 3 risk-management techniques (elimination logic)
+
+| Technique | Realistic? |
+|---|---|
+| **Avoid** the risk | Unrealistic — can't avoid CI, can't avoid old age |
+| **Retain** (self-insure) | Need $200K+ in cash already — eats your retirement, parents shouldn't have to pay |
+| **Transfer** (insurance) | ✅ The only viable answer for major risks |
+
+> *"Insurance is nothing but a **risk transfer tool**. Three basic ones everyone needs: Life Insurance, Hospitalisation, Personal Accident."*
+
+#### The 3 plans, in delivery order
+
+**1. Life Insurance — the centre of the base level**
+
+> *"It's the most important policy in your entire portfolio. The moment you set aside say $2–3K a year for life insurance, it covers you about **100×** that amount, against risk Number 1 and Number 3. Some coverage for Number 2 (disability) but may not be sufficient. Mostly: premature death and major illnesses."*
+
+> *"If you hold the plan a long time and nothing happens — at 60+, will it be gone or worth a sum of money? In the future, if all is well, the policy will be worth quite a lot — returns enough to cover inflation. **It is the only policy I know that protects a person from contracting a CI / dying too young, AS WELL AS living too long. That is the dual purpose of a life insurance plan.**"*
+
+**2. Hospital Plan vs Personal Accident — the "Expenses vs Loss of Income" framing**
+
+This is the conceptual heart of Page 1.
+
+| Plan | Covers |
+|---|---|
+| **Hospitalisation** | **Expenses** — bills (50K bill → covered, 500K bill → covered) |
+| **Life / CI** | **Loss of Income** — pays YOU when you can't work |
+
+The OST worked example (CI hits a $45K-income earner):
+
+> *"What is your annual income? × 12, plus 13th-month bonus. Now: a major CI in Singapore — how long out of work? Cancer 1–1.5 years. Major stroke 5–10 years. **Average 3.5 years. Round down to 3.** With your annual income at $X, 3 years = $3X of income lost."*
+
+> *"Would a $50–100K hospital bill be more painful, or a $135K loss of income? Obviously the loss of income. But people only see expenses because expenses are upfront. They don't see they lost their income over a period of time. **It is the lack of income that kills people financially.**"*
+
+**3. Personal Accident — the gap-filler**
+
+| Scenario | Hospital | Life | PA |
+|---|---|---|---|
+| Hospitalised for CI / accident | ✅ | ✅ (if CI/death/TPD) | (varies) |
+| **Minor sprain — X-ray + MRI + physio (~$3-4K, no admission)** | ❌ | ❌ | ✅ |
+| **Lose 1 limb / 1 eye** | (depends) | ❌ (TPD = 2 limbs/eyes) | ✅ |
+
+> *"What if I, as a Financial Planner, get into an accident and lose one of my arms? How much would I claim from my life insurance? **Zero.** But if that happens, I'd lose a lot of income — I'd do things slower, people may not trust me, clients may drop me. Where do you think I'll be claiming a few hundred K from? **The accident plan.**"*
+
+#### Wealth Accumulation (briefly, on the same Page 1)
+
+Two ways: **savings** and **investments**.
+
+| Type | Sub-type | Typical return |
+|---|---|---|
+| **Short-term savings** | Bank | ~0.05% |
+| | High-yield (UOB One / OCBC 360) | ~1+% |
+| | Fixed deposit (3–5y) | 1–2% |
+| **Long-term savings** | Endowment | ~3–3.5% p.a. |
+| | Annuity (retirement income) | ~3–3.5% p.a. |
+| **Investments** | Active (DIY) — needs Time + Knowledge + Expertise + Capital | Variable |
+| | Passive (regular $300–500/mth) — only needs Capital | Outsourced to fund managers |
+
+> *"For most of you starting out — short-term savings + active investing isn't where my expertise lies. **My value is in the middle layer — long-term savings + passive investments.** That's what we'll work on."*
+
+The anti-clockwise progression: bank → savings/endowment → passive investing → (much later) active investing.
+
+#### Page 1 close + transition
+
+> *"NAME, what specifically would you like to start on? What would you like me to go deeper into?"*
+
+(Wait. Spin response into both Risk Management AND Wealth Accumulation.)
+
+---
+
+### Page 2 — How Much to Cover + Budget
+
+#### Coverage uses GROSS income (budget uses TAKE-HOME)
+
+> *"Coverage is based on **gross income** — before CPF deduction. Is CPF still your own money? Yes. So we cover for it too. For budgeting, we use take-home pay — that's only fair."*
+
+#### The 3 coverage benchmarks (worked example: $45K/year earner)
+
+| Risk | Benchmark | Worked example |
+|---|---|---|
+| **Premature death** | 10× annual income (full lifetime value: 40 yrs × income) | $450K (target) — full lifetime value $1.8M (the ideal). 100K is too little. |
+| **Critical Illness** | **$100K + 3–5 years income** | $100K + ($45K × 3) = **$235K**. 200–250K OK. 100K too low. 500K excessive. |
+| **Hospitalisation** | Based on hospital/ward preference | Lock in early — can't upgrade later if a medical condition emerges |
+
+The $100K CI buffer specifically funds: home care, nursing, taxi/grab (can't take MRT), and the lost income of a family member who quits to care for the patient.
+
+#### The 1/3 Rule — the budget framework
+
+> *"NAME, have you heard of the 1/3 rule? Something my team and I came up with — has helped a lot of our clients."*
+
+| Bucket | What |
+|---|---|
+| **Short-term needs** | Daily expenses (food, transport, parents, bills) |
+| **Medium-term needs** | House, car, holiday, wedding (2–3 years out) |
+| **Long-term needs** | Insurance + wealth accumulation (decades out) |
+
+**The two mistakes most people make:**
+
+1. **Forgo the long term.** "If I don't set aside money for retirement today, how does it affect me in 10 years? It wouldn't. In fact I'd have more to spend now." — exactly the trap.
+2. **Hold too much cash.** Asians (especially Singaporeans) over-cash. Beyond emergency funds, money should be invested for higher returns.
+
+#### Worked budget — $3.5K gross / $2.8K take-home
+
+| Category | Item | Amount |
+|---|---|---|
+| **Short-term** | Parents (10%) | $300 |
+| | Food ($10/day × 20 + weekends) | $400 |
+| | Transport (incl Grab ~$50) | $150 |
+| | Entertainment | $200 |
+| | Phone | $50 |
+| | **Subtotal** | **$1,100** |
+| **Cash remaining** | | **$1,700** |
+| **Medium-term** | Holidays / car / house — funded by **bonuses**, not monthly cashflow | (separate) |
+| **Long-term — Risk Mgmt** | Aim **~10%** of take-home (range 10–15%) | **~$300** |
+| **Long-term — Wealth Accum** | Aim **~20%** of take-home | **~$500/mth** |
+| **Excess cash** | After all of above | **~$900/mth → ~$11K/yr** |
+
+#### The "retirement is the most expensive purchase" anchor
+
+> *"NAME, what's the most expensive thing you'll need to fund in your lifetime? (Pause) It's a phase of your life — starts with R. Yes, retirement. Retirement costs more than your property, agree? And who pays for it? Yourself."*
+
+> *"If it's the most expensive thing in your life and you have to fund it — **the best time to start was your first paycheck. The second-best time is now.**"*
+
+> *"5% of your income — will you ever retire? No. 10%? Possible if very high returns. **20%? Sounds about right. 25%? A stretch.** **20% of take-home at 4–6% return is the magic number for comfortable retirement.** As your income grows, maintain at 20%."*
+
+#### The final budget commitment (the close)
+
+> *"For risk management, can we do around $300, ok? In the event I cannot keep within $300 and need a bit more, how much can I stretch it to? Okay can. I promise to keep it within this range."*
+
+> *"For wealth accumulation, after RM you're left with $1,400. A portion goes to increasing your cash, a portion to long-term savings/investments. How much can you set aside? OK $500/month. So you'll be left with $900/month — about $11,000 excess cash a year. Is that enough?"*
+
+> *"The risk management part you leave to me. For wealth accumulation, **3 options** — could you let me know which is best for you?"*
+
+| Option | Wealth allocation |
+|---|---|
+| **1** | Full $500/mth into endowment plan |
+| **2** | Full $500/mth into investment plan |
+| **3** | Split — 50/50 between endowment and investment |
+
+#### Closing the first meeting
+
+> *"NAME, this is all I have to do for you today. Any questions? I will go back and do up a proposal based on what we discussed. Let's set a time **about 2 weeks from now** to go through it together."*
+
+> *"Oh yes — can you write down your full name as in NRIC and your date of birth in this blank space? (Top of the last section.)"*
+
+#### The decision-roadblock check
+
+> *"Let's say if I come back with a proposal that meets all your needs and within the budget we've set aside, would there be any potential roadblocks with you going ahead? You're able to decide everything on your own, right? Okay great — that's what I needed to understand."*
+
+---
+
+### OST delivery rules — 10 non-negotiables
+
+From the source script's "note to advisors" page. Memorise these — the script's effectiveness collapses if you skip them.
+
+1. **Take a picture of the last section, hand them the paper.** Ask them to bring it to the next session.
+2. **Point accurately** — to where you want them looking, and to your own answers.
+3. **Eye contact >80%.**
+4. **How you say it > what you say.**
+5. **3 steps to master the script: memorise → internalise → personalise.** Don't skip a step or it backfires.
+6. **2-way conversation** as much as possible.
+7. **Ask questions whenever possible.**
+8. **Master 100% first**, then learn where to elaborate or cut.
+9. **Whole thing < 45 minutes**, unless major objections.
+10. **Faster, louder, upbeat** — not monotonous. High energy creates urgency + confidence.
+
+---
+
+## Appendix B — The full Canned Sales Track (CST), end-to-end
 
 This is David's complete CST flow, lifted from the Module 1 + Canned Sales Track training video. Use it as a single-page reference when preparing for Assignment 1 Part B or rehearsing for a real first meeting. The same elements have been broken down across multiple days above; this section consolidates them into one continuous script.
 

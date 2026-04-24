@@ -37,6 +37,8 @@ export type Day = {
   markdown: string;
   quiz: QuizQuestion[];
   reflection: ReflectionPrompt[];
+  /** True when the body contains raw HTML that requires rehype-raw to render. */
+  hasRawHtml: boolean;
 };
 
 export type Week = {

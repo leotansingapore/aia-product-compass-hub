@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+import type { PluggableList } from "unified";
 import {
   ArrowLeft,
   ArrowRight,
@@ -52,6 +52,41 @@ function TabFallback() {
   );
 }
 
+// rehype-raw pulls in a full HTML parser (~50 kB). Only a handful of day files
+// actually use raw HTML, so we lazy-load the plugin and cache the module so
+// subsequent days that also need it don't re-fetch.
+let rehypeRawPromise: Promise<PluggableList> | null = null;
+function loadRehypeRaw(): Promise<PluggableList> {
+  if (!rehypeRawPromise) {
+    rehypeRawPromise = import("rehype-raw").then((m) => [m.default]);
+  }
+  return rehypeRawPromise;
+}
+
+function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: boolean } {
+  const [plugins, setPlugins] = useState<PluggableList>([]);
+  const [ready, setReady] = useState(!enabled);
+  useEffect(() => {
+    if (!enabled) {
+      setPlugins([]);
+      setReady(true);
+      return;
+    }
+    setReady(false);
+    let cancelled = false;
+    loadRehypeRaw().then((p) => {
+      if (!cancelled) {
+        setPlugins(p);
+        setReady(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [enabled]);
+  return { plugins, ready };
+}
+
 type StatusChipProps = {
   icon: typeof BookOpen;
   label: string;
@@ -77,6 +112,8 @@ function StatusChip({ icon: Icon, label, done, dim = false }: StatusChipProps) {
   );
 }
 
+const RAW_HTML_RE = /<(?:div|span|br|iframe|table|sup|sub|kbd|details|summary|section|figure|video)\b/i;
+
 function WeekWrapup({ weekNumber }: { weekNumber: number }) {
   const [body, setBody] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -97,7 +134,11 @@ function WeekWrapup({ weekNumber }: { weekNumber: number }) {
     };
   }, [weekNumber]);
 
-  if (loading) return null;
+  const { plugins: rehypePlugins, ready: rehypeReady } = useRehypePlugins(
+    body ? RAW_HTML_RE.test(body) : false,
+  );
+
+  if (loading || !rehypeReady) return null;
   if (!body) return null;
 
   return (
@@ -116,7 +157,7 @@ function WeekWrapup({ weekNumber }: { weekNumber: number }) {
           Week {weekNumber} wrap-up
         </div>
         <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={dayMarkdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={rehypePlugins} components={dayMarkdownComponents}>
             {body}
           </ReactMarkdown>
         </article>
@@ -170,6 +211,9 @@ export default function First60DaysDay() {
   }, [dayNumber]);
   const dayMetaQuery = useFirst60DaysDayMeta(dayNumber);
   const dayMeta = dayMetaQuery.data;
+  const { plugins: dayRehypePlugins, ready: dayRehypeReady } = useRehypePlugins(
+    Boolean(day?.hasRawHtml),
+  );
   const unlocked = isUnlocked(dayNumber);
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
@@ -467,9 +511,18 @@ export default function First60DaysDay() {
         <TabsContent value="read" className="mt-5 animate-fade-in">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={dayMarkdownComponents}>
-                {day.markdown}
-              </ReactMarkdown>
+              {dayRehypeReady ? (
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
+                  {day.markdown}
+                </ReactMarkdown>
+              ) : (
+                <div className="space-y-3">
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                  <div className="h-4 w-full animate-pulse rounded bg-muted/70" />
+                  <div className="h-4 w-5/6 animate-pulse rounded bg-muted/70" />
+                  <div className="h-4 w-2/3 animate-pulse rounded bg-muted/60" />
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>

@@ -14,6 +14,8 @@ tags: [first-60-days, week-5, knowledge]
 
 > **The one idea for today:** A dollar today is worth more than a dollar tomorrow. Not because of inflation — because today's dollar can start working. Every client conversation you'll have for the rest of your career sits on top of this one idea.
 
+> **🛠 The calculator to use for every TVM problem in this lesson and beyond:** **[calculator.net Finance Calculator](https://www.calculator.net/finance-calculator.html)**. Free, browser-based, no login, no app to install. Has the five fields below pre-laid-out (N, I/Y, PV, PMT, FV). Bookmark it on your phone — you'll use it in front of clients for retirement projections, savings goals, premium-vs-cash-value math, and almost every Section 3 numbers conversation in CFR.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

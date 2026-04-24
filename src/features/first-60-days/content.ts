@@ -78,6 +78,11 @@ export function prefetchDay(dayNumber: number): void {
   loader().catch(() => undefined);
 }
 
+// Detects raw HTML tags in a day's markdown body. rehype-raw is the heaviest
+// plugin in the markdown pipeline; days without embedded HTML can skip it.
+// Only matches a conservative set of common block elements used by authors.
+const RAW_HTML_RE = /<(?:div|span|br|iframe|table|sup|sub|kbd|details|summary|section|figure|video|details)\b/i;
+
 export async function loadDay(dayNumber: number): Promise<Day | undefined> {
   const cached = dayCache.get(dayNumber);
   if (cached) return cached;
@@ -85,6 +90,7 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
   if (!loader) return undefined;
   const raw = await loader();
   const { frontmatter, body } = parseFrontmatter(raw);
+  const markdown = convertWikilinks(stripAppendix(body));
   const day: Day = {
     dayNumber: frontmatter.day,
     week: frontmatter.week,
@@ -92,9 +98,10 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
     title: frontmatter.title,
     path: `week-${frontmatter.week}/day-${String(frontmatter.day).padStart(2, "0")}.md`,
     frontmatter,
-    markdown: convertWikilinks(stripAppendix(body)),
+    markdown,
     quiz: parseQuiz(body),
     reflection: parseReflection(body),
+    hasRawHtml: RAW_HTML_RE.test(markdown),
   };
   dayCache.set(dayNumber, day);
   return day;
