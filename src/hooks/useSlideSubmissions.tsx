@@ -11,6 +11,7 @@ import {
 import { useAuth } from './useAuth';
 import { useChecklistProgress } from './useChecklistProgress';
 import { supabase } from '@/integrations/supabase/client';
+import { scheduleIdle } from '@/lib/idle';
 import {
   GET_READY_SLIDES,
   getSlideById,
@@ -116,7 +117,7 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
 
     let cancelled = false;
 
-    (async () => {
+    const runHydration = async () => {
       try {
         const { data, error } = await supabase
           .from('user_slide_submissions')
@@ -146,10 +147,18 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
       } finally {
         if (!cancelled) setHasHydrated(true);
       }
-    })();
+    };
+
+    // Defer hydration so the learning-track critical-path queries go first —
+    // this provider's data is only read from CMFAS views that live behind a
+    // route transition.
+    const cancelIdle = scheduleIdle(() => {
+      if (!cancelled) void runHydration();
+    });
 
     return () => {
       cancelled = true;
+      cancelIdle();
     };
   }, [user]);
 

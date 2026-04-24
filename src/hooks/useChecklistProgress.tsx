@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { useAuth } from './useAuth';
 import { supabase } from '@/integrations/supabase/client';
+import { scheduleIdle } from '@/lib/idle';
 
 /**
  * Checklist progress — currently used by the CMFAS study-desk Ready ticks
@@ -82,6 +83,9 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
   const hydrationRanForUser = useRef<string | null>(null);
 
   // Hydrate on sign-in: fetch Supabase, migrate legacy localStorage ticks.
+  // Deferred to the next idle window so the hub's own queries own the first
+  // paint. Consumers only exist in CMFAS views and always live behind a
+  // route transition, so the idle delay is invisible in practice.
   useEffect(() => {
     if (!user) {
       setCompletedItems(new Set());
@@ -94,7 +98,7 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
 
     let cancelled = false;
 
-    (async () => {
+    const runHydration = async () => {
       // Paint-first: seed from legacy localStorage so the UI doesn't flicker.
       const legacy = readLegacyLocalStorage(user.id);
       if (legacy.length > 0) {
@@ -153,10 +157,15 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
       }
 
       setCompletedItems(supabaseSet);
-    })();
+    };
+
+    const cancelIdle = scheduleIdle(() => {
+      if (!cancelled) void runHydration();
+    });
 
     return () => {
       cancelled = true;
+      cancelIdle();
     };
   }, [user]);
 
