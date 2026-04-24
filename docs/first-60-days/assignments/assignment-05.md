@@ -1,6 +1,6 @@
 ---
 id: assignment-05
-order: 7
+order: 8
 title: "Cold Calling Sessions + Senior Shadow"
 short: "Conduct 2 cold-calling sessions and set 2 appointments for a senior FC to shadow."
 icon: users
