@@ -13,7 +13,8 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
+import { detectVideoEmbed } from "@/lib/video-embed-utils";
+import { VideoEmbed } from "@/lib/video-embed";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";

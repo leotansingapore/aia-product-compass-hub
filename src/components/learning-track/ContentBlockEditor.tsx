@@ -45,7 +45,8 @@ import {
 } from "@/hooks/learning-track/useAdminLearningTrackMutations";
 import { InlineEditableText } from "./InlineEditableText";
 import { isVideoUrl, isImageUrl } from "@/lib/learning-track-url";
-import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
+import { detectVideoEmbed } from "@/lib/video-embed-utils";
+import { VideoEmbed } from "@/lib/video-embed";
 import type { LearningTrackContentBlock, BlockType } from "@/types/learning-track";
 
 /**

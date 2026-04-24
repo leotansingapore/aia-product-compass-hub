@@ -16,6 +16,8 @@ tags: [first-60-days, week-9, skills]
 > **🎥 Watch the live training:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. Module 1 contains the live CST demo where Director Winnie walks through the income-loss section that this day is built around — temporary vs permanent income loss, the three risk-management methods (avoid / retain / transfer), and the "$1 million question" framing. Also available in this day's **Video** tab.
 >
 > **🎥 Companion video — the full Canned Sales Track in action:** **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)**. Watch the entire CST delivered end-to-end with all of the structure below in one continuous flow. Reference for Assignment 1 Part B.
+>
+> **📄 Source script — the full OST (Odyssey Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full OST script reference](../_source-supplementary/ost-script-full.md)** — every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 OST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
 
 ## 0. Live training reference — the income-loss spine
 

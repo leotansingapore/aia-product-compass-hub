@@ -23,7 +23,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { areSameVideoEmbedSource, detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
+import { areSameVideoEmbedSource, detectVideoEmbed } from "@/lib/video-embed-utils";
+import { VideoEmbed } from "@/lib/video-embed";
 import { cn } from "@/lib/utils";
 
 const OUTLINE_SHEET_ID = "cmf-course-outline";

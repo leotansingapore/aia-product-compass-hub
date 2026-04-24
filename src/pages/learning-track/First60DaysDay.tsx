@@ -38,7 +38,7 @@ const DayReflection = lazy(() =>
   import("@/components/first-60-days/DayReflection").then((m) => ({ default: m.DayReflection })),
 );
 const VideoEmbed = lazy(() =>
-  import("@/lib/video-embed-utils").then((m) => ({ default: m.VideoEmbed })),
+  import("@/lib/video-embed").then((m) => ({ default: m.VideoEmbed })),
 );
 
 function TabFallback() {

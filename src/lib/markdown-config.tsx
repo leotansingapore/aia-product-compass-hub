@@ -1,5 +1,45 @@
 import { Components } from 'react-markdown';
-import { detectVideoEmbed, VideoEmbed } from './video-embed-utils';
+import { detectVideoEmbed } from './video-embed-utils';
+
+// Inline iframe wrapper — duplicates the markup of VideoEmbed on purpose so
+// this module doesn't drag the full VideoEmbed component (and its tree) into
+// every chunk that renders markdown. Day pages render dozens of paragraphs;
+// the video link case hits at most once or twice per day.
+function InlineVideoEmbed({ embedUrl, platform }: { embedUrl: string; platform: string }) {
+  if (platform === 'mp4') {
+    return (
+      <div className="my-4">
+        <div
+          className="relative w-full bg-black rounded-lg overflow-hidden border border-border shadow-sm"
+          style={{ paddingBottom: '56.25%' }}
+        >
+          <video
+            src={embedUrl}
+            className="absolute top-0 left-0 w-full h-full"
+            controls
+            controlsList="nodownload"
+            preload="metadata"
+            playsInline
+          />
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="my-4">
+      <div className="relative w-full bg-black aspect-video">
+        <iframe
+          src={embedUrl}
+          className="absolute top-0 left-0 w-full h-full rounded-lg border border-border shadow-sm"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowFullScreen
+          style={{ border: 0 }}
+          title={`${platform} video`}
+        />
+      </div>
+    </div>
+  );
+}
 
 /**
  * Unified markdown component configuration for chat interfaces
@@ -123,7 +163,7 @@ export const markdownComponents: Components = {
     const videoInfo = detectVideoEmbed(href);
     
     if (videoInfo.isVideo && videoInfo.embedUrl) {
-      return <VideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
+      return <InlineVideoEmbed embedUrl={videoInfo.embedUrl} platform={videoInfo.platform || 'video'} />;
     }
     
     // Regular link
