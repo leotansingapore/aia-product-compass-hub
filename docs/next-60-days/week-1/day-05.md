@@ -37,6 +37,15 @@ The fix is learning which tone fits which moment, then practising until it stops
 
 Rough weighting from communication research: what people remember from an interaction comes much more from *how* something was said than from *what* was said. Body language and tonality dominate; the words themselves are a fraction.
 
+**The working split:**
+- **~10%** of impact = the words you choose.
+- **~45%** = tonality (pitch, pace, volume, inflection).
+- **~45%** = body language (face, posture, eye contact).
+
+On the **phone or an audio call**, body language disappears — and its 45% collapses into tonality. On the phone, **tonality carries roughly 90% of the message.** The prospect is building a mental image of who you are entirely from how you sound.
+
+This is why flat, scripted phone delivery fails instantly — and why tonally-rich delivery can close a prospect who has never seen your face.
+
 You can't fix that by writing better scripts. You fix it by learning to use your voice.
 
 ---
@@ -76,6 +85,66 @@ The one that's hard to say no to. Ends on *"Fair?"* or uses *"probably"* as a so
 *"Being friends doesn't mean we have to do business together. Whether you engage my services or not is entirely up to you. **Fair?**"*
 
 The prospect can't reasonably disagree. You've given them the out, and now they're free to stay in the conversation without feeling cornered.
+
+---
+
+## Three advanced tonal techniques — layer on top of the six
+
+Once the six core tonalities are landing in drills, add these three micro-tools. Each one is narrow, specific, and does something the six cannot.
+
+### 1 · Phrasing declaratives as questions (the opener)
+
+Most openers are three flat declarations stacked together — and the prospect hears *"another sales call"* before the third sentence lands.
+
+Wrong (declarative): *"Hi, I'm [name], calling from [firm]. How are you today?"*
+Right (phrased as questions): *"Hey — it's [name]? Calling from [firm]? How are you today?"*
+
+Each sentence ends with a slight upward lilt. The prospect's brain hears *"do I know this person? have I heard of this firm?"* — and starts searching instead of rejecting. By the time they're done searching, you're already into your second line.
+
+**When to use:** cold-call openers, cold-DM video intros, first 4 seconds of any new prospect conversation. **Never** use this tone once you're past the open — in the middle of a close, upward lilts signal doubt and kill certainty.
+
+### 2 · Money-Aside tonality (removing price friction mid-pitch)
+
+During qualification and pitching, the prospect's mind silently locks onto price — and they stop engaging with whether the *idea* fits.
+
+The fix: drop a money-aside frame.
+
+> *"Now — money aside for a moment — does the idea itself make sense to you? Do you like what I'm describing?"*
+
+The tonality is light, almost conspiratorial: *we both know money matters, but let's park that for 30 seconds so you can tell me honestly what you think of the concept.* It gives the prospect permission to engage emotionally without committing financially.
+
+**When to use:** mid-pitch, when you sense the prospect has mentally jumped to "how much?" before you've finished framing the value.
+
+### 3 · Mystery and intrigue (the pattern-interrupt hook)
+
+A half-step below urgency but longer-lasting. Lowered voice, slower pace, implied *there's-something-you'll-want-to-hear*.
+
+> *"Now, John — the reason for the call today…"*
+> *"Before we go further — there's something I want you to look at first…"*
+
+Mystery buys you 15–30 seconds of undivided attention in the middle of a meeting when attention is drifting. Don't overuse — two or three times per meeting, maximum.
+
+**When to use:** when a prospect's attention is wandering, or to open a sensitive topic (a claim story, a market downturn case study, a hard question about their dependents) without the topic landing as cold.
+
+---
+
+## Active listening — the tonal skill that isn't tonality
+
+You're asking great intelligence-gathering questions. The prospect is answering. What are you doing while they answer?
+
+**Wrong:** *"Uh-huh. Mhm. Uh-huh."* (flat, same pitch, same pace — the prospect hears "box-ticking")
+
+**Right:**
+- *"Mhm — yeah, I can imagine."*
+- *"Oh wow — I'm sorry to hear that. When did that happen?"*
+- *"Really? That's actually pretty impressive."*
+- *"Yeah — a lot of people in your position feel the same way."*
+
+Match the tonality to what they just said. Grief → slower, lower, sincere. Achievement → warmer, slightly surprised. Worry → steady, empathetic.
+
+You are not agreeing or evaluating. You are **signalling that you heard them and it landed**. Do this correctly and by the time they've answered your third question, they are in deep rapport — and they will tell you things they wouldn't tell a family member.
+
+**The drill:** record a 10-minute roleplay as the listener only. Count how many of your "uh-huh"s were flat vs. tonally matched. Under 70% matched is a failing grade.
 
 ---
 
