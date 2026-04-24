@@ -1,6 +1,6 @@
 ---
 id: assignment-07
-order: 7
+order: 1
 title: "100 Whys — The Real Reason You're Here"
 short: "Sit down and write 100 reasons you're in this career. The last 40 are the ones that matter."
 icon: target

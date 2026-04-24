@@ -1,6 +1,6 @@
 ---
 id: assignment-06
-order: 6
+order: 2
 title: "Create Your Vision Board"
 short: "Build the visual of where you're going — what you look at when the week drags."
 icon: target

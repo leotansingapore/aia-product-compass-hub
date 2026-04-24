@@ -1,6 +1,6 @@
 ---
 id: assignment-02
-order: 2
+order: 4
 title: "Contact List + Personal Outreach Playbook"
 short: "Build a 100-name list and write your own customised outreach, objection, and follow-up scripts."
 icon: users

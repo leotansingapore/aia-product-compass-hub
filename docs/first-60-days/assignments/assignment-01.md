@@ -1,6 +1,6 @@
 ---
 id: assignment-01
-order: 1
+order: 6
 title: "Roleplay - Total Wealth Concept & Canned Sales Track"
 short: "Record a full sales conversation using the Total Wealth concept."
 icon: video
