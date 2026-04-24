@@ -59,10 +59,10 @@ function coerceYamlValue(raw: string): unknown {
   return raw;
 }
 
-const QUIZ_HEADING_RE = /^##\s+Quick quiz\s*$/m;
+const QUIZ_HEADING_RE = /^##\s+(?:Quick quiz|Quiz)\s*$/m;
 const REFLECTION_HEADING_RE = /^##\s+(Reflection worksheet|Final reflection[^\n]*)$/m;
 const NEXT_HEADING_RE = /^##\s+\S/m;
-const APPENDIX_CUT_RE = /\n##\s+(Reflection worksheet|Final reflection|Quick quiz|Related)\b/;
+const APPENDIX_CUT_RE = /\n##\s+(Reflection worksheet|Final reflection|Quick quiz|Quiz|Related)\b/;
 
 /**
  * Remove the Reflection worksheet, Quick quiz, and Related sections from a day's
@@ -134,10 +134,10 @@ export function parseQuiz(body: string): QuizQuestion[] {
   const section = nextMatch ? afterHeading.slice(0, nextMatch.index) : afterHeading;
 
   const questions: QuizQuestion[] = [];
-  const blocks = section.split(/\n(?=\d+\.\s+\*\*)/);
+  const blocks = section.split(/\n(?=(?:\d+\.\s+\*\*|\*\*Q\d+[.)]\s))/);
   for (const block of blocks) {
     const trimmed = block.trim();
-    if (!/^\d+\.\s+\*\*/.test(trimmed)) continue;
+    if (!/^(?:\d+\.\s+\*\*|\*\*Q\d+[.)]\s)/.test(trimmed)) continue;
     const q = parseQuestionBlock(trimmed, questions.length + 1);
     if (q) questions.push(q);
   }
@@ -147,7 +147,9 @@ export function parseQuiz(body: string): QuizQuestion[] {
 function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
   const lines = block.split("\n");
   const header = lines[0] ?? "";
-  const questionMatch = header.match(/^\d+\.\s+\*\*(.+?)\*\*\s*$/);
+  const questionMatch =
+    header.match(/^\d+\.\s+\*\*(.+?)\*\*\s*$/) ??
+    header.match(/^\*\*Q\d+[.)]\s+(.+?)\*\*\s*$/);
   if (!questionMatch) return null;
   const question = questionMatch[1].trim();
 
