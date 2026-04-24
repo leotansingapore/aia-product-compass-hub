@@ -133,7 +133,45 @@ Clear, specific.
 - Named clearly: "Tan John — Financial Plan — Apr 2026.pdf".
 - Include version number if revising.
 
-## 4. 5 closing techniques — and when to use each
+## 4. The close as safe-cracking — the 5 numbers in the combination
+
+Before the specific techniques, the mental model. Every close is the same underlying task: you are a safe-cracker, and the safe is the prospect's mind. There are **5 numbers** in the combination. Pull the handle (ask for the order) — if all five numbers are right, the safe opens. If one is off, it doesn't.
+
+```mermaid
+flowchart LR
+    N1["1 · Product<br/>They love it"] --> N2["2 · You<br/>They trust you"]
+    N2 --> N3["3 · Firm<br/>They trust the firm"]
+    N3 --> N4["4 · Action threshold<br/>The downside feels small"]
+    N4 --> N5["5 · Pain threshold<br/>The pain of not acting is vivid"]
+    N5 --> H["Pull the handle<br/>(ask for the order)"]
+```
+
+### The 5 numbers
+
+| # | What it is | Where in the meeting it's built |
+|---|---|---|
+| **1 · Product** | Client is certain this plan fits their goals, numbers, and life | Proposal + illustrations |
+| **2 · You** | Client trusts you personally — not pushy, listened well, competent | Fact-find + concept selling |
+| **3 · Firm** | Client trusts the insurer / firm behind the plan | Claims stats + firm story |
+| **4 · Action threshold** | The perceived downside of acting is low (free-look, reversibility, small trial) | Risk-reversal language in the close |
+| **5 · Pain threshold** | The pain of *not* acting feels vivid and near — not abstract and distant | Re-introducing the pain you surfaced in fact-find |
+
+### What to do if the handle doesn't turn
+
+A professional safe-cracker doesn't say *"this safe is uncrackable"* — they go back to the first number and try again. Same here. When you ask for the close and don't get a yes:
+
+1. Don't rebut the stated objection directly.
+2. Diagnose **which number is off** — which of the five is below a 9?
+3. Rebuild certainty on that number specifically.
+4. Re-ask.
+
+**Most common misses for new FCs:**
+- **#4 (Action threshold)** too high → add free-look framing + small-start option.
+- **#5 (Pain threshold)** too low → re-ask: *"What happens in 5 years if nothing changes?"* Let them name the pain themselves.
+
+Each of the techniques in the next section is a tool for turning one specific number in the combination. Columbo = builds #2 (trust) via the low-pressure reframe. Silent Close = builds #5 (pain) via the prospect's own reasoning. Option Close = lowers #4 (action threshold) by reducing commitment. Knowing which technique turns which number is what separates a practiced closer from a scripted one.
+
+## 5. 5 closing techniques — and when to use each
 
 ### Technique 1: Columbo Close
 **When:** end of meeting, client is about to leave, you need to reopen.
@@ -202,7 +240,7 @@ Don't concede the delay. Reframe it with risk-reversal + scarcity:
 
 **Why it works:** you're not pushing the sale. You're offering a reversible commitment. Most "think about it" objections evaporate when the downside of starting is zero and the upside of waiting is zero.
 
-## 5. When resistance is actually emotional
+## 6. When resistance is actually emotional
 
 **The principle:** "When it comes to a closing, if you have been competent in your work, resistance is largely emotional, not logical."
 
@@ -219,7 +257,7 @@ By the time you're at the close, the client already knows the plan makes sense. 
 - **Slow down** if needed. "Take another week to talk to [spouse]. Would Friday next week work for a 15-min check-in?"
 - **Give them an out.** "You don't have to decide today. But let's get the KYC started so we're ready if you say yes next week." (Small commitment + reduced pressure.)
 
-## 6. The handling of common late-stage objections
+## 7. The handling of common late-stage objections
 
 | Objection | Response |
 |---|---|
@@ -231,7 +269,7 @@ By the time you're at the close, the client already knows the plan makes sense. 
 
 **Rule:** every late-stage objection has an emotional layer + a logical layer. Address both. Never dismiss either.
 
-## 7. The "not this time" graceful exit
+## 8. The "not this time" graceful exit
 
 Sometimes a client is a real no. Handle it well — the relationship matters more than the month-3 commission.
 
@@ -249,7 +287,7 @@ Sometimes a client is a real no. Handle it well — the relationship matters mor
 
 **The math:** some 3 out of every 10 "no" clients today become "yes" clients in 6–18 months. Treating a "no" gracefully today is investing in that future yes.
 
-## 8. The post-close discipline
+## 9. The post-close discipline
 
 After the client says yes:
 
