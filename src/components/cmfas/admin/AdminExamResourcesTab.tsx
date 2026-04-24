@@ -108,7 +108,7 @@ function PaperResourcesEditor({ paperId, onBack }: { paperId: PaperId; onBack: (
         .maybeSingle();
       if (cancelled) return;
       if (!error && data?.useful_links && Array.isArray(data.useful_links)) {
-        setLinks(data.useful_links as UsefulLink[]);
+        setLinks(data.useful_links as unknown as UsefulLink[]);
       } else {
         setLinks([]);
       }
