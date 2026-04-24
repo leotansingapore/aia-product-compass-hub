@@ -60,7 +60,9 @@ Choose one book from this list. PDF / archive links are provided where available
 
 ## The template
 
-Copy this into a Google Doc / PDF and fill every section. Word counts are targets — quality of specificity matters more.
+**[Open the book-review template in Google Docs](https://docs.google.com/document/d/1EVlAEKaCywb56UaMIPOKiwS6CwhLjcwFC0nhNpOOrL0/edit?usp=sharing)** — File → Make a copy, then fill every section. Word counts are targets — quality of specificity matters more.
+
+(The same template structure is reproduced below for reference; use the Google Doc to actually write your review.)
 
 ---
 
