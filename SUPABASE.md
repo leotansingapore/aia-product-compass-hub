@@ -43,81 +43,6 @@ Notes:
 
 Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
 
-### Consolidate duplicate "Core" ↔ "Supplementary" products — retroactive `video_progress` migration + hide duplicates
-
-**Context.** Six products exist twice — once under `Core Products` (prefixed `core-*`) and once under a Supplementary sub-category (Investment / Medical / Term / Whole Life) with the same title. The leaderboard RPC [`get_learner_leaderboard`](supabase/migrations/20260422063734_a701ae62-*.sql) credits completed videos only when the product is under `Core Products`, so learners who watched the Supplementary duplicate (e.g. Yi Heng, `22319457-280e-4186-85f3-a21785db0844`, watched `pro-achiever` → Investment Products) get zero points.
-
-Pairs (legacy → core):
-
-| Legacy ID (Supplementary) | Core ID | Category of legacy |
-|---|---|---|
-| `pro-achiever` | `core-pro-achiever` | Investment Products |
-| `pro-lifetime-protector` | `core-pro-lifetime-protector` | Investment Products |
-| `platinum-wealth-venture` | `core-platinum-wealth-venture` | Investment Products |
-| `healthshield-gold-max` | `core-healthshield-gold-max` | Medical Insurance Products |
-| `solitaire-pa` | `core-solitaire-pa` | Medical Insurance Products |
-| `ultimate-critical-cover` | `core-ultimate-critical-cover` | Term Products |
-
-**Scope today:** 30 historical `video_progress` rows across 4 of the 6 legacy IDs (`pro-achiever` 23 rows, `pro-lifetime-protector` 5, `healthshield-gold-max` 2; the other 3 legacy IDs have no rows).
-
-**Please run this migration in a single transaction:**
-
-```sql
--- 1. Merge legacy video_progress rows onto the Core product IDs.
---    Unique key is (user_id, product_id, video_id), so on conflict we merge the
---    better state (completed=true wins; keep max watch time; keep earliest
---    completed_at).
-WITH pairs(legacy_id, core_id) AS (VALUES
-  ('pro-achiever',              'core-pro-achiever'),
-  ('pro-lifetime-protector',    'core-pro-lifetime-protector'),
-  ('platinum-wealth-venture',   'core-platinum-wealth-venture'),
-  ('healthshield-gold-max',     'core-healthshield-gold-max'),
-  ('solitaire-pa',              'core-solitaire-pa'),
-  ('ultimate-critical-cover',   'core-ultimate-critical-cover')
-)
-INSERT INTO public.video_progress (
-  user_id, product_id, video_id,
-  completed, watch_time_seconds, completion_percentage,
-  completed_at, created_at, updated_at
-)
-SELECT
-  vp.user_id, p.core_id, vp.video_id,
-  vp.completed, vp.watch_time_seconds, vp.completion_percentage,
-  vp.completed_at, vp.created_at, now()
-FROM public.video_progress vp
-JOIN pairs p ON p.legacy_id = vp.product_id
-ON CONFLICT (user_id, product_id, video_id) DO UPDATE SET
-  completed             = public.video_progress.completed OR EXCLUDED.completed,
-  watch_time_seconds    = GREATEST(public.video_progress.watch_time_seconds, EXCLUDED.watch_time_seconds),
-  completion_percentage = GREATEST(public.video_progress.completion_percentage, EXCLUDED.completion_percentage),
-  completed_at          = LEAST(
-                            COALESCE(public.video_progress.completed_at, EXCLUDED.completed_at),
-                            COALESCE(EXCLUDED.completed_at, public.video_progress.completed_at)
-                          ),
-  updated_at            = now();
-
--- 2. Delete the now-redundant legacy rows.
-DELETE FROM public.video_progress
-WHERE product_id IN (
-  'pro-achiever','pro-lifetime-protector','platinum-wealth-venture',
-  'healthshield-gold-max','solitaire-pa','ultimate-critical-cover'
-);
-
--- 3. Hide the Supplementary duplicates from the learner UI.
---    (UI filters on `published !== false` in ProductCategory, NestedProductsGrid,
---    AppSidebar, resourceIndex. Admins still see them via the admin toggle.)
-UPDATE public.products
-SET published = false, updated_at = now()
-WHERE id IN (
-  'pro-achiever','pro-lifetime-protector','platinum-wealth-venture',
-  'healthshield-gold-max','solitaire-pa','ultimate-critical-cover'
-);
-```
-
-**After this lands:** Yi Heng and 2 other learners immediately get their accumulated video points on the leaderboard. The 6 Supplementary duplicates disappear from nav/category pages (still accessible to admins for audit). No RPC change needed — the existing `c.name = 'Core Products'` filter now matches the re-pointed rows.
-
-**Client follow-up (handled by Claude Code in the same push):** add a redirect in `App.tsx` so any legacy URL like `/product/pro-achiever` bounces to `/product/core-pro-achiever`, in case historical links are still floating around.
-
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
@@ -138,6 +63,10 @@ Not blocking: localStorage works for single-device study sessions and is what `u
 ---
 
 ## Completed (recent)
+
+#### Consolidate duplicate Core ↔ Supplementary products + retroactive `video_progress` merge — landed 2026-04-24
+
+Migration `20260423154824_2d17e5b5-*.sql` shipped: in one transaction, `INSERT ... ON CONFLICT (user_id, product_id, video_id) DO UPDATE` re-pointed the 30 historical `video_progress` rows from 6 legacy Supplementary product IDs onto their `core-*` twin (merging `completed = OR`, `GREATEST(watch_time_seconds)`, `GREATEST(completion_percentage)`, `LEAST(COALESCE(completed_at, ...))` so duplicate `(user_id, video_id)` pairs lost no data); the legacy rows were then deleted; and `published = false` was set on the 6 legacy products to hide them from learner navigation. Verified post-migration: 0 legacy rows remain, all 6 legacy products are unpublished, and Yi Heng's 4 `pro-achiever` completions now sit on `core-pro-achiever` and credit the leaderboard. RPC `get_learner_leaderboard` was intentionally not changed — the `c.name = 'Core Products'` filter is correct now that the data matches it. Client-side redirect (`/product/<legacy>` → `/product/core-<legacy>`) shipped in `ProductDetail.tsx` so stale links still resolve. The 6 pairs: `pro-achiever`/`core-pro-achiever`, `pro-lifetime-protector`/`core-pro-lifetime-protector`, `platinum-wealth-venture`/`core-platinum-wealth-venture`, `healthshield-gold-max`/`core-healthshield-gold-max`, `solitaire-pa`/`core-solitaire-pa`, `ultimate-critical-cover`/`core-ultimate-critical-cover`.
 
 #### Atomic-slide verification for CMFAS Study Desk — landed 2026-04-23
 
