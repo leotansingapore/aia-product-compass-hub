@@ -1,9 +1,31 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Trophy, Crown, Medal, Award, ChevronRight } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useUserTier } from "@/hooks/useUserTier";
 import { useLearnerLeaderboard } from "@/hooks/useLearnerLeaderboard";
 import { cn } from "@/lib/utils";
+
+// Yield to the browser so the hub grid paints before the leaderboard RPC
+// competes for the network + main thread. requestIdleCallback when available,
+// setTimeout fallback for Safari.
+function useDeferredMount(): boolean {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    type IdleWin = Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    const w = window as IdleWin;
+    if (typeof w.requestIdleCallback === "function") {
+      const handle = w.requestIdleCallback(() => setReady(true), { timeout: 500 });
+      return () => w.cancelIdleCallback?.(handle);
+    }
+    const handle = window.setTimeout(() => setReady(true), 200);
+    return () => window.clearTimeout(handle);
+  }, []);
+  return ready;
+}
 
 const RANK_GOLD = "#C4A24D";
 const RANK_SILVER = "#A8A8A8";
@@ -32,7 +54,13 @@ export function LeaderboardRankCard({ className }: { className?: string }) {
     tier === "explorer" || tier === "papers_taker" || tier === "post_rnf"
       ? tier
       : null;
-  const query = useLearnerLeaderboard(user?.id ?? null, scopedTier);
+  const mounted = useDeferredMount();
+  // Only arm the leaderboard RPC once the hub is idle. The hook already has a
+  // 5-min staleTime, so deferring the first fetch never re-runs on revisits.
+  const query = useLearnerLeaderboard(
+    mounted ? user?.id ?? null : null,
+    mounted ? scopedTier : null,
+  );
 
   if (!scopedTier) return null;
   if (!query.data) return null;
