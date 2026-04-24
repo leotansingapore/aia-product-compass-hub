@@ -594,6 +594,9 @@ export default function First60DaysDay() {
           <Button
             variant="ghost"
             onClick={() => navigate(`/learning-track/first-60-days/day/${prev.dayNumber}`)}
+            onMouseEnter={() => prefetchDay(prev.dayNumber)}
+            onFocus={() => prefetchDay(prev.dayNumber)}
+            onTouchStart={() => prefetchDay(prev.dayNumber)}
             className="group -ml-3 gap-2 text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
@@ -617,6 +620,9 @@ export default function First60DaysDay() {
                 : `Complete today's ${hasReflection ? "quiz and reflection" : "quiz"} to unlock Day ${next.dayNumber}`
             }
             onClick={() => nextUnlocked && navigate(`/learning-track/first-60-days/day/${next.dayNumber}`)}
+            onMouseEnter={() => nextUnlocked && prefetchDay(next.dayNumber)}
+            onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
+            onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
             className={cn(
               "group gap-2",
               nextUnlocked && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
