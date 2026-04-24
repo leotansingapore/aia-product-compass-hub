@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Copy, CheckCircle2, Plus, Trash2, FileSpreadsheet, MessageSquare, Sparkles, Edit3, X } from "lucide-react";
+import { ArrowLeft, Copy, CheckCircle2, Plus, Trash2, FileSpreadsheet, MessageSquare, Sparkles, Edit3, X, Send, Bell, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,10 +23,16 @@ type Prospect = {
   temperature: Temperature;
   hook: string;
   channel: Channel;
+  /** Phone (WA/SMS), @handle (IG/Telegram), email, or profile URL (LinkedIn). Used for deep-link sends. */
+  contact?: string;
   referrer?: string;
   notes?: string;
   status: Status;
   customMessage?: string;
+  /** ISO timestamp of the most recent "sent" transition — used for the follow-up nudge. */
+  sentAt?: string;
+  /** How many follow-up messages have already been generated for this prospect (0..3). */
+  followUpCount?: number;
 };
 
 const STORAGE_PREFIX = "outreach-builder-v1";
@@ -75,6 +81,93 @@ const CHANNEL_LABEL: Record<Channel, string> = {
 
 function pickFirstName(name: string): string {
   return name.trim().split(/\s+/)[0] || name.trim();
+}
+
+// ============ DEEP-LINK GENERATION ============
+
+/**
+ * Returns a one-tap-send URL for the chosen channel + contact, or `null`
+ * if the channel can't open a pre-filled compose flow (e.g. IG DM, which
+ * Meta does not allow text-prefill on). For channels that require a contact
+ * to pre-fill (SMS, email, WhatsApp number), falls back to a `share`-style
+ * URL where possible so the message text is always preserved.
+ */
+function getSendUrl(channel: Channel, contact: string | undefined, message: string): { url: string; opensCompose: boolean } | null {
+  const text = encodeURIComponent(message);
+  const c = (contact ?? "").trim();
+  switch (channel) {
+    case "whatsapp": {
+      // wa.me accepts an international number with no leading + and no spaces.
+      const num = c.replace(/[^\d]/g, "");
+      const target = num ? num : "";
+      return { url: `https://wa.me/${target}?text=${text}`, opensCompose: Boolean(num) };
+    }
+    case "telegram": {
+      // Telegram's `share/url` flow accepts text but not a target user, so
+      // contacting a known @username is a two-step UX.
+      const handle = c.replace(/^@/, "");
+      if (handle) {
+        return { url: `https://t.me/${handle}`, opensCompose: false };
+      }
+      return { url: `https://t.me/share/url?url=&text=${text}`, opensCompose: true };
+    }
+    case "sms": {
+      const num = c.replace(/[^\d+]/g, "");
+      if (!num) return null;
+      // iOS uses `&body=`; the spec is messy. Both forms work on most stacks.
+      return { url: `sms:${num}?&body=${text}`, opensCompose: true };
+    }
+    case "email": {
+      const subj = encodeURIComponent("Hi — quick hello");
+      if (c) return { url: `mailto:${c}?subject=${subj}&body=${text}`, opensCompose: true };
+      return { url: `mailto:?subject=${subj}&body=${text}`, opensCompose: true };
+    }
+    case "ig": {
+      // Instagram DMs cannot be pre-filled. Open the profile if we know the
+      // handle; otherwise no deep link is useful.
+      const handle = c.replace(/^@/, "").trim();
+      if (!handle) return null;
+      return { url: `https://instagram.com/${handle}`, opensCompose: false };
+    }
+    case "linkedin": {
+      // LinkedIn messaging cannot be pre-filled. If contact looks like a URL,
+      // open it; otherwise treat as a vanity slug.
+      if (!c) return null;
+      const url = c.startsWith("http") ? c : `https://linkedin.com/in/${c.replace(/^\/+/, "")}`;
+      return { url, opensCompose: false };
+    }
+  }
+}
+
+// ============ FOLLOW-UP TEMPLATES ============
+
+function generateFollowUp(p: Prospect, advisorName: string, index: number): string {
+  const first = pickFirstName(p.name);
+  const advisor = advisorName.trim() || "[Your name]";
+  // index 0 = day 3 nudge, 1 = day 7 nudge, 2 = day 30 final
+  if (index === 0) {
+    return `Hey ${first}, just bumping this back to the top in case it got buried 👆 totally fine if the timing's bad — just let me know either way!\n\n${advisor}`;
+  }
+  if (index === 1) {
+    return `Hi ${first}, no rush at all on this — last bump for now. If the next two weeks are bad, say the word and I'll circle back later in the year. Otherwise still happy to grab that coffee whenever you've got 20 min.\n\n${advisor}`;
+  }
+  return `Hi ${first}, last nudge from me on this one — totally OK if now's not the right time, just don't want to keep messaging if it's a no. Either way, take care and stay well.\n\n${advisor}`;
+}
+
+function daysSince(iso: string | undefined): number | null {
+  if (!iso) return null;
+  const t = new Date(iso).getTime();
+  if (!Number.isFinite(t)) return null;
+  return Math.floor((Date.now() - t) / 86_400_000);
+}
+
+function relativeAgo(days: number): string {
+  if (days <= 0) return "today";
+  if (days === 1) return "yesterday";
+  if (days < 7) return `${days} days ago`;
+  if (days < 14) return "1 week ago";
+  if (days < 60) return `${Math.floor(days / 7)} weeks ago`;
+  return `${Math.floor(days / 30)} months ago`;
 }
 
 function generateMessage(p: Prospect, advisorName: string): string {
@@ -168,7 +261,7 @@ function parseCsv(raw: string): Partial<Prospect>[] {
 
   // Header detection: if no header-like words in the first row, assume no
   // header and treat row 0 as data, mapping column 0 → name.
-  const HEADER_WORDS = ["name", "temperature", "temp", "hook", "channel", "referrer", "notes", "ring"];
+  const HEADER_WORDS = ["name", "temperature", "temp", "hook", "channel", "referrer", "notes", "ring", "contact", "phone", "handle", "number"];
   const looksLikeHeader = rawHeader.some((c) => HEADER_WORDS.includes(c));
 
   const headers = looksLikeHeader ? rawHeader : ["name"];
@@ -187,6 +280,7 @@ function parseCsv(raw: string): Partial<Prospect>[] {
   const i_channel = idx("channel");
   const i_referrer = idx("referrer");
   const i_notes = idx("notes");
+  const i_contact = idx("contact") >= 0 ? idx("contact") : idx("phone") >= 0 ? idx("phone") : idx("handle") >= 0 ? idx("handle") : idx("number");
 
   const normTemp = (v: string | undefined): Temperature => {
     const s = (v ?? "").toLowerCase().trim();
@@ -220,6 +314,7 @@ function parseCsv(raw: string): Partial<Prospect>[] {
       channel: normChannel(i_channel >= 0 ? cols[i_channel] : undefined),
       referrer: (i_referrer >= 0 ? cols[i_referrer] : "")?.trim() || undefined,
       notes: (i_notes >= 0 ? cols[i_notes] : "")?.trim() || undefined,
+      contact: (i_contact >= 0 ? cols[i_contact] : "")?.trim() || undefined,
     });
   }
   return out;
@@ -239,6 +334,7 @@ export default function OutreachBuilder() {
   const [showCsv, setShowCsv] = useState(false);
   const [editing, setEditing] = useState<Prospect | null>(null);
   const [filter, setFilter] = useState<"all" | Status>("all");
+  const [search, setSearch] = useState("");
   const hasHydrated = useRef(false);
 
   // Hydrate
@@ -282,15 +378,43 @@ export default function OutreachBuilder() {
   }, [advisorName, settingsKey]);
 
   const visible = useMemo(() => {
-    if (filter === "all") return prospects;
-    return prospects.filter((p) => p.status === filter);
-  }, [prospects, filter]);
+    let list = prospects;
+    if (filter !== "all") list = list.filter((p) => p.status === filter);
+    const q = search.trim().toLowerCase();
+    if (q) {
+      list = list.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          (p.hook ?? "").toLowerCase().includes(q) ||
+          (p.referrer ?? "").toLowerCase().includes(q) ||
+          (p.notes ?? "").toLowerCase().includes(q),
+      );
+    }
+    return list;
+  }, [prospects, filter, search]);
 
   const counts = useMemo(() => {
     const c: Record<Status | "all", number> = { all: prospects.length, new: 0, sent: 0, replied: 0, booked: 0, passed: 0 };
     for (const p of prospects) c[p.status]++;
     return c;
   }, [prospects]);
+
+  const stats = useMemo(() => {
+    const totalSent = counts.sent + counts.replied + counts.booked + counts.passed;
+    const repliedOrBetter = counts.replied + counts.booked;
+    const replyRate = totalSent > 0 ? Math.round((repliedOrBetter / totalSent) * 100) : 0;
+    const bookRate = totalSent > 0 ? Math.round((counts.booked / totalSent) * 100) : 0;
+    const sentToday = prospects.filter((p) => {
+      if (!p.sentAt) return false;
+      return new Date(p.sentAt).toDateString() === new Date().toDateString();
+    }).length;
+    const needsFollowUp = prospects.filter((p) => {
+      if (p.status !== "sent") return false;
+      const d = daysSince(p.sentAt);
+      return d !== null && d >= 3;
+    }).length;
+    return { totalSent, repliedOrBetter, replyRate, bookRate, sentToday, needsFollowUp };
+  }, [counts, prospects]);
 
   const addBlank = () => {
     const p: Prospect = {
@@ -319,6 +443,7 @@ export default function OutreachBuilder() {
       channel: p.channel ?? "whatsapp",
       referrer: p.referrer,
       notes: p.notes,
+      contact: p.contact,
       status: "new" as Status,
     }));
     setProspects((prev) => [...newProspects, ...prev]);
@@ -328,7 +453,18 @@ export default function OutreachBuilder() {
   };
 
   const updateProspect = (id: string, patch: Partial<Prospect>) => {
-    setProspects((prev) => prev.map((p) => (p.id === id ? { ...p, ...patch } : p)));
+    setProspects((prev) =>
+      prev.map((p) => {
+        if (p.id !== id) return p;
+        const next = { ...p, ...patch };
+        // Stamp sentAt the first time status transitions to "sent" so we can
+        // surface "sent X days ago" / suggest follow-ups later.
+        if (patch.status === "sent" && !p.sentAt) {
+          next.sentAt = new Date().toISOString();
+        }
+        return next;
+      }),
+    );
   };
 
   const deleteProspect = (id: string) => {
@@ -344,6 +480,44 @@ export default function OutreachBuilder() {
       if (p.status === "new") updateProspect(p.id, { status: "sent" });
     } catch {
       toast.error("Couldn't copy. Try selecting the message and copying manually.");
+    }
+  };
+
+  const sendViaChannel = async (p: Prospect) => {
+    const msg = p.customMessage ?? generateMessage(p, advisorName);
+    const link = getSendUrl(p.channel, p.contact, msg);
+    if (!link) {
+      // Fall back: copy to clipboard, since IG/LinkedIn etc. don't accept
+      // pre-filled compose URLs without a known handle.
+      await copyMessage(p);
+      toast.message(`${CHANNEL_LABEL[p.channel]} can't open pre-filled — message copied so you can paste it.`);
+      return;
+    }
+    if (!link.opensCompose) {
+      // Profile/handle link only — copy the message too so they can paste once
+      // the channel opens.
+      try {
+        await navigator.clipboard.writeText(msg);
+      } catch {
+        /* clipboard may be blocked; user can long-press */
+      }
+      toast.message("Message copied — paste it in once the chat opens.");
+    } else {
+      toast.success(`Opening ${CHANNEL_LABEL[p.channel]}…`);
+    }
+    window.open(link.url, "_blank", "noopener,noreferrer");
+    if (p.status === "new") updateProspect(p.id, { status: "sent" });
+  };
+
+  const generateNextFollowUp = async (p: Prospect) => {
+    const idx = Math.min(p.followUpCount ?? 0, 2);
+    const msg = generateFollowUp(p, advisorName, idx);
+    try {
+      await navigator.clipboard.writeText(msg);
+      toast.success(`Follow-up #${idx + 1} copied for ${p.name || "prospect"}.`);
+      updateProspect(p.id, { followUpCount: Math.min(idx + 1, 3) });
+    } catch {
+      toast.error("Couldn't copy follow-up.");
     }
   };
 
@@ -452,37 +626,78 @@ export default function OutreachBuilder() {
         </Card>
       ) : (
         <>
-          <div className="flex flex-wrap gap-1.5">
-            {(["all", "new", "sent", "replied", "booked", "passed"] as const).map((s) => (
-              <button
-                key={s}
-                onClick={() => setFilter(s)}
-                className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
-                  filter === s
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background hover:bg-muted",
-                )}
-              >
-                {s === "all" ? "All" : STATUS_LABEL[s]}
-                <span className="tabular-nums opacity-70">{counts[s]}</span>
-              </button>
-            ))}
+          <Card>
+            <CardContent className="p-3 sm:p-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                <Stat label="Sent today" value={stats.sentToday} accent="text-foreground" />
+                <Stat label="Reply rate" value={`${stats.replyRate}%`} sub={`${stats.repliedOrBetter}/${stats.totalSent} sent`} accent="text-violet-600 dark:text-violet-400" />
+                <Stat label="Booked" value={counts.booked} sub={`${stats.bookRate}% of sent`} accent="text-emerald-600 dark:text-emerald-400" />
+                <Stat label="Need follow-up" value={stats.needsFollowUp} sub="sent ≥ 3 days, no reply" accent="text-amber-600 dark:text-amber-400" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative flex-1 min-w-[180px] max-w-sm">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search name, hook, referrer, notes…"
+                className="h-8 pl-8 text-sm"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {(["all", "new", "sent", "replied", "booked", "passed"] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setFilter(s)}
+                  className={cn(
+                    "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                    filter === s
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-background hover:bg-muted",
+                  )}
+                >
+                  {s === "all" ? "All" : STATUS_LABEL[s]}
+                  <span className="tabular-nums opacity-70">{counts[s]}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="space-y-3">
-            {visible.map((p) => (
-              <ProspectCard
-                key={p.id}
-                p={p}
-                advisorName={advisorName}
-                onEdit={() => setEditing(p)}
-                onCopy={() => copyMessage(p)}
-                onDelete={() => deleteProspect(p.id)}
-                onStatus={(status) => updateProspect(p.id, { status })}
-              />
-            ))}
-          </div>
+          {visible.length === 0 ? (
+            <Card className="border-dashed">
+              <CardContent className="py-10 text-center text-sm text-muted-foreground">
+                No prospects match this filter / search.
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="space-y-3">
+              {visible.map((p) => (
+                <ProspectCard
+                  key={p.id}
+                  p={p}
+                  advisorName={advisorName}
+                  onEdit={() => setEditing(p)}
+                  onCopy={() => copyMessage(p)}
+                  onSend={() => sendViaChannel(p)}
+                  onFollowUp={() => generateNextFollowUp(p)}
+                  onDelete={() => deleteProspect(p.id)}
+                  onStatus={(status) => updateProspect(p.id, { status })}
+                />
+              ))}
+            </div>
+          )}
         </>
       )}
 
@@ -499,6 +714,28 @@ export default function OutreachBuilder() {
   );
 }
 
+// ============ STAT TILE ============
+
+function Stat({
+  label,
+  value,
+  sub,
+  accent,
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+  accent?: string;
+}) {
+  return (
+    <div>
+      <div className={cn("text-xl sm:text-2xl font-semibold tabular-nums leading-none", accent)}>{value}</div>
+      <div className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mt-1">{label}</div>
+      {sub && <div className="text-[10px] text-muted-foreground/80 mt-0.5">{sub}</div>}
+    </div>
+  );
+}
+
 // ============ PROSPECT CARD ============
 
 function ProspectCard({
@@ -506,6 +743,8 @@ function ProspectCard({
   advisorName,
   onEdit,
   onCopy,
+  onSend,
+  onFollowUp,
   onDelete,
   onStatus,
 }: {
@@ -513,14 +752,22 @@ function ProspectCard({
   advisorName: string;
   onEdit: () => void;
   onCopy: () => void;
+  onSend: () => void;
+  onFollowUp: () => void;
   onDelete: () => void;
   onStatus: (s: Status) => void;
 }) {
   const message = p.customMessage ?? generateMessage(p, advisorName);
   const [showFull, setShowFull] = useState(false);
+  const sentDays = daysSince(p.sentAt);
+  const stale = p.status === "sent" && sentDays !== null && sentDays >= 3;
+  const sendLink = getSendUrl(p.channel, p.contact, message);
+  const sendLabel = sendLink?.opensCompose
+    ? `Send via ${CHANNEL_LABEL[p.channel]}`
+    : `Open ${CHANNEL_LABEL[p.channel]}`;
 
   return (
-    <Card>
+    <Card className={cn(stale && "border-amber-500/40")}>
       <CardContent className="p-4 space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-2">
           <div className="min-w-0 flex-1">
@@ -537,11 +784,23 @@ function ProspectCard({
                   Edited
                 </Badge>
               )}
+              {stale && (
+                <Badge variant="outline" className="text-[10px] bg-amber-500/10 border-amber-500/40 text-amber-700 dark:text-amber-300 gap-1">
+                  <Bell className="h-3 w-3" /> Follow-up due
+                </Badge>
+              )}
             </div>
-            {(p.hook || p.referrer) && (
-              <div className="mt-1 text-xs text-muted-foreground">
-                {p.referrer && <span>Referred by {p.referrer}. </span>}
+            {(p.hook || p.referrer || p.contact) && (
+              <div className="mt-1 text-xs text-muted-foreground space-x-1.5">
+                {p.referrer && <span>Referred by {p.referrer}.</span>}
                 {p.hook && <span>{p.hook}</span>}
+                {p.contact && <span className="text-muted-foreground/70">· {p.contact}</span>}
+              </div>
+            )}
+            {p.sentAt && (
+              <div className="mt-1 text-[11px] text-muted-foreground">
+                Sent {relativeAgo(sentDays ?? 0)}
+                {(p.followUpCount ?? 0) > 0 && ` · ${p.followUpCount} follow-up${(p.followUpCount ?? 0) > 1 ? "s" : ""} sent`}
               </div>
             )}
           </div>
@@ -577,11 +836,25 @@ function ProspectCard({
           )}
         </div>
 
-        <div className="flex gap-2">
-          <Button size="sm" onClick={onCopy} className="gap-1.5">
-            <Copy className="h-3.5 w-3.5" /> Copy message
+        <div className="flex flex-wrap gap-2">
+          <Button size="sm" onClick={onSend} className="gap-1.5" title={sendLink ? undefined : `Add a contact to send via ${CHANNEL_LABEL[p.channel]}`}>
+            <Send className="h-3.5 w-3.5" /> {sendLabel}
           </Button>
-          <Button size="sm" variant="outline" onClick={onEdit} className="gap-1.5">
+          <Button size="sm" variant="outline" onClick={onCopy} className="gap-1.5">
+            <Copy className="h-3.5 w-3.5" /> Copy
+          </Button>
+          {(p.status === "sent" || stale) && (
+            <Button
+              size="sm"
+              variant={stale ? "default" : "outline"}
+              onClick={onFollowUp}
+              className={cn("gap-1.5", stale && "bg-amber-500 hover:bg-amber-600 text-white")}
+              title={`Day ${[3, 7, 30][Math.min(p.followUpCount ?? 0, 2)]} follow-up`}
+            >
+              <Bell className="h-3.5 w-3.5" /> {(p.followUpCount ?? 0) >= 3 ? "Follow-ups exhausted" : `Follow-up #${(p.followUpCount ?? 0) + 1}`}
+            </Button>
+          )}
+          <Button size="sm" variant="ghost" onClick={onEdit} className="gap-1.5">
             <Edit3 className="h-3.5 w-3.5" /> Edit
           </Button>
         </div>
@@ -612,6 +885,7 @@ function EditDialog({
   const [temperature, setTemperature] = useState<Temperature>("semi-warm");
   const [hook, setHook] = useState("");
   const [channel, setChannel] = useState<Channel>("whatsapp");
+  const [contact, setContact] = useState("");
   const [referrer, setReferrer] = useState("");
   const [notes, setNotes] = useState("");
   const [customMessage, setCustomMessage] = useState("");
@@ -623,6 +897,7 @@ function EditDialog({
     setTemperature(prospect.temperature);
     setHook(prospect.hook);
     setChannel(prospect.channel);
+    setContact(prospect.contact ?? "");
     setReferrer(prospect.referrer ?? "");
     setNotes(prospect.notes ?? "");
     setCustomMessage(prospect.customMessage ?? "");
@@ -637,6 +912,7 @@ function EditDialog({
     temperature,
     hook,
     channel,
+    contact: contact || undefined,
     referrer: referrer || undefined,
   };
   const previewMessage = useCustom && customMessage
@@ -649,11 +925,23 @@ function EditDialog({
       temperature,
       hook,
       channel,
+      contact: contact || undefined,
       referrer: referrer || undefined,
       notes: notes || undefined,
       customMessage: useCustom && customMessage ? customMessage : undefined,
     });
   };
+
+  const contactPlaceholder = ((): string => {
+    switch (channel) {
+      case "whatsapp": return "+65 9123 4567";
+      case "telegram": return "@username";
+      case "ig": return "@username";
+      case "linkedin": return "linkedin.com/in/username";
+      case "sms": return "+65 9123 4567";
+      case "email": return "name@example.com";
+    }
+  })();
 
   return (
     <Dialog open={Boolean(prospect)} onOpenChange={(open) => !open && onClose()}>
@@ -702,6 +990,19 @@ function EditDialog({
                 <Input id="ob-ref" value={referrer} onChange={(e) => setReferrer(e.target.value)} placeholder="e.g. Sarah Lim" />
               </div>
             )}
+          </div>
+
+          <div>
+            <Label htmlFor="ob-contact">Contact (for one-tap send)</Label>
+            <Input id="ob-contact" value={contact} onChange={(e) => setContact(e.target.value)} placeholder={contactPlaceholder} />
+            <p className="text-[11px] text-muted-foreground mt-1">
+              {channel === "whatsapp" && "International format with country code. Tap-to-send opens WhatsApp pre-filled."}
+              {channel === "telegram" && "@username if you have it. Otherwise tap-to-send opens Telegram with the message ready to forward."}
+              {channel === "sms" && "Phone number with country code. Tap-to-send opens your SMS app pre-filled."}
+              {channel === "email" && "Email address. Tap-to-send opens your mail client pre-filled."}
+              {channel === "ig" && "Instagram doesn't allow pre-filled DMs — we'll open the profile and copy your message so you can paste."}
+              {channel === "linkedin" && "Paste profile URL or vanity slug. LinkedIn doesn't allow pre-filled messages — we'll open the profile."}
+            </p>
           </div>
 
           <div>
