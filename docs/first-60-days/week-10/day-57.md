@@ -13,6 +13,61 @@ tags: [first-60-days, week-10, knowledge]
 
 > **The one idea for today:** ILPs have a complicated reputation — loved by FCs, misunderstood by clients, criticised online. The truth: ILPs work brilliantly for the right client and disastrously for the wrong one. Know the difference. Never sell an ILP to a client who doesn't fit.
 
+> **🎥 Watch the live training:** **[Module 3 — Wealth Accumulation Products Overview (David)](https://youtu.be/8rZJ3uZSwqw)**. Module 3 covers retirement-needs calculation using a TVM calculator, CPF LIFE structure (BRS / FRS / ERS), and the wealth-accumulation product stack (Pro Achiever, PWV, PRE). Also available in this day's **Video** tab.
+
+## 0. Live training reference — the retirement-needs spine
+
+Before recommending any wealth product, you need to surface the *gap* — the monthly retirement income the client wants minus what CPF LIFE will give them. The remainder is what your product needs to fill.
+
+### Use the TVM (Time Value of Money) calculator
+
+Download a TVM calculator app (free on iPad/phone). Five parameters:
+
+- **PV** — present value (current expenses)
+- **FV** — future value (what those expenses become)
+- **I** — interest / inflation rate
+- **N** — number of years
+- **Compounding** — annual
+
+### Worked example (David's exact walkthrough)
+
+Client: 35, retire at 50, current expenses $2,500/month, plan to age 85.
+
+1. **Inflate the expenses (15 years at 3%):** PV $2,500 → FV **$3,894/month** at retirement.
+2. **Lump sum needed:** $3,894 × 12 × 35 retirement years = **~$1.6M**.
+3. **Two drawdown methods:**
+   - **Capital Preservation (4% rule):** withdraw 4%/yr forever. $1.6M × 4% = ~$65K/yr. Capital stays intact *if* investment return ≥ withdrawal rate.
+   - **Capital Depletion:** withdraw faster (6–8%). Capital eventually runs out — outliving-your-money risk.
+
+> **The teaching line:** *"If your investment return is more than your withdrawal rate, your capital stays preserved. If your withdrawal rate is more than your return, the capital line goes down. Your money has to work harder than you do."*
+
+### Three milestones on the retirement timeline
+
+| Age | Milestone |
+|---|---|
+| **55** | CPF withdrawal age — extract OA above FRS, restructure |
+| **65** | Official retirement — CPF LIFE payouts begin, zero active income |
+| **85–90** | Life-expectancy planning target (avg 83, plan to 90) |
+
+### CPF LIFE retirement sums (2025)
+
+| Scheme | Lump sum at 55 | Monthly payout at 65 (for life) |
+|---|---|---|
+| **Basic (BRS)** | $106K | ~$930 |
+| **Full (FRS)** | $213K | ~$1,730 |
+| **Enhanced (ERS)** | $426K | ~$3,300 |
+
+### The planning gap (this is the closing math)
+
+```
+Desired retirement income          $7,000/mth
+Minus CPF LIFE (FRS)              −$1,730/mth
+                                   ─────────
+GAP your wealth product fills    = $5,270/mth
+```
+
+That gap is the entire reason Pro Achiever, PWV, PRE, and other wealth-accumulation plans exist. Once the client sees their personal gap number, the product recommendation becomes the only logical thing to discuss.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

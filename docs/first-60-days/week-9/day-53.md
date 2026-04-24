@@ -13,6 +13,28 @@ tags: [first-60-days, week-9, skills]
 
 > **The one idea for today:** The Risks Angle CST reframes insurance from "optional expense" to "the foundation everything else depends on." Done well, a client sees insurance not as a cost but as the permission slip to build wealth. That reframe closes more protection cases than any product pitch.
 
+> **🎥 Watch the live training:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. Module 1 contains the live CST demo where Director Winnie walks through the income-loss section that this day is built around — temporary vs permanent income loss, the three risk-management methods (avoid / retain / transfer), and the "$1 million question" framing. Also available in this day's **Video** tab. Companion: **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
+
+## 0. Live training reference — the income-loss spine
+
+Two ways your client can lose income, and the only honest response:
+
+| Loss type | Examples | Solution |
+|---|---|---|
+| **Temporary** | Sacked, resigned, retrenched | Contingency cash — 3–6 months of expenses sitting in the bank |
+| **Permanent** | Death, disability, critical illness, accident, old age / retirement | **Irreversible** — savings won't catch up. Insurance transfer is the only honest answer |
+
+**The $1 million question (use this verbatim):**
+> "If you're 25 and need $25K/year of expenses for 40 years, that's $1,000,000 — just to keep yourself alive in retirement. Can your family lend you $1,000? Probably. $10,000? Maybe. $1,000,000? No. *We don't want clients to beg, borrow, or steal.*"
+
+**Three risk-management methods — the elimination logic:**
+
+1. **Avoid** — unrealistic. Can't avoid getting sick. Can't avoid getting old.
+2. **Retain (self-insure)** — needs $1M sitting in cash already. Almost no one has it.
+3. **Transfer** — use **10% of income** to protect the **other 90%**. ✅
+
+That elimination is the close. By the time the client agrees with you on points 1 and 2, point 3 is the only remaining option.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

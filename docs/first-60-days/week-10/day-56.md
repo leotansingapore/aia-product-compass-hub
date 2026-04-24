@@ -13,6 +13,65 @@ tags: [first-60-days, week-10, knowledge]
 
 > **The one idea for today:** Wealth plans (Day 55) are about accumulation. Today is about the other half — the protection plans that make accumulation possible. Term, critical illness, hospital, accident, and disability coverage. Most clients have weaknesses here. Your job is to diagnose and close the gaps without scare-selling.
 
+> **🎥 Watch the live training:** **[Module 2 — Risk Management Products Overview (David)](https://youtu.be/y12lyQRhay0)**. The full live walk-through of every protection plan in the AIA stack, organised by Cash Value vs No Cash Value, with the "products are like medicine — you are the financial doctor" framing. Also available in this day's **Video** tab.
+
+## 0. Live training reference — the AIA protection product map
+
+Memorise this map. It's the schematic David uses in Module 2 to navigate the entire risk-management catalogue without looking anything up.
+
+### Plans **with** Cash Value (Death & Disability)
+
+| Plan | Type | Notes |
+|---|---|---|
+| **Pro Lifetime Protector (PLP)** | Investment-Linked Policy | Living-benefits ILP variant |
+| **Guarantee Protect Plus (GPP)** | Limited-pay whole life participating | **Cornerstone plan** — most-recommended |
+| **Life Dividends** | 10-pay life with coupons | Niche use cases |
+
+### Plans **with no** Cash Value
+
+| Plan | Type | Notes |
+|---|---|---|
+| **Secure Flexi Term (SFT)** | Customisable term | Flexible structuring |
+| **FaceTerm** | Versatile term | Covered in Module 2 |
+| **Enhanced Critical Protector (ECP)** | Standalone cancer cover | Cancer-specific |
+| **Ultimate Critical Cover (UCC)** | Multi-claim CI | Recurring CI events |
+
+### Standalone CI
+
+- **UCC** and **ASC (Absolute Critical Cover)** — the two main standalone CI options
+- ASC has both cash-value and no-cash-value variants; covers relapse, benign tumours, multi-claim with waiting periods
+
+### A&H — Accident & Health (no cash value)
+
+Solidaire, Platinum Accident Care, Stork Protector (children), Hospital Income, HCC Cash Protector.
+
+> **The "fries and Coke" rule:** A&H is the side order to the GPP/PLP "burger." Low cost (~$50/month max), always packaged in. Don't propose without it.
+
+### Disability Income
+
+- **Premier Disability Cover (PDC)** — not common, but a few advisors believe in it strongly. Worth knowing for the right client profile.
+
+### "Products are like medicine" — the core mindset
+
+> No product is inherently bad. **You are the financial doctor.** You prescribe the right product based on the client's financial situation, life goals, and budget. Mastery is matching the right product to the right client profile — built up over hundreds of cases.
+
+## 0a. Coverage benchmarks (the version Module 2 uses)
+
+For a worked example of an $8,500/month income earner ($102K/year):
+
+| Coverage | Guideline | Example ($102K/year income) |
+|---|---|---|
+| **Premature Death / TPD** | 10× gross annual income + major liabilities | $1M + $400K mortgage = **$1.4M** |
+| **Critical Illness** | 3–5× annual income + **$100K buffer** | **$300K–$500K** |
+| **Accident** | 5× annual income | **$500K** |
+| **Hospitalisation** | Based on ward preference | Private vs subsidised |
+
+**Why the death-coverage benchmark exists:** ensure the family's financial situation remains *unchanged* — house not sold, no downgrade, spouse receives ~10 years of income replacement.
+
+**TPD** is typically tacked onto death coverage at **75% of the sum assured**.
+
+The $100K buffer on CI specifically funds **cancer drug treatments not covered by the hospital plan** (one vial can cost ~$10K per dose). The 3–5× income covers the recovery period when the client can't work — so the total benchmark is "$100K + 3-5× income" or equivalently "$200–400K or 5× income," which is the same coverage in two different framings.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
