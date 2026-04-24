@@ -79,6 +79,7 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
     markdown: convertWikilinks(stripAppendix(body)),
     quiz: parseQuiz(body),
     reflection: parseReflection(body),
+    hasRawHtml: false,
   };
   dayCache.set(dayNumber, day);
   return day;
@@ -103,6 +104,7 @@ export function getWeek(weekNumber: number): Week | undefined {
     markdown: "",
     quiz: [],
     reflection: [],
+    hasRawHtml: false,
   }));
   return { weekNumber, title: meta.title, tagline: meta.tagline, days: weekDays };
 }

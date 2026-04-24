@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { PluggableList } from "unified";
+type PluggableList = any[];
 import {
   ArrowLeft,
   ArrowRight,
