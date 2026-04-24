@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -21,14 +21,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
-import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
+import { detectVideoEmbed } from "@/lib/video-embed-utils";
 import { loadDay, loadWeekReadme, prefetchDay, WEEK_META } from "@/features/first-60-days/content";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { useFirst60DaysDayMeta } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
-import { DayQuiz } from "@/components/first-60-days/DayQuiz";
-import { DayReflection } from "@/components/first-60-days/DayReflection";
+
+// Tab-gated chunks — Read is the default landing tab for every day, so Quiz,
+// Reflection, and the video iframe wrapper stay out of the critical path until
+// the learner actually switches tabs.
+const DayQuiz = lazy(() =>
+  import("@/components/first-60-days/DayQuiz").then((m) => ({ default: m.DayQuiz })),
+);
+const DayReflection = lazy(() =>
+  import("@/components/first-60-days/DayReflection").then((m) => ({ default: m.DayReflection })),
+);
+const VideoEmbed = lazy(() =>
+  import("@/lib/video-embed-utils").then((m) => ({ default: m.VideoEmbed })),
+);
+
+function TabFallback() {
+  return (
+    <div className="flex min-h-[160px] items-center justify-center text-xs text-muted-foreground">
+      <span className="inline-flex items-center gap-2">
+        <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-primary/60" />
+        Loading…
+      </span>
+    </div>
+  );
+}
 
 type StatusChipProps = {
   icon: typeof BookOpen;
@@ -180,7 +202,13 @@ export default function First60DaysDay() {
         setShowStickyQuiz(false);
         return;
       }
-      setShowStickyQuiz(window.scrollY / total > 0.55);
+      const past = window.scrollY / total > 0.55;
+      setShowStickyQuiz(past);
+      // Warm the quiz chunk as soon as the learner scrolls deep enough for
+      // the sticky CTA to appear, so tapping it is instant.
+      if (past) {
+        import("@/components/first-60-days/DayQuiz").catch(() => undefined);
+      }
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -453,7 +481,11 @@ export default function First60DaysDay() {
                 {(() => {
                   const info = detectVideoEmbed(dayMeta.video_url);
                   if (info.embedUrl) {
-                    return <VideoEmbed embedUrl={info.embedUrl} platform={info.platform} />;
+                    return (
+                      <Suspense fallback={<TabFallback />}>
+                        <VideoEmbed embedUrl={info.embedUrl} platform={info.platform ?? "video"} />
+                      </Suspense>
+                    );
                   }
                   return (
                     <div className="p-6 text-sm text-muted-foreground">
@@ -488,11 +520,15 @@ export default function First60DaysDay() {
         </TabsContent>
 
         <TabsContent value="reflection" className="mt-5 animate-fade-in">
-          <DayReflection dayNumber={dayNumber} prompts={day.reflection} />
+          <Suspense fallback={<TabFallback />}>
+            <DayReflection dayNumber={dayNumber} prompts={day.reflection} />
+          </Suspense>
         </TabsContent>
 
         <TabsContent value="quiz" className="mt-5 animate-fade-in">
-          <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
+          <Suspense fallback={<TabFallback />}>
+            <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
+          </Suspense>
         </TabsContent>
       </Tabs>
 
