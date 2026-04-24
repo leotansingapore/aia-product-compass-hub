@@ -27,23 +27,11 @@ By the end of today you should be able to:
 
 Total Wealth has two forms. A client's full wealth is the sum of both:
 
-<div style="margin:1.25rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;letter-spacing:0.02em;">— the two halves of Total Wealth —</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;">
-    <div style="padding:0 18px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i. Financial Capital</div>
-      <div style="font-size:14.5px;font-weight:600;color:hsl(var(--foreground));margin-bottom:4px;letter-spacing:-0.01em;">The money you already have</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.55;">CPF, savings, investments, property equity, insurance cash values. The visible, countable half.</div>
-    </div>
-    <div style="padding:0 18px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii. Human Capital</div>
-      <div style="font-size:14.5px;font-weight:600;color:hsl(var(--foreground));margin-bottom:4px;letter-spacing:-0.01em;">Your future ability to earn</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.55;">Career, skills, energy, years of earning ahead of you. The bigger half — and the one almost no one insures.</div>
-    </div>
-  </div>
-</div>
+![Total Wealth Concept — Financial Capital plus Human Capital, with the curve showing Human Capital decreasing and Financial Capital growing over a working life so the total stays positive](/first-60-days/images/total-wealth-concept.webp)
 
-For a 30-year-old earning $100K/year with 30 working years left, Human Capital is worth roughly **$3M of future income** — usually more than every Financial Capital line item combined. Most clients only think about the visible half. Your job is to surface the invisible one.
+The graph on the left tells the entire story: when you're young, **Human Capital** (your future ability to earn) is huge — but Financial Capital is small. Across a working life, the deliberate move is to **convert** one into the other — earn more, spend less, save the difference, invest it, and repeat. Total Wealth is the sum of both at any given moment.
+
+For a 30-year-old earning $100K/year with 30 working years left, Human Capital is worth roughly **$3M of future income** — usually more than every Financial Capital line item combined. Most clients only think about the visible half (the money already in their accounts). Your job is to surface the invisible one — and make sure the conversion engine that connects them is protected.
 
 ## 2. The conversion engine
 
@@ -79,30 +67,16 @@ This is why protection isn't an upsell or an add-on. It's the **foundation** tha
 
 The TWFPS organises every client plan around four pillars — three to protect Human Capital, one to grow Financial Capital.
 
+![Total Wealth Financial Planning System — four boxes under Human Capital (Death/Disability, Critical Illness, Hospital, Accident) plus Investment & Savings under Financial Capital with a Global Balanced Strategy](/first-60-days/images/total-wealth-twfps.webp)
+
 | Pillar | What it protects against | Benchmark coverage |
 |---|---|---|
-| **Death / Disability** | Family loses the income engine | **10–20× annual income** |
-| **Critical Illness** | Major medical event + 12–24 months recovery | **$200–400K** or **5× annual income** |
-| **Hospital & Accident** | Sprains, dengue, food poisoning, falls, permanent dismemberment | Hospital plan + PA plan |
+| **Death / Disability** | Family loses the income engine | Dependents' income needs · **10–20× annual income** |
+| **Critical Illness** *(the weakest link — often ignored)* | Major medical event + 12–24 months recovery | 30 major illnesses at today's medical cost · **$200–400K or 5× annual income** |
+| **Hospital & Accident** | Hospitalisation, injury, illness, sprains, dengue, food poisoning, permanent dismemberment | Hospital cover + Medishield upgrade + Personal Accident plan |
 | **Investment & Savings** | Inflation slowly eroding Financial Capital | Global balanced strategy |
 
-The first three pillars defend the Human-Capital → Financial-Capital conversion. The fourth makes sure the converted capital actually grows faster than inflation. Together they make sure the engine never has to restart from zero.
-
-```mermaid
-flowchart TD
-    HC["Human Capital · the engine"]
-    HC --> P1["Death / Disability<br/>10-20× income"]
-    HC --> P2["Critical Illness<br/>$200-400K or 5× income"]
-    HC --> P3["Hospital & Accident<br/>full coverage"]
-    HC --> P4["Investment & Savings<br/>global balanced"]
-    P1 --> FC["Financial Capital · the result"]
-    P2 --> FC
-    P3 --> FC
-    P4 --> FC
-    style HC fill:#1e3a5f,color:#fff
-    style FC fill:#1a5c3a,color:#fff
-    style P4 fill:#1a5c3a,color:#fff
-```
+The first three pillars defend the Human-Capital → Financial-Capital conversion. The fourth (Investment & Savings) makes sure the converted capital actually grows faster than inflation. Together they make sure the engine never has to restart from zero.
 
 ## 5. The 5-minute introduction
 
