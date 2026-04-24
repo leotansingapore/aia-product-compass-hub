@@ -57,6 +57,18 @@ Same lifestyle. Nearly double the monthly expense in future dollars.
 
 **The question clients don't ask:** "When I plan for retirement, am I planning for $2,000/month in today's dollars, or $3,600/month in future dollars?" Most plan for the today number. Then run out.
 
+### See it on the client's own numbers
+
+The sharpest way to land this isn't another table — it's the **monthly passive income they actually want in retirement**, plotted on an inflation curve. The same $5,000/mth "comfortable lifestyle" a client names today becomes ~$11,800/mth at 65 (35 years, 2.5% inflation). The figure doesn't move on a spreadsheet — it moves on a graph, in front of them.
+
+Two interactive views you should run on yourself first, then with a prospect:
+
+- **Lifestyle view** — [present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle). Type in the monthly lifestyle you want today. Watch the curve bend upward year by year to its future-dollar equivalent. One input, one picture — ideal for the first 2 minutes of a retirement conversation.
+- **Step-by-step view** — [present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step). The full five-step Problem diagram: desired lifestyle → inflated cost at 65 → lump sum required → capital depletion line → the no-investing monthly savings number.
+- Base URL: [present.financeillustrator.com](https://present.financeillustrator.com/) — bookmark it.
+
+**The reframe to keep in your head:** the monthly passive income a client *desires today* is not their retirement target. The **future-dollar version of that same desire** is. This is the arithmetic spine of the Retirement Step-by-Step CST — see [[day-52|Day 52 — Retirement Step-by-Step CST]] for the paper-and-pen walkthrough built on top of this inflation math.
+
 ## 3. Nominal vs Real returns
 
 This is the single most important distinction in investment education.

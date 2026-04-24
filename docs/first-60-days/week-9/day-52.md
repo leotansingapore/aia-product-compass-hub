@@ -15,6 +15,10 @@ tags: [first-60-days, week-9, skills]
 
 > **🛠 Use the live tool with your prospect:** **[Total Wealth Concept · Retirement Step-by-Step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step)**. Same diagrams as the screenshots below, but interactive — set the five inputs in front of the client (current age / retirement age / life expectancy / inflation / target monthly lifestyle) and click *Draw All* on each tab to walk through the Problem → Solution sequence live. Use this when you have a screen between you and the prospect; use the paper-and-pen version below when you don't.
 
+> **🧮 Companion view — Lifestyle only:** **[Total Wealth Concept · Retirement — Lifestyle](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle)**. A stripped-down version of the same idea — just the inflation curve from today's desired monthly lifestyle to its future-dollar equivalent at retirement age. Run this as a 2-minute warm-up before the full step-by-step, or use it with clients who only want the headline. Base URL: [present.financeillustrator.com](https://present.financeillustrator.com/).
+
+> **📎 What the engine under this CST actually is:** straight **inflation math** — the monthly passive income a client *desires today* becomes a meaningfully larger number in future dollars. If you want the foundation, revisit [[day-35|Day 35 — Inflation: The Silent Wealth Killer]]. Today's lesson is how you *draw* that same math in front of a prospect until they feel it.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
