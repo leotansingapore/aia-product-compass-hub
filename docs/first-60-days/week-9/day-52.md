@@ -213,12 +213,13 @@ After the two diagrams land, the natural follow-up question from the client is *
 
 **Draw on the page:**
 
-```
-Take-home income (e.g. $3,000 of a $5,000 salary)
-├─ Short term  · ~1/3 · ~$1,000  →  food, transport, daily bills
-├─ Mid term    · ~1/3 · ~$1,000  →  rent, house, kids
-└─ Long term   · ~1/3 · ~$1,000  →  INVESTMENTS + INSURANCE   ← future you
-```
+> **Take-home income** — e.g. $3,000 of a $5,000 salary
+
+| Bucket | Share | Amount | Goes to |
+|---|---|---|---|
+| **Short term** | ~1/3 | ~$1,000 | Food, transport, daily bills |
+| **Mid term** | ~1/3 | ~$1,000 | Rent, house, kids |
+| **Long term** | ~1/3 | ~$1,000 | **Investments + Insurance** ← future you |
 
 **Say:**
 > "Most people's mistake is they spend the first third on lifestyle, the second third on commitments, and then nothing's left for the long term. They take care of today and ignore future-you. The future-you in 30 years is the one who's going to thank you — or curse you — for what you do with this third right now."
@@ -271,17 +272,19 @@ Bonuses are real numbers from iResource — don't make them up. Always pull curr
 
 This one is for *your own* understanding, not for the client whiteboard. A client will ask *"What about fees vs Endowus / Phillip / DIY?"* and you need a one-line answer ready.
 
-```
-First 10 years:
-  AIA              ▓▓▓▓▓▓░░  fees in (offset partly by welcome bonus)
-  Endowus / DIY    ▓░░░░░░░  small recurring management fee
+**First 10 years**
 
-After 10 years:
-  AIA              ▓░░░░░░░░  bonus inflows now > fees → effectively negative cost
-  Endowus / DIY    ▓▓▓▓▓▓▓░  same % fee on a much bigger pot → real $ explodes
-                            (1% of $1M = $10K/yr; over 30 retirement years
-                             that's $300K+ to the platform)
-```
+| Platform | Fee load | What's happening |
+|---|---|---|
+| **AIA** | ▓▓▓▓▓▓░░ | Fees in — offset partly by welcome bonus |
+| **Endowus / DIY** | ▓░░░░░░░ | Small recurring management fee |
+
+**After 10 years**
+
+| Platform | Fee load | What's happening |
+|---|---|---|
+| **AIA** | ▓░░░░░░░ | Bonus inflows now > fees → **effectively negative cost** |
+| **Endowus / DIY** | ▓▓▓▓▓▓▓░ | Same % fee on a much bigger pot → real $ explodes<br/>*(1% of $1M = $10K/yr; over 30 retirement years that's $300K+ to the platform)* |
 
 **The one-liner you can say out loud:**
 > "Other platforms charge a small percentage every year. That sounds great when your pot is $50K. When your pot is $2.8M and you're 30 years into retirement, that same 1% becomes ten thousand dollars a year leaving the portfolio — every year. Our structure flips that: front-loaded fees in the first 10 years that get more than offset by bonuses for the rest of the lifetime."
