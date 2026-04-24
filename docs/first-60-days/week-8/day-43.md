@@ -221,6 +221,80 @@ When pitching yourself, emphasise:
 
 People want to work with **people**, not products. The Approach phase is where you establish that you're worth working with.
 
+## 10. The pinpoint-driven cold-call script (the one that lifts conversion 10×)
+
+A district producer who closed 12 cases in one month switched from a generic AIDA-style script to a **pinpoint-driven** one and went from "1 hour of dialling = 1 appointment" to **"1 hour of dialling = 10 appointments."**
+
+The thesis is simple. Every prospect has one specific problem they're already half-thinking about. **Find it. Make that the agenda for the meeting. Don't pitch anything else.**
+
+### Why generic scripts under-convert
+
+The "we help a lot of people with insurance planning, do you think you'd be interested to talk to me?" opener gets the same answer almost every time: *"No."* The prospect isn't refusing your help — they're refusing a generic ask. There's nothing in your sentence that maps to a problem in their head.
+
+Compare:
+
+| Script type | What the prospect hears |
+|---|---|
+| Generic | *"Random person wants to sell me something I haven't asked about."* → No |
+| Pinpoint | *"Someone wants to help me with the exact thing I've been worrying about."* → Maybe |
+
+### The 4-step pinpoint script
+
+**Step 1 — Position yourself by who you serve, not what you sell.**
+
+Don't open with *"I'm an insurance / financial advisor."* Open with *who you specifically help and what they typically struggle with.*
+
+> *"Hey [name], I work with a lot of [your-target-group — e.g. fresh grads, NSFs, young parents] on [the problem they typically have — e.g. growing their first $X, structuring retirement, getting their kids' education funded]."*
+
+For a fresh-grad audience, the typical pinpoint isn't *"do you have insurance?"* — it's *how do I grow my money* / *how do I retire well* / *I want a side hustle*. Lead with that.
+
+**Step 2 — Probe for the pinpoint with a binary question.**
+
+> *"Quick one — currently, are you investing already, or is your money still sitting in the bank?"*
+
+Two answers. Each opens a different pinpoint:
+
+| Answer | Their actual pinpoint |
+|---|---|
+| *"Still in the bank"* | Lack of confidence / don't know where to start / fear of losing money |
+| *"Already investing"* | Probably overconcentrated in one thing (US stocks, single ETF) — fear of underperformance / volatility |
+
+The same logic works for retirement (*"have you done any retirement planning?"*), kids (*"started planning for the kids' education yet?"*), or any topic — pick a binary that exposes the gap.
+
+**Step 3 — Drill one level deeper to make the pinpoint specific.**
+
+If they say *"I'm investing already, but only $300/month — I'm scared to lose it"* → the pinpoint is **fear of loss**, not lack of capital.
+
+If they say *"I haven't started — don't know where to begin"* → the pinpoint is **starting friction**, not affordability.
+
+**Whatever they tell you is the agenda for the Zoom.** Not what you wish were the agenda. Not what your product solves best. *Their* answer.
+
+**Step 4 — Offer a low-friction Zoom with the pinpoint as the agenda.**
+
+> *"Got it — sounds like the main thing on your mind is reducing risk while still growing the money. I can share a couple of strategies on how people in your situation diversify and reduce single-stock risk. Quick 30-min Zoom — would [day/time] work?"*
+
+Notice what's NOT in the close:
+- No "insurance"
+- No product name
+- No "let me give you a financial review"
+- No "I'd love to help you plan"
+
+What IS in the close: **their pinpoint, restated, plus a specific time.**
+
+### The universal pattern
+
+> **Pinpoint = (the problem they already half-know they have) → make THAT the agenda → they show up.**
+
+Whatever pinpoint you surface IS the reason they say yes. They show up *because the meeting is about their problem* — not your product. The product becomes relevant inside the meeting once you've earned the time.
+
+### A note on practising
+
+There's no list of universal pinpoint questions to memorise — the questions emerge from the audience. **Audit the last 10 prospects you spoke to. What was the recurring problem they actually mentioned?** That's your script's first question for the next 10. Iterate.
+
+> *"You don't tell them, you have to elicit the problem. You have to get them to tell you the problem — without being too direct about it."*
+
+The hardest discipline: **don't lead with your solution.** Let them say the problem. Then your meeting is *about* that. That's the entire trick.
+
 
 ## Quick quiz
 

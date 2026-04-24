@@ -205,6 +205,55 @@ The trap:
 
 **Goal for Week 7:** call **at least 20 people from your Project 100 list.** Not "prepare to call." Actually call.
 
+## 9. The Marketing Kit — what to bring to every first meeting
+
+Project 100 is the *who*. The Marketing Kit is the *what you show them when you're across the table*. Without it, your first appointment leans on talk only. With it, every prospect leaves with a tangible artefact and a clear sense of who you are.
+
+### What it is, in one line
+
+A printed or digital deck (PDF / iPad / physical booklet) that introduces **you**, your **services**, and **AIA** as a company — in the order that matters.
+
+### The sales hierarchy it serves
+
+> **Sell yourself → sell the company → sell your services → product is "by the way".**
+
+Clients buy because they trust you and believe you'll act in their interest. Products across major Singapore insurers are largely similar — tight MAS regulation and competitive pressure converges feature sets. The differentiator is the human across the table.
+
+(One exception: high-C, detail-oriented personality types will want a feature-by-feature breakdown. Be adaptable — but lead with you, not features.)
+
+### The components of a complete Marketing Kit
+
+| Section | Content |
+|---|---|
+| **Cover page** | Professional photo, your name, designation |
+| **Self-introduction** | One paragraph on **why you chose this career** (your story, not generic) |
+| **Service proposition** | What you offer — risk management, wealth accumulation, retirement, estate planning |
+| **Testimonials** | Client quotes, screenshots of referral messages, a real signed photo if you have one |
+| **Life journey** | The stages of life you walk clients through (JC → adulthood → marriage → kids → retirement) |
+| **Philosophy / values** | Your personal values (integrity, relationships, long-term thinking, etc.) |
+| **AIA Professional Pledge** | The pledge you learned in foundation class |
+| **Sell the company** | AIA corporate info — vision, size, claims paid, regional presence |
+| **Sell the agency** | Win Financial Group info, website screenshot |
+| **Product info** | Par fund returns, ED fund performance, plan-level summaries |
+| **AIA fund managers** | The Elite fund partners (BlackRock, Wellington, Baillie Gifford, Capital Group) |
+| **Claims experience** | Real claim stories + statistics (a single claim story does more than 10 features) |
+
+### Integration with the CST
+
+Some FCs build the **CST (Why / What / How Much) directly into the same deck** — so the Marketing Kit doubles as the presentation tool. Same artefact, two purposes: introduces you AND walks the prospect through the financial planning concept.
+
+### The referral seed
+
+Plant the seed during the first appointment, not the second. One line, casually delivered:
+
+> *"When you become my client, I hope you'll feel comfortable enough to recommend me to one or two of your friends — that's how I built most of my practice."*
+
+That sentence, dropped early, sets the expectation. By the time you close (meeting two or three), referrals are already pre-framed as a normal part of working with you — not an awkward ask at the end.
+
+### Why this is in Day 39 specifically
+
+A great list (Project 100) and a great Marketing Kit are the two halves of being *ready for week 7's calls*. The list answers *who do I call?* The kit answers *what do I show them when they say yes?* Building the list without the kit — or vice versa — leaves the other half of the loop broken.
+
 
 ## Quick quiz
 

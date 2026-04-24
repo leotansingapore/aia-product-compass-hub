@@ -203,6 +203,51 @@ Most weeks will go off-script in some way. That's fine. You still moved 3–5 bi
 
 *The entire career shift is moving Q2 from 15% to 60%.*
 
+## 6. Calendar-driven follow-up — the discipline that compounds
+
+The single most repeated piece of advice from top producers in this district isn't about presentations or product knowledge. It's this:
+
+> **Every prospect you don't close on the first attempt gets a calendar event for the follow-up. Not a mental note. Not a "I'll remember." A calendar event.**
+
+### Why "remembering" doesn't work at scale
+
+Once you're running a real pipeline — 30, 50, 100 active prospects — your memory cannot hold the state of every conversation. You will forget who said *"come back to me in two months"* and who said *"I need to ask my wife."* Each forgotten follow-up is roughly the value of one closed case (averaged across the pipeline) **just lost to entropy**.
+
+### The 9-month case (a real one)
+
+A prospect first met in **March**. He was flaky — repeatedly cancelled, rescheduled, ghosted for entire months. The producer following up didn't try to hold the relationship in his head. He used **calendar events** as the system of record:
+
+- March → first meeting, prospect not enlisted yet, no commitment
+- July → calendar prompt fires, send a *"how's it going?"* message
+- August / September → almost weekly calendar nudges
+- October → scheduled meeting, cancelled night-of
+- November → near-zero replies. Calendar prompt fires anyway. Send anyway.
+- December → finally meets. **Closes a $900/month bundle (≈ $4K FYC, ~$12K lifetime if held).**
+
+Total in-meeting time: ~6 hours. Earnings if you amortise the closed FYC: **~$2K/hour of meeting time.** That happens *because* the producer didn't drop the prospect when momentum dropped. The calendar held the relationship while the human attention couldn't.
+
+### How to set it up — the 5-minute system
+
+1. **At the end of every prospect interaction**, before you do anything else, drop a calendar event for the next follow-up. Title it *"Follow up — [name] — [topic]"*.
+2. **Default cadence** (matches Day 19's three-bucket framing):
+   - Warm prospect / strong signal: **Day 3, Day 10, Day 30**
+   - Lukewarm / *"need to think"*: **Day 7, Day 21, Day 60**
+   - Cold / *"not now"*: **Day 90, then annual**
+3. **Audit your calendar weekly.** Sunday night, scan the next 7 days of follow-up events. Anyone you've already lost faith in? Either delete the event (decide consciously to drop them) or commit to the message — no fence-sitting.
+4. **Use the CRM as the second-brain.** Calendar fires the reminder; the CRM holds the conversation history. Both are required.
+
+### What to send (so you never freeze on the message)
+
+Pre-write three follow-up message templates and store them in your notes app — copy/paste into WhatsApp/Telegram, personalise the first sentence, send. The friction of writing each message from scratch is what kills consistency.
+
+The Outreach Builder ([assignment-02 tool](../assignments/assignment-02.md)) auto-generates Day 3 / Day 7 / Day 30 follow-up templates per prospect — use it as your template library.
+
+### The mindset shift
+
+> *"Even if straight away you don't close, doesn't mean in the future you don't close."*
+
+Every prospect is a *probability over time*, not a yes-or-no on first meeting. The calendar is what lets you operate as if that's true.
+
 ---
 
 ## Quick quiz

@@ -256,6 +256,45 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
   <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Run all three buckets every day — not sequentially.</div>
 </div>
 
+## 8. The four business-generating activities
+
+Top producers in this district consistently name the same four activities as **the only ones that move the income needle**. Every other task in your day — admin, training, learning a product feature, organising your CRM — is **support work**, not business work. Necessary, but not generative.
+
+| # | Activity | Why it's the engine |
+|---|---|---|
+| 1 | **Cold-calling / outreach** | Creates new appointments out of nothing. The leading indicator of all future income. |
+| 2 | **Opening (1st appointment)** | Converts an appointment into a budget commitment. The point where intent becomes pipeline. |
+| 3 | **Closing (2nd appointment)** | Converts pipeline into FYC. Without it, the first two activities are theatre. |
+| 4 | **Following up** | Recovers the 70%+ of cases that don't close on the first attempt. Cheapest income per hour you'll ever generate. |
+
+> **The audit question to ask yourself today:** *"What did I spend the last 7 days doing? How many hours went into the four activities above? How many hours went into everything else?"*
+>
+> If "everything else" is winning by hours, your next 30 days of income is already in trouble — even if your day felt productive.
+
+### Why this matters as a new FC
+
+There's a trap where a new FC spends weeks "learning the products" or "organising the CRM" and feels productive, but produces nothing. Knowledge isn't income. Activity is.
+
+> *"Even if you're new now, doesn't mean you cannot do all four. Even if you don't know how to open or close yourself, just bring a senior down with you. The only time you actually get confident with presentations is by doing real ones."*
+
+The shortcut to confidence isn't more theory. It's role-play (with peers or seniors) plus showing up to live meetings — even meetings where you're not the one closing.
+
+## 9. Ad ROI conviction (for full-timers running paid lead-gen)
+
+If you're running ads (LinkedIn, Meta, Google), here's the conviction you need before you can scale them: **leads are not customers — they're follow-up obligations.**
+
+A lead that doesn't close today doesn't mean ad money was wasted. It means you have a name in the pipeline you owe a follow-up. With proper follow-up discipline (Day 24), the ROI on ads in this practice has historically been **multiples — not fractions — of spend**:
+
+> *"From experience, every $2K I've put into ads has come back as $6K+ FYC. I have never lost money on ads. You can scale this — the leads are very valuable, you just have to follow up on them."*
+
+A practical sequencing rule:
+
+1. **Don't scale until you can handle the volume.** A 25-Zoom weekend with no follow-up bandwidth is worse than a 5-Zoom weekend you fully service.
+2. **Call leads while they're fresh.** A lead two weeks old is a different animal from a lead three days old.
+3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The $X you spent in Month 1 produces FYC across Months 1–4.
+
+Cross-link: see [Day 42 — Digital Lead-Gen Playbook](../week-7/day-42.md) for the operational specifics; see [Day 24 — The Time Management Matrix](day-24.md) for follow-up discipline.
+
 ---
 
 ## Quick quiz

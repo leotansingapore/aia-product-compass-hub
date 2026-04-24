@@ -13,6 +13,8 @@ tags: [first-60-days, week-3, mindset]
 
 > **The one idea for today:** Day 9 gave you the mechanical model of wealth — assets, liabilities, cash flow. The mechanics work for everyone who applies them. The reason most people never apply them is internal. Today is about the inner game — the mindset that makes the mechanics actually compound.
 
+> **From a top producer who closed 12 cases in one month:** *"Even if you close 5 APAs in one weekend, still continue your activity. Even if 3 free-look in a row, take ONE day to feel bad — next day continue. Top performers don't let small things affect them."*
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
@@ -146,6 +148,43 @@ The wealthy mindset isn't *"I'll endure this until I make it."* It's *"This disc
 
 If you find yourself coasting in Month 6 — that is the moment to pick the harder task on purpose. The dials you don't want to make. The conversation you've been avoiding. The study session you keep moving to "next week." That single decision is the difference between an FC who is still here in Year 5 and one who isn't.
 
+## 7. Peaks and valleys discipline
+
+The single behaviour that separates a $10K/month FC from a $3K/month FC isn't talent or product knowledge — it's what they do **the day after a big win** and **the day after a big loss**.
+
+### The two failure modes
+
+| Trigger | The lazy-mind reaction | What it costs |
+|---|---|---|
+| **Closed 5 APAs in one weekend** | Coast for the rest of the week. Take it easy. "I've earned a break." | The pipeline goes cold. Two weeks later, no appointments. Income drops a month later. |
+| **Three policies free-look in a row** | Spiral. "Maybe I'm not cut out for this." Stop calling. Avoid the next prospect. | Same outcome — pipeline goes cold. The free-looks didn't kill the month. The reaction did. |
+
+The two reactions look opposite, but they have the **same operational result**: activity stops.
+
+### The rule, in one line
+
+> **Don't celebrate wins. Don't dwell on losses. Both are the same kind of distraction.**
+
+A producer who closed 12 APAs in a month described it like this:
+
+> *"Even if you close 5 APAs in one weekend, I still continue my activity. Even if a policy free-looks, I take ONE day to feel bad about it. Next day, continue. The top performers don't let small things — a peak or a valley — affect their hobby of doing the work."*
+
+### The asymmetry that makes this rational
+
+There's a math reason this rule isn't just stoic posing — it's economically optimal:
+
+- **One closed case** = a few thousand FYC. Real money. **One missed week of activity** because you celebrated = potentially zero closed cases for the next 30 days. The week off costs more than the win earned.
+- **One free-look** = ~zero cost (you keep the lessons). **One week of moping** because of it = same lost month of pipeline. The mope costs more than the free-look.
+
+The story you'd never tell out loud — *"someone stole $10 from me, so I threw away $1,000 chasing them"* — is exactly the structure of dwelling on a loss for a week. Don't do the financial version of it.
+
+### How to operationalise it
+
+- **After a win:** call the next prospect on your list within the same hour. The win is the fuel; the next call is what it's spent on.
+- **After a loss:** book the next 5 dials *into the same calendar* as the loss. The loss is the trigger; the dials are the response.
+- **Track activity, not outcomes, daily.** Outcomes are lagging and noisy. Activity is the one variable you control. Day 24 makes this concrete.
+
+The practitioners who outlast the average burn-out cycle aren't the ones with steadier emotions. They're the ones with steadier *behaviours* in spite of their emotions.
 
 ## Quick quiz
 

@@ -224,6 +224,46 @@ Emphasise **wealth preservation + legacy.**
 
 > "You've built substantial wealth. The biggest threat to it now isn't markets — it's a major medical event eating through your savings in the final working years. We want to preserve what you've built, protect your retirement, and ensure an orderly legacy."
 
+## 7b. Closing the first appointment — three options + the parents objection
+
+Once the prospect agrees the protection gap exists, you don't try to close the policy on the spot. You close the **second meeting** — and you give them three pre-framed paths to choose from.
+
+### The three-options close
+
+Frame the second meeting as a choice between three packages, all of which you'll prepare:
+
+| Option | Frame |
+|---|---|
+| **Comprehensive** | *"Covers everything fully — what I'd recommend if budget weren't a factor."* |
+| **Best bang for buck** | *"Optimised value — best protection per dollar of premium."* |
+| **Budget-friendly** | *"If keeping monthly cost low is the priority, here's the lean version."* |
+
+This does three things:
+1. **Removes the binary.** It's not "buy / don't buy" — it's "which of three." Almost everyone picks one.
+2. **Pre-anchors the comprehensive option.** When they see the budget-friendly version, they often upgrade themselves toward the comprehensive.
+3. **Gives the client control.** They feel like the decision-maker, not the sold-to.
+
+### Handling "I need to ask my parents / spouse"
+
+This is the most common deferral. The wrong response is *"OK, talk to them and let me know."* That hands the entire pitch to someone who didn't sit through your CST and can't answer their parents' questions.
+
+The right response — verbatim:
+
+> *"Totally fair. One thing I've learned, though — if you try to relay this to your parents secondhand, you may not be able to answer the questions they'll have. How about I meet you AND your parents together, so I can help them gain confidence in what you're planning? It'll be a much better conversation."*
+
+That sentence does three things at once:
+1. Reframes the parental approval from a *blocker* into a *joint meeting*.
+2. Positions you as the source of confidence, not the salesperson trying to bypass them.
+3. Quietly opens up the parents as **two new prospects** in the same household.
+
+### The bonus offer that compounds the meeting
+
+If the parents are 50+, layer this in:
+
+> *"Your parents may have policies they bought 20 years ago that are outdated or overpriced. While I'm there, I can review those for free. Even if they don't change anything, they'll know exactly what they're holding."*
+
+Free policy review = goodwill + trust + organic referral conversation. Many of the strongest cases in this practice came from a child's first policy that triggered a parent's review.
+
 ## 8. The CST → CST sequencing
 
 Some meetings warrant both CSTs. Never deliver both in one meeting — it's too much. Sequence across meetings.
