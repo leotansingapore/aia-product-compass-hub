@@ -49,6 +49,26 @@ A specific concern that, if addressed, would open a meeting. A real objection co
 
 **The rookie mistake:** treating every objection as a real one → over-justifying → losing the prospect.
 
+### A third pattern you'll meet later — uncertainty-driven objections
+
+Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection — *"too expensive"* → you rebut cleanly → *"need to speak to my wife"* → you rebut → *"let me compare a bit more"* → you rebut → *"bad timing"* → and so on.
+
+Every rebuttal lands. Nothing closes.
+
+**This isn't a reflex and it isn't a real objection.** It's a smoke screen for **uncertainty** — the prospect isn't yet confident enough on one of three things:
+1. The product is right for them.
+2. You are trustworthy.
+3. The firm behind the product is reliable.
+
+Because they can't say *"I don't trust you yet"* out loud, they keep inventing new objections. Rebutting each one is whack-a-mole.
+
+The fix is called **looping** — you stop rebutting and go back into mini-presentation mode to rebuild certainty on all three before asking again. Full technique is covered in Next 60 Days Day 40. For now, know that:
+
+- In Week 8 (prospecting): almost every objection you hear is a **reflex**. Use the scripts below.
+- In Week 10+ (post-pitch): if objections keep moving after clean rebuttals, it's **uncertainty**. That's when you'll reach for looping.
+
+Don't confuse the two — applying a prospecting reframe during a post-pitch objection wastes the moment, and looping during a prospecting reflex is overkill.
+
 ## 2. The 10 standard objection responses (memorise)
 
 These are battle-tested and work.
