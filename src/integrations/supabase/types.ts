@@ -1532,6 +1532,42 @@ export type Database = {
           },
         ]
       }
+      next_60_days_progress: {
+        Row: {
+          day_number: number
+          quiz_attempts: number
+          quiz_passed_at: string | null
+          quiz_score: number | null
+          read_at: string | null
+          reflection_answers: Json | null
+          reflection_submitted_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          day_number: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_submitted_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          day_number?: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          reflection_answers?: Json | null
+          reflection_submitted_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       objection_entries: {
         Row: {
           category: string
@@ -3147,6 +3183,7 @@ export type Database = {
           first_14_days: number
           first_60_days: number
           name: string
+          next_60_days: number
           question_bank: number
           total_points: number
           user_id: string
