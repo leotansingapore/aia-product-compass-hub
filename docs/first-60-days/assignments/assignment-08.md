@@ -4,27 +4,14 @@ order: 3
 title: "Audience & Differentiation Worksheet"
 short: "Pick two audiences and map their tangible problems, intangible problems, and what makes YOUR approach different."
 icon: users
-deliverable: "Completed worksheet (export PDF or paste outputs into the form)"
+deliverable: "Complete the F.A.D.S. tool inside Academy"
 submission_type: "form"
 estimated_time: "60 to 90 minutes"
 weeks_covered: [1, 9]
 related_days: [5, 54]
 status_key: "assignment-08-differentiation"
 form_fields:
-  - "Audience #1 — who they are|text|Occupation, age range, life stage. Example: Tech professional, 32–45, married with young kids."
-  - "Audience #1 — tangible problems|textarea|The visible, measurable issues. Long hours, idle savings, no plan, gap in coverage, etc. Be specific.|3"
-  - "Audience #1 — tangible solutions you provide|textarea|Concrete services and products: passive income roadmap, automated DCA, protection audit.|3"
-  - "Audience #1 — intangible problems|textarea|The emotional weight they rarely name out loud. Anxiety, guilt, market-drop fear, family-presence guilt.|3"
-  - "Audience #1 — intangible solutions you provide|textarea|Peace of mind, framework clarity, weekly updates, on-call reassurance, sleep-well portfolio design.|3"
-  - "Audience #1 — your unique differentiator|textarea|What do you do for this audience that no other advisor in their inbox does? Be specific — process, cadence, point of view.|3"
-  - "Audience #2 — who they are|text|Occupation, age range, life stage. Example: Young adult, 24–32, first 3 years of work."
-  - "Audience #2 — tangible problems|textarea|The visible, measurable issues for this audience.|3"
-  - "Audience #2 — tangible solutions you provide|textarea|Concrete services and products tailored for this audience.|3"
-  - "Audience #2 — intangible problems|textarea|The emotional weight specific to this audience (social comparison, adulting overwhelm, etc.).|3"
-  - "Audience #2 — intangible solutions you provide|textarea|Peace of mind / clarity / coaching style you deliver to this audience.|3"
-  - "Audience #2 — your unique differentiator|textarea|What do you do for this audience that no other advisor in their inbox does?|3"
-  - "Your one-sentence positioning|text|Compress both audiences and your differentiator into one sentence you could say in a lift."
-  - "What surprised you|textarea|Which intangible problem did you almost forget — and which tangible solution turned out to be more about you than about a product?|3"
+  - "Your one-sentence positioning|text|From the Delivery tab of the F.A.D.S. tool — paste your final positioning sentence here as proof you finished. Format: who you serve + what makes you different."
 ---
 
 # Assignment 8 — Audience & Differentiation Worksheet
@@ -48,84 +35,34 @@ This assignment forces three things most new FCs avoid:
 - [Day 5 — Purpose-Driven Life: Your Real Why](../../first-60-days/week-1/day-05.md) — the personal *why* that sits underneath the audience layer
 - [Day 54 — Concept Selling](../../first-60-days/week-9/day-54.md) — the concept-selling framework and the audience-mapping section it closes with
 
-## Use the structured worksheet tool
+## How you complete this assignment
 
-The tool is built into Academy now — open it here:
+The whole assignment lives inside the **F.A.D.S. tool** — open it, work through the seven tabs, then come back here and paste your final one-sentence positioning into the form below.
 
-**[F.A.D.S. — open the tool](/learning-track/pre-rnf/assignments/assignment-08/tool)**
+**[Open the F.A.D.S. tool →](/learning-track/pre-rnf/assignments/assignment-08/tool)**
 
-The tool gives you 7 tabs:
+The seven tabs walk you through:
 
-1. **Personality** — your style, values, beliefs, money philosophy
+1. **Personality** — style, values, beliefs, money philosophy
 2. **Purpose** — origin story, mission, vision
-3. **Experience** — years, claims handled, certifications, defining moments
-4. **Audience** — full demographic + psychographic map for two audiences (with pre-built profiles you can clone: **Busy Father**, **Young Adult**, **Single Mother**, **Parent**)
+3. **Experience** — years, claims, certifications, defining moments
+4. **Audience** — full demographic + psychographic map for two audiences (pre-built profiles you can clone: Busy Father, Young Adult, Single Mother, Parent)
 5. **Solutions** — tangible / intangible problems and solutions per audience
-6. **Delivery** — your mission statement, process, framework, end-result statement
-7. **Brand Output** — assembles everything into a structured brief you can export and paste into any LLM for polish
+6. **Delivery** — mission statement, process, framework, end-result statement
+7. **Brand Output** — assembles the whole brief, exportable for any LLM polish
 
-Your answers persist locally on this device — keep coming back as you discover more about your audience.
-
-## How to run the exercise
-
-### 1. Pick two audiences — different enough to matter
-
-Don't pick "Singaporeans, age 25–55." That's not an audience, it's a population. Pick two groups distinct enough that their tangible problems, intangible problems, and the way you'd talk to them are noticeably different. Common starting pairs:
-
-- Busy mid-career professionals + Young adults in first jobs
-- New parents + Pre-retirees
-- Business owners + Salaried high earners
-- Healthcare workers + Tech workers
-
-Your two audiences should be people **you actually have access to** — through your warm market, your past industry, your family's network, or a community you're a member of. Audiences you can't reach are theoretical.
-
-### 2. Fill in the tangible side first
-
-Tangible problems are easy to spot — they're the visible facts. Tangible solutions are the products and services you'd actually deliver. Use the pre-built profiles in the tool as a starting point if you're stuck — they cover the most common Singapore audiences.
-
-### 3. Stop and think hard about the intangible side
-
-This is where the assignment earns its keep. For each audience, ask:
-
-- **What do they worry about at 11pm that they wouldn't say out loud?**
-- **What's the comparison they're losing in their own head** (compared to a sibling, a colleague, a friend who seems to "have it together")?
-- **What's the emotional version of the tangible problem?** (Tangible: no protection plan. Intangible: the quiet fear that one accident wipes out the family.)
-
-Most FCs only sell to the tangible side and wonder why their close rate stalls. The clients who say yes do so because the *intangible* problem got addressed.
-
-### 4. Write your differentiator — the honest version
-
-The hardest field. The product isn't the differentiator. *"I have access to AIA's products"* is true of thousands of advisors. What's actually different is **how you work** — your process, your cadence, your way of explaining things, the small things you do that other advisors skip. Examples that are specific enough to be real:
-
-- *"Quarterly one-page plan with a written decision log so the client can see why we made every change."*
-- *"90-day onboarding where I sit with the client weekly until the budget is on autopilot."*
-- *"Whenever a client has a major life event — new baby, job change, market crash — I reach out within 48 hours, unprompted."*
-
-If your differentiator could be said by any other advisor in the room, it isn't a differentiator yet. Sharpen it until it could only be true of *you*.
-
-### 5. Compress to one sentence
-
-Once both audiences are mapped, write a single positioning sentence that captures who you serve and what makes you different. This is what you'll say in a lift, on a podcast intro, in your LinkedIn bio. It will change in Year 5. The first version still has to exist.
+Your answers save locally as you go, so you can come back across multiple sittings.
 
 ## What good looks like
 
-A passing worksheet looks like this:
+By the time you get to the **Delivery** tab and write your one-sentence positioning, the rest of the tool should look like this:
 
 - Two audiences specific enough that you could name three real people in your life who fit each.
 - The intangible problems read like things a friend would tell you over coffee, not like marketing copy.
 - The tangible solutions are concrete (specific products, specific dollar ranges) — not generic.
 - The intangible solutions are about *how you work* — process, cadence, presence — not about product features.
-- The differentiator is something you could prove with an artefact (a sample plan, a sample check-in note, a screenshot of your follow-up cadence). If you couldn't prove it, it isn't real yet.
+- The differentiator is something you could prove with an artefact. If you couldn't prove it, it isn't real yet.
 - The one-sentence positioning includes both who you serve and what you do that's different.
-
-## Submission
-
-Either:
-
-- **Export from the tool** — fill out the worksheet in the calculator, export the PDF, attach.
-- **Or paste into the form below** — fill the form fields directly with your answers.
-
-Either way, finish with the one-sentence positioning and the two reflection questions. The reflection ("what surprised you") is as important as the worksheet itself.
 
 ## A note on revision
 
