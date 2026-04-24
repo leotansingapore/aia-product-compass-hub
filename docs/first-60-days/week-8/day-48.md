@@ -205,6 +205,84 @@ In the Situation + Problem phase, **listen 80%, talk 20%.**
 ### Pauses and hesitations
 Silence often signals the client is feeling something. **Don't interrupt pauses.** The next sentence after a pause is usually the most valuable.
 
+## 7a. ARQ mechanics for Situation + Problem questions
+
+The first half of SPIN runs on two specific question-construction techniques. Master these and the phase stops feeling like a questionnaire.
+
+### Rule 1 — Keyword echo (the single most useful reflex in fact-find)
+
+When the client says something loaded, **echo their own word back in your next question.**
+
+> *Client:* *"I've been meaning to sort my retirement out for years but I just haven't."*
+> *You:* *"May I ask — what's been stopping you from sorting it out?"*
+
+> *Client:* *"Honestly, I don't trust insurance companies."*
+> *You:* *"Got it. Why don't you *trust* insurance companies?"*
+
+Two things happen when you echo their word: they feel heard (which earns goodwill), and they have to elaborate on their own position (which almost always softens it). Most strong opinions soften under elaboration. This is the most reliable de-escalation move in the toolkit — it should become automatic.
+
+### Rule 2 — Offer logical possibilities (the menu move)
+
+When a client hedges or gives a vague answer, **give them a menu to pick from.** Vague answers are useless for pitch construction. A menu converts vague into specific.
+
+> *Client:* *"I'll think about it."*
+> *You:* *"Sure — is it the monthly commitment you want to think about, or how the plan actually works, or something else?"*
+
+> *Client:* *"My financial situation is... okay, I guess."*
+> *You:* *"Okay meaning comfortable, okay meaning stable-but-no-growth, or okay meaning you haven't really looked?"*
+
+The menu is the prompt. Without it, they say *"just the whole thing"* — which tells you nothing. With it, they pick a specific option — which is now a specific gap you can address in the second half.
+
+### The "tell me more" family — neutral follow-ups that deepen any answer
+
+Four prompts that extend a thread without leading the client:
+
+| Prompt | When to use |
+|---|---|
+| *"Tell me more about that."* | Answer feels thin — you know there's more under it |
+| *"What do you mean by [their exact word]?"* | They used a specific word worth unpacking |
+| *"How come?"* | They stated a preference — surface the reason behind it |
+| *"And what else?"* | They answered but might have more |
+
+The power move here is ***"how come?"*** — it's softer than *"why?"* (which can feel interrogative) but asks the same question. Use it to turn any stated preference into an exploration of the *reason* behind it. Across a 60-minute fact-find you'll ask dozens of follow-ups; the softer register compounds.
+
+### The Discovery Funnel — chaining Problem questions
+
+A single Problem question rarely surfaces the real hot button. A *chain* does. Each question deepens the last: generic → specific → emotional → actionable.
+
+**Worked example — a retirement chain:**
+
+1. **Generic opener:** *"What does retirement look like for you?"*
+   — Client: *"Oh, travel, spend time with grandkids, the usual."*
+
+2. **Specific follow-up:** *"When you picture travel — what specifically? Anywhere in particular?"*
+   — Client: *"Actually I've always wanted to do a 3-month trip around Europe with my wife. We've talked about it for 5 years."*
+
+3. **Emotional deepener:** *"What's kept that from happening?"*
+   — Client: *"Honestly? Money. We keep saying next year."*
+
+4. **Actionable close:** *"If the math worked — if you knew you'd have X per month regardless of whether you worked — how soon would you actually go?"*
+   — Client: *"I'd go next year. We're not getting younger."*
+
+Four questions. Each deeper than the last. The fourth answer (*"I'd go next year"*) is the actionable hot button — that's what you build Implication and the recommendation around. The first answer (*"travel, spend time with grandkids"*) would have produced a generic retirement pitch that lands nowhere.
+
+**The discipline:** don't settle for the first generic answer. Keep chaining until you hit the specific, emotional, actionable layer. That's the answer worth building a pitch on.
+
+### Listening for what they *didn't* say
+
+Advanced fact-find isn't just tracking the words — it's noticing what's *missing* from the answer. Conspicuous absences are diagnostic:
+
+- Client describes retirement and never mentions their spouse → possible relationship tension.
+- Client lists financial priorities and never mentions their kids → not a hot button for them.
+- Client talks about coverage and skips critical illness entirely → fear or ignorance?
+- Client lists things they care about and money isn't one → they may genuinely not be motivated by wealth accumulation.
+
+Follow up the gap gently:
+
+> *"I noticed you didn't mention [X] — is that because it's not on your radar right now, or because it is but you don't want to talk about it?"*
+
+Direct-but-non-accusatory gets honest answers. Clients appreciate being seen clearly.
+
 ## 8. Taking notes — without killing rapport
 
 In a fact-finding meeting, you need notes. But heavy note-taking kills rapport.

@@ -96,6 +96,42 @@ The client has named a gap. Now they need to feel its weight. Implication questi
 - Don't "rescue" them from the uncomfortable silence by jumping into solutions. The discomfort is doing your work.
 - Show empathy in your body language — but don't dilute the question with reassurance.
 
+### The 10-second silence sequence — why holding matters
+
+When a client sits with a well-asked Implication question for a full 10 seconds, their brain goes through a specific sequence:
+
+- **0–2 seconds:** they register what you asked.
+- **2–5 seconds:** their brain searches for a specific answer.
+- **5–8 seconds:** a concrete image forms — their spouse, their kids, a specific scenario.
+- **8–10 seconds:** the emotional weight of the image lands.
+
+**If you interrupt before second 8, you cut the emotion.** The client gives a generic, surface answer — which is useless for the Need-Payoff phase that follows. If you hold to 10, you get the real answer with feeling attached.
+
+**New FCs typically last 2–3 seconds.** That's the training gap.
+
+### Productive silence vs dead silence — tell them apart
+
+Not all silence is the same. Two different signals, two different responses:
+
+| Signal | What you see | Action |
+|---|---|---|
+| **Productive silence** (they're thinking) | Eyes move — up, to the side, down. Slight facial movement, micro-furrow, small nod. Breathing deepens or slows. Body leans slightly in. | **Hold.** Don't speak. Give them more time than feels comfortable. |
+| **Dead silence** (they checked out) | Eyes glazed or looking at phone. Body language closed or bored. They've physically disengaged — leaned back, crossed arms. Facial expression flat. | **Rescue.** *"Am I going too deep? Want me to come back to that after we cover some basics?"* |
+
+The diagnostic: watch the eyes for 3 seconds. If they're moving, it's productive — hold. If they're glazed, it's dead — rescue.
+
+### Practical drill — the 10-second hold
+
+Build the silence-tolerance muscle through reps:
+
+1. Ask a loaded Implication question.
+2. **Start counting in your head** — 1 Mississippi, 2 Mississippi…
+3. Hold until count 8–10.
+4. If they speak first, you held long enough.
+5. If they haven't spoken by 10 and the eyes are still moving, hold longer. If glazed, gentle rescue.
+
+Most new FCs bail at count 4 on the first attempt. That's normal. Train it deliberately for two weeks on every Implication question and it becomes automatic — and compounds across every fact-find for the rest of your career.
+
 ## 4. Need-Payoff Questions — the purpose
 
 **Purpose:** the client articulates, **in their own words**, the benefits of solving the problem.
@@ -120,6 +156,70 @@ Need-Payoff questions are subtle. They sound like you're asking about their feel
 6. "To summarise: you want [X, Y, Z] for yourself and your family. Is that right?"
 
 **Critical:** after a Need-Payoff question, **wait for a full answer.** Don't nod and move on. The client's answer is the most valuable sentence in the meeting.
+
+## 5a. ARQ mechanics for Implication + Need-Payoff questions
+
+The second half of SPIN is where four specific construction techniques land the emotional work. Day 47's ARQ method inventory covers all six Golden Rules; these are the four that dominate intensification.
+
+### Rule 3 — Contrast and impactful word choices (for Implication)
+
+Two versions of the same Implication question — one with teeth, one without:
+
+**Weak:** *"Wouldn't you agree the earlier you start saving, the better?"*
+**Strong:** *"Wouldn't you agree we don't have many years in our lives we can afford to waste? Since your time is precious, why give up the years that compound hardest?"*
+
+Weak has no teeth. Strong uses contrast (*years we can afford to waste* vs *precious time* vs *years that compound hardest*) and forces emotional engagement. Same idea, different energy.
+
+**The general move:** when an Implication question feels too gentle to land the weight, add explicit contrast. *"Versus"* language, *"instead of"* language, *"the difference between"* language — all force the client to weigh two scenarios rather than passively nod.
+
+### Rule 4 — Two distinct contrasting options (for Need-Payoff and trial closes)
+
+Frame the choice as binary, with the *correct* answer obvious. The client picks the better option — which is the one you're recommending — but they chose it themselves, so they own it.
+
+> *"If you had to choose — would you rather arrive at retirement knowing exactly what you'll have, or get there and hope the math works?"*
+
+> *"If you had to pick one — would you rather your kids inherit a plan that continues compounding, or a lump sum of cash they have to figure out what to do with?"*
+
+> *"Would you rather be financially wiped out by a single hospital bill, or transfer that risk for a small fraction of the cost?"*
+
+Binary. One option is obviously better. The client has to pick the better one. Notice: you didn't *tell* them what to choose — they chose.
+
+**Tail it:** *"You've always struck me as someone who thinks ahead — I'm sure you know the second makes more sense, right?"* — confirms the choice and reinforces positive identity.
+
+### Rule 5 — Non-committal words (for trial closes and Need-Payoff)
+
+Use: *may, might, possibility, could, is there a chance, perhaps, potentially*.
+Avoid: *must, will, should, definitely, need to*.
+
+| High-pressure (forces hedging) | Low-pressure (produces real yeses) |
+|---|---|
+| *"Do you agree we should start this plan next month?"* | *"Is there a *possibility* we *could* look at starting something next month?"* |
+| *"You need to get your spouse to decide this week."* | *"*Perhaps* your spouse *might* want to see these numbers — could we set up a time the three of us meet?"* |
+| *"You should cover critical illness."* | *"Do you see a *possibility* that critical illness coverage *might* matter to you?"* |
+
+Counter-intuitive to new FCs who equate directness with strength. In reality: non-committal language produces more **real** yeses than pressured language produces **fake** ones. A fake yes reverses later; a real yes compounds into referrals.
+
+### Rule 6 — Quote respectable third parties with differing views (for hardened objections)
+
+When a client holds a firm position during Implication, **don't argue — introduce a respected third party's contradicting position as a question.**
+
+> *Client:* *"I don't want to invest through an insurance company."*
+> *You:* *"Why do you think that?"* (Rule 1 — keyword echo first)
+> *Then:* *"Would you agree professional fund managers are experts at investing?"* (get the yes)
+> *Then:* *"Would you agree those fund managers wouldn't hold these structures in their own portfolios if they weren't good?"* (contradiction via expertise)
+> *Then:* *"I actually manage portfolios for a number of people whose full-time job is markets. What do you think might be one reason they chose this structure?"* (reality)
+
+The client has to rethink. They can't argue against fund managers choosing the structure without contradicting the expertise they just agreed to — so the argument moves from *"you vs me"* to *"my prior view vs the experts I just endorsed."* That shift is the conversion.
+
+### The construction checklist for every Implication / Need-Payoff question
+
+Before you ask it, test it against Day 47's 3-point checklist:
+
+1. **Does it lead to my objective?** — If this question is answered the way I expect, am I closer to the close?
+2. **Is it specific?** — Does it force a concrete answer or allow a hedge?
+3. **Is it logical and indisputable?** — Can the client disagree without sounding unreasonable?
+
+If all three pass, ask it slowly and hold the silence. If any fails, rewrite first.
 
 ## 6. The full SPIN arc — a worked example
 
