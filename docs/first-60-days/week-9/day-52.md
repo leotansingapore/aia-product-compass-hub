@@ -246,7 +246,7 @@ The Solution diagram showed a horizontal green line + dividend arrows. Reinforce
 
 Once they're sold on the *concept*, they'll ask the real question: *"Why this and not just DIY into S&P 500 through a robo-advisor?"* You have **eight specific answers**, not four. The headline four from earlier versions of this lesson are here plus four more that most FCs leave on the table. Any one of them, landed cleanly, is enough to shift the conversation.
 
-> **📎 Full FC-only reference:** deep dive with all the numbers, country tables, and source citations → **[SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md)**. Read it once end-to-end; then pull individual arguments as the prospect's objections emerge. Don't spray all eight — pick the one that matches *their* concern.
+> **📎 Full FC-only reference:** deep dive with all the numbers, country tables, and source citations → **[SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction)**. Read it once end-to-end; then pull individual arguments as the prospect's objections emerge. Don't spray all eight — pick the one that matches *their* concern.
 
 ### The conviction table
 

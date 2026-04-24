@@ -13,7 +13,7 @@ tags: [first-60-days, week-10, knowledge]
 
 > **The one idea for today:** Wealth plans (Day 55) are about accumulation. Today is about the other half — the protection plans that make accumulation possible. Term, critical illness, hospital, accident, and disability coverage. Most clients have weaknesses here. Your job is to diagnose and close the gaps without scare-selling.
 
-> **📄 Where these products map in the live sales script:** the **[OST Script](../_source-supplementary/ost-script-full.md)** introduces them as the "3 basic insurances" (Life, Hospitalisation, Personal Accident) on Page 1. The OST gives the client-facing language; this day gives you the actual AIA product names that fulfil each role.
+> **📄 Where these products map in the live sales script:** the **[OST Script](/learning-track/first-60-days/reference/ost-script-full)** introduces them as the "3 basic insurances" (Life, Hospitalisation, Personal Accident) on Page 1. The OST gives the client-facing language; this day gives you the actual AIA product names that fulfil each role.
 
 > **🎥 Watch the live training:** **[Module 2 — Risk Management Products Overview (David)](https://youtu.be/y12lyQRhay0)**. The full live walk-through of every protection plan in the AIA stack, organised by Cash Value vs No Cash Value, with the "products are like medicine — you are the financial doctor" framing. Also available in this day's **Video** tab.
 

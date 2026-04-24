@@ -44,4 +44,5 @@ docs/first-60-days/_source-supplementary/
 # (linked from day pages) — explicit allow-list:
 !docs/first-60-days/_source-supplementary/ost-script-full.md
 !docs/first-60-days/_source-supplementary/sales-books-canon.md
+!docs/first-60-days/_source-supplementary/sp500-vs-ilp-conviction.md
 docs/first-60-days/STRUCTURE.md

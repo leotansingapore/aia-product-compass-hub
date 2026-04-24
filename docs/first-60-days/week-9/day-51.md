@@ -13,7 +13,7 @@ tags: [first-60-days, week-9, skills]
 
 > **The one idea for today:** The numbers section of the CFR is where most new FCs feel uncomfortable. The client almost always senses that discomfort and mirrors it. Your job is to make financial disclosure feel like a **natural next step**, not an interrogation. When it's natural, clients share freely. When it's awkward, they hide.
 
-> **📄 Source-script reference:** the entire numbers + budget section flows out of the **[OST Script](../_source-supplementary/ost-script-full.md)** Page 2. Specifically the worked $3.5K-gross / $2.8K-take-home example, the 1/3 rule (short / medium / long), and the *"20% of take-home at 4-6% return is the magic number for retirement"* anchor. Read it before running this day's CFR conversation.
+> **📄 Source-script reference:** the entire numbers + budget section flows out of the **[OST Script](/learning-track/first-60-days/reference/ost-script-full)** Page 2. Specifically the worked $3.5K-gross / $2.8K-take-home example, the 1/3 rule (short / medium / long), and the *"20% of take-home at 4-6% return is the magic number for retirement"* anchor. Read it before running this day's CFR conversation.
 
 ## What you'll walk away with
 

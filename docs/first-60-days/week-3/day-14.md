@@ -15,7 +15,7 @@ tags: [first-60-days, week-3, skills]
 
 > **🎥 Watch the live training:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. The first half of Module 1 is the live walk-through of the CST structure (Why / What / How Much) with the rules-of-thumb table for coverage levels — this lesson is the slower, written version of what David delivers. The video is also available in the **Video** tab of this day. Companion videos: **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)** and **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
 >
-> **📄 The hand-drawn delivery script:** the Total Wealth concept on this page is the *teaching* version. The 2-page hand-drawn artefact you actually deliver in front of a prospect is the **[OST Script — Full Reference](../../_source-supplementary/ost-script-full.md)**. Read both — Day 14 gives you the *why*, the OST gives you the *exact words and pace*.
+> **📄 The hand-drawn delivery script:** the Total Wealth concept on this page is the *teaching* version. The 2-page hand-drawn artefact you actually deliver in front of a prospect is the **[OST Script — Full Reference](/learning-track/first-60-days/reference/ost-script-full)**. Read both — Day 14 gives you the *why*, the OST gives you the *exact words and pace*.
 
 ## What you'll walk away with
 
