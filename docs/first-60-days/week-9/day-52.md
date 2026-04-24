@@ -242,19 +242,83 @@ The Solution diagram showed a horizontal green line + dividend arrows. Reinforce
 
 > "So you get two things at once: a lifelong stream of passive income, *and* the $2.8M sits there as a legacy for your kids. If you ever need more than $14,951 in a particular month, that capital is your buffer — you've got the breathing room."
 
-## 7. Extension — why this beats DIY (the four AIA-vs-S&P advantages)
+## 7. Extension — why this beats DIY (the AIA-vs-S&P conviction stack)
 
-Once they're sold on the *concept*, they'll ask the real question: *"Why this and not just DIY into S&P 500?"* You have four specific answers — drawable as a comparison column on the same page.
+Once they're sold on the *concept*, they'll ask the real question: *"Why this and not just DIY into S&P 500 through a robo-advisor?"* You have **eight specific answers**, not four. The headline four from earlier versions of this lesson are here plus four more that most FCs leave on the table. Any one of them, landed cleanly, is enough to shift the conversation.
 
-| Risk in DIY | What AIA does about it |
+> **📎 Full FC-only reference:** deep dive with all the numbers, country tables, and source citations → **[SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md)**. Read it once end-to-end; then pull individual arguments as the prospect's objections emerge. Don't spray all eight — pick the one that matches *their* concern.
+
+### The conviction table
+
+| # | Risk in DIY | What AIA does about it | Hook number |
+|---|---|---|---|
+| 1 | **Dividend withholding tax** — US-domiciled ETFs lose **30%** of every dividend at source. Irish-domiciled funds lose 15%. Singapore-resident direct equities: 0%. | No client-level DWT on fund distributions inside the policy. | 30% → 0% |
+| 2 | **Currency risk (USD/SGD)** — retirement is in SGD; USD-denominated ETFs expose you to FX swings. USD/SGD fell ~4% over 5 years (2020–2025). DBS forecasts **SGD parity with USD by 2040** — roughly a 35% headwind on USD assets. | Plan is SGD-denominated with currency hedging baked in. No FX lottery on retirement income. | Parity by 2040 |
+| 3 | **US estate tax** — US-situs assets held by non-US persons → **40% estate tax** above the $60K exemption. On $2.8M that's ~$1M gone before the family sees a cent. | Nominated beneficiaries, non-US-situs policy structure → no US estate tax. Flows by nomination, not probate. | 40% → 0% |
+| 4 | **Concentration risk** — the S&P 500 is one country, 500 companies. Every prior decade had a different winner. | Global fund architecture across BlackRock, Wellington, Baillie Gifford, Capital Group. **S&P 500 is only ~18%** of the AIA Elite Adventurous Index Fund. | S&P 500 = 18% |
+| 5 | **Lost-decade risk** — between **2000 and 2010, the S&P 500 returned −9%** while International Small Cap Value made **+191%** and Emerging Markets made **+148%**. | Multi-region, multi-asset exposure means whichever cycle wins next, the portfolio owns it by default. | −9% vs +191% |
+| 6 | **Execution risk on death** — money locked in a robo-advisor app your family has never logged into. Who decides when to sell? Who files the US estate tax forms? Who handles the FX? | Named beneficiaries + an advisor of record who already knows the plan + estate/will coordination. The handover is rehearsed, not improvised. | — |
+| 7 | **Inheritance mismanagement** — heirs receive a cash lump sum and, with no investing experience, often spend it down or reinvest poorly. | **Secondary insured** — heirs inherit the *policy*, not cash. The plan continues. AIA continues managing the portfolio in their name. | — |
+| 8 | **Macro currency pressure on USD** — COVID-era monetary expansion, rising US national debt, BRICS settlement alternatives, cross-border crypto adoption — structural pressures on the reserve-currency status. | Not a prediction, a cluster of concerns. AIA's SGD hedging means the plan is not hostage to whichever of these plays out. | — |
+
+### The Dividend Withholding Tax math (if you need to show it)
+
+On a $2.8M portfolio yielding ~6.3% in dividends = ~$14,900/month = ~$178,800/year = **~$3.6M of total dividends over 20 retirement years**.
+
+| Holding structure | DWT rate | Withheld over 20 years |
+|---|---|---|
+| US-domiciled ETF (VOO, SPY, VTI) | 30% | **~$1.08M gone to IRS** |
+| Irish-domiciled ETF (CSPX, VWRA) | 15% | ~$540K gone to IRS |
+| AIA ILP fund structure | 0% at client level | $0 withheld — full amount in policy |
+
+*"A million dollars of your retirement income going to the IRS instead of you, over 20 years, purely because of where the fund is domiciled. That's not a small number. That's a house."*
+
+### The US Estate Tax schedule (if they don't believe the 40%)
+
+| Taxable amount (value above the $60K exemption) | Rate |
 |---|---|
-| **Currency risk** — your retirement is in SGD; investing in USD-denominated ETFs exposes you to FX swings, especially as USD weakens long-term. | Plan is denominated in SGD with currency hedging baked in. No SGD-vs-USD wobble eats your retirement income. |
-| **Dividend tax** — US dividends are taxed ~30% at source. On $14,951/mth × 12 × 20 years = ~$3.6M of total dividends, you'd lose >$1M to tax. | The fund's hedging structure means **no dividend taxes** — every dollar of yield reaches the policy. |
-| **Estate tax** — US assets held by non-US persons get hit with up to 30% US estate tax on death. On a $2.8M asset, that's $840K disappearing before your family sees it. | **No estate taxes** on the AIA structure. Full capital passes through. |
-| **Inheritance mismanagement** — heirs receive cash and don't know what to do with it. Big lump sum + no investing experience = often spent down or badly reinvested. | **Secondary insured** — heirs inherit the *policy*, not cash. AIA continues managing the portfolio in their name. No risk of heirs lump-summing the inheritance into the wrong place. |
+| $0 – $10,000 | 18% |
+| $80,001 – $100,000 | 28% |
+| $250,001 – $500,000 | 34% |
+| $750,001 – $1,000,000 | 39% |
+| **Over $1,000,000** | **40%** |
 
-**One more anchor point — "S&P 500 isn't always the safest":**
-> "Most people assume S&P is the safe default. But there's a 10-year stretch (2003–2013) where the S&P 500 returned roughly *zero* while emerging markets and international did well. Concentration in any one market is a 10-year-loss risk. Global balanced is what survives the bad decades."
+*(IRS schedule, via Bloomberg / Jimmy Sexton. Non-US persons only get a $60K exemption vs $13M+ for US citizens.)*
+
+### The Lost Decade receipts (2000–2010)
+
+| Asset class | 2000–2010 total return |
+|---|---|
+| **S&P 500** | **−9%** |
+| US Large Cap Value | +56% |
+| US Small Cap Core | +74% |
+| US Small Cap Value | +140% |
+| Int'l Large Cap Value | +91% |
+| Int'l Small Cap Core | +130% |
+| **Int'l Small Cap Value** | **+191%** |
+| Int'l Emerging Markets | +148% |
+
+This is the killer chart. Any client who thinks "S&P 500 is the safe default" has not seen these numbers.
+
+*"If your retirement happened to land on 2000–2010 and you were 100% S&P, you were poorer at the end of 10 years than at the start. International small-cap value made 191% in that same decade. A global portfolio doesn't have to guess which decade it's living through."*
+
+### The "does your family know what to sell?" angle
+
+Most FCs miss this one. On a DIY setup:
+
+- The money is in a robo-advisor app (Endowus, StashAway, Syfe, SaxoTraderGo).
+- Your spouse has never logged in. Your kids don't know the password.
+- When you die, nobody knows *when* to sell, *what* to sell, how to handle US estate tax paperwork, or how to time the FX conversion.
+
+With AIA: named beneficiary + advisor of record + estate/will coordination. The family calls one person, not a helpdesk.
+
+### Secondary insured — the generational mechanic
+
+On an AIA ILP, you can name a **secondary insured** (typically spouse or child). When the first life assured dies, the policy **does not terminate**. No death benefit is paid at first death — the plan simply continues on the secondary insured's life. All units, dividends, bonuses roll forward.
+
+This is how a 40-year plan becomes a 100-year plan. On the ProAchiever bonus example, the $960/year perpetual bonus doesn't stop at 60 — it rolls to the child and keeps paying for another 40-60 years. That's the real power of the structure.
+
+*"On a DIY portfolio, when you die, the portfolio is liquidated and your kids get a cash lump sum. On this plan, when you die, the plan doesn't end — it rolls to your child as the secondary insured, and the compounding keeps going. The policy outlives you."*
 
 ## 8. Extension — the bonuses sweetener
 

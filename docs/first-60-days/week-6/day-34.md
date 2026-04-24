@@ -92,6 +92,8 @@ flowchart LR
 
 **Best for:** most retail investors who want diversified exposure with low fees. The default recommendation for many new investors.
 
+> **A word on the S&P 500 specifically — plant this seed early.** The S&P 500 is the single most popular ETF target for Singaporean retail investors, and it has been the best-performing major index for ~15 years. That doesn't make it default-safe for a Singaporean. Four quiet costs sit on top of the market return: (1) a **30% US dividend withholding tax** on US-domiciled ETFs (VOO, SPY, VTI — Irish-domiciled like CSPX or VWRA drops this to 15%); (2) **USD/SGD currency risk** — DBS is forecasting SGD parity with USD by 2040, a ~35% headwind on USD assets; (3) **40% US estate tax** above a $60K exemption for non-US persons on US-situs holdings; (4) **concentration risk** — from 2000 to 2010 the S&P 500 returned −9% while international small-cap value returned +191%. None of these make the S&P 500 a bad index. They make it a more complicated holding than most DIY prospects realise. You'll unpack the full conviction stack in [[day-52|Day 52 — Retirement Step-by-Step CST]] and [[day-57|Day 57 — Investment-Linked Plans]]; for now, file it away as "there is no such thing as a free 10-year S&P bet for a Singaporean."
+
 ### Unit Trusts / Mutual Funds
 **What they are:** Money pooled from many investors, managed by a **fund manager** according to a specific mandate.
 

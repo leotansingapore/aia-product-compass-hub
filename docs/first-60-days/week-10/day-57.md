@@ -196,20 +196,47 @@ Desired income − CPF LIFE = Gap → fill with investment plans. **This is the 
 
 ## 0e. The AIA-vs-DIY positioning (the ProAchiever differentiator)
 
-When the prospect says *"I'd rather DIY into S&P 500 / Endowus / Phillip / a robo-advisor,"* you need four specific responses ready. These are the same four from Day 52 (Section 7), restated here in product context:
+When the prospect says *"I'd rather DIY into S&P 500 / Endowus / Phillip / a robo-advisor,"* you need **eight specific responses** ready, not four. This is an upgrade from older versions of this lesson — the additional four (estate-tax receipts, lost-decade receipts, execution-on-death, secondary-insured continuity) are the ones that turn sophisticated DIY prospects.
 
-| Risk in DIY | What AIA's structure does about it |
+> **📎 Full FC-only conviction reference:** **[SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md)**. Country DWT tables, full US estate tax schedule, lost-decade asset-class data, 2013–present returns, and every one-liner in one doc. Internalise the numbers once, then pull individual arguments as they come up in conversation. Don't spray all eight — pick the one that matches the prospect's actual concern.
+
+### The eight conviction points
+
+| # | Risk in DIY | What AIA does | One-number hook |
+|---|---|---|---|
+| 1 | **Dividend withholding tax** — US-domiciled ETFs lose **30%** of dividends at source (Irish-domiciled: 15%; Singapore direct equity: 0%) | Hedging structure → **no client-level DWT** inside the policy | 30% → 0% |
+| 2 | **Currency risk** — retirement spent in SGD, portfolio priced in USD. DBS forecasts **SGD parity with USD by 2040** — ~35% headwind on USD assets alone | SGD-denominated with currency hedging baked into the fund architecture | Parity by 2040 |
+| 3 | **US estate tax** — **40%** above the $60K exemption for non-US persons. On $2.8M that's **~$1M gone** before heirs see a cent | Nominated beneficiaries, non-US-situs policy structure → no US estate tax | 40% → 0% |
+| 4 | **Concentration risk** — S&P 500 is one market, 500 stocks | Global fund architecture. **S&P 500 is only ~18% of Elite Adventurous Index Fund** | 18% not 100% |
+| 5 | **Lost-decade risk** — 2000–2010 S&P 500 returned **−9%**; Int'l Small Cap Value returned **+191%**; Emerging Markets **+148%** | Multi-region, multi-asset exposure. Whichever cycle wins, portfolio owns it | −9% vs +191% |
+| 6 | **Execution risk on death** — robo-advisor app your family has never logged into; who sells, who files US estate tax, who handles FX? | Named beneficiary + advisor of record + pre-coordinated estate/will. One phone call, not a helpdesk | — |
+| 7 | **Inheritance mismanagement** — heirs receive cash lump sum, often spent down or badly reinvested | **Secondary insured** — heirs inherit the *policy*, not cash. Plan continues on the next life assured | — |
+| 8 | **Macro USD pressures** — post-COVID monetary expansion, US national debt trajectory, BRICS/crypto de-dollarisation momentum | SGD hedging means the plan is not hostage to USD reserve-currency status | — |
+
+### The DWT math worth writing on the page
+
+$2.8M portfolio × 6.3% dividend yield ≈ **$3.6M of dividends over 20 retirement years**. On a US-domiciled S&P ETF: **$1.08M withheld by the IRS**. Irish-domiciled: ~$540K. AIA ILP structure: **$0 at client level**. A million-dollar gap purely from fund domicile.
+
+### The lost-decade chart (2000–2010 receipts)
+
+| Asset class | 2000–2010 return |
 |---|---|
-| **Currency risk** — your retirement is in SGD; USD-denominated ETFs swing with FX (especially as USD weakens long-term) | Plan denominated in SGD with currency hedging baked in |
-| **Dividend tax** — US dividends taxed ~30% at source. On $14,951/mth × 12 × 20 yrs = ~$3.6M dividends, you'd lose $1M+ to tax | Hedging structure → **no dividend taxes** at the policy level |
-| **Estate tax** — US assets held by non-US persons → up to 30% US estate tax on death. On $2.8M, that's $840K vanishing | **No estate taxes** on the AIA structure. Full capital passes through |
-| **Inheritance mismanagement** — heirs get cash, don't know what to do, often spent down or badly reinvested | **Secondary insured** — heirs inherit the *policy*, not cash. AIA continues managing under their name |
+| **S&P 500** | **−9%** |
+| US Small Cap Value | +140% |
+| Int'l Large Cap Value | +91% |
+| Int'l Small Cap Core | +130% |
+| **Int'l Small Cap Value** | **+191%** |
+| Int'l Emerging Markets | +148% |
 
-### One more anchor — "S&P 500 isn't always the safest"
+*"If your retirement landed on 2000–2010 and you were 100% S&P, you were poorer at the end of 10 years. International small-cap value made 191%. Concentration in any one market is a 10-year-loss risk."*
 
-> *"Most people assume S&P is the safe default. But there's a 10-year stretch (2003–2013) where the S&P 500 returned roughly zero while emerging markets and international did well. Concentration in any one market is a 10-year-loss risk. Global balanced is what survives the bad decades."*
+### Secondary insured — why a 40-year plan is really a 100-year plan
 
-For the actual portfolio composition: **S&P 500 is only ~18% of the AIA Elite Adventurous Index Fund**. The rest is global diversification. Use this when a knowledgeable C-type client tries to compare AIA against their existing S&P holdings.
+When the original life assured dies, the policy does not terminate. No death benefit is paid at the first death — the plan simply continues on the secondary insured's life. All accumulated units, dividends, and bonuses roll forward. The ProAchiever perpetual bonus doesn't stop at 60 — it rolls to the child and keeps paying for another 40–60 years. This is why bonuses are a multi-generational story, not a retirement story.
+
+### The clean closing line for a sophisticated DIY prospect
+
+*"The S&P 500 itself is fine. But the way most Singaporeans buy it — through a US-domiciled ETF on a robo-advisor — stacks four taxes and two execution risks on top of the market return: 30% dividend withholding, 40% estate tax above $60K, 35% potential FX drag, and the execution problem when your family has never logged into the app. The ILP structure removes all four. That's the difference — not market return, it's everything around the market return."*
 
 ## 0f. The supplementary-charge sub-pitch
 
