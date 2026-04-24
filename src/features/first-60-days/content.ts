@@ -126,6 +126,7 @@ export function getWeek(weekNumber: number): Week | undefined {
     markdown: "",
     quiz: [],
     reflection: [],
+    hasRawHtml: false,
   }));
   return { weekNumber, title: meta.title, tagline: meta.tagline, days: weekDays };
 }
