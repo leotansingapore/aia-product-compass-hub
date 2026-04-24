@@ -35,7 +35,7 @@ Watch [Leo's vision board Loom](https://www.loom.com/share/3dbda27b81f24a089e766
 
 ## The template
 
-Duplicate this Canva and edit it for yourself: **[Team Vision Board Template](https://www.canva.com/design/DAGomVn0YWE/CrygJ1WYv1pNRxjCHtRjng/view)**.
+Pick any Canva vision-board template and edit it for yourself: **[Canva vision-board templates](https://www.canva.com/templates/s/vision-board/)**.
 
 If you'd rather build your own in a different tool (Figma, Keynote, physical collage + photo), that's fine. One page, dense with images, light on text.
 
