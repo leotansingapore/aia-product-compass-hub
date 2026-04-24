@@ -43,119 +43,6 @@ Notes:
 
 Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
 
-### Leaderboard rebalance + Next 60 Days quiz credit
-
-Two leaderboard changes in one migration:
-
-1. **Rebalance question-bank weight** from × 1 to × 0.2. Today the bank dominates (1,000 questions × 1 = 1,000 of the 2,153-point ceiling, ~47%); a learner who only grinds questions can outrank one doing assignments and videos. Dropping to × 0.2 caps the bank at ~200 pts.
-2. **Credit Next 60 Days quizzes** at × 5, mirroring First 60 Days. Requires a new `next_60_days_progress` table (same shape as `first_60_days_progress`) plus an extra CTE in the RPC.
-
-#### Step 1 — Create `next_60_days_progress` table
-
-Mirror `first_60_days_progress` 1:1 (post-FK-fix to `auth.users`, with reflection columns):
-
-```sql
-CREATE TABLE public.next_60_days_progress (
-  user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  day_number int NOT NULL CHECK (day_number BETWEEN 1 AND 60),
-  read_at timestamptz,
-  slides_viewed_at timestamptz,
-  video_watched_at timestamptz,
-  quiz_score int,
-  quiz_attempts int NOT NULL DEFAULT 0,
-  quiz_passed_at timestamptz,
-  reflection_answers jsonb,
-  reflection_submitted_at timestamptz,
-  updated_at timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (user_id, day_number)
-);
-
-CREATE INDEX idx_next_60_days_progress_user_updated
-  ON public.next_60_days_progress (user_id, updated_at DESC);
-
-ALTER TABLE public.next_60_days_progress ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "next_60_days_progress_owner_select" ON public.next_60_days_progress
-  FOR SELECT TO authenticated USING (auth.uid() = user_id);
-CREATE POLICY "next_60_days_progress_owner_insert" ON public.next_60_days_progress
-  FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "next_60_days_progress_owner_update" ON public.next_60_days_progress
-  FOR UPDATE TO authenticated USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "next_60_days_progress_owner_delete" ON public.next_60_days_progress
-  FOR DELETE TO authenticated USING (auth.uid() = user_id);
-
-CREATE TRIGGER trg_next_60_days_progress_updated_at
-  BEFORE UPDATE ON public.next_60_days_progress
-  FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
-```
-
-Also add the admin SELECT policy (so the future admin rollup view works):
-
-```sql
-CREATE POLICY "next_60_days_progress_admin_select" ON public.next_60_days_progress
-  FOR SELECT TO authenticated
-  USING (public.has_role(auth.uid(), 'admin') OR public.has_role(auth.uid(), 'master_admin'));
-```
-
-#### Step 2 — Update `get_learner_leaderboard` RPC
-
-`CREATE OR REPLACE FUNCTION public.get_learner_leaderboard(p_tier text)` keeping the same arg / RETURNS shape **except add one new column** `next_60_days numeric` between `first_60_days` and `assignments`. Body changes:
-
-- Add a new `n60` CTE alongside `f14` / `f60`:
-  ```sql
-  n60 AS (
-    SELECT user_id, COUNT(*) FILTER (WHERE quiz_passed_at IS NOT NULL)::numeric AS n60_quiz
-    FROM public.next_60_days_progress
-    GROUP BY user_id
-  ),
-  ```
-- Add it to the `assembled` CTE:
-  ```sql
-  COALESCE(n60.n60_quiz, 0) AS n60_quiz,
-  ```
-  ```sql
-  LEFT JOIN n60 ON n60.user_id = vu.user_id
-  ```
-- Add it to the days-active union (so logging a Next 60 Days quiz also counts as an active day):
-  ```sql
-  UNION
-  SELECT user_id, DATE(quiz_passed_at) AS activity_day
-  FROM public.next_60_days_progress WHERE quiz_passed_at IS NOT NULL
-  UNION
-  SELECT user_id, DATE(updated_at) AS activity_day
-  FROM public.next_60_days_progress WHERE updated_at IS NOT NULL
-  ```
-- Final SELECT — change two literals and add the new breakdown column:
-  ```sql
-  ROUND((
-    a.f14_quiz * 5 +
-    a.f60_quiz * 5 +
-    a.n60_quiz * 5 +          -- NEW
-    a.asg_count * 50 +
-    a.qb_count * 0.2 +        -- was * 1
-    a.vid_count * 2.5
-  )::numeric, 1) AS total_points,
-  a.days_active::int,
-  (a.f14_quiz * 5)::numeric  AS first_14_days,
-  (a.f60_quiz * 5)::numeric  AS first_60_days,
-  (a.n60_quiz * 5)::numeric  AS next_60_days,    -- NEW column
-  (a.asg_count * 50)::numeric AS assignments,
-  (a.qb_count * 0.2)::numeric AS question_bank,  -- was * 1
-  (a.vid_count * 2.5)::numeric AS videos
-  ```
-- Filter at the bottom — add `n60_quiz` to the "has any data" guard:
-  ```sql
-  OR (a.f14_quiz + a.f60_quiz + a.n60_quiz + a.asg_count + a.qb_count + a.vid_count) > 0
-  ```
-
-Keep `SECURITY DEFINER`, `STABLE`, `SET search_path = public`, `#variable_conflict use_column`, and the `GRANT EXECUTE ... TO authenticated` line. `DROP FUNCTION` first (the return-table shape changes).
-
-#### After this lands
-
-- Ceiling becomes 1,353 today (qb rebalance only, since `next_60_days_progress` will be empty until the client hook migration). Once the hook migration ships, the realistic max becomes 2,053 (with 8 future Next 60 Days assignments still gated on the assignments RPC being widened separately).
-- TypeScript: `useLearnerLeaderboard` will need `next_60_days: number` added to its row type — Claude Code will handle that in the same push.
-- Client follow-up (handled by Claude Code, after this lands): migrate `useNext60DaysProgress` from localStorage to Supabase using the same legacy-key migration pattern as `useFirst60DaysProgress`. That swap is what actually starts crediting Next 60 Days quizzes.
-
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
@@ -176,6 +63,10 @@ Not blocking: localStorage works for single-device study sessions and is what `u
 ---
 
 ## Completed (recent)
+
+#### Leaderboard rebalance + Next 60 Days quiz credit — landed 2026-04-24
+
+Two migrations shipped together: `20260424030706_41a1e7d4-*.sql` (qb-weight × 0.2 only) was superseded the same morning by `20260424031133_542c8266-*.sql` which created the `public.next_60_days_progress` table (mirroring `first_60_days_progress` minus `slides_viewed_at` / `video_watched_at` since the Next 60 Days hook never used them — 4 owner RLS policies + 1 admin SELECT policy + `trg_next_60_days_progress_updated_at` trigger calling `public.handle_updated_at()`) and rewrote the leaderboard RPC to (a) add the new `n60` CTE counting `quiz_passed_at IS NOT NULL` against the new table, (b) include both `quiz_passed_at` and `updated_at` from `next_60_days_progress` in the days-active union, (c) add `(a.n60_quiz * 5)::numeric AS next_60_days` to the breakdown column between `first_60_days` and `assignments` (RETURNS TABLE shape changed accordingly), and (d) drop the question-bank weight from × 1 to × 0.2 in both the `total_points` and `question_bank` expressions. Verified post-migration: `next_60_days_progress` exists and is empty (0 rows); RPC returns the new `next_60_days` column populated with `0` for all current learners (no client hook migration yet); `question_bank` weight confirmed at 0.2 in the live function body. Client follow-ups shipped in the same push: `useLearnerLeaderboard` row type extended with `next_60_days: number` plumbed through to `PointBreakdown.next60Days`; `Leaderboard.tsx` `BREAKDOWN_ROWS` now includes "Next 60 Days — days completed" (× 5) and the question-bank row was updated to `weight: 0.2`. Outstanding: migrate `useNext60DaysProgress` from localStorage to Supabase against the new table — once that lands, learners actually start banking the points.
 
 #### Consolidate duplicate Core ↔ Supplementary products + retroactive `video_progress` merge — landed 2026-04-24
 

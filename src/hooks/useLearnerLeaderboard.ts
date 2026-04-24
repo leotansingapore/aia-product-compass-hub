@@ -5,6 +5,7 @@ import type { TierLevel } from "@/lib/tiers";
 export type PointBreakdown = {
   first14Days: number;
   first60Days: number;
+  next60Days: number;
   assignments: number;
   questionBank: number;
   videos: number;
@@ -30,6 +31,7 @@ type RpcRow = {
   days_active: number;
   first_14_days: number | string;
   first_60_days: number | string;
+  next_60_days: number | string;
   assignments: number | string;
   question_bank: number | string;
   videos: number | string;
@@ -65,6 +67,7 @@ async function fetchLeaderboard(
     const breakdown: PointBreakdown = {
       first14Days: toNum(r.first_14_days),
       first60Days: toNum(r.first_60_days),
+      next60Days: toNum(r.next_60_days),
       assignments: toNum(r.assignments),
       questionBank: toNum(r.question_bank),
       videos: toNum(r.videos),
