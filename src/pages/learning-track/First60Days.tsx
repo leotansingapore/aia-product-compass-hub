@@ -4,9 +4,26 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { getAllWeeks, TOTAL_DAYS } from "@/features/first-60-days/content";
+import { getAllWeeks, prefetchDay, TOTAL_DAYS } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
+
+// Warm the day-page chunk on hover so navigation doesn't wait on the JS fetch.
+// Vite dedupes repeated dynamic imports, so this is cheap to call many times.
+let dayPageChunkPromise: Promise<unknown> | null = null;
+function prefetchDayPageChunk(): void {
+  if (!dayPageChunkPromise) {
+    dayPageChunkPromise = import("./First60DaysDay").catch(() => {
+      // Reset so a retry on the next hover can try again after a transient failure.
+      dayPageChunkPromise = null;
+    });
+  }
+}
+
+function warmDay(dayNumber: number) {
+  prefetchDay(dayNumber);
+  prefetchDayPageChunk();
+}
 
 export default function First60Days() {
   const weeks = getAllWeeks();
@@ -124,6 +141,9 @@ export default function First60Days() {
                         {unlocked ? (
                           <Link
                             to={`/learning-track/first-60-days/day/${d.dayNumber}`}
+                            onMouseEnter={() => warmDay(d.dayNumber)}
+                            onFocus={() => warmDay(d.dayNumber)}
+                            onTouchStart={() => warmDay(d.dayNumber)}
                             className="hover:text-primary transition-colors line-clamp-1"
                           >
                             <span className="text-muted-foreground tabular-nums mr-2">
@@ -160,7 +180,12 @@ export default function First60Days() {
                         <ChevronRight className="h-3.5 w-3.5" />
                       </span>
                     ) : (
-                      <Link to={href}>
+                      <Link
+                        to={href}
+                        onMouseEnter={() => warmDay(entryDay.dayNumber)}
+                        onFocus={() => warmDay(entryDay.dayNumber)}
+                        onTouchStart={() => warmDay(entryDay.dayNumber)}
+                      >
                         {allDone ? "Review" : inProgress ? "Continue" : "Start"}
                         <ChevronRight className="h-3.5 w-3.5" />
                       </Link>

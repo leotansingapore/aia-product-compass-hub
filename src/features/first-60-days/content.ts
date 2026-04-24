@@ -66,6 +66,18 @@ export async function loadWeekReadme(weekNumber: number): Promise<string | undef
   return body;
 }
 
+// Warm the raw-markdown chunk for a day without parsing it. Callers use this
+// from hover/focus handlers so navigation feels instant — the network fetch
+// starts before the route transition.
+export function prefetchDay(dayNumber: number): void {
+  if (dayCache.has(dayNumber)) return;
+  const loader = loaderByDay[dayNumber];
+  if (!loader) return;
+  // Fire-and-forget. Errors are swallowed here; the real loadDay call will
+  // surface them when the user actually navigates.
+  loader().catch(() => undefined);
+}
+
 export async function loadDay(dayNumber: number): Promise<Day | undefined> {
   const cached = dayCache.get(dayNumber);
   if (cached) return cached;

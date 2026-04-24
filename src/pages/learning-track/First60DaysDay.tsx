@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { detectVideoEmbed, VideoEmbed } from "@/lib/video-embed-utils";
-import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-60-days/content";
+import { loadDay, loadWeekReadme, prefetchDay, WEEK_META } from "@/features/first-60-days/content";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
@@ -156,6 +156,14 @@ export default function First60DaysDay() {
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);
   }, [day, dayNumber, unlocked, markRead]);
+
+  // Warm the next day's raw chunk while the learner is on the current day, so
+  // tapping "Up next" resolves from cache instead of a cold network round-trip.
+  useEffect(() => {
+    if (!day) return;
+    const handle = window.setTimeout(() => prefetchDay(dayNumber + 1), 1200);
+    return () => window.clearTimeout(handle);
+  }, [day, dayNumber]);
 
   // Sticky "Take the quiz" CTA appears once the learner has scrolled past
   // ~60% of the page, while they're not already on the Quiz tab and haven't
