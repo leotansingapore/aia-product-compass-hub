@@ -5,7 +5,7 @@ title: "The Total Wealth Concept"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
-duration_minutes: 25
+duration_minutes: 35
 tags: [first-60-days, week-3, skills]
 ---
 
@@ -20,6 +20,7 @@ By the end of today you should be able to:
 1. **Define** Total Wealth as Financial Capital + Human Capital, and explain why most people only see one half.
 2. **Name** the four pillars of the Total Wealth Financial Planning System (TWFPS) and the coverage benchmark each one targets.
 3. **Open** the conversation by drawing the Total Wealth equation on paper in under 5 minutes — without pitching a product.
+4. **Run** the budget conversation (20% investments + 10–15% insurance) and the modular close (one pillar per meeting, with bridges).
 
 ---
 
@@ -32,6 +33,8 @@ Total Wealth has two forms. A client's full wealth is the sum of both:
 The graph on the left tells the entire story: when you're young, **Human Capital** (your future ability to earn) is huge — but Financial Capital is small. Across a working life, the deliberate move is to **convert** one into the other — earn more, spend less, save the difference, invest it, and repeat. Total Wealth is the sum of both at any given moment.
 
 For a 30-year-old earning $100K/year with 30 working years left, Human Capital is worth roughly **$3M of future income** — usually more than every Financial Capital line item combined. Most clients only think about the visible half (the money already in their accounts). Your job is to surface the invisible one — and make sure the conversion engine that connects them is protected.
+
+> **The live phrasing that lands every time:** *"You are your own golden goose. Your bank account is small. The reason you can eat, live, and have a good life is your ability to keep producing income. That's your greatest asset — not what's in the bank."*
 
 ## 2. The conversion engine
 
@@ -63,6 +66,18 @@ This is why protection isn't an upsell or an add-on. It's the **foundation** tha
 
 > **Insurance is the most cost-efficient way to manage risk.** It transfers a catastrophic-but-rare loss to an insurer for a small predictable premium — far cheaper than retaining the risk and self-funding a $400K medical bill out of your asset base.
 
+### The "health or wealth" question
+
+Try this on a new prospect once the two boxes are on the page:
+
+> **You:** *"Health or wealth — which is more important?"*
+>
+> **Them:** *"Health, of course."*
+>
+> **You:** *"Then we can't just talk about investing. We also have to talk about protecting the engine that produces the wealth in the first place. Investments build the bank. Insurance protects the goose that fills it."*
+
+That bridge is what gives you permission to talk about coverage *before* products. It collapses the "I just want to invest" objection by making it the client's own logic.
+
 ## 4. The Total Wealth Financial Planning System (TWFPS)
 
 The TWFPS organises every client plan around four pillars — three to protect Human Capital, one to grow Financial Capital.
@@ -72,7 +87,7 @@ The TWFPS organises every client plan around four pillars — three to protect H
 | Pillar | What it protects against | Benchmark coverage |
 |---|---|---|
 | **Death / Disability** | Family loses the income engine | Dependents' income needs · **10–20× annual income** |
-| **Critical Illness** *(the weakest link — often ignored)* | Major medical event + 12–24 months recovery | 30 major illnesses at today's medical cost · **$200–400K or 5× annual income** |
+| **Critical Illness** *(the weakest link — often ignored)* | Major medical event + 12–24 months recovery | **$100K (cancer drug treatments not covered by hospital plan)** + **3–5× annual income** (recovery period) — equivalent to the slide's "$200–400K or 5× income" benchmark, but broken down so the client sees what each dollar funds |
 | **Hospital & Accident** | Hospitalisation, injury, illness, sprains, dengue, food poisoning, permanent dismemberment | Hospital cover + Medishield upgrade + Personal Accident plan |
 | **Investment & Savings** | Inflation slowly eroding Financial Capital | Global balanced strategy |
 
@@ -85,10 +100,10 @@ Use this in a first meeting once rapport is established. Goal: install the *conc
 ### Step 1 — Draw the two boxes (30 sec)
 On a piece of paper, draw two boxes side by side. Label them **Financial Capital** and **Human Capital**.
 
-### Step 2 — Ask which one they think about (30 sec)
-> "Which one do you spend more time thinking about?"
+### Step 2 — Ask which one they have more of (30 sec)
+> "When we're young — which one do you think we have more of: Financial Capital or Human Capital?"
 
-Almost everyone says Financial. That's the opening.
+Almost everyone answers **Human Capital** correctly. That's the opening — they've already conceded that the bigger asset is the one nobody insures.
 
 ### Step 3 — Surface the invisible half (1 min)
 > "Human Capital is your future earning power — your career, your years of working ahead. For most people in their 30s, it's worth $2-4 million in future income. Way bigger than what's in the Financial box today. But you've probably never had it valued."
@@ -118,23 +133,70 @@ For each pillar, the language to use over the next 30 years:
 **Death / Disability**
 > "If you stopped earning today, how many years would your family need to keep going? The standard floor is **10–20× your annual income** — roughly 10–20 years of replacement income for the people who depend on you."
 
-**Critical Illness**
-> "Treatment for a major illness in Singapore typically costs **$200–400K**. On top of that, most people lose 12–24 months of income recovering. The number we plan toward is **5× your annual income** — enough to fund treatment AND survive the recovery gap."
+**Critical Illness** *(the weakest link)*
+> "Treatment for a major illness in Singapore typically costs **$200–400K**. On top of that, most people lose 12–24 months of income recovering."
+>
+> "We plan toward **$100K plus 3–5× your annual income**. The $100K specifically covers things your hospital plan doesn't — like cancer drug treatments. One vial of certain cancer drugs is around $10K per dose, and many of those drug treatments aren't covered by hospitalisation plans. The 3–5× income is for the recovery period when you can't work."
+>
+> "There's also a clean way to remember the difference between the two CI-related plans: **the hospital plan pays the hospital. The CI plan pays *you* — when you can't work for a few years.** They do different jobs."
 
 **Hospital & Accident**
-> "Sprains, dengue, food poisoning, an accident at the gym — small stuff happens often. The hospital plan covers what happens inside hospital walls; the accident plan covers everything outside. Both are cheap relative to what one ER bill looks like out of pocket."
+> "Sprains, dengue, food poisoning, an accident at the gym — small stuff happens often. The hospital plan covers what happens inside hospital walls; the accident plan covers everything outside."
+>
+> "One thing to know about hospital plans: they don't cover **outpatient** stuff. So even if you're hospitalised and discharged, the follow-up consultations, scans, and many drug treatments fall outside. That's why CI plus accident plus hospital is the full set — each plugs a different gap."
 
 **Investment & Savings**
 > "While the protection layer holds the floor, your money still needs to grow faster than inflation. The strategy is **global balanced** — not Singapore-only, not all equities, not all bonds — so the asset base survives any single market shock or currency move."
 
-## 7. Why this works
+## 7. The budget conversation and the modular close
+
+Once the client has nodded along to the four pillars, the meeting tends to bend in one of two unhelpful directions: either they ask *"so how much will all this cost?"* (and you over-quote and lose them), or you try to close everything in one meeting (too much information, they freeze). Two micro-frames keep the meeting on the rails.
+
+### Frame A — The budget rule of thumb
+
+When they ask about cost, don't quote products yet. Quote percentages of income:
+
+> "As a guideline, we usually plan for around **20% of your income going to investments**, and another **10–15% to insurance** — so call it roughly 30% of income going toward future-you. That covers the protection layer plus the wealth-building layer."
+
+> "If I built a comprehensive package across all four pillars, what's the maximum you could realistically set aside each month?"
+
+Two things this does:
+1. Anchors the conversation in **your** income (not a fixed-dollar number that scares them).
+2. Asks for the **ceiling**, not the floor. People generally answer truthfully when asked for max — they don't feel cornered into commit­ting.
+
+It also cross-references **Day 2's 1/3 income rule** — short-term needs (1/3), mid-term commitments (1/3), savings + investment + insurance (1/3). Most clients have never explicitly allocated the third slice to long-term — surfacing it is half the close.
+
+### Frame B — The modular close
+
+Don't try to close all four pillars in one meeting. The information density crashes the conversation. Instead:
+
+1. **First meeting: get the budget.** End with "what's your max?" and a calendar invite for the next session.
+2. **Second meeting: close the priority pillar first.** Whichever risk *they* named as most important — usually CI — close that one first.
+3. **Layer in the next pillar with a one-line bridge.** Once CI is signed, you say:
+   > *"Now that CI's locked in, your base is in good shape. The other thing worth knowing — your hospital plan won't cover outpatient stuff. Want to plug that gap next?"*
+4. **Repeat for hospital, accident, life/disability** as separate close moments — each with its own bridge.
+
+The bridges follow the same pattern: *"Now that we've done X, here's what X doesn't cover. Want to plug that?"* That sentence does more work than any feature comparison.
+
+The reason it works: each close is a small yes, not one big yes. The client never sees the full bill — they see four reasonable monthly amounts spread across two or three meetings.
+
+### A note on framing financial vs emotional burden
+
+When you're surfacing the *need* (especially for CI), use this exact line:
+
+> "Imagine you can't work for a few years. Who's going to give you that money? Your parents — can they afford to support you for years? The emotional burden of getting cancer is something nobody can take away from you. But the financial burden — that one we can cover."
+
+That sentence converts more CI plans than any product feature. It separates what the client *can* control (the financial side) from what they can't (the emotional side), and positions the plan as the part that's actually solvable.
+
+## 8. Why this works
 
 1. **Outcomes-first, products-last.** The client never feels pitched — they feel oriented. Every product you eventually recommend already maps to a pillar they agreed they need.
 2. **Their picture, not yours.** They watched you draw it. They cannot un-see the equation or the arrow.
 3. **It scales by income.** A $4,000/month earner and a $40,000/month earner get the same conversation — only the numbers in the boxes change.
 4. **Protection becomes obvious.** Once Human Capital is named as the engine, "you should insure it" stops being a sales line and becomes the only logical conclusion.
+5. **The modular close respects the brain.** No single meeting drowns the client in choices. Each yes is small enough to feel safe.
 
-## 8. Compliance and the limits of the concept
+## 9. Compliance and the limits of the concept
 
 Total Wealth is a teaching frame, not a product illustration. When you do recommend products to fund it:
 
@@ -205,6 +267,22 @@ The concept opens the door. The actual recommendation has to walk through it hon
  - D) Ask what happens to their coverage when they change jobs
 
  **Why:** The TWFPS gives you the diagnostic frame to make the gap visible without attacking their existing plan. Walking through the four pillars surfaces that the employer plan typically only covers one pillar (Hospital & Accident, often only ward-class subsidised), leaving three other pillars exposed. A is judgmental and doesn't teach the framework. C is a price discussion, which loses the strategic frame. D is a valid follow-up but is one specific risk inside Death/Disability — the bigger move is the four-pillar audit.
+
+8. **Why is the CI benchmark broken into "$100K + 3–5× annual income" rather than just one figure?**
+ - A) Compliance requires it
+ - B) Because the $100K specifically funds cancer drug treatments that the hospital plan typically doesn't cover, while the 3–5× income covers the recovery period when the client can't work ✓
+ - C) Because $100K is the maximum a single CI policy will pay out
+ - D) Because the slide says so
+
+ **Why:** The breakdown is pedagogical — it lets the client see what each dollar funds. Cancer drug treatments (e.g. ~$10K per dose) often fall outside hospital plan coverage, so $100K is the buffer for treatment costs the hospital plan won't pick up. The 3–5× income covers the 12–24 months (sometimes years) the client can't work. The slide framing of "$200–400K or 5× income" arrives at the same total coverage but doesn't explain *why*. A invents a compliance rule. C is false — CI policies can pay much more. D is technically true but misses the teaching point.
+
+9. **In the modular close, what's the right move after a client signs the CI plan in meeting two?**
+ - A) Quote the full life-disability + accident + hospital bundle on the spot
+ - B) Bridge to the next pillar with a one-liner like "now that CI's locked in, your hospital plan won't cover outpatient stuff — want to plug that next?" ✓
+ - C) Stop selling and wait for them to ask for more
+ - D) Send a 12-page proposal that evening covering all remaining pillars
+
+ **Why:** The modular close works by treating each pillar as its own small yes, with a one-line bridge that names *what the previous plan doesn't cover*. The bridge format — "now that we've done X, here's what X doesn't cover. Want to plug that?" — keeps the conversation alive without overwhelming the brain. A drops the modularity and goes back to information overload. C abandons the pipeline you've already built. D is the new-FC trap of substituting paperwork for relationship.
 
 ---
 
