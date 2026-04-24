@@ -72,6 +72,192 @@ For a worked example of an $8,500/month income earner ($102K/year):
 
 The $100K buffer on CI specifically funds **cancer drug treatments not covered by the hospital plan** (one vial can cost ~$10K per dose). The 3–5× income covers the recovery period when the client can't work — so the total benchmark is "$100K + 3-5× income" or equivalently "$200–400K or 5× income," which is the same coverage in two different framings.
 
+## 0b. Product deep-dive — GPP (Guarantee Protect Plus)
+
+The cornerstone whole-life par plan. Pays into the par fund, returns 7/8 of bonuses to policyholders. Limited-pay (15/20/25 years), covered for life. **Has cash value.**
+
+### The multiplier mechanism (the part most new FCs misexplain)
+
+Base sum × multiplier = total coverage **until the drop-off age (65 or 75)**. After drop-off, sum reverts to the base, but client is covered for life (premium fully paid by then).
+
+| Multiplier | Base sum (for $500K total) | Drop-off options |
+|---|---|---|
+| **5×** | $100K × 5 | 65 or 75 |
+| **3×** | ~$166K × 3 | 65 or 75 |
+| **2×** | $250K × 2 | 65 or 75 |
+
+Why 65? Typical retirement age — income protection need reduces. Why 75? For clients who want extended cover; by 75, dependents should be independent.
+
+### The closing technique that converts (3× → 2× upgrade)
+
+Worked example, 30M non-smoker, $500K cover:
+
+| Multiplier | Annual premium | Cash value at age 70 |
+|---|---|---|
+| **3×** | ~$7,300 | ~$149K |
+| **2×** | ~$8,900 | **~$424K** |
+
+Always present 3× first. Then run the 2× comparison out loud:
+
+> *"For just $1,600 more per year — $32K extra over 20 years — your cash value at 70 jumps from $149K to $424K. That's $275K more cash value for $32K more premium. And the sum drop at 65 is much less severe. Would that make sense for you?"*
+
+The framing of *"$1,600 more for $275K more"* converts dramatically more than presenting the two options side by side cold.
+
+### Premium tenure rule
+
+| Client age | Recommended pay term | Why |
+|---|---|---|
+| **20s–30s** | 20 years | Better return than 25-year; finished by 50s |
+| **40s** | 15 years | Finished by late 50s; 25-year pay doesn't make sense at 43 |
+
+**Shorter tenure = better rate of return** for the same total premium.
+
+### The yield reality (be honest with clients)
+
+GPP at age 65, with par fund earning 4.25%, yields **~2.15%** to the policyholder. That's savings/fixed-deposit territory — *not* endowment-level (3.5–3.8%) or ILP-level (7–8%).
+
+> **GPP is a protection product with savings — not a savings product.** Mis-position it as a savings product and you'll lose the case to a comparison-shopper.
+
+### Three ways to use GPP at maturity
+
+1. **Surrender at 65** — cash out the surrender value (e.g., $122K on $77K paid = profit)
+2. **Income drawdown (tail-end annuity)** — don't surrender; draw down over 10 years (ages 65–75). GPP becomes annuity-like.
+3. **Keep for legacy** — wealthy client doesn't need cash. Keep it growing. At 80, sum could be ~$353K passing to nominees.
+
+### Life Stages benefit
+
+At qualifying milestones (marriage, child, mortgage), client can increase sum assured by **+$100K without medical underwriting**. Use this as a "future-proofing" pitch.
+
+### CI riders on GPP
+
+- **CPL (Critical Payment of Lump Sum)** — 42 major CIs, **non-participating, no cash value** (state this clearly)
+- **Early Critical Protector (ECP)** — early-stage conditions (carcinoma in situ, stage 0–1 cancers)
+- **Waiver rider** — waives premiums on CI / early CI diagnosis
+- **Payer benefit** (child policies) — waives premium if policy owner / parent gets CI
+
+## 0c. Product deep-dive — SFT (Secure Flex Term)
+
+Pure term insurance — no cash value, nothing back if nothing happens. **Covers death, TPD, terminal illness** (including terminal cancer, first-in-market at launch). Premium guaranteed and locked in. Convertible without medical underwriting. Vitality-discounted (up to 15%).
+
+### Renewable vs Level Term
+
+| Type | How it works | Notes |
+|---|---|---|
+| **Level** | Fixed premium for entire chosen end-age (e.g. age 30 → 65) | Predictable — covers a 35-year period at one rate |
+| **Renewable** | Fixed premium for chosen tenure (5/10/20/30 yrs), renewable after | Premium increases at each renewal — eventually prohibitively expensive |
+
+### SFT pricing example (30M non-smoker, $1M death)
+
+| Coverage period | Annual premium |
+|---|---|
+| Level term to 65 | **$882** |
+| Level term to 75 | $1,403 |
+| 30-year renewable | $749 |
+
+> **The sales line:** *"For less than an Anytime Fitness gym membership, AIA guarantees your family $1 million if anything happens to you before retirement."*
+
+### Adding CI to SFT
+
+- **Major CI ($250K) to age 65:** total premium ~$1,500/year ($1M death + $250K CI)
+- **CI rider is accelerated** — CI payout reduces death benefit (claim $250K CI → death drops to $750K)
+- **Early CI ($100K)** can be added on 5/10/20/30-year tenures BUT *not* on level term to 65/75 (limitation — know this when proposing)
+
+### Handling "what if I outlive the term?"
+
+> *"You're right — at 65 if nothing happens, you get nothing back. That's term insurance. The reason it costs $882 instead of $7,000 is precisely because it's pure protection. The trade is real. We can extend to 75 for $1,403 if outliving the term concerns you. Your call."*
+
+Don't argue with the math. Show the cost difference and let them decide.
+
+## 0d. Product deep-dive — UCC (Ultimate Critical Cover)
+
+Multi-claim standalone CI plan. **No death benefit** (only 5% of sum on death). Covers **150 conditions**. The reset benefit is the killer feature.
+
+### The unlimited reset benefit (this is the hook)
+
+For a $100K UCC policy:
+
+1. Coronary artery bypass surgery → claim **$100K**
+2. 1-year waiting period → early-stage cancer → claim **$100K**
+3. 1-year waiting period → pulmonary hypertension → claim **$100K**
+4. ...up to 5 different conditions → max payout **5 × $100K = $500K**
+
+This is the "I had a heart attack, now I'm scared of cancer too" answer. Single-claim CI plans don't address it. UCC does.
+
+### Enhancer rider (most clients add this)
+
+Two benefits stack on top of the base:
+
+- **Catastrophic CI Benefit (200% payout)** — for the 5 most common CIs (cancer, stroke, heart attack, organ transplant, paralysis) IF they meet the catastrophic definition (e.g. Stage 4 cancer with distance metastasis). $200K base → $400K payout.
+- **Ultimate Relapse Benefit** — additional 100% after relapse on the 5 most common conditions, capped at **50% per claim**, 2-year waiting period. (ASC pays 100% per relapse claim — that's the key ASC differentiator.)
+
+### UCC pricing (30M non-smoker, $100K)
+
+| Coverage period | Annual premium |
+|---|---|
+| To age 65 | $874 |
+| To age 75 | $1,436 |
+
+### How UCC fits into a package
+
+UCC is *not* a standalone protection. It's a complement:
+
+- **GPP $200–300K (with CI rider) + UCC $100K** = comprehensive multi-claim CI at affordable premiums
+- **SFT (high sum, low cost) + UCC** = max death + multi-claim CI, lowest total premium
+
+## 0e. Product deep-dive — PLP (Pro Lifetime Protector)
+
+Investment-linked policy (ILP). **You** choose the funds. You bear investment responsibility. Hybrid of insurance + investment.
+
+### Death benefit structure
+
+| Option | How it works | Trade-off |
+|---|---|---|
+| **Max** (most common) | Pays the **higher of** sum assured OR cash value | As investment grows, *net insurance* coverage shrinks → mortality cost decreases |
+| **Plus** | Pays sum assured **PLUS** policy value | Higher payout, but mortality cost stays high throughout |
+
+### PLP illustration (30M non-smoker, $300K Max, ~$600/month)
+
+- At 8% fund return, investment value at 65: **~$817K**
+- Total premiums paid: ~$252K → **3.25× return**
+- Tipping point (~age 53–54): investment value exceeds sum assured → plan effectively becomes a pure investment
+
+### Critical advisor note
+
+Don't hold coverage to age 100 — **mortality costs escalate dramatically at older ages**. Strategically reduce or remove coverage at age 55–65 once accumulated cash value is sufficient. The longer you keep coverage past the tipping point, the lower your effective return.
+
+## 0f. The packaging strategy — how a real recommendation looks
+
+For a 30M, $8.5K/month income, $1M death need, $500K CI need:
+
+| Product | Coverage | Purpose | ~Annual premium |
+|---|---|---|---|
+| **GPP** (2× or 3× multiplier) | $300–500K death + CI rider | Foundation — whole life with cash value | $7,000–$9,000 |
+| **SFT** (level term to 65) | $500–700K death + $250K CI | Top up death cover affordably | $1,500–$2,000 |
+| **UCC** (to 65 or 75) | $100–200K multi-claim CI | Multi-claim CI protection | $900–$1,500 |
+| **A&H** (Solidaire / PAC) | Accident cover | Outpatient, TCM, dismemberment | ~$50/month |
+| **HealthShield Gold Max A + riders** | Private hospitalisation | Medical expenses | Medisave-payable |
+
+The package layers together: GPP as the cornerstone, SFT for cheap death-coverage top-up, UCC for multi-claim CI, A&H for outpatient, HealthShield for hospitalisation. **Never propose without all five categories represented** — the gap on the missing category becomes the comparison shop.
+
+## 0g. Cancer + medical inflation — the sales statistics worth memorising
+
+| Statistic | Use it for |
+|---|---|
+| Cancer = **73% of all CI claims** in Singapore | Justifying CI coverage |
+| **1 in 4–5** Singaporeans get cancer by age 75 | Personalising the risk |
+| Late-stage cancer treatment: **$100K+** (oral medications drive cost) | Justifying the $100K CI buffer |
+| Medical inflation: **~10% YoY** | Justifying coverage upgrades over time |
+| Govt MediShield Life premium for 51–60 cohort: rose from $630 → $903 (+43.3%) | Showing even govt insurance increases — private will too |
+| 5-year cancer survival: Stage 1 ~85% / Stage 2 ~77% / Stage 3 ~50% / **Stage 4 ~18.6%** | Both arguments — early detection saves lives, late-stage = income loss |
+
+## 0h. The budget psychology — the line that doubles every case
+
+> *"Whatever budget your client gives you, they can comfortably afford **double** without feeling uncomfortable."*
+
+Asian / Singaporean clients are conservative when first asked. A client who says $500/month can usually afford $1,000. **It's not about squeezing commission** — it's about showing them more value so they naturally stretch.
+
+The mechanism: use multiplier comparisons (3× vs 2× → "$1,600 more for $275K more cash value") to make the upgrade feel obvious. They stretch when the value is undeniable.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

@@ -13,7 +13,9 @@ tags: [first-60-days, week-9, skills]
 
 > **The one idea for today:** The Risks Angle CST reframes insurance from "optional expense" to "the foundation everything else depends on." Done well, a client sees insurance not as a cost but as the permission slip to build wealth. That reframe closes more protection cases than any product pitch.
 
-> **🎥 Watch the live training:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. Module 1 contains the live CST demo where Director Winnie walks through the income-loss section that this day is built around — temporary vs permanent income loss, the three risk-management methods (avoid / retain / transfer), and the "$1 million question" framing. Also available in this day's **Video** tab. Companion: **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
+> **🎥 Watch the live training:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. Module 1 contains the live CST demo where Director Winnie walks through the income-loss section that this day is built around — temporary vs permanent income loss, the three risk-management methods (avoid / retain / transfer), and the "$1 million question" framing. Also available in this day's **Video** tab.
+>
+> **🎥 Companion video — the full Canned Sales Track in action:** **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)**. Watch the entire CST delivered end-to-end with all of the structure below in one continuous flow. Reference for Assignment 1 Part B.
 
 ## 0. Live training reference — the income-loss spine
 
@@ -334,6 +336,164 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
    - D) A client who was mis-sold a protection plan they didn't need
 
    **Why:** This is the intended two-meeting sequencing: Risks CST closes protection first (securing the floor), and the Wealth CST at the next meeting builds accumulation on top of that foundation. Calling it an upsell (A) misreads the architecture — these are two distinct and necessary conversations, not an add-on sale. Doing both in one meeting (C) would be too much and is explicitly warned against. A client who has closed protection and is now asking about wealth-building has demonstrated exactly the right progression (D is wrong).  
+
+---
+
+## Appendix — The full Canned Sales Track (CST), end-to-end
+
+This is David's complete CST flow, lifted from the Module 1 + Canned Sales Track training video. Use it as a single-page reference when preparing for Assignment 1 Part B or rehearsing for a real first meeting. The same elements have been broken down across multiple days above; this section consolidates them into one continuous script.
+
+### The opening line
+
+> *"Have you ever wondered what would happen if you suddenly lost your ability to work tomorrow?"*
+
+Let the client respond naturally. Their answer is the emotional temperature for the next 25 minutes.
+
+### Why → What → How Much
+
+The whole CST is organised around three guiding questions:
+
+1. **Why** do we need to plan?
+2. **What** do we need to plan for?
+3. **How much** do we need to plan?
+
+#### 1. WHY — the income-dependency walk-through
+
+Walk the client through what their income currently supports:
+
+- Personal expenses (food, clothes, daily living)
+- Family expenses (utilities, parents)
+- Savings and investments
+- Future goals (house, car, wedding)
+
+Then the pivot:
+
+> *"But what happens if tomorrow you lose your income? You can't pay personal expenses. Can't help with family. Have to liquidate savings. Can't save toward future goals."*
+
+#### 2. The two types of income loss
+
+| Type | Examples | Recoverability |
+|---|---|---|
+| **Temporary** | Sacked, retrenched, resigned | Recoverable — you're young, you have skills, find another job |
+| **Permanent** | Critical illness (cancer/stroke/coma), death, hospitalisation, retirement | **Potentially unrecoverable** |
+
+#### 3. The $1 million scaling question
+
+> *"If you had a medical emergency, can your family lend you $1,000?"* → Yes, probably.
+>
+> *"How about $10,000?"* → Maybe, ask some relatives.
+>
+> *"How about $1 million?"* → Not possible.
+
+> **The punchline:** *"If you don't have your own financial plan, your family becomes your financial plan."*
+
+The math: annual expenses ~$25K × ~40 years = **$1,000,000 of total exposure**.
+
+#### 4. Three ways to manage risk
+
+| Method | What it means | Realistic? |
+|---|---|---|
+| **Avoid** | Stay home, avoid danger | Can't avoid critical illness — unrealistic |
+| **Retain** | Self-insure with $1M in savings | Don't have $1M yet — unrealistic |
+| **Transfer** | Pay premiums to transfer risk to insurance | ✅ Most practical |
+
+> **The golden goose analogy:** *"If you had a golden goose laying golden eggs, would you leave it in the open or install CCTV and hire a bodyguard? You are the golden goose. Your income is the golden eggs. Take ~10% of income to protect 90%."*
+
+#### 5. WHAT — the wealth triangle
+
+Build like a house — foundation up:
+
+1. **Foundation: Risk Management (Protection)** — insurance first
+2. **Middle: Wealth Accumulation** — savings and investments once protected
+3. **Top: Wealth Preservation** — estate, legacy (future stage)
+
+> *"If you invest without protection, one $200K medical bill wipes out everything you've built."*
+
+#### 6. Four types of insurance coverage
+
+| Type | Category | What it does |
+|---|---|---|
+| **Hospitalisation** | Medical Expense | Covers ~95% of hospital bills (you pay ~5%, capped ~$3K) |
+| **Accident (PA / Exceed)** | Medical Expense | Covers outpatient — stitches, food poisoning, fishbone, etc. |
+| **Critical Illness** | Income Protection | Lump sum payout (3–5× annual income) when diagnosed |
+| **Death & Disability** | Income Protection | Pays out to cover lost income permanently |
+
+> **The clean distinction every client needs:** *Hospital plan pays the hospital. CI plan pays YOU. Hospital plan only covers inpatient — accident/PA covers outpatient.*
+
+#### 7. HOW MUCH — the MAS guidelines
+
+| Coverage | Guideline |
+|---|---|
+| Premature Death | 10× annual income |
+| Critical Illness | 3–5× annual income + $100K buffer (cancer drug treatments not covered by hospitalisation) |
+| Accident | 5× annual income |
+| Hospitalisation | Depends on ward preference (private vs public) |
+
+#### 8. The Rule of Thirds budget framework
+
+| Bucket | Allocation |
+|---|---|
+| Monthly expenses (food, transport) | ~1/3 of income |
+| Medium-term goals (house, car, wedding, holiday) | ~1/3 of income |
+| Protection + wealth building | ~1/3 of income |
+
+Within the protection / wealth third:
+
+- **Insurance:** 10–15% of income
+- **Savings & investments:** 15–20% of income
+
+#### 9. The budget commitment ask
+
+Direct, no-flinch:
+
+> *"What's the maximum budget you'd allocate for insurance?"*
+>
+> *"And for investments?"*
+
+Worked example from a real roleplay: $3,200/month income → ~$300 insurance (≈10%) + ~$400 investment = **~$700/month total commitment**.
+
+#### 10. Closing the first meeting — the three options
+
+Don't try to close the policy on the spot. Frame the second meeting as a choice between three pre-prepared packages:
+
+1. **Comprehensive** — covers everything fully
+2. **Best bang for buck** — optimised value
+3. **Budget-friendly** — if cost is a concern
+
+The client picks one. Almost no one picks "none."
+
+#### 11. The "I need to ask my parents" handler
+
+> *"If you try to explain to your parents secondhand, you may not be able to answer all their questions. How about I meet you AND your parents together so I can help them gain confidence in what you're planning?"*
+
+Add the bonus offer if parents are 50+:
+
+> *"Your parents may have policies bought 20 years ago that are outdated or overpriced. While I'm there, I can review those for free."*
+
+This converts a deferral into **two new meetings + two new prospects in the same household**.
+
+### Key phrases — the master cheat sheet
+
+| Phrase | Purpose |
+|---|---|
+| *"Have you ever wondered…"* | Opens emotional engagement |
+| The $1K → $10K → $1M scaling | Makes risk tangible |
+| *"Your family becomes your financial plan"* | Creates urgency without scare-selling |
+| Golden goose analogy | Makes protection intuitive |
+| Wealth triangle | Justifies protection-first ordering |
+| Three-options close | Gives the client control, increases commitment |
+| *"Let me meet your parents too"* | Overcomes the deferral + creates referral opportunity |
+| *"Hospital plan pays the hospital. CI plan pays you."* | Resolves the hospital-vs-CI confusion in one line |
+
+### CST mastery requirements (from Module 1)
+
+1. **Memorise to 95% accuracy** — flow and gist, not word-for-word perfection
+2. **Deliver in under 25 minutes**, plus 5–10 min rapport at the start
+3. **Be able to present on paper OR slides** — napkin at Starbucks or iPad at a café
+4. **This is your foundation** — master before customising for specific demographics
+5. **Record yourself** delivering it (Zoom or phone) and send to your mentor — no perfection expected, just demonstrate you know the flow
+
+This appendix is the source script for **[Assignment 1 Part B](../assignments/assignment-01.md)**. Internalise this and the Risks Angle CST above flows naturally as a tighter sub-script.
 
 ---
 

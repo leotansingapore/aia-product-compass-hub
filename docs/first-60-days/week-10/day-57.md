@@ -68,6 +68,204 @@ GAP your wealth product fills    = $5,270/mth
 
 That gap is the entire reason Pro Achiever, PWV, PRE, and other wealth-accumulation plans exist. Once the client sees their personal gap number, the product recommendation becomes the only logical thing to discuss.
 
+## 0b. Product deep-dive — PWV (Platinum Wealth Venture)
+
+The newest-generation ILP. Breaks the traditional ILP convention of long lock-ins by paying dividends from quarter 1.
+
+| Feature | PWV | Traditional ILP |
+|---|---|---|
+| Premium payment | **5 years only** | 10–25 years |
+| Holding period | 7–8 years | 15–25 years |
+| First returns | **After ~3 months** (dividends) | After many years |
+| Lock-in feel | Very short commitment | Long-term commitment |
+
+### The dividend pitch — step by step
+
+Worked example, $20K/year into Global Adventurous Income Fund:
+
+1. Fund unit price ~$1.08
+2. $20,000 ÷ $1.08 = **18,518 units**
+3. Dividend rate ~1.9 cents per unit per quarter
+4. 18,518 × $0.019 = **$351 per quarter** in dividend income
+5. Client picks: **Pay Now** (cash out dividends) OR **Reinvest** (buy more units)
+
+### Why this is powerful right now
+
+Fixed deposit rates are falling. Conservative investors and elderly clients are looking for income alternatives. A ~7% dividend yield with quarterly payouts is a compelling answer.
+
+### PWV bonus structure
+
+| Feature | Details |
+|---|---|
+| **Bonus Units** | >$42K/year premium → extra 3–5% bonus units |
+| **Supplementary Charge** | 3.6% on policy value for first 7 years |
+| **Investment Bonus** | Year 8–11: 2.5% of annual premium per year |
+| **Performance Bonus** | Year 8+: 0.4% of policy value per year, paid perpetually |
+
+### Three dividend strategies
+
+| Strategy | How it works | Best for |
+|---|---|---|
+| **Dividend Now** | Spend dividends from day 1 | Clients needing immediate income |
+| **Dividend Later** | Reinvest dividends, start spending at target age (e.g. 65) | Accumulation then drawdown |
+| **Dividend Future** | Invest in growth fund (Adventurous), fund-switch to Income at retirement | Maximum growth then passive income |
+
+### PWV retirement-income worked example
+
+40-year-old invests $30K/year × 5 years into Global Adventurous Income Fund:
+
+- Dividends reinvested at ~8% (6–7% dividend + ~2% capital growth)
+- At age 65: accumulated value **~$585K**
+- Switch to receive dividends at 7%: $585K × 7% ÷ 12 = **~$3,400/month passive income**
+- Add CPF LIFE FRS payout of $1,730/month
+- **Total retirement income: ~$5,100/month**
+
+PWV minimum: **$18,000/year**. Strongest opener-product because of the 5-year-only commitment and visible-within-3-months returns.
+
+## 0c. Product deep-dive — PRE (Platinum Retirement Elite)
+
+A **dedicated retirement income plan** using the Elite funds. Designed for *drawdown*, not accumulation. PRE is what you sell when the client is closer to retirement and wants structured monthly income.
+
+### Key features
+
+| Feature | Options |
+|---|---|
+| Premium type | Single premium OR 5-year pay |
+| Retirement age | Choose from 50 / 55 / 60 / 65 / 70 |
+| Payout period | 10 / 15 / 20 / 25 / 30 years OR until age 100 |
+| Step-up option | Income increases annually (e.g. 5%/year) to offset inflation |
+| Income target | Set by premium amount OR by desired monthly income |
+
+### How PRE works — the math
+
+40-year-old, $30K/year × 5 years ($150K total), Elite Adventurous fund at 8%:
+
+- At 65: investment grows to **~$549K**
+- 8% return on $549K = ~$43,970/year = ~$3,660/month (interest only)
+- But PRE pays **$4,773/month** → draws down BOTH returns AND capital
+- By age 80 (15-year payout): fund **depletes to zero**
+
+This is the key difference from PWV: **PRE is a structured drawdown plan. The capital is consumed over the payout period.**
+
+### PRE variations
+
+| Configuration | Monthly payout | Notes |
+|---|---|---|
+| 15-year payout, flat income | $4,773 | Capital depletes at 80 |
+| 20-year payout, flat income | ~$4,000 | Capital depletes at 85 |
+| 15-year payout, 5% step-up | ~$3,500 (starting) | Increases yearly, hedges inflation |
+
+### Single premium is more efficient
+
+| Premium type | Total premiums | Approx monthly payout |
+|---|---|---|
+| 5-year pay ($30K/year) | $150K | ~$4,773 |
+| **Single premium** | **$120K** | ~$4,000+ |
+
+Single premium has lower charges → recommend when client has lump sum (endowment maturity, inheritance, property sale).
+
+### PRE pitch calculation (the closing math)
+
+Total payout = monthly income × 12 × payout years. Divide by premiums paid = **return multiple**.
+
+> *"$4,883 × 12 × 15 = $878K total payout ÷ $120K premium = **7.3× return**. That's the leverage you get from a structured retirement product vs leaving the money in fixed deposit."*
+
+### PRE vs APA for retirement (the choice rule)
+
+- **APA (Pro Achiever):** also accumulates via funds, but at 65 you do a manual fund switch to Dynamic Income Fund and withdraw ~5% perpetually. **Capital preserved.**
+- **PRE:** purpose-built for retirement drawdown with automatic structured payouts. **Capital consumed.**
+- **For younger clients (20s–30s):** APA is better — longer accumulation horizon, capital preservation.
+- **For older clients or lump-sum investors:** PRE is more suitable — structured, lower charges for this specific use case.
+
+### Alternative use — children's education fund
+
+Child age 0–1: $6K/year × 5 years = **$30K**. At 21 (university): grows to **~$85K** at 8%. If child gets scholarship and money stays invested → at 65 compounds to a massive retirement fund (~$8K/month income).
+
+## 0d. The paycheck and playcheck framing (the close)
+
+A clean two-line model for retirement income that any client can grasp:
+
+| Layer | Source | Purpose |
+|---|---|---|
+| **Paycheck (Foundation)** | CPF LIFE (FRS: $1,730/month) | Basic survival — bills, necessities |
+| **Playcheck (Lifestyle)** | PRE / PWV / APA / other plans | Fun — travel, hobbies, dining, gifts to grandkids |
+
+> *"CPF LIFE pays your bills. The investment plan pays for the life you actually want to live."*
+
+Desired income − CPF LIFE = Gap → fill with investment plans. **This is the closing math** for every retirement-angle case.
+
+## 0e. The AIA-vs-DIY positioning (the ProAchiever differentiator)
+
+When the prospect says *"I'd rather DIY into S&P 500 / Endowus / Phillip / a robo-advisor,"* you need four specific responses ready. These are the same four from Day 52 (Section 7), restated here in product context:
+
+| Risk in DIY | What AIA's structure does about it |
+|---|---|
+| **Currency risk** — your retirement is in SGD; USD-denominated ETFs swing with FX (especially as USD weakens long-term) | Plan denominated in SGD with currency hedging baked in |
+| **Dividend tax** — US dividends taxed ~30% at source. On $14,951/mth × 12 × 20 yrs = ~$3.6M dividends, you'd lose $1M+ to tax | Hedging structure → **no dividend taxes** at the policy level |
+| **Estate tax** — US assets held by non-US persons → up to 30% US estate tax on death. On $2.8M, that's $840K vanishing | **No estate taxes** on the AIA structure. Full capital passes through |
+| **Inheritance mismanagement** — heirs get cash, don't know what to do, often spent down or badly reinvested | **Secondary insured** — heirs inherit the *policy*, not cash. AIA continues managing under their name |
+
+### One more anchor — "S&P 500 isn't always the safest"
+
+> *"Most people assume S&P is the safe default. But there's a 10-year stretch (2003–2013) where the S&P 500 returned roughly zero while emerging markets and international did well. Concentration in any one market is a 10-year-loss risk. Global balanced is what survives the bad decades."*
+
+For the actual portfolio composition: **S&P 500 is only ~18% of the AIA Elite Adventurous Index Fund**. The rest is global diversification. Use this when a knowledgeable C-type client tries to compare AIA against their existing S&P holdings.
+
+## 0f. The supplementary-charge sub-pitch
+
+Most other major insurers (GE, Manulife, SingLife, Prudential, HSBC, etc.) charge a **supplementary fee of 0.6% to 1% per year** on policy value, perpetually. **AIA does not have this charge after 65.**
+
+The math on a $2M retirement portfolio: **0.7% × $2M = $14,000 per year** removed from the policy, every year, forever. Over a 30-year retirement, that's **$420K leaving the portfolio just to fees**.
+
+> *"GE, Manulife, SingLife, Prudential, HSBC — they all have a supplementary charge of 0.6% to 1%. On a $2M portfolio, that's $14K a year being removed. AIA doesn't have that after 65 — so the $2M can stay invested, generating $10K a month in dividend income, without the fee drag eating into it."*
+
+This is one of the strongest single sales angles in the entire wealth-accumulation conversation. **Memorise the number — 0.6 to 1% — and the $14K-on-$2M math.**
+
+## 0g. Distribution costs + the linearisation script
+
+When a client asks *"how much do you actually earn from this?"* — don't dodge. Run the linearisation math out loud:
+
+> *"Let me show you. On a $200/month plan over 40 years, you put in roughly $6,194 of premium across the lifetime. After bonuses, that effectively becomes around $3,000 in lifetime distribution costs to me. Divide that by 40 years × 12 months = **about $1 per month** I earn from your policy. You meanwhile are getting roughly $600/month of value back. So this isn't me selling you a high-margin product — this is structurally a relationship plan."*
+
+Same calculation can be reframed as a **fraction**: *"For every dollar of value you get, I earn maybe one cent. AIA is essentially losing money selling this to convert it into a long-term relationship."*
+
+When the client sees the asymmetry, the perceived sales pressure collapses. They feel they're getting a deal, not being sold to.
+
+> **State the actual numbers honestly. Don't inflate or deflate.** The math IS the close — manipulate it and you lose trust the moment they verify.
+
+## 0h. Bonus structure refresher (the welcome calculator)
+
+For ProAchiever (APA) and similar wealth plans, the bonus structure typically looks like:
+
+| When | Bonus | On $12K/yr premium |
+|---|---|---|
+| Year 1 | 10% of annual premium | $1,200 |
+| Year 2 | 10% of annual premium | $1,200 |
+| Year 3 | 15% of annual premium | $1,800 |
+| **Years 1–3 welcome bonus total** | | **~$6,360** (some illustrations show $6,000) |
+| Year 10 onwards (every year) | 5% of annual premium | +$600/year |
+| Year 20 onwards (every year) | 8% of annual premium | +$960/year |
+
+> **The lifetime-bonus question to ask the client:** *"What seems bigger to you — the $6,360 welcome bonus in the first three years, or the $600 + $960 every year for life?"*
+>
+> Most guess the first. The right answer is the second — held to age 60, lifetime bonuses ~$45K. Held to age 100 (since the policy passes through secondary insured to descendants), the figure compounds even further.
+
+**Always pull current illustration values from iResource before quoting bonuses.** The percentages and breakpoints are subject to change. The teaching framework above is durable; the exact numbers belong to the live system.
+
+## 0i. The "I'll invest myself" objection (acknowledge → reframe → upsell)
+
+From Module 3, reinforced from Module 1:
+
+- Out of 10 clients who say *"I'll do my own investing,"* maybe **0.5–1** actually follow through after 10 years
+- Most get promoted, get busy, attend a $5K course but never execute
+- The pattern is that knowledge ≠ action
+
+The script:
+
+> *"Great that you're interested in investing — that puts you ahead of most. What if we get you started with a systematic plan that runs on auto-pilot, and you can always do your own investing on top of that? The systematic plan ensures something is happening even when life gets busy."*
+
+Don't argue. Don't compete with the DIY plan. **Position AIA as the autopilot layer underneath whatever they want to do manually.** Most clients will agree, fund both, and over time the autopilot quietly becomes the bigger pot.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
