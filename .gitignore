@@ -40,4 +40,8 @@ playwright-report/
 # First 60 Days — internal planning / source material (not student-facing)
 docs/first-60-days/_source-decks/
 docs/first-60-days/_source-supplementary/
+# Curated reference docs inside _source-supplementary that ARE student-facing
+# (linked from day pages) — explicit allow-list:
+!docs/first-60-days/_source-supplementary/ost-script-full.md
+!docs/first-60-days/_source-supplementary/sales-books-canon.md
 docs/first-60-days/STRUCTURE.md
