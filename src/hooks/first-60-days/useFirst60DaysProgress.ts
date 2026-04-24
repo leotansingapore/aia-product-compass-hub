@@ -7,6 +7,32 @@ import { DAYS_WITH_REFLECTION } from "@/features/first-60-days/summaries";
 
 const LEGACY_KEY = "first-60-days-progress-v1";
 const MIGRATION_FLAG = "first-60-days-migration-done";
+const PROGRESS_CACHE_PREFIX = "first-60-days-progress-cache-";
+
+// Hydrating from localStorage lets the hub render lock/completion state on the
+// first paint, before the Supabase round-trip resolves. We key per-user so one
+// device shared by multiple accounts never shows the wrong person's progress.
+function readCachedProgress(userId: string): Record<number, DayProgress> | undefined {
+  if (typeof window === "undefined") return undefined;
+  try {
+    const raw = localStorage.getItem(PROGRESS_CACHE_PREFIX + userId);
+    if (!raw) return undefined;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return undefined;
+    return parsed as Record<number, DayProgress>;
+  } catch {
+    return undefined;
+  }
+}
+
+function writeCachedProgress(userId: string, data: Record<number, DayProgress>) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PROGRESS_CACHE_PREFIX + userId, JSON.stringify(data));
+  } catch {
+    // Quota or private-mode failures are non-fatal — server state is the truth.
+  }
+}
 
 export type ReflectionAnswers = Record<string, string>;
 
@@ -57,10 +83,16 @@ function rowToDayProgress(row: Row): DayProgress {
   };
 }
 
+// Explicit column list keeps the payload small (no created_at / extra metadata
+// columns) and lets the UI render the hub without the Supabase round-trip when
+// a local cache already has the data.
+const PROGRESS_SELECT =
+  "user_id, day_number, read_at, slides_viewed_at, video_watched_at, quiz_score, quiz_attempts, quiz_passed_at, reflection_answers, reflection_submitted_at, updated_at";
+
 async function fetchProgress(userId: string): Promise<Record<number, DayProgress>> {
   const { data, error } = await supabase
     .from("first_60_days_progress")
-    .select("*")
+    .select(PROGRESS_SELECT)
     .eq("user_id", userId)
     .range(0, 99);
   if (error) throw error;
@@ -124,7 +156,12 @@ export function useFirst60DaysProgress() {
 
   const progressQuery = useQuery({
     queryKey: ["first-60-days-progress", userId],
-    queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
+    queryFn: async () => {
+      if (!userId) return {} as Record<number, DayProgress>;
+      const data = await fetchProgress(userId);
+      writeCachedProgress(userId, data);
+      return data;
+    },
     enabled: Boolean(userId),
     // Mutations always invalidate this key, so we don't need a short stale
     // window. Keep the hub instant on revisits — most users navigate hub →
@@ -134,6 +171,10 @@ export function useFirst60DaysProgress() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     placeholderData: (prev) => prev,
+    // Paint the hub immediately on revisits using the last-seen progress
+    // snapshot. The background refetch then reconciles with Supabase.
+    initialData: userId ? readCachedProgress(userId) : undefined,
+    initialDataUpdatedAt: 0,
   });
 
   useEffect(() => {
@@ -246,6 +287,15 @@ export function useFirst60DaysProgress() {
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["first-60-days-progress", userId] });
+      // Keep the localStorage snapshot in sync with the optimistic state so
+      // the next cold load paints the right icons.
+      if (userId) {
+        const latest = qc.getQueryData<Record<number, DayProgress>>([
+          "first-60-days-progress",
+          userId,
+        ]);
+        if (latest) writeCachedProgress(userId, latest);
+      }
     },
   });
 
@@ -347,6 +397,9 @@ export function useFirst60DaysProgress() {
       .delete()
       .eq("user_id", userId);
     if (error) throw error;
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(PROGRESS_CACHE_PREFIX + userId);
+    }
     qc.invalidateQueries({ queryKey: ["first-60-days-progress", userId] });
   }, [userId, qc]);
 
