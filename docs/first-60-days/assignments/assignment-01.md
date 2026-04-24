@@ -41,7 +41,16 @@ This assignment forces you to record both, so when you sit down with a real pros
 
 Before recording, re-read or re-skim each of these. The *why* you're delivering sits inside this content — trying to memorise the script without the why produces a flat delivery.
 
-### For both CSTs (foundational)
+### Live training videos (each linked once — same video can apply to both Parts)
+
+| Video | Best for |
+|---|---|
+| **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)** | Foundational. Director Winnie's live CST demo, the income-loss spine, 3-risk-method elimination, the $1M question — applies to **both Parts**. |
+| **[Module 2 — Risk Management Products Overview (David)](https://youtu.be/y12lyQRhay0)** | Reference for **Part B** — the AIA protection product stack and how to position TWFPS pillars against actual products. |
+| **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)** | The full CST end-to-end — most useful as the rehearsal recording for **Part B**. |
+| **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)** | The opening / framing for warm-market prospects — applies to **both Parts** when the prospect is someone you know. |
+
+### Day pages — for both CSTs (foundational)
 
 - [Day 21 — Closing & Sales Appointment Framework](../../first-60-days/week-4/day-21.md) — the 5-phase structure both CSTs sit inside
 - [Day 43 — Scripting Your Approach](../../first-60-days/week-8/day-43.md) — how to deliver canned tracks without sounding canned
@@ -49,17 +58,15 @@ Before recording, re-read or re-skim each of these. The *why* you're delivering 
 - [Day 54 — Concept Selling](../../first-60-days/week-9/day-54.md) — *why* concept-selling beats product-selling (the property-vs-financial-products quadrant)
 - [Day 17 — The Wealth-Builder's Mindset](../../first-60-days/week-3/day-17.md) — the peaks-and-valleys discipline that keeps you running both CSTs without burning out
 
-### For Part A — Wealth Angle CST
+### Day pages — Part A specific (Wealth Angle)
 
 - [Day 52 — Retirement Step-by-Step CST](../../first-60-days/week-9/day-52.md) — **the primary script and source material.** Includes the 5-step Problem diagram + 4-step Solution diagram, embedded screenshots, and the 1/3 income rule.
-- **Live training video:** **[Module 1 — New FC Training (David)](https://youtu.be/EtAo1of4h8U)** — Director Winnie's live CST demo, plus the income-loss + 3-risk-method sequencing.
 
-### For Part B — Risk Management Angle CST
+### Day pages — Part B specific (Risk Management Angle)
 
 - [Day 14 — The Total Wealth Concept](../../first-60-days/week-3/day-14.md) — **the primary script.** Two-capitals diagram, conversion engine, TWFPS four pillars, modular close.
-- [Day 53 — CST: The Risks Angle](../../first-60-days/week-9/day-53.md) — the income-loss spine, $1M question, three-risk-method elimination, three-options close + parents objection.
-- [Day 56 — AIA Solutions: Protection & Living Benefits](../../first-60-days/week-10/day-56.md) — the AIA product map (cash-value vs no-cash-value, A&H "fries-and-Coke" rule).
-- **Live training videos:** **[Module 1](https://youtu.be/EtAo1of4h8U)** + **[Module 2 — Risk Management Products Overview](https://youtu.be/y12lyQRhay0)** + **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)**.
+- [Day 53 — CST: The Risks Angle](../../first-60-days/week-9/day-53.md) — the income-loss spine, $1M question, three-risk-method elimination, three-options close + parents objection. Also contains the **full Canned Sales Track appendix**.
+- [Day 56 — AIA Solutions: Protection & Living Benefits](../../first-60-days/week-10/day-56.md) — the AIA product map (cash-value vs no-cash-value, A&H bundling rule).
 
 ---
 
