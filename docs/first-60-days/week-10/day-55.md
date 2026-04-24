@@ -95,6 +95,21 @@ flowchart TD
 - Client has a short time horizon (< 10 years).
 - Client already has extensive direct investment discipline.
 
+### Why the ILP structure isn't just a wrapper — the conviction stack
+
+When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?"* — the honest answer isn't "this fund is better than that fund". It's that an AIA ILP removes four quiet taxes and two execution risks that sit on top of a DIY holding, regardless of market return:
+
+| Layer | DIY S&P 500 (typical robo-advisor holding) | AIA ILP structure |
+|---|---|---|
+| Dividend withholding tax | 30% (US-domiciled) / 15% (Irish-domiciled) | **0% at client level** |
+| USD/SGD FX risk | Full exposure; DBS forecasts SGD parity with USD by 2040 | SGD-denominated, hedged |
+| US estate tax on death | **40% above $60K exemption** on US-situs assets | Nominated beneficiaries, non-US-situs |
+| Concentration risk | 100% one market | Global; S&P = ~18% of Elite Adventurous |
+| Execution on death | Family inherits an app they've never logged into | Advisor of record + coordinated estate plan |
+| Generational continuity | Liquidated at death, paid as cash | **Secondary insured** — policy continues on next life assured |
+
+**Full FC reference** (numbers, country DWT tables, full US estate schedule, lost-decade data): [SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md). See also [[../week-9/day-52|Day 52 — Retirement Step-by-Step CST]] and [[day-57|Day 57 — Investment-Linked Plans: Core Mechanics]] for the delivery-ready versions of this stack.
+
 ## 3. Whole Life — lifelong coverage
 
 **Purpose:** coverage that stays in force for your entire life (typically up to age 100 or later).

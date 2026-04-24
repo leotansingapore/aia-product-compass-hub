@@ -129,7 +129,7 @@ These are Day 52 sections 5–9. Use them to deepen the close *only if you have 
 
 - **The 1/3 income rule** — *"$X/mth fits inside the 'long-term' third of your take-home"* (collapses the *I can't afford it* objection)
 - **The dividend twist** — *"$X.XM at 6% throws off $X,XXX/mth, more than your inflated lifestyle"* (the math behind why capital stays intact)
-- **AIA vs DIY** — *currency hedging / no dividend tax / no estate tax / secondary insured* (when prospect mentions S&P or robo-advisors)
+- **AIA vs DIY (the full 8-point stack)** — dividend withholding tax (30% → 0%), USD/SGD currency risk (DBS forecasts SGD parity with USD by 2040), US estate tax (40% above $60K exemption), concentration risk (S&P 500 = only ~18% of Elite Adventurous), lost-decade risk (2000–2010: S&P −9% while Int'l Small Cap Value +191%), execution on death, secondary-insured continuity, and the macro USD pressure cluster. **Before recording, skim the [SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction)** — pick *one* number that matches your roleplay prospect's likely objection and land that one cleanly. Don't try to land all eight; that's a lecture, not a CST.
 - **The 0.7%-on-$2M sub-charge** — *"$14K/year removed from a $2M portfolio at other insurers; AIA doesn't have that after 65"* (when prospect compares fees)
 - **Bonuses sweetener** — *"Year 1/2/3 welcome bonus + 5%/8% lifetime"* (only after value is clear; never lead with this)
 

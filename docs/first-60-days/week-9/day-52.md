@@ -457,4 +457,4 @@ That last sentence is the entire sale. You've earned the second meeting.
 ## Related
 
 - Previous: [[day-51|Day 51 — CST: The Risks Angle]]
-- Next: [[day-53|Day 53 — CST: Tax-Efficient Wealth]]
+- Next: [[day-53|Day 53 — CST: The Risks Angle]]

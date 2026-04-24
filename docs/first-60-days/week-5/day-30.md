@@ -66,6 +66,8 @@ Scenario: You DCA $1,000/year for 5 years. Unit prices swing.
 
 **Why?** Because Year 2's crash let you buy 1,000 units at $1 — far more than any other year. DCA **forces you to buy more when prices are low**, which is counter to human instinct.
 
+> **One quiet leak in a DIY DCA plan.** If the client is DCA-ing into a US-domiciled S&P 500 ETF (VOO / SPY / VTI), every dividend distribution is hit with a **30% US withholding tax at source** before it reaches their brokerage account. On an Irish-domiciled equivalent (CSPX / VWRA), the tax drops to 15%. Inside an AIA ILP the fund structure means **0% client-level DWT**. The DCA mechanism itself is identical; what differs is how much of the dividend gets to compound. Over 20–30 years of monthly DCA with full reinvestment, the 30% vs 0% gap is a six-figure number. You'll unpack the full conviction stack in [[../week-9/day-52|Day 52]] and [[../week-10/day-57|Day 57]] — for now, remember that *where* the DCA lands matters as much as *that* the client is doing it.
+
 ## 3. DCA vs Lump Sum — the comparison
 
 Same market, but instead of DCA, you invest $5,000 **in a single lump sum**. Let's see different entry points:

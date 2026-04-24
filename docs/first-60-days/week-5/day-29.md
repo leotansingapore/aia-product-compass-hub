@@ -67,6 +67,8 @@ Read that last row carefully. **$10,000 compounded at 9% over 40 years = $314,00
 
 **Client reaction:** most people have never seen numbers like this. They've been told to "save regularly" but no one showed them what it actually produces.
 
+> **The tax leak most clients don't see.** The table above assumes **full dividend reinvestment at the stated rate.** A client DCA-ing into a US-domiciled S&P 500 ETF (VOO, SPY, VTI) loses **30% of every dividend to US withholding tax at source** before it has the chance to compound. That's not a small dent — it compounds *against* the client for decades. Irish-domiciled funds drop it to 15%. Inside an AIA ILP the fund structure makes the client-level DWT 0%. Same index exposure, same DCA mechanism — dramatically different net compounding. Keep this in the back of your mind when running compounding math for clients; the published historical return of the S&P 500 is before this tax leak, not after. The full conviction stack lives in [[../week-9/day-52|Day 52]] and [[../week-10/day-57|Day 57]].
+
 ## 3. The Rule of 72 — the advisor's shortcut
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
