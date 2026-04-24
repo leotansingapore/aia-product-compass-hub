@@ -20,6 +20,8 @@ export interface AssignmentFrontmatter {
   related_days: number[];
   status_key: string;
   form_fields?: AssignmentFormField[];
+  /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
+  url_slug?: string;
 }
 
 export interface Assignment {
@@ -136,6 +138,7 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       related_days: coerceList(fm.related_days),
       status_key: coerceString(fm.status_key, slug),
       form_fields: coerceFormFields(fm.form_fields),
+      url_slug: coerceString(fm.url_slug) || undefined,
     },
     markdown: body.trim(),
   };

@@ -187,9 +187,14 @@ const App = () => (
                       <Route path="pre-rnf/first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
+                      {/* Outreach Builder — both old (assignment-02) and new (outreach-playbook) URLs supported */}
                       <Route path="pre-rnf/assignments/assignment-02/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />
+                      <Route path="pre-rnf/assignments/outreach-playbook/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />
+                      {/* F.A.D.S. brand-builder — both old (assignment-08) and new (audience-differentiation) URLs supported */}
                       <Route path="pre-rnf/assignments/assignment-08/tool" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
                       <Route path="pre-rnf/assignments/assignment-08/tool/:tab" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
+                      <Route path="pre-rnf/assignments/audience-differentiation/tool" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
+                      <Route path="pre-rnf/assignments/audience-differentiation/tool/:tab" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
                       <Route path="pre-rnf/:itemId" element={<Navigate to="/learning-track/pre-rnf/assignments" replace />} />
                       <Route path="post-rnf" element={<Navigate to="/learning-track/post-rnf/next-60-days" replace />} />
                       <Route path="post-rnf/first-30-days" element={<Navigate to="/learning-track/post-rnf/next-60-days" replace />} />

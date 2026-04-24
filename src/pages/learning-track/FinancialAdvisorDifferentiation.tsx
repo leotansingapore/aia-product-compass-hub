@@ -15,7 +15,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
 
 // Base path inside the Pre-RNF assignment shell. Tab segment is appended.
-const BASE_PATH = "/learning-track/pre-rnf/assignments/assignment-08/tool";
+const BASE_PATH = "/learning-track/pre-rnf/assignments/audience-differentiation/tool";
 const STORAGE_PREFIX = "fads-tool-v1";
 
 // ============ DATA ============
@@ -452,7 +452,7 @@ export default function FinancialAdvisorDifferentiation() {
     if (idx < TABS.length - 1) {
       const next = TABS[idx + 1].id;
       setActiveTab(next);
-      navigate(`/learning-track/pre-rnf/assignments/assignment-08/tool/${next}`);
+      navigate(`${BASE_PATH}/${next}`);
     }
   };
 
@@ -461,7 +461,7 @@ export default function FinancialAdvisorDifferentiation() {
     if (idx > 0) {
       const prev = TABS[idx - 1].id;
       setActiveTab(prev);
-      navigate(`/learning-track/pre-rnf/assignments/assignment-08/tool/${prev}`);
+      navigate(`${BASE_PATH}/${prev}`);
     }
   };
 
@@ -826,7 +826,7 @@ export default function FinancialAdvisorDifferentiation() {
               return (
                 <Link
                   key={t.id}
-                  to={`/learning-track/pre-rnf/assignments/assignment-08/tool/${t.id}`}
+                  to={`${BASE_PATH}/${t.id}`}
                   className={`flex flex-col items-center gap-1 py-3 rounded-md px-2 text-sm font-medium transition-all relative ${activeTab === t.id ? 'bg-background text-foreground shadow-sm' : ''}`}
                 >
                   <Icon className="h-4 w-4" />
@@ -1220,7 +1220,7 @@ export default function FinancialAdvisorDifferentiation() {
                   <Trophy className="h-12 w-12 text-amber-500 mx-auto mb-3" />
                   <h4 className="font-semibold text-lg mb-2">Complete at least 30% to unlock your brand output</h4>
                   <p className="text-muted-foreground text-sm mb-4">Current progress: {overallProgress}%</p>
-                  <Button onClick={() => { setActiveTab("personality"); navigate("/learning-track/pre-rnf/assignments/assignment-08/tool/personality"); }}>
+                  <Button onClick={() => { setActiveTab("personality"); navigate(`${BASE_PATH}/personality`); }}>
                     Start with Personality
                   </Button>
                 </CardContent>

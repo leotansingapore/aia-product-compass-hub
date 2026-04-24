@@ -111,7 +111,12 @@ export default function First60DaysAssignments() {
     );
   }
 
-  const active = itemId ? assignments.find((a) => a.slug === itemId) : null;
+  // Resolve by url_slug (preferred), then fall back to file slug for backward compatibility.
+  // Old bookmarked links (e.g. /assignments/assignment-01) keep working.
+  const active = itemId
+    ? assignments.find((a) => a.frontmatter.url_slug === itemId)
+      ?? assignments.find((a) => a.slug === itemId)
+    : null;
 
   if (itemId && !active) {
     // Unknown slug — bounce back to grid.
@@ -175,7 +180,7 @@ export default function First60DaysAssignments() {
           return (
             <Link
               key={a.slug}
-              to={`/learning-track/pre-rnf/assignments/${a.slug}`}
+              to={`/learning-track/pre-rnf/assignments/${a.frontmatter.url_slug ?? a.slug}`}
               className="block group"
             >
             <Card

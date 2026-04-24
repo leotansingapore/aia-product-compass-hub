@@ -1,5 +1,6 @@
 ---
 id: assignment-08
+url_slug: audience-differentiation
 order: 3
 title: "Audience & Differentiation Worksheet"
 short: "Pick two audiences and map their tangible problems, intangible problems, and what makes YOUR approach different."
@@ -39,7 +40,7 @@ This assignment forces three things most new FCs avoid:
 
 The whole assignment lives inside the **F.A.D.S. tool** — open it, work through the seven tabs, then come back here and paste your final one-sentence positioning into the form below.
 
-**[Open the F.A.D.S. tool →](/learning-track/pre-rnf/assignments/assignment-08/tool)**
+**[Open the F.A.D.S. tool →](/learning-track/pre-rnf/assignments/audience-differentiation/tool)**
 
 The seven tabs walk you through:
 

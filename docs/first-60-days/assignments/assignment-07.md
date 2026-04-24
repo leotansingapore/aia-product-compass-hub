@@ -1,5 +1,6 @@
 ---
 id: assignment-07
+url_slug: 100-whys
 order: 1
 title: "100 Whys — The Real Reason You're Here"
 short: "Sit down and write 100 reasons you're in this career. The last 40 are the ones that matter."

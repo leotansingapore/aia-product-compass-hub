@@ -1,5 +1,6 @@
 ---
 id: assignment-06
+url_slug: vision-board
 order: 2
 title: "Create Your Vision Board"
 short: "Build the visual of where you're going — what you look at when the week drags."
