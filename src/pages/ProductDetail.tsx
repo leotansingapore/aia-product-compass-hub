@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
@@ -80,10 +80,13 @@ export default function ProductDetail() {
   const isAdminMode = isAdmin;
 
   const coreRedirect = productSlugOrId ? LEGACY_TO_CORE_SLUG[productSlugOrId] : undefined;
-  if (coreRedirect) {
-    const dest = pageId ? `/product/${coreRedirect}/${pageId}` : `/product/${coreRedirect}`;
-    return <Navigate to={dest} replace />;
-  }
+
+  useEffect(() => {
+    if (coreRedirect) {
+      const dest = pageId ? `/product/${coreRedirect}/${pageId}` : `/product/${coreRedirect}`;
+      navigate(dest, { replace: true });
+    }
+  }, [coreRedirect, pageId, navigate]);
 
   const [editingIndexFromUrl, setEditingIndexFromUrl] = useState<number | null>(null);
 
