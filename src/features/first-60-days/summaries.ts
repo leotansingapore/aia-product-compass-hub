@@ -424,8 +424,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 52,
     "week": 9,
     "dayInWeek": 4,
-    "title": "CST — The Wealth Angle",
-    "duration": 20,
+    "title": "Retirement Step-by-Step CST",
+    "duration": 25,
     "hasReflection": false
   },
   {

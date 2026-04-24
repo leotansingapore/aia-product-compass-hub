@@ -1,251 +1,289 @@
 ---
 week: 9
 day: 52
-title: "CST — The Wealth Angle"
+title: "Retirement Step-by-Step CST"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
-duration_minutes: 20
+duration_minutes: 25
 tags: [first-60-days, week-9, skills]
 ---
 
-# Day 52 — CST: The Wealth Angle
+# Day 52 — Retirement Step-by-Step CST
 
-> **The one idea for today:** CST (Client Strategy Talk) is the 5–10 minute reframe you give a client — before you show any product — that makes a specific wealth concept click in their head. The wealth angle reframes saving from "being responsible" into "buying freedom." Once they feel that, the products basically sell themselves.
+> **The one idea for today:** Most clients can't *feel* their retirement gap. They've heard the abstract version a hundred times. Today you'll learn a 9-step paper-and-pen walkthrough that lets the client *watch* their own gap appear, then *watch* the gap close — without you ever pitching a product.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Deliver** a 5-minute CST that frames wealth-building as freedom-building.
-2. **Distinguish** the wealth angle from the risks angle (tomorrow's Day 53).
-3. **Integrate** the CST into the flow of a fact-finding meeting without it feeling like a pitch.
+1. **Capture** the five inputs that drive a retirement story — current age, retirement age, life expectancy, inflation, target monthly lifestyle.
+2. **Draw** the 5-step "Problem" diagram that surfaces the lump sum required and how scary the no-investing version is.
+3. **Draw** the 4-step "Solution" diagram that shows how the same target gets reached with a fraction of the monthly outlay — and how dividends preserve the capital.
 
 ---
 
-## 1. What is a CST?
+## 1. Why this CST is different
 
-A **Client Strategy Talk (CST)** is a short, structured mini-presentation — usually 5–10 minutes — that reframes a specific financial concept for the client.
+Yesterday's CST (Day 51) and the wealth-angle CST you'll see again later both work by *reframing*. This one works by **arithmetic on paper, in front of the client.** The client watches the numbers appear in their own handwriting (or yours, on a whiteboard). They can't unsee them.
 
-It sits **between** fact-finding and recommendation:
-
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;">
-  <div style="background:hsl(217,91%,96%);border:1px solid hsl(217,91%,70%);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">Step 1</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Fact-finding</div><div style="font-size:11px;color:hsl(var(--muted-foreground));margin-top:2px;">SPIN + CFR</div></div>
-  <div style="font-size:22px;color:hsl(var(--muted-foreground));font-weight:700;">→</div>
-  <div style="background:linear-gradient(135deg,hsl(38,92%,94%),hsl(38,92%,88%));border:2px solid hsl(38,92%,50%);border-radius:10px;padding:14px;text-align:center;box-shadow:0 4px 12px hsl(38,92%,50%,0.15);"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(38,92%,38%);text-transform:uppercase;">Step 2 · CST</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Reframe a concept</div><div style="font-size:11px;color:hsl(38,92%,32%);margin-top:2px;font-weight:600;">the bridge</div></div>
-  <div style="font-size:22px;color:hsl(var(--muted-foreground));font-weight:700;">→</div>
-  <div style="background:hsl(160,84%,94%);border:1px solid hsl(160,84%,55%);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(160,84%,28%);text-transform:uppercase;">Step 3</div><div style="font-weight:700;font-size:14px;margin-top:4px;color:hsl(var(--foreground));">Recommendation</div><div style="font-size:11px;color:hsl(var(--muted-foreground));margin-top:2px;">products</div></div>
-</div>
-
-```mermaid
-flowchart TD
-    A["Fact-finding<br/>SPIN + CFR"] --> B["CST<br/>Reframe the concept"]
-    B --> C["Recommendation<br/>Products as tools"]
-```
-
-The purpose: **change how the client thinks about a topic** before you recommend solutions. A client who sees wealth-building as "being responsible" buys reluctantly. A client who sees it as "buying freedom" buys enthusiastically.
-
-## 2. The Wealth Angle — the core reframe
-
-Most people approach wealth-building with one of three mindsets:
-
-| Mindset | What they believe | Behaviour |
-|---|---|---|
-| Scarcity | "Money is hard to make; hold tight." | Hoard cash, under-invest |
-| Consumption | "Money is for enjoying now." | Spend everything, no plan |
-| **Freedom** | **"Money buys optionality — time, choice, security."** | **Save deliberately, invest, compound** |
-
-The Wealth Angle CST moves the client from mindset 1 or 2 to mindset 3.
-
-**The core reframe:**
-
-> "You're not saving money for its own sake. You're buying freedom — the day your passive income covers your expenses is the day you stop needing a job. Every dollar invested today is a dollar of future freedom. That's what we're actually doing when we plan wealth."
-
-This is the same freedom formula from Day 10, delivered as a live concept for the client.
-
-## 3. The structure of a Wealth Angle CST
-
-A good CST follows this 5-part structure. Total time: ~5–7 minutes.
-
-### 1. The hook (30 sec)
-Open with a question that makes them think.
-
-> "Can I ask — when you think about retirement, what's the actual picture in your head? What are you doing? Where are you living?"
-
-*Let them answer. Usually it's vague — travel, time with family, no boss.*
-
-### 2. The reframe (1 min)
-Name what they actually want.
-
-> "So what you're really describing is **freedom.** Not insurance, not investments, not products. Freedom — the ability to choose what you do with your time. That's the real goal. Everything else we talk about is just tools to buy that."
-
-### 3. The formula (2 min)
-Give them the math.
-
-> "Here's the formula for freedom. It's simpler than most people think.
->
-> **Passive income > Monthly expenses = Freedom.**
->
-> That's it. The day your passive income — from investments, CPF, rental, savings plans — covers your expenses, you're free. Not rich. Not famous. *Free.*
->
-> For you, with expenses around $[X]/month today and inflation taking that to roughly $[Y]/month at 65, freedom means building an income stream of $[Y]/month by age 65."
-
-### 4. The levers (1.5 min)
-Show them the two levers.
-
-> "There are only two ways to close the gap between today and freedom:
->
-> 1. **Grow passive income** — invest, save, let compounding work.
-> 2. **Right-size expenses** — distinguish real needs from lifestyle inflation.
->
-> Most people focus only on the first. The best advisors help clients do both — without moralising about how they spend."
+The structure is two diagrams, drawn in sequence:
 
 ```mermaid
 flowchart LR
-    A["Freedom gap<br/>Expenses - Passive income"] --> B["Lever 1<br/>Grow passive income"]
-    A --> C["Lever 2<br/>Right-size expenses"]
-    B --> D["Freedom<br/>Passive income covers expenses"]
-    C --> D
+    A["Capture the<br/>5 inputs"] --> B["Diagram 1<br/>The Problem<br/>5 steps"]
+    B --> C["Diagram 2<br/>The Solution<br/>4 steps"]
+    C --> D["Open the door<br/>to fact-find"]
+    style B fill:#7a1f3d,color:#fff
+    style C fill:#1a5c3a,color:#fff
 ```
 
-### 5. The transition (30 sec)
-Move to recommendation.
+Total time in the meeting: 10–12 minutes once you've practised it. Most new FCs run it too fast on the first attempt. The pauses between steps are the conversion — don't rush.
 
-> "So that's the frame — freedom, not products. With that in mind, let me show you how we'd actually build your stream of passive income."
+## 2. The five inputs (capture these first)
 
-Then you present the plan.
+Before you draw anything, ask the client these five questions in order. Write each answer on the page so they can see them:
 
-## 4. Why CSTs work
+| # | Ask | Default if they don't know |
+|---|---|---|
+| 1 | "How old are you today?" | (must have) |
+| 2 | "What age do you want to stop working?" | 65 |
+| 3 | "How long do you expect to live? Most Singaporeans now plan to 85." | 85 |
+| 4 | "What's the lifestyle you'd want each month in today's dollars — same as now, more, or less?" | same as current monthly spending |
+| 5 | "We'll plan with 2.5% inflation — that's the long-term Singapore average. OK?" | 2.5% |
 
-A CST works because:
+Write these five numbers across the top of the page. They're the constants for everything that follows.
 
-1. **It's not a pitch.** It's a conversation about the client's own goals.
-2. **It uses their numbers** (expenses, retirement age) — not generic examples.
-3. **It installs a mental frame** the client keeps after you leave.
-4. **It makes the product feel like a tool**, not a product.
+> **Worked example used through the rest of this lesson:** Age 30, retire 65, life expectancy 85, inflation 2.5%, lifestyle $5,000/mth.
 
-**The key discipline:** don't skip from fact-finding to product without a CST. The CST is the mental bridge. Clients who hear a CST are 2–3× more likely to say yes to the recommendation.
+---
 
-## 5. Variations of the Wealth CST
+## 3. Diagram 1 — The Problem (5 steps)
 
-You'll use the Wealth Angle with different client profiles. Adapt the CST accordingly.
+Draw a horizontal timeline with three tick marks: **Age 30 (today)**, **Age 65 (retirement)**, **Age 85 (end)**. Leave plenty of room above the line — the rising curve and the calculation will live up there.
 
-### For a 25–35 year old (accumulation phase)
-Emphasise **time and compounding.**
+### Step 1 — Mark today and draw the inflation slope
 
-> "You have one massive advantage nobody can buy: time. A dollar you invest today compounds for 30–40 years. A dollar at 45 compounds for 15. That 25-year head start can mean 3–5× more at retirement, on the same monthly contribution."
+**Draw:** A red dot on Age 30. From that dot, draw a rising line up to Age 65. Label the start *"$5,000/mth — your desired lifestyle"*. Label the slope *"2.5% p.a. inflation"*.
 
-### For a 35–50 year old (catch-up phase)
-Emphasise **systematisation and automation.**
+**Say (slowly, while drawing):**
+> "Today, $5,000 a month gives you the lifestyle you want. But inflation doesn't sleep — at 2.5% a year, the same lifestyle gets more expensive every year. So this line is the cost of *the same lifestyle*, going up over the next 35 years."
 
-> "The good news: you still have 15–25 years of compounding. The key is consistency. A disciplined monthly contribution, auto-deducted, beats any attempt to 'save when I have extra.' We're building the system that saves for you."
+**Pause.** Let the curve sit on the page for a beat.
 
-### For a 50+ year old (preservation + income phase)
-Emphasise **income streams and de-risking.**
+### Step 2 — Ask them to guess, then reveal
 
-> "Your focus shifts now. Not growing — protecting and producing. We want income streams that pay for your retirement years while keeping your capital safe from big market drops."
+**Say:**
+> "By the time you're 65 — what do you think this same $5,000 lifestyle will actually cost per month?"
 
-## 6. The three signal phrases to listen for
+Let them guess. Most people guess too low — $7,000, $8,000.
 
-During the CST, watch for these client responses — they tell you it's landing:
+**Then write at the top of the slope:**
+> *"Need ≈ $11,800/mth"*
 
-| Signal | What it means |
+**Say:**
+> "Almost $12K a month — just to keep what you have today."
+
+The number lands harder *because they guessed first*. Don't skip the guess.
+
+### Step 3 — The lump sum reveal
+
+**Write underneath:**
+
+```
+$11,800/mth × 12 months × 20 retirement years
+= ≈ $2.85 MILLION
+```
+
+Make the lump-sum figure **the biggest number on the page**. Underline it twice.
+
+**Say:**
+> "So between 65 and 85, just to fund the same lifestyle you have today, your retirement pot needs about $2.85 million sitting there ready to draw down."
+
+**Pause.** Most clients react here. Don't fill the silence.
+
+### Step 4 — The depletion line
+
+**Draw:** From the peak of the line at Age 65, a *dashed grey line* sloping down to $0 at Age 85. Add little down-arrows along the way to show drawdowns. Label: *"Capital depletes → $0"*.
+
+**Say:**
+> "And in this version, every dollar you spend in retirement comes *out of* the $2.85M. So at 85 — best case, perfect plan — there's nothing left. No buffer for a long-term care bill. No legacy for the kids."
+
+### Step 5 — The "no investing" reality check
+
+**Calculate live:**
+
+```
+$2,850,000  ÷  (35 years × 12 months)
+=  ≈ $6,800 / month
+```
+
+**Write the number very large:**
+
+> *"Save $6,800/mth, every month, for 35 years — and still end at $0."*
+
+**Say (this is the gut-punch line):**
+> "If you just save the money — no investing, no growth — you need to put away about $6,800 every single month for the next 35 years. That's the safe path. And it still ends at zero at 85."
+
+**Stop. Don't transition immediately to the solution.** Let the discomfort sit. The client should now be slightly worried — that's the conversion.
+
+---
+
+## 4. Diagram 2 — The Solution (4 steps)
+
+On the same page (or a fresh one — your call), redraw the timeline. This time you're drawing in **green**, not red.
+
+### Step 1 — Replace "save" with "invest"
+
+**Draw:** A green dot at Age 30. From there, a rising green curve up to Age 65 — but this curve grows *steeper* than the inflation line, because compound returns compound.
+
+**Label the curve:**
+> *"Invest $1,700/mth"*
+
+**Say:**
+> "Same target — $2.85 million by 65. But this time we're not just saving — we're investing in a diversified global portfolio. Historical long-term return is around 6.6% per year. With that growth working for you, you don't need $6,800 a month. You need about **$1,700**."
+
+**Let the contrast land.** $6,800 → $1,700 is an 80%+ reduction.
+
+### Step 2 — Hit the target
+
+**Draw:** A bigger green dot at Age 65. Label above it:
+
+> *"$2.85M achieved → reinvest for dividends"*
+
+**Say:**
+> "At 65, you've hit the target. Now the question becomes: *how* you take income matters more than the size of the pot."
+
+### Step 3 — The two paths from age 65
+
+This is the most powerful moment. You're going to draw two paths from the same retirement dot:
+
+**Path A — the old version (re-draw it from yesterday's diagram):** dashed grey line dropping to $0 at age 85.
+
+**Path B — the dividend version:** A *horizontal* green line from Age 65 to Age 85, *staying at the same height*. Add small downward arrows hanging off the green line — those are the dividends. Label below the arrows:
+
+> *"≈ $14,900/mth in dividends"*
+
+At Age 85 on the green line, write:
+
+> *"$2.85M still preserved"*
+
+**Say:**
+> "If your $2.85M is invested at a 6.3% dividend yield, it pays out about $14,900 a month — which more than covers your $11,800 lifestyle. The capital itself stays intact. So you're not draining a tank. You're drinking from a stream."
+
+> "And what's left at 85 — $2.85 million — becomes your legacy. Or your buffer. Or your medical safety net. Your call."
+
+### Step 4 — The side-by-side card
+
+Either draw two boxes on the page or hand them this comparison:
+
+| | **WITHOUT Investing** | **WITH Investing** |
+|---|---|---|
+| Monthly outlay (35 years) | **$6,800/mth** | **$1,700/mth** |
+| Outcome at 85 | Capital depletes to $0 | $2.85M preserved + $14,900/mth dividends |
+| Headline | "Save and survive" | "Invest and thrive" |
+
+**Say (the closing line):**
+> "Same goal. Same target lifestyle. The only thing that changes between these two columns is the choice to *invest* instead of just *save*. That's the conversation we need to have."
+
+---
+
+## 5. The door-opener
+
+Don't recommend a product yet. Land here:
+
+> "I'm not going to suggest anything specific today. The right portfolio depends on your time horizon, what's already in CPF, what your risk tolerance actually is — none of which we've covered yet. Mind if I run through a proper fact-find with you, then come back with an actual plan that gets you to that $2.85M at $1,700 a month, instead of $6,800?"
+
+That last sentence is the entire sale. You've earned the second meeting.
+
+## 6. Why this CST works
+
+1. **The math is theirs.** They watched the numbers appear in real time. They cannot un-see $6,800/mth or $1,700/mth.
+2. **They guessed.** The reveal of "$11,800/mth" lands harder because their gut said $7,000.
+3. **The two paths are visually permanent.** A green line that *stays flat* at $2.85M next to a grey line that *falls to $0* — that image stays with them after the meeting ends.
+4. **It's a teaching frame, not a sale.** You haven't named a single product. You've made the gap and the leverage of investing undeniable. The product recommendation becomes the only logical next step.
+
+## 7. Common reactions and how to handle them
+
+| Reaction | Reframe |
 |---|---|
-| "I've never thought of it that way." | Frame shift happening ✓ |
-| "That actually makes sense." | Intellectual agreement ✓ |
-| "So how do I actually do that?" | Ready for the recommendation ✓ |
+| *"$1,700/mth is still a lot."* | "It is — but compare it to the alternative. The whole point of the exercise is that doing nothing is more expensive than doing something. We can also start smaller — $500/mth today, scaling up as your income grows. The number on the diagram is the *finish line*, not the starting block." |
+| *"How do I know I'll get 6.6% returns?"* | "You don't. That's the historical average for a global balanced portfolio over multi-decade horizons — past performance, not a guarantee. We use it as the planning assumption because it's defensible. Your actual portfolio will fluctuate, which is why we'd review it at least annually." |
+| *"I'd rather buy property."* | "Property can be one of the layers. The question is whether the *income stream* it produces — net of mortgage, maintenance, and vacancy — gets you to $11,800/mth in retirement. Sometimes yes. Often the cash flow tells a different story. We can run both scenarios side by side." |
+| *"My CPF will cover most of it."* | "CPF LIFE pays roughly $1,500–$2,500/mth for most Singaporeans. Against an $11,800/mth target, that closes about 15–20% of the gap. The rest still has to come from somewhere." |
+| *"Why are you showing me this scary version?"* | "Because most plans gloss over inflation and assume retirement is 10 years, not 20. You deserve to see the real number first, then choose what to do about it. The good news is the second diagram is the *easy* version." |
 
-If you **don't** hear these signals by the end of the CST — the reframe didn't land. Either slow down, use more of their own numbers, or pause and ask: "Does this frame make sense to you?"
+## 8. Compliance checklist
 
-## 7. Common CST mistakes
+- All return assumptions (6.62%, 6.3% dividend yield) are illustrative averages, not guarantees. State this verbally before you write any number.
+- The lump-sum calculation here is intentionally simplified — `monthly × 12 × years` ignores inflation *during* retirement and assumes flat drawdown. When you move to a real plan, use proper iResource illustrations.
+- Inflation rate of 2.5% is the long-term Singapore CPI average. State the source if asked.
+- The "$2.85M dividend yields $14,900/mth at 6.3%" scenario assumes a specific dividend portfolio that may not match the client's risk profile. Don't promise a yield.
+- Any actual product recommendation must come with the full guaranteed / non-guaranteed split and the standard "past performance does not guarantee future results" disclosure.
 
-### Mistake 1: Making it a lecture
-A CST is a conversation, not a monologue. **Ask questions throughout.** Check they're tracking.
-
-### Mistake 2: Skipping their numbers
-A generic CST feels like a sales pitch. Always use **their** expenses, **their** age, **their** retirement target.
-
-### Mistake 3: Jumping straight to products
-Don't shortcut the frame-building. The 5 minutes you invest in CST pay back 3× in close rate.
-
-### Mistake 4: Over-long CSTs
-10+ minutes of reframing becomes a lecture. Stay under 7.
-
-### Mistake 5: CST without SPIN first
-A CST on a client who hasn't felt their problem yet falls flat. Always SPIN first, then CST, then recommend.
-
-## 8. The Wealth Angle + CPF
-
-For Singaporean clients, always anchor the Wealth CST to CPF. They already have one income stream there — your plan is adding layers.
-
-**The integration:**
-
-> "You already have the foundation — your CPF LIFE will produce around $[X]/month starting at 65. That's great. But if your target expense is $[Y]/month, there's a gap of $[Y−X] per month. Our job is to build income streams to close that gap. Here's how."
-
-This respects what the government has already built, honours the client's existing efforts, and positions your plan as the **complement** — not a replacement.
-
+---
 
 ## Quick quiz
 
-1. **The Wealth CST moves the client from what mindset to what mindset?**
-   - A) From poor to rich
-   - B) From scarcity or consumption mindset → freedom mindset ✓
-   - C) From saver to investor
-   - D) From risk-averse to risk-taking
+1. **What are the 5 inputs you capture before drawing anything?**
+ - A) Age, salary, savings, expenses, debts
+ - B) Current age, retirement age, life expectancy, inflation rate, target monthly lifestyle ✓
+ - C) Income, CPF balance, OA, SA, MA
+ - D) Net worth, monthly spending, mortgage, age, kids
 
-   **Why:** The Wealth Angle specifically addresses the two unproductive money mindsets — scarcity (hoard cash, under-invest) and consumption (spend everything, no plan) — and reframes wealth-building as buying optionality and freedom. The shift from poor to rich (A) is an outcome, not a mindset reframe. Saver to investor (C) is a behaviour change, not the conceptual shift the CST is designed to produce. Risk tolerance (D) is never mentioned as the target of the Wealth CST.
+ **Why:** The 5 inputs that drive the whole walkthrough are current age, retirement age, life expectancy, inflation rate, and target monthly lifestyle. They're the constants you write across the top of the page before any line is drawn. A and D mix in inputs (debts, mortgage) that don't affect the retirement-pot math at this CST level. C is a CPF-specific subset that doesn't include lifestyle or life expectancy — both are essential.
 
-2. **The core formula for the Wealth CST:**
-   - A) Income × Years = Wealth
-   - B) Passive income > Monthly expenses = Freedom ✓
-   - C) Save 20% = Financial independence
-   - D) Compounding × Time = Wealth
+2. **In Step 2 of the Problem diagram, why do you ask the client to guess the inflated number before revealing it?**
+ - A) Compliance requires client involvement at every step
+ - B) The reveal of the actual number lands harder when their gut estimate was too low ✓
+ - C) It saves the FC from having to do the calculation
+ - D) Guessing is required by the framework's IP
 
-   **Why:** The formula "passive income > monthly expenses = freedom" is the exact frame the Wealth CST is built around — it defines freedom as a mathematical threshold, not a feeling or a number. The 20% rule (C) is a generic savings heuristic, not the CST's framework. Compounding and time (D) are important levers but are not the core formula. Income times years (A) is not a concept used anywhere in the CST.
+ **Why:** Most clients guess $7,000–$8,000 for the future cost of a $5,000 lifestyle 35 years out. The actual answer (~$11,800) lands as a real "wow" moment specifically because their gut was already anchored too low. Skipping the guess turns the reveal into a passive number; including the guess turns it into a felt one. A invents a compliance rule. C is the wrong reason — you still do the math; the client just owns the surprise. D is a fabricated framework rule.
 
-3. **The 3 signals that tell you the CST is landing:**
-   - A) Smiles, nods, handshakes
-   - B) "I've never thought of it that way," "That makes sense," "So how do I do that?" ✓
-   - C) Silence, pause, lean-in
-   - D) Objections, clarifications, counter-questions
+3. **The "no investing" outcome in Step 5 — what's the headline number for the worked example (age 30 → 65 → 85, $5,000 lifestyle, 2.5% inflation)?**
+ - A) Save $1,700/mth and end with $0 at 85
+ - B) Save $6,800/mth and end with $0 at 85 ✓
+ - C) Save $5,000/mth and grow it to $2.85M
+ - D) Save $11,800/mth to be safe
 
-   **Why:** The three verbal signal phrases specifically indicate a cognitive frame shift ("never thought of it that way"), intellectual agreement ("that makes sense"), and readiness for recommendation ("so how do I do that?"). Physical cues like smiles or nods (A) are ambiguous and not the specific diagnostic signals named in the material. Silence (C) could indicate confusion, not agreement. Objections and counter-questions (D) suggest the CST hasn't landed and needs more work.
+ **Why:** The Step 5 calculation is `$2,850,000 ÷ (35 years × 12 months) = ≈ $6,800/mth`. That's the no-investing reality: even saving $6,800 every month for 35 years, the capital still depletes to $0 at age 85 because no growth was applied. A is the *investing* version — that's the next diagram. C confuses the lifestyle with the savings target. D doubles the actual figure.
 
-4. **A 29-year-old client with no dependents wants to "start investing." Which Wealth CST variation is most appropriate?**
-   - A) Income streams and de-risking — they need to think about preservation
-   - B) Systematisation and automation — consistency beats timing
-   - C) Time and compounding — emphasise the head start they have while young ✓
-   - D) CPF LIFE gap analysis — retirement income is the key lever
+4. **What does the green horizontal line in Step 3 of the Solution diagram represent?**
+ - A) The lifestyle staying flat through retirement
+ - B) The capital staying preserved while dividends are paid out from it ✓
+ - C) The investment return rate
+ - D) Inflation flatlining at 0%
 
-   **Why:** A 25–35 year old in the accumulation phase has the single greatest advantage no one can buy — time. The compounding variation speaks directly to this and maximises the motivational case for starting early. Preservation and de-risking (A) is for pre-retirees who have already built wealth. Systematisation (B) is the 35–50 catch-up framing. CPF LIFE gap analysis (D) is a useful integration point but not the primary variation for this life stage.
+ **Why:** The solution version splits into two paths from the retirement dot — Path A is the dashed grey line depleting to $0 (the old approach), and Path B is the green horizontal line representing the capital staying intact while dividends are drawn off it. The dividend arrows hang *down* from the line. A confuses lifestyle with capital — lifestyle still inflates. C and D aren't on the diagram at all.
 
-5. **You deliver the Wealth CST formula: passive income > monthly expenses = freedom. The client is silent and doesn't respond. What should you do?**
-   - A) Continue to the levers section immediately
-   - B) Repeat the formula using different words
-   - C) Check whether the frame landed: "Does this way of thinking about money make sense to you?" ✓
-   - D) Skip to the product recommendation — the silence means they agree
+5. **The compelling contrast at the end — what's the monthly outlay difference for the worked example?**
+ - A) $6,800/mth (save) vs $5,000/mth (invest)
+ - B) $6,800/mth (save) vs $1,700/mth (invest) ✓
+ - C) $11,800/mth vs $1,700/mth
+ - D) $2.85M vs $1,700/mth
 
-   **Why:** Silence after a reframe can mean confusion, processing, or non-engagement — you need to diagnose which before moving forward. Asking directly whether the frame makes sense is the prescribed check. Continuing immediately (A) risks building on a foundation that hasn't been accepted. Repeating it (B) may help if the issue is phrasing, but the better move is to invite feedback first. Silence does not mean agreement (D); proceeding to product without confirmation risks presenting to someone who hasn't bought the frame.
+ **Why:** The whole walkthrough culminates in this side-by-side: $6,800/mth without investing (capital depletes to $0) vs $1,700/mth with investing (capital preserved + dividend stream). That's an 80%+ reduction in monthly outlay AND a better outcome — the closing line of the CST. A inflates the investing side. C and D mix up the units (lifestyle, lump sum) with the savings rate.
 
-6. **The Wealth CST covers two levers for closing the freedom gap. What are they?**
-   - A) Saving more and spending less
-   - B) Investing aggressively and cutting debt
-   - C) Growing passive income and right-sizing expenses through deliberate distinction of needs vs lifestyle inflation ✓
-   - D) Maximising CPF and buying property
+6. **In the door-opener at the end, what's the right move?**
+ - A) Recommend a specific ILP that targets 6.6% returns
+ - B) Ask permission for a proper fact-find — no product yet ✓
+ - C) Send a follow-up email with calculator screenshots
+ - D) Schedule a second meeting with a senior FC
 
-   **Why:** The two levers are growing passive income (investing, saving, compounding) and right-sizing expenses by distinguishing genuine needs from lifestyle inflation — without moralising about spending. "Saving more and spending less" (A) is close but too blunt and doesn't capture the non-judgmental nuance of the CST framing. Aggressive investing and debt cutting (B) are tactics, not the conceptual levers. CPF and property (D) are specific tools, not the two structural levers.
+ **Why:** The closing line is *"Mind if I run through a proper fact-find with you, then come back with an actual plan…"* The CST has done its job — installed the gap and the leverage. The recommendation needs the real fact-find first. A is the classic new-FC trap of pitching during the demo. C delays without earning the relationship. D outsources the conversation prematurely; the trust just established belongs to *you* in the room.
 
-7. **For a Singaporean client, the Wealth CST should acknowledge CPF LIFE because:**
-   - A) CPF LIFE is enough on its own — no gap to address
-   - B) It shows respect for existing efforts and positions your plan as a complement to close the remaining income gap ✓
-   - C) It avoids any conversation about the government
-   - D) It is required by MAS regulations before recommending any plan
+7. **Which compliance line MUST go in front of any number you write?**
+ - A) "These figures are guaranteed by AIA"
+ - B) "Returns are illustrative averages, not guarantees" ✓
+ - C) "Dividends are tax-free in Singapore"
+ - D) "Inflation will definitely be 2.5%"
 
-   **Why:** Acknowledging CPF LIFE respects what the client has already built and what the government has provided, positioning your recommendation as the complement rather than a replacement. CPF LIFE alone is explicitly not enough for most clients — there is nearly always a gap between the CPF payout and the target retirement expense (A is wrong). Avoiding government topics (C) is irrelevant — the material endorses referencing CPF openly. There is no MAS requirement to reference CPF LIFE before making a recommendation (D).
+ **Why:** Both 6.62% (long-term return) and 6.3% (dividend yield) are illustrative historical averages — not guarantees. State this verbally *before* writing any number on the page. A is fundamentally false — non-guaranteed returns can never be presented as guaranteed. C is a tax claim that's not the focus and could mislead. D presents an assumption as a certainty.
 
 ---
 
 ## Related
 
-- Previous: [[day-51|Day 51 — Client Financial Review: Part 2]]
-- Next: [[day-53|Day 53 — CST: The Risks Angle]]
+- Previous: [[day-51|Day 51 — CST: The Risks Angle]]
+- Next: [[day-53|Day 53 — CST: Tax-Efficient Wealth]]
