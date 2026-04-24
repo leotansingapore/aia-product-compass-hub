@@ -23,6 +23,50 @@ By the end of today you should be able to:
 
 ---
 
+## 0. Why concept selling has to exist
+
+There's a foundational reason concept selling isn't optional for financial advisory — it's structural to what a financial product *is*:
+
+<div style="margin:1.5rem 0;border:2px solid hsl(var(--foreground));border-radius:6px;overflow:hidden;font-family:ui-serif,Georgia,serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;">
+    <!-- Top-left: Property -->
+    <div style="padding:1.25rem 1.5rem;border-right:2px solid hsl(var(--foreground));border-bottom:2px solid hsl(var(--foreground));">
+      <div style="font-size:1.5rem;font-weight:600;letter-spacing:-0.01em;">Property</div>
+    </div>
+    <!-- Top-right: Financial Products -->
+    <div style="padding:1.25rem 1.5rem;border-bottom:2px solid hsl(var(--foreground));">
+      <div style="font-size:1.5rem;font-weight:600;letter-spacing:-0.01em;">Financial Products</div>
+    </div>
+    <!-- Bottom-left: Physical -->
+    <div style="padding:1.25rem 1.5rem;border-right:2px solid hsl(var(--foreground));">
+      <div style="font-size:1.15rem;font-weight:600;margin-bottom:0.65rem;">Physical</div>
+      <div style="font-size:0.95rem;color:hsl(var(--muted-foreground));line-height:1.6;">
+        Can see<br/>
+        Can touch<br/>
+        Can feel
+      </div>
+    </div>
+    <!-- Bottom-right: Conceptual -->
+    <div style="padding:1.25rem 1.5rem;">
+      <div style="font-size:1.15rem;font-weight:600;margin-bottom:0.65rem;">Conceptual</div>
+      <div style="font-size:0.95rem;color:hsl(var(--muted-foreground));line-height:1.6;">
+        Can't listen<br/>
+        Can't hear<br/>
+        Can't see<br/>
+        <span style="font-weight:600;color:hsl(var(--foreground));">Can understand</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+**Read the quadrant carefully.** A house is *physical*. A prospect can walk into it, touch the walls, smell the air, sit in the living room and imagine their own life there. The product sells itself through the senses — see it, touch it, feel it.
+
+A financial product has none of that. There's no thing to walk into. No texture. No view from the balcony. The only sense it engages is **understanding** — and understanding is built through *concepts*, not features.
+
+**This is why concept selling isn't a sales technique. It's the only way the category works.** Try to sell an endowment plan the way you'd sell a condo — by showing the brochure, the floorplan, the projected yield — and you're using the wrong sense organ for the wrong category. The client *can't* feel a 4% IRR. They can only understand what 4% compounded for 30 years *means* for the life they want to live.
+
+Every other technique in this lesson — the three concept frames, the 5-minute structure, the rapport-then-concept-then-product flow — is downstream of this one truth: **financial products live in the right column. Sell them like the right column.**
+
 ## 1. Concept selling vs product selling
 
 ### Product selling

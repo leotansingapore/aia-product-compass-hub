@@ -5,13 +5,13 @@ title: "Retirement Step-by-Step CST"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
-duration_minutes: 25
+duration_minutes: 35
 tags: [first-60-days, week-9, skills]
 ---
 
 # Day 52 — Retirement Step-by-Step CST
 
-> **The one idea for today:** Most clients can't *feel* their retirement gap. They've heard the abstract version a hundred times. Today you'll learn a 9-step paper-and-pen walkthrough that lets the client *watch* their own gap appear, then *watch* the gap close — without you ever pitching a product.
+> **The one idea for today:** Most clients can't *feel* their retirement gap. They've heard the abstract version a hundred times. Today you'll learn a paper-and-pen walkthrough that lets the client *watch* their own gap appear, then *watch* the gap close — without you ever pitching a product.
 
 ## What you'll walk away with
 
@@ -20,8 +20,19 @@ By the end of today you should be able to:
 1. **Capture** the five inputs that drive a retirement story — current age, retirement age, life expectancy, inflation, target monthly lifestyle.
 2. **Draw** the 5-step "Problem" diagram that surfaces the lump sum required and how scary the no-investing version is.
 3. **Draw** the 4-step "Solution" diagram that shows how the same target gets reached with a fraction of the monthly outlay — and how dividends preserve the capital.
+4. **Extend** the conversation with the 1/3 income rule, the four AIA-vs-DIY differentiators, the bonus structure, and the fees comparison.
 
 ---
+
+## 0. Concept-draw FIRST. Slides come SECOND. Slides are *your* tool.
+
+The single biggest mistake new FCs make is opening the laptop, projecting the AIA presenter, and trying to *explain* slides to the client. The brain switches off. There are too many fields, too many bullets, too many things going on at once.
+
+> **Concept-drawing on a single page first → presenter slides only AFTER.**
+
+The presenter is your reference deck and your compliance backup. It's not the show. The show is *you, drawing two diagrams, on one piece of paper, while the client watches their own retirement story appear.* Once they've felt it, the slides confirm and document it. Reverse that order and you lose the room.
+
+This page contains both diagrams plus the live extension scripts that come after them. Practise drawing all of it from memory before your next prospect meeting.
 
 ## 1. Why this CST is different
 
@@ -60,7 +71,11 @@ Write these five numbers across the top of the page. They're the constants for e
 
 ## 3. Diagram 1 — The Problem (5 steps)
 
-Draw a horizontal timeline with three tick marks: **Age 30 (today)**, **Age 65 (retirement)**, **Age 85 (end)**. Leave plenty of room above the line — the rising curve and the calculation will live up there.
+This is what the finished diagram looks like — the rendered version inside the AIA Total Wealth tool with the same worked example (Age 30 → 65 → 85, $5,000/mth lifestyle, 2.5% inflation):
+
+![Step-by-step retirement Problem diagram — inflation slope from $5,000 to $11,866 a month at age 65, $11,866 × 12 × 20 yrs = $2.8M needed, capital depletion line down to $0, and the reveal card showing 'You need to save $6,781/mth' with capital running out at age 85](/first-60-days/images/retirement-problem.webp)
+
+When you draw this for a client, you draw a horizontal timeline with three tick marks: **Age 30 (today)**, **Age 65 (retirement)**, **Age 85 (end)**. Leave plenty of room above the line — the rising curve and the calculation will live up there.
 
 ### Step 1 — Mark today and draw the inflation slope
 
@@ -131,6 +146,10 @@ $2,850,000  ÷  (35 years × 12 months)
 
 ## 4. Diagram 2 — The Solution (4 steps)
 
+The rendered version of the Solution diagram, same worked example:
+
+![Step-by-step retirement Solution diagram — green growth slope from age 30 to 65 labelled 'Invest $1,730/mth', 'Achieve $2.8M — Reinvest for dividends' at retirement, dashed grey depletion line vs solid green capital-preserved line with $14,951/mth dividend arrows, and side-by-side comparison cards showing $6,781/mth save without investing vs $1,730/mth invest with capital preserved + $14,951/mth dividends](/first-60-days/images/retirement-solution.webp)
+
 On the same page (or a fresh one — your call), redraw the timeline. This time you're drawing in **green**, not red.
 
 ### Step 1 — Replace "save" with "invest"
@@ -188,22 +207,101 @@ Either draw two boxes on the page or hand them this comparison:
 
 ---
 
-## 5. The door-opener
+## 5. Extension — the 1/3 income rule
 
-Don't recommend a product yet. Land here:
+After the two diagrams land, the natural follow-up question from the client is *"Where does $1,730/mth even come from?"* Use the **1/3 rule** to make the budgeting feel doable instead of impossible.
 
-> "I'm not going to suggest anything specific today. The right portfolio depends on your time horizon, what's already in CPF, what your risk tolerance actually is — none of which we've covered yet. Mind if I run through a proper fact-find with you, then come back with an actual plan that gets you to that $2.85M at $1,700 a month, instead of $6,800?"
+**Draw on the page:**
+
+```
+Take-home income (e.g. $3,000 of a $5,000 salary)
+├─ Short term  · ~1/3 · ~$1,000  →  food, transport, daily bills
+├─ Mid term    · ~1/3 · ~$1,000  →  rent, house, kids
+└─ Long term   · ~1/3 · ~$1,000  →  INVESTMENTS + INSURANCE   ← future you
+```
+
+**Say:**
+> "Most people's mistake is they spend the first third on lifestyle, the second third on commitments, and then nothing's left for the long term. They take care of today and ignore future-you. The future-you in 30 years is the one who's going to thank you — or curse you — for what you do with this third right now."
+
+> "If we just commit one third — about $1,000 a month — that's already enough for the investing target we just calculated, plus room for proper protection on top."
+
+This collapses the *"I can't afford it"* objection without you having to push back.
+
+## 6. Extension — what the dividend twist actually means
+
+The Solution diagram showed a horizontal green line + dividend arrows. Reinforce *why* this works in plain language:
+
+> "If you have $2.8M at 65 — do you spend it all at once? No. The smart move is leave the capital invested, take the dividends as your monthly income. At a 6% dividend yield, $2.8M throws off about $14,951 a month — which is *more* than your $11,866 lifestyle target."
+
+> "So you get two things at once: a lifelong stream of passive income, *and* the $2.8M sits there as a legacy for your kids. If you ever need more than $14,951 in a particular month, that capital is your buffer — you've got the breathing room."
+
+## 7. Extension — why this beats DIY (the four AIA-vs-S&P advantages)
+
+Once they're sold on the *concept*, they'll ask the real question: *"Why this and not just DIY into S&P 500?"* You have four specific answers — drawable as a comparison column on the same page.
+
+| Risk in DIY | What AIA does about it |
+|---|---|
+| **Currency risk** — your retirement is in SGD; investing in USD-denominated ETFs exposes you to FX swings, especially as USD weakens long-term. | Plan is denominated in SGD with currency hedging baked in. No SGD-vs-USD wobble eats your retirement income. |
+| **Dividend tax** — US dividends are taxed ~30% at source. On $14,951/mth × 12 × 20 years = ~$3.6M of total dividends, you'd lose >$1M to tax. | The fund's hedging structure means **no dividend taxes** — every dollar of yield reaches the policy. |
+| **Estate tax** — US assets held by non-US persons get hit with up to 30% US estate tax on death. On a $2.8M asset, that's $840K disappearing before your family sees it. | **No estate taxes** on the AIA structure. Full capital passes through. |
+| **Inheritance mismanagement** — heirs receive cash and don't know what to do with it. Big lump sum + no investing experience = often spent down or badly reinvested. | **Secondary insured** — heirs inherit the *policy*, not cash. AIA continues managing the portfolio in their name. No risk of heirs lump-summing the inheritance into the wrong place. |
+
+**One more anchor point — "S&P 500 isn't always the safest":**
+> "Most people assume S&P is the safe default. But there's a 10-year stretch (2003–2013) where the S&P 500 returned roughly *zero* while emerging markets and international did well. Concentration in any one market is a 10-year-loss risk. Global balanced is what survives the bad decades."
+
+## 8. Extension — the bonuses sweetener
+
+Once they understand the structure, introduce the bonuses *after* the value is clear (not as the lead — that signals you're selling, not advising). For a $12K/yr premium, a typical AIA bonus structure looks like:
+
+| When | Bonus | On $12K/yr premium |
+|---|---|---|
+| Year 1 | 10% of annual premium | **$1,200** |
+| Year 2 | 10% of annual premium | **$1,200** |
+| Year 3 | 15% of annual premium | **$1,800** |
+| Years 1–3 total welcome bonus | | **~$6,360** |
+| Year 10 onwards (every year) | 5% of annual premium | **+$600/yr** |
+| Year 20 onwards (every year) | 8% of annual premium | **+$960/yr** |
+
+**Say:**
+> "What seems bigger to you — the $6,360 welcome bonus in the first three years, or the $600 + $960 per year forever after? Most people guess the first one. But if you hold this to 60, you'll have collected ~$45K in lifetime bonuses. And because of the secondary-insured structure, the bonuses keep being paid into your descendants' policy after you're gone — so it's not a 60-year bonus, it's a 100-year one."
+
+Bonuses are real numbers from iResource — don't make them up. Always pull current illustration values from the system before quoting.
+
+## 9. Extension — the fees comparison (FC reference only — *don't* draw for the client)
+
+This one is for *your own* understanding, not for the client whiteboard. A client will ask *"What about fees vs Endowus / Phillip / DIY?"* and you need a one-line answer ready.
+
+```
+First 10 years:
+  AIA              ▓▓▓▓▓▓░░  fees in (offset partly by welcome bonus)
+  Endowus / DIY    ▓░░░░░░░  small recurring management fee
+
+After 10 years:
+  AIA              ▓░░░░░░░░  bonus inflows now > fees → effectively negative cost
+  Endowus / DIY    ▓▓▓▓▓▓▓░  same % fee on a much bigger pot → real $ explodes
+                            (1% of $1M = $10K/yr; over 30 retirement years
+                             that's $300K+ to the platform)
+```
+
+**The one-liner you can say out loud:**
+> "Other platforms charge a small percentage every year. That sounds great when your pot is $50K. When your pot is $2.8M and you're 30 years into retirement, that same 1% becomes ten thousand dollars a year leaving the portfolio — every year. Our structure flips that: front-loaded fees in the first 10 years that get more than offset by bonuses for the rest of the lifetime."
+
+## 10. The door-opener
+
+After all of the above, close the meeting with the door-opener *— don't pitch a product yet*:
+
+> "I'm not going to suggest anything specific today. The right portfolio depends on your time horizon, what's already in CPF, what your risk tolerance actually is — none of which we've covered yet. Mind if I run through a proper fact-find with you, then come back with an actual plan that gets you to that $2.8M at $1,730 a month, instead of $6,781?"
 
 That last sentence is the entire sale. You've earned the second meeting.
 
-## 6. Why this CST works
+## 11. Why this CST works
 
 1. **The math is theirs.** They watched the numbers appear in real time. They cannot un-see $6,800/mth or $1,700/mth.
 2. **They guessed.** The reveal of "$11,800/mth" lands harder because their gut said $7,000.
 3. **The two paths are visually permanent.** A green line that *stays flat* at $2.85M next to a grey line that *falls to $0* — that image stays with them after the meeting ends.
 4. **It's a teaching frame, not a sale.** You haven't named a single product. You've made the gap and the leverage of investing undeniable. The product recommendation becomes the only logical next step.
 
-## 7. Common reactions and how to handle them
+## 12. Common reactions and how to handle them
 
 | Reaction | Reframe |
 |---|---|
@@ -213,7 +311,7 @@ That last sentence is the entire sale. You've earned the second meeting.
 | *"My CPF will cover most of it."* | "CPF LIFE pays roughly $1,500–$2,500/mth for most Singaporeans. Against an $11,800/mth target, that closes about 15–20% of the gap. The rest still has to come from somewhere." |
 | *"Why are you showing me this scary version?"* | "Because most plans gloss over inflation and assume retirement is 10 years, not 20. You deserve to see the real number first, then choose what to do about it. The good news is the second diagram is the *easy* version." |
 
-## 8. Compliance checklist
+## 13. Compliance checklist
 
 - All return assumptions (6.62%, 6.3% dividend yield) are illustrative averages, not guarantees. State this verbally before you write any number.
 - The lump-sum calculation here is intentionally simplified — `monthly × 12 × years` ignores inflation *during* retirement and assumes flat drawdown. When you move to a real plan, use proper iResource illustrations.
