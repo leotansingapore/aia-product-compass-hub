@@ -11,214 +11,226 @@ tags: [first-60-days, week-3, skills]
 
 # Day 14 — The Total Wealth Concept
 
-> **The one idea for today:** Clients don't buy products. They buy a future where they don't need to work to keep the lights on. *Total Wealth* is the name of that future — and it's the single concept your entire career will be built around delivering.
+> **The one idea for today:** A client's wealth has two forms — **Financial Capital** (the money they already have) and **Human Capital** (their future ability to earn). Your job as an FC is to help them convert one into the other, on loop, while protecting the engine that makes it possible.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Define** Total Wealth in one sentence and explain why it's a *target*, not a product.
-2. **Calculate** a client's Freedom Number from two inputs (monthly expenses + expected yield).
-3. **Introduce** the Total Wealth concept in a meeting in under 5 minutes — without pitching a product.
+1. **Define** Total Wealth as Financial Capital + Human Capital, and explain why most people only see one half.
+2. **Name** the four pillars of the Total Wealth Financial Planning System (TWFPS) and the coverage benchmark each one targets.
+3. **Open** the conversation by drawing the Total Wealth equation on paper in under 5 minutes — without pitching a product.
 
 ---
 
-## 1. What clients actually buy
+## 1. The two capitals
 
-The single biggest mistake new FCs make is talking about plans, premiums, and projected returns when the client is shopping for something else entirely.
+Total Wealth has two forms. A client's full wealth is the sum of both:
 
-A client who hands over money for an insurance policy is not buying *the policy*. They are buying:
+<div style="margin:1.25rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;letter-spacing:0.02em;">— the two halves of Total Wealth —</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;">
+    <div style="padding:0 18px 14px;border-left:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i. Financial Capital</div>
+      <div style="font-size:14.5px;font-weight:600;color:hsl(var(--foreground));margin-bottom:4px;letter-spacing:-0.01em;">The money you already have</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.55;">CPF, savings, investments, property equity, insurance cash values. The visible, countable half.</div>
+    </div>
+    <div style="padding:0 18px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
+      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii. Human Capital</div>
+      <div style="font-size:14.5px;font-weight:600;color:hsl(var(--foreground));margin-bottom:4px;letter-spacing:-0.01em;">Your future ability to earn</div>
+      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.55;">Career, skills, energy, years of earning ahead of you. The bigger half — and the one almost no one insures.</div>
+    </div>
+  </div>
+</div>
 
-- **The certainty** that one event won't ruin their family.
-- **The autonomy** of being able to stop working someday without becoming a burden.
-- **The dignity** of choosing how their later years look.
+For a 30-year-old earning $100K/year with 30 working years left, Human Capital is worth roughly **$3M of future income** — usually more than every Financial Capital line item combined. Most clients only think about the visible half. Your job is to surface the invisible one.
 
-This is the language of *outcomes* — and outcomes are what Total Wealth is built around.
+## 2. The conversion engine
 
-## 2. The Total Wealth definition
-
-**Total Wealth = the point where passive income exceeds your expenses.**
-
-That is the entire concept. Six words. Memorise them.
-
-Three implications worth unpacking with every client:
-
-- **It's about flow, not size.** A $5M net worth that throws off no income leaves you needing to work. A $1.2M portfolio paying $5K/month doesn't.
-- **It's personal.** Two clients with identical incomes can have very different Total Wealth targets — because they have very different lifestyles.
-- **It's binary at the threshold.** The day passive income equals expenses is the day you become *financially independent*. Anything above that is *financially free.*
+Building wealth is one repeated motion: convert Human Capital into Financial Capital, and protect both halves while you do it.
 
 ```mermaid
 flowchart LR
-    A["Active income<br/>You work for money"] --> B["Passive income builds<br/>Renewals - dividends - rent"]
-    B --> C{"Passive income<br/>vs expenses?"}
-    C -->|"<"| D["Working by necessity"]
-    C -->|"="| E["Financially independent"]
-    C -->|">"| F["Financially free<br/>Working by choice"]
-    style E fill:#1a3a2a
-    style F fill:#1a3a2a
+    HC["Human Capital<br/>future earning power"] -->|"earn more<br/>spend less<br/>save<br/>invest"| FC["Financial Capital<br/>money working for you"]
+    FC -->|"compounds<br/>throws off income"| HC2["More options<br/>over time"]
+    style HC fill:#1e3a5f,color:#fff
+    style FC fill:#1a5c3a,color:#fff
+    style HC2 fill:#2d2d2d,color:#fff
 ```
 
-## 3. The Freedom Number — the math anyone can do
+Four steps, on loop, for 30+ years:
 
-Total Wealth has a number attached to it. It's called the **Freedom Number** — the size of the asset base required to throw off enough passive income to cover expenses indefinitely.
+1. **Earn more** — career growth, second income, deliberate skill compounding.
+2. **Spend less** — the gap between income and lifestyle *is* the conversion rate.
+3. **Save** — the converted capital, parked safely.
+4. **Invest** — let the capital work for itself.
 
-The formula is honest and short:
+The clients who finish well do this rhythm for decades without breaking it. The clients who don't finish well usually broke the rhythm at one of two points: spending caught up with income, or one uncovered event wiped out years of conversion.
 
-> **Freedom Number = (Monthly expenses × 12) ÷ Expected yield**
+## 3. Protect Human Capital — it's the engine, not a side concern
 
-Worked example for a client whose lifestyle costs **$5,000/month**:
+Here's the part most people miss: the entire conversion engine assumes you can keep working. The day Human Capital stops — accident, critical illness, premature death — the engine stops. Whatever Financial Capital is already in the box has to carry the family for the rest of their lives.
 
-| Expected annual yield | Freedom Number required |
-|---|---:|
-| 3% (conservative — bonds, endowment coupons) | **$2,000,000** |
-| 4% (balanced — diversified portfolio) | **$1,500,000** |
-| 5% (growth — equity-tilted ILPs / dividend stocks) | **$1,200,000** |
+This is why protection isn't an upsell or an add-on. It's the **foundation** that makes everything else possible. If Human Capital collapses without coverage, every other plan fails — the savings get spent, the investments get liquidated, the property gets sold.
 
-That table changes every conversation it appears in. A client looking at "$2M needed by 60" stops thinking in monthly premium terms and starts thinking in lifetime structure terms — exactly where you want them.
+> **Insurance is the most cost-efficient way to manage risk.** It transfers a catastrophic-but-rare loss to an insurer for a small predictable premium — far cheaper than retaining the risk and self-funding a $400K medical bill out of your asset base.
 
-## 4. The three layers that produce Total Wealth
+## 4. The Total Wealth Financial Planning System (TWFPS)
 
-Total Wealth is the *destination*. The road to it is built in three parallel layers — each addressing a different threat to the goal.
+The TWFPS organises every client plan around four pillars — three to protect Human Capital, one to grow Financial Capital.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">— the three layers of Total Wealth —</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;">
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i. Protection</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Defends what you've built</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">CI, hospital, life, disability. One uncovered event undoes a decade of accumulation.</div>
-    </div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii. Accumulation</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Builds the asset base</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">CPF, endowments, ILPs, ETFs. Time + consistency + diversification.</div>
-    </div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii. Distribution</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Converts the base into income</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Annuities, dividend portfolios, rental income, retirement plans. Sequencing matters.</div>
-    </div>
-  </div>
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.25rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;">Skip Protection and the other two layers can be wiped out overnight. Skip Distribution and the asset base just sits there.</div>
-</div>
+| Pillar | What it protects against | Benchmark coverage |
+|---|---|---|
+| **Death / Disability** | Family loses the income engine | **10–20× annual income** |
+| **Critical Illness** | Major medical event + 12–24 months recovery | **$200–400K** or **5× annual income** |
+| **Hospital & Accident** | Sprains, dengue, food poisoning, falls, permanent dismemberment | Hospital plan + PA plan |
+| **Investment & Savings** | Inflation slowly eroding Financial Capital | Global balanced strategy |
 
-Every product you will ever sell maps to one of these three layers. Every conversation you will ever have is about strengthening one of them.
+The first three pillars defend the Human-Capital → Financial-Capital conversion. The fourth makes sure the converted capital actually grows faster than inflation. Together they make sure the engine never has to restart from zero.
+
+```mermaid
+flowchart TD
+    HC["Human Capital · the engine"]
+    HC --> P1["Death / Disability<br/>10-20× income"]
+    HC --> P2["Critical Illness<br/>$200-400K or 5× income"]
+    HC --> P3["Hospital & Accident<br/>full coverage"]
+    HC --> P4["Investment & Savings<br/>global balanced"]
+    P1 --> FC["Financial Capital · the result"]
+    P2 --> FC
+    P3 --> FC
+    P4 --> FC
+    style HC fill:#1e3a5f,color:#fff
+    style FC fill:#1a5c3a,color:#fff
+    style P4 fill:#1a5c3a,color:#fff
+```
 
 ## 5. The 5-minute introduction
 
-Use this in a first meeting once you've established rapport. The goal is to install the *concept*, not close a sale.
+Use this in a first meeting once rapport is established. Goal: install the *concept*, not close a sale.
 
-### Step 1 — The orienting question (30 sec)
-> "When you think about your finances, what's the actual outcome you're working toward — not the next milestone, but the long one?"
+### Step 1 — Draw the two boxes (30 sec)
+On a piece of paper, draw two boxes side by side. Label them **Financial Capital** and **Human Capital**.
 
-*Most clients say something like "comfortable retirement," "freedom to choose," or "not running out." Whatever they say is your anchor for the next four minutes.*
+### Step 2 — Ask which one they think about (30 sec)
+> "Which one do you spend more time thinking about?"
 
-### Step 2 — Name the target (1 min)
-> "There's a single number behind that goal. It's called your Freedom Number — the asset base you need to produce enough passive income to cover your monthly expenses, indefinitely. The day you cross that line is the day work becomes optional."
+Almost everyone says Financial. That's the opening.
 
-### Step 3 — Calculate it together (2 min)
-On a piece of paper, ask:
-- "Roughly how much do you spend in a month right now?"
-- "Let's say in retirement you want a similar lifestyle — call it the same number, adjusted for inflation."
-- Multiply by 12.
-- Divide by an honest expected yield (use 4% — conservative enough to be defensible, generous enough to feel reachable).
+### Step 3 — Surface the invisible half (1 min)
+> "Human Capital is your future earning power — your career, your years of working ahead. For most people in their 30s, it's worth $2-4 million in future income. Way bigger than what's in the Financial box today. But you've probably never had it valued."
 
-Show them the number. Pause.
+Pause. Let it land.
 
-### Step 4 — Show the three layers (1 min)
-> "Getting to that number isn't one product. It's three things working together — protection so one event doesn't wipe out the asset base, accumulation so the base actually grows, and a distribution structure so the base produces real income when you need it. Most people only think about one layer. We work on all three."
+### Step 4 — Draw the arrow (1 min)
+Draw an arrow from Human Capital → Financial Capital. Write four words on it: **earn, spend less, save, invest**.
 
-### Step 5 — Open the door (30 sec)
-> "I'm not going to recommend anything today. The right plan depends on where you are now versus where this number is. Mind if I walk through a few questions to actually understand your situation? Then I can put a real plan together for you."
+> "Building wealth is just this loop, repeated for 30 years. Earn more, spend less than you earn, save the difference, invest it. The arrow is the engine."
 
-That last sentence is the entire sale. You have just earned a fact-finding meeting.
+### Step 5 — Ask the protection question (1 min)
+Underline Human Capital. Ask:
+> "If this stopped tomorrow — accident, illness, anything — how long does what's in the Financial box last your family?"
 
-## 6. Why this works
+Most clients can't answer. That silence is the assignment for the next meeting.
 
-1. **Outcomes-first, products-last.** The client never feels pitched — they feel oriented.
-2. **The math is theirs.** They calculated their own Freedom Number. They cannot un-see it.
-3. **The three layers pre-justify everything you'll later recommend.** Protection isn't an upsell — it's one of the three things they already agreed they need.
-4. **It scales by income.** The same conversation works for a $4,000/month earner and a $40,000/month earner — only the numbers change.
+### Step 6 — Open the door (30 sec)
+> "I'm not going to recommend anything today. The right plan depends on the size of both boxes today and where you want them to be in 20 years. Mind if I run through a few questions to actually understand your situation? Then I can put a real plan together for you."
 
-## 7. Common objections and reframes
+That last sentence is the entire sale. You've earned the fact-find.
 
-| Objection | Reframe |
-|---|---|
-| *"That number is too big — I'll never get there."* | "Most people start that way. The plan is to start the engine, not to leap to the finish. A 25-year-old saving $500/month at a moderate return reaches around $1M by 65 — without any inheritance, salary jumps, or luck." |
-| *"I'd rather just buy property."* | "Property can absolutely be one of the layers. The question is whether the *income stream* it produces — net of mortgage, maintenance, and vacancy — covers the gap between today's lifestyle and your Freedom Number. Sometimes yes. Often the cash flow tells a different story than the headline equity." |
-| *"My CPF will cover most of it."* | "CPF LIFE pays roughly $1,500–$2,500/month for most Singaporeans. If your Freedom Number works out to $5,000/month in expenses, CPF closes about half the gap — the other half still has to come from somewhere." |
-| *"Let me think about it."* | "Of course — this isn't a one-meeting decision. The next step is just a proper fact-find so I can show you the actual gap, not a guess. Take 45 minutes with me, then think on it with real numbers in front of you." |
+## 6. The four risks, in their language
+
+For each pillar, the language to use over the next 30 years:
+
+**Death / Disability**
+> "If you stopped earning today, how many years would your family need to keep going? The standard floor is **10–20× your annual income** — roughly 10–20 years of replacement income for the people who depend on you."
+
+**Critical Illness**
+> "Treatment for a major illness in Singapore typically costs **$200–400K**. On top of that, most people lose 12–24 months of income recovering. The number we plan toward is **5× your annual income** — enough to fund treatment AND survive the recovery gap."
+
+**Hospital & Accident**
+> "Sprains, dengue, food poisoning, an accident at the gym — small stuff happens often. The hospital plan covers what happens inside hospital walls; the accident plan covers everything outside. Both are cheap relative to what one ER bill looks like out of pocket."
+
+**Investment & Savings**
+> "While the protection layer holds the floor, your money still needs to grow faster than inflation. The strategy is **global balanced** — not Singapore-only, not all equities, not all bonds — so the asset base survives any single market shock or currency move."
+
+## 7. Why this works
+
+1. **Outcomes-first, products-last.** The client never feels pitched — they feel oriented. Every product you eventually recommend already maps to a pillar they agreed they need.
+2. **Their picture, not yours.** They watched you draw it. They cannot un-see the equation or the arrow.
+3. **It scales by income.** A $4,000/month earner and a $40,000/month earner get the same conversation — only the numbers in the boxes change.
+4. **Protection becomes obvious.** Once Human Capital is named as the engine, "you should insure it" stops being a sales line and becomes the only logical conclusion.
 
 ## 8. Compliance and the limits of the concept
 
 Total Wealth is a teaching frame, not a product illustration. When you do recommend products to fund it:
 
-- Use **actual product illustrations** from iResource, not back-of-envelope yields.
+- Use **actual product illustrations** from iResource, not back-of-envelope numbers.
 - **Never describe non-guaranteed returns as guaranteed.**
 - Show **both guaranteed and non-guaranteed** scenarios.
-- Note that **past performance does not guarantee future results**.
-- Be honest about **inflation** — a Freedom Number calculated in today's dollars needs adjusting for the years between now and the target date.
+- Note that **past performance does not guarantee future results.**
+- Be honest about **inflation** — the coverage benchmarks above are in today's dollars and need adjusting for the years between now and the client's target horizon.
 
-The concept opens the door. The actual recommendation walks through it. Both have to be honest.
+The concept opens the door. The actual recommendation has to walk through it honestly.
 
+---
 
 ## Quick quiz
 
-1. **What is the Total Wealth definition in one sentence?**
- - A) A net worth above $1 million
- - B) Passive income exceeds expenses ✓
- - C) Owning a home and CPF account fully topped up
- - D) Earning more than your peers
+1. **Total Wealth is the sum of which two things?**
+ - A) Income and savings
+ - B) Financial Capital and Human Capital ✓
+ - C) Net worth and CPF
+ - D) Insurance coverage and investment portfolio
 
- **Why:** Total Wealth is defined precisely as the point where passive income exceeds expenses — it's about cash flow, not net worth size. A $5M net worth that throws off no income still requires the owner to work; a smaller portfolio paying enough monthly to cover expenses doesn't. A and D conflate Total Wealth with net worth or peer comparison. C names two specific assets that may or may not produce passive income.
+ **Why:** The Total Wealth concept defines wealth as Financial Capital (the money you already have — savings, investments, CPF, property) plus Human Capital (your future ability to earn). Most clients only see Financial Capital, but for a working-age person, Human Capital is usually the bigger half. A, C, and D each name pieces of one half but miss the framing entirely — and the framing is what makes every later product recommendation feel logical.
 
-2. **A client's monthly expenses are $4,000 and you assume a 4% expected yield. What is the Freedom Number?**
- - A) $480,000
- - B) $960,000
- - C) $1,200,000 ✓
- - D) $2,400,000
+2. **Why is protecting Human Capital the foundation, not an add-on?**
+ - A) Because regulations require it
+ - B) Because the Human → Financial conversion engine assumes you can keep working — if Human Capital collapses without coverage, every other plan fails ✓
+ - C) Because protection products earn higher commissions
+ - D) Because clients always ask for it first
 
- **Why:** Annual expenses are $48,000 ($4,000 × 12). Divided by 4% yield = $1,200,000. The formula is *(monthly expenses × 12) ÷ expected yield*. A divides annual expenses by 10% — too aggressive. B is exactly half the right answer. D is double — likely confusing 4% yield with 2%.
+ **Why:** The lesson is direct: the entire conversion engine depends on the client being able to keep earning. One uncovered critical illness, accident, or premature death stops the engine — and the family has to liquidate Financial Capital to survive. That's why protection isn't a sales add-on; it's what makes the whole architecture possible. A invents a regulation that doesn't exist. C is true commercially but isn't the lesson's reason. D is false — most clients ask for investment first.
 
-3. **The three layers that produce Total Wealth are:**
- - A) Term, whole life, and ILP
- - B) Protection, Accumulation, and Distribution ✓
- - C) Insurance, savings, and stocks
- - D) Short-term, mid-term, and long-term
+3. **The TWFPS organises a plan around how many pillars?**
+ - A) 2 — protection and investment
+ - B) 3 — protection, accumulation, distribution
+ - C) 4 — death/disability, critical illness, hospital & accident, and investment & savings ✓
+ - D) 5 — adding estate planning
 
- **Why:** Day 14 names the three layers explicitly — Protection (defends what you've built), Accumulation (builds the asset base), and Distribution (converts the base into income). A names three product types, not layers. C lists asset categories rather than functional roles. D is the bucket framing from Day 2's one-third rule, which addresses *spending* horizons, not the architecture of producing Total Wealth.
+ **Why:** The Total Wealth Financial Planning System has four pillars: three that protect Human Capital (death/disability, critical illness, hospital & accident) plus one that grows Financial Capital (investment & savings). A and B compress them into too few categories. D adds a pillar that isn't part of the core TWFPS — estate planning matters but lives in a later layer.
 
-4. **A client says "$1.2 million is too big a number — I'll never get there." What's the strongest reframe?**
- - A) Lower the Freedom Number by halving their expense estimate
- - B) Suggest they buy property instead since it's cheaper to start
- - C) Show them what a small monthly amount, started now, compounds to over their working horizon ✓
- - D) Drop the Freedom Number conversation and pitch a smaller plan
+4. **The benchmark coverage for Death / Disability is:**
+ - A) 5× annual income
+ - B) 10–20× annual income ✓
+ - C) Just enough to cover the mortgage
+ - D) $1 million flat for everyone
 
- **Why:** The standard reframe in Day 14 is to convert a "too big" headline into a manageable monthly start — a 25-year-old saving $500/month at a moderate return reaches around $1M by 65, without any luck. A produces a misleadingly low target. B redirects to a different asset class without addressing the fear. D abandons the concept that earned the conversation in the first place.
+ **Why:** The standard TWFPS benchmark is 10–20× annual income for death/disability — roughly 10–20 years of replacement income for the people who depend on the client. A is the Critical Illness benchmark, not death/disability. C is what most under-insured clients have, which is the gap the TWFPS exists to surface. D ignores income scaling — the same flat sum is wildly under-protective for high earners and over-priced for low earners.
 
-5. **In the 5-minute introduction, what's the right move at Step 5 (the door-opener)?**
- - A) Recommend a specific endowment that fits the Freedom Number
+5. **The benchmark for Critical Illness coverage is:**
+ - A) Equal to the cost of one round of treatment
+ - B) $200–400K, or 5× annual income ✓
+ - C) Whatever MediShield Life doesn't cover
+ - D) 10× annual income
+
+ **Why:** Treatment for a major illness in Singapore typically costs $200–400K, and most patients lose 12–24 months of income while recovering. The benchmark of 5× annual income covers BOTH the treatment AND the income gap. A only funds treatment — leaves the family with no income during recovery. C under-protects because MediShield Life is calibrated to subsidised wards, not full private treatment. D is the death/disability benchmark.
+
+6. **In the 5-minute introduction, what's the right move at Step 6 (the door-opener)?**
+ - A) Recommend a critical illness plan that hits the 5× benchmark
  - B) Ask permission to do a proper fact-find — no product yet ✓
  - C) Send a follow-up proposal that evening
- - D) Calculate two different yield scenarios live to compare
+ - D) Calculate the client's Human Capital number on the spot
 
- **Why:** Step 5's exact line is: *"I'm not going to recommend anything today… mind if I walk through a few questions to actually understand your situation?"* The pitch is a fact-find, not a product. A is the classic new-FC trap — the concept opens a door, the recommendation has to wait for fact-finding. C delays the conversation and substitutes paperwork for relationship. D is over-engineering — comparing yields before the FC knows the client's circumstances is premature.
+ **Why:** Step 6's exact line is *"I'm not going to recommend anything today… mind if I walk through a few questions to actually understand your situation?"* The pitch is for a fact-find, not a product. A is the classic new-FC trap — the concept opens a door, the recommendation waits for the fact-find. C substitutes paperwork for relationship and skips the fact-find entirely. D is over-engineering — Human Capital valuation is useful as a teaching point ("$2–4M for most 30-year-olds") but precise calculation requires inputs you don't have yet.
 
-6. **Why is the Freedom Number written down in front of the client rather than spoken aloud?**
- - A) Compliance requires written disclosure of all numbers
- - B) Writing slows the moment down and makes the number land — the client cannot un-see it ✓
- - C) The advisor needs a record for the file
- - D) Calculators are not allowed in client meetings
+7. **A client says: "I already have hospital insurance from my employer — I don't need anything else." What's the strongest reframe using the TWFPS?**
+ - A) Tell them their employer plan is probably underfunded
+ - B) Walk through the four pillars and ask which ones the employer plan actually covers — typically only Hospital & Accident, leaving Death/Disability, Critical Illness, and Investment uncovered ✓
+ - C) Show them a comparison of premiums between employer and personal plans
+ - D) Ask what happens to their coverage when they change jobs
 
- **Why:** The lesson teaches that the physical act of writing the calculation makes the number concrete and emotional, in the same way that any well-paced reveal lands harder than a thrown-out figure. A invents a compliance rule that doesn't exist. C is true (notes are useful) but isn't the *reason* for writing the number live. D is false — calculators are fine; the point is pacing, not tooling.
-
-7. **Total Wealth is described as a "teaching frame, not a product illustration." What is the practical implication?**
- - A) Don't show the concept to clients who already own products
- - B) Use the concept to open the conversation, but every actual recommendation still requires real product illustrations and full compliance disclosure ✓
- - C) Avoid mentioning specific yields when introducing the concept
- - D) Save the concept for clients with at least $100K in assets
-
- **Why:** Day 14 is explicit — the concept opens the door, the actual product recommendation must use proper iResource illustrations with both guaranteed and non-guaranteed scenarios, no "guaranteed" framing for non-guaranteed returns, and acknowledgement that past performance doesn't guarantee future results. A invents a use restriction the lesson never makes. C contradicts the concept itself, which uses an honest expected yield (e.g. 4%) as the calculation input. D imposes a wealth threshold that doesn't exist — the concept scales by income.
+ **Why:** The TWFPS gives you the diagnostic frame to make the gap visible without attacking their existing plan. Walking through the four pillars surfaces that the employer plan typically only covers one pillar (Hospital & Accident, often only ward-class subsidised), leaving three other pillars exposed. A is judgmental and doesn't teach the framework. C is a price discussion, which loses the strategic frame. D is a valid follow-up but is one specific risk inside Death/Disability — the bigger move is the four-pillar audit.
 
 ---
 

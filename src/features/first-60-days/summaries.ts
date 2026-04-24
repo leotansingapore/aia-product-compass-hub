@@ -144,8 +144,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 17,
     "week": 3,
     "dayInWeek": 5,
-    "title": "Assets vs Liabilities",
-    "duration": 20,
+    "title": "The Wealth-Builder's Mindset",
+    "duration": 25,
     "hasReflection": false
   },
   {
