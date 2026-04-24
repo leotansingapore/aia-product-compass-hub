@@ -10,7 +10,14 @@ import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCar
 
 export default function First60Days() {
   const weeks = getAllWeeks();
-  const { completedCount, isDayComplete, isUnlocked } = useFirst60DaysProgress();
+  const {
+    completedCount,
+    isDayComplete,
+    isUnlocked,
+    isActualAdmin,
+    markDayCompleteAsAdmin,
+    unmarkDayCompleteAsAdmin,
+  } = useFirst60DaysProgress();
 
   const totalDone = completedCount();
   const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
@@ -84,14 +91,35 @@ export default function First60Days() {
                   {week.days.map((d) => {
                     const done = isDayComplete(d.dayNumber);
                     const unlocked = isUnlocked(d.dayNumber);
+                    const StatusIcon = done ? (
+                      <CheckCircle2 className="h-3.5 w-3.5 text-green-600 shrink-0" />
+                    ) : !unlocked ? (
+                      <Lock className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                    ) : (
+                      <span className="h-3.5 w-3.5 rounded-full border border-muted-foreground/40 shrink-0" />
+                    );
                     return (
                       <li key={d.dayNumber} className="flex items-center gap-2 text-[13px]">
-                        {done ? (
-                          <CheckCircle2 className="h-3.5 w-3.5 text-green-600 shrink-0" />
-                        ) : !unlocked ? (
-                          <Lock className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                        {isActualAdmin ? (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (done) {
+                                unmarkDayCompleteAsAdmin(d.dayNumber);
+                              } else {
+                                markDayCompleteAsAdmin(d.dayNumber);
+                              }
+                            }}
+                            aria-label={done ? `Unmark Day ${d.dayNumber} as complete` : `Mark Day ${d.dayNumber} as complete`}
+                            title={done ? "Admin: unmark day" : "Admin: mark day complete"}
+                            className="inline-flex h-4 w-4 items-center justify-center rounded-full hover:ring-2 hover:ring-primary/40 transition-shadow"
+                          >
+                            {StatusIcon}
+                          </button>
                         ) : (
-                          <span className="h-3.5 w-3.5 rounded-full border border-muted-foreground/40 shrink-0" />
+                          StatusIcon
                         )}
                         {unlocked ? (
                           <Link
