@@ -232,8 +232,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 28,
     "week": 5,
     "dayInWeek": 4,
-    "title": "Time Value of Money — The Core Concept",
-    "duration": 20,
+    "title": "Time Value of Money — Complete Reference",
+    "duration": 75,
     "hasReflection": false
   },
   {
@@ -256,8 +256,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 31,
     "week": 6,
     "dayInWeek": 1,
-    "title": "Present Value & Discounting",
-    "duration": 20,
+    "title": "TVM Practice Day — Apply Day 28",
+    "duration": 25,
     "hasReflection": false
   },
   {
@@ -296,7 +296,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 36,
     "week": 6,
     "dayInWeek": 6,
-    "title": "TVM & Investment Practice Problems",
+    "title": "TVM Mastery Drill — Live Speed Test",
     "duration": 30,
     "hasReflection": false
   },

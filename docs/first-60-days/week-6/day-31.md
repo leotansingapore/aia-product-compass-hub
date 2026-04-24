@@ -1,244 +1,105 @@
 ---
 week: 6
 day: 31
-title: "Present Value & Discounting"
+title: "TVM Practice Day — Apply Day 28"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
-duration_minutes: 20
-tags: [first-60-days, week-6, knowledge]
+duration_minutes: 25
+tags: [first-60-days, week-6, practice]
 ---
 
-# Day 31 — Present Value & Discounting
+# Day 31 — TVM Practice Day
 
-> **The one idea for today:** Future Value asks "where will this money end up?" Present Value asks "how much do I need today to get there?" Clients almost always need the second question answered — and most advisors struggle to do it.
+> **The one idea for today:** TVM concepts are only useful if you can actually run the calculations live. Today is a practice session — re-open Day 28 and grind reps until the math feels automatic.
+
+> **📍 The TVM material has been consolidated.** All Time-Value-of-Money content (concept, the 5 variables, FV ↔ PV, lump sum vs regular, discounting, multi-goal client, inflation-adjusted returns, time-horizon-to-rate mapping, the 10 practice problems, common error patterns, the live client speed test) lives on **[Day 28 — Time Value of Money: The Complete Reference](../week-5/day-28.md)**. Today's job is to *use* it, not re-read it.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Solve** for Present Value using the financial calculator.
-2. **Apply** discounting to convert a future goal into a today's-dollar requirement.
-3. **Compare** a lump-sum investment to a regular savings plan — and explain which is better for a given client.
+1. **Solve 3 random TVM problems** from Day 28 §13 in under 60 seconds each, without looking at the answer.
+2. **Run a live PV calculation** in front of a friend / spouse / sibling acting as a prospect.
+3. **State** the 5 most common error patterns from Day 28 §14 from memory.
 
 ---
 
-## 1. The two directions of TVM
+## 1. The 25-minute drill
 
-Time Value of Money problems run in two directions:
+### Block 1 — Calculator warm-up (5 min)
 
-**Forward (Future Value):**
-> "I invest $X today for Y years at Z% — what do I end up with?"
-- Input: PV, n, i
-- Output: FV
+- Open **[calculator.net Finance Calculator](https://www.calculator.net/finance-calculator.html)** (or your iOS/Android app).
+- Set BGN mode.
+- Run a sanity check: $1,000 today at 6% for 10 years → FV ≈ $1,791.
+- Switch to END mode, run the same → same answer (no PMT involved). Then add PMT = $100/yr to confirm BGN gives a slightly higher FV than END.
 
-**Backward (Present Value):**
-> "I want $X in Y years at Z% — how much do I need today?"
-- Input: FV, n, i
-- Output: PV
+### Block 2 — Random 3-of-10 (10 min)
 
-Most retirement and education planning runs **backward.** Clients know the target (retirement income, college tuition), and need to know **what to do today.**
+Pick **3 random problems** from [Day 28 §13](../week-5/day-28.md). Don't peek at the solution.
 
-```mermaid
-flowchart LR
-    A["PV (today)"] -->|"× (1+i)^n<br/>Forward"| B["FV (future)"]
-    B -->|"÷ (1+i)^n<br/>Discounting"| A
-```
+- Time yourself per problem.
+- Write the **client-friendly version** (the plain-English answer) for each.
+- Score: 60 seconds per problem is the bar.
 
-## 2. Present Value — worked example
+### Block 3 — Live roleplay (10 min)
 
-**Scenario:**
-Nancy, age 25, wants to have **$250,000 at age 60.** She's considering a **single premium investment plan** projected at **9% p.a.** How much does she need to invest today (lump sum)?
+Sit a friend / spouse / sibling down. Tell them you're practising. Brief them with one of these prompts:
 
-**Setup:**
-- FV = $250,000
-- n = 35 years
-- i = 9%
-- PMT = 0 (single premium, no regular payments)
-- **Solve for PV**
+> *"I'm 35, I want $1M at 65, I can save $1,500/month. Can I get there?"*
+>
+> *"I want $250K for my kid's university in 18 years. What do I save monthly?"*
+>
+> *"This plan promises $85K at age 60 if I pay $1,500/year. Is that a good return?"*
 
-**Answer:** PV ≈ **−$12,247**
+Run the calculator in front of them. Speak the math out loud. Hand them the client-friendly answer.
 
-(Negative because the money flows *out* of Nancy today. The calculator returns the sign consistent with cash flow convention.)
+**Pass criteria:** under 90 seconds from question to answer. If you can't yet, return to Day 28 §6 worked examples and re-drill.
 
-**Reading:** "If Nancy has $12,247 today and invests at a projected 9% p.a., she could reach $250,000 by age 60."
+---
 
-### The insight
+## 2. Self-check
 
-A **single $12,247 lump sum** does the job of **$3,264/year × 35 years = $114,240** in yearly contributions at 4%.
+- [ ] I can name the 5 TVM variables (n, i, PV, PMT, FV) without looking.
+- [ ] I know which mode insurance uses (**BGN**) and why.
+- [ ] I correctly handle the sign convention (out = negative, in = positive).
+- [ ] I can solve for any of the 5 variables when I'm given the other 4.
+- [ ] I can run a TVM calc out loud in front of a person without freezing.
 
-The lump sum approach works if:
-- Client has capital sitting in a bank account.
-- Client can tolerate the return assumption being non-guaranteed.
-- Client won't touch the money for 35 years.
+If any box is unchecked, go back to **[Day 28](../week-5/day-28.md)** for the section that covers it. Don't move on until all five boxes are ticked.
 
-For a client with both cash and discipline, a lump sum can dramatically reduce total outlay — because the money compounds for longer on the larger starting base.
-
-## 3. Lump sum vs regular premium — the comparison
-
-Most clients have a choice: pay a large lump sum once, or pay smaller regular premiums. Let's compare using Nancy's target.
-
-| Approach | Rate | n | Required input | Total outlay | Capital at 60 |
-|---|---:|---:|---:|---:|---:|
-| Lump sum | 9% | 35 | $12,247 (PV) | $12,247 | $250,000 |
-| Annual premium | 4% | 35 | $3,264/year (PMT, BGN) | $114,240 | $250,000 |
-| Annual premium | 6% | 35 | $2,017/year (PMT, BGN) | $70,595 | $250,000 |
-| Annual premium | 9% | 35 | $958/year (PMT, BGN) | $33,530 | $250,000 |
-
-**Observations:**
-
-1. **Higher rate = less required capital.** The rate assumption matters enormously.
-2. **Lump sum beats regular at the same rate.** A $12,247 lump sum at 9% produces the same result as $33,530 in annual premiums at 9%. The difference is compounding time on the full amount.
-3. **Regular premium is more accessible.** Most 25-year-olds don't have $12,247 sitting unused.
-
-**Your job:** help the client pick the option that **fits their reality** — not the one that looks mathematically optimal on paper.
-
-## 4. Discounting — the concept
-
-**Discounting** is the reverse of compounding. It converts a future dollar amount into its **today's-dollar equivalent**, using a discount rate.
-
-**Formula:**
-> **PV = FV / (1 + i)^n**
-
-**Example:** $100,000 needed in 10 years, at 6% discount rate:
-> PV = $100,000 / (1.06)^10 ≈ **$55,840**
-
-**Meaning:** $55,840 today, invested at 6%, becomes $100,000 in 10 years.
-
-### When discounting matters for clients
-
-1. **Goal planning:** "$500K for my kid's education in 18 years" → discount back to know the required contribution today.
-2. **Comparing options:** "Take $500K lump sum at retirement, or $30K/year for 20 years?" → discount both to today's dollars and compare.
-3. **Business valuation:** the reason most businesses are valued using DCF (discounted cash flow).
-4. **Insurance payouts:** a $500K death benefit in 30 years has a PV of only ~$175K today at 4%. Important when comparing term vs permanent insurance.
-
-## 5. A client conversation using PV
-
-**Scenario:** A 40-year-old client wants $1M for retirement at 65. He asks: "Can I really get there?"
-
-Without a financial calculator, you'd be stuck saying "let's see" or "yes probably."
-
-With 60 seconds on the calculator:
-- FV = $1,000,000
-- n = 25
-- i = 6%
-- **Solve for PMT (BGN):** ≈ **−$1,518/month**
-
-**Your answer:**
-> "At a 6% projected return, you'd need to set aside about $1,520 a month, starting now, for 25 years. If you can manage that, yes — you get there. If not, we either adjust the target, extend the timeline, or look at higher-return vehicles (with more risk). Which would you like to explore?"
-
-This is **instant credibility.** You're not guessing. You're showing him the math.
-
-## 6. The multiple-goal client
-
-Real clients don't have one goal. They have three or four:
-
-```mermaid
-flowchart TD
-    A["Client's monthly capacity<br/>$3,000 / month"] --> B["Retirement $1M<br/>$1,518 / mo"]
-    A --> C["Education $200K<br/>$1,150 / mo"]
-    A --> D["House downpayment $150K<br/>$2,322 / mo"]
-    A --> E["Medical fund $80K<br/>$550 / mo"]
-    B & C & D & E --> F["Total needed: $5,540 / mo<br/>Gap = $2,540 / mo"]
-```
-
-| Goal | FV | Years away | Discount rate | PV / monthly PMT |
-|---|---:|---:|---:|---|
-| Retirement | $1M | 25 | 6% | $1,518/mo |
-| Kids' tertiary education | $200K | 12 | 5% | $1,150/mo |
-| House downpayment | $150K | 5 | 3% | $2,322/mo |
-| Parents' medical fund | $80K | 10 | 4% | $550/mo |
-
-**Total required:** ~$5,540/month across all goals. Client's disposable savings capacity: $3,000/month.
-
-**The math surfaces the trade-off.** The client can't hit all four without either:
-- Extending timelines,
-- Accepting lower return estimates,
-- Reducing target amounts,
-- Or finding more income.
-
-Without the math, you have a feelings conversation. With the math, you have a **decision conversation.**
-
-## 7. The common mistake — ignoring the time horizon
-
-New FCs sometimes quote aggressive rates (e.g., 8% for all scenarios). This creates two problems:
-
-1. **Short horizons (< 5 years)** — markets can be volatile, and using 8% is wildly optimistic.
-2. **Risk tolerance mismatch** — the rate assumes the client can stomach volatility, which they often can't at older ages.
-
-**Rule of thumb (rough):**
-
-| Timeline | Reasonable rate assumption |
-|---|---|
-| Under 3 years | 1–3% (stay conservative; cash/bonds) |
-| 3–7 years | 3–5% (balanced) |
-| 7–15 years | 4–6% (growth-oriented) |
-| 15+ years | 5–7% (equity-heavy) |
-
-Adjust for client risk tolerance. When in doubt, **illustrate multiple scenarios** (conservative, moderate, aggressive).
-
+---
 
 ## Quick quiz
 
-1. **Present Value answers the question:**
- - A) What will this money be worth in the future?
- - B) How much do I need today to reach a future target? ✓
- - C) What's the historical return?
- - D) What's the inflation-adjusted return?
+1. **For an 18-year-old kid's $250K university in 18 years at 6%, the required monthly PMT is closest to:**
+ - A) $200
+ - B) $640 ✓
+ - C) $1,200
+ - D) $2,500
 
- **Why:** PV is the backward direction of TVM — you know the future target and solve for the today's-dollar requirement. Future Value (A) is the forward direction: you know what you have today and solve for where it ends up. Historical return (C) is a data lookup, not a TVM calculation. Inflation-adjusted return (D) is a real-return concept, not a PV question.
+ **Why:** FV = $250,000, n = 216 months, i = 0.5% per month, PV = 0, BGN → PMT ≈ −$640/month. (See Day 28 §13 Problem 2.)
 
-2. **A lump sum and a regular premium with the same rate and target differ because:**
- - A) Regular premiums are taxed differently
- - B) The lump sum compounds for longer on the full amount ✓
- - C) Regular premiums are always cheaper
- - D) Lump sums are riskier
+2. **The single biggest credibility move when running TVM live with a client is:**
+ - A) Showing the formulas in detail
+ - B) Translating the calculator output into one client-friendly sentence ✓
+ - C) Running multiple scenarios at once
+ - D) Quoting historical market returns from memory
 
- **Why:** With a lump sum the entire capital sits in the account compounding from day one; regular premiums are still being accumulated, so earlier contributions have more time but the average capital in the account is much lower. Tax treatment (A) is not the driver of this mathematical difference. Regular premiums are not always cheaper (C) — as the table shows, total regular outlay can be nearly 10x the lump sum at the same rate. Risk (D) depends on the vehicle, not the payment structure.
+ **Why:** Day 28 §15 — clients don't need to see the math, they need to see the *answer*. The translation from calculator output ("PMT = −$1,518") into a usable sentence ("$1,520/month for 25 years gets you to $1M") is the credibility move.
 
-3. **For a 3-year goal, which rate assumption is most reasonable?**
- - A) 8% (aggressive equity)
- - B) 1–3% (cash/bonds) ✓
- - C) 6% (balanced)
- - D) Inflation-matching
+3. **A new FC scores 6 of 10 on the practice set. The right next step is:**
+ - A) Move to Day 32
+ - B) Re-read Day 28 sections 1–11 and re-run the set tomorrow ✓
+ - C) Skip TVM and rely on calculators in meetings
+ - D) Watch a YouTube video on Excel TVM functions
 
- **Why:** Short horizons under 3 years leave no time to recover from market swings, so conservative cash or bond returns (1–3%) are the appropriate assumption. An 8% equity assumption (A) is wildly optimistic over a period where a single downturn could not recover in time. A 6% balanced assumption (C) still carries meaningful equity risk for a 3-year window. Inflation-matching (D) is a real-return target concept, not a rate assumption for a specific asset.
-
-4. **Nancy needs $250,000 at age 60, is currently 25, and the plan projects 9% p.a. Using PV discounting, the lump sum required today is closest to:**
- - A) $25,000
- - B) $12,247 ✓
- - C) $50,000
- - D) $114,240
-
- **Why:** FV = $250,000, n = 35, i = 9%, PMT = 0 solves to PV ≈ $12,247 — a dramatically small lump sum because 35 years of 9% compounding does most of the work. $25,000 (A) and $50,000 (C) are too high; they would overshoot $250,000 at this rate over this period. $114,240 (D) is the total outlay of the annual-premium alternative at 4%, not the PV of the single premium.
-
-5. **A 40-year-old client wants $1M at 65 and asks "Can I get there?" You run the calculator at 6% over 25 years. The most useful output to show first is:**
- - A) The final FV confirmation of $1M
- - B) The required monthly PMT so they can judge affordability ✓
- - C) The discount rate needed to reach $1M with no effort
- - D) The historical equity market return
-
- **Why:** The client already knows the target is $1M — confirming FV = $1M (A) tells them nothing new. The useful output is the monthly PMT, because that translates the goal into an actionable monthly commitment the client can immediately compare against their budget. A discount rate with no effort (C) doesn't exist — it's not a meaningful calculation. Historical equity returns (D) are background context, not a personalised answer.
-
-6. **A client has four financial goals totalling $5,540/month but only $3,000/month in savings capacity. The best advisor response is to:**
- - A) Tell the client to invest more aggressively to close the gap with higher returns
- - B) Ignore the lower-priority goals and focus on retirement only
- - C) Use the math to surface the trade-off and discuss extending timelines, reducing targets, or increasing income ✓
- - D) Recommend a lump-sum investment to replace all regular savings
-
- **Why:** When the math reveals a gap, the advisor's job is to make the trade-offs explicit and let the client choose — not to hide them by chasing higher risk (A) or unilaterally dropping goals (B). Recommending a lump sum (D) is irrelevant if the client doesn't have one and doesn't address the affordability problem. The four levers the day identifies are extending timelines, reducing targets, finding more income, or adjusting the rate assumption — all of which require a conversation.
-
-7. **Why does a lump-sum investment at 9% outperform annual premiums at 9% targeting the same final amount?**
- - A) Lump sums attract lower fees
- - B) The full lump-sum amount compounds from day one, whereas regular premiums are still being built up over time ✓
- - C) Annual premiums carry insurance risk that reduces net returns
- - D) The calculator uses END mode for lump sums, which inflates the result
-
- **Why:** The lump sum's edge is timing: the entire $12,247 earns compound interest for all 35 years, while annual premiums start small and only reach their full size near the end of the period, so average capital under management is far lower. Fees (A) vary by product, not by payment structure in TVM theory. Insurance risk (C) is a product feature, not a mathematical reason. BGN/END mode (D) affects annuity calculations, not single-payment lump sums.
+ **Why:** The bar is 10/10 with sub-60-second speed. Below 7 means foundational gaps, not speed gaps. Re-read and re-drill before moving on.
 
 ---
 
 ## Related
 
 - Previous: [[../week-5/day-30|Day 30 — Dollar Cost Averaging]]
+- Source material: [[../week-5/day-28|Day 28 — TVM Complete Reference]]
 - Next: [[day-32|Day 32 — Rule of 72 Applied]]
