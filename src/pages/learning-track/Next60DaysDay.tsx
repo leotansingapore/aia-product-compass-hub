@@ -253,7 +253,7 @@ export default function Next60DaysDay() {
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="read" className="mt-5 animate-fade-in">
+        <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>{day.markdown}</ReactMarkdown>
@@ -261,7 +261,7 @@ export default function Next60DaysDay() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="reflection" className="mt-5 animate-fade-in">
+        <TabsContent value="reflection" className="mt-5">
           <DayReflection
             dayNumber={dayNumber}
             prompts={day.reflection}
@@ -269,7 +269,7 @@ export default function Next60DaysDay() {
           />
         </TabsContent>
 
-        <TabsContent value="quiz" className="mt-5 animate-fade-in">
+        <TabsContent value="quiz" className="mt-5">
           <DayQuiz
             dayNumber={dayNumber}
             questions={day.quiz}
