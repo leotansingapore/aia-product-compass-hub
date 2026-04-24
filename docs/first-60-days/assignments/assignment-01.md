@@ -73,47 +73,69 @@ Before recording, re-read or re-skim each of these. The *why* you're delivering 
 
 ## Part A — Record the **Wealth Angle CST** (Retirement Step-by-Step)
 
-### What you must cover (in order, on paper, in front of camera)
+> **Source-of-truth for this part:** [Day 52 — Retirement Step-by-Step CST](../../first-60-days/week-9/day-52.md). The walkthrough below is the *succinct version*; the full delivery script (including extensions, common reactions, and compliance) lives there. Re-read Day 52 in full before recording.
+>
+> **Two delivery modes — pick one:**
+> - **Paper-and-pen** — your notebook / whiteboard, in front of camera. Best when meeting in person without a screen.
+> - **Live interactive tool** — open the **[Total Wealth Concept · Retirement Step-by-Step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step)** page in front of the prospect, set their five inputs, click *Draw All* on each tab. Best when you have a screen between you. *Mention which mode you're using in your self-review.*
 
-#### 1. Capture the 5 inputs (1–2 min)
+### The script — concept-draw FIRST, slides come second
 
-Ask, write, confirm:
+Day 52's foundational rule: don't open the laptop and *explain* slides. Draw the concept on a single page first; the presenter slides come after, as confirmation. The recording shows you doing this in the right order.
+
+### 1. Capture the 5 inputs (1 min)
+
+Ask, write across the top of the page, confirm:
 
 | # | Input | Default if unsure |
 |---|---|---|
 | 1 | Current age | (must have) |
 | 2 | Retirement age | 65 |
 | 3 | Life expectancy | 85 |
-| 4 | Target monthly lifestyle (today's dollars) | same as current monthly spending |
-| 5 | Inflation | 2.5% |
+| 4 | Target monthly lifestyle (today's dollars) | match current monthly spending |
+| 5 | Inflation | 2.5% (long-term Singapore average) |
 
-#### 2. Draw Diagram 1 — The Problem (5 steps, 4–5 min)
+### 2. Draw Diagram 1 — The Problem (5 steps, ~5 min)
 
-Use a horizontal timeline. Draw the inflation slope rising from today. **Make the prospect guess** the inflated number before revealing it.
+Horizontal timeline with three tick marks: today / retirement age / life-expectancy.
 
-- **Step 1:** Mark today, draw the inflation slope, label *"$X/mth — your desired lifestyle"* and *"2.5% p.a. inflation"*
-- **Step 2:** Ask them to guess the inflated monthly cost at retirement, then reveal the number
-- **Step 3:** Calculate the lump sum live: `inflated × 12 × retirement years = $X.XM needed`
-- **Step 4:** Draw the depletion line from retirement down to $0 at end-age, labelled *"Capital depletes"*
-- **Step 5:** Calculate the no-investing monthly savings need (`lump sum ÷ years ÷ 12`). Write the number large. Pause. Don't speak first.
+| Step | What you draw | What you say (key beat) |
+|---|---|---|
+| **1** | Red dot on today's age. Inflation slope rising up to retirement. Label *"$X/mth — your desired lifestyle"* + *"2.5% p.a. inflation"* | *"This line is the cost of the same lifestyle, going up over the next N years."* |
+| **2** | Wait — **let them guess** the inflated monthly cost. Then write *"Need ≈ $X/mth"* at the slope's peak. | *"What do you think this same lifestyle will cost at 65?"* (Most guess too low — that's the conversion.) |
+| **3** | Below the slope: `inflated × 12 × retirement years = $X.XM`. Make this the **biggest number** on the page. Underline it twice. | *"Your retirement pot needs about $X.XM sitting there ready to draw down."* (Pause. Let it sit.) |
+| **4** | Dashed grey depletion line from retirement peak down to $0 at end-age, with down-arrows. Label *"Capital depletes → $0"*. | *"Best case, perfect plan — there's nothing left at the end. No buffer. No legacy."* |
+| **5** | Calculate live: `lump sum ÷ working-years-remaining ÷ 12 = $X/mth`. Write it **very large**. | *"You need to put away about $X every single month — and still end at zero."* **Stop. Don't transition.** |
 
-#### 3. Draw Diagram 2 — The Solution (4 steps, 3–4 min)
+### 3. Draw Diagram 2 — The Solution (4 steps, ~4 min)
 
-Same timeline, fresh page or different colour. This time the curve grows steeper because of compound returns.
+Fresh page or different colour. Same timeline. Curve grows steeper because of compounding.
 
-- **Step 1:** Green growth slope. Label *"Invest $X/mth"* — the dramatically smaller number
-- **Step 2:** *"Achieve $X.XM at 65 — reinvest for dividends"*
-- **Step 3:** Two-paths comparison — grey dashed depletion vs solid green capital-preserved with dividend arrows hanging down
-- **Step 4:** Side-by-side comparison cards — WITHOUT investing (Save $X/mth → $0 at end) vs WITH investing (Invest $X/mth → capital preserved + dividend income)
+| Step | What you draw | What you say (key beat) |
+|---|---|---|
+| **1** | Green growth slope from today to retirement. Label *"Invest $X/mth"* — dramatically smaller than the Step-5 number above. | *"Same target. Not $X/mth saving — about $X/mth invested."* (Let the contrast land.) |
+| **2** | Bigger green dot at retirement. Label *"Achieve $X.XM → reinvest for dividends"*. | *"At 65, you've hit the target. Now how you take income matters more than the size of the pot."* |
+| **3** | Two paths from the retirement dot — grey dashed depletion (old version) vs **solid green horizontal line staying at the same height** with dividend arrows hanging down. Label dividends *"~$X,XXX/mth"*. At end-age write *"$X.XM still preserved"*. | *"Capital stays intact. You're not draining a tank — you're drinking from a stream. Plus the $X.XM becomes a legacy."* |
+| **4** | Side-by-side cards — **WITHOUT investing** (Save $X/mth → $0 at end-age) vs **WITH investing** (Invest $X/mth → capital preserved + $X,XXX/mth dividends). | *"Same goal, same lifestyle. The only thing that changes is the choice to invest instead of just save."* |
 
-#### 4. Door-opener (30 sec — recording stops here)
+### 4. Door-opener (30 sec — recording ends here)
 
-> *"I'm not going to suggest anything specific today. The right plan depends on what's already in CPF, your time horizon, your real risk tolerance — none of which we've covered. Mind if I run a proper fact-find with you, then come back with an actual plan that gets you to $X.XM at $X/mth instead of $X/mth?"*
+> *"I'm not going to suggest anything specific today. The right plan depends on what's already in CPF, your time horizon, your real risk tolerance — none of which we've covered yet. Mind if I run a proper fact-find with you, then come back with an actual plan that gets you to $X.XM at $X/mth instead of $X/mth?"*
+
+### Optional — pick ONE extension if you have time inside the 15-min cap
+
+These are Day 52 sections 5–9. Use them to deepen the close *only if you have spare time*. Don't try to fit all five into the recording — you'll rush.
+
+- **The 1/3 income rule** — *"$X/mth fits inside the 'long-term' third of your take-home"* (collapses the *I can't afford it* objection)
+- **The dividend twist** — *"$X.XM at 6% throws off $X,XXX/mth, more than your inflated lifestyle"* (the math behind why capital stays intact)
+- **AIA vs DIY** — *currency hedging / no dividend tax / no estate tax / secondary insured* (when prospect mentions S&P or robo-advisors)
+- **The 0.7%-on-$2M sub-charge** — *"$14K/year removed from a $2M portfolio at other insurers; AIA doesn't have that after 65"* (when prospect compares fees)
+- **Bonuses sweetener** — *"Year 1/2/3 welcome bonus + 5%/8% lifetime"* (only after value is clear; never lead with this)
 
 ### Wealth-Angle recording requirements
 
-- 8–15 minutes total
-- Pen-and-paper diagrams visible to camera throughout (or whiteboard / iPad)
+- 8–15 minutes total (target ~12 minutes for a tight delivery)
+- Diagrams visible to camera throughout — paper, whiteboard, iPad, **OR** the live interactive tool
 - Both diagrams drawn live — not pre-drawn
 - The "guess the number" pause in Step 2 of the Problem must be visible
 - The pause after the no-investing reveal in Step 5 must be at least 3 seconds
