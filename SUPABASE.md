@@ -43,6 +43,43 @@ Notes:
 
 Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
 
+### Rebalance leaderboard: question bank × 0.2 (down from × 1)
+
+The current `get_learner_leaderboard` weights make the question bank dominate (1,000 questions × 1 point = 1,000 of the current 2,153-point ceiling, ~47%). A learner who only grinds questions can outrank one doing assignments and videos, which isn't the intended signal. Drop the per-question weight to 0.2 so the bank tops out at ~200 points, in line with the rest of the deliverables.
+
+Two single-line changes in `public.get_learner_leaderboard(p_tier text)` — keep all other logic identical:
+
+```sql
+CREATE OR REPLACE FUNCTION public.get_learner_leaderboard(p_tier text)
+-- ... function body unchanged through `assembled` CTE ...
+  SELECT
+    a.user_id,
+    COALESCE(
+      NULLIF(BTRIM(a.display_name), ''),
+      NULLIF(BTRIM(CONCAT_WS(' ', a.first_name, a.last_name)), ''),
+      NULLIF(BTRIM(a.email), ''),
+      'Learner'
+    )::text AS name,
+    a.email::text,
+    ROUND((
+      a.f14_quiz * 5 +
+      a.f60_quiz * 5 +
+      a.asg_count * 50 +
+      a.qb_count * 0.2 +     -- was * 1
+      a.vid_count * 2.5
+    )::numeric, 1) AS total_points,
+    a.days_active::int,
+    (a.f14_quiz * 5)::numeric  AS first_14_days,
+    (a.f60_quiz * 5)::numeric  AS first_60_days,
+    (a.asg_count * 50)::numeric AS assignments,
+    (a.qb_count * 0.2)::numeric AS question_bank,   -- was * 1
+    (a.vid_count * 2.5)::numeric AS videos
+  FROM assembled a
+  -- ... rest unchanged ...
+```
+
+**After this lands:** anyone with significant question-bank progress sees a points drop (e.g. 500 questions = 100 pts, was 500). Total ceiling moves from 2,153 → 1,353 today, or 2,053 once Next 60 Days quizzes + assignments are wired in. No client changes needed — `total_points` is rendered as-is.
+
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
