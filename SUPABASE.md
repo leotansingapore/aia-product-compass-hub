@@ -43,30 +43,6 @@ Notes:
 
 Client follow-up shipped alongside this handoff: `useChecklistProgress` now reads/writes Supabase, runs a one-time migration from the legacy `checklist-progress-<userId>` localStorage key, then relies on Supabase as the source of truth. Until this migration lands, the hook silently falls back to the localStorage path so learners aren't blocked.
 
-### Widen leaderboard `assignments` filter to credit Next 60 Days assignments
-
-Today the assignments CTE in `public.get_learner_leaderboard(p_tier text)` filters strictly on `WHERE product_id = 'first-60-days-assignments'`, so any future Next 60 Days assignments (e.g. `next-60-days-assignments` rows in `assignment_submissions`) won't credit. Same problem applies to the `days` activity union. Two-line fix — replace `=` with `IN (...)` in both places:
-
-```sql
--- inside the CTE list:
-asg AS (
-  SELECT user_id, COUNT(DISTINCT item_id)::numeric AS asg_count
-  FROM public.assignment_submissions
-  WHERE product_id IN ('first-60-days-assignments', 'next-60-days-assignments')
-  GROUP BY user_id
-),
-
--- and inside the days UNION:
-UNION SELECT user_id, DATE(COALESCE(submitted_at, created_at))
-  FROM public.assignment_submissions
-  WHERE product_id IN ('first-60-days-assignments', 'next-60-days-assignments')
-    AND COALESCE(submitted_at, created_at) IS NOT NULL
-```
-
-Everything else in the function body stays identical. Use `CREATE OR REPLACE FUNCTION` (no need to `DROP` — RETURNS TABLE shape doesn't change). Keep `SECURITY DEFINER`, `STABLE`, `SET search_path = public`, `#variable_conflict use_column`, and the `GRANT EXECUTE ... TO authenticated`.
-
-**After this lands:** `next-60-days-assignments` submissions will credit at × 50 each on the leaderboard, the same as Pre-RNF assignments. The breakdown column stays `assignments` (not split) — they're aggregated together. No table schema changes; no client changes. There are currently 0 rows in `assignment_submissions` with `product_id = 'next-60-days-assignments'`, so applying this is a no-op for existing data; it just unlocks the future Next 60 Days assignment forms when they ship.
-
 ### Optional: persist per-lesson action-step completions to Supabase
 
 CMFAS lessons now support per-lesson **action steps** (see `LessonActionStep` in [`src/hooks/useProducts.tsx`](src/hooks/useProducts.tsx) — authored via `ActionStepsEditor`, rendered by `LessonActionStepsPanel`). Learner progress is currently stored in localStorage via [`useLessonActionStepProgress`](src/hooks/useLessonActionStepProgress.ts) (key: `lesson-action-steps-<userId>-<productId>-<videoId>`).
@@ -87,6 +63,10 @@ Not blocking: localStorage works for single-device study sessions and is what `u
 ---
 
 ## Completed (recent)
+
+#### Widen leaderboard `assignments` filter to credit Next 60 Days assignments — landed 2026-04-24
+
+Migration `20260424062912_df04d873-*.sql` shipped: `CREATE OR REPLACE FUNCTION public.get_learner_leaderboard(p_tier text)` swapped two `WHERE product_id = 'first-60-days-assignments'` clauses for `WHERE product_id IN ('first-60-days-assignments', 'next-60-days-assignments')` — one inside the `asg` CTE (line 50), one inside the `days` UNION (line 74). RETURNS TABLE shape unchanged. `SECURITY DEFINER`, `STABLE`, `SET search_path = public`, `#variable_conflict use_column`, and `GRANT EXECUTE ... TO authenticated` all preserved. Verified: function body now contains both filter values; no existing `next-60-days-assignments` submissions yet so no points moved on existing learners — but future Next 60 Days assignment submissions will now credit at × 50, aggregated into the same `assignments` breakdown column.
 
 #### Leaderboard rebalance + Next 60 Days quiz credit — landed 2026-04-24
 

@@ -13,6 +13,8 @@ tags: [first-60-days, week-9, skills]
 
 > **The one idea for today:** Most clients can't *feel* their retirement gap. They've heard the abstract version a hundred times. Today you'll learn a paper-and-pen walkthrough that lets the client *watch* their own gap appear, then *watch* the gap close — without you ever pitching a product.
 
+> **🛠 Use the live tool with your prospect:** **[Total Wealth Concept · Retirement Step-by-Step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step)**. Same diagrams as the screenshots below, but interactive — set the five inputs in front of the client (current age / retirement age / life expectancy / inflation / target monthly lifestyle) and click *Draw All* on each tab to walk through the Problem → Solution sequence live. Use this when you have a screen between you and the prospect; use the paper-and-pen version below when you don't.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

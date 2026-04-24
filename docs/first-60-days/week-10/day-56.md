@@ -250,6 +250,89 @@ The package layers together: GPP as the cornerstone, SFT for cheap death-coverag
 | Govt MediShield Life premium for 51–60 cohort: rose from $630 → $903 (+43.3%) | Showing even govt insurance increases — private will too |
 | 5-year cancer survival: Stage 1 ~85% / Stage 2 ~77% / Stage 3 ~50% / **Stage 4 ~18.6%** | Both arguments — early detection saves lives, late-stage = income loss |
 
+## 0g1. MediShield Life — what every Singaporean already has
+
+Before you sell any private hospitalisation upgrade, the client needs to understand what their baseline already is. MediShield Life is the **government base plan** — every Singapore Citizen and PR is automatically covered.
+
+### The basic coverage
+
+| Item | Limit |
+|---|---|
+| Ward fee | $830/day |
+| ICU | $5,000/day |
+| Surgical procedures | Table 1–7 (max ~$3,900 for the most complex) |
+| Cancer drug treatment | Subject to Cancer Drug List (CDL) limits |
+| **Deductible** | $2,000 (for B2 ward and above, age 80 and below) |
+| **Co-insurance** | 3–10% after the deductible |
+
+### How deductible + co-insurance actually work
+
+Worked example, $20K hospital bill on plain MediShield Life:
+
+1. Minus **$2,000 deductible** (you pay)
+2. Remaining $18,000 → **co-insurance ~10% (~$1,800 you pay)**
+3. MediShield Life covers the rest (~$16,200)
+4. **Out-of-pocket: ~$3,800**
+
+That $3,800 hits even a healthy 35-year-old with a $20K bill. The point of an Integrated Shield Plan (and the Vital Health rider) is to absorb most of that out-of-pocket exposure.
+
+## 0g2. HealthShield Gold Max — AIA's Integrated Shield Plan
+
+### Three plan tiers
+
+| Plan | Hospital type | Position |
+|---|---|---|
+| **Max A** | Private hospital | Highest coverage, as-charged basis |
+| **Max B** | Government hospital (A ward) | Mid-tier |
+| **B Lite** | Government hospital (B ward & below) | Budget option |
+
+### Vital Health riders (the as-charged co-pay caps)
+
+| Rider | What it covers | Co-payment | Cap |
+|---|---|---|---|
+| **Vital Health A** | Deductible + co-insurance | 5% | **$3,000** |
+| **Vital Health A Value** | Co-insurance only (not deductible) | 10% | $6,000 |
+| **Vital Health B** | Deductible + co-insurance (govt) | 5% | Government bills |
+
+### The Deductible Waiver Pass — easy to misexplain
+
+- **First claim:** Only 5% co-payment (no deductible if Vital Health A is attached)
+- **Second claim within 3 policy years:** 5% co-payment **+ $2K deductible** (the waiver runs out)
+- **If next claim is 4+ years later:** Deductible **resets** — back to 5% only
+
+Tell the client up front. Surprised clients at claim time become disengaged clients at renewal.
+
+### Cancer Drug Coverage — the CDL multipliers (this is the killer feature)
+
+MOH maintains a **Cancer Drug List (CDL)** with approved drugs and a monthly claim limit per drug. MediShield Life pays only **1× the CDL limit**. AIA layers on top:
+
+| Layer | CDL multiplier | Monthly cap |
+|---|---|---|
+| MediShield Life (base) | **1×** | e.g. $2K (varies by drug) |
+| HealthShield Max A (base) | + **5×** | $10K |
+| Cancer Care Booster rider | + **16×** | $32K |
+| **Full package total** | **21×** | **~$42K/month** |
+
+For **non-CDL drugs** (newer drugs not yet on the approved list): up to **$200K/year** with 10% co-insurance under the Booster rider.
+
+For **cancer drug services** (scans, tests): Base 5× + Booster 10× = **15× total**.
+
+### Other HealthShield benefits worth naming
+
+- **Pre & post-hospitalisation:** 13 months coverage
+- **Panel of quality healthcare partners** — searchable by specialty
+- **Pre-authorisation (Letter of Guarantee):** inform AIA before surgery → get approval beforehand → no out-of-pocket scramble at admission
+- **Vitality discount** on Vital Health rider premiums
+- Covers: pregnancy complications, congenital abnormalities (child), organ donation/transplant, psychiatric treatment (limited), radiotherapy
+
+### How to position HealthShield against MediShield Life
+
+Don't attack MediShield. Just show the gap:
+
+> *"MediShield Life is great as a baseline. The issue is one specific scenario — late-stage cancer drug treatment. MediShield pays 1× the CDL limit, maybe $2K/month. A typical late-stage cancer drug regime can run $20K–$40K/month. That's a gap of $18K–$38K every month, for years. The point of HealthShield Max A + the Cancer Care Booster is specifically to close that gap."*
+
+That's a use-specific argument, not a "your government plan is bad" argument. Wins more conversions, breaks no relationships.
+
 ## 0h. The budget psychology — the line that doubles every case
 
 > *"Whatever budget your client gives you, they can comfortably afford **double** without feeling uncomfortable."*

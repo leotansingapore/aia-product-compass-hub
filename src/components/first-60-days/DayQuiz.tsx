@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { CheckCircle2, XCircle, RotateCcw, ArrowRight, Sparkles, Trophy, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,36 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { QuizQuestion } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress, type DayProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
+
+/**
+ * Inline-only markdown renderer for quiz questions, options, and explanations.
+ * Authors regularly write `**bold**`, `*italic*`, `_italic_`, and `` `code` ``
+ * in the markdown source — without this they showed up as literal asterisks.
+ * Block-level constructs (headings, lists, code fences) intentionally not
+ * supported here to keep the layout single-line and avoid <p> wrappers.
+ */
+function InlineMd({ text }: { text: string | undefined }) {
+  if (!text) return null;
+  // Split on the union of inline-emphasis patterns, keeping the delimiters.
+  const parts = text.split(/(\*\*[^*\n]+\*\*|\*[^*\n]+\*|_[^_\n]+_|`[^`\n]+`)/g);
+  const rendered: ReactNode[] = parts.map((part, i) => {
+    if (!part) return null;
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith("_") && part.endsWith("_")) {
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return <code key={i} className="rounded bg-muted/60 px-1 py-0.5 text-[0.9em] font-mono">{part.slice(1, -1)}</code>;
+    }
+    return <span key={i}>{part}</span>;
+  });
+  return <>{rendered}</>;
+}
 
 /** Progress interface — pass to override the default First 60 Days progress hook. */
 export type QuizProgressAdapter = {
@@ -189,7 +219,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
               )}
             </div>
             <h3 className="font-serif text-xl font-semibold leading-snug text-foreground sm:text-2xl">
-              {q.question}
+              <InlineMd text={q.question} />
             </h3>
           </div>
 
@@ -239,7 +269,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
                     {opt.key}
                   </span>
                   <span className="flex min-w-0 flex-1 items-start gap-2 leading-relaxed">
-                    <span className="flex-1 text-foreground/90">{opt.text}</span>
+                    <span className="flex-1 text-foreground/90"><InlineMd text={opt.text} /></span>
                     {showCorrect && <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />}
                     {showWrongPick && <XCircle className="h-4 w-4 shrink-0 text-destructive" />}
                   </span>
@@ -355,7 +385,7 @@ function FeedbackPanel({
                 <span key={opt.key}>
                   {i > 0 && (i === correctOpts.length - 1 ? " and " : ", ")}
                   <span className="font-semibold text-foreground">
-                    {opt.key}) {opt.text}
+                    {opt.key}) <InlineMd text={opt.text} />
                   </span>
                 </span>
               ))}
@@ -363,7 +393,7 @@ function FeedbackPanel({
             </div>
           )}
           <p className="text-sm leading-relaxed text-foreground/75">
-            {explanation ?? fallback}
+            {explanation ? <InlineMd text={explanation} /> : fallback}
           </p>
         </div>
       </div>

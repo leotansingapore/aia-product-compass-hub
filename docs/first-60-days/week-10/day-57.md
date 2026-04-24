@@ -252,6 +252,154 @@ For ProAchiever (APA) and similar wealth plans, the bonus structure typically lo
 
 **Always pull current illustration values from iResource before quoting bonuses.** The percentages and breakpoints are subject to change. The teaching framework above is durable; the exact numbers belong to the live system.
 
+## 0h1. Product deep-dive — PWE (Platinum Wealth Elite)
+
+ILP-based life insurance plan that sits **between** term insurance (no cash value) and GPP whole life (high cash value). Frame it as: **term insurance with investment returns.**
+
+### Key features
+
+- Covers: Death, terminal illness, TPD
+- **No CI coverage**
+- Death benefit: **higher of** insured amount OR policy value
+- Minimum sum assured: $5K (typically positioned at **$500K–$1M+**)
+- Single premium OR multi-year (up to 10 years)
+- Premium top-ups and withdrawals allowed
+
+### The sum-at-risk concept (what makes PWE efficient over time)
+
+As investment value grows, the *insurance component* shrinks → mortality cost decreases:
+
+| Year | Investment value | Sum assured | Sum at risk (drives mortality cost) |
+|---|---|---|---|
+| Start | $0 | $1M | **$1M** |
+| Year 5 | $200K | $1M | $800K |
+| Year 10 | $500K | $1M | $500K |
+| Year 15 | $1M+ | — | **$0** (investment exceeds sum) |
+
+After the tipping point, mortality charges effectively disappear and the plan becomes pure investment with a residual death-benefit floor.
+
+### The PWE-vs-SFT comparison pitch
+
+Worked example: 40-year-old, $1M death cover to age 70.
+
+|  | **PWE (10-year pay)** | **SFT (30-year level term)** |
+|---|---|---|
+| Annual premium | $12,000 | $1,967 |
+| Total premiums | $120K | ~$60K |
+| At age 70 if nothing happens | Investment value **~$339K** | **$0 — nothing back** |
+| Net cost | $120K paid – $339K = **profit ~$219K** | **$60K lost** |
+
+> **The pitch:** *"Option 1 — pay $60K over 30 years, get nothing back if you outlive the term. Option 2 — pay $120K over 10 years, double the cost, but you potentially get back 2× your premiums plus profit. Which would you prefer?"*
+
+The trick is the framing: PWE's higher premium is *visible*, but the $339K return at 70 is *bigger and earned*. Most clients pick Option 2 once the math is on paper.
+
+### Underwriting classes — the "fight for Preferred Plus" angle
+
+| Class | Requirements | Premium impact |
+|---|---|---|
+| **Standard** | Health declaration only (no checkup) | Base rate |
+| **Standard Plus** | Basic health screening | Slight discount |
+| **Preferred** | Full checkup, good results | Larger discount |
+| **Preferred Plus** | Full checkup, excellent results (BMI <28, cholesterol/BP within range, no CVD history) | **Best rate (~11% cheaper)** |
+
+> **The conversion line:** *"AIA rewards healthy clients with cheaper premiums. If you're confident about your health, I can arrange a checkup — if you pass, I'll fight to get you Preferred Plus and save you ~$11K over the policy."*
+
+**Field-underwriting note:** as the consultant, you are the first-line underwriter. If a client is visibly overweight and declares an unrealistic weight, it won't pass UW. Use judgement — minor discrepancies are normal, blatant misrepresentation is not.
+
+### Single-premium PWE — maximum leverage
+
+Worked example: 40-year-old, $1M sum assured, single premium, Elite Adventurous, Preferred Plus rate.
+
+- Single premium: ~$69K (vs ~$80K at standard rate)
+- **Leverage: $69K → $1M = ~14.5×**
+- At 65 (4% return): investment value ~$75K (lose only ~$5K)
+- At 65 (8% return): investment value ~$254K (significant profit)
+
+### PWE sales applications
+
+- **Mortgage protection** — single-premium PWE to cover outstanding home loan
+- **Legacy / estate planning** — high leverage (e.g. $80K single premium → $1M death benefit)
+- **Policy conversion** — client has old life policy with $100K cash value but no CI → surrender, convert to PWE for higher coverage
+- **Retirement bridge** — coverage 40–70, then at 70 (no more dependents) cash out the investment value as retirement income
+
+## 0h2. The Plan Selection Guide — when to use what
+
+When the prospect's circumstances are clear, this table tells you which plan to lead with. Memorise it.
+
+| Client profile | Recommended plan | Why |
+|---|---|---|
+| Young (20s–30s), long horizon | **APA (Pro Achiever)** | Longest compounding period, cornerstone accumulation |
+| Wants short commitment + dividend income | **PWV** | 5-year pay, dividends from quarter 1 |
+| Approaching retirement, needs structured income | **PRE** | Purpose-built drawdown with target income |
+| Wants life cover with investment upside | **PWE** | Term insurance with returns, high leverage |
+| Has lump sum (endowment maturity, inheritance) | **PRE single premium** OR **PWE single premium** | Efficient deployment, low charges |
+| Wants guaranteed whole life with CI | **GPP** | Foundation risk management, cash value |
+| Needs high coverage on tight budget | **SFT + UCC** | Maximum sum at lowest cost |
+
+### The three rules-of-thumb behind the table
+
+1. **Time horizon dictates accumulation vs drawdown.** 20+ years = APA / PWV. <15 years = PRE.
+2. **Lump sum availability dictates pay structure.** Lump sum = single-premium efficiency wins. Cashflow only = 5-year-pay.
+3. **Insurance need dictates the wrapper.** Pure protection budget? SFT + UCC. Wants growth + cover? PWE. Wants par-fund predictability + cover? GPP.
+
+## 0h3. AIA's investment ecosystem + how to read a fund fact sheet
+
+### The investment platform
+
+- **AIA Singapore** is a subsidiary of **AIA Group** (18 markets)
+- AIA Singapore has its own in-house investment company: **AIA Investment Management** ($328B+ AUM)
+- Creates and manages proprietary funds for clients
+- Additionally markets **unit trusts** via the IFAS platform (~10,000+ funds available)
+
+### How to read a fund fact sheet (every fund publishes one monthly)
+
+| Element | What to look for |
+|---|---|
+| **Fund name & objective** | What the fund aims to achieve (capital growth, stable income, etc.) |
+| **Launch date & price** | Most funds start at $1.00 |
+| **Fund manager** | In-house (AIA) or third-party (Henderson, BlackRock, etc.) |
+| **Fund size** | Indicates popularity |
+| **Management fee (FMC)** | Typically 1.5% of AUM |
+| **Bid-to-bid performance** | Returns over 1m, 1y, 3y, 5y, 10y, since inception |
+| **Benchmark** | Compare fund performance against the relevant index |
+| **Sector / country allocation** | Shows diversification |
+| **Risk classification** | Higher or lower risk |
+| **Top holdings** | What the fund actually invests in |
+
+> **Quick assessment:** If a fund consistently underperforms its benchmark across all time periods → first red flag.
+
+### The Elite (ED) Funds — AIA's portfolio backbone
+
+AIA Investment Management partners with **four institutional fund managers** to construct the Elite portfolios:
+
+1. **BlackRock**
+2. **Wellington**
+3. **Baillie Gifford**
+4. **Capital Group**
+
+Each manager brings different specialisations. AIA actively rotates the allocation between their core funds (e.g. tilting into India equity, Greater China equity) as markets shift.
+
+### The three Elite portfolios
+
+| Portfolio | Equity | Fixed Income | Risk level |
+|---|---|---|---|
+| **Adventurous** | 90% | 10% | Higher |
+| **Balanced** | 60% | 40% | Medium |
+| **Conservative** | 30% | 70% | Lower |
+
+**Principle:** more equity = higher volatility + higher potential returns. More fixed income = more stability + lower returns.
+
+### Other key funds worth knowing by name
+
+- **Adventurous Index Fund** — ETF-based fund providing exposure to equities, fixed income, and commodities through a single fund (the one to recommend when the prospect is a S&P-only DIY investor)
+- **Global Adventurous Income Fund** — the cornerstone dividend fund for PWV (projected ~7–7.5% dividend yield)
+
+### A daily habit that compounds
+
+> *"Instead of doom-scrolling, scroll iResource fund pages every evening."*
+
+Five minutes a day on fund fact sheets, top holdings, and 1-year returns. After 90 days, you'll have an instinctive read on every Elite fund and which client profile each one fits — without needing to look anything up in front of a prospect.
+
 ## 0i. The "I'll invest myself" objection (acknowledge → reframe → upsell)
 
 From Module 3, reinforced from Module 1:
