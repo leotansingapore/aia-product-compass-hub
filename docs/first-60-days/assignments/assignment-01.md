@@ -66,8 +66,9 @@ Before recording, re-read or re-skim each of these. The *why* you're delivering 
 ### Day pages — Part B specific (Risk Management Angle)
 
 - [Day 14 — The Total Wealth Concept](../../first-60-days/week-3/day-14.md) — **the primary script.** Two-capitals diagram, conversion engine, TWFPS four pillars, modular close.
-- [Day 53 — CST: The Risks Angle](../../first-60-days/week-9/day-53.md) — the income-loss spine, $1M question, three-risk-method elimination, three-options close + parents objection. Also contains the **full Canned Sales Track appendix**.
+- [Day 53 — CST: The Risks Angle](../../first-60-days/week-9/day-53.md) — the income-loss spine, $1M question, three-risk-method elimination, three-options close + parents objection. Contains the **full OST script (Page 1 + Page 2)** plus the Canned Sales Track appendix.
 - [Day 56 — AIA Solutions: Protection & Living Benefits](../../first-60-days/week-10/day-56.md) — the AIA product map (cash-value vs no-cash-value, A&H bundling rule).
+- **[OST Script — Full Reference](../_source-supplementary/ost-script-full.md)** — the canonical 2-page hand-drawn script with every line, every pause, every example. **Read this in full before recording Part B.**
 
 ---
 

@@ -162,6 +162,65 @@ Everything on this page collapses into one sentence you can say to a client:
 
 Memorise that sentence. You'll use it for the rest of your career.
 
+## 9. The other half of DCA — rebalancing (and why this is your conviction story)
+
+DCA gets the client *into* the market. **Rebalancing** is what keeps the portfolio behaving as intended *while* they're in. New FCs forget the second half. Without it, a "balanced 60/40 portfolio" left alone for 10 years drifts into something else entirely — and the client either takes risk they didn't agree to or misses upside they should have captured.
+
+### What rebalancing actually does
+
+Imagine a $100K portfolio set up as **60% equities / 40% bonds**.
+
+```
+Year 0           After 3 strong equity years           After rebalancing
+─────────        ────────────────────────────          ──────────────────
+Equities  $60K   Equities  $96K  (75%)                 Equities  $84K  (60%)
+Bonds     $40K   Bonds     $32K  (25%)                 Bonds     $56K  (40%)
+─────────        ────────────────────────────          ──────────────────
+Total    $100K   Total    $128K                        Total    $140K
+                 Risk profile has DRIFTED              Risk profile is BACK ON SPEC
+```
+
+After three strong equity years, the portfolio is now **75% equities** without the client doing anything. Their risk exposure quietly increased. **Rebalancing** sells some of the over-performer (equities) and buys more of the under-performer (bonds), restoring the agreed 60/40 split. Two effects:
+
+1. **Risk stays where the client signed up.** A 60/40 stays a 60/40.
+2. **Sells high, buys low — automatically.** You're harvesting the rally and adding to whatever lagged. Most retail investors do the opposite.
+
+### Why it matters in conviction-building (the FC's story)
+
+Most clients won't rebalance themselves. The DIY routes (buying ETFs on Tiger / Moomoo / IBKR / robo-advisors) require the client to:
+- Watch the portfolio drift
+- Calculate when it's drifted past the rebalance threshold (usually 5% off-target on a sleeve)
+- Manually sell winners and buy losers (which feels emotionally wrong)
+- Pay transaction fees on every rebalance trade
+- Track the tax events (US-listed ETFs have estate + dividend tax implications)
+
+**Almost no retail investor does this consistently.** They get sidetracked at year 3, panic-sell in a downturn at year 5, and end up with a portfolio that bears no resemblance to their original plan.
+
+A **managed ILP portfolio** (PWV, Pro Achiever, PRE) does this automatically:
+
+| What clients ask | The honest answer |
+|---|---|
+| *"Why am I paying this management fee when I could just buy ETFs?"* | The fee buys you ongoing rebalancing, fund-rotation across markets (e.g. tilting from US to India when valuations call for it), no transaction costs per trade, and zero tax / estate complexity. Most retail investors who try the DIY version end up with a drifted portfolio AND missed compounding from never rebalancing. |
+| *"Isn't that just market-timing?"* | No — rebalancing is the OPPOSITE of market-timing. Market-timing tries to predict where the market goes. Rebalancing trims winners and adds to losers on a fixed schedule, regardless of market view. It's a discipline, not a forecast. |
+| *"How often does AIA rebalance?"* | Inside the Elite portfolios, the four institutional fund managers (BlackRock / Wellington / Baillie Gifford / Capital Group) plus AIA Investment Management actively rotate allocations across markets and asset classes as conditions shift. You don't have to think about it. |
+
+### This is your conviction story for ILP fees
+
+When a client compares AIA's managed ILP fees against a DIY ETF stack and the fee number looks bigger, the **honest counter-argument has three parts**, in this order:
+
+1. **Rebalancing happens automatically and consistently** — most DIY investors never do this past year 2.
+2. **Fund rotation across markets and managers** — you're not stuck with one ETF that may underperform for a decade (S&P 500 was flat 2003–2013 while emerging markets ran).
+3. **Zero personal admin** — no tax filings on US dividends, no estate-planning headaches, no manual quarterly trades, no "the portfolio drifted because I forgot."
+
+> *"You're not paying for product. You're paying for discipline you can't otherwise enforce on yourself."*
+
+That sentence is the conviction. Memorise it. Use it whenever a fee comparison comes up. The fee isn't the cost of access — it's the cost of *the rebalancing you wouldn't do yourself*. Once an FC believes that, the fee conversation gets a lot easier.
+
+### Cross-references
+
+- The four AIA-vs-DIY differentiators (currency hedging, no dividend tax, no estate tax, secondary insured) sit alongside this rebalancing argument: see [Day 52 §7](../week-9/day-52.md) and [Day 57 §0e](../week-10/day-57.md).
+- The four Elite fund managers + the three Elite portfolios (Adventurous / Balanced / Conservative) are documented on [Day 57 §0h3](../week-10/day-57.md).
+
 ---
 
 ## Quick quiz
