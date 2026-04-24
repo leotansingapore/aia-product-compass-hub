@@ -50,19 +50,21 @@ This assignment forces three things most new FCs avoid:
 
 ## Use the structured worksheet tool
 
-Open the worksheet here:
+The tool is built into Academy now — open it here:
 
-**[Audience & Differentiation Worksheet — open the tool](https://present.financeillustrator.com/financial-advisor-differentiation)**
+**[F.A.D.S. — open the tool](/learning-track/pre-rnf/assignments/assignment-08/tool)**
 
-The tool gives you:
+The tool gives you 7 tabs:
 
-- A side-by-side layout for two audiences (Primary + Secondary)
-- The full 5-layer map per audience (tangible problem → tangible solution → intangible problem → intangible solution → differentiator)
-- Pre-built profiles you can adapt as a starting point — **Busy Professional**, **Young Adult**, and **Parent with Young Kids**
-- A "Solutions" tab that focuses just on this mapping
-- An export so you can save the result
+1. **Personality** — your style, values, beliefs, money philosophy
+2. **Purpose** — origin story, mission, vision
+3. **Experience** — years, claims handled, certifications, defining moments
+4. **Audience** — full demographic + psychographic map for two audiences (with pre-built profiles you can clone: **Busy Father**, **Young Adult**, **Single Mother**, **Parent**)
+5. **Solutions** — tangible / intangible problems and solutions per audience
+6. **Delivery** — your mission statement, process, framework, end-result statement
+7. **Brand Output** — assembles everything into a structured brief you can export and paste into any LLM for polish
 
-If the tool is slow to load or you can't access it, the form on this page captures the same fields directly.
+Your answers persist locally on this device — keep coming back as you discover more about your audience.
 
 ## How to run the exercise
 
