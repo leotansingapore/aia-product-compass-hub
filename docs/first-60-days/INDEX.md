@@ -33,9 +33,9 @@ tags: [first-60-days]
 - → [[week-2/README|Week 2 Summary]]
 
 ### Week 3 — Wealth Building Principles
-*Job A vs Job B. Bank A vs Bank B. Asset vs Liability. The 10X Rule.*
+*Job A vs Job B. The Total Wealth Concept. Wealth Building Principles. The 10X Rule.*
 - [ ] [[week-3/day-13|Day 13 — Job A vs Job B]]
-- [ ] [[week-3/day-14|Day 14 — Bank A vs Bank B]]
+- [ ] [[week-3/day-14|Day 14 — The Total Wealth Concept]]
 - [ ] [[week-3/day-15|Day 15 — Wealth Building Principles]]
 - [ ] [[week-3/day-16|Day 16 — Recurring vs Non-Recurring Revenue]]
 - [ ] [[week-3/day-17|Day 17 — The Wealth-Builder's Mindset]]

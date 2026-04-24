@@ -209,7 +209,7 @@ Recommending aggressive portfolios to conservative clients → they panic on the
 ## 7. Common client misconceptions to correct
 
 **"I don't trust the market, I'll just keep it in the bank."**
-> Show them Bank A vs Bank B (Day 14). Cash is not safe — inflation slowly erodes it.
+> Show them the Total Wealth Concept (Day 14): cash isn't safe — inflation erodes it, while passive income covering expenses is the real freedom number.
 
 **"I'll start investing once I have more money."**
 > Show them the early-start math (Day 29). Waiting is expensive.

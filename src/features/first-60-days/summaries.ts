@@ -120,8 +120,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 14,
     "week": 3,
     "dayInWeek": 2,
-    "title": "Bank A vs Bank B",
-    "duration": 20,
+    "title": "The Total Wealth Concept",
+    "duration": 25,
     "hasReflection": false
   },
   {

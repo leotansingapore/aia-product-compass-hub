@@ -61,7 +61,7 @@ If you're out of ideas, you're not looking in the right places.
 
 1. **Questions from real conversations this week.**
  - A client asked about CPF SA top-ups → post about it.
- - A prospect didn't understand Bank A vs Bank B → write the explainer.
+ - A prospect didn't grasp the Total Wealth Concept → write the explainer.
 
 2. **Mistakes you see people making.**
  - "Most people think their company insurance is enough. Here's why it isn't."
