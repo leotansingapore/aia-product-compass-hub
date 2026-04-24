@@ -49,6 +49,8 @@ The playbook is yours. Don't use anyone else's exact words. Use their frameworks
 
 > **Start here:** **[Duplicate this Project 100 Sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** — open the link, click **File → Make a copy**, save it into your own Drive, and fill it in. The template already has the columns, priority scoring, and temperature fields set up.
 
+> **Then generate your first messages:** **[Open the Outreach Builder](/learning-track/pre-rnf/assignments/assignment-02/tool)**. Paste your sheet rows in (any order — only Name is required), and the tool drafts a starter WhatsApp / Telegram / IG message per prospect based on temperature. Edit before sending, one-tap copy, and track who you've actually contacted. Saved per device.
+
 ### Understand the market temperature first
 
 Your list is split into three concentric rings. Most new FCs only mine the **hot** ring and run out of names by Month 3. The actual goldmine is the **semi-warm** ring.
