@@ -106,7 +106,7 @@ Combined revenue across all four is seven figures. I didn't learn business in bu
 
 ## 6. Why this matters for the worst case
 
-Here's the reframe. Imagine you join, stick with it for 12 to 18 months, and then decide this isn't your forever career.
+Here's the reframe. Imagine you join, stick with it for 6 to 12 months, and then decide this isn't your forever career.
 
 What do you walk away with? A working financial plan for yourself that would have taken years to build otherwise. Sales, listening and negotiation skills that transfer directly into any industry. A network of real clients and mentors. A year of client-facing reps that most corporate jobs will never give you. And battle-tested self-discipline.
 
