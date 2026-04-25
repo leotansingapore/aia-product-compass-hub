@@ -107,11 +107,11 @@ export default function AdminDashboard() {
         </TabsList>
 
         <TabsContent value="users">
-          <UnifiedUserDirectory />
+          <Suspense fallback={<PanelFallback />}><UnifiedUserDirectory /></Suspense>
         </TabsContent>
 
         <TabsContent value="video-progress">
-          <VideoProgressPanel />
+          <Suspense fallback={<PanelFallback />}><VideoProgressPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="performance">
@@ -133,32 +133,32 @@ export default function AdminDashboard() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="quizzes">
-              <QuizScoresPanel />
+              <Suspense fallback={<PanelFallback />}><QuizScoresPanel /></Suspense>
             </TabsContent>
             <TabsContent value="study">
-              <StudyProgressPanel />
+              <Suspense fallback={<PanelFallback />}><StudyProgressPanel /></Suspense>
             </TabsContent>
           </Tabs>
         </TabsContent>
 
         <TabsContent value="question-bank">
-          <QuestionBankManager />
+          <Suspense fallback={<PanelFallback />}><QuestionBankManager /></Suspense>
         </TabsContent>
 
         <TabsContent value="leaderboard">
-          <ProAchieverLeaderboard />
+          <Suspense fallback={<PanelFallback />}><ProAchieverLeaderboard /></Suspense>
         </TabsContent>
 
         <TabsContent value="tier-requests">
-          <TierRequestsPanel />
+          <Suspense fallback={<PanelFallback />}><TierRequestsPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="feedback">
-          <FeedbackPanel />
+          <Suspense fallback={<PanelFallback />}><FeedbackPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="categories">
-          <CategoryTreeEditor />
+          <Suspense fallback={<PanelFallback />}><CategoryTreeEditor /></Suspense>
         </TabsContent>
       </Tabs>
     </AdminLayout>
