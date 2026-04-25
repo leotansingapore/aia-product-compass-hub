@@ -4006,7 +4006,9 @@ export default function ScriptsDatabase() {
       </AlertDialog>
 
       {/* Floating AI Chat Widget */}
-      <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+      <Suspense fallback={null}>
+        <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+      </Suspense>
 
       {/* Delete Category Confirmation */}
       <AlertDialog open={!!deleteCategoryTarget} onOpenChange={(o) => !o && setDeleteCategoryTarget(null)}>
