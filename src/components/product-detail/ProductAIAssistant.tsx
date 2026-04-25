@@ -224,7 +224,15 @@ export function ProductAIAssistant({ customGptLink, productData, onUpdate }: Pro
       )}
 
       {/* Enhanced AI Chat Interface */}
-      <EnhancedAIChat productData={productData} />
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+          </div>
+        }
+      >
+        <EnhancedAIChat productData={productData} />
+      </Suspense>
     </div>
   );
 }
