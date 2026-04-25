@@ -51,10 +51,10 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
       padding: 24,
       nodeSpacing: 64,
       rankSpacing: 72,
-      useMaxWidth: false,
+      useMaxWidth: true,
     },
-    sequence: { useMaxWidth: false },
-    gantt: { useMaxWidth: false },
+    sequence: { useMaxWidth: true },
+    gantt: { useMaxWidth: true },
   });
 }
 
@@ -287,11 +287,10 @@ export function MermaidDiagram({ code }: Props) {
       />
       <div
         className={[
-          "relative flex w-full justify-center overflow-x-auto px-2 pb-4 pt-4 sm:px-4 sm:pt-5",
-          // Stretch SVG to fill the container width; preserve aspect ratio so
-          // height scales proportionally. preserveAspectRatio defaults to
-          // xMidYMid meet, so the diagram stays centered without distortion.
-          "[&_svg]:!h-auto [&_svg]:!w-full [&_svg]:!max-w-full [&_svg]:!block",
+          "relative flex w-full justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
+          // Let mermaid render the SVG at its natural, generous size; only cap
+          // it at the container width on small viewports.
+          "[&_svg]:!h-auto [&_svg]:!max-w-full [&_svg]:!block [&_svg]:!mx-auto",
 
           // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
           "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
