@@ -27,6 +27,10 @@ export function RouteTracker() {
     if (hasRestored.current) return;
     hasRestored.current = true;
 
+    // Warm up the most common learner route chunks in the background so the
+    // next navigation is instant. Runs once per session, after auth resolves.
+    prefetchCommonRoutes();
+
     const currentPath = window.location.pathname;
     if (currentPath === '/' || currentPath === '') {
       try {
