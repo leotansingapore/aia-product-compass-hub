@@ -147,14 +147,14 @@ export default function First60DaysAssignments() {
   ).length;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
+    <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
+      <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-4 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary mb-1.5">
               First 60 Days · Assignments
             </p>
-            <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
+            <h1 className="text-xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
               {countLabel(assignments.length)} deliverables to prove you're ready for the field.
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -172,7 +172,7 @@ export default function First60DaysAssignments() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {assignments.map((a) => {
           const sub = latestBySlug[a.frontmatter.status_key];
           const Icon = ICON_MAP[a.frontmatter.icon] ?? ClipboardList;
@@ -261,7 +261,7 @@ function AssignmentDetail({
 }) {
   const Icon = ICON_MAP[assignment.frontmatter.icon] ?? ClipboardList;
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
       <Link
         to="/learning-track/pre-rnf/assignments"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -271,16 +271,16 @@ function AssignmentDetail({
       </Link>
 
       <div className="rounded-2xl border bg-card overflow-hidden">
-        <div className="relative p-6 sm:p-8 border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
-          <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary shrink-0">
-              <Icon className="h-7 w-7" />
+        <div className="relative p-4 sm:p-8 border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary shrink-0">
+              <Icon className="h-5 w-5 sm:h-7 sm:w-7" />
             </div>
             <div className="flex-1 min-w-0 space-y-2">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
                 Assignment {assignment.frontmatter.order} of {totalCount}
               </p>
-              <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
+              <h1 className="text-xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
                 {assignment.frontmatter.title}
               </h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -288,7 +288,7 @@ function AssignmentDetail({
               </p>
             </div>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2 text-[11px]">
+          <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 text-[11px]">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-background/80 backdrop-blur border px-3 py-1.5 font-medium">
               <FileText className="h-3 w-3 text-primary" />
               {assignment.frontmatter.deliverable}
@@ -306,8 +306,8 @@ function AssignmentDetail({
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 border-b space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="p-4 sm:p-8 border-b space-y-3 sm:space-y-4">
+          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Prep days linked in this assignment
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -322,7 +322,7 @@ function AssignmentDetail({
                   <span className="font-mono font-semibold text-primary">
                     D{String(d).padStart(2, "0")}
                   </span>
-                  <span className="text-foreground/80 group-hover:text-foreground truncate max-w-[180px]">
+                  <span className="text-foreground/80 group-hover:text-foreground truncate max-w-[150px] sm:max-w-[180px]">
                     {s?.title ?? `Day ${d}`}
                   </span>
                 </a>
@@ -331,8 +331,8 @@ function AssignmentDetail({
           </div>
         </div>
 
-        <div className="p-6 sm:p-8">
-          <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+        <div className="p-4 sm:p-8">
+          <article className="prose prose-sm sm:prose-base prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={assignmentMarkdownComponents}>
               {assignment.markdown}
             </ReactMarkdown>
@@ -406,7 +406,7 @@ function SubmissionPanel({
     const formValuesSnapshot = parseFormValues(submission.submission_text);
     const hasFormValues = Object.keys(formValuesSnapshot).length > 0;
     return (
-      <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-6 sm:p-8 space-y-4">
+      <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-4 sm:p-8 space-y-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white shrink-0">
             <CheckCircle2 className="h-5 w-5" />
@@ -531,7 +531,7 @@ function SubmissionPanel({
   };
 
   return (
-    <div className="rounded-2xl border bg-card p-6 sm:p-8 space-y-5">
+    <div className="rounded-2xl border bg-card p-4 sm:p-8 space-y-5">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary shrink-0">
           <Upload className="h-5 w-5" />
@@ -611,7 +611,7 @@ function SubmissionPanel({
         </>
       )}
 
-      <div className="flex gap-3">
+      <div className="flex flex-col-reverse sm:flex-row gap-3">
         {submission && (
           <Button variant="outline" onClick={() => setEditing(false)} disabled={submitting}>
             Cancel

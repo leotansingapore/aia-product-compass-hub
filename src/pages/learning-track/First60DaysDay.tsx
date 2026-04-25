@@ -318,7 +318,7 @@ export default function First60DaysDay() {
   const progressPct = Math.round((progressSteps / steps.length) * 100);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6" data-testid="first-60-days-day">
+    <div className="mx-auto max-w-5xl space-y-5 px-3 sm:space-y-6 sm:px-0" data-testid="first-60-days-day">
       {/* Breadcrumbs */}
       <nav
         aria-label="Breadcrumb"
@@ -357,14 +357,14 @@ export default function First60DaysDay() {
           }}
         />
 
-        <div className="relative grid gap-5 p-5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+        <div className="relative grid gap-4 p-4 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           {/* Left: day numeral + completion ring inline */}
-          <div className="flex items-center gap-4 sm:gap-5">
+          <div className="flex items-center gap-3 sm:gap-5">
             <div className="relative">
-              <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-serif text-[clamp(3rem,12vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
-              <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
+              <span className="absolute -top-1 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
             </div>
@@ -401,7 +401,7 @@ export default function First60DaysDay() {
               <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
               <span>{day.dayNumber} / 60</span>
             </div>
-            <h1 className="font-serif text-[1.625rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            <h1 className="font-serif text-[1.4rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
               {day.title}
             </h1>
 
@@ -510,7 +510,7 @@ export default function First60DaysDay() {
 
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
-            <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+            <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               {dayRehypeReady ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
                   {day.markdown}
@@ -624,7 +624,7 @@ export default function First60DaysDay() {
             onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
             onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
             className={cn(
-              "group gap-2",
+              "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
               nextUnlocked && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
             )}
           >
@@ -638,12 +638,14 @@ export default function First60DaysDay() {
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
-            ) : hasReflection && !quizPassed && !reflectionSubmitted ? (
-              "Finish quiz + reflection to unlock next"
-            ) : !quizPassed ? (
-              "Pass the quiz to unlock next"
             ) : (
-              "Submit reflection to unlock next"
+              <span className="text-xs leading-snug sm:text-sm">
+                {hasReflection && !quizPassed && !reflectionSubmitted
+                  ? "Finish quiz + reflection to unlock"
+                  : !quizPassed
+                  ? "Pass the quiz to unlock next"
+                  : "Submit reflection to unlock next"}
+              </span>
             )}
           </Button>
         )}

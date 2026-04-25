@@ -59,7 +59,7 @@ export default function First60DaysReference() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-4 sm:p-6" data-testid="first-60-days-reference">
+    <div className="mx-auto max-w-4xl space-y-5 p-3 sm:space-y-6 sm:p-6" data-testid="first-60-days-reference">
       <nav
         aria-label="Breadcrumb"
         className="flex flex-wrap items-center gap-1.5 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground"
@@ -76,11 +76,11 @@ export default function First60DaysReference() {
         <span className="text-foreground">{doc.slug}</span>
       </nav>
 
-      <div className="rounded-2xl border border-border/60 bg-gradient-card p-5 sm:p-7 shadow-card">
+      <div className="rounded-2xl border border-border/60 bg-gradient-card p-4 sm:p-7 shadow-card">
         <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary mb-2">
           <BookOpen className="h-3 w-3" /> Reference doc
         </div>
-        <h1 className="font-serif text-2xl sm:text-3xl font-semibold leading-tight tracking-tight">
+        <h1 className="font-serif text-xl sm:text-3xl font-semibold leading-tight tracking-tight">
           {doc.title}
         </h1>
         {doc.frontmatter.captured && (
@@ -91,7 +91,7 @@ export default function First60DaysReference() {
       </div>
 
       <Card className="border-border/60 shadow-card">
-        <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+        <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}

@@ -208,7 +208,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
           verdict === "incorrect" && "border-destructive/50",
         )}
       >
-        <CardContent className="space-y-5 p-6 sm:p-8">
+        <CardContent className="space-y-5 p-4 sm:p-8">
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
               <span>Question {q.index}</span>
@@ -218,7 +218,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
                 </span>
               )}
             </div>
-            <h3 className="font-serif text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+            <h3 className="font-serif text-lg font-semibold leading-snug text-foreground sm:text-2xl">
               <InlineMd text={q.question} />
             </h3>
           </div>
@@ -237,7 +237,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
                   key={opt.key}
                   htmlFor={id}
                   className={cn(
-                    "group flex cursor-pointer items-start gap-3 rounded-xl border p-4 text-sm transition-all",
+                    "group flex cursor-pointer items-start gap-3 rounded-xl border p-3 sm:p-4 text-sm transition-all",
                     !locked && isChosen && "border-primary/60 bg-primary/5 shadow-sm",
                     !locked && !isChosen && "border-border/70 hover:border-primary/40 hover:bg-muted/40",
                     showCorrect && "border-emerald-500/60 bg-emerald-500/10",
@@ -434,7 +434,7 @@ function ResultCard({
             : "radial-gradient(ellipse at top right, hsl(var(--destructive) / 0.18), transparent 60%)",
         }}
       />
-      <CardContent className="relative flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <CardContent className="relative flex flex-col gap-5 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8">
         <div className="flex items-center gap-5">
           {/* Big score ring */}
           <div
@@ -474,7 +474,7 @@ function ResultCard({
           </div>
         </div>
 
-        <div className="flex flex-shrink-0 gap-2 sm:flex-col sm:items-stretch">
+        <div className="flex flex-col gap-2 sm:flex-shrink-0 sm:flex-col sm:items-stretch">
           <Button
             variant={passed ? "outline" : "default"}
             onClick={onRetry}
