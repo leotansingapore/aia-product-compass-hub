@@ -401,7 +401,7 @@ export default function First60DaysDay() {
               <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
               <span>{day.dayNumber} / 60</span>
             </div>
-            <h1 className="font-serif text-[1.625rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            <h1 className="font-serif text-[1.4rem] font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
               {day.title}
             </h1>
 
