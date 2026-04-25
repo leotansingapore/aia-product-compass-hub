@@ -14,7 +14,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
 import { useScripts } from '@/hooks/useScripts';
-import ReactFlowCanvas, { type FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
+// ReactFlow + cytoscape (~430 KB combined) only matter once a learner opens
+// a specific flow. Defer the canvas so the flows list page paints fast.
+import type { FlowCanvasControls } from '@/components/flows/ReactFlowCanvas';
+const ReactFlowCanvas = lazy(() => import('@/components/flows/ReactFlowCanvas'));
 import { NodeEditorDialog } from '@/components/flows/NodeEditorDialog';
 import { AutoLayoutControls } from '@/components/flows/controls/AutoLayoutControls';
 import { ExportControls } from '@/components/flows/controls/ExportControls';
