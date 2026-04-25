@@ -104,9 +104,9 @@ serve(async (req) => {
 
     // If no vector results (embedding failed), try keyword-only search
     if (relevantChunks.length === 0 && queryText.trim()) {
-      const words = queryText.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+      const words = queryText.toLowerCase().split(/\s+/).filter((w: string) => w.length > 2);
       if (words.length > 0) {
-        const ilikeFilters = words.map(w => `content.ilike.%${w}%`).join(",");
+        const ilikeFilters = words.map((w: string) => `content.ilike.%${w}%`).join(",");
         const { data: keywordChunks } = await supabase
           .from("knowledge_chunks")
           .select("content, source_type, source_id, metadata")
