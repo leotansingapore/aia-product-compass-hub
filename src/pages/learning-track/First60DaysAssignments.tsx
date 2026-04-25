@@ -147,14 +147,14 @@ export default function First60DaysAssignments() {
   ).length;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6">
+    <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
+      <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-4 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary mb-1.5">
               First 60 Days · Assignments
             </p>
-            <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
+            <h1 className="text-xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
               {countLabel(assignments.length)} deliverables to prove you're ready for the field.
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -172,7 +172,7 @@ export default function First60DaysAssignments() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {assignments.map((a) => {
           const sub = latestBySlug[a.frontmatter.status_key];
           const Icon = ICON_MAP[a.frontmatter.icon] ?? ClipboardList;
