@@ -94,7 +94,7 @@ const LIGHT_THEME_VARS = {
   titleColor: "#0b1220",
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-  fontSize: "15px",
+  fontSize: "17px",
   // Quadrant chart specifics
   quadrant1Fill: "#dcfce7",
   quadrant2Fill: "#dbeafe",
