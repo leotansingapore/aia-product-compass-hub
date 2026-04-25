@@ -24,7 +24,11 @@ import {
  */
 export function PerfOverlay() {
   const enabled = useEnabled();
+  if (!enabled) return null;
+  return <PerfOverlayInner />;
+}
 
+function PerfOverlayInner() {
   // Subscribe to the perf store via useSyncExternalStore so the overlay
   // re-renders the moment a vital lands or a route is recorded.
   const vitals = useSyncExternalStore(subscribe, getVitals, getVitals);
@@ -33,10 +37,8 @@ export function PerfOverlay() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    if (enabled) initVitalsObservers();
-  }, [enabled]);
-
-  if (!enabled) return null;
+    initVitalsObservers();
+  }, []);
 
   return (
     <div
