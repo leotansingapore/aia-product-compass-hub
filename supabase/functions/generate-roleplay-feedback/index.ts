@@ -2,7 +2,7 @@ import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.50.3';
 import { Resend } from "npm:resend@4.0.0";
-import { renderAsync } from "npm:@react-email/components@0.0.22";
+import { renderAsync } from "npm:@react-email/render@0.0.17";
 import React from "npm:react@18.3.1";
 import { RoleplayFeedbackReadyEmail } from "./_templates/roleplay-feedback-ready.tsx";
 
