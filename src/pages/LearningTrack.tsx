@@ -60,6 +60,19 @@ export default function LearningTrack() {
     : location.pathname.includes("/admin") ? "Admin"
     : "Learning Track";
 
+  const { tier } = useUserTier();
+  const accessibleSteps = JOURNEY_STEPS.filter((s) => can(s.feature));
+  const currentTierKey = accessibleSteps.length > 0 ? accessibleSteps[accessibleSteps.length - 1].key : "explorer";
+  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+
+  // Next tier for upgrade — used when clicking a locked journey node
+  const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
+    explorer: { to: "papers_taker", label: "Papers-taker" },
+    papers_taker: { to: "post_rnf", label: "Post-RNF" },
+    post_rnf: null,
+  };
+  const nextTier = NEXT_TIER[tier];
+
   // ---- Admin: keep tab navigation ----
   if (isAdmin) {
     return (
@@ -94,18 +107,6 @@ export default function LearningTrack() {
   }
 
   // ---- Learner: journey path ----
-  const { tier } = useUserTier();
-  const accessibleSteps = JOURNEY_STEPS.filter((s) => can(s.feature));
-  const currentTierKey = accessibleSteps.length > 0 ? accessibleSteps[accessibleSteps.length - 1].key : "explorer";
-  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
-
-  // Next tier for upgrade — used when clicking a locked journey node
-  const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
-    explorer: { to: "papers_taker", label: "Papers-taker" },
-    papers_taker: { to: "post_rnf", label: "Post-RNF" },
-    post_rnf: null,
-  };
-  const nextTier = NEXT_TIER[tier];
 
   return (
     <PageLayout title="Learning Track" description="Your learning journey.">
