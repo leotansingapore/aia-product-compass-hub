@@ -41,9 +41,13 @@ Four beats. Roughly:
 
 ```mermaid
 flowchart LR
-    A["1 · Who<br/>~15 sec"] --> B["2 · Story teaser<br/>~20 sec"]
-    B --> C["3 · What you do<br/>~30 sec"]
-    C --> D["4 · Easy next step<br/>~25 sec"]
+    A["<b>1 · Who you are</b><br/><span style='font-size:12px;opacity:0.7'>~15 sec</span>"]
+    B["<b>2 · Story teaser</b><br/><span style='font-size:12px;opacity:0.7'>~20 sec</span>"]
+    C["<b>3 · What you do</b><br/><span style='font-size:12px;opacity:0.7'>~30 sec</span>"]
+    D["<b>4 · Easy next step</b><br/><span style='font-size:12px;opacity:0.7'>~25 sec</span>"]
+    A -->|orient| B
+    B -->|hook| C
+    C -->|frame| D
 ```
 
 **1 · Who you are + new role (~15 sec).** Name, your new role as an FC, and one-sentence context for why this is a real career change rather than a side-hustle. Not a pitch — just orientation.
