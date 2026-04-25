@@ -318,7 +318,7 @@ export default function First60DaysDay() {
   const progressPct = Math.round((progressSteps / steps.length) * 100);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6" data-testid="first-60-days-day">
+    <div className="mx-auto max-w-5xl space-y-5 px-3 sm:space-y-6 sm:px-0" data-testid="first-60-days-day">
       {/* Breadcrumbs */}
       <nav
         aria-label="Breadcrumb"
