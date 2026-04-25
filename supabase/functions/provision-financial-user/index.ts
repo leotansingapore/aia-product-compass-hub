@@ -74,47 +74,68 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Step 2: Check if user already exists (race condition protection)
+    // Step 2: Check if auth user already exists (orphan detection / self-heal)
     const { data: allUsers } = await supabaseAdmin.auth.admin.listUsers();
-    const existingUser = allUsers?.users?.find(
+    const existingAuthUser = allUsers?.users?.find(
       (u) => u.email?.toLowerCase() === normalizedEmail
     );
 
-    if (existingUser) {
-      console.log("User already exists, cannot provision:", normalizedEmail);
-      return new Response(
-        JSON.stringify({ error: "User already exists in Academy" }),
-        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Step 3: Create the user account
+    // Step 3: Create or recover the user account
     const displayName = full_name || eligibility.user?.full_name || "User";
     const [firstName, ...lastNameParts] = displayName.split(" ");
     const lastName = lastNameParts.join(" ");
 
-    console.log("Creating user account...");
-    const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-      email: normalizedEmail,
-      password: password,
-      email_confirm: true, // Auto-confirm email since they're verified via Financial app
-      user_metadata: {
-        first_name: firstName,
-        last_name: lastName,
-        display_name: displayName,
-        source: "financial_app",
-      },
-    });
+    let userId: string;
 
-    if (createError || !newUser.user) {
-      console.error("Error creating user:", createError);
-      return new Response(
-        JSON.stringify({ error: "Failed to create user account" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (existingAuthUser) {
+      console.log("Auth user already exists, self-healing (updating password + backfilling):", existingAuthUser.id);
+      userId = existingAuthUser.id;
+
+      // Update password + metadata so the Financial app password works going forward
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(existingAuthUser.id, {
+        password: password,
+        email_confirm: true,
+        user_metadata: {
+          ...(existingAuthUser.user_metadata || {}),
+          first_name: firstName,
+          last_name: lastName,
+          display_name: displayName,
+          source: "financial_app",
+        },
+      });
+
+      if (updateError) {
+        console.error("Error updating existing auth user:", updateError);
+        return new Response(
+          JSON.stringify({ error: "Failed to sync existing account" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else {
+      console.log("Creating new user account...");
+      const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+        email: normalizedEmail,
+        password: password,
+        email_confirm: true, // Auto-confirm email since they're verified via Financial app
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName,
+          display_name: displayName,
+          source: "financial_app",
+        },
+      });
+
+      if (createError || !newUser.user) {
+        console.error("Error creating user:", createError);
+        return new Response(
+          JSON.stringify({ error: "Failed to create user account" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      userId = newUser.user.id;
+      console.log("User created successfully:", userId);
     }
-
-    console.log("User created successfully:", newUser.user.id);
 
     // Step 4: Create profile
     const { error: profileError } = await supabaseAdmin
