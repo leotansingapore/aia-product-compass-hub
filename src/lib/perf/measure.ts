@@ -88,11 +88,11 @@ export function isPerfEnabled(): boolean {
 }
 
 export function getVitals(): WebVitals {
-  return { ...state.vitals };
+  return vitalsSnapshot;
 }
 
 export function getRoutes(): RouteTiming[] {
-  return state.routes.slice();
+  return routesSnapshot;
 }
 
 export function clearRoutes() {
