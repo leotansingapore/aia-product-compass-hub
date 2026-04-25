@@ -80,7 +80,7 @@ Here's what most people don't realise. A modern tied-agency financial-advisory c
 
 You get the upside of a franchise. You don't pay the downside.
 
-Even stranger: the direction of the risk flips. In a traditional franchise, you pay the company upfront. Here, AIA pays you first, through sponsored exam fees, allowance via the FLEXI scheme or EPS, subsidised leads and training. It's a business-in-a-box where the box pays you to open it.
+Even stranger: the direction of the risk flips. In a traditional franchise, you pay the company upfront. Here, you're supported first — through sponsored exam fees, allowance schemes, subsidised leads, and training. It's like a business-in-a-box where you're supported before you even fully start.
 
 ---
 
