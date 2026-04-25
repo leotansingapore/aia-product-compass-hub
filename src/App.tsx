@@ -24,6 +24,7 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { RequireTier } from "@/components/RequireTier";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
+import { PerfOverlay } from "@/components/PerfOverlay";
 
 const OnboardingTutorial = lazyWithRetry(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazyWithRetry(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
