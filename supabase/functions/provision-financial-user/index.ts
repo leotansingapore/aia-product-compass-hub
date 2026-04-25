@@ -222,7 +222,7 @@ Deno.serve(async (req) => {
         success: true,
         message: "Account created and logged in successfully",
         user: {
-          id: newUser.user.id,
+          id: userId,
           email: normalizedEmail,
           display_name: displayName,
         },
