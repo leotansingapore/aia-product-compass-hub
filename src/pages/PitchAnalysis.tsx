@@ -1,5 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+
+// Recharts (~150 KB) is the heaviest dep on this page and only matters for
+// users who already have at least one analysed attempt. Defer it so the
+// initial form/history shell paints immediately.
+const ScoreTrendChart = lazy(() => import("@/components/pitch-analysis/ScoreTrendChart"));
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
