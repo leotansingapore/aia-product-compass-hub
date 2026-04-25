@@ -288,7 +288,8 @@ export function MermaidDiagram({ code }: Props) {
       <div
         className={[
           "relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
-          "[&_svg]:h-auto [&_svg]:max-w-full",
+          "[&_svg]:h-auto [&_svg]:!max-w-full [&_svg]:!w-full",
+
           // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
           "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
           "[&_.node_polygon]:![stroke-width:2]",
