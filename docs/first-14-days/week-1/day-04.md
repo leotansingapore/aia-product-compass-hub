@@ -70,11 +70,11 @@ This is the grand prize. It's the life most 9-to-5 professionals quietly want an
 
 ## 4. Scenario 2 — you "lose"
 
-Now the harder case. You join, give it 12 to 18 months, and decide honestly that FA isn't your long-term move.
+Now the harder case. You join, give it 6 to 12 months, and decide honestly that FA isn't your long-term move.
 
-What do you walk away with? Priceless financial literacy, for one. After 18 months you understand personal cash flow, insurance, investing and retirement planning at a depth most adults never reach. That knowledge saves you and your family serious money for life.
+What do you walk away with? Priceless financial literacy, for one. After 12 months you understand personal cash flow, insurance, investing and retirement planning at a depth most adults never reach. That knowledge saves you and your family serious money for life.
 
-You also leave with the toolkit from yesterday's lesson: sales, communication, negotiation, conviction-building. All transferable. You leave with a real professional network of clients, mentors and peers you've earned. You leave with the discipline, resilience and grit that only comes from 12 months of doing something hard without anyone holding your hand.
+You also leave with the toolkit from yesterday's lesson: sales, communication, negotiation, conviction-building. All transferable. You leave with a real professional network of clients, mentors and peers you've earned. You leave with the discipline, resilience and grit that only comes from 6 to 12 months of doing something hard without anyone holding your hand.
 
 And you leave clean. No debt, no lock-in, no penalties.
 
@@ -137,7 +137,7 @@ Most people never tally this cost. Don't confuse uncomfortable with risky. They 
 
 Evaluated honestly, the question you're actually answering is this.
 
-Is it worth 12 to 18 months of my life to find out whether I can build the career I actually want, given that the worst case leaves me skills-rich, network-richer, debt-free, and better at managing my own money?
+Is it worth 6 to 12 months of my life to find out whether I can build the career I actually want, given that the worst case leaves me skills-rich, network-richer, debt-free, and better at managing my own money?
 
 Put that way, the decision gets clearer.
 
@@ -167,7 +167,7 @@ Answer three questions.
 
 **Why:** The defining feature is the *shape* of outcomes, not the probability. A good asymmetric bet has an enormous upside and a survivable — sometimes even positive — downside. That's why they're prized: expected value is high almost regardless of win probability.
 
-**Q2. The realistic worst case of trying this career and leaving after 18 months is:**
+**Q2. The realistic worst case of trying this career and leaving after 12 months is:**
 - A) Significant debt and a ruined CV
 - B) Portable skills, network and financial literacy, with no debt or lock-in ✓
 - C) A damaged reputation with friends and family
