@@ -51,10 +51,10 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
       padding: 24,
       nodeSpacing: 64,
       rankSpacing: 72,
-      useMaxWidth: false,
+      useMaxWidth: true,
     },
-    sequence: { useMaxWidth: false },
-    gantt: { useMaxWidth: false },
+    sequence: { useMaxWidth: true },
+    gantt: { useMaxWidth: true },
   });
 }
 
