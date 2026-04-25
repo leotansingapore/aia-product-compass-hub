@@ -48,7 +48,14 @@ try {
   // ignore
 }
 
+// Cached snapshots so useSyncExternalStore sees stable references between
+// notifications (otherwise React loops infinitely).
+let vitalsSnapshot: WebVitals = { ...state.vitals };
+let routesSnapshot: RouteTiming[] = state.routes.slice();
+
 function notify() {
+  vitalsSnapshot = { ...state.vitals };
+  routesSnapshot = state.routes.slice();
   state.listeners.forEach((cb) => cb());
 }
 
