@@ -3951,12 +3951,17 @@ export default function ScriptsDatabase() {
       </div>
 
       {/* Editor Dialog */}
-      <ScriptEditorDialog
-        open={editorOpen}
-        onClose={() => { setEditorOpen(false); setEditingScript(null); }}
-        onSave={handleSave}
-        script={editingScript}
-      />
+      {/* Editor Dialog — only mount the heavy TipTap editor when actually opened */}
+      {editorOpen && (
+        <Suspense fallback={null}>
+          <ScriptEditorDialog
+            open={editorOpen}
+            onClose={() => { setEditorOpen(false); setEditingScript(null); }}
+            onSave={handleSave}
+            script={editingScript}
+          />
+        </Suspense>
+      )}
 
       {/* Merge confirmation dialog */}
       <AlertDialog open={!!pendingMerge} onOpenChange={(open) => !open && cancelMerge()}>
