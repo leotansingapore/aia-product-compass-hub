@@ -175,7 +175,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log('✅ Reset link generated successfully');
 
     // Force the redirect_to parameter to use production domain
-    const rawActionLink = data.properties?.action_link || data.action_link || '';
+    const rawActionLink = (data as any).properties?.action_link || (data as any).action_link || '';
     const verifyUrl = new URL(rawActionLink);
     verifyUrl.searchParams.set('redirect_to', 'https://academy.finternship.com/reset-password');
     const resetUrl = verifyUrl.toString();

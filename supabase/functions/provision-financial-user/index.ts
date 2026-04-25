@@ -75,10 +75,22 @@ Deno.serve(async (req) => {
     }
 
     // Step 2: Check if auth user already exists (orphan detection / self-heal)
-    const { data: allUsers } = await supabaseAdmin.auth.admin.listUsers();
-    const existingAuthUser = allUsers?.users?.find(
-      (u) => u.email?.toLowerCase() === normalizedEmail
-    );
+    // listUsers is paginated (default 50/page) — search all pages for the email
+    let existingAuthUser: any = null;
+    const perPage = 1000;
+    for (let page = 1; page <= 20; page++) {
+      const { data: pageData, error: listErr } = await supabaseAdmin.auth.admin.listUsers({ page, perPage });
+      if (listErr) {
+        console.error("Error listing users on page", page, listErr);
+        break;
+      }
+      const found = pageData?.users?.find((u) => u.email?.toLowerCase() === normalizedEmail);
+      if (found) {
+        existingAuthUser = found;
+        break;
+      }
+      if (!pageData?.users || pageData.users.length < perPage) break;
+    }
 
     // Step 3: Create or recover the user account
     const displayName = full_name || eligibility.user?.full_name || "User";

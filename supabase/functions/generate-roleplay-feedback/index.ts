@@ -186,9 +186,9 @@ serve(async (req) => {
       });
 
     // Format transcript for analysis
-    const conversationText = session.transcript
-      .filter(msg => msg.role === 'user' || msg.role === 'assistant')
-      .map(msg => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
+    const conversationText = (session.transcript as any[])
+      .filter((msg: any) => msg.role === 'user' || msg.role === 'assistant')
+      .map((msg: any) => `${msg.role === 'user' ? 'USER' : 'AI_TRAINER'}: ${msg.content}`)
       .join('\n');
 
     console.log('Starting feedback generation for session:', sessionId);
@@ -208,7 +208,7 @@ serve(async (req) => {
         // Combine all feedback
         const comprehensiveFeedback = {
           // Core metrics (1-5 scores)
-          overall_score: Math.round(Object.values(metrics.scores).reduce((a, b) => a + b, 0) / Object.keys(metrics.scores).length),
+          overall_score: Math.round((Object.values(metrics.scores) as number[]).reduce((a: number, b: number) => a + b, 0) / Object.keys(metrics.scores).length),
           communication_score: metrics.scores.communication,
           active_listening_score: metrics.scores.activeListening,
           objection_handling_score: metrics.scores.objectionHandling,
@@ -225,7 +225,7 @@ serve(async (req) => {
 
           // Original qualitative analysis (restructured)
           strengths: qualitative.strengths ? [qualitative.strengths.content] : [],
-          improvement_areas: qualitative.growthAreas?.map(area => area.title + ': ' + area.content) || [],
+          improvement_areas: qualitative.growthAreas?.map((area: any) => area.title + ': ' + area.content) || [],
           specific_feedback: qualitative.specificFeedback,
           coaching_points: qualitative.coachingPoints,
           follow_up_questions: qualitative.followUpQuestions,
@@ -322,7 +322,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in generate-roleplay-feedback function:', error);
     return new Response(JSON.stringify({ 
-      error: error.message,
+      error: error instanceof Error ? error.message : String(error),
       details: 'Check function logs for more information'
     }), {
       status: 500,
