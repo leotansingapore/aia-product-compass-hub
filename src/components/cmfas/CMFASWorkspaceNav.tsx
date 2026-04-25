@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { BookOpen, Brain, FileText, Home, Lock, Menu, Trophy } from 'lucide-react';
+import { Brain, FileText, Home, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -56,7 +56,7 @@ export function buildNavSpec({
         id: 'papers',
         label: 'Exam tutorials',
         shortLabel: 'Tutorials',
-        icon: BookOpen,
+        icon: PlayCircle,
         locked: !readyComplete,
       },
       {
