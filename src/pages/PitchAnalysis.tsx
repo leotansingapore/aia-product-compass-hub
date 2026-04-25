@@ -44,16 +44,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { toast } from "@/hooks/use-toast";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+// recharts moved into the lazy ScoreTrendChart chunk above.
 import { format } from "date-fns";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
