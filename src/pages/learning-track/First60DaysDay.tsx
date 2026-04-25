@@ -624,7 +624,7 @@ export default function First60DaysDay() {
             onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
             onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
             className={cn(
-              "group gap-2",
+              "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
               nextUnlocked && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
             )}
           >
@@ -638,12 +638,14 @@ export default function First60DaysDay() {
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
-            ) : hasReflection && !quizPassed && !reflectionSubmitted ? (
-              "Finish quiz + reflection to unlock next"
-            ) : !quizPassed ? (
-              "Pass the quiz to unlock next"
             ) : (
-              "Submit reflection to unlock next"
+              <span className="text-xs leading-snug sm:text-sm">
+                {hasReflection && !quizPassed && !reflectionSubmitted
+                  ? "Finish quiz + reflection to unlock"
+                  : !quizPassed
+                  ? "Pass the quiz to unlock next"
+                  : "Submit reflection to unlock next"}
+              </span>
             )}
           </Button>
         )}
