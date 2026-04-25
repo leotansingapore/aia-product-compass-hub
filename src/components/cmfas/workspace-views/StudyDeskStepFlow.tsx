@@ -511,10 +511,15 @@ export function StudyDeskStepFlow({
    *  either (a) seed the URL with the first-incomplete slide if it's missing,
    *  or (b) bump the URL FORWARD if the learner is parked on a slide they've
    *  already finished (covers across-device resume + URL stripped to bare).
-   *  Never bumps BACKWARD — manual back-nav stays sticky. The DB is the only
-   *  source of truth; no per-device localStorage cursor. */
+   *  Runs ONCE per page mount only — subsequent navigation (section-tab clicks,
+   *  back/forward) is respected so learners can revisit completed sections
+   *  without being yanked back to the latest. */
+  const landingResolvedRef = useRef(false);
   useEffect(() => {
     if (!isReady) return;
+    if (landingResolvedRef.current) return;
+    landingResolvedRef.current = true;
+
     const firstIncomplete = GET_READY_SLIDES.findIndex((s) => !isSlideDone(s.slideId));
     const target = firstIncomplete === -1 ? SLIDE_COUNT - 1 : firstIncomplete;
     const currentParam = searchParams.get(DESK_SLIDE_PARAM);
