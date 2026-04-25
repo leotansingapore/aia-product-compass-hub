@@ -140,6 +140,22 @@ So if you've been feeling like you're "too slow" or "thinking about it too much"
 
 ---
 
+## 7. The paradigm shift
+
+Before you close this tab, sit with this one line:
+
+> **If you want what others don't have — money, freedom, options — you have to be willing to do what others don't want to do.**
+
+Most people want the outcome. Very few are willing to take on the version of work that produces it: the cold outreach, the awkward first conversations, the months where the income hasn't caught up to the effort, the discipline of showing up when no one is watching.
+
+That's the actual trade. Not talent. Not luck. Not timing. Just a willingness to do the unglamorous work that 95% of people quietly opt out of.
+
+If that line makes you uncomfortable, good. It should. It's the exact filter this career runs on, and it's the same filter every one of those four other businesses I built runs on too.
+
+The next 13 days will show you what that work actually looks like — concretely, day by day — so you can decide with your eyes open whether you're the kind of person who's willing to do it.
+
+---
+
 ## Worksheet — your real *why*
 
 One question. Write the answer somewhere only you will see.
