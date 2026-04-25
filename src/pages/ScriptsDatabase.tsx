@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { copyRichContent } from "@/lib/copy-rich-content";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -6,10 +6,23 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
-import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
-import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
+import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
+
+// These three only mount on demand:
+//   - ScriptEditorDialog → opens when admin clicks "Add" or "Edit"
+//   - KnowledgeManagement → only on the dedicated tab
+//   - ScriptsChatWidget → opens via floating FAB
+// Splitting them out keeps the heavy initial Scripts list snappy.
+const ScriptEditorDialog = lazy(() =>
+  import("@/components/scripts/ScriptEditorDialog").then((m) => ({ default: m.ScriptEditorDialog }))
+);
+const KnowledgeManagement = lazy(() =>
+  import("@/components/scripts/KnowledgeManagement").then((m) => ({ default: m.KnowledgeManagement }))
+);
+const ScriptsChatWidget = lazy(() =>
+  import("@/components/scripts/ScriptsChatWidget").then((m) => ({ default: m.ScriptsChatWidget }))
+);
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
