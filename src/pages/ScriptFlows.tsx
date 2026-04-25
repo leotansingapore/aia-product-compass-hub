@@ -707,19 +707,27 @@ export default function ScriptFlows() {
             <div className="flex gap-3 items-start">
               <div className={`relative rounded-xl border overflow-hidden transition-all duration-300 ${previewingNode && window.innerWidth >= 1024 ? 'flex-1' : 'w-full'}`}
                 style={{ height: 'calc(100vh - 240px)', minHeight: 350 }}>
-                <ReactFlowCanvas
-                  key={activeFlowId}
-                  initialNodes={localNodes}
-                  initialEdges={localEdges}
-                  scripts={scripts}
-                  flowId={activeFlowId}
-                  onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
-                  onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
-                  onDoubleClickNode={node => setEditingNode(node)}
-                  onClickNode={handleNodeClick}
-                  onPaneClick={() => setPreviewingNode(null)}
-                  controlsRef={controlsRef}
-                />
+                <Suspense
+                  fallback={
+                    <div className="flex h-full w-full items-center justify-center bg-muted/20">
+                      <div className="text-sm text-muted-foreground">Loading canvas…</div>
+                    </div>
+                  }
+                >
+                  <ReactFlowCanvas
+                    key={activeFlowId}
+                    initialNodes={localNodes}
+                    initialEdges={localEdges}
+                    scripts={scripts}
+                    flowId={activeFlowId}
+                    onNodesChange={(nodes) => { setLocalNodes(nodes); setHasUnsaved(true); }}
+                    onEdgesChange={(edges) => { setLocalEdges(edges); setHasUnsaved(true); }}
+                    onDoubleClickNode={node => setEditingNode(node)}
+                    onClickNode={handleNodeClick}
+                    onPaneClick={() => setPreviewingNode(null)}
+                    controlsRef={controlsRef}
+                  />
+                </Suspense>
 
                 {/* Canvas onboarding hint — shown when flow has only 1 node (fresh flow) */}
                 {localNodes.length <= 1 && (
