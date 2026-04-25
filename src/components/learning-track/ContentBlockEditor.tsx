@@ -404,8 +404,18 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
 
           {b.block_type === "link" && b.url && (
             isImageUrl(b.url) ? (
-              <figure>
-                <img src={b.url} alt={b.title ?? "Image"} loading="lazy" />
+              <figure className="my-2">
+                {/* aspect-video reserves layout space so async image load
+                    doesn't shift the surrounding markdown content. */}
+                <div className="relative w-full overflow-hidden rounded-md bg-muted aspect-video">
+                  <img
+                    src={b.url}
+                    alt={b.title ?? "Image"}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-contain"
+                  />
+                </div>
               </figure>
             ) : (
               <p>
@@ -417,8 +427,16 @@ export function ContentBlockEditor({ blocks, itemId }: Props) {
           )}
 
           {b.block_type === "image" && b.url && (
-            <figure>
-              <img src={b.url} alt={b.title ?? "Image"} loading="lazy" />
+            <figure className="my-2">
+              <div className="relative w-full overflow-hidden rounded-md bg-muted aspect-video">
+                <img
+                  src={b.url}
+                  alt={b.title ?? "Image"}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+              </div>
             </figure>
           )}
 
