@@ -94,7 +94,7 @@ const LIGHT_THEME_VARS = {
   titleColor: "#0b1220",
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-  fontSize: "15px",
+  fontSize: "17px",
   // Quadrant chart specifics
   quadrant1Fill: "#dcfce7",
   quadrant2Fill: "#dbeafe",
@@ -148,7 +148,7 @@ const DARK_THEME_VARS = {
   titleColor: "#f1f5fb",
   labelBackground: "#2e3d5c",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-  fontSize: "15px",
+  fontSize: "17px",
   // Quadrant chart specifics — translucent washes that read on slate canvas
   quadrant1Fill: "#14532d",
   quadrant2Fill: "#1e3a8a",
@@ -287,8 +287,11 @@ export function MermaidDiagram({ code }: Props) {
       />
       <div
         className={[
-          "relative flex min-h-[160px] justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
-          "[&_svg]:h-auto [&_svg]:!max-w-full [&_svg]:!w-full",
+          "relative flex w-full justify-center overflow-x-auto px-2 pb-4 pt-4 sm:px-4 sm:pt-5",
+          // Stretch SVG to fill the container width; preserve aspect ratio so
+          // height scales proportionally. preserveAspectRatio defaults to
+          // xMidYMid meet, so the diagram stays centered without distortion.
+          "[&_svg]:!h-auto [&_svg]:!w-full [&_svg]:!max-w-full [&_svg]:!block",
 
           // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
           "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
