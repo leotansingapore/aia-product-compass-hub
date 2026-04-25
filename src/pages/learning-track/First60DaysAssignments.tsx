@@ -261,7 +261,7 @@ function AssignmentDetail({
 }) {
   const Icon = ICON_MAP[assignment.frontmatter.icon] ?? ClipboardList;
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
       <Link
         to="/learning-track/pre-rnf/assignments"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -271,16 +271,16 @@ function AssignmentDetail({
       </Link>
 
       <div className="rounded-2xl border bg-card overflow-hidden">
-        <div className="relative p-6 sm:p-8 border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
-          <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary shrink-0">
-              <Icon className="h-7 w-7" />
+        <div className="relative p-4 sm:p-8 border-b bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary shrink-0">
+              <Icon className="h-5 w-5 sm:h-7 sm:w-7" />
             </div>
             <div className="flex-1 min-w-0 space-y-2">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
                 Assignment {assignment.frontmatter.order} of {totalCount}
               </p>
-              <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
+              <h1 className="text-xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
                 {assignment.frontmatter.title}
               </h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -288,7 +288,7 @@ function AssignmentDetail({
               </p>
             </div>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2 text-[11px]">
+          <div className="mt-4 sm:mt-5 flex flex-wrap gap-2 text-[11px]">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-background/80 backdrop-blur border px-3 py-1.5 font-medium">
               <FileText className="h-3 w-3 text-primary" />
               {assignment.frontmatter.deliverable}
@@ -306,8 +306,8 @@ function AssignmentDetail({
           </div>
         </div>
 
-        <div className="p-6 sm:p-8 border-b space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="p-4 sm:p-8 border-b space-y-3 sm:space-y-4">
+          <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Prep days linked in this assignment
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -322,7 +322,7 @@ function AssignmentDetail({
                   <span className="font-mono font-semibold text-primary">
                     D{String(d).padStart(2, "0")}
                   </span>
-                  <span className="text-foreground/80 group-hover:text-foreground truncate max-w-[180px]">
+                  <span className="text-foreground/80 group-hover:text-foreground truncate max-w-[150px] sm:max-w-[180px]">
                     {s?.title ?? `Day ${d}`}
                   </span>
                 </a>
@@ -331,8 +331,8 @@ function AssignmentDetail({
           </div>
         </div>
 
-        <div className="p-6 sm:p-8">
-          <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+        <div className="p-4 sm:p-8">
+          <article className="prose prose-sm sm:prose-base prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={assignmentMarkdownComponents}>
               {assignment.markdown}
             </ReactMarkdown>
