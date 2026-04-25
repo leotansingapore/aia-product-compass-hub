@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,13 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { Edit, Check, X, ExternalLink, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Textarea } from "@/components/ui/textarea";
-import { EnhancedAIChat } from "./EnhancedAIChat";
+
+// EnhancedAIChat (~426 lines) plus its OpenAI/markdown deps load in their own
+// chunk so the assistant tab's static UI (custom GPT link, header, edit form)
+// paints first and the chat hydrates after.
+const EnhancedAIChat = lazy(() =>
+  import("./EnhancedAIChat").then((m) => ({ default: m.EnhancedAIChat }))
+);
 
 interface ProductAIAssistantProps {
   customGptLink?: string;
