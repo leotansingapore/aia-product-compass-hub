@@ -595,30 +595,48 @@ export default function ConceptCardsPage() {
         )}
       </div>
 
-      <ConceptCardUploadDialog
-        open={uploadOpen}
-        onClose={() => setUploadOpen(false)}
-        onCreated={refetch}
-      />
-      <ConceptCardViewDialog
-        card={viewCard}
-        onClose={() => setViewCard(null)}
-      />
-      <ConceptCardViewDialog
-        card={drawCard}
-        initialTab="draw"
-        onClose={() => setDrawCard(null)}
-      />
-      <ConceptCardEditDialog
-        card={editCard}
-        onClose={() => setEditCard(null)}
-        onUpdated={refetch}
-      />
+      {uploadOpen && (
+        <Suspense fallback={null}>
+          <ConceptCardUploadDialog
+            open={uploadOpen}
+            onClose={() => setUploadOpen(false)}
+            onCreated={refetch}
+          />
+        </Suspense>
+      )}
+      {viewCard && (
+        <Suspense fallback={null}>
+          <ConceptCardViewDialog
+            card={viewCard}
+            onClose={() => setViewCard(null)}
+          />
+        </Suspense>
+      )}
+      {drawCard && (
+        <Suspense fallback={null}>
+          <ConceptCardViewDialog
+            card={drawCard}
+            initialTab="draw"
+            onClose={() => setDrawCard(null)}
+          />
+        </Suspense>
+      )}
+      {editCard && (
+        <Suspense fallback={null}>
+          <ConceptCardEditDialog
+            card={editCard}
+            onClose={() => setEditCard(null)}
+            onUpdated={refetch}
+          />
+        </Suspense>
+      )}
       {focusMode && focusCards.length > 0 && (
-        <ConceptCardFocusMode
-          cards={focusCards}
-          onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
-        />
+        <Suspense fallback={null}>
+          <ConceptCardFocusMode
+            cards={focusCards}
+            onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
+          />
+        </Suspense>
       )}
     </PageLayout>
   );
