@@ -3941,7 +3941,9 @@ export default function ScriptsDatabase() {
         {/* Knowledge Base Management (admin only) */}
         {isAdmin && (
           <div className="mt-8">
-            <KnowledgeManagement />
+            <Suspense fallback={<div className="h-32 animate-pulse rounded-md bg-muted/30" />}>
+              <KnowledgeManagement />
+            </Suspense>
           </div>
         )}
       </>
