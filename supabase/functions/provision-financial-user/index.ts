@@ -74,53 +74,74 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Step 2: Check if user already exists (race condition protection)
+    // Step 2: Check if auth user already exists (orphan detection / self-heal)
     const { data: allUsers } = await supabaseAdmin.auth.admin.listUsers();
-    const existingUser = allUsers?.users?.find(
+    const existingAuthUser = allUsers?.users?.find(
       (u) => u.email?.toLowerCase() === normalizedEmail
     );
 
-    if (existingUser) {
-      console.log("User already exists, cannot provision:", normalizedEmail);
-      return new Response(
-        JSON.stringify({ error: "User already exists in Academy" }),
-        { status: 409, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Step 3: Create the user account
+    // Step 3: Create or recover the user account
     const displayName = full_name || eligibility.user?.full_name || "User";
     const [firstName, ...lastNameParts] = displayName.split(" ");
     const lastName = lastNameParts.join(" ");
 
-    console.log("Creating user account...");
-    const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
-      email: normalizedEmail,
-      password: password,
-      email_confirm: true, // Auto-confirm email since they're verified via Financial app
-      user_metadata: {
-        first_name: firstName,
-        last_name: lastName,
-        display_name: displayName,
-        source: "financial_app",
-      },
-    });
+    let userId: string;
 
-    if (createError || !newUser.user) {
-      console.error("Error creating user:", createError);
-      return new Response(
-        JSON.stringify({ error: "Failed to create user account" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (existingAuthUser) {
+      console.log("Auth user already exists, self-healing (updating password + backfilling):", existingAuthUser.id);
+      userId = existingAuthUser.id;
+
+      // Update password + metadata so the Financial app password works going forward
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(existingAuthUser.id, {
+        password: password,
+        email_confirm: true,
+        user_metadata: {
+          ...(existingAuthUser.user_metadata || {}),
+          first_name: firstName,
+          last_name: lastName,
+          display_name: displayName,
+          source: "financial_app",
+        },
+      });
+
+      if (updateError) {
+        console.error("Error updating existing auth user:", updateError);
+        return new Response(
+          JSON.stringify({ error: "Failed to sync existing account" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else {
+      console.log("Creating new user account...");
+      const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+        email: normalizedEmail,
+        password: password,
+        email_confirm: true, // Auto-confirm email since they're verified via Financial app
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName,
+          display_name: displayName,
+          source: "financial_app",
+        },
+      });
+
+      if (createError || !newUser.user) {
+        console.error("Error creating user:", createError);
+        return new Response(
+          JSON.stringify({ error: "Failed to create user account" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      userId = newUser.user.id;
+      console.log("User created successfully:", userId);
     }
-
-    console.log("User created successfully:", newUser.user.id);
 
     // Step 4: Create profile
     const { error: profileError } = await supabaseAdmin
       .from("profiles")
       .upsert({
-        user_id: newUser.user.id,
+        user_id: userId,
         email: normalizedEmail,
         first_name: firstName,
         last_name: lastName || null,
@@ -130,14 +151,12 @@ Deno.serve(async (req) => {
 
     if (profileError) {
       console.error("Error creating profile:", profileError);
-      // Don't fail the whole flow for profile creation issues
     }
 
     // Step 5: Assign roles based on Financial app response
     const financialRoles: string[] = eligibility.user?.roles || [];
     console.log("Roles from Financial app:", financialRoles);
 
-    // Determine admin role (priority: master_admin > admin > user)
     let adminRole = 'user';
     if (financialRoles.includes('master_admin')) {
       adminRole = 'master_admin';
@@ -145,49 +164,32 @@ Deno.serve(async (req) => {
       adminRole = 'admin';
     }
 
-    // Determine access tier (admin/consultant get level_2, others get level_1)
-    const hasElevatedRole = financialRoles.some(r => 
+    const hasElevatedRole = financialRoles.some(r =>
       ['admin', 'master_admin', 'consultant'].includes(r)
     );
     const accessTier = hasElevatedRole ? 'level_2' : 'level_1';
 
     console.log("Mapped roles:", { adminRole, accessTier });
 
-    // Insert admin role
+    // Sync admin role (clear stale rows first)
+    await supabaseAdmin.from("user_admin_roles").delete().eq("user_id", userId);
     const { error: adminRoleError } = await supabaseAdmin
       .from("user_admin_roles")
-      .insert({
-        user_id: newUser.user.id,
-        admin_role: adminRole,
-      });
+      .insert({ user_id: userId, admin_role: adminRole });
+    if (adminRoleError) console.error("Error assigning admin role:", adminRoleError);
 
-    if (adminRoleError) {
-      console.error("Error assigning admin role:", adminRoleError);
-    }
-
-    // Insert access tier
+    // Upsert access tier
     const { error: tierError } = await supabaseAdmin
       .from("user_access_tiers")
-      .insert({
-        user_id: newUser.user.id,
-        tier_level: accessTier,
-      });
+      .upsert({ user_id: userId, tier_level: accessTier }, { onConflict: "user_id" });
+    if (tierError) console.error("Error assigning access tier:", tierError);
 
-    if (tierError) {
-      console.error("Error assigning access tier:", tierError);
-    }
-
-    // Also insert into user_roles for backwards compatibility
+    // Sync user_roles for backwards compatibility
+    await supabaseAdmin.from("user_roles").delete().eq("user_id", userId);
     const { error: roleError } = await supabaseAdmin
       .from("user_roles")
-      .insert({
-        user_id: newUser.user.id,
-        role: adminRole,
-      });
-
-    if (roleError) {
-      console.error("Error assigning user role:", roleError);
-    }
+      .insert({ user_id: userId, role: adminRole });
+    if (roleError) console.error("Error assigning user role:", roleError);
 
     // Step 6: Sign in to get session tokens
     console.log("Signing in to get session tokens...");
@@ -220,7 +222,7 @@ Deno.serve(async (req) => {
         success: true,
         message: "Account created and logged in successfully",
         user: {
-          id: newUser.user.id,
+          id: userId,
           email: normalizedEmail,
           display_name: displayName,
         },
