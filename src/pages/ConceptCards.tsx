@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { lazy, Suspense, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
 import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
@@ -6,10 +6,13 @@ import { useConceptCards, ConceptCard } from '@/hooks/useConceptCards';
 import { useConceptCardsMutations } from '@/hooks/useConceptCards';
 import { useAdmin } from '@/hooks/useAdmin';
 import { useSpacedRepetition } from '@/hooks/useSpacedRepetition';
-import { ConceptCardUploadDialog } from '@/components/concept-cards/ConceptCardUploadDialog';
-import { ConceptCardFocusMode } from '@/components/concept-cards/ConceptCardFocusMode';
-import { ConceptCardViewDialog } from '@/components/concept-cards/ConceptCardViewDialog';
-import { ConceptCardEditDialog } from '@/components/concept-cards/ConceptCardEditDialog';
+
+// Dialogs and the SVG-canvas FocusMode are heavy and only mount on demand.
+// Lazy chunks keep the grid paint snappy.
+const ConceptCardUploadDialog = lazy(() => import('@/components/concept-cards/ConceptCardUploadDialog').then(m => ({ default: m.ConceptCardUploadDialog })));
+const ConceptCardFocusMode = lazy(() => import('@/components/concept-cards/ConceptCardFocusMode').then(m => ({ default: m.ConceptCardFocusMode })));
+const ConceptCardViewDialog = lazy(() => import('@/components/concept-cards/ConceptCardViewDialog').then(m => ({ default: m.ConceptCardViewDialog })));
+const ConceptCardEditDialog = lazy(() => import('@/components/concept-cards/ConceptCardEditDialog').then(m => ({ default: m.ConceptCardEditDialog })));
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -592,30 +595,48 @@ export default function ConceptCardsPage() {
         )}
       </div>
 
-      <ConceptCardUploadDialog
-        open={uploadOpen}
-        onClose={() => setUploadOpen(false)}
-        onCreated={refetch}
-      />
-      <ConceptCardViewDialog
-        card={viewCard}
-        onClose={() => setViewCard(null)}
-      />
-      <ConceptCardViewDialog
-        card={drawCard}
-        initialTab="draw"
-        onClose={() => setDrawCard(null)}
-      />
-      <ConceptCardEditDialog
-        card={editCard}
-        onClose={() => setEditCard(null)}
-        onUpdated={refetch}
-      />
+      {uploadOpen && (
+        <Suspense fallback={null}>
+          <ConceptCardUploadDialog
+            open={uploadOpen}
+            onClose={() => setUploadOpen(false)}
+            onCreated={refetch}
+          />
+        </Suspense>
+      )}
+      {viewCard && (
+        <Suspense fallback={null}>
+          <ConceptCardViewDialog
+            card={viewCard}
+            onClose={() => setViewCard(null)}
+          />
+        </Suspense>
+      )}
+      {drawCard && (
+        <Suspense fallback={null}>
+          <ConceptCardViewDialog
+            card={drawCard}
+            initialTab="draw"
+            onClose={() => setDrawCard(null)}
+          />
+        </Suspense>
+      )}
+      {editCard && (
+        <Suspense fallback={null}>
+          <ConceptCardEditDialog
+            card={editCard}
+            onClose={() => setEditCard(null)}
+            onUpdated={refetch}
+          />
+        </Suspense>
+      )}
       {focusMode && focusCards.length > 0 && (
-        <ConceptCardFocusMode
-          cards={focusCards}
-          onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
-        />
+        <Suspense fallback={null}>
+          <ConceptCardFocusMode
+            cards={focusCards}
+            onClose={() => { setFocusMode(false); setDueOnlyMode(false); }}
+          />
+        </Suspense>
       )}
     </PageLayout>
   );

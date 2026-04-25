@@ -1,15 +1,28 @@
+import { lazy, Suspense } from 'react';
 import { AdminLayout } from '@/components/layout/AdminLayout';
 import { PlatformControls } from '@/components/admin/PlatformControls';
-import { UnifiedUserDirectory } from '@/components/admin/UnifiedUserDirectory';
-import { VideoProgressPanel } from '@/components/admin/VideoProgressPanel';
-import { QuizScoresPanel } from '@/components/admin/QuizScoresPanel';
-import { StudyProgressPanel } from '@/components/admin/StudyProgressPanel';
-import { FeedbackPanel } from '@/components/admin/FeedbackPanel';
-import { ProAchieverLeaderboard } from '@/components/admin/ProAchieverLeaderboard';
-import { QuestionBankManager } from '@/components/admin/QuestionBankManager';
-import { TierRequestsPanel } from '@/components/admin/TierRequestsPanel';
-import { CategoryTreeEditor } from '@/components/admin/CategoryTreeEditor';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+// Each admin panel is heavy (data tables, charts, mutations). The dashboard
+// has 10 tabs but a single visit only ever uses 1–2 of them. Lazy-load each
+// so an admin opening "users" doesn't pay for VideoProgress + QuizScores +
+// StudyProgress + Leaderboard + QuestionBank + Tier + Feedback + Categories.
+const UnifiedUserDirectory = lazy(() => import('@/components/admin/UnifiedUserDirectory').then(m => ({ default: m.UnifiedUserDirectory })));
+const VideoProgressPanel = lazy(() => import('@/components/admin/VideoProgressPanel').then(m => ({ default: m.VideoProgressPanel })));
+const QuizScoresPanel = lazy(() => import('@/components/admin/QuizScoresPanel').then(m => ({ default: m.QuizScoresPanel })));
+const StudyProgressPanel = lazy(() => import('@/components/admin/StudyProgressPanel').then(m => ({ default: m.StudyProgressPanel })));
+const FeedbackPanel = lazy(() => import('@/components/admin/FeedbackPanel').then(m => ({ default: m.FeedbackPanel })));
+const ProAchieverLeaderboard = lazy(() => import('@/components/admin/ProAchieverLeaderboard').then(m => ({ default: m.ProAchieverLeaderboard })));
+const QuestionBankManager = lazy(() => import('@/components/admin/QuestionBankManager').then(m => ({ default: m.QuestionBankManager })));
+const TierRequestsPanel = lazy(() => import('@/components/admin/TierRequestsPanel').then(m => ({ default: m.TierRequestsPanel })));
+const CategoryTreeEditor = lazy(() => import('@/components/admin/CategoryTreeEditor').then(m => ({ default: m.CategoryTreeEditor })));
+
+const PanelFallback = () => (
+  <div className="space-y-3">
+    <div className="h-8 w-48 animate-pulse rounded bg-muted/40" />
+    <div className="h-64 w-full animate-pulse rounded bg-muted/30" />
+  </div>
+);
 import { Users, Video, Brain, MessageSquare, Trophy, BookOpen, GraduationCap, BarChart3, Inbox, FolderTree } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -94,11 +107,11 @@ export default function AdminDashboard() {
         </TabsList>
 
         <TabsContent value="users">
-          <UnifiedUserDirectory />
+          <Suspense fallback={<PanelFallback />}><UnifiedUserDirectory /></Suspense>
         </TabsContent>
 
         <TabsContent value="video-progress">
-          <VideoProgressPanel />
+          <Suspense fallback={<PanelFallback />}><VideoProgressPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="performance">
@@ -120,32 +133,32 @@ export default function AdminDashboard() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="quizzes">
-              <QuizScoresPanel />
+              <Suspense fallback={<PanelFallback />}><QuizScoresPanel /></Suspense>
             </TabsContent>
             <TabsContent value="study">
-              <StudyProgressPanel />
+              <Suspense fallback={<PanelFallback />}><StudyProgressPanel /></Suspense>
             </TabsContent>
           </Tabs>
         </TabsContent>
 
         <TabsContent value="question-bank">
-          <QuestionBankManager />
+          <Suspense fallback={<PanelFallback />}><QuestionBankManager /></Suspense>
         </TabsContent>
 
         <TabsContent value="leaderboard">
-          <ProAchieverLeaderboard />
+          <Suspense fallback={<PanelFallback />}><ProAchieverLeaderboard /></Suspense>
         </TabsContent>
 
         <TabsContent value="tier-requests">
-          <TierRequestsPanel />
+          <Suspense fallback={<PanelFallback />}><TierRequestsPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="feedback">
-          <FeedbackPanel />
+          <Suspense fallback={<PanelFallback />}><FeedbackPanel /></Suspense>
         </TabsContent>
 
         <TabsContent value="categories">
-          <CategoryTreeEditor />
+          <Suspense fallback={<PanelFallback />}><CategoryTreeEditor /></Suspense>
         </TabsContent>
       </Tabs>
     </AdminLayout>
