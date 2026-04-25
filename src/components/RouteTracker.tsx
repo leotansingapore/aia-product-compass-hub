@@ -19,6 +19,11 @@ export function RouteTracker() {
   const { user, loading } = useSimplifiedAuth();
   const hasRestored = useRef(false);
 
+  // Always-on, near-zero-cost route timing. Data only surfaces if the perf
+  // overlay is enabled (?perf=1) — otherwise the recorded numbers sit
+  // harmlessly in localStorage for later inspection.
+  useRouteChangeTiming();
+
   // On mount: restore last route if authenticated user lands on "/"
   // Uses a ref to ensure this only fires once — Supabase can re-emit auth events
   // (token refresh, session updates) which would otherwise re-trigger this effect
