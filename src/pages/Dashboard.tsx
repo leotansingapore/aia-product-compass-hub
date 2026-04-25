@@ -46,6 +46,7 @@ const Dashboard = memo(() => {
       title="Dashboard - Your Learning Hub | FINternship"
       description="Access your personalized learning dashboard. Browse product categories, track progress, discover recommendations, and continue your financial advisory education journey."
       keywords="dashboard, learning hub, financial products, training progress, product categories, financial advisor platform"
+      className="min-h-screen bg-background overflow-x-clip"
     >
       {/* Hero — warm greeting + learning progress + search */}
       <div className="relative overflow-hidden">
@@ -53,8 +54,8 @@ const Dashboard = memo(() => {
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary/15 to-accent/15 blur-3xl pointer-events-none" />
         <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-accent/10 to-primary/10 blur-3xl pointer-events-none" />
 
-        <div className="relative px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif tracking-tight mb-2">
+        <div className="relative px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 min-w-0">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif tracking-tight mb-2 break-words">
             Welcome back, {greeting}
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base mb-6 max-w-xl">
@@ -70,7 +71,7 @@ const Dashboard = memo(() => {
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto px-1 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-6 sm:space-y-8 md:space-y-12">
+      <div className="mx-auto w-full max-w-full min-w-0 px-3 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8 space-y-6 sm:space-y-8 md:space-y-12">
 
         {hasQuery ? (
           <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">

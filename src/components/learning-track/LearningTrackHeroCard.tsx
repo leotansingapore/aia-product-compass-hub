@@ -31,15 +31,15 @@ export function LearningTrackHeroCard() {
   };
 
   return (
-    <div className="rounded-2xl p-6 sm:p-8 shadow-lg bg-gradient-to-br from-primary/5 via-card to-accent/5 ring-1 ring-primary/10" data-testid="lt-hero-card">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-lg font-semibold font-serif">
-          <div className="p-2 rounded-xl bg-primary/10">
+    <div className="rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg bg-gradient-to-br from-primary/5 via-card to-accent/5 ring-1 ring-primary/10 min-w-0 overflow-hidden" data-testid="lt-hero-card">
+      <div className="mb-4 flex items-center justify-between gap-3 min-w-0">
+        <h2 className="flex items-center gap-2 text-base sm:text-lg font-semibold font-serif min-w-0">
+          <div className="p-2 rounded-xl bg-primary/10 shrink-0">
             <GraduationCap className="h-5 w-5 text-primary" />
           </div>
-          Your Learning Track
+          <span className="truncate">Your Learning Track</span>
         </h2>
-        <span className="text-sm font-medium tabular-nums">{data.combinedPct}%</span>
+        <span className="text-sm font-medium tabular-nums shrink-0">{data.combinedPct}%</span>
       </div>
       <Progress value={data.combinedPct} className="mb-4 h-3" />
       {data.nextItem && (
