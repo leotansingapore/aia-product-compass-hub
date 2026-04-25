@@ -474,7 +474,7 @@ function ResultCard({
           </div>
         </div>
 
-        <div className="flex flex-shrink-0 gap-2 sm:flex-col sm:items-stretch">
+        <div className="flex flex-col gap-2 sm:flex-shrink-0 sm:flex-col sm:items-stretch">
           <Button
             variant={passed ? "outline" : "default"}
             onClick={onRetry}
