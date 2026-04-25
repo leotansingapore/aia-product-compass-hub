@@ -23,7 +23,6 @@ const KnowledgeManagement = lazy(() =>
 const ScriptsChatWidget = lazy(() =>
   import("@/components/scripts/ScriptsChatWidget").then((m) => ({ default: m.ScriptsChatWidget }))
 );
-import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
