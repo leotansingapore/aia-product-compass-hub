@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 import { prefetchCommonRoutes } from '@/utils/prefetchRoutes';
+import { useRouteChangeTiming } from '@/lib/perf/useRouteChangeTiming';
 
 const ROUTE_STORAGE_KEY = 'lastVisitedRoute';
 
@@ -17,6 +18,11 @@ export function RouteTracker() {
   const navigate = useNavigate();
   const { user, loading } = useSimplifiedAuth();
   const hasRestored = useRef(false);
+
+  // Always-on, near-zero-cost route timing. Data only surfaces if the perf
+  // overlay is enabled (?perf=1) — otherwise the recorded numbers sit
+  // harmlessly in localStorage for later inspection.
+  useRouteChangeTiming();
 
   // On mount: restore last route if authenticated user lands on "/"
   // Uses a ref to ensure this only fires once — Supabase can re-emit auth events

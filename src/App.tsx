@@ -24,6 +24,7 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { RequireTier } from "@/components/RequireTier";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
+import { PerfOverlay } from "@/components/PerfOverlay";
 
 const OnboardingTutorial = lazyWithRetry(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazyWithRetry(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
@@ -252,6 +253,8 @@ const App = () => (
               </OnboardingProvider>
               {/* Admin View Switcher - outside AppLayout so it's never clipped */}
               <AdminViewSwitcher />
+              {/* Perf overlay — render-only when ?perf=1 / localStorage opt-in */}
+              <PerfOverlay />
             </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
