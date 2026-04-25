@@ -510,7 +510,7 @@ export default function First60DaysDay() {
 
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
-            <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+            <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               {dayRehypeReady ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
                   {day.markdown}
