@@ -267,7 +267,7 @@ export function MermaidDiagram({ code }: Props) {
   }
 
   return (
-    <figure ref={containerRef} className="relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
+    <figure ref={containerRef} className="group relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         aria-hidden
@@ -285,12 +285,17 @@ export function MermaidDiagram({ code }: Props) {
           backgroundSize: "32px 32px",
         }}
       />
+      {/* Edge fades hint at horizontal scroll on mobile */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-card to-transparent sm:hidden" aria-hidden />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-card to-transparent sm:hidden" aria-hidden />
       <div
         className={[
-          "relative flex w-full justify-center overflow-x-auto px-4 pb-6 pt-6 sm:px-6 sm:pt-8",
-          // Let mermaid render the SVG at its natural, generous size; only cap
-          // it at the container width on small viewports.
-          "[&_svg]:!h-auto [&_svg]:!max-w-full [&_svg]:!block [&_svg]:!mx-auto",
+          "relative flex w-full justify-center overflow-x-auto overscroll-x-contain px-3 pb-5 pt-5 sm:px-6 sm:pt-8 sm:pb-6",
+          "[-webkit-overflow-scrolling:touch]",
+          // Mobile: render SVG at natural size so labels stay legible — user pans
+          // horizontally. ≥sm: cap to container width so the diagram fits neatly.
+          "[&_svg]:!h-auto [&_svg]:!block [&_svg]:!mx-auto",
+          "[&_svg]:!max-w-none sm:[&_svg]:!max-w-full",
 
           // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
           "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
