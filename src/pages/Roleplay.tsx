@@ -2,15 +2,20 @@ import { lazy, Suspense } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
-import { TavusVideoChat } from '@/components/roleplay/TavusVideoChat';
 import { RoleplayDiagnostics } from '@/components/roleplay/RoleplayDiagnostics';
 import { RoleplayScenarioCard } from '@/components/roleplay/RoleplayScenarioCard';
 import { RoleplayGuide } from '@/components/roleplay/RoleplayGuide';
 import { useRoleplay } from '@/hooks/useRoleplay';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { MessageCircle, Video, ArrowLeft } from 'lucide-react';
+import { MessageCircle, Video, ArrowLeft, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Tavus video chat pulls in the Daily.co SDK and ~850 lines of session logic.
+// Defer it until the learner actually picks a scenario so the scenario
+// picker paints instantly.
+const TavusVideoChat = lazy(() =>
+  import('@/components/roleplay/TavusVideoChat').then((m) => ({ default: m.TavusVideoChat }))
+);
 const PitchAnalysis = lazy(() => import('@/pages/PitchAnalysis'));
 
 /** Header tab styling — underline style matching Learning Track */
@@ -55,7 +60,15 @@ export default function Roleplay() {
             Back to scenarios
           </button>
           <RoleplayDiagnostics scenario={selectedScenario} />
-          <TavusVideoChat scenario={selectedScenario} />
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+              </div>
+            }
+          >
+            <TavusVideoChat scenario={selectedScenario} />
+          </Suspense>
         </div>
       </PageLayout>
     );

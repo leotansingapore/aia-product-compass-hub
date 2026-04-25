@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { createPortal } from "react-dom";
-import { Bot, X } from "lucide-react";
+import { Bot, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ProductKnowledgeChat } from "./ProductKnowledgeChat";
+
+// Defer the ~615-line chat (and its OpenAI/markdown deps) until the user
+// actually opens the floating panel. Keeps the FAB itself near-zero cost on
+// every product/video page paint.
+const ProductKnowledgeChat = lazy(() =>
+  import("./ProductKnowledgeChat").then((m) => ({ default: m.ProductKnowledgeChat }))
+);
 
 interface FloatingAIChatProps {
   productId: string;
@@ -45,10 +51,18 @@ export function FloatingAIChat({ productId, productName }: FloatingAIChatProps) 
 
           {/* Chat body */}
           <div className="flex-1 min-h-0">
-            <ProductKnowledgeChat
-              productId={productId}
-              productName={productName}
-            />
+            <Suspense
+              fallback={
+                <div className="flex h-full w-full items-center justify-center">
+                  <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                </div>
+              }
+            >
+              <ProductKnowledgeChat
+                productId={productId}
+                productName={productName}
+              />
+            </Suspense>
           </div>
         </div>
       )}
