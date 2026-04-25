@@ -357,14 +357,14 @@ export default function First60DaysDay() {
           }}
         />
 
-        <div className="relative grid gap-5 p-5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+        <div className="relative grid gap-4 p-4 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           {/* Left: day numeral + completion ring inline */}
-          <div className="flex items-center gap-4 sm:gap-5">
+          <div className="flex items-center gap-3 sm:gap-5">
             <div className="relative">
-              <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-serif text-[clamp(3rem,12vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
-              <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
+              <span className="absolute -top-1 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2 sm:tracking-[0.2em]">
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
             </div>
