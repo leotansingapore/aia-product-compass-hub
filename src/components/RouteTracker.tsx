@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
+import { prefetchCommonRoutes } from '@/utils/prefetchRoutes';
 
 const ROUTE_STORAGE_KEY = 'lastVisitedRoute';
 
