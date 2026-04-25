@@ -38,22 +38,7 @@ What's rare is a role that genuinely offers all three. Most jobs that claim to e
 
 The FA career is one of the rare structures where all three show up naturally, as outputs of the business model rather than as marketing claims.
 
-```mermaid
-mindmap
-  root((The Three I's))
-    Income
-      Uncapped ceiling
-      Year 1 $145K real
-      Renewals compound
-    Independence
-      Self-scheduled
-      Pick your niche
-      Work from anywhere
-    Impact
-      Real family security
-      Handle claims moments
-      Meaningful work
-```
+![The Three I's: Income, Independence, Impact](/first-14-days/images/three-is-mindmap.webp)
 
 ![The ideal career framing](/first-14-days/images/ideal-career-framing.webp)
 
