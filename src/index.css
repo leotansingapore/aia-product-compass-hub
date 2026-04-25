@@ -10,6 +10,66 @@
     max-width: 100vw;
   }
 
+  /* ----------------------------------------------------------------------
+   * Global overflow & layout-shift guardrails
+   *
+   * Targets the most common CLS / horizontal-scroll culprits app-wide so
+   * individual components don't have to remember to add `min-w-0`,
+   * `break-words`, or aspect-ratio wrappers on every render.
+   * Component-level styles still win when they need to (e.g. code blocks
+   * inside .prose intentionally allow `overflow-x: auto`).
+   * ------------------------------------------------------------------- */
+
+  /* Prevent flex/grid children from forcing their parent to overflow.
+     The default `min-width: auto` on flex items is the #1 cause of
+     horizontal scrollbars in card grids and sidebar layouts. */
+  main, main * {
+    min-width: 0;
+  }
+
+  /* Long words, URLs, and unbroken tokens (think raw share links pasted
+     into chat or assignment descriptions) wrap instead of pushing the
+     container wider. */
+  p, li, span, h1, h2, h3, h4, h5, h6, dd, dt, blockquote, figcaption,
+  td, th, label, summary, a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Raw images never exceed their container and always reserve their
+     intrinsic ratio so swap-in doesn't shift surrounding content.
+     Components that need fixed dimensions still override via classNames. */
+  img, video, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Iframes (YouTube/Vimeo/Loom embeds) get a sane default ratio and
+     full-width fluid sizing. Component-level wrappers with explicit
+     aspect-* classes continue to take precedence. */
+  iframe {
+    max-width: 100%;
+  }
+
+  /* Tables outside an explicit overflow wrapper scroll their own row
+     instead of stretching the page. Pair with `overflow-x: auto` on the
+     parent container when you need scrollable tables. */
+  table {
+    max-width: 100%;
+  }
+
+  /* Code blocks scroll horizontally inside themselves rather than the
+     viewport. Inline <code> wraps. */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  :not(pre) > code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+
   :root {
     --background: 40 20% 97%;
     --foreground: 220 10% 15%;
