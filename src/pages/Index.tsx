@@ -48,7 +48,11 @@ const Index = memo(() => {
     return <Navigate to={target} replace />;
   }
 
-  return <Dashboard />;
+  return (
+    <Suspense fallback={<SkeletonLoader type="dashboard" />}>
+      <Dashboard />
+    </Suspense>
+  );
 });
 
 export default Index;
