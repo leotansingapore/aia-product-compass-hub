@@ -96,7 +96,7 @@ The three of them compound together.
 
 Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they get built in parallel, paid, with feedback from day one.
 
-I used exactly these three skills to build four other companies on top of the FA business. The digital marketing agency is now #1 on Google for "Digital Marketing Agency" in Singapore, with 50 full-time staff. The corporate cleaning business I bought over in 2023 runs at more than $15K a month profit. The outsourcing business and the consulting firm both launched in 2024.
+I used exactly these three skills to build four other companies on top of the FA business. My digital marketing agency is now #1 on Google for "Digital Marketing Agency" in Singapore, with 50 full-time staff. The corporate cleaning business I bought over in 2023 runs at more than $15K a month profit. My outsourcing business and my consulting firm both launched in 2024.
 
 Combined revenue across all four is seven figures. I didn't learn business in business school. I learned it by sitting across the table from more than a thousand financial-advisory clients first.
 
