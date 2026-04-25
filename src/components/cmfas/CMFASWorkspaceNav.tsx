@@ -11,36 +11,32 @@ export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'sylla
 interface NavItemSpec {
   id: WorkspaceMode;
   label: string;
-  icon: typeof Home;
+  icon: LucideIcon;
   /** When true, the item is locked + greyed until Ready is complete. */
   locked: boolean;
   /** Optional badge — e.g. "3/6" on Ready, or a red dot on Today when resumed. */
   badge?: string;
 }
 
-export interface ResourceNavItemSpec {
-  id: 'papers' | 'syllabus';
-  label: string;
-  shortLabel: string;
-  icon: LucideIcon;
-  locked: boolean;
+export interface CMFASWorkspaceNavItems {
+  items: NavItemSpec[];
 }
 
-export interface CMFASWorkspaceNavGroups {
-  primary: NavItemSpec[];
-  resources: ResourceNavItemSpec[];
-}
-
-/** Primary study path + separate “additional resource” triggers (transparent in the UI). */
+/**
+ * Single ordered nav list — flat, learner-journey order:
+ *   Setup → Orient → Learn → Drill → Reward.
+ * Locks fall on Tutorials + Practice (gated by `readyComplete`); the other
+ * three are always available.
+ */
 export function buildNavSpec({
   readyProgress,
   readyComplete,
 }: {
   readyProgress: { done: number; total: number };
   readyComplete: boolean;
-}): CMFASWorkspaceNavGroups {
+}): CMFASWorkspaceNavItems {
   return {
-    primary: [
+    items: [
       {
         id: 'today',
         label: 'Study desk',
@@ -48,24 +44,10 @@ export function buildNavSpec({
         locked: false,
         badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
       },
+      { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false },
+      { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete },
       { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete },
       { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false },
-    ],
-    resources: [
-      {
-        id: 'papers',
-        label: 'Exam tutorials',
-        shortLabel: 'Tutorials',
-        icon: PlayCircle,
-        locked: !readyComplete,
-      },
-      {
-        id: 'syllabus',
-        label: 'Syllabus & format',
-        shortLabel: 'Syllabus',
-        icon: FileText,
-        locked: false,
-      },
     ],
   };
 }
@@ -81,7 +63,7 @@ export interface CMFASWorkspaceTopBarProps {
 }
 
 export interface CMFASWorkspaceFloatingNavProps {
-  groups: CMFASWorkspaceNavGroups;
+  groups: CMFASWorkspaceNavItems;
   activeMode: WorkspaceMode;
   onModeChange: (mode: WorkspaceMode) => void;
   onLockedClick?: (mode: WorkspaceMode) => void;
@@ -179,7 +161,7 @@ export function CMFASWorkspaceFloatingNav({
       )}
       aria-label="Workspace"
     >
-      {groups.primary.map((item) => {
+      {groups.items.map((item) => {
         const Icon = item.locked ? Lock : item.icon;
         const isActive = activeMode === item.id;
         const handleClick = () => {
@@ -217,43 +199,6 @@ export function CMFASWorkspaceFloatingNav({
           </button>
         );
       })}
-
-      <div className="my-1.5 h-px w-full shrink-0 bg-primary/20" role="separator" aria-hidden />
-
-      {groups.resources.map((item) => {
-        const Icon = item.locked ? Lock : item.icon;
-        const isActive = activeMode === item.id;
-        const handleClick = () => {
-          if (item.locked) {
-            onLockedClick?.(item.id);
-            return;
-          }
-          onModeChange(item.id);
-        };
-        return (
-          <button
-            key={item.id}
-            type="button"
-            onClick={handleClick}
-            aria-current={isActive ? 'page' : undefined}
-            className={cn(
-              'flex h-10 w-full min-w-0 items-center justify-center gap-0 overflow-hidden rounded-lg border border-transparent p-0 text-left text-xs',
-              navTransitionFast,
-              'transition-[background-color,border-color,color,box-shadow]',
-              'group-hover/nav:justify-start group-focus-within/nav:justify-start',
-              'text-muted-foreground hover:border-primary/35 hover:bg-primary/5',
-              isActive && 'border-primary/45 bg-primary/8 text-primary',
-              item.locked && 'cursor-not-allowed opacity-40',
-            )}
-            title={item.locked ? 'Locked' : item.label}
-          >
-            <span className={iconCellClass}>
-              <Icon className={iconCenteredMd} aria-hidden />
-            </span>
-            <span className={cn(labelRevealClass, item.locked && 'pointer-events-none')}>{item.label}</span>
-          </button>
-        );
-      })}
     </nav>
   );
 
@@ -261,7 +206,7 @@ export function CMFASWorkspaceFloatingNav({
 }
 
 interface CMFASWorkspaceMobileMenuProps {
-  groups: CMFASWorkspaceNavGroups;
+  groups: CMFASWorkspaceNavItems;
   activeMode: WorkspaceMode;
   onModeChange: (mode: WorkspaceMode) => void;
   onLockedClick?: (mode: WorkspaceMode) => void;
@@ -287,13 +232,10 @@ export function CMFASWorkspaceMobileMenu({
     setOpen(false);
   };
 
-  const renderItem = (
-    item: NavItemSpec | ResourceNavItemSpec,
-    isPrimary: boolean,
-  ) => {
+  const renderItem = (item: NavItemSpec) => {
     const Icon = item.locked ? Lock : item.icon;
     const isActive = activeMode === item.id;
-    const badge = isPrimary ? (item as NavItemSpec).badge : undefined;
+    const badge = item.badge;
     return (
       <button
         key={item.id}
@@ -357,9 +299,7 @@ export function CMFASWorkspaceMobileMenu({
           </SheetTitle>
         </SheetHeader>
         <div className="mt-5 flex flex-col gap-1">
-          {groups.primary.map((item) => renderItem(item, true))}
-          <div className="my-2 h-px bg-primary/20" role="separator" aria-hidden />
-          {groups.resources.map((item) => renderItem(item, false))}
+          {groups.items.map((item) => renderItem(item))}
         </div>
       </SheetContent>
     </Sheet>
