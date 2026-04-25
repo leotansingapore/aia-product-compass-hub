@@ -59,7 +59,7 @@ export const RoleplayFeedbackReadyEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>Your roleplay feedback is ready — Overall Score: {overallScore}/5</Preview>
+      <Preview>{`Your roleplay feedback is ready — Overall Score: ${overallScore}/5`}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>🎭 Your Roleplay Feedback is Ready</Heading>
