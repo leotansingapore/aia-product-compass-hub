@@ -126,19 +126,7 @@ I effectively have a 200-person team. I don't hire, pay, or manage any of them. 
 
 That's why a single advisor with 1,000+ clients can run with just 1 or 2 part-time admin helpers. The infrastructure is already there. It's software-as-a-service economics wearing an insurance label.
 
-```mermaid
-flowchart LR
-    A["Year 1<br/>20 clients"]
-    B["Year 3<br/>100 clients"]
-    C["Year 5<br/>300 clients"]
-    D["Year 10<br/>1,000+ clients"]
-    A --> B --> C --> D
-    E["Fulfilment team<br/>scales for you"]
-    E --> A
-    E --> B
-    E --> C
-    E --> D
-```
+![Client base scales while fulfilment team grows for you](/first-14-days/images/scalability-growth.webp)
 
 Your headcount never grows. Your client base does.
 
