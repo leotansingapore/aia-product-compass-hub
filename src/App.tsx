@@ -253,6 +253,8 @@ const App = () => (
               </OnboardingProvider>
               {/* Admin View Switcher - outside AppLayout so it's never clipped */}
               <AdminViewSwitcher />
+              {/* Perf overlay — render-only when ?perf=1 / localStorage opt-in */}
+              <PerfOverlay />
             </BrowserRouter>
           </TooltipProvider>
         </AdminProvider>
