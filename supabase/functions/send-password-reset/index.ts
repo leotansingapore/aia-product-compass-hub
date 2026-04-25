@@ -1,8 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.56.0";
-import { Resend } from "npm:resend@2.0.0";
+import { Resend } from "https://esm.sh/resend@2.0.0";
 import { renderAsync } from 'https://esm.sh/@react-email/render@0.0.17';
-import * as React from 'npm:react@18.3.1';
+import * as React from 'https://esm.sh/react@18.3.1';
 import { PasswordResetEmail } from './_templates/password-reset.tsx';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
