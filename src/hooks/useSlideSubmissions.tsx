@@ -149,18 +149,29 @@ export function SlideSubmissionsProvider({ children }: { children: ReactNode }) 
       }
     };
 
-    // Defer hydration so the learning-track critical-path queries go first —
-    // this provider's data is only read from CMFAS views that live behind a
-    // route transition.
+    // Eager on CMFAS routes — Study Desk reads this data on first paint and
+    // any defer makes the landing slide flicker. Idle-defer everywhere else
+    // so the learning-track home keeps its perf benefit.
+    const isCmfasRoute =
+      typeof window !== 'undefined' && window.location.pathname.startsWith('/cmfas');
+    if (isCmfasRoute) {
+      void runHydration();
+      return () => {
+        cancelled = true;
+      };
+    }
     const cancelIdle = scheduleIdle(() => {
       if (!cancelled) void runHydration();
     });
-
     return () => {
       cancelled = true;
       cancelIdle();
     };
-  }, [user]);
+    // Key on user?.id so re-emissions with the same user (Supabase auth fires
+    // SIGNED_IN then INITIAL_SESSION with new object refs) don't trigger a
+    // cleanup-then-cancel race that strands hasHydrated at false.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
 
   const submitSlide = useCallback(
     async (slideId: string, payload: SubmitSlidePayload) => {

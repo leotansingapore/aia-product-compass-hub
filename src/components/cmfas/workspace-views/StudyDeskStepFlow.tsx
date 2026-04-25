@@ -19,8 +19,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/useAuth';
 import { useChecklistProgress } from '@/hooks/useChecklistProgress';
 import { useSlideSubmissions } from '@/hooks/useSlideSubmissions';
 import { cmfasRoom } from '../cmfasTheme';
@@ -37,7 +37,6 @@ import {
 
 const DESK_SLIDE_PARAM = 'deskSlide';
 const SLIDE_COUNT = GET_READY_SLIDES.length;
-const DESK_SLIDE_STORAGE_PREFIX = 'cmfas-desk-slide';
 
 function parseSlideIndex(raw: string | null): number {
   if (raw == null) return 0;
@@ -340,6 +339,98 @@ function buildSubmitPayload(field: VerificationField | undefined, state: Verific
 }
 
 // ────────────────────────────────────────────────────────────────────────────
+//                          Hydration skeleton
+// ────────────────────────────────────────────────────────────────────────────
+
+/** Mirrors the StudyDeskStepFlow layout while progress data is in flight.
+ *  Real room title shows immediately so the page feels present; section tabs
+ *  and slide content are placeholder Skeletons. Replaced wholesale once both
+ *  Supabase fetches settle (typically <500ms). */
+function StudyDeskSkeleton({
+  roomEyebrow,
+  roomTitle,
+}: {
+  roomEyebrow: string;
+  roomTitle: string;
+}) {
+  return (
+    <div className={cn('flex w-full min-h-0 flex-col gap-3', 'lg:min-h-0 lg:flex-1')}>
+      {/* Top header row — real title + skeleton section tabs */}
+      <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+        <div className="min-w-0 shrink">
+          <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
+            {roomEyebrow}
+          </p>
+          <p className={cn('mt-0.5 font-serif text-base font-bold leading-tight sm:text-lg', cmfasRoom.text)}>
+            {roomTitle}
+          </p>
+        </div>
+        <div className="flex min-h-[36px] min-w-0 flex-1 flex-wrap items-center gap-2 sm:justify-end">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="flex items-center gap-2">
+              {i > 0 && <span className="text-primary/25" aria-hidden>·</span>}
+              <Skeleton className="h-9 w-9 rounded-full" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Slide card */}
+      <div
+        className={cn(
+          'flex min-h-[min(72vh,760px)] max-h-[calc(100vh-14rem)] flex-col overflow-hidden rounded-2xl border-2 shadow-md',
+          'lg:min-h-0 lg:max-h-none lg:flex-1',
+          cmfasRoom.brassBorderSoft,
+          'bg-card',
+        )}
+      >
+        <div className="flex min-h-0 flex-1 flex-col sm:flex-row lg:min-h-0">
+          {/* Content column */}
+          <div
+            className={cn(
+              'flex min-h-0 flex-1 flex-col border-b sm:border-b-0 sm:border-r',
+              'border-primary/20',
+            )}
+          >
+            <div className="shrink-0 border-b border-primary/15 px-5 py-4 sm:px-7 sm:py-5">
+              <Skeleton className="h-3 w-24" />
+              <Skeleton className="mt-3 h-7 w-3/4 sm:h-8" />
+              <Skeleton className="mt-2 h-3 w-1/2" />
+            </div>
+            <div className="min-h-0 flex-1 space-y-4 px-5 py-5 sm:px-8 sm:py-7">
+              <Skeleton className="h-5 w-2/3" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
+              <Skeleton className="mt-6 h-40 w-full rounded-lg" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          </div>
+
+          {/* Aside column */}
+          <aside
+            className={cn(
+              'flex w-full shrink-0 flex-col gap-3 border-t border-primary/15 px-4 py-4 sm:w-72 sm:border-l sm:border-t-0 sm:px-5 sm:py-5 lg:w-80',
+              'bg-muted/30',
+            )}
+          >
+            <Skeleton className="h-3 w-24" />
+            <Skeleton className="h-9 w-full" />
+            <Skeleton className="h-3 w-20 mt-3" />
+            <Skeleton className="h-8 w-full" />
+            <Skeleton className="h-8 w-full" />
+            <div className="mt-auto space-y-2 pt-4">
+              <Skeleton className="h-9 w-full" />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
 //                          Main component
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -352,12 +443,19 @@ export function StudyDeskStepFlow({
   roomEyebrow: string;
   roomTitle: string;
 }) {
-  const { user } = useAuth();
-  const { isItemCompleted } = useChecklistProgress();
-  const { submissions, hasHydrated, isSubmitted, submitSlide, getScreenshotSignedUrl } =
-    useSlideSubmissions();
+  const { isItemCompleted, hasHydrated: checklistHydrated } = useChecklistProgress();
+  const {
+    submissions,
+    hasHydrated: submissionsHydrated,
+    isSubmitted,
+    submitSlide,
+    getScreenshotSignedUrl,
+  } = useSlideSubmissions();
   const [searchParams, setSearchParams] = useSearchParams();
-  const deskSlideStorageKey = `${DESK_SLIDE_STORAGE_PREFIX}:${user?.id ?? 'anon'}`;
+  /** Both progress sources have settled — landing logic and the page body
+   *  read this so they don't render against stale empty hooks (would show
+   *  Section 1 with later sections appearing locked). */
+  const isReady = checklistHydrated && submissionsHydrated;
 
   /** A slide is "effectively done" when EITHER its sub-slide submission exists
    *  OR its parent section is already ticked in `user_checklist_progress` (the
@@ -409,27 +507,23 @@ export function StudyDeskStepFlow({
   const vField = slide.verification[0];
   const formValid = isValid(vField, vState);
 
-  /** Landing effect: waits until submissions have hydrated from Supabase, then
-   *  either (a) sets the URL to the first-incomplete slide if it's missing, or
-   *  (b) bumps the URL FORWARD if the learner is parked on a slide they've
-   *  already finished (covers first-render-with-stale-hooks, pre-refactor users
-   *  whose section ticks land only after first mount, and across-browser resume).
-   *  Never bumps BACKWARD — user navigating manually to a later section is fine. */
+  /** Landing effect: once BOTH progress sources have hydrated from Supabase,
+   *  either (a) seed the URL with the first-incomplete slide if it's missing,
+   *  or (b) bump the URL FORWARD if the learner is parked on a slide they've
+   *  already finished (covers across-device resume + URL stripped to bare).
+   *  Never bumps BACKWARD — manual back-nav stays sticky. The DB is the only
+   *  source of truth; no per-device localStorage cursor. */
   useEffect(() => {
-    if (!hasHydrated) return;
+    if (!isReady) return;
     const firstIncomplete = GET_READY_SLIDES.findIndex((s) => !isSlideDone(s.slideId));
     const target = firstIncomplete === -1 ? SLIDE_COUNT - 1 : firstIncomplete;
     const currentParam = searchParams.get(DESK_SLIDE_PARAM);
 
     if (currentParam == null) {
-      const persistedRaw = localStorage.getItem(deskSlideStorageKey);
-      const persistedIndex =
-        persistedRaw == null ? null : parseSlideIndex(persistedRaw);
-      const initialIndex = persistedIndex ?? target;
       setSearchParams(
         (prev) => {
           const next = new URLSearchParams(prev);
-          next.set(DESK_SLIDE_PARAM, String(initialIndex));
+          next.set(DESK_SLIDE_PARAM, String(target));
           return next;
         },
         { replace: true },
@@ -449,11 +543,7 @@ export function StudyDeskStepFlow({
         { replace: true },
       );
     }
-  }, [deskSlideStorageKey, hasHydrated, searchParams, isSlideDone, setSearchParams]);
-
-  useEffect(() => {
-    localStorage.setItem(deskSlideStorageKey, String(slideIndex));
-  }, [deskSlideStorageKey, slideIndex]);
+  }, [isReady, searchParams, isSlideDone, setSearchParams]);
 
   const goToIndex = useCallback(
     (k: number) => {
@@ -502,6 +592,14 @@ export function StudyDeskStepFlow({
     setSearchParams,
     slideIndex,
   ]);
+
+  // While progress data hydrates, render a skeleton that mirrors the real
+  // StudyDeskStepFlow layout so the user perceives the page as already loaded
+  // — only the actual data fields are placeholders. Avoids the bad-UX flash
+  // of "Section 1 + locked rail" before the bump-forward resolves position.
+  if (!isReady) {
+    return <StudyDeskSkeleton roomEyebrow={roomEyebrow} roomTitle={roomTitle} />;
+  }
 
   return (
     <div className={cn('flex w-full min-h-0 flex-col gap-3', 'lg:min-h-0 lg:flex-1')}>

@@ -32,6 +32,11 @@ import { scheduleIdle } from '@/lib/idle';
 
 interface ChecklistContextType {
   completedItems: Set<string>;
+  /** True once the initial Supabase fetch has settled (success OR failure).
+   *  Consumers like the CMFAS Study Desk landing effect gate on this so they
+   *  don't compute "first incomplete slide" against an empty pre-hydration
+   *  Set. */
+  hasHydrated: boolean;
   completeItem: (itemId: string) => void;
   isItemCompleted: (itemId: string) => boolean;
   getCompletedCount: () => number;
@@ -40,6 +45,7 @@ interface ChecklistContextType {
 
 const ChecklistContext = createContext<ChecklistContextType>({
   completedItems: new Set(),
+  hasHydrated: false,
   completeItem: () => {},
   isItemCompleted: () => false,
   getCompletedCount: () => 0,
@@ -80,21 +86,30 @@ function markLegacyMigrationDone(userId: string): void {
 export function ChecklistProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const [completedItems, setCompletedItems] = useState<Set<string>>(new Set());
+  const [hasHydrated, setHasHydrated] = useState(false);
   const hydrationRanForUser = useRef<string | null>(null);
 
   // Hydrate on sign-in: fetch Supabase, migrate legacy localStorage ticks.
-  // Deferred to the next idle window so the hub's own queries own the first
-  // paint. Consumers only exist in CMFAS views and always live behind a
-  // route transition, so the idle delay is invisible in practice.
+  // Defer to the next idle window only when the user isn't on a CMFAS route
+  // (the hub's own queries take priority on first paint). When the user IS
+  // on /cmfas-* the Study Desk needs this data immediately to compute the
+  // landing slide without flicker.
   useEffect(() => {
     if (!user) {
       setCompletedItems(new Set());
+      // Don't prematurely mark hydrated on initial mount with null user
+      // (auth still resolving). Only mark hydrated when we affirmatively
+      // know the user state (here: a previously-signed-in user signing out).
+      if (hydrationRanForUser.current !== null) {
+        setHasHydrated(true);
+      }
       hydrationRanForUser.current = null;
       return;
     }
     // Guard against double-running (React Strict Mode).
     if (hydrationRanForUser.current === user.id) return;
     hydrationRanForUser.current = user.id;
+    setHasHydrated(false);
 
     let cancelled = false;
 
@@ -130,6 +145,7 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
 
       if (!supabaseReachable) {
         // Degrade gracefully — localStorage already seeded above.
+        if (!cancelled) setHasHydrated(true);
         return;
       }
 
@@ -157,17 +173,31 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
       }
 
       setCompletedItems(supabaseSet);
+      if (!cancelled) setHasHydrated(true);
     };
 
+    // Eager on CMFAS routes — the Study Desk reads this data on first paint.
+    // Idle-defer everywhere else so the learning-track home keeps its perf.
+    const isCmfasRoute =
+      typeof window !== 'undefined' && window.location.pathname.startsWith('/cmfas');
+    if (isCmfasRoute) {
+      void runHydration();
+      return () => {
+        cancelled = true;
+      };
+    }
     const cancelIdle = scheduleIdle(() => {
       if (!cancelled) void runHydration();
     });
-
     return () => {
       cancelled = true;
       cancelIdle();
     };
-  }, [user]);
+    // Key on user?.id so re-emissions with the same user (Supabase auth fires
+    // SIGNED_IN then INITIAL_SESSION with new object refs) don't trigger a
+    // cleanup-then-cancel race that strands hasHydrated at false.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
 
   const completeItem = useCallback(
     (itemId: string) => {
@@ -240,12 +270,13 @@ export function ChecklistProvider({ children }: { children: ReactNode }) {
   const value = useMemo(
     () => ({
       completedItems,
+      hasHydrated,
       completeItem,
       isItemCompleted,
       getCompletedCount,
       resetProgress,
     }),
-    [completedItems, completeItem, isItemCompleted, getCompletedCount, resetProgress],
+    [completedItems, hasHydrated, completeItem, isItemCompleted, getCompletedCount, resetProgress],
   );
 
   return <ChecklistContext.Provider value={value}>{children}</ChecklistContext.Provider>;
