@@ -92,21 +92,7 @@ Even Warren Buffett at 20% returns can't move a $10K portfolio meaningfully. Bui
 
 The three of them compound together.
 
-```mermaid
-flowchart LR
-    subgraph SKILLS["THE THREE SKILLS"]
-        direction TB
-        A["<b>Sales & Influence</b><br/><span style='font-size:12px;opacity:0.75'>Move people to act</span>"]
-        B["<b>Communication & Trust</b><br/><span style='font-size:12px;opacity:0.75'>Earn the room</span>"]
-        C["<b>Financial IQ</b><br/><span style='font-size:12px;opacity:0.75'>See money clearly</span>"]
-    end
-    D{{"<b>COMPOUND EFFECT</b>"}}
-    E["<b>Builder · Operator · Owner</b><br/><span style='font-size:12px;opacity:0.75'>The modern entrepreneur</span>"]
-    A -->|stack| D
-    B -->|stack| D
-    C -->|stack| D
-    D ==>|compounds into| E
-```
+![The three skills stacked — Sales & Influence, Communication & Trust, and Financial IQ compound into Builder · Operator · Owner](/first-14-days/images/three-skills-stacked.webp)
 
 Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they get built in parallel, paid, with feedback from day one.
 
