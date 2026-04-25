@@ -1,5 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+
+// Recharts (~150 KB) is the heaviest dep on this page and only matters for
+// users who already have at least one analysed attempt. Defer it so the
+// initial form/history shell paints immediately.
+const ScoreTrendChart = lazy(() => import("@/components/pitch-analysis/ScoreTrendChart"));
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,16 +44,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { toast } from "@/hooks/use-toast";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+// recharts moved into the lazy ScoreTrendChart chunk above.
 import { format } from "date-fns";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -668,26 +664,13 @@ export default function PitchAnalysisPage({ embedded = false }: { embedded?: boo
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ResponsiveContainer width="100%" height={240}>
-                        <LineChart data={chartData} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.5} />
-                          <XAxis dataKey="attempt" tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-                          <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} stroke="hsl(var(--muted-foreground))" />
-                          <Tooltip
-                            contentStyle={{
-                              background: "hsl(var(--background))",
-                              border: "1px solid hsl(var(--border))",
-                              borderRadius: 8,
-                              fontSize: 12,
-                            }}
-                            formatter={(val: any) => [`${val}/10`]}
-                          />
-                          <Legend wrapperStyle={{ fontSize: 11 }} />
-                          <Line type="monotone" dataKey="Overall" stroke="hsl(var(--primary))" strokeWidth={2.5} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="Product Knowledge" stroke="#10b981" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
-                          <Line type="monotone" dataKey="Communication" stroke="#f59e0b" strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
-                        </LineChart>
-                      </ResponsiveContainer>
+                      <Suspense
+                        fallback={
+                          <div className="h-[240px] w-full animate-pulse rounded-md bg-muted/40" />
+                        }
+                      >
+                        <ScoreTrendChart data={chartData} />
+                      </Suspense>
                     </CardContent>
                   </Card>
                 )}

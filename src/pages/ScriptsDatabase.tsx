@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { copyRichContent } from "@/lib/copy-rich-content";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -6,11 +6,23 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
-import { ScriptsChatWidget } from "@/components/scripts/ScriptsChatWidget";
-import { ScriptEditorDialog } from "@/components/scripts/ScriptEditorDialog";
 import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
-import { KnowledgeManagement } from "@/components/scripts/KnowledgeManagement";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
+
+// These three only mount on demand:
+//   - ScriptEditorDialog → opens when admin clicks "Add" or "Edit"
+//   - KnowledgeManagement → only on the dedicated tab
+//   - ScriptsChatWidget → opens via floating FAB
+// Splitting them out keeps the heavy initial Scripts list snappy.
+const ScriptEditorDialog = lazy(() =>
+  import("@/components/scripts/ScriptEditorDialog").then((m) => ({ default: m.ScriptEditorDialog }))
+);
+const KnowledgeManagement = lazy(() =>
+  import("@/components/scripts/KnowledgeManagement").then((m) => ({ default: m.KnowledgeManagement }))
+);
+const ScriptsChatWidget = lazy(() =>
+  import("@/components/scripts/ScriptsChatWidget").then((m) => ({ default: m.ScriptsChatWidget }))
+);
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
@@ -3929,7 +3941,9 @@ export default function ScriptsDatabase() {
         {/* Knowledge Base Management (admin only) */}
         {isAdmin && (
           <div className="mt-8">
-            <KnowledgeManagement />
+            <Suspense fallback={<div className="h-32 animate-pulse rounded-md bg-muted/30" />}>
+              <KnowledgeManagement />
+            </Suspense>
           </div>
         )}
       </>
@@ -3937,12 +3951,17 @@ export default function ScriptsDatabase() {
       </div>
 
       {/* Editor Dialog */}
-      <ScriptEditorDialog
-        open={editorOpen}
-        onClose={() => { setEditorOpen(false); setEditingScript(null); }}
-        onSave={handleSave}
-        script={editingScript}
-      />
+      {/* Editor Dialog — only mount the heavy TipTap editor when actually opened */}
+      {editorOpen && (
+        <Suspense fallback={null}>
+          <ScriptEditorDialog
+            open={editorOpen}
+            onClose={() => { setEditorOpen(false); setEditingScript(null); }}
+            onSave={handleSave}
+            script={editingScript}
+          />
+        </Suspense>
+      )}
 
       {/* Merge confirmation dialog */}
       <AlertDialog open={!!pendingMerge} onOpenChange={(open) => !open && cancelMerge()}>
@@ -3987,7 +4006,9 @@ export default function ScriptsDatabase() {
       </AlertDialog>
 
       {/* Floating AI Chat Widget */}
-      <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+      <Suspense fallback={null}>
+        <ScriptsChatWidget initialMode={activeTab === "objections" ? "objections" : "scripts"} />
+      </Suspense>
 
       {/* Delete Category Confirmation */}
       <AlertDialog open={!!deleteCategoryTarget} onOpenChange={(o) => !o && setDeleteCategoryTarget(null)}>
