@@ -322,7 +322,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in generate-roleplay-feedback function:', error);
     return new Response(JSON.stringify({ 
-      error: error.message,
+      error: error instanceof Error ? error.message : String(error),
       details: 'Check function logs for more information'
     }), {
       status: 500,
