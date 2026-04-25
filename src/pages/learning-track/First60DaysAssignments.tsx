@@ -611,7 +611,7 @@ function SubmissionPanel({
         </>
       )}
 
-      <div className="flex gap-3">
+      <div className="flex flex-col-reverse sm:flex-row gap-3">
         {submission && (
           <Button variant="outline" onClick={() => setEditing(false)} disabled={submitting}>
             Cancel
