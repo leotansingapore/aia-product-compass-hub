@@ -406,7 +406,7 @@ function SubmissionPanel({
     const formValuesSnapshot = parseFormValues(submission.submission_text);
     const hasFormValues = Object.keys(formValuesSnapshot).length > 0;
     return (
-      <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-6 sm:p-8 space-y-4">
+      <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-4 sm:p-8 space-y-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white shrink-0">
             <CheckCircle2 className="h-5 w-5" />
@@ -531,7 +531,7 @@ function SubmissionPanel({
   };
 
   return (
-    <div className="rounded-2xl border bg-card p-6 sm:p-8 space-y-5">
+    <div className="rounded-2xl border bg-card p-4 sm:p-8 space-y-5">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary shrink-0">
           <Upload className="h-5 w-5" />
