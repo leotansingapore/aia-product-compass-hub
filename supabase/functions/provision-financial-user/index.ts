@@ -141,7 +141,7 @@ Deno.serve(async (req) => {
     const { error: profileError } = await supabaseAdmin
       .from("profiles")
       .upsert({
-        user_id: newUser.user.id,
+        user_id: userId,
         email: normalizedEmail,
         first_name: firstName,
         last_name: lastName || null,
@@ -151,14 +151,12 @@ Deno.serve(async (req) => {
 
     if (profileError) {
       console.error("Error creating profile:", profileError);
-      // Don't fail the whole flow for profile creation issues
     }
 
     // Step 5: Assign roles based on Financial app response
     const financialRoles: string[] = eligibility.user?.roles || [];
     console.log("Roles from Financial app:", financialRoles);
 
-    // Determine admin role (priority: master_admin > admin > user)
     let adminRole = 'user';
     if (financialRoles.includes('master_admin')) {
       adminRole = 'master_admin';
@@ -166,49 +164,32 @@ Deno.serve(async (req) => {
       adminRole = 'admin';
     }
 
-    // Determine access tier (admin/consultant get level_2, others get level_1)
-    const hasElevatedRole = financialRoles.some(r => 
+    const hasElevatedRole = financialRoles.some(r =>
       ['admin', 'master_admin', 'consultant'].includes(r)
     );
     const accessTier = hasElevatedRole ? 'level_2' : 'level_1';
 
     console.log("Mapped roles:", { adminRole, accessTier });
 
-    // Insert admin role
+    // Sync admin role (clear stale rows first)
+    await supabaseAdmin.from("user_admin_roles").delete().eq("user_id", userId);
     const { error: adminRoleError } = await supabaseAdmin
       .from("user_admin_roles")
-      .insert({
-        user_id: newUser.user.id,
-        admin_role: adminRole,
-      });
+      .insert({ user_id: userId, admin_role: adminRole });
+    if (adminRoleError) console.error("Error assigning admin role:", adminRoleError);
 
-    if (adminRoleError) {
-      console.error("Error assigning admin role:", adminRoleError);
-    }
-
-    // Insert access tier
+    // Upsert access tier
     const { error: tierError } = await supabaseAdmin
       .from("user_access_tiers")
-      .insert({
-        user_id: newUser.user.id,
-        tier_level: accessTier,
-      });
+      .upsert({ user_id: userId, tier_level: accessTier }, { onConflict: "user_id" });
+    if (tierError) console.error("Error assigning access tier:", tierError);
 
-    if (tierError) {
-      console.error("Error assigning access tier:", tierError);
-    }
-
-    // Also insert into user_roles for backwards compatibility
+    // Sync user_roles for backwards compatibility
+    await supabaseAdmin.from("user_roles").delete().eq("user_id", userId);
     const { error: roleError } = await supabaseAdmin
       .from("user_roles")
-      .insert({
-        user_id: newUser.user.id,
-        role: adminRole,
-      });
-
-    if (roleError) {
-      console.error("Error assigning user role:", roleError);
-    }
+      .insert({ user_id: userId, role: adminRole });
+    if (roleError) console.error("Error assigning user role:", roleError);
 
     // Step 6: Sign in to get session tokens
     console.log("Signing in to get session tokens...");
