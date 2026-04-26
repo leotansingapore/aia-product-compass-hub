@@ -152,16 +152,8 @@ New FCs talk when they're nervous. Top producers know silence is productive.
 ---
 
 ```mermaid
-flowchart TD
-    P1["Phase 1 · Build Rapport<br/>5 min max"] --> P2["Phase 2 · Agenda + Mission<br/>1 min"]
-    P2 --> P3["Phase 3 · Find Problem<br/>20 min - mostly questions"]
-    P3 --> P4["Phase 4 · Create Desire<br/>20 min - benefits not features"]
-    P4 --> P5["Phase 5 · Present + Close<br/>10 min"]
-    style P1 fill:#3d3d3d,color:#fff
-    style P2 fill:#2d4a6b,color:#fff
-    style P3 fill:#1e3a5f,color:#fff
-    style P4 fill:#1a4a2e,color:#fff
-    style P5 fill:#1a5c3a,color:#fff
+flowchart LR
+    P1["1 · Rapport<br/>5 min"] --> P2["2 · Agenda<br/>1 min"] --> P3["3 · Problem<br/>20 min"] --> P4["4 · Desire<br/>20 min"] --> P5["5 · Close<br/>10 min"]
 ```
 
 ---

@@ -110,14 +110,8 @@ A Job A client with gaps in 4+ rows is one bad week away from a catastrophe they
 ## 5. How to use this in a meeting
 
 ```mermaid
-flowchart TD
-    S1["Draw 2-row table<br/>Job A vs Job B"]
-    S2["Fill columns with<br/>client's real data"]
-    S3["Leave blank columns blank<br/>do NOT estimate"]
-    S4["Pause - let client look"]
-    S5["Ask: which column<br/>worries you most?"]
-    S6["Listen - that IS<br/>your needs analysis"]
-    S1 --> S2 --> S3 --> S4 --> S5 --> S6
+flowchart LR
+    S1["1 · Draw<br/>the table"] --> S2["2 · Fill<br/>real data"] --> S3["3 · Leave<br/>blanks blank"] --> S4["4 · Pause"] --> S5["5 · Ask<br/>the question"] --> S6["6 · Listen"]
 ```
 
 

@@ -46,11 +46,7 @@ Building wealth is one repeated motion: convert Human Capital into Financial Cap
 
 ```mermaid
 flowchart LR
-    HC["Human Capital<br/>future earning power"] -->|"earn more<br/>spend less<br/>save<br/>invest"| FC["Financial Capital<br/>money working for you"]
-    FC -->|"compounds<br/>throws off income"| HC2["More options<br/>over time"]
-    style HC fill:#1e3a5f,color:#fff
-    style FC fill:#1a5c3a,color:#fff
-    style HC2 fill:#2d2d2d,color:#fff
+    HC["Human Capital<br/>earning power"] -->|"earn, save,<br/>invest"| FC["Financial Capital<br/>working for you"] -->|"compounds"| HC2["More options<br/>over time"]
 ```
 
 Four steps, on loop, for 30+ years:
