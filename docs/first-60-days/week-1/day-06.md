@@ -142,6 +142,13 @@ The 10-70-20 rule (industry data):
 
 Which group you end up in is largely decided in the first 60 days.
 
+## 6. Week 1 recap — live session
+
+Recording from the Week 1 recap call (~85 min). Walks through each day of Week 1 with team feedback and discussion.
+
+<video src="/videos/fastrack-training-1-preview.mp4" controls preload="metadata" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;"></video>
+
+Prefer the original-quality file? [Download the full recording](https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-1/fastrack-training-1-trimmed.mp4) (181 MB).
 
 ## Quick quiz
 

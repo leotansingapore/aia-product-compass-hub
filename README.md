@@ -76,9 +76,7 @@ Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-trick
 
 ### Fastrack Training — Week 1 Recap (2026-04-26)
 
-Week 1 Pre-RNF training recap call. Trimmed to remove pre-call setup and end-of-call goodbyes (~85 minutes of content).
+Week 1 Pre-RNF training recap call (~85 minutes of content, intro and goodbyes trimmed). Embedded inside the app at `/learning-track/first-60-days/day/6`.
 
-<video src="docs/videos/fastrack-training-1-preview.mp4" controls width="720"></video>
-
-- **Inline preview** (76 MB, 960p): [`docs/videos/fastrack-training-1-preview.mp4`](docs/videos/fastrack-training-1-preview.mp4)
-- **Full-quality download** (181 MB, original resolution): [Release · fastrack-training-1](https://github.com/leotansingapore/aia-product-compass-hub/releases/tag/fastrack-training-1)
+- **Inline preview** (76 MB, 960p): served by the app from `public/videos/fastrack-training-1-preview.mp4`
+- **Full-quality download** (181 MB): [Release · fastrack-training-1](https://github.com/leotansingapore/aia-product-compass-hub/releases/tag/fastrack-training-1)
