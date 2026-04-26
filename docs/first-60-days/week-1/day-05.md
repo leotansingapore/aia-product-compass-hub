@@ -215,6 +215,14 @@ These people are **socially valid** (you're not a stranger) but **not yet emotio
 
 **Rule:** Don't ask for a meeting *about insurance*. Ask for a meeting. Let your pre-framing and their questions do the work.
 
+### The conviction test — read this before you write anyone off
+
+If reading the list above made you flinch — *"I don't want to sell to my friends"* — pause. That sentence sounds humble; it isn't. It means **you don't have conviction in what you do yet**. Because if what you do is genuinely valuable, helping a friend isn't selling — it's being the best consultant they'll ever have.
+
+The harder truth: **if you can't do warm, you can't do cold either.** Cold is rejection at scale — volume, brutality, no relational cushion. Without conviction, you fold by week two. The same belief that lets you serve a friend is the same engine that keeps you standing through 100 rejections from strangers. Same engine, different audience.
+
+The worst feeling in this career is finding out a close friend bought from some random advisor who got there first. That happens not because they didn't trust you — but because you weren't visible enough on the topic. The fix isn't more pitching. It's **showing up consistently** so when life happens, your cab is the one they flag down. (More on this — including the "Taxi Cab Theory" — in [Day 37 §4](/learning-track/first-60-days/day/37).)
+
 ## 7. The moral compass — and what success actually looks like
 
 Because this industry pays well, it attracts two types: people who want to help, and people who want to make money. The same is true of medicine — and medicine has the malpractice records to prove it.

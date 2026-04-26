@@ -67,7 +67,37 @@ You cannot use the same opener on all three. The rest of today is the playbook f
 
 ---
 
-## 4. Warm approach playbook (Type A)
+## 4. Why warm comes before cold — the conviction test
+
+Before any playbook, settle this: **if you can't do warm, you can't do cold either.**
+
+*"I don't want to sell to my friends"* sounds humble. It isn't. It means you don't have conviction in what you do yet — because if what you do is genuinely valuable, helping your friends is not selling. It's being the best consultant they'll ever have.
+
+Cold is rejection at scale. Volume. Brutality. Without conviction, you fold by week two. A purpose-driven advisor wants to serve their friends *and* stays standing through 100 rejections from strangers. **Same engine. Same belief. Different audience.**
+
+So yes, the agency helps you with cold. But if you're skipping warm because it feels uncomfortable, cold will break you faster.
+
+Warm prospecting is not *"hey, let's chat about insurance."* Warm is **being present.** Showing up. Being the person your friends already trust, so when life happens, you're the first call.
+
+> The worst feeling in this job is finding out your friend bought from some random advisor who got there first. Don't let that be you.
+
+### The Taxi Cab Theory — applied to insurance
+
+Borrowed from *Sex and the City*: the right person catches you when you're in the right cab. Apply it here — **when your friend is finally ready to buy insurance, save for retirement, plan for their kids — they should be flagging down *your* cab, not a stranger's.**
+
+That doesn't happen because you "closed" them. It happens because you stayed in their orbit. You called. You sent the article. You showed up at the wedding, the birthday, the funeral. You were the person they already trusted on the topic — long before they needed it.
+
+Practical implications:
+- Reach out to everyone in your warm circle and tell them you're doing this work. Don't pitch. Just inform.
+- *"If they want to buy, they'd better buy from you first"* — that's the bar. If a friend bought from somebody else, it's because you weren't visible enough, not because they didn't trust you.
+- Every warm case in early years can run **~$5K FYC at zero acquisition cost.** The "cost" people imagine is just ego — *"I don't want to sell to friends."* That ego costs you the relationship and the income.
+- Done well, warm clients **stay with you for decades.** They call you for everything finance-related. You call them every year for a chit-chat. Both sides feel good. The work feels aligned, not transactional.
+
+If reading this still feels uncomfortable, **the discomfort isn't about the prospects — it's about your own conviction.** Fix the conviction. Then read Section 5.
+
+---
+
+## 5. Warm approach playbook (Type A)
 
 **The problem:** friends and family already have opinions about you. Push too hard and you destroy the relationship. Be too soft and they never take you seriously.
 
@@ -104,7 +134,7 @@ Practice this out loud until it sounds like you, not a script.
 
 ---
 
-## 5. Referred approach playbook (Type B)
+## 6. Referred approach playbook (Type B)
 
 **The rule:** referred prospects arrive with borrowed trust. Don't waste it.
 
@@ -135,7 +165,7 @@ Once the client hits send, **you message the referred prospect within 24 hours.*
 
 ---
 
-## 6. Cold approach playbook (Type C)
+## 7. Cold approach playbook (Type C)
 
 **The challenge:** no pre-existing trust. You build it **before** the first meeting, not in it.
 
@@ -159,7 +189,7 @@ Once they reply and engage with the resource:
 
 > "Glad it was useful. If you ever want a proper walk-through of how it applies to your situation — 30 mins, no pitch — I'm happy to do that. No rush, just keep me in mind."
 
-Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 8).
+Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 9).
 
 ### Cold sources that actually work in Month 1–6
 
@@ -172,7 +202,7 @@ Many say yes in that moment. Those who say "not now" go into your **nurture list
 
 ---
 
-## 7. The 7-touch follow-up sequence (after any first meeting)
+## 8. The 7-touch follow-up sequence (after any first meeting)
 
 Most first meetings don't close. That's normal. What kills conversion isn't the meeting — it's the **dropped follow-up**.
 
@@ -194,7 +224,7 @@ Most first meetings don't close. That's normal. What kills conversion isn't the 
 
 ---
 
-## 8. The nurture system (keeping "not now" prospects alive)
+## 9. The nurture system (keeping "not now" prospects alive)
 
 After touch #7, every prospect who didn't convert goes into a **nurture list**. The goal: stay top-of-mind for 6–12 months without being annoying.
 
@@ -263,7 +293,7 @@ Write that somewhere you'll see it on days when prospecting feels slow. It is th
 
 ---
 
-## 9. Weekly prospecting rhythm
+## 10. Weekly prospecting rhythm
 
 The pipeline only works if prospecting is a **habit**, not a mood. The weekly rhythm for a Month 1–6 FC:
 
@@ -288,7 +318,7 @@ Do not treat a "no" as a failure. Each "not now" becomes nurture — and nurture
 
 ---
 
-## 10. The Approach mindset — what you're actually doing
+## 11. The Approach mindset — what you're actually doing
 
 **You're not:**
 - Trying to close in the first meeting.
