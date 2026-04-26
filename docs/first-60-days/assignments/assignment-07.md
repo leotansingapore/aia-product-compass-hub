@@ -18,7 +18,7 @@ form_fields:
   - "What dropped away|textarea|Which whys from the first 20 felt important when you wrote them but small by why #100?|4"
 ---
 
-# Assignment 7 — 100 Whys: The Real Reason You're Here
+# Assignment 1 — 100 Whys: The Real Reason You're Here
 
 > **What you're producing:** A list of 100 written reasons why you are doing this work. Then the one sentence that compresses the real ones into your why. The exercise sounds simple. It is not.
 

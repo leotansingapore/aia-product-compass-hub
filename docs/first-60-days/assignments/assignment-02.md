@@ -24,7 +24,7 @@ form_fields:
   - "The script you're least confident about|textarea|Name one and say why. This is the one you want feedback on.|3"
 ---
 
-# Assignment 2 — Contact List + Personal Outreach Playbook
+# Assignment 5 — Contact List + Personal Outreach Playbook
 
 > **What you're producing:** Two files. (a) A Project 100 contact list with 100 real people segmented by priority. (b) A personal playbook — your own words — covering outreach messages, objection responses, and follow-up cadences.
 

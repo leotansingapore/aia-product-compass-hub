@@ -13,7 +13,7 @@ related_days: [1, 3, 5, 6]
 status_key: "assignment-06-vision-board"
 ---
 
-# Assignment 6 — Create Your Vision Board
+# Assignment 2 — Create Your Vision Board
 
 > **What you're producing:** A one-page vision board — a visual artefact of what your life looks like if this career works the way you want it to. Not decoration; a decision-making anchor for the hard weeks.
 

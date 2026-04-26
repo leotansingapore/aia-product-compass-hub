@@ -25,7 +25,7 @@ form_fields:
   - "Self-diagnosis going into the shadowed meetings|textarea|What do you expect to fumble? What should your senior FC watch closest?|3"
 ---
 
-# Assignment 5 — Cold Calling Sessions + Senior Shadow
+# Assignment 8 — Cold Calling Sessions + Senior Shadow
 
 > **What you're producing:** Two logged cold-calling sessions plus two confirmed first-meeting appointments — with a senior FC attending each as a silent shadow. This is the first time a senior hears you in front of a real prospect. The goal isn't a clean close; it's an honest baseline.
 

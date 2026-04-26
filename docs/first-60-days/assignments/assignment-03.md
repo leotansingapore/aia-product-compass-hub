@@ -24,7 +24,7 @@ form_fields:
   - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
 ---
 
-# Assignment 3 — Joint Field Observation
+# Assignment 6 — Joint Field Observation
 
 > **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe — you don't pitch.
 

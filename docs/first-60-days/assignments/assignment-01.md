@@ -19,7 +19,7 @@ form_fields:
   - "Combined reflection|textarea|Which of the two CSTs felt more natural to you, and why? Which one will you actually open with in a real meeting? Be honest — preference reveals strengths.|3"
 ---
 
-# Assignment 1 — Roleplay: Two CSTs (Wealth Angle + Risk Management Angle)
+# Assignment 7 — Roleplay: Two CSTs (Wealth Angle + Risk Management Angle)
 
 > **What you're producing:** **Two** recorded roleplay videos. Each is a separate Client Strategy Talk (CST) with a different opening angle. Both end at the door-opener — neither attempts to close on a product. The point is to internalise both flows so you can pick whichever fits the prospect in front of you.
 
