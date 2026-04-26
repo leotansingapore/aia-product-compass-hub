@@ -162,14 +162,8 @@ For these, use a **6-touch follow-up sequence** over 12 weeks:
 - **Week 12:** Final soft ask. If still no → move to quarterly touch or archive.
 
 ```mermaid
-flowchart TD
-    W0["Week 0 · Initial call<br/>Reflex no - offer to reconnect"]
-    W2["Week 2 · Value-add<br/>Article, tip - no ask"]
-    W4["Week 4 · Check-in<br/>Trigger event, no agenda"]
-    W6["Week 6 · Value-add<br/>Question they find useful"]
-    W8["Week 8 · Light ask<br/>15 minutes this month?"]
-    W12["Week 12 · Final soft ask<br/>Still no - quarterly touch or archive"]
-    W0 --> W2 --> W4 --> W6 --> W8 --> W12
+flowchart LR
+    W0["Week 0<br/>reflex no"] --> W2["Week 2<br/>value-add"] --> W4["Week 4<br/>check-in"] --> W6["Week 6<br/>value-add"] --> W8["Week 8<br/>light ask"] --> W12["Week 12<br/>soft ask"]
 ```
 
 **Why this works:**

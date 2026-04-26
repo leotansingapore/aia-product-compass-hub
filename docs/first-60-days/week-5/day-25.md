@@ -42,13 +42,7 @@ These three are non-negotiable. Install them now, so they're already running by 
 
 ```mermaid
 flowchart LR
-    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>Daily opening<br/>15 min"]
-    B --> C["Friday<br/>10-min wrap"]
-    C --> A
-
-    A1["Look back<br/>Set 3 priorities<br/>Calendar-block"] --- A
-    B1["Review priorities<br/>Pick #1 task<br/>Decide what NOT to do"] --- B
-    C1["Log wins<br/>Clear open loops<br/>Notes for Monday-you"] --- C
+    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>15-min opening"] --> C["Friday<br/>10-min wrap"] --> A
 ```
 
 ### Sunday — the 30-minute review

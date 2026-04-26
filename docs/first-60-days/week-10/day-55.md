@@ -40,22 +40,14 @@ When you open the Product Selection page on your iPad (via iPos), you'll see pro
 **Rule:** don't memorise plan names first. Learn the category → use case mapping. Plan names follow.
 
 ```mermaid
-flowchart TD
-    A["AIA Product Catalogue"]
-    A --> B["Investment-Linked<br/>(ILP)"]
+flowchart LR
+    A["AIA<br/>Catalogue"] --> B["Investment-Linked"]
     A --> C["Whole Life"]
     A --> D["Endowment"]
     A --> E["Term"]
     A --> F["Universal Life"]
     A --> G["Disability Income"]
     A --> H["Accident & Health"]
-    B --> B1["Growth + wrapper"]
-    C --> C1["Lifelong cover<br/>+ cash value"]
-    D --> D1["Savings goal<br/>+ small cover"]
-    E --> E1["Pure protection<br/>no cash value"]
-    F --> F1["HNW leverage<br/>3-10x"]
-    G --> G1["Monthly income<br/>if unable to work"]
-    H --> H1["Hospital + accident<br/>+ medical bills"]
 ```
 
 ## 2. Investment-Linked — the wealth-building workhorse

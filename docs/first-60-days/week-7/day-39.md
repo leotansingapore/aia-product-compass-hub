@@ -41,17 +41,8 @@ The target:
 Before you start listing names, understand the three rings your contacts sit in. Most new FCs exhaust the **hot** ring in 6 weeks and conclude "I've run out of people" — when in reality they've never touched the largest ring.
 
 ```mermaid
-flowchart TD
-    COLD["Cold<br/>Total strangers · cold sources<br/>Ads, roadshows, cold calls · law of large numbers"]
-    SEMIWARM["Semi-Warm · THE REAL MARKET<br/>Haven't spoken in years · acquaintances<br/>Secondary school friends, ex-colleagues, past interest groups, referrals<br/>Least competition, most untapped"]
-    HOT["Hot<br/>Closest to you · easiest to meet, open, close<br/>Parents, siblings, best friends<br/>Exhausts fastest and earliest"]
-    COLD --> SEMIWARM --> HOT
-    classDef cold fill:#1e3a8a,stroke:#1e3a8a,color:#fff
-    classDef semi fill:#fca5a5,stroke:#fca5a5,color:#1f2937
-    classDef hot fill:#991b1b,stroke:#991b1b,color:#fff
-    class COLD cold
-    class SEMIWARM semi
-    class HOT hot
+flowchart LR
+    COLD["Cold<br/>strangers"] --> SEMIWARM["<b>Semi-Warm</b><br/>the real market"] --> HOT["Hot<br/>closest 5–15"]
 ```
 
 | Ring | Who | Why it matters |

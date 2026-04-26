@@ -69,14 +69,13 @@ A standard CFR has three sections. Today covers the first two; Day 51 covers the
 
 ```mermaid
 flowchart TD
-    A["Section 1<br/>Situation + Priorities"] --> B["Rank goals 1-N<br/>in client's own voice"]
-    B --> C["Section 2<br/>Problem Development"]
-    C --> D["3-5 problem questions<br/>per priority goal"]
-    D --> E{"Real gap<br/>acknowledged?"}
+    A["§1 · Situation<br/>+ Priorities"] --> B["Rank goals<br/>in client's voice"]
+    B --> C["§2 · Problem<br/>Development"]
+    C --> D["3-5 problem Qs<br/>per goal"]
+    D --> E{"Real gap?"}
     E -- No --> D
-    E -- Yes --> F["Implication questions<br/>deepen felt need"]
-    F --> G["Section 3<br/>Financial Numbers"]
-    G --> H["Colombo close<br/>schedule next meeting"]
+    E -- Yes --> F["Implication Qs<br/>deepen need"]
+    F --> G["§3 · Numbers"] --> H["Colombo close<br/>schedule next mtg"]
 ```
 
 ## 3. Section 1 — Situation Questions (the easy start)

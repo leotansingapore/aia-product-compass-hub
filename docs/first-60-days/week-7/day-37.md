@@ -28,14 +28,8 @@ By the end of today you should be able to:
 ## 1. The 6-step Financial Planning Process — where the Approach sits
 
 ```mermaid
-flowchart TD
-    A["1 · Establish / Define<br/>The Approach — first meeting"]
-    B["2 · Gather Data<br/>Goals, Fact Find, SPIN"]
-    C["3 · Analyse & Evaluate<br/>Needs analysis, gap identification"]
-    D["4 · Develop and Present<br/>Proposal, Financial Health Check"]
-    E["5 · Implement<br/>Underwriting, submission, delivery"]
-    F["6 · Annual Review<br/>Ongoing service — relationship lives here"]
-    A --> B --> C --> D --> E --> F --> A
+flowchart LR
+    A["1 · Establish<br/>The Approach"] --> B["2 · Gather<br/>Fact Find"] --> C["3 · Analyse<br/>Identify gaps"] --> D["4 · Present<br/>Proposal"] --> E["5 · Implement<br/>Submit"] --> F["6 · Review<br/>Annually"] --> A
 ```
 
 **The trap:** treating the Approach as "selling." It's relationship-building — the permission and trust that unlock Steps 2–6. Rush Step 1 and everything downstream breaks.
