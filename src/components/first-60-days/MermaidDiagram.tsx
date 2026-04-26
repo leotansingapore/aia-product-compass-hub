@@ -48,10 +48,11 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
     flowchart: {
       htmlLabels: true,
       curve: "basis",
-      padding: 24,
-      nodeSpacing: 64,
-      rankSpacing: 72,
+      padding: 14,
+      nodeSpacing: 44,
+      rankSpacing: 56,
       useMaxWidth: true,
+      wrappingWidth: 200,
     },
     sequence: { useMaxWidth: true },
     gantt: { useMaxWidth: true },
@@ -94,7 +95,7 @@ const LIGHT_THEME_VARS = {
   titleColor: "#0b1220",
   labelBackground: "#ffffff",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-  fontSize: "17px",
+  fontSize: "14px",
   // Quadrant chart specifics
   quadrant1Fill: "#dcfce7",
   quadrant2Fill: "#dbeafe",
@@ -148,7 +149,7 @@ const DARK_THEME_VARS = {
   titleColor: "#f1f5fb",
   labelBackground: "#2e3d5c",
   fontFamily: "Montserrat, ui-sans-serif, system-ui, sans-serif",
-  fontSize: "17px",
+  fontSize: "14px",
   // Quadrant chart specifics — translucent washes that read on slate canvas
   quadrant1Fill: "#14532d",
   quadrant2Fill: "#1e3a8a",

@@ -41,13 +41,18 @@ When a client says "I need insurance," your first job is clarification. Which ki
 
 ```mermaid
 flowchart LR
-    D["Death / TPD<br/>10x annual income"]
-    CI["Critical Illness<br/>5x Major + 2x Early CI"]
-    H["Hospitalisation<br/>Inpatient - maximum limit by tier"]
-    AC["Personal Accident<br/>Outpatient reimbursement"]
-    S["Savings / Investments<br/>Retirement income target"]
-
-    D & CI & H & AC --> P["Protection<br/>(bad events)"]
+    subgraph SEG[" "]
+        direction TB
+        D["Death / TPD"]
+        CI["Critical Illness"]
+        H["Hospitalisation"]
+        AC["Personal Accident"]
+        S["Savings / Investments"]
+    end
+    D --> P["Protection<br/>(bad events)"]
+    CI --> P
+    H --> P
+    AC --> P
     S --> A["Accumulation<br/>(good things take time)"]
 ```
 
@@ -82,9 +87,9 @@ AIA's systems are genuinely ahead of most of the industry. Learn where each tool
 
 ```mermaid
 flowchart TD
-    Q["Need to reach a client or share info?"]
-    Q -->|"Out of office - share campaign / collateral"| IS["iSmart (phone)<br/>Send link via WhatsApp/Telegram"]
-    Q -->|"At client home - run appointment"| IP["iPos / iMO (iPad)<br/>FNA - Illustrate - Sign - Submit"]
+    Q["Need to reach a client<br/>or share info?"]
+    Q -->|"Out of office<br/>share collateral"| IS["iSmart<br/>(phone)"]
+    Q -->|"At client home<br/>run appointment"| IP["iPos / iMO<br/>(iPad)"]
 ```
 
 ## 4. Where AIA sits in the Singapore market

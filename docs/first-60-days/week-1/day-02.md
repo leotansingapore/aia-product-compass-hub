@@ -153,11 +153,8 @@ This is also why the textbook objection — *"I'll save the premium and invest i
 You'll use this three-layer model in every client conversation for the rest of your career:
 
 ```mermaid
-flowchart BT
-    L1["Layer 1: Risk Management<br/>The foundation — insurance, emergency fund"]
-    L2["Layer 2: Wealth Accumulation<br/>Investments, CPF, ILPs"]
-    L3["Layer 3: Wealth Preservation<br/>Legacy, trusts, estate planning"]
-    L1 --> L2 --> L3
+flowchart LR
+    L1["Layer 1<br/>Risk Management"] --> L2["Layer 2<br/>Wealth Accumulation"] --> L3["Layer 3<br/>Wealth Preservation"]
 ```
 
 A client who tries to jump to Layer 2 without Layer 1 is building a house on sand. Your job is to explain why — without shaming them and without selling.

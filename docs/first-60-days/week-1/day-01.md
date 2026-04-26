@@ -123,12 +123,8 @@ The team is the product. The team is the career. When the team is strong, every 
 Four values. Easy to memorise. Hard to live. Every day of the next 60 will bring you back to one of them.
 
 ```mermaid
-flowchart TD
-    V1["1 · Own the outcome<br/>If it is on your plate, it is on you"]
-    V2["2 · Truth before comfort<br/>Clear feedback over easy feedback"]
-    V3["3 · Better than yesterday<br/>Small reps, compounded, always"]
-    V4["4 · Lift the team<br/>Their wins are yours; their misses are yours to notice"]
-    V1 --> V2 --> V3 --> V4
+flowchart LR
+    V1["1 · Own<br/>the outcome"] --> V2["2 · Truth<br/>before comfort"] --> V3["3 · Better<br/>than yesterday"] --> V4["4 · Lift<br/>the team"]
 ```
 
 ### 1 · Own the outcome
