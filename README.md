@@ -71,3 +71,14 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## Training session recordings
+
+### Fastrack Training — Week 1 Recap (2026-04-26)
+
+Week 1 Pre-RNF training recap call. Trimmed to remove pre-call setup and end-of-call goodbyes (~85 minutes of content).
+
+<video src="docs/videos/fastrack-training-1-preview.mp4" controls width="720"></video>
+
+- **Inline preview** (76 MB, 960p): [`docs/videos/fastrack-training-1-preview.mp4`](docs/videos/fastrack-training-1-preview.mp4)
+- **Full-quality download** (181 MB, original resolution): [Release · fastrack-training-1](https://github.com/leotansingapore/aia-product-compass-hub/releases/tag/fastrack-training-1)
