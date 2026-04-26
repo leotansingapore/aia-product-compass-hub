@@ -233,12 +233,7 @@ You don't need to quit anything. You just need to start shifting the mix.
 
 ```mermaid
 flowchart LR
-    NOW["Today<br/>100% E or S"]
-    Y5["Year 5<br/>60% S - 30% B - 10% I"]
-    Y20["Year 20<br/>30% S - 40% B - 30% I"]
-
-    NOW -->|"Build renewal income"| Y5
-    Y5 -->|"Scale team + invest commissions"| Y20
+    NOW["Today<br/>100% E/S"] -->|"Build renewal"| Y5["Year 5<br/>S/B/I mix"] -->|"Scale + invest"| Y20["Year 20<br/>balanced mix"]
 ```
 
 

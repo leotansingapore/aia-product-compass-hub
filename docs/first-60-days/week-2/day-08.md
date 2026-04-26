@@ -85,14 +85,7 @@ By Year 3 half your income is already passive. By Year 10 roughly **two-thirds**
 
 ```mermaid
 flowchart LR
-    Y1["Year 1<br/>Below corporate peer"]
-    Y2["Year 2-3<br/>Crossover point"]
-    Y3["Year 3+<br/>Skill compounding begins"]
-    Y5["Year 5+<br/>Renewal income widens gap"]
-
-    Y1 --> Y2 --> Y3 --> Y5
-
-    C["Corporate peer<br/>Flat trajectory"]
+    Y1["Year 1<br/>below peer"] --> Y2["Year 2-3<br/>crossover"] --> Y3["Year 3+<br/>compounding"] --> Y5["Year 5+<br/>renewal income"]
 ```
 
 ## 3. Why income guarantees exist — and what they really are

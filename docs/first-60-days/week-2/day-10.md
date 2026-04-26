@@ -133,12 +133,9 @@ This framing — "you don't need $2.7M, you need an income stream of ~$9K/month"
 
 ```mermaid
 flowchart LR
-    EXP["Monthly need at 65<br/>~$9,050/month"]
-    CPF["CPF LIFE<br/>$2,000 - 3,500/month"]
-    REN["Rental / dividends<br/>variable"]
-    INS["Insurance accumulation plans<br/>gap to fill $3,000 - 6,000/month"]
-
-    CPF & REN & INS --> EXP
+    CPF["CPF LIFE"] --> EXP["Monthly need<br/>at 65"]
+    REN["Rental /<br/>dividends"] --> EXP
+    INS["Insurance<br/>accumulation"] --> EXP
 ```
 
 ### The rule
