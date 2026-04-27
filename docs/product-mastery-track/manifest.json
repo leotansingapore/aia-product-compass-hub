@@ -1,0 +1,250 @@
+{
+  "totalDays": 35,
+  "summaries": [
+    {
+      "day": 1,
+      "week": 1,
+      "title": "Pro Achiever 3.0 — APA Foundations — What It Is + The Signature Pitch Concept",
+      "durationMinutes": 55,
+      "productSlug": "pro-achiever"
+    },
+    {
+      "day": 2,
+      "week": 1,
+      "title": "Pro Achiever 3.0 — Run the Meeting — Fact-Find + 7-Phase Pitch Flow",
+      "durationMinutes": 55,
+      "productSlug": "pro-achiever"
+    },
+    {
+      "day": 3,
+      "week": 1,
+      "title": "Pro Achiever 3.0 — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
+      "durationMinutes": 55,
+      "productSlug": "pro-achiever"
+    },
+    {
+      "day": 4,
+      "week": 1,
+      "title": "Pro Achiever 3.0 — Defence + Expansion — Top 5 Objections + Cross-sell",
+      "durationMinutes": 65,
+      "productSlug": "pro-achiever"
+    },
+    {
+      "day": 5,
+      "week": 1,
+      "title": "Pro Achiever 3.0 — Compliance + Close — Disclosures, Paperwork, Post-Close Referral Architecture",
+      "durationMinutes": 50,
+      "productSlug": "pro-achiever"
+    },
+    {
+      "day": 6,
+      "week": 2,
+      "title": "Pro Lifetime Protector — PLP Foundations — Two-in-One Plan + Lifeboat-on-the-Ship",
+      "durationMinutes": 55,
+      "productSlug": "pro-lifetime-protector"
+    },
+    {
+      "day": 7,
+      "week": 2,
+      "title": "Pro Lifetime Protector — Run the Meeting — Fact-Find + 5-Step Pitch Flow",
+      "durationMinutes": 60,
+      "productSlug": "pro-lifetime-protector"
+    },
+    {
+      "day": 8,
+      "week": 2,
+      "title": "Pro Lifetime Protector — The Math + The Q&A — Premium Charges, LCC, Top 5 Questions",
+      "durationMinutes": 60,
+      "productSlug": "pro-lifetime-protector"
+    },
+    {
+      "day": 9,
+      "week": 2,
+      "title": "Pro Lifetime Protector — Defence + Expansion — PLP-vs-GPP/APA/Term + Cross-sell",
+      "durationMinutes": 65,
+      "productSlug": "pro-lifetime-protector"
+    },
+    {
+      "day": 10,
+      "week": 2,
+      "title": "Pro Lifetime Protector — Compliance + Close — ILP Disclosures, Budget-Choice Close, Retention",
+      "durationMinutes": 50,
+      "productSlug": "pro-lifetime-protector"
+    },
+    {
+      "day": 11,
+      "week": 3,
+      "title": "Guaranteed Protect Plus — GPP Foundations — What It Is + The Rocket-Ship Diagram",
+      "durationMinutes": 55,
+      "productSlug": "guaranteed-protect-plus"
+    },
+    {
+      "day": 12,
+      "week": 3,
+      "title": "Guaranteed Protect Plus — Run the Meeting — Fact-Find + 6-Phase Pitch Flow",
+      "durationMinutes": 60,
+      "productSlug": "guaranteed-protect-plus"
+    },
+    {
+      "day": 13,
+      "week": 3,
+      "title": "Guaranteed Protect Plus — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
+      "durationMinutes": 55,
+      "productSlug": "guaranteed-protect-plus"
+    },
+    {
+      "day": 14,
+      "week": 3,
+      "title": "Guaranteed Protect Plus — Defence + Expansion — Top 5 Objections + Cross-sell",
+      "durationMinutes": 65,
+      "productSlug": "guaranteed-protect-plus"
+    },
+    {
+      "day": 15,
+      "week": 3,
+      "title": "Guaranteed Protect Plus — Compliance + Close — Disclosures, Four-Hoops Close, Paperwork, Delivery",
+      "durationMinutes": 50,
+      "productSlug": "guaranteed-protect-plus"
+    },
+    {
+      "day": 16,
+      "week": 4,
+      "title": "Ultimate Critical Cover — UCC Foundations — Pure-CI Distinction + Multi-Claim Staircase",
+      "durationMinutes": 55,
+      "productSlug": "ultimate-critical-cover"
+    },
+    {
+      "day": 17,
+      "week": 4,
+      "title": "Ultimate Critical Cover — Run the Meeting — 5 Power Questions + 5-Phase Pitch Flow",
+      "durationMinutes": 60,
+      "productSlug": "ultimate-critical-cover"
+    },
+    {
+      "day": 18,
+      "week": 4,
+      "title": "Ultimate Critical Cover — The Math + The Q&A — Caps, Enhancer Mechanics, Top 5 Questions",
+      "durationMinutes": 55,
+      "productSlug": "ultimate-critical-cover"
+    },
+    {
+      "day": 19,
+      "week": 4,
+      "title": "Ultimate Critical Cover — Defence + Expansion — 5 Objections + GPP+UCC Canonical Pair",
+      "durationMinutes": 65,
+      "productSlug": "ultimate-critical-cover"
+    },
+    {
+      "day": 20,
+      "week": 4,
+      "title": "Ultimate Critical Cover — Compliance + Close — 6 Compliance Pillars + Term-Then-Rider Close",
+      "durationMinutes": 50,
+      "productSlug": "ultimate-critical-cover"
+    },
+    {
+      "day": 21,
+      "week": 5,
+      "title": "HealthShield Gold Max — HSGM Foundations — What It Is + First-Line-of-Defence + Travel Package",
+      "durationMinutes": 55,
+      "productSlug": "healthshield-gold-max"
+    },
+    {
+      "day": 22,
+      "week": 5,
+      "title": "HealthShield Gold Max — Run the Meeting — Fact-Find + 8-Phase Pitch Flow",
+      "durationMinutes": 60,
+      "productSlug": "healthshield-gold-max"
+    },
+    {
+      "day": 23,
+      "week": 5,
+      "title": "HealthShield Gold Max — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
+      "durationMinutes": 55,
+      "productSlug": "healthshield-gold-max"
+    },
+    {
+      "day": 24,
+      "week": 5,
+      "title": "HealthShield Gold Max — Defence + Expansion — Top 5 Objections + Cross-sell",
+      "durationMinutes": 65,
+      "productSlug": "healthshield-gold-max"
+    },
+    {
+      "day": 25,
+      "week": 5,
+      "title": "HealthShield Gold Max — Compliance + Close — Disclosures, Two-Option Close, Paperwork, Delivery",
+      "durationMinutes": 50,
+      "productSlug": "healthshield-gold-max"
+    },
+    {
+      "day": 26,
+      "week": 6,
+      "title": "Solitaire PA — Solitaire PA Foundations — Universal-Fit + Partial-Disability Gap",
+      "durationMinutes": 50,
+      "productSlug": "solitaire-pa"
+    },
+    {
+      "day": 27,
+      "week": 6,
+      "title": "Solitaire PA — Run the Meeting — Fact-Find + 7-Phase Pitch Flow",
+      "durationMinutes": 50,
+      "productSlug": "solitaire-pa"
+    },
+    {
+      "day": 28,
+      "week": 6,
+      "title": "Solitaire PA — The Math + The Q&A — 4 Plans × 8 Benefits + Top 5 Questions",
+      "durationMinutes": 50,
+      "productSlug": "solitaire-pa"
+    },
+    {
+      "day": 29,
+      "week": 6,
+      "title": "Solitaire PA — Defence + Expansion — Top 5 Objections + Total Wealth Bucket 4",
+      "durationMinutes": 55,
+      "productSlug": "solitaire-pa"
+    },
+    {
+      "day": 30,
+      "week": 6,
+      "title": "Solitaire PA — Compliance + Close — Disclosures, Direct Close, Self-Claim Handoff",
+      "durationMinutes": 50,
+      "productSlug": "solitaire-pa"
+    },
+    {
+      "day": 31,
+      "week": 7,
+      "title": "Platinum Wealth Venture — PWV Foundations — 5-Min Intro + THE Drawing Concept",
+      "durationMinutes": 70,
+      "productSlug": "platinum-wealth-venture"
+    },
+    {
+      "day": 32,
+      "week": 7,
+      "title": "Platinum Wealth Venture — Run the Meeting — 16-Point Discovery + 7-Phase Pitch Flow",
+      "durationMinutes": 65,
+      "productSlug": "platinum-wealth-venture"
+    },
+    {
+      "day": 33,
+      "week": 7,
+      "title": "Platinum Wealth Venture — The Math + The Q&A — Healthcare Cost Angle, Color-Coded Review, Top 5 Questions",
+      "durationMinutes": 60,
+      "productSlug": "platinum-wealth-venture"
+    },
+    {
+      "day": 34,
+      "week": 7,
+      "title": "Platinum Wealth Venture — Defence + Expansion — Top 5 Objections + APA→PWV Restructure",
+      "durationMinutes": 65,
+      "productSlug": "platinum-wealth-venture"
+    },
+    {
+      "day": 35,
+      "week": 7,
+      "title": "Platinum Wealth Venture — Compliance + Close — ILP Disclosures + Gentle Close + 12-Item Execution Checklist",
+      "durationMinutes": 65,
+      "productSlug": "platinum-wealth-venture"
+    }
+  ]
+}

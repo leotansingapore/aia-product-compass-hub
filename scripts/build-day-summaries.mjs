@@ -3,14 +3,15 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const TARGETS = [
-  { root: "docs/first-60-days", out: "src/features/first-60-days/summaries.ts" },
-  { root: "docs/next-60-days", out: "src/features/next-60-days/summaries.ts" },
+  { root: "docs/first-60-days", out: "src/features/first-60-days/summaries.ts", daysPerWeek: 6 },
+  { root: "docs/next-60-days", out: "src/features/next-60-days/summaries.ts", daysPerWeek: 6 },
+  { root: "docs/product-mastery-track", out: "src/features/product-mastery-track/summaries.ts", daysPerWeek: 5 },
 ];
 
 const FRONT_RE = /^---\s*\n([\s\S]*?)\n---/;
 const REFLECTION_RE = /^##\s+(Reflection worksheet|Final reflection[^\n]*)$/m;
 
-function buildSummaries(root, out) {
+function buildSummaries(root, out, daysPerWeek = 6) {
   if (!existsSync(root)) {
     console.log(`skipping ${root} — not found`);
     return;
@@ -42,7 +43,7 @@ function buildSummaries(root, out) {
       summaries.push({
         dayNumber: day,
         week,
-        dayInWeek: ((day - 1) % 6) + 1,
+        dayInWeek: ((day - 1) % daysPerWeek) + 1,
         title,
         duration,
         hasReflection,
@@ -82,5 +83,5 @@ function buildSummaries(root, out) {
 }
 
 for (const t of TARGETS) {
-  buildSummaries(t.root, t.out);
+  buildSummaries(t.root, t.out, t.daysPerWeek);
 }

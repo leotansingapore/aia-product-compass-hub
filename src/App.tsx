@@ -81,6 +81,8 @@ const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-trac
 const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackFirst60DaysReference = lazyWithRetry(() => import("./pages/learning-track/First60DaysReference"));
+const LearningTrackProductMastery = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryHub"));
+const LearningTrackProductMasteryDay = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryDay"));
 const LearningTrackNext60Days = lazyWithRetry(() => import("./pages/learning-track/Next60Days"));
 const LearningTrackNext60DaysDay = lazyWithRetry(() => import("./pages/learning-track/Next60DaysDay"));
 const LearningTrackNext60DaysAssignments = lazyWithRetry(() => import("./pages/learning-track/Next60DaysAssignments"));
@@ -210,6 +212,8 @@ const App = () => (
                       <Route path="first-60-days/reference/:slug" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysReference /></RequireTier>} />
                       <Route path="next-60-days" element={<LearningTrackNext60Days />} />
                       <Route path="next-60-days/day/:dayNumber" element={<LearningTrackNext60DaysDay />} />
+                      <Route path="product-mastery" element={<LearningTrackProductMastery />} />
+                      <Route path="product-mastery/day/:dayNumber" element={<LearningTrackProductMasteryDay />} />
                       <Route path="first-30-days" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="first-30-days/day/:dayNumber" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
