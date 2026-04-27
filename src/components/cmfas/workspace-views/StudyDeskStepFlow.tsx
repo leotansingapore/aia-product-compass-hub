@@ -620,7 +620,7 @@ export function StudyDeskStepFlow({
             </p>
           </div>
           <ol
-            className="flex min-h-[36px] min-w-0 flex-1 flex-wrap items-center sm:justify-end gap-2"
+            className="flex min-h-[32px] min-w-0 flex-1 flex-nowrap items-center justify-start sm:justify-end gap-1 sm:gap-2"
             aria-label="Study-desk sections"
           >
             {GET_READY_STEPS.map((sectionStep, sectionIdx) => {
@@ -638,13 +638,15 @@ export function StudyDeskStepFlow({
                   : firstIncompleteSlideOfSection;
               const reachable = canAccessSlideIndex(targetIdx, slideIndex, isSlideDone);
               return (
-                <li key={sectionStep.id} className="flex items-center gap-2">
-                  {sectionIdx > 0 && <span className="text-primary/25" aria-hidden>·</span>}
+                <li key={sectionStep.id} className="flex shrink-0 items-center gap-1 sm:gap-2">
+                  {sectionIdx > 0 && (
+                    <span className="hidden text-primary/25 sm:inline" aria-hidden>·</span>
+                  )}
                   <button
                     type="button"
                     onClick={() => reachable && goToIndex(targetIdx)}
                     className={cn(
-                      'flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold tabular-nums transition-colors',
+                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold tabular-nums transition-colors sm:h-9 sm:w-9',
                       current && 'ring-2 ring-primary ring-offset-2 ring-offset-background',
                       complete && cmfasRoom.positiveText,
                       !complete &&
@@ -656,9 +658,9 @@ export function StudyDeskStepFlow({
                     title={!reachable ? 'Complete the earlier sections first' : sectionStep.title}
                   >
                     {!reachable ? (
-                      <Lock className="h-3.5 w-3.5" aria-hidden />
+                      <Lock className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden />
                     ) : complete ? (
-                      <CheckCircle2 className="h-5 w-5" aria-hidden />
+                      <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
                     ) : (
                       <span>{sectionIdx + 1}</span>
                     )}
