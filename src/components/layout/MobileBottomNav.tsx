@@ -31,12 +31,12 @@ interface MobileNavItem {
 
 const PRIMARY_ITEMS: MobileNavItem[] = [
   {
-    name: "My Learning",
+    name: "Learning",
     href: "/learning-track",
     icon: GraduationCap,
     features: [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
   },
-  { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
+  { name: "Board", href: "/leaderboard", icon: Trophy },
   { name: "Library", href: "/library", icon: BookOpen, features: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
 ];
