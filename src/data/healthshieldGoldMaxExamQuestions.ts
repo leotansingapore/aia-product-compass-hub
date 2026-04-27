@@ -20,15 +20,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "What is the VitalHealth rider's effect on co-insurance, and how does the Value variant differ?",
+    question: "What is the AIA Max VitalHealth Pro rider's effect on co-insurance, and is the cap the same across all tiers?",
     options: [
-      "VitalHealth removes co-insurance entirely; the Value variant caps it at $3,000/year",
-      "VitalHealth reduces co-insurance to 5% capped at $3,000/year; VitalHealth A Value has a higher cap of $6,000/year",
-      "Both variants reduce co-insurance to 5% with identical $3,000 caps",
-      "VitalHealth reduces co-insurance to 3% capped at $2,000/year; the Value variant has no cap"
+      "Pro removes co-insurance entirely across all tiers",
+      "Pro reduces co-insurance to 5% capped at S$6,000 per policy year, and the cap is identical across all tiers (Pro A / Pro B / Pro B Lite)",
+      "Pro A caps co-insurance at S$3,000; Pro B at S$6,000; Pro B Lite at S$10,000",
+      "Pro reduces co-insurance to 3% capped at S$2,000 per year"
     ],
     correct: 1,
-    explanation: "The standard VitalHealth rider reduces co-insurance from 10% to 5% with a $3,000 annual cap. The VitalHealth A Value variant also reduces to 5% but with a higher $6,000 cap, saving approximately $1,400/year in premiums.",
+    explanation: "AIA Max VitalHealth Pro reduces co-insurance from 10% to 5%, capped at S$6,000 per policy year, subject to AIA preferred provider OR pre-authorisation OR A&E referral. The S$6,000 cap is identical across Pro A, Pro B, and Pro B Lite. Cite: Brochure p.3, p.16, p.18.",
     category: 'product-facts'
   },
 
@@ -59,15 +59,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "How does the Waiver Pass mechanism work for HealthShield Gold Max claims?",
+    question: "How does AIA HealthShield Gold Max treat individual claim history under the April 2026 brochure?",
     options: [
-      "Every claim triggers an additional $2,000 deductible",
-      "First claim has no penalty; second claim within 36 months adds a $2,000 deductible; resets after 36 months without claims",
-      "The first two claims are penalty-free; the third adds $1,000",
-      "All claims within a policy year share a single additional deductible"
+      "Every claim triggers an additional S$2,000 deductible",
+      "First claim is free; second claim within 36 months adds S$2,000; resets after 36 months",
+      "The first two claims are penalty-free; the third adds S$1,000",
+      "There is no individual claim-triggered deductible or premium loading. The brochure advertises 'No change in premium after a claim' — premiums move with age and portfolio re-pricing only"
     ],
-    correct: 1,
-    explanation: "The Waiver Pass grants a penalty-free first claim. A second claim within 36 months triggers an additional $2,000 deductible on top of the standard deductible. After 36 consecutive months without a claim, the Waiver Pass resets.",
+    correct: 3,
+    explanation: "Neither the brochure nor the 71-page product summary contains a 'Waiver Pass', '36-month reset', or 'second-claim deductible'. AIA's stated positioning is no premium change after a claim. Cite: Brochure p.1, p.2.",
     category: 'product-facts'
   },
 
@@ -85,41 +85,41 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "What coverage does the Cancer Booster Rider provide, and what does it cost?",
+    question: "What coverage does AIA Cancer Care Pro provide, and how is the premium quoted?",
     options: [
-      "A flat $100,000 lump sum on cancer diagnosis for $120/year",
-      "16 times the MediShield Life limit per month for cancer treatment, costing $36/year",
-      "Unlimited cancer treatment coverage for $72/year",
-      "50% co-insurance waiver for oncology treatments for $48/year"
+      "A flat S$100,000 lump sum on cancer diagnosis for S$120/year",
+      "Cancer drug treatments up to 16x MSHL per month (vs 5x MSHL on the base plan); premium is age- and gender-banded and paid 100% in cash — quote the actual figure from IPOS",
+      "Unlimited cancer treatment coverage for a flat S$72/year",
+      "A 50% co-insurance waiver for oncology treatments for a flat S$48/year"
     ],
     correct: 1,
-    explanation: "The Cancer Booster Rider provides 16 times the MediShield Life limit per month, significantly boosting cancer treatment coverage. At just $36/year, it is one of the most affordable add-ons for meaningful coverage enhancement.",
+    explanation: "The brochure terminology is Cancer Care Pro (not 'Cancer Booster'). The base plan covers cancer drug treatments at up to 5x MSHL per month; Cancer Care Pro lifts this to up to 16x MSHL per month. Premium is age- and gender-banded — there is no flat S$36/year price in the canonical sources. Cite: Brochure p.4, p.11, p.17; Product Summary p.842+.",
     category: 'product-facts'
   },
 
   {
-    question: "What is the CTGTP (Cell, Tissue and Gene Therapy Products) coverage, and how do listed vs non-listed treatments differ?",
+    question: "What is the CTGTP (Cell, Tissue and Gene Therapy Products) coverage, and how do listed vs non-listed treatments differ under the April 2026 product?",
     options: [
-      "$250,000 for listed treatments and $150,000 for non-listed treatments, per indication per lifetime",
-      "$500,000 for all CTGTP treatments with no distinction",
-      "$100,000 for listed and $50,000 for non-listed treatments",
-      "$150,000 for listed and $250,000 for non-listed treatments"
+      "S$250,000 for listed treatments and S$150,000 for non-listed treatments, per indication per lifetime",
+      "S$500,000 for all CTGTP treatments with no distinction",
+      "S$100,000 for listed and S$50,000 for non-listed treatments",
+      "S$150,000 for listed and S$250,000 for non-listed treatments"
     ],
     correct: 0,
-    explanation: "Listed CTGTP treatments are covered up to $250,000 per indication per lifetime, while non-listed treatments have a lower limit of $150,000. This benefit becomes effective from October 2025 and covers frontier treatments like CAR-T cell therapy.",
+    explanation: "Listed CTGTP treatments are covered up to S$250,000 per indication per lifetime; non-listed treatments are covered up to S$150,000. CTGTP (e.g. Kymriah, Yescarta) is a current contractual benefit as of April 2026, not a future enhancement. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
   {
-    question: "What is the pre- and post-hospitalization coverage period for each HealthShield Gold Max plan tier?",
+    question: "What is the pre- and post-hospitalisation coverage period for each HealthShield Gold Max plan tier?",
     options: [
-      "Plan A: 13 months, Plan B: 180 days, Plan B Lite: 100 days",
+      "Plan A: 13 months across the board; Plan B: 12 months in public / 100 days in private; Plan B Lite: 100 days",
       "All plans: 180 days",
       "Plan A: 12 months, Plan B: 6 months, Plan B Lite: 90 days",
       "Plan A: 6 months, Plan B: 100 days, Plan B Lite: 60 days"
     ],
     correct: 0,
-    explanation: "Plan A offers the longest pre/post-hospitalization coverage at 13 months (the longest in the Singapore market). Plan B provides 180 days, and Plan B Lite provides 100 days.",
+    explanation: "Plan A offers 13 months pre/post (longest in market). Plan B is 12 months in a public hospital and 100 days in a private hospital. Plan B Lite is 100 days. The April 2026 brochure does not use a '180 days' figure for Plan B. Cite: Brochure p.10.",
     category: 'product-facts'
   },
 
@@ -196,12 +196,12 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
     question: "When comparing AIA to key competitors, which four data points should you have ready?",
     options: [
       "Premium rates, cash value, investment returns, and bonus rates",
-      "Annual limits, lifetime limits, AQHP panel size, and pre/post-hospitalization period",
+      "Annual limits, lifetime limits, AQHP panel size, and pre/post-hospitalisation period",
       "Waiting periods, exclusion lists, rider names, and premium payment modes",
       "Agent commission rates, claim settlement time, customer reviews, and branch count"
     ],
     correct: 1,
-    explanation: "The four key comparison points where AIA leads are: annual limit ($2M vs lower), lifetime limit (unlimited vs capped), AQHP panel (500+ vetted specialists), and pre/post-hospitalization (13 months -- longest in market).",
+    explanation: "The four key comparison points where AIA leads are: annual limit (Plan A S$2M), lifetime limit (unlimited), AQHP panel (over 600 vetted specialists per April 2026 brochure), and pre/post-hospitalisation (Plan A 13 months -- longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -258,15 +258,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "How should the Cancer Care Rider be positioned during a sales conversation?",
+    question: "How should AIA Cancer Care Pro be positioned during a sales conversation?",
     options: [
       "It is mandatory for all HealthShield Gold Max plans",
       "It replaces the need for a separate critical illness policy",
-      "At $36/year (less than a single meal), it significantly boosts cancer treatment coverage -- making it a no-brainer add-on",
+      "Lead with the structural benefit -- cancer drug treatments rise from up to 5x MSHL/month on the base plan to up to 16x MSHL/month with the rider -- then quote the actual age- and gender-banded premium from IPOS (rider is paid 100% in cash)",
       "It is only relevant for people with a family history of cancer"
     ],
     correct: 2,
-    explanation: "The $36/year price point makes the Cancer Care Rider an easy yes. Comparing it to a meal cost eliminates any price objection, and cancer being the leading cause of death in Singapore makes the relevance clear.",
+    explanation: "There is no flat S$36/year price in the brochure or 71-page product summary. Lead with the structural value lever (5x to 16x MSHL/month for cancer drug treatments) and quote the real age- and gender-banded premium. Cite: Brochure p.4, p.11, p.17; Product Summary p.842+.",
     category: 'sales-angles'
   },
 
@@ -355,13 +355,13 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   {
     question: "A prospect says: 'The 10% co-insurance means I'm still paying a lot out of pocket.' How do you address this?",
     options: [
-      "The VitalHealth rider reduces it to 5% with a $3,000/year cap -- so on a $100K bill, the maximum out-of-pocket is $3,000 instead of $10,000",
+      "AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap -- so on a S$100K bill, the maximum co-insurance out-of-pocket is S$6,000 instead of S$10,000 (subject to AIA preferred provider, pre-authorisation, or A&E referral)",
       "Recommend they skip insurance entirely if they are worried about out-of-pocket costs",
       "Tell them co-insurance is unavoidable across all insurers",
       "Say the co-insurance rarely applies in real claims"
     ],
     correct: 0,
-    explanation: "The VitalHealth rider transforms the co-insurance concern from a potentially large open-ended cost (10% of a big bill) into a predictable, capped expense (5% with a $3,000 annual ceiling). On a $100K bill, that is $3,000 vs $10,000.",
+    explanation: "AIA Max VitalHealth Pro transforms the co-insurance concern from a potentially large open-ended cost (10% of a big bill) into a predictable, capped expense (5% with an S$6,000 per policy year ceiling). The cap requires AT LEAST ONE of: AIA preferred provider, pre-authorisation, or A&E referral. Cite: Brochure p.3, p.16.",
     category: 'objection-handling'
   },
 
@@ -374,7 +374,7 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
       "Explain the 85% was likely proration for not using an AQHP doctor or getting pre-authorization -- with either option, claims are paid at 100% of eligible amounts"
     ],
     correct: 3,
-    explanation: "This is almost certainly a proration issue. Educating the prospect about AQHP and pre-authorization turns a complaint into a positive -- AIA offers clear paths to 100% claim settlement, and the 500+ doctor panel makes it easy to avoid proration.",
+    explanation: "This is almost certainly a pro-ration issue. Educating the prospect about AQHP and pre-authorisation turns a complaint into a positive -- AIA offers clear paths to 100% claim settlement, and the over-600 AQHP specialist panel makes it easy to avoid pro-ration. Cite: Brochure p.5, p.16.",
     category: 'objection-handling'
   },
 
@@ -392,15 +392,15 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A prospect says: 'The $3,500 deductible is too high -- I am paying a premium AND a deductible?' How do you handle this?",
+    question: "A prospect says: 'The S$3,500 deductible is too high -- I am paying a premium AND a deductible?' How do you handle this?",
     options: [
       "Tell them to choose a plan without any deductible",
       "Explain that deductibles are optional and can be waived",
-      "Reframe: on a $100K bill, they pay $3,500 deductible plus 5% co-insurance (capped at $3,000 with VitalHealth) for a maximum of $6,500 total. Without insurance, they pay the full $100K.",
+      "Reframe using the brochure's Tom S$200K worked example: on a S$200K private hospital bill with AIA preferred provider + pre-authorisation, max out-of-pocket = S$3,500 deductible + S$6,000 capped co-insurance = S$9,500 total. Without insurance, they pay the full S$200K.",
       "Agree that the deductible is excessive compared to competitors"
     ],
     correct: 2,
-    explanation: "The contrast between $6,500 maximum out-of-pocket and a $100,000 uninsured bill makes the deductible feel insignificant. Walking through a real dollar example cuts through the abstract objection and makes the value concrete.",
+    explanation: "The contrast between S$9,500 maximum out-of-pocket and a S$200,000 uninsured bill makes the deductible feel insignificant. Walking through a real dollar example cuts through the abstract objection and makes the value concrete. Cite: Brochure p.9 (Tom worked example).",
     category: 'objection-handling'
   },
 
@@ -461,28 +461,28 @@ export const healthshieldGoldMaxExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "Scenario: A prospect asks you to compare Plan A with VitalHealth vs Plan A with VitalHealth A Value. What is the key difference to highlight?",
+    question: "Scenario: A prospect asks you to compare the three AIA Max VitalHealth Pro tiers. What is the key fact about co-insurance caps to highlight?",
     options: [
-      "The Value variant has a lower annual claim limit",
-      "The Value variant excludes cancer treatment coverage",
-      "The Value variant has a higher co-insurance cap ($6,000 vs $3,000/year) but saves approximately $1,400/year -- same base Plan A coverage with a different out-of-pocket ceiling",
-      "The Value variant has a longer waiting period for all conditions"
+      "Pro A has a higher cap than Pro B and Pro B Lite",
+      "Pro B Lite has no cap at all",
+      "All three tiers (Pro A / Pro B / Pro B Lite) carry the same 5% co-insurance and the same S$6,000 per policy year cap — the tiers differ on ward class and base plan, not on the cap",
+      "The cap doubles for prospects above age 65"
     ],
     correct: 2,
-    explanation: "The only meaningful difference is the annual co-insurance cap: $6,000 vs $3,000. For prospects who claim infrequently, the $1,400/year premium savings outweigh the higher cap. This makes Value the ideal option for healthy policyholders on a budget.",
+    explanation: "AIA Max VitalHealth Pro A, Pro B, and Pro B Lite all reduce co-insurance to 5% with an identical S$6,000 per policy year cap (subject to AIA preferred provider, pre-authorisation, or A&E referral). The tiers map to the underlying HSGM plan (A / B / B Lite). Cite: Brochure p.3, p.16-19.",
     category: 'roleplay'
   },
 
   {
-    question: "Scenario: A prospect who just recovered from minor surgery asks if their claim will trigger the Waiver Pass penalty. What should you explain?",
+    question: "Scenario: A prospect who just recovered from minor surgery asks whether claiming will increase their premium or trigger an additional deductible. What should you explain?",
     options: [
-      "Every claim automatically triggers the additional $2,000 deductible",
-      "The Waiver Pass only applies to Plan A policyholders",
-      "Claims under $5,000 never trigger any additional penalties",
-      "The first claim has no penalty. Only a second claim within 36 months adds the $2,000 extra deductible. After 36 months without claims, the Waiver Pass resets completely."
+      "Every claim automatically triggers an additional S$2,000 deductible",
+      "Claim-triggered deductibles only apply to Plan A policyholders",
+      "Claims under S$5,000 reset the deductible to zero",
+      "AIA's stated policy in the April 2026 brochure is 'no change in premium after a claim', and there is no claim-triggered additional deductible. Premiums move with age and portfolio re-pricing, not individual claim history."
     ],
     correct: 3,
-    explanation: "Clearly explaining the three-part Waiver Pass mechanism (first claim free, second within 36 months adds $2,000, reset after 36 months) removes anxiety about claiming and shows the system is reasonable rather than punitive.",
+    explanation: "There is no 'Waiver Pass', no 36-month reset, and no per-claim deductible loading anywhere in the April 2026 brochure or 71-page product summary. AIA prominently markets 'No change in premium after a claim'. Cite: Brochure p.1, p.2.",
     category: 'roleplay'
   }
 

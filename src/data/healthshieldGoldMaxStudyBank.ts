@@ -49,7 +49,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Class B1 ward in public hospitals"
     ],
     correct: 3,
-    explanation: "Plan B Lite covers up to Class B1 ward in restructured (public) hospitals with an annual limit of $500,000.",
+    explanation: "Plan B Lite covers up to Class B1 ward in restructured (public) hospitals with an annual claim limit of S$300,000 and lifetime unlimited. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
@@ -57,13 +57,13 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
   {
     question: "What is the annual claim limit for HealthShield Gold Max Plan B?",
     options: [
-      "$500,000",
-      "$1 million",
-      "$2 million",
-      "$750,000"
+      "S$500,000",
+      "S$1,000,000 — or S$1,200,000 if hospitalised under an AIA preferred provider",
+      "S$2,000,000",
+      "S$750,000"
     ],
     correct: 1,
-    explanation: "Plan B provides coverage for Class A wards in public hospitals with a $1 million annual claim limit.",
+    explanation: "Plan B (covers up to A-class ward in public hospitals) has a maximum claim limit per policy year of S$1,000,000 — or S$1,200,000 if the hospitalisation is under an AIA preferred provider. Lifetime unlimited. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
@@ -83,29 +83,29 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q6 — correct: 0
   {
-    question: "What co-insurance rate does the VitalHealth rider reduce it to?",
+    question: "What co-insurance rate does AIA Max VitalHealth Pro reduce co-insurance to, and what is the annual cap?",
     options: [
-      "5%, capped at $3,000 per year",
+      "5%, capped at S$6,000 per policy year",
       "0% with no cap",
-      "10%, capped at $5,000 per year",
-      "3%, capped at $2,000 per year"
+      "10%, capped at S$5,000 per year",
+      "3%, capped at S$2,000 per year"
     ],
     correct: 0,
-    explanation: "The VitalHealth rider reduces co-insurance from 10% to 5% and caps the annual out-of-pocket at $3,000.",
+    explanation: "AIA Max VitalHealth Pro (Pro A / Pro B / Pro B Lite) reduces co-insurance from 10% to 5%, capped at S$6,000 per policy year, subject to AIA preferred provider OR pre-authorisation OR A&E referral. Cite: Brochure p.3, p.16.",
     category: 'product-facts'
   },
 
   // Q7 — correct: 2
   {
-    question: "What is the annual co-insurance cap for the VitalHealth A Value variant?",
+    question: "What is the annual co-insurance cap that applies to AIA Max VitalHealth Pro across all tiers (Pro A / Pro B / Pro B Lite)?",
     options: [
-      "$3,000",
-      "$4,500",
-      "$6,000",
-      "$10,000"
+      "S$3,000",
+      "S$4,500",
+      "S$6,000",
+      "S$10,000"
     ],
     correct: 2,
-    explanation: "The VitalHealth A Value variant has a higher annual co-insurance cap of $6,000, which helps keep premium costs lower compared to the standard VitalHealth rider.",
+    explanation: "The April 2026 brochure lists three rider variants only — AIA Max VitalHealth Pro A, Pro B, and Pro B Lite — all carrying the same 5% co-insurance capped at S$6,000 per policy year. There is no separate Value variant. Cite: Brochure p.3, p.16, p.18.",
     category: 'product-facts'
   },
 
@@ -137,31 +137,31 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q10 — correct: 3
+  // Q10 — correct: 0
   {
-    question: "What is the pre- and post-hospitalization coverage period for Plan B?",
+    question: "What is the pre- and post-hospitalisation coverage period for Plan B?",
     options: [
-      "13 months",
-      "100 days",
-      "90 days",
-      "180 days"
+      "12 months in a public (restructured) hospital, 100 days in a private hospital",
+      "180 days for both public and private",
+      "90 days for both public and private",
+      "13 months for both public and private"
     ],
-    correct: 3,
-    explanation: "Plan B provides 180 days of pre- and post-hospitalization coverage for specialist consultations and follow-ups.",
+    correct: 0,
+    explanation: "Plan B's pre/post-hospitalisation benefit runs for 12 months in a public (restructured) hospital and 100 days in a private hospital. There is no 180-day figure in the April 2026 brochure. Cite: Brochure p.10.",
     category: 'product-facts'
   },
 
   // Q11 — correct: 1
   {
-    question: "How many private specialist doctors are in the AIA AQHP panel?",
+    question: "How many AIA Quality Healthcare Partner (AQHP) specialists does the April 2026 brochure cite?",
     options: [
-      "300+",
-      "500+",
-      "200+",
-      "1,000+"
+      "over 380",
+      "over 600",
+      "over 500",
+      "over 967"
     ],
     correct: 1,
-    explanation: "The AQHP (AIA Quality Healthcare Partners) panel includes over 500 private specialist doctors.",
+    explanation: "The April 2026 brochure quotes over 600 AIA Quality Healthcare Partner (AQHP) specialists. Older training videos reference different historical numbers — always use the current brochure figure. Cite: Brochure p.5.",
     category: 'product-facts'
   },
 
@@ -237,15 +237,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q17 — correct: 0
   {
-    question: "Since when has the pre-authorization option been available for ALL private specialists?",
+    question: "Under the April 2026 product, who can a HealthShield Gold Max policyholder request pre-authorisation through?",
     options: [
-      "April 2020",
-      "January 2019",
-      "October 2021",
-      "July 2022"
+      "Any private specialist (not only AQHP panel doctors)",
+      "Only AQHP panel doctors",
+      "Only doctors employed by AIA",
+      "Only restructured (public) hospitals"
     ],
     correct: 0,
-    explanation: "Since April 2020, pre-authorization has been available for all private specialists, not just AQHP panel doctors.",
+    explanation: "Pre-authorisation is available with any specialist, not only AQHP panel doctors. Pre-authorisation (or AIA preferred provider, or A&E referral) is one of the conditions that unlocks the S$6,000 co-insurance cap and removes pro-ration. Cite: Brochure p.6, p.16.",
     category: 'product-facts'
   },
 
@@ -363,57 +363,57 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q26 — correct: 3
   {
-    question: "What is the annual limit for outpatient chemotherapy under HealthShield Gold Max?",
+    question: "Which benefit on HealthShield Gold Max is capped at S$36,000 per policy year?",
     options: [
-      "$24,000 per policy year",
-      "$50,000 per policy year",
-      "$12,000 per policy year",
-      "$36,000 per policy year"
+      "Outpatient chemotherapy",
+      "Outpatient psychiatric treatment",
+      "Day surgery",
+      "Renal dialysis (B1 standard benefit)"
     ],
     correct: 3,
-    explanation: "Outpatient chemotherapy is covered up to $36,000 per policy year, allowing patients to receive treatment without hospitalization.",
+    explanation: "S$36,000 per policy year is the renal dialysis limit. Cancer drug treatments (CDL) are set in MSHL multiples — up to 5x MSHL per month on the base plan, up to 16x MSHL per month with Cancer Care Pro, not a flat S$36K cap. Cite: Brochure p.4, p.11, p.17.",
     category: 'product-facts'
   },
 
   // Q27 — correct: 1
   {
-    question: "What does the Cancer Booster Rider provide in terms of coverage?",
+    question: "How does AIA Cancer Care Pro change cancer drug treatment limits compared to the base HealthShield Gold Max plan?",
     options: [
-      "A flat $100,000 lump sum on cancer diagnosis",
-      "16 times the MediShield Life limit per month",
-      "Unlimited cancer treatment coverage",
-      "50% co-insurance waiver for oncology"
+      "It pays a flat S$100,000 lump sum on cancer diagnosis",
+      "Base plan covers cancer drug treatments up to 5x MSHL per month; with Cancer Care Pro, the limit rises to up to 16x MSHL per month",
+      "It provides unlimited cancer treatment coverage with no monthly cap",
+      "It only waives co-insurance for oncology and changes no limits"
     ],
     correct: 1,
-    explanation: "The Cancer Booster Rider provides 16 times the MediShield Life limit per month, significantly boosting cancer treatment coverage.",
+    explanation: "The brochure terminology is Cancer Care Pro (not 'Cancer Booster'). Base plan cancer drug coverage is 5x MSHL per month; the rider lifts it to up to 16x MSHL per month. The 16x figure applies only with the rider. Cite: Brochure p.4, p.11, p.17.",
     category: 'product-facts'
   },
 
   // Q28 — correct: 0
   {
-    question: "How much does the Cancer Care Rider cost per year?",
+    question: "How is the AIA Cancer Care Pro rider premium quoted?",
     options: [
-      "$36",
-      "$120",
-      "$72",
-      "$48"
+      "Age- and gender-banded, paid 100% in cash — quote the actual premium from IPOS at the prospect's age",
+      "A flat S$36 per year for all ages",
+      "A flat S$72 per year for all ages",
+      "Free of charge for the first 5 years"
     ],
     correct: 0,
-    explanation: "The Cancer Care Rider is remarkably affordable at just $36 per year, making it an easy add-on for cancer coverage enhancement.",
+    explanation: "Neither the brochure nor the 71-page product summary publishes a flat S$36/year price. Cancer Care Pro is age- and gender-banded, paid 100% in cash. Always quote the actual premium from IPOS at the prospect's age. Cite: Product Summary premium tables, p.842+.",
     category: 'product-facts'
   },
 
   // Q29 — correct: 2
   {
-    question: "What is the CTGTP (Cell, Tissue and Gene Therapy Products) coverage limit per indication per lifetime?",
+    question: "What is the CTGTP (Cell, Tissue and Gene Therapy Products) coverage limit per indication per lifetime under the April 2026 product?",
     options: [
-      "$100,000",
-      "$200,000",
-      "$250,000",
-      "$500,000"
+      "S$100,000",
+      "S$200,000",
+      "S$250,000",
+      "S$500,000"
     ],
     correct: 2,
-    explanation: "The CTGTP benefit provides up to $250,000 per indication per lifetime, effective from October 2025.",
+    explanation: "CTGTP (e.g. Kymriah, Yescarta) is a current contractual benefit on HealthShield Gold Max — up to S$250,000 per indication per lifetime. As of April 2026 it is in force, not a future enhancement. Cite: Brochure p.12.",
     category: 'product-facts'
   },
 
@@ -483,7 +483,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "$200,000"
     ],
     correct: 3,
-    explanation: "MediShield Life has an annual claim limit of $200,000 and covers B2/C ward stays in public hospitals.",
+    explanation: "MediShield Life has an annual claim limit of S$200,000 and is designed to cover B2/C ward stays in public hospitals (per MOH 2024 enhancements). The HSGM brochure does not publish MSHL's standalone annual limit — cite MOH for this figure, not the AIA brochure.",
     category: 'product-facts'
   },
 
@@ -517,43 +517,43 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q37 — correct: 2
   {
-    question: "Under the Waiver Pass mechanism, what happens on the first claim?",
+    question: "What is AIA's stated policy on premium increases triggered by an individual claim?",
     options: [
-      "An additional $1,000 deductible applies",
-      "Claims are prorated at 85%",
-      "No penalty applies",
-      "Co-insurance increases to 20%"
+      "Premiums increase 5% per claim",
+      "Only large claims trigger increases",
+      "No change in premium after a claim — premiums move with age and portfolio re-pricing, not individual claim history",
+      "Premiums double after the third claim"
     ],
     correct: 2,
-    explanation: "The Waiver Pass grants a penalty-free first claim. The additional deductible only kicks in on the second claim within 36 months.",
+    explanation: "The April 2026 brochure prominently advertises 'No change in premium after a claim'. There is no 'Waiver Pass' or claim-triggered additional deductible mechanism in the canonical product. Cite: Brochure p.1, p.2.",
     category: 'product-facts'
   },
 
   // Q38 — correct: 1
   {
-    question: "What happens if a second claim is made within 36 months under the Waiver Pass?",
+    question: "If a HealthShield Gold Max policyholder makes a second claim within 36 months, what additional penalty applies under the April 2026 product?",
     options: [
       "Co-insurance doubles to 20%",
-      "An additional $2,000 deductible applies",
+      "None — the April 2026 brochure does not contain any 'second claim within 36 months' or 'additional S$2,000 deductible' mechanism. AIA's stated policy is no change in premium after a claim",
       "The claim is rejected",
       "Proration drops to 70%"
     ],
     correct: 1,
-    explanation: "A second claim within 36 months triggers an additional $2,000 deductible on top of the standard deductible.",
+    explanation: "There is no 'Waiver Pass', 'second-claim deductible', or '36-month reset' in the canonical brochure or product summary. The brochure explicitly markets 'No change in premium after a claim'. Cite: Brochure p.1, p.2.",
     category: 'product-facts'
   },
 
   // Q39 — correct: 3
   {
-    question: "How does the Waiver Pass reset?",
+    question: "Which of the following is true about claim history and HealthShield Gold Max premiums in the April 2026 product?",
     options: [
-      "It resets annually",
-      "It never resets once triggered",
-      "It resets after 24 months of no claims",
-      "It resets after 36 months of no claims"
+      "Premiums increase by 5% per claim",
+      "Claims trigger a 24-month deductible loading",
+      "Claims trigger a 36-month deductible loading that resets when claim-free",
+      "There is no individual claim-triggered deductible loading or premium loading; AIA's positioning is 'no change in premium after a claim'"
     ],
     correct: 3,
-    explanation: "The Waiver Pass resets after 36 consecutive months without a claim, removing the additional deductible requirement.",
+    explanation: "The April 2026 brochure and 71-page product summary contain no 'Waiver Pass', no 36-month reset, and no claim-triggered deductible. AIA prominently states: 'No change in premium after a claim'. Cite: Brochure p.1, p.2.",
     category: 'product-facts'
   },
 
@@ -573,7 +573,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q41 — correct: 2
   {
-    question: "What is the pre- and post-hospitalization coverage period for Plan B Lite?",
+    question: "What is the pre- and post-hospitalisation coverage period for Plan B Lite?",
     options: [
       "180 days",
       "13 months",
@@ -581,7 +581,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "60 days"
     ],
     correct: 2,
-    explanation: "Plan B Lite offers 100 days of pre- and post-hospitalization coverage, shorter than Plan B's 180 days and Plan A's 13 months.",
+    explanation: "Plan B Lite provides 100 days of pre- and post-hospitalisation coverage. Plan B is 12 months public / 100 days private; Plan A is 13 months across the board. Cite: Brochure p.10.",
     category: 'product-facts'
   },
 
@@ -627,17 +627,17 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q45 — correct: 2
+  // Q45 — correct: 0
   {
-    question: "What additional deductible applies if a Plan A policyholder has made a private hospital claim in the past 3 years?",
+    question: "Which of the following best describes how a prior Plan A claim affects a future Plan A claim under the April 2026 brochure?",
     options: [
-      "$1,000",
-      "$3,500",
-      "$2,000",
-      "$5,000"
+      "There is no additional deductible triggered by a prior claim. AIA's stated policy is 'no change in premium after a claim'",
+      "An additional S$2,000 deductible applies for 3 years after any claim",
+      "Co-insurance is loaded to 20% for the next claim",
+      "The annual claim limit is halved for 3 years"
     ],
-    correct: 2,
-    explanation: "An additional $2,000 deductible applies on top of the standard $3,500 deductible if the policyholder claimed from a private hospital within the preceding 3 years.",
+    correct: 0,
+    explanation: "Neither the April 2026 brochure nor the 71-page product summary contains any 'prior claim within 3 years' deductible loading. The brochure explicitly markets no premium change after a claim. Cite: Brochure p.1, p.2.",
     category: 'product-facts'
   },
 
@@ -731,15 +731,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q52 — correct: 0
   {
-    question: "What is the annual savings when downgrading from Plan A with standard VitalHealth to VitalHealth A Value?",
+    question: "If a prospect on Plan A wants to lower their out-of-pocket cash outlay, which lever should you pull first before downgrading the base plan?",
     options: [
-      "Approximately $1,400 per year",
-      "Approximately $500 per year",
-      "Approximately $2,000 per year",
-      "Approximately $800 per year"
+      "Quote the actual age- and gender-banded rider premium from IPOS and let MediSave AWL absorb the base premium up to the limit (rider must be cash)",
+      "Cancel the rider entirely",
+      "Move to a competitor",
+      "Pay annually in advance"
     ],
     correct: 0,
-    explanation: "Switching from the standard VitalHealth rider to the Value variant saves approximately $1,400/year by accepting a higher co-insurance cap ($6,000 vs $3,000).",
+    explanation: "There is no Value variant in the April 2026 product. The first cost lever is to quote the actual rider premium at the prospect's age/gender from IPOS, then offset the base plan via MediSave AWL (rider stays 100% cash). Cite: Brochure p.16-19.",
     category: 'sales-angles'
   },
 
@@ -762,12 +762,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "How should you position the AQHP panel as a competitive advantage?",
     options: [
       "AQHP doctors charge lower fees",
-      "500+ vetted specialists with no proration — clients get full coverage and quality assurance",
+      "Over 600 AIA Quality Healthcare Partner specialists — using one (or obtaining pre-authorisation) removes pro-ration so clients get full coverage and quality assurance",
       "AQHP doctors guarantee faster recovery",
       "AQHP is the only option for claims"
     ],
     correct: 1,
-    explanation: "The AQHP advantage is twofold: quality assurance (5+ years specialist experience) and financial benefit (no proration on claims).",
+    explanation: "The April 2026 brochure cites over 600 AQHP specialists. Pairing one with pre-authorisation also unlocks the 5% / S$6,000 co-insurance cap. Cite: Brochure p.5, p.16.",
     category: 'sales-angles'
   },
 
@@ -818,12 +818,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "When a prospect says they want to compare plans, which four competitor data points should you have ready?",
     options: [
       "Premium rates, cash value, investment returns, bonus rates",
-      "Annual limits, lifetime limits, panel size, pre/post-hospitalization period",
+      "Annual limits, lifetime limits, AQHP panel size, pre/post-hospitalisation period",
       "Waiting periods, exclusion lists, rider names, premium modes",
       "Agent commission, claim settlement time, customer reviews, branch count"
     ],
     correct: 1,
-    explanation: "The four key comparison points are: annual limits ($2M vs lower), lifetime limits (unlimited vs capped), AQHP panel (500+), and pre/post-hospitalization (13 months).",
+    explanation: "The four AIA value-stack comparison points: annual limits (Plan A S$2M), lifetime limits (unlimited), AQHP panel (over 600 specialists), and pre/post-hospitalisation (Plan A 13 months — longest in market). Cite: Brochure p.5, p.10, p.12.",
     category: 'sales-angles'
   },
 
@@ -848,10 +848,10 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "The rider adds dental coverage",
       "The rider provides outpatient GP visits",
       "The rider includes maternity benefits",
-      "VitalHealth reduces co-insurance to 5% with a $3,000 cap — families know their maximum exposure"
+      "AIA Max VitalHealth Pro reduces co-insurance to 5% with an S$6,000 cap per policy year — families know their maximum exposure"
     ],
     correct: 3,
-    explanation: "For families, the VitalHealth rider's predictability is key — 5% co-insurance capped at $3,000/year means they always know their maximum out-of-pocket.",
+    explanation: "For families, the rider's predictability is key — 5% co-insurance capped at S$6,000 per policy year (subject to AIA preferred provider, pre-authorisation, or A&E referral) means they always know their maximum out-of-pocket. Cite: Brochure p.3, p.16.",
     category: 'sales-angles'
   },
 
@@ -899,15 +899,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q64 — correct: 3
   {
-    question: "How should the Cancer Care Rider be positioned during a sales conversation?",
+    question: "How should AIA Cancer Care Pro be positioned during a sales conversation?",
     options: [
       "It is mandatory for all plans",
       "It replaces the need for critical illness coverage",
       "It is only needed for people with family cancer history",
-      "At $36/year, it costs less than a single meal — and it significantly boosts cancer treatment coverage"
+      "It boosts cancer drug treatment coverage to up to 16x MSHL per month (vs 5x MSHL on the base plan). Quote the actual age- and gender-banded premium from IPOS — premium is paid 100% in cash"
     ],
     correct: 3,
-    explanation: "The $36/year price point makes the Cancer Care Rider a no-brainer add-on. Comparing it to a meal cost removes any price objection.",
+    explanation: "The structural value lever is the move from 5x to 16x MSHL/month for cancer drug treatments. Premium is age/gender-banded and paid in cash — there is no flat 'S$36/year' price in the canonical sources. Cite: Brochure p.4, p.11, p.17; Product Summary p.842+.",
     category: 'sales-angles'
   },
 
@@ -983,15 +983,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q70 — correct: 1
   {
-    question: "When positioning the VitalHealth Value rider, what is the key trade-off to explain?",
+    question: "When positioning AIA Max VitalHealth Pro to a prospect, what cap conditions must be explained for the S$6,000 co-insurance cap to apply?",
     options: [
-      "Lower premium but longer waiting period",
-      "Lower premium with a higher co-insurance cap ($6,000 vs $3,000), saving ~$1,400/year",
-      "Same premium but reduced panel access",
-      "Lower premium but no pre-authorization"
+      "Annual mode OR GIRO OR auto-renewal",
+      "AIA preferred provider OR pre-authorisation OR A&E referral",
+      "Plan A only OR full premium paid OR no smoker loading",
+      "Cancer Care Pro OR Emergency Care Pro OR Vitality status"
     ],
     correct: 1,
-    explanation: "The Value variant saves ~$1,400/year by accepting a higher co-insurance cap of $6,000 instead of $3,000 — still a meaningful cap for most hospitalization scenarios.",
+    explanation: "The S$6,000 per policy year co-insurance cap applies if AT LEAST ONE of three conditions is met: AIA preferred provider, pre-authorisation, or A&E referral. Cite: Brochure p.16.",
     category: 'sales-angles'
   },
 
@@ -1229,11 +1229,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Discourage comparison and push for immediate close",
       "Say competitors are unreliable",
-      "Encourage the comparison and provide a side-by-side: AIA's $2M annual, unlimited lifetime, 500+ AQHP, and 13-month pre/post vs their specific limits — let the numbers speak",
+      "Encourage the comparison and provide a side-by-side: AIA's S$2M annual, unlimited lifetime, over 600 AQHP specialists, and 13-month pre/post vs their specific limits — let the numbers speak",
       "Offer a deeper discount to prevent comparison"
     ],
     correct: 2,
-    explanation: "Welcoming comparison shows confidence. Providing a factual side-by-side positions you as transparent and lets AIA's stronger numbers win on merit.",
+    explanation: "Welcoming comparison signals confidence. Use the four-point value stack (S$2M annual / unlimited lifetime / over 600 AQHP / 13 months pre/post) directly from the April 2026 brochure. Cite: Brochure p.5, p.10, p.12.",
     category: 'objection-handling'
   },
 
@@ -1286,10 +1286,10 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "Downgrade to MediShield Life only",
       "Cancel the rider first, then the base plan",
       "Switch to a completely different insurer",
-      "Consider VitalHealth A Value (saves ~$1,400/year) before downgrading the base plan — maintains Plan A coverage with a higher co-insurance cap"
+      "Run an actual IPOS quote at the prospect's age/gender, maximise MediSave AWL on the base plan, and only consider stepping down from Pro A to Pro B / Pro B Lite if the cash gap remains material — the S$6,000 co-insurance cap is the same across all tiers"
     ],
     correct: 3,
-    explanation: "The VitalHealth A Value variant is the first lever to pull for savings (~$1,400/year) while keeping Plan A's private hospital coverage and $2M annual limit intact.",
+    explanation: "The April 2026 product has no Value variant. The cost-saving sequence is: real IPOS quote, MediSave AWL on base, then evaluate stepping the base plan and rider tier together. The S$6,000 cap is identical across Pro A / Pro B / Pro B Lite. Cite: Brochure p.16-19.",
     category: 'objection-handling'
   },
 
@@ -1299,11 +1299,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Tell them co-insurance is unavoidable for all insurers",
       "Recommend they skip insurance entirely",
-      "Explain the VitalHealth rider reduces it to 5% with a $3,000/year cap — so on a $100K bill, the maximum out-of-pocket is $3,000, not $10,000",
+      "Explain that AIA Max VitalHealth Pro reduces it to 5% with an S$6,000 per policy year cap — so on a $100K bill, the maximum co-insurance out-of-pocket is $6,000, not $10,000",
       "Say the co-insurance rarely applies in practice"
     ],
     correct: 2,
-    explanation: "The VitalHealth rider transforms the co-insurance concern — from a potentially large 10% share to a predictable 5% capped at $3,000/year maximum.",
+    explanation: "AIA Max VitalHealth Pro transforms the co-insurance concern — from a potentially large 10% share to a predictable 5% capped at S$6,000 per policy year (subject to AIA preferred provider, pre-authorisation, or A&E referral). Cite: Brochure p.3, p.16.",
     category: 'objection-handling'
   },
 
@@ -1312,12 +1312,12 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     question: "A prospect says: 'I heard ISP plans don't cover outpatient treatments.' How should you correct this?",
     options: [
       "Confirm that outpatient is never covered",
-      "Clarify that HealthShield Gold Max covers outpatient chemo ($36K/year), pre/post-hospitalization visits (up to 13 months for Plan A), and day surgery",
+      "Clarify that HealthShield Gold Max covers cancer drug treatments at MSHL multiples (5x MSHL/month base; up to 16x MSHL/month with Cancer Care Pro), renal dialysis up to S$36,000/year, pre/post-hospitalisation (13 months for Plan A), and day surgery",
       "Tell them to buy a separate outpatient plan",
       "Explain that only GP visits are excluded"
     ],
     correct: 1,
-    explanation: "ISPs do cover significant outpatient components — chemotherapy, pre/post-hospitalization, and day surgery. The misconception is that only inpatient stays are covered.",
+    explanation: "ISPs cover substantial outpatient components: cancer drug treatments scaled in MSHL multiples (not a flat S$36K), renal dialysis (S$36,000/year), pre/post-hospitalisation, and day surgery. Cite: Brochure p.4, p.11, p.17.",
     category: 'objection-handling'
   },
 
@@ -1411,11 +1411,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Tell them to choose a plan without a deductible",
       "Explain that deductibles are optional",
-      "Reframe: the $3,500 deductible is the maximum you pay before AIA covers the rest. On a $100K bill, you pay $3,500 + 5% co-insurance (capped at $3,000) = $6,500 max. Without insurance, you pay $100K",
+      "Reframe using the brochure's Tom S$200K example: the deductible is once-per-year. With AIA preferred provider + pre-authorisation, max out-of-pocket = $3,500 deductible + S$6,000 capped co-insurance = S$9,500 on a S$200K private bill",
       "Agree that the deductible is excessive"
     ],
     correct: 2,
-    explanation: "Compare the deductible + co-insurance total ($6,500 max) against the alternative (paying the full bill). The contrast between $6,500 and $100K makes the deductible feel insignificant.",
+    explanation: "Compare the deductible + co-insurance total (S$9,500 max with rider, preferred provider, and pre-authorisation) against paying the full S$200K bill uninsured. Cite: Brochure p.9 (Tom worked example).",
     category: 'objection-handling'
   },
 
@@ -1523,15 +1523,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q108 — correct: 2
   {
-    question: "Scenario: A prospect asks you to compare Plan A with VitalHealth vs Plan A with VitalHealth A Value. What is the key difference to highlight?",
+    question: "Scenario: A prospect asks you to compare AIA Max VitalHealth Pro A vs Pro B. What is the most accurate way to explain the difference?",
     options: [
-      "Value has a lower annual claim limit",
-      "Value excludes cancer coverage",
-      "Value has a higher co-insurance cap ($6,000 vs $3,000/year) but saves approximately $1,400/year in premiums — same base coverage, different out-of-pocket ceiling",
-      "Value has a longer waiting period"
+      "Pro A has a higher co-insurance cap than Pro B",
+      "Pro A excludes cancer coverage",
+      "Both Pro A and Pro B carry the same 5% co-insurance and the same S$6,000 per policy year cap — they differ on the underlying base plan (Plan A = private hospital, Plan B = up to A-class public ward), not on the co-insurance cap",
+      "Pro A has a longer waiting period than Pro B"
     ],
     correct: 2,
-    explanation: "The only meaningful difference is the co-insurance cap ($6,000 vs $3,000). For prospects who rarely claim, the $1,400/year savings outweigh the higher cap.",
+    explanation: "The S$6,000 cap is identical across Pro A, Pro B, and Pro B Lite. Tiers reflect the underlying HSGM base plan (ward class and annual limit), not the rider mechanics. Cite: Brochure p.3, p.16-19.",
     category: 'roleplay'
   },
 
@@ -1551,15 +1551,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q110 — correct: 0
   {
-    question: "Scenario: A prospect who just recovered from a minor surgery asks if their claim will trigger the Waiver Pass penalty. What should you explain?",
+    question: "Scenario: A prospect who just recovered from a minor surgery asks whether claiming will increase their premium or trigger an additional deductible. What should you explain?",
     options: [
-      "The first claim has no penalty under the Waiver Pass. If a second claim occurs within 36 months, then an additional $2,000 deductible applies. After 36 months of no claims, the Waiver Pass resets",
-      "Every claim triggers the additional deductible",
-      "The Waiver Pass only applies to Plan A",
-      "Claims under $5,000 never trigger the penalty"
+      "AIA's stated policy in the April 2026 brochure is 'no change in premium after a claim', and there is no claim-triggered additional deductible. Premiums move with age and portfolio re-pricing, not with individual claim history",
+      "Every claim triggers an additional $2,000 deductible",
+      "Only Plan A policyholders face premium loading after a claim",
+      "Claims under $5,000 reset the deductible to zero"
     ],
     correct: 0,
-    explanation: "Clearly explain the three-part Waiver Pass mechanism: first claim free, second within 36 months adds $2,000, reset after 36 months. This removes anxiety about claiming.",
+    explanation: "There is no 'Waiver Pass' or per-claim deductible loading in the April 2026 product. The brochure prominently advertises 'No change in premium after a claim'. Cite: Brochure p.1, p.2.",
     category: 'roleplay'
   },
 
@@ -1583,11 +1583,11 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     options: [
       "Side with the prospect against the spouse",
       "Recommend the cheapest option to avoid conflict",
-      "Present the VitalHealth A Value option as a compromise — same Plan A base with ~$1,400/year savings — then show the daily cost breakdown to the spouse",
+      "Quote the actual IPOS premium at the prospect's age/gender, show MediSave AWL offset on the base plan (rider stays cash), then break the residual cash outlay into a daily cost — and offer the two-option close: 'private or public?' with the rider assumed in",
       "Tell the spouse they're wrong"
     ],
     correct: 2,
-    explanation: "The Value variant is the perfect compromise — it preserves Plan A coverage while saving $1,400/year. The daily cost breakdown ($2-3/day) addresses the spouse's price sensitivity.",
+    explanation: "There is no Value variant in the April 2026 product. Use real IPOS numbers, MediSave AWL framing, and the daily-cost breakdown, then close with the two-option 'private or public?' question with the rider built in. Cite: Brochure p.16-19; Day-5 curriculum.",
     category: 'roleplay'
   },
 
@@ -1607,15 +1607,15 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
 
   // Q114 — correct: 0
   {
-    question: "Scenario: A prospect asks if they can use pre-authorization with their preferred private surgeon who is not on the AQHP panel. What do you tell them?",
+    question: "Scenario: A prospect asks if they can use pre-authorisation with their preferred private surgeon who is not on the AQHP panel. What do you tell them?",
     options: [
-      "Yes — since April 2020, pre-authorization is available for ALL private specialists, not just AQHP doctors. With pre-authorization, no proration applies even outside the panel",
-      "No, pre-authorization is only for AQHP doctors",
+      "Yes — pre-authorisation is available with any private specialist (not only AQHP panel doctors). With pre-authorisation, pro-ration is removed and the S$6,000 co-insurance cap is unlocked",
+      "No, pre-authorisation is only for AQHP doctors",
       "They must switch to an AQHP doctor",
-      "Pre-authorization is not available for surgery"
+      "Pre-authorisation is not available for surgery"
     ],
     correct: 0,
-    explanation: "This is a common misconception. Since April 2020, pre-authorization works with ANY private specialist. This removes the perceived restriction of the AQHP panel.",
+    explanation: "Pre-authorisation works with any specialist. It removes pro-ration and is one of the three triggers (alongside AIA preferred provider and A&E referral) that activates the S$6,000 co-insurance cap. Cite: Brochure p.6, p.16.",
     category: 'roleplay'
   },
 
@@ -1701,5 +1701,149 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
     correct: 2,
     explanation: "The practical benefits of consolidation: simpler claims, relationship advantage for underwriting, and single-app management. Don't promise discounts that don't exist.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // SECTION D — NEW QUESTIONS (Q121–Q130) appended from audit
+  // ============================================================
+
+  // Q121 — correct: 2
+  {
+    question: "With AIA Max VitalHealth Pro (any tier), co-insurance is reduced to 5% of the bill above deductible, capped at:",
+    options: [
+      "S$3,000 per policy year",
+      "S$5,000 per policy year",
+      "S$6,000 per policy year",
+      "No cap"
+    ],
+    correct: 2,
+    explanation: "AIA Max VitalHealth Pro caps co-insurance at S$6,000 per policy year across all tiers (Pro A / Pro B / Pro B Lite). Cite: Brochure p.3, p.16.",
+    category: 'product-facts'
+  },
+
+  // Q122 — correct: 0
+  {
+    question: "The S$6,000 co-insurance cap requires AT LEAST ONE of three conditions. Which set is correct?",
+    options: [
+      "AIA preferred provider OR pre-authorisation OR A&E referral",
+      "Plan A only OR full premium paid OR no smoker loading",
+      "Cancer Care Pro OR Emergency Care Pro OR Vitality status",
+      "Annual mode OR GIRO OR auto-renewal"
+    ],
+    correct: 0,
+    explanation: "The S$6,000 per policy year cap on co-insurance applies if the treatment is provided by an AIA preferred provider, OR if a pre-authorisation certificate is in place, OR if it is an A&E referral. Cite: Brochure p.16.",
+    category: 'product-facts'
+  },
+
+  // Q123 — correct: 2
+  {
+    question: "A Plan A + Pro A policyholder receives a S$200,000 private hospital bill. Treatment is by an AIA preferred provider with pre-authorisation. Total out-of-pocket?",
+    options: [
+      "S$3,500",
+      "S$6,000",
+      "S$9,500",
+      "S$13,325"
+    ],
+    correct: 2,
+    explanation: "Tom's worked example: S$3,500 deductible + S$6,000 capped co-insurance = S$9,500 total out-of-pocket on a S$200,000 private bill, when treatment is via AIA preferred provider with pre-authorisation. Cite: Brochure p.9.",
+    category: 'product-facts'
+  },
+
+  // Q124 — correct: 1
+  {
+    question: "Which set lists the four mandatory disclosures the FC must deliver before authentication?",
+    options: [
+      "Smoker loading / BMI / occupation / family history",
+      "Premiums-not-guaranteed / one-MediSave-IP-per-Insured / MAS switching disclosure / value-added-services-not-contractual",
+      "Free-look / GIRO / mode / AWL",
+      "Cancer Care consent / Emergency Care consent / rider consent / base consent"
+    ],
+    correct: 1,
+    explanation: "The four mandatory MAS-aligned disclosures the FC must deliver before authentication are: premiums-not-guaranteed; one MediSave-payable IP per Insured; MAS switching disclosure; and value-added-services-not-contractual. Cite: Brochure p.20-22.",
+    category: 'compliance'
+  },
+
+  // Q125 — correct: 2
+  {
+    question: "The HealthShield Gold Max two-option close question is:",
+    options: [
+      "'With rider or without rider?'",
+      "'Plan A, B, or B Lite?'",
+      "'Would you prefer private or public?' — with rider assumed in",
+      "'Buy today, yes or no?'"
+    ],
+    correct: 2,
+    explanation: "The trained two-option close is 'private or public?' — the rider is assumed into both options so the prospect chooses ward strategy, not whether to take the rider. Cite: Day-5 curriculum.",
+    category: 'closing'
+  },
+
+  // Q126 — correct: 2
+  {
+    question: "The number of specialists on AIA's Quality Healthcare Partner panel as of the April 2026 brochure:",
+    options: [
+      "over 380",
+      "over 500",
+      "over 600",
+      "over 967"
+    ],
+    correct: 2,
+    explanation: "The April 2026 brochure cites over 600 AIA Quality Healthcare Partner (AQHP) specialists. Older training material may quote different historical numbers — always use the current brochure figure. Cite: Brochure p.5.",
+    category: 'product-facts'
+  },
+
+  // Q127 — correct: 1
+  {
+    question: "The clearest distinction between HealthShield Gold Max and a Critical Illness plan is:",
+    options: [
+      "HSGM is cheaper than CI",
+      "CI pays YOU a lump sum (income replacement); HSGM pays the HOSPITAL (reimbursement)",
+      "Only HSGM covers cancer",
+      "CI is reimbursement; HSGM is lump sum"
+    ],
+    correct: 1,
+    explanation: "Critical Illness pays the policyholder a lump sum on diagnosis (income replacement). HealthShield Gold Max reimburses eligible hospitalisation expenses to the hospital (or to the policyholder against bills). They are complementary, not substitutes. Cite: Day-1 curriculum, Video 4 + Video 10.",
+    category: 'sales-angles'
+  },
+
+  // Q128 — correct: 1
+  {
+    question: "What is AIA's stated policy on premium increases after a claim?",
+    options: [
+      "Premiums increase 5% per claim",
+      "No change in premium after a claim — premiums move with age and portfolio re-pricing, not individual claim history",
+      "Only large claims trigger increases",
+      "Premiums double after the third claim"
+    ],
+    correct: 1,
+    explanation: "The April 2026 brochure markets 'No change in premium after a claim' on the cover and inside spread. Premium movement is driven by age progression and portfolio-level re-pricing, not the policyholder's individual claim history. Cite: Brochure p.1, p.2.",
+    category: 'product-facts'
+  },
+
+  // Q129 — correct: 1
+  {
+    question: "The MAS switching disclosure must be:",
+    options: [
+      "Paraphrased to fit the prospect's language",
+      "Read or recited verbatim — word-for-word as printed on Brochure p.22",
+      "Skipped if the prospect has no existing IP",
+      "Written but not spoken"
+    ],
+    correct: 1,
+    explanation: "The MAS switching disclosure is one of the four mandatory disclosures and must be delivered verbatim — word-for-word — as printed on Brochure p.22. It cannot be paraphrased, condensed, or skipped. Cite: Brochure p.22, Day-5 curriculum.",
+    category: 'compliance'
+  },
+
+  // Q130 — correct: 3
+  {
+    question: "Pro-ration factor for HSG Max A (across all ward types):",
+    options: [
+      "70%",
+      "80%",
+      "85%",
+      "100%"
+    ],
+    correct: 3,
+    explanation: "HSG Max A applies a 100% pro-ration factor across all ward types — pro-ration is removed entirely on Plan A. Plan B and Plan B Lite carry tier-specific pro-ration factors by ward and treatment type. Cite: Brochure p.12.",
+    category: 'product-facts'
   }
 ];
