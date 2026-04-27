@@ -1915,6 +1915,36 @@ export type Database = {
           },
         ]
       }
+      product_mastery_progress: {
+        Row: {
+          day_number: number
+          quiz_attempts: number
+          quiz_passed_at: string | null
+          quiz_score: number | null
+          read_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          day_number: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          day_number?: number
+          quiz_attempts?: number
+          quiz_passed_at?: string | null
+          quiz_score?: number | null
+          read_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           assistant_id: string | null
@@ -3184,6 +3214,7 @@ export type Database = {
           first_60_days: number
           name: string
           next_60_days: number
+          product_mastery: number
           question_bank: number
           total_points: number
           user_id: string
