@@ -37,7 +37,7 @@ function saveStore(userId: string, store: Store) {
 export function useProductMasteryProgress() {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
-  const isAdminUser = isAdmin();
+  const isAdminUser = isAdmin;
   const userId = user?.id ?? ANON_USER_KEY;
   const [store, setStore] = useState<Store>(() => loadStore(userId));
 
