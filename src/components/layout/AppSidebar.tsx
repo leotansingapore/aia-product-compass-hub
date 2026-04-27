@@ -32,6 +32,7 @@ import {
   
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { prefetchHandlers } from "@/utils/routePrefetch";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Sidebar,
