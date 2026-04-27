@@ -104,10 +104,13 @@ export const TopNav = memo(function TopNav({
         <button
           type="button"
           onClick={() => onProfileClick?.()}
-          className="rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-primary hover:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          // Larger 44x44 hit target (WCAG min) with padding so the click area
+          // extends well beyond the visible 32px avatar — much easier to hit
+          // near the edge of the viewport.
+          className="flex h-11 w-11 items-center justify-center rounded-full ring-offset-background transition-all hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           aria-label="Open profile"
         >
-          <Avatar className="h-8 w-8">
+          <Avatar className="h-8 w-8 pointer-events-none">
             <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
               {user?.email?.charAt(0).toUpperCase() || "U"}
             </AvatarFallback>
