@@ -348,6 +348,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink
                         to={item.url}
+                        {...prefetchHandlers(item.url)}
                         className={getNavClassName(item.url)}
                         {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
                       >
