@@ -38,27 +38,27 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What is the welcome bonus range in Pro Achiever 3.0, and what determines it?",
+    question: "What is the welcome bonus range in Pro Achiever 3.0, and how is it credited?",
     options: [
       "A flat 3% for all clients regardless of premium",
-      "5% to 75%, based on the annualised premium amount and investment period chosen",
-      "10% to 50%, based solely on the client's age",
-      "There is no welcome bonus — only the special bonus applies"
+      "5% to 75% total, based on annualised premium and IIP, paid upon receipt of each basic regular premium for the 1st, 2nd, AND 3rd policy years (split across years 1-3)",
+      "10% to 50%, based solely on the client's age, paid in year 1",
+      "There is no welcome bonus - only the special bonus applies"
     ],
     correct: 1,
-    explanation: "The welcome bonus ranges from 5% to 75% of the annualised premium. The higher the annual premium and the longer the investment period, the higher the welcome bonus. It is credited in the first year and cannot be withdrawn within the 10-year lock-in period.",
+    explanation: "The welcome bonus totals 5% to 75% of the annualised regular premium across years 1-3, paid upon receipt of each basic regular premium for the 1st, 2nd, AND 3rd policy years (Product Summary p.2 Section 3.3; Brochure p.1 footnote 1). For example, IIP 20 + >=$12,000 premium = 20% / 25% / 30% across years 1 / 2 / 3 = 75% total.",
     category: 'product-facts'
   },
   {
     question: "When does the 5% special bonus kick in, and what happens from year 21 onwards?",
     options: [
       "5% from year 5, increasing to 10% from year 15",
-      "5% from year 10, increasing to 8% from year 21 onwards",
+      "5% of annualised premium from receipt of the 10th annual premium, increasing to 8% from receipt of the 21st annual premium onwards",
       "8% from year 10 onwards, no change after that",
       "A one-time 5% bonus paid at the 10th anniversary only"
     ],
     correct: 1,
-    explanation: "From year 10, an additional 5% special bonus on the annualised premium is credited each year. This increases to 8% from year 21 onwards. For example, on a $10,000/year premium, the client gets an extra $500/year from year 10 and $800/year from year 21. Unlike the welcome bonus, the special bonus can be withdrawn at any time.",
+    explanation: "Per Product Summary p.2 Section 3.4, the Special Bonus is 5% of the annualised regular premium upon receipt of each regular premium from the 10th annual premium onwards, increasing to 8% from the 21st annual premium onwards. Calculated on annualised premium - NOT on account value. For example, on a $10,000/year premium, the client gets an extra $500/year from year 10 and $800/year from year 21.",
     category: 'product-facts'
   },
   {
@@ -66,23 +66,23 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     options: [
       "For the entire duration of the policy",
       "For the first 5 years only",
-      "For the first 10 years only (3.9% p.a.); no supplementary charges after that",
+      "3.9% p.a. ceasing on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium",
       "There are no supplementary charges in Pro Achiever 3.0"
     ],
     correct: 2,
-    explanation: "The supplementary charge is 3.9% p.a. and applies for the first 10 years only. After this, no further supplementary charges are deducted — meaning more of the client's money goes toward investments in the later years. This is a key differentiator vs most competitor ILPs whose charges are perpetual.",
+    explanation: "The 3.9% p.a. supplementary charge ceases only upon receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). If premiums are missed or Premium Pass is used, the charge extends beyond 10 calendar years. Most competitor ILPs have perpetual supplementary charges.",
     category: 'product-facts'
   },
   {
     question: "What is the 'Premium Pass' feature in Pro Achiever 3.0?",
     options: [
       "A discount on premiums for loyal policyholders after 5 years",
-      "The ability to pause premium payments for up to 12 months, available after 5 years of premiums have been paid, with no charges",
+      "The ability to pause premium payments for up to a cumulative total of 36 months across the policy, with the number of passes depending on IIP (IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes), each up to 12 cumulative policy months",
       "A feature that automatically reduces premium amounts if fund value drops",
       "An option to prepay multiple years of premiums in advance"
     ],
     correct: 1,
-    explanation: "Premium Pass allows clients to pause premium payments for up to 12 months, but only after at least 5 years of premiums have been paid. There are no charges during the Premium Pass period. This is useful for clients on planned sabbaticals or career breaks.",
+    explanation: "Premium Pass scales with IIP option: IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes (Product Summary p.4 Section 3.7; Brochure p.3). Each pass runs up to 12 cumulative policy months. Maximum pause is 36 cumulative months on IIP 20.",
     category: 'product-facts'
   },
   {
@@ -110,15 +110,15 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What does Pro Achiever 3.0's Additional Term Rider provide?",
+    question: "What does Pro Achiever 3.0's Term Rider cover?",
     options: [
       "A critical illness rider with premiums that increase with age",
-      "Coverage for death, terminal illness, and disability with premiums that stay the same throughout the coverage period",
+      "Coverage for death, terminal illness, terminal cancer, and total and permanent disability, with premiums that stay the same throughout the coverage period",
       "A hospitalisation rider covering daily hospital cash",
       "A waiver of premium triggered by any illness"
     ],
     correct: 1,
-    explanation: "The Additional Term Rider provides coverage for death, terminal illness, and disability. Crucially, the premiums for this rider remain fixed throughout the coverage period — unlike most term riders whose premiums increase with age. This provides stable and predictable protection costs alongside the investment.",
+    explanation: "The Term Rider covers four events - death, terminal illness, terminal cancer, and total and permanent disability (Brochure p.6). Terminal cancer is a distinct trigger, not subsumed under terminal illness. The premiums stay fixed for the duration of the cover.",
     category: 'product-facts'
   },
   {
@@ -136,13 +136,13 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
   {
     question: "What is the capital guarantee feature in Pro Achiever 3.0 upon death?",
     options: [
-      "There is no capital guarantee — the death benefit is purely market-linked",
-      "Upon death, the beneficiary receives 101% of total premiums paid OR the current fund value, whichever is higher",
+      "There is no capital guarantee - the death benefit is purely market-linked",
+      "Upon death (and if no Secondary Insured was appointed), the beneficiary receives the higher of (a) total regular premiums paid + top-ups + premium-reduction top-ups less withdrawals, or (b) the policy value, less applicable fees and charges",
       "The policy pays back only the welcome bonus amount upon death",
       "Capital is guaranteed only if the policy has been held for more than 10 years"
     ],
     correct: 1,
-    explanation: "Pro Achiever 3.0 provides a capital guarantee upon death: the beneficiary receives the higher of (1) 101% of total premiums paid, or (2) the current fund value. This means even if markets have performed poorly and the fund value is below total premiums paid, the family still gets back more than was invested — providing genuine peace of mind alongside the investment.",
+    explanation: "The death benefit is the higher of 100% of net premiums in (regular premiums + top-ups + premium-reduction top-ups, less withdrawals) or the policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8). It is NOT 101%. If a Secondary Insured was appointed, no death benefit is paid and the policy continues with them as the new Insured (Product Summary p.3 Section 3.6).",
     category: 'product-facts'
   },
 
@@ -168,12 +168,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "What is the recommended approach when discussing Pro Achiever's total fees and charges with a client to build trust?",
     options: [
       "Avoid mentioning fees until after the client signs",
-      "Show the total cost figure (e.g. $6,194) but divide it over the full policy duration to show it's about $1/month — then compare to hiring a private investment consultant",
+      "Show the total cost figure (e.g. $6,194) and divide it over the full policy duration: $6,194 / 45 years / 12 months = ~$11/month - then compare to hiring a private investment consultant",
       "Tell the client fees are negligible and move on quickly",
       "Only mention the supplementary charge percentage, not the total cost"
     ],
     correct: 1,
-    explanation: "From 'Commentary of My Own Closing': proactively show the total cost of distribution (e.g. $6,194), then divide it over the full policy life — it works out to about $1/month. Compare this to: (1) hiring your own investment consultant at $10,000+, (2) high brokerage costs of DIY stock trading, (3) the time and stress of managing your own portfolio daily.",
+    explanation: "Curriculum Day 3 Part 1: 'Total cost over the 45 years is $6,194. Divide this by 45 years - every month is actually just about $11. Very cheap.' The reframe 'hiring an investment consultant for $11/month' is the canonical move. (The $1/month figure circulating in older training material is off by an order of magnitude.)",
     category: 'sales-angles'
   },
   {
@@ -233,7 +233,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Never mention bonuses as they can be misleading"
     ],
     correct: 1,
-    explanation: "From 'Pro Achiever Overview': the welcome bonus is an incentive lever during the appointment. Advisors are coached to say: 'If you invest a bit more, you can have a higher welcome bonus.' This both anchors a higher premium and makes starting now feel immediately rewarding — since the client gets the bonus in year 1.",
+    explanation: "From 'Pro Achiever Overview': the welcome bonus is an incentive lever during the appointment. Advisors are coached to say: 'If you invest a bit more, you can have a higher welcome bonus.' This both anchors a higher premium and makes starting now feel immediately rewarding - since the client receives bonus credits across years 1, 2, and 3 (Product Summary p.2 Section 3.3) on top of premium units.",
     category: 'sales-angles'
   },
   {
@@ -294,12 +294,12 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
     question: "A client says: 'The fees in ILPs are too high.' What is the correct framework to handle this?",
     options: [
       "Apologise and offer to reduce the premium",
-      "Compare the total cost to DIY alternatives: personal investment manager fees, brokerage trading costs, and the value of time saved — showing that APA's all-in cost works out to roughly $1/month when spread over the policy life",
+      "Compare the total cost to DIY alternatives: personal investment manager fees, brokerage trading costs, and the value of time saved - APA's distribution cost is about $11/month when ~$6,194 is spread over the 45-year policy life, plus the 3.9% supplementary charge ceases on receipt of the 11th annual regular premium",
       "Tell them fees don't matter because returns are good",
       "Redirect to the welcome bonus and change the subject"
     ],
     correct: 1,
-    explanation: "From 'APA Charges' and 'Commentary of My Own Closing': Fees objections are countered by context. Show the total cost of distribution (e.g. $6,194), divide over 45 years = ~$1/month. Compare to: a private investment manager ($10,000+/year), brokerage fees for DIY trading, and the daily stress of monitoring your own portfolio. The fees are small relative to the service and returns.",
+    explanation: "Two-part counter: (1) Total distribution cost ~$6,194 / 45 years / 12 months = ~$11/month (curriculum Day 3 Part 1). (2) The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Compare to a private investment manager ($10,000+/year) or DIY brokerage costs.",
     category: 'objection-handling'
   },
   {
@@ -353,13 +353,13 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
   {
     question: "What is a key advantage of Pro Achiever's charges compared to most competitor ILPs?",
     options: [
-      "Pro Achiever has no charges at all — only competitor ILPs charge",
+      "Pro Achiever has no charges at all - only competitor ILPs charge",
       "Both APA and most competitors stop charges after 10 years",
-      "Most competitor ILPs have perpetual supplementary charges that never stop, whereas APA's supplementary charges only apply for the first 10 years",
+      "Most competitor ILPs have perpetual supplementary charges, whereas APA's 3.9% p.a. supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium",
       "APA charges more upfront but refunds fees at maturity"
     ],
     correct: 2,
-    explanation: "A major differentiator: APA's supplementary charges (3.9% p.a.) stop after 10 years. Most competitor ILPs continue deducting supplementary charges perpetually — so more and more of the client's fund goes toward charges over time. For a long-term policy of 20–40 years, this difference is significant and compounds in favour of APA clients.",
+    explanation: "APA's 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). Most competitor ILPs deduct supplementary charges perpetually - over a 20-40 year policy this difference compounds significantly in favour of APA clients.",
     category: 'objection-handling'
   },
   {
@@ -389,7 +389,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Offer to lower the premium to make it feel less like a commitment"
     ],
     correct: 1,
-    explanation: "From 'APA Close Demo for Young Adults': The earlier you start, the longer compounding works. A 7-year head start at 23 vs 30 = significant fund value difference at retirement. More critically: the welcome bonus is credited in year 1 and immediately starts compounding. Waiting 7 years means losing 7 years of compounding on a bonus they'll never get back if they start later.",
+    explanation: "From 'APA Close Demo for Young Adults': The earlier you start, the longer compounding works. A 7-year head start at 23 vs 30 = significant fund value difference at retirement. More critically: the welcome bonus is paid across years 1-3 (Product Summary p.2 Section 3.3) and immediately starts compounding. Waiting 7 years means losing 7 years of compounding on bonus units the client cannot reclaim later.",
     category: 'roleplay'
   },
   {
@@ -437,7 +437,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Show them a competitor comparison chart instead"
     ],
     correct: 1,
-    explanation: "From 'Explanation of Sales Illustrator for APA' and 'Commentary of My Own Closing': Always run the illustration live with the client, not in advance. Walk them through: (1) Welcome bonus credited in year 1, (2) 100% invested from the start, (3) Special bonus from year 10, (4) Projected fund value at maturity. Then linearize — divide the projected profit into monthly income equivalent. Never leave the illustration for them to interpret alone.",
+    explanation: "From 'Explanation of Sales Illustrator for APA' and 'Commentary of My Own Closing': Always run the illustration live with the client, not in advance. Walk them through: (1) Welcome bonus credited across years 1-3 (Product Summary p.2 Section 3.3), (2) 100% invested from the start, (3) Special bonus from the 10th annual premium (Section 3.4), (4) Projected fund value at maturity. Then linearize - divide the projected profit into monthly income equivalent. Never leave the illustration for them to interpret alone.",
     category: 'roleplay'
   },
   {
@@ -449,7 +449,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Tell them the policy can be surrendered at any time with no penalties"
     ],
     correct: 1,
-    explanation: "From training: for self-employed clients, flexibility features are the closing tool. Premium Pass gives a charge-free pause of up to 12 months once 5 years of premiums are paid — perfect for planned business slow periods. Premium Holiday is also available if needed earlier. The key message: 'If business slows, you press pause — not stop. You don't lose what you've built over those years.'",
+    explanation: "From training: for self-employed clients, flexibility features are the closing tool. Premium Pass scales with IIP - IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes, each up to 12 cumulative policy months (Product Summary p.4 Section 3.7; Brochure p.3) - so up to 36 cumulative months on IIP 20. Premium Holiday is also available if needed earlier. The key message: 'If business slows, you press pause - not stop. You don't lose what you've built over those years.'",
     category: 'roleplay'
   },
   {

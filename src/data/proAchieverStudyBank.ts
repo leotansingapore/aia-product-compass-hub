@@ -53,31 +53,31 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q4 — correct: 1
+  // Q4 — correct: 0
   {
     question: "When is the welcome bonus credited to the policyholder's account?",
     options: [
-      "Spread equally over the first 5 years",
-      "In the first year of the policy",
+      "Across the first three policy years (years 1, 2, and 3) on receipt of each annualised regular premium",
+      "In the first year of the policy only",
       "After the 10-year lock-in period ends",
       "At the end of the second policy year"
     ],
-    correct: 1,
-    explanation: "The welcome bonus is credited in year 1, though it cannot be withdrawn during the 10-year lock-in period.",
+    correct: 0,
+    explanation: "The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, AND 3rd policy years, split across the three years (Product Summary p.2 Section 3.3; Brochure p.1 footnote 1). It is NOT a single year-1 credit.",
     category: 'product-facts'
   },
 
-  // Q5 — correct: 2
+  // Q5 — correct: 3
   {
-    question: "What is the lock-in period for the welcome bonus in Pro Achiever 3.0?",
+    question: "What charges-and-fees framework applies to welcome bonus units during the Initial Investment Period (IIP)?",
     options: [
-      "5 years from policy inception",
-      "15 years from policy inception",
-      "10 years from policy inception",
-      "The full investment period selected"
+      "A discrete 10-year lock-in that blocks any access to the welcome bonus",
+      "A 15-year lock-in regardless of IIP option",
+      "No charges apply to welcome bonus units at any time",
+      "Welcome bonus units are paid as regular-premium units and are subject to the same surrender, partial-withdrawal, and supplementary charges as other regular-premium units during the IIP"
     ],
-    correct: 2,
-    explanation: "The welcome bonus is locked in for 10 years regardless of which investment period (10, 15, or 20 years) is chosen.",
+    correct: 3,
+    explanation: "There is no separate 10-year lock-in on the welcome bonus. The bonus is allocated as regular-premium units (Product Summary p.4 Section 4.3), so during the IIP (10, 15, or 20 years) it is subject to the standard surrender, partial-withdrawal, and supplementary charges (Product Summary p.6 Section 5.5, p.7 Section 5.6).",
     category: 'product-facts'
   },
 
@@ -119,27 +119,27 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Only after year 15 of the policy duration"
     ],
     correct: 1,
-    explanation: "Unlike the welcome bonus which is locked in for 10 years, the special bonus can be withdrawn anytime after year 10.",
+    explanation: "The special bonus is credited from the 10th annual premium onwards (5%, then 8% from the 21st premium per Product Summary p.2 Section 3.4) and can be withdrawn from year 10. The welcome bonus has no separate lock-in; its units sit inside the IIP charge framework like other regular-premium units.",
     category: 'product-facts'
   },
 
   // Q9 — correct: 0
   {
-    question: "What is the supplementary charge rate in Pro Achiever 3.0 during the first 10 years?",
+    question: "What is the supplementary charge rate in Pro Achiever 3.0 during the first 10 policy years?",
     options: [
-      "3.9% per annum for the first 10 years",
+      "3.9% per annum, ceasing on receipt of the 11th annual (or 21st semi-annual / 41st quarterly / 121st monthly) regular premium",
       "2.5% per annum for the first 10 years",
       "5.0% per annum for the first 10 years",
       "4.5% per annum for the first 10 years"
     ],
     correct: 0,
-    explanation: "The supplementary charge is 3.9% p.a. for the first 10 years only, after which it drops to zero.",
+    explanation: "The supplementary charge is 3.9% p.a. and ceases only upon receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). If premiums are missed or Premium Pass is used, the charge extends beyond 10 calendar years.",
     category: 'product-facts'
   },
 
   // Q10 — correct: 3
   {
-    question: "What happens to the supplementary charge after year 10 in Pro Achiever 3.0?",
+    question: "What happens to the supplementary charge once the relevant 11th-premium threshold is met in Pro Achiever 3.0?",
     options: [
       "It reduces to 2% per annum",
       "It remains at the same rate",
@@ -147,7 +147,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "It drops to zero permanently"
     ],
     correct: 3,
-    explanation: "After 10 years, the supplementary charge drops to zero. This is a key advantage over competitors who charge perpetually.",
+    explanation: "Once the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium is received, the supplementary charge ceases permanently (Product Summary p.5 Section 5.2). This is a key advantage over competitors that charge perpetually.",
     category: 'product-facts'
   },
 
@@ -157,11 +157,11 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     options: [
       "Critical illness and hospitalization costs",
       "Accidental death and dismemberment only",
-      "Death, terminal illness, and disability",
+      "Death, terminal illness, terminal cancer, and total and permanent disability",
       "Medical expenses and outpatient treatments"
     ],
     correct: 2,
-    explanation: "The ATR covers death, terminal illness, and disability, providing comprehensive protection on top of the investment component.",
+    explanation: "The Term Rider covers four events: death, terminal illness, terminal cancer, and total and permanent disability (Brochure p.6). Terminal cancer is a distinct trigger and is not subsumed under terminal illness.",
     category: 'product-facts'
   },
 
@@ -225,13 +225,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "What is the Premium Pass feature in Pro Achiever 3.0?",
     options: [
-      "A way to pause payments for up to 12 months",
+      "A way to pause premium payments for up to a cumulative total of 36 months across the policy, with the number of passes depending on the IIP option",
       "A discount on the first year's premiums",
       "An option to transfer premiums to another policy",
       "A facility to pay premiums via credit card points"
     ],
     correct: 0,
-    explanation: "Premium Pass lets policyholders pause premium payments for up to 12 months after the first 5 years, with no charges applied.",
+    explanation: "Premium Pass allows up to 36 cumulative policy months of paused premium payments (Brochure p.3). The number of passes depends on IIP: IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes, each up to 12 cumulative policy months (Product Summary p.4 Section 3.7).",
     category: 'product-facts'
   },
 
@@ -253,13 +253,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "What does the capital guarantee on death provide in Pro Achiever 3.0?",
     options: [
-      "Exactly 100% of all premiums paid to date",
+      "Exactly 100% of all premiums paid to date with no withdrawal adjustment",
       "Fund value plus a fixed death benefit amount",
       "200% of the last year's annualized premium",
-      "The higher of 101% of premiums paid or fund value"
+      "The higher of (a) total regular premiums paid + top-ups + premium-reduction top-ups less withdrawals, OR (b) the policy value, less applicable fees and charges"
     ],
     correct: 3,
-    explanation: "The capital guarantee on death ensures beneficiaries receive whichever is higher: 101% of total premiums paid or the current fund value.",
+    explanation: "The death benefit is the higher of 100% of net premiums in (regular premiums + top-ups + premium-reduction top-ups, less withdrawals) or the policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8). It is NOT 101%.",
     category: 'product-facts'
   },
 
@@ -301,7 +301,7 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "About 95% of AIA consultants"
     ],
     correct: 0,
-    explanation: "Approximately 80% of AIA consultants sell Pro Achiever, making it AIA's best-selling product by distribution reach.",
+    explanation: "Approximately 80% of AIA consultants sell Pro Achiever, making it AIA's best-selling product by distribution reach (training/curriculum source: Day 1; this figure is not stated in the canonical Product Summary or Brochure).",
     category: 'product-facts'
   },
 
@@ -403,31 +403,31 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q29 — correct: 2
+  // Q29 — correct: 3
   {
-    question: "What is the linearized monthly distribution cost of a 45-year Pro Achiever policy?",
+    question: "What is the linearized monthly distribution cost of a 45-year Pro Achiever policy (total ~$6,194)?",
     options: [
       "Approximately $5 per month",
       "Approximately $3 per month",
       "Approximately $1 per month",
-      "Approximately $10 per month"
+      "Approximately $11 per month"
     ],
-    correct: 2,
-    explanation: "The total distribution cost of about $6,194 spread over a 45-year policy works out to roughly $1 per month when linearized.",
+    correct: 3,
+    explanation: "$6,194 / 45 years / 12 months = $11.47/month, i.e. about $11/month (curriculum Day 3 Part 1: 'every month is actually just about $11. Very cheap'). The $1/month figure is off by an order of magnitude.",
     category: 'product-facts'
   },
 
   // Q30 — correct: 3
   {
-    question: "Can riders for critical illness be added to Pro Achiever 3.0?",
+    question: "Which CI-related rider is available for Pro Achiever 3.0?",
     options: [
-      "No, only the ATR rider is available",
-      "No, riders must be purchased separately",
-      "Yes, but only at policy inception date",
-      "Yes, critical illness riders can be added"
+      "A standalone Critical Illness lump-sum rider",
+      "Only the ATR rider is available",
+      "No CI-related rider is available",
+      "Critical Protector Waiver of Premium (II) and Early Critical Protector Waiver of Premium (II) — these waive future premiums on diagnosis; they do not pay a CI lump sum"
     ],
     correct: 3,
-    explanation: "Pro Achiever 3.0 allows the addition of critical illness riders on top of the basic plan and ATR for more comprehensive coverage.",
+    explanation: "Brochure p.6 lists Critical Protector Waiver of Premium (II) and Early Critical Protector Waiver of Premium (II) — these waive premiums on CI diagnosis but do not pay a CI lump sum. There is no standalone CI lump-sum rider on APA 3.0; the distinction matters for compliance.",
     category: 'product-facts'
   },
 
@@ -465,11 +465,11 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     options: [
       "It charges a lower rate but for the full term",
       "It uses a flat fee instead of a percentage",
-      "It stops charging after 10 years vs perpetual",
+      "It stops charging after the 11th annual premium is received vs perpetual competitor charges",
       "It waives charges entirely from the start"
     ],
     correct: 2,
-    explanation: "Pro Achiever charges 3.9% for only the first 10 years then zero, while competitors typically charge supplementary fees for the entire policy duration.",
+    explanation: "APA's 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). Competitors typically charge supplementary fees perpetually (e.g. GE 0.6%, Manulife 0.7%, FWD 1.2%).",
     category: 'product-facts'
   },
 
@@ -561,13 +561,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "Who receives the capital guarantee death benefit in Pro Achiever 3.0?",
     options: [
-      "The nominated beneficiary of the policy",
-      "The policyholder's estate by default",
+      "The nominated beneficiary or estate, ONLY if no Secondary Insured was appointed; otherwise no death benefit is paid and the policy continues with the Secondary Insured as the new Insured",
+      "The policyholder's estate by default in all cases",
       "AIA to offset outstanding charges",
       "The policyholder upon terminal diagnosis"
     ],
     correct: 0,
-    explanation: "The capital guarantee on death pays the beneficiary the higher of 101% of premiums paid or the fund value at the time of death.",
+    explanation: "If a Secondary Insured was appointed before the death of the Insured, no death benefit is paid; the Secondary Insured becomes the new Insured and the policy continues (Product Summary p.3 Section 3.6). The death benefit is paid (higher of 100% net premiums or policy value, less applicable fees and charges) to the beneficiary or estate only if no Secondary Insured was appointed.",
     category: 'product-facts'
   },
 
@@ -596,10 +596,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Emphasize it is the lowest in the industry at all times",
       "Avoid discussing charges and focus on returns instead",
       "Compare it favorably to bank savings account fees",
-      "Explain it stops at year 10 while competitors charge forever"
+      "Explain it stops after the 11th annual premium is received while competitors charge forever"
     ],
     correct: 3,
-    explanation: "The key sales angle is that the 3.9% charge applies only for the first 10 years and then drops to zero, unlike competitors who charge perpetually.",
+    explanation: "The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2; Brochure p.2). Competitors typically charge perpetually, so APA holders pay zero supplementary charges for the rest of a long policy life.",
     category: 'sales-angles'
   },
 
@@ -622,12 +622,12 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     question: "What is the best way to present the welcome bonus to a prospective client?",
     options: [
       "As free money that has no conditions attached",
-      "As an immediate boost that rewards long-term commitment",
+      "As a three-year boost (paid years 1-3) that rewards a higher annualised premium and longer IIP",
       "As a guaranteed investment return on their policy",
       "As compensation for the supplementary charges paid"
     ],
     correct: 1,
-    explanation: "The welcome bonus should be presented as an immediate boost credited in year 1 that rewards the client for committing to a longer investment period and higher premium.",
+    explanation: "The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, AND 3rd policy years (Product Summary p.2 Section 3.3; Brochure p.1 footnote 1). It scales by IIP and premium band; e.g. IIP 20 + >=$12,000 premium = 20% / 25% / 30% across years 1/2/3 for a 75% total.",
     category: 'sales-angles'
   },
 
@@ -652,10 +652,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "The wide range of aggressive equity funds",
       "The high welcome bonus percentages available",
       "The commingling feature for fund diversification",
-      "The capital guarantee ensuring 101% of premiums on death"
+      "The capital guarantee on death (higher of 100% net premiums in or policy value, less applicable fees and charges)"
     ],
     correct: 3,
-    explanation: "For risk-averse prospects, the capital guarantee on death (higher of 101% premiums paid or fund value) provides reassurance that their money is protected.",
+    explanation: "For risk-averse prospects, the death benefit capital guarantee is the higher of (a) total regular premiums + top-ups + premium-reduction top-ups less withdrawals, or (b) the policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8) — i.e. 100% of net premiums in, NOT 101%.",
     category: 'sales-angles'
   },
 
@@ -663,13 +663,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A client worries about being locked into payments for 20 years. What feature addresses this?",
     options: [
-      "The Premium Pass allowing a 12-month payment pause",
+      "The Premium Pass allowing up to 36 cumulative months of paused premiums on IIP 20 (3 passes, each up to 12 cumulative policy months)",
       "The 14-day free-look cancellation period",
       "The fund switching flexibility at any time",
       "The option to reduce the sum assured later"
     ],
     correct: 0,
-    explanation: "Premium Pass allows pausing payments for up to 12 months after 5 years with no charges, providing flexibility without surrendering the policy.",
+    explanation: "On IIP 20, the policyholder gets 3 Premium Passes for up to 36 cumulative policy months (Product Summary p.4 Section 3.7; Brochure p.3). IIP 15 gets 2 passes (24 months); IIP 10 gets 1 pass (12 months). Each pass can run up to 12 cumulative policy months.",
     category: 'sales-angles'
   },
 
@@ -708,10 +708,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Pro Achiever has no charges at all after year 5",
       "Pro Achiever refunds all charges upon policy maturity",
       "Pro Achiever charges are tax-deductible for the client",
-      "Pro Achiever's supplementary charge drops to zero after year 10"
+      "Pro Achiever's supplementary charge ceases on receipt of the 11th annual regular premium"
     ],
     correct: 3,
-    explanation: "The key competitive advantage is that the 3.9% supplementary charge ends after 10 years, while most competitors continue charging for the entire policy term.",
+    explanation: "The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Most competitors charge supplementary fees for the entire policy term.",
     category: 'sales-angles'
   },
 
@@ -719,13 +719,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "How should you use the distribution cost figure when explaining Pro Achiever's value?",
     options: [
-      "Linearize it to about $1/month over 45 years to show it is minimal",
+      "Linearize the total ~$6,194 to about $11/month over 45 years - 'hiring an investment consultant for $11/month'",
       "Avoid mentioning costs entirely to close the sale faster",
       "Quote only the total figure of $6,194 for transparency",
       "Compare it to the cost of a competitor's whole life plan"
     ],
     correct: 0,
-    explanation: "Linearizing the total distribution cost to approximately $1/month makes it tangible and shows how minimal the cost is relative to the benefits received.",
+    explanation: "$6,194 / 45 years / 12 months = $11.47/month, i.e. about $11/month (curriculum Day 3 Part 1). The reframe 'hiring an investment consultant for $11/month' makes the distribution cost feel small relative to the benefits.",
     category: 'sales-angles'
   },
 
@@ -801,29 +801,29 @@ export const proAchieverStudyBank: StudyQuestion[] = [
 
   // Q57 — correct: 2
   {
-    question: "How should you position the ATR when selling Pro Achiever to a breadwinner?",
+    question: "How should you position the Term Rider when selling Pro Achiever to a breadwinner?",
     options: [
       "As an optional add-on that most clients skip",
       "As a replacement for medical insurance coverage",
-      "As fixed-premium protection covering death, terminal illness, and disability",
+      "As fixed-premium protection covering death, terminal illness, terminal cancer, and total and permanent disability",
       "As a savings vehicle that builds cash value over time"
     ],
     correct: 2,
-    explanation: "For breadwinners, the ATR's fixed premiums and coverage for death, terminal illness, and disability provide predictable, comprehensive family protection.",
+    explanation: "For breadwinners, the Term Rider covers four events - death, terminal illness, terminal cancer, and total and permanent disability (Brochure p.6). Premiums stay fixed for the duration of the cover, giving predictable family protection.",
     category: 'sales-angles'
   },
 
   // Q58 — correct: 3
   {
-    question: "A prospect earns variable income as a freelancer. Which Pro Achiever feature should you emphasize?",
+    question: "A prospect earns variable income as a freelancer on an IIP 20 plan. Which Pro Achiever feature should you emphasize?",
     options: [
       "The requirement for consistent monthly payments",
       "The ability to top up premiums during high-income months",
       "The option to pay the full 20 years upfront at a discount",
-      "The Premium Pass to pause payments during lean periods"
+      "Premium Pass: up to 3 passes on IIP 20 covering up to 36 cumulative policy months of paused premiums"
     ],
     correct: 3,
-    explanation: "Premium Pass lets freelancers pause payments for up to 12 months after year 5, accommodating income volatility without policy penalties.",
+    explanation: "On IIP 20, the policyholder gets 3 Premium Passes for up to 36 cumulative policy months of paused premiums (Product Summary p.4 Section 3.7; Brochure p.3). Each pass is up to 12 cumulative policy months. This accommodates freelance income volatility without surrendering the policy.",
     category: 'sales-angles'
   },
 
@@ -861,11 +861,11 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     options: [
       "Confirm that coverage is significantly reduced as a trade-off",
       "Recommend they get a separate medical exam for better rates",
-      "Explain the capital guarantee on death still provides 101% of premiums or fund value",
+      "Explain the death benefit capital guarantee: higher of 100% net premiums in (regular premiums + top-ups + premium-reduction top-ups, less withdrawals) or policy value, less applicable fees and charges",
       "Suggest adding multiple riders to compensate for limited basic coverage"
     ],
     correct: 2,
-    explanation: "Reassure the client that despite no medical underwriting, the capital guarantee still ensures beneficiaries get the higher of 101% premiums paid or fund value.",
+    explanation: "Despite no medical underwriting on the basic plan, the death benefit capital guarantee gives the higher of 100% net premiums in or the policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8). It is NOT 101%.",
     category: 'sales-angles'
   },
 
@@ -933,13 +933,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A prospect says: 'ILPs have high fees that eat into returns.' How should you respond about Pro Achiever?",
     options: [
-      "Explain the supplementary charge stops at year 10, unlike competitors who charge forever",
+      "Explain the supplementary charge ends after the 11th annual premium is received, unlike competitors who charge forever",
       "Deny that any fees exist in Pro Achiever 3.0",
       "Agree and suggest they buy a term policy and invest the rest instead",
       "Change the topic to the welcome bonus instead"
     ],
     correct: 0,
-    explanation: "Acknowledge the concern, then differentiate: Pro Achiever's 3.9% supplementary charge ends after 10 years, while competitors charge perpetually.",
+    explanation: "Acknowledge the concern, then differentiate: APA's 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Competitors typically charge perpetually.",
     category: 'objection-handling'
   },
 
@@ -950,10 +950,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Pro Achiever guarantees higher returns than self-investing",
       "Individual investors always underperform professional managers",
       "AIA's funds are the best-performing funds in Singapore",
-      "Self-investing lacks the death benefit, capital guarantee, and bonus structure Pro Achiever offers"
+      "Self-investing lacks the death benefit, capital guarantee (100% net premiums in or policy value, whichever higher), and bonus structure Pro Achiever offers"
     ],
     correct: 3,
-    explanation: "The rebuttal focuses on what self-investing cannot provide: death benefit coverage, 101% capital guarantee, and the welcome/special bonus structure.",
+    explanation: "The rebuttal focuses on what self-investing cannot provide: death benefit coverage, the 100%-of-net-premiums-in capital guarantee (Product Summary p.1-2 Section 3.1), and the welcome (5-75% across years 1-3) and special (5%/8%) bonus structure.",
     category: 'objection-handling'
   },
 
@@ -962,12 +962,12 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     question: "A prospect objects: 'I don't want to be locked in for 10 years.' How do you address this?",
     options: [
       "Agree and recommend a shorter-term product instead",
-      "Tell them the lock-in is only for the welcome bonus, not the entire policy",
+      "Clarify that there is no separate welcome-bonus lock-in; the IIP (10/15/20 yrs) is when surrender, partial-withdrawal, and supplementary charges apply, and Premium Pass plus fund switching give ongoing flexibility",
       "Explain there is no lock-in at all with Pro Achiever",
       "Say that all insurance products have the same lock-in period"
     ],
     correct: 1,
-    explanation: "Clarify that the 10-year lock-in applies only to the welcome bonus. The Premium Pass after 5 years and fund switching offer ongoing flexibility.",
+    explanation: "There is no discrete 10-year welcome-bonus lock-in. The IIP (10/15/20 years) is the period when surrender, partial-withdrawal, and supplementary charges apply (Product Summary p.4 Section 4.3, p.6 Section 5.5, p.7 Section 5.6). Premium Pass and fund switching provide flexibility within the IIP.",
     category: 'objection-handling'
   },
 
@@ -989,13 +989,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A prospect says: 'My friend lost money on an ILP.' How do you handle this?",
     options: [
-      "Acknowledge the concern and highlight the capital guarantee on death and dollar cost averaging",
+      "Acknowledge the concern and highlight the death benefit capital guarantee (higher of 100% net premiums in or policy value, less applicable fees and charges) and dollar cost averaging",
       "Dismiss their friend's experience as an isolated case",
       "Explain that losses are impossible with Pro Achiever",
       "Blame their friend for choosing the wrong funds"
     ],
     correct: 0,
-    explanation: "Validate the concern, then explain Pro Achiever's safeguards: the death benefit capital guarantee (101% of premiums or fund value) and dollar cost averaging with regular premiums.",
+    explanation: "Validate the concern, then explain Pro Achiever's safeguards: the death benefit capital guarantee giving the higher of 100% net premiums in or policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1), plus dollar cost averaging through regular premiums.",
     category: 'objection-handling'
   },
 
@@ -1033,11 +1033,11 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     options: [
       "Say ETFs are too risky for most retail investors to handle",
       "Admit that ETFs are always better value than ILPs",
-      "Explain the 3.9% stops after 10 years, plus they get life cover, capital guarantee, and bonuses that ETFs lack",
+      "Explain the 3.9% supplementary charge ceases on receipt of the 11th annual regular premium, then highlight life cover, the death-benefit capital guarantee, and the welcome/special bonuses that ETFs lack",
       "Tell them the 3.9% is waived if they choose the GDIF fund"
     ],
     correct: 2,
-    explanation: "The 3.9% covers only the first 10 years. Beyond fees, Pro Achiever bundles life protection, capital guarantee on death, welcome bonus, and special bonuses — none of which ETFs provide.",
+    explanation: "The 3.9% supplementary charge ceases on receipt of the 11th annual / 21st semi-annual / 41st quarterly / 121st monthly regular premium (Product Summary p.5 Section 5.2). Beyond fees, APA bundles life protection, the 100% net-premiums-in death benefit guarantee, welcome bonus (years 1-3), and special bonuses (5% from year 10, 8% from year 21) - none of which ETFs provide.",
     category: 'objection-handling'
   },
 
@@ -1089,11 +1089,11 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     options: [
       "Dismiss their concern as irrational fear",
       "Guarantee that their investment will never lose value",
-      "Explain that AIA is the largest insurer in Asia and Pro Achiever is their best-selling product",
+      "Explain that AIA is one of the largest insurers in Asia and Pro Achiever is their best-selling investment plan, with broad consultant adoption (training/curriculum: ~80%)",
       "Suggest they research online before making a decision"
     ],
     correct: 2,
-    explanation: "Address trust by highlighting AIA's scale, track record, and the fact that Pro Achiever is their best-selling product with 80% of consultants backing it.",
+    explanation: "Address trust by highlighting AIA's scale and APA's status as the best-selling investment plan with broad consultant adoption (~80%, training/curriculum source - not stated in the canonical Product Summary or Brochure).",
     category: 'objection-handling'
   },
 
@@ -1101,13 +1101,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A client asks: 'What if I lose my job and can't pay premiums?' How do you reassure them?",
     options: [
-      "Explain the Premium Pass allows a 12-month payment pause after year 5",
+      "Explain Premium Pass: 1 pass on IIP 10 (12 months), 2 passes on IIP 15 (24 months total), 3 passes on IIP 20 (36 months total)",
       "Tell them job loss is unlikely and they should not worry about it",
       "Suggest they take a personal loan to keep premiums current",
       "Recommend they surrender the policy immediately if unemployed"
     ],
     correct: 0,
-    explanation: "Premium Pass provides a safety net: after 5 years, they can pause payments for up to 12 months with no charges, covering potential employment gaps.",
+    explanation: "Premium Pass scales with IIP: IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes, each up to 12 cumulative policy months (Product Summary p.4 Section 3.7; Brochure p.3). A maximum of 36 cumulative months on IIP 20 covers extended employment gaps without surrendering.",
     category: 'objection-handling'
   },
 
@@ -1118,10 +1118,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "Agree that it is mainly a marketing tool with limited real value",
       "Explain the bonus is paid out in cash at the end of 10 years",
       "Say the bonus is only available for a limited promotional period",
-      "The bonus is real cash credited to their account in year 1, growing with fund performance"
+      "The bonus is real: paid upon receipt of each basic regular premium for the 1st, 2nd, and 3rd policy years (allocated as regular-premium units that compound with fund performance)"
     ],
     correct: 3,
-    explanation: "The welcome bonus is real — credited in year 1 and invested alongside premiums, so it compounds with fund performance over the policy duration.",
+    explanation: "The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, AND 3rd policy years (Product Summary p.2 Section 3.3; Brochure p.1 footnote 1). It is allocated as regular-premium units (Product Summary p.4 Section 4.3), so it compounds alongside premium units.",
     category: 'objection-handling'
   },
 
@@ -1157,13 +1157,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "A client says: 'Insurance agents just want to earn commission.' How do you address this with Pro Achiever?",
     options: [
-      "Linearize the distribution cost to $1/month and refocus on the value delivered for that cost",
+      "Linearize the distribution cost: ~$6,194 / 45 yrs / 12 = ~$11/month, then refocus on the value delivered",
       "Deny that consultants earn any commission on Pro Achiever",
       "Change the topic to the product benefits immediately",
       "Agree and offer to reduce your commission for them"
     ],
     correct: 0,
-    explanation: "Be transparent: the total distribution cost linearizes to about $1/month over 45 years, which is minimal relative to the protection and investment benefits delivered.",
+    explanation: "Be transparent: total distribution cost ~$6,194 / 45 years / 12 months = ~$11/month (curriculum Day 3 Part 1). This is minimal relative to the protection, capital guarantee, and bonus structure delivered.",
     category: 'objection-handling'
   },
 
@@ -1186,12 +1186,12 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     question: "A client objects: 'ILPs always underperform compared to direct fund investing.' What is the best counter?",
     options: [
       "Guarantee that Pro Achiever funds will outperform the market index",
-      "Explain that Pro Achiever includes death benefit, capital guarantee, and bonuses that direct investing cannot replicate",
+      "Explain that Pro Achiever includes death benefit, capital guarantee (100% net premiums in or policy value, whichever higher), and bonuses that direct investing cannot replicate",
       "Admit that ILPs always underperform and offer no added value",
       "Say fund performance data is confidential and cannot be shared"
     ],
     correct: 1,
-    explanation: "Shift the comparison from pure returns to total value: death benefit, 101% capital guarantee, welcome bonus (up to 75%), and special bonuses are not available through direct fund investing.",
+    explanation: "Shift the comparison from pure returns to total value: death benefit, the 100% net-premiums-in capital guarantee (Product Summary p.1-2 Section 3.1), the up-to-75% welcome bonus across years 1-3 (Section 3.3), and special bonuses (5%/8%) are not available through direct fund investing.",
     category: 'objection-handling'
   },
 
@@ -1217,13 +1217,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "During a roleplay, your client asks: 'Can I access my welcome bonus after 5 years?' What is the correct response?",
     options: [
-      "'Yes, the welcome bonus is fully accessible after 5 years of premium payments.'",
-      "'The welcome bonus is never accessible — it stays invested permanently.'",
+      "'Yes, the welcome bonus is fully accessible after 5 years with no charges.'",
+      "'The welcome bonus is never accessible.'",
       "'You can access half after 5 years and the rest after 10 years.'",
-      "'No, the welcome bonus has a 10-year lock-in period before it can be withdrawn.'"
+      "'There is no separate welcome-bonus lock-in. The bonus is paid as regular-premium units across years 1-3 and is subject to the same surrender, partial-withdrawal, and supplementary charges that apply during the IIP (10/15/20 years) - so withdrawing in year 5 would incur those IIP charges.'"
     ],
     correct: 3,
-    explanation: "The welcome bonus is credited in year 1 but cannot be withdrawn within the 10-year lock-in period. This is a common client misconception to address clearly.",
+    explanation: "The welcome bonus is allocated as regular-premium units (Product Summary p.4 Section 4.3) and is subject to the same charges as other regular-premium units during the IIP (Product Summary p.6 Section 5.5, p.7 Section 5.6). There is no discrete '10-year lock-in.'",
     category: 'roleplay'
   },
 
@@ -1231,13 +1231,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "In a roleplay scenario, a client asks: 'What happens if I die 3 years into my Pro Achiever policy?' What do you say?",
     options: [
-      "'Your beneficiary receives the higher of 101% of premiums paid or the fund value.'",
+      "'If no Secondary Insured was appointed, your beneficiary or estate receives the higher of (a) total regular premiums paid + top-ups + premium-reduction top-ups less withdrawals, or (b) the policy value, less applicable fees and charges. If a Secondary Insured was appointed, no death benefit is paid and the policy continues with them as the new Insured.'",
       "'The policy is void since premiums were paid for less than 5 years.'",
       "'AIA refunds exactly what you paid in premiums, with no additions.'",
       "'Your beneficiary gets only the fund value at the time of death.'"
     ],
     correct: 0,
-    explanation: "The capital guarantee on death ensures the beneficiary receives whichever is higher: 101% of total premiums paid or the current fund value.",
+    explanation: "The death benefit is the higher of 100% of net premiums in or the policy value, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8). If a Secondary Insured was appointed before the death of the Insured, no death benefit is paid and the policy continues (Product Summary p.3 Section 3.6).",
     category: 'roleplay'
   },
 
@@ -1276,10 +1276,10 @@ export const proAchieverStudyBank: StudyQuestion[] = [
       "'AIA guarantees your fund value will never decrease in any year.'",
       "'Yes, there is no protection against market losses during your lifetime.'",
       "'Market crashes do not affect ILP fund values because AIA absorbs all losses.'",
-      "'Your fund value may fluctuate, but on death the capital guarantee ensures 101% of premiums or fund value.'"
+      "'Your fund value may fluctuate, but on death the capital guarantee gives the higher of 100% of net premiums in (regular premiums + top-ups + premium-reduction top-ups, less withdrawals) or the policy value, less applicable fees and charges.'"
     ],
     correct: 3,
-    explanation: "Be honest that fund values can fluctuate with markets, while reassuring them about the death benefit capital guarantee and dollar cost averaging with regular premiums.",
+    explanation: "Be honest that fund values can fluctuate with markets, while reassuring them about the death benefit capital guarantee (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8) and dollar cost averaging through regular premiums.",
     category: 'roleplay'
   },
 
@@ -1399,13 +1399,13 @@ export const proAchieverStudyBank: StudyQuestion[] = [
   {
     question: "During a roleplay, how do you explain the difference between Pro Achiever's two types of bonuses?",
     options: [
-      "'Both bonuses are identical — they are just paid at different times.'",
+      "'Both bonuses are identical - they are just paid at different times.'",
       "'The welcome bonus is cash; the special bonus is additional fund units.'",
       "'The welcome bonus applies to new clients only; the special bonus applies to renewals.'",
-      "'The welcome bonus is a one-time credit in year 1 with a 10-year lock-in; the special bonus is ongoing from year 10 and withdrawable.'"
+      "'The welcome bonus is paid upon receipt of each basic regular premium for the 1st, 2nd, and 3rd policy years (allocated as regular-premium units, subject to IIP charges); the special bonus is paid upon receipt of each regular premium from the 10th annual onwards at 5%, increasing to 8% from the 21st annual premium.'"
     ],
     correct: 3,
-    explanation: "The welcome bonus is a one-time credit in year 1 (locked for 10 years), while the special bonus is an annual credit starting year 10 (5%, then 8% from year 21) that can be withdrawn.",
+    explanation: "The welcome bonus is paid across years 1-3 (Product Summary p.2 Section 3.3); the special bonus is 5% of annualised premium from the 10th annual premium and 8% from the 21st annual premium onwards (Section 3.4). Both are allocated as regular-premium units.",
     category: 'roleplay'
   },
 
@@ -1414,12 +1414,157 @@ export const proAchieverStudyBank: StudyQuestion[] = [
     question: "A roleplay prospect asks: 'Can I add critical illness coverage to Pro Achiever?' What do you say?",
     options: [
       "'Critical illness riders are only available through a separate standalone policy.'",
-      "'Yes, critical illness riders can be added to enhance your coverage.'",
+      "'APA 3.0 offers Critical Protector Waiver of Premium (II) and Early Critical Protector Waiver of Premium (II) - these waive future premiums on CI/early-CI diagnosis. There is no standalone CI lump-sum rider on this plan; for that you would need a separate policy.'",
       "'You can only add riders within the first 30 days of the policy inception.'",
       "'Critical illness is already included in the basic Pro Achiever plan automatically.'"
     ],
     correct: 1,
-    explanation: "Pro Achiever 3.0 supports the addition of critical illness riders, allowing clients to enhance their protection coverage beyond the basic plan and ATR.",
+    explanation: "Per Brochure p.6, the CI-related riders are Critical Protector Waiver of Premium (II) and Early Critical Protector Waiver of Premium (II) - they waive premiums on diagnosis but do not pay a CI lump sum. The compliance distinction matters for client expectations.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // SECTION D ADDITIONS (10 questions) — Q101-Q110
+  // High-value MCQs from audit Section D, closing the most important gaps.
+  // ============================================================
+
+  // Q101 — correct: 1
+  {
+    question: "The Special Bonus is calculated on what base?",
+    options: [
+      "Account value at end of year",
+      "Annualised regular premium",
+      "Total premiums paid to date",
+      "Cumulative welcome bonus credited"
+    ],
+    correct: 1,
+    explanation: "The Special Bonus is 5% of the annualised regular premium from the 10th annual premium onwards, and 8% from the 21st annual premium onwards (Product Summary p.2 Section 3.4). It is NOT calculated on account value - this is the most-missed product detail.",
+    category: 'product-facts'
+  },
+
+  // Q102 — correct: 2
+  {
+    question: "The Welcome Bonus for a $12,000+ annual premium on IIP 20 totals what across years 1-3?",
+    options: [
+      "53%",
+      "63%",
+      "75%",
+      "45%"
+    ],
+    correct: 2,
+    explanation: "IIP 20 + >=$12,000 annualised premium = 20% / 25% / 30% across years 1 / 2 / 3 = 75% total (Product Summary p.2 Section 3.3 tier table).",
+    category: 'product-facts'
+  },
+
+  // Q103 — correct: 2
+  {
+    question: "How many Premium Passes are available across the policy if the IIP is 20 years?",
+    options: [
+      "1 pass for 12 cumulative months",
+      "2 passes for 24 cumulative months total",
+      "3 passes for up to 36 cumulative months total",
+      "Unlimited passes after year 5"
+    ],
+    correct: 2,
+    explanation: "IIP 10 = 1 pass, IIP 15 = 2 passes, IIP 20 = 3 passes; each up to 12 cumulative policy months (Product Summary p.4 Section 3.7; Brochure p.3).",
+    category: 'product-facts'
+  },
+
+  // Q104 — correct: 1
+  {
+    question: "What is the death benefit formula in AIA Pro Achiever 3.0?",
+    options: [
+      "101% of total premiums paid OR policy value, whichever higher",
+      "100% of total regular premiums paid + top-ups + premium-reduction top-ups - withdrawals, OR policy value, whichever higher (less applicable fees and charges)",
+      "Twice the policy value",
+      "Only the current policy value"
+    ],
+    correct: 1,
+    explanation: "Capital guarantee is 100% of net premiums in (NOT 101%) or policy value, whichever is higher, less applicable fees and charges (Product Summary p.1-2 Section 3.1; Brochure p.9 footnote 8).",
+    category: 'product-facts'
+  },
+
+  // Q105 — correct: 2
+  {
+    question: "In addition to the death benefit, what is paid if the Insured dies by accident within the first 2 policy years (within 90 days of the accident)?",
+    options: [
+      "Nothing additional",
+      "An additional 50% of total regular premiums paid",
+      "An additional 100% of total regular premium paid",
+      "An additional 200% of the policy value"
+    ],
+    correct: 2,
+    explanation: "The Accidental Death Benefit pays an additional 100% of total regular premiums paid if death by accident occurs within 90 days, with the accident occurring within the first 2 policy years (Product Summary p.2 Section 3.2; Brochure p.6).",
+    category: 'product-facts'
+  },
+
+  // Q106 — correct: 1
+  {
+    question: "If a Secondary Insured was appointed before the Insured dies, what happens?",
+    options: [
+      "The death benefit is doubled",
+      "No death benefit is paid; the Secondary Insured becomes the new Insured and the policy continues",
+      "The policy terminates and beneficiary receives the policy value only",
+      "The policy converts to a term plan"
+    ],
+    correct: 1,
+    explanation: "Per Product Summary p.3 Section 3.6, the policy continues with the Secondary Insured as the new Insured; no death benefit is paid on the original Insured's death.",
+    category: 'product-facts'
+  },
+
+  // Q107 — correct: 1
+  {
+    question: "The Term Rider available with APA 3.0 covers which combination of events?",
+    options: [
+      "Death and total permanent disability only",
+      "Death, terminal illness, terminal cancer, and total and permanent disability",
+      "Critical illness lump sum only",
+      "Hospitalisation cash benefits only"
+    ],
+    correct: 1,
+    explanation: "Brochure p.6 lists all four covered events under the Term Rider: death, terminal illness, terminal cancer, and total and permanent disability.",
+    category: 'product-facts'
+  },
+
+  // Q108 — correct: 2
+  {
+    question: "A client says 'the 3.9% supplementary charge is too high.' What is the strongest break-even reframe?",
+    options: [
+      "'It's actually only 1% - the rest is fund management fee'",
+      "'The 3.9% is for distribution; AIA refunds it at maturity'",
+      "'The 3.9% ends after the 11th annual premium is paid. At a $12k/year premium, cumulative bonuses overtake cumulative charges around year 34 - from then on, AIA effectively pays you.'",
+      "'All ILPs charge the same; it's industry standard'"
+    ],
+    correct: 2,
+    explanation: "The structural-inversion + break-even argument is the canonical defence: the 3.9% supplementary charge ceases on the 11th annual premium (Product Summary p.5 Section 5.2), and at $12k/year cumulative bonuses overtake cumulative charges around year 34 (curriculum Day 3 Part 1; Day 4 Part 1).",
+    category: 'objection-handling'
+  },
+
+  // Q109 — correct: 1
+  {
+    question: "A prospect already buys S&P500 ETF and says 'why do I need APA?' What is the canonical Day 4 frame?",
+    options: [
+      "'S&P500 is too risky - sell it and buy APA'",
+      "'Perfect / Imperfect / Partially Perfect - you're betting one asset class in one geography all the time, which is the Fully Imperfect portfolio. APA is rebalanced across asset classes and geographies - Partially Perfect. Plus US estate tax 40% above USD 1M and 30% dividend withholding.'",
+      "'APA always outperforms S&P500'",
+      "'S&P500 returns are guaranteed but APA's are not'"
+    ],
+    correct: 1,
+    explanation: "The Perfect / Imperfect / Partially Perfect frame plus US-specific drag (40% estate tax above USD 1M, 30% dividend withholding) is the canonical conviction story (curriculum Day 4 Part 1).",
+    category: 'objection-handling'
+  },
+
+  // Q110 — correct: 1
+  {
+    question: "According to MAS / RNF compliance, what must the FC verbally disclose during an APA appointment?",
+    options: [
+      "The exact commission earned by the FC",
+      "That returns (4% and 8% projections) are not guaranteed and depend on actual fund performance",
+      "The names of all fund managers",
+      "The historical worst-year drawdown of each fund"
+    ],
+    correct: 1,
+    explanation: "Both 4% and 8% projection scenarios must appear in the illustration AND the FC must verbally state the returns are not guaranteed - this is the standard MAS requirement for ILPs (curriculum Day 5 Part 1).",
+    category: 'compliance'
   }
 ];
