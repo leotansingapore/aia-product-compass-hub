@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/check-question-banks-canonical.mjs",
     "build": "vite build",
     "postbuild": "node scripts/generate-version.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
+    "lint:data": "node scripts/check-question-banks-canonical.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
