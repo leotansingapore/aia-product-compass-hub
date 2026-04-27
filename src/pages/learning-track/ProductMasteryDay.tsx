@@ -9,6 +9,7 @@ import {
   BookOpen,
   CheckCircle2,
   ClipboardCheck,
+  Lock,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -80,7 +81,8 @@ export default function ProductMasteryDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const progress = useProductMasteryProgress();
-  const { markRead, isQuizPassed, isDayComplete } = progress;
+  const { markRead, isQuizPassed, isDayComplete, isUnlocked } = progress;
+  const unlocked = isUnlocked(dayNumber);
 
   useEffect(() => {
     setActiveTab("read");
@@ -139,6 +141,25 @@ export default function ProductMasteryDay() {
           <Link to={BASE_PATH}>Back to Product Mastery hub</Link>
         </Button>
       </div>
+    );
+  }
+
+  if (!unlocked) {
+    return (
+      <Card className="mx-auto max-w-xl">
+        <CardContent className="flex flex-col items-center gap-3 p-8 text-center">
+          <Lock className="h-8 w-8 text-muted-foreground" />
+          <h2 className="text-lg font-semibold">Day {dayNumber} is locked</h2>
+          <p className="text-sm text-muted-foreground">
+            Pass the quiz on Day {dayNumber - 1} to unlock this day.
+          </p>
+          <Button asChild>
+            <Link to={`${BASE_PATH}/day/${dayNumber - 1}`}>
+              Go to Day {dayNumber - 1}
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
     );
   }
 
@@ -311,17 +332,35 @@ export default function ProductMasteryDay() {
         )}
         {next && (
           <Button
-            onClick={() => navigate(`${BASE_PATH}/day/${next.dayNumber}`)}
-            onMouseEnter={() => prefetchDay(next.dayNumber)}
-            className="group max-w-[60%] gap-2 whitespace-normal text-left bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95 sm:max-w-none"
+            variant={quizPassed ? "default" : "secondary"}
+            disabled={!quizPassed}
+            aria-label={
+              quizPassed
+                ? `Go to Day ${next.dayNumber}`
+                : `Pass today's quiz to unlock Day ${next.dayNumber}`
+            }
+            onClick={() => quizPassed && navigate(`${BASE_PATH}/day/${next.dayNumber}`)}
+            onMouseEnter={() => quizPassed && prefetchDay(next.dayNumber)}
+            className={cn(
+              "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
+              quizPassed && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
+            )}
           >
-            <span className="flex flex-col items-end leading-tight">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
-                Up next
+            {quizPassed ? (
+              <>
+                <span className="flex flex-col items-end leading-tight">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
+                    Up next
+                  </span>
+                  <span className="text-sm font-medium">Day {next.dayNumber}</span>
+                </span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </>
+            ) : (
+              <span className="text-xs leading-snug sm:text-sm">
+                Pass the quiz to unlock Day {next.dayNumber}
               </span>
-              <span className="text-sm font-medium">Day {next.dayNumber}</span>
-            </span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            )}
           </Button>
         )}
       </div>

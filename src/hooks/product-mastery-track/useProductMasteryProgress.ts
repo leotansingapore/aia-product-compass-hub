@@ -81,11 +81,22 @@ export function useProductMasteryProgress() {
   );
   const isDayComplete = isQuizPassed; // No reflection on this track.
 
+  // Day 1 is always open. Every subsequent day requires the previous day's
+  // quiz to be passed. Keep the hook self-contained: store reads are O(1).
+  const isUnlocked = useCallback(
+    (dayNumber: number) => {
+      if (dayNumber <= 1) return true;
+      return Boolean(store[dayNumber - 1]?.quizPassedAt);
+    },
+    [store],
+  );
+
   return {
     recordQuiz,
     markRead,
     getDay,
     isQuizPassed,
     isDayComplete,
+    isUnlocked,
   };
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, ChevronRight } from "lucide-react";
+import { CheckCircle2, ChevronRight, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,7 +26,7 @@ function warmDay(dayNumber: number) {
 
 export default function ProductMasteryHub() {
   const weeks = getAllWeeks();
-  const { isDayComplete } = useProductMasteryProgress();
+  const { isDayComplete, isUnlocked } = useProductMasteryProgress();
 
   const totalDone = weeks.reduce(
     (acc, w) => acc + w.days.filter((d) => isDayComplete(d.dayNumber)).length,
@@ -51,14 +51,21 @@ export default function ProductMasteryHub() {
           const totalDays = week.days.length;
           const allDone = totalDays > 0 && weekDone === totalDays;
           const inProgress = weekDone > 0 && !allDone;
-          const firstIncomplete = week.days.find((d) => !isDayComplete(d.dayNumber));
-          const entryDay = firstIncomplete ?? week.days[0];
+          const anyUnlocked = week.days.some((d) => isUnlocked(d.dayNumber));
+          const isLocked = !anyUnlocked;
+          const firstIncompleteUnlocked = week.days.find(
+            (d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber),
+          );
+          const entryDay = firstIncompleteUnlocked ?? week.days[0];
           const href = `${BASE_PATH}/day/${entryDay.dayNumber}`;
 
           return (
             <Card
               key={week.weekNumber}
-              className="transition-all duration-200 hover:border-primary/30 hover:shadow-md"
+              className={cn(
+                "transition-all duration-200 hover:border-primary/30 hover:shadow-md",
+                isLocked && "opacity-50",
+              )}
             >
               <CardHeader className="p-4 pb-0 sm:p-5 sm:pb-0 space-y-3">
                 <div className="flex items-start justify-between gap-3">
@@ -73,9 +80,13 @@ export default function ProductMasteryHub() {
                           : "bg-gradient-to-r from-amber-500 to-amber-600",
                     )}
                   >
-                    {allDone ? "Completed" : inProgress ? "In Progress" : `Week ${week.weekNumber}`}
+                    {isLocked ? "Locked" : allDone ? "Completed" : inProgress ? "In Progress" : `Week ${week.weekNumber}`}
                   </Badge>
-                  {allDone && <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />}
+                  {isLocked ? (
+                    <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
+                  ) : allDone ? (
+                    <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
+                  ) : null}
                 </div>
                 <div className="space-y-1">
                   <CardTitle className="text-lg font-bold font-serif leading-snug tracking-tight">
@@ -90,8 +101,11 @@ export default function ProductMasteryHub() {
                 <ul className="space-y-1.5">
                   {week.days.map((d) => {
                     const done = isDayComplete(d.dayNumber);
+                    const dayUnlocked = isUnlocked(d.dayNumber);
                     const StatusIcon = done ? (
                       <CheckCircle2 className="h-3.5 w-3.5 text-green-600 shrink-0" />
+                    ) : !dayUnlocked ? (
+                      <Lock className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
                     ) : (
                       <span className="h-3.5 w-3.5 rounded-full border border-muted-foreground/40 shrink-0" />
                     );
@@ -99,20 +113,27 @@ export default function ProductMasteryHub() {
                     return (
                       <li key={d.dayNumber} className="flex items-center gap-2 text-[13px]">
                         {StatusIcon}
-                        <Link
-                          to={`${BASE_PATH}/day/${d.dayNumber}`}
-                          onMouseEnter={() => warmDay(d.dayNumber)}
-                          onFocus={() => warmDay(d.dayNumber)}
-                          onTouchStart={() => warmDay(d.dayNumber)}
-                          className="hover:text-primary transition-colors line-clamp-1"
-                        >
-                          <span className="text-muted-foreground tabular-nums mr-2">
-                            Day {d.dayInWeek}
+                        {dayUnlocked ? (
+                          <Link
+                            to={`${BASE_PATH}/day/${d.dayNumber}`}
+                            onMouseEnter={() => warmDay(d.dayNumber)}
+                            onFocus={() => warmDay(d.dayNumber)}
+                            onTouchStart={() => warmDay(d.dayNumber)}
+                            className="hover:text-primary transition-colors line-clamp-1"
+                          >
+                            <span className="text-muted-foreground tabular-nums mr-2">
+                              Day {d.dayInWeek}
+                            </span>
+                            <span className={cn(done && "text-muted-foreground line-through")}>
+                              {dayTitle}
+                            </span>
+                          </Link>
+                        ) : (
+                          <span className="line-clamp-1 text-muted-foreground/60">
+                            <span className="tabular-nums mr-2">Day {d.dayInWeek}</span>
+                            <span>{dayTitle}</span>
                           </span>
-                          <span className={cn(done && "text-muted-foreground line-through")}>
-                            {dayTitle}
-                          </span>
-                        </Link>
+                        )}
                       </li>
                     );
                   })}
@@ -121,16 +142,29 @@ export default function ProductMasteryHub() {
                   <span className="text-xs text-muted-foreground tabular-nums">
                     {weekDone} of {totalDays} days
                   </span>
-                  <Button asChild variant="outline" size="sm" className="gap-1.5 text-xs">
-                    <Link
-                      to={href}
-                      onMouseEnter={() => warmDay(entryDay.dayNumber)}
-                      onFocus={() => warmDay(entryDay.dayNumber)}
-                      onTouchStart={() => warmDay(entryDay.dayNumber)}
-                    >
-                      {allDone ? "Review" : inProgress ? "Continue" : "Start"}
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </Link>
+                  <Button
+                    asChild={!isLocked}
+                    variant="outline"
+                    size="sm"
+                    className="gap-1.5 text-xs"
+                    disabled={isLocked}
+                  >
+                    {isLocked ? (
+                      <span>
+                        Locked
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </span>
+                    ) : (
+                      <Link
+                        to={href}
+                        onMouseEnter={() => warmDay(entryDay.dayNumber)}
+                        onFocus={() => warmDay(entryDay.dayNumber)}
+                        onTouchStart={() => warmDay(entryDay.dayNumber)}
+                      >
+                        {allDone ? "Review" : inProgress ? "Continue" : "Start"}
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </Link>
+                    )}
                   </Button>
                 </div>
               </CardContent>
