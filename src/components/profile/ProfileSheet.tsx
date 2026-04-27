@@ -448,8 +448,8 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                 {isPapersTaker ? (
                   <>
                     <QuickLink icon={Brain} label="Question Bank" onClick={() => goTo('/library?tab=banks')} />
-                    <QuickLink icon={CalendarCheck} label="First 60 Days" onClick={() => goTo('/learning-track')} />
-                    <QuickLink icon={ClipboardCheck} label="Assignments" onClick={() => goTo('/learning-track/first-60-days-assignments')} />
+                    <QuickLink icon={CalendarCheck} label="First 60 Days" onClick={() => goTo('/learning-track/first-60-days')} />
+                    <QuickLink icon={ClipboardCheck} label="Assignments" onClick={() => goTo('/learning-track/pre-rnf/assignments')} />
                     <QuickLink icon={Library} label="Core Products" onClick={() => goTo('/category/core-products')} />
                   </>
                 ) : (
