@@ -434,11 +434,11 @@ function ResultCard({
             : "radial-gradient(ellipse at top right, hsl(var(--destructive) / 0.18), transparent 60%)",
         }}
       />
-      <CardContent className="relative flex flex-col gap-5 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8">
-        <div className="flex items-center gap-5">
+      <CardContent className="relative flex flex-col gap-5 p-4 md:p-6 md:pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:p-8">
+        <div className="flex items-center gap-4 sm:gap-5">
           {/* Big score ring */}
           <div
-            className="relative grid h-24 w-24 place-items-center rounded-full"
+            className="relative grid h-16 w-16 shrink-0 place-items-center rounded-full sm:h-24 sm:w-24"
             style={{
               background: `conic-gradient(${
                 passed ? "hsl(var(--success))" : "hsl(var(--destructive))"
@@ -447,10 +447,10 @@ function ResultCard({
             role="img"
             aria-label={`${pct} percent`}
           >
-            <div className="grid h-[82px] w-[82px] place-items-center rounded-full bg-card">
-              <span className="font-serif text-2xl font-bold tabular-nums text-foreground">
+            <div className="grid h-[54px] w-[54px] place-items-center rounded-full bg-card sm:h-[82px] sm:w-[82px]">
+              <span className="font-serif text-base font-bold tabular-nums text-foreground sm:text-2xl">
                 {pct}
-                <span className="text-sm text-muted-foreground">%</span>
+                <span className="text-[10px] text-muted-foreground sm:text-sm">%</span>
               </span>
             </div>
           </div>
