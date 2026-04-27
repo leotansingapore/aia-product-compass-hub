@@ -19,6 +19,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { FEATURES } from "@/lib/tiers";
+import { prefetchHandlers, prefetchRoute } from "@/utils/routePrefetch";
 
 const FEEDBACK_HREF = "__feedback__" as const;
 
