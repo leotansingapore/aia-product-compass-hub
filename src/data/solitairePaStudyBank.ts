@@ -49,15 +49,15 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q4 -- correct: 1
   {
-    question: "What is the annual premium for Plan 1 of AIA Solitaire PA?",
+    question: "What is the annual basic premium for Plan 1, Class 1-2, ages 16-65 (incl. 9% GST)?",
     options: [
-      "$200/year",
-      "$224/year",
-      "$250/year",
-      "$300/year"
+      "$200.00/year",
+      "S$224.11/year",
+      "$250.00/year",
+      "$300.00/year"
     ],
     correct: 1,
-    explanation: "Plan 1 costs $224/year, which works out to approximately $20/month or 62 cents per day.",
+    explanation: "Per Brochure p.3 (30 May 2025, including 9% GST), Plan 1 Class 1-2 ages 16-65 is S$224.11/year, approximately $20/month or 62 cents per day.",
     category: 'product-facts'
   },
 
@@ -105,35 +105,35 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q8 -- correct: 3
   {
-    question: "What is the annual premium for Plan 4 of AIA Solitaire PA?",
+    question: "What is the annual basic premium for Plan 4, Class 1-2, ages 16-65 (incl. 9% GST)?",
     options: [
-      "$700/year",
-      "$800/year",
-      "$900/year",
-      "$855/year"
+      "$700.00/year",
+      "$800.00/year",
+      "$900.00/year",
+      "S$855.69/year"
     ],
     correct: 3,
-    explanation: "Plan 4 costs $855/year, approximately $70/month or about $2.35 per day.",
+    explanation: "Per Brochure p.3 (30 May 2025, 9% GST), Plan 4 Class 1-2 ages 16-65 is S$855.69/year, approximately $71/month or about $2.35 per day.",
     category: 'product-facts'
   },
 
   // Q9 -- correct: 0
   {
-    question: "What does Feature 5 (double payout) cover under AIA Solitaire PA?",
+    question: "Which categories trigger Feature 5 (Additional Payout for Accidental Death) under AIA Solitaire PA (II)?",
     options: [
-      "Death due to public or private transport accidents",
+      "Public Transport, Private Transport, Pedestrian, PMD User, and Building Fire",
       "Death due to natural disasters only",
       "Death due to terrorism only",
       "Death while overseas"
     ],
     correct: 0,
-    explanation: "Feature 5 provides a double payout for death caused by public or private transport accidents, potentially doubling the accidental death benefit.",
+    explanation: "Per PS p.5, Feature 5 (Additional Payout for Accidental Death) doubles the accidental death payout when the loss is caused by Public Transport, Private Transport, Pedestrian (struck by Public/Private/PMD), PMD user, or Building Fire -- five named categories.",
     category: 'product-facts'
   },
 
   // Q10 -- correct: 2
   {
-    question: "Under Plan 4, what is the maximum payout if death occurs in a public transport accident (with Feature 5)?",
+    question: "Under Plan 4, what is the maximum payout if death is caused by one of the five Feature 5 trigger categories (Public Transport, Private Transport, Pedestrian, PMD user, or Building Fire)?",
     options: [
       "$750,000",
       "$1,000,000",
@@ -141,7 +141,7 @@ export const solitairePaStudyBank: StudyQuestion[] = [
       "$2,250,000"
     ],
     correct: 2,
-    explanation: "Feature 5 doubles the accidental death payout: $750,000 + $750,000 = $1,500,000 for public/private transport death under Plan 4.",
+    explanation: "Feature 5 (PS p.5) doubles the accidental death payout for any of the five named triggers: $750,000 + $750,000 = $1,500,000 under Plan 4.",
     category: 'product-facts'
   },
 
@@ -231,15 +231,15 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q17 -- correct: 0
   {
-    question: "What condition must be met to maintain the renewal bonus?",
+    question: "What condition must be met to maintain the renewal bonus on Features 1-5?",
     options: [
-      "No claims under Feature 4 (burns/scalds)",
+      "No claims under Feature 4 (Accidental Dismemberment and Burns Benefit)",
       "No claims under any feature",
       "No claims under Feature 6 (medical reimbursement)",
       "Continuous premium payment without lapses"
     ],
     correct: 0,
-    explanation: "The renewal bonus on Features 1-5 is maintained as long as there are no claims under Feature 4. Claims under other features do not affect it.",
+    explanation: "Per PS p.6 / Brochure p.2, the renewal bonus on Features 1-5 resets if a claim is made under Feature 4 (Accidental Dismemberment and Burns Benefit). Claims under other features do not affect it.",
     category: 'product-facts'
   },
 
@@ -315,15 +315,15 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q23 -- correct: 2
   {
-    question: "What is the annual premium for Plan 2 of AIA Solitaire PA?",
+    question: "What is the annual basic premium for Plan 2, Class 1-2, ages 16-65 (incl. 9% GST)?",
     options: [
-      "$300/year",
-      "$350/year",
-      "$365/year",
-      "$400/year"
+      "$300.00/year",
+      "$350.00/year",
+      "S$371.82/year",
+      "$400.00/year"
     ],
     correct: 2,
-    explanation: "Plan 2 costs $365/year, which is approximately $30/month or about $1 per day.",
+    explanation: "Per Brochure p.3 (30 May 2025, 9% GST), Plan 2 Class 1-2 ages 16-65 is S$371.82/year, approximately $31/month or about $1 per day.",
     category: 'product-facts'
   },
 
@@ -399,71 +399,71 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q29 -- correct: 3
   {
-    question: "What optional rider provides monthly payouts if the insured cannot perform daily activities?",
+    question: "What optional benefit provides monthly payouts if the insured cannot perform daily activities?",
     options: [
-      "Extended Medical Reimbursement",
-      "Fracture Cover",
+      "Accidental Hospitalisation Benefits Group",
+      "Lifestyle Maintenance Benefits Group",
       "Critical Illness Rider",
-      "Disability Income Benefit"
+      "Monthly Disability Care Benefit"
     ],
     correct: 3,
-    explanation: "The Disability Income Benefit rider provides monthly payouts if the insured is unable to perform 2 or more Activities of Daily Living (ADLs).",
+    explanation: "Per PS p.1 and p.11, the Monthly Disability Care Benefit is the optional benefit that pays a monthly amount when the insured is unable to perform at least 2 of 6 ADLs, after a 90-day deferment.",
     category: 'product-facts'
   },
 
   // Q30 -- correct: 1
   {
-    question: "How many Activities of Daily Living (ADLs) must the insured be unable to perform to claim the Disability Income Benefit?",
+    question: "How many Activities of Daily Living (ADLs) must the insured be unable to perform to claim the Monthly Disability Care Benefit?",
     options: [
-      "1 or more ADLs",
-      "2 or more ADLs",
-      "3 or more ADLs",
-      "4 or more ADLs"
+      "1 or more of the 6 ADLs",
+      "2 or more of the 6 ADLs",
+      "3 or more of the 6 ADLs",
+      "4 or more of the 6 ADLs"
     ],
     correct: 1,
-    explanation: "The Disability Income Benefit pays out when the insured cannot perform 2 or more ADLs such as eating, washing, or walking.",
+    explanation: "Per PS p.11, the Monthly Disability Care Benefit triggers when the insured cannot perform at least 2 of the 6 ADLs (Washing, Dressing, Transferring, Mobility, Toileting, Feeding). Note: APTD under Feature 3 has a stricter threshold of 3 or more ADLs (PS p.3).",
     category: 'product-facts'
   },
 
   // Q31 -- correct: 2
   {
-    question: "For how long can the Disability Income Benefit provide monthly payouts?",
+    question: "Under the Monthly Disability Care Benefit, what is the maximum payment period and the deferment before payouts begin?",
     options: [
-      "Up to 5 years",
-      "Up to 7 years",
-      "Up to 10 years",
-      "For life"
+      "60 months lifetime, no deferment",
+      "120 months lifetime, 30-day deferment",
+      "120 months lifetime, 90-day deferment, with premium waiver while paid",
+      "Lifetime payments, no deferment"
     ],
     correct: 2,
-    explanation: "The optional Disability Income Benefit can provide monthly payouts for up to 10 years.",
+    explanation: "Per PS p.11, total payment under the Monthly Disability Care Benefit shall not exceed 120 months during the insured's lifetime, with a 90-day deferment before payouts start. Premium is waived during the payment period. Multi-period claims separated by 12 months or more are treated as separate claims.",
     category: 'product-facts'
   },
 
   // Q32 -- correct: 0
   {
-    question: "Which of the following are examples of Activities of Daily Living (ADLs) under the Disability Income Benefit?",
+    question: "Which set lists the 6 Activities of Daily Living (ADLs) used by AIA Solitaire PA (II)?",
     options: [
-      "Eating, washing, and walking",
-      "Driving, cooking, and reading",
-      "Working, exercising, and sleeping",
-      "Shopping, cleaning, and gardening"
+      "Washing, Dressing, Transferring, Mobility, Toileting, Feeding",
+      "Driving, cooking, reading, working, sleeping, exercising",
+      "Walking, talking, eating, drinking, sleeping, sitting",
+      "Shopping, cleaning, gardening, cooking, washing, dressing"
     ],
     correct: 0,
-    explanation: "The ADLs referenced in the Disability Income Benefit include eating, washing, and walking.",
+    explanation: "Per PS p.11, the 6 ADLs are: Washing, Dressing, Transferring, Mobility, Toileting, and Feeding. The Monthly Disability Care Benefit triggers on inability to perform 2 or more.",
     category: 'product-facts'
   },
 
   // Q33 -- correct: 3
   {
-    question: "What are the three optional riders available for AIA Solitaire PA?",
+    question: "What are the three optional benefit groups available on AIA Solitaire PA (II)?",
     options: [
       "Hospital Cash, Critical Illness, and Disability Income",
       "Outpatient Cover, Dental, and Vision",
       "Life Cover, Hospital Cash, and Fracture Cover",
-      "Disability Income Benefit, Extended Medical Reimbursement, and Fracture Cover"
+      "Lifestyle Maintenance Benefits Group, Accidental Hospitalisation Benefits Group, and Monthly Disability Care Benefit"
     ],
     correct: 3,
-    explanation: "The three optional riders are Disability Income Benefit, Extended Medical Reimbursement, and Fracture Cover.",
+    explanation: "Per PS p.1 and Brochure p.3, the three optional benefit groups are: (1) Lifestyle Maintenance Benefits Group (Weekly Income, Mobility Aids, Home Modification, Family Support Fund), (2) Accidental Hospitalisation Benefits Group (Daily Hospital Income, Daily ICU, Ambulance, Broken Bones, Emergency Medical Evacuation & Repatriation), and (3) Monthly Disability Care Benefit.",
     category: 'product-facts'
   },
 
@@ -511,15 +511,15 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q37 -- correct: 1
   {
-    question: "What is the approximate monthly premium for Plan 3?",
+    question: "What is the annual basic premium for Plan 3, Class 1-2, ages 16-65 (incl. 9% GST), and the approximate monthly cost?",
     options: [
-      "$40/month",
-      "$50/month",
-      "$60/month",
-      "$55/month"
+      "$480/year, about $40/month",
+      "S$595.93/year, approximately $50/month",
+      "$720/year, about $60/month",
+      "$660/year, about $55/month"
     ],
     correct: 1,
-    explanation: "Plan 3 costs approximately $600/year or $50/month.",
+    explanation: "Per Brochure p.3 (30 May 2025, 9% GST), Plan 3 Class 1-2 ages 16-65 is S$595.93/year, approximately $50/month.",
     category: 'product-facts'
   },
 
@@ -623,15 +623,15 @@ export const solitairePaStudyBank: StudyQuestion[] = [
 
   // Q45 -- correct: 1
   {
-    question: "What does AIA Solitaire PA cover for burns?",
+    question: "How does AIA Solitaire PA (II) pay out for burns?",
     options: [
-      "Only third-degree burns",
-      "Burns and scalds as a lump sum payout under Features 1-5",
-      "Burns only if hospitalized for more than 3 days",
+      "Only third-degree burns are covered",
+      "Third Degree Burns are paid as a lump sum under Benefit 4 (Accidental Dismemberment and Burns), rated by % of body surface area",
+      "Burns are reimbursed as outpatient medical expenses only",
       "Burns are not covered"
     ],
     correct: 1,
-    explanation: "Burns coverage is included as a lump sum payout under the first five features of the policy, including Feature 4 specifically for burns.",
+    explanation: "Per PS p.4 Schedule of Indemnity, Third Degree Burns are paid as a lump sum under Benefit 4 only, rated by surface area: Head 2%/5%/8% of total surface = 50%/75%/100% of insured amount; Body 10%/15%/20% = 50%/75%/100%. Burns are NOT paid across Features 1-5.",
     category: 'product-facts'
   },
 
@@ -1334,12 +1334,12 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     question: "A client says: 'The renewal bonus condition is too restrictive.' How should you clarify?",
     options: [
       "'You are right, it is very restrictive.'",
-      "'The renewal bonus only resets if you claim under Feature 4 (burns/scalds). You can still claim under all other features -- including medical reimbursement -- and keep your bonus.'",
+      "'The renewal bonus only resets if you claim under Benefit 4 (Accidental Dismemberment and Burns). You can still claim under all other features -- including medical reimbursement -- and keep your bonus.'",
       "'You cannot claim anything if you want to keep the bonus.'",
       "'The renewal bonus is automatic with no conditions.'"
     ],
     correct: 1,
-    explanation: "The renewal bonus is only affected by claims under Feature 4 (burns/scalds). Claims under Features 1-3, 5, 6, and 7 do not affect the bonus accumulation.",
+    explanation: "Per PS p.6 / Brochure p.2, the renewal bonus on Features 1-5 only resets when there is a claim under Benefit 4 (Accidental Dismemberment and Burns Benefit). Claims under Features 1-3, 5, 6, and 7 do not affect the bonus accumulation.",
     category: 'objection-handling'
   },
 
@@ -1349,11 +1349,11 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     options: [
       "'You are right, $5,000 is quite low.'",
       "'There is nothing we can do about the limit.'",
-      "'$5,000 covers the vast majority of outpatient accident treatments. Plus, you get unlimited claims per year, and you can add the Extended Medical Reimbursement rider for higher limits.'",
+      "'$5,000 covers the vast majority of outpatient accident treatments. Plus, you get unlimited claims per year, and we can add the Accidental Hospitalisation Benefits Group (Daily Hospital Income up to S$350/day, Broken Bones Schedule, Emergency Medical Evacuation up to S$75,000) and the Lifestyle Maintenance Benefits Group for additional protection.'",
       "'You should look at a different product.'"
     ],
     correct: 2,
-    explanation: "$5,000 per accident covers most outpatient treatments, claims are unlimited, and the Extended Medical Reimbursement rider is available for those wanting higher limits.",
+    explanation: "Per PS p.1, the canonical optional benefits are the Lifestyle Maintenance Benefits Group, the Accidental Hospitalisation Benefits Group, and the Monthly Disability Care Benefit -- not an Extended Medical Reimbursement rider. $5,000 per accident covers most outpatient treatments, claims are unlimited, and clients can layer optional groups for broader cover.",
     category: 'objection-handling'
   },
 
@@ -1695,5 +1695,149 @@ export const solitairePaStudyBank: StudyQuestion[] = [
     correct: 2,
     explanation: "Walk them through the AIA Plus app self-claiming process -- it takes about 5 minutes, reinforcing the service advantage that was part of the sales pitch.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // SECTION D ADDITIONS (Q121-Q130) -- audit 2026-04-27
+  // ============================================================
+
+  // Q121 -- correct: 2 -- Schedule of Indemnity live math
+  {
+    question: "A Plan 4 client suffers permanent total loss of use of one limb. The Benefit 4 Insured Amount is S$750,000. The Schedule of Indemnity pays 125% for loss of use of one limb. What is the payout?",
+    options: [
+      "S$562,500",
+      "S$750,000",
+      "S$937,500",
+      "S$1,500,000"
+    ],
+    correct: 2,
+    explanation: "Per PS p.4 Schedule of Indemnity, loss of use of 1 limb pays 125% of the Benefit 4 Insured Amount. 125% of S$750,000 = S$937,500.",
+    category: 'product-facts'
+  },
+
+  // Q122 -- correct: 2 -- Aggregate cap
+  {
+    question: "A single accident causes multiple losses listed in the Schedule of Indemnity. What is the maximum aggregate payout from that one accident?",
+    options: [
+      "100% of insured amount",
+      "110% of insured amount",
+      "125% of insured amount",
+      "150% of insured amount"
+    ],
+    correct: 2,
+    explanation: "Per PS p.4, the Schedule of Indemnity aggregate cap per accident is 125% of the Benefit 4 Insured Amount, regardless of the number of listed losses sustained.",
+    category: 'product-facts'
+  },
+
+  // Q123 -- correct: 1 -- Monthly Disability Care details
+  {
+    question: "Under the Monthly Disability Care optional benefit, the insured must be unable to perform how many ADLs out of how many, and what is the deferment period?",
+    options: [
+      "1 of 6 ADLs, 30-day deferment",
+      "2 of 6 ADLs, 90-day deferment",
+      "3 of 6 ADLs, 180-day deferment",
+      "4 of 6 ADLs, no deferment"
+    ],
+    correct: 1,
+    explanation: "Per PS p.11, the Monthly Disability Care Benefit triggers when the insured cannot perform at least 2 of 6 ADLs after a 90-day deferment. Plan 4 pays S$2,000/month for a maximum of 120 months over the insured's lifetime, with premium waiver during the payment period.",
+    category: 'product-facts'
+  },
+
+  // Q124 -- correct: 1 -- Optional benefit groups (canonical names)
+  {
+    question: "What are the three optional benefit groups available on AIA Solitaire PA (II)?",
+    options: [
+      "Hospital Cash, Critical Illness, Dental",
+      "Lifestyle Maintenance Benefits Group, Accidental Hospitalisation Benefits Group, Monthly Disability Care Benefit",
+      "Disability Income, Extended Medical Reimbursement, Fracture Cover",
+      "Outpatient, Inpatient, ICU"
+    ],
+    correct: 1,
+    explanation: "Per PS p.1 and Brochure p.3, the three canonical optional benefit groups are the Lifestyle Maintenance Benefits Group, the Accidental Hospitalisation Benefits Group, and the Monthly Disability Care Benefit.",
+    category: 'product-facts'
+  },
+
+  // Q125 -- correct: 1 -- Star Protector Plus hook
+  {
+    question: "Which Solitaire PA (II) plan tier unlocks the 10% premium discount on AIA Star Protector Plus for the policyholder's child until age 21?",
+    options: [
+      "Plan 1 and above",
+      "Plan 2 and above",
+      "Plan 3 and above",
+      "Plan 4 only"
+    ],
+    correct: 1,
+    explanation: "Per Brochure p.3, holding Solitaire PA (II) Plan 2 or higher unlocks a 10% premium discount on AIA Star Protector Plus for the policyholder's child until age 21.",
+    category: 'sales-angles'
+  },
+
+  // Q126 -- correct: 3 -- Class 3-4 loading
+  {
+    question: "What is the Plan 4 annual basic premium for Occupational Classes 3-4, ages 16-65 (incl. 9% GST)?",
+    options: [
+      "S$855.69",
+      "S$1,044.15",
+      "S$1,283.55",
+      "S$1,512.75"
+    ],
+    correct: 3,
+    explanation: "Per Brochure p.3, Plan 4 Class 3-4 ages 16-65 is S$1,512.75/year vs S$855.69 for Class 1-2 -- approximately a 75% loading. SQS auto-applies the higher rate based on declared occupation class.",
+    category: 'product-facts'
+  },
+
+  // Q127 -- correct: 1 -- Coverage step-down at 75
+  {
+    question: "What happens to Solitaire PA (II) cover at the renewal following the insured's 75th birthday?",
+    options: [
+      "Nothing changes; coverage continues at full strength",
+      "Basic benefit insured amounts reduce by 50%; optional benefits terminate",
+      "The policy converts to a whole-life plan",
+      "Premiums are waived"
+    ],
+    correct: 1,
+    explanation: "Per PS p.3 and PS p.14, at the renewal following the 75th birthday the basic benefit insured amounts reduce by 50% and the optional benefits terminate. The policy itself terminates at age 80.",
+    category: 'compliance'
+  },
+
+  // Q128 -- correct: 2 -- Medisave eligibility
+  {
+    question: "Can Medisave be used to pay AIA Solitaire PA (II) premiums?",
+    options: [
+      "Yes, fully Medisave-eligible",
+      "Only for Plan 1",
+      "No -- this is not a Medisave-approved policy",
+      "Only after age 65"
+    ],
+    correct: 2,
+    explanation: "Per PS p.13, AIA Solitaire PA (II) is not a Medisave-approved policy. Premiums must be paid in cash or via the policyholder's bank account; Medisave cannot be used.",
+    category: 'compliance'
+  },
+
+  // Q129 -- correct: 1 -- Free-look period
+  {
+    question: "What is the free-look period for AIA Solitaire PA (II)?",
+    options: [
+      "7 days from policy issue",
+      "14 days from receipt of policy documents (or 7 days from posting/SMS notification)",
+      "21 days",
+      "30 days"
+    ],
+    correct: 1,
+    explanation: "Per PS p.13, the free-look period is 14 days from the policyholder's receipt of policy documents, or 7 days from the date of posting or SMS notification.",
+    category: 'compliance'
+  },
+
+  // Q130 -- correct: 1 -- Pre-existing condition
+  {
+    question: "A client has a pre-existing condition. Per AIA Solitaire PA (II) policy terms, what is the correct statement?",
+    options: [
+      "The policy will not be issued",
+      "The policy is issued (guaranteed-issue) but claims arising from the pre-existing condition are excluded",
+      "The pre-existing condition is covered after a 90-day waiting period",
+      "Pre-existing conditions are covered only on Plan 4"
+    ],
+    correct: 1,
+    explanation: "Per PS p.13 (and Day 5 Part 1 disclosures), AIA Solitaire PA (II) is guaranteed-issue with no medical underwriting, but claims arising directly or indirectly from any pre-existing condition are excluded. Guaranteed-issue does not equal covered for claims.",
+    category: 'compliance'
   }
 ];

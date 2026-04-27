@@ -22,13 +22,13 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   {
     question: "Which of the following would NOT trigger a reset of the renewal bonus on Features 1-5?",
     options: [
-      "A claim for burns under Feature 4",
+      "A claim under Benefit 4 (Accidental Dismemberment and Burns)",
       "A claim for medical reimbursement under Feature 6",
-      "A claim for burns and scalds under Feature 4",
+      "A Third Degree Burns claim under Benefit 4",
       "Both A and C would reset the bonus"
     ],
     correct: 1,
-    explanation: "The renewal bonus only resets if there is a claim under Feature 4 (burns/scalds). Claims under Feature 6 (medical reimbursement) or any other feature do not affect the bonus accumulation.",
+    explanation: "Per PS p.6 / Brochure p.2, the renewal bonus on Features 1-5 only resets when there is a claim under Benefit 4 (Accidental Dismemberment and Burns Benefit) -- this includes any dismemberment listed in the Schedule of Indemnity and Third Degree Burns. Claims under Feature 6 (medical reimbursement) or any other feature do not affect the bonus accumulation.",
     category: 'product-facts'
   },
 
@@ -72,15 +72,15 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "Which step in the AIA Solitaire PA application process comes first?",
+    question: "Within the SQS (Sales Quotation System) flow for AIA Solitaire PA (II), what is the first client-identity step the FC initiates with the prospect?",
     options: [
       "Financial Health Review",
       "Medical examination",
-      "SingPass verification",
+      "SingPass verification (Myinfo)",
       "Blood test and health screening"
     ],
     correct: 2,
-    explanation: "The application starts with SingPass verification, followed by quotation generation and submission. No FHR or medical checkups are required at any stage.",
+    explanation: "Per Day 5 Part 2 SQS flow, after the FC creates the SQS quotation and selects category/plan, SingPass (Myinfo) verification is the first client-facing identity step. Plans 1-3 require no FHR; Plan 4 requires FHR if income is insufficient. No medical examination is needed at any stage.",
     category: 'product-facts'
   },
 
@@ -98,41 +98,41 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "What is the annual premium for Plan 3, and what does it work out to per month?",
+    question: "What is the annual basic premium for Plan 3, Class 1-2, ages 16-65 (incl. 9% GST), and the approximate monthly cost?",
     options: [
-      "$500/year, about $42/month",
-      "$365/year, about $30/month",
-      "$600/year, about $50/month",
-      "$700/year, about $58/month"
+      "S$500.00/year, about $42/month",
+      "S$371.82/year, about $31/month",
+      "S$595.93/year, approximately $50/month",
+      "S$700.00/year, about $58/month"
     ],
     correct: 2,
-    explanation: "Plan 3 costs $600/year, which is approximately $50/month. This sits between Plan 2 ($365/yr) and Plan 4 ($855/yr).",
+    explanation: "Per Brochure p.3 (30 May 2025, 9% GST), Plan 3 Class 1-2 ages 16-65 is S$595.93/year (~$50/month). This sits between Plan 2 (S$371.82) and Plan 4 (S$855.69).",
     category: 'product-facts'
   },
 
   {
-    question: "Which of the following is an optional rider for AIA Solitaire PA?",
+    question: "Which of the following is an optional benefit available on AIA Solitaire PA (II)?",
     options: [
       "Critical Illness Rider",
-      "Hospital Cash Benefit",
-      "Fracture Cover",
+      "Hospital Cash Benefit (standalone)",
+      "Monthly Disability Care Benefit",
       "Dental Expense Rider"
     ],
     correct: 2,
-    explanation: "The three optional riders are Disability Income Benefit, Extended Medical Reimbursement, and Fracture Cover. Critical illness, hospital cash, and dental are not available as riders.",
+    explanation: "Per PS p.1 and Brochure p.3, the three optional benefit groups are: Lifestyle Maintenance Benefits Group, Accidental Hospitalisation Benefits Group, and Monthly Disability Care Benefit. Critical illness, standalone hospital cash, and dental are not available.",
     category: 'product-facts'
   },
 
   {
-    question: "A policyholder is unable to eat, wash, or walk after an accident. What rider would provide monthly payouts?",
+    question: "A policyholder is unable to perform Feeding, Washing, and Mobility (3 of 6 ADLs) after an accident. Which optional benefit provides monthly payouts?",
     options: [
-      "Extended Medical Reimbursement",
-      "Fracture Cover",
-      "Feature 3 -- TPD",
-      "Disability Income Benefit"
+      "Lifestyle Maintenance Benefits Group",
+      "Accidental Hospitalisation Benefits Group",
+      "Feature 3 -- APTD lump sum",
+      "Monthly Disability Care Benefit"
     ],
     correct: 3,
-    explanation: "The Disability Income Benefit rider provides monthly payouts for up to 10 years when the insured cannot perform 2 or more Activities of Daily Living such as eating, washing, or walking.",
+    explanation: "Per PS p.11, the Monthly Disability Care Benefit pays a monthly amount (Plan 4: S$2,000/month) when the insured is unable to perform at least 2 of 6 ADLs (Washing, Dressing, Transferring, Mobility, Toileting, Feeding) after a 90-day deferment, capped at 120 months over the insured's lifetime, with premium waiver during the payment period.",
     category: 'product-facts'
   },
 
