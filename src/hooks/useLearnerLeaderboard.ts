@@ -9,6 +9,7 @@ export type PointBreakdown = {
   assignments: number;
   questionBank: number;
   videos: number;
+  productMastery: number;
 };
 
 export type LeaderboardRow = {
@@ -35,6 +36,7 @@ type RpcRow = {
   assignments: number | string;
   question_bank: number | string;
   videos: number | string;
+  product_mastery: number | string;
 };
 
 const toNum = (v: number | string | null | undefined): number =>
@@ -71,6 +73,7 @@ async function fetchLeaderboard(
       assignments: toNum(r.assignments),
       questionBank: toNum(r.question_bank),
       videos: toNum(r.videos),
+      productMastery: toNum(r.product_mastery),
     };
     return {
       userId: r.user_id,

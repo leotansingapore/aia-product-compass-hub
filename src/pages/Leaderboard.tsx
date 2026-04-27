@@ -57,6 +57,7 @@ const BREAKDOWN_ROWS: readonly BreakdownRow[] = [
   { key: "first14Days", label: "First 14 Days — days completed", weight: 5, unit: "days" },
   { key: "first60Days", label: "First 60 Days — days completed", weight: 5, unit: "days" },
   { key: "next60Days", label: "Next 60 Days — days completed", weight: 5, unit: "days" },
+  { key: "productMastery", label: "Product Mastery — days completed", weight: 5, unit: "days" },
   { key: "assignments", label: "Pre-RNF assignments submitted", weight: 50, unit: "assignments" },
   { key: "questionBank", label: "Question bank — correct answers", weight: 0.2, unit: "questions" },
   { key: "videos", label: "Core Products videos completed", weight: 2.5, unit: "videos" },
