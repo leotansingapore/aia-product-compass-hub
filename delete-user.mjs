@@ -1,29 +1,40 @@
 import { createClient } from '@supabase/supabase-js';
 
 const url = 'https://hgdbflprrficdoyxmdxe.supabase.co';
-const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnZGJmbHBycmZpY2RveXhtZHhlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NjY0NDAsImV4cCI6MjA2NzM0MjQ0MH0.2qwUbh0nkFyOLzzZgXk7bedINzHSf2ULMBUECOqWmIw';
 
-if (!serviceKey) {
-  console.error('SUPABASE_SERVICE_ROLE_KEY not set');
-  process.exit(1);
-}
+const client = createClient(url, anonKey);
 
-const client = createClient(url, serviceKey, {
-  auth: { autoRefreshToken: false, persistSession: false }
-});
-
-const targetId = '93c9aa6c-0e5a-4a7a-9a0b-9e8b7c6d5e4f';
+const targetId = '93c9aa6c-c534-4156-a50f-a450a33e3ff8';
 
 async function main() {
-  // 1. Delete auth user (this cascades to profiles via ON DELETE CASCADE if set)
-  const { error: authErr } = await client.auth.admin.deleteUser(targetId);
-  if (authErr) {
-    console.error('Auth delete error:', authErr.message);
-  } else {
-    console.log('Auth user deleted:', targetId);
+  // Sign in as master admin
+  const { data: signInData, error: signInError } = await client.auth.signInWithPassword({
+    email: 'master_admin@demo.com',
+    password: 'demo123456'
+  });
+
+  if (signInError) {
+    console.error('Sign in error:', signInError.message);
+    process.exit(1);
   }
 
-  // 2. Verify only one profile remains
+  console.log('Signed in as master_admin');
+  const accessToken = signInData.session.access_token;
+
+  // Call admin-delete-users edge function
+  const { data: deleteResult, error: deleteError } = await client.functions.invoke('admin-delete-users', {
+    body: { user_ids: [targetId] },
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+
+  if (deleteError) {
+    console.error('Delete error:', deleteError.message);
+  } else {
+    console.log('Delete result:', JSON.stringify(deleteResult, null, 2));
+  }
+
+  // Verify only one profile remains
   const { data: profiles, error: profErr } = await client
     .from('profiles')
     .select('id, user_id, email, created_at')
@@ -32,13 +43,13 @@ async function main() {
   if (profErr) {
     console.error('Profile query error:', profErr.message);
   } else {
-    console.log('Profiles remaining:', profiles.length);
+    console.log('\nProfiles remaining:', profiles.length);
     profiles.forEach(p => {
       console.log('  - id:', p.id, '| user_id:', p.user_id, '| created_at:', p.created_at);
     });
   }
 
-  // 3. Verify completion data on the kept user
+  // Verify completion data on the kept user
   const keptUserId = profiles?.[0]?.user_id;
   if (keptUserId) {
     const { data: firstData } = await client
