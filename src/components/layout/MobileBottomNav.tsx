@@ -152,6 +152,8 @@ export function MobileBottomNav() {
               <button
                 key={item.name}
                 type="button"
+                onMouseEnter={() => item.href !== FEEDBACK_HREF && prefetchRoute(item.href)}
+                onTouchStart={() => item.href !== FEEDBACK_HREF && prefetchRoute(item.href)}
                 onClick={() => {
                   if (item.href === FEEDBACK_HREF) {
                     setFeedbackOpen(true);
