@@ -83,6 +83,7 @@ export default function ProductMasteryDay() {
   const progress = useProductMasteryProgress();
   const { markRead, isQuizPassed, isDayComplete, isUnlocked } = progress;
   const unlocked = isUnlocked(dayNumber);
+  const [showStickyQuiz, setShowStickyQuiz] = useState(false);
 
   useEffect(() => {
     setActiveTab("read");
@@ -122,6 +123,34 @@ export default function ProductMasteryDay() {
     const handle = window.setTimeout(() => prefetchDay(dayNumber + 1), 1200);
     return () => window.clearTimeout(handle);
   }, [day, dayNumber]);
+
+  // Sticky "Take the quiz" CTA appears once the learner scrolls past
+  // ~55% of the page, while they're not already on the Quiz tab and
+  // haven't passed it yet. Days with no quiz questions skip the prompt.
+  useEffect(() => {
+    if (!day || activeTab === "quiz" || quizPassed || day.quiz.length === 0) {
+      setShowStickyQuiz(false);
+      return;
+    }
+    const onScroll = () => {
+      const docEl = document.documentElement;
+      const total = docEl.scrollHeight - window.innerHeight;
+      if (total <= 0) {
+        setShowStickyQuiz(false);
+        return;
+      }
+      const past = window.scrollY / total > 0.55;
+      setShowStickyQuiz(past);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [day, activeTab, quizPassed]);
+
+  const goToQuiz = () => {
+    setActiveTab("quiz");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (loading || !day) {
     if (loading) {
@@ -311,6 +340,22 @@ export default function ProductMasteryDay() {
         </TabsContent>
       </Tabs>
 
+      {/* Bottom-of-page quiz CTA — visible inside the Read tab so learners
+          don't have to scroll back up after reading the markdown. */}
+      {activeTab === "read" && day.quiz.length > 0 && !quizPassed && (
+        <div className="flex justify-center">
+          <Button
+            size="lg"
+            onClick={goToQuiz}
+            className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+          >
+            <ClipboardCheck className="h-5 w-5" />
+            Take the quiz ({day.quiz.length} questions)
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
         {prev ? (
           <Button
@@ -364,6 +409,34 @@ export default function ProductMasteryDay() {
           </Button>
         )}
       </div>
+
+      {/* Sticky "Take the quiz" CTA — appears once the learner scrolls deep
+          into the Read content, quiz still pending, and the day actually
+          has questions. Sits above the mobile bottom nav. */}
+      {showStickyQuiz && (
+        <div
+          className="pointer-events-none fixed inset-x-0 bottom-16 z-30 px-3 sm:px-4 md:bottom-4"
+          aria-live="polite"
+        >
+          <div className="pointer-events-auto mx-auto max-w-3xl">
+            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
+              <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
+              <p className="flex-1 text-sm font-medium leading-snug">
+                <span className="hidden sm:inline">Ready to lock today in? </span>
+                Take the quiz to unlock Day {dayNumber + 1}.
+              </p>
+              <Button
+                size="sm"
+                onClick={goToQuiz}
+                className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95"
+              >
+                Take the quiz
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
