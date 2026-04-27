@@ -37,6 +37,7 @@ import { TIER_META, type TierLevel } from "@/lib/tiers";
 import type { Track } from "@/types/learning-track";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { TOTAL_DAYS as FIRST_60_DAYS_TOTAL } from "@/features/first-60-days/content";
+import { loadAllAssignments } from "@/features/first-60-days/assignments";
 
 interface Profile {
   id: string;
