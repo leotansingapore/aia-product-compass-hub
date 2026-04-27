@@ -396,12 +396,47 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                 )}
               </div>
 
-              {/* Activity Stats */}
-              <div className="grid grid-cols-3 gap-3">
-                <StatCard icon={Video} label="Videos" value={videosCompleted} sub={totalVideos > 0 ? `of ${totalVideos}` : undefined} />
-                <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
-                <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
-              </div>
+              {/* Activity Stats — for papers-takers we focus on the three
+                  things that actually move the needle: days completed in
+                  First 60 Days, assignments submitted (out of 8), and
+                  questions mastered in the question bank. Other tiers keep
+                  the legacy videos/quizzes/roleplays trio. */}
+              {isPapersTaker ? (
+                <div className="grid grid-cols-3 gap-3">
+                  <StatCard
+                    icon={CalendarCheck}
+                    label="Days"
+                    value={tierStats.done}
+                    sub={`of ${tierStats.total}`}
+                  />
+                  <StatCard
+                    icon={ClipboardCheck}
+                    label="Assignments"
+                    value={preRnfStats.data?.assignmentsSubmitted ?? 0}
+                    sub={
+                      preRnfStats.data
+                        ? `of ${preRnfStats.data.assignmentsTotal}`
+                        : undefined
+                    }
+                  />
+                  <StatCard
+                    icon={Brain}
+                    label="Questions"
+                    value={preRnfStats.data?.questionsMastered ?? 0}
+                    sub={
+                      preRnfStats.data && preRnfStats.data.questionsTotal > 0
+                        ? `of ${preRnfStats.data.questionsTotal}`
+                        : undefined
+                    }
+                  />
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 gap-3">
+                  <StatCard icon={Video} label="Videos" value={videosCompleted} sub={totalVideos > 0 ? `of ${totalVideos}` : undefined} />
+                  <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
+                  <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
+                </div>
+              )}
 
               <Separator />
 
