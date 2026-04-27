@@ -32,7 +32,7 @@ interface TierPermissionRow {
  * never accidentally permissive during app startup.
  */
 export function useFeatureAccess() {
-  const { tier } = useUserTier();
+  const { tier, isLoading: tierLoading } = useUserTier();
   const { hasRole, isMasterAdmin, loading: permissionsLoading } = usePermissions();
   const { viewAsTier } = useViewMode();
   // Admin bypass is suppressed while impersonating a tier so gating reflects
@@ -102,7 +102,7 @@ export function useFeatureAccess() {
     canAny,
     tier: tier as TierLevel,
     isAdminBypass,
-    /** True while `get_user_admin_role` is in flight — tier route guards must wait (see RequireTier). */
-    permissionsLoading,
+    /** True while admin role OR user tier is in flight — tier route guards must wait (see RequireTier). */
+    permissionsLoading: permissionsLoading || tierLoading,
   };
 }
