@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useAdmin } from "@/hooks/useAdmin";
 import type { DayProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 
 // LocalStorage-only v1 progress for Product Mastery Track. No DB round-trip,
@@ -35,6 +36,8 @@ function saveStore(userId: string, store: Store) {
 
 export function useProductMasteryProgress() {
   const { user } = useSimplifiedAuth();
+  const { isAdmin } = useAdmin();
+  const isAdminUser = isAdmin();
   const userId = user?.id ?? ANON_USER_KEY;
   const [store, setStore] = useState<Store>(() => loadStore(userId));
 
@@ -81,14 +84,18 @@ export function useProductMasteryProgress() {
   );
   const isDayComplete = isQuizPassed; // No reflection on this track.
 
-  // Day 1 is always open. Every subsequent day requires the previous day's
-  // quiz to be passed. Keep the hook self-contained: store reads are O(1).
+  // Admins see everything. For everyone else: Day 1 of each week (1, 6, 11,
+  // 16, 21, 26, 31) is always open so learners can sample any product
+  // without grinding through prior weeks. Within a week, each subsequent
+  // day still requires the previous day's quiz to be passed.
   const isUnlocked = useCallback(
     (dayNumber: number) => {
+      if (isAdminUser) return true;
       if (dayNumber <= 1) return true;
+      if (dayNumber % 5 === 1) return true; // first day of any week
       return Boolean(store[dayNumber - 1]?.quizPassedAt);
     },
-    [store],
+    [store, isAdminUser],
   );
 
   return {
@@ -98,5 +105,6 @@ export function useProductMasteryProgress() {
     isQuizPassed,
     isDayComplete,
     isUnlocked,
+    isAdminUser,
   };
 }
