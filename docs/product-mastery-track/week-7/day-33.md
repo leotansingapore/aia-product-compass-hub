@@ -394,3 +394,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (think-about-it,
 - D) Higher liquidity, lower risk, faster access
 
 **Why:** Day 3's bonus question lists capital floor (death benefit), yield differential ($7K/year on $200K = ~$300K over 20 years), and FD reset risk as the three reasons.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Platinum Wealth Venture](/product/core-platinum-wealth-venture)
+- Practice with the question banks: [Study Bank](/product/platinum-wealth-venture/study) · [Exam Questions](/product/platinum-wealth-venture/exam)
+- Previous: [Day 32](/learning-track/product-mastery/day/32)
+- Next: [Day 34](/learning-track/product-mastery/day/34)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

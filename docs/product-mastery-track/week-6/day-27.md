@@ -360,3 +360,11 @@ Day 3: the math and the Q&A. Part 1 — the 4-plan × 8-benefit table, Class 1-2
 - D) Quote Plan 1 as the default for any low-income prospect
 
 **Why:** Day 2 flags that prospects on S$2,000-S$3,000/month income are auto-capped at Plan 3 by SQS; the FC should verify and trigger FHR if needed before quoting Plan 4.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Solitaire PA](/product/core-solitaire-pa)
+- Practice with the question banks: [Study Bank](/product/solitaire-pa/study) · [Exam Questions](/product/solitaire-pa/exam)
+- Previous: [Day 26](/learning-track/product-mastery/day/26)
+- Next: [Day 28](/learning-track/product-mastery/day/28)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -421,3 +421,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (PLP-vs-GPP is t
 - D) Never
 
 **Why:** Once Policy Value crosses the S$200K Insured Amount around Year 30-40 (returns dependent), Sum-at-Risk falls to zero and insurance is free on Max [Day 3 Part 1, Video 6].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Lifetime Protector](/product/core-pro-lifetime-protector)
+- Practice with the question banks: [Study Bank](/product/pro-lifetime-protector/study) · [Exam Questions](/product/pro-lifetime-protector/exam)
+- Previous: [Day 7](/learning-track/product-mastery/day/7)
+- Next: [Day 9](/learning-track/product-mastery/day/9)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -317,3 +317,11 @@ Day 2: how to actually run the meeting. Part 1 — the 5 power questions for dis
 - D) ~S$120/month
 
 **Why:** Video 1 cites approximately S$50/month as the illustrative base premium for a 25-year-old male, S$100,000 cover, To Age 75 — always verify with a live iPOS quote.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Ultimate Critical Cover](/product/core-ultimate-critical-cover)
+- Practice with the question banks: [Study Bank](/product/ultimate-critical-cover/study) · [Exam Questions](/product/ultimate-critical-cover/exam)
+- Previous: [Day 15](/learning-track/product-mastery/day/15)
+- Next: [Day 17](/learning-track/product-mastery/day/17)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

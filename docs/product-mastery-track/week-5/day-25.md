@@ -345,3 +345,11 @@ The **roleplay assignment.** A complete HSGM appointment — Phases 1 through 8 
 - D) No follow-up needed once the policy is issued
 
 **Why:** HSGM is a 30-year asset. The rhythm: free-look check-in (Day 7–14), GIRO confirmation (Day 30), cross-sell + referral ask (Day 90), annual anniversary review, and re-engagement on major life events (marriage, child, job change). Set the calendar entry in front of the prospect — trust signal compounds.
+
+## Related
+
+- Core product page (training videos + Product Summary): [HealthShield Gold Max](/product/core-healthshield-gold-max)
+- Practice with the question banks: [Study Bank](/product/healthshield-gold-max/study) · [Exam Questions](/product/healthshield-gold-max/exam)
+- Previous: [Day 24](/learning-track/product-mastery/day/24)
+- Next: [Day 26](/learning-track/product-mastery/day/26)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

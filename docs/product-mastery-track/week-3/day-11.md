@@ -347,3 +347,11 @@ Day 2: how to actually run the meeting. Part 1 — the fact-find that surfaces t
 - D) 5x with cut-off 65
 
 **Why:** Default GPP recommendation is 3x (business class — balanced premium / base / cliff) with cut-off 65 (kids grown, mortgage paid). Deviate only with a strong reason.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus)
+- Practice with the question banks: [Study Bank](/product/guaranteed-protect-plus/study) · [Exam Questions](/product/guaranteed-protect-plus/exam)
+- Previous: [Day 10](/learning-track/product-mastery/day/10)
+- Next: [Day 12](/learning-track/product-mastery/day/12)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

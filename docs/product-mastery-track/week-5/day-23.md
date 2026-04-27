@@ -357,3 +357,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (this is the con
 - D) ~S$103,150 ✓
 
 **Why:** S$3,500 deductible + 10% of S$996,500 (~S$99,650) = ~S$103,150 OOP. The rider converts that unbounded exposure into a known S$6,000 annual maximum — that's why the rider is non-negotiable.
+
+## Related
+
+- Core product page (training videos + Product Summary): [HealthShield Gold Max](/product/core-healthshield-gold-max)
+- Practice with the question banks: [Study Bank](/product/healthshield-gold-max/study) · [Exam Questions](/product/healthshield-gold-max/exam)
+- Previous: [Day 22](/learning-track/product-mastery/day/22)
+- Next: [Day 24](/learning-track/product-mastery/day/24)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -492,3 +492,11 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 - D) Promise a free-look extension
 
 **Why:** Day 5 Part 1 explicitly says time horizon under 10 years means GPP is wrong — recommend pure term or a savings plan, and the "anti-market" disclosure plus the "when to walk away" rules apply.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus)
+- Practice with the question banks: [Study Bank](/product/guaranteed-protect-plus/study) · [Exam Questions](/product/guaranteed-protect-plus/exam)
+- Previous: [Day 14](/learning-track/product-mastery/day/14)
+- Next: [Day 16](/learning-track/product-mastery/day/16)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -318,3 +318,11 @@ Day 3: the math behind HSGM. Part 1 — every number a sharp prospect will probe
 - D) "Plan B has more exclusions than Plan A."
 
 **Why:** The 3-to-7-hour public-bed wait, no doctor choice, and shared rooms is the concrete pain image — young adults are bottom of the priority queue for a public bed.
+
+## Related
+
+- Core product page (training videos + Product Summary): [HealthShield Gold Max](/product/core-healthshield-gold-max)
+- Practice with the question banks: [Study Bank](/product/healthshield-gold-max/study) · [Exam Questions](/product/healthshield-gold-max/exam)
+- Previous: [Day 21](/learning-track/product-mastery/day/21)
+- Next: [Day 23](/learning-track/product-mastery/day/23)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

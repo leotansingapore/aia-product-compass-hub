@@ -392,3 +392,11 @@ Day 5: compliance + close. Part 1 — the 10 critical compliance points (capital
 - D) Wait until she has a salary increase
 
 **Why:** Day 4's cash flow transformation (Video 38) shows that restructuring the three legacy plans frees up ~$9,000/year plus surrender proceeds, which combined with CPF OA excess and maturing endowments funds PWV with no new money out of pocket.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Platinum Wealth Venture](/product/core-platinum-wealth-venture)
+- Practice with the question banks: [Study Bank](/product/platinum-wealth-venture/study) · [Exam Questions](/product/platinum-wealth-venture/exam)
+- Previous: [Day 33](/learning-track/product-mastery/day/33)
+- Next: [Day 35](/learning-track/product-mastery/day/35)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

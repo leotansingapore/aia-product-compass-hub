@@ -283,3 +283,11 @@ That reframe collapses the false binary. Prospects accept "complement, not compe
 Tomorrow, the energy lifts: **cross-sell and bundling.** Once you've handled objections, the next move is upsizing the case and pairing APA with HSGM, PWV, riders, and the secondary-insured legacy feature. Same client, bigger lifetime value.
 
 ---
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Previous: [Day 3](/learning-track/product-mastery/day/3)
+- Next: [Day 5](/learning-track/product-mastery/day/5)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

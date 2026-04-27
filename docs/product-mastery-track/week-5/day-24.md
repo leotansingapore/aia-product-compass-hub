@@ -356,3 +356,11 @@ Day 5: compliance + close. Part 1 — the four mandatory MAS disclosures (premiu
 - D) Sell only the rider, leave the base for next year
 
 **Why:** Each step in the cross-sell ladder is a separate appointment. Don't bundle PA / CI / APA into the HSGM close — that fragments the decision and overwhelms the prospect.
+
+## Related
+
+- Core product page (training videos + Product Summary): [HealthShield Gold Max](/product/core-healthshield-gold-max)
+- Practice with the question banks: [Study Bank](/product/healthshield-gold-max/study) · [Exam Questions](/product/healthshield-gold-max/exam)
+- Previous: [Day 23](/learning-track/product-mastery/day/23)
+- Next: [Day 25](/learning-track/product-mastery/day/25)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

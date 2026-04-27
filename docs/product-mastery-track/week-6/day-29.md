@@ -335,3 +335,11 @@ Day 5: compliance + close. Part 1 — the disclosures (yearly-renewable not guar
 - D) Recommend just the Monthly Disability Care benefit standalone
 
 **Why:** Day 4 cross-sell rules require layering under (not replacing) employer GPA, citing Plan 4's S$2.25M dismemberment and the Schedule of Indemnity, plus pushing Plan 2+ to unlock the Star Protector Plus 10% discount for the children.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Solitaire PA](/product/core-solitaire-pa)
+- Practice with the question banks: [Study Bank](/product/solitaire-pa/study) · [Exam Questions](/product/solitaire-pa/exam)
+- Previous: [Day 28](/learning-track/product-mastery/day/28)
+- Next: [Day 30](/learning-track/product-mastery/day/30)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

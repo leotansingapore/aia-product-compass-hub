@@ -509,3 +509,11 @@ Day 3: the math behind APA. Every number a sharp prospect will probe — supplem
 - D) Day 4 Objection 3 — fees too high
 
 **Why:** "I buy S&P500" maps directly to the Perfect/Imperfect/Partially Perfect conviction story you should know within 2 minutes of meeting.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Previous: [Day 1](/learning-track/product-mastery/day/1)
+- Next: [Day 3](/learning-track/product-mastery/day/3)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

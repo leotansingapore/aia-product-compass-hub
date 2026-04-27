@@ -355,3 +355,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (frequency, empl
 - D) "Most accidents happen to children, not adults"
 
 **Why:** Day 3 Q1 explicitly answers with a frequency anchor from the FC's own claim book (Videos 5 and 10) rather than abstract probability.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Solitaire PA](/product/core-solitaire-pa)
+- Practice with the question banks: [Study Bank](/product/solitaire-pa/study) · [Exam Questions](/product/solitaire-pa/exam)
+- Previous: [Day 27](/learning-track/product-mastery/day/27)
+- Next: [Day 29](/learning-track/product-mastery/day/29)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

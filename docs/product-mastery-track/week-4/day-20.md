@@ -367,3 +367,11 @@ The **roleplay assignment.** A complete UCC appointment as a layered upsell to a
 - D) WHO definitions applied across all stages
 
 **Why:** The PS clarifies that the 37 severe-stage conditions use LIA Standard Definitions 2019 while early- and intermediate-stage definitions are AIA-determined; this matters when a prospect cross-shops [PS p.7].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Ultimate Critical Cover](/product/core-ultimate-critical-cover)
+- Practice with the question banks: [Study Bank](/product/ultimate-critical-cover/study) · [Exam Questions](/product/ultimate-critical-cover/exam)
+- Previous: [Day 19](/learning-track/product-mastery/day/19)
+- Next: [Day 21](/learning-track/product-mastery/day/21)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

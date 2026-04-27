@@ -370,3 +370,11 @@ Day 3: the math + Q&A. Part 1 — the healthcare cost angle ($412K lifetime prem
 - D) Pause and rebook the entire meeting
 
 **Why:** Day 2's pacing rule: Meeting 1 should NEVER cross 75 minutes; if at 75 and still in Phase 5, compress Phase 6 to 2 minutes and book Meeting 2.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Platinum Wealth Venture](/product/core-platinum-wealth-venture)
+- Practice with the question banks: [Study Bank](/product/platinum-wealth-venture/study) · [Exam Questions](/product/platinum-wealth-venture/exam)
+- Previous: [Day 31](/learning-track/product-mastery/day/31)
+- Next: [Day 33](/learning-track/product-mastery/day/33)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -300,3 +300,11 @@ Day 2: how to actually run the meeting. Part 1 — the fact-find (CPF Healthcare
 - D) "Cancer Care Pro covers radiation but not chemotherapy."
 
 **Why:** The 16x MSHL CDL multiplier and the S$200,000/year non-CDL ceiling are the hard numbers that matter for a cancer-family-history prospect [Brochure p.4 + p.17].
+
+## Related
+
+- Core product page (training videos + Product Summary): [HealthShield Gold Max](/product/core-healthshield-gold-max)
+- Practice with the question banks: [Study Bank](/product/healthshield-gold-max/study) · [Exam Questions](/product/healthshield-gold-max/exam)
+- Previous: [Day 20](/learning-track/product-mastery/day/20)
+- Next: [Day 22](/learning-track/product-mastery/day/22)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

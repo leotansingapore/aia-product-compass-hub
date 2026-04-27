@@ -306,3 +306,11 @@ Day 2: how to actually run the meeting. Part 1 — the fact-find that surfaces e
 - D) Recommend PLP single-premium top-up of $1M immediately
 
 **Why:** PLP requires a 10+ year horizon, non-guaranteed-returns tolerance, and the protection foundation mapped before layering — Max is the default for most prospects so the policy can self-fund insurance over time [Day 1 Part 1, Video 6].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Lifetime Protector](/product/core-pro-lifetime-protector)
+- Practice with the question banks: [Study Bank](/product/pro-lifetime-protector/study) · [Exam Questions](/product/pro-lifetime-protector/exam)
+- Previous: [Day 5](/learning-track/product-mastery/day/5)
+- Next: [Day 7](/learning-track/product-mastery/day/7)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

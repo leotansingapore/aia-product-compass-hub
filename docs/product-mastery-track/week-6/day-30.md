@@ -382,3 +382,11 @@ The **roleplay assignment.** A complete Solitaire PA appointment with Jared (34,
 - D) Only a thank-you card needs to be sent
 
 **Why:** Day 5 Part 2 defines a closed case across 7 checkpoints; SQS submission is only the first — first GIRO confirmed, AIA+ app installed, at least one claim processed, and at least one referral or family follow-up are required to fully close.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Solitaire PA](/product/core-solitaire-pa)
+- Practice with the question banks: [Study Bank](/product/solitaire-pa/study) · [Exam Questions](/product/solitaire-pa/exam)
+- Previous: [Day 29](/learning-track/product-mastery/day/29)
+- Next: [Day 31](/learning-track/product-mastery/day/31)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

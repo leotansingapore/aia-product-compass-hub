@@ -332,3 +332,11 @@ Day 3: the math behind UCC. Part 1 — every number a sharp prospect probes (sin
 - D) Coverage doubles and premium doubles
 
 **Why:** Case 2 shows the GPP+ASCC restructure delivers a 50% coverage uplift to S$300,000 multi-claim while saving roughly S$281/year [Video 8].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Ultimate Critical Cover](/product/core-ultimate-critical-cover)
+- Practice with the question banks: [Study Bank](/product/ultimate-critical-cover/study) · [Exam Questions](/product/ultimate-critical-cover/exam)
+- Previous: [Day 16](/learning-track/product-mastery/day/16)
+- Next: [Day 18](/learning-track/product-mastery/day/18)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

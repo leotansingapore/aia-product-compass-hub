@@ -394,3 +394,10 @@ Day 2: how to actually run the meeting. The 5-minute fact-find that captures lif
 - D) "Let me check the policy terms"
 
 **Why:** This 2-sentence flip handles the "dividends early" objection — they always say "future" → "Then we let it compound."
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Next: [Day 2](/learning-track/product-mastery/day/2)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

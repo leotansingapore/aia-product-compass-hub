@@ -121,6 +121,31 @@ function stripRelated(body) {
   return m ? body.slice(0, m.index).trimEnd() + '\n' : body;
 }
 
+// Append a curated Related section that points learners back to the
+// canonical core-product page on the site (where the training videos
+// and product summary actually live), the per-product Study Bank /
+// Exam Questions surfaces, and the prev/next day in this track.
+function buildRelatedSection({ productSlug, productLabel, globalDay, dayInWeek, weekNum, totalDays }) {
+  const productPath = `/product/core-${productSlug}`;
+  const studyPath = `/product/${productSlug}/study`;
+  const examPath = `/product/${productSlug}/exam`;
+  const lines = [
+    '## Related',
+    '',
+    `- Core product page (training videos + Product Summary): [${productLabel}](${productPath})`,
+    `- Practice with the question banks: [Study Bank](${studyPath}) \u00b7 [Exam Questions](${examPath})`,
+  ];
+  if (globalDay > 1) {
+    lines.push(`- Previous: [Day ${globalDay - 1}](/learning-track/product-mastery/day/${globalDay - 1})`);
+  }
+  if (globalDay < totalDays) {
+    lines.push(`- Next: [Day ${globalDay + 1}](/learning-track/product-mastery/day/${globalDay + 1})`);
+  }
+  lines.push(`- Track index: [Product Mastery Track](/learning-track/product-mastery)`);
+  lines.push('');
+  return lines.join('\n');
+}
+
 function buildFrontmatter({ globalDay, weekNum, productLabel, originalTitle, originalDuration, productSlug, originalTags }) {
   const tags = new Set([
     'product-mastery-track',
@@ -178,7 +203,17 @@ for (const { week, slug, label } of WEEKS) {
     let processed = stripWikilinks(body);
     processed = convertQuiz(processed);
     processed = stripRelated(processed);
-    processed = processed.replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
+    processed = processed.replace(/\n{3,}/g, '\n\n').trimEnd();
+
+    const related = buildRelatedSection({
+      productSlug: slug,
+      productLabel: label,
+      globalDay,
+      dayInWeek,
+      weekNum: week,
+      totalDays: WEEKS.length * 5,
+    });
+    processed = `${processed}\n\n${related}`;
 
     const newFrontmatter = buildFrontmatter({
       globalDay,

@@ -456,3 +456,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (GPP vs Term, GP
 - D) $0 (policy terminates after CI claim)
 
 **Why:** Accelerated CI draws down from the death benefit by the claim amount, leaving $400k - $100k = $300k remaining.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus)
+- Practice with the question banks: [Study Bank](/product/guaranteed-protect-plus/study) · [Exam Questions](/product/guaranteed-protect-plus/exam)
+- Previous: [Day 12](/learning-track/product-mastery/day/12)
+- Next: [Day 14](/learning-track/product-mastery/day/14)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

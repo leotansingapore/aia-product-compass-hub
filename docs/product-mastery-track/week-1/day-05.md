@@ -524,3 +524,11 @@ The roleplay assignment. A complete APA appointment recorded on Loom, scored aga
 - D) When the first month's premium is debited
 
 **Why:** Stopping at SMS auth means you closed half a case — the renewal-income half and referral half are left on the table.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Previous: [Day 4](/learning-track/product-mastery/day/4)
+- Next: [Day 6](/learning-track/product-mastery/day/6)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

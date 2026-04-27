@@ -351,3 +351,11 @@ Day 5: compliance + close. Part 1 — the 3 ILP disclosures (premiums not guaran
 - D) UCC alone for CI only
 
 **Why:** The Floor + Booster stack — GPP carries the booster cover during peak liability, PLP keeps running for legacy/retirement after [Day 4 Part 2].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Lifetime Protector](/product/core-pro-lifetime-protector)
+- Practice with the question banks: [Study Bank](/product/pro-lifetime-protector/study) · [Exam Questions](/product/pro-lifetime-protector/exam)
+- Previous: [Day 8](/learning-track/product-mastery/day/8)
+- Next: [Day 10](/learning-track/product-mastery/day/10)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

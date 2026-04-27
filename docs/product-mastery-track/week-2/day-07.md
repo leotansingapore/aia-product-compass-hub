@@ -360,3 +360,11 @@ Day 3: the dense math (88 pages of product summary distilled to ~15 numbers). Pa
 - D) Drop the price
 
 **Why:** The pacing rule: don't burn the close — compress, lock the principle, book the second visit [Day 2 Part 2].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Lifetime Protector](/product/core-pro-lifetime-protector)
+- Practice with the question banks: [Study Bank](/product/pro-lifetime-protector/study) · [Exam Questions](/product/pro-lifetime-protector/exam)
+- Previous: [Day 6](/learning-track/product-mastery/day/6)
+- Next: [Day 8](/learning-track/product-mastery/day/8)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

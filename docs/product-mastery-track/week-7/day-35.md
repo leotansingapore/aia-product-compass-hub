@@ -373,3 +373,10 @@ The **roleplay assignment.** A complete pre-retiree appointment with Mr Lim Wei 
 - D) Cancel the case if nominations can't be done today
 
 **Why:** Day 5 explicitly warns that "every follow-up is a future cancellation in disguise"; the 12-item checklist must be completed in one ~89-minute session, with two witnesses on standby for nominations.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Platinum Wealth Venture](/product/core-platinum-wealth-venture)
+- Practice with the question banks: [Study Bank](/product/platinum-wealth-venture/study) · [Exam Questions](/product/platinum-wealth-venture/exam)
+- Previous: [Day 34](/learning-track/product-mastery/day/34)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

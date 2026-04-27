@@ -358,3 +358,11 @@ Day 5: compliance + close. Part 1 — the 6 compliance pillars (14-day free-look
 - D) Recommend GE Great Critical Cover instead
 
 **Why:** Aaron's gaps (no Early CI, no multi-claim, bundled-collapse risk, S$400K-S$600K shortfall vs 5x-10x income) match the canonical layered-UCC scenario; book a separate UCC appointment per the two-appointment discipline.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Ultimate Critical Cover](/product/core-ultimate-critical-cover)
+- Practice with the question banks: [Study Bank](/product/ultimate-critical-cover/study) · [Exam Questions](/product/ultimate-critical-cover/exam)
+- Previous: [Day 18](/learning-track/product-mastery/day/18)
+- Next: [Day 20](/learning-track/product-mastery/day/20)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

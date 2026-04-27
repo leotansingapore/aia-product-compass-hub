@@ -326,3 +326,11 @@ Day 4: the conviction stories. Part 1 — the 5 hardest objections (this is wher
 - D) "You must wait 2 years from issue to claim cancer."
 
 **Why:** The 90-day waiting on Major Cancer applies from issue or reinstatement, so a year-1.5 diagnosis is past the waiting period; the only remaining requirement is the 7-day survival period from diagnosis [PS p.3, p.7].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Ultimate Critical Cover](/product/core-ultimate-critical-cover)
+- Practice with the question banks: [Study Bank](/product/ultimate-critical-cover/study) · [Exam Questions](/product/ultimate-critical-cover/exam)
+- Previous: [Day 17](/learning-track/product-mastery/day/17)
+- Next: [Day 19](/learning-track/product-mastery/day/19)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -377,3 +377,11 @@ The **roleplay assignment.** A complete PLP appointment with Mr Tan Wei Ming (42
 - D) When the first premium is paid
 
 **Why:** The case-is-closed definition has 8 steps — stopping at iPOS submission is closing only half a case [Day 5 Part 2].
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Lifetime Protector](/product/core-pro-lifetime-protector)
+- Practice with the question banks: [Study Bank](/product/pro-lifetime-protector/study) · [Exam Questions](/product/pro-lifetime-protector/exam)
+- Previous: [Day 9](/learning-track/product-mastery/day/9)
+- Next: [Day 11](/learning-track/product-mastery/day/11)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

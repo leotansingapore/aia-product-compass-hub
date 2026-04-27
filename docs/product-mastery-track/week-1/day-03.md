@@ -517,3 +517,11 @@ Day 4: defence + expansion. The S&P500 conviction story (Perfect / Imperfect / P
 - D) "We need to switch funds first"
 
 **Why:** The $600/year on $10k math (5–7% yield) makes "$50/month" feel insignificant; the reframe closes the dividend objection in seconds.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Previous: [Day 2](/learning-track/product-mastery/day/2)
+- Next: [Day 4](/learning-track/product-mastery/day/4)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

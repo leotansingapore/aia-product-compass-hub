@@ -413,3 +413,11 @@ Day 2: how to actually run the meeting. Part 1 — the 16-point Discovery Deep D
 - D) Split equally across all three
 
 **Why:** Panel 7's funding priority is explicitly: (1) CPF OA excess at 55, (2) policy surrender values / maturing endowments, (3) liquid cash.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Platinum Wealth Venture](/product/core-platinum-wealth-venture)
+- Practice with the question banks: [Study Bank](/product/platinum-wealth-venture/study) · [Exam Questions](/product/platinum-wealth-venture/exam)
+- Previous: [Day 30](/learning-track/product-mastery/day/30)
+- Next: [Day 32](/learning-track/product-mastery/day/32)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

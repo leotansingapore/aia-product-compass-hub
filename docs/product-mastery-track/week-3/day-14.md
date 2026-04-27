@@ -443,3 +443,11 @@ Day 5: compliance + close. Part 1 — the risk disclosures (non-guaranteed bonus
 - D) Premium Pause activation
 
 **Why:** Day 4 Part 2 calls Mum-to-Baby the highest-leverage rider in AIA's stack for expectant clients — covers pregnancy complications and guarantees the child's future cover with no underwriting.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus)
+- Practice with the question banks: [Study Bank](/product/guaranteed-protect-plus/study) · [Exam Questions](/product/guaranteed-protect-plus/exam)
+- Previous: [Day 13](/learning-track/product-mastery/day/13)
+- Next: [Day 15](/learning-track/product-mastery/day/15)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

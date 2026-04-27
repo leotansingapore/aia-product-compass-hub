@@ -310,3 +310,11 @@ Day 2: how to actually run the meeting. Part 1 — the 5-minute fact-find (exist
 - D) He should self-insure outpatient costs because PA is only useful for manual workers
 
 **Why:** Day 1's universal-fit positioning identifies office workers with active lifestyles and dependants as classic Solitaire PA candidates — hospital plan misses outpatient, term plan misses partial disability.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Solitaire PA](/product/core-solitaire-pa)
+- Practice with the question banks: [Study Bank](/product/solitaire-pa/study) · [Exam Questions](/product/solitaire-pa/exam)
+- Previous: [Day 25](/learning-track/product-mastery/day/25)
+- Next: [Day 27](/learning-track/product-mastery/day/27)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)

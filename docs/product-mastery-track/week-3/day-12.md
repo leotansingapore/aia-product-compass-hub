@@ -396,3 +396,11 @@ Day 3: the math behind GPP. Part 1 — every number a sharp prospect will probe 
 - D) Cancel the appointment and start over next week
 
 **Why:** Pacing rule from the source: better to close in two visits than to lose in one. Compress, take the binary, book the next session.
+
+## Related
+
+- Core product page (training videos + Product Summary): [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus)
+- Practice with the question banks: [Study Bank](/product/guaranteed-protect-plus/study) · [Exam Questions](/product/guaranteed-protect-plus/exam)
+- Previous: [Day 11](/learning-track/product-mastery/day/11)
+- Next: [Day 13](/learning-track/product-mastery/day/13)
+- Track index: [Product Mastery Track](/learning-track/product-mastery)
