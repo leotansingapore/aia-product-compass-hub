@@ -19,6 +19,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { FEATURES } from "@/lib/tiers";
+import { prefetchHandlers, prefetchRoute } from "@/utils/routePrefetch";
 
 const FEEDBACK_HREF = "__feedback__" as const;
 
@@ -106,6 +107,7 @@ export function MobileBottomNav() {
               <NavLink
                 key={item.name}
                 to={item.href}
+                {...prefetchHandlers(item.href)}
                 className={cn(
                   "relative flex flex-col items-center justify-center px-1 py-2 min-h-[56px] flex-1 transition-colors",
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
@@ -150,6 +152,8 @@ export function MobileBottomNav() {
               <button
                 key={item.name}
                 type="button"
+                onMouseEnter={() => item.href !== FEEDBACK_HREF && prefetchRoute(item.href)}
+                onTouchStart={() => item.href !== FEEDBACK_HREF && prefetchRoute(item.href)}
                 onClick={() => {
                   if (item.href === FEEDBACK_HREF) {
                     setFeedbackOpen(true);

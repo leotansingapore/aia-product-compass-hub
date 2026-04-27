@@ -32,6 +32,7 @@ import {
   
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { prefetchHandlers } from "@/utils/routePrefetch";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Sidebar,
@@ -347,6 +348,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                       <NavLink
                         to={item.url}
+                        {...prefetchHandlers(item.url)}
                         className={getNavClassName(item.url)}
                         {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
                       >
@@ -372,6 +374,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
                         <NavLink
                           to="/categories"
+                          {...prefetchHandlers("/categories")}
                           className={getNavClassName('/categories')}
                         >
                           <Archive className="h-4 w-4" />
@@ -385,6 +388,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
                         <NavLink
                           to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
+                          {...prefetchHandlers('/scripts')}
                           className={getNavClassName('/scripts')}
                         >
                           <TrendingUp className="h-4 w-4" />
@@ -405,7 +409,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                 {resourceItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                      <NavLink to={item.url} className={getNavClassName(item.url)}>
+                      <NavLink to={item.url} {...prefetchHandlers(item.url)} className={getNavClassName(item.url)}>
                         <item.icon className="h-4 w-4" />
                         {!isCollapsed && <span>{item.title}</span>}
                       </NavLink>

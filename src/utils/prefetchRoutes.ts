@@ -10,13 +10,22 @@ import { scheduleIdle } from "@/lib/idle";
  * admin/editor chunks stay on-demand so we don't waste bandwidth for learners.
  */
 export function prefetchCommonRoutes(): void {
+  // First wave (3s after idle): the routes ~every learner visits.
   scheduleIdle(() => {
-    // Fire-and-forget — failures are silently ignored (offline, stale chunk,
-    // etc.). The real navigation will surface any genuine error.
     void import("@/pages/learning-track/PreRnf");
     void import("@/pages/learning-track/First60Days");
     void import("@/pages/learning-track/First14Days");
     void import("@/pages/learning-track/LearningTrackIndex");
     void import("@/pages/MyAccount");
   }, 3000);
+
+  // Second wave (8s): commonly visited but not on the critical path.
+  // Spread further out so we never compete with the user's first interaction.
+  scheduleIdle(() => {
+    void import("@/pages/Leaderboard");
+    void import("@/pages/Library");
+    void import("@/pages/Categories");
+    void import("@/pages/CMFASExams");
+    void import("@/pages/Bookmarks");
+  }, 8000);
 }

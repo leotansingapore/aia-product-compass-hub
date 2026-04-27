@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface UsefulLink {
@@ -250,6 +250,9 @@ export function useProducts(categoryId?: string) {
     queryKey: ['products', categoryId ?? 'all'],
     queryFn: () => fetchProductsFromServer(categoryId),
     staleTime: 2 * 60 * 1000, // 2 minutes
+    // Show the previous category's products while the new ones load — prevents
+    // a flash of empty state when switching categories.
+    placeholderData: keepPreviousData,
   });
 
   const refetch = useCallback(async () => {
