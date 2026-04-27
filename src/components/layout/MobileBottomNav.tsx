@@ -107,6 +107,7 @@ export function MobileBottomNav() {
               <NavLink
                 key={item.name}
                 to={item.href}
+                {...prefetchHandlers(item.href)}
                 className={cn(
                   "relative flex flex-col items-center justify-center px-1 py-2 min-h-[56px] flex-1 transition-colors",
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
