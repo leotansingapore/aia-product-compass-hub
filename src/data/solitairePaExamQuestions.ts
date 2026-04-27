@@ -331,11 +331,11 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
     options: [
       "Agree and suggest they look at a competitor product",
       "Explain that $5,000 is the maximum AIA can offer",
-      "$5,000 covers most outpatient treatments, claims are unlimited per year, and the Extended Medical Reimbursement rider is available for higher limits",
+      "$5,000 covers most outpatient treatments, claims are unlimited per year, and clients can layer the optional Lifestyle Maintenance Benefits Group, Accidental Hospitalisation Benefits Group, or Monthly Disability Care Benefit for additional coverage [PS p.1]",
       "Tell them to claim from their hospital plan for the excess amount"
     ],
     correct: 2,
-    explanation: "$5,000 per accident covers the vast majority of outpatient treatments. Combined with unlimited annual claims and the optional Extended Medical Reimbursement rider, the coverage is comprehensive.",
+    explanation: "$5,000 per accident covers the vast majority of outpatient treatments. Combined with unlimited annual claims and the three canonical optional benefit groups (Lifestyle Maintenance Benefits, Accidental Hospitalisation Benefits, Monthly Disability Care Benefit) per PS p.1, the coverage is comprehensive.",
     category: 'objection-handling'
   },
 

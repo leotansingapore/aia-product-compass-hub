@@ -335,7 +335,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Tell them the policy can be surrendered at any time for full value"
     ],
     correct: 1,
-    explanation: "From 'Pro Achiever Overview' and training: Partial withdrawals are available after the 10-year lock-in. Within the first 10 years, Premium Holiday allows pausing payments if facing financial difficulty (though charges may apply). After 5 years of payments, Premium Pass gives a charge-free pause of up to 12 months. The key message: worst case is a pause — not a total loss.",
+    explanation: "From 'Pro Achiever Overview' and training: Partial withdrawals are available once the IIP (Investment Insurance Period) ends. There is no separate 10-year lock-in. Within the IIP, Premium Holiday lets the client pause payments if facing financial difficulty (charges may apply). After 5 years of payments, Premium Pass gives a charge-free pause of up to 36 cumulative months across IIP-dependent passes. The key message: worst case is a pause — not a total loss.",
     category: 'objection-handling'
   },
   {
@@ -425,7 +425,7 @@ export const proAchieverExamQuestions: ExamQuestion[] = [
       "Change the subject to the life protection component instead"
     ],
     correct: 1,
-    explanation: "Honesty builds trust. The projected returns in the benefit illustration are NOT guaranteed — they are based on assumed fund performance. Acknowledge this directly, then pivot: (1) The welcome bonus is real and credited in year 1, (2) The special bonus from year 10 is real, (3) Professional fund management and diversification maximise the probability of strong long-term returns. Risk is managed, not eliminated.",
+    explanation: "Honesty builds trust. The projected returns in the benefit illustration are NOT guaranteed — they are based on assumed fund performance. Acknowledge this directly, then pivot: (1) The welcome bonus is real and credited across years 1-3 [Product Summary p.2 Section 3.3], (2) The special bonus from the 10th annual premium is real, (3) Professional fund management and diversification maximise the probability of strong long-term returns. Risk is managed, not eliminated.",
     category: 'roleplay'
   },
   {

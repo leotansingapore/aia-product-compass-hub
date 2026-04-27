@@ -1237,7 +1237,7 @@ export const platinumWealthVentureStudyBank: StudyQuestion[] = [
       "'Children can only be appointed after the premium payment term ends.'"
     ],
     correct: 0,
-    explanation: "A spouse or child below age 16 can be appointed as Secondary Insured. The Secondary Insured cannot exceed age 70 at the point of appointment.",
+    explanation: "A spouse or child below age 16 can be appointed as Secondary Insured. The Secondary Insured cannot exceed age 75 at the point of appointment [PS Section 3.7 p.2].",
     category: 'roleplay'
   },
 
