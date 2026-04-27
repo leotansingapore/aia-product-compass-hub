@@ -102,7 +102,7 @@ export function useFeatureAccess() {
     canAny,
     tier: tier as TierLevel,
     isAdminBypass,
-    /** True while `get_user_admin_role` is in flight — tier route guards must wait (see RequireTier). */
-    permissionsLoading,
+    /** True while admin role OR user tier is in flight — tier route guards must wait (see RequireTier). */
+    permissionsLoading: permissionsLoading || tierLoading,
   };
 }
