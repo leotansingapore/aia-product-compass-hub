@@ -374,6 +374,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
                         <NavLink
                           to="/categories"
+                          {...prefetchHandlers("/categories")}
                           className={getNavClassName('/categories')}
                         >
                           <Archive className="h-4 w-4" />
@@ -387,6 +388,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
                         <NavLink
                           to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
+                          {...prefetchHandlers('/scripts')}
                           className={getNavClassName('/scripts')}
                         >
                           <TrendingUp className="h-4 w-4" />
