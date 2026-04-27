@@ -94,12 +94,12 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "What are the two key Power-Up Dollar mechanics under GPP?",
     options: [
       "Flat 10% coverage boost regardless of multiplier; never changes after year 1",
-      "First-year coverage boost: 10% on 2x, 15% on 3x, 25% on 5x. Bronze Vitality status reduces the boost by 10%/yr; Platinum increases it by $500/yr. Boost locks in at multiplier cut-off age OR 15 years from policy start, whichever is later.",
+      "First-year Base PowerUp Dollar: 10% on 2x, 15% on 3x, 25% on 5x. At each policy anniversary, the PUD adjusts by a percentage of Base PUD per Vitality status: Bronze -10%, Silver -5%, Gold 0%, Platinum +5%. Subject to a Minimum of 0 and Maximum of 150% of Base PUD. Locks in at the later of multiplier cut-off age or 15th policy anniversary.",
       "First-year boost depends on premium amount only; Vitality has no effect",
       "Power-Up Dollar applies only on the riders, not the base plan"
     ],
     correct: 1,
-    explanation: "Power-Up Dollar gives a multiplier-linked first-year boost (10/15/25% on 2x/3x/5x), modified annually by Vitality status (Bronze -10%, Platinum +$500). Locks in at multiplier cut-off OR 15 years, whichever is later.",
+    explanation: "Per Product Summary page 12 (Adjustment of PowerUp Dollar at Policy Anniversary): Base PUD = 10/15/25% on 2x/3x/5x. Annual adjustment is a percentage of Base PUD by Vitality status -- Bronze -10%, Silver -5%, Gold 0%, Platinum +5%. Capped at 150% of Base PUD. Locks in at the later of multiplier cut-off or 15th policy anniversary.",
     category: 'product-facts'
   },
   {
@@ -118,12 +118,12 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     question: "What payout structure applies to special conditions under GPP's Early CI rider?",
     options: [
       "100% of insured amount per claim, unlimited claims, no cap",
-      "20% of insured amount per condition, capped at $25,000 per condition; up to 5 claims across all 15 special conditions; coverage ends at insured's 21st birthday for those issues; 7-day survival rule; does NOT reduce the main ECI/basic sum assured",
+      "Additional 20% of basic coverage amount or S$25,000 (whichever is lower) per condition; 1 claim per condition with a max 5 claims per policy; coverage ceases at age 85; conditions include adult-onset issues like osteoporosis and diabetic complications; does NOT reduce the main ECI/basic sum assured",
       "50% of insured amount per condition, capped at $50,000",
       "10% per condition with no cap"
     ],
     correct: 1,
-    explanation: "Special conditions pay 20% of the rider sum assured, capped at $25,000 per condition, max 5 claims, 21st-birthday cut-off for child-related issues, 7-day survival period, and -- importantly -- they don't reduce the main ECI or basic sum assured.",
+    explanation: "Per Brochure footnote 7 (Page 9): Special Conditions coverage ceases at age 85 (NOT age 21). Payout is an additional 20% of basic coverage amount or S$25,000, whichever is lower, with 1 claim per condition up to 5 claims per policy total. Brochure page 4 lists 15 special conditions including osteoporosis and diabetic complications -- these are adult-onset, not child-related.",
     category: 'product-facts'
   },
   {

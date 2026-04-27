@@ -600,10 +600,10 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Coverage stays the same",
       "Coverage increases by $500 per year",
       "Coverage doubles",
-      "Coverage reduces by 10% per year"
+      "Coverage reduces by 10% of Base PowerUp Dollar per year (Platinum increases it by 5% of Base PUD per year)"
     ],
     correct: 3,
-    explanation: "On Bronze (Broad) status, Power-Up Dollar coverage drops 10% per year. Platinum status adds $500/year instead.",
+    explanation: "Per Product Summary page 12 (Adjustment of PowerUp Dollar at Policy Anniversary): Bronze -10%, Silver -5%, Gold 0%, Platinum +5% of Base PowerUp Dollar each year. Capped at Min 0 and Max 150% of Base PUD.",
     category: 'product-facts'
   },
 
@@ -1695,5 +1695,149 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     correct: 3,
     explanation: "14-day free-look from receipt of the policy document. Confirm delivery so the client knows their cancellation window; flag the first-year suicide exclusion at the same time.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // CURRICULUM ALIGNMENT ADDITIONS (Q121-Q130) -- per audit Section D
+  // ============================================================
+
+  // Q121 -- correct: 2
+  {
+    question: "Per the Product Brochure, until what age does Special Conditions coverage on the Early CI rider remain in force, and what is the per-condition payout structure?",
+    options: [
+      "Ends at age 21 -- 50% of SA, capped at S$50,000",
+      "Ends at age 65 -- 100% of SA, no cap",
+      "Ends at age 85 -- additional 20% of basic coverage amount or S$25,000 (whichever lower), 1 claim per condition, max 5 claims",
+      "No end age -- 10% of SA, capped at S$10,000"
+    ],
+    correct: 2,
+    explanation: "Per Brochure footnote 7 (Page 9): Special Conditions cease at age 85, payout is additional 20% of basic coverage or S$25,000 (whichever lower), 1 claim per condition with a 5-claim policy total.",
+    category: 'product-facts'
+  },
+
+  // Q122 -- correct: 0
+  {
+    question: "Per the Product Summary, how does the PowerUp Dollar adjust at each policy anniversary based on AIA Vitality status?",
+    options: [
+      "Bronze -10%, Silver -5%, Gold 0%, Platinum +5% of Base PowerUp Dollar; capped at 150% of Base PUD",
+      "Bronze -$500/yr, Platinum +$500/yr, no cap",
+      "All statuses give the same flat 10% boost regardless of tier",
+      "Adjustments only apply to riders, not the base plan"
+    ],
+    correct: 0,
+    explanation: "Per Product Summary Page 12 (Adjustment of PowerUp Dollar at Policy Anniversary): percentage-of-Base-PUD adjustments by Vitality status, with a Minimum Limit of 0 and Maximum Limit of 150% of Base PUD.",
+    category: 'product-facts'
+  },
+
+  // Q123 -- correct: 2
+  {
+    question: "Per the Product Summary, what is the TPD per-life aggregate limit across all AIA policies and supplementary benefits on the same life?",
+    options: [
+      "S$1,000,000",
+      "S$3,000,000",
+      "S$7,500,000",
+      "Unlimited"
+    ],
+    correct: 2,
+    explanation: "Per Product Summary Page 3: the TPD benefit is subject to a per-life limit of S$7,500,000, aggregated with other policies or supplementary benefits issued on the same life.",
+    category: 'product-facts'
+  },
+
+  // Q124 -- correct: 1
+  {
+    question: "Which group of clients is explicitly excluded from exercising the Premium Pause Option?",
+    options: [
+      "Anyone earning under S$50,000/year",
+      "Self-employed or family-business employees, those who resigned or retired voluntarily, and full-time MPs (Members of Parliament)",
+      "Anyone aged over 60",
+      "Clients on a 25-year premium term"
+    ],
+    correct: 1,
+    explanation: "Per Product Summary Page 7 (Premium Pass Option exclusions): self-employed, family-business employed, voluntary resignation/retirement, and other voluntary terminations are excluded. Day 5 curriculum specifically calls out full-time MPs as a named exclusion in the FC training script.",
+    category: 'compliance'
+  },
+
+  // Q125 -- correct: 1
+  {
+    question: "What is the actual close-the-deal moment in the GPP 6-phase pitch flow, and what binary does the FC ask?",
+    options: [
+      "Phase 4 (iPOS+ quotation): 'Yearly or monthly premium?'",
+      "Phase 5 (Layer Early CI): 'Would you prefer with Early CI or without Early CI?'",
+      "Phase 1 (Open): 'Do you want CI cover?'",
+      "Phase 6 (Package): 'GPP or term?'"
+    ],
+    correct: 1,
+    explanation: "Day 2 + Day 5 specify Phase 5 ends with a binary 'with or without Early CI' -- by then the prospect has cleared all four hoops and the binary is the formal close.",
+    category: 'closing'
+  },
+
+  // Q126 -- correct: 1
+  {
+    question: "Per the source-explicit packaging strategy, which product covers Major CI / death / savings, and which product covers Early CI and recurring CI claims?",
+    options: [
+      "GPP for Early CI; UCC for Major CI",
+      "GPP for Major CI / death / savings; UCC (Universal Critical Care) for Early CI and recurring CI claims",
+      "Both Major and Early CI inside GPP only",
+      "UCC for everything; GPP only for cash value"
+    ],
+    correct: 1,
+    explanation: "Day 4 Part 2 (lines 235-258) cites the verbatim trainer pattern -- sell only Major CI inside GPP and package Early CI / multi-claim coverage via a separate UCC plan.",
+    category: 'sales-angles'
+  },
+
+  // Q127 -- correct: 1
+  {
+    question: "Which rider is the highest-leverage adjacent sell for an expectant client, and what does it specifically guarantee?",
+    options: [
+      "OPAI -- guarantees a discount on future plans",
+      "Mum-to-Baby Protect -- covers pregnancy complications for the mother AND guarantees the child's future insurability with no medical underwriting at birth",
+      "Payer Benefit -- pays the mother's premium during maternity leave",
+      "Vitality Platinum -- guarantees no premium increase post-birth"
+    ],
+    correct: 1,
+    explanation: "Day 4 Part 2 (lines 285-301) calls Mum-to-Baby the highest-leverage rider in AIA's stack for expectant clients -- pregnancy complications + locked-in child insurability with no underwriting.",
+    category: 'sales-angles'
+  },
+
+  // Q128 -- correct: 1
+  {
+    question: "Per Day 5 compliance, which FOUR disclosures must be delivered as a single recited block before the iPOS+ binary close?",
+    options: [
+      "Cover amount / premium / pay term / multiplier",
+      "Bonuses non-guaranteed / early-year cash value below premiums paid / accelerated CI reduces death benefit / Premium Pause is a 12-month interest-free loan, not a waiver",
+      "Free-look / GIRO date / Vitality enrolment / FHR",
+      "Suicide / pre-existing / 90-day wait / war exclusion"
+    ],
+    correct: 1,
+    explanation: "Day 5 Part 1 prescribes the RNF-clean closing block: non-guaranteed bonus, early cash-value gap, accelerated CI mechanic, Premium Pause as loan.",
+    category: 'compliance'
+  },
+
+  // Q129 -- correct: 2
+  {
+    question: "The curriculum says 'GPP is the wrong product' if the client's time horizon is under what threshold?",
+    options: [
+      "Under 3 years",
+      "Under 5 years",
+      "Under 10 years (early-year cash value below premiums paid; recommend pure term + a separate savings plan instead)",
+      "Under 20 years"
+    ],
+    correct: 2,
+    explanation: "Day 5 Part 1 explicitly lists time-horizon-under-10-years as one of three 'walk away from the case' rules, because the early-year surrender value is below total premiums paid.",
+    category: 'suitability'
+  },
+
+  // Q130 -- correct: 1
+  {
+    question: "In the GPP TPD definition, what change happens at the policy anniversary on or immediately following the Insured's 65th birthday?",
+    options: [
+      "TPD coverage ends entirely",
+      "TPD definition switches from the 'loss of two limbs / two eyes / one of each + inability to work 6 months' test to an ADL test (inability to perform at least 2 of 6 ADLs for 6 consecutive months); coverage continues until age 70",
+      "TPD becomes a partial-disability test",
+      "Premium doubles to maintain TPD cover"
+    ],
+    correct: 1,
+    explanation: "Per Product Summary Page 2: pre-65 uses the severe-disability test (loss of 2 limbs/eyes or combinations + 6-month inability to work); from age 65, it switches to the ADL test (2 of 6 -- transferring, mobility, toileting, dressing, washing, feeding); TPD coverage ends at age 70.",
+    category: 'product-facts'
   }
 ];
