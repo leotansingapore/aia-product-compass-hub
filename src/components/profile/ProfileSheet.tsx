@@ -440,13 +440,26 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
 
               <Separator />
 
-              {/* Quick Actions */}
+              {/* Quick Actions — papers-takers (pre-RNF) see the four things
+                  that move the needle for them: question bank, first 60 days,
+                  the 8 assignments, and the core products library. */}
               <div className="space-y-1">
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Quick Actions</p>
-                <QuickLink icon={GraduationCap} label="Learning Track" onClick={() => goTo('/learning-track')} />
-                <QuickLink icon={Swords} label="AI Roleplay" onClick={() => goTo('/roleplay')} />
-                <QuickLink icon={BookOpen} label="CMFAS Exams" onClick={() => goTo('/cmfas-exams')} />
-                <QuickLink icon={BarChart3} label="Sales Playbooks" onClick={() => goTo('/scripts')} />
+                {isPapersTaker ? (
+                  <>
+                    <QuickLink icon={Brain} label="Question Bank" onClick={() => goTo('/library?tab=banks')} />
+                    <QuickLink icon={CalendarCheck} label="First 60 Days" onClick={() => goTo('/learning-track')} />
+                    <QuickLink icon={ClipboardCheck} label="Assignments" onClick={() => goTo('/learning-track/first-60-days-assignments')} />
+                    <QuickLink icon={Library} label="Core Products" onClick={() => goTo('/category/core-products')} />
+                  </>
+                ) : (
+                  <>
+                    <QuickLink icon={GraduationCap} label="Learning Track" onClick={() => goTo('/learning-track')} />
+                    <QuickLink icon={Swords} label="AI Roleplay" onClick={() => goTo('/roleplay')} />
+                    <QuickLink icon={BookOpen} label="CMFAS Exams" onClick={() => goTo('/cmfas-exams')} />
+                    <QuickLink icon={BarChart3} label="Sales Playbooks" onClick={() => goTo('/scripts')} />
+                  </>
+                )}
               </div>
 
               <Separator />
