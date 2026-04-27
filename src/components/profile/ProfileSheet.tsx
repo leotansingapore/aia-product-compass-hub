@@ -13,7 +13,7 @@ import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import {
   LogOut, Key, Settings, Edit3, CheckCircle2, BookOpen, Video,
   GraduationCap, Swords, BarChart3, ArrowRight, Compass, Clock,
-  CalendarCheck, ClipboardCheck, Brain,
+  CalendarCheck, ClipboardCheck, Brain, Library,
 } from "lucide-react";
 import { SecurityForm } from "@/components/account/SecurityForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
