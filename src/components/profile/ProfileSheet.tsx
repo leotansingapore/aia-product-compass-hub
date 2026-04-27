@@ -115,6 +115,49 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const nextTier = NEXT_TIER[tier];
   const tierMeta = TIER_META[tier];
 
+  // Pre-RNF (papers_taker) focused stats: assignments submitted + question
+  // bank mastery. We fetch these only when the sheet is open AND the user is
+  // a papers-taker so we don't pay for them on every panel open.
+  const isPapersTaker = tier === "papers_taker";
+  const preRnfStats = useQuery({
+    queryKey: ["profile-sheet-prernf-stats", user?.id],
+    enabled: open && isPapersTaker && !!user?.id,
+    staleTime: 60 * 1000,
+    queryFn: async () => {
+      if (!user?.id) {
+        return { assignmentsSubmitted: 0, assignmentsTotal: 0, questionsMastered: 0, questionsTotal: 0 };
+      }
+      const [assignmentsList, submissionsRes, masteryRes, totalQuestionsRes] = await Promise.all([
+        loadAllAssignments(),
+        (supabase.from as any)("assignment_submissions")
+          .select("item_id")
+          .eq("product_id", "first-60-days-assignments")
+          .eq("user_id", user.id),
+        supabase
+          .from("user_question_progress")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", user.id)
+          .eq("mastered", true),
+        supabase
+          .from("question_bank_questions" as never)
+          .select("id", { count: "exact", head: true })
+          .eq("bank_type", "study"),
+      ]);
+      const submittedItemIds = new Set(
+        ((submissionsRes.data ?? []) as Array<{ item_id: string }>).map((r) => r.item_id),
+      );
+      const assignmentsSubmitted = assignmentsList.filter((a) =>
+        submittedItemIds.has(a.frontmatter.status_key),
+      ).length;
+      return {
+        assignmentsSubmitted,
+        assignmentsTotal: assignmentsList.length,
+        questionsMastered: masteryRes.count ?? 0,
+        questionsTotal: totalQuestionsRes.count ?? 0,
+      };
+    },
+  });
+
   const [editing, setEditing] = useState(false);
   const [changingPassword, setChangingPassword] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
