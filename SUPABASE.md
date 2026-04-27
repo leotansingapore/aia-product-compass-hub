@@ -6,6 +6,49 @@
 
 ## Pending
 
+### Product Mastery Track — DB-backed progress + leaderboard scoring
+
+The new Product Mastery Track at `/learning-track/product-mastery` (7 weeks × 5 days = 35 day pages, 350 quiz MCQs) currently persists progress to localStorage only via [`useProductMasteryProgress`](src/hooks/product-mastery-track/useProductMasteryProgress.ts). Each completed day must be worth 5 leaderboard points (matching the existing First 60 Days / Next 60 Days scoring pattern). Two related changes:
+
+**1. New table `product_mastery_progress`** — mirror the shape of `first_60_days_progress` / `next_60_days_progress`. RLS: owner-only.
+
+```sql
+CREATE TABLE public.product_mastery_progress (
+  user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  day_number integer NOT NULL CHECK (day_number BETWEEN 1 AND 35),
+  read_at timestamptz,
+  quiz_score integer,
+  quiz_attempts integer DEFAULT 0,
+  quiz_passed_at timestamptz,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (user_id, day_number)
+);
+
+ALTER TABLE public.product_mastery_progress ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "owner read"  ON public.product_mastery_progress FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "owner write" ON public.product_mastery_progress FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "owner update" ON public.product_mastery_progress FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "owner delete" ON public.product_mastery_progress FOR DELETE USING (auth.uid() = user_id);
+
+CREATE INDEX product_mastery_progress_quiz_passed_idx
+  ON public.product_mastery_progress (user_id) WHERE quiz_passed_at IS NOT NULL;
+```
+
+**2. Update `get_learner_leaderboard` RPC** to count `product_mastery_progress` rows where `quiz_passed_at IS NOT NULL`, multiply by 5, and surface as a new column. Latest version of the function is in `supabase/migrations/20260424062912_df04d873-7182-44b1-a711-558242ae72f1.sql` — please add:
+
+- a CTE `pm AS (SELECT user_id, COUNT(*) FILTER (WHERE quiz_passed_at IS NOT NULL)::numeric AS pm_quiz FROM public.product_mastery_progress GROUP BY user_id)`
+- LEFT JOIN it like the other progress CTEs
+- add `(a.pm_quiz * 5)` to the `total_points` expression
+- add `a.pm_quiz * 5 AS product_mastery` to the `scored` SELECT
+- add `product_mastery numeric` to the RETURNS TABLE signature
+- include `UNION SELECT user_id, DATE(quiz_passed_at) FROM public.product_mastery_progress WHERE quiz_passed_at IS NOT NULL` (and the corresponding `updated_at` row) inside the `days` CTE so days-active counts the right thing
+
+Once the migration lands, Claude Code will:
+- Migrate `useProductMasteryProgress` from localStorage to Supabase reads/writes (mirror `useFirst60DaysProgress`)
+- Add `productMastery: number` to `PointBreakdown` in [`useLearnerLeaderboard`](src/hooks/useLearnerLeaderboard.ts) and update the row mapping
+- Surface the new breakdown row in the leaderboard UI
+
 ### Cross-device CMFAS checklist progress — `user_checklist_progress` table
 
 The CMFAS study-desk ticks ("Rules of the Game", "Create student account", "Register M9", "Question bank", "Costs", "First practice") are currently persisted by [`useChecklistProgress`](src/hooks/useChecklistProgress.tsx) to localStorage only. Learners see different progress across browsers on the same account (reported for `avyltest@gmail.com` — marked sections in Cursor's browser, saw fresh state in Chrome).
