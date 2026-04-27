@@ -1,4 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Code2, Image as ImageIcon, Maximize2, Minus, Plus, RotateCcw } from "lucide-react";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 type Props = {
   code: string;
@@ -181,12 +190,71 @@ const DARK_THEME_VARS = {
   pieStrokeWidth: "2px",
 };
 
+// All the per-element diagram styling — applied to both the inline preview and
+// the fullscreen modal so both surfaces look identical.
+const DIAGRAM_STYLE_CLASSES = [
+  // Sizing: always fit to container width on every viewport. The previous
+  // mobile-only "natural size + horizontal pan" mode forced users to side-
+  // scroll just to see what a chart was about; tap-to-enlarge replaces that.
+  "[&_svg]:!h-auto [&_svg]:!block [&_svg]:!mx-auto [&_svg]:!max-w-full",
+
+  // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
+  "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
+  "[&_.node_polygon]:![stroke-width:2]",
+  "[&_.node_circle]:![stroke-width:2]",
+  "[&_.node]:[filter:drop-shadow(0_2px_4px_rgba(15,23,42,0.10))_drop-shadow(0_1px_2px_rgba(15,23,42,0.06))]",
+  "dark:[&_.node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.50))_drop-shadow(0_1px_2px_rgba(0,0,0,0.30))]",
+  // Node labels: tighter leading, slightly heavier weight for legibility.
+  "[&_.nodeLabel]:!leading-snug [&_.nodeLabel]:!font-medium",
+  "[&_.node_.nodeLabel_strong]:!font-semibold",
+  // Cluster (subgraph) polish: pillowy rounded container with dashed border.
+  "[&_.cluster_rect]:![rx:16] [&_.cluster_rect]:![ry:16]",
+  "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:5_4]",
+  // Subgraph title: small-caps header.
+  "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-[0.08em]",
+  "[&_.cluster-label_.nodeLabel]:!text-[11px] [&_.cluster-label_.nodeLabel]:!uppercase",
+  "[&_.cluster-label_.nodeLabel]:!opacity-70",
+  // Edge labels: snug pill with matching bg.
+  "[&_.edgeLabel]:!text-[12.5px] [&_.edgeLabel]:!font-medium",
+  "[&_.edgeLabel_rect]:![rx:6] [&_.edgeLabel_rect]:![ry:6]",
+  "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[2px]",
+  // Edges: thicker rounded strokes, calm but present.
+  "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
+  // Arrowheads: match line color, slightly larger.
+  "[&_.marker]:![fill:currentColor]",
+  // Quadrant chart polish — premium typography, rounded edges, breathing point labels
+  "[&_.quadrant-title]:!text-[18px] [&_.quadrant-title]:!font-bold [&_.quadrant-title]:!tracking-tight",
+  "[&_.quadrant-bg-quadrant]:![rx:14] [&_.quadrant-bg-quadrant]:![ry:14]",
+  "[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_10px_rgba(15,23,42,0.10))]",
+  "dark:[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.4))]",
+  "[&_.quadrant-quadrant-text]:!text-[15px] [&_.quadrant-quadrant-text]:!font-bold [&_.quadrant-quadrant-text]:!tracking-wide [&_.quadrant-quadrant-text]:!uppercase",
+  "[&_.quadrant-x-axis-text-top]:!text-[12px] [&_.quadrant-x-axis-text-top]:!font-semibold [&_.quadrant-x-axis-text-top]:!uppercase [&_.quadrant-x-axis-text-top]:!tracking-[0.12em]",
+  "[&_.quadrant-y-axis-text-left]:!text-[12px] [&_.quadrant-y-axis-text-left]:!font-semibold [&_.quadrant-y-axis-text-left]:!uppercase [&_.quadrant-y-axis-text-left]:!tracking-[0.12em]",
+  "[&_.quadrant-point]:![r:7] [&_.quadrant-point]:![stroke:white] [&_.quadrant-point]:![stroke-width:2]",
+  "dark:[&_.quadrant-point]:![stroke:#1f2737]",
+  "[&_.quadrant-point-text]:!text-[12px] [&_.quadrant-point-text]:!font-semibold",
+  // Pie chart polish
+  "[&_.pieTitleText]:!font-bold [&_.pieTitleText]:!tracking-tight",
+  "[&_.slice]:!stroke-2",
+  "[&_.legend-text]:!text-[13px] [&_.legend-text]:!font-medium",
+  // Mindmap polish — rounded nodes with shadow, distinctive root
+  "[&_.mindmap-node_rect]:![rx:12] [&_.mindmap-node_rect]:![ry:12] [&_.mindmap-node_rect]:![stroke-width:2]",
+  "[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(15,23,42,0.10))]",
+  "dark:[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))]",
+  "[&_.mindmap-edge]:![stroke-width:2.5] [&_.mindmap-edge]:![opacity:0.7]",
+  "[&_.section-root_rect]:![stroke-width:3]",
+].join(" ");
+
 export function MermaidDiagram({ code }: Props) {
   const [svg, setSvg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isDark, setIsDark] = useState<boolean>(() => detectDark());
   const [shouldRender, setShouldRender] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalSvg, setModalSvg] = useState<string | null>(null);
+  const [showSource, setShowSource] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   // Subscribe to the shared dark-mode broadcaster (one listener for the whole
   // app, not one per diagram).
@@ -245,9 +313,46 @@ export function MermaidDiagram({ code }: Props) {
     };
   }, [code, isDark, shouldRender]);
 
+  // Re-render a separate copy of the SVG for the fullscreen modal. Using a
+  // distinct DOM-id avoids id collisions with the inline preview SVG, and
+  // re-rendering keeps it crisp at any zoom (vector, not bitmap).
+  useEffect(() => {
+    if (!modalOpen || modalSvg) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const mermaid = await getMermaid();
+        applyTheme(mermaid, isDark);
+        const id = `mermaid-modal-${Math.random().toString(36).slice(2, 9)}`;
+        const { svg: rendered } = await mermaid.render(id, code);
+        if (!cancelled) setModalSvg(rendered);
+      } catch {
+        // Fall back to the inline-preview SVG if re-render fails for any reason.
+        if (!cancelled && svg) setModalSvg(svg);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [modalOpen, modalSvg, code, isDark, svg]);
+
+  // Invalidate the modal SVG when source or theme changes, so it re-renders
+  // next time the user opens it.
+  useEffect(() => {
+    setModalSvg(null);
+  }, [code, isDark]);
+
+  const handleOpenChange = useCallback((open: boolean) => {
+    setModalOpen(open);
+    if (!open) setShowSource(false);
+  }, []);
+
   if (error) {
     return (
-      <div ref={containerRef} className="my-6 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-xs text-destructive">
+      <div
+        ref={containerRef}
+        className="my-6 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-xs text-destructive"
+      >
         Diagram failed to render: {error}
       </div>
     );
@@ -268,84 +373,172 @@ export function MermaidDiagram({ code }: Props) {
   }
 
   return (
-    <figure ref={containerRef} className="group relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.10), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.08), transparent 55%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06] [mask-image:radial-gradient(ellipse_at_center,black,transparent_85%)]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      {/* Edge fades hint at horizontal scroll on mobile */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-card to-transparent sm:hidden" aria-hidden />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-card to-transparent sm:hidden" aria-hidden />
-      <div
-        className={[
-          "relative flex w-full justify-center overflow-x-auto overscroll-x-contain px-3 pb-5 pt-5 sm:px-6 sm:pt-8 sm:pb-6",
-          "[-webkit-overflow-scrolling:touch]",
-          // Mobile: render SVG at natural size so labels stay legible — user pans
-          // horizontally. ≥sm: cap to container width so the diagram fits neatly.
-          "[&_svg]:!h-auto [&_svg]:!block [&_svg]:!mx-auto",
-          "[&_svg]:!max-w-none sm:[&_svg]:!max-w-full",
+    <>
+      <figure
+        ref={containerRef}
+        className="group relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-card shadow-card"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.10), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.08), transparent 55%)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06] [mask-image:radial-gradient(ellipse_at_center,black,transparent_85%)]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
 
-          // Node polish: rounded corners, crisp 2px borders, layered shadow for depth.
-          "[&_.node_rect]:![stroke-width:2] [&_.node_rect]:![rx:12] [&_.node_rect]:![ry:12]",
-          "[&_.node_polygon]:![stroke-width:2]",
-          "[&_.node_circle]:![stroke-width:2]",
-          "[&_.node]:[filter:drop-shadow(0_2px_4px_rgba(15,23,42,0.10))_drop-shadow(0_1px_2px_rgba(15,23,42,0.06))]",
-          "dark:[&_.node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.50))_drop-shadow(0_1px_2px_rgba(0,0,0,0.30))]",
-          // Node labels: tighter leading, slightly heavier weight for legibility.
-          "[&_.nodeLabel]:!leading-snug [&_.nodeLabel]:!font-medium",
-          "[&_.node_.nodeLabel_strong]:!font-semibold",
-          // Cluster (subgraph) polish: pillowy rounded container with dashed border.
-          "[&_.cluster_rect]:![rx:16] [&_.cluster_rect]:![ry:16]",
-          "[&_.cluster_rect]:![stroke-width:1] [&_.cluster_rect]:![stroke-dasharray:5_4]",
-          // Subgraph title: small-caps header.
-          "[&_.cluster-label_.nodeLabel]:!font-semibold [&_.cluster-label_.nodeLabel]:!tracking-[0.08em]",
-          "[&_.cluster-label_.nodeLabel]:!text-[11px] [&_.cluster-label_.nodeLabel]:!uppercase",
-          "[&_.cluster-label_.nodeLabel]:!opacity-70",
-          // Edge labels: snug pill with matching bg.
-          "[&_.edgeLabel]:!text-[12.5px] [&_.edgeLabel]:!font-medium",
-          "[&_.edgeLabel_rect]:![rx:6] [&_.edgeLabel_rect]:![ry:6]",
-          "[&_.edgeLabel_foreignObject_div]:!px-2 [&_.edgeLabel_foreignObject_div]:!py-[2px]",
-          // Edges: thicker rounded strokes, calm but present.
-          "[&_.flowchart-link]:![stroke-width:2] [&_.flowchart-link]:![stroke-linecap:round] [&_.flowchart-link]:![stroke-linejoin:round]",
-          // Arrowheads: match line color, slightly larger.
-          "[&_.marker]:![fill:currentColor]",
-          // Quadrant chart polish — premium typography, rounded edges, breathing point labels
-          "[&_.quadrant-title]:!text-[18px] [&_.quadrant-title]:!font-bold [&_.quadrant-title]:!tracking-tight",
-          "[&_.quadrant-bg-quadrant]:![rx:14] [&_.quadrant-bg-quadrant]:![ry:14]",
-          "[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_10px_rgba(15,23,42,0.10))]",
-          "dark:[&_.quadrant-bg-quadrant]:[filter:drop-shadow(0_4px_12px_rgba(0,0,0,0.4))]",
-          "[&_.quadrant-quadrant-text]:!text-[15px] [&_.quadrant-quadrant-text]:!font-bold [&_.quadrant-quadrant-text]:!tracking-wide [&_.quadrant-quadrant-text]:!uppercase",
-          "[&_.quadrant-x-axis-text-top]:!text-[12px] [&_.quadrant-x-axis-text-top]:!font-semibold [&_.quadrant-x-axis-text-top]:!uppercase [&_.quadrant-x-axis-text-top]:!tracking-[0.12em]",
-          "[&_.quadrant-y-axis-text-left]:!text-[12px] [&_.quadrant-y-axis-text-left]:!font-semibold [&_.quadrant-y-axis-text-left]:!uppercase [&_.quadrant-y-axis-text-left]:!tracking-[0.12em]",
-          "[&_.quadrant-point]:![r:7] [&_.quadrant-point]:![stroke:white] [&_.quadrant-point]:![stroke-width:2]",
-          "dark:[&_.quadrant-point]:![stroke:#1f2737]",
-          "[&_.quadrant-point-text]:!text-[12px] [&_.quadrant-point-text]:!font-semibold",
-          // Pie chart polish
-          "[&_.pieTitleText]:!font-bold [&_.pieTitleText]:!tracking-tight",
-          "[&_.slice]:!stroke-2",
-          "[&_.legend-text]:!text-[13px] [&_.legend-text]:!font-medium",
-          // Mindmap polish — rounded nodes with shadow, distinctive root
-          "[&_.mindmap-node_rect]:![rx:12] [&_.mindmap-node_rect]:![ry:12] [&_.mindmap-node_rect]:![stroke-width:2]",
-          "[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(15,23,42,0.10))]",
-          "dark:[&_.mindmap-node]:[filter:drop-shadow(0_2px_6px_rgba(0,0,0,0.5))]",
-          "[&_.mindmap-edge]:![stroke-width:2.5] [&_.mindmap-edge]:![opacity:0.7]",
-          "[&_.section-root_rect]:![stroke-width:3]",
-        ].join(" ")}
-        dangerouslySetInnerHTML={{ __html: svg }}
-      />
-    </figure>
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => setModalOpen(true)}
+          aria-label="Open diagram fullscreen"
+          className="relative block w-full cursor-zoom-in text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <div
+            className={cn(
+              "relative flex w-full justify-center px-3 pb-5 pt-5 sm:px-6 sm:pt-8 sm:pb-6",
+              DIAGRAM_STYLE_CLASSES,
+            )}
+            dangerouslySetInnerHTML={{ __html: svg }}
+          />
+        </button>
+
+        <span
+          className={cn(
+            "pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1.5 rounded-full",
+            "border border-border/60 bg-background/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide",
+            "text-muted-foreground shadow-sm backdrop-blur-sm",
+            "sm:opacity-0 sm:transition-opacity sm:group-hover:opacity-100 sm:group-focus-within:opacity-100",
+          )}
+        >
+          <Maximize2 className="h-3 w-3" aria-hidden />
+          <span className="hidden sm:inline">Click to enlarge</span>
+          <span className="sm:hidden">Tap to enlarge</span>
+        </span>
+      </figure>
+
+      <Dialog open={modalOpen} onOpenChange={handleOpenChange}>
+        <DialogContent
+          className={cn(
+            "h-[100dvh] max-h-[100dvh] w-screen max-w-[100vw] gap-0 rounded-none border-0 p-0",
+            "sm:h-[90vh] sm:max-h-[90vh] sm:w-[95vw] sm:max-w-[95vw] sm:rounded-2xl sm:border",
+          )}
+        >
+          <DialogTitle className="sr-only">Diagram fullscreen view</DialogTitle>
+          <DialogDescription className="sr-only">
+            Pinch or scroll-wheel to zoom; drag to pan; double-tap to reset. Press escape to close.
+          </DialogDescription>
+
+          <div className="relative h-full w-full overflow-hidden bg-background">
+            {showSource ? (
+              <pre className="h-full w-full overflow-auto bg-muted/40 p-6 font-mono text-xs leading-relaxed text-foreground">
+                <code>{code}</code>
+              </pre>
+            ) : modalSvg ? (
+              <TransformWrapper
+                initialScale={1}
+                minScale={0.5}
+                maxScale={4}
+                centerOnInit
+                doubleClick={{ mode: "reset" }}
+                wheel={{ step: 0.2 }}
+                pinch={{ step: 5 }}
+                limitToBounds={false}
+              >
+                {({ zoomIn, zoomOut, resetTransform }) => (
+                  <>
+                    <TransformComponent
+                      wrapperClass="!w-full !h-full"
+                      contentClass="!w-full !h-full !flex !items-center !justify-center"
+                    >
+                      <div
+                        className={cn(
+                          "flex w-full max-w-full items-center justify-center p-4 sm:p-8",
+                          DIAGRAM_STYLE_CLASSES,
+                        )}
+                        dangerouslySetInnerHTML={{ __html: modalSvg }}
+                      />
+                    </TransformComponent>
+
+                    <div
+                      className={cn(
+                        "absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1",
+                        "rounded-full border border-border bg-background/95 p-1 shadow-lg backdrop-blur-sm",
+                      )}
+                    >
+                      <ToolbarButton onClick={() => zoomOut()} ariaLabel="Zoom out">
+                        <Minus className="h-4 w-4" aria-hidden />
+                      </ToolbarButton>
+                      <ToolbarButton onClick={() => resetTransform()} ariaLabel="Reset zoom">
+                        <RotateCcw className="h-4 w-4" aria-hidden />
+                      </ToolbarButton>
+                      <ToolbarButton onClick={() => zoomIn()} ariaLabel="Zoom in">
+                        <Plus className="h-4 w-4" aria-hidden />
+                      </ToolbarButton>
+                      <span className="mx-1 h-5 w-px bg-border" aria-hidden />
+                      <ToolbarButton onClick={() => setShowSource(true)} ariaLabel="View source">
+                        <Code2 className="h-4 w-4" aria-hidden />
+                      </ToolbarButton>
+                    </div>
+                  </>
+                )}
+              </TransformWrapper>
+            ) : (
+              <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+                <span className="inline-flex items-center gap-2">
+                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-primary/60" />
+                  Rendering…
+                </span>
+              </div>
+            )}
+
+            {showSource && (
+              <button
+                type="button"
+                onClick={() => setShowSource(false)}
+                className={cn(
+                  "absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2",
+                  "rounded-full border border-border bg-background/95 px-4 py-2 text-xs font-medium shadow-lg backdrop-blur-sm",
+                  "hover:bg-accent",
+                )}
+              >
+                <ImageIcon className="h-3.5 w-3.5" aria-hidden />
+                View diagram
+              </button>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
+
+function ToolbarButton({
+  onClick,
+  ariaLabel,
+  children,
+}: {
+  onClick: () => void;
+  ariaLabel: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={ariaLabel}
+      className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      {children}
+    </button>
   );
 }
