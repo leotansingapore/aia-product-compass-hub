@@ -15,6 +15,8 @@ tags: [first-60-days, week-6, practice]
 
 > **📍 The TVM material has been consolidated.** All concept and the 10 practice problems live on **[Day 28 — Time Value of Money: The Complete Reference](../week-5/day-28.md)**. Day 31 was the warm-up drill; today (Day 36) is the **live-meeting speed test**.
 
+> **🛠 Calculator:** [calculator.net Finance Calculator](https://www.calculator.net/finance-calculator.html) — open it in a separate tab and use it for every problem below. Same tool you used on Day 28 / Day 31; the speed test is muscle memory on this exact UI.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

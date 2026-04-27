@@ -13,6 +13,8 @@ tags: [first-60-days, week-6, knowledge]
 
 > **The one idea for today:** Inflation doesn't show up as a "loss" on anyone's statement. Which is exactly why it destroys wealth. Every plan you build must account for it — or you're planning your client to run out of money 15 years into retirement.
 
+> **🛠 Practice tool:** [calculator.net Finance Calculator](https://www.calculator.net/finance-calculator.html) — use the Future Value (FV) tab with the inflation rate as your interest rate to see how today's $5,000 monthly need grows over 25 years. Same calculator you used on Day 28.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

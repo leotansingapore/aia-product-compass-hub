@@ -14,6 +14,8 @@ tags: [first-60-days, week-5, knowledge]
 
 > **The one idea for today:** "Compound interest is the 8th wonder of the world. He who understands it, earns it. He who doesn't, pays it." (Often attributed to Einstein.) Today you become the kind of FC who can make a client *feel* the power of compounding in 3 minutes.
 
+> **🛠 Practice tool:** [calculator.net Finance Calculator](https://www.calculator.net/finance-calculator.html) — same calculator you used on Day 28. Use the Future Value (FV) tab to play with rate × time and feel the curve before you have to draw it for a prospect.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
