@@ -13,6 +13,7 @@ import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import {
   LogOut, Key, Settings, Edit3, CheckCircle2, BookOpen, Video,
   GraduationCap, Swords, BarChart3, ArrowRight, Compass, Clock,
+  CalendarCheck, ClipboardCheck, Brain,
 } from "lucide-react";
 import { SecurityForm } from "@/components/account/SecurityForm";
 import { ProfileForm } from "@/components/account/ProfileForm";
@@ -36,6 +37,7 @@ import { TIER_META, type TierLevel } from "@/lib/tiers";
 import type { Track } from "@/types/learning-track";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { TOTAL_DAYS as FIRST_60_DAYS_TOTAL } from "@/features/first-60-days/content";
+import { loadAllAssignments } from "@/features/first-60-days/assignments";
 
 interface Profile {
   id: string;
@@ -112,6 +114,49 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   }, [tier, first60Completed, tierPhasesQuery.data, isCompleted]);
   const nextTier = NEXT_TIER[tier];
   const tierMeta = TIER_META[tier];
+
+  // Pre-RNF (papers_taker) focused stats: assignments submitted + question
+  // bank mastery. We fetch these only when the sheet is open AND the user is
+  // a papers-taker so we don't pay for them on every panel open.
+  const isPapersTaker = tier === "papers_taker";
+  const preRnfStats = useQuery({
+    queryKey: ["profile-sheet-prernf-stats", user?.id],
+    enabled: open && isPapersTaker && !!user?.id,
+    staleTime: 60 * 1000,
+    queryFn: async () => {
+      if (!user?.id) {
+        return { assignmentsSubmitted: 0, assignmentsTotal: 0, questionsMastered: 0, questionsTotal: 0 };
+      }
+      const [assignmentsList, submissionsRes, masteryRes, totalQuestionsRes] = await Promise.all([
+        loadAllAssignments(),
+        (supabase.from as any)("assignment_submissions")
+          .select("item_id")
+          .eq("product_id", "first-60-days-assignments")
+          .eq("user_id", user.id),
+        supabase
+          .from("user_question_progress")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", user.id)
+          .eq("mastered", true),
+        supabase
+          .from("question_bank_questions" as never)
+          .select("id", { count: "exact", head: true })
+          .eq("bank_type", "study"),
+      ]);
+      const submittedItemIds = new Set(
+        ((submissionsRes.data ?? []) as Array<{ item_id: string }>).map((r) => r.item_id),
+      );
+      const assignmentsSubmitted = assignmentsList.filter((a) =>
+        submittedItemIds.has(a.frontmatter.status_key),
+      ).length;
+      return {
+        assignmentsSubmitted,
+        assignmentsTotal: assignmentsList.length,
+        questionsMastered: masteryRes.count ?? 0,
+        questionsTotal: totalQuestionsRes.count ?? 0,
+      };
+    },
+  });
 
   const [editing, setEditing] = useState(false);
   const [changingPassword, setChangingPassword] = useState(false);
@@ -351,12 +396,47 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                 )}
               </div>
 
-              {/* Activity Stats */}
-              <div className="grid grid-cols-3 gap-3">
-                <StatCard icon={Video} label="Videos" value={videosCompleted} sub={totalVideos > 0 ? `of ${totalVideos}` : undefined} />
-                <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
-                <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
-              </div>
+              {/* Activity Stats — for papers-takers we focus on the three
+                  things that actually move the needle: days completed in
+                  First 60 Days, assignments submitted (out of 8), and
+                  questions mastered in the question bank. Other tiers keep
+                  the legacy videos/quizzes/roleplays trio. */}
+              {isPapersTaker ? (
+                <div className="grid grid-cols-3 gap-3">
+                  <StatCard
+                    icon={CalendarCheck}
+                    label="Days"
+                    value={tierStats.done}
+                    sub={`of ${tierStats.total}`}
+                  />
+                  <StatCard
+                    icon={ClipboardCheck}
+                    label="Assignments"
+                    value={preRnfStats.data?.assignmentsSubmitted ?? 0}
+                    sub={
+                      preRnfStats.data
+                        ? `of ${preRnfStats.data.assignmentsTotal}`
+                        : undefined
+                    }
+                  />
+                  <StatCard
+                    icon={Brain}
+                    label="Questions"
+                    value={preRnfStats.data?.questionsMastered ?? 0}
+                    sub={
+                      preRnfStats.data && preRnfStats.data.questionsTotal > 0
+                        ? `of ${preRnfStats.data.questionsTotal}`
+                        : undefined
+                    }
+                  />
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 gap-3">
+                  <StatCard icon={Video} label="Videos" value={videosCompleted} sub={totalVideos > 0 ? `of ${totalVideos}` : undefined} />
+                  <StatCard icon={CheckCircle2} label="Quizzes" value={quizCount} sub={avgQuizScore !== null ? `${avgQuizScore}% avg` : undefined} />
+                  <StatCard icon={Swords} label="Roleplays" value={roleplayCount} sub={bestRoleplayScore !== null ? `Best: ${bestRoleplayScore}%` : undefined} />
+                </div>
+              )}
 
               <Separator />
 
