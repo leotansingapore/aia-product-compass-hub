@@ -646,7 +646,7 @@ export function StudyDeskStepFlow({
                     type="button"
                     onClick={() => reachable && goToIndex(targetIdx)}
                     className={cn(
-                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold tabular-nums transition-colors sm:h-9 sm:w-9',
+                      'flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold tabular-nums transition-colors sm:h-9 sm:w-9 sm:text-sm',
                       current && 'ring-2 ring-primary ring-offset-2 ring-offset-background',
                       complete && cmfasRoom.positiveText,
                       !complete &&
@@ -660,7 +660,7 @@ export function StudyDeskStepFlow({
                     {!reachable ? (
                       <Lock className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden />
                     ) : complete ? (
-                      <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden />
+                      <CheckCircle2 className="h-3.5 w-3.5 sm:h-5 sm:w-5" aria-hidden />
                     ) : (
                       <span>{sectionIdx + 1}</span>
                     )}
@@ -677,9 +677,9 @@ export function StudyDeskStepFlow({
 
         {/* Sub-slide dots — shown only when the current section has >1 slide */}
         {sectionSlides.length > 1 && (
-          <div className="flex min-h-[24px] items-center gap-3 rounded-md border border-primary/15 bg-background/30 px-3 py-1.5">
-            <span className={cn('text-[10px] font-bold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
-              {slide.section} · Slide {slide.indexWithinSection} of {slide.totalInSection}
+          <div className="flex min-h-[24px] flex-col items-start gap-2 rounded-md border border-primary/15 bg-background/30 px-3 py-1.5 sm:flex-row sm:items-center sm:gap-3">
+            <span className={cn('text-[10px] font-bold uppercase tracking-[0.2em] shrink-0', cmfasRoom.brassText)}>
+              <span className="hidden sm:inline">{slide.section} · </span>Slide {slide.indexWithinSection} of {slide.totalInSection}
             </span>
             <ol className="flex flex-wrap items-center gap-1.5" aria-label="Sub-slide progress">
               {sectionSlides.map((sub) => {
