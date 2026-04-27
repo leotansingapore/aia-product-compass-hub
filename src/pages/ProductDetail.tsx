@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { ProductHeader } from "@/components/product-detail/ProductHeader";
 import { ProductUsefulLinks } from "@/components/product-detail/ProductUsefulLinks";
+import {
+  ProductMasteryCallout,
+  getProductMasteryWeek,
+} from "@/components/product-mastery/ProductMasteryCallout";
 
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 import { ProductSyncButton } from "@/components/product-detail/ProductSyncButton";
@@ -246,6 +250,13 @@ export default function ProductDetail() {
         />
 
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-4 md:py-8 md:pb-10 animate-fade-in">
+
+          {/* Product Mastery Track callout — only on core products */}
+          {getProductMasteryWeek(productSlugOrId) !== undefined && (
+            <div className="pt-4 sm:pt-2">
+              <ProductMasteryCallout productSlug={productSlugOrId} />
+            </div>
+          )}
 
           {/* Training Videos Section */}
           <ProtectedSection sectionId="product_videos">

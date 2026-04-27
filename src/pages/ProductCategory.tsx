@@ -11,6 +11,7 @@ import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { ChildCategoriesGrid } from "@/components/category/ChildCategoriesGrid";
+import { ProductMasteryCallout } from "@/components/product-mastery/ProductMasteryCallout";
 import { getCategorySlug } from "@/utils/slugUtils";
 import { useProductCategory } from "@/hooks/useProductCategory";
 import { supabase } from "@/integrations/supabase/client";
@@ -384,6 +385,12 @@ export default function ProductCategory() {
                 </Button>
               )}
             </div>
+          </div>
+        )}
+
+        {categorySlugOrId === "core-products" && (
+          <div className="mb-3 sm:mb-6">
+            <ProductMasteryCallout />
           </div>
         )}
 
