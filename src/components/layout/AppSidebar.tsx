@@ -409,7 +409,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                 {resourceItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                      <NavLink to={item.url} className={getNavClassName(item.url)}>
+                      <NavLink to={item.url} {...prefetchHandlers(item.url)} className={getNavClassName(item.url)}>
                         <item.icon className="h-4 w-4" />
                         {!isCollapsed && <span>{item.title}</span>}
                       </NavLink>
