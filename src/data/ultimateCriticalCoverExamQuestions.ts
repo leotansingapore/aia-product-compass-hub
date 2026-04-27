@@ -7,15 +7,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   // ============================================================
 
   {
-    question: "A client asks how many illnesses UCC covers. You recall the number is significantly more than Great Eastern's 53. What is the correct figure?",
+    question: "A client asks how many illnesses UCC covers. What is the canonical answer?",
     options: [
       "104 illnesses across early, intermediate, and severe stages",
       "200 illnesses but limited to severe stage only",
-      "150 illnesses across early, intermediate, and severe stages",
+      "73 underlying critical illnesses across 150 condition-stage entries (42 Early + 35 Intermediate + 73 Major)",
       "75 illnesses across early and severe stages only"
     ],
     correct: 2,
-    explanation: "UCC covers 150 multi-stage critical illnesses spanning early, intermediate, and severe stages. This is nearly three times Great Eastern's 53 illnesses.",
+    explanation: "Per Brochure p.13 totals row and PS p.3: UCC covers 73 underlying critical illnesses, generating 150 condition-stage entries split as 42 Early + 35 Intermediate + 73 Major. The Great Eastern 53-illness comparison from Day 1 / Video 1 is illustrative and time-bound -- always verify in iPOS.",
     category: 'product-facts'
   },
 
@@ -33,54 +33,54 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A prospect is comparing prices. Prudential's equivalent CI plan costs $56/month for the same profile. How does UCC compare?",
+    question: "A prospect is comparing prices. Per the Day 1 / Video 1 illustrative comparison (Prudential equivalent at ~$56/month for the same profile), how should you frame UCC's price?",
     options: [
       "UCC would cost about $63/month -- roughly 11% more expensive",
-      "UCC would cost about $50/month -- roughly 11% cheaper",
+      "UCC is illustratively ~11% cheaper based on Day 1 / Video 1 figures (e.g., ~$50/month for a 25-year-old male, $100k SA, paid to age 75) -- always verify the current iPOS quote because competitor pricing is time-bound and not in any AIA-canonical PDF",
       "UCC would cost about $53/month -- roughly 6% cheaper",
       "UCC would cost the same at $56/month"
     ],
     correct: 1,
-    explanation: "UCC is approximately 11% cheaper than Prudential's equivalent CI product. For a 25-year-old male with $100k sum assured paid to age 75, the premium is about $50/month.",
+    explanation: "Per Day 1: competitor pricing comparisons are illustrative and time-bound -- always verify in iPOS before quoting. The 11%-cheaper figure is not in any AIA-canonical PDF.",
     category: 'product-facts'
   },
 
   {
-    question: "A client adds the Enhancer rider and asks what payout they would receive for a second occurrence of the same illness. What is the correct answer?",
+    question: "A client adds the Enhancer rider and asks what they would receive for a same-illness recurrence. What is the precise canonical answer?",
     options: [
       "100% of sum assured, same as the first occurrence",
       "75% of sum assured",
       "25% of sum assured",
-      "50% of sum assured"
+      "Lower of 50% of cover or the Current Insured Amount per relapse, with a 2-year waiting period between claims, capped at 100% of base cover total -- and only on 5 named conditions: Re-diagnosed Major Cancer, Recurred Heart Attack, Recurred Stroke, Repeated Major Organ/Bone Marrow Transplant, Repeated Heart Valve Surgery"
     ],
     correct: 3,
-    explanation: "The UCC Enhancer rider pays 50% of sum assured for a second occurrence of the same illness. Without the Enhancer, a same-illness relapse receives 0% payout.",
+    explanation: "Per Brochure p.4 and Enhancer p.6: the Ultimate Relapse Benefit is restricted to the 5 named conditions (e.g. it does NOT cover a recurrence of End Stage Liver Failure or Multiple Sclerosis), pays the lower of 50% of cover or the current insured amount, requires a 2-year waiting period between claims, and is capped at 100% of base cover total.",
     category: 'product-facts'
   },
 
   {
-    question: "You are quoting a 20-year-old non-smoker with $100k coverage until age 65. The client wants the base plan plus all three riders. What total monthly premium should you quote?",
+    question: "You are quoting a 20-year-old non-smoker with $100k coverage until age 65 plus all three riders. Using the Day 1 illustrative figures, what should you quote -- and why must you re-check iPOS?",
     options: [
       "About $44/month -- the riders are included free",
-      "About $57/month -- base $44 plus Enhancer $7, Early CI $2, Premium Waiver $4",
+      "Approximately $57/month using Day 1 illustrative figures (base ~$44 + Enhancer ~$7 + Early CI ~$2 + ECPWP ~$4 at S$100K SA). ECPWP cost scales with sum assured -- e.g., Day 3 cites ~S$15/month (~S$168/year) for 25yo S$200K To-75. Always run the live iPOS quote before binding any number",
       "About $63/month -- base $50 plus Enhancer $7, Early CI $2, Premium Waiver $4",
       "About $72/month -- base $59 plus Enhancer $7, Early CI $2, Premium Waiver $4"
     ],
     correct: 1,
-    explanation: "The total is approximately $57/month: base UCC at $44/month, plus Enhancer at $7/month, Early CI Trigger at $2/month, and Premium Waiver (ECPWP) at $4/month.",
+    explanation: "The $4/month ECPWP figure is illustrative for $100K SA. Day 3 cites ECPWP at ~S$15/month (~S$168/year) for the canonical 25yo S$200K To-Age-75 case, because ECPWP scales with sum assured. Always verify in iPOS.",
     category: 'product-facts'
   },
 
   {
-    question: "What is the theoretical maximum total payout percentage under UCC?",
+    question: "How does UCC's payout structure split between major stage and earlier stages?",
     options: [
       "300% of sum assured, after which the policy terminates",
       "500% of sum assured across all stages",
       "200% of sum assured with a premium refund",
-      "550% or more -- unlimited because there is no cap on the number of different-illness claims"
+      "Unlimited at MAJOR STAGE across DIFFERENT illnesses (with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI), while early and intermediate stages are capped at 500% combined of coverage amount and S$350,000 per-life on the same CI across all UCC policies"
     ],
     correct: 3,
-    explanation: "UCC's total payout potential is 550% or more because the number of claims is unlimited, as long as each claim is for a different illness with a 12-month gap between claims.",
+    explanation: "Per Brochure footnote 1 (p.14) and PS p.4 / p.7: the unlimited mechanic is major-stage-only across different illnesses; early+intermediate are capped at 500% combined and S$350,000 per-life on the same CI. Restoration to 100% applies when the policy is in force 12 months after the latest diagnosed CI.",
     category: 'product-facts'
   },
 
@@ -98,15 +98,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "Which medical service partnership is exclusive to UCC policyholders?",
+    question: "Which medical service partnership is exclusive to UCC policyholders, and what is its actual scope?",
     options: [
       "Raffles Medical priority access covering all conditions",
       "Mount Elizabeth specialist network for surgical conditions",
-      "Teladoc medical concierge covering cancer, cardiovascular, and neurological conditions with access to 50,000+ specialists",
+      "Teladoc Health, covering ALL conditions under UCC EXCEPT Terminal Illness, covered Mental Illnesses, Emergency Care, and any urgent invasive or urgent surgical procedures (Brochure p.6) -- via a network of 50,000+ specialists worldwide",
       "National University Hospital second opinion service for cancer patients only"
     ],
     correct: 2,
-    explanation: "UCC policyholders get exclusive access to Teladoc, which provides second opinions, treatment consultation, and condition management through a network of over 50,000 specialists worldwide.",
+    explanation: "Per Brochure p.6: Teladoc Health covers all UCC-covered conditions EXCEPT Terminal Illness, covered Mental Illnesses and Emergency Care, and any medical conditions of urgent invasive and/or urgent surgical procedures. The narrower 'cancer/cardio/neuro' framing is incorrect.",
     category: 'product-facts'
   },
 
@@ -150,15 +150,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "How does BCC differ from UCC in its approach to same-illness relapse coverage?",
+    question: "How does UCC structure same-illness relapse coverage in its own canonical documents?",
     options: [
-      "Both require a separate Enhancer rider for relapse coverage",
-      "Neither plan covers same-illness relapses under any circumstances",
-      "BCC includes relapse coverage in its base plan; UCC requires the separate Enhancer rider",
+      "Both UCC and BCC cover relapse the same way",
+      "Neither plan covers same-illness relapses",
+      "UCC's relapse coverage is provided by the optional Enhancer's Ultimate Relapse Benefit (5 named conditions, 2-year waiting, lower of 50% of cover or current insured amount, capped at 100% of base cover total). BCC (Beyond Critical Care) is a separate product not documented in the UCC source-resources -- always cite BCC's own PDFs for any cross-product comparison",
       "UCC includes relapse coverage in its base plan; BCC requires a separate rider"
     ],
     correct: 2,
-    explanation: "BCC builds relapse coverage into the base plan, while UCC separates it into the optional Enhancer rider at $7/month. This modular design is why UCC's base premium is lower.",
+    explanation: "Per Brochure p.4 and Enhancer p.6: UCC's relapse coverage sits in the optional Enhancer. BCC is a separate product not documented in the UCC source-resources -- the 104-illness figure and built-in-refund framing must be sourced from BCC's own PDFs, not asserted from the UCC bank.",
     category: 'product-facts'
   },
 
@@ -271,15 +271,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "What is the key advantage of Great Eastern's CI plan ceasing after 3 claims when positioning UCC?",
+    question: "How should you compliantly position UCC's claim structure against Great Eastern's CI plan?",
     options: [
       "Great Eastern's 3-claim limit is actually better because it keeps premiums low",
       "There is no advantage -- both plans have the same claim limits",
-      "UCC has unlimited claims for different illnesses with no cap, while Great Eastern stops at 3 claims and a maximum 300% payout",
+      "Lead with UCC's canonical structure: unlimited claims at MAJOR stage across different illnesses (early+intermediate capped at 500% combined / S$350,000 per-life on the same CI), with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI. The Great Eastern '~53 illnesses, 3-claim limit, 300% cap, 2x reset' figures come from Day 1 / Video 1 -- illustrative and time-bound, always verify in iPOS",
       "Great Eastern covers more illnesses despite the 3-claim limit"
     ],
     correct: 2,
-    explanation: "UCC allows unlimited claims for different illnesses with no maximum payout cap, while Great Eastern ceases after just 3 claims with a maximum of 300% of sum assured.",
+    explanation: "Lead with UCC's canonical numbers (Brochure p.13, PS p.4 / p.7). Day 1 / Day 4 explicitly flag the GE 53-illness, 3-claim, 300% cap figures as illustrative -- they are not in any AIA-canonical PDF.",
     category: 'sales-angles'
   },
 
@@ -435,15 +435,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A financially savvy client asks you to explain the heart condition progression claim example step by step. What is the correct sequence and outcome?",
+    question: "A financially savvy client asks you to walk through the heart condition staircase step by step using canonical UCC condition names. What is the correct sequence?",
     options: [
       "Heart attack at 100%, then transplant at 50% -- two claims totaling 150%",
-      "Coronary heart disease, bypass surgery, heart attack, heart transplant -- four separate claims each after a 12-month reset, each paying out at the applicable stage percentage",
+      "Other Serious Coronary Artery Disease (claim 1), Coronary Artery By-pass Surgery (claim 2), Heart Attack of Specified Severity (claim 3), Major Organ / Bone Marrow Transplantation -- heart (claim 4). Each is a separate covered CI at major stage; the policy is restored to 100% if it is in force 12 months after the date of the latest diagnosed CI",
       "One lump-sum payout for the most severe heart condition diagnosed",
       "Three claims maximum for heart-related conditions, then coverage for heart issues ends"
     ],
     correct: 1,
-    explanation: "UCC treats each heart condition as a separate claimable event: coronary heart disease (claim 1), bypass (claim 2 after 12 months), heart attack (claim 3), transplant (claim 4). This is the most powerful illustration of unlimited different-illness claims.",
+    explanation: "Per Brochure p.11-13 and PS p.7: 'coronary heart disease' is not the precise covered name -- use 'Other Serious Coronary Artery Disease' or 'Coronary Artery Disease'. A heart transplant claim is paid under 'Major Organ / Bone Marrow Transplantation' (item 36); there is no standalone 'Heart Transplant' CI. Restoration runs from the date of the latest diagnosed CI.",
     category: 'roleplay'
   },
 
