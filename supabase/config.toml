@@ -58,3 +58,6 @@ verify_jwt = false
 
 [functions.compare-concept-drawing]
 verify_jwt = false
+
+[functions.recap-video-proxy]
+verify_jwt = false

@@ -146,7 +146,7 @@ Which group you end up in is largely decided in the first 60 days.
 
 Recording from the Week 1 recap call. Trimmed to the core content — Leo walks through each day of Week 1 with the team (~63 min).
 
-<video src="https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-1/fastrack-training-1-preview.mp4" controls preload="metadata" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;"></video>
+<video src="https://hgdbflprrficdoyxmdxe.supabase.co/functions/v1/recap-video-proxy?key=week-1" controls playsinline preload="metadata" style="width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 1rem auto;"></video>
 
 <details>
 <summary><strong>Lecture notes — open to follow along with the video</strong></summary>
