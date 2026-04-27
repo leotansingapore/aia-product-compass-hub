@@ -359,25 +359,25 @@ export default function First60DaysDay() {
 
         <div className="relative grid gap-4 p-4 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           {/* Left: day numeral + completion ring inline */}
-          <div className="flex items-center gap-3 sm:gap-5">
-            <div className="relative pt-3 sm:pt-4">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="relative sm:pt-4">
+              <span className="mb-1.5 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:absolute sm:left-0 sm:top-0 sm:mb-0 sm:px-2.5 sm:tracking-[0.2em]">
+                <Sparkles className="h-2.5 w-2.5" /> Day
+              </span>
               <div className="font-serif text-[clamp(2.75rem,11vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
-              <span className="absolute top-0 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:px-2.5 sm:tracking-[0.2em]">
-                <Sparkles className="h-2.5 w-2.5" /> Day
-              </span>
             </div>
             <div className="flex flex-col items-center gap-1 sm:gap-1.5">
               <div
-                className="relative grid h-12 w-12 place-items-center rounded-full sm:h-16 sm:w-16"
+                className="relative grid h-14 w-14 place-items-center rounded-full sm:h-16 sm:w-16"
                 style={{
                   background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
                 }}
                 aria-label={`${progressPct} percent complete`}
                 role="img"
               >
-                <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
+                <div className="grid h-[48px] w-[48px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
                   <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">
                     {progressPct}
                     <span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span>

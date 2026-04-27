@@ -172,13 +172,13 @@ export default function Next60DaysDay() {
         <div className="pointer-events-none absolute inset-0 opacity-[0.08] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" aria-hidden style={{ backgroundImage: "linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="relative grid gap-5 p-5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="relative">
+            <div className="relative sm:pt-2">
+              <span className="mb-1.5 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:absolute sm:-top-2 sm:left-0 sm:mb-0 sm:px-2"><Sparkles className="h-2.5 w-2.5" /> Day</span>
               <div className="font-serif text-[clamp(3.75rem,14vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">{String(day.dayNumber).padStart(2, "0")}</div>
-              <span className="absolute -top-1.5 left-0 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:-top-2 sm:px-2"><Sparkles className="h-2.5 w-2.5" /> Day</span>
             </div>
             <div className="flex flex-col items-center gap-1 sm:gap-1.5">
-              <div className="relative grid h-12 w-12 place-items-center rounded-full sm:h-16 sm:w-16" style={{ background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)` }} role="img" aria-label={`${progressPct}% complete`}>
-                <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
+              <div className="relative grid h-14 w-14 place-items-center rounded-full sm:h-16 sm:w-16" style={{ background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)` }} role="img" aria-label={`${progressPct}% complete`}>
+                <div className="grid h-[48px] w-[48px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
                   <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">{progressPct}<span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span></span>
                 </div>
               </div>
