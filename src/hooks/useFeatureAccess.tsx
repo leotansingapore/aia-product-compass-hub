@@ -32,7 +32,7 @@ interface TierPermissionRow {
  * never accidentally permissive during app startup.
  */
 export function useFeatureAccess() {
-  const { tier } = useUserTier();
+  const { tier, isLoading: tierLoading } = useUserTier();
   const { hasRole, isMasterAdmin, loading: permissionsLoading } = usePermissions();
   const { viewAsTier } = useViewMode();
   // Admin bypass is suppressed while impersonating a tier so gating reflects
