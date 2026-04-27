@@ -7,6 +7,31 @@ export const dayMarkdownComponents: Components = {
   ...markdownComponents,
   a: ({ children, href, ...rest }: any) => {
     const url = typeof href === "string" ? href : "";
+    // `[label](#t=NNN)` jumps the on-page <video> to NNN seconds. Used by the
+    // Day 6 lecture-notes section to make the recording navigable from prose.
+    const seekMatch = url.match(/^#t=(\d+)$/);
+    if (seekMatch) {
+      const seconds = Number(seekMatch[1]);
+      return (
+        <button
+          type="button"
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors font-mono text-[0.95em]"
+          onClick={(e) => {
+            e.preventDefault();
+            const video = document.querySelector("video");
+            if (video instanceof HTMLVideoElement) {
+              video.currentTime = seconds;
+              video.play().catch(() => {
+                /* autoplay block — user just sees the seeked frame */
+              });
+              video.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }}
+        >
+          {children}
+        </button>
+      );
+    }
     const isInternal = url.startsWith("/") && !url.startsWith("//");
     if (isInternal) {
       return (
