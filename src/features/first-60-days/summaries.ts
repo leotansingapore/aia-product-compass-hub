@@ -81,7 +81,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "week": 2,
     "dayInWeek": 3,
     "title": "The Poor, The Middle Class, and The Rich",
-    "duration": 20,
+    "duration": 30,
     "hasReflection": false
   },
   {
@@ -121,7 +121,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "week": 3,
     "dayInWeek": 2,
     "title": "The Total Wealth Concept",
-    "duration": 25,
+    "duration": 35,
     "hasReflection": false
   },
   {
@@ -232,7 +232,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 28,
     "week": 5,
     "dayInWeek": 4,
-    "title": "Time Value of Money — Complete Reference",
+    "title": "Time Value of Money — The Complete Reference",
     "duration": 75,
     "hasReflection": false
   },
@@ -296,7 +296,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 36,
     "week": 6,
     "dayInWeek": 6,
-    "title": "TVM Mastery Drill — Live Speed Test",
+    "title": "TVM Mastery Drill — Live Client Speed Test",
     "duration": 30,
     "hasReflection": false
   },
@@ -425,7 +425,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "week": 9,
     "dayInWeek": 4,
     "title": "Retirement Step-by-Step CST",
-    "duration": 25,
+    "duration": 35,
     "hasReflection": false
   },
   {
