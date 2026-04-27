@@ -15,7 +15,7 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
       "A universal life plan with a fixed crediting rate"
     ],
     correct: 1,
-    explanation: "PLP is a comprehensive ILP designed as a one-stop protection and investment solution, combining insurance coverage with investment in professionally managed portfolios up to age 99.",
+    explanation: "PLP is a comprehensive ILP designed as a one-stop protection and investment solution, combining insurance coverage with investment in professionally managed portfolios. The policy matures at the Insured's age 100 [PS section 3.4].",
     category: 'product-facts'
   },
   {
@@ -35,23 +35,23 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     options: [
       "Max: Insured Amount + Policy Value; Plus: Higher of Insured Amount or Policy Value",
       "Both calculate the same way: Insured Amount + Policy Value",
-      "Max: Higher of Insured Amount or Policy Value; Plus: Insured Amount + Policy Value",
+      "Max: Higher of (Insured Amount + total top-ups - total withdrawals) OR policy value, less applicable fees and charges; Plus: Insured Amount + policy value, less applicable fees and charges",
       "Max: Policy Value only; Plus: Insured Amount only"
     ],
     correct: 2,
-    explanation: "PLP Max pays the higher of Insured Amount OR Policy Value (SAR decreases to zero, charges disappear). PLP Plus pays Insured Amount PLUS Policy Value (SAR constant, charges keep escalating). This structural difference leads to Max projecting approximately $5.1M vs Plus approximately $2.9M at $200/month.",
+    explanation: "Plus pays Insured Amount + policy value, less applicable fees and charges (SAR constant, charges escalate). Max pays the higher of (Insured Amount + total top-up premiums - total withdrawals) OR policy value, less applicable fees and charges (SAR decreases toward zero, charges fall away) [PS section 3.1(A)]. This is why Max projects approximately $5.1M vs Plus approximately $2.9M at $200/month.",
     category: 'product-facts'
   },
   {
-    question: "What are the key parameters of the LCC (Life Changing Conditions) Rider?",
+    question: "What are the key parameters of the LCC (Lifetime Critical Cover) Rider?",
     options: [
-      "100 conditions, $250,000 limit, 2 claims, 10 special conditions",
-      "150 conditions, $350,000 limit, 3 claims, 15 special conditions at 20% payout each",
-      "200 conditions, $500,000 limit, 5 claims, 20 special conditions",
-      "150 conditions, $500,000 limit, 3 claims, 10 special conditions at 25% payout each"
+      "100 conditions, 200% IA cap, 2 claims, 10 special conditions",
+      "150 conditions, 300% of Insured Amount lifetime cap on Medical Condition Benefits, up to 3 claims, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims)",
+      "200 conditions, $500,000 fixed cap, 5 claims, 20 special conditions",
+      "150 conditions, $350,000 fixed cap, 3 claims, 10 special conditions at 25% payout each"
     ],
     correct: 1,
-    explanation: "The LCC Rider covers 150 conditions with a $350,000 limit and up to 3 claims. It also covers 15 special conditions at 20% payout each, claimable up to 10 times, with a maximum of $25,000 per special condition claim.",
+    explanation: "LCC covers 150 conditions with a lifetime cap of 300% of the Insured Amount on Medical Condition Benefits [PS section 3.1 of LCC] -- it is not a fixed dollar amount. Up to 3 Medical Condition claims, plus 15 special conditions at 20% payout each (max S$25,000 per special claim, up to 10 special claims) [Day 3 cheat-sheet].",
     category: 'product-facts'
   },
   {
@@ -79,39 +79,39 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "When can withdrawals be made from PLP, and when is the Dial Down feature available?",
+    question: "When can partial withdrawals be made from PLP, and when is the Dial Down (reduce coverage) feature available?",
     options: [
       "Withdrawals after age 55 or 15 years; Dial Down at 15 years or age 55",
-      "Withdrawals after age 62 or 20 years; Dial Down at 20 years or 62nd birthday",
+      "Withdrawals: any time after the end of Policy Year 2 (min S$1,000 withdrawal, min S$1,000 balance). Dial Down: issue age below 52 = 20 years from policy date OR 62nd birthday whichever earlier; issue age 52+ = 10 years from policy date.",
       "Withdrawals after age 60 or 25 years; Dial Down at 25 years or age 65",
       "Withdrawals anytime after Year 5; Dial Down at 10 years or age 50"
     ],
     correct: 1,
-    explanation: "Withdrawals are available after age 62 OR 20 years from policy start. The Dial Down feature is available at 20 years from policy date OR the 62nd birthday, whichever comes first.",
+    explanation: "Partial withdrawals are allowed any time after the end of Year 2, minimum S$1,000 withdrawal and minimum S$1,000 balance [PS section 6.4]. Dial-down availability depends on Issue Age [PS section 6.1(b)(ii)]: issue age below 52 = 20 years OR 62nd birthday whichever earlier; issue age 52 and above = 10 years from Policy Date. Withdrawal and dial-down are separate mechanics.",
     category: 'product-facts'
   },
   {
-    question: "How does the Vitality Power-Up Dollar work across different tiers?",
+    question: "How does the Vitality PowerUp Dollar adjust the Base sum assured across the four Vitality tiers each year?",
     options: [
-      "All tiers provide a flat 10% extra sum assured with no changes",
+      "All tiers provide a flat 10% extra sum assured with no annual change",
       "Bronze: +5%, Silver: +10%, Gold: +15%, Platinum: +20%",
-      "Extra 10% sum assured; Bronze decreases 10%, Gold maintains, Platinum increases 5%/year",
+      "Bronze -10%, Silver -5%, Gold +0%, Platinum +5% annual change to Base; min 0%, max 150% of Base; adjustment locks at later of 75th birthday or 15th policy anniversary",
       "No extra sum assured; Vitality only provides premium discounts"
     ],
     correct: 2,
-    explanation: "The Vitality Power-Up Dollar provides an extra 10% of sum assured. At Bronze tier it decreases by 10%, Gold tier maintains it, and Platinum tier increases it by 5% per year.",
+    explanation: "Annual change to Base by tier: Bronze -10%, Silver -5%, Gold +0%, Platinum +5%. Subject to a minimum of 0% and maximum of 150% of Base. The annual adjustment locks at the later of the 75th birthday or the 15th policy anniversary [PS p.15-16; Day 3; Day 5].",
     category: 'product-facts'
   },
   {
-    question: "What is the death discount structure for PLP?",
+    question: "What is the sum-assured discount structure on the PLP Death Benefit Charge?",
     options: [
       "5% for all coverage amounts",
-      "10% for coverage >= $500,000, 5% for < $500,000",
-      "8% for coverage >= $250,000, 5% for coverage < $250,000",
-      "No death discount is offered"
+      "10% for coverage >= S$500,000, 5% for < S$500,000",
+      "5% reduction at Insured Amount >= S$120,000; 8% reduction at Insured Amount >= S$250,000; no discount below S$120,000",
+      "No sum-assured discount is offered"
     ],
     correct: 2,
-    explanation: "PLP offers an 8% death discount for coverage of $250,000 or more, and a 5% discount for coverage below $250,000.",
+    explanation: "A 5% or 8% reduction of the monthly Benefit Charge is given if the Insured Amount is at least S$120,000 or S$250,000 respectively [PS section 5.5]. There is no discount below S$120,000. A separate 50% first-year Benefit Charge discount also applies.",
     category: 'product-facts'
   },
   {
@@ -127,15 +127,15 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What are the three investment portfolios available in PLP, and who manages them?",
+    question: "What are the three investment portfolios available in PLP, and who guides them?",
     options: [
       "Conservative, Moderate, and Aggressive, managed by BlackRock",
-      "Cautious, Balanced, and Adventurous, guided by Mercer",
+      "Pro Cautious, Pro Balanced, and Pro Adventurous, guided by Mercer",
       "Low Risk, Medium Risk, and High Risk, managed by Vanguard",
       "Growth, Income, and Hybrid, guided by Fidelity"
     ],
     correct: 1,
-    explanation: "PLP offers three portfolios -- Cautious, Balanced, and Adventurous -- guided by Mercer, which advises on over $16 trillion of assets and manages over $267 billion.",
+    explanation: "PLP offers three portfolios -- Pro Cautious, Pro Balanced, and Pro Adventurous -- guided by Mercer (Brochure p.4), which has US$12.9 trillion in assets under advisement (as at 30 June 2019) and over 40 years of providing investment advice.",
     category: 'product-facts'
   },
   {
@@ -344,12 +344,12 @@ export const proLifetimeProtectorExamQuestions: ExamQuestion[] = [
     question: "A client objects: 'Why not just buy term and invest the rest?' What is the best counter?",
     options: [
       "Term insurance is always better.",
-      "PLP gives you investment discipline with professional management by Mercer, coverage up to age 99 (vs term ending at 65-70), and the two-in-one convenience. Most people lack the discipline to invest consistently on their own.",
+      "PLP gives you investment discipline with professional management by Mercer, coverage to maturity at age 100 [PS section 3.4] (vs term ending at 65-70), and the two-in-one convenience. Most people lack the discipline to invest consistently on their own.",
       "ILPs always outperform self-directed investing.",
       "There is no good answer to that."
     ],
     correct: 1,
-    explanation: "Address the behavioral discipline gap, the coverage duration advantage (age 99 vs 65-70), and the convenience of professional management in a single product.",
+    explanation: "Address the behavioral discipline gap, the coverage duration advantage (PLP matures at age 100 [PS section 3.4] vs term ending at 65-70), and the convenience of professional management in a single product.",
     category: 'objection-handling'
   },
   {

@@ -19,7 +19,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q2 -- correct: 0
+  // Q2 -- correct: 2
   {
     question: "Up to what age does AIA Pro Lifetime Protector provide coverage?",
     options: [
@@ -28,8 +28,8 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "Age 100",
       "Age 75"
     ],
-    correct: 0,
-    explanation: "PLP provides coverage up to age 99, offering near-lifetime protection for policyholders.",
+    correct: 2,
+    explanation: "PLP matures at the Insured's age 100 and terminates automatically on the maturity date [PS section 3.4]. The brochure example (p.7) confirms protection until age 100.",
     category: 'product-facts'
   },
 
@@ -145,37 +145,37 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q11 -- correct: 0
+  // Q11 -- correct: 1
   {
-    question: "From which year onwards does PLP offer 100% premium allocation?",
+    question: "From which policy year onwards does PLP allocate 100% of premiums to the investment component?",
     options: [
-      "After Year 6",
-      "After Year 5",
-      "After Year 10",
-      "After Year 3"
+      "From Year 6 onwards",
+      "From Year 5 onwards",
+      "From Year 10 onwards",
+      "From Year 3 onwards"
     ],
-    correct: 0,
-    explanation: "After Year 6, PLP offers 100% premium allocation, which is an improvement over the old plan that offered only 95%.",
+    correct: 1,
+    explanation: "The Year 1-5 premium charge schedule is 80% / 55% / 50% / 8% / 0%, so from Year 5 onwards there is no premium charge and 100% of every premium is allocated to the investment component (Day 3 cheat sheet).",
     category: 'product-facts'
   },
 
   // Q12 -- correct: 3
   {
-    question: "What special bonus does PLP provide after Year 10?",
+    question: "When does the PLP Special Bonus begin to be paid, per the Product Summary?",
     options: [
-      "1% bonus",
-      "5% bonus",
-      "3% bonus",
-      "2% bonus"
+      "1% bonus from Year 5",
+      "5% bonus from Year 15",
+      "3% bonus from Year 8",
+      "2% bonus from the 10th annual / 19th semi-annual / 37th quarterly / 109th monthly regular premium paid onwards"
     ],
     correct: 3,
-    explanation: "After Year 10, PLP provides a special 2% bonus as an additional incentive for long-term policyholders.",
+    explanation: "PLP pays a 2% Special Bonus from the 10th annual / 19th semi-annual / 37th quarterly / 109th monthly regular premium paid onwards [PS section 3.3]. The trigger is premium count by frequency, not simply a calendar year cutoff.",
     category: 'product-facts'
   },
 
   // Q13 -- correct: 1
   {
-    question: "What death discount does PLP offer for coverage of $250,000 or more?",
+    question: "What sum-assured discount on the monthly Death Benefit Charge applies for an Insured Amount of $250,000 or more?",
     options: [
       "5%",
       "8%",
@@ -183,21 +183,21 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "12%"
     ],
     correct: 1,
-    explanation: "PLP offers an 8% death discount for coverage of $250,000 or more, and 5% for coverage below $250,000.",
+    explanation: "An 8% reduction of the monthly Death Benefit Charge is given when the Insured Amount of the basic policy is equal to or more than S$250,000 [PS section 5.5]. A separate 5% tier applies at S$120,000 to S$249,999.",
     category: 'product-facts'
   },
 
   // Q14 -- correct: 0
   {
-    question: "What is the death discount for PLP coverage below $250,000?",
+    question: "What sum-assured discount applies when the PLP Insured Amount is at least $120,000 but less than $250,000?",
     options: [
       "5%",
       "8%",
-      "3%",
+      "No discount",
       "10%"
     ],
     correct: 0,
-    explanation: "For coverage below $250,000, the death discount is 5%. Higher coverage of $250,000 or more receives an 8% discount.",
+    explanation: "A 5% reduction of the monthly Death Benefit Charge applies when the Insured Amount is at least S$120,000 [PS section 5.5]. Below S$120,000 there is no sum-assured discount; at S$250,000 or more the discount steps up to 8%.",
     category: 'product-facts'
   },
 
@@ -243,17 +243,17 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q18 -- correct: 0
+  // Q18 -- correct: 3
   {
-    question: "What is the coverage limit for the LCC (Life Changing Conditions) Rider?",
+    question: "What is the lifetime cap on Medical Condition Benefit claims under the LCC (Lifetime Critical Cover) Rider?",
     options: [
-      "$350,000",
-      "$500,000",
-      "$250,000",
-      "$400,000"
+      "$350,000 fixed",
+      "$500,000 fixed",
+      "200% of the Insured Amount",
+      "300% of the Insured Amount under the supplementary agreement"
     ],
-    correct: 0,
-    explanation: "The LCC Rider has a coverage limit of $350,000 and covers 150 conditions with up to 3 claims.",
+    correct: 3,
+    explanation: "The total amount payable under Medical Condition Benefits shall not exceed 300% of the Insured Amount under this Supplementary Agreement [PS section 3.1 of LCC]. The cap scales with the Insured Amount chosen at issue -- there is no fixed dollar cap. A client buying LCC at $200K Insured Amount has a $600K cap.",
     category: 'product-facts'
   },
 
@@ -383,17 +383,17 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q28 -- correct: 1
+  // Q28 -- correct: 2
   {
-    question: "When can withdrawals be made from a PLP policy?",
+    question: "When can partial withdrawals be made from a PLP policy?",
     options: [
       "After age 55 OR 15 years",
       "After age 62 OR 20 years",
-      "After age 60 OR 25 years",
+      "Any time after the end of Policy Year 2, subject to a minimum withdrawal of S$1,000 and a minimum remaining balance of S$1,000",
       "Anytime after Year 5"
     ],
-    correct: 1,
-    explanation: "Withdrawals from PLP are available after the policyholder reaches age 62 OR after 20 years from the policy start date.",
+    correct: 2,
+    explanation: "Partial withdrawals are allowed any time after the end of Year 2, with a minimum withdrawal of S$1,000 and a minimum balance of S$1,000 [PS section 6.4]. The age 62 / 20-year rule is the dial-down (reduce coverage) mechanic, not the withdrawal mechanic -- the two are separate.",
     category: 'product-facts'
   },
 
@@ -413,15 +413,15 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
 
   // Q30 -- correct: 0
   {
-    question: "When is the Dial Down feature available for PLP?",
+    question: "When is the Dial Down (reduce coverage) feature available under PLP?",
     options: [
-      "At 20 years from policy date OR the 62nd birthday",
-      "At 15 years from policy date OR the 55th birthday",
-      "At 10 years from policy date OR the 60th birthday",
-      "At 25 years from policy date OR the 65th birthday"
+      "Issue age below 52: 20 years from policy date OR the 62nd birthday, whichever is earlier. Issue age 52 and above: 10 years from policy date.",
+      "20 years from policy date OR the 62nd birthday for all issue ages",
+      "10 years from policy date OR the 60th birthday for all issue ages",
+      "25 years from policy date OR the 65th birthday for all issue ages"
     ],
     correct: 0,
-    explanation: "The Dial Down feature becomes available at 20 years from the policy date OR the policyholder's 62nd birthday, whichever comes first.",
+    explanation: "Dial-down rule depends on Issue Age [PS section 6.1(b)(ii)]. Issue age below 52: 20 years OR 62nd birthday, whichever is earlier. Issue age 52 and above: 10 years from Policy Date.",
     category: 'product-facts'
   },
 
@@ -519,21 +519,21 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "Mercer"
     ],
     correct: 3,
-    explanation: "Mercer advises on PLP's portfolio strategies. Mercer advises on over $16 trillion of assets and manages over $267 billion.",
+    explanation: "Mercer guides PLP's Pro Cautious, Pro Balanced, and Pro Adventurous portfolios. Per the brochure (p.4), Mercer has US$12.9 trillion in assets under advisement (as at 30 June 2019) and over 40 years of providing investment advice.",
     category: 'product-facts'
   },
 
-  // Q38 -- correct: 0
+  // Q38 -- correct: 1
   {
-    question: "How much in assets does Mercer advise on?",
+    question: "What are Mercer's credentials as cited in the PLP brochure?",
     options: [
-      "Over $16 trillion",
-      "Over $5 trillion",
-      "Over $10 trillion",
-      "Over $1 trillion"
+      "US$1.29 trillion AUM, 25 years experience",
+      "US$12.9 trillion in assets under advisement (30 June 2019), 40+ years of investment advice",
+      "US$16 trillion in assets, $267 billion managed",
+      "US$50 trillion AUM, founded 1880"
     ],
-    correct: 0,
-    explanation: "Mercer advises on over $16 trillion of assets and directly manages over $267 billion, making them a globally significant investment advisor.",
+    correct: 1,
+    explanation: "Brochure p.4: US$12.9 trillion in assets under advisement as at 30 June 2019, with over 40 years of providing investment advice. The $16T / $267B figures are not in the brochure or PS.",
     category: 'product-facts'
   },
 
@@ -543,11 +543,11 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     options: [
       "Higher of Insured Amount OR Policy Value",
       "Policy Value only",
-      "Insured Amount + Policy Value",
+      "Insured Amount + Policy Value, less applicable fees and charges",
       "Insured Amount only"
     ],
     correct: 2,
-    explanation: "In the Plus plan, the death benefit equals the Insured Amount plus the Policy Value. The SAR remains constant but costs escalate over time.",
+    explanation: "Plus death benefit = Insured Amount + policy value, less applicable fees and charges [PS section 3.1(A)]. The SAR remains constant so insurance charges escalate with age.",
     category: 'product-facts'
   },
 
@@ -556,12 +556,12 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     question: "In the PLP Max plan, how is the death benefit calculated?",
     options: [
       "Insured Amount + Policy Value",
-      "Higher of Insured Amount OR Policy Value",
+      "Higher of (Insured Amount + total top-up premiums - total withdrawals) OR policy value, less applicable fees and charges",
       "Policy Value minus charges",
       "Fixed insured amount regardless of policy value"
     ],
     correct: 1,
-    explanation: "In the Max plan, the death benefit is the higher of the Insured Amount OR the Policy Value. As the policy value grows, the SAR decreases, reducing insurance charges.",
+    explanation: "Max death benefit = higher of (Insured Amount + total top-up premiums - total withdrawals) OR policy value, less applicable fees and charges [PS section 3.1(A)]. As the policy value grows, the Sum-at-Risk decreases toward zero, reducing insurance charges.",
     category: 'product-facts'
   },
 
@@ -581,29 +581,29 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
 
   // Q42 -- correct: 0
   {
-    question: "What does the Vitality Power-Up Dollar provide?",
+    question: "What does the Vitality PowerUp Dollar provide, and what is the full annual tier adjustment table?",
     options: [
-      "An extra 10% of sum assured",
-      "An extra 5% of sum assured",
-      "An extra 20% of sum assured",
-      "A cash rebate on premiums"
+      "An extra 10% of Base sum assured. Annual change to Base by tier: Bronze -10%, Silver -5%, Gold +0%, Platinum +5%. Min 0%, max 150% of Base. Adjustment locks at later of 75th birthday or 15th policy anniversary.",
+      "An extra 5% of sum assured for all tiers, no annual change",
+      "An extra 20% of sum assured for all tiers",
+      "A cash rebate on premiums only"
     ],
     correct: 0,
-    explanation: "The Vitality Power-Up Dollar provides an extra 10% of the sum assured. The benefit changes based on Vitality tier: Bronze decreases by 10%, Gold maintains, Platinum increases by 5% per year.",
+    explanation: "The Vitality PowerUp Dollar provides extra Base sum assured with annual tier-based adjustments [PS p.15-16]: Bronze -10%, Silver -5%, Gold +0%, Platinum +5%, subject to a minimum of 0% and maximum of 150% of Base. The annual adjustment locks at the later of the 75th birthday or the 15th policy anniversary.",
     category: 'product-facts'
   },
 
   // Q43 -- correct: 2
   {
-    question: "What happens to the Vitality Power-Up Dollar at Bronze tier?",
+    question: "Under the Vitality PowerUp Dollar tier table, what is the annual adjustment to Base sum assured at Bronze and Silver tiers?",
     options: [
-      "Increases by 5% per year",
-      "Stays the same",
-      "Decreases by 10%",
-      "Increases by 10%"
+      "Bronze +5%, Silver +0%",
+      "Bronze 0%, Silver -10%",
+      "Bronze -10%, Silver -5%",
+      "Bronze -5%, Silver +0%"
     ],
     correct: 2,
-    explanation: "At Bronze tier, the Vitality Power-Up Dollar decreases by 10%. Gold tier maintains the benefit, and Platinum tier increases it by 5% per year.",
+    explanation: "The full tier table is Bronze -10%, Silver -5%, Gold +0%, Platinum +5% [Day 3, Day 5, PS p.15-16]. Silver is a real tier and was previously omitted from this bank.",
     category: 'product-facts'
   },
 
@@ -1111,7 +1111,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     options: [
       "You are probably right, investing on your own is always better.",
       "PLP returns are guaranteed to beat the market.",
-      "PLP combines insurance protection with investment management by Mercer, who advises on over $16 trillion. You get the convenience of protection and investment in one plan without having to manage both separately.",
+      "PLP combines insurance protection with investment management by Mercer, who has US$12.9 trillion in assets under advisement (as at 30 June 2019) and over 40 years of investment advice (Brochure p.4). You get the convenience of protection and investment in one plan without having to manage both separately.",
       "You should just buy term insurance then."
     ],
     correct: 2,
@@ -1236,12 +1236,12 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     question: "A client says: 'Why should I not just buy term and invest the rest?' How do you respond?",
     options: [
       "Term insurance is always better than ILPs.",
-      "PLP gives you the discipline of regular investing with professional management by Mercer, plus you get coverage up to age 99. With buy term invest the rest, most people lack the discipline to invest consistently, and term coverage typically ends at 65-70.",
+      "PLP gives you the discipline of regular investing with professional management by Mercer, plus you get coverage all the way to age 100 [PS section 3.4]. With buy term invest the rest, most people lack the discipline to invest consistently, and term coverage typically ends at 65-70.",
       "Because ILPs always outperform self-directed investing.",
       "There is no good answer to that question."
     ],
     correct: 1,
-    explanation: "Address the behavioral aspect (investment discipline) and the coverage duration advantage (up to age 99 vs typical term ending at 65-70).",
+    explanation: "Address the behavioral aspect (investment discipline) and the coverage duration advantage (PLP matures at age 100 [PS section 3.4] vs typical term ending at 65-70).",
     category: 'objection-handling'
   },
 
@@ -1308,7 +1308,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "PLP is the cheapest ILP in the market.",
       "Cheaper ILPs are always worse products.",
       "Price does not matter for insurance.",
-      "PLP's value is in its comprehensive features: 150-condition CI coverage, premium flexibility, No Lapse Privilege, Mercer-managed portfolios, Vitality rewards, and coverage up to age 99. The total package justifies the premium."
+      "PLP's value is in its comprehensive features: 150-condition CI coverage, premium flexibility, No Lapse Privilege, Mercer-managed portfolios, Vitality rewards, and coverage to maturity at age 100 [PS section 3.4]. The total package justifies the premium."
     ],
     correct: 3,
     explanation: "Shift the conversation from price to total value by listing PLP's comprehensive feature set that cheaper alternatives lack.",
@@ -1331,11 +1331,11 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
 
   // Q95 -- correct: 2
   {
-    question: "A client says: 'I only need coverage until my kids are grown, not until age 99.' How do you respond?",
+    question: "A client says: 'I only need coverage until my kids are grown, not until age 100.' How do you respond?",
     options: [
       "You are right, buy term insurance instead.",
-      "You are legally required to have coverage until 99.",
-      "PLP is flexible -- you can dial down your coverage when your kids are grown and shift focus to the investment component for retirement income. The coverage up to 99 is a benefit, not a requirement you have to maximize.",
+      "You are legally required to have coverage until age 100.",
+      "PLP is flexible -- you can dial down your coverage when your kids are grown and shift focus to the investment component for retirement income. The coverage to maturity at age 100 [PS section 3.4] is a benefit, not a requirement you have to maximize.",
       "Age 99 coverage is the only option; it cannot be changed."
     ],
     correct: 2,
@@ -1508,7 +1508,7 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
       "ProAchiever is always better than PLP.",
       "PLP is always better than ProAchiever.",
       "They are exactly the same product.",
-      "PLP and ProAchiever serve different needs. PLP is a comprehensive protection plan that evolves with your life stages and provides coverage up to age 99. ProAchiever focuses more on the investment component with a defined investment period. Let us look at your specific needs to determine which fits better."
+      "PLP and ProAchiever serve different needs. PLP is a comprehensive protection plan that evolves with your life stages and matures at age 100 [PS section 3.4]. ProAchiever focuses more on the investment component with a defined investment period. Let us look at your specific needs to determine which fits better."
     ],
     correct: 3,
     explanation: "Differentiate based on the client's needs rather than making blanket comparisons. PLP emphasizes comprehensive lifetime protection; ProAchiever emphasizes investment.",
@@ -1695,5 +1695,121 @@ export const proLifetimeProtectorStudyBank: StudyQuestion[] = [
     correct: 0,
     explanation: "Highlight PLP's unique insurance component that robo-advisors cannot replicate, while acknowledging the valid investment comparison.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // SECTION D ADDITIONS (8 questions) -- Q121-Q128
+  // ============================================================
+
+  // Q121 -- correct: 2
+  {
+    question: "What is the maturity age of AIA Pro Lifetime Protector (II)?",
+    options: [
+      "Age 85",
+      "Age 95",
+      "Age 100",
+      "Age 99"
+    ],
+    correct: 2,
+    explanation: "The policy matures at the Insured's age 100 and terminates automatically on the maturity date [PS section 3.4].",
+    category: 'product-facts'
+  },
+
+  // Q122 -- correct: 1
+  {
+    question: "What are Mercer's credentials as cited in the PLP brochure?",
+    options: [
+      "US$1.29 trillion AUM, 25 years experience",
+      "US$12.9 trillion in assets under advisement (30 June 2019), 40+ years of investment advice",
+      "US$16 trillion in assets, $267 billion managed",
+      "US$50 trillion AUM, founded 1880"
+    ],
+    correct: 1,
+    explanation: "Brochure p.4: US$12.9 trillion in assets under advisement as at 30 June 2019, with over 40 years of providing investment advice.",
+    category: 'product-facts'
+  },
+
+  // Q123 -- correct: 2
+  {
+    question: "What is the lifetime cap on Medical Condition Benefit claims under the Lifetime Critical Cover (LCC) rider?",
+    options: [
+      "S$350,000 fixed",
+      "S$500,000 fixed",
+      "300% of the Insured Amount under the supplementary agreement",
+      "200% of the Insured Amount"
+    ],
+    correct: 2,
+    explanation: "The total amount payable under Medical Condition Benefits shall not be more than 300% of the Insured Amount [PS section 3.1 of LCC]. The cap scales with the Insured Amount -- there is no fixed dollar cap.",
+    category: 'product-facts'
+  },
+
+  // Q124 -- correct: 1
+  {
+    question: "The Sum-at-Risk on PLP Max is calculated as:",
+    options: [
+      "Insured Amount minus all premiums paid",
+      "Insured Amount + total top-up premiums - total withdrawals - policy value",
+      "Policy value minus the Insured Amount",
+      "Annual premium x number of years to age 100"
+    ],
+    correct: 1,
+    explanation: "Sum-at-Risk = Insured Amount + total top-up premiums - total withdrawals - policy value [PS section 5.5(B)]. When SAR is at or below zero in any month, no Benefit Charge is payable for that month -- this is the structural feature that lets Max insurance go free once policy value crosses Insured Amount.",
+    category: 'product-facts'
+  },
+
+  // Q125 -- correct: 1
+  {
+    question: "Which set of statements must be delivered verbatim at every PLP meeting under ILP compliance?",
+    options: [
+      "Premiums guaranteed, policy values guaranteed, past performance indicative",
+      "Premiums NOT guaranteed, policy values NOT guaranteed, past performance NOT indicative of future performance",
+      "AIA guarantees minimum 3% return",
+      "Past performance over 10 years is the best predictor"
+    ],
+    correct: 1,
+    explanation: "The three pillar disclosures (Brochure p.9 / PS p.11) are the foundation of every ILP sale and are RNF-audited: premiums are not guaranteed, policy values are not guaranteed, and past performance is not indicative of future performance.",
+    category: 'compliance'
+  },
+
+  // Q126 -- correct: 2
+  {
+    question: "A prospect needs S$5,000/month of passive income in retirement. By the 25X rule, what is the portfolio target?",
+    options: [
+      "S$600,000",
+      "S$900,000",
+      "S$1,500,000",
+      "S$3,000,000"
+    ],
+    correct: 2,
+    explanation: "Monthly expense x 12 x 25 = portfolio target. $5,000 x 12 x 25 = $1.5M. The 25X rule converts vague retirement language into an Insured-Amount target (Day 2 anchor).",
+    category: 'sales-angles'
+  },
+
+  // Q127 -- correct: 1
+  {
+    question: "PLP's Death Benefit Charge sum-assured discounts are:",
+    options: [
+      "5% at any coverage level",
+      "5% at Insured Amount >= S$120,000; 8% at Insured Amount >= S$250,000",
+      "8% at any coverage >= S$100,000",
+      "10% at coverage >= S$500,000"
+    ],
+    correct: 1,
+    explanation: "5% at $120K+ and 8% at $250K+ [PS section 5.5]. There is no sum-assured discount below $120K. A separate 50% first-year Benefit Charge discount also applies.",
+    category: 'product-facts'
+  },
+
+  // Q128 -- correct: 1
+  {
+    question: "When recommending a Mercer-guided portfolio, the discipline rule is:",
+    options: [
+      "Always recommend Pro Adventurous to maximize return",
+      "Match the portfolio to the prospect's risk profile -- go lower or similar, never higher",
+      "Default to Pro Cautious unless the client is under 30",
+      "Let the client choose with no FC input"
+    ],
+    correct: 1,
+    explanation: "Never propose above the prospect's stated risk profile (Day 5 Part 2 + Video 2). This is an RNF-tested rule that is trust-critical and audit-critical.",
+    category: 'compliance'
   }
 ];
