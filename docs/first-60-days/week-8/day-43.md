@@ -1,193 +1,363 @@
 ---
 week: 8
 day: 43
-title: "Scripting Your Approach"
+title: "The Approach - Warm Market Survey & Cold Calls"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
   - internal-reference:48-49
-duration_minutes: 25
+duration_minutes: 30
 tags: [first-60-days, week-8, skills]
 ---
 
-# Day 43 - Scripting Your Approach
+# Day 43 - The Approach: Warm Market Survey & Cold Calls
 
-> **The one idea for today:** Improvised prospecting calls fail. Scripted prospecting calls succeed, then become natural over reps. A good script isn't a crutch - it's scaffolding. Master the scaffolding, then walk freely.
+> **The one idea for today:** The approach has two completely different psychological setups. **Warm** is "I need your help with a quick survey" - friends and people you already know. **Cold** is "we don't know each other, here's why this 60 seconds is worth it" - referrals, leads, strangers. Master both, plus a follow-up system, plus the emotional skill to keep dialling after a no.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Structure** a prospecting call using the 6-part Telephone Technique.
-2. **Deliver** a 30-second elevator pitch using the AIDA framework.
-3. **Sell the appointment**, not the product - the only outcome you're chasing on a prospecting call.
+1. **Run the warm-market survey** so confidently you can text or call any friend without freezing.
+2. **Run a cold-call flow** that books appointments without selling the product.
+3. **Follow up** the 60-80% of contacts who don't say yes immediately - so they don't leak out of your pipeline.
+4. **Face rejection** with a math-based mindset that lets you keep going for 100+ calls in a week.
 
 ---
 
-## 1. Why new FCs fail at tele-prospecting
+## Part 1 - Warm market: the Market Survey approach
 
-Six common failure patterns - every new FC hits at least 3:
+This is the approach for **anyone you already know**. Friends, ex-colleagues, classmates, family contacts, your Project 100 list. They will pick up the phone because of who you are - not because of what you're offering.
 
-1. **Not taking it seriously.** Treating calls as an afterthought.
-2. **Not doing it enough.** 5 calls a week isn't activity, it's window-shopping.
-3. **Not getting enough leads.** Empty Project 100 -> no calls -> no pipeline.
-4. **Recycling calls.** Same 20 people, called repeatedly. No new names.
-5. **No structured script.** Every call reinvented on the fly. Exhausting and inconsistent.
-6. **No follow-up system.** Contacts made once and forgotten.
+### When you use it
 
-**The fix for all six:** structured activity + structured scripts + a CRM.
+- Your Project 100 list (Day 19).
+- The "by the way" call when meeting friends socially.
+- Texting a friend who never picks up the phone.
 
-## 2. The 4-second rule - what the prospect decides before you finish your first sentence
+**Volume target before you move into appointments:** 30 completed market surveys. That's the floor. Below 30, you don't yet have the reps for your tonality and pace to settle.
 
-Before you script a single word, internalise this: the prospect decides three things about you in roughly **4 seconds** of hearing your voice. Get these three right in the first 4 seconds and you have control of the call. Miss any one and the prospect takes over - cutting you off, hitting reflex objections, ending the call.
+### The mindset shift that unlocks the warm call
 
-**The three things they must perceive:**
+You are NOT selling. You are NOT pitching products. You are **asking for help with a survey** as a new FC who's required to do them.
 
-1. **Sharp** - you're on the ball, you're not wasting their time, you'll get to the point.
-2. **Enthusiastic** - what you have is worth hearing. Not loud enthusiasm; quiet, confident, *bottled* enthusiasm. A sense that there's a reason you're calling.
-3. **Expert** - you know what you're talking about. You're not just another junior reading a script.
+That framing matters. The prospect's brain hears "help me out for 5 minutes" and not "another sales call." Your friends will say yes to "help me out" almost every time.
+
+**Internal reframe:** the survey isn't a sales tool. It's a **practice tool** for you - and a way to legitimately reconnect with people you've drifted from. The appointments come naturally as a by-product, not as the point.
+
+### The script - memorise, internalise, naturalise
+
+This is the canonical AIA market survey script. Use it word-for-word until it becomes your own.
+
+**Opening**
+> Hello, good morning, is this John?
+>
+> John, this is [your name]. Do you have a moment to speak?
+>
+> How are you this period? *(brief rapport, under 60 seconds)*
+
+**Agenda - the survey ask**
+> As you may have learnt, I am intending to embark on the career of a Financial Advisor (or: currently interning with a Financial Services Agency) and I am tasked to do a simple market survey with the people that I know. Would you be able to help me by giving me 5 minutes of your time?
+
+*(They almost always say yes. Run Survey questions 1, 2, 3.)*
+
+**Setting the appointment - using survey question 4**
+> Thanks [name]. By the way, when I am officially licensed to start my practice (or: let's say I decide to embark on the practice as a Financial Advisor), one of my priorities is to extend my service to my closest friends. You are one of those whom I highly regard. Till then, may I get in touch with you for a 30-minute session to share with you the type of solutions I can offer?
+>
+> You have my assurance that during our meeting, I will not ask you to do anything you don't want to and any future meetings will depend entirely on whether you feel my services would be of help to you. Will that be good with you?
+
+*(They say yes. Move to the binary close.)*
+
+**Binary close**
+> Good. Would it be best to get together at your office, your home, or through Zoom?
+>
+> Would weekdays or weekends be better for you?
+>
+> Office hours or evenings?
+>
+> Could I see you on [day] at [time], or would [day 2] at [time 2] be better?
+
+**Closing off**
+> Really appreciate your help. Will it be alright if I keep you posted of any AIA promotions that are relevant to you? May I have your email address and date of birth so I can connect better with you?
+>
+> *(Optional)* May I have your permission to add you on Instagram or Facebook so we can keep each other updated?
+
+### The 30-meeting practice rule
+
+> Do **30 of these warm market surveys** before you move into the application/proposal phase.
+
+Why 30? Because:
+- The first 5 will feel awkward. Your tonality is stiff. You over-apologise.
+- Surveys 6-15 are when the script starts feeling natural.
+- Surveys 16-30 are where you actually become **good** at it - tonality, pace, rapport, the binary close.
+
+By Survey 30, you can call any friend without freezing. That's the goal.
+
+**The reps are the practice. The practice is what makes you confident enough to call your real warm market.**
+
+### Texting friends who never pick up
+
+For the friend who'd rather text than answer a call:
+
+> Hey [name], hope you're well! Quick one - I just started in financial advisory and part of the training is doing a short market survey with people I know (5 mins, just a few questions). Would really appreciate the help if you can spare the time this week. Could I call you Tuesday evening or Thursday around lunch?
+
+Same script, async. Notice the binary time close at the end - same logic as the phone version.
+
+### The "by the way" call (lunch aimai)
+
+Whenever you're meeting a friend for lunch / coffee / a non-work reason:
+
+> By the way, I recently started in financial advisory. I'd love to chat about it over a proper coffee sometime - no pressure, just want to share what I'm doing.
+
+Or the Singapore-flavoured variant:
+> I'm around the area, lunch aimai?
+
+During lunch, your friend almost always asks "what are you doing these days?" - and that's your 10-minute window. You're not pitching. You're a friend with a new chapter they want to know about.
+
+---
+
+## Part 2 - Cold market: the cold-call flow
+
+This is the approach for **people you don't know personally**. Referrals you've never met, online leads, social-media inbound DMs, lists. Zero existing trust. Different rules.
+
+### When you use it
+
+- A name passed to you by a current client.
+- A lead from a Facebook/Instagram inbound message.
+- Anyone outside your warm market.
+
+### The 4-second rule - what they decide before you finish your first sentence
+
+The prospect decides three things about you in roughly **4 seconds** of hearing your voice. Get these right and you have control of the call. Miss any one and they take over - cutting you off, hitting reflex objections, ending the call.
+
+**The three perceptions you need:**
+1. **Sharp** - on the ball, won't waste their time, gets to the point.
+2. **Enthusiastic** - what you have is worth hearing. Quiet, confident, *bottled* enthusiasm - not loud.
+3. **Expert** - you know what you're talking about. Not a junior reading off a card.
 
 **How it shows up in the first 4 seconds:**
-
-- **Tonality, not words.** Your words are maybe 10% of the signal. The rest is how your voice moves - pace, pitch, confidence, warmth.
-- **Pace.** Slightly faster than conversational, to signal "I respect your time." Not rushed.
-- **Pitch variation.** Flat voice = cold caller. Some lilt and rise-fall = real person with real purpose.
-- **No apology.** *"Sorry to bother you"* and *"I'll be quick"* are the classic signals that you don't believe you deserve the call. Cut them.
+- **Tonality, not words.** Your words are about 10% of the signal. Pace, pitch, confidence, warmth do the rest.
+- **Pace.** Slightly faster than conversational - signals "I respect your time." Not rushed.
+- **Pitch variation.** Flat = cold caller. Lilt and rise-fall = real person with real purpose.
+- **No apology.** Cut "Sorry to bother you" and "I'll be quick." Both signal you don't believe you deserve the call.
 
 **The opener that does all three in one line:**
 
-> *"Hey - it's [your name]? Calling from [firm]? How are you today?"*
+> Hey - it's [your name]? Calling from [firm]? How are you today?
 
-Each clause ends with a slight upward lilt - phrased as a question, not a declaration. The prospect's brain hears *"do I know this person? have I heard of this firm?"* and starts searching instead of rejecting. By the time they're done searching, you're into your real line:
+Each clause ends with a slight upward lilt - phrased as a question, not a declaration. The prospect's brain hears "do I know this person? have I heard of this firm?" and starts searching instead of rejecting. By the time they're done searching, you're into your real line:
 
-> *"The reason for the call today..."*
+> The reason for the call today...
 
-(Lower your voice here - mystery tonality. Now they lean in.)
+*(Lower your voice here - mystery tonality. They lean in.)*
 
-**Why this matters more than the script:** a brilliant script delivered in a flat, apologetic voice dies in 4 seconds. An average script delivered with sharp-enthusiastic-expert tonality earns another 30 seconds - which is all you need.
+### The pinpoint-driven cold-call script (the one that lifts conversion 10x)
 
-## 3. The 6-part Telephone Technique
+A district producer who closed 12 cases in one month switched from a generic AIDA-style script to a **pinpoint-driven** one and went from "1 hour of dialling = 1 appointment" to **"1 hour of dialling = 10 appointments."**
 
-A prospecting call has six phases. Memorise them in this order.
+The thesis is simple. Every prospect has one specific problem they're already half-thinking about. **Find it. Make that the agenda for the meeting. Don't pitch anything else.**
 
-### 1. Preparation
-- Know your list for the session (10-20 names).
-- Have scripts open. Have responses to top 5 objections ready.
-- Phone on do-not-disturb for incoming; schedule a specific window.
-- Mental state: calm, curious, not desperate.
+#### Why generic scripts under-convert
 
-### 2. Greeting
-> "Hello, is this John?"
+The "we help a lot of people with insurance planning, do you think you'd be interested to talk to me?" opener gets the same answer almost every time: *"No."* The prospect isn't refusing your help - they're refusing a generic ask. There's nothing in your sentence that maps to a problem in their head.
 
-Direct, confirms identity, invites response.
+| Script type | What the prospect hears |
+|---|---|
+| Generic | "Random person wants to sell me something I haven't asked about." -> No |
+| Pinpoint | "Someone wants to help me with the exact thing I've been worrying about." -> Maybe |
 
-### 3. Introduction
-> "John, this is [your name]. Do you have a moment to speak?"
+#### The 4-step pinpoint script
 
-Get permission. Respect their time. If they say no, **book a time** instead of pushing.
+**Step 1 - Position yourself by who you serve, not what you sell.**
 
-### 4. Purpose (the "by the way" call)
-The most important part - this is where you earn (or lose) the next 30 seconds.
+Don't open with "I'm an insurance / financial advisor." Open with *who you specifically help and what they typically struggle with.*
 
-Don't open with: "I wanted to talk to you about insurance."
-Do open with: "I'm in a new career and doing a simple market survey - would appreciate 5 minutes of your time."
+> Hey [name], I work with a lot of [your-target-group - e.g. fresh grads, young parents, SME owners] on [the problem they typically have - e.g. growing their first $X, structuring retirement, getting their kids' education funded].
 
-The purpose is framed as a request for *their help*, not a sale.
+For a fresh-grad audience, the typical pinpoint isn't "do you have insurance?" - it's "how do I grow my money" / "how do I retire well" / "I want a side hustle." Lead with that.
 
-### 5. Rapport building
-Brief - under 60 seconds. Reference a recent shared event, ask how they've been, comment genuinely on something you know about them.
+**Step 2 - Probe for the pinpoint with a binary question.**
 
-### 6. Summary / Setting the appointment
-Close with a **specific time ask**. Not "when's good?" - give two specific options.
+> Quick one - currently, are you investing already, or is your money still sitting in the bank?
 
-> "Would Tuesday 3pm or Thursday 7pm work better for you?"
+Two answers. Each opens a different pinpoint:
 
-## 4. Sell the appointment, not the product
+| Answer | Their actual pinpoint |
+|---|---|
+| "Still in the bank" | Lack of confidence / don't know where to start / fear of losing money |
+| "Already investing" | Probably overconcentrated in one thing - fear of underperformance / volatility |
 
-The single most common mistake: **trying to sell the policy on the phone.**
+The same logic works for retirement ("done any retirement planning?"), kids ("started planning for the kids' education?"), or any topic - pick a binary that exposes the gap.
 
-You can't. You shouldn't try. The only goal of a prospecting call is **to book a meeting.**
+**Step 3 - Drill one level deeper to make the pinpoint specific.**
 
-**What you sell on the phone:**
-- Your time (why 30 minutes of yours is worth 30 minutes of theirs).
-- The outcome of the meeting (clarity, not commitment).
-- Yourself (why they should meet you vs anyone else).
+If they say "I'm investing already, but only $300/month - I'm scared to lose it" -> the pinpoint is **fear of loss**, not lack of capital.
 
-**What you DON'T sell on the phone:**
-- Products.
-- Prices.
-- Detailed financial advice.
-- Complex concepts.
+If they say "I haven't started - don't know where to begin" -> the pinpoint is **starting friction**, not affordability.
 
-**The rule:** if the conversation strays into product or advice, gently redirect:
-> "That's a great question - the honest answer depends on your situation, which I'd rather understand properly before answering. Can we find 30 minutes this week?"
+**Whatever they tell you is the agenda for the Zoom.** Not what you wish were the agenda. Not what your product solves best. *Their* answer.
 
-## 5. When the meeting is booked - the 4-step introduction
+**Step 4 - Offer a low-friction Zoom with the pinpoint as the agenda.**
 
-Booking the meeting is half the work. The other half is running the meeting itself with structure, so you're never improvising in front of a prospect. Every first meeting follows four steps in this order.
+> Got it - sounds like the main thing on your mind is reducing risk while still growing the money. I can share a couple of strategies on how people in your situation diversify and reduce single-stock risk. Quick 30-min Zoom - would [day/time] work?
 
-```mermaid
-flowchart LR
-    S1[1 . Set the meeting<br/>confirm time, location, purpose] --> S2[2 . Re-share the purpose<br/>thank them for helping you out]
-    S2 --> S3[3 . Introduce yourself + agency<br/>your why, what you do, who you work with]
-    S3 --> S4[4 . Run the presentation<br/>leads to one of three outcomes]
-```
+Notice what's NOT in the close:
+- No "insurance"
+- No product name
+- No "let me give you a financial review"
+- No "I'd love to help you plan"
 
-### Step 1 - Set the meeting
-Confirm time, place, and purpose the day before. Short message:
-> "Looking forward to tomorrow 3pm at Starbucks Raffles Place. I'll run through the financial planning survey we spoke about - takes ~30 mins. Any questions, let me know!"
+What IS in the close: **their pinpoint, restated, plus a specific time.**
 
-### Step 2 - Re-share the purpose
-Open the meeting by restating why you're there and thanking them. Low pressure, humble. This is the frame-setting that stops them from treating you as a salesperson.
+#### The universal pattern
 
-### Step 3 - Introduce yourself and the agency
-Three artefacts you walk them through:
-- **Your write-up** - your *why*, your *what*, and the kind of people you help
-- **The agency philosophy** - what the team stands for
-- **The ecosystem** - the community, partners, and support the prospect is plugging into when they work with you
+> **Pinpoint** = the problem they already half-know they have -> make THAT the agenda -> they show up.
 
-These exist precisely so you don't have to improvise credibility. Build them once; reuse them with every prospect.
+Whatever pinpoint you surface IS the reason they say yes. They show up *because the meeting is about their problem* - not your product. The product becomes relevant inside the meeting once you've earned the time.
 
-### Step 4 - Run the presentation -> three outcomes
+### Setting a cold appointment - the binary time close
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">the financial planning presentation leads to -</div>
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-size:14px;color:hsl(var(--foreground));margin-bottom:1.25rem;">find current coverage . learn why planning matters</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;">
-    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Take action if not yet planned</div></div>
-    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Review and restructure portfolio</div></div>
-    <div style="padding:4px 20px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">outcome iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">No need now - collect referrals</div></div>
-  </div>
-</div>
+Same as warm market - never ask "when are you free?" That creates decision fatigue and invites delay. Always offer two specific options:
 
-There is **no fourth outcome**. Even the "no immediate need" case is still productive - the referral ask is the way this industry's top performers compound. A meeting that ends with 5 names in your notebook is a meeting that paid for itself.
+> Tuesday 3pm or Thursday 7pm work better?
 
-**The mental shift:** stop judging a meeting by whether they bought. Judge it by whether it ended in one of these three outcomes cleanly.
+Then **confirm 24 hours before** with a short message:
+> Looking forward to tomorrow 3pm on Zoom - I'll send the link an hour before. Anything specific you'd like me to prepare?
 
-## 6. The "by the way" call
+### When to abandon a cold call
 
-One of the most elegant prospecting techniques:
+Three hard refusals = move on. Don't argue, don't push, don't try to "win" the call. Sometimes "no" means "not now." Mark them for follow-up in 30 days. Move to the next name.
 
-You're already meeting someone (for lunch, coffee, a non-work purpose). Casually, you raise the career by transition:
+---
 
-> "By the way, I recently started in financial advisory. I'd love to chat about it over a proper coffee sometime - no pressure, just want to share what I'm doing."
+## Part 3 - Following up - the system that keeps your pipeline alive
+
+> **80% of conversions come from the 5th-12th touchpoint.** Most new FCs give up after 1-2.
+
+A follow-up system means you don't have to remember. The system remembers for you.
+
+### The 3-7-30 follow-up rule
+
+| Outcome | Follow up after |
+|---|---|
+| No answer / no callback | **3 days** - send a short text |
+| "Maybe later" / "Let me think about it" | **7 days** - reference the survey, ask to find a time |
+| Met but no immediate need | **30 days** - share something useful, no pitch |
+| Met and asked for referrals only | **90 days** - check in genuinely, share a tip |
+
+Track every contact in a CRM - or a simple Google Sheet with five columns: name, last contact, next follow-up date, status, notes.
+
+### What to send in a follow-up
+
+- **Short** - 2-3 sentences, never paragraphs.
+- **Reference the previous conversation** - "Following up on our chat last Tuesday..."
+- **Open with curiosity, not a pitch** - "Wondered how that CPF question was sitting with you."
+- **Soft CTA** - "No rush - just thought of you." Or: "Free for a 15-min call this week?"
+
+**Sample texts:**
+
+After a "no answer":
+> Hey [name], couldn't reach you on Tuesday. Hope all's well. Still keen to do that 5-min market survey when you have a moment. Free Thursday around 7pm?
+
+After a "maybe later":
+> Hey [name], following up on our chat last week - you mentioned wanting to think about the retirement piece. No pressure, but happy to grab 30 mins this week or next if it's useful. Tuesday 3pm or Thursday 7pm?
+
+After a "no immediate need" meeting:
+> Hey [name], hope work has been good. Saw this article on the new CPF changes and thought of you - it's relevant to what we discussed. Link below. No need to reply, just sharing.
+
+### When to remove someone from the list
+
+- 3 ignored follow-ups in a row.
+- Direct "please stop contacting me."
+- They explicitly say no for the third time.
+
+Don't take it personally. Mark them "closed - revisit in 12 months" and move on. The list is a long game.
+
+---
+
+## Part 4 - Facing rejection - the FC's emotional skill
+
+The single biggest reason new FCs quit is not lack of skill. It's that **they take rejection personally.** Reframe this and you can outlast 90% of the cohort.
+
+### The math of rejection - believe these numbers
+
+| Activity | Realistic outcome |
+|---|---|
+| 100 cold calls | 70-85 no answer / not interested |
+| 100 cold calls | 15-30 engaged conversations |
+| 100 cold calls | 5-10 booked appointments |
+| 100 booked appointments | 30-50 actually show up |
+| 30 actually-met prospects | 5-10 close as clients |
+
+**End-to-end:** roughly 100 attempts to make 1 sale. That's the industry average.
+
+**Implication:** every "no" you collect is **closer to a yes**, not further from it. Reframe rejection as **inventory** - you're working through your no's to get to the yes's.
+
+### The 5 reflex refusals - quick responses (full handling on Day 44)
+
+Day 44 covers objection handling in depth. For prospecting, here are the standard reflex refusals and the one-line reframes that buy you another sentence:
+
+| Refusal | Quick reframe |
+|---|---|
+| "Not interested." | "I can understand you're not interested in something you haven't seen. Just so you can judge for yourself, would you be free for a short time on...?" |
+| "Not in the market." | "I'd have been surprised if you said you were. I have ideas that'll be handy when you're ready - would you be free for...?" |
+| "No money." | "I understand wanting to hold down expenses. What I have to share is no obligation - would you be free for...?" |
+| "No need." | "Of course, you'd be the sole judge of whether this is of value. Since it'll only take a short time - would you be free for...?" |
+| "Too busy." | "I guessed you'd be busy - that's why I called for an appointment rather than dropping by. Would you be free for...?" |
+
+**Memorise these.** Reflex objections are not real refusals - they're social defences. The reframe acknowledges the defence and asks again. Most reframes earn you the next 30 seconds of conversation, which is all you need.
+
+(Day 44 goes deep on real vs reflex objections, smoke-screen objections, and the uncertainty-driven pattern that appears later in the funnel.)
+
+### The mental reset between calls
+
+After every "no" - especially the rude ones - do this in 60 seconds:
+
+1. **Stand up.** Don't dial the next number sitting in the same posture.
+2. **Drink water.** Reset your throat and your physiology.
+3. **One sentence in your head:** "That was the no. The next one's closer to a yes."
+4. **Don't analyse the no.** Don't replay the call. Move.
+5. **Dial the next name.**
+
+The FCs who burn out are the ones who let one no infect the next ten calls.
+
+### Track activity, not outcome
+
+In your first 60 days, the only metric that matters is **calls made**. Not closes. Not appointments. Not referrals.
+
+| Period | Activity target |
+|---|---|
+| Daily | 20 calls (cold + warm combined) |
+| Weekly | 100 calls |
+| Monthly | 400 calls |
+
+If you hit 400 calls a month for 3 months, the math is on your side. The closes will come. If you don't hit it, no script in the world will save you.
+
+> **The FC's emotional skill is to hit the activity number regardless of how the previous call went.** That's the whole game.
+
+---
+
+## 5. The "by the way" call (works for both warm and cold)
+
+One of the most elegant prospecting techniques - sits between warm and cold:
+
+You're already meeting someone (lunch, coffee, a non-work reason). Casually, you raise the career transition:
+
+> By the way, I recently started in financial advisory. I'd love to chat about it over a proper coffee sometime - no pressure, just want to share what I'm doing.
 
 **Why it works:**
 - Low pressure (you're already together for other reasons).
 - No "sales call" framing.
-- Natural curiosity often kicks in - they ask questions.
+- Natural curiosity - they ask questions.
 - Easy to transition to a future dedicated meeting.
 
-**A specific variant - "lunch aimai":**
-> "I'm around the area, lunch aimai?"
+**Lunch is showmanship.** You're not pitching; you're being a friend or new contact with a chapter they want to know about.
 
-During lunch, friends naturally ask "what are you doing these days?" - and you have a natural 10-minute window to share your career, the people you help, and ask if they'd want a proper conversation later.
+---
 
-**Lunch is showmanship.** You're not pitching; you're being a friend with a new chapter they want to know about.
+## 6. Cold calling is universal
 
-## 7. Cold call != only FCs do this
-
-Many new FCs feel cold calling is "beneath them." Everyone does it:
+Many new FCs feel cold calling is "beneath them." Everyone in business does it:
 
 | Role | Cold calls to... |
 |---|---|
@@ -200,204 +370,128 @@ Many new FCs feel cold calling is "beneath them." Everyone does it:
 
 **Cold calling is a universal business skill.** Anyone who claims to "not do it" is either very established or lying. Owning this skill gives you leverage for your entire career, not just this one.
 
-## 8. Your elevator pitch - AIDA framework
+---
 
-When a prospect asks "what do you do?", you have ~20-30 seconds. Use the AIDA framework.
+## 7. The elevator pitch - AIDA framework
 
-### A - Attention (1-2 sentences)
-Capture attention. Often via a stat, a question, or a specific pain.
-> "Most Singaporeans I meet don't know what their CPF will pay them at 65 - and by then it's often too late to fix."
+When a prospect asks "what do you do?" - in person or on the phone - you have ~20-30 seconds. AIDA structures it.
 
-### I - Interest (1 sentence)
-What's different about you.
-> "I help young professionals understand what they actually need to save, so they're not trying to catch up at 45 with 20x the effort."
+**A - Attention** *(1-2 sentences)*
+> Most Singaporeans I meet don't know what their CPF will pay them at 65 - and by then it's often too late to fix.
 
-### D - Desire (1 sentence)
-How the outcome looks.
-> "The people I work with get to retire earlier, with more choice, knowing exactly where they stand."
+**I - Interest** *(1 sentence)*
+> I help young professionals understand what they actually need to save, so they're not trying to catch up at 45 with 20x the effort.
 
-### A - Action (1 sentence)
-The CTA.
-> "If you're open to a 30-min coffee where I'd ask you a few questions and share what I'd recommend - no obligation - happy to set one up."
+**D - Desire** *(1 sentence)*
+> The people I work with get to retire earlier, with more choice, knowing exactly where they stand.
+
+**A - Action** *(1 sentence)*
+> If you're open to a 30-min coffee where I'd ask you a few questions and share what I'd recommend - no obligation - happy to set one up.
 
 **Total: ~30 seconds.** Practise until it flows naturally.
 
-## 9. Structuring your elevator pitch - the 5 questions
+### The 5 questions to build your pitch
 
-Before writing, answer:
-
-1. **Who is your target prospect?** (Young professional? Pre-retiree? Small business owner?)
+1. **Who is your target prospect?** (Young professional? Pre-retiree? SME owner?)
 2. **What do you want them to know or do?**
-3. **Why should they care? Why should they pay attention?**
+3. **Why should they care?**
 4. **Where can they get more information?**
 5. **When / how can they take action or respond?**
 
-A pitch built from these 5 answers will always feel specific and useful. A pitch that skips them feels generic.
+---
 
-## 10. The "you are the product" mindset
+## 8. Sell the appointment, not the product
 
-New FCs focus pitches on AIA, policies, or products. That's wrong at the Approach stage.
+The single most common mistake on a prospecting call: **trying to sell the policy on the phone.**
 
-**At the Approach stage: YOU are the product.**
+You can't. You shouldn't try. The only goal of a prospecting call is **to book a meeting.**
 
-The prospect is deciding if they like *you.* Products come later.
+**What you sell on the phone:**
+- Your time (why 30 minutes of yours is worth 30 minutes of theirs).
+- The outcome of the meeting (clarity, not commitment).
+- Yourself (why they should meet you vs anyone else).
 
-When pitching yourself, emphasise:
-- Your genuine reason for joining the career.
-- Your service orientation, not commissions.
-- Your commitment to keep learning.
-- Your values, not just your technical knowledge.
+**What you DON'T sell:**
+- Products. Prices. Detailed advice. Complex concepts.
 
-People want to work with **people**, not products. The Approach phase is where you establish that you're worth working with.
+**If they push for product detail, redirect:**
+> That's a great question - the honest answer depends on your situation, which I'd rather understand properly before answering. Can we find 30 minutes this week?
 
-## 11. The pinpoint-driven cold-call script (the one that lifts conversion 10x)
-
-A district producer who closed 12 cases in one month switched from a generic AIDA-style script to a **pinpoint-driven** one and went from "1 hour of dialling = 1 appointment" to **"1 hour of dialling = 10 appointments."**
-
-The thesis is simple. Every prospect has one specific problem they're already half-thinking about. **Find it. Make that the agenda for the meeting. Don't pitch anything else.**
-
-### Why generic scripts under-convert
-
-The "we help a lot of people with insurance planning, do you think you'd be interested to talk to me?" opener gets the same answer almost every time: *"No."* The prospect isn't refusing your help - they're refusing a generic ask. There's nothing in your sentence that maps to a problem in their head.
-
-Compare:
-
-| Script type | What the prospect hears |
-|---|---|
-| Generic | *"Random person wants to sell me something I haven't asked about."* -> No |
-| Pinpoint | *"Someone wants to help me with the exact thing I've been worrying about."* -> Maybe |
-
-### The 4-step pinpoint script
-
-**Step 1 - Position yourself by who you serve, not what you sell.**
-
-Don't open with *"I'm an insurance / financial advisor."* Open with *who you specifically help and what they typically struggle with.*
-
-> *"Hey [name], I work with a lot of [your-target-group - e.g. fresh grads, NSFs, young parents] on [the problem they typically have - e.g. growing their first $X, structuring retirement, getting their kids' education funded]."*
-
-For a fresh-grad audience, the typical pinpoint isn't *"do you have insurance?"* - it's *how do I grow my money* / *how do I retire well* / *I want a side hustle*. Lead with that.
-
-**Step 2 - Probe for the pinpoint with a binary question.**
-
-> *"Quick one - currently, are you investing already, or is your money still sitting in the bank?"*
-
-Two answers. Each opens a different pinpoint:
-
-| Answer | Their actual pinpoint |
-|---|---|
-| *"Still in the bank"* | Lack of confidence / don't know where to start / fear of losing money |
-| *"Already investing"* | Probably overconcentrated in one thing (US stocks, single ETF) - fear of underperformance / volatility |
-
-The same logic works for retirement (*"have you done any retirement planning?"*), kids (*"started planning for the kids' education yet?"*), or any topic - pick a binary that exposes the gap.
-
-**Step 3 - Drill one level deeper to make the pinpoint specific.**
-
-If they say *"I'm investing already, but only $300/month - I'm scared to lose it"* -> the pinpoint is **fear of loss**, not lack of capital.
-
-If they say *"I haven't started - don't know where to begin"* -> the pinpoint is **starting friction**, not affordability.
-
-**Whatever they tell you is the agenda for the Zoom.** Not what you wish were the agenda. Not what your product solves best. *Their* answer.
-
-**Step 4 - Offer a low-friction Zoom with the pinpoint as the agenda.**
-
-> *"Got it - sounds like the main thing on your mind is reducing risk while still growing the money. I can share a couple of strategies on how people in your situation diversify and reduce single-stock risk. Quick 30-min Zoom - would [day/time] work?"*
-
-Notice what's NOT in the close:
-- No "insurance"
-- No product name
-- No "let me give you a financial review"
-- No "I'd love to help you plan"
-
-What IS in the close: **their pinpoint, restated, plus a specific time.**
-
-### The universal pattern
-
-> **Pinpoint = (the problem they already half-know they have) -> make THAT the agenda -> they show up.**
-
-Whatever pinpoint you surface IS the reason they say yes. They show up *because the meeting is about their problem* - not your product. The product becomes relevant inside the meeting once you've earned the time.
-
-### A note on practising
-
-There's no list of universal pinpoint questions to memorise - the questions emerge from the audience. **Audit the last 10 prospects you spoke to. What was the recurring problem they actually mentioned?** That's your script's first question for the next 10. Iterate.
-
-> *"You don't tell them, you have to elicit the problem. You have to get them to tell you the problem - without being too direct about it."*
-
-The hardest discipline: **don't lead with your solution.** Let them say the problem. Then your meeting is *about* that. That's the entire trick.
-
+---
 
 ## Quick quiz
 
-1. **The only goal of a prospecting call is to:**
- - A) Sell a policy
- - B) Give financial advice
- - C) Book an appointment (correct)
- - D) Build a long relationship
+1. **The warm-market survey approach is positioned to the prospect as:**
+ - A) A free financial review
+ - B) A 5-minute market survey to help you, a new FC, with required training (correct)
+ - C) An insurance pitch
+ - D) A product introduction
 
- **Why:** The phone is for one purpose only - securing a face-to-face meeting. Products and advice require the full context of an in-person fact-find, which a phone call cannot replicate. Trying to sell a policy on the call (A) or deliver advice (B) skips the trust-building steps the client needs. Building a long relationship (D) is a worthy goal but it is the result of many meetings, not the outcome of a single call.
+ **Why:** The survey is framed as a request for the prospect's help with a 5-minute market survey - friends almost always say yes to "help me out" when they wouldn't say yes to a sales pitch. Framing as a free financial review (A), insurance pitch (C), or product introduction (D) reverts to the very framing the warm-market script is designed to avoid - which collapses conversion.
 
-2. **The AIDA framework stands for:**
- - A) Action, Interest, Desire, Approach
- - B) Attention, Interest, Desire, Action (correct)
- - C) Ask, Inform, Deliver, Ask
- - D) Attention, Intent, Decision, Action
+2. **The minimum number of warm market surveys to complete before moving into the application/proposal phase is:**
+ - A) 5
+ - B) 10
+ - C) 30 (correct)
+ - D) 100
 
- **Why:** AIDA is a four-part elevator-pitch structure - Attention grabs the first second, Interest explains what makes you different, Desire paints the outcome, and Action delivers the call to action. The order matters: you cannot generate Desire before creating Interest, and you cannot call for Action before Desire is felt. Options A, C, and D rearrange or rename the steps in ways that break the logical flow.
+ **Why:** 30 surveys is the floor - the first 5 feel awkward, surveys 6-15 the script starts feeling natural, and 16-30 is where you actually become good at tonality, pace, rapport, and the binary close. Below 30, you don't have enough reps for confidence on the phone. 100 (D) is excellent practice but not the stated minimum.
 
-3. **When a prospect asks product questions on a prospecting call, you should:**
- - A) Answer in detail
- - B) Redirect gently - "Let me understand your situation first in a proper 30-min meeting" (correct)
- - C) Refuse to answer
- - D) Send them collateral instead
-
- **Why:** Answering product questions in detail (A) turns the call into an unsolicited consultation and removes the prospect's reason to meet you. The correct move is to acknowledge the question, validate it as good, and redirect it to the meeting - which is where context-dependent advice can actually be given well. Refusing outright (C) is rude; sending collateral (D) hands the prospect a reason to say "I've read it, no thanks" before you've built any rapport.
-
-4. **You finish a first meeting and the prospect has no immediate need. The productive next step is:**
- - A) Accept the loss and move on to new prospects
- - B) Follow up in 6 months with a generic check-in
- - C) Ask for referrals and collect names before leaving (correct)
- - D) Send a quote anyway to keep them warm
-
- **Why:** There is no fourth outcome in a first meeting - even a "no immediate need" meeting is productive if it ends with referrals. A meeting that generates five warm names in your notebook has paid for itself. Accepting the loss (A) wastes the relational capital you just built. A generic check-in in six months (B) ignores the referral opportunity available right now. Sending an unsolicited quote (D) breaks trust by pitching after being told there is no current need.
-
-5. **A new FC is about to call a prospect and feels nervous. According to the 6-part Telephone Technique, the first step is:**
- - A) Dial and open with enthusiasm
- - B) Prepare - have your list, scripts, and top-5 objection responses ready (correct)
- - C) Set your phone to silent and review your elevator pitch
- - D) Send a WhatsApp message first to warm them up
-
- **Why:** Preparation is Step 1 of the six-part technique - your list, scripts, and objection responses should all be in front of you before you dial. Dialling cold without preparation (A) means every objection forces improvisation, which collapses under pressure. Reviewing only the elevator pitch (C) is partial preparation and misses the objection-handling readiness. WhatsApp warm-ups (D) are not part of the structured technique and can dilute the call's impact.
-
-6. **When offering appointment times, the correct approach is:**
- - A) Ask open-endedly: "When are you free?"
- - B) Give one specific option to keep it simple
- - C) Offer two specific time slots and let the prospect choose (correct)
- - D) Leave it to them to suggest a time after they've reviewed the material
-
- **Why:** Two specific options create a binary decision - the prospect chooses between Tuesday and Thursday, not between "yes" and "no." An open-ended ask (A) creates decision fatigue and invites delay. A single option (B) feels like a demand and removes the prospect's sense of control. Leaving the timing to them (D) gives them an easy way to defer indefinitely.
-
-7. **The "you are the product" mindset at the Approach stage means:**
- - A) Lead with the AIA brand and its market reputation
- - B) Emphasise your policies' features and premium rates
- - C) Focus on your personal why, service orientation, and values - not products (correct)
- - D) Demonstrate technical expertise to build credibility fast
-
- **Why:** At the Approach stage the prospect is deciding whether they like and trust you - not whether they want a policy. Products and features are irrelevant until after that personal connection is made. Leading with the AIA brand (A) outsources credibility to the company rather than building it yourself. Premium rates (B) and technical expertise (D) are product-stage and fact-find tools; deploying them at the Approach stage signals you are selling, not connecting.
-
-8. **The 4-second rule says the prospect decides three things about you before you finish your first sentence. Those three are:**
- - A) Sharp, enthusiastic, expert (correct)
- - B) Polite, clear, prepared
+3. **In a cold call, the 4-second rule says the prospect decides three things about you almost instantly. Those three are:**
+ - A) Polite, clear, prepared
+ - B) Sharp, enthusiastic, expert (correct)
  - C) Friendly, knowledgeable, professional
  - D) Calm, informed, organised
 
- **Why:** The prospect's brain judges sharp (on the ball, respects their time), enthusiastic (what you have is worth hearing), and expert (you know your field) almost instantly - mostly from tonality, not words. Miss any of the three and the prospect takes control: cutting you off, hitting reflex objections, ending the call. The other options describe positive qualities but none capture the specific 4-second signal the prospect is actually reading.
+ **Why:** The prospect's brain judges sharp (on the ball, respects their time), enthusiastic (worth hearing), and expert (knows the field) almost instantly - mostly from tonality, not words. Miss any of the three and the prospect takes control. The other options describe positive qualities but none capture the specific 4-second signal.
 
-9. **Phrasing the opener as a question with upward lilts - *"Hey - it's [name]? Calling from [firm]?"* - works because:**
- - A) It makes you sound friendly
- - B) It puts the prospect's brain into search mode - "do I know this person? have I heard of this firm?" - and buys you the next 15 seconds before they can refuse (correct)
- - C) It lowers your voice
- - D) It slows down the call
+4. **The pinpoint-driven cold-call script works because:**
+ - A) It's shorter than a generic script
+ - B) It surfaces the specific problem the prospect already half-knows they have, then offers a meeting about THAT problem (correct)
+ - C) It uses the AIA brand to build credibility
+ - D) It pitches a product directly so the prospect knows what's on offer
 
- **Why:** Upward lilts trigger a question-answer search in the prospect's brain. They stop running their auto-rejection script ("another cold caller") and start trying to place you. By the time they realise they don't know you, you're already into your real line - which, delivered in mystery tonality, earns another 30 seconds. Flat declarative openers trigger the rejection reflex inside 4 seconds.
+ **Why:** The pinpoint script positions the meeting around the prospect's actual problem - not the FC's product - which is why prospects show up. Generic scripts get rejected because nothing in them maps to a problem in the prospect's head. Length (A) is irrelevant. Brand credibility (C) doesn't fix a generic ask. Pitching the product directly (D) is the exact mistake the script is designed to avoid.
+
+5. **The 3-7-30 follow-up rule says: a prospect who answered "maybe later" should be followed up in:**
+ - A) 1 day
+ - B) 3 days
+ - C) 7 days (correct)
+ - D) 30 days
+
+ **Why:** "Maybe later" is the 7-day follow-up window - long enough to give the prospect space, short enough that the original conversation is still fresh. 3 days (B) is the no-answer / no-callback window. 30 days (D) is for a met prospect with no immediate need. 1 day (A) is too aggressive and breaks the spirit of "later."
+
+6. **The math of rejection says roughly how many cold-call attempts produce one sale, end-to-end?**
+ - A) 10
+ - B) 25
+ - C) 100 (correct)
+ - D) 500
+
+ **Why:** Industry average is roughly 100 attempts to make 1 sale - 100 calls produce 5-10 booked appointments, of which 30-50% actually meet, of which 30-50% close. The exact ratio varies by FC and segment but 100:1 is the reliable mental anchor. 10 (A) and 25 (B) underestimate and produce false expectations. 500 (D) overestimates and is demoralising without basis.
+
+7. **The metric a new FC should track in their first 60 days is:**
+ - A) Closes per month
+ - B) Appointments booked per week
+ - C) Calls made per day (correct)
+ - D) Premium written per month
+
+ **Why:** Activity is the only metric the FC fully controls. Closes (A), appointments (B), and premium (D) are downstream outcomes of activity - they cannot be optimised directly. Tracking calls made per day (target: 20/day, 100/week, 400/month) is what produces the downstream outcomes mathematically. New FCs who track outcomes get demoralised by variance; those who track activity stay in motion.
+
+8. **A prospect says "Not interested" on a cold call. The right response is:**
+ - A) Apologise and hang up immediately
+ - B) Reframe gently: "I can understand you're not interested in something you haven't seen - would you be free for a short time on...?" (correct)
+ - C) Argue with the prospect that they need this
+ - D) Send them a follow-up text right away
+
+ **Why:** "Not interested" is a reflex objection - a social defence, not a real refusal. The reframe acknowledges the defence and asks again, earning you the next 30 seconds. Apologising and hanging up (A) treats every reflex as a real no. Arguing (C) burns the relationship and never converts. An immediate follow-up text (D) is too aggressive in the same hour. Day 44 covers objection handling in depth.
+
+9. **Setting a cold or warm appointment, the correct close is:**
+ - A) Open-ended: "When are you free?"
+ - B) One option: "How about Tuesday 3pm?"
+ - C) Two specific options: "Tuesday 3pm or Thursday 7pm work better?" (correct)
+ - D) Leave it to the prospect to suggest a time
+
+ **Why:** Two specific options create a binary decision - the prospect chooses between Tuesday and Thursday, not between "yes" and "no." Open-ended asks (A) create decision fatigue and invite delay. A single option (B) feels like a demand and removes their sense of control. Leaving it to them (D) gives them an easy way to defer indefinitely.
 
 ---
 
@@ -405,3 +499,5 @@ The hardest discipline: **don't lead with your solution.** Let them say the prob
 
 - Previous: [[../week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]]
 - Next: [[day-44|Day 44 - Handling Resistance & Objections]]
+- Practice tool: [Content Studio](/content-studio) for digital prospecting drafts
+- Week 8 summary: [[README|Week 8 - The Approach & First Meetings]]
