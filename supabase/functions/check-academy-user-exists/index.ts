@@ -38,33 +38,37 @@ Deno.serve(async (req) => {
     const normalizedEmail = email.trim().toLowerCase();
     console.log("Checking if user exists:", normalizedEmail);
 
-    // Use listUsers with a filter to check if user exists
-    // This is more efficient than fetching all users
-    const { data: usersData, error: listError } = await supabaseAdmin.auth.admin.listUsers({
-      page: 1,
-      perPage: 1,
-    });
-
-    if (listError) {
-      console.error("Error listing users:", listError);
-      return new Response(
-        JSON.stringify({ error: "Failed to check user existence" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    // listUsers is paginated - default is 50 per page. Walk every page so
+    // users past page 1 aren't reported as missing - which would (incorrectly)
+    // push them into provision-financial-user, whose updateUserById call
+    // rotates the password and invalidates every existing session.
+    let existingUser: { id: string; email: string | null } | null = null;
+    const perPage = 1000;
+    for (let page = 1; page <= 20; page++) {
+      const { data: pageData, error: listError } = await supabaseAdmin.auth.admin.listUsers({
+        page,
+        perPage,
+      });
+      if (listError) {
+        console.error("Error listing users on page", page, listError);
+        return new Response(
+          JSON.stringify({ error: "Failed to check user existence" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      const found = pageData?.users?.find(
+        (u) => u.email?.toLowerCase() === normalizedEmail
       );
+      if (found) {
+        existingUser = found;
+        break;
+      }
+      if (!pageData?.users || pageData.users.length < perPage) break;
     }
 
-    // Search for the specific email in all users
-    // Note: listUsers doesn't support email filtering, so we need to iterate
-    // For better performance with many users, consider using a database query
-    const { data: allUsers } = await supabaseAdmin.auth.admin.listUsers();
-    
-    const existingUser = allUsers?.users?.find(
-      (u) => u.email?.toLowerCase() === normalizedEmail
-    );
-
-    console.log("User exists check result:", { 
-      email: normalizedEmail, 
-      exists: !!existingUser 
+    console.log("User exists check result:", {
+      email: normalizedEmail,
+      exists: !!existingUser,
     });
 
     return new Response(
