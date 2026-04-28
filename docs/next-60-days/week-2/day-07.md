@@ -106,7 +106,7 @@ New FCs almost always fall into one of these four:
 
 ## When to use it
 
-Use the intent statement **as early as possible** in the first appointment — right after the small-talk settles, before you open the OST or fact-find. For a phone appointment-setting call, you can use a shorter version in the call itself.
+Use the intent statement **as early as possible** in the first appointment — right after the small-talk settles, before you open the CST or fact-find. For a phone appointment-setting call, you can use a shorter version in the call itself.
 
 **When NOT to use it:**
 - On a cold call where there's no established intent to meet yet (you'd have to explain who you are first)
@@ -144,7 +144,7 @@ The rule: it belongs at the top of the frame, not inside it.
 
 **Q4. The intent statement works best delivered:**
 - A) Anytime during the meeting
-- B) As early as possible — right after small talk settles, before the OST/fact-find opens ✓
+- B) As early as possible — right after small talk settles, before the CST/fact-find opens ✓
 - C) At the close, to reset the frame
 - D) Never — it's a gimmick
 

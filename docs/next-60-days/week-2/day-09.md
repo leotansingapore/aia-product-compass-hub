@@ -55,7 +55,7 @@ All seven matter. Three of them (1, 6, 7) do disproportionate work in your first
 
 **Framing = telling the prospect what's going to happen before it happens.**
 
-The new-FC failure mode is to dive straight into the OST without telling the prospect what the shape of the meeting is. Their gut goes up immediately — they don't know where this is going, so they start defending.
+The new-FC failure mode is to dive straight into the CST without telling the prospect what the shape of the meeting is. Their gut goes up immediately — they don't know where this is going, so they start defending.
 
 The fix is to narrate the meeting up front:
 

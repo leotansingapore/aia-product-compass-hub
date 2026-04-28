@@ -1,5 +1,5 @@
 ---
-source: OST Script (Odyssey Sales Track) — Full
+source: Canned Sales Track (CST) — Full Script
 type: source-script
 internal: "FOR INTERNAL CIRCULATION ONLY"
 related_days: [14, 51, 53, 56]
@@ -7,11 +7,11 @@ related_assignments: [01]
 captured: 2026-04-24
 ---
 
-# OST Script — Full Reference
+# Canned Sales Track — Full Reference
 
-> **OST = Odyssey Sales Track.** The complete two-page hand-drawn presentation script used in the field for the first prospect appointment. Same content as the AIA-branded Canned Sales Track (CST) but with the original Odyssey naming and structure preserved.
+> **CST = Canned Sales Track.** The complete two-page hand-drawn presentation script used in the field for the first prospect appointment. Every line, every pause, every example, in the order they're delivered.
 >
-> Source: `OST Script Full.pdf` (13 pages, internal circulation only).
+> Source: 13-page internal script (internal circulation only).
 
 ---
 

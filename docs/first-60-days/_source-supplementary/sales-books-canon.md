@@ -43,7 +43,7 @@ The most underused trigger for new FCs is **Commitment / Consistency**: when a c
 
 Ziglar's premise is moral first, technical second: the close is not a thing you do *to* a prospect, it's a thing you do *for* them — *if* you genuinely believe the recommendation serves their interest. The book then catalogues hundreds of concrete closing techniques (the Alternative Close, the Assumption Close, the Summary Close, the 1902 Close, etc.), but the meta-message is: closing is a *service*, because indecision costs the client more than a wrong decision usually does. A prospect who needed CI cover and didn't buy it lost more than a prospect who bought a slightly-suboptimal CI plan.
 
-The most transferable Ziglar pattern for new FCs is the **Alternative Close**: never present a binary "buy or don't buy" choice — always offer **two paths to yes**. ("Would you prefer the comprehensive package or the budget-friendly version?") This pre-supposes the buying decision and reframes the conversation around *which way*, not *whether*. The OST script's three-options close ([OST Script](ost-script-full.md) Page 2) is a direct application — comprehensive / best-bang-for-buck / budget-friendly.
+The most transferable Ziglar pattern for new FCs is the **Alternative Close**: never present a binary "buy or don't buy" choice — always offer **two paths to yes**. ("Would you prefer the comprehensive package or the budget-friendly version?") This pre-supposes the buying decision and reframes the conversation around *which way*, not *whether*. The CST's three-options close ([Canned Sales Track](ost-script-full.md) Page 2) is a direct application — comprehensive / best-bang-for-buck / budget-friendly.
 
 ### 5 principles to internalise
 
@@ -57,7 +57,7 @@ The most transferable Ziglar pattern for new FCs is the **Alternative Close**: n
 
 - [Day 21 — Closing & Sales Appointment Framework](../week-4/day-21.md) — closing patterns at large
 - [Day 26 — Simple Closing Techniques](../week-5/day-26.md) — directly aligned (Alternative, Summary, Assumption)
-- [Day 53 §7b — Three-options close + parents handler](../week-9/day-53.md) — the live OST application
+- [Day 53 §7b — Three-options close + parents handler](../week-9/day-53.md) — the live CST application
 
 ---
 
@@ -71,7 +71,7 @@ For Singapore FCs the Challenger pattern often manifests as: rather than asking 
 
 ### 5 principles to internalise
 
-1. **Teach** — bring an insight your prospect doesn't yet have. The OST 5+1-risks framing or the *expenses-vs-loss-of-income* distinction (both on [Day 53](../week-9/day-53.md)) are exactly this.
+1. **Teach** — bring an insight your prospect doesn't yet have. The CST 5+1-risks framing or the *expenses-vs-loss-of-income* distinction (both on [Day 53](../week-9/day-53.md)) are exactly this.
 2. **Tailor** — speak to *their* specific role, life stage, fears. Generic pitches lose.
 3. **Take control** — don't let the prospect run the meeting; you have a structure (CST → CFR → recommendation) and you guide it.
 4. **Constructive tension** — challenge a prospect's existing assumption (e.g. "your hospital plan covers most of it" → "actually, here's what it doesn't cover"). Discomfort is the conversion.

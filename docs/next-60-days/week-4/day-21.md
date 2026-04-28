@@ -47,7 +47,7 @@ A Market Survey generates one of two outcomes:
 | **Warm Up** | Conversational-only meetup. No iPad, no presentations. Warming a relationship with a distant contact who isn't ready for a financial conversation yet. | Build the relationship toward an Educational Fact Find later |
 | **Educational Fact Find (FHR)** | Financial-planning-specific agenda. Prospect expressed interest. Fact-Find → press on the problem → educate. | Empower + educate + trigger referrals |
 
-**The trap:** new FCs run a Market Survey, get a yes to meet, then show up with the OST and launch into the pitch. If the relationship was Semi-Warm, that meeting was a **Warm Up** — not an FHR. Pitching at a Warm Up burns the contact.
+**The trap:** new FCs run a Market Survey, get a yes to meet, then show up with the CST and launch into the pitch. If the relationship was Semi-Warm, that meeting was a **Warm Up** — not an FHR. Pitching at a Warm Up burns the contact.
 
 **The rule:** let the Market Survey response tell you which stage the meeting is. If they already have a plan and are happy to review, it's an FHR. If they haven't thought about financial planning at all and mostly said yes to see you again, it's a Warm Up.
 
