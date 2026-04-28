@@ -14,6 +14,8 @@ tags: [first-60-days, week-8, skills]
 
 > **The one idea for today:** The approach has two completely different psychological setups. **Warm** is "I need your help with a quick survey" - friends and people you already know. **Cold** is "we don't know each other, here's why this 60 seconds is worth it" - referrals, leads, strangers. Master both, plus a follow-up system, plus the emotional skill to keep dialling after a no.
 
+> **Important context - you are not licensed yet.** At Day 43 you don't have CMFAS / M9 / M9A / HI / RES5 in hand. You **cannot** sell, recommend, or bind anything - and that's exactly why today is purely practice. The "appointment" your survey leads to is a rehearsal, not a sale. What you actually walk your friend through in that meeting is the canned sales track - either the **Insurance CST** or the **Investing CST**, your pick based on what fits the prospect. That makes the survey framing literally accurate: "I'm in training, would you help me practise?" - because you are, and they would. When you pass licensing, you revisit them with real recommendations. For now: reps on the survey, reps on the CST, reps on the binary close.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:
@@ -416,6 +418,87 @@ You can't. You shouldn't try. The only goal of a prospecting call is **to book a
 
 **If they push for product detail, redirect:**
 > That's a great question - the honest answer depends on your situation, which I'd rather understand properly before answering. Can we find 30 minutes this week?
+
+---
+
+## 9. The 2-Liner Hook (Warm Prospecting Flow)
+
+The Market Survey in Part 1 is the phone-first warm opener. The 2-Liner Hook is the text-first cousin - same destination (a 30-minute appointment), different doorway. Use it when the contact is semi-warm, prefers text, or when a phone call would feel heavier than the relationship can carry.
+
+**Use this when** you've scripted your warm-market approach and need a softer text-based opener that bridges through a useful resource instead of a phone ask.
+
+### The flow
+
+```mermaid
+flowchart TD
+    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
+    B -- "Yes" --> C["Send the resource"]
+    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
+    C --> D["Wait 1-2 weeks"]
+    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
+    E --> F(["Business Appointment"])
+```
+
+### The script
+
+> **Line 1.** Recently I have been helping my friends/clients with [common problem]. Can I help you with this also?
+>
+> **Line 2.** I have a [resource] that I/my team created, to help [common group] solve [common problems] to [measurable outcome]. You want it? I send you.
+
+What goes in the blanks:
+
+- **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, first investment plan).
+- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together.
+- **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples, business owners).
+- **[common problems]** - the headline pains that group recognises in themselves.
+- **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on, a checklist they can tick this weekend).
+
+### The follow-up that earns the appointment
+
+1-2 weeks after they receive the resource, send one short message:
+
+> Hey [name], been a couple of weeks since I sent you the [resource]. Did you manage to figure out [the specific problem]? Happy to help fill in any gaps if not.
+
+The phrasing matters. "Did you figure it out" is binary. Most replies fall into three buckets:
+
+- **Yes, I sorted it.** Park them as a relationship contact. No appointment ask.
+- **Sort of, but I have questions.** That's the appointment.
+- **No, didn't get round to it.** That's the appointment too - "want to do it together?"
+
+The appointment ask:
+
+> Easiest way is a 30-minute Zoom - I can answer the specific questions and show you what most people in your situation actually do. Tuesday 7pm or Thursday lunch?
+
+### Worked example - new parent
+
+Friend just had a baby. You send:
+
+> Hey Sarah! Hope you and bub are doing well. Recently I have been helping a few of my friends with new babies do a quick protection check - mostly figuring out whether their hospital plan and term cover are actually enough for the kid's first 5 years. Can I help you with this also?
+>
+> I have a one-page checklist my team put together for new parents - covers the 5 things to check before baby's 6-month mark and a rough number for income protection. You want it? I send you.
+
+Sarah replies *"yes please send"*. You send the checklist with one line setting up the follow-up:
+
+> Here you go. The first section on hospital plan upgrades is the part most new parents find useful first - takes 5 minutes to check. I'll check back in a couple of weeks.
+
+12 days later, you message:
+
+> Hey Sarah, did you manage to figure out the hospital plan and income piece? Happy to help fill in any gaps if not.
+
+Sarah: *"Tried to but the income protection number confused me."*
+
+You: *"Easiest way is a 30-minute Zoom - I can walk through your numbers. Tuesday 7pm or Thursday lunch?"*
+
+You're at the appointment, agenda is her question, and you haven't pitched a single product.
+
+### Where this fits with the Market Survey
+
+| Choose this | If the contact is... |
+|---|---|
+| Market Survey (phone, Part 1) | Genuinely warm, would pick up your call, you want to practise tonality |
+| 2-Liner Hook (text, this section) | Semi-warm (haven't spoken in 6+ months), prefers text, you have a resource that obviously fits their life stage |
+
+Both end at the same 30-minute appointment. The choice is about the contact's preferred channel, not about which is "better".
 
 ---
 
