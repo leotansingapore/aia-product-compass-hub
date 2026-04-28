@@ -6,6 +6,71 @@
 
 ## Pending
 
+### Content Studio draft persistence — `social_content_drafts` table
+
+The new Content Studio at [`/content-studio`](src/pages/ContentStudio.tsx) (powered by edge function `generate-social-content`) currently keeps drafts only in component state — refreshing the page wipes everything. We want each generation to persist server-side so consultants can return to drafts, see a "my drafts" history, and (in v3) plug it into a weekly Sun/Tue/Thu cadence tracker.
+
+Please ship the following table + RLS:
+
+```sql
+CREATE TABLE social_content_drafts (
+  id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id         uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  pillar          text NOT NULL CHECK (pillar IN ('interest', 'identity', 'topic', 'market')),
+  pillar_detail   text NOT NULL,
+  idea_source     text NOT NULL,
+  idea_context    text,
+  platform        text NOT NULL CHECK (platform IN ('linkedin', 'instagram', 'facebook', 'tiktok')),
+  format          text NOT NULL CHECK (format IN ('carousel', 'short-video', 'text-post', 'story')),
+  cta_type        text NOT NULL CHECK (cta_type IN ('dm-keyword', 'comment-keyword', 'save-share', 'book-call', 'open-question')),
+  draft_text      text NOT NULL,
+  status          text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published', 'archived')),
+  published_at    timestamptz,
+  created_at      timestamptz NOT NULL DEFAULT now(),
+  updated_at      timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX idx_social_content_drafts_user_created ON social_content_drafts(user_id, created_at DESC);
+CREATE INDEX idx_social_content_drafts_user_status ON social_content_drafts(user_id, status);
+
+ALTER TABLE social_content_drafts ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "social_content_drafts_select_own"
+  ON social_content_drafts FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "social_content_drafts_insert_own"
+  ON social_content_drafts FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "social_content_drafts_update_own"
+  ON social_content_drafts FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "social_content_drafts_delete_own"
+  ON social_content_drafts FOR DELETE USING (auth.uid() = user_id);
+
+-- Admins can read any row for future content-quality dashboards.
+CREATE POLICY "social_content_drafts_select_admin"
+  ON social_content_drafts FOR SELECT
+  USING (has_role(auth.uid(), 'admin') OR has_role(auth.uid(), 'master_admin'));
+
+-- Reuse the existing public.handle_updated_at() trigger function.
+CREATE TRIGGER trg_social_content_drafts_updated_at
+  BEFORE UPDATE ON social_content_drafts
+  FOR EACH ROW EXECUTE FUNCTION public.handle_updated_at();
+```
+
+Notes:
+- `gen_random_uuid()` PK — drafts get listed by id so the user can edit/regenerate/delete a specific one.
+- All four user-state fields (`pillar`, `platform`, `format`, `cta_type`) are CHECKed against the same enum lists hard-coded in [`ContentStudio.tsx`](src/pages/ContentStudio.tsx). `idea_source` is free-text because the user-facing labels may evolve faster than a CHECK can.
+- `status` triple (`draft` | `published` | `archived`) gives us the foundation for the v3 weekly cadence tracker — "did the FC publish at least one draft this week?" maps to `status = 'published' AND published_at >= week_start`.
+- Composite indexes cover the two list views: chronological "all my drafts" and filtered "my published / my archived".
+- `ON DELETE CASCADE` cleans up when a user is removed.
+
+Client follow-ups (Claude Code will ship after Lovable lands the migration):
+1. Add a `useSocialContentDrafts` hook (TanStack Query, mirrors the pattern in [`useProductMasteryProgress`](src/hooks/product-mastery-track/useProductMasteryProgress.ts) — list + create + update + delete with optimistic updates).
+2. In `ContentStudio`, persist on every successful generation (insert with `status = 'draft'`).
+3. Add `/content-studio/drafts` route with a list view (filter by status, click to reopen).
+4. Add Save / Mark Published / Archive buttons on the draft view.
+
+Not blocking: today's v1 still functions (state-only). The migration just unlocks come-back-to-it-later, which is the highest-value v2 add.
+
+---
+
 ### Cross-device CMFAS checklist progress — `user_checklist_progress` table
 
 The CMFAS study-desk ticks ("Rules of the Game", "Create student account", "Register M9", "Question bank", "Costs", "First practice") are currently persisted by [`useChecklistProgress`](src/hooks/useChecklistProgress.tsx) to localStorage only. Learners see different progress across browsers on the same account (reported for `avyltest@gmail.com` — marked sections in Cursor's browser, saw fresh state in Chrome).
