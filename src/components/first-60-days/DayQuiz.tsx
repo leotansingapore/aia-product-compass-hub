@@ -88,9 +88,28 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
   if (total === 0) {
     return (
       <Card className="border-border/60">
-        <CardContent className="p-6 text-sm text-muted-foreground">
-          This day has no quiz — this is a reflection/graduation module. Mark yourself complete when
-          you&apos;ve finished the reflection worksheet.
+        <CardContent className="space-y-4 p-6">
+          <p className="text-sm text-muted-foreground">
+            This day has no quiz - it&apos;s a reflection/graduation module. Mark yourself complete once
+            you&apos;ve finished the reflection worksheet to unlock the next day.
+          </p>
+          {alreadyPassed ? (
+            <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-4 py-2.5 text-sm">
+              <Trophy className="h-4 w-4 text-emerald-500" />
+              <span className="text-emerald-700 dark:text-emerald-300">
+                Day marked complete. The next day is unlocked.
+              </span>
+            </div>
+          ) : (
+            <Button
+              size="lg"
+              onClick={() => recordQuiz(dayNumber, 0, true)}
+              className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+            >
+              <Sparkles className="mr-2 h-4 w-4" />
+              Mark this day complete
+            </Button>
+          )}
         </CardContent>
       </Card>
     );
