@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Insurance CST - Practice Run</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
+  <style>
+    :root {
+      --bg-deep: #0b0f1a;
+      --bg-soft: #131826;
+      --ink: #f4f6fb;
+      --ink-dim: #aab2c5;
+      --accent: #d62828;
+      --accent-2: #ffb703;
+      --good: #34d399;
+      --line: rgba(255,255,255,0.08);
+    }
+    html, body, .reveal { background: var(--bg-deep); color: var(--ink); }
+    .reveal { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Inter", sans-serif; }
+    .reveal .slides section {
+      text-align: left;
+      padding: 1.5rem 2rem;
+      box-sizing: border-box;
+    }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6em;
+      text-transform: none;
+    }
+    .reveal h1 { font-size: 2.6rem; line-height: 1.1; }
+    .reveal h2 { font-size: 2.0rem; line-height: 1.15; }
+    .reveal h3 { font-size: 1.5rem; color: var(--accent-2); }
+    .reveal p, .reveal li { color: var(--ink); font-size: 1.4rem; line-height: 1.5; }
+    .reveal ul { display: block; margin-left: 1.4rem; }
+    .reveal li { margin: 0.4em 0; }
+    .reveal em { color: var(--accent-2); font-style: normal; }
+    .reveal strong { color: #fff; }
+    .reveal small { color: var(--ink-dim); font-size: 0.95rem; }
+    .reveal .accent { color: var(--accent); }
+    .reveal .dim { color: var(--ink-dim); }
+    .reveal .pill {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(214,40,40,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(214,40,40,0.35);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .reveal .card {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin: 0.6rem 0;
+    }
+    .reveal .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .reveal .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .reveal .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+    @media (min-width: 900px) {
+      .reveal .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .reveal .quote {
+      border-left: 4px solid var(--accent);
+      padding: 0.5rem 1rem;
+      color: var(--ink);
+      background: rgba(214,40,40,0.06);
+      border-radius: 0 10px 10px 0;
+      font-size: 1.45rem;
+      line-height: 1.5;
+    }
+    .reveal .big-num {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--accent-2);
+      line-height: 1;
+    }
+    .reveal .label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+    }
+    .reveal table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.1rem;
+    }
+    .reveal th, .reveal td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+    }
+    .reveal th { color: var(--ink-dim); font-weight: 600; }
+    .reveal .footer {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 2rem;
+      right: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+    }
+    .reveal .progress { color: var(--accent); }
+    .reveal .controls { color: var(--ink-dim); }
+    /* Mobile */
+    @media (max-width: 768px) {
+      .reveal h1 { font-size: 1.8rem; }
+      .reveal h2 { font-size: 1.4rem; }
+      .reveal h3 { font-size: 1.15rem; }
+      .reveal p, .reveal li { font-size: 1.05rem; }
+      .reveal .grid-2, .reveal .grid-3 { grid-template-columns: 1fr; }
+      .reveal .big-num { font-size: 2.6rem; }
+      .reveal .slides section { padding: 1rem 1.1rem; }
+    }
+    /* Print */
+    @media print { html, body, .reveal { background: #fff; color: #000; } }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1. Title -->
+      <section data-background-color="#0b0f1a">
+        <span class="pill">Practice run - I am still in training</span>
+        <h1>Insurance CST</h1>
+        <h3>A practice walk-through with a friend</h3>
+        <p class="dim">A new financial consultant in training, walking you through how I would map out a protection plan when I get licensed.</p>
+        <aside class="notes">
+          Open warm. Smile, sit on the same side of the table if possible. State the friend's name. Time check: aim for 20 minutes max for the whole deck.
+        </aside>
+      </section>
+
+      <!-- 2. Honest framing -->
+      <section>
+        <span class="pill">Read this out loud</span>
+        <h2>I am in training. This is practice.</h2>
+        <div class="card">
+          <p>I cannot sell you anything yet. I am not licensed.</p>
+          <p>What I am asking for is 20 minutes of your time and your honest feedback.</p>
+          <p>If something is unclear, boring, or feels pushy - tell me. That is how I get better.</p>
+        </div>
+        <p class="dim"><strong>Goal of this session:</strong> I deliver, you observe, and at the end you tell me what landed and what did not.</p>
+        <aside class="notes">
+          This is the most important slide. If you skip the honest framing, the friend feels sold to and gives you fake-polite feedback. The whole point of this exercise is real feedback - earn it by being upfront.
+        </aside>
+      </section>
+
+      <!-- 3. Why this matters at your life stage -->
+      <section>
+        <h2>Before I start - one question</h2>
+        <div class="card">
+          <p class="quote">If something happened to you tomorrow - an illness, an accident - how long could life carry on the way it is now before something broke?</p>
+        </div>
+        <p class="dim">Pause. Listen. Most people have not actually thought about it. That is normal - it is exactly why this conversation exists.</p>
+        <ul>
+          <li>If they say "a few months" - ask what would break first.</li>
+          <li>If they say "I don't know" - that is the most honest answer. Use it.</li>
+        </ul>
+        <aside class="notes">
+          Do not jump to product. Sit with the silence. The point of this question is to anchor the rest of the talk in their reality, not in insurance jargon.
+        </aside>
+      </section>
+
+      <!-- 4. Two ways your income can stop -->
+      <section>
+        <h2>Your income can stop in two ways</h2>
+        <div class="grid-2">
+          <div class="card">
+            <span class="label">Temporary</span>
+            <h3>You can recover</h3>
+            <p>Sacked, retrenched, between jobs.</p>
+            <p><strong>Solution:</strong> 3 to 6 months of expenses sitting in the bank.</p>
+          </div>
+          <div class="card">
+            <span class="label">Permanent</span>
+            <h3 class="accent">You may not recover</h3>
+            <p>Death. Long-term disability. Critical illness. Serious accident.</p>
+            <p><strong>Solution:</strong> savings will not catch up. This is what insurance is for.</p>
+          </div>
+        </div>
+        <p class="dim">You are probably already handling the temporary side. The question is whether the permanent side is handled.</p>
+        <aside class="notes">
+          Keep tone calm and matter of fact. This is not about scaring them. It is about drawing a clear line between "your savings can fix this" and "your savings cannot fix this."
+        </aside>
+      </section>
+
+      <!-- 5. The 1 million question -->
+      <section>
+        <h2>A simple scaling question</h2>
+        <div class="card">
+          <p>If you needed help one day - say a major medical bill - could your family lend you...</p>
+          <ul>
+            <li><strong>$1,000?</strong> Probably yes.</li>
+            <li><strong>$10,000?</strong> Maybe. With effort.</li>
+            <li><strong>$1,000,000?</strong> Almost certainly not.</li>
+          </ul>
+        </div>
+        <p>Roughly $25,000 per year of expenses across 40 years of life is <span class="big-num">$1M</span> of total exposure.</p>
+        <p class="dim"><strong>The honest line:</strong> if you do not have a financial plan, your family becomes the financial plan.</p>
+        <aside class="notes">
+          The math is not the point. The point is to make a million dollars feel concrete and personal, not abstract. Walk them through the numbers slowly. Let it land.
+        </aside>
+      </section>
+
+      <!-- 6. Three ways to manage risk -->
+      <section>
+        <h2>Three ways to handle a risk like this</h2>
+        <div class="grid-3">
+          <div class="card">
+            <span class="label">1. Avoid</span>
+            <h3>Stay away from danger</h3>
+            <p class="dim">You cannot avoid getting sick. You cannot avoid getting old. <strong>Not realistic.</strong></p>
+          </div>
+          <div class="card">
+            <span class="label">2. Retain</span>
+            <h3>Pay it yourself</h3>
+            <p class="dim">Means having the full lump sum sitting in cash today. <strong>Almost no one has this.</strong></p>
+          </div>
+          <div class="card" style="border-color: rgba(52,211,153,0.4);">
+            <span class="label">3. Transfer</span>
+            <h3 style="color: var(--good);">Insurance</h3>
+            <p>Use about <strong>10% of your income</strong> to protect the other 90%.</p>
+          </div>
+        </div>
+        <p class="dim">Once 1 and 2 are off the table, 3 is the only honest answer.</p>
+        <aside class="notes">
+          Walk them through the elimination logic. Do not skip steps - the close lives in the elimination, not in the product. By the time you reach option 3, the friend is already nodding.
+        </aside>
+      </section>
+
+      <!-- 7. Wealth pyramid -->
+      <section>
+        <h2>Where insurance fits</h2>
+        <div class="grid-2">
+          <div>
+            <div class="card" style="margin-bottom: 0.4rem;">
+              <h3 style="margin: 0; font-size: 1.1rem;">Top - Wealth Management</h3>
+              <p class="dim" style="margin: 0;">Estate, legacy. Later in life.</p>
+            </div>
+            <div class="card" style="margin-bottom: 0.4rem;">
+              <h3 style="margin: 0; font-size: 1.1rem;">Middle - Wealth Accumulation</h3>
+              <p class="dim" style="margin: 0;">Savings and investments.</p>
+            </div>
+            <div class="card" style="border-color: var(--accent); background: rgba(214,40,40,0.08);">
+              <h3 style="margin: 0; color: var(--accent); font-size: 1.1rem;">Foundation - Risk Management</h3>
+              <p style="margin: 0;"><strong>Build this first.</strong></p>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Why foundation first</h3>
+            <p>If you invest before you protect, one $200K medical bill can wipe out years of savings.</p>
+            <p>The clients who reach retirement on time are almost always the ones who covered the foundation first.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          The pyramid is the conceptual hook for the whole talk. Do not rush it. If they only remember one image from this session, this is the one.
+        </aside>
+      </section>
+
+      <!-- 8. Four risks -->
+      <section>
+        <h2>The four risks that can derail a plan</h2>
+        <div class="grid-4">
+          <div class="card">
+            <span class="label">1</span>
+            <h3 style="font-size: 1.15rem;">Death</h3>
+            <p class="dim" style="font-size: 1rem;">Family loses your future income.</p>
+          </div>
+          <div class="card">
+            <span class="label">2</span>
+            <h3 style="font-size: 1.15rem;">Disability</h3>
+            <p class="dim" style="font-size: 1rem;">You cannot work, but bills keep coming.</p>
+          </div>
+          <div class="card">
+            <span class="label">3</span>
+            <h3 style="font-size: 1.15rem;">Critical Illness</h3>
+            <p class="dim" style="font-size: 1rem;">Cancer, stroke, heart. Years of recovery, no income.</p>
+          </div>
+          <div class="card">
+            <span class="label">4</span>
+            <h3 style="font-size: 1.15rem;">Hospital / Accident</h3>
+            <p class="dim" style="font-size: 1rem;">The bills themselves.</p>
+          </div>
+        </div>
+        <p class="dim">Each one needs its own type of cover. We will walk through them next.</p>
+        <aside class="notes">
+          Do not stack scary statistics. Just name the four risks calmly and move on. Each one gets its own slide.
+        </aside>
+      </section>
+
+      <!-- 9. AIA Life - Death cover -->
+      <section>
+        <span class="pill">Coverage 1 of 5</span>
+        <h2>Life Insurance</h2>
+        <p><strong>What it does:</strong> if you pass on or become totally disabled, a lump sum goes to your family.</p>
+        <div class="card">
+          <h3>Picture this</h3>
+          <p>You earn $5K a month. Your family relies on that. If you are gone tomorrow, the rent, food, parents' allowance - all of that needs to keep happening for years.</p>
+          <p>A life policy covers that loss of future income with a single payout.</p>
+        </div>
+        <p class="dim"><strong>AIA product:</strong> AIA Pro Lifetime Protector / AIA Secure Flexi Term, depending on whether you want lifetime cover or pure term.</p>
+        <aside class="notes">
+          Plain English. Do not get into IRR, bonus rates, or par fund details - the friend does not care and you cannot legally explain them yet anyway. Stick to "what does it do for you."
+        </aside>
+      </section>
+
+      <!-- 10. Critical Illness -->
+      <section>
+        <span class="pill">Coverage 2 of 5</span>
+        <h2>Critical Illness</h2>
+        <p><strong>What it does:</strong> when you are diagnosed with one of 30+ major illnesses, you get a lump sum payout.</p>
+        <div class="card">
+          <h3>Why this is the one most people skip</h3>
+          <p>Cancer recovery in Singapore is on average 3 to 5 years. During that time you are not earning, but expenses are still running.</p>
+          <p>Hospital bills are covered separately. The CI payout is what replaces your <strong>lost income</strong> while you recover.</p>
+        </div>
+        <p class="dim"><strong>AIA product:</strong> AIA Absolute Critical Cover / AIA Power Critical Cover, paired with the life policy as a rider.</p>
+        <aside class="notes">
+          Most clients get this confused with hospital. Spend an extra 30 seconds on the distinction: hospital plan pays the hospital. CI plan pays YOU.
+        </aside>
+      </section>
+
+      <!-- 11. Hospital -->
+      <section>
+        <span class="pill">Coverage 3 of 5</span>
+        <h2>Hospital Plan</h2>
+        <p><strong>What it does:</strong> covers your hospital bills. As-charged, up to high limits.</p>
+        <div class="card">
+          <h3>The simple line</h3>
+          <p><strong>Hospital plan pays the hospital. CI plan pays you.</strong></p>
+          <p>If you are admitted overnight, this is the policy that handles the bill. Singapore private ward bills routinely hit $50K to $200K. MediShield Life alone does not stretch that far.</p>
+        </div>
+        <p class="dim"><strong>AIA product:</strong> AIA HealthShield Gold Max - upgrade your MediShield to private, public A, or public B ward level.</p>
+        <aside class="notes">
+          Lock this in early. Once a medical condition shows up, you cannot upgrade later. That is the urgency for hospital plans, and it is a real one - not a manufactured one.
+        </aside>
+      </section>
+
+      <!-- 12. Accident -->
+      <section>
+        <span class="pill">Coverage 4 of 5</span>
+        <h2>Personal Accident</h2>
+        <p><strong>What it does:</strong> covers the everyday outpatient stuff that hospital plans miss.</p>
+        <div class="card">
+          <h3>The gap-filler</h3>
+          <p>Sprain your ankle. X-ray, MRI, physio. $3K to $4K, no admission. <strong>Hospital plan does not pay.</strong></p>
+          <p>Lose a limb in an accident. Life and CI may not pay. <strong>Personal accident does.</strong></p>
+        </div>
+        <p class="dim"><strong>AIA product:</strong> AIA Solitaire PA Secure / AIA Personal Accident plans.</p>
+        <aside class="notes">
+          This is the one most young Singaporeans underrate. Cheap. Covers the awkward middle ground that nothing else covers.
+        </aside>
+      </section>
+
+      <!-- 13. Investment / Savings (covered briefly) -->
+      <section>
+        <span class="pill">Coverage 5 of 5 - briefly</span>
+        <h2>Saving for retirement</h2>
+        <p>Once protection is sorted, the next layer is what you set aside for the long term.</p>
+        <div class="card">
+          <h3>The "old age" problem</h3>
+          <p>This is the only one of the six big risks where insurance is not the answer. Retirement is funded through long-term savings and investments.</p>
+          <p>Aim for around <strong>20% of take-home pay</strong> going toward this once protection is in place.</p>
+        </div>
+        <p class="dim"><strong>AIA product:</strong> AIA Pro Achiever 3.0 (ILP) / AIA Smart Wealth Builder (endowment) / AIA Retirement Saver - depending on goal and risk profile.</p>
+        <aside class="notes">
+          Briefly mention this so they see the full picture, but do not pivot the deck into wealth accumulation. Today is about protection.
+        </aside>
+      </section>
+
+      <!-- 14. How much should you actually have -->
+      <section>
+        <h2>How much cover is "enough"</h2>
+        <table>
+          <thead>
+            <tr><th>Risk</th><th>Industry guideline</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Death</td><td>10x annual income</td></tr>
+            <tr><td>Disability</td><td>~75% of monthly income until retirement</td></tr>
+            <tr><td>Critical Illness</td><td>$100K + 3 to 5x annual income</td></tr>
+            <tr><td>Accident</td><td>5x annual income</td></tr>
+            <tr><td>Hospitalisation</td><td>Based on ward preference</td></tr>
+          </tbody>
+        </table>
+        <p class="dim">These are rough industry guidelines, not rules. The actual numbers depend on your life - whether you have kids, a mortgage, parents to support.</p>
+        <aside class="notes">
+          Do not promise specific numbers. State the guideline, anchor it to the friend's situation, and move on. You are not licensed to recommend specific cover amounts yet.
+        </aside>
+      </section>
+
+      <!-- 15. Sample plan for someone like the friend -->
+      <section>
+        <h2>If we were planning for someone like you...</h2>
+        <p class="dim">Illustrative only - real numbers come later, with proper fact-find.</p>
+        <div class="card">
+          <h3>Example: $4K a month take-home, mid 20s, no dependents yet</h3>
+          <ul>
+            <li><strong>Life + CI</strong> (term + rider) - around $80 to $130 / month</li>
+            <li><strong>Hospital</strong> (private ward upgrade) - around $50 to $90 / month</li>
+            <li><strong>Personal accident</strong> - around $15 to $30 / month</li>
+            <li><strong>Total protection budget</strong> - around <strong>$200 / month</strong> (~5% of take-home)</li>
+          </ul>
+        </div>
+        <p class="dim">The "1/3 rule" framing - 1/3 short term needs, 1/3 medium term, 1/3 long term (protection + accumulation).</p>
+        <aside class="notes">
+          Keep numbers loose and clearly illustrative. The point is to show the order of magnitude, not to quote a real premium. If they push for exact numbers, redirect: "I cannot quote you - that needs a licensed plan and a fact-find."
+        </aside>
+      </section>
+
+      <!-- 16. Roughly what this would cost -->
+      <section>
+        <h2>What does this all cost - roughly</h2>
+        <div class="grid-3">
+          <div class="card">
+            <span class="label">Lean version</span>
+            <p style="font-size: 1.6rem;"><strong>~$120 / mo</strong></p>
+            <p class="dim">Term life + CI rider + hospital ward downgrade. Covers the basics.</p>
+          </div>
+          <div class="card" style="border-color: var(--accent-2);">
+            <span class="label">Best value</span>
+            <p style="font-size: 1.6rem;"><strong>~$200 / mo</strong></p>
+            <p class="dim">Term life + full CI + private hospital + PA. Most people start here.</p>
+          </div>
+          <div class="card">
+            <span class="label">Comprehensive</span>
+            <p style="font-size: 1.6rem;"><strong>~$350 / mo</strong></p>
+            <p class="dim">Whole life + multi-pay CI + private + PA + early-stage CI rider.</p>
+          </div>
+        </div>
+        <p class="dim">Numbers are illustrative ranges for someone in their mid-20s. Older or with health issues = higher.</p>
+        <aside class="notes">
+          Three options. Always three. It removes the binary "buy / do not buy" - replaced with "which of three." When this becomes a real meeting, the friend almost always picks the middle one.
+        </aside>
+      </section>
+
+      <!-- 17. Q&A prompts -->
+      <section>
+        <h2>Questions you might ask me</h2>
+        <div class="grid-2">
+          <div class="card">
+            <p>"Don't I already have this through my company?"</p>
+            <p class="dim">Company cover ends the day the job ends. By then a diagnosis can make you uninsurable.</p>
+          </div>
+          <div class="card">
+            <p>"Isn't it cheaper to just save?"</p>
+            <p class="dim">For a $200K bill - yes, if you already have $200K. For most people, the math does not work.</p>
+          </div>
+          <div class="card">
+            <p>"What if nothing ever happens?"</p>
+            <p class="dim">The hospital and term policies cover for the years you need them. The whole life policy still has cash value at 60+.</p>
+          </div>
+          <div class="card">
+            <p>"I want to think about it / ask my parents."</p>
+            <p class="dim">Fair. I would rather meet your parents with you - that way they get to ask me directly, not get a secondhand version.</p>
+          </div>
+        </div>
+        <aside class="notes">
+          These are the four objections that come up in 80% of real conversations. Practice answering them out loud. The point of the practice run is not perfection - it is hearing yourself say the answers so they sound like you when it counts.
+        </aside>
+      </section>
+
+      <!-- 18. Soft next step -->
+      <section>
+        <h2>Soft next step</h2>
+        <div class="card">
+          <p class="quote">When I am properly licensed - probably in a few weeks - would you be open to going through this again, this time with real numbers and a proper fact-find? No commitment to buy anything.</p>
+        </div>
+        <ul>
+          <li>If yes: log it. Follow up the day you are licensed.</li>
+          <li>If no: <strong>thank them anyway.</strong> The feedback is what you came for.</li>
+          <li>If maybe: ask what would make it a yes - that is the most useful answer of all.</li>
+        </ul>
+        <aside class="notes">
+          Do not push. The whole point of starting with the honest framing is so the soft close lands without feeling like a bait-and-switch. If they say no, you still got the practice rep and the feedback - that is a win.
+        </aside>
+      </section>
+
+      <!-- 19. Feedback ask -->
+      <section>
+        <h2>What I am asking from you</h2>
+        <div class="card">
+          <p>Three quick questions. Honest answers only.</p>
+          <ol>
+            <li>Which slide or section <strong>landed best</strong>?</li>
+            <li>Which part felt <strong>boring or confusing</strong>?</li>
+            <li>If a friend asked you what I do, <strong>how would you describe it in one sentence</strong>?</li>
+          </ol>
+        </div>
+        <p class="dim">Write the answers down or send them to me afterwards. This is the part of the session that actually makes me a better advisor.</p>
+        <aside class="notes">
+          Capture the feedback in writing - notes app, voice memo, anything. Within 24 hours, sit with your mentor and walk through the three answers. This is how the practice rep compounds.
+        </aside>
+      </section>
+
+      <!-- 20. Thank you -->
+      <section data-background-color="#0b0f1a">
+        <h1>Thank you.</h1>
+        <p>Seriously - thank you for sitting through 20 minutes of practice with me.</p>
+        <p class="dim">When I am licensed, I will come back with a real version. Until then - your feedback is the thing that gets me there.</p>
+        <p style="margin-top: 2rem;"><span class="pill" style="background: rgba(52,211,153,0.12); color: var(--good); border-color: rgba(52,211,153,0.35);">Day 53 - First 60 Days</span></p>
+        <aside class="notes">
+          End warm. Do not linger. Send a thank-you message the same day with the three feedback questions written out, in case they did not catch them live.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      transition: 'slide',
+      backgroundTransition: 'fade',
+      width: 1280,
+      height: 800,
+      margin: 0.06,
+      minScale: 0.4,
+      maxScale: 1.4,
+      plugins: [ RevealNotes ]
+    });
+  </script>
+</body>
+</html>
