@@ -260,6 +260,164 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
 ---
 
+## Objection-Handling Library
+
+Here are the canonical objection scripts for the situations that come up most. Practise them out loud, then make them yours - the words matter less than the rhythm of acknowledge -> reframe -> ask again.
+
+### Objection taxonomy at a glance
+
+The Academy library has 11 dedicated objection scripts. They cluster into 5 families:
+
+| Family | When you hear it | Scripts in this family |
+|---|---|---|
+| **Push-away / "not interested"** | First 30 seconds, reflex defence | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| **"I already have someone"** | Existing advisor, family advisor, employer cover | "Already have an advisor" objection script |
+| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Video-Off objection (Zoom), texting-EQ 4-step framework |
+| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Cost of Delay (Pre-Retirees) - paying with time vs money |
+| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Recruitment objection handling (telemarketer angle) |
+
+Use the family to pick the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
+
+### "Not interested in insurance"
+
+**Use this when** a prospect throws this in the first 60 seconds of a call - it is almost always a reflex, not a real position.
+
+**Version 1 - redirect to planning**
+
+> Q: "I'm not interested in insurance."
+>
+> A: "I understand where you're coming from. Most people I speak to feel exactly the same and don't want to dig into this until much later. But most people also agree that financial planning is important and worth doing regularly. That's why I'd love to grab a quick 30-minute Zoom call - just to look at your situation and see if there's anything worth planning for. Is [date, time] or [date, time] better for you?"
+
+**Version 2 - pivot to investing**
+
+> Q: "Not interested in insurance."
+>
+> A: "I see - do you do your own investing?"
+>
+> If yes: "What do you invest in? What are some of the struggles or challenges you're facing right now?"
+>
+> If no: "Are you keen to learn more about investments?"
+
+If they're still not interested after both pivots: "I see - can I ask why? No pressure, I just want to understand." Then move them into nurture - send useful resources, keep the relationship warm.
+
+_Source: Academy scripts library, audience=general, category=objection-handling._
+
+### "Already have an advisor"
+
+**Use this when** the prospect mentions an existing advisor - especially if it's a family member or close friend.
+
+**The script (acknowledge -> common ground -> different perspective -> safety valve)**
+
+When the prospect says: "My advisor is my aunt so I usually go to her. I have bad experiences with friends as advisors so I tend to stay away. Just being honest. If I ever need to approach someone else, I'll let you know."
+
+> "Something my clients have shared with me is that they wanted an advisor who'd be there for them for the next 4-5 decades, in the same life stage as them - while an older advisor can stay on as a concurrent mentor at the same time. Anyway, I'm really hoping we can have a super casual chat about this, so moving forward I can communicate and advise my own friends better in the same situation."
+
+**The reframe:** you can have *two* advisors. Position yourself as the relatable, same-life-stage one. Position the existing advisor as a mentor. Don't try to replace - complement.
+
+_Source: Academy scripts library, audience=warm-market, category=objection-handling._
+
+### Texting EQ 4-Step Framework (for DM/text objections)
+
+**Use this when** the objection arrives via text or DM - phone scripts feel too heavy in writing.
+
+90% of warm outreaches get an objection on the first text. An objection is not a rejection.
+
+**The 4 steps:**
+
+> **Step 1 - Casually acknowledge.** "Hahaha YES I expected you to be not interested - if you were, you would have already texted me first."
+>
+> **Step 2 - Common ground.** "Actually most of my clients also met me without feeling interested, because they didn't know how I plan prior to meeting me."
+>
+> **Step 3 - Different perspective.** "So I want to show you how I improve my clients' returns to complement what you already have."
+>
+> **Step 4 - Make them feel safe (safety valve).** "Then from there you can decide for yourself if it's relevant to you. Sometimes the conclusion is to keep your portfolio unchanged - which is also a valid outcome."
+
+Then add an easy question ("Which days are you usually in the office?") and a personal element ("I haven't seen you in so long anyway, would be fun to catch up").
+
+_Source: Academy scripts library, audience=warm-market, category=objection-handling._
+
+### Cost of Delay (Pre-Retirees / Working Adults)
+
+**Use this when** a prospect is delaying a decision, especially in their 40s-50s and the conversation is about retirement or savings. This is a longer, conversational walk - use it when you have the time and rapport.
+
+> "Mr. Prospect, would you agree that retirement in Singapore isn't exactly cheap?" (Yes)
+>
+> "That said, if we're aiming for a comfortable lifestyle in our retirement years, would you say it makes sense that we'll probably need to set aside quite a bit to get there?" (Yes)
+>
+> "Over the years, working with many clients, I've noticed something quite consistent when it comes to building wealth. It really boils down to just two main ingredients - would you like to guess what they might be?" (Let them reply.)
+>
+> "They're time and money. Let me explain - we've seen and built many retirement portfolios over the years. For clients who started saving or investing early, say in their 20s or 30s, they didn't need to set aside a lot each year. A few thousand dollars annually added up over time into six-figure portfolios.
+>
+> "But for those who only started planning later, they had to contribute much more - sometimes tens of thousands - just to catch up.
+>
+> "So in a way, to reach our goals, we're always 'paying' - either with time or with money. The real question is: how much of each are we willing or able to commit today?
+>
+> "And I completely understand if you're still exploring your options - that's perfectly normal. But could it also be that, perhaps without realising, we've already been paying with time by waiting or postponing this? And if that continues, do you think it's possible we might end up needing to contribute even more down the road - or potentially compromise on the lifestyle we're working towards?"
+
+The genius of this one is the binary: time or money, you're paying either way. Most prospects who "want to think" haven't realised they're already paying.
+
+_Source: Academy scripts library, audience=working-adult, category=objection-handling._
+
+### Young Adults / NSF - All Objections Bundle
+
+**Use this when** prospecting young-adult or NSF leads (typically Facebook ad opt-ins or telemarketer-set appointments). Each row is a stock objection with the right reply.
+
+**"Not interested"**
+
+> "I understand you may have some concerns. My main intention here is just to help you get a financial headstart. Don't worry - it's a short Zoom session to help you understand more about financial literacy concepts, just 20 mins out of your 24 hours a day. So would [date and time] work?"
+
+**"Is this compulsory?"**
+
+> "No, however most ORD personnel and students who attended this session found it really beneficial right after. It would be useful for you to attend now that you've finished NS. We can set a tentative date - say [date and time]. Which is more convenient for you? Time slots are specially allocated for you so do try to make it."
+
+**"What is the session about?"**
+
+> "It's a session to learn ways you can grow your money faster, so you can gain a headstart in your career compared to your peers. Would [date and time] work better for you?"
+
+**"How did you get my number?"**
+
+> "You actually signed up for an interest form about 2 years back, either during your enlistment or nearing your ORD. Do you still recall? (If they say no:) Oh, many of the other guys do remember signing up for this - but no worries haha." Then go back to setting the time.
+
+**"Which organisation are you calling from?"**
+
+> "I'm calling from AIA - one of the largest financial institutions in Singapore and Asia. We've been in financial services for almost 100 years."
+
+**"Can you send me more details first?"**
+
+> "No worries. I'll send you some info through WhatsApp after this call - just help me reply to the WhatsApp to confirm the timing, okay? Alright, so one last thing - this session is just for you to learn more, and I'm just doing my job..." (Continue with the rest of your script.)
+
+_Source: Academy scripts library, audience=young-adult, category=objection-handling._
+
+### Handling ghosting and non-replies
+
+**Use this when** a warm-market contact has gone silent after agreeing to meet, or hasn't replied to your follow-up.
+
+**Playful bump (when they ghost you):**
+
+> "Eh bro... don't ignore me leh HAHA don't like FA just say..."
+
+Usually they reply: "Paiseh bro HAHA damn busy with work."
+
+You: "Me too" - then schedule for a few weeks/months later when both are more free.
+
+**Taking the ball back (when they say "not now"):**
+
+> Prospect: "Not at the moment bro. Maybe when I am on long leave."
+>
+> You: "Okay no worries! Check in with you around November!"
+
+**The principle:** always take the ball back. The right to reschedule stays with you, not the prospect. Set a specific follow-up month so the next move is on your calendar, not their goodwill.
+
+**Gentle re-engage (when they forgot to reply):**
+
+> "Hehe let's catch up and review soon! Next sat/sun we go for a meal?"
+>
+> Then later: "OH YA - actually I just spent an hour studying your case just now. And I wanna show you something my clients were sharing with me. Catch you before the month ends?"
+
+_Source: Academy scripts library, audience=warm-market, category=follow-up._
+
+---
+
 ## Related
 
 - Previous: [[day-43|Day 43 - Scripting Your Approach]]

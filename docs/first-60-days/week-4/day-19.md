@@ -380,6 +380,67 @@ Cross-link: see [Day 42 - Digital Lead-Gen Playbook](../week-7/day-42.md) for th
 
 ---
 
+## Scripts Library
+
+Here are the canonical mindset/tip scripts for this exact situation - prospecting as a habit, not a mood. Practise them out loud, then make them yours.
+
+_Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
+
+### Calling tips and tonality (the unromantic truth)
+
+**Use this when** you find yourself avoiding the phone, or when 10 calls in a row feel heavier than they should.
+
+The numbers - and they are stable across many FCs in your seat:
+
+> 1. Make 100 calls in 1 sitting. Aim to make 10-20 connects per session.
+> 2. Average appointment from a session: 1-3.
+> 3. Average closing on appointments: 2-4 hours per appointment.
+> 4. Pace: 1 successful appointment lasts about 30-45 minutes.
+
+**Tonality basics that move the meter:**
+
+- Smile while you're calling. They hear it.
+- Slow down by 10-15%. New FCs always rush.
+- Lead with energy and warmth - this is a real human helping a real human, not a script-bot.
+- If your tone is flat, the prospect treats it as a sales call. If your tone is warm, the prospect treats it as a conversation.
+
+**The two-phone strategy** (worth setting up now): one phone for outbound work calls, one for personal use. Stops you draining your personal battery and makes it easy to focus during a calling block.
+
+_Source: Academy scripts library, audience=general, category=tips._
+
+### FYC formula - the math that makes prospecting non-negotiable
+
+**Use this when** the activity feels pointless. The math is the antidote.
+
+Roughly:
+
+- 100 dials -> 10-20 connects -> 1-3 appointments -> 1 close on average across a session.
+- Closing rate on warm-survey-led appointments: typically 30-50% in Year 1.
+- Each closed client = ~$1,000 FYC + the lifetime-value tail (cross-sells, referrals, reviews).
+
+**The implication:** every dial is worth $5-10 in expected FYC even before lifetime value compounds. A dial you didn't make is money you didn't earn 60 days from now.
+
+_Source: Academy scripts library, audience=general, category=tips._
+
+### Warm market mindset - what to remember before every call
+
+**Use this when** you're about to call a friend and the awkwardness is creeping in.
+
+> **Mindset:** Add value or seek help - don't aim to sell. Seek help and lower your guard a little. Most people respond well to "can you help me out?" and badly to "let me sell you something."
+
+**Reframe the meetup, for the prospect's benefit:**
+
+- **Worst case** - they get a second opinion on their portfolio, peace of mind that what they have is good, plus a neat one-page summary of all their policies they didn't have before.
+- **Best case** - they reduce their cost of insurance, free up cash flow, and walk away with a real plan.
+
+**What NOT to do** in warm-market outreach:
+
+> Don't lead with "we have an ILP that can help you to invest." This puts the guard up instantly - you sound like every agent they've been avoiding. Lead with curiosity and help. Let them discover the value through the conversation. Your goal in the first message is the meetup, not the sale.
+
+_Source: Academy scripts library, audience=general, category=tips._
+
+---
+
 ## Related
 
 - Previous: [[../week-3/day-18|Day 18 - The 10X Rule]]

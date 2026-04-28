@@ -578,6 +578,46 @@ Both end at the same 30-minute appointment. The choice is about the contact's pr
 
 ---
 
+## Scripts Library
+
+The warm-market survey, cold-call flow, and objection handling are already inlined above. Here are two extra scripts from the Academy library that round out the day - the post-call text after a survey-led appointment, and the meeting confirmation sequence.
+
+### Post-Call Text - Working Adult Consultation Confirmed
+
+**Use this when** you've finished a market-survey call and the prospect agreed to a follow-up meeting. Send within 30 minutes of hanging up.
+
+> "Hey [name] - really enjoyed our chat just now. As we discussed, we'll meet on [day, date, time] over [Zoom / your office / coffee shop].
+>
+> Two things to bring along: (1) any existing policy docs you've got - either a screenshot or PDF is fine, doesn't have to be neat; (2) a rough mental note of what your monthly cash inflows / outflows look like. We don't need exact numbers, just ballpark.
+>
+> Anything you want me to prep on my end before we meet, just text me. See you on [day]!"
+
+The two-things-to-bring framing primes them for the fact-find without making it sound like homework.
+
+_Source: Academy scripts library, audience=working-adult, category=confirmation._
+
+### Pre-Zoom Confirmation Text (Fact-Finding, All Audiences)
+
+**Use this when** the meeting is on Zoom and you want it to actually happen. Three touches: D-1 evening, morning of, 30 minutes before.
+
+**D-1 evening:**
+
+> "Hey [name] - looking forward to our chat tomorrow at [time]. Here's the Zoom link: [link]. See you then!"
+
+**Morning of:**
+
+> "Morning [name]! Just confirming we're still on for [time] today. Same Zoom link from yesterday's message."
+
+**30 minutes before:**
+
+> "Hi [name] - jumping into the Zoom in a bit. See you at [time]!"
+
+No-show rate drops by roughly half when all three confirmations land. Worth the 90 seconds it takes to send them.
+
+_Source: Academy scripts library, audience=general, category=confirmation._
+
+---
+
 ## Related
 
 - Previous: [[../week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]]

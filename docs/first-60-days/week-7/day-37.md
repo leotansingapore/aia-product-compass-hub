@@ -97,15 +97,23 @@ If reading this still feels uncomfortable, **the discomfort isn't about the pros
 
 ### The "market survey" opener
 
-Don't pitch. Ask for feedback.
+Don't pitch. Ask for help.
 
-> "Hey - I've moved into financial advisory and I'm building up my skill. I'm doing **market surveys** with 20 people I trust, just to understand what people actually care about when it comes to money. It's 30 minutes, no product talk. I'd love your honest feedback - can I buy you coffee next Tuesday or Thursday?"
+> "Eh bro / hey - just to share, I'm becoming a Financial Consultant with AIA soon. Quite excited, but part of the training is I need to do a short market survey with people I trust - just to understand what people actually care about when it comes to money. No pitching, no products. Just honest feedback, 5 mins on the phone or 30 mins over coffee. Can help me?"
 
 **Why it works:**
-- It's true. You are learning.
-- It removes the sales pressure - they're helping you, not the reverse.
-- It earns permission for a real conversation without needing to "sell" them.
-- 8 out of 10 warm contacts will say yes to this.
+- It's true. You are learning, and you do need the reps.
+- It flips the frame - they're helping you out, not the other way round.
+- "No pitching, no products" is the line that drops their guard. Most people brace for a sales pitch the moment you say "financial". Take that off the table early.
+- 8 out of 10 warm contacts will say yes - because saying yes to "help me out for 5 mins" is much easier than saying yes to "let me sell you something".
+
+**The seeking-help angle (use it if a straight survey feels too formal):**
+
+> "Hey [name] - just to share, I'm becoming a Financial Consultant soon. Quite excited! Part of my assignment is I need to practise a few pitches with friends first - basically forced one lah. Can we hop on a quick Zoom or grab coffee? I just want to show you the slides I'm using and the script - really just want your honest feedback so I can improve. Need to do 5 by end of month."
+
+**The policy summary angle (works really well for friends with multiple policies):**
+
+> "Hey [name] - sharing only, I'm becoming a Financial Consultant soon. As part of training, I need to do a market survey - basically understand what policies you have and help my friends do up a one-page summary of all their plans. No pitching anything. So if you let me practise on yours, I can help you lay everything out in one place. Can?"
 
 ### The 3 things you do in a warm first meeting
 
@@ -122,9 +130,9 @@ Don't pitch. Ask for feedback.
 
 When a warm contact asks *"So what do you do now?"* - the moment everyone fumbles:
 
-> "I help people make sense of their money - protection, savings, retirement. Most of my work is sitting down with people, understanding their situation, and showing them what's actually working and what's leaking. I'd love to do that for you one day - no pressure, just a fresh pair of eyes."
+> "I help people make sense of their money - protection, savings, retirement. Most of my work is sitting down with someone, understanding what they've got, and showing them what's actually working and what's leaking. Would love to do that for you one day - no pressure, just a fresh pair of eyes on your situation."
 
-Practice this out loud until it sounds like you, not a script.
+Practise this out loud until it sounds like you, not a script. The test: can you say it after two beers without sounding stiff? If yes, it's ready.
 
 ---
 
@@ -134,9 +142,9 @@ Practice this out loud until it sounds like you, not a script.
 
 ### How to ask for the referral (from an existing client)
 
-Do this at the end of a claim paid out, annual review that went well, or after any "thank you" moment:
+Do this right after a claim got paid, an annual review that went well, or any moment where the client just said "thanks":
 
-> "I'm glad I could help. One favour - I grow my practice through introductions, not cold calls. Is there 1 or 2 people in your life - family, a colleague, a close friend - who you think would benefit from the same conversation we had? No pressure. If someone comes to mind, I'd be grateful for a warm intro."
+> "Glad I could help with this one. One small favour - the way I grow my practice is through intros from people like you, not cold calls. Got 1 or 2 people you think could use the same conversation we had? Family, colleague, close friend - anyone who comes to mind. No pressure at all. If a name pops up, a warm intro from you would mean a lot."
 
 **Don't:**
 - Ask for "anyone you know." Vague = zero names.
@@ -145,15 +153,15 @@ Do this at the end of a claim paid out, annual review that went well, or after a
 
 ### How the intro should happen
 
-Ask the client to send **one message on your behalf** in front of you:
+Ask the client to send **one message on your behalf, right there in front of you**:
 
-> "Hey [name], this is Leo - he's my financial advisor and he helped me sort out my protection last month. I thought of you because you mentioned [specific thing]. He's going to reach out - worth 30 minutes, trust me."
+> "Hey [name] - this is [your name], my financial consultant. She helped me sort out my protection last month. Thought of you because you mentioned [specific thing]. She'll reach out, worth 30 mins, trust me."
 
-Once the client hits send, **you message the referred prospect within 24 hours.**
+Once the client hits send, **you message the referred prospect within 24 hours**. Don't wait. The borrowed trust has a half-life of about a day.
 
 ### Your opening message to the referred prospect
 
-> "Hi [name] - [referrer] just introduced us. He mentioned you were thinking about [specific thing they mentioned]. I helped him with exactly that last month. Happy to grab a coffee or do a 30-min video call - no pitch, just a conversation. Which week works better for you?"
+> "Hi [name] - [referrer] just dropped me your contact. She mentioned you were thinking about [specific thing she said]. I helped her with exactly that last month, so happy to share what we did. Coffee or a 30-min Zoom, totally up to you - no pitch, just a chat. Which week works better - this week or next?"
 
 **Why this works:** the referrer has done the trust transfer. You only need to confirm the topic and propose a time.
 
@@ -173,15 +181,15 @@ Cold prospects don't agree to meetings. They agree to meetings **with people who
 
 **Step 3 - The DM that doesn't sound like a pitch.**
 
-> "Hey [name] - saw your post about [topic] last week. I work with quite a few people in a similar spot and noticed [specific observation]. Not pitching anything - just thought you might find [a specific article / calculator / CPF quirk] useful. Want me to send it over?"
+> "Hey [name] - saw your post about [topic] last week. I work with a few people in a similar spot and noticed [specific observation]. Not pitching anything - just thought you'd find [specific article / calculator / CPF quirk] useful. Want me to send it over?"
 
-**Why this works:** you're offering value, not asking for time. The reply rate is 5-10x higher than a cold "I'm an FC, want to meet?"
+**Why this works:** you're offering value, not asking for time. Reply rate is 5-10x higher than a cold "I'm an FC, can we meet?"
 
-### From DM -> first meeting
+### From DM to first meeting
 
-Once they reply and engage with the resource:
+Once they've replied and engaged with the resource:
 
-> "Glad it was useful. If you ever want a proper walk-through of how it applies to your situation - 30 mins, no pitch - I'm happy to do that. No rush, just keep me in mind."
+> "Glad it landed. If you ever want a proper walk-through of how this applies to your own situation - 30 mins, no pitch, just a conversation - I'm happy to do that. No rush, just keep me in mind."
 
 Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 9).
 
@@ -212,7 +220,7 @@ Most first meetings don't close. That's normal. What kills conversion isn't the 
 
 ### The "open door" message (touch #7)
 
-> "Hey [name] - totally understand the timing's not right. I won't keep chasing. Just know my door's open whenever you're ready - even if it's 6 months or a year from now. I'll keep sending you the occasional useful thing, and when you're ready to talk, just message me."
+> "Hey [name] - all good, timing's clearly not right and I'm not going to keep chasing. Just know my door's open any time - even if it's 6 months or a year from now. I'll keep sending the occasional useful thing here and there, and when you're ready to talk, just drop me a message."
 
 **Why 7 and not 3:** industry data consistently shows 60%+ of sales happen after touch 5. Most new FCs quit at touch 2 or 3. The follow-up is the sale.
 
@@ -227,7 +235,7 @@ Two failure modes silently shut the door:
 
 What an open-door close sounds like instead:
 
-> "Totally fair - appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side. If you think of someone who'd find this useful, I'd be grateful for a name - but only if it comes to mind naturally."
+> "Totally fair - appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side. And if someone you know happens to come up in conversation - new baby, job change, whatever - I'd be grateful if you remembered me. Only if it comes to mind naturally though, no pressure to dig."
 
 What this line is doing:
 
@@ -432,6 +440,56 @@ Do all four before Day 38.
  - D) Obligated because of the relationship
 
  **Why:** the first meeting is a relationship opener, not a close. If the prospect walks away feeling listened to and unpressured, the door stays open for Steps 2-6 of the financial planning process - where the real value (and CLV) is built.
+
+---
+
+## 2-Liner Hook (Warm Prospecting Flow)
+
+A low-pressure, text-first warm opener that uses a useful resource as the bridge to a business appointment. Sits to the left of the cold-call script - lighter, slower, and built for contacts where a phone call would feel heavy but a text feels honest.
+
+**Use this when** you've identified a warm contact (someone from your Project 100 list or a friend you haven't spoken business with yet) and want a soft opener that doesn't feel like the first move toward a sale.
+
+### The flow
+
+```mermaid
+flowchart TD
+    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
+    B -- "Yes" --> C["Send the resource"]
+    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
+    C --> D["Wait 1-2 weeks"]
+    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
+    E --> F(["Business Appointment"])
+```
+
+### The script
+
+> **Line 1.** Recently I have been helping my friends/clients with [common problem]. Can I help you with this also?
+>
+> **Line 2.** I have a [resource] that I/my team created, to help [common group] solve [common problems] to [measurable outcome]. You want it? I send you.
+
+What goes in the blanks:
+
+- **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, first investment plan).
+- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together.
+- **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples).
+- **[common problems]** - the headline pains that group recognises in themselves.
+- **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on).
+
+### The follow-up that earns the appointment
+
+1-2 weeks after they receive the resource, send one short message:
+
+> Hey [name], been a couple of weeks since I sent you the [resource]. Did you manage to figure out [the specific problem]? Happy to help fill in any gaps if not.
+
+The phrasing matters - "did you figure it out" is binary. If the answer is "sort of, but I have questions" or "no, didn't get round to it", that's the appointment:
+
+> Easiest way is a 30-minute Zoom - I can answer the specific questions and show you what most people in your situation actually do. Tuesday 7pm or Thursday lunch?
+
+The agenda is *their* question. The product comes downstream of the conversation, not upstream.
+
+### Where this fits in today's lesson
+
+This is the lightest entry point in the warm-market half of the Approach. If a Market Survey phone call is too heavy for the contact, the 2-Liner is what you reach for first. Both flows end at the same place - a 30-minute meeting built around the prospect's question.
 
 ---
 

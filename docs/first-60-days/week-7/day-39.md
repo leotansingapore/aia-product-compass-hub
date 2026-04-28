@@ -341,6 +341,124 @@ A great list (Project 100) and a great Marketing Kit are the two halves of being
 
 ---
 
+## 2-Liner Hook (Warm Prospecting Flow)
+
+Once your Project 100 list is built, the 2-Liner Hook is the lightest opener for working through it. Two text/DM lines, a useful resource as the bridge, and a follow-up 1-2 weeks later that asks how the prospect got on with the problem. No phone call, no meeting ask up front. The follow-up is what opens the appointment.
+
+**Use this when** you've built your 100 names and need to start activating the Warm and Semi-Warm tiers without making the first move feel like a sales call.
+
+### The flow
+
+```mermaid
+flowchart TD
+    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
+    B -- "Yes" --> C["Send the resource"]
+    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
+    C --> D["Wait 1-2 weeks"]
+    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
+    E --> F(["Business Appointment"])
+```
+
+### The script
+
+> **Line 1.** Recently I have been helping my friends/clients with [common problem]. Can I help you with this also?
+>
+> **Line 2.** I have a [resource] that I/my team created, to help [common group] solve [common problems] to [measurable outcome]. You want it? I send you.
+
+Match the resource to the contact's life stage - the same hook with a generic resource gets ignored. New parent gets the protection checklist. Pre-retiree gets the CPF withdrawal guide. Fresh grad gets the first-investment plan.
+
+### The follow-up that earns the appointment
+
+1-2 weeks after they receive the resource:
+
+> Hey [name], been a couple of weeks since I sent you the [resource]. Did you manage to figure out [the specific problem]? Happy to help fill in any gaps if not.
+
+If the answer is anything other than "yes, fully sorted", that's the appointment:
+
+> Easiest way is a 30-minute Zoom - I can answer the specific questions and show you what most people in your situation actually do. Tuesday 7pm or Thursday lunch?
+
+### Where this fits in today's lesson
+
+The Project 100 list is only useful if you have a clean way to open each name. The 2-Liner is one tool. The Market Survey phone call (Day 43) is another. Most FCs use a mix - 2-Liner for Semi-Warm (haven't spoken in 6+ months, prefer text), Market Survey for genuinely Warm (would pick up your call). Both produce the same outcome: a first meeting on the prospect's terms.
+
+---
+
+## Scripts Library
+
+Here are the canonical scripts for activating Project 100 names without burning the relationship. Practise them out loud, then make them yours.
+
+_Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
+
+### Warm Market - Career Transition Notice
+
+**Use this when** the contact is someone from your old career or social circle who hasn't heard you've moved into financial advisory. This is the "casual update + soft offer" message - lower pressure than a direct ask.
+
+> "Hey [name]!
+>
+> It's been a while since we last met / spoke at [date / location]. Seems like all's been well on your end - [insert latest update on their work / personal life].
+>
+> Btw if you haven't heard, I've left [previous career] and joined AIA as a financial planner [not long ago / relevant timeframe]. Crazy story for another time haha.
+>
+> Anyway I do advisory work for clients I meet on a daily basis, and I thought there's no reason for me not to serve my own friends/family if they're open to it - but please don't feel obliged.
+>
+> Most people around our age would have already done up their insurance / investments, but some are nevertheless open to an objective review or a second opinion. If there are areas that could be done better or optimised, I can share my views. If everything's good, I'll be honest and let you know.
+>
+> Regardless, we can always meet to catch up - you can tell me more about [their thing] over coffee / lunch. What do you think?"
+
+The version that works best is the version where you actually weave in real updates about them. Generic = ignored. Specific = replied to.
+
+_Source: Academy scripts library, audience=warm-market, category=cold-calling._
+
+### Warm Market - Introduction Text (New Consultant)
+
+**Use this when** the contact knows you but doesn't yet know you're an FC. Pick the version that matches your relationship with them.
+
+**Version 1 - direct (a friend you're close to):**
+
+> "Hey [name] - just to share, I'm becoming a Financial Consultant in AIA soon. I'm getting my license from MAS in around [date].
+>
+> Unlike normal financial consultants, we use a financial simulator that helps us project your finances over the next 40 years in 10 minutes, and consolidate all your policies from different companies in one place.
+>
+> Even if you have an agent already, there'll always be gaps - or perhaps something I can give you a second opinion on.
+>
+> Our team also specialises in helping people restructure their portfolio so they're not overpaying for coverage. Some clients save around 50% on their insurance portfolio and free up cash flow to enhance their retirement.
+>
+> If you're comfortable, we can arrange a meetup for coffee to chit-chat. Haha. There are no obligations."
+
+**Version 2 - seeking-help angle (a contact you haven't spoken to in a while):**
+
+> "Hey [name] - [insert something unique about them].
+>
+> Just to share, I'm becoming a Financial Consultant soon! Quite excited about it - but part of my assignment is I need to do a few practice pitches with friends first (kena forced lah).
+>
+> Was wondering if we can have a meetup or Zoom - I want to show you the slides and scripts I've been working with, just to get your honest feedback so I can improve. Need to get feedback from 5 friends by end of month."
+
+**Version 3 - market survey + policy summary (semi-warm contact):**
+
+> "Hey [name] - [insert something unique about them].
+>
+> Just to share, I'm becoming a Financial Consultant soon! Quite excited about it. Part of my assignment is to conduct a market survey - basically understand what policies you have and help my friends do up a policy summary of all their plans. No pitching of anything.
+>
+> So maybe you can let me know if I can help you out? Need to do 10 by this month - kena forced."
+
+The "kena forced" framing is genuinely effective - it removes the awkwardness because it's true. You *do* have a quota.
+
+_Source: Academy scripts library, audience=warm-market, category=cold-calling._
+
+### Warm Outreach - Direct Approach (Existing Clients)
+
+**Use this when** you're activating clients you already work with for cross-sell or referral conversations - not for first-time prospects, but for the existing book once you have one.
+
+The principle: you've earned the right to ask directly. Don't dress it up.
+
+> "Hey [name] - quick one. Last time we mapped out [their plan], we said we'd revisit when [trigger event] happened. Now that it has, I'd like to grab 30 mins to look at the new picture together. Tuesday 7pm or Thursday lunch?"
+
+For Project 100 *before* you have a book, this version isn't the right tool - use the warm-market introduction or career-transition scripts above instead. Keep this one in your back pocket for Year 2 onwards.
+
+_Source: Academy scripts library, audience=clients, category=prospecting._
+
+---
+
 ## Related
 
 - Previous: [[day-38|Day 38 - Natural Market vs Referred Leads]]

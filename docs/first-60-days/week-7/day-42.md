@@ -295,6 +295,100 @@ Our agency also runs Facebook Ads to help you acquire clients. This works but ha
 
 ---
 
+## Scripts Library
+
+Here are the canonical DM and text-first scripts for the digital funnel - inbound replies, no-reply nudges, and meeting asks. Practise them out loud, then make them yours.
+
+_Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
+
+### Texting EQ - The 11 Rules for DM/Text Outreach
+
+**Use this when** you're about to send any DM or follow-up text. Rules 1, 2, 3 are non-negotiable.
+
+1. **Link back to the previous conversation** - no random openers. *"Hey bro the other time you were saying you work in Tanjong Pagar right? Exactly where is your office?"*
+2. **Every text creates more reason to meet.** *"I've been wanting to show you how I helped some clients increase their investment returns with their existing portfolio."*
+3. **End every text with an easy-to-answer question.** *"Are you working from home or office?"*
+4. **Make them feel SAFE.** *"Sometimes I advise people not to invest at all if there's no need - we can discuss when we meet and you decide for yourself."*
+5. **Common ground that keeps the convo going.** *"Some of my clients are also doctors and I help them with investments since they work long hours."*
+6. **Actively follow up.** 90% of the time people don't reply first round. Bump them by name.
+7. **Reply quickly** - within 3-4 hours. Signals reliability.
+8. **Be casual.** No jargon. No "Optimisation". Use emojis and "Hahaha" if it sounds like you.
+9. **Texting works best after 2-3 touchpoints.** Warm them up first - story replies, post comments, congrats messages.
+10. **Never use the word FREE.** Use a specific 30-min ask instead.
+11. **Minimise the prospect's thinking when setting CTA.** *"For next month I have 10th Jan 6pm and 23rd Jan 8pm, which works?"*
+
+_Source: Academy scripts library, audience=warm-market, category=tips._
+
+### Initial DM - Qualified Lead (Young Adult, Non-Voucher)
+
+**Use this when** someone has DM'd you a finance question or commented on your post showing real interest. They're warm, not just lurking.
+
+> "Hey [name]! Thanks for the DM - happy to help.
+>
+> Quick one before I share - just so I can give you the most useful answer, can I check: how old are you, and are you currently working / NSF / studying?
+>
+> Also, when you mentioned [their question topic], are you trying to figure out a specific situation - or more general financial planning curiosity?"
+
+The two-question move qualifies them without sounding like a quiz. By the time they answer, you've earned permission to give a tailored reply rather than a generic one.
+
+_Source: Academy scripts library, audience=young-adult, category=initial-text._
+
+### Post-Call / Post-DM Text (Young Adults, All Angles)
+
+**Use this when** you've had a phone or video call from a digital lead and want to land the relationship immediately after.
+
+> "Hey [name] - really enjoyed our chat just now. As promised, here's [the resource you said you'd send].
+>
+> A few of the things you mentioned [specific 1-2 things] are pretty common - want me to put together a quick plan walkthrough for you? 30 mins, on Zoom, fully tailored to your situation. No pitch.
+>
+> Tuesday 7pm or Thursday lunch?"
+
+The post-call text is where most digital-origin leads die. Don't let yours.
+
+_Source: Academy scripts library, audience=young-adult, category=post-call-text._
+
+### No-Reply Nudge (Day 1 / Day 3 / Day 7)
+
+**Use this when** a DM lead has gone cold after the initial reply. Three nudges, spaced - then they go to the long-tail nurture list.
+
+**Day 1 (4 hours after no reply to your first message):**
+
+> "Hey [name] - just bumping this up in case it got buried "
+
+**Day 3:**
+
+> "[Name] - no rush at all, just don't want you to miss this. Whenever's good for you "
+
+**Day 7:**
+
+> "Hey [name] - going to stop chasing on this one  if it's still on your radar, I'm here. Otherwise no stress, will keep an eye out for anything else useful to send your way."
+
+The Day 7 nudge is the open-door close - it explicitly stops the chase, which paradoxically reopens the door. Many replies come *because* you removed the pressure.
+
+_Source: Academy scripts library, audience=young-adult, category=follow-up._
+
+### Reschedule / Reminder (D-7, D-1, Day Of)
+
+**Use this when** a digital-origin meeting is on the calendar and you want it to actually happen. Digital leads no-show at higher rates than warm leads - confirm them properly.
+
+**D-7 reminder:**
+
+> "Hey [name] - looking forward to our chat next [day]. Just to confirm - we said [time], on Zoom. I'll send the link a day before."
+
+**D-1 reminder + Zoom link:**
+
+> "Hey [name]! Tomorrow [time] still good? Here's the Zoom link: [link]. See you then!"
+
+**Day-of reminder (2 hours before):**
+
+> "Hi [name] - see you in 2 hours at [time]. Same Zoom link as yesterday's message. Excited to chat!"
+
+Three-touch confirmation drops no-shows by roughly 50% on digital-origin meetings. It's worth the 30 seconds per touch.
+
+_Source: Academy scripts library, audience=young-adult, category=confirmation._
+
+---
+
 ## Related
 
 - Previous: [[day-41|Day 41 - Digital Influence: Content & Engagement]]

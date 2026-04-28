@@ -242,6 +242,110 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
 
 ---
 
+## Scripts Library
+
+Here are the canonical scripts for warm-market openers, market-survey rapport, and referral asks. Practise them out loud, then make them yours.
+
+_Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
+
+### Warm Market - Conversation Openers (by Life Stage)
+
+**Use this when** the warm contact is at a specific life moment (just married, just graduated, BTO process, considering investing). Match the opener to the moment.
+
+**Investment / returns angle (for friends who might invest):**
+
+> "Hmmm actually I want to show you how I've been doing investment planning for our [mutual group] friends - especially now when the markets are CRAZY. If we do the right things right, we can potentially earn good money over the next few years.
+>
+> BUTTTT like that you say sometimes I also tell some people not to invest at all because they're not financially ready.
+>
+> Catch you for 20 mins then you decide for yourself? HEHEH"
+
+**BTO / couples angle (getting married, buying flat):**
+
+> "Are y'all gonna BTO?" -> leads to BTO planning and budgeting conversation.
+>
+> Or: "Hey! Since you're getting married soon - have you guys started looking at how to budget for the flat + wedding + insurance together? A lot of my clients in the same stage found it super helpful to map it all out."
+
+**Fresh graduate angle:**
+
+> "You graduated already? Have you finished your investment and insurance planning? Why not I show you what I do for my other clients?"
+
+**Reprospecting / second attempt (friends who rejected you before):**
+
+> "You know a few years ago I reached out to you to talk about financial planning right? Actually I was a stupid noob back then who didn't know anything. So it's a good thing you rejected my request. BUT over the years - especially these 2 years - I've been planning for many couples to have a detailed plan towards financial freedom. After your wedding can I show you what I usually do for people? But no pressure."
+
+The reprospecting one is gold - self-deprecating humour disarms them, acknowledges they were right to say no the first time, shows growth, ends with no pressure.
+
+_Source: Academy scripts library, audience=warm-market, category=cold-calling._
+
+### Warm Outreach - Soft Approach (community / church / social circle)
+
+**Use this when** the contact is from a shared community - same church, same uni group, same hobby - someone you know but haven't spoken to professionally before.
+
+> "Hi [Name]! Hope all is well on your end.
+>
+> I just thought of asking - are you currently working with any financial consultant for your planning needs?
+>
+> If not, or if you are open to exploring, I would love to see if we can work together. I have been working with some of our [community/group] friends for years now. They have entrusted me with their financial planning and I am truly blessed to be part of their journey.
+>
+> No pressure at all - I just thought of reaching out to see if you would be open for a quick sharing."
+
+The genius: starts with a question, not a pitch. Asking "are you currently working with anyone?" is non-threatening. Social proof from the shared community lands without name-dropping.
+
+_Source: Academy scripts library, audience=warm-market, category=prospecting._
+
+### Warm Outreach - Curiosity Approach (DIY investors / has existing FA)
+
+**Use this when** the contact is financially savvy, manages their own investments, or already has an FA. Don't compete - offer a second opinion.
+
+> "I get you, and I honestly respect that you're very hands-on with your finances. That shows how intentional you are with your financial planning - especially with insurance, tax-saving plans, and dividend investing.
+>
+> Do you have someone helping you with all of these?
+>
+> What I usually do in situations like this is a one-time portfolio assessment - just to spot any blind spots, overlaps, or things that might be worth a second look. No harm in checking.
+>
+> If it sounds useful, we can have a chill chat over coffee or tea. Up to you."
+
+The reframe: not a sales pitch, an offer to check if everything is optimised. "Blind spots" implies gaps without insulting them. "Up to you" returns control and reduces resistance.
+
+_Source: Academy scripts library, audience=warm-market, category=prospecting._
+
+### Texting EQ - The 11 Rules for Warm Outreach
+
+**Use this when** you're about to send a warm-market text and want to sanity-check it before hitting send. The three non-negotiables (1, 2, 3) apply to every text.
+
+1. **Start the convo by linking it back to a previous conversation.** Don't sound random. *"Hey bro the other time you were saying you work in Tanjong Pagar right? Exactly where is your office?"*
+2. **Create enough interest with every text.** Every text gives the prospect more reason to meet. *"I've been wanting to show you how I helped some of my clients increase their investment returns with their existing portfolio."*
+3. **End every text with an easy-to-answer question.** *"Are you working from home or office?"*
+4. **Make them feel SAFE for the upcoming consultation.** *"At the end of the day, sometimes I advise people not to invest at all if we see no need - when we meet we can discuss and you can decide for yourself."*
+5. **Talk about common ground to encourage the conversation.** *"Some of my clients are also doctors and I help them with their investments since they usually work long hours."*
+6. **Actively follow up.** 90% of the time people fail to reply. Bump them by name: *"Hi Sarah!"*
+7. **Reply quickly** (within 3-4 hours). It shows reliability and service.
+8. **Be casual.** Don't use jargon. Don't say "Optimisation". Use emojis and "Hahaha" if it sounds like you.
+9. **Texting works best after a few engagements/touchpoints first.** Touchpoints warm up the prospect.
+10. **Never use the word FREE.** Instead: *"When is a better time for a 30-min call? Would next Thursday or Friday be better?"*
+11. **Minimise the prospect's thinking when setting CTA.** *"For next month I have 10th Jan 6pm and 23rd Jan 8pm, which is better for you?"*
+
+_Source: Academy scripts library, audience=warm-market, category=tips._
+
+### Warm Market Outreach Flow (the seed-and-yes sequence)
+
+**Use this when** you have time before you're licensed (or even after) and want a no-pressure way to get a yes for a future meeting now. This is the long game, and it works.
+
+> **Step 1 - Plant the seed (before you start).** "I will become a FA soon" - just share casually, no ask yet.
+>
+> **Step 2 - Make a soft ask for the future.** "When I become a FA, can I... practise my pitch on you / share what I do / have a coffee session with you to share what I do?"
+>
+> **Step 3 - Get a yes for something in the future.** They agree to something *later*, not now. No pressure on either side.
+>
+> **Step 4 - Follow up when the time comes.** "Hey! Remember I mentioned I'd love to share what I do? I'm ready now - when works for you?"
+>
+> By the time you actually message them, they've already said yes once. The meetup feels natural, not salesy.
+
+_Source: Academy scripts library, audience=warm-market, category=tips._
+
+---
+
 ## Related
 
 - Previous: [[day-37|Day 37 - The Approach: Why It Matters]]
