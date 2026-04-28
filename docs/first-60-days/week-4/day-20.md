@@ -10,9 +10,9 @@ duration_minutes: 20
 tags: [first-60-days, week-4, skills]
 ---
 
-# Day 20 — Basic Productivity & Time Efficiency
+# Day 20 - Basic Productivity & Time Efficiency
 
-> **The one idea for today:** You don't have a "time" problem. You have a *priority* problem. The difference between a $60K FYC and a $180K FYC is rarely hours worked — it's which hours you protect, and for what.
+> **The one idea for today:** You don't have a "time" problem. You have a *priority* problem. The difference between a $60K FYC and a $180K FYC is rarely hours worked - it's which hours you protect, and for what.
 
 ## What you'll walk away with
 
@@ -43,10 +43,10 @@ Top producers invert the first two. The 30% distraction gets compressed into spe
 
 These are the only activities that directly or nearly-directly produce commissions:
 
-1. **Prospecting** — outreach, follow-up, referral asks.
-2. **Client meetings** — first meeting, fact-find, proposal, close.
-3. **Proposal preparation** — illustrations, needs analysis, presentations.
-4. **Service touchpoints** — annual reviews, claim help, policy updates.
+1. **Prospecting** - outreach, follow-up, referral asks.
+2. **Client meetings** - first meeting, fact-find, proposal, close.
+3. **Proposal preparation** - illustrations, needs analysis, presentations.
+4. **Service touchpoints** - annual reviews, claim help, policy updates.
 5. **Content creation / visibility work** (long-term lead gen).
 
 **What doesn't count (even though it feels productive):**
@@ -61,7 +61,7 @@ None of those are bad. They just aren't the work that pays. Most days, spend ~60
 
 ## 3. Protect the peak hour
 
-**Find your 60–90 minutes of peak focus.** For most people it's 8:30–10:30am. Some people are evening owls — 9pm–11pm.
+**Find your 60-90 minutes of peak focus.** For most people it's 8:30-10:30am. Some people are evening owls - 9pm-11pm.
 
 Whenever it is, that hour is **off-limits** for anything non-revenue-generating. No meetings, no admin, no email, no team chat.
 
@@ -80,28 +80,28 @@ This single discipline separates the top quartile from the rest. Not genius. Not
 - No browser tabs except what the task needs.
 - One task, one hour.
 
-## 4. Batching — the context-switching tax
+## 4. Batching - the context-switching tax
 
 Every time you switch tasks, your brain pays a **~20 minute refocus tax.** Research consistently shows this.
 
 Four task types spread across the day = four refocus taxes = **~80 minutes/day lost** to context-switching.
 
-**The fix — batch.** Group similar tasks, do them in one block.
+**The fix - batch.** Group similar tasks, do them in one block.
 
 | Batched block | What goes in it |
 |---|---|
 | **Morning Revenue Block** | Prospecting calls, proposal writing, deep work |
-| **Mid-morning Meeting Block** | 2–3 back-to-back meetings |
+| **Mid-morning Meeting Block** | 2-3 back-to-back meetings |
 | **Late afternoon Admin Block** | Email, Slack, CRM notes, expense claims |
 | **End of day Learning Block** | Product study, role-play prep |
 
 Each block is **one task type.** Inside the block, you don't switch.
 
-This alone can recover 5–8 hours per week.
+This alone can recover 5-8 hours per week.
 
 ## 5. The "lifetime value" mental trick
 
-When a small task arrives that feels urgent — an email, a client text, a Slack mention — most FCs respond immediately, breaking their current block.
+When a small task arrives that feels urgent - an email, a client text, a Slack mention - most FCs respond immediately, breaking their current block.
 
 **The question to ask instead:**
 > "Will this matter in 6 months?"
@@ -109,7 +109,7 @@ When a small task arrives that feels urgent — an email, a client text, a Slack
 If yes, handle it now.
 If no, **batch it into the next Admin Block.**
 
-Clients who want you to respond in 30 seconds will get the same result if you respond in 3 hours — inside your batch. The urgency is usually their perception, not a real deadline.
+Clients who want you to respond in 30 seconds will get the same result if you respond in 3 hours - inside your batch. The urgency is usually their perception, not a real deadline.
 
 ## 6. Track your time for one week
 
@@ -147,13 +147,13 @@ For any task you're procrastinating on, commit to just 10 minutes. Set a timer. 
 
 ## 8. Done > perfect
 
-"Done is better than perfect." — a core principle that kills most perfectionism.
+"Done is better than perfect." - a core principle that kills most perfectionism.
 
 The perfectly structured proposal delivered 3 days late is worse than the 80% proposal delivered tomorrow. The unfinished LinkedIn post drafted for a week is worse than the rough post published today.
 
 Start before you feel ready. Publish before it's polished. Send before you've re-read it the fifth time.
 
-**Velocity matters more than polish** in Year 1. Polish is built through reps — and reps only happen when you stop polishing the first attempt and ship the tenth.
+**Velocity matters more than polish** in Year 1. Polish is built through reps - and reps only happen when you stop polishing the first attempt and ship the tenth.
 
 ---
 
@@ -163,27 +163,27 @@ Start before you feel ready. Publish before it's polished. Send before you've re
     <div style="padding:0 0.85rem 0 0;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Revenue Block</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">8:30 — 10:00</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">8:30 - 10:00</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Meeting Block</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">10:00 — 12:30</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">10:00 - 12:30</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Lunch / Break</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">12:30 — 13:30</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">12:30 - 13:30</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Admin Block</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">13:30 — 15:30</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">13:30 - 15:30</div>
     </div>
     <div style="padding:0 0 0 0.85rem;">
       <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Learning Block</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">15:30 — 17:00</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">15:30 - 17:00</div>
     </div>
   </div>
   <div style="margin-top:1.25rem;font-size:12px;color:hsl(var(--muted-foreground));font-style:italic;">Each block = one task type. Context-switch tax (~20 min) paid once, not four times.</div>
@@ -195,63 +195,63 @@ Start before you feel ready. Publish before it's polished. Send before you've re
 
 1. **Batching similar tasks recovers time by:**
  - A) Reducing total tasks
- - B) Eliminating the context-switching tax (~20 min per switch) ✓
+ - B) Eliminating the context-switching tax (~20 min per switch) (correct)
  - C) Forcing focus
  - D) Making work feel easier
 
- **Why:** Every time you switch task types, your brain pays roughly a 20-minute refocus penalty — four task switches per day wastes up to 80 minutes that is otherwise invisible. Batching groups the same type of work into one continuous block so the refocus cost is paid once, not repeatedly. Batching does not reduce the total number of tasks (A), force focus through external pressure (C), or inherently make work feel easier (D) — it simply eliminates the switching penalty.
+ **Why:** Every time you switch task types, your brain pays roughly a 20-minute refocus penalty - four task switches per day wastes up to 80 minutes that is otherwise invisible. Batching groups the same type of work into one continuous block so the refocus cost is paid once, not repeatedly. Batching does not reduce the total number of tasks (A), force focus through external pressure (C), or inherently make work feel easier (D) - it simply eliminates the switching penalty.
 
 2. **The "Will this matter in 6 months?" question is used to:**
  - A) Decide what to delete
  - B) Evaluate project scope
- - C) Decide whether to handle now vs batch to Admin Block ✓
+ - C) Decide whether to handle now vs batch to Admin Block (correct)
  - D) Set yearly goals
 
- **Why:** The question is a triage tool for interruptions that arrive during a revenue block — if the answer is no, the task goes into the next Admin Block rather than breaking your focus now. It does not trigger deletion (A), which requires a different judgment, nor does it evaluate project scope (B) or help set annual goals (D). The point is to protect peak-focus time from tasks whose apparent urgency is the client's perception rather than a real deadline.
+ **Why:** The question is a triage tool for interruptions that arrive during a revenue block - if the answer is no, the task goes into the next Admin Block rather than breaking your focus now. It does not trigger deletion (A), which requires a different judgment, nor does it evaluate project scope (B) or help set annual goals (D). The point is to protect peak-focus time from tasks whose apparent urgency is the client's perception rather than a real deadline.
 
-3. **The best use of your 60–90 minute peak-focus hour:**
+3. **The best use of your 60-90 minute peak-focus hour:**
  - A) Checking email and clearing the inbox
  - B) Attending training sessions
- - C) Revenue-generating work (prospecting, proposals, client prep) ✓
+ - C) Revenue-generating work (prospecting, proposals, client prep) (correct)
  - D) Planning the rest of the day
 
- **Why:** The peak-focus hour is your highest-quality cognitive window, and the lesson explicitly reserves it for activities that directly or nearly-directly produce commissions — prospecting, proposal writing, client meeting prep, or content creation. Email (A), training (B), and daily planning (D) are all explicitly listed as non-revenue-generating activities that belong in other batched blocks, not in the protected peak hour.
+ **Why:** The peak-focus hour is your highest-quality cognitive window, and the lesson explicitly reserves it for activities that directly or nearly-directly produce commissions - prospecting, proposal writing, client meeting prep, or content creation. Email (A), training (B), and daily planning (D) are all explicitly listed as non-revenue-generating activities that belong in other batched blocks, not in the protected peak hour.
 
 4. **A client sends a non-urgent WhatsApp asking for their policy number while you are in your morning revenue block. Applying today's lesson, the right response is:**
  - A) Reply immediately so the client feels valued
- - B) Set an auto-reply and handle it later in your Admin Block ✓
+ - B) Set an auto-reply and handle it later in your Admin Block (correct)
  - C) Ignore it until the next day
- - D) Step out of the block for two minutes — it is only two minutes
+ - D) Step out of the block for two minutes - it is only two minutes
 
- **Why:** A non-urgent client enquiry belongs in the late-afternoon Admin Block — the client gets the same result whether you reply in 30 minutes or 3 hours, and the urgency is their perception rather than a real deadline. Replying immediately (A) breaks the revenue block and pays the 20-minute context-switching tax. Ignoring until tomorrow (C) risks service quality unnecessarily. Stepping out "for two minutes" (D) nearly always costs 20+ minutes of lost focus once re-entry is counted.
+ **Why:** A non-urgent client enquiry belongs in the late-afternoon Admin Block - the client gets the same result whether you reply in 30 minutes or 3 hours, and the urgency is their perception rather than a real deadline. Replying immediately (A) breaks the revenue block and pays the 20-minute context-switching tax. Ignoring until tomorrow (C) risks service quality unnecessarily. Stepping out "for two minutes" (D) nearly always costs 20+ minutes of lost focus once re-entry is counted.
 
 5. **According to the time-tracking data cited, what percentage of a new FC's week is typically spent in distraction?**
  - A) 10%
  - B) 20%
- - C) 30% ✓
+ - C) 30% (correct)
  - D) 40%
 
- **Why:** The lesson's breakdown for a typical new FC is 20% in revenue-generating activity, 50% in preparation and admin, and 30% in distraction — social media, messaging, and non-purposeful research. Twenty percent (B) is what a new FC spends on actual revenue work, not distraction. Ten percent (A) and 40% (D) do not appear in the cited data.
+ **Why:** The lesson's breakdown for a typical new FC is 20% in revenue-generating activity, 50% in preparation and admin, and 30% in distraction - social media, messaging, and non-purposeful research. Twenty percent (B) is what a new FC spends on actual revenue work, not distraction. Ten percent (A) and 40% (D) do not appear in the cited data.
 
 6. **Which of the following is explicitly listed as a revenue-generating activity?**
  - A) Reorganising your CRM
  - B) Attending training
- - C) Annual policy review with a client ✓
+ - C) Annual policy review with a client (correct)
  - D) Expense reporting
 
- **Why:** Service touchpoints — including annual reviews, claim help, and policy updates — are explicitly listed under revenue-generating activities because they directly maintain and deepen client relationships that produce renewals and referrals. CRM reorganisation (A), training attendance (B), and expense reporting (D) are all explicitly listed as non-revenue-generating activities that "feel productive" but do not directly produce commissions.
+ **Why:** Service touchpoints - including annual reviews, claim help, and policy updates - are explicitly listed under revenue-generating activities because they directly maintain and deepen client relationships that produce renewals and referrals. CRM reorganisation (A), training attendance (B), and expense reporting (D) are all explicitly listed as non-revenue-generating activities that "feel productive" but do not directly produce commissions.
 
 7. **The "ten-minute rule" helps overcome procrastination because:**
  - A) Most tasks can be completed in ten minutes
  - B) Short timers reduce the quality standard required
- - C) Starting is the hardest part — momentum usually carries you beyond ten minutes ✓
+ - C) Starting is the hardest part - momentum usually carries you beyond ten minutes (correct)
  - D) It creates accountability to a manager
 
- **Why:** The rule works because the resistance to any task sits almost entirely at the start line, not inside the task itself — once you begin, flow carries you past the 10-minute mark 90% of the time. It is not designed for tasks that fit inside 10 minutes (A), nor does it lower quality expectations (B). It creates self-generated momentum, not external accountability to a manager (D).
+ **Why:** The rule works because the resistance to any task sits almost entirely at the start line, not inside the task itself - once you begin, flow carries you past the 10-minute mark 90% of the time. It is not designed for tasks that fit inside 10 minutes (A), nor does it lower quality expectations (B). It creates self-generated momentum, not external accountability to a manager (D).
 
 ---
 
 ## Related
 
-- Previous: [[day-19|Day 19 — Prospecting: The Lifeblood]]
-- Next: [[day-21|Day 21 — Closing & Sales Appointment Framework]]
+- Previous: [[day-19|Day 19 - Prospecting: The Lifeblood]]
+- Next: [[day-21|Day 21 - Closing & Sales Appointment Framework]]

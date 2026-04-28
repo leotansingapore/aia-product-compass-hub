@@ -10,7 +10,7 @@ duration_minutes: 20
 tags: [first-60-days, week-5, mindset]
 ---
 
-# Day 26 — The 10X Rule in Daily Action
+# Day 26 - The 10X Rule in Daily Action
 
 > **The one idea for today:** The 10X Rule (Day 18) is useless as inspiration. It only works as a **daily operational discipline.** Today you translate "massive action" from a slogan into specific numbers and specific blocks on your calendar.
 
@@ -18,7 +18,7 @@ tags: [first-60-days, week-5, mindset]
 
 By the end of today you should be able to:
 
-1. **Set** your 10X'ed daily activity numbers — specific and non-negotiable.
+1. **Set** your 10X'ed daily activity numbers - specific and non-negotiable.
 2. **Distinguish** 10X-worthy work from work that doesn't deserve that intensity.
 3. **Recover** when you miss a day without abandoning the 10X posture.
 
@@ -50,9 +50,9 @@ flowchart TD
 Not everything should be 10X'ed. It would be exhausting and counterproductive. The honest list:
 
 **Deserves 10X (because volume produces skill + results):**
-1. **Outreach touches** — calls, messages, reconnects.
-2. **Public content creation** — for long-term lead gen.
-3. **Role-plays / skill reps** — the only way to get good at sales.
+1. **Outreach touches** - calls, messages, reconnects.
+2. **Public content creation** - for long-term lead gen.
+3. **Role-plays / skill reps** - the only way to get good at sales.
 
 **Does NOT deserve 10X (because quality > quantity):**
 - Client meetings (each one deserves full attention; more is better but not 10X).
@@ -60,7 +60,7 @@ Not everything should be 10X'ed. It would be exhausting and counterproductive. T
 - Product study (diminishing returns past 2 hrs/day).
 - Admin / CRM (lowest leverage).
 
-**The trap:** some FCs try to 10X *everything* and burn out. The 10X Rule applies selectively — to the activities where **volume unambiguously drives results.**
+**The trap:** some FCs try to 10X *everything* and burn out. The 10X Rule applies selectively - to the activities where **volume unambiguously drives results.**
 
 ## 3. Your daily 10X numbers
 
@@ -71,19 +71,19 @@ This is the most important exercise of the week. Take 10 minutes, commit to spec
 For each 10X-worthy activity, write:
 - **Your current weekly volume** (honest count from last week).
 - **What 10X would be.**
-- **What realistic 3–5X would be.** (This is usually the actual target for a 60-day sprint.)
+- **What realistic 3-5X would be.** (This is usually the actual target for a 60-day sprint.)
 
 ### Worked example
 
-| Activity | Current | 10X | Realistic 3–5X (60-day target) |
+| Activity | Current | 10X | Realistic 3-5X (60-day target) |
 |---|---:|---:|---:|
-| Outreach touches/week | 20 | 200 | 80–100 |
-| LinkedIn posts/week | 0 | 7 | 2–3 |
+| Outreach touches/week | 20 | 200 | 80-100 |
+| LinkedIn posts/week | 0 | 7 | 2-3 |
 | Role-plays/week | 0 | 5 | 2 |
 
 Then translate to **per day**:
-- 80–100 outreaches / 5 work days = **16–20/day.**
-- 2–3 posts / week = **Sunday evening content block + Tuesday/Thursday post drafts.**
+- 80-100 outreaches / 5 work days = **16-20/day.**
+- 2-3 posts / week = **Sunday evening content block + Tuesday/Thursday post drafts.**
 - 2 role-plays / week = **Monday + Thursday training.**
 
 Now the "10X spirit" is living in your calendar as specific numbers.
@@ -93,9 +93,9 @@ Now the "10X spirit" is living in your calendar as specific numbers.
 ```mermaid
 flowchart TD
     A["Start of day<br/>Declare day type"] --> B{"Which type?"}
-    B -- "Full day" --> C["Full targets<br/>20 outreach · draft/post · 1 rep"]
-    B -- "Partial day" --> D["Half targets<br/>10 outreach · half-draft"]
-    B -- "MAD day" --> E["Bare minimum<br/>5 outreach · skip content"]
+    B -- "Full day" --> C["Full targets<br/>20 outreach . draft/post . 1 rep"]
+    B -- "Partial day" --> D["Half targets<br/>10 outreach . half-draft"]
+    B -- "MAD day" --> E["Bare minimum<br/>5 outreach . skip content"]
     B -- "Off day (sick/holiday)" --> F["Zero - deliberate<br/>Not ambiguous drift"]
     E --> G["Streak protected"]
     C --> G
@@ -113,11 +113,11 @@ You will have bad days. Sick days. Days with emergencies. Days when you just don
 | **MAD day (minimum)** | **5** | Skip | 0 |
 | Off day (sick, holiday) | 0 | Skip | 0 |
 
-Notice the difference between **MAD day** (5 outreaches — you still did *something*) and **off day** (deliberate zero). Both are fine. What's deadly is **ambiguous days** where you intended to work but let the day drift to zero without deciding to stop.
+Notice the difference between **MAD day** (5 outreaches - you still did *something*) and **off day** (deliberate zero). Both are fine. What's deadly is **ambiguous days** where you intended to work but let the day drift to zero without deciding to stop.
 
 **The discipline:** at the start of each day, declare which type of day it is. Then hit the minimum for that type.
 
-## 5. Work on important issues — not just more issues
+## 5. Work on important issues - not just more issues
 
 This is the counterbalance to 10X. You can't 10X junk activity and expect results.
 
@@ -126,19 +126,19 @@ This is the counterbalance to 10X. You can't 10X junk activity and expect result
 - Is this the **most important** content piece? (A post addressing your ideal client's actual concern vs a generic quote.)
 - Is this the **most important** role-play scenario? (The objection you keep losing vs an easy one.)
 
-Volume × important = compounding results.
-Volume × unimportant = churn.
+Volume x important = compounding results.
+Volume x unimportant = churn.
 
-**The weekly filter question:** "If I did 10X volume of ___ for 60 days, would my business be visibly different?" If yes → 10X it. If no → rethink the activity before scaling it.
+**The weekly filter question:** "If I did 10X volume of ___ for 60 days, would my business be visibly different?" If yes -> 10X it. If no -> rethink the activity before scaling it.
 
-## 6. Recovery — what to do when you miss a day
+## 6. Recovery - what to do when you miss a day
 
 You will miss days. The 10X Rule is not about perfect adherence.
 
 **The two-day rule:** never miss *twice in a row.* Missing once is a data point. Missing twice becomes a pattern. Missing three times is an identity shift.
 
 **When you miss:**
-1. **Don't "make up" by doubling next day.** That's punishment, not recovery — and usually triggers another miss.
+1. **Don't "make up" by doubling next day.** That's punishment, not recovery - and usually triggers another miss.
 2. **Return to baseline immediately.** If you missed Tuesday, hit your normal 20 outreaches on Wednesday.
 3. **Reflect briefly:** what caused the miss? Energy? Calendar collision? Avoidance? Fix the cause, not the symptom.
 
@@ -162,55 +162,55 @@ This is the psychological move that separates 10X practitioners from people who 
 
 1. **Which activities deserve 10X volume?**
  - A) All of them, always
- - B) Activities where volume unambiguously produces skill + results (outreach, content, role-plays) ✓
+ - B) Activities where volume unambiguously produces skill + results (outreach, content, role-plays) (correct)
  - C) Client-facing work only
  - D) Whatever feels productive
 
- **Why:** Only activities where volume directly drives skill improvement and results deserve 10X intensity — outreach touches, content creation, and role-plays. 10X'ing everything (A) causes burnout and was explicitly called a trap. Client-facing meetings (C) each deserve full attention; more is better but not 10X. "Whatever feels productive" (D) is how low-leverage admin gets inflated at the expense of high-leverage outreach.
+ **Why:** Only activities where volume directly drives skill improvement and results deserve 10X intensity - outreach touches, content creation, and role-plays. 10X'ing everything (A) causes burnout and was explicitly called a trap. Client-facing meetings (C) each deserve full attention; more is better but not 10X. "Whatever feels productive" (D) is how low-leverage admin gets inflated at the expense of high-leverage outreach.
 
 2. **On a MAD (minimum activity day), you should:**
  - A) Skip the day entirely and rest
  - B) Try to hit normal targets anyway
- - C) Hit a pre-declared minimum (e.g., 5 outreaches) to maintain pattern ✓
+ - C) Hit a pre-declared minimum (e.g., 5 outreaches) to maintain pattern (correct)
  - D) Double up tomorrow
 
- **Why:** The MAD rule exists to protect the streak on hard days by hitting a declared floor rather than zero — the day says a MAD day (5 outreaches) is distinct from an off day (deliberate zero). Skipping entirely (A) turns a MAD day into an ambiguous drift day, which is described as deadly. Trying to hit full targets (B) on a bad day courts failure and discouragement. Doubling up tomorrow (D) is explicitly called punishment, not recovery, and usually triggers another miss.
+ **Why:** The MAD rule exists to protect the streak on hard days by hitting a declared floor rather than zero - the day says a MAD day (5 outreaches) is distinct from an off day (deliberate zero). Skipping entirely (A) turns a MAD day into an ambiguous drift day, which is described as deadly. Trying to hit full targets (B) on a bad day courts failure and discouragement. Doubling up tomorrow (D) is explicitly called punishment, not recovery, and usually triggers another miss.
 
 3. **When you miss a 10X target, the correct response is:**
  - A) Lower the target
  - B) Punish yourself next day
- - C) Diagnose what blocked the effort; return to baseline; keep the target ✓
+ - C) Diagnose what blocked the effort; return to baseline; keep the target (correct)
  - D) Give up for the week
 
- **Why:** Cardone's core insight is that the target is never the problem — the effort is; so the correct move is to diagnose what blocked effort (energy, calendar, avoidance) and return immediately to baseline. Lowering the target (A) is the lazy response the day explicitly names as wrong. Doubling next day (B) is punishment that usually triggers another miss. Giving up for the week (D) turns one miss into a pattern and then an identity shift.
+ **Why:** Cardone's core insight is that the target is never the problem - the effort is; so the correct move is to diagnose what blocked effort (energy, calendar, avoidance) and return immediately to baseline. Lowering the target (A) is the lazy response the day explicitly names as wrong. Doubling next day (B) is punishment that usually triggers another miss. Giving up for the week (D) turns one miss into a pattern and then an identity shift.
 
 4. **What makes 10X different from ordinary "work harder" advice?**
- - A) It demands 10× the effort on every task
- - B) It targets activities where volume itself creates the skill and the outcome ✓
+ - A) It demands 10x the effort on every task
+ - B) It targets activities where volume itself creates the skill and the outcome (correct)
  - C) It applies only to cold calling
  - D) It replaces quality with quantity
 
- **Why:** 10X is selective — it applies to the specific activities where doing more reps is inseparable from getting better at them, namely outreach, content, and role-plays. Demanding 10× on every task (A) would be exhausting and counterproductive, which is why the day distinguishes what deserves 10X from what doesn't. Cold calling (C) is one outreach channel, not the whole rule. Volume times important work compounds; volume times unimportant work is churn (D).
+ **Why:** 10X is selective - it applies to the specific activities where doing more reps is inseparable from getting better at them, namely outreach, content, and role-plays. Demanding 10x on every task (A) would be exhausting and counterproductive, which is why the day distinguishes what deserves 10X from what doesn't. Cold calling (C) is one outreach channel, not the whole rule. Volume times important work compounds; volume times unimportant work is churn (D).
 
 5. **The risk of setting an unrealistic 10X target is:**
  - A) You hit it accidentally
- - B) You miss it, feel bad, and abandon the rhythm — which destroys the compound ✓
+ - B) You miss it, feel bad, and abandon the rhythm - which destroys the compound (correct)
  - C) You outperform peers too quickly
  - D) Your manager will lower it
 
- **Why:** The realistic target for a 60-day sprint is 3–5X of current volume, not a literal 10X — because targets that are too high get missed, generate discouragement, and kill the compound effect that the rule depends on. Hitting the target accidentally (A) is not a risk. Outperforming peers (C) is not a downside. Managers lowering targets (D) is not mentioned and is not the relevant failure mode.
+ **Why:** The realistic target for a 60-day sprint is 3-5X of current volume, not a literal 10X - because targets that are too high get missed, generate discouragement, and kill the compound effect that the rule depends on. Hitting the target accidentally (A) is not a risk. Outperforming peers (C) is not a downside. Managers lowering targets (D) is not mentioned and is not the relevant failure mode.
 
 6. **A "MAD" (minimum activity day) rule exists to:**
  - A) Let you skip work when tired
- - B) Preserve the daily pattern when motivation dips, so streaks don't break ✓
+ - B) Preserve the daily pattern when motivation dips, so streaks don't break (correct)
  - C) Make you feel good about doing less
  - D) Replace full targets permanently
 
- **Why:** The MAD rule protects the streak by ensuring even a hard day ends with something done, keeping the pattern alive until a full day returns. It is not permission to skip (A) — skipping is only for declared off days (sick, holiday). Making you feel good (C) is a side effect, not the purpose; the rule is structural, not emotional. It is a floor, not a replacement for full targets (D) — the table distinguishes MAD days from full days explicitly.
+ **Why:** The MAD rule protects the streak by ensuring even a hard day ends with something done, keeping the pattern alive until a full day returns. It is not permission to skip (A) - skipping is only for declared off days (sick, holiday). Making you feel good (C) is a side effect, not the purpose; the rule is structural, not emotional. It is a floor, not a replacement for full targets (D) - the table distinguishes MAD days from full days explicitly.
 
 ---
 
 ## Related
 
-- Previous: [[day-25|Day 25 — Weekly Team Rhythms]]
-- Next: [[day-27|Day 27 — Your Personal Activity Scorecard]]
+- Previous: [[day-25|Day 25 - Weekly Team Rhythms]]
+- Next: [[day-27|Day 27 - Your Personal Activity Scorecard]]

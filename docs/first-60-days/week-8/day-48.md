@@ -9,9 +9,9 @@ duration_minutes: 25
 tags: [first-60-days, week-8, skills]
 ---
 
-# Day 48 — Situation & Problem Questions
+# Day 48 - Situation & Problem Questions
 
-> **The one idea for today:** The first half of SPIN — Situation and Problem questions — builds your understanding of the client *and* the client's understanding of themselves. Do this phase well, and Implication + Need-Payoff almost run themselves.
+> **The one idea for today:** The first half of SPIN - Situation and Problem questions - builds your understanding of the client *and* the client's understanding of themselves. Do this phase well, and Implication + Need-Payoff almost run themselves.
 
 ## What you'll walk away with
 
@@ -19,7 +19,7 @@ By the end of today you should be able to:
 
 1. **Ask** 10 Situation questions that build context without boring the client.
 2. **Ask** 10 Problem questions that uncover real gaps without sounding accusatory.
-3. **Pace** the transition from Situation → Problem naturally, not mechanically.
+3. **Pace** the transition from Situation -> Problem naturally, not mechanically.
 
 ---
 
@@ -27,7 +27,7 @@ By the end of today you should be able to:
 
 <div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
   <div style="background:linear-gradient(135deg,hsl(217,91%,96%),hsl(217,91%,92%));border:2px solid hsl(217,91%,55%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(217,91%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">FIRST HALF · Exploration</div>
+    <div style="background:hsl(217,91%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">FIRST HALF . Exploration</div>
     <div style="padding:14px;">
       <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(217,91%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">1</span><span style="font-weight:600;color:hsl(var(--foreground));">Situation</span></div>
       <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">2</span><span style="font-weight:600;color:hsl(var(--foreground));">Problem</span></div>
@@ -35,7 +35,7 @@ By the end of today you should be able to:
     </div>
   </div>
   <div style="background:linear-gradient(135deg,hsl(0,72%,96%),hsl(0,72%,92%));border:2px solid hsl(0,72%,55%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(0,72%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">SECOND HALF · Intensification</div>
+    <div style="background:hsl(0,72%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">SECOND HALF . Intensification</div>
     <div style="padding:14px;">
       <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(0,72%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">3</span><span style="font-weight:600;color:hsl(var(--foreground));">Implication</span></div>
       <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">4</span><span style="font-weight:600;color:hsl(var(--foreground));">Need-Payoff</span></div>
@@ -59,14 +59,14 @@ flowchart LR
 
 **Today:** the first half. Get this right and the second half (tomorrow's Day 49) does the heavy lifting.
 
-## 2. Situation Questions — the setup
+## 2. Situation Questions - the setup
 
 **Purpose:** uncover facts and background about the buyer's situation and lifestyle.
 
 **What they do well:**
 - Let you understand where the client is today (family, job, expenses, existing coverage).
 - Give you the data you need to personalise later recommendations.
-- Help the client feel heard — "you're paying attention to my life, not just selling me something."
+- Help the client feel heard - "you're paying attention to my life, not just selling me something."
 
 **What they do poorly if overused:**
 - Feel like a government form.
@@ -75,18 +75,18 @@ flowchart LR
 
 **Rule:** ask **just enough** Situation questions to have the material you need. Then move on.
 
-## 3. Situation Questions — 10 to memorise
+## 3. Situation Questions - 10 to memorise
 
 Good Situation questions are **open-ended** and **specific to planning categories.**
 
 ### Category: Personal
-1. "Tell me a bit about your family — who are you planning for?"
+1. "Tell me a bit about your family - who are you planning for?"
 2. "What does your typical work week look like?"
-3. "What are the 2–3 financial goals most on your mind right now?"
+3. "What are the 2-3 financial goals most on your mind right now?"
 
 ### Category: Income & Expenses
 4. "What's your current income range, roughly?"
-5. "How do you think about your monthly savings — what percentage typically goes to savings?"
+5. "How do you think about your monthly savings - what percentage typically goes to savings?"
 
 ### Category: Existing Coverage
 6. "What insurance plans do you currently have? (personal or employer)"
@@ -94,14 +94,14 @@ Good Situation questions are **open-ended** and **specific to planning categorie
 
 ### Category: Investments & Retirement
 8. "Are you currently investing regularly, or mostly saving in a bank?"
-9. "Have you thought about retirement — when, where, what lifestyle?"
+9. "Have you thought about retirement - when, where, what lifestyle?"
 
 ### Category: Life Events
-10. "Any major life changes in the last 1–2 years? (marriage, baby, home, new job, aging parents)"
+10. "Any major life changes in the last 1-2 years? (marriage, baby, home, new job, aging parents)"
 
 **Rule:** ask these casually. They're conversation, not checklist. Let the client's answers shape your follow-up questions.
 
-### The FORM mnemonic — the 4-letter shortcut
+### The FORM mnemonic - the 4-letter shortcut
 
 ```mermaid
 flowchart LR
@@ -116,29 +116,29 @@ When nerves spike and the 10 questions feel like too much, fall back to **FORM**
 
 | Letter | Prompt stem | What you're learning |
 |---|---|---|
-| **F — Family** | "Tell me about your family — who are you planning for?" | Dependents, decision-makers, shared goals |
-| **O — Occupation** | "What do you do for work, and how stable is it?" | Income level, employer coverage, career stage |
-| **R — Recreation** | "What do you do for fun? How do you want that to look in 10 years?" | Lifestyle priorities, travel/retirement dreams |
-| **M — Money** | "How did you land on your current approach to saving and insurance?" | Relationship with money, past decisions, openness |
+| **F - Family** | "Tell me about your family - who are you planning for?" | Dependents, decision-makers, shared goals |
+| **O - Occupation** | "What do you do for work, and how stable is it?" | Income level, employer coverage, career stage |
+| **R - Recreation** | "What do you do for fun? How do you want that to look in 10 years?" | Lifestyle priorities, travel/retirement dreams |
+| **M - Money** | "How did you land on your current approach to saving and insurance?" | Relationship with money, past decisions, openness |
 
-**Use it when** you blank on what to ask next. **Drop it when** the client has already volunteered the answers — don't re-ask just to complete the mnemonic.
+**Use it when** you blank on what to ask next. **Drop it when** the client has already volunteered the answers - don't re-ask just to complete the mnemonic.
 
-## 4. Situation Questions — pre-meeting homework
+## 4. Situation Questions - pre-meeting homework
 
 Many Situation questions should be answered **before the meeting starts**, not during.
 
 **Before every meeting:**
 
-1. **LinkedIn scan** — current company, role, tenure, previous companies. 2 min.
-2. **Referrer's notes** — what did the person who introduced them tell you?
-3. **Previous interactions** — if they've DM'd you, re-read the conversation.
-4. **Public social media** — recent posts give clues about family, life stage, concerns.
+1. **LinkedIn scan** - current company, role, tenure, previous companies. 2 min.
+2. **Referrer's notes** - what did the person who introduced them tell you?
+3. **Previous interactions** - if they've DM'd you, re-read the conversation.
+4. **Public social media** - recent posts give clues about family, life stage, concerns.
 
 **Why this matters:** if you ask "where do you work?" to someone whose job is publicly listed on LinkedIn, you signal you didn't prepare. That's a trust leak before the meeting even starts.
 
-**Aim:** know 60–70% of the basic facts before you sit down. Use meeting time to ask deeper questions, not surface ones.
+**Aim:** know 60-70% of the basic facts before you sit down. Use meeting time to ask deeper questions, not surface ones.
 
-## 5. Problem Questions — the shift
+## 5. Problem Questions - the shift
 
 **Purpose:** uncover the buyer's difficulties, dissatisfactions, or gaps in their current situation.
 
@@ -154,9 +154,9 @@ or:
 
 > "Got a good picture of where you are today. Now let me ask about the parts you're a bit less sure about..."
 
-## 6. Problem Questions — 10 to memorise
+## 6. Problem Questions - 10 to memorise
 
-These surface **implied needs** — the gaps the client may not yet have named.
+These surface **implied needs** - the gaps the client may not yet have named.
 
 ### Around retirement
 1. "When do you plan to start building funds for retirement?"
@@ -176,7 +176,7 @@ These surface **implied needs** — the gaps the client may not yet have named.
 
 ### Around gaps in current coverage
 9. "When you had your last policy review, what felt incomplete or unresolved?"
-10. "What part of your financial plan keeps you up at night — if any?"
+10. "What part of your financial plan keeps you up at night - if any?"
 
 **Rule:** Problem Questions are **neutral and curious.** Never accusatory. Never leading. The client should feel you're asking to understand, not to prove them wrong.
 
@@ -209,87 +209,87 @@ Silence often signals the client is feeling something. **Don't interrupt pauses.
 
 The first half of SPIN runs on two specific question-construction techniques. Master these and the phase stops feeling like a questionnaire.
 
-### Rule 1 — Keyword echo (the single most useful reflex in fact-find)
+### Rule 1 - Keyword echo (the single most useful reflex in fact-find)
 
 When the client says something loaded, **echo their own word back in your next question.**
 
 > *Client:* *"I've been meaning to sort my retirement out for years but I just haven't."*
-> *You:* *"May I ask — what's been stopping you from sorting it out?"*
+> *You:* *"May I ask - what's been stopping you from sorting it out?"*
 
 > *Client:* *"Honestly, I don't trust insurance companies."*
 > *You:* *"Got it. Why don't you *trust* insurance companies?"*
 
-Two things happen when you echo their word: they feel heard (which earns goodwill), and they have to elaborate on their own position (which almost always softens it). Most strong opinions soften under elaboration. This is the most reliable de-escalation move in the toolkit — it should become automatic.
+Two things happen when you echo their word: they feel heard (which earns goodwill), and they have to elaborate on their own position (which almost always softens it). Most strong opinions soften under elaboration. This is the most reliable de-escalation move in the toolkit - it should become automatic.
 
-### Rule 2 — Offer logical possibilities (the menu move)
+### Rule 2 - Offer logical possibilities (the menu move)
 
 When a client hedges or gives a vague answer, **give them a menu to pick from.** Vague answers are useless for pitch construction. A menu converts vague into specific.
 
 > *Client:* *"I'll think about it."*
-> *You:* *"Sure — is it the monthly commitment you want to think about, or how the plan actually works, or something else?"*
+> *You:* *"Sure - is it the monthly commitment you want to think about, or how the plan actually works, or something else?"*
 
 > *Client:* *"My financial situation is... okay, I guess."*
 > *You:* *"Okay meaning comfortable, okay meaning stable-but-no-growth, or okay meaning you haven't really looked?"*
 
-The menu is the prompt. Without it, they say *"just the whole thing"* — which tells you nothing. With it, they pick a specific option — which is now a specific gap you can address in the second half.
+The menu is the prompt. Without it, they say *"just the whole thing"* - which tells you nothing. With it, they pick a specific option - which is now a specific gap you can address in the second half.
 
-### The "tell me more" family — neutral follow-ups that deepen any answer
+### The "tell me more" family - neutral follow-ups that deepen any answer
 
 Four prompts that extend a thread without leading the client:
 
 | Prompt | When to use |
 |---|---|
-| *"Tell me more about that."* | Answer feels thin — you know there's more under it |
+| *"Tell me more about that."* | Answer feels thin - you know there's more under it |
 | *"What do you mean by [their exact word]?"* | They used a specific word worth unpacking |
-| *"How come?"* | They stated a preference — surface the reason behind it |
+| *"How come?"* | They stated a preference - surface the reason behind it |
 | *"And what else?"* | They answered but might have more |
 
-The power move here is ***"how come?"*** — it's softer than *"why?"* (which can feel interrogative) but asks the same question. Use it to turn any stated preference into an exploration of the *reason* behind it. Across a 60-minute fact-find you'll ask dozens of follow-ups; the softer register compounds.
+The power move here is ***"how come?"*** - it's softer than *"why?"* (which can feel interrogative) but asks the same question. Use it to turn any stated preference into an exploration of the *reason* behind it. Across a 60-minute fact-find you'll ask dozens of follow-ups; the softer register compounds.
 
-### The Discovery Funnel — chaining Problem questions
+### The Discovery Funnel - chaining Problem questions
 
-A single Problem question rarely surfaces the real hot button. A *chain* does. Each question deepens the last: generic → specific → emotional → actionable.
+A single Problem question rarely surfaces the real hot button. A *chain* does. Each question deepens the last: generic -> specific -> emotional -> actionable.
 
-**Worked example — a retirement chain:**
+**Worked example - a retirement chain:**
 
 1. **Generic opener:** *"What does retirement look like for you?"*
-   — Client: *"Oh, travel, spend time with grandkids, the usual."*
+   - Client: *"Oh, travel, spend time with grandkids, the usual."*
 
-2. **Specific follow-up:** *"When you picture travel — what specifically? Anywhere in particular?"*
-   — Client: *"Actually I've always wanted to do a 3-month trip around Europe with my wife. We've talked about it for 5 years."*
+2. **Specific follow-up:** *"When you picture travel - what specifically? Anywhere in particular?"*
+   - Client: *"Actually I've always wanted to do a 3-month trip around Europe with my wife. We've talked about it for 5 years."*
 
 3. **Emotional deepener:** *"What's kept that from happening?"*
-   — Client: *"Honestly? Money. We keep saying next year."*
+   - Client: *"Honestly? Money. We keep saying next year."*
 
-4. **Actionable close:** *"If the math worked — if you knew you'd have X per month regardless of whether you worked — how soon would you actually go?"*
-   — Client: *"I'd go next year. We're not getting younger."*
+4. **Actionable close:** *"If the math worked - if you knew you'd have X per month regardless of whether you worked - how soon would you actually go?"*
+   - Client: *"I'd go next year. We're not getting younger."*
 
-Four questions. Each deeper than the last. The fourth answer (*"I'd go next year"*) is the actionable hot button — that's what you build Implication and the recommendation around. The first answer (*"travel, spend time with grandkids"*) would have produced a generic retirement pitch that lands nowhere.
+Four questions. Each deeper than the last. The fourth answer (*"I'd go next year"*) is the actionable hot button - that's what you build Implication and the recommendation around. The first answer (*"travel, spend time with grandkids"*) would have produced a generic retirement pitch that lands nowhere.
 
 **The discipline:** don't settle for the first generic answer. Keep chaining until you hit the specific, emotional, actionable layer. That's the answer worth building a pitch on.
 
 ### Listening for what they *didn't* say
 
-Advanced fact-find isn't just tracking the words — it's noticing what's *missing* from the answer. Conspicuous absences are diagnostic:
+Advanced fact-find isn't just tracking the words - it's noticing what's *missing* from the answer. Conspicuous absences are diagnostic:
 
-- Client describes retirement and never mentions their spouse → possible relationship tension.
-- Client lists financial priorities and never mentions their kids → not a hot button for them.
-- Client talks about coverage and skips critical illness entirely → fear or ignorance?
-- Client lists things they care about and money isn't one → they may genuinely not be motivated by wealth accumulation.
+- Client describes retirement and never mentions their spouse -> possible relationship tension.
+- Client lists financial priorities and never mentions their kids -> not a hot button for them.
+- Client talks about coverage and skips critical illness entirely -> fear or ignorance?
+- Client lists things they care about and money isn't one -> they may genuinely not be motivated by wealth accumulation.
 
 Follow up the gap gently:
 
-> *"I noticed you didn't mention [X] — is that because it's not on your radar right now, or because it is but you don't want to talk about it?"*
+> *"I noticed you didn't mention [X] - is that because it's not on your radar right now, or because it is but you don't want to talk about it?"*
 
 Direct-but-non-accusatory gets honest answers. Clients appreciate being seen clearly.
 
-## 8. Taking notes — without killing rapport
+## 8. Taking notes - without killing rapport
 
 In a fact-finding meeting, you need notes. But heavy note-taking kills rapport.
 
 **The balance:**
 - **Maintain eye contact** for 80% of the conversation.
-- Jot **short keywords** on paper — not sentences.
+- Jot **short keywords** on paper - not sentences.
 - After the meeting (within 30 min), expand keywords into full notes in your CRM.
 - Don't type on a laptop during the meeting. Hand-writing is less distracting.
 
@@ -303,16 +303,16 @@ In a fact-finding meeting, you need notes. But heavy note-taking kills rapport.
 
 Before going deep into Problem Questions, ask permission:
 
-> "Do you mind if I ask a few questions about the parts of your plan that might feel a bit less sorted? Some of these are personal — feel free to pass on any that are too private."
+> "Do you mind if I ask a few questions about the parts of your plan that might feel a bit less sorted? Some of these are personal - feel free to pass on any that are too private."
 
 **Why this works:**
-- Sets expectation — permission to go deeper.
-- Signals respect — you're not entitled to their information.
-- Lowers defences — the client engages more openly.
+- Sets expectation - permission to go deeper.
+- Signals respect - you're not entitled to their information.
+- Lowers defences - the client engages more openly.
 
 This is a small move. It has an outsized impact on meeting quality.
 
-## 10. A sample transition — Situation to Problem, done well
+## 10. A sample transition - Situation to Problem, done well
 
 > You've just spent 10 minutes on Situation questions. You know:
 > - Client is 37, married, two kids (5 and 2).
@@ -323,9 +323,9 @@ This is a small move. It has an outsized impact on meeting quality.
 
 **Your transition:**
 
-> "Thanks for sharing all that, [name]. It sounds like you've built a solid foundation — good income, saving consistently, coverage through work. What I'd love to explore next, if you're open to it, is the parts you maybe haven't had time to think about.
+> "Thanks for sharing all that, [name]. It sounds like you've built a solid foundation - good income, saving consistently, coverage through work. What I'd love to explore next, if you're open to it, is the parts you maybe haven't had time to think about.
 >
-> A few questions — feel free to pass if any feel too personal.
+> A few questions - feel free to pass if any feel too personal.
 >
 > When you think about the 20 years ahead, what concerns you most?
 >
@@ -340,64 +340,64 @@ This is a small move. It has an outsized impact on meeting quality.
 
 1. **Situation Questions are best minimised because:**
  - A) They're offensive
- - B) Too many make the client feel interrogated; many answers are available pre-meeting ✓
+ - B) Too many make the client feel interrogated; many answers are available pre-meeting (correct)
  - C) They're illegal
  - D) They give away your strategy
 
- **Why:** Situation questions serve a legitimate purpose — gathering context — but overusing them makes the meeting feel like a government form and wastes time that should be spent on Problem and Implication questions. Crucially, a well-prepared FC already knows 60–70% of the basic facts from LinkedIn and referrer notes before sitting down. Situation questions are not offensive (A), illegal (C), or strategically revealing (D) — they are simply low-leverage when overused.
+ **Why:** Situation questions serve a legitimate purpose - gathering context - but overusing them makes the meeting feel like a government form and wastes time that should be spent on Problem and Implication questions. Crucially, a well-prepared FC already knows 60-70% of the basic facts from LinkedIn and referrer notes before sitting down. Situation questions are not offensive (A), illegal (C), or strategically revealing (D) - they are simply low-leverage when overused.
 
 2. **The rule for Problem Questions:**
  - A) Lead the client toward your preferred product
  - B) Scare the client into action
- - C) Stay neutral and curious; never accusatory or leading ✓
+ - C) Stay neutral and curious; never accusatory or leading (correct)
  - D) Summarise your recommendation
 
- **Why:** Problem questions are designed to surface the client's own dissatisfactions — they work only when the client feels genuinely heard, not nudged toward a predetermined answer. A leading question or accusatory tone triggers defensiveness and closes the conversation down. Leading toward a preferred product (A) and scaring the client into action (B) are manipulation tactics that violate the consultative selling philosophy. Summarising a recommendation (D) is a proposal-stage activity, not a question type.
+ **Why:** Problem questions are designed to surface the client's own dissatisfactions - they work only when the client feels genuinely heard, not nudged toward a predetermined answer. A leading question or accusatory tone triggers defensiveness and closes the conversation down. Leading toward a preferred product (A) and scaring the client into action (B) are manipulation tactics that violate the consultative selling philosophy. Summarising a recommendation (D) is a proposal-stage activity, not a question type.
 
 3. **The correct listening ratio in Situation + Problem phases is:**
  - A) 50% listen, 50% talk
  - B) 20% listen, 80% talk
- - C) 80% listen, 20% talk ✓
+ - C) 80% listen, 20% talk (correct)
  - D) 100% listen
 
- **Why:** In the exploration phase your job is to understand the client, not to present — listening 80% of the time gives them space to reveal their real concerns, priorities, and hesitations in their own words. An equal split (A) is too FC-heavy for a discovery phase. Talking 80% (B) is the classic rookie mistake — filling silence with pitching instead of questions. Pure silence (D) is not practical; you need 20% talk to ask questions and signal you are engaged.
+ **Why:** In the exploration phase your job is to understand the client, not to present - listening 80% of the time gives them space to reveal their real concerns, priorities, and hesitations in their own words. An equal split (A) is too FC-heavy for a discovery phase. Talking 80% (B) is the classic rookie mistake - filling silence with pitching instead of questions. Pure silence (D) is not practical; you need 20% talk to ask questions and signal you are engaged.
 
 4. **An FC asks "Where do you work?" to a prospect whose LinkedIn clearly states their employer. What has gone wrong?**
- - A) Nothing — it's a standard Situation question
- - B) The FC has signalled poor preparation, creating a trust leak before the meeting properly starts ✓
+ - A) Nothing - it's a standard Situation question
+ - B) The FC has signalled poor preparation, creating a trust leak before the meeting properly starts (correct)
  - C) The FC has moved to Problem questions too early
  - D) The FC has violated PDPA by researching the prospect
 
- **Why:** Asking for publicly available information signals you did not prepare, which undermines your credibility before the fact-find even begins. A trust leak at this stage is costly because the client's openness throughout the rest of the meeting is shaped by that first impression. It is not a PDPA violation (D) to view a public LinkedIn profile — that is expected pre-meeting research. It is not a Problem-question timing error (C); it is simply avoidable carelessness.
+ **Why:** Asking for publicly available information signals you did not prepare, which undermines your credibility before the fact-find even begins. A trust leak at this stage is costly because the client's openness throughout the rest of the meeting is shaped by that first impression. It is not a PDPA violation (D) to view a public LinkedIn profile - that is expected pre-meeting research. It is not a Problem-question timing error (C); it is simply avoidable carelessness.
 
 5. **A client pauses for 5 seconds after being asked "If you were unable to work for 3 years, what would your family's situation look like?" The right move is:**
  - A) Rephrase the question to help them answer
  - B) Move to the next question to avoid awkwardness
- - C) Let the silence sit — the pause signals the client is feeling the weight of the question ✓
+ - C) Let the silence sit - the pause signals the client is feeling the weight of the question (correct)
  - D) Fill the pause with a product recommendation
 
- **Why:** A pause after an Implication question is a signal the client is genuinely imagining the scenario and feeling its weight — that is exactly what the question is designed to do. Interrupting that moment (A, B, D) breaks the emotional process and resets the client to a defensive or analytical mode. The sentence that follows a meaningful pause is almost always the most valuable thing the client says in the entire meeting.
+ **Why:** A pause after an Implication question is a signal the client is genuinely imagining the scenario and feeling its weight - that is exactly what the question is designed to do. Interrupting that moment (A, B, D) breaks the emotional process and resets the client to a defensive or analytical mode. The sentence that follows a meaningful pause is almost always the most valuable thing the client says in the entire meeting.
 
 6. **The FORM mnemonic is most useful when:**
  - A) Running through the full 10-question Situation checklist systematically
- - B) You blank mid-meeting and need a quick mental anchor to stay on track ✓
+ - B) You blank mid-meeting and need a quick mental anchor to stay on track (correct)
  - C) The client is C-profile and wants structured data
  - D) Transitioning from Problem to Implication questions
 
- **Why:** FORM — Family, Occupation, Recreation, Money — is a mental fallback for when nerves spike or the conversation loses direction mid-meeting. It covers about 80% of what a Situation phase needs and is fast to recall under pressure. It is not a systematic substitute for the full 10-question set (A), it does not serve a C-profile's need for data structure (C), and it has no role in the Situation-to-Problem transition (D) — that requires a deliberate verbal signal, not a mnemonic.
+ **Why:** FORM - Family, Occupation, Recreation, Money - is a mental fallback for when nerves spike or the conversation loses direction mid-meeting. It covers about 80% of what a Situation phase needs and is fast to recall under pressure. It is not a systematic substitute for the full 10-question set (A), it does not serve a C-profile's need for data structure (C), and it has no role in the Situation-to-Problem transition (D) - that requires a deliberate verbal signal, not a mnemonic.
 
 7. **When transitioning from Situation to Problem questions, why is a verbal signal important?**
  - A) It gives the client time to prepare their financial documents
- - B) It signals a shift in tone so the deeper questions feel deliberate and respectful, not abrupt ✓
+ - B) It signals a shift in tone so the deeper questions feel deliberate and respectful, not abrupt (correct)
  - C) It satisfies a compliance requirement for fact-finding meetings
  - D) It gives the FC time to review their notes before proceeding
 
- **Why:** The transition from "what is" to "what's not quite right" is a meaningful shift in depth and personal territory — without a signal, deeper questions can feel like an ambush. A brief phrase like "thanks for sharing all that — let me ask about the parts you're a bit less sure about" frames the shift as intentional and respectful, lowering the client's defences before you go deeper. It is not a compliance requirement (C), and it is not a pause for the FC's benefit (D) — it is entirely for the client's psychological comfort.
+ **Why:** The transition from "what is" to "what's not quite right" is a meaningful shift in depth and personal territory - without a signal, deeper questions can feel like an ambush. A brief phrase like "thanks for sharing all that - let me ask about the parts you're a bit less sure about" frames the shift as intentional and respectful, lowering the client's defences before you go deeper. It is not a compliance requirement (C), and it is not a pause for the FC's benefit (D) - it is entirely for the client's psychological comfort.
 
 ---
 
 ## Related
 
-- Previous: [[day-47|Day 47 — SPIN: The Framework]]
-- Next: [[../week-9/day-49|Day 49 — Implication & Need-Payoff Questions]]
-- Week 8 summary: [[README|Week 8 — Fact Finding & Reading People]]
+- Previous: [[day-47|Day 47 - SPIN: The Framework]]
+- Next: [[../week-9/day-49|Day 49 - Implication & Need-Payoff Questions]]
+- Week 8 summary: [[README|Week 8 - Fact Finding & Reading People]]

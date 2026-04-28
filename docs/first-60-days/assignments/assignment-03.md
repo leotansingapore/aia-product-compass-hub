@@ -24,35 +24,35 @@ form_fields:
   - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
 ---
 
-# Assignment 6 — Joint Field Observation
+# Assignment 6 - Joint Field Observation
 
-> **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe — you don't pitch.
+> **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe - you don't pitch.
 
 ## Why this matters
 
 Reading about SPIN and watching SPIN happen are different skills. Most new FCs know every framework on paper but freeze in the first live meeting because they've never seen the frameworks *as they actually look in the room*.
 
-This assignment collapses that gap. The reflection isn't a summary — it's a diagnosis. You're looking for the moves the senior FC made that you would have missed.
+This assignment collapses that gap. The reflection isn't a summary - it's a diagnosis. You're looking for the moves the senior FC made that you would have missed.
 
 ## Prepare from these days
 
 Skim these *before* the observation so your pattern-recognition is active in the meeting.
 
-- [Day 21 — The 5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) — watch for each phase transition
-- [Day 43 — Scripting the Approach](../../first-60-days/week-8/day-43.md) — the meeting open
-- [Day 47 — SPIN Framework](../../first-60-days/week-8/day-47.md) — the Situation → Problem → Implication → Need-Payoff sequence
-- [Day 54 — Concept Selling](../../first-60-days/week-9/day-54.md) — which concept they lead with and why
-- [Day 59 — The Close](../../first-60-days/week-10/day-59.md) — the silent close
+- [Day 21 - The 5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) - watch for each phase transition
+- [Day 43 - Scripting the Approach](../../first-60-days/week-8/day-43.md) - the meeting open
+- [Day 47 - SPIN Framework](../../first-60-days/week-8/day-47.md) - the Situation -> Problem -> Implication -> Need-Payoff sequence
+- [Day 54 - Concept Selling](../../first-60-days/week-9/day-54.md) - which concept they lead with and why
+- [Day 59 - The Close](../../first-60-days/week-10/day-59.md) - the silent close
 
 ## How to set it up
 
 1. Ask your mentor or any senior FC in the team. Most will say yes.
-2. Confirm prospect consent — you're introduced as "a colleague observing".
+2. Confirm prospect consent - you're introduced as "a colleague observing".
 3. Sit, take notes on phone/notebook discreetly. Say nothing unless directly addressed.
-4. Debrief the senior FC for 5–10 minutes after the meeting.
+4. Debrief the senior FC for 5-10 minutes after the meeting.
 
 ## Fill in the reflection form below
 
-The form below has 10 short fields. Aim for specific, concrete answers over long general ones. *"Senior FC was confident"* is not an answer. *"When prospect said they already had insurance, senior FC asked 'when was the last time you looked at what's actually covered?' — I'm using this"* is.
+The form below has 10 short fields. Aim for specific, concrete answers over long general ones. *"Senior FC was confident"* is not an answer. *"When prospect said they already had insurance, senior FC asked 'when was the last time you looked at what's actually covered?' - I'm using this"* is.
 
-Submit directly on the Academy — no file upload needed.
+Submit directly on the Academy - no file upload needed.

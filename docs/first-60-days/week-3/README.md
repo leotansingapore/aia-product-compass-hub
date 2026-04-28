@@ -5,9 +5,9 @@ days: 6
 tags: [first-60-days, week-3]
 ---
 
-# Week 3 — Wealth Building Principles
+# Week 3 - Wealth Building Principles
 
-**The week's thesis:** Wealth isn't built by earning more. It's built by running the right mechanics: the correct classification of assets vs liabilities, multiple income streams, and action at 10× intensity during the sprints that matter.
+**The week's thesis:** Wealth isn't built by earning more. It's built by running the right mechanics: the correct classification of assets vs liabilities, multiple income streams, and action at 10x intensity during the sprints that matter.
 
 ## The 6 days
 
@@ -22,10 +22,10 @@ tags: [first-60-days, week-3]
 
 ## What you should have learnt by now
 
-- The [**Job A vs Job B**](/learning-track/first-60-days/day/13) frame — why insured income is the real coverage, not just income while well.
+- The [**Job A vs Job B**](/learning-track/first-60-days/day/13) frame - why insured income is the real coverage, not just income while well.
 - The [**opportunity cost**](/learning-track/first-60-days/day/14) hidden inside "safe" bank savings, and how to surface it in a 30-second script.
 - The [**wealth-building mechanics**](/learning-track/first-60-days/day/15): multiple streams, accumulation vs preservation, and the math of starting early.
-- The difference between [**recurring and non-recurring revenue**](/learning-track/first-60-days/day/16) — and why it shapes your career economics too.
+- The difference between [**recurring and non-recurring revenue**](/learning-track/first-60-days/day/16) - and why it shapes your career economics too.
 - The [**one-sentence asset/liability test**](/learning-track/first-60-days/day/17) and what "real net worth" looks like once pseudo-assets are stripped out.
 - What [**10X**](/learning-track/first-60-days/day/18) actually means: massive goals paired with massive action, and why it protects you from average effort.
 
@@ -35,4 +35,4 @@ tags: [first-60-days, week-3]
 
 ## Next week
 
-**Week 4 — Productivity Principles.** The first half of your operating system: how to plan, prospect, and prioritise. We set the systems that your Year 1 results will compound on.
+**Week 4 - Productivity Principles.** The first half of your operating system: how to plan, prospect, and prioritise. We set the systems that your Year 1 results will compound on.

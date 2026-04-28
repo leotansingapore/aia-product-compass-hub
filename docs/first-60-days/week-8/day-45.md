@@ -1,7 +1,7 @@
 ---
 week: 8
 day: 45
-title: "Storytelling — The Hook"
+title: "Storytelling - The Hook"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
@@ -9,7 +9,7 @@ duration_minutes: 20
 tags: [first-60-days, week-8, skills]
 ---
 
-# Day 45 — Storytelling: The Hook
+# Day 45 - Storytelling: The Hook
 
 > **The one idea for today:** Facts tell. Stories sell. A client who *understands* your explanation through a well-told story buys from you. A client who sits through 15 minutes of product features stops listening after 3.
 
@@ -19,7 +19,7 @@ By the end of today you should be able to:
 
 1. **Apply** the **6P storytelling method** to any financial concept.
 2. **Deliver** a concept story in under 90 seconds.
-3. **Know** when storytelling is the right move — and when it isn't.
+3. **Know** when storytelling is the right move - and when it isn't.
 
 ---
 
@@ -33,7 +33,7 @@ When someone hears a **story**, their brain activates:
 - Motor regions (they feel themselves inside it).
 - Emotional regions (they form a memory attachment).
 
-**Result:** stories are **6–8× more memorable** than raw facts. This is why:
+**Result:** stories are **6-8x more memorable** than raw facts. This is why:
 - You remember your grandma's cautionary tale from childhood.
 - You remember a cartoon plot from 10 years ago.
 - You forget your insurance policy's exact clauses.
@@ -42,13 +42,13 @@ When someone hears a **story**, their brain activates:
 
 ## 2. Why stories work (the emotional reason)
 
-Facts engage the **analytical brain** — which says "let me think about this and get back to you."
+Facts engage the **analytical brain** - which says "let me think about this and get back to you."
 
-Stories engage the **emotional brain** — which says "yes, that's me" or "no, not me."
+Stories engage the **emotional brain** - which says "yes, that's me" or "no, not me."
 
-**Decisions are mostly emotional.** The analytical brain then builds a justification after the emotion has chosen. This isn't manipulation — it's how all human decisions work, including the important ones.
+**Decisions are mostly emotional.** The analytical brain then builds a justification after the emotion has chosen. This isn't manipulation - it's how all human decisions work, including the important ones.
 
-The FC who only does facts gets "I'll think about it" 90% of the time. The FC who does facts + stories gets "yes" or "no" — which is what you want, because "no" is still progress.
+The FC who only does facts gets "I'll think about it" 90% of the time. The FC who does facts + stories gets "yes" or "no" - which is what you want, because "no" is still progress.
 
 ## 3. The 6P Storytelling Method
 
@@ -57,7 +57,7 @@ A robust, memorisable framework.
 ### 1. The Prospect (setup)
 Who is this story about? Make it relatable to the person in front of you.
 
-**Example:** "I had a client last year — Marcus, 34, married with two kids, similar income to yours, working in tech..."
+**Example:** "I had a client last year - Marcus, 34, married with two kids, similar income to yours, working in tech..."
 
 ### 2. The Problem
 The technical or financial issue they faced.
@@ -67,47 +67,47 @@ The technical or financial issue they faced.
 ### 3. The Pain
 The emotional consequence. This is where stories diverge from dry case studies.
 
-**Example:** "In Q4 last year, his wife was diagnosed with early-stage cancer. They assumed they'd be fine because he had company coverage. Turns out the company plan only paid $30K — nowhere near enough for the specialist treatment they wanted. They had to dip into savings they'd earmarked for their kids' education."
+**Example:** "In Q4 last year, his wife was diagnosed with early-stage cancer. They assumed they'd be fine because he had company coverage. Turns out the company plan only paid $30K - nowhere near enough for the specialist treatment they wanted. They had to dip into savings they'd earmarked for their kids' education."
 
 ### 4. The Promise
-What you offer — without turning it into a pitch.
+What you offer - without turning it into a pitch.
 
 **Example:** "When we finally did a proper review, the adjustment took about 2 hours across 2 meetings. We closed the coverage gap with a plan that fit his budget. Took off that worry entirely."
 
 ### 5. The Proof
 How others in similar situations benefited.
 
-**Example:** "Marcus later told me: 'I was an idiot to delay. This is the conversation I should've had 5 years ago. It cost me maybe $600/month — which is less than we spend on eating out — and it gave us peace of mind I didn't realise we needed.'"
+**Example:** "Marcus later told me: 'I was an idiot to delay. This is the conversation I should've had 5 years ago. It cost me maybe $600/month - which is less than we spend on eating out - and it gave us peace of mind I didn't realise we needed.'"
 
 ### 6. The Purpose
-The lesson — the moral of the story.
+The lesson - the moral of the story.
 
-**Example:** "The thing is, no one looks at CI insurance until they need it. And when you need it, it's usually too late to get. What Marcus learned — the hard way — is that 'covered by company' often means underinsured in the scenarios that matter most."
+**Example:** "The thing is, no one looks at CI insurance until they need it. And when you need it, it's usually too late to get. What Marcus learned - the hard way - is that 'covered by company' often means underinsured in the scenarios that matter most."
 
-**Total length: 60–120 seconds.** Practise compressing without losing emotional punch.
+**Total length: 60-120 seconds.** Practise compressing without losing emotional punch.
 
-## 4. The 6P story structure — visual map
+## 4. The 6P story structure - visual map
 
 <div style="margin:1.5rem 0;display:flex;flex-direction:column;gap:6px;">
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(217,91%,96%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(217,91%,45%);min-width:28px;">1</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(217,91%,38%);">PROSPECT</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus, 34, tech, two kids…" <span style="opacity:0.65;font-size:12px;">[who we're talking about]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(38,92%,96%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(38,92%,40%);min-width:28px;">2</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(38,92%,38%);">PROBLEM</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Never bothered to review CI…" <span style="opacity:0.65;font-size:12px;">[the mistake]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(0,72%,96%);border-left:4px solid hsl(0,72%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);min-width:28px;">3</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(0,72%,42%);">PAIN</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Wife diagnosed. Gap in coverage…" <span style="opacity:0.65;font-size:12px;">[the emotional hit]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,94%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,28%);min-width:28px;">4</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,25%);">PROMISE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"A 2-hour review fixed it…" <span style="opacity:0.65;font-size:12px;">[your solution exists]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,92%);border-left:4px solid hsl(160,84%,32%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,22%);min-width:28px;">5</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,22%);">PROOF</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus told me later…" <span style="opacity:0.65;font-size:12px;">[testimonial-style]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">↓</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(262,83%,96%);border-left:4px solid hsl(262,83%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(262,83%,48%);min-width:28px;">6</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(262,83%,42%);">PURPOSE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Don't wait until you need it…" <span style="opacity:0.65;font-size:12px;">[the universal lesson]</span></div></div></div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(217,91%,96%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(217,91%,45%);min-width:28px;">1</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(217,91%,38%);">PROSPECT</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus, 34, tech, two kids..." <span style="opacity:0.65;font-size:12px;">[who we're talking about]</span></div></div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(38,92%,96%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(38,92%,40%);min-width:28px;">2</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(38,92%,38%);">PROBLEM</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Never bothered to review CI..." <span style="opacity:0.65;font-size:12px;">[the mistake]</span></div></div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(0,72%,96%);border-left:4px solid hsl(0,72%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);min-width:28px;">3</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(0,72%,42%);">PAIN</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Wife diagnosed. Gap in coverage..." <span style="opacity:0.65;font-size:12px;">[the emotional hit]</span></div></div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,94%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,28%);min-width:28px;">4</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,25%);">PROMISE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"A 2-hour review fixed it..." <span style="opacity:0.65;font-size:12px;">[your solution exists]</span></div></div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,92%);border-left:4px solid hsl(160,84%,32%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,22%);min-width:28px;">5</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,22%);">PROOF</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus told me later..." <span style="opacity:0.65;font-size:12px;">[testimonial-style]</span></div></div></div>
+  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
+  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(262,83%,96%);border-left:4px solid hsl(262,83%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(262,83%,48%);min-width:28px;">6</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(262,83%,42%);">PURPOSE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Don't wait until you need it..." <span style="opacity:0.65;font-size:12px;">[the universal lesson]</span></div></div></div>
 </div>
 
 ```mermaid
 flowchart LR
-    P1["1 · Prospect"] --> P2["2 · Problem"] --> P3["3 · Pain"] --> P4["4 · Promise"] --> P5["5 · Proof"] --> P6["6 · Purpose"] --> CTA["Client asks:<br/>what about me?"]
+    P1["1 . Prospect"] --> P2["2 . Problem"] --> P3["3 . Pain"] --> P4["4 . Promise"] --> P5["5 . Proof"] --> P6["6 . Purpose"] --> CTA["Client asks:<br/>what about me?"]
 ```
 
-**The payoff:** after the story, the client is primed to ask "so what would that look like for me?" — which is precisely the transition you want.
+**The payoff:** after the story, the client is primed to ask "so what would that look like for me?" - which is precisely the transition you want.
 
 ## 5. Where to use storytelling
 
@@ -123,13 +123,13 @@ Storytelling isn't for every moment. It's a tool, not a constant mode.
 - Giving a specific product specification (use facts).
 - Running TVM calculations (use the calculator + clear explanation).
 - Responding to compliance questions (stick to the policy document).
-- The client is C-profile (Day 46) — they prefer data.
+- The client is C-profile (Day 46) - they prefer data.
 
 **The rule:** stories amplify emotional points. Don't use them for technical points.
 
 ## 6. Building your personal story library
 
-Every FC should have a rotating library of 10–15 personal stories. Build yours over time:
+Every FC should have a rotating library of 10-15 personal stories. Build yours over time:
 
 | Story type | Purpose |
 |---|---|
@@ -156,7 +156,7 @@ Every FC should have a rotating library of 10–15 personal stories. Build yours
 
 Most new FCs tell stories that are too long. The compression drill:
 
-**Step 1:** Write a full version of a 6P story (300–400 words).
+**Step 1:** Write a full version of a 6P story (300-400 words).
 **Step 2:** Compress to 200 words without losing the emotional arc.
 **Step 3:** Compress to 100 words.
 **Step 4:** Compress to 60 seconds of spoken word.
@@ -165,7 +165,7 @@ Each compression forces clarity. By version 4, you have a story tight enough to 
 
 **Sample compression target (60 sec version):**
 
-> "Last year I had a client, Marcus, 34, two kids, tech job. Always said his company plan covered him. In November, his wife got a cancer diagnosis. The company CI plan paid $30K — not enough for the specialist treatment they wanted. They drained the kids' education savings to cover the gap. A $600/month plan — same budget as their eating-out — would've made that completely unnecessary. Marcus told me: 'This is the conversation I should've had 5 years ago.'"
+> "Last year I had a client, Marcus, 34, two kids, tech job. Always said his company plan covered him. In November, his wife got a cancer diagnosis. The company CI plan paid $30K - not enough for the specialist treatment they wanted. They drained the kids' education savings to cover the gap. A $600/month plan - same budget as their eating-out - would've made that completely unnecessary. Marcus told me: 'This is the conversation I should've had 5 years ago.'"
 
 **72 seconds. Everything important. Nothing extra.**
 
@@ -191,32 +191,32 @@ The best storyteller FCs sound like friends telling you about someone you both k
 ## Quick quiz
 
 1. **The 6P storytelling method is:**
- - A) Prospect, Problem, Pain, Promise, Proof, Purpose ✓
+ - A) Prospect, Problem, Pain, Promise, Proof, Purpose (correct)
  - B) Person, Place, Problem, Plan, Proposal, Payoff
  - C) Prospect, Product, Pitch, Price, Proof, Purchase
  - D) Problem, Pain, Product, Plan, Price, Promise
 
- **Why:** The 6P framework is Prospect, Problem, Pain, Promise, Proof, Purpose — in that exact order because each step sets up the next. Prospect grounds the listener in a relatable person; Problem names the gap; Pain gives it emotional weight; Promise shows a solution exists; Proof validates it with a testimonial; Purpose delivers the universal lesson. Options B, C, and D all substitute product or pitch elements that shift the story from a client's journey into a sales presentation.
+ **Why:** The 6P framework is Prospect, Problem, Pain, Promise, Proof, Purpose - in that exact order because each step sets up the next. Prospect grounds the listener in a relatable person; Problem names the gap; Pain gives it emotional weight; Promise shows a solution exists; Proof validates it with a testimonial; Purpose delivers the universal lesson. Options B, C, and D all substitute product or pitch elements that shift the story from a client's journey into a sales presentation.
 
 2. **When should you NOT use storytelling?**
  - A) When introducing an emotional concept
- - B) When the client is a C-profile (analytical, wants data) ✓
+ - B) When the client is a C-profile (analytical, wants data) (correct)
  - C) When closing
  - D) When handling objections
 
- **Why:** C-profile clients are skeptical of anything that sounds like a pitch and prefer data, illustrations, and comparisons — a story will feel manipulative to them rather than educational. Storytelling is well suited for emotional concepts (A), closing moments when a client is on the fence (C), and objections that repeat despite facts (D), where a narrative is harder to argue against than a statistic. Matching the tool to the audience is the discipline.
+ **Why:** C-profile clients are skeptical of anything that sounds like a pitch and prefer data, illustrations, and comparisons - a story will feel manipulative to them rather than educational. Storytelling is well suited for emotional concepts (A), closing moments when a client is on the fence (C), and objections that repeat despite facts (D), where a narrative is harder to argue against than a statistic. Matching the tool to the audience is the discipline.
 
 3. **Stories are more memorable than facts because:**
  - A) They're longer
- - B) They activate sensory, motor, and emotional brain regions, not just language ✓
+ - B) They activate sensory, motor, and emotional brain regions, not just language (correct)
  - C) They're funnier
  - D) They come from personal experience
 
- **Why:** When a listener hears a story, their brain fires in language, sensory, motor, and emotional regions simultaneously — creating a richer memory trace than facts alone, which only activate language processing. This is why clients remember the Marcus story long after they have forgotten the product name. Length (A) is a weak explanation and long stories are often less memorable; humour (C) and personal origin (D) may help in specific cases but are not the neurological reason for higher recall.
+ **Why:** When a listener hears a story, their brain fires in language, sensory, motor, and emotional regions simultaneously - creating a richer memory trace than facts alone, which only activate language processing. This is why clients remember the Marcus story long after they have forgotten the product name. Length (A) is a weak explanation and long stories are often less memorable; humour (C) and personal origin (D) may help in specific cases but are not the neurological reason for higher recall.
 
 4. **An FC is meeting a prospect who has already dismissed CI insurance twice before. The best move is:**
  - A) Present the product features again with updated numbers
- - B) Use storytelling — a client story is harder to argue with than a repeated fact ✓
+ - B) Use storytelling - a client story is harder to argue with than a repeated fact (correct)
  - C) Skip CI and focus on a product the prospect hasn't rejected
  - D) Ask the prospect to explain their objection in detail
 
@@ -224,31 +224,31 @@ The best storyteller FCs sound like friends telling you about someone you both k
 
 5. **In the 6P framework, the "Pain" element is:**
  - A) The product limitation the client should know about
- - B) The emotional consequence of the problem, not just the technical fact ✓
+ - B) The emotional consequence of the problem, not just the technical fact (correct)
  - C) The premium cost the client will pay
  - D) The risk rating of the product
 
- **Why:** Pain is where the story moves from a dry case study into something emotionally felt — it is the human cost: savings drained, plans disrupted, a family caught off-guard. Without Pain, the story stays analytical and the emotional brain does not engage. Product limitations (A), premium costs (C), and risk ratings (D) are compliance and product-stage information that belong in a fact-find or proposal, not in the emotional arc of a 6P story.
+ **Why:** Pain is where the story moves from a dry case study into something emotionally felt - it is the human cost: savings drained, plans disrupted, a family caught off-guard. Without Pain, the story stays analytical and the emotional brain does not engage. Product limitations (A), premium costs (C), and risk ratings (D) are compliance and product-stage information that belong in a fact-find or proposal, not in the emotional arc of a 6P story.
 
 6. **Which of the following violates the emotional discipline rules for storytelling?**
  - A) Adapting the same story skeleton to match the client in front of you
  - B) Using a real anonymised client case
- - C) Fabricating details to make the story more dramatic ✓
+ - C) Fabricating details to make the story more dramatic (correct)
  - D) Keeping the story to under 90 seconds
 
- **Why:** Fabrication is explicitly forbidden — clients can sense fiction, and a story that is later contradicted or exposed destroys the trust the entire career model depends on. Adapting the skeleton to the client (A) is encouraged; using real anonymised cases (B) is the recommended source; and keeping stories under 90 seconds (D) is good compression discipline. Only fabrication crosses the ethical line.
+ **Why:** Fabrication is explicitly forbidden - clients can sense fiction, and a story that is later contradicted or exposed destroys the trust the entire career model depends on. Adapting the skeleton to the client (A) is encouraged; using real anonymised cases (B) is the recommended source; and keeping stories under 90 seconds (D) is good compression discipline. Only fabrication crosses the ethical line.
 
 7. **After a well-told 6P story, the ideal client response is:**
  - A) "Can you email me the policy document?"
  - B) "I'll think about it."
- - C) "So what would that look like for me?" — transitioning into their own planning ✓
- - D) "That's a sad story — I hope they're okay."
+ - C) "So what would that look like for me?" - transitioning into their own planning (correct)
+ - D) "That's a sad story - I hope they're okay."
 
- **Why:** A well-structured 6P story is designed to prime the client to ask how the situation applies to their own life — that question is the natural transition from the story into your fact-find or recommendation. Asking for a policy document (A) skips fact-finding. "I'll think about it" (B) means the story stayed abstract and did not personalise enough. Sympathising with the story character (D) shows the client was listening but remained a spectator rather than inserting themselves into the scenario.
+ **Why:** A well-structured 6P story is designed to prime the client to ask how the situation applies to their own life - that question is the natural transition from the story into your fact-find or recommendation. Asking for a policy document (A) skips fact-finding. "I'll think about it" (B) means the story stayed abstract and did not personalise enough. Sympathising with the story character (D) shows the client was listening but remained a spectator rather than inserting themselves into the scenario.
 
 ---
 
 ## Related
 
-- Previous: [[day-44|Day 44 — Handling Resistance & Objections]]
-- Next: [[day-46|Day 46 — Identifying DISC]]
+- Previous: [[day-44|Day 44 - Handling Resistance & Objections]]
+- Next: [[day-46|Day 46 - Identifying DISC]]

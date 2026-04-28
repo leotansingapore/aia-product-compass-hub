@@ -9,16 +9,16 @@ duration_minutes: 25
 tags: [first-60-days, week-8, skills]
 ---
 
-# Day 44 — Handling Resistance & Objections
+# Day 44 - Handling Resistance & Objections
 
-> **The one idea for today:** Most objections aren't rejections — they're reflexes. The prospect hasn't actually said no; they've just given you a standard social defence. Your job is to acknowledge, reframe, and return to the ask. Calmly.
+> **The one idea for today:** Most objections aren't rejections - they're reflexes. The prospect hasn't actually said no; they've just given you a standard social defence. Your job is to acknowledge, reframe, and return to the ask. Calmly.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
 1. **Recognise** the 10 most common prospecting objections and respond to each in under 15 seconds.
-2. **Distinguish** a genuine "no" from a reflex "no" — and handle each differently.
+2. **Distinguish** a genuine "no" from a reflex "no" - and handle each differently.
 3. **Stay calm** in the moment when an objection feels personal (it almost never is).
 
 ---
@@ -26,7 +26,7 @@ By the end of today you should be able to:
 ## 1. Reflex vs real objections
 
 ### Reflex objection
-A social defence. The prospect isn't really saying no to you — they're saying, "I don't have the energy to engage right now; please go away." Reflex objections can be reopened with a well-placed reframe.
+A social defence. The prospect isn't really saying no to you - they're saying, "I don't have the energy to engage right now; please go away." Reflex objections can be reopened with a well-placed reframe.
 
 **Examples:**
 - "Not interested."
@@ -39,35 +39,35 @@ A social defence. The prospect isn't really saying no to you — they're saying,
 A specific concern that, if addressed, would open a meeting. A real objection contains *content* about the prospect's actual situation.
 
 **Examples:**
-- "My hospital plan ends next month and I'm worried — can you help?"
+- "My hospital plan ends next month and I'm worried - can you help?"
 - "My kid is starting university next year and I want to make sure I've saved enough."
 - "I already have [specific product] through [other advisor]."
 
 **The distinction matters:**
-- Reflex → respond with a reframe + ask again.
-- Real → slow down, ask more, then offer a meeting.
+- Reflex -> respond with a reframe + ask again.
+- Real -> slow down, ask more, then offer a meeting.
 
-**The rookie mistake:** treating every objection as a real one → over-justifying → losing the prospect.
+**The rookie mistake:** treating every objection as a real one -> over-justifying -> losing the prospect.
 
-### A third pattern you'll meet later — uncertainty-driven objections
+### A third pattern you'll meet later - uncertainty-driven objections
 
-Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection — *"too expensive"* → you rebut cleanly → *"need to speak to my wife"* → you rebut → *"let me compare a bit more"* → you rebut → *"bad timing"* → and so on.
+Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection - *"too expensive"* -> you rebut cleanly -> *"need to speak to my wife"* -> you rebut -> *"let me compare a bit more"* -> you rebut -> *"bad timing"* -> and so on.
 
 Every rebuttal lands. Nothing closes.
 
-**This isn't a reflex and it isn't a real objection.** It's a smoke screen for **uncertainty** — the prospect isn't yet confident enough on one of three things:
+**This isn't a reflex and it isn't a real objection.** It's a smoke screen for **uncertainty** - the prospect isn't yet confident enough on one of three things:
 1. The product is right for them.
 2. You are trustworthy.
 3. The firm behind the product is reliable.
 
 Because they can't say *"I don't trust you yet"* out loud, they keep inventing new objections. Rebutting each one is whack-a-mole.
 
-The fix is called **looping** — you stop rebutting and go back into mini-presentation mode to rebuild certainty on all three before asking again. Full technique is covered in Next 60 Days Day 40. For now, know that:
+The fix is called **looping** - you stop rebutting and go back into mini-presentation mode to rebuild certainty on all three before asking again. Full technique is covered in Next 60 Days Day 40. For now, know that:
 
 - In Week 8 (prospecting): almost every objection you hear is a **reflex**. Use the scripts below.
 - In Week 10+ (post-pitch): if objections keep moving after clean rebuttals, it's **uncertainty**. That's when you'll reach for looping.
 
-Don't confuse the two — applying a prospecting reframe during a post-pitch objection wastes the moment, and looping during a prospecting reflex is overkill.
+Don't confuse the two - applying a prospecting reframe during a post-pitch objection wastes the moment, and looping during a prospecting reflex is overkill.
 
 ## 2. The 10 standard objection responses (memorise)
 
@@ -80,13 +80,13 @@ These are battle-tested and work.
 > "I would've been surprised if you said you were in the market for life insurance right now. However, I do have some ideas that will be handy for you when you're ready. Would you be free...?"
 
 ### "No money"
-> "I can understand you trying to hold down unnecessary expenses. However, I do think you'd find what I have to say of interest — and of course, you'd be under no obligation. Would you be free...?"
+> "I can understand you trying to hold down unnecessary expenses. However, I do think you'd find what I have to say of interest - and of course, you'd be under no obligation. Would you be free...?"
 
 ### "No need"
 > "Of course, you'd be the sole judge of whether this particular idea would be of value to you. Since it'll take only a short time for me to explain it, would you be free...?"
 
 ### "Too busy"
-> "I guessed you'd be busy — that's why I phoned for an appointment rather than dropping by unannounced. Would you be free...?"
+> "I guessed you'd be busy - that's why I phoned for an appointment rather than dropping by unannounced. Would you be free...?"
 
 ### "Wasting your time"
 > "On the chance that you'll see value in the idea, I'd be happy to spend the time with you. Would you be free for a short time on...?"
@@ -104,9 +104,9 @@ These are battle-tested and work.
 > "Could we leave it this way: I'd like to meet you, and if I'm in your neighbourhood during the next few months, I'd like to drop in and say hello. If you have a few moments at that time, I'll be glad to show you what I have in mind."
 
 **The pattern in every response:**
-1. **Acknowledge** — don't argue.
-2. **Reframe** — show that the objection is precisely why the meeting matters.
-3. **Return to the ask** — "Would you be free...?"
+1. **Acknowledge** - don't argue.
+2. **Reframe** - show that the objection is precisely why the meeting matters.
+3. **Return to the ask** - "Would you be free...?"
 
 Same structure, 10 variations. Memorise. Internalise. Naturalise.
 
@@ -119,7 +119,7 @@ flowchart LR
 
 ## 3. The psychology of rejection
 
-Most new FCs quit prospecting in Month 1–2 because **rejection feels personal.**
+Most new FCs quit prospecting in Month 1-2 because **rejection feels personal.**
 
 It isn't.
 
@@ -146,7 +146,7 @@ Some objections are final. Respect them:
 - Try to reach them via another channel.
 - Add them to a marketing email list.
 
-Singapore's PDPA regulations require consent for ongoing contact. Beyond legality — it's a matter of respect and reputation. A client who felt harassed will tell 10 friends.
+Singapore's PDPA regulations require consent for ongoing contact. Beyond legality - it's a matter of respect and reputation. A client who felt harassed will tell 10 friends.
 
 ## 5. The follow-up strategy for "soft no"
 
@@ -155,11 +155,11 @@ Not all no's are final. Many are "not right now."
 For these, use a **6-touch follow-up sequence** over 12 weeks:
 
 - **Week 0:** Initial call. Reflex no. Offer to reconnect in a few months.
-- **Week 2:** Short value-add message — an article, a post, a useful tip relevant to them. No ask.
-- **Week 4:** Brief check-in. "Hey [name], saw [trigger event — their promotion, new kid, etc.]. Just wanted to check in — genuinely no agenda."
+- **Week 2:** Short value-add message - an article, a post, a useful tip relevant to them. No ask.
+- **Week 4:** Brief check-in. "Hey [name], saw [trigger event - their promotion, new kid, etc.]. Just wanted to check in - genuinely no agenda."
 - **Week 6:** Another value-add. Maybe a quick question they'd find interesting.
-- **Week 8:** Light ask — "Would it be useful to grab 15 minutes this month?"
-- **Week 12:** Final soft ask. If still no → move to quarterly touch or archive.
+- **Week 8:** Light ask - "Would it be useful to grab 15 minutes this month?"
+- **Week 12:** Final soft ask. If still no -> move to quarterly touch or archive.
 
 ```mermaid
 flowchart LR
@@ -168,8 +168,8 @@ flowchart LR
 
 **Why this works:**
 - You stay memorable without being pushy.
-- Life circumstances change — at Week 2 they weren't open, at Week 8 they had a health scare.
-- Many clients sign 3–6 months after the first contact.
+- Life circumstances change - at Week 2 they weren't open, at Week 8 they had a health scare.
+- Many clients sign 3-6 months after the first contact.
 
 **What doesn't work:**
 - Weekly pestering. That's harassment.
@@ -180,7 +180,7 @@ flowchart LR
 
 Real story frequently repeated across the industry:
 
-> "I called a prospect in Month 2. He said he wasn't interested. I checked in every 2 months with something useful — an article, a check-in. No ask.
+> "I called a prospect in Month 2. He said he wasn't interested. I checked in every 2 months with something useful - an article, a check-in. No ask.
 >
 > Month 9, his wife got diagnosed with early-stage cancer. He called me the next day. We met that week. I helped him sort out his family's protection in 3 meetings.
 >
@@ -193,8 +193,8 @@ The pattern repeats across careers. **The relationship matters more than the mon
 Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day.
 
 **Protect yourself:**
-- **Don't make more than 15 prospecting calls in a single session.** Batch them in 60–90 min blocks.
-- **Between sessions, do something restorative** — not another call. Walk. Coffee. Quick chat with a peer.
+- **Don't make more than 15 prospecting calls in a single session.** Batch them in 60-90 min blocks.
+- **Between sessions, do something restorative** - not another call. Walk. Coffee. Quick chat with a peer.
 - **End the day on a win,** not a rejection. Finish with a warm follow-up, a content task, or a study block.
 
 FCs who ignore this get burned out by Month 4 and quit. The ones who last build rejection into their emotional planning.
@@ -204,63 +204,63 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
 1. **The structure of every objection response is:**
  - A) Argue, persuade, push
- - B) Acknowledge, reframe, return to the ask ✓
+ - B) Acknowledge, reframe, return to the ask (correct)
  - C) Deflect, change topic, rebook
  - D) Apologise, send info, follow up
 
- **Why:** Every standard objection response follows the same three-beat pattern — acknowledge the prospect's position so they feel heard, reframe to show why the meeting is still worth having, then return cleanly to the appointment ask. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your own credibility and gives the prospect a way to stall indefinitely.
+ **Why:** Every standard objection response follows the same three-beat pattern - acknowledge the prospect's position so they feel heard, reframe to show why the meeting is still worth having, then return cleanly to the appointment ask. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your own credibility and gives the prospect a way to stall indefinitely.
 
 2. **"Not interested" is most likely:**
  - A) A real final no
- - B) A reflex objection — a social defence ✓
+ - B) A reflex objection - a social defence (correct)
  - C) A sign of deeper issues
  - D) A legal notice
 
- **Why:** "Not interested" is the most common reflex objection — the prospect is defending their afternoon, not evaluating your offer. They have no information to base a real decision on, so what they are really saying is "I don't want to engage right now." A real final no (A) contains specific content, such as an existing advisor or explicit instruction to stop contact. Signs of deeper issues (C) and legal notices (D) are not what "not interested" signals.
+ **Why:** "Not interested" is the most common reflex objection - the prospect is defending their afternoon, not evaluating your offer. They have no information to base a real decision on, so what they are really saying is "I don't want to engage right now." A real final no (A) contains specific content, such as an existing advisor or explicit instruction to stop contact. Signs of deeper issues (C) and legal notices (D) are not what "not interested" signals.
 
 3. **When a prospect says "please don't contact me again":**
  - A) Follow up in 2 weeks to confirm
- - B) Respect the request immediately — stop all contact ✓
+ - B) Respect the request immediately - stop all contact (correct)
  - C) Send one more message with value
  - D) Remove from your active list but re-add in 6 months
 
- **Why:** An explicit "do not contact" request is a real final no, not a reflex. Continuing contact after this point violates Singapore's PDPA and, more importantly, damages your professional reputation — a client who felt harassed will tell ten friends. Following up in two weeks (A), sending one last message (C), or re-adding in six months (D) all disregard the stated boundary and compound the harm.
+ **Why:** An explicit "do not contact" request is a real final no, not a reflex. Continuing contact after this point violates Singapore's PDPA and, more importantly, damages your professional reputation - a client who felt harassed will tell ten friends. Following up in two weeks (A), sending one last message (C), or re-adding in six months (D) all disregard the stated boundary and compound the harm.
 
 4. **A prospect says "Post it out." The correct response is:**
  - A) Email them the brochure and wait for a reply
  - B) Agree and follow up in two weeks
- - C) Explain that the material only works when tailored to their situation — request a meeting ✓
+ - C) Explain that the material only works when tailored to their situation - request a meeting (correct)
  - D) Ask them to review the company website instead
 
- **Why:** The "post it out" objection is a polite dismissal — the prospect expects generic material they can ignore. The correct reframe is that any useful material needs to be personalised, which requires a short conversation. Sending the brochure (A) or agreeing and following up later (B) hands the prospect a way to say "read it, not for me" without ever meeting. Redirecting to the website (D) removes you from the equation entirely.
+ **Why:** The "post it out" objection is a polite dismissal - the prospect expects generic material they can ignore. The correct reframe is that any useful material needs to be personalised, which requires a short conversation. Sending the brochure (A) or agreeing and following up later (B) hands the prospect a way to say "read it, not for me" without ever meeting. Redirecting to the website (D) removes you from the equation entirely.
 
 5. **An FC receives 17 reflex objections in one session. The healthiest interpretation is:**
  - A) The pitch needs a complete rewrite
  - B) This week's list is poor quality
- - C) Normal — reflex objections reflect the prospect's energy, not a verdict on you ✓
+ - C) Normal - reflex objections reflect the prospect's energy, not a verdict on you (correct)
  - D) Time to take a break from prospecting for a few days
 
  **Why:** Reflex objections are a baseline feature of prospecting, not a signal about your pitch quality or list quality. The prospect's "not interested" is about their energy and attention at that moment, not an evaluation of you. Rewriting the pitch (A) or blaming the list (B) misattributes a social defence as personal feedback. Taking a multi-day break (D) compounds the emotional response instead of processing it as normal activity data.
 
 6. **The 6-touch follow-up sequence is designed to:**
  - A) Pressure a prospect into a decision within 12 weeks
- - B) Stay memorable and catch prospects when life circumstances change ✓
+ - B) Stay memorable and catch prospects when life circumstances change (correct)
  - C) Replace in-person meetings with digital contact
  - D) Qualify prospects before spending time on a meeting
 
- **Why:** Life circumstances change — a prospect who was not open at Week 0 may have had a health scare, a new baby, or a job change by Week 8 that makes them receptive. The sequence is built around staying present and useful without pressure, so you are the person they think of when the moment arrives. Pressuring a decision (A) is exactly what the value-add messages are designed to avoid. The sequence supplements meetings (C) rather than replacing them, and it is not a qualification filter (D).
+ **Why:** Life circumstances change - a prospect who was not open at Week 0 may have had a health scare, a new baby, or a job change by Week 8 that makes them receptive. The sequence is built around staying present and useful without pressure, so you are the person they think of when the moment arrives. Pressuring a decision (A) is exactly what the value-add messages are designed to avoid. The sequence supplements meetings (C) rather than replacing them, and it is not a qualification filter (D).
 
 7. **What makes the "obstinate objector" response unique compared to the others?**
  - A) It argues back with facts and logic
- - B) It withdraws the meeting ask entirely and reframes contact as casual and low-pressure ✓
+ - B) It withdraws the meeting ask entirely and reframes contact as casual and low-pressure (correct)
  - C) It offers a discount to change the prospect's mind
  - D) It asks a clarifying question to surface the real objection
 
- **Why:** All other objection responses end with "Would you be free...?" — they maintain the meeting ask. The obstinate objector response is different because it drops the ask entirely and replaces it with a casual "if I'm in your neighbourhood" framing, removing all pressure and keeping a door open without forcing it. There are no facts or arguments (A), no discounts (C), and no clarifying questions (D) — just a graceful exit that preserves the relationship for a future approach.
+ **Why:** All other objection responses end with "Would you be free...?" - they maintain the meeting ask. The obstinate objector response is different because it drops the ask entirely and replaces it with a casual "if I'm in your neighbourhood" framing, removing all pressure and keeping a door open without forcing it. There are no facts or arguments (A), no discounts (C), and no clarifying questions (D) - just a graceful exit that preserves the relationship for a future approach.
 
 ---
 
 ## Related
 
-- Previous: [[day-43|Day 43 — Scripting Your Approach]]
-- Next: [[day-45|Day 45 — Storytelling: The Hook]]
+- Previous: [[day-43|Day 43 - Scripting Your Approach]]
+- Next: [[day-45|Day 45 - Storytelling: The Hook]]

@@ -10,9 +10,9 @@ duration_minutes: 20
 tags: [first-60-days, week-2, knowledge]
 ---
 
-# Day 12 — The Financial Freedom Pyramid
+# Day 12 - The Financial Freedom Pyramid
 
-> **The one idea for today:** Every financial plan is built bottom-up. When a client tries to skip a level, your job is to bring them back to the foundation — gently, but firmly. Shortcuts cost lives.
+> **The one idea for today:** Every financial plan is built bottom-up. When a client tries to skip a level, your job is to bring them back to the foundation - gently, but firmly. Shortcuts cost lives.
 
 ## What you'll walk away with
 
@@ -24,7 +24,7 @@ By the end of today you should be able to:
 
 ---
 
-## 1. The pyramid — from memory
+## 1. The pyramid - from memory
 
 You already saw this on Day 10. Today you lock it in.
 
@@ -32,36 +32,36 @@ You already saw this on Day 10. Today you lock it in.
   <div style="width:46%;min-width:260px;background:linear-gradient(135deg,hsl(262,83%,55%),hsl(262,83%,68%));color:white;padding:14px 18px;border-radius:10px 10px 4px 4px;box-shadow:0 4px 12px hsl(262,83%,55%,0.25);text-align:center;">
     <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 4</div>
     <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Legacy</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Estate planning · generational transfer</div>
+    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Estate planning . generational transfer</div>
   </div>
   <div style="width:64%;min-width:300px;background:linear-gradient(135deg,hsl(160,84%,35%),hsl(160,84%,45%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,35%,0.25);text-align:center;">
     <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 3</div>
     <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Accumulation</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Investments · CPF · ILPs · endowments</div>
+    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Investments . CPF . ILPs . endowments</div>
   </div>
   <div style="width:82%;min-width:340px;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;">
     <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 2</div>
     <div style="font-weight:700;font-size:15px;margin-top:2px;">Short-Term Savings</div>
-    <div style="font-size:12px;opacity:0.95;margin-top:2px;">Emergency fund: 3–6 months expenses</div>
+    <div style="font-size:12px;opacity:0.95;margin-top:2px;">Emergency fund: 3-6 months expenses</div>
   </div>
   <div style="width:100%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:18px 18px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 1 · FOUNDATION</div>
+    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 1 . FOUNDATION</div>
     <div style="font-weight:700;font-size:16px;margin-top:2px;">Risk Management</div>
-    <div style="font-size:12.5px;opacity:0.95;margin-top:2px;">Insurance: Death/TPD · CI · Hospital</div>
+    <div style="font-size:12.5px;opacity:0.95;margin-top:2px;">Insurance: Death/TPD . CI . Hospital</div>
   </div>
 </div>
 
 **The non-negotiable rule:** you cannot permanently build a level above without the level below. Any plan that does so is a tower on sand.
 
-## 2. Level 1 — Risk Management (the foundation)
+## 2. Level 1 - Risk Management (the foundation)
 
 **Purpose:** ensure that one uncontrollable event doesn't destroy everything above it.
 
 **Components:**
-- **Death / TPD cover** (~10× annual income).
-- **Critical Illness cover** (~5× for Major CI, ~2× for Early CI).
+- **Death / TPD cover** (~10x annual income).
+- **Critical Illness cover** (~5x for Major CI, ~2x for Early CI).
 - **Hospitalisation + Rider** (the bill-payer for medical events).
-- **Personal accident cover** (for specific risks — especially if you travel/ride).
+- **Personal accident cover** (for specific risks - especially if you travel/ride).
 - **Disability income cover** (for longer-term work inability).
 
 **Symptom of a weak Level 1:**
@@ -71,11 +71,11 @@ You already saw this on Day 10. Today you lock it in.
 
 **Rule:** no meaningful accumulation planning happens until Level 1 is solid.
 
-## 3. Level 2 — Short-Term Savings
+## 3. Level 2 - Short-Term Savings
 
 **Purpose:** cover the **temporary risks** (Day 2). Loss of job, medical copays, broken appliance, sudden travel.
 
-**Target:** **3–6 months of expenses** in an easily accessible account. Not invested, not locked up — liquid.
+**Target:** **3-6 months of expenses** in an easily accessible account. Not invested, not locked up - liquid.
 
 **Why this isn't Level 1:** emergency savings protect you from inconvenience. Insurance protects you from catastrophe. Different problems; different tools.
 
@@ -84,16 +84,16 @@ You already saw this on Day 10. Today you lock it in.
 - The person has investments but can't access them without penalty.
 - Every unexpected bill triggers a small financial crisis.
 
-## 4. Level 3 — Wealth Accumulation
+## 4. Level 3 - Wealth Accumulation
 
 **Purpose:** grow your money faster than inflation, over long enough to matter.
 
 **Components:**
-- **CPF** — your mandatory forced-saving mechanism, with decent returns.
-- **Endowment plans** — fixed savings plans with life cover attached.
-- **Investment-Linked Plans (ILPs)** — insurance wrapper around investment funds.
-- **Direct investments** — stocks, bonds, ETFs, unit trusts.
-- **Property** — if it makes financial sense (often it doesn't for primary homes).
+- **CPF** - your mandatory forced-saving mechanism, with decent returns.
+- **Endowment plans** - fixed savings plans with life cover attached.
+- **Investment-Linked Plans (ILPs)** - insurance wrapper around investment funds.
+- **Direct investments** - stocks, bonds, ETFs, unit trusts.
+- **Property** - if it makes financial sense (often it doesn't for primary homes).
 
 **The key insight:** accumulation is not about picking the hottest asset. It's about:
 1. **Consistency** (regular contributions).
@@ -107,15 +107,15 @@ Ten years of consistent investing beats one well-timed bet 99% of the time.
 - One-time lump-sum investments with no regular contribution.
 - Chasing last year's best-performing fund.
 
-## 5. Level 4 — Wealth Legacy
+## 5. Level 4 - Wealth Legacy
 
 **Purpose:** what you leave behind, and to whom.
 
 **Components:**
-- **Will** — updated, witnessed, locatable.
-- **CPF nominations** — most people's biggest asset passes by nomination, not will.
-- **Trust structures** — for clients with complex families, business interests, or tax concerns.
-- **Life insurance as an estate-equalisation tool** — critical for clients with illiquid assets like businesses or properties.
+- **Will** - updated, witnessed, locatable.
+- **CPF nominations** - most people's biggest asset passes by nomination, not will.
+- **Trust structures** - for clients with complex families, business interests, or tax concerns.
+- **Life insurance as an estate-equalisation tool** - critical for clients with illiquid assets like businesses or properties.
 - **Gifting / philanthropic planning.**
 
 You will rarely have Legacy conversations with new clients. But you'll serve them long enough that these conversations will arrive.
@@ -127,13 +127,13 @@ Treat the pyramid as a **diagnostic tool.** In every fact-finding meeting, silen
 | Level | Question |
 |---|---|
 | 1 | Are the four risks (death, CI, hospital, disability) adequately covered? |
-| 2 | Can this household survive 3–6 months of lost income? |
+| 2 | Can this household survive 3-6 months of lost income? |
 | 3 | Is there a regular, diversified accumulation plan? |
 | 4 | Are will, CPF nominations, and dependents' plans in place? |
 
 **When you find a gap:** start at the lowest missing level. Don't try to fill all gaps at once. Most clients can't absorb more than one or two decisions per meeting.
 
-## 7. The common mistake — selling above the client's real level
+## 7. The common mistake - selling above the client's real level
 
 The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) product to a client with a clear Level 1 gap.
 
@@ -149,57 +149,57 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
 1. **Which level of the pyramid is the foundation?**
  - A) Short-term savings
- - B) Risk management ✓
+ - B) Risk management (correct)
  - C) Wealth accumulation
  - D) Wealth legacy
 
- **Why:** Level 1 is Risk Management — the non-negotiable foundation. The pyramid's core rule is that no level above can be permanently built without the one below. Short-term savings is Level 2, wealth accumulation is Level 3, and wealth legacy is Level 4. One uninsured CI diagnosis can force a client to surrender their Level 3 portfolio, which is exactly what Level 1 exists to prevent.
+ **Why:** Level 1 is Risk Management - the non-negotiable foundation. The pyramid's core rule is that no level above can be permanently built without the one below. Short-term savings is Level 2, wealth accumulation is Level 3, and wealth legacy is Level 4. One uninsured CI diagnosis can force a client to surrender their Level 3 portfolio, which is exactly what Level 1 exists to prevent.
 
 2. **A 25-year-old client with $500/month to allocate. Their company offers hospitalisation. What's your first priority?**
  - A) Start a regular savings plan immediately
- - B) Check Level 1 gaps (Death/TPD, CI, private hospital plan) ✓
+ - B) Check Level 1 gaps (Death/TPD, CI, private hospital plan) (correct)
  - C) Begin wealth preservation
  - D) Open an ILP
 
- **Why:** An employer hospital plan is a common Level 1 symptom — it creates the illusion of a solid foundation while leaving Death/TPD, CI, and private-tier hospitalisation uncovered. Today's lesson lists "my company has hospitalisation for me" as a weak-Level-1 symptom. A savings plan (A) and an ILP (D) are Level 2 and 3 respectively, and should not be recommended before Level 1 is checked. Wealth preservation (C) is Level 4 — many levels too early.
+ **Why:** An employer hospital plan is a common Level 1 symptom - it creates the illusion of a solid foundation while leaving Death/TPD, CI, and private-tier hospitalisation uncovered. Today's lesson lists "my company has hospitalisation for me" as a weak-Level-1 symptom. A savings plan (A) and an ILP (D) are Level 2 and 3 respectively, and should not be recommended before Level 1 is checked. Wealth preservation (C) is Level 4 - many levels too early.
 
-3. **A client comes in with $40,000 — half in a bank account, half just lump-summed into last quarter's top-performing tech ETF. Which Level 3 principle is most clearly violated?**
- - A) Insufficient amount — they need at least $100,000 to invest meaningfully
- - B) Wrong vehicle — ETFs aren't suitable for retail investors
- - C) Chasing the hot fund instead of consistency, diversification, and time horizon ✓
- - D) Tax inefficiency — the capital gains are fully taxable
+3. **A client comes in with $40,000 - half in a bank account, half just lump-summed into last quarter's top-performing tech ETF. Which Level 3 principle is most clearly violated?**
+ - A) Insufficient amount - they need at least $100,000 to invest meaningfully
+ - B) Wrong vehicle - ETFs aren't suitable for retail investors
+ - C) Chasing the hot fund instead of consistency, diversification, and time horizon (correct)
+ - D) Tax inefficiency - the capital gains are fully taxable
 
- **Why:** Day 12's Level 3 section names the three accumulation principles — **consistency** (regular contributions), **diversification** (don't bet on one sector), and **time horizon** (start young, leave alone). A lump-sum into one quarter's hot tech ETF violates all three: no recurring contribution, single-sector concentration, and a 3-month-old position trying to time a trend. The lesson is explicit: *"ten years of consistent investing beats one well-timed bet 99% of the time."* A invents a minimum that isn't in the lesson. B is false — ETFs are perfectly retail-suitable. D conflates accumulation principle with tax, a separate concern.
+ **Why:** Day 12's Level 3 section names the three accumulation principles - **consistency** (regular contributions), **diversification** (don't bet on one sector), and **time horizon** (start young, leave alone). A lump-sum into one quarter's hot tech ETF violates all three: no recurring contribution, single-sector concentration, and a 3-month-old position trying to time a trend. The lesson is explicit: *"ten years of consistent investing beats one well-timed bet 99% of the time."* A invents a minimum that isn't in the lesson. B is false - ETFs are perfectly retail-suitable. D conflates accumulation principle with tax, a separate concern.
 
 4. **A client is enthusiastic about starting an ILP (Level 3). During fact-finding you learn he has no CI coverage and only a basic employer hospital plan. What is the correct next step?**
- - A) Start the ILP — the client's enthusiasm means higher retention
+ - A) Start the ILP - the client's enthusiasm means higher retention
  - B) Sell a smaller ILP and add CI as a rider to keep it simple
- - C) Redirect the conversation to Level 1 gaps before recommending any accumulation product ✓
+ - C) Redirect the conversation to Level 1 gaps before recommending any accumulation product (correct)
  - D) Defer CI coverage until the ILP matures and provides cash value
 
- **Why:** This is the exact scenario today's "common mistake" section describes. A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth. Enthusiasm does not override a structural gap (A). Bundling CI as a rider does not address the discipline of building bottom-up — and a rider on an ILP is not the same as standalone Level 1 coverage (B). Deferring CI to wait for ILP cash value (D) is exactly the sequence the pyramid forbids.
+ **Why:** This is the exact scenario today's "common mistake" section describes. A CI diagnosis could force the client to surrender the ILP at a loss, breaking the relationship and triggering negative word-of-mouth. Enthusiasm does not override a structural gap (A). Bundling CI as a rider does not address the discipline of building bottom-up - and a rider on an ILP is not the same as standalone Level 1 coverage (B). Deferring CI to wait for ILP cash value (D) is exactly the sequence the pyramid forbids.
 
 5. **Which of the following is a symptom of a weak Level 2, NOT a weak Level 1?**
  - A) "My death coverage is only $50,000 through my employer."
  - B) "I don't have any CI plan."
- - C) "A $2,000 surprise expense last month became credit card debt." ✓
+ - C) "A $2,000 surprise expense last month became credit card debt." (correct)
  - D) "My hospital plan ends when I leave my company."
 
- **Why:** Level 2 is the emergency fund — 3-6 months of liquid expenses. A $2,000 surprise triggering credit card debt signals a near-zero emergency buffer, which is the Level 2 symptom listed in today's content. Inadequate death coverage (A), no CI plan (B), and employer-dependent hospital cover (D) are all Level 1 gaps — catastrophic risk exposure, not temporary-expense exposure.
+ **Why:** Level 2 is the emergency fund - 3-6 months of liquid expenses. A $2,000 surprise triggering credit card debt signals a near-zero emergency buffer, which is the Level 2 symptom listed in today's content. Inadequate death coverage (A), no CI plan (B), and employer-dependent hospital cover (D) are all Level 1 gaps - catastrophic risk exposure, not temporary-expense exposure.
 
-6. **A fact-finding meeting reveals gaps at Levels 1, 2, AND 3 — no CI cover, three weeks of emergency savings, and no investment plan. What's the right move?**
+6. **A fact-finding meeting reveals gaps at Levels 1, 2, AND 3 - no CI cover, three weeks of emergency savings, and no investment plan. What's the right move?**
  - A) Lay out a comprehensive plan addressing all three gaps in this meeting so the client sees the full picture
- - B) Start with Level 1 first; defer Levels 2 and 3 to a follow-up — most clients can't absorb more than one or two decisions per meeting ✓
- - C) Start with the Level 3 plan since it has the longest time horizon — every month of delay costs compounding
- - D) Start with Level 2 because it's the cheapest fix — a quick win builds rapport for the harder conversations
+ - B) Start with Level 1 first; defer Levels 2 and 3 to a follow-up - most clients can't absorb more than one or two decisions per meeting (correct)
+ - C) Start with the Level 3 plan since it has the longest time horizon - every month of delay costs compounding
+ - D) Start with Level 2 because it's the cheapest fix - a quick win builds rapport for the harder conversations
 
- **Why:** Day 12's Section 6 gives the rule directly: *"start at the lowest missing level. Don't try to fill all gaps at once. Most clients can't absorb more than one or two decisions per meeting."* B follows both rules. A overwhelms the client and usually produces decision paralysis — they leave the meeting agreeing to nothing. C inverts the bottom-up rule and ignores that a single CI diagnosis would force surrender of any Level 3 product before it has time to compound. D may earn quick rapport but skips the foundation — exactly the trap Day 12's "common mistake" section warns against.
+ **Why:** Day 12's Section 6 gives the rule directly: *"start at the lowest missing level. Don't try to fill all gaps at once. Most clients can't absorb more than one or two decisions per meeting."* B follows both rules. A overwhelms the client and usually produces decision paralysis - they leave the meeting agreeing to nothing. C inverts the bottom-up rule and ignores that a single CI diagnosis would force surrender of any Level 3 product before it has time to compound. D may earn quick rapport but skips the foundation - exactly the trap Day 12's "common mistake" section warns against.
 
 7. **A client has a will, updated CPF nominations, and is planning a trust structure for her business. Which pyramid level is she working on?**
- - A) Level 2 — short-term savings
- - B) Level 3 — wealth accumulation
- - C) Level 4 — wealth legacy ✓
- - D) Level 1 — risk management
+ - A) Level 2 - short-term savings
+ - B) Level 3 - wealth accumulation
+ - C) Level 4 - wealth legacy (correct)
+ - D) Level 1 - risk management
 
  **Why:** Level 4 components listed in today's content are exactly these: a will, CPF nominations, and trust structures for clients with complex families or business interests. Short-term savings (A) is a liquid emergency fund. Wealth accumulation (B) covers CPF contributions, endowments, ILPs, and investments. Risk management (D) covers Death/TPD, CI, hospitalisation, and disability cover.
 
@@ -207,6 +207,6 @@ The pressure of monthly targets can push new FCs into selling a Level 3 (ILP) pr
 
 ## Related
 
-- Previous: [[day-11|Day 11 — The Cashflow Quadrant]]
-- Next: [[../week-3/day-13|Day 13 — Job A vs Job B]]
-- Week 2 summary: [[README|Week 2 — Industry Context & The Freedom Business]]
+- Previous: [[day-11|Day 11 - The Cashflow Quadrant]]
+- Next: [[../week-3/day-13|Day 13 - Job A vs Job B]]
+- Week 2 summary: [[README|Week 2 - Industry Context & The Freedom Business]]

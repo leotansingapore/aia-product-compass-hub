@@ -1,7 +1,7 @@
 ---
 week: 9
 day: 51
-title: "Client Financial Review — Part 2"
+title: "Client Financial Review - Part 2"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
@@ -9,11 +9,11 @@ duration_minutes: 25
 tags: [first-60-days, week-9, skills]
 ---
 
-# Day 51 — Client Financial Review: Part 2
+# Day 51 - Client Financial Review: Part 2
 
 > **The one idea for today:** The numbers section of the CFR is where most new FCs feel uncomfortable. The client almost always senses that discomfort and mirrors it. Your job is to make financial disclosure feel like a **natural next step**, not an interrogation. When it's natural, clients share freely. When it's awkward, they hide.
 
-> **📄 Source-script reference:** the entire numbers + budget section flows out of the **[Canned Sales Track](/learning-track/first-60-days/reference/ost-script-full)** Page 2. Specifically the worked $3.5K-gross / $2.8K-take-home example, the 1/3 rule (short / medium / long), and the *"20% of take-home at 4-6% return is the magic number for retirement"* anchor. Read it before running this day's CFR conversation.
+> **Source-script reference:** the entire numbers + budget section flows out of the **[Canned Sales Track](/learning-track/first-60-days/reference/ost-script-full)** Page 2. Specifically the worked $3.5K-gross / $2.8K-take-home example, the 1/3 rule (short / medium / long), and the *"20% of take-home at 4-6% return is the magic number for retirement"* anchor. Read it before running this day's CFR conversation.
 
 ## What you'll walk away with
 
@@ -29,11 +29,11 @@ By the end of today you should be able to:
 
 The financial data collected in Section 3 **drives every downstream decision:**
 
-- Budget capacity → which premium range fits.
-- Existing coverage → what gaps to prioritise.
-- Current assets → what to protect vs accumulate.
-- Income stability → appropriate risk profile.
-- Life-stage numbers → ratios for coverage amounts.
+- Budget capacity -> which premium range fits.
+- Existing coverage -> what gaps to prioritise.
+- Current assets -> what to protect vs accumulate.
+- Income stability -> appropriate risk profile.
+- Life-stage numbers -> ratios for coverage amounts.
 
 **Without this data**, you're either guessing or recommending templates. Neither builds trust or lasts.
 
@@ -45,10 +45,10 @@ By the time you reach Section 3, you've already:
 
 - Had a proper opening conversation (Section 1).
 - Listened to their priorities and ranked them.
-- Developed problems on their top 2–3 goals.
+- Developed problems on their top 2-3 goals.
 - Asked permission to dig deeper.
 
-The numbers now feel like the **natural next step** — because they are. You've earned the right.
+The numbers now feel like the **natural next step** - because they are. You've earned the right.
 
 **If the client is still defensive when you reach Section 3**, it means Sections 1 and 2 weren't done well. Back off. Spend 10 more minutes in conversation. Return to numbers later.
 
@@ -60,17 +60,17 @@ Use this framing (paraphrase in your voice):
 
 **Why this works:**
 
-- "In order to plan" — reminds them this is collaborative.
-- "Where you are today" — not judgmental.
-- "Simple terms" — signals low pressure.
-- "One or two basic questions" — manages expectations downward (they always turn into more, but starting small lowers resistance).
+- "In order to plan" - reminds them this is collaborative.
+- "Where you are today" - not judgmental.
+- "Simple terms" - signals low pressure.
+- "One or two basic questions" - manages expectations downward (they always turn into more, but starting small lowers resistance).
 
 Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 
 ## 4. The 6 categories of financial data
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">— Section 3 · the six categories of financial data —</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- Section 3 . the six categories of financial data -</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
     <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Income</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Salary + bonus + stability</div></div>
     <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Expenses</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Essential + lifestyle + annual</div></div>
@@ -95,7 +95,7 @@ Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 - Annual expenses (holidays, insurance premiums, school fees).
 - Parents' allowance or dependents.
 
-**Probing question:** "What's a rough number for your total monthly expenses — all in?"
+**Probing question:** "What's a rough number for your total monthly expenses - all in?"
 
 If they don't know (many don't): "Roughly, what percentage of your income do you save each month?"
 
@@ -105,9 +105,9 @@ If they don't know (many don't): "Roughly, what percentage of your income do you
 - CPF balances (OA, SA, MA).
 - Property (market value + outstanding mortgage = net equity).
 - Existing insurance cash values.
-- Other assets (business equity, vehicles — net of loan).
+- Other assets (business equity, vehicles - net of loan).
 
-**Probing question:** "Roughly what do you have in each? No exact numbers needed today — a rough range is fine."
+**Probing question:** "Roughly what do you have in each? No exact numbers needed today - a rough range is fine."
 
 ### 4. Liabilities
 - Mortgage balance.
@@ -116,7 +116,7 @@ If they don't know (many don't): "Roughly, what percentage of your income do you
 - Personal loans / lines of credit.
 - Student loans.
 
-**Probing question:** "Any significant debts outstanding — mortgage, car, credit cards?"
+**Probing question:** "Any significant debts outstanding - mortgage, car, credit cards?"
 
 ### 5. Existing insurance coverage
 - Life insurance (sum assured + type + provider).
@@ -126,14 +126,14 @@ If they don't know (many don't): "Roughly, what percentage of your income do you
 - Personal accident.
 - Employer-provided benefits (often separate).
 
-**Probing question:** "What coverage do you currently have — both personal and through your employer? No need to dig out documents — a rough memory is fine."
+**Probing question:** "What coverage do you currently have - both personal and through your employer? No need to dig out documents - a rough memory is fine."
 
 ### 6. Budget capacity
 **This is the most sensitive.** Save it for last.
 
 After all the above, you can calculate their approximate monthly surplus. Then:
 
-> "Based on what you've shared, your monthly surplus looks like roughly $X. If we were going to set aside some of that toward your financial goals, how much would feel comfortable — $200, $500, $1,000 a month?"
+> "Based on what you've shared, your monthly surplus looks like roughly $X. If we were going to set aside some of that toward your financial goals, how much would feel comfortable - $200, $500, $1,000 a month?"
 
 **Why give ranges:** anchoring helps. Asking "how much can you afford?" triggers defensive thinking. Offering ranges opens a comfortable conversation.
 
@@ -142,7 +142,7 @@ After all the above, you can calculate their approximate monthly surplus. Then:
 Some clients resist sharing financial details. Handle it calmly.
 
 ### Objection: "Do I really need to share all this?"
-> "I completely understand. Here's the thing — if I don't know your real situation, I can only recommend generic templates, not a plan that actually fits you. Your choice entirely, but I'd rather tailor something real."
+> "I completely understand. Here's the thing - if I don't know your real situation, I can only recommend generic templates, not a plan that actually fits you. Your choice entirely, but I'd rather tailor something real."
 
 ### Objection: "I don't remember the exact numbers."
 > "Rough estimates are fine. We can refine later. Even just 'high / medium / low' buckets help."
@@ -152,43 +152,43 @@ Some clients resist sharing financial details. Handle it calmly.
 
 **Rule:** never pressure. A resistant client who feels respected will come back with full data. A pressured client disappears.
 
-## 6. The implication questions — integrated into Section 3
+## 6. The implication questions - integrated into Section 3
 
 As you collect numbers, you're naturally surfacing Implication opportunities.
 
 **Example flow:**
 
-**Client:** *"My hospital plan is through work — $20K per claim limit."*
+**Client:** *"My hospital plan is through work - $20K per claim limit."*
 
-**You:** "That's helpful. Out of curiosity — do you know what a typical private hospital stay for something like heart surgery might run to?"
+**You:** "That's helpful. Out of curiosity - do you know what a typical private hospital stay for something like heart surgery might run to?"
 
 **Client:** *"Honestly no."*
 
-**You:** "Somewhere in the $80–150K range for a major procedure. If you needed private treatment, you'd have a gap of $60–130K to cover personally. **How would you feel about that gap?**"
+**You:** "Somewhere in the $80-150K range for a major procedure. If you needed private treatment, you'd have a gap of $60-130K to cover personally. **How would you feel about that gap?**"
 
-That's a perfectly placed Implication question — **grounded in the real numbers you just collected.** Far more powerful than a generic scary scenario.
+That's a perfectly placed Implication question - **grounded in the real numbers you just collected.** Far more powerful than a generic scary scenario.
 
-## 7. Closing the CFR — the Colombo transition
+## 7. Closing the CFR - the Colombo transition
 
 Once Section 3 is complete, transition to next steps:
 
-> "Thanks for being so open with all of this. I've got what I need. Let me take a few days to put together a plan that addresses your top priorities — [list them: retirement, kids' education, hospital gap]. I'd like to share it with you next [day]. Can you do Tuesday at 7pm or Thursday at 2pm?"
+> "Thanks for being so open with all of this. I've got what I need. Let me take a few days to put together a plan that addresses your top priorities - [list them: retirement, kids' education, hospital gap]. I'd like to share it with you next [day]. Can you do Tuesday at 7pm or Thursday at 2pm?"
 
 **The key moves:**
 
-1. **Thank them** — they just shared sensitive data.
-2. **Summarise priorities** — confirms alignment.
-3. **Commit a specific next meeting** — two options, their choice.
-4. **Name the output** — "a plan," not "a proposal" or "a quote."
+1. **Thank them** - they just shared sensitive data.
+2. **Summarise priorities** - confirms alignment.
+3. **Commit a specific next meeting** - two options, their choice.
+4. **Name the output** - "a plan," not "a proposal" or "a quote."
 
-Then — the Colombo close (Day 49):
+Then - the Colombo close (Day 49):
 
-> "Oh — one more thing. If the plan I come back with addresses [priority 1], [priority 2], and [priority 3], within the $[monthly budget range] you mentioned, can you see any reason why we wouldn't move forward?"
+> "Oh - one more thing. If the plan I come back with addresses [priority 1], [priority 2], and [priority 3], within the $[monthly budget range] you mentioned, can you see any reason why we wouldn't move forward?"
 
 *Pause. Listen.*
 
-If the answer is "no, no reason" → you're 90% closed before the next meeting.
-If the answer raises an objection → **gold.** You now have 5 days to address it in the proposal.
+If the answer is "no, no reason" -> you're 90% closed before the next meeting.
+If the answer raises an objection -> **gold.** You now have 5 days to address it in the proposal.
 
 ## 8. Post-meeting discipline
 
@@ -205,10 +205,10 @@ flowchart TD
 Within 30 min of the meeting ending:
 
 - **Expand CFR notes** from keywords into full form.
-- **Log in CRM** — CFR date, key concerns, priorities, next meeting.
+- **Log in CRM** - CFR date, key concerns, priorities, next meeting.
 - **Draft 3 recommendation ideas** based on their top priorities.
-- **Schedule the follow-up** — don't let the momentum fade.
-- **Prepare the proposal materials** — illustrations, concept decks, printouts.
+- **Schedule the follow-up** - don't let the momentum fade.
+- **Prepare the proposal materials** - illustrations, concept decks, printouts.
 
 **The 24-hour rule:** the meeting's emotional and factual details are 90% fresh within 24 hours. By 48 hours, 50% fades. By a week, you're guessing. **Work fast while the meeting is still hot.**
 
@@ -217,63 +217,63 @@ Within 30 min of the meeting ending:
 
 1. **When transitioning into financial numbers, the best framing is:**
    - A) "I need your income and expenses now."
-   - B) "In order to plan for the future, we need to know where you are today..." ✓
+   - B) "In order to plan for the future, we need to know where you are today..." (correct)
    - C) "Let's talk about money."
    - D) "Can you bring your tax returns?"
 
-   **Why:** The transition script works because it frames the numbers as collaborative planning ("in order to plan") rather than interrogation, signals low pressure ("simple terms," "one or two basic questions"), and is delivered matter-of-fact — not apologetic. Option A is blunt and transactional, which triggers defensiveness. Option C is vague and signals nothing about purpose. Option D immediately raises the stakes and implies a level of scrutiny most clients aren't ready for.
+   **Why:** The transition script works because it frames the numbers as collaborative planning ("in order to plan") rather than interrogation, signals low pressure ("simple terms," "one or two basic questions"), and is delivered matter-of-fact - not apologetic. Option A is blunt and transactional, which triggers defensiveness. Option C is vague and signals nothing about purpose. Option D immediately raises the stakes and implies a level of scrutiny most clients aren't ready for.
 
 2. **How should you handle "I don't remember the exact numbers"?**
    - A) Press for exact numbers
-   - B) Accept rough estimates or ranges, refine later ✓
+   - B) Accept rough estimates or ranges, refine later (correct)
    - C) Reschedule the whole CFR
    - D) Skip Section 3
 
-   **Why:** Rough estimates and ranges are sufficient for planning purposes at this stage — precision can be added later. Pressing for exact numbers (A) creates pressure that damages trust and may cause the client to shut down entirely. Rescheduling (C) wastes all the rapport built in Sections 1 and 2. Skipping Section 3 (D) means you have no financial data to base a real recommendation on.
+   **Why:** Rough estimates and ranges are sufficient for planning purposes at this stage - precision can be added later. Pressing for exact numbers (A) creates pressure that damages trust and may cause the client to shut down entirely. Rescheduling (C) wastes all the rapport built in Sections 1 and 2. Skipping Section 3 (D) means you have no financial data to base a real recommendation on.
 
 3. **The Colombo close right at the end of a CFR is designed to:**
    - A) Close the sale immediately
-   - B) Pre-empt objections before the next meeting + pre-commit the client ✓
+   - B) Pre-empt objections before the next meeting + pre-commit the client (correct)
    - C) Collect payment
    - D) Extend the meeting
 
-   **Why:** The Colombo close at CFR end serves two functions: it surfaces any hidden objections while you still have 5+ days to address them in the proposal, and it pre-commits the client by asking if there's any reason they wouldn't move forward. Closing the sale immediately (A) would bypass the proposal step. Payment (C) is not relevant here. Extending the meeting (D) is not a goal — a clean handoff to the next meeting is.
+   **Why:** The Colombo close at CFR end serves two functions: it surfaces any hidden objections while you still have 5+ days to address them in the proposal, and it pre-commits the client by asking if there's any reason they wouldn't move forward. Closing the sale immediately (A) would bypass the proposal step. Payment (C) is not relevant here. Extending the meeting (D) is not a goal - a clean handoff to the next meeting is.
 
 4. **A client shares that their hospital plan is through work with a $20K per claim limit. You ask about private hospital costs and they don't know. What's the ideal follow-up?**
    - A) Tell them their coverage is fine and move on
-   - B) Skip the topic — insurance is for Day 53
-   - C) State the real cost range (e.g. $80–150K for major surgery) and ask "How would you feel about that gap?" — a grounded Implication question ✓
+   - B) Skip the topic - insurance is for Day 53
+   - C) State the real cost range (e.g. $80-150K for major surgery) and ask "How would you feel about that gap?" - a grounded Implication question (correct)
    - D) Ask if they'd like to upgrade their employer plan
 
-   **Why:** An Implication question grounded in the client's real numbers is far more powerful than a generic scary scenario — it converts an abstract risk into a personalised, felt gap. Saying coverage is fine (A) when a clear gap exists is dishonest advice. Deferring the topic (B) misses a live Implication opportunity that has already presented itself. Asking about upgrading the employer plan (D) is a product suggestion that comes after the CFR, not during it.
+   **Why:** An Implication question grounded in the client's real numbers is far more powerful than a generic scary scenario - it converts an abstract risk into a personalised, felt gap. Saying coverage is fine (A) when a clear gap exists is dishonest advice. Deferring the topic (B) misses a live Implication opportunity that has already presented itself. Asking about upgrading the employer plan (D) is a product suggestion that comes after the CFR, not during it.
 
 5. **Why does the CFR transition script say "one or two basic questions" even though you'll ask many more?**
    - A) To be honest about the workload
-   - B) To manage expectations downward and lower the client's resistance to financial disclosure ✓
+   - B) To manage expectations downward and lower the client's resistance to financial disclosure (correct)
    - C) Because only two questions are mandatory in Section 3
    - D) To avoid scaring a high-C client with too much detail
 
-   **Why:** Anchoring expectations low ("one or two basic questions") reduces the perceived burden of financial disclosure before the client has mentally braced for it — once they answer the first question, momentum carries them forward. Being fully honest about the workload upfront (A) would correctly describe Section 3 but would also raise resistance unnecessarily. Only two questions being mandatory (C) is not accurate. While a high-C client may benefit from structured expectations, the technique works on all personalities.
+   **Why:** Anchoring expectations low ("one or two basic questions") reduces the perceived burden of financial disclosure before the client has mentally braced for it - once they answer the first question, momentum carries them forward. Being fully honest about the workload upfront (A) would correctly describe Section 3 but would also raise resistance unnecessarily. Only two questions being mandatory (C) is not accurate. While a high-C client may benefit from structured expectations, the technique works on all personalities.
 
 6. **You finish the CFR and the client raises an objection in response to the Colombo close. What's the correct response?**
-   - A) Drop the Colombo close next time — it created a problem
+   - A) Drop the Colombo close next time - it created a problem
    - B) Treat it as a failure and reschedule
-   - C) Welcome it — you now have time before the next meeting to address the real objection in your proposal ✓
+   - C) Welcome it - you now have time before the next meeting to address the real objection in your proposal (correct)
    - D) Answer it immediately and attempt to close on the spot
 
-   **Why:** An objection surfaced at CFR end is exactly what the Colombo close is designed to extract — you now have the real concern and 5+ days to address it in the proposal before the next meeting. The Colombo close didn't create a problem (A); it revealed one that was always there. An objection is useful information, not a failure (B). Attempting to close on the spot (D) without a prepared proposal skips the planning step the whole CFR process is building toward.
+   **Why:** An objection surfaced at CFR end is exactly what the Colombo close is designed to extract - you now have the real concern and 5+ days to address it in the proposal before the next meeting. The Colombo close didn't create a problem (A); it revealed one that was always there. An objection is useful information, not a failure (B). Attempting to close on the spot (D) without a prepared proposal skips the planning step the whole CFR process is building toward.
 
 7. **The "24-hour rule" in post-meeting discipline says:**
    - A) Wait 24 hours before expanding your notes
-   - B) Meeting details are 90% fresh within 24 hours — expand notes and draft recommendations while it's hot ✓
+   - B) Meeting details are 90% fresh within 24 hours - expand notes and draft recommendations while it's hot (correct)
    - C) Always schedule the follow-up meeting within 24 hours
    - D) Send a WhatsApp recap to the client within 24 hours
 
-   **Why:** Factual and emotional details from a meeting are 90% retained within 24 hours, dropping to 50% by 48 hours and to guesswork by a week — so expanding CFR notes and drafting recommendations must happen while the meeting is still hot. The rule says to work fast immediately after the meeting, not to wait (A). Scheduling the follow-up and sending a recap may be good practices, but the 24-hour rule is specifically about your own note-expansion and recommendation drafting, not client-facing actions.
+   **Why:** Factual and emotional details from a meeting are 90% retained within 24 hours, dropping to 50% by 48 hours and to guesswork by a week - so expanding CFR notes and drafting recommendations must happen while the meeting is still hot. The rule says to work fast immediately after the meeting, not to wait (A). Scheduling the follow-up and sending a recap may be good practices, but the 24-hour rule is specifically about your own note-expansion and recommendation drafting, not client-facing actions.
 
 ---
 
 ## Related
 
-- Previous: [[day-50|Day 50 — Client Financial Review: Part 1]]
-- Next: [[day-52|Day 52 — CST: The Wealth Angle]]
+- Previous: [[day-50|Day 50 - Client Financial Review: Part 1]]
+- Next: [[day-52|Day 52 - CST: The Wealth Angle]]

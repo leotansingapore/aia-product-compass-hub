@@ -9,7 +9,7 @@ duration_minutes: 20
 tags: [first-60-days, week-5, knowledge]
 ---
 
-# Day 30 — Dollar Cost Averaging
+# Day 30 - Dollar Cost Averaging
 
 > **The one idea for today:** "Time IN the market beats timing the market." DCA is the mechanism that lets normal clients invest through volatility without emotional disasters. It's one of the most useful concepts in your toolkit.
 
@@ -18,7 +18,7 @@ tags: [first-60-days, week-5, knowledge]
 By the end of today you should be able to:
 
 1. **Explain** Dollar Cost Averaging (DCA) using a concrete 5-year example.
-2. **Compare** DCA to lump-sum investing — and know when each is better.
+2. **Compare** DCA to lump-sum investing - and know when each is better.
 3. **Use** DCA to help clients stay invested during market volatility.
 
 ---
@@ -34,7 +34,7 @@ Examples:
 
 **The mechanism:** when prices are **low**, your fixed amount buys more units. When prices are **high**, it buys fewer. Over time, your **average cost per unit** is lower than the average market price over the same period.
 
-## 2. The worked example — DCA in a volatile market
+## 2. The worked example - DCA in a volatile market
 
 ```mermaid
 flowchart LR
@@ -60,22 +60,22 @@ Scenario: You DCA $1,000/year for 5 years. Unit prices swing.
 - Total amount invested: **$5,000**.
 - Total units bought: **~2,367**.
 - Year-5 price: **$3.00**.
-- **Portfolio value: $3 × 2,367 = ~$7,100**.
+- **Portfolio value: $3 x 2,367 = ~$7,100**.
 
 **Result:** you invested $5,000 and ended with $7,100. **A 42% gain**, despite the price ending at the same $3 it was in Year 3.
 
-**Why?** Because Year 2's crash let you buy 1,000 units at $1 — far more than any other year. DCA **forces you to buy more when prices are low**, which is counter to human instinct.
+**Why?** Because Year 2's crash let you buy 1,000 units at $1 - far more than any other year. DCA **forces you to buy more when prices are low**, which is counter to human instinct.
 
-> **One quiet leak in a DIY DCA plan.** If the client is DCA-ing into a US-domiciled S&P 500 ETF (VOO / SPY / VTI), every dividend distribution is hit with a **30% US withholding tax at source** before it reaches their brokerage account. On an Irish-domiciled equivalent (CSPX / VWRA), the tax drops to 15%. Inside an AIA ILP the fund structure means **0% client-level DWT**. The DCA mechanism itself is identical; what differs is how much of the dividend gets to compound. Over 20–30 years of monthly DCA with full reinvestment, the 30% vs 0% gap is a six-figure number. You'll unpack the full conviction stack in [[../week-9/day-52|Day 52]] and [[../week-10/day-57|Day 57]] — for now, remember that *where* the DCA lands matters as much as *that* the client is doing it.
+> **One quiet leak in a DIY DCA plan.** If the client is DCA-ing into a US-domiciled S&P 500 ETF (VOO / SPY / VTI), every dividend distribution is hit with a **30% US withholding tax at source** before it reaches their brokerage account. On an Irish-domiciled equivalent (CSPX / VWRA), the tax drops to 15%. Inside an AIA ILP the fund structure means **0% client-level DWT**. The DCA mechanism itself is identical; what differs is how much of the dividend gets to compound. Over 20-30 years of monthly DCA with full reinvestment, the 30% vs 0% gap is a six-figure number. You'll unpack the full conviction stack in [[../week-9/day-52|Day 52]] and [[../week-10/day-57|Day 57]] - for now, remember that *where* the DCA lands matters as much as *that* the client is doing it.
 
-## 3. DCA vs Lump Sum — the comparison
+## 3. DCA vs Lump Sum - the comparison
 
 Same market, but instead of DCA, you invest $5,000 **in a single lump sum**. Let's see different entry points:
 
 | You entered at... | Units bought with $5,000 | Year-5 value at $3 | Profit/Loss |
 |---|---:|---:|---:|
-| Year 1 price $5.00 | 1,000 | $3,000 | **−$2,000** ❌ |
-| Year 2 price $1.00 | 5,000 | $15,000 | **+$10,000** 🏆 |
+| Year 1 price $5.00 | 1,000 | $3,000 | **-$2,000** (no) |
+| Year 2 price $1.00 | 5,000 | $15,000 | **+$10,000**  |
 | Year 3 price $3.00 | 1,667 | $5,000 | $0 |
 | Year 4 price $2.00 | 2,500 | $7,500 | +$2,500 |
 | Year 5 price $3.00 | 1,667 | $5,000 | $0 |
@@ -86,7 +86,7 @@ Same market, but instead of DCA, you invest $5,000 **in a single lump sum**. Let
 
 **DCA's outcome:** +$2,100 profit. Not the best. Not the worst. **Predictable and positive.**
 
-## 4. The trade-off — DCA's cost
+## 4. The trade-off - DCA's cost
 
 ```mermaid
 flowchart TD
@@ -122,7 +122,7 @@ Without DCA, an investor in a volatile market tends to:
 - **Sell low** (when everyone's panicking and prices have already fallen).
 - **Exit completely** after a big loss, missing the recovery.
 
-These behaviours destroy wealth systematically. Studies show the average retail investor underperforms the market by 2–4% annually — not because of fees, but because of **behavioural errors.**
+These behaviours destroy wealth systematically. Studies show the average retail investor underperforms the market by 2-4% annually - not because of fees, but because of **behavioural errors.**
 
 **DCA automates the right behaviour:**
 - You **keep buying** when prices are low (even though emotions scream "sell!").
@@ -131,18 +131,18 @@ These behaviours destroy wealth systematically. Studies show the average retail 
 
 The discipline is structural, not emotional. That's its value.
 
-## 6. Insurance-wrapped DCA — the client story
+## 6. Insurance-wrapped DCA - the client story
 
 Most clients in Singapore have their first DCA experience through an **ILP** (Investment-Linked Plan) or **Regular Savings Plan (RSP)**:
 
-- Monthly premium of $200–$500 goes in regardless of market conditions.
+- Monthly premium of $200-$500 goes in regardless of market conditions.
 - The premium buys units at whatever price they are that month.
-- Over 20–30 years, the compounding + DCA effect produces meaningful capital.
+- Over 20-30 years, the compounding + DCA effect produces meaningful capital.
 
 **The client message:**
-> "You won't time the market. Nobody does. What you *can* do is set up a monthly contribution that keeps buying — more units when prices drop, fewer when they rise. In 20 years, the math of that beats 95% of people who try to time the market."
+> "You won't time the market. Nobody does. What you *can* do is set up a monthly contribution that keeps buying - more units when prices drop, fewer when they rise. In 20 years, the math of that beats 95% of people who try to time the market."
 
-## 7. DCA pitfalls — when it doesn't help
+## 7. DCA pitfalls - when it doesn't help
 
 DCA is not magic. It fails in two scenarios:
 
@@ -160,13 +160,13 @@ If you're investing for a goal 2 years away, DCA provides little volatility smoo
 
 Everything on this page collapses into one sentence you can say to a client:
 
-> **"Time in the market beats timing the market — and DCA is how ordinary people get time in the market without making emotional mistakes."**
+> **"Time in the market beats timing the market - and DCA is how ordinary people get time in the market without making emotional mistakes."**
 
 Memorise that sentence. You'll use it for the rest of your career.
 
-## 9. The other half of DCA — rebalancing (and why this is your conviction story)
+## 9. The other half of DCA - rebalancing (and why this is your conviction story)
 
-DCA gets the client *into* the market. **Rebalancing** is what keeps the portfolio behaving as intended *while* they're in. New FCs forget the second half. Without it, a "balanced 60/40 portfolio" left alone for 10 years drifts into something else entirely — and the client either takes risk they didn't agree to or misses upside they should have captured.
+DCA gets the client *into* the market. **Rebalancing** is what keeps the portfolio behaving as intended *while* they're in. New FCs forget the second half. Without it, a "balanced 60/40 portfolio" left alone for 10 years drifts into something else entirely - and the client either takes risk they didn't agree to or misses upside they should have captured.
 
 ### What rebalancing actually does
 
@@ -174,10 +174,10 @@ Imagine a $100K portfolio set up as **60% equities / 40% bonds**.
 
 ```
 Year 0           After 3 strong equity years           After rebalancing
-─────────        ────────────────────────────          ──────────────────
+---------        ----------------------------          ------------------
 Equities  $60K   Equities  $96K  (75%)                 Equities  $84K  (60%)
 Bonds     $40K   Bonds     $32K  (25%)                 Bonds     $56K  (40%)
-─────────        ────────────────────────────          ──────────────────
+---------        ----------------------------          ------------------
 Total    $100K   Total    $128K                        Total    $140K
                  Risk profile has DRIFTED              Risk profile is BACK ON SPEC
 ```
@@ -185,7 +185,7 @@ Total    $100K   Total    $128K                        Total    $140K
 After three strong equity years, the portfolio is now **75% equities** without the client doing anything. Their risk exposure quietly increased. **Rebalancing** sells some of the over-performer (equities) and buys more of the under-performer (bonds), restoring the agreed 60/40 split. Two effects:
 
 1. **Risk stays where the client signed up.** A 60/40 stays a 60/40.
-2. **Sells high, buys low — automatically.** You're harvesting the rally and adding to whatever lagged. Most retail investors do the opposite.
+2. **Sells high, buys low - automatically.** You're harvesting the rally and adding to whatever lagged. Most retail investors do the opposite.
 
 ### Why it matters in conviction-building (the FC's story)
 
@@ -203,25 +203,25 @@ A **managed ILP portfolio** (PWV, Pro Achiever, PRE) does this automatically:
 | What clients ask | The honest answer |
 |---|---|
 | *"Why am I paying this management fee when I could just buy ETFs?"* | The fee buys you ongoing rebalancing, fund-rotation across markets (e.g. tilting from US to India when valuations call for it), no transaction costs per trade, and zero tax / estate complexity. Most retail investors who try the DIY version end up with a drifted portfolio AND missed compounding from never rebalancing. |
-| *"Isn't that just market-timing?"* | No — rebalancing is the OPPOSITE of market-timing. Market-timing tries to predict where the market goes. Rebalancing trims winners and adds to losers on a fixed schedule, regardless of market view. It's a discipline, not a forecast. |
+| *"Isn't that just market-timing?"* | No - rebalancing is the OPPOSITE of market-timing. Market-timing tries to predict where the market goes. Rebalancing trims winners and adds to losers on a fixed schedule, regardless of market view. It's a discipline, not a forecast. |
 | *"How often does AIA rebalance?"* | Inside the Elite portfolios, the four institutional fund managers (BlackRock / Wellington / Baillie Gifford / Capital Group) plus AIA Investment Management actively rotate allocations across markets and asset classes as conditions shift. You don't have to think about it. |
 
 ### This is your conviction story for ILP fees
 
 When a client compares AIA's managed ILP fees against a DIY ETF stack and the fee number looks bigger, the **honest counter-argument has three parts**, in this order:
 
-1. **Rebalancing happens automatically and consistently** — most DIY investors never do this past year 2.
-2. **Fund rotation across markets and managers** — you're not stuck with one ETF that may underperform for a decade (S&P 500 was flat 2003–2013 while emerging markets ran).
-3. **Zero personal admin** — no tax filings on US dividends, no estate-planning headaches, no manual quarterly trades, no "the portfolio drifted because I forgot."
+1. **Rebalancing happens automatically and consistently** - most DIY investors never do this past year 2.
+2. **Fund rotation across markets and managers** - you're not stuck with one ETF that may underperform for a decade (S&P 500 was flat 2003-2013 while emerging markets ran).
+3. **Zero personal admin** - no tax filings on US dividends, no estate-planning headaches, no manual quarterly trades, no "the portfolio drifted because I forgot."
 
 > *"You're not paying for product. You're paying for discipline you can't otherwise enforce on yourself."*
 
-That sentence is the conviction. Memorise it. Use it whenever a fee comparison comes up. The fee isn't the cost of access — it's the cost of *the rebalancing you wouldn't do yourself*. Once an FC believes that, the fee conversation gets a lot easier.
+That sentence is the conviction. Memorise it. Use it whenever a fee comparison comes up. The fee isn't the cost of access - it's the cost of *the rebalancing you wouldn't do yourself*. Once an FC believes that, the fee conversation gets a lot easier.
 
 ### Cross-references
 
-- The four AIA-vs-DIY differentiators (currency hedging, no dividend tax, no estate tax, secondary insured) sit alongside this rebalancing argument: see [Day 52 §7](../week-9/day-52.md) and [Day 57 §0e](../week-10/day-57.md).
-- The four Elite fund managers + the three Elite portfolios (Adventurous / Balanced / Conservative) are documented on [Day 57 §0h3](../week-10/day-57.md).
+- The four AIA-vs-DIY differentiators (currency hedging, no dividend tax, no estate tax, secondary insured) sit alongside this rebalancing argument: see [Day 52 Section 7](../week-9/day-52.md) and [Day 57 Section 0e](../week-10/day-57.md).
+- The four Elite fund managers + the three Elite portfolios (Adventurous / Balanced / Conservative) are documented on [Day 57 Section 0h3](../week-10/day-57.md).
 
 ---
 
@@ -229,64 +229,64 @@ That sentence is the conviction. Memorise it. Use it whenever a fee comparison c
 
 1. **DCA means:**
  - A) Investing a lump sum at the lowest price
- - B) Investing a fixed amount at regular intervals regardless of price ✓
+ - B) Investing a fixed amount at regular intervals regardless of price (correct)
  - C) Investing more when the market is high
  - D) Reducing investment when the market falls
 
- **Why:** DCA is defined as a fixed amount invested at fixed intervals independent of what the market is doing — the consistency is the point. A lump sum at the lowest price (A) describes perfect market timing, which is the opposite of DCA's premise. Investing more when high (C) is the emotional mistake DCA is designed to prevent. Reducing in downturns (D) is another emotional error; DCA keeps the amount constant so that falling prices automatically buy more units.
+ **Why:** DCA is defined as a fixed amount invested at fixed intervals independent of what the market is doing - the consistency is the point. A lump sum at the lowest price (A) describes perfect market timing, which is the opposite of DCA's premise. Investing more when high (C) is the emotional mistake DCA is designed to prevent. Reducing in downturns (D) is another emotional error; DCA keeps the amount constant so that falling prices automatically buy more units.
 
 2. **The main advantage of DCA vs lump sum:**
  - A) Always produces higher returns
  - B) Lower capital outlay
- - C) Protects against the risk of lump-summing at a market peak, smooths volatility ✓
+ - C) Protects against the risk of lump-summing at a market peak, smooths volatility (correct)
  - D) Eliminates all downside
 
- **Why:** DCA's core trade-off is explicit: you give up the maximum possible return (lump-summing at the bottom) in exchange for protection against lump-summing at the top. DCA does not always beat lump sum (A) — if the market rises steadily, lump sum wins. Capital outlay is the same over time (B); DCA spreads it, it does not reduce it. DCA does not eliminate downside (D) — in a continuously falling market it still loses money, just less than lump-summing at the peak.
+ **Why:** DCA's core trade-off is explicit: you give up the maximum possible return (lump-summing at the bottom) in exchange for protection against lump-summing at the top. DCA does not always beat lump sum (A) - if the market rises steadily, lump sum wins. Capital outlay is the same over time (B); DCA spreads it, it does not reduce it. DCA does not eliminate downside (D) - in a continuously falling market it still loses money, just less than lump-summing at the peak.
 
 3. **The deepest reason DCA works:**
  - A) Math
- - B) It removes emotional decisions and automates the right behaviour ✓
+ - B) It removes emotional decisions and automates the right behaviour (correct)
  - C) Tax benefits
  - D) Compound interest
 
- **Why:** The lesson distinguishes between DCA working mathematically and DCA working behaviourally — the deeper reason is that it automates buying through downturns (when emotions scream sell) and prevents overbought peaks (because the amount is fixed). The math (A) is real but secondary; studies show retail investors underperform not because of fees but because of behavioural errors. Tax benefits (C) are not mentioned. Compound interest (D) works alongside DCA but is a separate mechanism.
+ **Why:** The lesson distinguishes between DCA working mathematically and DCA working behaviourally - the deeper reason is that it automates buying through downturns (when emotions scream sell) and prevents overbought peaks (because the amount is fixed). The math (A) is real but secondary; studies show retail investors underperform not because of fees but because of behavioural errors. Tax benefits (C) are not mentioned. Compound interest (D) works alongside DCA but is a separate mechanism.
 
 4. **DCA is least useful when:**
  - A) The investment horizon is 20+ years
- - B) The investment horizon is under 2 years ✓
+ - B) The investment horizon is under 2 years (correct)
  - C) The market is volatile
  - D) The investor is young
 
- **Why:** DCA needs time to smooth volatility — over a 2-year horizon there are too few periods for the averaging effect to reduce variance meaningfully, and short-term money should stay in cash or bonds. DCA is most effective at 20+ year horizons (A), not least. Volatility (C) is precisely the condition DCA is designed for; it forces buying at low prices during dips. Young investors (D) benefit most from DCA because they have the longest compounding runway.
+ **Why:** DCA needs time to smooth volatility - over a 2-year horizon there are too few periods for the averaging effect to reduce variance meaningfully, and short-term money should stay in cash or bonds. DCA is most effective at 20+ year horizons (A), not least. Volatility (C) is precisely the condition DCA is designed for; it forces buying at low prices during dips. Young investors (D) benefit most from DCA because they have the longest compounding runway.
 
 5. **The single sentence a client should take away from a DCA conversation:**
  - A) "DCA guarantees returns."
- - B) "Time in the market beats timing the market." ✓
+ - B) "Time in the market beats timing the market." (correct)
  - C) "Never invest in volatile assets."
  - D) "Always invest lump sums."
 
- **Why:** The lesson closes with the explicit instruction to memorise: "Time in the market beats timing the market — and DCA is how ordinary people get time in the market without making emotional mistakes." DCA guarantees nothing (A); it is a risk-smoothing strategy, not a guarantee. Avoiding volatile assets (C) is the opposite of the lesson's message, which is to stay invested through volatility. Always investing lump sums (D) is not mentioned and contradicts the DCA premise.
+ **Why:** The lesson closes with the explicit instruction to memorise: "Time in the market beats timing the market - and DCA is how ordinary people get time in the market without making emotional mistakes." DCA guarantees nothing (A); it is a risk-smoothing strategy, not a guarantee. Avoiding volatile assets (C) is the opposite of the lesson's message, which is to stay invested through volatility. Always investing lump sums (D) is not mentioned and contradicts the DCA premise.
 
 6. **A DCA plan works best when the client:**
  - A) Monitors markets daily
- - B) Automates the contribution and doesn't interrupt it ✓
+ - B) Automates the contribution and doesn't interrupt it (correct)
  - C) Pauses during downturns
  - D) Increases contributions when the market is high
 
- **Why:** DCA's discipline is structural, not emotional — automating the contribution removes the human decision to pause, which is the exact mistake it is designed to prevent. Monitoring markets daily (A) primes the client to make emotional decisions during volatility, undermining the strategy. Pausing during downturns (C) eliminates the cheap-unit purchases that drive DCA's outperformance. Increasing contributions when high (D) reverses the DCA advantage — it means buying fewer units at elevated prices.
+ **Why:** DCA's discipline is structural, not emotional - automating the contribution removes the human decision to pause, which is the exact mistake it is designed to prevent. Monitoring markets daily (A) primes the client to make emotional decisions during volatility, undermining the strategy. Pausing during downturns (C) eliminates the cheap-unit purchases that drive DCA's outperformance. Increasing contributions when high (D) reverses the DCA advantage - it means buying fewer units at elevated prices.
 
 7. **When lump-sum beats DCA, it's usually because:**
- - A) The market rose steadily over the period ✓
+ - A) The market rose steadily over the period (correct)
  - B) The client was younger
  - C) Fees were lower
  - D) The investment horizon was shorter
 
- **Why:** In a steadily rising market, a lump sum buys at a lower average price than DCA contributions spread across rising prices — so lump sum wins. The comparison table in the lesson shows this clearly: Year-1 lump sum at $5 loses, but that is because the market fell later; in a market that only goes up, the early lump sum compounds the most. Age (B) and fees (C) affect returns but are not the condition under which lump sum structurally beats DCA. A shorter horizon (D) reduces DCA's averaging benefit but doesn't make lump sum beat it on its own.
+ **Why:** In a steadily rising market, a lump sum buys at a lower average price than DCA contributions spread across rising prices - so lump sum wins. The comparison table in the lesson shows this clearly: Year-1 lump sum at $5 loses, but that is because the market fell later; in a market that only goes up, the early lump sum compounds the most. Age (B) and fees (C) affect returns but are not the condition under which lump sum structurally beats DCA. A shorter horizon (D) reduces DCA's averaging benefit but doesn't make lump sum beat it on its own.
 
 ---
 
 ## Related
 
-- Previous: [[day-29|Day 29 — Compounding: The 8th Wonder]]
-- Next: [[../week-6/day-31|Day 31 — Present Value & Discounting]]
-- Week 5 summary: [[README|Week 5 — Operating Rhythms & Daily Discipline]]
+- Previous: [[day-29|Day 29 - Compounding: The 8th Wonder]]
+- Next: [[../week-6/day-31|Day 31 - Present Value & Discounting]]
+- Week 5 summary: [[README|Week 5 - Operating Rhythms & Daily Discipline]]

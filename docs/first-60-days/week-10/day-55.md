@@ -1,7 +1,7 @@
 ---
 week: 10
 day: 55
-title: "AIA Solutions — Wealth Products"
+title: "AIA Solutions - Wealth Products"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
@@ -9,9 +9,9 @@ duration_minutes: 25
 tags: [first-60-days, week-10, knowledge]
 ---
 
-# Day 55 — AIA Solutions: Wealth Products
+# Day 55 - AIA Solutions: Wealth Products
 
-> **The one idea for today:** The AIA product catalogue looks overwhelming at first — dozens of plans across categories. Master the **categories** and the **decision framework**, not the individual plan names. Product names change; categories don't.
+> **The one idea for today:** The AIA product catalogue looks overwhelming at first - dozens of plans across categories. Master the **categories** and the **decision framework**, not the individual plan names. Product names change; categories don't.
 
 ## What you'll walk away with
 
@@ -29,15 +29,15 @@ When you open the Product Selection page on your iPad (via iPos), you'll see pro
 
 | Category | Purpose | Cash value? |
 |---|---|---|
-| **Investment-Linked** | Investment growth with optional protection wrapper | Yes — fund-linked |
+| **Investment-Linked** | Investment growth with optional protection wrapper | Yes - fund-linked |
 | **Whole Life** | Lifelong coverage (up to age 100), often with Critical Illness options | Yes |
-| **Endowment** | Savings plans — some with coupons, some lump-sum | Yes |
+| **Endowment** | Savings plans - some with coupons, some lump-sum | Yes |
 | **Term** | Pure protection, no cash value, low premium | No |
-| **Universal Life** | Life insurance with an investment component — higher leverage | Yes (US-dollar-pooled funds) |
+| **Universal Life** | Life insurance with an investment component - higher leverage | Yes (US-dollar-pooled funds) |
 | **Disability** | Monthly income if unable to work | Varies |
 | **Accident & Health** | Medical treatment coverage, hospital plans, accident plans | Usually no |
 
-**Rule:** don't memorise plan names first. Learn the category → use case mapping. Plan names follow.
+**Rule:** don't memorise plan names first. Learn the category -> use case mapping. Plan names follow.
 
 ```mermaid
 flowchart LR
@@ -50,7 +50,7 @@ flowchart LR
     A --> H["Accident & Health"]
 ```
 
-## 2. Investment-Linked — the wealth-building workhorse
+## 2. Investment-Linked - the wealth-building workhorse
 
 **Purpose:** investment growth, often with an insurance wrapper.
 
@@ -71,7 +71,7 @@ flowchart LR
 | Structure | Meaning | Best for |
 |---|---|---|
 | Single Premium | One lump-sum payment upfront | Clients with capital already available |
-| Limited Pay | Pay for 10–20 years, coverage continues beyond | Clients who want to "finish paying" |
+| Limited Pay | Pay for 10-20 years, coverage continues beyond | Clients who want to "finish paying" |
 | Full Pay | Pay throughout policy life | Clients on long-term monthly commitments |
 
 ### When to use ILPs
@@ -87,9 +87,9 @@ flowchart LR
 - Client has a short time horizon (< 10 years).
 - Client already has extensive direct investment discipline.
 
-### Why the ILP structure isn't just a wrapper — the conviction stack
+### Why the ILP structure isn't just a wrapper - the conviction stack
 
-When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?"* — the honest answer isn't "this fund is better than that fund". It's that an AIA ILP removes four quiet taxes and two execution risks that sit on top of a DIY holding, regardless of market return:
+When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?"* - the honest answer isn't "this fund is better than that fund". It's that an AIA ILP removes four quiet taxes and two execution risks that sit on top of a DIY holding, regardless of market return:
 
 | Layer | DIY S&P 500 (typical robo-advisor holding) | AIA ILP structure |
 |---|---|---|
@@ -98,11 +98,11 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 | US estate tax on death | **40% above $60K exemption** on US-situs assets | Nominated beneficiaries, non-US-situs |
 | Concentration risk | 100% one market | Global; S&P = ~18% of Elite Adventurous |
 | Execution on death | Family inherits an app they've never logged into | Advisor of record + coordinated estate plan |
-| Generational continuity | Liquidated at death, paid as cash | **Secondary insured** — policy continues on next life assured |
+| Generational continuity | Liquidated at death, paid as cash | **Secondary insured** - policy continues on next life assured |
 
-**Full FC reference** (numbers, country DWT tables, full US estate schedule, lost-decade data): [SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md). See also [[../week-9/day-52|Day 52 — Retirement Step-by-Step CST]] and [[day-57|Day 57 — Investment-Linked Plans: Core Mechanics]] for the delivery-ready versions of this stack.
+**Full FC reference** (numbers, country DWT tables, full US estate schedule, lost-decade data): [SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md). See also [[../week-9/day-52|Day 52 - Retirement Step-by-Step CST]] and [[day-57|Day 57 - Investment-Linked Plans: Core Mechanics]] for the delivery-ready versions of this stack.
 
-## 3. Whole Life — lifelong coverage
+## 3. Whole Life - lifelong coverage
 
 **Purpose:** coverage that stays in force for your entire life (typically up to age 100 or later).
 
@@ -116,9 +116,9 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 
 | Type | What's distinctive |
 |---|---|
-| **Coupon-paying whole life** | Pays yearly coupons — gives income during the policy life, not just at death |
+| **Coupon-paying whole life** | Pays yearly coupons - gives income during the policy life, not just at death |
 | **Single-premium whole life** | Pay once, lifelong coverage + potential cash value |
-| **Multiplier whole life** | Death benefit multiplies during a defined period (e.g., 2× or 3× for working years) |
+| **Multiplier whole life** | Death benefit multiplies during a defined period (e.g., 2x or 3x for working years) |
 | **Critical Illness multiplier** | Higher CI payout for a specified period when the risk is highest |
 
 ### When to use Whole Life
@@ -126,14 +126,14 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 - Client wants **permanent** protection, not just term.
 - Client values cash value accumulation.
 - Client has legacy goals (passing money to children).
-- Client is in their 30s–50s — the cost/benefit is best in this window.
+- Client is in their 30s-50s - the cost/benefit is best in this window.
 
 ### When NOT to use Whole Life
 
-- Client only needs coverage for 15–25 years (e.g., until mortgage paid off).
-- Client has very limited budget — term gives 5–10× the coverage for the same dollar.
+- Client only needs coverage for 15-25 years (e.g., until mortgage paid off).
+- Client has very limited budget - term gives 5-10x the coverage for the same dollar.
 
-## 4. Endowment — savings with life cover
+## 4. Endowment - savings with life cover
 
 **Purpose:** structured savings with a small insurance element attached. The savings is the main product; the protection is a bonus.
 
@@ -155,30 +155,30 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 ### When to use Endowment
 
 - Client has a specific goal with a known timeline (kids' education, first home, retirement start date).
-- Client wants predictability — guaranteed floor returns matter.
+- Client wants predictability - guaranteed floor returns matter.
 - Client doesn't want market volatility.
 - Client has steady monthly cash flow.
 
 ### When NOT to use Endowment
 
 - Client is investment-savvy and wants market upside (use ILP or direct).
-- Client needs liquidity — endowments have early-surrender penalties.
-- Client's time horizon is under 10 years — returns are weak on short endowments.
+- Client needs liquidity - endowments have early-surrender penalties.
+- Client's time horizon is under 10 years - returns are weak on short endowments.
 
-## 5. Universal Life — the high-leverage option
+## 5. Universal Life - the high-leverage option
 
-**Purpose:** life insurance with an investment component, offering high **leverage** (small premium → large death benefit).
+**Purpose:** life insurance with an investment component, offering high **leverage** (small premium -> large death benefit).
 
 ### How it works
 
 You pay a premium. A portion goes to insurance cost; the rest accumulates in a fund pool (typically USD-denominated). The cash value helps sustain the policy over time.
 
-**Key feature:** **3× to 10× leverage.** A $100K deposit can purchase $300K–$1M of death cover, depending on age and structure.
+**Key feature:** **3x to 10x leverage.** A $100K deposit can purchase $300K-$1M of death cover, depending on age and structure.
 
 ### When to use Universal Life
 
 - High-net-worth clients.
-- Legacy planning — they want a large death benefit without tying up too much capital.
+- Legacy planning - they want a large death benefit without tying up too much capital.
 - US-dollar exposure is desired (or acceptable).
 - Client has sophisticated financial planning and understands the trade-offs.
 
@@ -186,7 +186,7 @@ You pay a premium. A portion goes to insurance cost; the rest accumulates in a f
 
 - Client is mass-market; a standard whole life is simpler.
 - Client is uncomfortable with USD exposure or complex policies.
-- Client is young and premium-sensitive — start simpler.
+- Client is young and premium-sensitive - start simpler.
 
 ## 6. The product selection framework
 
@@ -207,17 +207,17 @@ When a fact-finding meeting reveals specific needs, map to categories like this:
 
 **Rule:** always recommend **category first, plan second.** The specific plan within the category depends on premium budget, client age, and AIA's current product lineup.
 
-## 7. Using iResource — the FC's workflow
+## 7. Using iResource - the FC's workflow
 
 Your daily product workflow:
 
-1. **After the CFR**, map client needs to 2–3 relevant categories.
-2. **Open iResource** on iPad — pull up concept decks and calculators.
+1. **After the CFR**, map client needs to 2-3 relevant categories.
+2. **Open iResource** on iPad - pull up concept decks and calculators.
 3. **Generate illustrations** via iPos for 2 specific plans from the category.
 4. **Prepare your proposal** (Day 59) with both options.
-5. **Present** using concept selling (Day 54) — concept first, then product.
+5. **Present** using concept selling (Day 54) - concept first, then product.
 
-**The pattern:** category → concept → specific plan → illustration → client decision.
+**The pattern:** category -> concept -> specific plan -> illustration -> client decision.
 
 ```mermaid
 flowchart LR
@@ -242,7 +242,7 @@ Every mature client has **multiple policies across categories:**
 - ILP (for growth).
 - Accident & Health (for medical).
 
-**Typical mature portfolio: 4–7 policies across 3–5 categories.** Your Year-1 client might start with 1–2. Over 20 years, they'll accumulate more.
+**Typical mature portfolio: 4-7 policies across 3-5 categories.** Your Year-1 client might start with 1-2. Over 20 years, they'll accumulate more.
 
 **The honest truth:** one policy does not build a full plan. Stop trying to make it.
 
@@ -251,63 +251,63 @@ Every mature client has **multiple policies across categories:**
 
 1. **The 7 product categories are:**
    - A) Life, health, investment, retirement
-   - B) Investment-Linked, Whole Life, Endowment, Term, Universal Life, Disability, Accident & Health ✓
+   - B) Investment-Linked, Whole Life, Endowment, Term, Universal Life, Disability, Accident & Health (correct)
    - C) Mass-market, HNW, investment, protection
    - D) Savings, coverage, investment, claims
 
- **Why:** AIA's product catalogue groups every plan into these 7 categories, each mapping to a distinct client need — growth, lifelong cover, savings goals, time-bound protection, high-leverage legacy, income replacement, and medical costs. Options A, C, and D describe client segments or outcomes, not product categories, and none of them capture the full set of plan types an FC must be able to navigate.
+ **Why:** AIA's product catalogue groups every plan into these 7 categories, each mapping to a distinct client need - growth, lifelong cover, savings goals, time-bound protection, high-leverage legacy, income replacement, and medical costs. Options A, C, and D describe client segments or outcomes, not product categories, and none of them capture the full set of plan types an FC must be able to navigate.
 
 2. **When would you recommend Term over Whole Life?**
    - A) Never
-   - B) When the client needs time-bound coverage (e.g., 25-year mortgage) and is premium-sensitive ✓
+   - B) When the client needs time-bound coverage (e.g., 25-year mortgage) and is premium-sensitive (correct)
    - C) Only for young clients
    - D) For HNW clients
 
- **Why:** Term's core advantage is high coverage at low premium for a fixed period — exactly right when the need has a known end date (mortgage paid off, kids financially independent) and budget is tight. "Never" (A) ignores Term's legitimate role as a core protection tool. Age alone (C) is not the decision driver — time horizon and budget are. HNW clients (D) are actually the primary candidates for Universal Life, not Term.
+ **Why:** Term's core advantage is high coverage at low premium for a fixed period - exactly right when the need has a known end date (mortgage paid off, kids financially independent) and budget is tight. "Never" (A) ignores Term's legitimate role as a core protection tool. Age alone (C) is not the decision driver - time horizon and budget are. HNW clients (D) are actually the primary candidates for Universal Life, not Term.
 
 3. **A mature client portfolio typically contains:**
    - A) 1 all-in-one policy
-   - B) 2 policies — one Life, one Savings
-   - C) 4–7 policies across 3–5 categories ✓
+   - B) 2 policies - one Life, one Savings
+   - C) 4-7 policies across 3-5 categories (correct)
    - D) 20+ policies
 
- **Why:** No single plan covers all five coverage pillars — death, CI, hospital, disability, and savings — so a well-structured client accumulates policies across multiple categories over time. The "one all-in-one" instinct (A) is what new FCs fall into; it doesn't exist in practice. Two policies (B) is a common starting point for Year-1 clients, not a mature portfolio. Twenty or more (D) is over-insurance and financially inefficient.
+ **Why:** No single plan covers all five coverage pillars - death, CI, hospital, disability, and savings - so a well-structured client accumulates policies across multiple categories over time. The "one all-in-one" instinct (A) is what new FCs fall into; it doesn't exist in practice. Two policies (B) is a common starting point for Year-1 clients, not a mature portfolio. Twenty or more (D) is over-insurance and financially inefficient.
 
 4. **A client says: "I have $80K in savings and want to grow it long-term but also want some protection." Which category fits best?**
-   - A) Term — cheapest protection option
-   - B) Single Premium ILP — lump-sum goes into funds with an insurance wrapper ✓
-   - C) Disability income — replaces income if they can't work
-   - D) Endowment — best for capital preservation goals
+   - A) Term - cheapest protection option
+   - B) Single Premium ILP - lump-sum goes into funds with an insurance wrapper (correct)
+   - C) Disability income - replaces income if they can't work
+   - D) Endowment - best for capital preservation goals
 
- **Why:** A Single Premium ILP accepts a lump-sum, invests it in chosen funds for long-term growth, and wraps it in an insurance benefit — matching all three elements of the client's request. Term (A) provides protection only and has no investment component. Disability Income (C) replaces earned income during inability to work, which is unrelated to deploying lump-sum savings. Endowment (D) is right for capital preservation with guaranteed floors, not for a client seeking long-term market-linked growth.
+ **Why:** A Single Premium ILP accepts a lump-sum, invests it in chosen funds for long-term growth, and wraps it in an insurance benefit - matching all three elements of the client's request. Term (A) provides protection only and has no investment component. Disability Income (C) replaces earned income during inability to work, which is unrelated to deploying lump-sum savings. Endowment (D) is right for capital preservation with guaranteed floors, not for a client seeking long-term market-linked growth.
 
 5. **A client needs coverage only until her mortgage is paid off in 20 years and has a tight budget. Which category is most appropriate?**
-   - A) Whole Life — permanent coverage with cash value
-   - B) Universal Life — high leverage for estate planning
-   - C) Term — time-bound, pure protection at lowest premium ✓
-   - D) Endowment — structured savings with insurance element
+   - A) Whole Life - permanent coverage with cash value
+   - B) Universal Life - high leverage for estate planning
+   - C) Term - time-bound, pure protection at lowest premium (correct)
+   - D) Endowment - structured savings with insurance element
 
- **Why:** Term is purpose-built for time-bound needs: it provides the highest death/TPD coverage per dollar during exactly the window the client needs it, then ends — matching her 20-year mortgage exposure perfectly. Whole Life (A) costs 5-10x more for the same coverage and extends past the need. Universal Life (B) is designed for HNW legacy planning, not budget-constrained mortgage protection. Endowment (D) is primarily a savings vehicle; its protection element is incidental and the premium is higher than Term for the same coverage amount.
+ **Why:** Term is purpose-built for time-bound needs: it provides the highest death/TPD coverage per dollar during exactly the window the client needs it, then ends - matching her 20-year mortgage exposure perfectly. Whole Life (A) costs 5-10x more for the same coverage and extends past the need. Universal Life (B) is designed for HNW legacy planning, not budget-constrained mortgage protection. Endowment (D) is primarily a savings vehicle; its protection element is incidental and the premium is higher than Term for the same coverage amount.
 
 6. **Why does the recommended FC workflow start with category before selecting a specific plan?**
    - A) iPos requires a category to be selected before opening illustrations
-   - B) Starting with a specific plan creates product-comparison clients who focus on features and price ✓
+   - B) Starting with a specific plan creates product-comparison clients who focus on features and price (correct)
    - C) AIA compliance rules prohibit recommending named products in a first meeting
    - D) Categories are easier to remember than plan names
 
- **Why:** When a client hears a plan name first, the conversation shifts to comparing that plan against competitors — price, features, fund performance — rather than whether the underlying need is solved. Starting with the concept and category anchors the conversation in the client's goal. A is a practical quirk of the system, not the reason for the rule. C is false — there is no such MAS prohibition. D is true but trivial; convenience of memory is not the reason for the sequencing principle.
+ **Why:** When a client hears a plan name first, the conversation shifts to comparing that plan against competitors - price, features, fund performance - rather than whether the underlying need is solved. Starting with the concept and category anchors the conversation in the client's goal. A is a practical quirk of the system, not the reason for the rule. C is false - there is no such MAS prohibition. D is true but trivial; convenience of memory is not the reason for the sequencing principle.
 
 7. **Which product type is most appropriate for a high-net-worth client who wants a $1M death benefit but wants to deploy only $150K of capital?**
-   - A) Whole Life — builds cash value steadily
-   - B) Endowment — guaranteed floor returns
-   - C) Universal Life — 3-10x leverage on premium deployed ✓
-   - D) Protection-focused ILP — mixes coverage and growth
+   - A) Whole Life - builds cash value steadily
+   - B) Endowment - guaranteed floor returns
+   - C) Universal Life - 3-10x leverage on premium deployed (correct)
+   - D) Protection-focused ILP - mixes coverage and growth
 
- **Why:** Universal Life is the leverage vehicle — a $150K single premium can secure a $1M or greater death benefit through its 3-10x multiplier, which is precisely the HNW legacy-planning use case. Whole Life (A) builds cash value but does not offer this leverage ratio; achieving $1M death benefit with Whole Life would require far more premium deployed. Endowment (B) is a savings plan — its death benefit is modest and not designed for leverage. Protection-focused ILP (D) mixes coverage and investment growth but at nowhere near the leverage ratio Universal Life provides.
+ **Why:** Universal Life is the leverage vehicle - a $150K single premium can secure a $1M or greater death benefit through its 3-10x multiplier, which is precisely the HNW legacy-planning use case. Whole Life (A) builds cash value but does not offer this leverage ratio; achieving $1M death benefit with Whole Life would require far more premium deployed. Endowment (B) is a savings plan - its death benefit is modest and not designed for leverage. Protection-focused ILP (D) mixes coverage and investment growth but at nowhere near the leverage ratio Universal Life provides.
 
 ---
 
 ## Related
 
-- Previous: [[../week-9/day-54|Day 54 — Concept Selling]]
-- Next: [[day-56|Day 56 — AIA Solutions: Protection & Living Benefits]]
+- Previous: [[../week-9/day-54|Day 54 - Concept Selling]]
+- Next: [[day-56|Day 56 - AIA Solutions: Protection & Living Benefits]]

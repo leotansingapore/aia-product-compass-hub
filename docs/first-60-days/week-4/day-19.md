@@ -1,7 +1,7 @@
 ---
 week: 4
 day: 19
-title: "Prospecting — The Lifeblood of Your Business"
+title: "Prospecting - The Lifeblood of Your Business"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
@@ -11,9 +11,9 @@ duration_minutes: 20
 tags: [first-60-days, week-4, skills]
 ---
 
-# Day 19 — Prospecting: The Lifeblood of Your Business
+# Day 19 - Prospecting: The Lifeblood of Your Business
 
-> **The one idea for today:** A slump in your sales is almost always a slump in your prospecting **from 30–60 days ago**. Prospecting is the leading indicator. Commissions are the lagging one. Obsess over the right number.
+> **The one idea for today:** A slump in your sales is almost always a slump in your prospecting **from 30-60 days ago**. Prospecting is the leading indicator. Commissions are the lagging one. Obsess over the right number.
 
 ## What you'll walk away with
 
@@ -35,46 +35,46 @@ Prospecting is **the systematic process of creating first conversations** with p
 
 That's it. It's not selling. It's not closing. It's *creating the possibility* of a conversation where your work could one day be useful.
 
-**The reframe:** "Approach each customer with the idea of helping them solve a problem or achieve a goal — not selling a product or service." (Brian Tracy)
+**The reframe:** "Approach each customer with the idea of helping them solve a problem or achieve a goal - not selling a product or service." (Brian Tracy)
 
-## 2. Why your income is set 30–60 days in advance
+## 2. Why your income is set 30-60 days in advance
 
 Your sales cycle has stages, and each stage takes time:
 
-1. **Prospecting touch** — you reach out.
-2. **First conversation / discovery** — 1–2 weeks later on average.
-3. **Fact-finding meeting** — 1–2 weeks after that.
-4. **Proposal / presentation meeting** — 1–2 weeks after that.
-5. **Close** — same meeting or follow-up.
-6. **Submission, underwriting, approval** — 2–6 weeks.
-7. **Commission paid** — month after approval.
+1. **Prospecting touch** - you reach out.
+2. **First conversation / discovery** - 1-2 weeks later on average.
+3. **Fact-finding meeting** - 1-2 weeks after that.
+4. **Proposal / presentation meeting** - 1-2 weeks after that.
+5. **Close** - same meeting or follow-up.
+6. **Submission, underwriting, approval** - 2-6 weeks.
+7. **Commission paid** - month after approval.
 
-**Total: roughly 30–90 days** from first prospecting touch to commission arriving in your account.
+**Total: roughly 30-90 days** from first prospecting touch to commission arriving in your account.
 
-**Consequence:** your commission this month was built by the prospecting you did **2–3 months ago.** Today's prospecting is next quarter's income.
+**Consequence:** your commission this month was built by the prospecting you did **2-3 months ago.** Today's prospecting is next quarter's income.
 
-This is why the FCs who quit in Month 2 rarely see the compounding. They look at Month 2's commission, compare it to a corporate salary, and give up — just before the Month 1 prospecting cashes out in Month 3.
+This is why the FCs who quit in Month 2 rarely see the compounding. They look at Month 2's commission, compare it to a corporate salary, and give up - just before the Month 1 prospecting cashes out in Month 3.
 
 ### The longer truth: the prospecting cycle is years, not weeks
 
-The 30–90 day window above is a *single* buying decision. The actual prospecting cycle — the time from first contact to a person being a paying client — is more like **1 to 10 years.**
+The 30-90 day window above is a *single* buying decision. The actual prospecting cycle - the time from first contact to a person being a paying client - is more like **1 to 10 years.**
 
-That sounds slow until you reframe it: *most* of your career income comes from people who you talked to before they bought from anyone. Insurance, savings, retirement plans — these aren't impulse buys. They get bought when life shifts: marriage, baby, parent diagnosed, bonus landed, mortgage approved. Your job is to be the person they already know on the day life shifts. That's the whole game. The seed you plant this month may bear fruit in Year 3, Year 5, even Year 10 — when the prospect needs something, or when they're asked who to refer.
+That sounds slow until you reframe it: *most* of your career income comes from people who you talked to before they bought from anyone. Insurance, savings, retirement plans - these aren't impulse buys. They get bought when life shifts: marriage, baby, parent diagnosed, bonus landed, mortgage approved. Your job is to be the person they already know on the day life shifts. That's the whole game. The seed you plant this month may bear fruit in Year 3, Year 5, even Year 10 - when the prospect needs something, or when they're asked who to refer.
 
 But that future fruit only happens if **the prospect knew you wanted their business** and **you left the door open** instead of going quiet after a "not now."
 
-### The unguarded pre-licensing window — your one-time advantage
+### The unguarded pre-licensing window - your one-time advantage
 
 Here's the part most new FCs miss until it's too late: **the period before you're RNF-licensed is your most valuable prospecting window**, not your least.
 
 While you're not yet licensed:
-- You can honestly say *"I can't sell you anything anyway — I'm just doing market surveys to learn what people actually care about with money."*
+- You can honestly say *"I can't sell you anything anyway - I'm just doing market surveys to learn what people actually care about with money."*
 - That single line **disarms every guard** the prospect would otherwise put up. They hear "training, not sales." They give you real answers. They tell you about the spouse, the parent, the worry, the windfall.
 - You're not a salesperson asking for time. You're a friend learning a craft and asking for help. Different category, different reception.
 
 By the time your license drops:
-- A properly-worked pre-license window leaves you with **10–20 people queued up** — already in conversation, already aware you'll be licensed soon, already comfortable the next chat is "the real one."
-- Compare that to the FC who waits to be licensed before reaching out. Their first message after licensing reads as a pitch — even when it isn't. Guards go up. The cycle restarts at zero.
+- A properly-worked pre-license window leaves you with **10-20 people queued up** - already in conversation, already aware you'll be licensed soon, already comfortable the next chat is "the real one."
+- Compare that to the FC who waits to be licensed before reaching out. Their first message after licensing reads as a pitch - even when it isn't. Guards go up. The cycle restarts at zero.
 
 **Practical implication:** don't wait until you have your license to start your Project 100 (Day 39) or your warm outreach. Start now, with the honest framing that you're learning. The unguarded window only opens once.
 
@@ -85,25 +85,25 @@ Everything you do to find clients falls into one of three buckets. All three nee
 ### A. Getting leads
 Filling your pipeline with names.
 
-- **Warm market** — existing network (friends, family, old colleagues).
-- **Referrals** — asked at end of every client meeting.
-- **Digital inbound** — content-generated inquiries (Day 40–42).
-- **Natural market** — people you meet organically (gym, coffee shop, events).
-- **Lead lists** — purchased or agency-provided (lower quality, higher volume).
+- **Warm market** - existing network (friends, family, old colleagues).
+- **Referrals** - asked at end of every client meeting.
+- **Digital inbound** - content-generated inquiries (Day 40-42).
+- **Natural market** - people you meet organically (gym, coffee shop, events).
+- **Lead lists** - purchased or agency-provided (lower quality, higher volume).
 
 ### B. Making calls (or messages)
 Turning names into conversations.
 
-- **Cold calls** — phone.
-- **Warm outreach** — WhatsApp, Telegram, DM.
-- **Networking events** — in-person.
-- **Follow-up** — to people you met weeks or months ago.
+- **Cold calls** - phone.
+- **Warm outreach** - WhatsApp, Telegram, DM.
+- **Networking events** - in-person.
+- **Follow-up** - to people you met weeks or months ago.
 
 ### C. Meeting the people
 Turning conversations into appointments.
 
-- **First meeting** — coffee, lunch, or Zoom.
-- **Fact-finding** — structured financial review.
+- **First meeting** - coffee, lunch, or Zoom.
+- **Fact-finding** - structured financial review.
 - **Presentation / closing meeting.**
 
 **The mistake most new FCs make:** they spend 90% of their time on **C** (meetings they've already got), and run out of **A** (leads). Then they panic three weeks later when the calendar is empty.
@@ -122,19 +122,19 @@ Prospecting is fundamentally a numbers game. Not a mindset game.
     <div style="font-weight:800;font-size:22px;margin-top:2px;">100</div>
     <div style="font-size:13px;opacity:0.95;">Opening Approaches <span style="opacity:0.75;">(e.g., calls)</span></div>
   </div>
-  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">3% conversion</span></div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">v</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">3% conversion</span></div>
   <div style="width:78%;background:linear-gradient(135deg,hsl(160,84%,32%),hsl(160,84%,42%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,32%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,93% 100%,7% 100%);">
     <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">APPOINTMENTS</div>
     <div style="font-weight:800;font-size:22px;margin-top:2px;">3</div>
     <div style="font-size:13px;opacity:0.95;">Appointments set</div>
   </div>
-  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">50% conversion</span></div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">v</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">50% conversion</span></div>
   <div style="width:58%;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,92% 100%,8% 100%);">
     <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">MEETINGS</div>
-    <div style="font-weight:800;font-size:22px;margin-top:2px;">1–2</div>
+    <div style="font-weight:800;font-size:22px;margin-top:2px;">1-2</div>
     <div style="font-size:13px;opacity:0.95;">Meetings actually happen</div>
   </div>
-  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">↓</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">20–40% conversion</span></div>
+  <div style="display:flex;align-items:center;gap:8px;color:hsl(var(--muted-foreground));font-size:12px;font-weight:600;margin:6px 0;"><span style="font-size:18px;">v</span><span style="background:hsl(var(--muted));padding:2px 10px;border-radius:10px;letter-spacing:0.05em;">20-40% conversion</span></div>
   <div style="width:38%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:14px 16px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
     <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">CLOSE</div>
     <div style="font-weight:800;font-size:22px;margin-top:2px;">&lt;1</div>
@@ -146,7 +146,7 @@ These ratios improve as your skills develop. A strong Year-2 FC might close 1 in
 
 **The uncomfortable truth:** to hit $50K FYC in Year 1 (modest target), the math might require **3,000+ opening approaches** across the year. That's 60/week, 10/day.
 
-Most new FCs make 5–10 approaches per week. Then wonder why they're not closing.
+Most new FCs make 5-10 approaches per week. Then wonder why they're not closing.
 
 ## 5. Count rejections, not appointments
 
@@ -169,17 +169,17 @@ This is the counterintuitive move that sets top producers apart.
 
 ### Translate external attribution into I-statements
 
-Slow weeks are also the weeks the brain reaches for external explanations: *"the market is bad," "people are tighter," "my upline isn't giving leads."* Each of those is true *and* useless — none of them are levers you can pull next week.
+Slow weeks are also the weeks the brain reaches for external explanations: *"the market is bad," "people are tighter," "my upline isn't giving leads."* Each of those is true *and* useless - none of them are levers you can pull next week.
 
-Day 17 frames this as the **total accountability** trade: in exchange for accepting the cause is mostly your behaviour, you get back the only thing that matters — control.
+Day 17 frames this as the **total accountability** trade: in exchange for accepting the cause is mostly your behaviour, you get back the only thing that matters - control.
 
 Run the drill at the end of every slow week. Take the three things you blamed and rewrite each as a sentence beginning with **"I."**
 
 | External (no lever) | Internal (lever) |
 |---|---|
-| "The market is tight." | "I let my pipeline thin in Week 2 — I'm running 30 dials a day this week to refill it." |
-| "Prospects aren't responding." | "My opener is stale — I'm rewriting it before tomorrow's batch." |
-| "My upline isn't sending leads." | "I haven't asked for referrals from my last 5 clients — I'm doing those calls today." |
+| "The market is tight." | "I let my pipeline thin in Week 2 - I'm running 30 dials a day this week to refill it." |
+| "Prospects aren't responding." | "My opener is stale - I'm rewriting it before tomorrow's batch." |
+| "My upline isn't sending leads." | "I haven't asked for referrals from my last 5 clients - I'm doing those calls today." |
 
 The translated version isn't more comfortable. It's just the only one that points to action.
 
@@ -187,13 +187,13 @@ The translated version isn't more comfortable. It's just the only one that point
 
 "To sell is to serve, and to serve is to sell."
 
-If you treat prospecting as "I need to make a sale" → the prospect senses it, recoils, and you lose.
+If you treat prospecting as "I need to make a sale" -> the prospect senses it, recoils, and you lose.
 
-If you treat prospecting as "I might be able to help this person — let me find out" → the prospect senses *that*, relaxes, and opens up.
+If you treat prospecting as "I might be able to help this person - let me find out" -> the prospect senses *that*, relaxes, and opens up.
 
-**The mental shift:** every call is a service attempt. Not every call ends in a sale. Some end in "thanks but no thanks" (fine). Some end in "actually, can you help my sister?" (referral — even better). Some end in a meeting that becomes a client for 20 years.
+**The mental shift:** every call is a service attempt. Not every call ends in a sale. Some end in "thanks but no thanks" (fine). Some end in "actually, can you help my sister?" (referral - even better). Some end in a meeting that becomes a client for 20 years.
 
-Your job isn't to know the outcome. Your job is to make the attempt — **with service intent.**
+Your job isn't to know the outcome. Your job is to make the attempt - **with service intent.**
 
 ## 7. The daily non-negotiable
 
@@ -202,14 +202,14 @@ By the end of Week 4, pick ONE daily prospecting minimum that is **non-negotiabl
 Common starting points:
 - **10 new outreach touches per day** (mix of channels).
 - **OR 3 reconnection messages + 1 content post per day.**
-- **OR 1 hour of calls, 9am–10am, before anything else.**
+- **OR 1 hour of calls, 9am-10am, before anything else.**
 
-Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most — because that's when everyone else stops, and you stop catching up to them.
+Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most - because that's when everyone else stops, and you stop catching up to them.
 
 ---
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">The Sales Cycle — first touch to commission</div>
+  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">The Sales Cycle - first touch to commission</div>
   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0;align-items:stretch;">
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
@@ -219,17 +219,17 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">First conversation</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1-2 WEEKS</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Fact-find meeting</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1-2 WEEKS</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Proposal</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1–2 WEEKS</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+1-2 WEEKS</div>
     </div>
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
@@ -239,7 +239,7 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
     <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;color:hsl(var(--muted-foreground));">06</div>
       <div style="margin-top:0.6rem;font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.25;">Underwriting</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+2–6 WEEKS</div>
+      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">+2-6 WEEKS</div>
     </div>
     <div style="padding:0 0.85rem;">
       <div style="font-family:ui-serif,Georgia,serif;font-size:36px;line-height:1;">07</div>
@@ -247,41 +247,41 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
       <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;">NEXT MONTH</div>
     </div>
   </div>
-  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Total: 30–90 days from first touch to commission. Today's prospecting = next quarter's income.</div>
+  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Total: 30-90 days from first touch to commission. Today's prospecting = next quarter's income.</div>
 </div>
 
 ---
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;">The Three Prospecting Buckets — run in parallel</div>
+  <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;">The Three Prospecting Buckets - run in parallel</div>
   <div style="display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:1.75rem;align-items:start;">
     <div>
       <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket A</div>
       <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Getting leads</div>
       <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">fill the pipeline</div>
-      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Warm market · Referrals · Digital inbound · Natural market · Lead lists</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Warm market . Referrals . Digital inbound . Natural market . Lead lists</div>
     </div>
     <div style="background:hsl(var(--border));width:1px;height:100%;min-height:140px;"></div>
     <div>
       <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket B</div>
       <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Making calls</div>
       <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">names to conversations</div>
-      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Cold calls · WhatsApp / Telegram DMs · Networking events · Follow-up</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">Cold calls . WhatsApp / Telegram DMs . Networking events . Follow-up</div>
     </div>
     <div style="background:hsl(var(--border));width:1px;height:100%;min-height:140px;"></div>
     <div>
       <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Bucket C</div>
       <div style="font-family:ui-serif,Georgia,serif;font-size:24px;line-height:1.2;margin-top:0.3rem;">Meeting people</div>
       <div style="margin-top:0.4rem;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;">conversations to appointments</div>
-      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">First meeting · Fact-find · Proposal / closing meeting</div>
+      <div style="margin-top:1rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-size:14px;line-height:1.55;">First meeting . Fact-find . Proposal / closing meeting</div>
     </div>
   </div>
-  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Run all three buckets every day — not sequentially.</div>
+  <div style="margin-top:1.5rem;padding-top:0.85rem;border-top:1px solid hsl(var(--border));font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));">Run all three buckets every day - not sequentially.</div>
 </div>
 
 ## 8. The four business-generating activities
 
-Top producers in this district consistently name the same four activities as **the only ones that move the income needle**. Every other task in your day — admin, training, learning a product feature, organising your CRM — is **support work**, not business work. Necessary, but not generative.
+Top producers in this district consistently name the same four activities as **the only ones that move the income needle**. Every other task in your day - admin, training, learning a product feature, organising your CRM - is **support work**, not business work. Necessary, but not generative.
 
 | # | Activity | Why it's the engine |
 |---|---|---|
@@ -292,7 +292,7 @@ Top producers in this district consistently name the same four activities as **t
 
 > **The audit question to ask yourself today:** *"What did I spend the last 7 days doing? How many hours went into the four activities above? How many hours went into everything else?"*
 >
-> If "everything else" is winning by hours, your next 30 days of income is already in trouble — even if your day felt productive.
+> If "everything else" is winning by hours, your next 30 days of income is already in trouble - even if your day felt productive.
 
 ### Why this matters as a new FC
 
@@ -300,23 +300,23 @@ There's a trap where a new FC spends weeks "learning the products" or "organisin
 
 > *"Even if you're new now, doesn't mean you cannot do all four. Even if you don't know how to open or close yourself, just bring a senior down with you. The only time you actually get confident with presentations is by doing real ones."*
 
-The shortcut to confidence isn't more theory. It's role-play (with peers or seniors) plus showing up to live meetings — even meetings where you're not the one closing.
+The shortcut to confidence isn't more theory. It's role-play (with peers or seniors) plus showing up to live meetings - even meetings where you're not the one closing.
 
 ## 9. Ad ROI conviction (for full-timers running paid lead-gen)
 
-If you're running ads (LinkedIn, Meta, Google), here's the conviction you need before you can scale them: **leads are not customers — they're follow-up obligations.**
+If you're running ads (LinkedIn, Meta, Google), here's the conviction you need before you can scale them: **leads are not customers - they're follow-up obligations.**
 
-A lead that doesn't close today doesn't mean ad money was wasted. It means you have a name in the pipeline you owe a follow-up. With proper follow-up discipline (Day 24), the ROI on ads in this practice has historically been **multiples — not fractions — of spend**:
+A lead that doesn't close today doesn't mean ad money was wasted. It means you have a name in the pipeline you owe a follow-up. With proper follow-up discipline (Day 24), the ROI on ads in this practice has historically been **multiples - not fractions - of spend**:
 
-> *"From experience, every $2K I've put into ads has come back as $6K+ FYC. I have never lost money on ads. You can scale this — the leads are very valuable, you just have to follow up on them."*
+> *"From experience, every $2K I've put into ads has come back as $6K+ FYC. I have never lost money on ads. You can scale this - the leads are very valuable, you just have to follow up on them."*
 
 A practical sequencing rule:
 
 1. **Don't scale until you can handle the volume.** A 25-Zoom weekend with no follow-up bandwidth is worse than a 5-Zoom weekend you fully service.
 2. **Call leads while they're fresh.** A lead two weeks old is a different animal from a lead three days old.
-3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The $X you spent in Month 1 produces FYC across Months 1–4.
+3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The $X you spent in Month 1 produces FYC across Months 1-4.
 
-Cross-link: see [Day 42 — Digital Lead-Gen Playbook](../week-7/day-42.md) for the operational specifics; see [Day 24 — The Time Management Matrix](day-24.md) for follow-up discipline.
+Cross-link: see [Day 42 - Digital Lead-Gen Playbook](../week-7/day-42.md) for the operational specifics; see [Day 24 - The Time Management Matrix](day-24.md) for follow-up discipline.
 
 ---
 
@@ -324,63 +324,63 @@ Cross-link: see [Day 42 — Digital Lead-Gen Playbook](../week-7/day-42.md) for 
 
 1. **A sales slump this month is usually caused by:**
  - A) Bad product fit
- - B) A slump in prospecting 30–60 days ago ✓
+ - B) A slump in prospecting 30-60 days ago (correct)
  - C) The market
  - D) Competitor activity
 
- **Why:** Prospecting is the leading indicator and commissions are the lagging one — the full sales cycle from first touch to commission payment takes roughly 30–90 days. A slump today reflects insufficient activity from 1–3 months ago, not external factors. Bad product fit (A), the market (C), and competitor activity (D) are all lagging rationalisations that distract from the only variable a new FC truly controls: daily prospecting volume.
+ **Why:** Prospecting is the leading indicator and commissions are the lagging one - the full sales cycle from first touch to commission payment takes roughly 30-90 days. A slump today reflects insufficient activity from 1-3 months ago, not external factors. Bad product fit (A), the market (C), and competitor activity (D) are all lagging rationalisations that distract from the only variable a new FC truly controls: daily prospecting volume.
 
 2. **What should you count to stay consistent?**
  - A) Appointments set
  - B) Commissions earned
- - C) Rejections received ✓
+ - C) Rejections received (correct)
  - D) Hours worked
 
- **Why:** You control the number of rejections, not the number of yeses — counting rejections shifts focus to an output you can actually hit daily and turns each "no" into a measurable rep that sharpens skill. Appointments set (A) and commissions earned (B) are downstream results that can swing with conversion luck and are demotivating in slow weeks. Hours worked (D) is an input that can be filled with low-value activity and tells you nothing about prospecting effort.
+ **Why:** You control the number of rejections, not the number of yeses - counting rejections shifts focus to an output you can actually hit daily and turns each "no" into a measurable rep that sharpens skill. Appointments set (A) and commissions earned (B) are downstream results that can swing with conversion luck and are demotivating in slow weeks. Hours worked (D) is an input that can be filled with low-value activity and tells you nothing about prospecting effort.
 
-3. **The three prospecting activities — getting leads, making calls, meeting people — should:**
+3. **The three prospecting activities - getting leads, making calls, meeting people - should:**
  - A) Be done sequentially
  - B) Be done one per week on rotation
- - C) Run in parallel every week ✓
+ - C) Run in parallel every week (correct)
  - D) Be automated wherever possible
 
- **Why:** The classic new-FC mistake is spending all time on meetings already booked (bucket C) while letting the lead pipeline (bucket A) dry up — leading to a calendar emergency three weeks later. Running all three buckets in parallel ensures a continuous flow from leads to conversations to meetings without boom-bust gaps. Doing them sequentially (A) or on rotation (B) guarantees the downstream steps starve while you focus upstream.
+ **Why:** The classic new-FC mistake is spending all time on meetings already booked (bucket C) while letting the lead pipeline (bucket A) dry up - leading to a calendar emergency three weeks later. Running all three buckets in parallel ensures a continuous flow from leads to conversations to meetings without boom-bust gaps. Doing them sequentially (A) or on rotation (B) guarantees the downstream steps starve while you focus upstream.
 
-4. **You closed two clients in January. According to the 30–60 day lag, those commissions most likely came from prospecting done in:**
+4. **You closed two clients in January. According to the 30-60 day lag, those commissions most likely came from prospecting done in:**
  - A) January
  - B) The week before closing
- - C) November or December ✓
+ - C) November or December (correct)
  - D) The same month as the fact-find
 
- **Why:** The sales cycle runs first touch → discovery → fact-find → proposal → close → underwriting → commission, totalling roughly 30–90 days end to end. A January close traces back to first prospecting touches in November or December. Prospecting in January (A) or the week before closing (B) is far too late for a same-month commission; the fact-find (D) happens mid-cycle, not at the start.
+ **Why:** The sales cycle runs first touch -> discovery -> fact-find -> proposal -> close -> underwriting -> commission, totalling roughly 30-90 days end to end. A January close traces back to first prospecting touches in November or December. Prospecting in January (A) or the week before closing (B) is far too late for a same-month commission; the fact-find (D) happens mid-cycle, not at the start.
 
 5. **A new FC is getting 1 close per 100 approaches. To hit $50K FYC in Year 1, the daily outreach minimum should be closest to:**
  - A) 3 per day
  - B) 5 per day
- - C) 10 per day ✓
+ - C) 10 per day (correct)
  - D) 20 per day
 
- **Why:** The lesson states that $50K FYC may require 3,000+ opening approaches across the year, which works out to roughly 60 per week or 10 per day on a 5-day week. Three or five touches per day (A, B) are the typical new-FC output — well short of what the numbers require. Twenty per day (D) would be above the stated baseline minimum and is not cited as the target figure.
+ **Why:** The lesson states that $50K FYC may require 3,000+ opening approaches across the year, which works out to roughly 60 per week or 10 per day on a 5-day week. Three or five touches per day (A, B) are the typical new-FC output - well short of what the numbers require. Twenty per day (D) would be above the stated baseline minimum and is not cited as the target figure.
 
 6. **Maria frames her cold-call sessions as "how many no's can I collect today?" rather than "how many appointments will I set?" What is the primary benefit of this mindset?**
  - A) It lowers the quality bar so she makes more calls
- - B) It shifts focus to a controllable metric and reframes rejection as progress ✓
+ - B) It shifts focus to a controllable metric and reframes rejection as progress (correct)
  - C) It reduces the need to track results
  - D) It removes accountability for conversion rates
 
- **Why:** Counting rejections is the counterintuitive move that sets top producers apart because you control the number of no's you receive, while appointments are determined by the prospect. Each rejection is a rep that sharpens opener and objection-handling skill, removing the emotional sting and keeping activity high in slow conversion weeks. It does not lower quality (A), eliminate tracking (C), or dodge accountability (D) — conversion rates are still tracked alongside rejection volume.
+ **Why:** Counting rejections is the counterintuitive move that sets top producers apart because you control the number of no's you receive, while appointments are determined by the prospect. Each rejection is a rep that sharpens opener and objection-handling skill, removing the emotional sting and keeping activity high in slow conversion weeks. It does not lower quality (A), eliminate tracking (C), or dodge accountability (D) - conversion rates are still tracked alongside rejection volume.
 
 7. **Which of the following is NOT one of the three prospecting activity buckets described in today's lesson?**
  - A) Getting leads
  - B) Making calls or messages
- - C) Closing the deal ✓
+ - C) Closing the deal (correct)
  - D) Meeting the people
 
- **Why:** The three buckets are getting leads, making calls or messages, and meeting the people — closing is what happens inside a meeting, not a separate prospecting bucket. Closing belongs to the sales appointment framework covered in later lessons. All three of the other options (A, B, D) are explicitly named buckets in today's content.
+ **Why:** The three buckets are getting leads, making calls or messages, and meeting the people - closing is what happens inside a meeting, not a separate prospecting bucket. Closing belongs to the sales appointment framework covered in later lessons. All three of the other options (A, B, D) are explicitly named buckets in today's content.
 
 ---
 
 ## Related
 
-- Previous: [[../week-3/day-18|Day 18 — The 10X Rule]]
-- Next: [[day-20|Day 20 — Basic Productivity & Time Efficiency]]
+- Previous: [[../week-3/day-18|Day 18 - The 10X Rule]]
+- Next: [[day-20|Day 20 - Basic Productivity & Time Efficiency]]

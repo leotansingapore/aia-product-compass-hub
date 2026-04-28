@@ -9,9 +9,9 @@ duration_minutes: 25
 tags: [first-60-days, week-9, skills]
 ---
 
-# Day 54 — Concept Selling
+# Day 54 - Concept Selling
 
-> **The one idea for today:** Product selling says "here's a plan — want to buy it?" Concept selling says "here's an idea — here's how it plays out — here's the plan that delivers it." One produces sales. The other produces long-term clients who understand what they own and why.
+> **The one idea for today:** Product selling says "here's a plan - want to buy it?" Concept selling says "here's an idea - here's how it plays out - here's the plan that delivers it." One produces sales. The other produces long-term clients who understand what they own and why.
 
 ## What you'll walk away with
 
@@ -25,7 +25,7 @@ By the end of today you should be able to:
 
 ## 0. Why concept selling has to exist
 
-There's a foundational reason concept selling isn't optional for financial advisory — it's structural to what a financial product *is*:
+There's a foundational reason concept selling isn't optional for financial advisory - it's structural to what a financial product *is*:
 
 <div style="margin:1.5rem 0;border:2px solid hsl(var(--foreground));border-radius:6px;overflow:hidden;font-family:ui-serif,Georgia,serif;">
   <div style="display:grid;grid-template-columns:1fr 1fr;">
@@ -59,27 +59,27 @@ There's a foundational reason concept selling isn't optional for financial advis
   </div>
 </div>
 
-**Read the quadrant carefully.** A house is *physical*. A prospect can walk into it, touch the walls, smell the air, sit in the living room and imagine their own life there. The product sells itself through the senses — see it, touch it, feel it.
+**Read the quadrant carefully.** A house is *physical*. A prospect can walk into it, touch the walls, smell the air, sit in the living room and imagine their own life there. The product sells itself through the senses - see it, touch it, feel it.
 
-A financial product has none of that. There's no thing to walk into. No texture. No view from the balcony. The only sense it engages is **understanding** — and understanding is built through *concepts*, not features.
+A financial product has none of that. There's no thing to walk into. No texture. No view from the balcony. The only sense it engages is **understanding** - and understanding is built through *concepts*, not features.
 
-**This is why concept selling isn't a sales technique. It's the only way the category works.** Try to sell an endowment plan the way you'd sell a condo — by showing the brochure, the floorplan, the projected yield — and you're using the wrong sense organ for the wrong category. The client *can't* feel a 4% IRR. They can only understand what 4% compounded for 30 years *means* for the life they want to live.
+**This is why concept selling isn't a sales technique. It's the only way the category works.** Try to sell an endowment plan the way you'd sell a condo - by showing the brochure, the floorplan, the projected yield - and you're using the wrong sense organ for the wrong category. The client *can't* feel a 4% IRR. They can only understand what 4% compounded for 30 years *means* for the life they want to live.
 
-Every other technique in this lesson — the three concept frames, the 5-minute structure, the rapport-then-concept-then-product flow — is downstream of this one truth: **financial products live in the right column. Sell them like the right column.**
+Every other technique in this lesson - the three concept frames, the 5-minute structure, the rapport-then-concept-then-product flow - is downstream of this one truth: **financial products live in the right column. Sell them like the right column.**
 
 ## 1. Concept selling vs product selling
 
 ### Product selling
 - "Here's a plan. It returns X% p.a. projected. The premium is $Y/month."
-- The client evaluates **features** — premium, return, payout.
+- The client evaluates **features** - premium, return, payout.
 - The client becomes a **feature comparer**: they'll ask competitors to quote similar.
-- Conversion rate: ~15–25%.
+- Conversion rate: ~15-25%.
 
 ### Concept selling
-- "Here's a way to build [outcome]. I'll walk you through how it works — then the specific plan that delivers it."
-- The client evaluates **the idea** — does the concept make sense?
+- "Here's a way to build [outcome]. I'll walk you through how it works - then the specific plan that delivers it."
+- The client evaluates **the idea** - does the concept make sense?
 - The client becomes a **concept owner**: they'll explain it to their spouse, their friends.
-- Conversion rate: ~35–50%.
+- Conversion rate: ~35-50%.
 
 **The shift:** you're not selling a product. You're selling a **way of thinking about money** that the product happens to solve.
 
@@ -101,9 +101,9 @@ flowchart LR
 3. **Concepts reduce competitor shopping.** A feature comparison invites other quotes. A concept says "this idea, from this advisor, matters."
 4. **Concepts survive price changes.** If premiums change, the concept still holds. The recommendation just adjusts.
 
-## 3. Concept 1 — The Non-Property Alternative
+## 3. Concept 1 - The Non-Property Alternative
 
-**The concept:** a participating whole-life plan with coupons can mimic the cash flow of a rental property — without the complexity, illiquidity, and risk.
+**The concept:** a participating whole-life plan with coupons can mimic the cash flow of a rental property - without the complexity, illiquidity, and risk.
 
 **Who it's for:** clients who say "I want to invest in property for passive income" but may not be ready for the complexity.
 
@@ -111,15 +111,15 @@ flowchart LR
 
 ### The hook (30 sec)
 > "You mentioned you want to eventually have passive income streams. Have you considered property?"
-> *"I have — but it's a lot of capital and complexity."*
+> *"I have - but it's a lot of capital and complexity."*
 
 ### The comparison (2 min)
 > "Let me show you how a structured plan compares to buying property for rental income. Both are legitimate paths. They have very different profiles."
 
 |  | Property | Participating plan (with coupons) |
 |---|---|---|
-| Time to "own" | 20–30 years to pay off mortgage | Fully paid in 10 years |
-| Initial capital | High deposit (20%+), stamp duty, legal fees | Low — monthly premium only |
+| Time to "own" | 20-30 years to pay off mortgage | Fully paid in 10 years |
+| Initial capital | High deposit (20%+), stamp duty, legal fees | Low - monthly premium only |
 | Loan interest | Paying bank interest on mortgage | No loan |
 | Income stream | Rental (subject to tenants, vacancy, repairs) | Guaranteed coupons (when declared) |
 | Taxation | Rental income taxable | Coupons typically not taxable |
@@ -129,32 +129,32 @@ flowchart LR
 | Capital appreciation | Market-driven (volatile) | Non-guaranteed bonus declarations |
 
 ### The positioning (1.5 min)
-> "This isn't to say one is better. Property has real upside — leverage, asset appreciation, physical value. But if your goal is *income stream* without taking on the complexity of property management, a participating plan gets you similar cash flow with far less friction.
+> "This isn't to say one is better. Property has real upside - leverage, asset appreciation, physical value. But if your goal is *income stream* without taking on the complexity of property management, a participating plan gets you similar cash flow with far less friction.
 >
-> The best clients often do **both** — property when they have the capital and discipline, plans when they don't but want the income stream anyway."
+> The best clients often do **both** - property when they have the capital and discipline, plans when they don't but want the income stream anyway."
 
 ### The close (1 min)
-> "Here's a plan that would give you roughly $[X]/year in coupons once it matures. To compare: a rental property in that range would need roughly $[Y] in capital and $[Z] in mortgage — and you'd have to manage tenants. Want me to show you the specifics?"
+> "Here's a plan that would give you roughly $[X]/year in coupons once it matures. To compare: a rental property in that range would need roughly $[Y] in capital and $[Z] in mortgage - and you'd have to manage tenants. Want me to show you the specifics?"
 
-## 4. Concept 2 — The Bank Deposit Alternative
+## 4. Concept 2 - The Bank Deposit Alternative
 
-**The concept:** a systematic savings plan with a small insurance component beats a bank deposit on almost every dimension — yield, estate transfer, compounding, discipline.
+**The concept:** a systematic savings plan with a small insurance component beats a bank deposit on almost every dimension - yield, estate transfer, compounding, discipline.
 
 **Who it's for:** clients with savings sitting in a bank account earning minimal interest.
 
 **The 5-minute frame:**
 
 ### The hook (30 sec)
-> "Earlier you mentioned you have about $[X] in savings. Roughly what's that earning — a standard savings rate?"
-> *"Yeah, maybe 0.5–1%."*
+> "Earlier you mentioned you have about $[X] in savings. Roughly what's that earning - a standard savings rate?"
+> *"Yeah, maybe 0.5-1%."*
 
 ### The comparison (2 min)
 
 |  | Bank deposit | Systematic savings plan |
 |---|---|---|
-| Death benefit | None — money passes through estate process | Immediate estate benefit upon death |
+| Death benefit | None - money passes through estate process | Immediate estate benefit upon death |
 | Estate transfer | Probate process required (months, costs) | Direct to beneficiary (days) |
-| Interest rate | ~0.5–1% | Projected ~3–4% p.a. (non-guaranteed) |
+| Interest rate | ~0.5-1% | Projected ~3-4% p.a. (non-guaranteed) |
 | Discipline | Withdrawable anytime | Structured period, encourages consistency |
 | Compounding | Weak (very low rate) | Stronger (higher rate + discipline) |
 | Inflation protection | Losing to inflation | Roughly keeping pace or better |
@@ -162,30 +162,30 @@ flowchart LR
 ### The positioning (1.5 min)
 > "This isn't about getting rid of your bank account. You need that for immediate access. It's about **separating short-term cash from medium-to-long-term savings.**
 >
-> The cash that sits in your bank for years earning 0.5% is silently losing purchasing power. Moving some of that into a plan with 3–4% projected returns, with insurance benefits attached, closes that gap."
+> The cash that sits in your bank for years earning 0.5% is silently losing purchasing power. Moving some of that into a plan with 3-4% projected returns, with insurance benefits attached, closes that gap."
 
 ### The close (1 min)
-> "If you moved $[X] of your idle savings into a 10–12 year plan, you'd likely end up with $[Y] vs $[Z] — a difference of $[Y−Z]. Plus the insurance benefit throughout. Want to see what that looks like specifically?"
+> "If you moved $[X] of your idle savings into a 10-12 year plan, you'd likely end up with $[Y] vs $[Z] - a difference of $[Y-Z]. Plus the insurance benefit throughout. Want to see what that looks like specifically?"
 
-## 5. Concept 3 — Life Insurance as a Family Asset
+## 5. Concept 3 - Life Insurance as a Family Asset
 
-**The concept:** a well-structured whole-life or term plan is not a "cost" — it's the single most leveraged asset you can create for your family.
+**The concept:** a well-structured whole-life or term plan is not a "cost" - it's the single most leveraged asset you can create for your family.
 
 **Who it's for:** family breadwinners, parents with young kids, sole earners.
 
 **The 5-minute frame:**
 
 ### The hook (30 sec)
-> "If I asked you to list your biggest assets for your family — house, savings, CPF, investments — where would insurance rank?"
+> "If I asked you to list your biggest assets for your family - house, savings, CPF, investments - where would insurance rank?"
 > *"Honestly, not high. Maybe after everything else."*
 
 ### The reframe (2 min)
-> "Here's what's counterintuitive. A $500,000 life insurance policy, with a $500/month premium — what's your family's return if you passed away in Year 2?
+> "Here's what's counterintuitive. A $500,000 life insurance policy, with a $500/month premium - what's your family's return if you passed away in Year 2?
 >
-> $500/month × 24 months = $12,000 in premiums paid.
+> $500/month x 24 months = $12,000 in premiums paid.
 > Payout = $500,000.
 >
-> That's a **40× multiplier.** No other financial instrument produces that kind of leverage. Not stocks, not property, not savings plans.
+> That's a **40x multiplier.** No other financial instrument produces that kind of leverage. Not stocks, not property, not savings plans.
 >
 > This is why life insurance, when properly sized, is the single most leveraged family asset a working parent can create."
 
@@ -196,25 +196,25 @@ flowchart LR
 > - **Business owner**: the payout funds business continuity or equalisation among heirs.
 > - **Estate planning**: the payout provides liquid cash to cover estate duties, business valuations, or legal costs.
 >
-> None of these can be solved by savings alone — they require the insurance leverage."
+> None of these can be solved by savings alone - they require the insurance leverage."
 
 ### The close (1 min)
-> "For your situation — [spouse], two kids, mortgage, parents — a properly sized life cover would be $[X]. Let me show you how that structures."
+> "For your situation - [spouse], two kids, mortgage, parents - a properly sized life cover would be $[X]. Let me show you how that structures."
 
-## 6. Your full advisor toolkit — 9 planning solutions
+## 6. Your full advisor toolkit - 9 planning solutions
 
-The three concepts above are the most common. But your real toolkit is broader. Every client walks in with a life stage and a concern — your job is to have a planning angle for every one of them.
+The three concepts above are the most common. But your real toolkit is broader. Every client walks in with a life stage and a concern - your job is to have a planning angle for every one of them.
 
 Keep this table open when you're preparing for a meeting. The right concept is usually the one that matches their current life moment.
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">— client life moment → the right concept —</div>
+  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- client life moment -> the right concept -</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;">
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Basic Financial Planning</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Any first meeting</div></div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Wedding Budgeting</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Engaged / married</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Home Budgeting · BTO</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Buying first property</div></div>
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Home Budgeting . BTO</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Buying first property</div></div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Baby Planning</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Pregnant / new parent</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Wealth Building · CPF</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Working adult</div></div>
+    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Wealth Building . CPF</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Working adult</div></div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vi.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Tax Savings</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Taxable income</div></div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Investments</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Savings earning nothing</div></div>
     <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">viii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">One Retirement</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Mid-career check-in</div></div>
@@ -228,19 +228,19 @@ Keep this table open when you're preparing for a meeting. The right concept is u
 | 2 | **Wedding Budgeting** | Engaged / recently married | Setting aside for the wedding *and* locking in financial planning in the same window |
 | 3 | **Home Budgeting (BTO / Property)** | Applying for BTO or upgrading | Good-debt concept, leveraging the housing loan to grow the first property asset |
 | 4 | **Baby Planning** | Pregnant / recent parent | Prenatal, delivery, diapering, education planning, reviewing the parent's existing coverage |
-| 5 | **Wealth Building — CPF** | Working adult with CPF balance | Building wealth through CPF, maximising the resources already in their account |
+| 5 | **Wealth Building - CPF** | Working adult with CPF balance | Building wealth through CPF, maximising the resources already in their account |
 | 6 | **Tax Savings** | Taxable income, wants to reduce | CPF top-ups, SRS contributions, the retirement angle these unlock |
 | 7 | **Investments** | Saving but earning nothing | Basic investment knowledge so they can make informed calls |
 | 8 | **"One Retirement"** | Mid-career, wondering if they're on track | Putting the entire portfolio together to determine comfortable retirement on ~20% of the capital most people assume they need |
 | 9 | **GoalsMapper / timeline simulation** | Wants to see the big picture | Charting the full financial timeline, stress-testing scenarios to see if the portfolio holds |
 
-**This list is not exhaustive** — and it's not product-specific. It's a set of planning *conversations.* The product comes after you've established which conversation the client actually needs.
+**This list is not exhaustive** - and it's not product-specific. It's a set of planning *conversations.* The product comes after you've established which conversation the client actually needs.
 
 **Rule of thumb:** by Month 6 you should be able to walk any prospect through any of these 9 in 5 minutes flat. Until then, over-prepare before each meeting.
 
 ## 7. Building your own concepts
 
-The three concepts above are starting points. Build your own library of 8–10 concepts over time. Each one:
+The three concepts above are starting points. Build your own library of 8-10 concepts over time. Each one:
 
 1. **Solves a specific client confusion** ("I should buy property," "bank is safe," "insurance is a cost").
 2. **Uses a comparison the client can evaluate** (property vs plan, bank vs plan, cost vs leverage).
@@ -255,7 +255,7 @@ Not every meeting needs concept selling.
 **Skip concept selling when:**
 - The client already has a clear, well-informed preference.
 - You've only got 20 minutes (concepts need 5+ min).
-- The client is high-C (Day 46) — they prefer data to frames.
+- The client is high-C (Day 46) - they prefer data to frames.
 - The concept is so basic the client would find it patronising.
 
 **Always concept-sell when:**
@@ -264,7 +264,7 @@ Not every meeting needs concept selling.
 - The client is comparison-shopping (concepts beat feature-comparison).
 - You want a referral-quality client (someone who can explain their plan to others).
 
-## 9. The concept → product handoff
+## 9. The concept -> product handoff
 
 A clean concept close transitions into product specifics:
 
@@ -277,113 +277,113 @@ A clean concept close transitions into product specifics:
 
 Clean handoff = clean decision.
 
-## 10. Mapping concepts to audiences — tangible, intangible, and your differentiator
+## 10. Mapping concepts to audiences - tangible, intangible, and your differentiator
 
-Concepts deliver more closes than product pitches. But concepts only land when they hit a problem the audience actually has. The next layer of skill is **mapping the right concept to the right audience** — and being clear on what makes *your* version of the concept different from every other advisor's.
+Concepts deliver more closes than product pitches. But concepts only land when they hit a problem the audience actually has. The next layer of skill is **mapping the right concept to the right audience** - and being clear on what makes *your* version of the concept different from every other advisor's.
 
 There are three mindset shifts under this layer. Most FCs miss at least one.
 
 ### Three shifts
 
-1. **Don't sell products. Sell the transformation.** A product brochure is "here are the features." A transformation pitch is "here's where you are now → here's where you'll be → here's how the plan gets you there." Same product, very different conversation.
-2. **Tangible problems take tangible solutions. Intangible problems take *you.*** A protection gap is tangible — a product solves it. The anxiety about not being there for the kids is intangible — only the *advisor relationship* solves that. Most FCs only sell to the tangible side and wonder why the close rate stalls.
-3. **Your differentiator is not your product.** Every advisor in Singapore can sell the same plans at similar premiums. What makes a client choose you, refer you, and stay with you for twenty years is **the specific way you work with them** — your process, your reliability, your point of view.
+1. **Don't sell products. Sell the transformation.** A product brochure is "here are the features." A transformation pitch is "here's where you are now -> here's where you'll be -> here's how the plan gets you there." Same product, very different conversation.
+2. **Tangible problems take tangible solutions. Intangible problems take *you.*** A protection gap is tangible - a product solves it. The anxiety about not being there for the kids is intangible - only the *advisor relationship* solves that. Most FCs only sell to the tangible side and wonder why the close rate stalls.
+3. **Your differentiator is not your product.** Every advisor in Singapore can sell the same plans at similar premiums. What makes a client choose you, refer you, and stay with you for twenty years is **the specific way you work with them** - your process, your reliability, your point of view.
 
-### The audience map — four quadrants and a differentiator
+### The audience map - four quadrants and a differentiator
 
 For each audience you intend to serve, map five things:
 
-| Layer | What it is | Example (busy professional, age 35–45) |
+| Layer | What it is | Example (busy professional, age 35-45) |
 |---|---|---|
-| **Tangible problem** | The visible, measurable issue | Working 60–70h weeks, $30–50k idle in low-yield accounts, no plan |
+| **Tangible problem** | The visible, measurable issue | Working 60-70h weeks, $30-50k idle in low-yield accounts, no plan |
 | **Tangible solution** | The concrete service or product you provide | Passive income roadmap, automated DCA, comprehensive protection audit |
 | **Intangible problem** | The emotional weight they carry but rarely name | Anxiety about market drops, guilt about not being present for family |
 | **Intangible solution** | The peace of mind you deliver alongside the plan | Sleep-well portfolio design, proactive weekly updates, on-call reassurance during volatility |
 | **Your differentiator** | What you do that no other advisor in their inbox does | Quarterly one-page plan with a written decision log; proactive check-ins after life events (new baby, job change, market crash) |
 
-The same exercise for a young adult (24–32) audience produces a completely different map: tangible problems around discipline and idle savings, intangible problems around social comparison and adulting overwhelm, tangible solutions around starter safety stacks and small-amount DCA, intangible solutions around bite-size learning and 1-on-1 coaching, and a differentiator like a structured 90-day setup program with weekly check-ins.
+The same exercise for a young adult (24-32) audience produces a completely different map: tangible problems around discipline and idle savings, intangible problems around social comparison and adulting overwhelm, tangible solutions around starter safety stacks and small-amount DCA, intangible solutions around bite-size learning and 1-on-1 coaching, and a differentiator like a structured 90-day setup program with weekly check-ins.
 
 ### Why this matters before you start prospecting
 
-A new FC who can only describe themselves as *"I do financial planning for everyone"* sounds like every other agent. A new FC who can say *"I work with two specific groups — busy professionals in their late 30s who don't have time to think about money, and young adults in their first three years of work who want to start right — and here's exactly how I work with each"* sounds like a different category of person.
+A new FC who can only describe themselves as *"I do financial planning for everyone"* sounds like every other agent. A new FC who can say *"I work with two specific groups - busy professionals in their late 30s who don't have time to think about money, and young adults in their first three years of work who want to start right - and here's exactly how I work with each"* sounds like a different category of person.
 
 That clarity is what gets the second meeting, the introduction, and the long-term client.
 
 ### The worksheet
 
-There's a structured worksheet that walks through this entire mapping for two audiences side-by-side, with pre-built profiles (busy professional, young adult, parents) you can adapt: see **[Assignment 8 — Audience & Differentiation Worksheet](../assignments/assignment-08.md)**. Run it before Week 8 — it sharpens every approach script you'll write later.
+There's a structured worksheet that walks through this entire mapping for two audiences side-by-side, with pre-built profiles (busy professional, young adult, parents) you can adapt: see **[Assignment 8 - Audience & Differentiation Worksheet](../assignments/assignment-08.md)**. Run it before Week 8 - it sharpens every approach script you'll write later.
 
 
 ## Quick quiz
 
 1. **Concept selling is different from product selling because:**
    - A) It's faster
-   - B) It sells an idea that the product solves, producing concept-owning clients ✓
+   - B) It sells an idea that the product solves, producing concept-owning clients (correct)
    - C) It skips products entirely
    - D) It uses more data
 
-   **Why:** Concept selling installs a way of thinking about money — the product is introduced as the tool that delivers the concept, not as the centrepiece of the pitch. This produces clients who own the idea and can explain it to their spouse or refer it to others. Product selling focuses on features and invites comparison-shopping; it is not faster (A) in terms of close rate (15–25% vs 35–50%). Concept selling does not skip products (C) — every concept must end with a recommendation path. It does not inherently require more data (D).
+   **Why:** Concept selling installs a way of thinking about money - the product is introduced as the tool that delivers the concept, not as the centrepiece of the pitch. This produces clients who own the idea and can explain it to their spouse or refer it to others. Product selling focuses on features and invites comparison-shopping; it is not faster (A) in terms of close rate (15-25% vs 35-50%). Concept selling does not skip products (C) - every concept must end with a recommendation path. It does not inherently require more data (D).
 
 2. **The comparison in Concept 2 (bank deposit alternative) exposes:**
    - A) Banks are bad
-   - B) The opportunity cost of idle cash in low-interest accounts ✓
+   - B) The opportunity cost of idle cash in low-interest accounts (correct)
    - C) Banks are going broke
    - D) All savings should be in plans
 
-   **Why:** Concept 2 highlights that cash sitting in a bank at 0.5–1% is silently losing purchasing power to inflation, and that a systematic savings plan with a small insurance component typically delivers 3–4% projected returns plus estate-transfer benefits. The concept is not anti-bank (A, C) — the positioning explicitly says the bank account should be kept for immediate access. The conclusion is also not that all savings should move into plans (D), but that idle medium-to-long-term savings should.
+   **Why:** Concept 2 highlights that cash sitting in a bank at 0.5-1% is silently losing purchasing power to inflation, and that a systematic savings plan with a small insurance component typically delivers 3-4% projected returns plus estate-transfer benefits. The concept is not anti-bank (A, C) - the positioning explicitly says the bank account should be kept for immediate access. The conclusion is also not that all savings should move into plans (D), but that idle medium-to-long-term savings should.
 
 3. **When you should NOT concept-sell:**
    - A) Client is confused
-   - B) Meeting is 20 min, client is high-C, or concept is too basic ✓
+   - B) Meeting is 20 min, client is high-C, or concept is too basic (correct)
    - C) Client asks too many questions
-   - D) Never — always concept-sell
+   - D) Never - always concept-sell
 
    **Why:** Concept selling is not appropriate when time is insufficient (concepts need 5+ minutes), when the client is a high-C personality who prefers data and structure over frames, or when the concept is so basic the client would find it patronising. A confused client (A) actually benefits from a well-delivered concept. Too many questions (C) indicate engagement, not a reason to avoid concept selling. Always concept-selling (D) ignores situations where the client already has a clear, well-informed preference.
 
 4. **A client says "I want to buy a second property for rental income." Which concept frame is most relevant?**
-   - A) Life Insurance as a Family Asset — leverage is the key theme
-   - B) The Bank Deposit Alternative — idle savings are the real problem
-   - C) The Non-Property Alternative — a participating plan can deliver similar income streams with less friction ✓
-   - D) The CPF Wealth concept — maximise existing government resources first
+   - A) Life Insurance as a Family Asset - leverage is the key theme
+   - B) The Bank Deposit Alternative - idle savings are the real problem
+   - C) The Non-Property Alternative - a participating plan can deliver similar income streams with less friction (correct)
+   - D) The CPF Wealth concept - maximise existing government resources first
 
-   **Why:** The Non-Property Alternative is specifically designed for clients who want passive income from property but may not be ready for the complexity — it directly addresses the same goal (income streams) with a different vehicle (participating plan). Life Insurance as a Family Asset (A) addresses leverage and estate, not income streams. The Bank Deposit Alternative (B) targets idle low-interest cash. The CPF Wealth concept (D) is about a different planning angle entirely.
+   **Why:** The Non-Property Alternative is specifically designed for clients who want passive income from property but may not be ready for the complexity - it directly addresses the same goal (income streams) with a different vehicle (participating plan). Life Insurance as a Family Asset (A) addresses leverage and estate, not income streams. The Bank Deposit Alternative (B) targets idle low-interest cash. The CPF Wealth concept (D) is about a different planning angle entirely.
 
 5. **After walking through the Bank Deposit Alternative, the client understands the concept but asks for a competitor quote. What does this most likely indicate?**
    - A) The concept landed well and they're engaged
-   - B) The concept frame did not fully install — they are still in feature-comparison mode ✓
+   - B) The concept frame did not fully install - they are still in feature-comparison mode (correct)
    - C) They are a high-D personality who likes options
    - D) You need to present a better yield projection
 
-   **Why:** One of the stated benefits of concept selling is that it reduces competitor shopping because the client evaluates the idea, not the features. If the client is still asking for competitor quotes after a concept delivery, the frame has not fully installed — they are still comparing products rather than owning the concept. This is a signal to revisit the concept using more of their personal numbers, not to improve yield projections (D) or default to a personality explanation (C).
+   **Why:** One of the stated benefits of concept selling is that it reduces competitor shopping because the client evaluates the idea, not the features. If the client is still asking for competitor quotes after a concept delivery, the frame has not fully installed - they are still comparing products rather than owning the concept. This is a signal to revisit the concept using more of their personal numbers, not to improve yield projections (D) or default to a personality explanation (C).
 
 6. **What is the key difference between a concept client and a product client?**
    - A) A concept client is wealthier and requires a more sophisticated approach
-   - B) A concept client owns the idea and can explain their plan to others; a product client compares features and shops around ✓
+   - B) A concept client owns the idea and can explain their plan to others; a product client compares features and shops around (correct)
    - C) A concept client buys more products
    - D) A product client needs a follow-up meeting; a concept client decides on the spot
 
-   **Why:** A concept client can articulate why they have what they have — they own the frame, not just the product. That makes them referral-quality clients who bring in others who've heard the explanation. Wealth level (A) is irrelevant to concept vs product distinction. Buying more products (C) may be a downstream effect but is not the defining difference. Decision speed (D) is not a reliable differentiator — concept selling affects conviction, not necessarily meeting count.
+   **Why:** A concept client can articulate why they have what they have - they own the frame, not just the product. That makes them referral-quality clients who bring in others who've heard the explanation. Wealth level (A) is irrelevant to concept vs product distinction. Buying more products (C) may be a downstream effect but is not the defining difference. Decision speed (D) is not a reliable differentiator - concept selling affects conviction, not necessarily meeting count.
 
 7. **You are preparing for a meeting with a newly married couple who are applying for a BTO. Which of the 9 planning solutions is the best starting concept?**
-   - A) "One Retirement" — put their whole portfolio together
-   - B) Investments — they need to start growing wealth early
-   - C) Home Budgeting (BTO/Property) — matches their current life moment ✓
-   - D) Tax Savings — CPF top-ups and SRS are the highest-leverage entry point
+   - A) "One Retirement" - put their whole portfolio together
+   - B) Investments - they need to start growing wealth early
+   - C) Home Budgeting (BTO/Property) - matches their current life moment (correct)
+   - D) Tax Savings - CPF top-ups and SRS are the highest-leverage entry point
 
-   **Why:** The rule of thumb is that the right concept matches the client's current life moment — and a couple actively applying for a BTO is squarely in a home-budgeting conversation. Home Budgeting (BTO/Property) covers the good-debt concept and leveraging the housing loan, which is immediately relevant and actionable. Retirement (A) and investments (B) are important but premature given where the clients are emotionally and financially right now. Tax savings (D) may be relevant later but is not the natural entry point for this life stage.
+   **Why:** The rule of thumb is that the right concept matches the client's current life moment - and a couple actively applying for a BTO is squarely in a home-budgeting conversation. Home Budgeting (BTO/Property) covers the good-debt concept and leveraging the housing loan, which is immediately relevant and actionable. Retirement (A) and investments (B) are important but premature given where the clients are emotionally and financially right now. Tax savings (D) may be relevant later but is not the natural entry point for this life stage.
 
 8. **In the audience-mapping framework from Section 10, which kind of problem is solved by the *advisor relationship itself* rather than by a product?**
    - A) The tangible problem (e.g., a $300k protection gap)
-   - B) The intangible problem (e.g., the anxiety that the family isn't safe) ✓
-   - C) Both — every problem is solved by the product
-   - D) Neither — the product solves everything; the advisor is a delivery channel
+   - B) The intangible problem (e.g., the anxiety that the family isn't safe) (correct)
+   - C) Both - every problem is solved by the product
+   - D) Neither - the product solves everything; the advisor is a delivery channel
 
-   **Why:** Day 54's mapping framework draws a sharp line: tangible problems (the protection gap, the idle cash, the missing income stream) are solved by tangible solutions — the products you place. Intangible problems (anxiety, guilt, overwhelm, social comparison pressure) are solved by *you* — the way you work, the proactive check-ins, the on-call reassurance, the framework that makes them feel oriented. C and D both collapse this distinction and reduce the advisor to a product distributor — exactly the move that makes a new FC sound like every other agent in the inbox.
+   **Why:** Day 54's mapping framework draws a sharp line: tangible problems (the protection gap, the idle cash, the missing income stream) are solved by tangible solutions - the products you place. Intangible problems (anxiety, guilt, overwhelm, social comparison pressure) are solved by *you* - the way you work, the proactive check-ins, the on-call reassurance, the framework that makes them feel oriented. C and D both collapse this distinction and reduce the advisor to a product distributor - exactly the move that makes a new FC sound like every other agent in the inbox.
 
 ---
 
 ## Related
 
-- Previous: [[day-53|Day 53 — CST: The Risks Angle]]
-- Next: [[../week-10/day-55|Day 55 — AIA Solutions Overview Part 1]]
-- Week 9 summary: [[README|Week 9 — Uncovering Needs & Sales Concepts]]
+- Previous: [[day-53|Day 53 - CST: The Risks Angle]]
+- Next: [[../week-10/day-55|Day 55 - AIA Solutions Overview Part 1]]
+- Week 9 summary: [[README|Week 9 - Uncovering Needs & Sales Concepts]]
