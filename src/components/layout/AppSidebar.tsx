@@ -159,6 +159,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
+    { title: "Content Studio", url: "/content-studio", icon: Sparkles, dataAttr: undefined, sectionId: "content-studio" },
     ...(isAdminUser ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 
