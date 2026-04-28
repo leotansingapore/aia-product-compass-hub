@@ -36,6 +36,41 @@ The target:
 
 **Why 100?** It's the sweet spot. Under 50 is too few to sustain a pipeline. Over 200 is unmanageable and mentally exhausting. 100 is the Goldilocks number.
 
+## 1a. Build it before RNF — the unguarded window
+
+Project 100 is meant to start the **day you join**, not the day you pass M9. The pre-RNF window is the most undervalued asset in this entire programme, for a simple reason:
+
+**Before licensing, you can honestly say "I can't sell you anything anyway."**
+
+That single line changes the chemistry of every conversation. The prospect's guard goes down. They give you real answers about money, family, worries, plans — because they hear "trainee learning the craft," not "salesperson with a quota."
+
+The opening you can use *only* in this window:
+
+> "Hey [name] — I've just joined a financial advisory programme. I'm pre-licensed, so I literally can't sell you anything for the next few weeks. But part of the training is doing market surveys with 20 people I trust. 30 minutes, no product talk — just trying to understand what people actually care about when it comes to money. Can I buy you coffee next week?"
+
+This works for two reasons that disappear the moment you're licensed:
+
+1. **The "can't sell" disclaimer is true,** so the prospect's guard never goes up in the first place. They're not bracing for a pitch because there *can't* be one.
+2. **You're asking for help, not for time.** Most people refuse a sales meeting. Most people happily help a friend who's training. Same calendar slot, completely different emotional category.
+
+### What this looks like by license day
+
+A properly-worked pre-licensing window — say 6–8 weeks of market-survey conversations with 30–50 people from your Project 100 — leaves you with:
+
+- **10–20 prospects who already know you and your "why"**, and have been told you'll be licensed in a few weeks.
+- A nurture list with real context — kids, mortgage, parents' health, retirement worry — that you couldn't have extracted in a cold sales meeting.
+- A queue of warm second meetings ready to convert into real fact-finds the moment you can issue policies.
+
+Compare that to the FC who waits until their license drops before reaching out:
+
+- Their first message after licensing **always reads as a pitch** — even when it's a casual "let's catch up." The licensed status itself signals "now you can buy from me."
+- Guards go up. *"Why are you reaching out now?"* The cycle restarts at zero on every contact.
+- Three months in, they're cold-prospecting strangers because their warm circle felt ambushed.
+
+**The asymmetry:** every conversation you have pre-licensed is **lower-resistance and higher-trust** than the same conversation post-licensed. The window only opens once. Spend it.
+
+> Reread Day 19's "the prospecting cycle is years, not weeks" if you need a reminder of why this compounds. The seed planted in Week 1 of joining bears fruit in Year 1, 3, 5.
+
 ## 1b. Market temperature — where the real market lives
 
 Before you start listing names, understand the three rings your contacts sit in. Most new FCs exhaust the **hot** ring in 6 weeks and conclude "I've run out of people" — when in reality they've never touched the largest ring.

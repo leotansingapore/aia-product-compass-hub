@@ -216,6 +216,30 @@ Most first meetings don't close. That's normal. What kills conversion isn't the 
 
 **Why 7 and not 3:** industry data consistently shows 60%+ of sales happen after touch 5. Most new FCs quit at touch 2 or 3. The follow-up is the sale.
 
+### Closed door vs open door — the line that decides Year 3 revenue
+
+Most "no" responses sit somewhere between *"not now"* and *"never."* What kills the future relationship isn't the no — it's how **you** end the conversation.
+
+Two failure modes silently shut the door:
+
+- **The polite-final close.** *"Ok, no worries."* Read by the prospect as: *the conversation is over and reaching out again would be awkward.* You've told them you don't want to be bothered.
+- **The ghost.** No reply at all when they say "not interested." Same effect, even harsher: future contact now feels like ambushing a closed channel.
+
+What an open-door close sounds like instead:
+
+> "Totally fair — appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side. If you think of someone who'd find this useful, I'd be grateful for a name — but only if it comes to mind naturally."
+
+What this line is doing:
+
+1. **Acknowledges the no without arguing it.** No reframe attempt, no second pitch.
+2. **Names the future scenario explicitly** — "if anything changes." This gives the prospect *permission* to reach out months later when life shifts. Without that permission, most people feel awkward initiating.
+3. **Plants the referral seed without an ask.** "If someone comes to mind naturally" is *not* a request — it's an invitation. Years later, when their friend mentions a baby on the way, your name surfaces because you told them you'd want to know.
+4. **Removes the obligation.** "No follow-up needed from your side" — the lighter you make the relationship feel, the more likely they reactivate it.
+
+**The seed-and-fruit math:** every door you leave open is a future inbound message. *"Hey — remember you said to reach out if anything changed? My dad just got a CI diagnosis."* That conversation, three years later, came from one well-handled "no" today. Multiply that across the 100+ "not now"s a working FC accumulates and you've built the inbound pipeline that defines Year 3 onwards.
+
+**The single rule:** never let a no end the relationship. End every "no" with the door visibly propped open and a future scenario named.
+
 ---
 
 ## 9. The nurture system (keeping "not now" prospects alive)

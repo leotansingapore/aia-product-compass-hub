@@ -55,6 +55,29 @@ Your sales cycle has stages, and each stage takes time:
 
 This is why the FCs who quit in Month 2 rarely see the compounding. They look at Month 2's commission, compare it to a corporate salary, and give up — just before the Month 1 prospecting cashes out in Month 3.
 
+### The longer truth: the prospecting cycle is years, not weeks
+
+The 30–90 day window above is a *single* buying decision. The actual prospecting cycle — the time from first contact to a person being a paying client — is more like **1 to 10 years.**
+
+That sounds slow until you reframe it: *most* of your career income comes from people who you talked to before they bought from anyone. Insurance, savings, retirement plans — these aren't impulse buys. They get bought when life shifts: marriage, baby, parent diagnosed, bonus landed, mortgage approved. Your job is to be the person they already know on the day life shifts. That's the whole game. The seed you plant this month may bear fruit in Year 3, Year 5, even Year 10 — when the prospect needs something, or when they're asked who to refer.
+
+But that future fruit only happens if **the prospect knew you wanted their business** and **you left the door open** instead of going quiet after a "not now."
+
+### The unguarded pre-licensing window — your one-time advantage
+
+Here's the part most new FCs miss until it's too late: **the period before you're RNF-licensed is your most valuable prospecting window**, not your least.
+
+While you're not yet licensed:
+- You can honestly say *"I can't sell you anything anyway — I'm just doing market surveys to learn what people actually care about with money."*
+- That single line **disarms every guard** the prospect would otherwise put up. They hear "training, not sales." They give you real answers. They tell you about the spouse, the parent, the worry, the windfall.
+- You're not a salesperson asking for time. You're a friend learning a craft and asking for help. Different category, different reception.
+
+By the time your license drops:
+- A properly-worked pre-license window leaves you with **10–20 people queued up** — already in conversation, already aware you'll be licensed soon, already comfortable the next chat is "the real one."
+- Compare that to the FC who waits to be licensed before reaching out. Their first message after licensing reads as a pitch — even when it isn't. Guards go up. The cycle restarts at zero.
+
+**Practical implication:** don't wait until you have your license to start your Project 100 (Day 39) or your warm outreach. Start now, with the honest framing that you're learning. The unguarded window only opens once.
+
 ## 3. The three prospecting activities
 
 Everything you do to find clients falls into one of three buckets. All three need to run **in parallel**, not sequentially.
