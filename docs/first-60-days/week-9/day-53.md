@@ -17,7 +17,7 @@ tags: [first-60-days, week-9, skills]
 >
 > **🎥 Companion video — the full Canned Sales Track in action:** **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)**. Watch the entire CST delivered end-to-end with all of the structure below in one continuous flow. Reference for Assignment 1 Part B.
 >
-> **📄 Source script — the full OST (Odyssey Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full OST script reference](/learning-track/first-60-days/reference/ost-script-full)** — every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 OST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
+> **📄 Source script — the full CST (Canned Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full CST script reference](/learning-track/first-60-days/reference/ost-script-full)** — every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 CST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
 
 ## 0. Live training reference — the income-loss spine
 
@@ -341,11 +341,11 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
 
 ---
 
-## Appendix A — The OST Script (Page 1 + Page 2)
+## Appendix A — The CST Script (Page 1 + Page 2)
 
-> **OST = Odyssey Sales Track.** The canonical 2-page hand-drawn script delivered live at the prospect's first appointment. The pages are the actual artefact you draw in front of the client and hand to them at the end.
+> **CST = Canned Sales Track.** The canonical 2-page hand-drawn script delivered live at the prospect's first appointment. The pages are the actual artefact you draw in front of the client and hand to them at the end.
 >
-> Full source: **[OST Script — Full Reference](/learning-track/first-60-days/reference/ost-script-full)** (every line, every pause). The condensed version below is what you carry into the meeting.
+> Full source: **[CST Script — Full Reference](/learning-track/first-60-days/reference/ost-script-full)** (every line, every pause). The condensed version below is what you carry into the meeting.
 
 ### Page 1 — Risk Management & The Pyramid
 
@@ -414,7 +414,7 @@ This is the conceptual heart of Page 1.
 | **Hospitalisation** | **Expenses** — bills (50K bill → covered, 500K bill → covered) |
 | **Life / CI** | **Loss of Income** — pays YOU when you can't work |
 
-The OST worked example (CI hits a $45K-income earner):
+The CST worked example (CI hits a $45K-income earner):
 
 > *"What is your annual income? × 12, plus 13th-month bonus. Now: a major CI in Singapore — how long out of work? Cancer 1–1.5 years. Major stroke 5–10 years. **Average 3.5 years. Round down to 3.** With your annual income at $X, 3 years = $3X of income lost."*
 
@@ -537,7 +537,7 @@ The $100K CI buffer specifically funds: home care, nursing, taxi/grab (can't tak
 
 ---
 
-### OST delivery rules — 10 non-negotiables
+### CST delivery rules — 10 non-negotiables
 
 From the source script's "note to advisors" page. Memorise these — the script's effectiveness collapses if you skip them.
 
