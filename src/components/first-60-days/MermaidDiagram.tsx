@@ -406,6 +406,13 @@ export function MermaidDiagram({ code }: Props) {
           <div
             className={cn(
               "relative flex w-full justify-center px-3 pb-5 pt-5 sm:px-6 sm:pt-8 sm:pb-6",
+              // Inline (non-modal) view: cap SVG height so a tall top-down
+              // flowchart can't dominate the page. An 8-node TD chart at
+              // container width was rendering ~70vh tall on desktop and
+              // ~120vh tall on mobile — the diagram swallowed surrounding
+              // text. Capping the SVG keeps it glanceable; tap-to-enlarge
+              // is the safety valve when readers need full detail.
+              "[&_svg]:!max-h-[55vh] sm:[&_svg]:!max-h-[50vh]",
               DIAGRAM_STYLE_CLASSES,
             )}
             dangerouslySetInnerHTML={{ __html: svg }}
