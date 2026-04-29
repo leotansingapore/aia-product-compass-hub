@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { CheckCircle2, XCircle, RotateCcw, ArrowRight, Sparkles, Trophy, Target } from "lucide-react";
+import { CheckCircle2, XCircle, RotateCcw, ArrowRight, Sparkles, Trophy, Target, NotebookPen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -51,11 +51,18 @@ type Props = {
   progress?: QuizProgressAdapter;
   /** Base path for day links. Defaults to "/learning-track/first-60-days". */
   basePath?: string;
+  /** True when the day has a Reflection section. On no-quiz days the reflection
+   *  submission alone marks the day complete - the "Mark complete" button is
+   *  hidden so the user is pointed to the Reflection tab instead. */
+  hasReflection?: boolean;
+  /** True when this is the final day in the track (Day 60). The completion
+   *  message switches from "next day unlocked" to "track complete". */
+  isFinalDay?: boolean;
 };
 
 type Verdict = "pending" | "correct" | "incorrect";
 
-export function DayQuiz({ dayNumber, questions, progress: externalProgress, basePath = "/learning-track/first-60-days" }: Props) {
+export function DayQuiz({ dayNumber, questions, progress: externalProgress, basePath = "/learning-track/first-60-days", hasReflection = false, isFinalDay = false }: Props) {
   const defaultProgress = useFirst60DaysProgress();
   const { recordQuiz, isQuizPassed, getDay } = externalProgress ?? defaultProgress;
   const alreadyPassed = isQuizPassed(dayNumber);
@@ -86,18 +93,42 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
   }, [finished, correctCount, total, dayNumber, recordQuiz]);
 
   if (total === 0) {
+    // Day has no quiz. Two sub-cases:
+    //   1. Has reflection (e.g. Day 60 graduation) — submitting the reflection
+    //      alone marks the day complete; this tab just points the user there.
+    //   2. No reflection either — the user clicks Mark Complete here.
+    if (hasReflection) {
+      return (
+        <Card className="border-border/60">
+          <CardContent className="space-y-4 p-6">
+            <p className="text-sm text-muted-foreground">
+              This day has no quiz - it&apos;s a {isFinalDay ? "graduation reflection" : "reflection-only"} module.
+              {" "}
+              Submit your reflection on the <strong>Reflection</strong> tab and the day completes
+              automatically{isFinalDay ? " - that&apos;s your sign-off for the entire 60-day track." : "."}
+            </p>
+            <div className="flex items-center gap-2 rounded-lg border border-blue-500/30 bg-blue-500/5 px-4 py-2.5 text-sm">
+              <NotebookPen className="h-4 w-4 text-blue-500" />
+              <span className="text-blue-700 dark:text-blue-300">
+                No "Mark complete" button needed - the Reflection submit handles it.
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
     return (
       <Card className="border-border/60">
         <CardContent className="space-y-4 p-6">
           <p className="text-sm text-muted-foreground">
             This day has no quiz - it&apos;s a reflection/graduation module. Mark yourself complete once
-            you&apos;ve finished the reflection worksheet to unlock the next day.
+            you&apos;ve finished the reading to unlock the next day.
           </p>
           {alreadyPassed ? (
             <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-4 py-2.5 text-sm">
               <Trophy className="h-4 w-4 text-emerald-500" />
               <span className="text-emerald-700 dark:text-emerald-300">
-                Day marked complete. The next day is unlocked.
+                {isFinalDay ? "Track complete - graduation locked in." : "Day marked complete. The next day is unlocked."}
               </span>
             </div>
           ) : (
@@ -107,7 +138,7 @@ export function DayQuiz({ dayNumber, questions, progress: externalProgress, base
               className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
             >
               <Sparkles className="mr-2 h-4 w-4" />
-              Mark this day complete
+              {isFinalDay ? "Sign off on graduation" : "Mark this day complete"}
             </Button>
           )}
         </CardContent>

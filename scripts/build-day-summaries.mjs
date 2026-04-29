@@ -10,6 +10,7 @@ const TARGETS = [
 
 const FRONT_RE = /^---\s*\n([\s\S]*?)\n---/;
 const REFLECTION_RE = /^##\s+(Reflection worksheet|Final reflection[^\n]*)$/m;
+const QUIZ_RE = /^##\s+(Quick quiz|Quiz)\s*$/m;
 
 function buildSummaries(root, out, daysPerWeek = 6) {
   if (!existsSync(root)) {
@@ -40,6 +41,7 @@ function buildSummaries(root, out, daysPerWeek = 6) {
       const title = get("title") ?? "";
       const duration = Number(get("duration_minutes") ?? 20);
       const hasReflection = REFLECTION_RE.test(raw);
+      const hasQuiz = QUIZ_RE.test(raw);
       summaries.push({
         dayNumber: day,
         week,
@@ -47,6 +49,7 @@ function buildSummaries(root, out, daysPerWeek = 6) {
         title,
         duration,
         hasReflection,
+        hasQuiz,
       });
     }
   }
@@ -64,6 +67,7 @@ function buildSummaries(root, out, daysPerWeek = 6) {
     "  title: string;",
     "  duration: number;",
     "  hasReflection: boolean;",
+    "  hasQuiz: boolean;",
     "};",
     "",
     "export const DAY_SUMMARIES: DaySummary[] = " +
@@ -74,6 +78,10 @@ function buildSummaries(root, out, daysPerWeek = 6) {
     "",
     "export const DAYS_WITH_REFLECTION: ReadonlySet<number> = new Set(",
     "  DAY_SUMMARIES.filter((d) => d.hasReflection).map((d) => d.dayNumber),",
+    ");",
+    "",
+    "export const DAYS_WITHOUT_QUIZ: ReadonlySet<number> = new Set(",
+    "  DAY_SUMMARIES.filter((d) => !d.hasQuiz).map((d) => d.dayNumber),",
     ");",
     "",
   ].join("\n");

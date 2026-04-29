@@ -9,6 +9,7 @@ export type DaySummary = {
   title: string;
   duration: number;
   hasReflection: boolean;
+  hasQuiz: boolean;
 };
 
 export const DAY_SUMMARIES: DaySummary[] = [
@@ -18,7 +19,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Pro Achiever 3.0 — APA Foundations — What It Is + The Signature Pitch Concept",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 2,
@@ -26,7 +28,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Pro Achiever 3.0 — Run the Meeting — Fact-Find + 7-Phase Pitch Flow",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 3,
@@ -34,7 +37,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Pro Achiever 3.0 — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 4,
@@ -42,7 +46,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Pro Achiever 3.0 — Defence + Expansion — Top 5 Objections + Cross-sell",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 5,
@@ -50,7 +55,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Pro Achiever 3.0 — Compliance + Close — Disclosures, Paperwork, Post-Close Referral Architecture",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 6,
@@ -58,7 +64,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Pro Lifetime Protector — PLP Foundations — Two-in-One Plan + Lifeboat-on-the-Ship",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 7,
@@ -66,7 +73,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Pro Lifetime Protector — Run the Meeting — Fact-Find + 5-Step Pitch Flow",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 8,
@@ -74,7 +82,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Pro Lifetime Protector — The Math + The Q&A — Premium Charges, LCC, Top 5 Questions",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 9,
@@ -82,7 +91,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Pro Lifetime Protector — Defence + Expansion — PLP-vs-GPP/APA/Term + Cross-sell",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 10,
@@ -90,7 +100,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Pro Lifetime Protector — Compliance + Close — ILP Disclosures, Budget-Choice Close, Retention",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 11,
@@ -98,7 +109,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Guaranteed Protect Plus — GPP Foundations — What It Is + The Rocket-Ship Diagram",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 12,
@@ -106,7 +118,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Guaranteed Protect Plus — Run the Meeting — Fact-Find + 6-Phase Pitch Flow",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 13,
@@ -114,7 +127,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Guaranteed Protect Plus — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 14,
@@ -122,7 +136,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Guaranteed Protect Plus — Defence + Expansion — Top 5 Objections + Cross-sell",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 15,
@@ -130,7 +145,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Guaranteed Protect Plus — Compliance + Close — Disclosures, Four-Hoops Close, Paperwork, Delivery",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 16,
@@ -138,7 +154,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Ultimate Critical Cover — UCC Foundations — Pure-CI Distinction + Multi-Claim Staircase",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 17,
@@ -146,7 +163,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Ultimate Critical Cover — Run the Meeting — 5 Power Questions + 5-Phase Pitch Flow",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 18,
@@ -154,7 +172,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Ultimate Critical Cover — The Math + The Q&A — Caps, Enhancer Mechanics, Top 5 Questions",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 19,
@@ -162,7 +181,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Ultimate Critical Cover — Defence + Expansion — 5 Objections + GPP+UCC Canonical Pair",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 20,
@@ -170,7 +190,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Ultimate Critical Cover — Compliance + Close — 6 Compliance Pillars + Term-Then-Rider Close",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 21,
@@ -178,7 +199,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "HealthShield Gold Max — HSGM Foundations — What It Is + First-Line-of-Defence + Travel Package",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 22,
@@ -186,7 +208,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "HealthShield Gold Max — Run the Meeting — Fact-Find + 8-Phase Pitch Flow",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 23,
@@ -194,7 +217,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "HealthShield Gold Max — The Math + The Q&A — Numbers, Charges, Top 5 Client Questions",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 24,
@@ -202,7 +226,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "HealthShield Gold Max — Defence + Expansion — Top 5 Objections + Cross-sell",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 25,
@@ -210,7 +235,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "HealthShield Gold Max — Compliance + Close — Disclosures, Two-Option Close, Paperwork, Delivery",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 26,
@@ -218,7 +244,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Solitaire PA — Solitaire PA Foundations — Universal-Fit + Partial-Disability Gap",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 27,
@@ -226,7 +253,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Solitaire PA — Run the Meeting — Fact-Find + 7-Phase Pitch Flow",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 28,
@@ -234,7 +262,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Solitaire PA — The Math + The Q&A — 4 Plans × 8 Benefits + Top 5 Questions",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 29,
@@ -242,7 +271,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Solitaire PA — Defence + Expansion — Top 5 Objections + Total Wealth Bucket 4",
     "duration": 55,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 30,
@@ -250,7 +280,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Solitaire PA — Compliance + Close — Disclosures, Direct Close, Self-Claim Handoff",
     "duration": 50,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 31,
@@ -258,7 +289,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Platinum Wealth Venture — PWV Foundations — 5-Min Intro + THE Drawing Concept",
     "duration": 70,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 32,
@@ -266,7 +298,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Platinum Wealth Venture — Run the Meeting — 16-Point Discovery + 7-Phase Pitch Flow",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 33,
@@ -274,7 +307,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Platinum Wealth Venture — The Math + The Q&A — Healthcare Cost Angle, Color-Coded Review, Top 5 Questions",
     "duration": 60,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 34,
@@ -282,7 +316,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Platinum Wealth Venture — Defence + Expansion — Top 5 Objections + APA→PWV Restructure",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 35,
@@ -290,7 +325,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Platinum Wealth Venture — Compliance + Close — ILP Disclosures + Gentle Close + 12-Item Execution Checklist",
     "duration": 65,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   }
 ];
 
@@ -298,4 +334,8 @@ export const TOTAL_DAYS = DAY_SUMMARIES.length;
 
 export const DAYS_WITH_REFLECTION: ReadonlySet<number> = new Set(
   DAY_SUMMARIES.filter((d) => d.hasReflection).map((d) => d.dayNumber),
+);
+
+export const DAYS_WITHOUT_QUIZ: ReadonlySet<number> = new Set(
+  DAY_SUMMARIES.filter((d) => !d.hasQuiz).map((d) => d.dayNumber),
 );

@@ -9,6 +9,7 @@ export type DaySummary = {
   title: string;
   duration: number;
   hasReflection: boolean;
+  hasQuiz: boolean;
 };
 
 export const DAY_SUMMARIES: DaySummary[] = [
@@ -16,9 +17,10 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 1,
     "week": 1,
     "dayInWeek": 1,
-    "title": "Welcome — The Journey Begins",
+    "title": "Welcome - The Journey Begins",
     "duration": 15,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 2,
@@ -26,7 +28,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Why Financial Planning Matters",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 3,
@@ -34,7 +37,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Four Assurances of This Career",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 4,
@@ -42,15 +46,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Growth vs Fixed Mindset",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 5,
     "week": 1,
     "dayInWeek": 5,
-    "title": "Purpose-Driven Life — Your Real Why",
+    "title": "Purpose-Driven Life - Your Real Why",
     "duration": 30,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 6,
@@ -58,7 +64,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Forming Habits That Compound",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 7,
@@ -66,15 +73,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "The Insurance Industry & AIA Singapore",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 8,
     "week": 2,
     "dayInWeek": 2,
-    "title": "Career Sharing — The Path Ahead",
+    "title": "Career Sharing - The Path Ahead",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 9,
@@ -82,7 +91,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "The Poor, The Middle Class, and The Rich",
     "duration": 30,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 10,
@@ -90,15 +100,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Your Greatest Purchase = Freedom",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 11,
     "week": 2,
     "dayInWeek": 5,
-    "title": "The Cashflow Quadrant — Beyond 9–5",
+    "title": "The Cashflow Quadrant - Beyond 9-5",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 12,
@@ -106,7 +118,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "The Financial Freedom Pyramid",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 13,
@@ -114,7 +127,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Job A vs Job B",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 14,
@@ -122,15 +136,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "The Total Wealth Concept",
     "duration": 35,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 15,
     "week": 3,
     "dayInWeek": 3,
-    "title": "Wealth Building — The Principles",
+    "title": "Wealth Building - The Principles",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 16,
@@ -138,7 +154,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Recurring vs Non-Recurring Revenue",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 17,
@@ -146,23 +163,26 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "The Wealth-Builder's Mindset",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 18,
     "week": 3,
     "dayInWeek": 6,
-    "title": "The 10X Rule — Mindset Shift",
+    "title": "The 10X Rule - Mindset Shift",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 19,
     "week": 4,
     "dayInWeek": 1,
-    "title": "Prospecting — The Lifeblood of Your Business",
+    "title": "Prospecting - The Lifeblood of Your Business",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 20,
@@ -170,7 +190,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Basic Productivity & Time Efficiency",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 21,
@@ -178,15 +199,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Closing & Sales Appointment Framework",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 22,
     "week": 4,
     "dayInWeek": 4,
-    "title": "Productivity Principles — Schedule Your Priorities",
+    "title": "Productivity Principles - Schedule Your Priorities",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 23,
@@ -194,15 +217,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Feel-Good Productivity",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 24,
     "week": 4,
     "dayInWeek": 6,
-    "title": "The Time Management Matrix — Big Rocks First",
+    "title": "The Time Management Matrix - Big Rocks First",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 25,
@@ -210,7 +235,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Your Personal Weekly Rhythm",
     "duration": 15,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 26,
@@ -218,31 +244,35 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "The 10X Rule in Daily Action",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 27,
     "week": 5,
     "dayInWeek": 3,
-    "title": "Your Personal Activity Scorecard — Weekly Ratios & FYC × 4",
+    "title": "Your Personal Activity Scorecard - Weekly Ratios & FYC x 4",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 28,
     "week": 5,
     "dayInWeek": 4,
-    "title": "Time Value of Money — The Complete Reference",
+    "title": "Time Value of Money - The Complete Reference",
     "duration": 75,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 29,
     "week": 5,
     "dayInWeek": 5,
-    "title": "Compounding — The 8th Wonder of the World",
+    "title": "Compounding - The 8th Wonder of the World",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 30,
@@ -250,63 +280,71 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Dollar Cost Averaging",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 31,
     "week": 6,
     "dayInWeek": 1,
-    "title": "TVM Practice Day — Apply Day 28",
+    "title": "TVM Practice Day - Apply Day 28",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 32,
     "week": 6,
     "dayInWeek": 2,
-    "title": "The Rule of 72 — Applied",
+    "title": "The Rule of 72 - Applied",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 33,
     "week": 6,
     "dayInWeek": 3,
-    "title": "Understanding CPF — The Singapore Foundation",
+    "title": "Understanding CPF and CPF LIFE - The Singapore Foundation",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 34,
     "week": 6,
     "dayInWeek": 4,
     "title": "What Are Investments?",
-    "duration": 20,
-    "hasReflection": false
+    "duration": 25,
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 35,
     "week": 6,
     "dayInWeek": 5,
-    "title": "Inflation — The Silent Wealth Killer",
+    "title": "Inflation - The Silent Wealth Killer",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 36,
     "week": 6,
     "dayInWeek": 6,
-    "title": "TVM Mastery Drill — Live Client Speed Test",
+    "title": "TVM Mastery Drill - Live Client Speed Test",
     "duration": 30,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 37,
     "week": 7,
     "dayInWeek": 1,
-    "title": "The Approach — Cold, Warm, Follow-Up & Nurture",
+    "title": "The Approach - Cold, Warm, Follow-Up & Nurture",
     "duration": 35,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 38,
@@ -314,47 +352,53 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Natural Market vs Referred Leads",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 39,
     "week": 7,
     "dayInWeek": 3,
-    "title": "Building the Prospect List — Project 100",
+    "title": "Building the Prospect List - Project 100",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 40,
     "week": 7,
     "dayInWeek": 4,
-    "title": "Digital Influence — Setting Up Your Presence",
+    "title": "Digital Influence - Setting Up Your Presence",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 41,
     "week": 7,
     "dayInWeek": 5,
-    "title": "Digital Influence — Content & Engagement",
+    "title": "Digital Influence - Content & Engagement",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 42,
     "week": 7,
     "dayInWeek": 6,
-    "title": "Digital Influence — Lead-Gen Playbook",
+    "title": "Digital Influence - Lead-Gen Playbook",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 43,
     "week": 8,
     "dayInWeek": 1,
-    "title": "Scripting Your Approach",
-    "duration": 25,
-    "hasReflection": false
+    "title": "The Approach - Warm Market Survey & Cold Calls",
+    "duration": 30,
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 44,
@@ -362,31 +406,35 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Handling Resistance & Objections",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 45,
     "week": 8,
     "dayInWeek": 3,
-    "title": "Storytelling — The Hook",
+    "title": "Storytelling - The Hook",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 46,
     "week": 8,
     "dayInWeek": 4,
-    "title": "Identifying DISC — Reading People in 60 Seconds",
+    "title": "Identifying DISC - Reading People in 60 Seconds",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 47,
     "week": 8,
     "dayInWeek": 5,
-    "title": "SPIN — The Framework",
+    "title": "ARQ — Asking the Right Questions (SPIN as the Grammar)",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 48,
@@ -394,7 +442,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Situation & Problem Questions",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 49,
@@ -402,23 +451,26 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Implication & Need-Payoff Questions",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 50,
     "week": 9,
     "dayInWeek": 2,
-    "title": "Client Financial Review — Part 1",
+    "title": "Client Financial Review - Part 1",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 51,
     "week": 9,
     "dayInWeek": 3,
-    "title": "Client Financial Review — Part 2",
+    "title": "Client Financial Review - Part 2",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 52,
@@ -426,15 +478,17 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Retirement Step-by-Step CST",
     "duration": 35,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 53,
     "week": 9,
     "dayInWeek": 5,
-    "title": "CST — The Risks Angle",
+    "title": "CST - The Risks Angle",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 54,
@@ -442,39 +496,44 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Concept Selling",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 55,
     "week": 10,
     "dayInWeek": 1,
-    "title": "AIA Solutions — Wealth Products",
+    "title": "AIA Solutions - Wealth Products",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 56,
     "week": 10,
     "dayInWeek": 2,
-    "title": "AIA Solutions — Protection & Living Benefits",
+    "title": "AIA Solutions - Protection & Living Benefits",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 57,
     "week": 10,
     "dayInWeek": 3,
-    "title": "Investment-Linked Plans — Core Mechanics",
+    "title": "Investment-Linked Plans - Core Mechanics",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 58,
     "week": 10,
     "dayInWeek": 4,
-    "title": "Policy Summary — Riders, Exclusions, Structure",
+    "title": "Policy Summary - Riders, Exclusions, Structure",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 59,
@@ -482,7 +541,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Proposal Writing + Closing Techniques",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 60,
@@ -490,7 +550,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Claims Handling + Graduation",
     "duration": 30,
-    "hasReflection": true
+    "hasReflection": true,
+    "hasQuiz": false
   }
 ];
 
@@ -498,4 +559,8 @@ export const TOTAL_DAYS = DAY_SUMMARIES.length;
 
 export const DAYS_WITH_REFLECTION: ReadonlySet<number> = new Set(
   DAY_SUMMARIES.filter((d) => d.hasReflection).map((d) => d.dayNumber),
+);
+
+export const DAYS_WITHOUT_QUIZ: ReadonlySet<number> = new Set(
+  DAY_SUMMARIES.filter((d) => !d.hasQuiz).map((d) => d.dayNumber),
 );

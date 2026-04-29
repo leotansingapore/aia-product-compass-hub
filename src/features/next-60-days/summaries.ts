@@ -9,6 +9,7 @@ export type DaySummary = {
   title: string;
   duration: number;
   hasReflection: boolean;
+  hasQuiz: boolean;
 };
 
 export const DAY_SUMMARIES: DaySummary[] = [
@@ -18,7 +19,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Day 1 of Your Real Career — What Changes Now You're Licensed",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 2,
@@ -26,7 +28,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "The Activity Math — Appointments × Close Rate × Case Size",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 3,
@@ -34,7 +37,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Your 90-Day Scorecard — KPIs + Revenue Math",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 4,
@@ -42,7 +46,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Your Story — First Real Draft",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 5,
@@ -50,7 +55,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Tonality & Salesmanship — How You Say It",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 6,
@@ -58,7 +64,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — Record Your 90-Second Intro",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 7,
@@ -66,7 +73,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "The Intent Statement — Framework",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 8,
@@ -74,7 +82,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "The Intent Statement — Your Pattern Interrupt",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 9,
@@ -82,7 +91,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Positioning — The Objective Advisor",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 10,
@@ -90,7 +100,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Personal Branding P1 — Profile as Compound Asset",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 11,
@@ -98,7 +109,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Personal Branding P2 — Content + Stories Rhythm",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 12,
@@ -106,7 +118,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — Deliver Your Intent Statement to 3 Prospects",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 13,
@@ -114,7 +127,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "The 5 Silent Questions — What Prospects Check Before DMing You",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 14,
@@ -122,7 +136,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Testimonials That Actually Convert",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 15,
@@ -130,7 +145,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Digital Pipeline Hygiene — Where Leads Actually Live",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 16,
@@ -138,7 +154,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "The DM Funnel — Reply Scripts",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 17,
@@ -146,7 +163,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "CRAB Framework — Handling Blue Ticks",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 18,
@@ -154,7 +172,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 3 Posts Shipped, 5 DM Conversations Opened",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 19,
@@ -162,7 +181,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Prospecting Mindset — The Master Map",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 20,
@@ -170,7 +190,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Reaching Out Without Feeling Salesy",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 21,
@@ -178,7 +199,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Market Survey — The Warm-Market Framework",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 22,
@@ -186,7 +208,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Cold Prospecting + the ABCD Promises",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 23,
@@ -194,7 +217,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Your Pipeline Board — Tools and Weekly Review",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 24,
@@ -202,7 +226,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 30 Outreaches, 5 Appointments Booked",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 25,
@@ -210,7 +235,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Why Newly-Joined FCs Under-Ask — and Why It Compounds",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 26,
@@ -218,7 +244,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "The Referral Asking Framework",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 27,
@@ -226,7 +253,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Quality of the Ask — Context > Script",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 28,
@@ -234,7 +262,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "The Scripts Day — FACT Method + 10-Name Ask + Coaching the Client",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 29,
@@ -242,7 +271,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "The Flywheel + the CAR Diagnostic",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 30,
@@ -250,7 +280,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 10 Referral Asks Delivered, 3 Referrals Logged",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 31,
@@ -258,7 +289,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "DISC — Four Profiles + the 5-Minute Speed-Read",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 32,
@@ -266,7 +298,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "D Profile — Direct, Dominant, Decisive",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 33,
@@ -274,7 +307,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "I Profile — Influencing, Social, Expressive",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 34,
@@ -282,7 +316,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "S Profile — Steady, Supportive, Patient",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 35,
@@ -290,7 +325,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "C Profile — Conscientious, Analytical, Cautious",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 36,
@@ -298,7 +334,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — Roleplay All 4 Profiles on Camera",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 37,
@@ -306,7 +343,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Hot Buttons I — What Actually Drives Buying",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 38,
@@ -314,7 +352,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Hot Buttons II — Mapping Value to Emotion",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 39,
@@ -322,7 +361,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Hot Buttons III — Pain-Before-Gain Framing",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 40,
@@ -330,7 +370,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Objection Turnaround — Anchor-Disrupt-Ask + ART + Iceberg",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 41,
@@ -338,7 +379,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Pitch Mechanics — Confidence Language + the 4 Closes",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 42,
@@ -346,7 +388,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 3 Pitches, 3 Profiles, 3 Hot Buttons",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 43,
@@ -354,7 +397,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Asking the Right Questions I — The Power Question",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 44,
@@ -362,7 +406,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Asking the Right Questions II — Silence as a Tool",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 45,
@@ -370,7 +415,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Sales Angles — Wealth, Risk, Legacy, Lifestyle",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 46,
@@ -378,7 +424,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Choosing the Right Angle for This Prospect",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 47,
@@ -386,7 +433,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Analyzing Products + Crafting the Pitch",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 48,
@@ -394,7 +442,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 1 Live Pitch on Camera, Self-Reviewed",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 49,
@@ -402,7 +451,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Closing I — The Trial Close + Paper-Flip Social Proof",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 50,
@@ -410,7 +460,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "Closing II — Assumptive, Choice, Urgency",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 51,
@@ -418,7 +469,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Closing III — Emotional Close vs Logical Close",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 52,
@@ -426,7 +478,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "The 3 Magic Questions on Objections",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 53,
@@ -434,7 +487,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Top 10 Objections + Scripts",
     "duration": 25,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 54,
@@ -442,7 +496,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Practice — 5 Objection Drills Recorded",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 55,
@@ -450,7 +505,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 1,
     "title": "Policy Restructuring — When and Ethics",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 56,
@@ -458,7 +514,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 2,
     "title": "After Sales — Onboarding Your First Client",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 57,
@@ -466,7 +523,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 3,
     "title": "Building Moments — The Touch-Point Calendar",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 58,
@@ -474,7 +532,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 4,
     "title": "Case Study — How a Top Producer Actually Runs a Week",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 59,
@@ -482,7 +541,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 5,
     "title": "Your First $X FYC — Reviewing Your Numbers",
     "duration": 20,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   },
   {
     "dayNumber": 60,
@@ -490,7 +550,8 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayInWeek": 6,
     "title": "Graduation — The 12-Month Plan",
     "duration": 45,
-    "hasReflection": false
+    "hasReflection": false,
+    "hasQuiz": true
   }
 ];
 
@@ -498,4 +559,8 @@ export const TOTAL_DAYS = DAY_SUMMARIES.length;
 
 export const DAYS_WITH_REFLECTION: ReadonlySet<number> = new Set(
   DAY_SUMMARIES.filter((d) => d.hasReflection).map((d) => d.dayNumber),
+);
+
+export const DAYS_WITHOUT_QUIZ: ReadonlySet<number> = new Set(
+  DAY_SUMMARIES.filter((d) => !d.hasQuiz).map((d) => d.dayNumber),
 );

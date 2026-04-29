@@ -580,7 +580,12 @@ export default function First60DaysDay() {
 
         <TabsContent value="quiz" className="mt-5">
           <Suspense fallback={<TabFallback />}>
-            <DayQuiz dayNumber={dayNumber} questions={day.quiz} />
+            <DayQuiz
+              dayNumber={dayNumber}
+              questions={day.quiz}
+              hasReflection={hasReflection}
+              isFinalDay={dayNumber === 60}
+            />
           </Suspense>
         </TabsContent>
       </Tabs>

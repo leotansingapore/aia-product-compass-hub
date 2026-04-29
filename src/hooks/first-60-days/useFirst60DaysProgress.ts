@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
-import { DAYS_WITH_REFLECTION } from "@/features/first-60-days/summaries";
+import { DAYS_WITH_REFLECTION, DAYS_WITHOUT_QUIZ } from "@/features/first-60-days/summaries";
 
 const LEGACY_KEY = "first-60-days-progress-v1";
 const MIGRATION_FLAG = "first-60-days-migration-done";
@@ -313,8 +313,17 @@ export function useFirst60DaysProgress() {
     (dayNumber: number): boolean => {
       const d = daysMap[dayNumber];
       if (!d) return false;
+      const noQuiz = DAYS_WITHOUT_QUIZ.has(dayNumber);
+      const hasReflection = DAYS_WITH_REFLECTION.has(dayNumber);
+      // For no-quiz days (e.g. Day 60's reflection-only graduation module),
+      // submitting the reflection is sufficient. Otherwise the quiz must pass.
+      if (noQuiz) {
+        if (hasReflection && !d.reflectionSubmittedAt) return false;
+        if (!hasReflection && !d.quizPassedAt) return false;
+        return true;
+      }
       if (!d.quizPassedAt) return false;
-      if (DAYS_WITH_REFLECTION.has(dayNumber) && !d.reflectionSubmittedAt) return false;
+      if (hasReflection && !d.reflectionSubmittedAt) return false;
       return true;
     },
     [daysMap]
