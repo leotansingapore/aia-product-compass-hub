@@ -357,30 +357,30 @@ export default function First60DaysDay() {
           }}
         />
 
-        <div className="relative grid gap-4 p-4 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
+        <div className="relative grid gap-3 p-3.5 sm:gap-6 sm:p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-10">
           {/* Left: day numeral + completion ring inline */}
-          <div className="flex items-center gap-4 sm:gap-5">
+          <div className="flex items-center gap-3 sm:gap-5">
             <div className="relative sm:pt-4">
-              <span className="mb-1.5 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:absolute sm:left-0 sm:top-0 sm:mb-0 sm:px-2.5 sm:tracking-[0.2em]">
+              <span className="mb-1 inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-primary sm:absolute sm:left-0 sm:top-0 sm:mb-0 sm:px-2.5 sm:tracking-[0.2em]">
                 <Sparkles className="h-2.5 w-2.5" /> Day
               </span>
-              <div className="font-serif text-[clamp(2.75rem,11vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
+              <div className="font-serif text-[clamp(2.25rem,9vw,7rem)] font-bold leading-[0.9] tracking-tight tabular-nums text-primary">
                 {String(day.dayNumber).padStart(2, "0")}
               </div>
             </div>
             <div className="flex flex-col items-center gap-1 sm:gap-1.5">
               <div
-                className="relative grid h-14 w-14 place-items-center rounded-full sm:h-16 sm:w-16"
+                className="relative grid h-12 w-12 place-items-center rounded-full sm:h-16 sm:w-16"
                 style={{
                   background: `conic-gradient(hsl(var(--primary)) ${progressPct * 3.6}deg, hsl(var(--muted)) 0deg)`,
                 }}
                 aria-label={`${progressPct} percent complete`}
                 role="img"
               >
-                <div className="grid h-[48px] w-[48px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
-                  <span className="font-serif text-sm font-semibold tabular-nums text-foreground sm:text-base">
+                <div className="grid h-[40px] w-[40px] place-items-center rounded-full bg-card sm:h-[54px] sm:w-[54px]">
+                  <span className="font-serif text-xs font-semibold tabular-nums text-foreground sm:text-base">
                     {progressPct}
-                    <span className="text-[9px] text-muted-foreground sm:text-[10px]">%</span>
+                    <span className="text-[8px] text-muted-foreground sm:text-[10px]">%</span>
                   </span>
                 </div>
               </div>
@@ -467,41 +467,41 @@ export default function First60DaysDay() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="inline-flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
+        <TabsList className="grid h-auto w-full auto-cols-fr grid-flow-col gap-1 rounded-xl border border-border/60 bg-card/80 p-1 shadow-sm backdrop-blur">
           <TabsTrigger
             value="read"
-            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
-            <BookOpen className="h-4 w-4" />
-            Read
+            <BookOpen className="h-4 w-4 shrink-0" />
+            <span>Read</span>
           </TabsTrigger>
           <TabsTrigger
             value="video"
-            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
-            <Film className="h-4 w-4" />
-            Video
+            <Film className="h-4 w-4 shrink-0" />
+            <span>Video</span>
           </TabsTrigger>
           {hasReflection && (
             <TabsTrigger
               value="reflection"
-              className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+              className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
             >
-              <NotebookPen className="h-4 w-4" />
-              Reflection
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground">
+              <NotebookPen className="h-4 w-4 shrink-0" />
+              <span className="truncate">Reflect</span>
+              <span className="ml-0.5 hidden sm:inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground">
                 {day.reflection.length}
               </span>
             </TabsTrigger>
           )}
           <TabsTrigger
             value="quiz"
-            className="gap-1.5 rounded-lg px-3.5 py-2 min-h-11 sm:min-h-0 text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
+            className="gap-1 rounded-lg px-2 py-2 min-h-11 sm:min-h-0 sm:px-3.5 text-xs sm:text-sm font-medium text-muted-foreground transition-all data-[state=active]:bg-gradient-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-elegant"
           >
-            <ClipboardCheck className="h-4 w-4" />
-            Quiz
+            <ClipboardCheck className="h-4 w-4 shrink-0" />
+            <span>Quiz</span>
             {day.quiz.length > 0 && (
-              <span className="ml-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
+              <span className="ml-0.5 hidden sm:inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-muted px-1.5 text-[10px] font-semibold text-muted-foreground">
                 {day.quiz.length}
               </span>
             )}
@@ -510,7 +510,7 @@ export default function First60DaysDay() {
 
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
-            <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+            <CardContent className="prose prose-sm max-w-none px-3 py-4 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               {dayRehypeReady ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
                   {day.markdown}
@@ -594,15 +594,16 @@ export default function First60DaysDay() {
       {dayNumber % 6 === 0 && <WeekWrapup weekNumber={day.week} />}
 
       {/* Footer nav */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-4 sm:gap-3 sm:pt-5">
         {prev ? (
           <Button
             variant="ghost"
+            size="sm"
             onClick={() => navigate(`/learning-track/first-60-days/day/${prev.dayNumber}`)}
             onMouseEnter={() => prefetchDay(prev.dayNumber)}
             onFocus={() => prefetchDay(prev.dayNumber)}
             onTouchStart={() => prefetchDay(prev.dayNumber)}
-            className="group -ml-3 gap-2 text-muted-foreground hover:text-foreground"
+            className="group -ml-2 gap-1.5 text-muted-foreground hover:text-foreground sm:-ml-3 sm:gap-2"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             <span className="flex flex-col items-start leading-tight">
@@ -618,6 +619,7 @@ export default function First60DaysDay() {
         {next && (
           <Button
             variant={nextUnlocked ? "default" : "secondary"}
+            size="sm"
             disabled={!nextUnlocked}
             aria-label={
               nextUnlocked
@@ -629,8 +631,10 @@ export default function First60DaysDay() {
             onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
             onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
             className={cn(
-              "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
-              nextUnlocked && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
+              "group gap-2 whitespace-normal text-left",
+              nextUnlocked
+                ? "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+                : "h-auto basis-full justify-center py-2 text-xs leading-snug sm:basis-auto sm:py-1.5 sm:text-sm",
             )}
           >
             {nextUnlocked ? (
@@ -644,7 +648,7 @@ export default function First60DaysDay() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
             ) : (
-              <span className="text-xs leading-snug sm:text-sm">
+              <span>
                 {hasReflection && !quizPassed && !reflectionSubmitted
                   ? "Finish quiz + reflection to unlock"
                   : !quizPassed
@@ -665,14 +669,15 @@ export default function First60DaysDay() {
           aria-live="polite"
         >
           <div className="pointer-events-auto mx-auto max-w-3xl">
-            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
+            <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-3 shadow-elegant backdrop-blur sm:gap-3 sm:pl-4">
               <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
-              <p className="flex-1 text-sm font-medium leading-snug">
-                <span className="hidden sm:inline">Ready to lock today in? </span>
-                Take the quiz to unlock Day {dayNumber + 1}.
+              <p className="flex-1 text-xs font-medium leading-snug sm:text-sm">
+                <span className="hidden sm:inline">Ready to lock today in? Take the quiz to unlock Day {dayNumber + 1}.</span>
+                <span className="sm:hidden">Unlock Day {dayNumber + 1}</span>
               </p>
-              <Button size="sm" onClick={goToQuiz} className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95">
-                Take the quiz
+              <Button size="sm" onClick={goToQuiz} className="shrink-0 gap-1 bg-gradient-primary px-3 text-primary-foreground hover:opacity-95 sm:gap-1.5 sm:px-4">
+                <span className="hidden sm:inline">Take the quiz</span>
+                <span className="sm:hidden">Quiz</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
