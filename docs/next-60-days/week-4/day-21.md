@@ -89,7 +89,7 @@ If yes, lock the time in the same call:
 > *"Could I see you Thursday at 7, or would Saturday at 2 be better?"*
 
 ### Close
-> *"Really appreciate your help. Is it okay if I keep you posted on any promotions or insights that might be relevant? Could I get your email and date of birth so I can reach out properly?"*
+> *"Really appreciate your help. Is it okay if I keep you posted on any promotions or insights that might be relevant? Could I get your email and date of birth so I can stay in touch properly?"*
 
 ---
 

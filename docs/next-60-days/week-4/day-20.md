@@ -61,7 +61,7 @@ flowchart LR
 
 **4 · Offer help, not pressure.** Frame as an *invitation*, not a sales call.
 
-> *"If you're open to it, I'd love to do a quick, no-obligation review of where you're at and share some of what I've been learning."*
+> *"If you're open to it, I'd be happy to do a quick, no-obligation review of where you're at and share some of what I've been learning."*
 
 **5 · Give them an easy out.** The freedom to say no is what makes yes easy.
 

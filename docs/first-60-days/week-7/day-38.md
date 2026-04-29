@@ -147,7 +147,7 @@ These 4 sentences flip the meeting frame from "I'm being sold to" to "someone is
 The best time to ask for a referral is **at the end of every meeting**, especially meetings where the prospect was warm and engaged - whether they bought or not.
 
 ### The standard referral ask
-> "[Name], I really enjoyed our conversation today. You've been generous with your time. One way I grow this business is through people like you making introductions. Can you think of 2-3 friends who would benefit from the kind of conversation we just had?"
+> "[Name], I really enjoyed our conversation today, and appreciate you being so generous with your time. The way I grow this practice is mostly through introductions from clients like yourself. Can you think of 2-3 friends who would benefit from the same kind of conversation we just had?"
 
 ### If they say yes
 > "Great. Tell me a bit about them - what's their situation? [Listen.] Would you be comfortable sending them a quick message saying I'll be in touch?"
