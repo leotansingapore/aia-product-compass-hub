@@ -190,14 +190,15 @@ The pattern repeats across careers. **The relationship matters more than the mon
 
 ## 7. The emotional hygiene rule
 
-Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day.
+Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day - even if the math is the same. The fix is **structured recovery**, not a low call ceiling. Power-hour blocks of 30-50 dials are normal and necessary if you want to hit 100 calls/week.
 
 **Protect yourself:**
-- **Don't make more than 15 prospecting calls in a single session.** Batch them in 60-90 min blocks.
-- **Between sessions, do something restorative** - not another call. Walk. Coffee. Quick chat with a peer.
-- **End the day on a win,** not a rejection. Finish with a warm follow-up, a content task, or a study block.
+- **Batch calls into 60-90 minute power blocks**, then take a real break - 15-30 minutes off the phone. The block length matters more than the call count inside it. Some FCs do 20 dials in a block, some do 50 - both are fine if the *recovery between blocks is real*.
+- **Watch the warning signs, not the call count.** The signal to stop a block isn't "I've hit 15" - it's: your voice has gone flat, you've started apologising at the opener, you're skipping the time close, or you're catching yourself hoping they don't pick up. Any one of those = stop the block, walk away, reset.
+- **Between blocks, do something restorative** - not another call. Walk. Coffee. Quick chat with a peer. Don't fill the gap with admin "just to stay productive" - your nervous system needs the break, not a different task.
+- **End the day on a win,** not a rejection. Finish with a warm follow-up, a content task, or a study block - something with a guaranteed completion. The last thing your brain logs is what it carries into tomorrow morning's first dial.
 
-FCs who ignore this get burned out by Month 4 and quit. The ones who last build rejection into their emotional planning.
+FCs who ignore this get burned out by Month 4 and quit. The ones who last build rejection into their emotional planning - and they hit volume, because volume is the only metric that actually compounds.
 
 
 ## Quick quiz
