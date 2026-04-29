@@ -1102,16 +1102,9 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 27.5,
   },
-  {
-    id: "objection-not-interested",
-    stage: "Objection — \"I'm Not Interested\"",
-    category: "faq",
-    target_audience: "nsf",
-    versions: [
-      { author: "MoneyBees Script", content: "**Q: I'm not interested.**\n\n**A:** That's the case with most people even before I call. Many NSFs we work with also feel the same way at first. But when they meet us they find our ideas very useful. Just so that you can give yourself a chance to decide — would tomorrow morning OR afternoon be better to meet you?" },
-    ],
-    sort_order: 30,
-  },
+  // Removed: "Objection — I'm Not Interested" (duplicates curated `not-interested`
+  // in /objections, written in better ARQ voice; the old version was a textbook
+  // statement-vs-question violation).
   {
     id: "objection-compulsory",
     stage: "Objection — \"Is This Compulsory?\"",
@@ -1133,26 +1126,10 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 32,
   },
-  {
-    id: "objection-not-sure-free",
-    stage: "Objection — \"Not Sure If I'm Free\"",
-    category: "faq",
-    target_audience: "nsf",
-    versions: [
-      { author: "MoneyBees Script", content: "**Q: I'm not sure if I'm free on that day. Can you send me more details and I get back to you once I confirm my schedule?**\n\n**A:** No worries. I'll send you some info through WhatsApp after this call, and you just help me to confirm the timing again okay?\n\n*PAUSE.*\n\nSo one last thing… this session is just for you to learn more, and I'm just doing my job…\n\n> *Continue with the rest of your script.*" },
-    ],
-    sort_order: 33,
-  },
-  {
-    id: "objection-send-details",
-    stage: "Objection — \"Can You Send Me More Details First?\"",
-    category: "faq",
-    target_audience: "nsf",
-    versions: [
-      { author: "MoneyBees Script", content: "**Q: Can you send me more details first?**\n\n**A:** No worries. I'll send you some info through WhatsApp after this call. And you just help me to reply the WhatsApp to confirm, okay?\n\nAlright, so one last thing… this session is only for NSFs…\n\n> *Continue with the rest of your script.*" },
-    ],
-    sort_order: 34,
-  },
+  // Removed: "Not Sure If I'm Free" (duplicates curated `let-me-think` ARQ
+  // diagnostic) and "Send Me More Details First" (duplicates curated
+  // `post-it-out`). The old NSF-tinted versions skipped acknowledgement and
+  // jumped straight to a deflection — see /objections for the ARQ replacements.
   {
     id: "objection-not-free",
     stage: "Objection — \"I'm Not Free on That Day\"",
@@ -1163,26 +1140,10 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 35,
   },
-  {
-    id: "objection-hesitant",
-    stage: "Objection — Hesitant / Unsure",
-    category: "faq",
-    target_audience: "nsf",
-    versions: [
-      { author: "MoneyBees Script", content: "**Q: If prospect is hesitant…**\n\n**A:** My manager has worked with many clients over the years and a lot of them found this sharing very helpful. There are no obligations, **BUT**, to set aside just 30 mins of your time. You can always walk away from the session at any time if you don't think it is suitable for you.\n\nThe takeaway is that as long as you can learn something beneficial from this session, then that is good enough for me. Is that fine?" },
-    ],
-    sort_order: 36,
-  },
-  {
-    id: "objection-have-agent",
-    stage: "Objection — \"I Already Have an Agent / Plan\"",
-    category: "faq",
-    target_audience: "nsf",
-    versions: [
-      { author: "MoneyBees Script", content: "**Q: I already have an agent / investment plan.**\n\n**A:** Would you like to have an alternative opinion? The reason why I ask is because many of our clients also have more than one financial agent — this allows them to have multiple opinions as well as giving them different perspectives of their financial situation.\n\nFurthermore, this will only take 30 mins of your time, and it's a free learning opportunity for yourself. You can walk away anytime with no obligation if you don't think the session helps you.\n\nThe takeaway is that as long as you can learn something beneficial from this session, then that is good enough for me. Will that be okay?" },
-    ],
-    sort_order: 37,
-  },
+  // Removed: "Hesitant / Unsure" (no real ARQ — relied on social proof
+  // padding) and "I Already Have an Agent / Plan" (duplicates curated
+  // `already-have-an-advisor`, which uses a proper Feel-Felt-Found instead of
+  // the "alternative opinion" pitch). Both replaced on /objections.
   {
     id: "fact-find-current-situation",
     stage: "Fact-Finding — Current Situation Questions",
@@ -1213,17 +1174,11 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
     ],
     sort_order: 40,
   },
-  {
-    id: "objection-not-interested-insurance",
-    stage: "Objection — \"Not Interested in Insurance\"",
-    category: "faq",
-    target_audience: "general",
-    versions: [
-      { author: "MoneyBees Script — V1 (Redirect to Planning)", content: "**Q: I'm not interested in insurance.**\n\n**A:** I understand where you are coming from. Most people that I speak to have the same sentiment and do not want to delve into this matter until much later.\n\nHowever, most people also agree that financial planning is important and needs to be done regularly. This is why I would love to have a quick **30-minute Zoom call** for both of us to analyse this and see how we can plan for your success.\n\nIs **[date, time]** or **[date, time]** good for you?" },
-      { author: "MoneyBees Script — V2 (Pivot to Investing)", content: "**Q: Not interested in insurance.**\n\nI see, do you do your own investment?\n\n**If Yes:** What do you invest in? What are some of the struggles or challenges you face currently?\n\n**If No:** Are you looking to learn more about investments?\n\n---\n\n**If still not interested:**\n\nI see, can I ask why you are no longer interested?\n\n> *Try to still add them into a nurturing machine — send resources, keep the relationship warm.*" },
-    ],
-    sort_order: 41,
-  },
+  // Removed: "Not Interested in Insurance" — duplicates curated
+  // `not-interested` + `i-dont-believe-in-insurance`. Old version's "I
+  // understand, but most people agree…" lead is exactly the pattern Day 44
+  // calls out as bad ARQ (statement when a question would have surfaced the
+  // real concern).
   {
     id: "tips-general-calling",
     stage: "General Calling Tips & Tonality",
