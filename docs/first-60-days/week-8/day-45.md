@@ -86,6 +86,58 @@ The lesson - the moral of the story.
 
 **Total length: 60-120 seconds.** Practise compressing without losing emotional punch.
 
+### Two more 6P stories - same skeleton, different emotional registers
+
+The Marcus story above is a **crisis arc** (the gap caught up with him). The framework works just as well on a **positive arc** (good early decisions paid off) and a **mid-life expensive-lesson arc** (the gap was learned through a recoverable shock). Build both kinds into your story library so you're not always selling fear.
+
+#### Story 2 - Priya (positive arc, compounding, starting early)
+
+**Use this when** a young prospect says "I'll start later when I earn more." The 6P is built to dissolve that argument.
+
+**1. Prospect:** "I had a client - Priya, 38, hospital nurse, two kids, husband's a teacher. Joined me at 27 because a friend dragged her to a meeting."
+
+**2. Problem:** "She didn't think she could afford to save anything meaningful - thought wealth-building was for higher-income families. The first review we did, she had $1,200 in her POSB account and that was it."
+
+**3. Pain:** "She was 26 weeks into her first pregnancy when we met. Her exact fear: 'I love my job but I'm scared I'll be 50 still working night shifts because we don't have a buffer.' That fear was real - half the senior nurses she worked with were doing exactly that."
+
+**4. Promise:** "We started small. $200 a month into a savings plan, $80 a month into hospital cover. That's it. The plan grew with each pay raise - $200 became $350, then $500."
+
+**5. Proof:** "She just hit 38 last week. The savings plan is sitting at $94k. Her words: 'I genuinely don't think about money anymore. We took the kids to Japan in March without checking the bank balance. That used to be unthinkable.' She's putting $1,200/month away now and is on track to step back from night shifts at 47."
+
+**6. Purpose:** "The thing is, Priya never had a high income. She still doesn't. The whole result - the $94k, the holiday, the night-shift exit plan - came from starting at 27 instead of 35. Eight years of compounding did the work. The hardest part was just deciding to start."
+
+**Why it works:** different emotional register (hopeful, not fearful), different proof type (lifestyle testimonial, not gratitude after damage), but the same 6P shape. The closing line **"the hardest part was just deciding to start"** sets up the natural ARQ-style next question - *"what's holding you back from being Priya at 27?"*
+
+#### Story 3 - Ben (expensive-lesson arc, hospitalisation gap)
+
+**Use this when** a self-employed prospect or business owner is dismissive of upgrading from a basic hospital plan. This story is harder for them to wave away than a chart.
+
+**1. Prospect:** "A client of mine - Ben, 41, runs a small F&B business with his brother. Married, no kids."
+
+**2. Problem:** "Always declined upgrading from a basic Class C / Ward B1 hospital plan. His line was 'Singapore healthcare is great, the basic plan covers me, why pay more?' We had this debate for two years."
+
+**3. Pain:** "Ben slipped a disc lifting equipment in the kitchen last June. The basic plan only covered a public ward and a public-sector specialist. Waiting time for the surgery he needed was 6 months. He couldn't run his shop on opioids and physio for 6 months. So he went private - $48k out of his own pocket. The basic plan paid less than $4k."
+
+**4. Promise:** "After he recovered, we did the upgrade he'd been refusing for two years - rider plus the right Integrated Shield Plan. Took 90 minutes. Cost him roughly $180/month more than what he was paying."
+
+**5. Proof:** "Ben's exact words to me last month: 'I spent $44,000 to learn what you've been telling me for two years. The $180/month is the cheapest insurance I'll ever buy.' He's now sent three referrals my way - all F&B operators."
+
+**6. Purpose:** "The point isn't that basic coverage is bad - it's fine for someone whose body and time aren't directly their income. For a self-employed operator, the basic plan is actually the riskiest plan. Whether the basic plan is right for *you* depends entirely on what you'd lose if you had to wait six months."
+
+**Why it works:** the story doesn't shame the prospect for the same view they currently hold (Ben held it too) - it shows the cost of holding it. The closing line lands as an ARQ: *"what would you lose if you had to wait six months?"* - the prospect answers themselves.
+
+### The ARQ link - every story ends with a question
+
+A 6P story without a closing question is a story the prospect listened to and forgot. The closing question is what hands the relevance over to them - it's the same **ARQ move** (Asking the Right Question) covered fully on [Day 47](day-47.md). After the Purpose line, ask:
+
+| Story | Closing ARQ |
+|---|---|
+| Marcus | "If a $30k cap was the difference for Marcus's family, what would the cap on your current cover be?" |
+| Priya | "What's stopping you from being Priya at 27?" |
+| Ben | "If you couldn't work for six months, what would that cost you?" |
+
+Each question forces the prospect to map the story onto their own life. The story does the emotional priming; the ARQ does the work.
+
 ## 4. The 6P story structure - visual map
 
 <div style="margin:1.5rem 0;display:flex;flex-direction:column;gap:6px;">

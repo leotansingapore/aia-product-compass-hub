@@ -1,25 +1,28 @@
 ---
 week: 8
 day: 47
-title: "SPIN - The Framework"
+title: "ARQ — Asking the Right Questions (SPIN as the Grammar)"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
 duration_minutes: 25
-tags: [first-60-days, week-8, skills]
+tags: [first-60-days, week-8, skills, arq]
 ---
 
-# Day 47 - SPIN: The Framework
+# Day 47 - ARQ: Asking the Right Questions (SPIN as the Grammar)
 
-> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy**. SPIN is the question framework that moves a client from "implied need" to "explicit need" - the threshold where they actually decide to buy.
+> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy.** That happens through **ARQ - Asking the Right Questions** - and SPIN is the four-phase grammar that gives ARQ its structure inside a fact-find. ARQ moves a client from "implied need" to "explicit need" - the threshold where they decide to buy.
+
+> **Where you've already met ARQ:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that was ARQ applied to objection handling. Today, ARQ goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also ARQ.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Name** the 4 SPIN question types and what each does.
-2. **Understand** why SPIN works - the journey from implied to explicit need.
-3. **Map** the consultative selling philosophy onto your own meeting process.
+1. **State** the ARQ principle (questions over statements) and the 3-point checklist for what makes a question "right."
+2. **Name** the 4 SPIN question types and what each does.
+3. **Understand** why ARQ + SPIN works - the journey from implied to explicit need.
+4. **Map** the consultative selling philosophy onto your own meeting process.
 
 ---
 
@@ -38,17 +41,17 @@ Most new FCs think their job is to convince. That framing doesn't work in modern
 
 **When it works, you haven't sold them anything - they've bought.**
 
-## 1a. The Power Question - the principle SPIN sits inside
+## 1a. ARQ - Asking the Right Questions (the principle SPIN sits inside)
 
-Before the specific S-P-I-N grammar, there's a broader principle worth naming: **a hundred statements are never as powerful as one right question.**
+Before the specific S-P-I-N grammar, there's a broader principle - **ARQ - Asking the Right Questions:** a hundred statements are never as powerful as one right question.
 
 A statement like *"Insurance is important because it protects your family"* lands as *"here's what you should believe."* The prospect either already agrees (so the statement is wasted) or disagrees (so you now have to argue them out of their position). Neither path converts.
 
 The same content as a question - *"If something were to happen to you tomorrow - bluntly - who would be financially affected, and by how much?"* - forces the prospect to picture a specific scenario and land on their own answer. You didn't tell them anything; they told themselves.
 
-**That's the whole principle.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of doing that consistently across a 60-minute fact-find.
+**That's ARQ in one line.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of applying ARQ consistently across a 60-minute fact-find. Day 44's Q step in objection handling is the same engine, applied in 5 seconds instead of 60 minutes.
 
-### The 10 jobs a right question can do
+### The 10 jobs a right question (ARQ) can do
 
 A single well-constructed question can do any of these. Statements do at most 1-2 of them:
 
@@ -65,15 +68,15 @@ A single well-constructed question can do any of these. Statements do at most 1-
 
 This is why question-heavy fact-finds close at 1-in-2 to 1-in-3 while statement-heavy ones close at 1-in-10.
 
-### The 3-point checklist - is this a right question?
+### The 3-point ARQ checklist - is this a right question?
 
-Before asking any question, test it against three gates:
+Before asking any question, run it through three gates:
 
 1. **Does it lead to my objective?** - is there a clear path from this question to where I want the conversation to go?
 2. **Is it specific?** - does it force a specific answer, or does it allow a hedge?
 3. **Is it logical and indisputable?** - can the prospect disagree without sounding unreasonable?
 
-If all three pass, ask it. If any fails, rewrite before asking. This checklist applies at every phase of SPIN - Situation, Problem, Implication, Need-Payoff.
+If all three pass, ask it. If any fails, rewrite before asking. **This checklist is the ARQ test** - apply it at every phase of SPIN (Situation, Problem, Implication, Need-Payoff), in the Q step of objection handling on Day 44, and on the closing question of any 6P story on Day 45.
 
 ## 2. Needs vs wants - the crucial distinction
 
