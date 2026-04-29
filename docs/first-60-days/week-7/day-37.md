@@ -131,7 +131,7 @@ The Day 39 - Project 100 page treats this in full, with the priority quota (<=25
 
 ### Asking for a favour the right way — a transferable life skill
 
-Several of the openers below are framed as *"can you help me out?"* That's the asking-for-a-favour move, and most FCs do it badly because they only learned it under pressure. The pattern is from IBCT and works for almost any favour ask — survey, intro, feedback, time:
+Several of the openers below are framed as *"can you help me out?"* That's the asking-for-a-favour move, and most FCs do it badly because they only learned it under pressure. The pattern below works for almost any favour ask — survey, intro, feedback, time:
 
 1. **Courtesy** — open with politeness and acknowledgement that you're asking for time. *"Quick one"*, *"small favour"*, *"sharing only"*, *"if you're around"*.
 2. **Empathy** — name that you understand they're busy / this is unsolicited / you don't expect them to drop everything. *"No pressure"*, *"only if it's easy for you"*, *"totally understand if not"*.

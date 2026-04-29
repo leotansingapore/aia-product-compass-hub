@@ -12,11 +12,11 @@ duration_minutes: 20
 tags: [next-60-days, week-8, new-fc, questions, fact-find, discovery]
 ---
 
-# Day 43 — The Power Question (ARQ Deep-Dive Part I)
+# Day 43 — The Power Question (Right Questions Deep-Dive Part I)
 
 > **The one idea for today:** Making a hundred statements is never as powerful as asking one right question.
 
-> **Where you've already met ARQ.** First 60 Days [Day 47 - ARQ](../../first-60-days/week-8/day-47.md) introduced the principle, the 3-point checklist, and SPIN as the grammar. Day 44 applied ARQ as the Q step in the Acknowledge -> Question -> Reframe pattern for objections. Day 38 used ARQ to surface hot buttons. Today is the **deep-dive Part I** - the 6 Golden Rules and the field examples that make the right question feel native rather than scripted. Tomorrow (Day 44 next-60-days) is **Part II - Silence as a Tool**.
+> **Where you've already met Right-question.** First 60 Days [Day 47 - Right Questions](../../first-60-days/week-8/day-47.md) introduced the principle, the 3-point checklist, and SPIN as the grammar. Day 44 applie. Right-question as the Q step in the Acknowledge -> Question -> Reframe pattern for objections. Day 38 used right-question move to surface hot buttons. Today is the **deep-dive Part I** - the 6 Golden Rules and the field examples that make the right question feel native rather than scripted. Tomorrow (Day 44 next-60-days) is **Part II - Silence as a Tool**.
 
 By the time you close today you'll apply the 6 Golden Rules of asking questions (keyword recall, logical possibilities, contrast, distinct options, non-committal words, authority quoting), test any question with the 3-point checklist (leads to objective · specific · logical and indisputable), and swap your 3 most common statements for questions that get the prospect to arrive at the conclusion themselves.
 

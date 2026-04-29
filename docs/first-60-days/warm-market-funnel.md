@@ -136,7 +136,7 @@ Send via text, WhatsApp, or DM - whichever channel they prefer. Two lines:
 What goes in the blanks:
 
 - **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, school-fund kickoff, wedding budget planning, parent-care logistics).
-- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together. **Reference [[arq-database|the ARQ database]] for the closing question that turns the resource send into a conversation.**
+- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together. **Reference [[arq-database|the right-question database]] for the closing question that turns the resource send into a conversation.**
 - **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples, business owners, expats moving overseas).
 - **[common problems]** - the headline pains that group recognises in themselves.
 - **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on, a checklist they can tick this weekend).
@@ -212,7 +212,7 @@ This branch only fires when the casual meet went deep enough that the prospect *
 | [Day 43 - Warm Market Survey & Cold Calls](week-8/day-43.md) | Phone-first warm script + cold-call flow | Different doorway to the same destination - phone vs social |
 | [Day 44 - Objection Handling](week-8/day-44.md) | What to say when they push back | Use the AQR pattern (Acknowledge -> Question -> Reframe) inside Step 4 if they hesitate |
 | [Day 45 - Storytelling](week-8/day-45.md) | The 6P story | Use a 6P story inside Step 7's FORM discovery to surface emotional weight |
-| [Day 47 - ARQ](week-8/day-47.md) | Asking the Right Questions | Step 3's three probing questions and Step 9's 2-liner hook are pure ARQ moves |
+| [Day 47 - Right Questions](week-8/day-47.md) | Asking the Right Questions | Step 3's three probing questions and Step 9's 2-liner hook are pure right-question moves |
 
 ---
 

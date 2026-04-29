@@ -23,7 +23,7 @@ their first case. **This module is the first 60 days of their real business.**
 **Coverage (source material).**
 - [[_source-holos-transcripts|HOLOS YouTube transcripts (20 sessions)]] — primary curriculum source.
 - [[_source-holos-decks|HOLOS slide decks (14 decks)]] — structural backbone for each HOLOS lesson.
-- [[_source-articles|Source articles (15 pieces)]] — Leo-authored + ingested third-party frameworks covering warm-market scripts, prospecting taxonomy, database segmentation + revenue math, content creation, IG profile/stories, DM funnel, texting EQ, cold prospecting, social-proof closing, full sales-prospecting-referral training workbook (SAPT).
+- [[_source-articles|Source articles (15 pieces)]] — Leo-authored + ingested third-party frameworks covering warm-market scripts, prospecting taxonomy, database segmentation + revenue math, content creation, IG profile/stories, DM funnel, texting EQ, cold prospecting, social-proof closing, full sales-prospecting-referral training workbook.
 - Pulled selectively from `../first-60-days/` for continuity (Project 100, DISC basics, Closing).
 
 ---

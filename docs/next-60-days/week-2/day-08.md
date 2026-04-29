@@ -94,7 +94,7 @@ Four principles for crafting yours:
 
 Pattern interrupts assume the prospect gives you the floor. Sometimes they don't. You're at coffee, the prospect is on a 20-minute monologue about work, and there's no natural opening to drop the intent statement. Forcing it ("OK, anyway — what I do is…") burns the rapport you spent the first hour building.
 
-SAPT calls this the *"smooth interjection"*. Two principles:
+The move is the *"smooth interjection"*. Two principles:
 
 **1. Find the bridge first.** Listen for the moment in their monologue that intersects with what you do — a money decision they had to make, a colleague's situation, a life event coming up. The interjection rides the bridge, not against it.
 

@@ -237,7 +237,7 @@ This is the most important thing on this page.
 
 ### What "sales" actually means in this profession
 
-Most new FCs flinch at the word *"sales"* because they associate it with the bad version — pressure, manipulation, closing the prospect on something they don't really need. SAPT (the Lusi Group sales bootcamp many senior advisors come through) defines it differently and it's worth memorising:
+Most new FCs flinch at the word *"sales"* because they associate it with the bad version — pressure, manipulation, closing the prospect on something they don't really need. The professional definition worth memorising is different:
 
 > **Sales is helping someone act upon a decision that is important and good for them.**
 

@@ -205,7 +205,7 @@ In the Situation + Problem phase, **listen 80%, talk 20%.**
 ### Pauses and hesitations
 Silence often signals the client is feeling something. **Don't interrupt pauses.** The next sentence after a pause is usually the most valuable.
 
-## 7a. ARQ mechanics for Situation + Problem questions
+## 7a. Right-question mechanics for Situation + Problem questions
 
 The first half of SPIN runs on two specific question-construction techniques. Master these and the phase stops feeling like a questionnaire.
 

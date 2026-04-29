@@ -157,9 +157,9 @@ Need-Payoff questions are subtle. They sound like you're asking about their feel
 
 **Critical:** after a Need-Payoff question, **wait for a full answer.** Don't nod and move on. The client's answer is the most valuable sentence in the meeting.
 
-## 5a. ARQ mechanics for Implication + Need-Payoff questions
+## 5a. Right-question mechanics for Implication + Need-Payoff questions
 
-The second half of SPIN is where four specific construction techniques land the emotional work. Day 47's ARQ method inventory covers all six Golden Rules; these are the four that dominate intensification.
+The second half of SPIN is where four specific construction techniques land the emotional work. Day 47's right-question method inventory covers all six Golden Rules; these are the four that dominate intensification.
 
 ### Rule 3 - Contrast and impactful word choices (for Implication)
 

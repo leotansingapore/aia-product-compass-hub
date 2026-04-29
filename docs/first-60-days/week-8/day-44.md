@@ -53,12 +53,12 @@ A specific concern that, if addressed, would open a meeting. A real objection co
 
 ### A finer cut: Type 1 vs Type 2 paradigm-shift
 
-Within reflex objections, ARQ distinguishes two further patterns that need different responses. Day 38 introduced this — read it again here because it's the single biggest determinant of whether the response lands:
+Within reflex objections. Right-question distinguishes two further patterns that need different responses. Day 38 introduced this — read it again here because it's the single biggest determinant of whether the response lands:
 
-- **Type 1 — concept dismissal.** *"I don't believe in insurance"*, *"not in the market"*, *"insurance companies just want my money"*. The prospect is rejecting the *idea*, not your specific ask. **Counter-arguing here deepens the dismissal.** Lead with a curious ARQ instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe to the part they raised.
-- **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"already have policies"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The three frameworks below (Skip-Q, Feel-Felt-Found, Boomerang) all assume Type 2.
+- **Type 1 — concept dismissal.** *"I don't believe in insurance"*, *"not in the market"*, *"insurance companies just want my money"*. The prospect is rejecting the *idea*, not your specific ask. **Counter-arguing here deepens the dismissal.** Lead with a curious-question instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe to the part they raised.
+- **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"already have policies"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The three frameworks below (skip-Q, Feel-Felt-Found, Boomerang) all assume Type 2.
 
-**The diagnostic in one move:** when the objection lands, ask yourself *"are they rejecting the whole industry or just my specific ask?"* If the whole industry, run Type 1 (curious-ARQ first, reframe second). If just your ask, run Type 2 (cushion + framework + ART back to the appointment ask).
+**The diagnostic in one move:** when the objection lands, ask yourself *"are they rejecting the whole industry or just my specific ask?"* If the whole industry, run Type 1 (curious-right-question first, reframe second). If just your ask, run Type 2 (cushion + framework + ART back to the appointment ask).
 
 ### Cushion-first — the move that runs under every framework
 
@@ -105,24 +105,24 @@ Every script in this day - and every Academy script in the Library at the bottom
 This is the **workhorse** for prospecting objections. The pattern is three beats:
 
 1. **Acknowledge.** Don't argue. "Fair," "Totally get it," "Most people say the same."
-2. **Question (ARQ - Asking the Right Question).** Before you respond, surface what the prospect actually means. The Q is what separates this pattern from a generic reframe - it stops you from arguing against the wrong objection. The ARQ principle is the parent move here, fully covered on [Day 47](day-47.md).
+2. **Question (Asking the Right Question).** Before you respond, surface what the prospect actually means. The Q is what separates this pattern from a generic reframe - it stops you from arguing against the wrong objection. The right-question principle is the parent move here, fully covered on [Day 47](day-47.md).
 3. **Reframe.** Show why the objection is exactly why the meeting matters - then close on the time ask. "Tuesday 7pm or Saturday 10am?"
 
 **Why the Q step matters:** "Not interested" can mean "not interested in insurance," "not interested in advisors," or "not interested *right now* because of timing." All three need different reframes. Skip the Q and you'll reframe against the wrong objection roughly 30% of the time.
 
-**ARQ in practice on this pattern:**
+**Right-question move in practice on this pattern:**
 
 > Prospect: "Not interested."
 >
 > You (Acknowledge): "Totally fair."
 >
-> You (ARQ): "Just so I respect your time - is that not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
+> You : "Just so I respect your time - is that not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
 
 About 70% of the time the real answer is **timing or trust** - both of which reopen. The other 30% will tell you cleanly that it's a real no, and you stop wasting their time and yours.
 
-**The skip-Q exception.** When the objection is unmistakably a 1-second stock reflex ("too busy", "no money", "what's the idea?"), asking ARQ adds friction the prospect doesn't want. Go Acknowledge -> Reframe directly and trust the reframe to do the diagnostic work. The 10 stock responses below are skip-Q examples.
+**The skip-Q exception.** When the objection is unmistakably a 1-second stock reflex ("too busy", "no money", "what's the idea?"), asking the right question adds friction the prospect doesn't want. Go Acknowledge -> Reframe directly and trust the reframe to do the diagnostic work. The 10 stock responses below are skip-Q examples.
 
-> **Rule of thumb:** if you can predict the objection 5 seconds before they say it, skip Q. If the objection caught you off-guard or sounded vague, **always run ARQ first**.
+> **Rule of thumb:** if you can predict the objection 5 seconds before they say it, skip Q. If the objection caught you off-guard or sounded vague, **always run the right-question diagnostic first**.
 
 ### Framework B - Feel, Felt, Found (the empathy frame)
 
@@ -157,16 +157,16 @@ flowchart TD
     B -- "Yes" --> C["Framework B<br/>Feel-Felt-Found"]
     B -- "No" --> D{"Is the prospect naming<br/>a state they think<br/>disqualifies them?"}
     D -- "Yes" --> E["Framework C<br/>Boomerang<br/>(that's exactly why)"]
-    D -- "No" --> F["Framework A<br/>Acknowledge -> Question (ARQ)<br/>-> Reframe"]
+    D -- "No" --> F["Framework A<br/>Acknowledge -> Question <br/>-> Reframe"]
 ```
 
 **Default to Framework A.** Most prospecting objections fall here. Use B for emotional weight; use C when the prospect's objection literally describes why they think they're not a fit. **A fourth pattern - looping for uncertainty - lives at the post-pitch stage and is covered in Next 60 Days Day 40, not here.**
 
-> **The principle that powers all three frameworks:** **ARQ - Asking the Right Questions.** Framework A names it explicitly in the Q step; Framework B's "Felt" beat is a question disguised as a statement (it asks the prospect to compare themselves to a peer group); Framework C's Boomerang assumes you've already asked enough to know what the prospect thinks disqualifies them. Day 47 is the deep-dive on ARQ as a meta-skill - SPIN is its grammar for fact-finding, the Q step here is its grammar for objections.
+> **The principle that powers all three frameworks:** **Asking the Right Questions.** Framework A names it explicitly in the Q step; Framework B's "Felt" beat is a question disguised as a statement (it asks the prospect to compare themselves to a peer group); Framework C's Boomerang assumes you've already asked enough to know what the prospect thinks disqualifies them. Day 47 is the deep-dive on right-questions as a meta-skill - SPIN is its grammar for fact-finding, the Q step here is its grammar for objections.
 
 ## 3. The 10 standard reflex objections (skip-Q applied)
 
-These are battle-tested skip-Q responses - the reflex is so unambiguous that asking ARQ would slow the call down. The reframe itself does the diagnostic work. Memorise the rhythm; the exact words can flex with your voice.
+These are battle-tested skip-Q responses - the reflex is so unambiguous that asking the right question would slow the call down. The reframe itself does the diagnostic work. Memorise the rhythm; the exact words can flex with your voice.
 
 ### "Not interested"
 > "Fair - wouldn't expect you to be interested in something you haven't seen yet. Just so you can judge for yourself, would Tuesday 7pm or Saturday 10am work?"
@@ -288,11 +288,11 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
 1. **The default structure of Framework A (the workhorse for prospecting objections) is:**
  - A) Argue, persuade, push
- - B) Acknowledge, ask the right question (ARQ), reframe and close on the time ask (correct)
+ - B) Acknowledge, ask the right question , reframe and close on the time ask (correct)
  - C) Deflect, change topic, rebook
  - D) Apologise, send info, follow up
 
- **Why:** The Acknowledge -> Question -> Reframe pattern adds an explicit ARQ (Asking the Right Question) step between acknowledge and reframe, because "Not interested" can mean three different things and each needs a different reframe. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your credibility. The Q step can be skipped only when the objection is unmistakably a stock reflex - the 10 standard responses on Day 44 are the skip-Q examples.
+ **Why:** The Acknowledge -> Question -> Reframe pattern adds an explicit right-question step (Asking the Right Question) step between acknowledge and reframe, because "Not interested" can mean three different things and each needs a different reframe. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your credibility. The Q step can be skipped only when the objection is unmistakably a stock reflex - the 10 standard responses on Day 44 are the skip-Q examples.
 
 2. **"Not interested" is most likely:**
  - A) A real final no
@@ -342,13 +342,13 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
  **Why:** All other objection responses end with "Would you be free...?" - they maintain the meeting ask. The obstinate objector response is different because it drops the ask entirely and replaces it with a casual "if I'm in your neighbourhood" framing, removing all pressure and keeping a door open without forcing it. There are no facts or arguments (A), no discounts (C), and no clarifying questions (D) - just a graceful exit that preserves the relationship for a future approach.
 
-8. **The "Question" step in the Acknowledge -> Question -> Reframe pattern (i.e. ARQ) exists primarily to:**
+8. **The "Question" step in the Acknowledge -> Question -> Reframe pattern  exists primarily to:**
  - A) Stretch the call so the prospect can't hang up quickly
  - B) Surface which version of the objection the prospect actually means - so the reframe targets the right one (correct)
  - C) Force the prospect to defend their objection out loud so they back down
  - D) Buy the FC time to think of a comeback
 
- **Why:** "Not interested" can mean not interested in insurance, not interested in advisors generally, or wrong timing - three different objections needing three different reframes. ARQ is the diagnostic that prevents reframing against the wrong one (which happens roughly 30% of the time without it). Stretching the call (A) is irrelevant to conversion; making the prospect defend their no (C) converts a soft reflex into a firm position - the opposite of what you want; thinking time (D) is a side benefit, not the purpose.
+ **Why:** "Not interested" can mean not interested in insurance, not interested in advisors generally, or wrong timing - three different objections needing three different reframes. Right-question is the diagnostic that prevents reframing against the wrong one (which happens roughly 30% of the time without it). Stretching the call (A) is irrelevant to conversion; making the prospect defend their no (C) converts a soft reflex into a firm position - the opposite of what you want; thinking time (D) is a side benefit, not the purpose.
 
 9. **A prospect says "I already have policies." The most useful first move is:**
  - A) Tell them their existing policies probably have gaps and offer a review
@@ -378,12 +378,12 @@ The Academy library covers six objection families. Pick the family first; the sc
 
 | Family | When you hear it | Default framework | Scripts in this family |
 |---|---|---|---|
-| **Push-away / "not interested"** | First 30 seconds, reflex defence | Framework A (skip-Q or full ARQ) | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| **Push-away / "not interested"** | First 30 seconds, reflex defence | Framework A (skip-Q or the full right-question diagnostic) | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
 | **"I already have policies"** | Coverage already in place - basic cover, parent-bought, "comprehensive" | Framework C (Boomerang) | "Already have policies" - free second opinion script (below) |
 | **"I already have someone"** | Existing advisor, family advisor, employer cover | Framework B (Feel-Felt-Found) | "Already have an advisor" objection script |
-| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Framework A (full ARQ) | Video-Off objection (Zoom), texting-EQ 4-step framework |
-| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Framework A (full ARQ) | Cost of Delay (Pre-Retirees) - paying with time vs money |
-| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Framework A (full ARQ) | Recruitment objection handling (telemarketer angle) |
+| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Framework A (the full right-question diagnostic) | Video-Off objection (Zoom), texting-EQ 4-step framework |
+| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Framework A (the full right-question diagnostic) | Cost of Delay (Pre-Retirees) - paying with time vs money |
+| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Framework A (the full right-question diagnostic) | Recruitment objection handling (telemarketer angle) |
 
 Use the family to pick the right framework, then the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
 
@@ -413,13 +413,13 @@ _Source: Academy scripts library, audience=general, category=objection-handling.
 
 ### "I already have policies"
 
-**Use this when** the prospect says they're already covered - "I have something from when I was younger," "my parents bought one for me," or "I'm fully covered already." Framework C (Boomerang) is the default; ARQ surfaces which sub-flavour you're dealing with.
+**Use this when** the prospect says they're already covered - "I have something from when I was younger," "my parents bought one for me," or "I'm fully covered already." Framework C (Boomerang) is the default. Right-question surfaces which sub-flavour you're dealing with.
 
-**Step 1 - Acknowledge + ARQ to surface the sub-flavour:**
+**Step 1 - Acknowledge + right-question to surface the sub-flavour:**
 
 > "Smart - most people I respect already have something in place. Quick one before I assume - when you say 'already have,' is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
 
-The ARQ buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
+Th. Right-question buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
 
 **Step 2 - Reframe by sub-flavour:**
 
@@ -433,7 +433,7 @@ The ARQ buys you 5 seconds to pick the right reframe. Each sub-flavour gets a di
 
 **The deliverable for the free second opinion** is the canonical Policy Summary deck - the [template](https://docs.google.com/presentation/d/1jSd8ItG4iYoqG15vNucdznF6ui7NbsQj/edit) + a [sample completed summary](https://docs.google.com/presentation/d/1CHEgyoSgNfo7TSARzF75UnlPjHoyUtcy/edit) live in Google Slides. [Day 58](../week-10/day-58.md) covers how to read any insurer's policy docs and build the summary; pre-licence FCs should be running this on 3-5 friends' policies as the highest-leverage practice rep.
 
-_Source: Academy script bank + ARQ adaptation. Audience=warm-market or cold; category=objection-handling._
+_Source: Academy script bank + right-question adaptation. Audience=warm-market or cold; category=objection-handling._
 
 ### "Already have an advisor"
 

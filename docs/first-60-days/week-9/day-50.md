@@ -220,7 +220,7 @@ Clients share numbers only after trust. Earn trust in Sections 1 and 2 first.
 
 ### Mistake 5 (the one that kills C-profile clients): opening the fact-find with "what 2 problems do you want to fix?"
 
-This is the single most-common ARQ "fact-find sin" — and it tanks the meeting before it starts, especially on a C profile.
+This is the single most-common fact-find mistake — and it tanks the meeting before it starts, especially on a C profile.
 
 **Why it fails:**
 - C profiles need to *see the framework* before they pick a position. Asking *"what 2 problems"* in the first five minutes asks them to commit to a position they haven't analysed yet.
@@ -233,7 +233,7 @@ This is the single most-common ARQ "fact-find sin" — and it tanks the meeting 
 >
 > Better: *"Could there be a possibility that as you look at your finances right now, one or two areas feel a bit less settled than the others? Genuinely no wrong answer — sometimes it's clear, sometimes it's not, both are useful information."*
 
-The *could there be a possibility* phrasing (ARQ Rule 5) gives a C profile permission to say *"hmm, yeah, maybe the retirement piece"* without locking them into a position. The *both are useful* gives them permission to say *"actually, I'm not sure"* without feeling stupid.
+The *could there be a possibility* phrasing (a non-committal hedge) gives a C profile permission to say *"hmm, yeah, maybe the retirement piece"* without locking them into a position. The *both are useful* gives them permission to say *"actually, I'm not sure"* without feeling stupid.
 
 **The general rule:** in the first 10 minutes of any fact-find, **never ask a question that requires the prospect to commit to a position before they've seen your framework.** Save the position-asking for after they've heard you out.
 

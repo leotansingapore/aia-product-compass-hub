@@ -51,7 +51,7 @@ That framing matters. The prospect's brain hears "help me out for 5 minutes" and
 
 ### The 3 Cs of Communication — what's running underneath the script
 
-Before you read the script versions below, the IBCT framework that makes any of them land:
+Before you read the script versions below, the underlying communication framework that makes any of them land:
 
 - **Connect (5 sub-skills)** — smile (audible in your voice on the phone), eye contact (in person), pay a sincere compliment (see *Sincere compliment* sidebar below), ask about *them*, listen and acknowledge what they say.
 - **Convince (1 sub-skill)** — match their logic. A D-profile prospect wants the bottom line in 60 seconds; an S wants relationship and reassurance first. Same script, different pacing.
@@ -228,7 +228,7 @@ A district producer who closed 12 cases in one month switched from a generic AID
 
 The thesis is simple. Every prospect has one specific problem they're already half-thinking about. **Find it. Make that the agenda for the meeting. Don't pitch anything else.**
 
-> **ARQ in action.** This whole section is **ARQ — Asking the Right Questions** applied to cold calls. The "find their pinpoint" step is literally Day 47's ARQ principle in 60 seconds: ask the question that surfaces the problem they already half-know they have, then make *that* the agenda. Day 47 covers the underlying principle and SPIN as the long-form version of this same move.
+> **Right-question approach in action.** This whole section is **Asking the Right Questions** applied to cold calls. The "find their pinpoint" step is literally Day 47's right-question principle in 60 seconds: ask the question that surfaces the problem they already half-know they have, then make *that* the agenda. Day 47 covers the underlying principle and SPIN as the long-form version of this same move.
 
 #### Why generic scripts under-convert
 

@@ -123,7 +123,7 @@ Combine 3–4 signals and you'll land on the right profile ~80% of the time by t
 
 ## When the speed-read isn't enough — profiling questions
 
-The 5-minute speed-read works most of the time. When it doesn't — usually because the prospect is reserved, on a phone call, or being deliberately vague — fall back to **profiling questions**. Three rules from the IBCT bootcamp:
+The 5-minute speed-read works most of the time. When it doesn't — usually because the prospect is reserved, on a phone call, or being deliberately vague — fall back to **profiling questions**. Three rules:
 
 **Rule 1: Read the *reasoning*, not the *answer*.** When you ask *"if you were an animal, which would you be?"* — the animal name itself tells you almost nothing. The reasoning behind it tells you everything. *"A lion, because I'm in charge"* is D. *"A lion, because I'm protective of my family"* is S. Same answer, different profiles.
 

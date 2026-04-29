@@ -32,7 +32,7 @@ Objections come in three shapes. Each uses a different tool:
 
 Using the wrong tool wastes the moment. Anchor-Disrupt-Ask on a C who just asked a precise question makes you sound like a cold-caller. ART on *"let me think"* tries to argue a ghost — you haven't surfaced what they're actually objecting to.
 
-> **The common engine across all three:** **ARQ - Asking the Right Questions.** Anchor-Disrupt-Ask ends in an Ask; ART's "T" turns around with a question; Iceberg's whole Step 1 is right-question diagnostics. The three tools differ in *when* the question fires (start, middle, surfacing), not in *whether*. The full ARQ deep-dive lives on First 60 Days [Day 47 - ARQ](../../first-60-days/week-8/day-47.md), and the ARQ question-bank for objections is in the [ARQ database](../../first-60-days/_source-scripts/arq-database.md) (Obsidian only).
+> **The common engine across all three:** **Asking the Right Questions.** Anchor-Disrupt-Ask ends in an Ask; ART's "T" turns around with a question; Iceberg's whole Step 1 is right-question diagnostics. The three tools differ in *when* the question fires (start, middle, surfacing), not in *whether*. The the full right-question diagnostic deep-dive lives on First 60 Days [Day 47 - ARQ](../../first-60-days/week-8/day-47.md), and the right-question question-bank for objections is in the [right-question database](../../first-60-days/_source-scripts/arq-database.md) (Obsidian only).
 
 ---
 
@@ -110,7 +110,7 @@ flowchart LR
     S2 --> S3["Step 3 · Redirect<br/>to hot buttons"]
 ```
 
-**Step 1 — Clarify with right questions (ARQ).** *Is it the premium? Is it the commitment? Is it needing to talk to someone? Is it a hidden concern?* Surface the real issue before trying to solve it. Run each clarifying question through the [3-point ARQ checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) before you ask it - the precision step matters most here, since vague clarifying questions invite vague answers.
+**Step 1 — Clarify with right questions .** *Is it the premium? Is it the commitment? Is it needing to talk to someone? Is it a hidden concern?* Surface the real issue before trying to solve it. Run each clarifying question through the [3-point right-question checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) before you ask it - the precision step matters most here, since vague clarifying questions invite vague answers.
 
 **Step 2 — Acknowledge and help resolve the actual concern** (not the surface phrase).
 

@@ -121,7 +121,7 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 - *"Honestly, that's part of why I joined"*
 - *"It would mean a lot"*
 
-### Cushioning — the IBCT habit that runs under every script
+### Cushioning — the habit that runs under every script
 
 Cushioning is the move that separates a script that lands from a script that grates. **Any response longer than two sentences** — especially objection handling, follow-ups, and disagreement — should open with a cushion line: a brief acknowledgement that the prospect's position is reasonable, before you hit the content.
 

@@ -11,14 +11,14 @@ related:
 
 # Curriculum-anchored objection library
 
-The single source of truth for objection-handling scripts on `/objections`. Every entry is tagged to one of the **3 ARQ frameworks**:
+The single source of truth for objection-handling scripts on `/objections`. Every entry is tagged to one of the **3 frameworks**:
 
-- **Framework A — Acknowledge → Question (ARQ) → Reframe** — the workhorse. ~70% of objections close on this alone.
+- **Framework A — Acknowledge → Question  → Reframe** — the workhorse. ~70% of objections close on this alone.
 - **Framework B — Feel, Felt, Found** — for emotional / relationship-weighted objections.
 - **Framework C — Boomerang ("that's exactly why")** — turn the disqualifier into the qualifier.
-- **Skip-Q** — Framework A with the question step skipped, used only when the reflex is unmistakably stock.
+- **skip-Q** — Framework A with the question step skipped, used only when the reflex is unmistakably stock.
 
-> **ARQ — Asking the Right Questions.** A hundred statements are never as powerful as one right question. People defend statements; they own conclusions they reach themselves.
+> **Asking the Right Questions.** A hundred statements are never as powerful as one right question. People defend statements; they own conclusions they reach themselves.
 
 ## How to use this file
 
@@ -34,19 +34,19 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A (with skip-Q fallback)
 - **Trigger:** First 60 seconds of a call — reflex social defence.
-- **Approach:** Run full ARQ if it caught you off-guard. The Q step is the diagnostic — "not interested" can mean three different things.
+- **Approach:** Run the full right-question diagnostic if it caught you off-guard. The Q step is the diagnostic — "not interested" can mean three different things.
 
 **Acknowledge:** "Totally fair."
 
-**Question (ARQ):** "Just so I respect your time — is that not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
+**Question :** "Just so I respect your time — is that not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
 
-**Skip-Q reframe (when reflex is obvious):** "Fair — wouldn't expect you to be interested in something you haven't seen yet. Just so you can judge for yourself, would Tuesday 7pm or Saturday 10am work?"
+**skip-Q reframe (when reflex is obvious):** "Fair — wouldn't expect you to be interested in something you haven't seen yet. Just so you can judge for yourself, would Tuesday 7pm or Saturday 10am work?"
 
 ---
 
 ### "Not in the market"
 
-- **Framework:** Skip-Q
+- **Framework:** skip-Q
 - **Trigger:** Prospect signals they're not buying right now.
 - **Approach:** Acknowledge, reframe to "when you ARE ready," close on time.
 
@@ -56,7 +56,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "No need"
 
-- **Framework:** Skip-Q
+- **Framework:** skip-Q
 - **Trigger:** Prospect dismisses the value before hearing it.
 - **Approach:** Acknowledge their authority to judge, then reframe to letting them judge for themselves.
 
@@ -66,7 +66,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "What's the idea?"
 
-- **Framework:** Skip-Q
+- **Framework:** skip-Q
 - **Trigger:** Prospect testing whether to give you the meeting.
 - **Approach:** Refuse to summarise badly over the phone — the meeting IS the demo.
 
@@ -76,7 +76,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "Is it insurance?"
 
-- **Framework:** Skip-Q
+- **Framework:** skip-Q
 - **Trigger:** Prospect screening for sales pressure.
 - **Approach:** Honest "maybe" — sometimes it's insurance, sometimes it's restructuring what they already pay.
 
@@ -86,7 +86,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### Obstinate objector (the soft fallback)
 
-- **Framework:** Skip-Q (drops the time ask entirely)
+- **Framework:** skip-Q (drops the time ask entirely)
 - **Trigger:** Prospect closing the door but you want to keep it cracked open.
 - **Approach:** Soft exit that preserves the relationship for a future approach.
 
@@ -99,11 +99,11 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 ### "I don't believe in insurance"
 
 - **Framework:** A
-- **Type:** **Paradigm-shift Type 1** — concept dismissal. Prospect is rejecting the entire idea, not your specific ask. Curious-ARQ before any reframe; counter-arguing here deepens the dismissal.
+- **Type:** **Paradigm-shift Type 1** — concept dismissal. Prospect is rejecting the entire idea, not your specific ask. curious-question before any reframe; counter-arguing here deepens the dismissal.
 - **Trigger:** Prospect dismisses the entire concept — usually rooted in a specific past experience or generational view.
-- **Approach:** Run full ARQ. The objection is too vague to handle directly. Surface the specific experience or belief underneath. Never argue the concept itself.
+- **Approach:** Run the full right-question diagnostic. The objection is too vague to handle directly. Surface the specific experience or belief underneath. Never argue the concept itself.
 
-**Acknowledge + ARQ:** "Fair — and you wouldn't be the first. Quick one before I respond — what shaped that view? Was it a specific experience (someone in the family burned by a policy, a claim that got rejected), or more of a general feeling that the industry's rigged? I want to make sure I'm not arguing the wrong thing."
+**Acknowledge + Right Questions:** "Fair — and you wouldn't be the first. Quick one before I respond — what shaped that view? Was it a specific experience (someone in the family burned by a policy, a claim that got rejected), or more of a general feeling that the industry's rigged? I want to make sure I'm not arguing the wrong thing."
 
 **Reframe (after they share):** "Got it — that makes sense given what you went through. So just to be clear, what I do is less about selling insurance and more about figuring out which parts of your money work for you and which don't. Sometimes the answer is a policy. Sometimes it's restructuring what you already pay. 30 minutes — Tuesday 7pm or Saturday 10am?"
 
@@ -125,7 +125,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 > "Totally hear you — and most of the people I respect at your age think exactly the same way at first. The thing that surprised me, working with this profession, is how much premiums and underwriting are locked in by the age and health you sign at. Could there be a possibility 20 minutes is worth a quick look? Worst case, it's a coffee and you've got the info for whenever you do start thinking about it."
 
-**Skip-Q stock (any profile, when you don't know yet):** "Honest answer — being young is the only reason this makes sense to even talk about. Premiums and underwriting both get harder fast. 20 minutes is all I'm asking for."
+**skip-Q stock (any profile, when you don't know yet):** "Honest answer — being young is the only reason this makes sense to even talk about. Premiums and underwriting both get harder fast. 20 minutes is all I'm asking for."
 
 ---
 
@@ -133,9 +133,9 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A
 - **Trigger:** Prospect framing insurance as a wager rather than a hedge.
-- **Approach:** ARQ. Surface what they think 'using it' means — almost always 'making a claim' — then reframe to protection-of-savings.
+- **Approach:** Right-question. Surface what they think 'using it' means — almost always 'making a claim' — then reframe to protection-of-savings.
 
-**Acknowledge + ARQ:** "Fair point — and I want to make sure I respond to what you actually mean. When you say 'use it,' are you thinking about making a claim — like a hospital stay or a critical illness payout? Or more like getting some kind of money back?"
+**Acknowledge + Right Questions:** "Fair point — and I want to make sure I respond to what you actually mean. When you say 'use it,' are you thinking about making a claim — like a hospital stay or a critical illness payout? Or more like getting some kind of money back?"
 
 **Reframe (after they answer):** "Got it. The way I think about it — you're not paying so something happens. You're paying so that IF something happens, your savings, your home, and your family's lifestyle don't get drained to fix it. The hope is you never claim. The reason it's worth it is because the alternative is paying out of pocket. 20 minutes to map what that looks like for your situation?"
 
@@ -147,9 +147,9 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A
 - **Trigger:** Industry-level skepticism — usually a specific story or general 'big corporation' frame.
-- **Approach:** ARQ to surface the source. Don't defend the industry — acknowledge there are reasons that view exists, then show how YOU work differently.
+- **Approach:** right-question move to surface the source. Don't defend the industry — acknowledge there are reasons that view exists, then show how YOU work differently.
 
-**Acknowledge + ARQ:** "Honestly — fair, and the industry's earned some of that. Quick one before I respond: is that based on something specific (a claim that got denied, an agent that vanished, a friend's bad experience), or more of a general feeling? Want to make sure I'm not defending against the wrong thing."
+**Acknowledge + Right Questions:** "Honestly — fair, and the industry's earned some of that. Quick one before I respond: is that based on something specific (a claim that got denied, an agent that vanished, a friend's bad experience), or more of a general feeling? Want to make sure I'm not defending against the wrong thing."
 
 **Reframe (after they share):** "Got it. Here's how I work — I don't pitch products on the first meeting. I show you what you've already got, where the gaps are, and what to do with what you already pay. If you walk away saying 'no thanks,' I haven't lost anything — I'd rather you trust me later than oversell you now. 30 minutes — worth it?"
 
@@ -169,11 +169,11 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "I already have policies"
 
-- **Framework:** C (Boomerang) — with ARQ-A diagnostic up front
+- **Framework:** C (Boomerang) — with the right-question move-A diagnostic up front
 - **Trigger:** Prospect has cover already — basic, parent-bought, or 'comprehensive'.
-- **Approach:** ARQ to surface which sub-flavour, then Boomerang the specific sub-flavour. Never tell them their existing policy is bad — reframe from policy to plan.
+- **Approach:** right-question move to surface which sub-flavour, then Boomerang the specific sub-flavour. Never tell them their existing policy is bad — reframe from policy to plan.
 
-**Step 1 — Acknowledge + ARQ to surface the sub-flavour:** "Smart — most people I respect already have something in place. Quick one before I assume — when you say 'already have', is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
+**Step 1 — Acknowledge + right-question to surface the sub-flavour:** "Smart — most people I respect already have something in place. Quick one before I assume — when you say 'already have', is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
 
 **Step 2a — Old plan, never reviewed:** "Quick one — if you had to draw your current cover from memory right now, could you? Most people can't, and that's not carelessness, it's just that policies pile up over time. The 30 minutes I'm asking for is exactly that — you walk me through what you've got, I tell you what I'd flag if it were my own family. No products on the table that day. Just a free second opinion. Worth doing?"
 
@@ -221,7 +221,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 **Boomerang:** "That's exactly why — busy people without a plan compound their problems. 30 minutes now saves the 3 hours of admin you'll need later."
 
-**Skip-Q stock:** "I guessed you would be — that's why I called to schedule rather than just showing up. 20 minutes on Tuesday 7pm, or Saturday 10am?"
+**skip-Q stock:** "I guessed you would be — that's why I called to schedule rather than just showing up. 20 minutes on Tuesday 7pm, or Saturday 10am?"
 
 ---
 
@@ -233,7 +233,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 **Softened Boomerang (cushion-first):** "Totally fair — and honestly, that's actually a good reason to talk, not a reason to skip it. When there's no buffer, even small money decisions matter more, not less. What I'd cover is more about what you already pay than adding new expenses. Would 20 minutes — Tuesday 7pm or Saturday 10am — be worth it?"
 
-**Skip-Q stock (when you don't have time for the full version):** "Totally fair. What I'd cover is more about what you already pay for than adding new expenses. Free 20 minutes — Tuesday 7pm or Saturday 10am?"
+**skip-Q stock (when you don't have time for the full version):** "Totally fair. What I'd cover is more about what you already pay for than adding new expenses. Free 20 minutes — Tuesday 7pm or Saturday 10am?"
 
 ---
 
@@ -241,9 +241,9 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A (Acknowledge-Q-Reframe) + Iceberg peel
 - **Trigger:** Post-pitch ambiguous objection — could mean (1) the offer, (2) timing, (3) trust in you, or (4) needing to consult someone.
-- **Approach:** ARQ Rule 4 (two distinct options) to anchor the answer, then **Iceberg peel** — go one layer deeper after they pick. Don't stop at the first answer.
+- **Approach:** **two distinct options** to anchor the answer, then **Iceberg peel** — go one layer deeper after they pick. Don't stop at the first answer.
 
-**Step 1 — ARQ diagnostic with two distinct options:** "Totally fair — and I want to make sure I'm not the reason you're hesitating. Quick one — is the part you want to think about the offer itself, the timing, or whether I'm the right person to do it with?"
+**Step 1 — right-question diagnostic with two distinct options:** "Totally fair — and I want to make sure I'm not the reason you're hesitating. Quick one — is the part you want to think about the offer itself, the timing, or whether I'm the right person to do it with?"
 
 **Step 2 — Iceberg peel (after they answer):** "Got it. And just so I respond to the right thing — when you say *[their answer]*, is it more about *[specific concern A]* or *[specific concern B]*? Genuinely no wrong answer."
 
@@ -253,7 +253,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "I'll think about it and let you know" (vague stall)
 
-- **Framework:** A (curious-ARQ) — distinct from the active "let me think" above
+- **Framework:** A (curious-question) — distinct from the active "let me think" above
 - **Type:** **Paradigm-shift Type 2** — they accept the concept but you haven't given them enough certainty to commit. Looping territory if you're post-pitch.
 - **Trigger:** Polite passive stall — usually a softer no than they're saying. Different from active *"let me think"* which has real content underneath. This one is *"please go away nicely."*
 - **Approach:** Surface what's actually underneath. Most of the time it's one of three buckets: budget concern, partner consult, or *"I'm not sure you're the right person yet."* Naming the three buckets gives them permission to pick honestly.
@@ -268,9 +268,9 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A
 - **Trigger:** Post-pitch deferral — could be genuine or stall.
-- **Approach:** ARQ to surface which. If genuine, joint meeting. If stall, isolate the real concern.
+- **Approach:** right-question move to surface which. If genuine, joint meeting. If stall, isolate the real concern.
 
-**Acknowledge + ARQ:** "Fully respect that — these calls should be made together. Quick one so I don't get this wrong: is this a 'I want my partner in the room when we make the decision' or more of a 'I want to think it through with them first'? Both are fine, just changes what I do next."
+**Acknowledge + Right Questions:** "Fully respect that — these calls should be made together. Quick one so I don't get this wrong: is this a 'I want my partner in the room when we make the decision' or more of a 'I want to think it through with them first'? Both are fine, just changes what I do next."
 
 **If 'partner in the room' — joint meeting close:** "Perfect. The right move is to have your partner there from the start so you're not playing telephone with my answers. Weekday evening or Saturday morning easier for both of you?"
 
@@ -282,15 +282,15 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** A
 - **Trigger:** Pricing pushback — sticker shock, value mismatch, or genuine cash flow.
-- **Approach:** ARQ first. 'Compared to what?' surfaces the real concern. Avoid '$10/day = 2 coffees' — sounds glib.
+- **Approach:** right-question first. 'Compared to what?' surfaces the real concern. Avoid '$10/day = 2 coffees' — sounds glib.
 
-**Acknowledge + ARQ Rule 4 (two distinct options):** "Fair feedback. Quick one — when you say expensive, is it expensive vs your monthly budget, or expensive vs what you thought protection would cost? Different problem each way and I'd hate to fix the wrong one."
+**Acknowledge + two-option anchor:** "Fair feedback. Quick one — when you say expensive, is it expensive vs your monthly budget, or expensive vs what you thought protection would cost? Different problem each way and I'd hate to fix the wrong one."
 
-**If budget-tight — restructure with ARQ Rule 5 (non-committal):** "Got it. Then perhaps the better starting point is to look at your budget first, and reverse-engineer what protection might actually fit. Honestly, $80 a month of the right thing tends to outperform $300 a month of the wrong thing. Could there be a possibility we map that in 20 minutes — Tuesday 7pm or Saturday 10am?"
+**If budget-tight — restructure with non-committal phrasing:** "Got it. Then perhaps the better starting point is to look at your budget first, and reverse-engineer what protection might actually fit. Honestly, $80 a month of the right thing tends to outperform $300 a month of the wrong thing. Could there be a possibility we map that in 20 minutes — Tuesday 7pm or Saturday 10am?"
 
 **If perception — show the numbers:** "Fair — and I'd rather show you the math than argue about it. The illustration shows exactly where every dollar goes. Tuesday 7pm or Saturday 10am to walk through it?"
 
-> **Watch out:** Avoid the '$10/day = 2 coffees' reframe. It sounds glib and skips ARQ entirely.
+> **Watch out:** Avoid the '$10/day = 2 coffees' reframe. It sounds glib and skips the right-question step entirely.
 
 ---
 
@@ -318,27 +318,27 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "Send me info / post it out"
 
-- **Framework:** Skip-Q + ARQ Rule 6 (authority quoting)
+- **Framework:** skip-Q + authority-quoting move
 - **Trigger:** Prospect deflecting to async channel to avoid the meeting.
 - **Approach:** Generic info wastes their time more than a 20-minute call. Borrow authority — most senior planners say the same thing — to make the push back land as advice rather than self-interest.
 
 **Stock response:** "Happy to — but anything I send blind will either be too generic to use or too long to read. Quicker if I see your situation first, then I send the relevant 2 pages after. Tuesday 7pm or Saturday 10am?"
 
-**Authority-quote variant (ARQ Rule 6):** "Happy to — but the reason I push back: most of the senior planners I've trained under say the same thing. Generic material wastes the prospect's time more than a 20-minute call. Quicker if I see your situation first, then I send the relevant 2 pages after. Would Tuesday 7pm or Saturday 10am work?"
+**Authority-quote variant (borrow trust from a respected other):** "Happy to — but the reason I push back: most of the senior planners I've trained under say the same thing. Generic material wastes the prospect's time more than a 20-minute call. Quicker if I see your situation first, then I send the relevant 2 pages after. Would Tuesday 7pm or Saturday 10am work?"
 
 ---
 
 ## Product-specific (post-pitch)
 
-These need product knowledge, not pure ARQ — but they still slot into one of the 3 frameworks. Sourced from Day 56 product sales tracks.
+These need product knowledge, not pur. Right-question — but they still slot into one of the 3 frameworks. Sourced from Day 56 product sales tracks.
 
 ### "ILPs have high charges"
 
 - **Framework:** A
 - **Trigger:** Pro-Achiever / ILP product objection — usually after the prospect read forum posts.
-- **Approach:** Acknowledge the charges are real. ARQ on what they're comparing against (DIY ETF vs another insurance plan). Reframe to total-cost-of-ownership.
+- **Approach:** Acknowledge the charges are real. right-question on what they're comparing against (DIY ETF vs another insurance plan). Reframe to total-cost-of-ownership.
 
-**Acknowledge + ARQ:** "Fair — the charges ARE there, I won't pretend otherwise. Quick one — are you comparing this against ETFs / robo-advisors, or against another insurance plan? Different conversation each way."
+**Acknowledge + Right Questions:** "Fair — the charges ARE there, I won't pretend otherwise. Quick one — are you comparing this against ETFs / robo-advisors, or against another insurance plan? Different conversation each way."
 
 **Reframe (vs DIY ETF):** "Got it. Then let's actually compare apples to apples. The charges in an ILP cover three things: the insurance coverage built in, the fund management, and someone in your corner when markets crash. If you go DIY, you'd pay for term insurance separately (~$50-100/month), platform fees on the ETF, and you're on your own when markets drop 30%. When I add it up, the gap is much smaller than the headline charge suggests."
 
@@ -350,9 +350,9 @@ These need product knowledge, not pure ARQ — but they still slot into one of t
 
 - **Framework:** A
 - **Trigger:** Smart Wealth Builder / endowment objection — comparing 2-3% returns to stock market.
-- **Approach:** ARQ on the goal first. Endowments compete with bank savings for short-to-mid-term goals, not with the stock market.
+- **Approach:** right-question on the goal first. Endowments compete with bank savings for short-to-mid-term goals, not with the stock market.
 
-**Acknowledge + ARQ:** "Fair — and you're right that they don't compete with the stock market. Quick one — what's the money for? Wedding fund, house down payment, child's education, or general savings?"
+**Acknowledge + Right Questions:** "Fair — and you're right that they don't compete with the stock market. Quick one — what's the money for? Wedding fund, house down payment, child's education, or general savings?"
 
 **Reframe (after they share goal):** "Got it. So this isn't actually a 'beat the market' decision — it's a 'will the money definitely be there when I need it' decision. Endowments win on certainty and on the discipline of forced saving. Stocks win on long-term growth but lose on the panic-sell problem. Different jobs. The right move is to use both — endowment for the goal you can't miss, stocks for the goal that can wait."
 
@@ -362,9 +362,9 @@ These need product knowledge, not pure ARQ — but they still slot into one of t
 
 - **Framework:** A
 - **Trigger:** GPP / whole life objection — comparing monthly premium against term.
-- **Approach:** Acknowledge gap is real. ARQ on what 'covered' means (working years vs lifetime). Most claims happen at 65+.
+- **Approach:** Acknowledge gap is real. right-question on what 'covered' means (working years vs lifetime). Most claims happen at 65+.
 
-**Acknowledge + ARQ:** "True — whole life is more per month, no argument. Quick one before I respond: when you imagine 'covered,' do you mean covered through working years, or covered for life — including 65+ when most claims actually happen?"
+**Acknowledge + Right Questions:** "True — whole life is more per month, no argument. Quick one before I respond: when you imagine 'covered,' do you mean covered through working years, or covered for life — including 65+ when most claims actually happen?"
 
 **Reframe (after they answer):** "Got it. So the trade-off is: term gives you the cheapest premium today but ends right when you're most likely to claim. Whole life is more per month but locks in cover at today's price for life and builds cash value you can borrow against. Most of my clients use BOTH — whole life for the lifetime base, term layered on for the high-responsibility years (kids, mortgage)."
 
@@ -376,7 +376,7 @@ These need product knowledge, not pure ARQ — but they still slot into one of t
 - **Trigger:** Term objection — prospect dislikes paying for protection that 'leaves nothing.'
 - **Approach:** Honest BTIR question. BTIR is mathematically right and behaviourally wrong for most people.
 
-**Acknowledge + ARQ:** "Correct — term is pure protection, no cash value. The case FOR it is 'Buy Term, Invest the Rest' — cheapest protection, you invest the savings separately. The honest question is: will you actually invest the difference every month, even when markets drop?"
+**Acknowledge + Right Questions:** "Correct — term is pure protection, no cash value. The case FOR it is 'Buy Term, Invest the Rest' — cheapest protection, you invest the savings separately. The honest question is: will you actually invest the difference every month, even when markets drop?"
 
 **Reframe (after they answer):** "If yes — term is the right call, you'll come out ahead. If no, or you're not sure — whole life forces the saving for you, and you'll thank yourself in 20 years. Which one sounds more like you?"
 
@@ -396,11 +396,11 @@ These need product knowledge, not pure ARQ — but they still slot into one of t
 
 ## Index by framework
 
-- **Framework A (ARQ):** Not interested · Let me think · Let me check with my spouse · It's too expensive · I don't believe in insurance · Why pay for something I may never use · Insurance just wants my money · ILPs have high charges · Endowment returns too low · Whole life too expensive · Term has no cash value
+- **Framework A :** Not interested · Let me think · Let me check with my spouse · It's too expensive · I don't believe in insurance · Why pay for something I may never use · Insurance just wants my money · ILPs have high charges · Endowment returns too low · Whole life too expensive · Term has no cash value
 - **Framework B (Feel-Felt-Found):** Already have an advisor · I've been burned by an advisor · My friend had a bad claims experience
 - **Framework C (Boomerang):** I'm too busy · No money · I already have policies · I'll do it next year · I'll wait until I earn more · I'm too young · MediShield Life is enough
-- **Skip-Q:** Not in the market · No need · What's the idea · Is it insurance · Send me info · Obstinate objector
+- **skip-Q:** Not in the market · No need · What's the idea · Is it insurance · Send me info · Obstinate objector
 
 ## Migration history
 
-- **2026-04-29:** Legacy seeded objections (26 entries from `objection_entries` table) audited. Duplicates of existing curated entries removed. Salvageable content rewritten in ARQ voice and merged in. Bad patterns (preachy education-dump, '$10/day = 2 coffees' reframes, fear-mongering stats) destroyed. Legacy DB hidden from `/objections` for non-admins; admins can still access it via collapsible.
+- **2026-04-29:** Legacy seeded objections (26 entries from `objection_entries` table) audited. Duplicates of existing curated entries removed. Salvageable content rewritten in right-question voice and merged in. Bad patterns (preachy education-dump, '$10/day = 2 coffees' reframes, fear-mongering stats) destroyed. Legacy DB hidden from `/objections` for non-admins; admins can still access it via collapsible.

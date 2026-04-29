@@ -156,7 +156,7 @@ Scale that across 20 A-clients × 2 thoughtful moments per year = 40 moments ann
 
 Every FC ends up with the same problem eventually: an A-tier client goes quiet. Premium lapses, a referral promise never materialises, replies get shorter, calls don't get returned. The relationship hasn't *broken* — it's drifted. Pretending nothing happened (the most common move) lets it drift further. Calling to *"check in"* with no real agenda (the second most common) reads as transactional fishing.
 
-The IBCT 8-Step framework is the recovery script. It's designed for someone you already know — a team-mate, a long-time client, a strained friend — and it works because every step is structured around *them*, not your agenda.
+The **8-Step Recovery framework** is the script. It's designed for someone you already know — a team-mate, a long-time client, a strained friend — and it works because every step is structured around *them*, not your agenda.
 
 | # | Step | What it sounds like |
 |---|---|---|
@@ -169,9 +169,11 @@ The IBCT 8-Step framework is the recovery script. It's designed for someone you 
 | 7 | **Constructive feedback (only if needed)** | If there's a real issue — premium lapse, missed payment, behaviour pattern — name it after steps 1-6 have built the cushion. *"One thing I wanted to flag, since I'd rather you hear it from me…"* |
 | 8 | **Empower** | End on the next thing they have control over. *"What would feel most useful from me over the next few months?"* — and then deliver on whatever they say. |
 
-**Where it lands:** premium-lapse calls, *"the client stopped replying"* situations, the renewal-year touchpoint with a tier-A client who's gone quiet, the conversation where you have to flag bad news (an underwriting decline, a claim being slow). It's also the script for the rare moment when a *team-mate* is struggling — the IBCT framework was originally written for coaching, and a struggling junior FC is the same shape of conversation.
+**Where it lands:** premium-lapse calls, *"the client stopped replying"* situations, the renewal-year touchpoint with a tier-A client who's gone quiet, the conversation where you have to flag bad news (an underwriting decline, a claim being slow). It's also the script for the rare moment when a *team-mate* is struggling — a struggling junior FC is the same shape of conversation as a strained client.
 
 **What it isn't:** an opener for cold or warm prospecting. The 8 Steps assume the relationship already exists. For a brand-new contact, see Day 22's warm market opener instead.
+
+**One note on origin:** the framework was originally written for *coaching* a struggling team-mate, not handling a client — which is why every step is so person-centred and so light on agenda. The structure transfers cleanly to client recovery; the cushioning underneath is the same.
 
 The compound effect: one well-handled 8-Step recovery conversation often produces more goodwill than 5 cold check-ins. A client who feels *heard* during a difficult moment becomes a 20-year client and a referral source. A client who feels managed during a difficult moment becomes a polite churn statistic.
 

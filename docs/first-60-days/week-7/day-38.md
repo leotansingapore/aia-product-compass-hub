@@ -98,7 +98,7 @@ This is the proven opening. Practise until it's natural.
 
 These show up constantly. Memorise the responses.
 
-> **Diagnostic before you respond — Type 1 or Type 2?** ARQ teaches that most "objections" actually fall into two very different camps, and using the wrong response on the wrong type backfires:
+> **Diagnostic before you respond — Type 1 or Type 2?** Most "objections" actually fall into two very different camps, and using the wrong response on the wrong type backfires:
 >
 > - **Type 1 — concept dismissal.** *"Not interested"*, *"not in the market"*, *"don't believe in insurance"*. The prospect is rejecting the *idea*, not your specific ask. Counter-arguing here deepens the dismissal. Lead with a curious question instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe.
 > - **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"what's the idea?"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The ART pattern (Acknowledge / Relate / Turn around to the appointment ask) is what the table below applies.
@@ -116,7 +116,7 @@ These show up constantly. Memorise the responses.
 
 **Pattern (Type 2 — ART):** acknowledge the objection, reframe it, then **return to asking for the appointment.** The core ask is the same every time.
 
-**Pattern (Type 1 — ARQ-curious):** ask before you reframe. *"What shaped that view?"* / *"Was there a specific experience behind that, or more of a general feeling?"* Listen to what they actually say. Then reframe to the part they raised, not the generic version of the objection.
+**Pattern (Type 1 — curious-question first):** ask before you reframe. *"What shaped that view?"* / *"Was there a specific experience behind that, or more of a general feeling?"* Listen to what they actually say. Then reframe to the part they raised, not the generic version of the objection.
 
 Most objections are not rejections — they're **reflexes**. Don't take them personally. Respond calmly, and ask for the appointment again.
 
@@ -159,16 +159,16 @@ The best time to ask for a referral is **at the end of every meeting**, especial
 ### If they say yes
 > "Great. Quick context so I approach them right - is it more *they're at a similar life stage as you* (career, family, money questions you both have), or *something specific from our conversation today made you think of them* (like the CI piece, or the CPF point)? [Listen.] Got it. Would you be comfortable sending them a quick message right now - I can draft it for you so you don't have to think about it."
 
-The *"is it A or B"* shape is ARQ Rule 4 (two distinct options) — it forces a specific answer instead of a vague *"yeah, she's nice"*. The *"I can draft it for you"* is the SAPT move that lifts conversion meaningfully — clients give names but freeze when asked to write the intro.
+The *"is it A or B"* shape forces a specific answer instead of a vague *"yeah, she's nice"* — two distinct options always beat an open-ended *"tell me about them"*. The *"I can draft it for you"* is the move that lifts conversion meaningfully — clients give names but freeze when asked to write the intro.
 
 ### If they say no or "let me think about it"
 > "No pressure. If any names come to mind later, please let me know."
 
 **Rule:** ask every time. The worst answer is "no." The best answer is 3 names. You'll be surprised how often you get 1-2 names when you simply ask.
 
-> **The referral ask is an ARQ.** "Can you think of 2-3 friends who would benefit..." passes all three ARQ gates - it leads to the objective (specific names), it's specific (a *number*, "2-3," not "anyone"), and it's logical and indisputable (a generous client who just had a useful meeting can't reasonably say no one would benefit). A weaker version - *"Do you know anyone who might be interested?"* - fails Gate 2 (vague) and Gate 1 (yes/no answer goes nowhere). Day 47 covers the [3-point ARQ checklist](../week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) and the [referral-ask question family](../_source-scripts/arq-database.md) is in the ARQ database.
+> **The referral ask is an Right-question.** "Can you think of 2-3 friends who would benefit..." passes all thre. Right-question gates - it leads to the objective (specific names), it's specific (a *number*, "2-3," not "anyone"), and it's logical and indisputable (a generous client who just had a useful meeting can't reasonably say no one would benefit). A weaker version - *"Do you know anyone who might be interested?"* - fails Gate 2 (vague) and Gate 1 (yes/no answer goes nowhere). Day 47 covers the [3-point right-question checklist](../week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) and the [referral-ask question family](../_source-scripts/arq-database.md) is in the right-question database.
 
-### Names vs endorsements — the SAPT distinction
+### Names vs endorsements — the distinction that decides conversion
 
 A name without an endorsement is a cold lead with extra steps. The client tossing you *"oh, my colleague Sarah might be interested"* and walking away is not a referral — it's a contact with no warmth transferred. Sarah, if you call her, has no idea who you are.
 
@@ -185,7 +185,7 @@ The text goes out *while you're still in the room*. If the client demurs on send
 
 ### What this matures into — the FACT method
 
-The basic ask above is the floor — appropriate for your first 6 months. Once you have closed clients and a real practice, the ask gets more structured: SAPT's **FACT method** — Favour / Angle / Connect / Timeline. The Timeline part is the failure point most FCs skip — committing to *when* you'll follow up with the referrer, in front of the referrer.
+The basic ask above is the floor — appropriate for your first 6 months. Once you have closed clients and a real practice, the ask gets more structured. The framework taught in Week 5 of the Next 60 Days is **FACT** — Favour / Angle / Connect / Timeline. The Timeline part is the failure point most FCs skip — committing to *when* you'll follow up with the referrer, in front of the referrer.
 
 Full version covered in [Next 60 Days - Day 28: Referral Scripts](../../next-60-days/week-5/day-28.md). For now, the basic ask plus the names-vs-endorsements move is enough to build the muscle.
 

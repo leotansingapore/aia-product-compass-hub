@@ -106,7 +106,7 @@ The Marcus story above is a **crisis arc** (the gap caught up with him). The fra
 
 **6. Purpose:** "The thing is, Priya never had a high income. She still doesn't. The whole result - the $94k, the holiday, the night-shift exit plan - came from starting at 27 instead of 35. Eight years of compounding did the work. The hardest part was just deciding to start."
 
-**Why it works:** different emotional register (hopeful, not fearful), different proof type (lifestyle testimonial, not gratitude after damage), but the same 6P shape. The closing line **"the hardest part was just deciding to start"** sets up the natural ARQ-style next question - *"what's holding you back from being Priya at 27?"*
+**Why it works:** different emotional register (hopeful, not fearful), different proof type (lifestyle testimonial, not gratitude after damage), but the same 6P shape. The closing line **"the hardest part was just deciding to start"** sets up the natural right-question-style next question - *"what's holding you back from being Priya at 27?"*
 
 #### Story 3 - Ben (expensive-lesson arc, hospitalisation gap)
 
@@ -124,19 +124,19 @@ The Marcus story above is a **crisis arc** (the gap caught up with him). The fra
 
 **6. Purpose:** "The point isn't that basic coverage is bad - it's fine for someone whose body and time aren't directly their income. For a self-employed operator, the basic plan is actually the riskiest plan. Whether the basic plan is right for *you* depends entirely on what you'd lose if you had to wait six months."
 
-**Why it works:** the story doesn't shame the prospect for the same view they currently hold (Ben held it too) - it shows the cost of holding it. The closing line lands as an ARQ: *"what would you lose if you had to wait six months?"* - the prospect answers themselves.
+**Why it works:** the story doesn't shame the prospect for the same view they currently hold (Ben held it too) - it shows the cost of holding it. The closing line lands as an Right Questions: *"what would you lose if you had to wait six months?"* - the prospect answers themselves.
 
-### The ARQ link - every story ends with a question
+### The right-question link - every story ends with a question
 
-A 6P story without a closing question is a story the prospect listened to and forgot. The closing question is what hands the relevance over to them - it's the same **ARQ move** (Asking the Right Question) covered fully on [Day 47](day-47.md). After the Purpose line, ask:
+A 6P story without a closing question is a story the prospect listened to and forgot. The closing question is what hands the relevance over to them - it's the same **right-question move** (Asking the Right Question) covered fully on [Day 47](day-47.md). After the Purpose line, ask:
 
-| Story | Closing ARQ |
+| Story | Closing right-question |
 |---|---|
 | Marcus | "If a $30k cap was the difference for Marcus's family, what would the cap on your current cover be?" |
 | Priya | "What's stopping you from being Priya at 27?" |
 | Ben | "If you couldn't work for six months, what would that cost you?" |
 
-Each question forces the prospect to map the story onto their own life. The story does the emotional priming; the ARQ does the work.
+Each question forces the prospect to map the story onto their own life. The story does the emotional priming; the right-question does the work.
 
 ## 4. The 6P story structure - visual map
 

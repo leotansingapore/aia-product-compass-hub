@@ -1,29 +1,29 @@
 ---
 week: 8
 day: 47
-title: "ARQ — Asking the Right Questions (SPIN as the Grammar)"
+title: "Asking the Right Questions (SPIN as the Grammar)"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources: []
 duration_minutes: 25
-tags: [first-60-days, week-8, skills, arq]
+tags: [first-60-days, week-8, skills]
 ---
 
-# Day 47 - ARQ: Asking the Right Questions (SPIN as the Grammar)
+# Day 47 - Right Questions: Asking the Right Questions (SPIN as the Grammar)
 
-> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy.** That happens through **ARQ - Asking the Right Questions** - and SPIN is the four-phase grammar that gives ARQ its structure inside a fact-find. ARQ moves a client from "implied need" to "explicit need" - the threshold where they decide to buy.
+> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy.** That happens through **Asking the Right Questions** - and SPIN is the four-phase grammar that give. Right-question its structure inside a fact-find. right-question moves a client from "implied need" to "explicit need" - the threshold where they decide to buy.
 
-> **Where you've already met ARQ:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that was ARQ applied to objection handling. Today, ARQ goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also ARQ.
+> **Where you've already met Right Questions:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that wa. Right-question applied to objection handling. Today. Right-question goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also Right-question.
 
-> **Where ARQ goes deeper:** **Next 60 Days Day 43-44** is the post-license, post-pitch deep-dive on ARQ - Day 43 covers the 6 Golden Rules, Day 44 covers Silence as a Tool (the 5-10 seconds after a loaded question that most new FCs ruin by talking). Today's content is the foundation; the deep-dive is the next layer once you're licensed and running real fact-finds.
+> **Wher. Right-question goes deeper:** **Next 60 Days Day 43-44** is the post-license, post-pitch deep-dive o. Right-question - Day 43 covers the 6 Golden Rules, Day 44 covers Silence as a Tool (the 5-10 seconds after a loaded question that most new FCs ruin by talking). Today's content is the foundation; the deep-dive is the next layer once you're licensed and running real fact-finds.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **State** the ARQ principle (questions over statements) and the 3-point checklist for what makes a question "right."
+1. **State** the right-question principle (questions over statements) and the 3-point checklist for what makes a question "right."
 2. **Name** the 4 SPIN question types and what each does.
-3. **Understand** why ARQ + SPIN works - the journey from implied to explicit need.
+3. **Understand** wh. Right-question + SPIN works - the journey from implied to explicit need.
 4. **Map** the consultative selling philosophy onto your own meeting process.
 
 ---
@@ -43,17 +43,17 @@ Most new FCs think their job is to convince. That framing doesn't work in modern
 
 **When it works, you haven't sold them anything - they've bought.**
 
-## 1a. ARQ - Asking the Right Questions (the principle SPIN sits inside)
+## 1a. Asking the Right Questions (the principle SPIN sits inside)
 
-Before the specific S-P-I-N grammar, there's a broader principle - **ARQ - Asking the Right Questions:** a hundred statements are never as powerful as one right question.
+Before the specific S-P-I-N grammar, there's a broader principle - **Asking the Right Questions:** a hundred statements are never as powerful as one right question.
 
 A statement like *"Insurance is important because it protects your family"* lands as *"here's what you should believe."* The prospect either already agrees (so the statement is wasted) or disagrees (so you now have to argue them out of their position). Neither path converts.
 
 The same content as a question - *"If something were to happen to you tomorrow - bluntly - who would be financially affected, and by how much?"* - forces the prospect to picture a specific scenario and land on their own answer. You didn't tell them anything; they told themselves.
 
-**That's ARQ in one line.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of applying ARQ consistently across a 60-minute fact-find. Day 44's Q step in objection handling is the same engine, applied in 5 seconds instead of 60 minutes.
+**That'. Right-question in one line.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of applying right questions consistently across a 60-minute fact-find. Day 44's Q step in objection handling is the same engine, applied in 5 seconds instead of 60 minutes.
 
-### The 10 jobs a right question (ARQ) can do
+### The 10 jobs a right question  can do
 
 A single well-constructed question can do any of these. Statements do at most 1-2 of them:
 
@@ -70,7 +70,7 @@ A single well-constructed question can do any of these. Statements do at most 1-
 
 This is why question-heavy fact-finds close at 1-in-2 to 1-in-3 while statement-heavy ones close at 1-in-10.
 
-### The 3-point ARQ checklist - is this a right question?
+### The 3-point right-question checklist - is this a right question?
 
 Before asking any question, run it through three gates:
 
@@ -78,7 +78,7 @@ Before asking any question, run it through three gates:
 2. **Is it specific?** - does it force a specific answer, or does it allow a hedge?
 3. **Is it logical and indisputable?** - can the prospect disagree without sounding unreasonable?
 
-If all three pass, ask it. If any fails, rewrite before asking. **This checklist is the ARQ test** - apply it at every phase of SPIN (Situation, Problem, Implication, Need-Payoff), in the Q step of objection handling on Day 44, and on the closing question of any 6P story on Day 45.
+If all three pass, ask it. If any fails, rewrite before asking. **This checklist is the right-question test** - apply it at every phase of SPIN (Situation, Problem, Implication, Need-Payoff), in the Q step of objection handling on Day 44, and on the closing question of any 6P story on Day 45.
 
 ## 2. Needs vs wants - the crucial distinction
 
@@ -241,9 +241,9 @@ Total: 45-60 min of questions before you ever show a product.
 
 **This feels slow to new FCs.** It works. Meetings that rush to products close at 1 in 5-10. Meetings that run the full SPIN arc close at 1 in 2-3.
 
-## 6a. The ARQ method inventory - countering objections and leading the sale
+## 6a. The right-question method inventory - countering objections and leading the sale
 
-SPIN tells you **which phase** you're in (Situation, Problem, Implication, Need-Payoff). The ARQ methods tell you **how each question is constructed** to land. Internalise the six rules below and every question you ask gets sharper - regardless of which SPIN phase you're in.
+SPIN tells you **which phase** you're in (Situation, Problem, Implication, Need-Payoff). The right-question methods tell you **how each question is constructed** to land. Internalise the six rules below and every question you ask gets sharper - regardless of which SPIN phase you're in.
 
 ### The 6 Golden Rules - the construction toolkit
 
@@ -260,7 +260,7 @@ SPIN tells you **which phase** you're in (Situation, Problem, Implication, Need-
 
 When a prospect throws an objection, **don't defend, don't argue**. Run this sequence:
 
-| Step | ARQ move | Example |
+| Step | right-question move | Example |
 |---|---|---|
 | 1 | **Keyword echo** (Rule 1) - ask *why* using their word | *Prospect:* *"I don't believe in insurance - it's a scam."* -> *"May I ask - why don't you *believe* in insurance?"* |
 | 2 | **Menu of possibilities** (Rule 2) - if they're vague, give them two or three options to pick from | *"Is it the monthly commitment that concerns you, or something about how the product works, or something else?"* |
@@ -268,7 +268,7 @@ When a prospect throws an objection, **don't defend, don't argue**. Run this seq
 | 4 | **Respected-expert reframe** (Rule 6) - introduce a contradicting position as a question, not a statement | *"Would you agree professional fund managers are experts at investing? Do you think it's possible they hold plans like these in their own portfolios for a reason?"* |
 | 5 | **Binary reframe** (Rule 4) - the choice with one obviously better option | *"If you had to choose - would you rather be financially wiped out by a $200K hospital bill, or transfer that risk to an insurer for a small fraction of the cost?"* |
 
-**Common objections -> primary ARQ move:**
+**Common objections -> primary right-question move:**
 
 | Objection | First move | Why |
 |---|---|---|
@@ -283,7 +283,7 @@ When a prospect throws an objection, **don't defend, don't argue**. Run this seq
 
 When you want the prospect to move forward without feeling pushed, run this sequence:
 
-| Step | ARQ move | Example |
+| Step | right-question move | Example |
 |---|---|---|
 | 1 | **Chain of yeses** (job #6) - ask 2-3 small questions where the answer is almost certainly *yes* | *"Would you agree starting early matters? ... Would you agree the longer money compounds, the bigger the outcome?"* |
 | 2 | **Binary with obvious better option** (Rule 4) - let them pick the direction | *"Would you rather plan for retirement knowing exactly what you'll have, or get there and hope it works out?"* |
@@ -304,34 +304,34 @@ If you remember only this:
 5. **Soften trial closes with *may / might / possibility*.** Real yeses come from low-pressure asks, not high-pressure ones.
 6. **Before any question: does it lead to my objective, is it specific, is it logically indisputable?** Three gates. Rewrite if any fails.
 
-## 6b. ARQ Aerobics - the 6-step combat sequence
+## 6b. The 6-step combat sequence — Right Questions in production
 
-ARQ-as-principle is what you've been learning. **ARQ Aerobics** is the operational route map — the order to run the moves in when you're sitting across from a real prospect. SPIN is one slice of this; the wider sequence is:
+The principle of asking the right questions is what you've been learning. The **6-step combat sequence** is the operational route map — the order to run the moves in when you're sitting across from a real prospect. SPIN is one slice of this; the wider sequence is:
 
 ```mermaid
 flowchart LR
-    A["1 . Read DISC<br/>(IBCT layer)"]
+    A["1 . Read DISC<br/>(profile layer)"]
     B["2 . Surface hidden concerns<br/>(curious questions)"]
     C["3 . Mind closed or open?<br/>(Type 1 vs Type 2)"]
     D["4 . No-need vs create-need<br/>(SPIN: Situation -> Problem)"]
-    E["5 . ARQ to hot buttons<br/>(SPIN: Implication -> Need-Payoff)"]
+    E["5 . Right questions to hot buttons<br/>(SPIN: Implication -> Need-Payoff)"]
     F["6 . Hit & close<br/>(trial close + ask)"]
     A --> B --> C --> D --> E --> F
 ```
 
-**Step 1 — Read DISC (IBCT layer).** First 60 seconds. Are they D (decisive, fast, results-led), I (warm, story-led, sociable), S (steady, harmony-led, slow to commit), or C (cautious, detail-led, evidence-driven)? Every move below adapts by profile.
+**Step 1 — Read DISC.** First 60 seconds. Are they D (decisive, fast, results-led), I (warm, story-led, sociable), S (steady, harmony-led, slow to commit), or C (cautious, detail-led, evidence-driven)? Every move below adapts by profile.
 
 **Step 2 — Surface hidden concerns with curious questions.** Most prospects walk in with one or two unspoken concerns about you, your firm, or the industry. Don't address what they say first — address what they're not saying. *"Before we dive in, anything specific you wanted to flag — about me, the firm, or the conversation we're about to have?"*
 
-**Step 3 — Mind closed or open? (Type 1 vs Type 2 paradigm-shift).** Are they dismissing the concept (*"don't believe in insurance"*) or open to the concept but unsure on the specifics? Type 1 needs ARQ-curious *before* any reframe; Type 2 takes SPIN cleanly. (Day 44 covers this in full.)
+**Step 3 — Mind closed or open? (Type 1 vs Type 2 paradigm-shift).** Are they dismissing the concept (*"don't believe in insurance"*) or open to the concept but unsure on the specifics? Type 1 needs curious-question *before* any reframe; Type 2 takes SPIN cleanly. (Day 44 covers this in full.)
 
 **Step 4 — No-need vs create-need.** SPIN's Situation -> Problem move. If the prospect doesn't yet feel a gap, you have to surface one with Problem questions before any Implication question can land. Skipping ahead is what makes new FCs sound like they're pitching.
 
-**Step 5 — ARQ to hot buttons.** SPIN's Implication -> Need-Payoff move. Once a problem is on the table, the Implication question quantifies the cost (*"if that happened tomorrow, what would it mean for the family?"*). Need-Payoff confirms the fix is wanted (*"if I could show you a way to handle that for $X a month, would you want to look at it?"*).
+**Step 5 — Right questions to hot buttons.** SPIN's Implication -> Need-Payoff move. Once a problem is on the table, the Implication question quantifies the cost (*"if that happened tomorrow, what would it mean for the family?"*). Need-Payoff confirms the fix is wanted (*"if I could show you a way to handle that for $X a month, would you want to look at it?"*).
 
-**Step 6 — Hit & close.** Trial close (*"may / might / possibility"*) → real close (binary with the better option pre-framed). The Hit is the close question; the Aerobics is everything that earns the right to ask it.
+**Step 6 — Hit & close.** Trial close (*"may / might / possibility"*) → real close (binary with the better option pre-framed). The Hit is the close question; the prep above is everything that earns the right to ask it.
 
-**Why this matters:** new FCs reach for the close (Step 6) without doing Steps 1-5. The close fails, they blame the script. The script was fine; the prep wasn't there. ARQ Aerobics is the prep, run live, in 30-45 minutes.
+**Why this matters:** new FCs reach for the close (Step 6) without doing Steps 1-5. The close fails, they blame the script. The script was fine; the prep wasn't there. The 6-step sequence is the prep, run live, in 30-45 minutes.
 
 ## 7. Matching social styles - the 4 M's
 
