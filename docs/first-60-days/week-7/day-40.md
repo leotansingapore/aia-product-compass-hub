@@ -158,7 +158,7 @@ If you don't have a professional presence yet, here's the minimum for Week 7:
 
 **Time needed:** 2 hours to do all three platforms reasonably. Do it this weekend.
 
-> **Tool: [Content Studio](https://aia-content-studio.vercel.app).** Once your three profiles are live, use Content Studio to draft your first batch of posts (intro post, weekly authority post, social-proof post). It generates platform-specific drafts (LinkedIn / Instagram / Facebook) you can edit in your own voice before posting. Don't post AI output raw - use it to break the blank page.
+> **Tool: [Content Studio](https://content-studio-beige-eta.vercel.app).** Once your three profiles are live, use Content Studio to draft your first batch of posts (intro post, weekly authority post, social-proof post). It generates platform-specific drafts (LinkedIn / Instagram / Facebook) you can edit in your own voice before posting. Don't post AI output raw - use it to break the blank page.
 
 ## 6. The reconnection move
 
