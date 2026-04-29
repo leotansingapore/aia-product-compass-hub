@@ -198,6 +198,42 @@ You're not scripting their words. You're giving them a template. Most will adapt
 
 ---
 
+## Scripts Library
+
+Here are the canonical scripts for asking, the post-meeting referral text, and the post-claim moment - the highest-conversion ask in the cycle. Practise them out loud, then make them yours.
+
+### Referral Request - Young Adults
+**Use this when** you've just delivered value to a young-adult client (post-FHR, post-policy, post-investment review). The script that names the demographic and asks for specific names.
+
+[[referral-request-young-adults|Referral Request — Young Adults]]
+
+### AIA Claims Milestone & Referral Request
+**Use this when** a claim has just been paid out for a client. This is the highest-trust moment in the entire client lifecycle - the referral conversion rate is multiples of any other ask.
+
+[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
+
+### Post-Meeting - Client Resources & Referral
+**Use this when** a meeting has just ended and the client is in the "thank you" headspace. Bundles a value drop with the soft referral seed.
+
+[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
+
+### Namecard Referral Text
+**Use this when** the client offers to introduce you and asks "what should I send them?" - hand them this exact text to forward.
+
+[[namecard-referral-text|Namecard Referral Text]]
+
+### Referral Text - Lead to Friends (Skool Community Sign-Up)
+**Use this when** the lead has joined a community/group and you want them to invite friends in.
+
+[[referral-text-lead-to-friends-skool-community-sign-up|Referral Text — Lead to Friends (Skool Community Sign-Up)]]
+
+### Consultant Text to Referee (Referral)
+**Use this when** the client has just made the intro and you're sending the first message to the referred prospect within the 24-hour borrowed-trust window.
+
+[[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
+
+---
+
 ## Related
 
 - Previous: [[day-25|Day 25 — Why New FCs Under-Ask]]

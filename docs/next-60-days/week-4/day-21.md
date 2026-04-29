@@ -209,6 +209,47 @@ Reading off a page loses rapport in the first 10 seconds. Internalising the stru
 
 ---
 
+## 2-Liner Hook (Warm Prospecting Flow)
+
+The Market Survey is the phone-first warm opener. The 2-Liner Hook is the text-first cousin — for the contact who would say no to a phone call but yes to a useful resource. Two lines: line 1 names what you've been helping friends with, line 2 offers a guide for their group. Send, wait 1–2 weeks after they receive the resource, then follow up by asking whether they figured out the problem. Both flows end in the same place: a 30-minute appointment built around the prospect's question, not your product.
+
+**Use this when** the contact is semi-warm (haven't spoken in 6+ months) or texts back faster than they pick up the phone, and you have a resource that obviously fits their situation.
+
+Full flow, script with blanks, worked example, and follow-up phrasing: [[2-liner-hook-warm-prospecting]].
+
+---
+
+## Scripts Library
+
+Here are the canonical scripts for the Market Survey itself, plus the texting tools that get a yes to the call. Practise them out loud, then make them yours.
+
+### Market Survey Script (the canonical AIA full call)
+**Use this when** you're running the survey end-to-end - opening, agenda, 4 questions, appointment ask using Q4, binary close, and the 10-objection block at the end.
+
+[[market-survey-script|Market Survey Script]]
+
+### The ABCD Four Promises (before starting FHR)
+**Use this when** the survey converted to a meeting and you want to set the emotional frame in the first 60 seconds. Assurance, Best Interest, Confidentiality, Full Disclosure.
+
+[[the-abcd-four-promises-before-starting-fhr|The ABCD Four Promises (Before Starting FHR)]]
+
+### Texting EQ - The 11 Rules for Warm Outreach
+**Use this when** the survey has to be set up via text first because the contact never picks up the phone. Rules 1, 2, 3 are non-negotiable.
+
+[[texting-eq-the-11-rules-for-warm-outreach|Texting EQ — The 11 Rules for Warm Outreach]]
+
+### Warm Market - Outreach Flow (Step-by-Step)
+**Use this when** you want a no-pressure 4-step seed-the-yes sequence before you even run the survey - works especially well for Semi-Warm contacts.
+
+[[warm-market-outreach-flow-step-by-step|Warm Market — Outreach Flow (Step-by-Step)]]
+
+### Warm Market - Conversation Openers (by Life Stage)
+**Use this when** you have a specific life moment to anchor the survey ask - BTO, fresh grad, getting married, just started investing.
+
+[[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
+
+---
+
 ## Related
 
 - Previous: [[day-20|Day 20 — Reaching Out Without Feeling Salesy]]

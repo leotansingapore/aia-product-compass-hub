@@ -220,6 +220,37 @@ Events aren't the primary tool. They're the plan B when direct asks consistently
 
 ---
 
+## Scripts Library
+
+Here are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them yours.
+
+### Referral Request - Young Adults
+**Use this when** the FACT close lands and you need the verbatim ask. Specifically tuned for young-adult clients.
+
+[[referral-request-young-adults|Referral Request — Young Adults]]
+
+### AIA Claims Milestone & Referral Request
+**Use this when** a claim has just been paid out - this is the highest-trust moment to ask, and the conversion rate is multiples of any other ask.
+
+[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
+
+### Namecard Referral Text
+**Use this when** the client offers to introduce someone and asks "what should I send?" - hand them this exact text.
+
+[[namecard-referral-text|Namecard Referral Text]]
+
+### Consultant Text to Referee (Referral)
+**Use this when** the intro just happened and you're sending the first message to the referred prospect within the 24-hour borrowed-trust window.
+
+[[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
+
+### Post-Meeting - Client Resources & Referral
+**Use this when** the meeting is wrapping up and you want a soft, value-bundled referral seed to land while the goodwill is fresh.
+
+[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
+
+---
+
 ## Related
 
 - Previous: [[day-27|Day 27 — Quality of the Ask: Context > Script]]

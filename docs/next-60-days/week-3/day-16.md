@@ -222,6 +222,47 @@ Two small rules with outsized impact:
 
 ---
 
+## 2-Liner Hook (Warm Prospecting Flow)
+
+A low-pressure, text-first opener that uses a useful resource as the bridge to a business appointment. You send two lines naming what you've been helping friends/clients with and offering a guide for it. If they say yes, you send the resource, wait 1–2 weeks, then follow up to ask whether they managed to figure out the problem. That follow-up is what gives you the appointment without pitching.
+
+**Use this when** you've done the texting rules above and need a soft opener for a warm contact who would respond better to a resource drop than to a meeting ask.
+
+Full flow, script with blanks, worked example, and follow-up phrasing: [[2-liner-hook-warm-prospecting]].
+
+---
+
+## Scripts Library
+
+Here are the canonical scripts for this exact situation. Practise them out loud, then make them yours.
+
+### Texting EQ - The 11 Rules for Warm Outreach
+**Use this when** you're about to send any DM or warm-market text and want to sanity-check it before hitting send. Rules 1, 2, 3 are non-negotiable on every text.
+
+[[texting-eq-the-11-rules-for-warm-outreach|Texting EQ — The 11 Rules for Warm Outreach]]
+
+### Texting EQ - 4-Step Objection Handling Framework
+**Use this when** an objection lands in your DM (not interested / I have an advisor / not looking right now). Acknowledge -> common ground -> different perspective -> safety valve.
+
+[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
+
+### Warm Market - Conversation Openers (by Life Stage)
+**Use this when** you have a specific life moment to anchor the message (BTO, fresh grad, getting married, has been investing). Match opener to moment.
+
+[[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
+
+### Warm Outreach - Soft Approach (Community / Social Circle)
+**Use this when** the contact is from a shared community (church, uni group, hobby). Lead with a question, not a pitch.
+
+[[warm-outreach-soft-approach-warm-market-community-contacts|Warm Outreach - Soft Approach (Warm Market / Community Contacts)]]
+
+### Warm Outreach - Curiosity Approach (DIY Investors / Existing FA)
+**Use this when** the contact is financially savvy or already has an FA. Position yourself as a one-time second opinion, not a replacement.
+
+[[warm-outreach-curiosity-approach-diy-investors-existing-fa-contacts|Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)]]
+
+---
+
 ## Related
 
 - Previous: [[day-15|Day 15 — Digital Pipeline Hygiene]]

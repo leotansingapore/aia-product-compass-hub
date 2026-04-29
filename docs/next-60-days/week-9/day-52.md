@@ -237,6 +237,42 @@ Over 20 meetings, patterns emerge. You'll notice that *"too expensive"* almost a
 
 ---
 
+## Objection-Handling Library
+
+The 3 Magic Questions are diagnostic - they tell you *which* objection is the real one. Once you know, here are the canonical scripts that handle each family.
+
+### Objection taxonomy at a glance
+
+| Family | Symptom | Script |
+|---|---|---|
+| **Push-away / not interested** | Reflex defence in first 30 sec | "Not interested in insurance"; Young Adults all-objections |
+| **"I already have someone"** | Existing advisor / family advisor | "Already have an advisor" objection script |
+| **Format / channel pushback** | "Send me an email", video-off | Video-Off (Zoom); Texting EQ 4-step |
+| **Cost-of-delay / hesitation** | "Let me think", "bad timing" | Cost of Delay (Pre-Retirees) |
+| **Recruitment-specific** | Recruitment leads only | Recruitment objection handling |
+
+### "Already Have an Advisor" Objection Script
+**Use this when** Magic Q1 surfaces "I already have someone" as the real block. Position yourself as a complement, not a replacement.
+
+[[already-have-an-advisor-objection-script|"Already Have an Advisor" — Objection Script]]
+
+### Texting EQ - 4-Step Objection Handling Framework
+**Use this when** the diagnostic happens in writing (DM/text). Acknowledge -> common ground -> different perspective -> safety valve.
+
+[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
+
+### Objection - "Not Interested in Insurance"
+**Use this when** Magic Q1 confirms the prospect's "not interested" is the real position, not a decoy. Two angles: redirect to planning, pivot to investing.
+
+[[objection-not-interested-in-insurance|Objection — "Not Interested in Insurance"]]
+
+### Objection Handling - Cost of Delay (Pre-Retirees)
+**Use this when** Magic Q3 surfaces "I just need more time" or "bad timing" - especially with prospects in their 40s-50s. The binary: time or money, you're paying either way.
+
+[[objection-handling-cost-of-delay-time-vs-money-pre-retirees|Objection Handling — Cost of Delay (Time vs Money) - Pre-Retirees]]
+
+---
+
 ## Related
 
 - Previous: [[day-51|Day 51 — Closing III: Emotional vs Logical]]

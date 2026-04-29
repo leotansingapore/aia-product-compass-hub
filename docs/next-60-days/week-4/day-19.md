@@ -302,6 +302,47 @@ A few weeks later she was gone. She'd been giving 100% emotional investment to e
 
 ---
 
+## 2-Liner Hook (Warm Prospecting Flow)
+
+For the Warm and Semi-Warm rings of the Master Map, the 2-Liner Hook is the lightest opener you can use. Two lines via text or DM: line 1 names what you've been helping friends/clients with and asks if you can help them too, line 2 offers a useful resource for their group. If they say yes, you send the resource, wait 1–2 weeks, then follow up by asking whether they managed to figure out the problem. The follow-up is the appointment door.
+
+**Use this when** you've triaged your list into the 4 rings and want to activate Warm and Semi-Warm contacts without making the first move feel like a sales call.
+
+Full flow, script with blanks, worked example, and follow-up phrasing: [[2-liner-hook-warm-prospecting]].
+
+---
+
+## Scripts Library
+
+Here are the canonical mindset and tip scripts that anchor a sustainable prospecting habit. Practise them out loud, then make them yours.
+
+### Warm Market - Outreach Flow (Step-by-Step)
+**Use this when** you want a no-pressure way to plant the seed and earn a future yes - works for any of the 4 rings, especially Semi-Warm.
+
+[[warm-market-outreach-flow-step-by-step|Warm Market — Outreach Flow (Step-by-Step)]]
+
+### Warm Market Outreach - Tips & Mindset
+**Use this when** the awkwardness creeps in before a warm-market call or text. Read this first, then dial.
+
+[[warm-market-outreach-tips-and-mindset|Warm Market Outreach — Tips & Mindset]]
+
+### Warm Market - What NOT to Do
+**Use this when** you're tempted to lead with the product or "we have an ILP that can help you" - the fastest way to put guards up.
+
+[[warm-market-what-not-to-do|Warm Market — What NOT to Do]]
+
+### General Calling Tips & Tonality
+**Use this when** you're about to start a calling block. Smile, slow down 10-15%, lead with warmth.
+
+[[general-calling-tips-and-tonality|General Calling Tips & Tonality]]
+
+### FYC Formula - Calling Rate & Activity Math
+**Use this when** the math feels abstract. The numbers translate every dial into expected FYC.
+
+[[fyc-formula-calling-rate-and-activity-math|FYC Formula — Calling Rate & Activity Math]]
+
+---
+
 ## Related
 
 - Previous: [[../week-3/day-18|Day 18 — Practice: 3 Posts + 5 DMs Opened]]

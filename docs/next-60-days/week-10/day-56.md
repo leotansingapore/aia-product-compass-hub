@@ -222,6 +222,42 @@ Build the system this week — before you have your first client — and it runs
 
 ---
 
+## Scripts Library
+
+Here are the canonical onboarding, post-meeting, and second-meeting scripts that turn a fresh close into the start of a referral flywheel. Practise them out loud, then make them yours.
+
+### Post-Meeting - Client Resources & Referral
+**Use this when** sending the Day 7 thank-you-and-resources message. Bundles a value drop with the soft referral seed.
+
+[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
+
+### Post-Zoom Follow-Up - Young Adults After Consultation
+**Use this when** the consultation just ended on Zoom and you want the immediate-after-call message to land warm.
+
+[[post-zoom-follow-up-young-adults-after-consultation|Post-Zoom Follow-Up — Young Adults After Consultation]]
+
+### Reminder - 2nd Meeting (All Versions)
+**Use this when** the Day 30 / Day 90 review is on the calendar and you want it to actually happen. Multiple tones depending on relationship temperature.
+
+[[reminder-2nd-meeting-all-versions|Reminder — 2nd Meeting (All Versions)]]
+
+### Setting Catch-Up Calls Script
+**Use this when** the Day 90 review has passed and you're now into the steady-state catch-up cadence (quarterly, biannual, annual).
+
+[[setting-catch-up-calls-script|Setting Catch Up Calls Script]]
+
+### Policy Inforce / Incepted Text
+**Use this when** the policy has just gone live - the "your protection is now in place" milestone text that confirms the client made a good decision.
+
+[[policy-inforce-incepted-text|Policy Inforce / Incepted Text]]
+
+### AIA Claims Milestone & Referral Request
+**Use this when** a claim eventually gets paid out for this client. Highest-trust moment in the cycle.
+
+[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
+
+---
+
 ## Related
 
 - Previous: [[day-55|Day 55 — Policy Restructuring]]

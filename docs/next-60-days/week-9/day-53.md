@@ -286,6 +286,57 @@ If they insist on email-only — send a tight 1-pager and book the follow-up for
 
 ---
 
+## Objection-Handling Library
+
+The 10 objections above are the most common Year-1 cases. Here are the canonical Academy scripts that map onto each. Practise them out loud, then make them yours.
+
+### Objection taxonomy at a glance
+
+| Family | Day-53 objections covered | Academy scripts |
+|---|---|---|
+| **Push-away / "not interested"** | #5 Not interested | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| **"I already have someone"** | #2 Already have advisor / coverage | "Already have an advisor" objection script |
+| **Format / channel pushback** | #10 Email me; video-off Zoom | Video-Off objection (Zoom); Texting EQ 4-step framework |
+| **Cost-of-delay / time vs money** | #3 Let me think; #6 Bad time; #9 I'm young/healthy | Cost of Delay (Pre-Retirees) |
+| **Recruitment-specific** | (Day 53 doesn't cover - for recruitment leads only) | Recruitment objection handling (telemarketer angle) |
+
+### Objection - "Not Interested in Insurance"
+**Use this when** the objection lands as #5 above. Two angles - redirect to planning, pivot to investing.
+
+[[objection-not-interested-in-insurance|Objection — "Not Interested in Insurance"]]
+
+### "Already Have an Advisor" Objection Script
+**Use this when** the objection lands as #2 above. Position yourself as a complement, not a replacement.
+
+[[already-have-an-advisor-objection-script|"Already Have an Advisor" — Objection Script]]
+
+### Texting EQ - 4-Step Objection Handling Framework
+**Use this when** the objection arrives in writing. The 4 beats: acknowledge casually, common ground, different perspective, safety valve.
+
+[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
+
+### Objection Handling - Cost of Delay (Pre-Retirees)
+**Use this when** the objection lands as #3 (Let me think) or #6 (Bad time) and the prospect is in their 40s-50s. The binary: time or money, you're paying either way.
+
+[[objection-handling-cost-of-delay-time-vs-money-pre-retirees|Objection Handling — Cost of Delay (Time vs Money) - Pre-Retirees]]
+
+### Objection Handling - Young Adults (All Objections)
+**Use this when** the prospect is a young adult and you're hearing the lighter versions of #5, #6, #10.
+
+[[objection-handling-young-adults-all-objections|Objection Handling — Young Adults (All Objections)]]
+
+### Objection Handling - NSF (All Objections)
+**Use this when** the lead came through an NSF intake.
+
+[[objection-handling-nsf-all-objections|Objection Handling — NSF (All Objections)]]
+
+### Handling Video-Off Objections (Zoom)
+**Use this when** the prospect insists on keeping their video off for a Zoom Fact-Find.
+
+[[handling-video-off-objections-zoom|Handling Video-Off Objections (Zoom)]]
+
+---
+
 ## Related
 
 - Previous: [[day-52|Day 52 — The 3 Magic Questions]]

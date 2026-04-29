@@ -260,6 +260,42 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 
 ---
 
+## Scripts Library
+
+Here are the canonical cold-market and ABCD scripts. Practise them out loud, then make them yours.
+
+### The ABCD Four Promises (before starting FHR)
+**Use this when** you've moved a cold lead into a Fact-Find and need to set the emotional frame in 30 seconds. Assurance, Best Interest, Confidentiality, Full Disclosure.
+
+[[the-abcd-four-promises-before-starting-fhr|The ABCD Four Promises (Before Starting FHR)]]
+
+### Cold Calling - Working Adults (All Angles)
+**Use this when** the cold contact is a working professional. Multiple angles in one script - voucher, eBook, qualified-lead, callback.
+
+[[cold-calling-working-adults-all-angles|Cold Calling — Working Adults (All Angles)]]
+
+### Cold Calling - Recruitment (All Lead Sources)
+**Use this when** the cold lead came in through a recruitment angle - 8 versions covering different intake routes.
+
+[[cold-calling-recruitment-all-lead-sources|Cold Calling — Recruitment (All Lead Sources)]]
+
+### Initial Text - Facebook Qualified Lead (Young Adults, Non-Voucher)
+**Use this when** a cold lead has DM'd or replied to a content piece showing real interest. Qualifying without sounding like a quiz.
+
+[[initial-text-facebook-qualified-lead-young-adults-non-voucher|Initial Text — Facebook Qualified Lead (Young Adults, Non-Voucher)]]
+
+### Phrasing Tips - What to Avoid & What to Say Instead
+**Use this when** you're scripting your own cold-market opener. The list of dead phrases (and what replaces them) saves a lot of lost opens.
+
+[[phrasing-tips-what-to-avoid-and-what-to-say-instead|Phrasing Tips — What to Avoid & What to Say Instead]]
+
+### General Calling Tips & Tonality
+**Use this when** you're about to start a cold-call block. Smile, slow down 10-15%, lead with warmth.
+
+[[general-calling-tips-and-tonality|General Calling Tips & Tonality]]
+
+---
+
 ## Related
 
 - Previous: [[day-21|Day 21 — Market Survey: The Warm-Market Framework]]

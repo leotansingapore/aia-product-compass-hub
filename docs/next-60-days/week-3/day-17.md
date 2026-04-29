@@ -229,6 +229,37 @@ Healthy CRAB numbers in month 1–2 look roughly like: **40–60% response, 50�
 
 ---
 
+## Scripts Library
+
+Here are the canonical scripts for blue-ticks, ghosting, and follow-up nudges. Practise them out loud, then make them yours.
+
+### Warm Market - Handling Ghosting & Non-Replies
+**Use this when** a warm contact has gone quiet after agreeing to meet, or hasn't replied to your follow-up. Three angles: playful bump, take the ball back, gentle re-engage.
+
+[[warm-market-handling-ghosting-and-non-replies|Warm Market — Handling Ghosting & Non-Replies]]
+
+### No-Reply Nudge (Day 1 / Day 3 / Day 7)
+**Use this when** a digital lead has gone cold after the initial reply. Three nudges, spaced - then nurture.
+
+[[no-reply-nudge-young-adults-day-1-day-3-day-7|No-Reply Nudge — Young Adults (Day 1 / Day 3 / Day 7)]]
+
+### Reminder Follow-Up (Gentle / Persistent / Final)
+**Use this when** an appointment has been booked but the prospect has gone quiet 24-48 hours before. Three escalation tones.
+
+[[reminder-follow-up-young-adults-gentle-persistent-final|Reminder Follow-Up — Young Adults (Gentle / Persistent / Final)]]
+
+### Follow-Up Nudge (All Angles)
+**Use this when** none of the above worked and you want to try a different angle - resource drop, life-event check-in, or a casual catch-up framing.
+
+[[follow-up-nudge-young-adults-all-angles|Follow-Up Nudge — Young Adults (All Angles)]]
+
+### Texting EQ - 4-Step Objection Handling Framework
+**Use this when** the blue-tick eventually replies with an objection. Acknowledge casually, common ground, different perspective, safety valve.
+
+[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
+
+---
+
 ## Related
 
 - Previous: [[day-16|Day 16 — The DM Funnel: Reply Scripts]]
