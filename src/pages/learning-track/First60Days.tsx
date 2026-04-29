@@ -40,12 +40,12 @@ export default function First60Days() {
   const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
 
   return (
-    <div className="space-y-4 max-w-3xl mx-auto" data-testid="first-60-days-hub">
-      <div className="flex items-center justify-between gap-3 px-1">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+    <div className="space-y-4 max-w-3xl mx-auto px-1 sm:px-0" data-testid="first-60-days-hub">
+      <div className="flex items-center justify-between gap-2 px-1">
+        <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Your First 60 Days
         </p>
-        <span className="text-xs text-muted-foreground tabular-nums">
+        <span className="text-[10px] sm:text-xs text-muted-foreground tabular-nums whitespace-nowrap">
           {totalDone} of {TOTAL_DAYS} days · {totalPct}%
         </span>
       </div>
