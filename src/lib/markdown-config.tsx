@@ -247,10 +247,16 @@ export const markdownComponents: Components = {
     <hr className="my-4 border-t border-border" />
   ),
 
-  // Tables (if needed)
+  // Tables — wrap in a horizontally scrollable container on mobile so wide
+  // tables don't get squeezed into one-letter-per-line columns.
   table: ({ children }: any) => (
-    <div className="overflow-x-auto mb-3">
-      <table className="min-w-full divide-y divide-border border border-border rounded-lg">
+    <div
+      className="-mx-3 sm:mx-0 mb-3 overflow-x-auto rounded-lg border border-border [-webkit-overflow-scrolling:touch]"
+      role="region"
+      aria-label="Scrollable table"
+      tabIndex={0}
+    >
+      <table className="w-full min-w-[640px] divide-y divide-border text-sm">
         {children}
       </table>
     </div>
@@ -271,12 +277,12 @@ export const markdownComponents: Components = {
     </tr>
   ),
   th: ({ children }: any) => (
-    <th className="px-4 py-2 text-left text-xs font-semibold text-foreground uppercase tracking-wider">
+    <th className="px-3 py-2 text-left align-top text-[11px] font-semibold uppercase tracking-wider text-foreground whitespace-normal sm:px-4">
       {children}
     </th>
   ),
   td: ({ children }: any) => (
-    <td className="px-4 py-2 text-sm text-foreground">
+    <td className="px-3 py-2 text-sm align-top text-foreground sm:px-4">
       {children}
     </td>
   ),
