@@ -113,6 +113,8 @@ export default function ProductMasteryDay() {
   );
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
+  const noQuizDay = day !== undefined && day.quiz.length === 0;
+  const canAdvance = quizPassed || (noQuizDay && completed);
 
   useEffect(() => {
     if (day) markRead(dayNumber);
@@ -197,8 +199,8 @@ export default function ProductMasteryDay() {
   const next = idx >= 0 && idx < DAY_SUMMARIES.length - 1 ? DAY_SUMMARIES[idx + 1] : undefined;
   const weekMeta = WEEK_META[day.week];
 
-  const totalSteps = 2; // read + quiz
-  const progressSteps = [true, quizPassed].filter(Boolean).length;
+  const totalSteps = noQuizDay ? 1 : 2; // read (+ quiz, if the day has one)
+  const progressSteps = noQuizDay ? (completed ? 1 : 0) : [true, quizPassed].filter(Boolean).length;
   const progressPct = Math.round((progressSteps / totalSteps) * 100);
 
   return (
@@ -356,6 +358,22 @@ export default function ProductMasteryDay() {
         </div>
       )}
 
+      {/* No-quiz day fallback CTA — surface the Mark Complete path so learners
+          aren't structurally capped on reflection / graduation modules. */}
+      {activeTab === "read" && noQuizDay && !completed && (
+        <div className="flex justify-center">
+          <Button
+            size="lg"
+            onClick={goToQuiz}
+            className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+          >
+            <CheckCircle2 className="h-5 w-5" />
+            Mark this day complete to unlock Day {dayNumber + 1}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
         {prev ? (
           <Button
@@ -377,21 +395,23 @@ export default function ProductMasteryDay() {
         )}
         {next && (
           <Button
-            variant={quizPassed ? "default" : "secondary"}
-            disabled={!quizPassed}
+            variant={canAdvance ? "default" : "secondary"}
+            disabled={!canAdvance}
             aria-label={
-              quizPassed
+              canAdvance
                 ? `Go to Day ${next.dayNumber}`
-                : `Pass today's quiz to unlock Day ${next.dayNumber}`
+                : noQuizDay
+                  ? `Mark Day ${dayNumber} complete on the Quiz tab to unlock Day ${next.dayNumber}`
+                  : `Pass today's quiz to unlock Day ${next.dayNumber}`
             }
-            onClick={() => quizPassed && navigate(`${BASE_PATH}/day/${next.dayNumber}`)}
-            onMouseEnter={() => quizPassed && prefetchDay(next.dayNumber)}
+            onClick={() => canAdvance && navigate(`${BASE_PATH}/day/${next.dayNumber}`)}
+            onMouseEnter={() => canAdvance && prefetchDay(next.dayNumber)}
             className={cn(
               "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
-              quizPassed && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
+              canAdvance && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
             )}
           >
-            {quizPassed ? (
+            {canAdvance ? (
               <>
                 <span className="flex flex-col items-end leading-tight">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/80">
@@ -403,7 +423,9 @@ export default function ProductMasteryDay() {
               </>
             ) : (
               <span className="text-xs leading-snug sm:text-sm">
-                Pass the quiz to unlock Day {next.dayNumber}
+                {noQuizDay
+                  ? `Mark complete on the Quiz tab to unlock Day ${next.dayNumber}`
+                  : `Pass the quiz to unlock Day ${next.dayNumber}`}
               </span>
             )}
           </Button>
