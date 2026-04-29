@@ -53,6 +53,20 @@ Solidaire, Platinum Accident Care, Stork Protector (children), Hospital Income, 
 
 > No product is inherently bad. **You are the financial doctor.** You prescribe the right product based on the client's financial situation, life goals, and budget. Mastery is matching the right product to the right client profile - built up over hundreds of cases.
 
+### Companion 5-day sales tracks (post-licence deep-dives)
+
+Day 56 is the Module 2 *overview* - it gives you the schematic and the high-level sales angles. Once you're licensed and ready to actually pitch, each core insurance product has a dedicated **5-day sales mastery track** in Obsidian (`Content/product-sales/[product]/`). They share this structure: Day 1 foundations + analogy diagram, Day 2 fact-find + pitch flow, Day 3 math + top-5 Q&A, Day 4 objections + cross-sell, Day 5 compliance + close + recorded roleplay assignment.
+
+| Product | Core product page | Companion sales track |
+|---|---|---|
+| **GPP** — whole life par + booster (cornerstone) | [Guaranteed Protect Plus](/product/core-guaranteed-protect-plus) | `product-sales/guaranteed-protect-plus/` |
+| **PLP** — ILP whole-life | [Pro Lifetime Protector](/product/core-pro-lifetime-protector) | `product-sales/pro-lifetime-protector/` |
+| **UCC** — multi-claim CI | [Ultimate Critical Cover](/product/core-ultimate-critical-cover) | `product-sales/ultimate-critical-cover/` |
+| **HSGM** — Integrated Shield | [HealthShield Gold Max](/product/core-healthshield-gold-max) | `product-sales/healthshield-gold-max/` |
+| **Solitaire PA** — Personal Accident | [Solitaire PA](/product/core-solitaire-pa) | `product-sales/solitaire-pa/` |
+
+The tracks are post-licence reps. The deep-dives in this Day 56 file (0b GPP, 0c SFT, 0d UCC, 0e PLP, 0f Solitaire PA, 0g2 HSGM) are the pre-licence overview - enough to understand the product map and answer prospects' top questions, not enough to run a full appointment.
+
 ## 0a. Coverage benchmarks (the version Module 2 uses)
 
 For a worked example of an $8,500/month income earner ($102K/year):
@@ -129,9 +143,11 @@ At qualifying milestones (marriage, child, mortgage), client can increase sum as
 ### CI riders on GPP
 
 - **CPL (Critical Payment of Lump Sum)** - 42 major CIs, **non-participating, no cash value** (state this clearly)
-- **Early Critical Protector (ECP)** - early-stage conditions (carcinoma in situ, stage 0-1 cancers)
+- **Early Critical Protector** rider - early-stage conditions (carcinoma in situ, stage 0-1 cancers). This is a *rider on GPP*, not a standalone product - don't confuse it with the older Enhanced Critical Protector standalone plan, which is no longer in the core map.
 - **Waiver rider** - waives premiums on CI / early CI diagnosis
 - **Payer benefit** (child policies) - waives premium if policy owner / parent gets CI
+
+> **Go deeper:** the [GPP 5-day sales track](/product/core-guaranteed-protect-plus) covers the rocket-ship / travel-class diagram, the booster mechanic against pure term, the four-hoops layered close, and the recorded-roleplay assignment with the "Marcus" scenario (32yo $84K income with $420K mortgage and infant child).
 
 ## 0c. Product deep-dive - SFT (Secure Flex Term)
 
@@ -202,6 +218,8 @@ UCC is *not* a standalone protection. It's a complement:
 - **GPP $200-300K (with CI rider) + UCC $100K** = comprehensive multi-claim CI at affordable premiums
 - **SFT (high sum, low cost) + UCC** = max death + multi-claim CI, lowest total premium
 
+> **Go deeper:** the [UCC 5-day sales track](/product/core-ultimate-critical-cover) covers the unlimited reset benefit positioning, the Catastrophic CI 200% mechanic, the relapse waiting periods, and the "GPP $200-300K + UCC $100K = better than $500K single-claim CI" packaging close.
+
 ## 0e. Product deep-dive - PLP (Pro Lifetime Protector)
 
 Investment-linked policy (ILP). **You** choose the funds. You bear investment responsibility. Hybrid of insurance + investment.
@@ -223,7 +241,58 @@ Investment-linked policy (ILP). **You** choose the funds. You bear investment re
 
 Don't hold coverage to age 100 - **mortality costs escalate dramatically at older ages**. Strategically reduce or remove coverage at age 55-65 once accumulated cash value is sufficient. The longer you keep coverage past the tipping point, the lower your effective return.
 
-## 0f. The packaging strategy - how a real recommendation looks
+> **Go deeper:** the [PLP 5-day sales track](/product/core-pro-lifetime-protector) covers fund selection, the Max-vs-Plus death benefit decision, the tipping-point conversation, and the "investment whole-life as a permanent asset" close.
+
+## 0f. Product deep-dive - Solitaire PA (Personal Accident)
+
+The universal-fit accident plan. **Every prospect needs accident cover** regardless of profile - hospital plans don't cover outpatient TCM/A&E for non-critical injuries, life and CI plans don't pay on partial dismemberment, and employer GPA dies the day employment ends.
+
+### The signature gap Solitaire PA closes
+
+Most clients believe their existing protection covers accident outcomes. It doesn't, in two scenarios:
+
+1. **Outpatient bill on a non-hospitalising accident.** Kid falls at the playground, ankle sprained, A&E visit + X-ray + physio. KK / SGH bill: $400-$1,500. Hospital plan won't trigger (no admission). CI won't trigger. Solitaire PA reimburses outpatient under the medical reimbursement benefit.
+2. **Partial dismemberment that's not "total".** Lose a finger - that's 5% of the Major Dismemberment sum on Solitaire PA's Schedule of Indemnity. Lose an eye - 100%. Lose a leg - 100%. **TPD on a life policy only triggers on *total* permanent disability** (e.g. paralysis, blindness in both eyes). Anything between fully-able-bodied and TPD falls into the Schedule of Indemnity gap that Solitaire PA fills.
+
+> **The KK Hospital outpatient story (the opener):** *"Last week I had a client whose 4-year-old fell at the playground. KK A&E + X-ray + 4 physio sessions = $850. Her hospital plan didn't pay - no admission. Her husband's life plan didn't pay - no major dismemberment. She paid out of pocket. Solitaire PA Plan 3 would have reimbursed it. That's the gap most parents don't know they have."*
+
+### The 4 plans (with daily-cost framing)
+
+| Plan | Annual premium (Class 1-2) | Major Dismemberment cover | Daily cost framing |
+|---|---|---|---|
+| **Plan 1** | ~$224 | $300K | ~$0.62/day |
+| **Plan 2** | ~$396 | $750K | ~$1.09/day |
+| **Plan 3** | ~$613 | $1.5M | ~$1.68/day |
+| **Plan 4** | ~$856 | $2.25M | ~$2.34/day |
+
+The daily-cost reframe is the close. *"Plan 4 is $2.34 a day - less than half a kopi-O at the kopitiam - for $2.25 million in cover and unlimited outpatient claims."*
+
+### The "4× price / 7× coverage" comparison
+
+The conversion technique: present Plan 1 first, then layer the upgrade.
+
+> *"Plan 1 is $224 a year - $300K cover. Plan 4 is $856 a year - $2.25M cover. So **4× the price for 7× the coverage**. The marginal cost per dollar of cover collapses as you go up. Most clients in your situation - dual income, kids - go Plan 3 or Plan 4 because the gap between coverage tiers is much wider than the gap between premiums."*
+
+### The "I'm careful, I won't have an accident" objection
+
+The boomerang reply (Framework C from [Day 44](../week-8/day-44.md)):
+
+> *"That's exactly why - careful people get hit by accidents caused by **other** people, not their own carelessness. The taxi that runs the red light. The cyclist that swerves into your lane. The kid at the playground who pushes yours. You've got no control over any of those, and that's exactly what Solitaire PA is for."*
+
+### Compliance disclosures (state these explicitly)
+
+- **Yearly-renewable, not guaranteed.** AIA can decline renewal at the next anniversary based on claims experience. Build this into the conversation early so the client isn't surprised.
+- **50% coverage reduction at age 75.** Sum assured halves on the policy anniversary nearest age 75.
+- **Terminates at age 80.** Plan ends regardless of payment willingness.
+- **14-day free-look.** Can cancel within 14 days of receipt for full refund.
+
+### How Solitaire PA fits the package
+
+Solitaire PA is **Bucket 4 in the Total Wealth model** (the "side dish" alongside life / CI / hospital). Always packaged in - never sold standalone. Roughly $50-$70/month for a typical breadwinner, sits on top of GPP / SFT / UCC / HSGM as the outpatient and partial-disability layer.
+
+> **Go deeper:** the [Solitaire PA 5-day sales track](/product/core-solitaire-pa) covers the partial-disability gap diagram, the AIA+ self-claim app demo, the four-plan close, and the recorded-roleplay assignment with the "Jared" scenario (34yo with two kids and a recent KK denial).
+
+## 0g. The packaging strategy - how a real recommendation looks
 
 For a 30M, $8.5K/month income, $1M death need, $500K CI need:
 
@@ -237,7 +306,7 @@ For a 30M, $8.5K/month income, $1M death need, $500K CI need:
 
 The package layers together: GPP as the cornerstone, SFT for cheap death-coverage top-up, UCC for multi-claim CI, A&H for outpatient, HealthShield for hospitalisation. **Never propose without all five categories represented** - the gap on the missing category becomes the comparison shop.
 
-## 0g. Cancer + medical inflation - the sales statistics worth memorising
+## 0h. Cancer + medical inflation - the sales statistics worth memorising
 
 | Statistic | Use it for |
 |---|---|
@@ -248,7 +317,7 @@ The package layers together: GPP as the cornerstone, SFT for cheap death-coverag
 | Govt MediShield Life premium for 51-60 cohort: rose from $630 -> $903 (+43.3%) | Showing even govt insurance increases - private will too |
 | 5-year cancer survival: Stage 1 ~85% / Stage 2 ~77% / Stage 3 ~50% / **Stage 4 ~18.6%** | Both arguments - early detection saves lives, late-stage = income loss |
 
-## 0g1. MediShield Life - what every Singaporean already has
+## 0h1. MediShield Life - what every Singaporean already has
 
 Before you sell any private hospitalisation upgrade, the client needs to understand what their baseline already is. MediShield Life is the **government base plan** - every Singapore Citizen and PR is automatically covered.
 
@@ -274,7 +343,7 @@ Worked example, $20K hospital bill on plain MediShield Life:
 
 That $3,800 hits even a healthy 35-year-old with a $20K bill. The point of an Integrated Shield Plan (and the Vital Health rider) is to absorb most of that out-of-pocket exposure.
 
-## 0g2. HealthShield Gold Max - AIA's Integrated Shield Plan
+## 0h2. HealthShield Gold Max - AIA's Integrated Shield Plan
 
 ### Three plan tiers
 
@@ -331,7 +400,7 @@ Don't attack MediShield. Just show the gap:
 
 That's a use-specific argument, not a "your government plan is bad" argument. Wins more conversions, breaks no relationships.
 
-## 0h. The budget psychology - the line that doubles every case
+## 0i. The budget psychology - the line that doubles every case
 
 > *"Whatever budget your client gives you, they can comfortably afford **double** without feeling uncomfortable."*
 
@@ -567,13 +636,13 @@ This is the "fully loaded" baseline. Year 1 might cover 2-3 layers. Over time, l
 
  **Why:** Company hospital plans are tied to the employment contract - they lapse the moment the client resigns, is retrenched, or retires. Reapplying for personal coverage years later means the client is older, potentially has pre-existing conditions recorded, and faces higher premiums or specific exclusions. Low limits (A) and hospital choice (D) are real inconveniences but are secondary to the portability problem. Claims service (C) varies by insurer, not by group versus individual plan type.
 
-4. **A client is diagnosed with cancer and survives. Two years later, a second cancer is diagnosed. Which CI rider type pays out on the second claim?**
-   - A) Major CI rider - covers all major illnesses
-   - B) Early CI rider - catches illnesses at earlier stages
-   - C) Multiplier rider - doubles coverage during working years
-   - D) Multi-pay CI rider - designed for multiple payouts including recurrence (correct)
+4. **What is the killer feature that makes UCC (Ultimate Critical Cover) the standalone CI workhorse for a multi-claim need?**
+   - A) Higher payout per claim than any single-claim CI plan
+   - B) The unlimited reset benefit - up to 5 separate CI claims at 100% sum each, after a 1-year waiting period between claims (correct)
+   - C) It pays a lump sum on death like whole-life plans
+   - D) It is the cheapest CI plan in the AIA portfolio
 
- **Why:** A standard Major CI rider (A) typically pays out once per policy, which means the first cancer claim exhausts the benefit and the second claim receives nothing. The Multi-pay CI rider is specifically structured to allow multiple payouts - including recurrence of the same illness after a qualifying survival period. Early CI (B) pays at pre-major stages, not on recurrence. The Multiplier rider (C) increases the payout amount during working years but does not enable a second separate claim.
+ **Why:** UCC's unlimited reset is what addresses the *"I had a heart attack, now I'm scared of cancer too"* scenario that single-claim CI plans leave open. A $100K UCC policy can pay $100K on each of up to 5 different conditions (max $500K total), with a 1-year waiting period between claims. Higher per-claim payouts (A) aren't UCC's differentiator. UCC pays only **5% of sum on death** - it is not a death-benefit product (C). Pricing (D) is competitive but not the defining feature - the reset is.
 
 5. **A freelance graphic designer with no employer sick leave asks what insurance is most often overlooked for people like her. What do you recommend addressing?**
    - A) Term insurance - cheapest coverage for her age
@@ -591,13 +660,45 @@ This is the "fully loaded" baseline. Year 1 might cover 2-3 layers. Over time, l
 
  **Why:** Layer 1 (Term) is the foundation precisely because it delivers the largest death/TPD coverage at the lowest cost - the right starting point for a young breadwinner whose family needs maximum income-replacement protection and who likely has limited premium budget. Specialised riders (A) at Layer 5 add refinement to an already-built base, not the base itself. Disability Income (B) and the hospital upgrade (D) are important but are built on top of the fundamental life-cover floor, not before it.
 
-7. **A client says: "I already have CI coverage from my whole life plan - do I really need an Early CI rider too?" What is the accurate response?**
+7. **A client says: "I already have CI coverage from my whole life plan - do I really need the Early CI rider too?" What is the accurate response?**
    - A) No - if Major CI is covered, Early CI is redundant
-   - B) Yes - Early CI pays at diagnosis of pre-major stages, when treatment costs are highest and a Major CI rider would not yet pay out (correct)
-   - C) It depends on the insurer - some whole life plans include early stage coverage by default
+   - B) Yes - Early CI pays at diagnosis of pre-major stages (carcinoma in situ, stage 0-1 cancers) when treatment costs are already incurring but a Major CI rider would not yet pay out (correct)
+   - C) It depends on the insurer - some whole life plans include early-stage coverage by default
    - D) Early CI is mainly for clients over 50
 
- **Why:** Major CI riders only trigger at advanced or late-stage illness diagnosis - by that point the client has often already incurred substantial treatment costs at the earlier stages with no payout. Early CI fills exactly that gap, paying out when an illness is first detected at a pre-major stage so the client has cash while treatment is most intensive. A is incorrect because the two riders cover different stages of the same illnesses, not the same events. C misrepresents standard whole life policy design; basic CI riders almost never include early-stage coverage without an explicit rider. D is wrong - Early CI is most valuable for clients in their 30s and 40s when the probability of early-stage detection is high and the financial impact is severe.
+ **Why:** Major CI riders only trigger at advanced or late-stage illness diagnosis - by that point the client has often already incurred substantial early-stage treatment costs with no payout. The Early Critical Protector rider on GPP fills exactly that gap. A is wrong because the two riders cover different stages of the same illnesses. C misrepresents standard whole-life design - basic CI riders almost never include early-stage coverage without an explicit rider. D is wrong - Early CI is most valuable for clients in their 30s and 40s when the probability of early-stage detection is highest. (Note: Early Critical Protector is a *rider on GPP*, not the older standalone Enhanced Critical Protector plan, which is no longer part of the core product map.)
+
+8. **The signature gap that makes Solitaire PA a universal-fit product (every prospect needs it, regardless of profile) is:**
+   - A) It pays a death benefit larger than whole-life plans
+   - B) It covers the partial-disability and outpatient gap that hospital plans, life plans, and CI plans all leave open - e.g. losing a finger (5%), an A&E visit with X-ray, or partial dismemberment (correct)
+   - C) It guarantees lifetime renewability with no premium increases
+   - D) It pays out on diagnosis of any cancer
+
+ **Why:** Hospital plans require admission to trigger; life and CI plans require *total* permanent disability or *major* illness; employer GPA dies with employment. Solitaire PA fills two gaps that nothing else closes: outpatient bills on non-hospitalising accidents (KK A&E + X-ray + physio = $400-$1,500), and partial dismemberment under the Schedule of Indemnity (lose a finger = 5%, an eye = 100%, anything between TPD and full-able-bodied). Death benefit (A) is not Solitaire PA's strength - it is a PA plan, not life cover. Lifetime renewability (C) is **not** a Solitaire PA feature - it is yearly-renewable, not guaranteed, with 50% reduction at 75 and termination at 80. It pays on accidental cancer-related events but is not a cancer plan (D).
+
+9. **The full HSGM + Vital Health A + Cancer Care Booster rider package raises the Cancer Drug List (CDL) coverage to roughly:**
+   - A) 5x the CDL limit (~$10K/month)
+   - B) 10x the CDL limit (~$20K/month)
+   - C) 21x the CDL limit (~$42K/month) (correct)
+   - D) Unlimited - no CDL cap
+
+ **Why:** MediShield Life pays 1x the CDL limit. HealthShield Max A base layer adds 5x (total 6x). The Cancer Care Booster rider adds another 16x on top, bringing the full package to 21x (~$42K/month). Late-stage cancer drug regimes can run $20-$40K/month for years, and the 1x MediShield baseline leaves catastrophic gaps - the CDL multiplier is HSGM's killer feature. 5x (A) is the base HSGM layer alone. 10x (B) is approximately the HSGM Max A coverage on cancer drug services + booster, but not the headline CDL multiplier. CDL coverage is capped (D) - the unlimited claim only applies to non-CDL drugs under the Booster rider, capped at $200K/year with 10% co-insurance.
+
+10. **The GPP "$1,600 more for $275K more cash value" closing technique is best described as:**
+    - A) Showing 3x and 2x multipliers side-by-side cold and letting the client pick
+    - B) Always presenting 3x first, then layering 2x as the upgrade with the marginal-cost framing - same concept moves the close rate dramatically (correct)
+    - C) Discounting the premium when the client hesitates on 2x
+    - D) A standard AIA company offer that ends every quarter
+
+ **Why:** The technique is **anchor on 3x first**, then layer 2x as a marginal upgrade: *"For just $1,600 more per year - $32K extra over 20 years - your cash value at 70 jumps from $149K to $424K. That's $275K more cash value for $32K more premium. And the sum drop at 65 is much less severe."* The framing of "X more for Y more" converts dramatically more than presenting both options cold (A). It is not a discount conversation (C) and not a time-limited offer (D) - it is a structural way to make the upgrade feel obvious by surfacing the marginal cost-per-dollar-of-cash-value, which collapses the closer you get to the higher multiplier.
+
+11. **Which of the following plans is NOT part of the core insurance product map you should be presenting to a typical first-60-days client?**
+    - A) Guaranteed Protect Plus (GPP)
+    - B) Pro Lifetime Protector (PLP)
+    - C) Life Dividends - 10-pay life with coupons (correct)
+    - D) Ultimate Critical Cover (UCC)
+
+ **Why:** The core insurance map for a typical client is **GPP (cornerstone whole-life par), PLP (ILP whole-life), SFT (term), UCC (multi-claim CI), Solitaire PA (PA), HSGM (Integrated Shield)**. Life Dividends is a 10-pay life-with-coupons product reserved for niche use cases - it doesn't belong in a standard recommendation conversation. The same applies to FaceTerm (a term variant) and the older standalone Enhanced Critical Protector plan - both excluded from the core map for new clients. GPP, PLP, and UCC (A, B, D) are all core. Knowing what to leave out matters as much as knowing what to recommend - over-presenting confuses the prospect and dilutes the cornerstone.
 
 ---
 
