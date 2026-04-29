@@ -37,13 +37,14 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 
 ---
 
-## 2. The five rules
+## 2. The six rules
 
 1. **Read it aloud before you publish.** If a friend reading the message would think it sounded scripted, marketed, or "American business polite", rewrite. The single most important test.
 2. **Cut US business jargon.** Words and phrases that don't appear in normal Singaporean professional conversation: *"sounding board"*, *"drop you a line"*, *"planting a flag"*, *"opening the door"*, *"be your first call"*, *"reach out"* (as a verb between people who already know each other), *"circle back"*, *"touch base"*, *"going forward"*, *"moving forward"*, *"leverage"*, *"synergy"*, *"end of the day"*. None of these belong.
 3. **Keep grammar clean and sentence-cased.** Sentence fragments and lowercase starts are *not* the goal. The professional register comes from clarity and warmth, not from breaking grammar. Real WhatsApp messages from working adults are mostly grammatical.
-4. **Use disclaimers to lower the temperature, not particles.** *"sharing only"*, *"just sharing"*, *"no need to reply"*, *"no pitch"*, *"no agenda"*, *"random question"*, *"out of curiosity"*, *"quick one"*, *"sharing this only"* — these signal *"this isn't a sales pitch"* without the message having to feel casual. They are the lever, not "lah/sia/haha".
-5. **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"pleasure to help"*, *"honour to be your consultant"* — these are not banned. They land when the writer means them. They only become embarrassing when they are performative or wrapped in marketing fluff. Use them once per message, not three times.
+4. **Use disclaimers that lower the *sales* temperature, not ones that close the door.** Good disclaimers say *"I'm not selling you anything"* without saying *"don't reply to me"*: *"sharing only"*, *"just sharing"*, *"no pitch"*, *"no agenda"*, *"random question"*, *"out of curiosity"*, *"quick one"*. **Door-closing phrases are off-limits** — *"no need to reply"*, *"that's it"*, *"take care!"* (as final goodbye), *"no appointment"*. These literally tell the friend not to engage, which is the opposite of what we want. Always end with a low-bar invitation instead (see rule 5).
+5. **End on an invitation, not a goodbye.** Every warm opener should leave the friend with something easy to say yes to: *"Would love to grab coffee sometime"*, *"Free for a quick chat?"*, *"Drop me a note anytime if anything comes up"*, *"Whenever something comes to mind, just message me"*. The disclaimers protect against feeling like a sales pitch; the invitation keeps the relationship moving forward. Without one, the message is well-mannered but inert.
+6. **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"pleasure to help"*, *"honour to be your consultant"* — these are not banned. They land when the writer means them. They only become embarrassing when they are performative or wrapped in marketing fluff. Use them once per message, not three times.
 
 ---
 
@@ -56,8 +57,7 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 | *"Sharing only"* / *"Just sharing"* | Frame any informational message as non-transactional |
 | *"Quick one"* / *"Quick question"* | Open with a low-effort signal |
 | *"Random question"* / *"Out of curiosity"* | Surface something gently (e.g. asking about an existing agent) |
-| *"No pitch, no agenda"* | The clearest disclaimer line |
-| *"No need to reply"* | Removes the obligation |
+| *"No pitch, no agenda"* | The clearest non-sales disclaimer (preserves engagement) |
 | *"It would be my privilege"* / *"my pleasure"* | Sincere offer of service - allowed and effective when meant |
 | *"Service [your/their] financial needs"* | Acceptable formal phrase, fits the AIA context |
 | *"Long time!"* / *"Hope you're well"* | Reconnecting opener |
@@ -65,8 +65,8 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 | *"Honestly"* | Sincerity marker |
 | *"Rather you have someone you actually know than [a stranger / start from scratch]"* | The honest reason for warm outreach |
 | *"Worth a [coffee / 30 minutes / chat]"* | Low-cost framing for the ask |
-| *"Whenever you're ready"* | Removes time pressure |
-| *"Sharing this only"* / *"Just so you know"* | Mild flag |
+| *"Whenever something comes up"* / *"Whenever you're ready"* | Time-flexible invitation that stays open |
+| *"Would love to grab a coffee sometime"* / *"Free for a quick chat?"* / *"Drop me a note anytime"* | Low-bar invitations — pair with disclaimers to keep the door open |
 
 ### Use sparingly (only where naturally part of the writer's voice)
 
@@ -80,6 +80,12 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 
 | Kill word/phrase | Why | Replace with |
 |---|---|---|
+| **Door-closers** (these tell the friend not to engage — the opposite of what we want): | | |
+| "No need to reply" | Closes the conversation before it starts | *"Whenever something comes up, just message me"* |
+| "That's it" / "That's all" (as final closer) | Finalises the message; says don't engage | end on a low-bar invitation: *"Free for coffee sometime?"* |
+| "Take care!" (as final goodbye) | Formalises a goodbye | end on *"Would love to catch up properly"* / *"Hope to see you soon"* |
+| "No appointment" | Reads as *don't book me* | replace with *"Drop me a note anytime"* / *"Even just a quick chat is fine"* |
+| **US business jargon:** | | |
 | "Sounding board" | American business jargon | *"someone to ask"* / *"second opinion"* |
 | "Drop you a line" | Stiff, US business polite | *"text you"* / *"message you"* |
 | "Plant a flag" / "planting a flag" | Try-hard metaphor | *"just letting you know I'm around"* |
@@ -125,11 +131,11 @@ Three ingredients:
 
 1. **Sentence-cased greeting** + signal of low effort: *"Hey [name] - sharing only"*, *"Hey [name] - quick one"*, *"Hey [name] - long time!"*
 2. **The honest reason** in 1-2 sentences: what you've started, why you're messaging *them* specifically, that you're not pitching
-3. **The non-pressuring close**: *"No need to reply"*, *"Just so you know I'm here"*, *"Whenever you're ready, I'm here"*
+3. **A low-bar invitation** that keeps the relationship moving: *"Would love to grab a coffee sometime"*, *"Free for a quick chat?"*, *"Drop me a note anytime if anything comes up"*, *"Whenever something comes to mind, just message me"*. **Never** end on *"no need to reply"* / *"that's it"* / *"take care!"* — those close the door.
 
 What good looks like:
 
-> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything today. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. Would love to grab a coffee soon anyway and catch up properly - free this weekend?"
 
 What bad looks like:
 
@@ -204,7 +210,7 @@ Real edits made to Day 37 in this round, calibrated to professional warm.
 > "Hey [name] - quick one. You might've seen, I've moved into financial consulting at AIA. Not messaging to pitch you anything. Just wanted to put it on record that if anything financial ever comes up - protection, savings, retirement, even a quick CPF question - I'd want to be your first call. No pressure to act on it. Just don't want you Googling some stranger when I'm right here."
 
 **After (professional warm):**
-> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything today. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. Would love to grab a coffee soon anyway and catch up properly - free this weekend?"
 
 ### "Privilege to serve" angle
 
@@ -212,7 +218,7 @@ Real edits made to Day 37 in this round, calibrated to professional warm.
 > "Hey [name] - sharing only. I'm now an FC at AIA. Most of my friends already have something in place, and that's totally fine. But if there's ever a money question you'd rather ask someone you actually know than someone random - it would honestly be a privilege and a pleasure to be that person for you, for any financial need that comes up. No agenda, no pitch. Just opening the door."
 
 **After (professional warm — keeps the "privilege and pleasure" sincerely, drops the closing cliché):**
-> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just wanted you to know I'm here when you're ready."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just let me know whenever something comes to mind."
 
 ### Surfacing a ghosted agent
 
@@ -228,7 +234,7 @@ Real edits made to Day 37 in this round, calibrated to professional warm.
 > "Totally fair - appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side."
 
 **After (professional warm — drop "sounding board" + "door's open"):**
-> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate to drop me a note. Either way, would love to stay in touch."
 
 ### Touch #7 final follow-up
 
@@ -236,7 +242,7 @@ Real edits made to Day 37 in this round, calibrated to professional warm.
 > "Hey [name] - all good, timing's clearly not right and I'm not going to keep chasing. Just know my door's open any time - even if it's 6 months or a year from now. I'll keep sending the occasional useful thing here and there, and when you're ready to talk, just drop me a message."
 
 **After:**
-> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'm here. I'll send the occasional useful thing along the way, no obligation to reply. When you'd like to talk, just drop me a message."
+> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'd love to talk it through with you properly. I'll send the occasional useful thing along the way; whenever something resonates, just drop me a message."
 
 ---
 
@@ -248,7 +254,8 @@ Before committing any FC-facing script, run through this:
 - [ ] Scan for kill words (Section 3). Replace any you find.
 - [ ] Is the register right for the channel (Section 1)? Default is **professional warm** unless the relationship genuinely warrants casual SG.
 - [ ] Is the message **sentence-cased with clean grammar**, not lowercased text-speak? Professional warm ≠ casual SG.
-- [ ] Are the disclaimer phrases present (Section 3)? *"Sharing only"*, *"no pitch"*, *"no need to reply"* — at least one in any warm-cold opener.
+- [ ] Are the **non-sales** disclaimer phrases present (Section 3)? *"Sharing only"*, *"no pitch"*, *"no agenda"* — at least one in any warm-cold opener. **Do not use door-closers** (*"no need to reply"*, *"that's it"*, *"take care!"*).
+- [ ] Does the message end on a **low-bar invitation** (rule 5)? *"Free for a coffee?"*, *"Drop me a note anytime"*, *"Whenever something comes up"* — there must be one. A message with disclaimers but no invitation is well-mannered but inert.
 - [ ] Did you pre-send filter? (*"If this person says no, will I still want to grab a beer with them next month?"*)
 - [ ] If you used *"privilege"* / *"pleasure"* / *"honour"*, is it sincere? (Once per message is fine. Three times reads as performance.)
 - [ ] If you're an AI editor, did you preserve canonical AIA scripts (Market Survey verbatim, ABCD, official objection table)? **Don't humanize curriculum-quoted material.**

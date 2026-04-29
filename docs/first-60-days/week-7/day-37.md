@@ -166,23 +166,23 @@ The honest reason is the strongest reason: you'd rather it be you than a strange
 
 **The "first call" angle** (close friends who respect honesty over scripts):
 
-> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything today. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. Would love to grab a coffee soon anyway and catch up properly - free this weekend?"
 
 **The "privilege to serve" angle** (friends you respect, where sincere phrasing lands well):
 
-> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just wanted you to know I'm here when you're ready."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just let me know whenever something comes to mind."
 
 **The "right person, right time" angle** (distant warm — old classmates, ex-colleagues, drifted friends):
 
-> "Hey [name] - long time! Sharing only, I've recently started as a Financial Consultant with AIA. Not chasing anything from you today. The honest reason I'm messaging: most people only end up sorting their CPF or first plan when life shifts - a job change, a baby, a parent's diagnosis, a house. When that day comes for you, I'd rather you message me than start with a stranger. So just letting you know I'm here. No need to reply."
+> "Hey [name] - long time! Sharing only, I've recently started as a Financial Consultant with AIA. Not chasing anything from you today. The honest reason I'm messaging: most people only end up sorting their CPF or first plan when life shifts - a job change, a baby, a parent's diagnosis, a house. When that day comes for you, I'd rather you message me than start with a stranger. Either way, would love to catch up properly - it's been too long. Free for a coffee sometime?"
 
 **The "rather it be me than a stranger" angle** (close-but-not-best friends):
 
-> "Hey [name] - I've recently joined AIA as a Financial Consultant. Since this kind of thing comes up for everyone at some point, I'd rather you have someone you actually know and trust handling it than whoever happens to be in front of you at the moment. If you ever want a second opinion on anything money-related - even a quick CPF question - just send me a note. No appointment, no pitch."
+> "Hey [name] - I've recently joined AIA as a Financial Consultant. Since this kind of thing comes up for everyone at some point, I'd rather you have someone you actually know and trust handling it than whoever happens to be in front of you at the moment. If you ever want a second opinion on anything money-related - even just a quick CPF question - drop me a note anytime. Would also be glad to grab coffee and catch up if you're around."
 
 **The "quietly here" angle** (very distant warm — haven't spoken in years):
 
-> "Hey [name] - long time, hope you're well. Just sharing, I've recently moved into financial consulting. Not messaging to sell you anything - half the people I tell already have things sorted, which is great. The reason I'm reaching back out is so you know who to ask if a question comes up in the next year or two. That's it - take care!"
+> "Hey [name] - long time, hope you're well! Just sharing, I've recently moved into financial consulting. Not messaging to sell you anything - honestly, half the people I tell already have things sorted, which is great. Mainly wanted to reconnect properly though - it's been way too long. If you're around in the next few weeks, would love to grab a coffee and catch up."
 
 **Why these work better than "training reps" framing for some contacts:**
 
@@ -321,7 +321,7 @@ Most first meetings don't close. That's normal. What kills conversion isn't the 
 
 ### The "open door" message (touch #7)
 
-> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'm here. I'll send the occasional useful thing along the way, no obligation to reply. When you'd like to talk, just drop me a message."
+> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'd love to talk it through with you properly. I'll send the occasional useful thing along the way; whenever something resonates, just drop me a message."
 
 **Why 7 and not 3:** industry data consistently shows 60%+ of sales happen after touch 5. Most new FCs quit at touch 2 or 3. The follow-up is the sale.
 
@@ -336,7 +336,7 @@ Two failure modes silently shut the door:
 
 What an open-door close sounds like instead:
 
-> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me. Only if it comes naturally though, no need to dig on my behalf."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate to drop me a note. Either way, would love to stay in touch and grab a coffee whenever you're around. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me."
 
 What this line is doing:
 
