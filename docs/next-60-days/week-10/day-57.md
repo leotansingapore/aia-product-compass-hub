@@ -152,6 +152,31 @@ Scale that across 20 A-clients × 2 thoughtful moments per year = 40 moments ann
 
 ---
 
+## When a client relationship cools — the 8-Step recovery conversation
+
+Every FC ends up with the same problem eventually: an A-tier client goes quiet. Premium lapses, a referral promise never materialises, replies get shorter, calls don't get returned. The relationship hasn't *broken* — it's drifted. Pretending nothing happened (the most common move) lets it drift further. Calling to *"check in"* with no real agenda (the second most common) reads as transactional fishing.
+
+The IBCT 8-Step framework is the recovery script. It's designed for someone you already know — a team-mate, a long-time client, a strained friend — and it works because every step is structured around *them*, not your agenda.
+
+| # | Step | What it sounds like |
+|---|---|---|
+| 1 | **Set the objective** (internal — for you, before the meeting) | What's the *one thing* you want them to feel by the end? Heard? Reassured? Understood? Don't go in without this. |
+| 2 | **State your intention** | *"I wanted to catch up properly — not about anything specific. I noticed it's been a while and I value the relationship more than the next conversation."* |
+| 3 | **Surface their hot button** | Ask what's been going on for *them* — work, family, health, money. Listen for what their energy changes around. Don't lead with your topic. |
+| 4 | **Acknowledge their strengths** | What they're handling well. Specific. *"You navigated [the thing] way better than most people would have."* |
+| 5 | **You-you-you** | Three sentences that are about *them*, not you. *"You've always been the one in your circle who thinks about these things long-term. You're the kind of client who actually reads what I send. And you've referred two people in the past who became real clients."* |
+| 6 | **Recognise + praise + reward (where appropriate)** | If they've done something tangible (introduced someone, hit a goal), name it. Recognition is the relationship glue most FCs forget to apply. |
+| 7 | **Constructive feedback (only if needed)** | If there's a real issue — premium lapse, missed payment, behaviour pattern — name it after steps 1-6 have built the cushion. *"One thing I wanted to flag, since I'd rather you hear it from me…"* |
+| 8 | **Empower** | End on the next thing they have control over. *"What would feel most useful from me over the next few months?"* — and then deliver on whatever they say. |
+
+**Where it lands:** premium-lapse calls, *"the client stopped replying"* situations, the renewal-year touchpoint with a tier-A client who's gone quiet, the conversation where you have to flag bad news (an underwriting decline, a claim being slow). It's also the script for the rare moment when a *team-mate* is struggling — the IBCT framework was originally written for coaching, and a struggling junior FC is the same shape of conversation.
+
+**What it isn't:** an opener for cold or warm prospecting. The 8 Steps assume the relationship already exists. For a brand-new contact, see Day 22's warm market opener instead.
+
+The compound effect: one well-handled 8-Step recovery conversation often produces more goodwill than 5 cold check-ins. A client who feels *heard* during a difficult moment becomes a 20-year client and a referral source. A client who feels managed during a difficult moment becomes a polite churn statistic.
+
+---
+
 ## Quiz
 
 **Q1. Clients mostly remember their advisor for:**

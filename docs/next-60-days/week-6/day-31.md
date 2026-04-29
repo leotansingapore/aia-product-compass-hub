@@ -121,6 +121,44 @@ Combine 3–4 signals and you'll land on the right profile ~80% of the time by t
 
 ---
 
+## When the speed-read isn't enough — profiling questions
+
+The 5-minute speed-read works most of the time. When it doesn't — usually because the prospect is reserved, on a phone call, or being deliberately vague — fall back to **profiling questions**. Three rules from the IBCT bootcamp:
+
+**Rule 1: Read the *reasoning*, not the *answer*.** When you ask *"if you were an animal, which would you be?"* — the animal name itself tells you almost nothing. The reasoning behind it tells you everything. *"A lion, because I'm in charge"* is D. *"A lion, because I'm protective of my family"* is S. Same answer, different profiles.
+
+**Rule 2: Use *"best describes you"*, not *"do you like"*.** *"Do you like attention?"* gets a socially-desirable answer ("not really"). *"Which best describes you in a group — leading, energising, supporting, or analysing?"* forces a self-honest pick.
+
+**Rule 3: Frame the options as four — one per profile — not as a binary.** Binaries push the prospect toward whichever option sounds better in the moment. Four-option questions force them to pick the one that genuinely fits.
+
+### Three profiling questions that work
+
+**Animal question:**
+> "If you were an animal, which would you be — and why?"
+
+Common patterns:
+- *Lion / eagle / tiger* + reasoning about leadership, results → **D**
+- *Dolphin / parrot / butterfly* + reasoning about social, fun, expressive → **I**
+- *Dog / elephant / golden retriever* + reasoning about loyalty, family, steady → **S**
+- *Owl / fox* + reasoning about thinking, observing, careful → **C**
+
+**Colour question:**
+> "What's your favourite colour, and what does it represent for you?"
+
+Patterns: red/black (power, decisive — D), yellow/orange (warmth, energy — I), green/blue (calm, dependable — S), grey/navy (sophistication, precision — C). Reasoning matters more than the colour itself.
+
+**Scenario question:**
+> "If your team had to deliver a big project in two weeks, what role would you naturally take?"
+
+- *"I'd take charge and assign roles"* → D
+- *"I'd rally the team and keep morale up"* → I
+- *"I'd support whoever's leading and make sure no one's overwhelmed"* → S
+- *"I'd build the plan and make sure we're not missing anything"* → C
+
+**The principle:** people answer profiling questions honestly because they're not loaded. Use 2-3 of these in casual conversation (not in sequence — that reads as a survey) and triangulate with the visual signals from the speed-read. The combined read is reliable to 90%+ even on reserved prospects.
+
+---
+
 ## The 2 fine-line distinctions you'll get wrong early
 
 Two pairs are easy to confuse:

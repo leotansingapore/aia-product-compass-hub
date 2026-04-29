@@ -90,6 +90,33 @@ Four principles for crafting yours:
 
 ---
 
+## When the prospect won't shut up — the smooth-interjection move
+
+Pattern interrupts assume the prospect gives you the floor. Sometimes they don't. You're at coffee, the prospect is on a 20-minute monologue about work, and there's no natural opening to drop the intent statement. Forcing it ("OK, anyway — what I do is…") burns the rapport you spent the first hour building.
+
+SAPT calls this the *"smooth interjection"*. Two principles:
+
+**1. Find the bridge first.** Listen for the moment in their monologue that intersects with what you do — a money decision they had to make, a colleague's situation, a life event coming up. The interjection rides the bridge, not against it.
+
+**2. Use a non-committal lead-in.** Phrases that signal *"I want to add something"* without interrupting:
+
+- *"That's actually really interesting — reminds me of…"*
+- *"Funny you mention that — most of the people I work with…"*
+- *"Hmm — could there be a possibility that's connected to something I do?"*
+- *"That's actually one of the things I help people figure out — would you like me to share?"*
+
+The last one is the cleanest: it asks permission before you take the floor. Permission-based interjections almost never get refused.
+
+**Worked example.** Prospect (D-profile, in monologue mode) is venting about a colleague who got passed over for promotion despite being the strongest performer.
+
+Bad: *"Yeah, that sucks. Anyway, what I do is help people plan their finances…"*
+
+Smooth: *"That's actually really common — and it's connected to something I help people work through. The way most senior professionals I work with frame it: career decisions get made on a 5-year horizon, but financial decisions made today either give them the option to take the next risk, or trap them in the current job. Could there be a possibility that's something worth looking at for you, even briefly?"*
+
+The interjection rode the bridge (career risk → financial flexibility), used a permission-based lead-in (*"could there be a possibility…"*), and turned the prospect's monologue into the on-ramp.
+
+---
+
 ## The "does this sound like anyone else?" test
 
 Before you commit to your v2, run this test:
