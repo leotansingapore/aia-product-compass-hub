@@ -49,6 +49,29 @@ That framing matters. The prospect's brain hears "help me out for 5 minutes" and
 
 **Internal reframe:** the survey isn't a sales tool. It's a **practice tool** for you - and a way to legitimately reconnect with people you've drifted from. The appointments come naturally as a by-product, not as the point.
 
+### The 3 Cs of Communication — what's running underneath the script
+
+Before you read the script versions below, the IBCT framework that makes any of them land:
+
+- **Connect (5 sub-skills)** — smile (audible in your voice on the phone), eye contact (in person), pay a sincere compliment (see *Sincere compliment* sidebar below), ask about *them*, listen and acknowledge what they say.
+- **Convince (1 sub-skill)** — match their logic. A D-profile prospect wants the bottom line in 60 seconds; an S wants relationship and reassurance first. Same script, different pacing.
+- **Comfort (4 sub-skills)** — tonality (warm, not flat), pace (slightly faster than conversational), body language (open, in person), choice of words (no jargon, no Solutions / Needs).
+
+The script you pick below is the *what*. The 3 Cs are the *how*. Without Connect, the prospect doesn't open up. Without Convince, the appointment ask falls flat. Without Comfort, you sound scripted even when you aren't.
+
+### Sincere compliment — the four-rule micro-skill
+
+Almost every market-survey call lands or dies on the first 30 seconds, and the first 30 seconds usually contain a compliment. Most new FCs get this wrong because they over-rehearse and the line comes out generic.
+
+The four rules:
+
+1. **Sincere — don't rush it.** A compliment fired off in the first three seconds reads as scripted. Slow down. Make it the third or fourth thing you say, not the first.
+2. **Compliment the subject, not the object.** Bad: *"Wow, your house is so nice."* Good: *"You really put a lot of thought into how you set up the place — it shows."* The first compliments the *thing*; the second compliments *them*.
+3. **Personalised, not generic.** Cut *"quite friendly"*, *"approachable"*, *"easygoing"* — these read as filler. Use something only this person would recognise: *"You always had the most thought-out answers in tutorial — I remember that"* or *"You handled the [specific situation] way better than I would've."*
+4. **Profile-tailored.** D and DC profiles want recognition of *what they did* (results, decisions, calls they made). I and IS profiles want recognition of *who they are* (energy, warmth, the kind of friend they are). S profiles want recognition of *consistency* (showing up, being there, dependability). C profiles want recognition of *thinking* (the rigour, the analysis, the care taken).
+
+A sincere, personalised, profile-tailored compliment in the first 30 seconds drops the prospect's guard more than any script line will. Without it, the survey ask works mechanically; with it, the conversation opens.
+
 ### The script - pick the version that fits the relationship
 
 You don't memorise one rigid script. You learn the **shape** - greeting, reason, three questions, ask for the meeting, time close - and pick the variation that fits your actual relationship with this person. A line that works on a close friend you saw last month sounds fake on a uni-mate you haven't spoken to in three years, and vice versa.

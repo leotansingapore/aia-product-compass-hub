@@ -129,6 +129,19 @@ The Day 39 - Project 100 page treats this in full, with the priority quota (<=25
 
 > **Worth saying twice:** the friend you haven't spoken to in 7 years is more valuable than the cousin you message every day. The cousin will say yes once. The drifted friend has untouched relationship equity, no other FC has reconnected with them yet, and the reconnect itself is a gift to both sides.
 
+### Asking for a favour the right way — a transferable life skill
+
+Several of the openers below are framed as *"can you help me out?"* That's the asking-for-a-favour move, and most FCs do it badly because they only learned it under pressure. The pattern is from IBCT and works for almost any favour ask — survey, intro, feedback, time:
+
+1. **Courtesy** — open with politeness and acknowledgement that you're asking for time. *"Quick one"*, *"small favour"*, *"sharing only"*, *"if you're around"*.
+2. **Empathy** — name that you understand they're busy / this is unsolicited / you don't expect them to drop everything. *"No pressure"*, *"only if it's easy for you"*, *"totally understand if not"*.
+3. **What's-in-it-for-them** — give them a real reason they'd want to say yes. With a market survey, the WIIFT is *"you'd actually be helping me get reps in"* (true) or *"I'll do up a one-page summary of all your policies"* (concrete value). Without a WIIFT, the ask is one-sided and lands as a chore.
+4. **Cheat code: pre-empt their objection.** If you know they'll think *"this is going to take forever"* — say *"I just need 5 minutes"*. If you know they'll think *"is this a sales pitch in disguise"* — say *"no pitching, no products, promise"*. Naming the objection before they raise it kills 80% of the resistance.
+
+Profile-tune the speed: D and DC profiles want the favour ask short and to the point — courtesy + ask + WIIFT, in 2-3 sentences. S and I profiles want a softer build — small talk first, *then* the ask. Don't lead with a favour to a D ("get to the point") or skip the warmth with an S ("transactional").
+
+This pattern shows up again in cold-call openers (Day 43), the FACT method for referrals (Day 28 of next-60), and any time you ask a client for an introduction. Learn it once, use it forever.
+
 ### Make these scripts your own before you send anything
 
 Every script below is a starting point, not a script to read off. Two rules:
