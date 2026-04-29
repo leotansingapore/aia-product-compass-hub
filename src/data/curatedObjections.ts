@@ -9,7 +9,7 @@ export type ArqFramework = "A" | "B" | "C" | "skip-q";
 export interface CuratedObjection {
   id: string;
   title: string;
-  family: "push-away" | "have-policies" | "have-advisor" | "format" | "cost-of-delay" | "format-recruitment";
+  family: "push-away" | "have-policies" | "have-advisor" | "format" | "cost-of-delay" | "format-recruitment" | "product";
   framework: ArqFramework;
   trigger: string;
   approach: string;
@@ -301,6 +301,357 @@ export const CURATED_OBJECTIONS: CuratedObjection[] = [
       },
     ],
     source: { day: "Day 40 (next-60-days) — Objection Turnaround", path: "/learning-track/next-60-days/day/40" },
+  },
+  // ----------------------------------------------------------------------
+  // Revamped from the legacy seeded objections database (objection_entries
+  // table). Each entry rewritten to fit one of the 3 ARQ frameworks. Bad
+  // patterns from the originals (preachy education-dump, salesy reframes,
+  // fear-mongering stats) have been removed.
+  // ----------------------------------------------------------------------
+  {
+    id: "i-dont-believe-in-insurance",
+    title: "I don't believe in insurance",
+    family: "push-away",
+    framework: "A",
+    trigger:
+      "Prospect dismisses the entire concept of insurance — usually rooted in a specific past experience or a generational view, not the actual product.",
+    approach:
+      "Run full ARQ. The objection is too vague to handle directly — surface the specific experience or belief underneath. Never argue the concept itself.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ to surface the root",
+        content:
+          "Fair — and you wouldn't be the first. Quick one before I respond — what shaped that view? Was it a specific experience (someone in the family burned by a policy, a claim that got rejected), or more of a general feeling that the industry's rigged? I want to make sure I'm not arguing the wrong thing.",
+      },
+      {
+        label: "Reframe (after they share)",
+        content:
+          "Got it — that makes sense given what you went through. So just to be clear, what I do is less about selling insurance and more about figuring out which parts of your money work for you and which don't. Sometimes the answer is a policy. Sometimes it's restructuring what you already pay. 30 minutes — Tuesday 7pm or Saturday 10am?",
+      },
+    ],
+    watchOut:
+      "Don't try to defend the industry. The belief is rarely about insurance itself — it's about a specific bad experience. Surface that, and the objection often dissolves.",
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "im-too-young",
+    title: "I'm too young to worry about this",
+    family: "push-away",
+    framework: "C",
+    trigger:
+      "Prospect uses age as the disqualifier — common from NSFs, fresh grads, and 20-somethings.",
+    approach:
+      "Boomerang. Young IS the qualifier — premiums lock at today's age and today's health, and the window closes quietly. Make the time-to-act point, then close.",
+    scripts: [
+      {
+        label: "Boomerang version",
+        content:
+          "That's exactly why — premiums lock in at the age and health you sign at. The 25-year-old version of you can buy cover the 35-year-old version can't afford. The window is now, and it closes quietly. 20 minutes — Tuesday 7pm or Saturday 10am?",
+      },
+      {
+        label: "Skip-Q stock response",
+        content:
+          "Honest answer — being young is the only reason this makes sense to even talk about. Premiums and underwriting both get harder fast. 20 minutes is all I'm asking for.",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "check-with-spouse",
+    title: "Let me check with my spouse first",
+    family: "cost-of-delay",
+    framework: "A",
+    trigger:
+      "Post-pitch deferral — could be genuine (real partner-decision) or stall.",
+    approach:
+      "Run ARQ to surface which it is. If genuine, offer joint meeting so the partner hears it firsthand. If stall, isolate the real concern before they leave the room.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Fully respect that — these calls should be made together. Quick one so I don't get this wrong: is this a 'I want my partner in the room when we make the decision' or more of a 'I want to think it through with them first'? Both are fine, just changes what I do next.",
+      },
+      {
+        label: "If 'partner in the room' — joint meeting close",
+        content:
+          "Perfect. The right move is to have your partner there from the start so you're not playing telephone with my answers. Weekday evening or Saturday morning easier for both of you?",
+      },
+      {
+        label: "If 'think it through first' — isolate the concern",
+        content:
+          "Got it. If you had to bet on what they'll push back on — premium, commitment, or whether I'm the right person — what would it be? Easier if I address it now so you go home with a real answer rather than 'the agent will follow up.'",
+      },
+    ],
+    source: { day: "Day 40 (next-60-days) — Objection Turnaround", path: "/learning-track/next-60-days/day/40" },
+  },
+  {
+    id: "too-expensive",
+    title: "It's too expensive",
+    family: "cost-of-delay",
+    framework: "A",
+    trigger:
+      "Pricing pushback — could be sticker shock, value mismatch, or genuine cash-flow constraint.",
+    approach:
+      "ARQ first to find out which one. 'Compared to what?' surfaces the real concern in one move. Avoid '$10/day = 2 coffees' reframes — they sound like sales tricks and don't answer the real question.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Fair feedback. Quick one — when you say expensive, is it expensive vs your monthly budget, or expensive vs what you thought protection would cost? Different problem each way and I'd hate to fix the wrong one.",
+      },
+      {
+        label: "If budget-tight — restructure",
+        content:
+          "Got it. Then let's not look at this plan — let's look at your budget first and reverse-engineer what protection actually fits in. Better to have $80/month of the right thing than $300/month of the wrong thing. 20 minutes to map it?",
+      },
+      {
+        label: "If perception — show the numbers",
+        content:
+          "Fair — and I'd rather show you the math than argue about it. The illustration shows exactly where every dollar goes. Tuesday 7pm or Saturday 10am to walk through it?",
+      },
+    ],
+    watchOut:
+      "Avoid the '$10/day = 2 coffees' reframe. It sounds glib and skips ARQ entirely. Find out which kind of 'expensive' it is first.",
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "may-never-use",
+    title: "Why pay for something I may never use?",
+    family: "push-away",
+    framework: "A",
+    trigger:
+      "Prospect framing insurance as a wager rather than a hedge.",
+    approach:
+      "ARQ. The objection assumes insurance is gambling. Surface what they think 'using it' means — almost always 'making a claim' — then reframe to protection-of-savings.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Fair point — and I want to make sure I respond to what you actually mean. When you say 'use it,' are you thinking about making a claim — like a hospital stay or a critical illness payout? Or more like getting some kind of money back?",
+      },
+      {
+        label: "Reframe (after they answer)",
+        content:
+          "Got it. The way I think about it — you're not paying so something happens. You're paying so that IF something happens, your savings, your home, and your family's lifestyle don't get drained to fix it. The hope is you never claim. The reason it's worth it is because the alternative is paying out of pocket. 20 minutes to map what that looks like for your situation?",
+      },
+    ],
+    watchOut:
+      "Don't lead with cancer or hospitalisation stats. Fear-mongering reframes feel manipulative and undo the rapport you just built.",
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "insurance-just-wants-money",
+    title: "Insurance companies just want my money",
+    family: "push-away",
+    framework: "A",
+    trigger:
+      "Industry-level skepticism — usually based on a specific story or general 'big corporation' frame.",
+    approach:
+      "ARQ to surface the source. Don't defend the industry. Acknowledge there are reasons that view exists, then show how you personally work differently.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Honestly — fair, and the industry's earned some of that. Quick one before I respond: is that based on something specific (a claim that got denied, an agent that vanished, a friend's bad experience), or more of a general feeling? Want to make sure I'm not defending against the wrong thing.",
+      },
+      {
+        label: "Reframe (after they share)",
+        content:
+          "Got it. Here's how I work — I don't pitch products on the first meeting. I show you what you've already got, where the gaps are, and what to do with what you already pay. If you walk away saying 'no thanks,' I haven't lost anything — I'd rather you trust me later than oversell you now. 30 minutes — worth it?",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "friend-bad-claim",
+    title: "My friend had a terrible claims experience",
+    family: "push-away",
+    framework: "B",
+    trigger:
+      "Story-based objection — emotional weight from someone close to the prospect.",
+    approach:
+      "Feel-Felt-Found. Never dismiss the friend's experience. Acknowledge it can happen, then reframe to how YOUR role prevents the common causes (bad disclosure, bad documentation, no one in their corner).",
+    scripts: [
+      {
+        label: "Feel-Felt-Found",
+        content:
+          "(Feel) I'm sorry — that sounds rough, and it sticks with you when it's someone close. (Felt) A handful of my clients walked in with the exact same story. (Found) What they found was that the difference between a clean claim and a denied one is almost always the prep — disclosure at sign-up, the documentation, having someone in their corner when the assessor pushes back. That's the thing I do that the friend's advisor probably didn't. So less about 'will the company pay,' more about 'will I make sure you get paid.' 30 minutes to walk you through how that works?",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "burned-by-agent",
+    title: "I've been burned by an agent before",
+    family: "have-advisor",
+    framework: "B",
+    trigger:
+      "Personal bad experience with a previous advisor — emotional, requires empathy frame.",
+    approach:
+      "Feel-Felt-Found. Don't promise you're different — show it through how you frame the next step (small, low-commitment, you do most of the listening).",
+    scripts: [
+      {
+        label: "Feel-Felt-Found",
+        content:
+          "(Feel) Genuinely sorry. That experience makes you slow to trust again, and it should. (Felt) A few of my best clients came to me the same way — burned, cautious, expecting me to be like the last guy. (Found) What they found was that the way to rebuild trust is small. So I'm not asking you to commit to anything — I'm asking for 30 minutes where you do most of the talking, I take notes, and you decide afterwards if the next conversation's worth having. Earn it slow. Tuesday 7pm or Saturday 10am?",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "next-year",
+    title: "I'll do it next year",
+    family: "cost-of-delay",
+    framework: "C",
+    trigger:
+      "Procrastination framed as scheduling.",
+    approach:
+      "Boomerang. Next-year is a moving target — life adds new priorities every year. Make the cost concrete, then close on a small first step today.",
+    scripts: [
+      {
+        label: "Boomerang",
+        content:
+          "Honestly — every client of mine who said 'next year' said the same thing the year after, and the year after that. Not because they're flaky, but because life adds new priorities every year. The smaller version of this — just hospitalisation, mostly MediSave-paid, zero cash out — locks the principle in now and we expand later. 20 minutes to set that up?",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  {
+    id: "wait-til-i-earn-more",
+    title: "I'll wait until I earn more",
+    family: "cost-of-delay",
+    framework: "C",
+    trigger:
+      "Income-tied delay — assumes future-them will have more headroom.",
+    approach:
+      "Boomerang. Address lifestyle creep directly. Lock in the principle at low cost now, scale up as income grows.",
+    scripts: [
+      {
+        label: "Boomerang",
+        content:
+          "That's exactly why now matters — income going up almost never means savings go up, because lifestyle goes up first. The clients I respect locked in the protection version while premiums were lowest, then added on as income grew. The reverse doesn't work — you can't undo a health condition you developed during the wait. 20 minutes to set the small version?",
+      },
+    ],
+    source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
+  },
+  // ----------------------------------------------------------------------
+  // Product-specific objections (post-pitch). These need product knowledge,
+  // not pure ARQ — but they still slot into one of the 3 frameworks. Sourced
+  // from Day 56 product sales tracks.
+  // ----------------------------------------------------------------------
+  {
+    id: "ilp-high-charges",
+    title: "ILPs have high charges",
+    family: "product",
+    framework: "A",
+    trigger:
+      "Pro-Achiever / ILP product objection — usually after the prospect read forum posts.",
+    approach:
+      "Acknowledge the charges are real. ARQ on what they're comparing against (DIY ETF vs another insurance plan). Reframe to total-cost-of-ownership — DIY skips the insurance + behavioural coaching they'd still need to buy.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Fair — the charges ARE there, I won't pretend otherwise. Quick one — are you comparing this against ETFs / robo-advisors, or against another insurance plan? Different conversation each way.",
+      },
+      {
+        label: "Reframe (vs DIY ETF)",
+        content:
+          "Got it. Then let's actually compare apples to apples. The charges in an ILP cover three things: the insurance coverage built in, the fund management, and someone in your corner when markets crash. If you go DIY, you'd pay for term insurance separately (~$50-100/month), platform fees on the ETF, and you're on your own when markets drop 30%. When I add it up, the gap is much smaller than the headline charge suggests. Want me to walk through your specific case?",
+      },
+    ],
+    watchOut:
+      "Don't get into a fee-defending debate. The right answer is total-cost-of-ownership, not 'our fees are reasonable.'",
+    source: { day: "Day 56 — Product Sales Tracks", path: "/learning-track/first-60-days/day/56" },
+  },
+  {
+    id: "endowment-low-returns",
+    title: "Endowment returns are too low",
+    family: "product",
+    framework: "A",
+    trigger:
+      "Smart Wealth Builder / endowment objection — comparing 2-3% returns to stock market returns.",
+    approach:
+      "ARQ on the goal first. Endowments aren't competing with the stock market — they're competing with bank savings for short-to-mid-term goals. Reframe to discipline and certainty.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Fair — and you're right that they don't compete with the stock market. Quick one — what's the money for? Wedding fund, house down payment, child's education, or general savings?",
+      },
+      {
+        label: "Reframe (after they share goal)",
+        content:
+          "Got it. So this isn't actually a 'beat the market' decision — it's a 'will the money definitely be there when I need it' decision. Endowments win on certainty and on the discipline of forced saving. Stocks win on long-term growth but lose on the panic-sell problem. Different jobs. The right move is to use both — endowment for the goal you can't miss, stocks for the goal that can wait. Want to map which is which?",
+      },
+    ],
+    source: { day: "Day 56 — Product Sales Tracks", path: "/learning-track/first-60-days/day/56" },
+  },
+  {
+    id: "whole-life-too-expensive",
+    title: "Whole life premium is too expensive vs term",
+    family: "product",
+    framework: "A",
+    trigger:
+      "GPP / whole life objection — comparing monthly premium against term.",
+    approach:
+      "Acknowledge the premium gap is real. ARQ on what 'covered' means to them (working years vs lifetime). Reframe to lifetime vs limited window — term ends, whole life doesn't, and most claims happen at 65+.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "True — whole life is more per month, no argument. Quick one before I respond: when you imagine 'covered,' do you mean covered through working years, or covered for life — including 65+ when most claims actually happen?",
+      },
+      {
+        label: "Reframe (after they answer)",
+        content:
+          "Got it. So the trade-off is: term gives you the cheapest premium today but ends right when you're most likely to claim. Whole life is more per month but locks in cover at today's price for life and builds cash value you can borrow against. Most of my clients use BOTH — whole life for the lifetime base, term layered on for the high-responsibility years (kids, mortgage). 20 minutes to map the right mix for your situation?",
+      },
+    ],
+    source: { day: "Day 56 — Product Sales Tracks", path: "/learning-track/first-60-days/day/56" },
+  },
+  {
+    id: "term-no-cash-value",
+    title: "Term insurance has no cash value",
+    family: "product",
+    framework: "A",
+    trigger:
+      "Term objection — prospect dislikes paying for protection that 'leaves nothing.'",
+    approach:
+      "Reframe term as pure protection. ARQ on whether they'll actually invest the difference (the BTIR question) — be honest. BTIR is mathematically right and behaviourally wrong for most people.",
+    scripts: [
+      {
+        label: "Acknowledge + ARQ",
+        content:
+          "Correct — term is pure protection, no cash value. The case FOR it is 'Buy Term, Invest the Rest' — cheapest protection, you invest the savings separately. The honest question is: will you actually invest the difference every month, even when markets drop?",
+      },
+      {
+        label: "Reframe (after they answer)",
+        content:
+          "If yes — term is the right call, you'll come out ahead. If no, or you're not sure — whole life forces the saving for you, and you'll thank yourself in 20 years. Which one sounds more like you?",
+      },
+    ],
+    watchOut:
+      "Don't sell BTIR as 'always better.' It's only better if the discipline is real. Match the product to the behaviour, not to the spreadsheet.",
+    source: { day: "Day 56 — Product Sales Tracks", path: "/learning-track/first-60-days/day/56" },
+  },
+  {
+    id: "medishield-only",
+    title: "I have MediShield Life — why do I need a rider?",
+    family: "product",
+    framework: "C",
+    trigger:
+      "HealthShield / hospital plan objection — assumes basic government coverage is enough.",
+    approach:
+      "Boomerang. MediShield Life IS the reason a rider matters — the rider plugs the specific gap (private ward, $150K cap, large cancer treatments). Use specific numbers, not abstract claims.",
+    scripts: [
+      {
+        label: "Boomerang + numbers",
+        content:
+          "That's exactly why this conversation matters — MediShield Life is great basic cover for B2/C ward stays with a $150K annual claim limit. The gap shows up the day you walk into a private ward or face a $300K+ cancer treatment. The rider exists specifically to plug that gap, mostly payable from MediSave so the cash impact is small. Want me to show you the actual numbers for your age band?",
+      },
+    ],
+    source: { day: "Day 56 — Product Sales Tracks", path: "/learning-track/first-60-days/day/56" },
   },
 ];
 

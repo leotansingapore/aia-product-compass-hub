@@ -13,6 +13,7 @@ const FAMILY_LABELS: Record<CuratedObjection["family"], string> = {
   "have-advisor": "Already have an advisor",
   "format": "Format / channel",
   "cost-of-delay": "Cost of delay / time",
+  "product": "Product-specific (post-pitch)",
   "format-recruitment": "Recruitment-specific",
 };
 
@@ -160,7 +161,7 @@ export function CuratedObjectionsLibrary() {
               <div className="flex-1 min-w-0">
                 <span>Curriculum-anchored objection library</span>
                 <p className="text-xs sm:text-sm text-muted-foreground font-sans font-normal mt-0.5">
-                  {CURATED_OBJECTIONS.length} objection scripts mirrored from Day 44 + Day 40 (next-60-days), each tagged with the right ARQ framework.
+                  {CURATED_OBJECTIONS.length} objection scripts — every one tagged to one of the 3 ARQ frameworks. Mirrored from Day 44, Day 40 (next-60), and Day 56 product tracks. Filter by family below.
                 </p>
               </div>
               {open ? (

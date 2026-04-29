@@ -555,13 +555,37 @@ export function ObjectionHandlingDatabase() {
     return map;
   }, [responses]);
 
+  // The legacy seeded objections (objection_entries + objection_responses tables)
+  // have been superseded by the curriculum-anchored CuratedObjectionsLibrary above.
+  // Admins can still view/manage the legacy DB inside a collapsible. Non-admins
+  // never see it — the curated library is the single source of truth for FCs.
+  const [legacyOpen, setLegacyOpen] = useState(false);
+
   return (
     <div>
       {/* ARQ framework primer - the reference at the top so newbies know HOW to construct a response */}
       <ArqFrameworkReference />
 
-      {/* Curriculum-anchored library - mirrored from Day 44 + Day 40 (next-60-days) */}
+      {/* Curriculum-anchored library - canonical source of truth */}
       <CuratedObjectionsLibrary />
+
+      {/* Legacy DB — admin-only, collapsed by default */}
+      {!isAdmin ? null : (
+        <Collapsible open={legacyOpen} onOpenChange={setLegacyOpen} className="mt-8 mb-6">
+          <CollapsibleTrigger asChild>
+            <button className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-dashed border-border/60 bg-muted/20 hover:bg-muted/40 transition-colors text-left">
+              <div className="flex-1 min-w-0">
+                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Admin only — legacy objection DB (deprecated)
+                </div>
+                <p className="text-[11px] text-muted-foreground/80 mt-0.5">
+                  Old seeded entries + user-contributed versions. Phased out — content has been merged into the curated library above.
+                </p>
+              </div>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform shrink-0 ${legacyOpen ? "rotate-180" : ""}`} />
+            </button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-4">
 
       {/* Search + Add */}
       <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
@@ -741,6 +765,10 @@ export function ObjectionHandlingDatabase() {
             </CollapsibleContent>
           </Collapsible>
         </div>
+      )}
+
+          </CollapsibleContent>
+        </Collapsible>
       )}
 
       {/* Editor Dialog */}
