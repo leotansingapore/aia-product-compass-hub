@@ -47,50 +47,94 @@ That framing matters. The prospect's brain hears "help me out for 5 minutes" and
 
 **Internal reframe:** the survey isn't a sales tool. It's a **practice tool** for you - and a way to legitimately reconnect with people you've drifted from. The appointments come naturally as a by-product, not as the point.
 
-### The script - memorise, internalise, naturalise
+### The script - pick the version that fits the relationship
 
-This is the canonical AIA market survey script. Use it word-for-word until it becomes your own.
+You don't memorise one rigid script. You learn the **shape** - greeting, reason, three questions, ask for the meeting, time close - and pick the variation that fits your actual relationship with this person. A line that works on a close friend you saw last month sounds fake on a uni-mate you haven't spoken to in three years, and vice versa.
 
-**Opening**
-> Hello, good morning, is this John?
+The four versions below run on the same skeleton. Choose by how recently you've spoken and how this person prefers to talk.
+
+#### Version A - The "haven't spoken in a while but we're still close" call
+
+**Use when:** You'd still consider this person a friend even if it's been a few months. They'll pick up.
+
+> "Eh [name] - it's [your name]. You free for a bit?
 >
-> John, this is [your name]. Do you have a moment to speak?
->
-> How are you this period? *(brief rapport, under 60 seconds)*
+> Cool. So I've just started training to become an FC - financial advisor track - and one of the things they make us do is run a short survey with people we know. Three questions, takes about 5 minutes. Mostly so I get reps in talking about money stuff without sounding weird. You willing to help me out?"
 
-**Agenda - the survey ask**
-> As you may have learnt, I am intending to embark on the career of a Financial Advisor (or: currently interning with a Financial Services Agency) and I am tasked to do a simple market survey with the people that I know. Would you be able to help me by giving me 5 minutes of your time?
+The shift: no "good morning is this John," no "intending to embark on the career." You sound like the person they remember.
 
-*(They almost always say yes. Run the 3 survey questions:)*
+#### Version B - The "we drifted, but it'd be nice to reconnect" call
 
-> **Q1.** Do you have any insurance policies or financial plans? (Yes / No - if no, why?)
->
-> **Q2.** When was the last time you did a review of your policies?
->
-> **Q3.** How do you feel about your existing consultant's service?
+**Use when:** You haven't spoken in 1+ years. Old colleague, uni friend, ex-classmate. The call is partly the reconnection.
 
-These three questions are the *survey*. They take 2-3 minutes. Don't react, don't sell, don't recommend - just listen and write the answers down. The data isn't the point; the *practice* of running a structured 5-minute conversation is the point.
+> "Hey [name], it's [your name] - long time ah! Hope life's been good.
+>
+> Random one - I made the switch into financial advisory recently, and part of the training is running a short market survey with people I know. Three questions, about 5 minutes. Honestly partly an excuse to catch up with you - happy to do it over coffee if a call's a hassle. Down for it?"
 
-**Setting the appointment - using survey question 4**
-> Thanks [name]. By the way, when I am officially licensed to start my practice (or: let's say I decide to embark on the practice as a Financial Advisor), one of my priorities is to extend my service to my closest friends. You are one of those whom I highly regard. Till then, may I get in touch with you for a 30-minute session to share with you the type of solutions I can offer?
->
-> You have my assurance that during our meeting, I will not ask you to do anything you don't want to and any future meetings will depend entirely on whether you feel my services would be of help to you. Will that be good with you?
+The *"honestly partly an excuse to catch up"* is the move. You're naming the subtext instead of pretending the call is purely about a survey. Friends respect that.
 
-*(They say yes. Move to the binary close.)*
+#### Version C - The voice-note (for friends who screen calls)
 
-**Binary close**
-> Good. Would it be best to get together at your office, your home, or through Zoom?
->
-> Would weekdays or weekends be better for you?
->
-> Office hours or evenings?
->
-> Could I see you on [day] at [time], or would [day 2] at [time 2] be better?
+**Use when:** You know they don't pick up unknown rings, or they're a chat-not-call type. Send as a 30-60 second voice note, not a typed message - voice carries warmth that text can't.
 
-**Closing off**
-> Really appreciate your help. Will it be alright if I keep you posted of any AIA promotions that are relevant to you? May I have your email address and date of birth so I can connect better with you?
+> "Hey [name], voice note instead of a call because I know you hate cold ringing.
 >
-> *(Optional)* May I have your permission to add you on Instagram or Facebook so we can keep each other updated?
+> So I've started training as an FC and they have us run a short market survey with people we know - three questions, 5 minutes. You'd actually be helping me get reps in. Reply when you've got a sec - we can do it over a quick call, or honestly even on voice notes here. No pressure either way."
+
+Voice notes work because tonality lands. Same words typed feel formal; spoken, they feel like you.
+
+#### Version D - The piggyback (you're already seeing them)
+
+**Use when:** You've already got lunch / coffee / a hangout booked, or you bump into them naturally. Don't make a separate phone call - just drop it mid-conversation.
+
+> "Oh by the way - I started training in financial advisory recently. Part of it is running these short surveys with people we know - three questions, like 5 minutes. Mind if I ran it on you while we're here?"
+
+Run the questions right there. The appointment ask happens naturally over dessert. No follow-up call needed.
+
+---
+
+### The three questions - same content, lighter touch
+
+The "Q1 / Q2 / Q3" framing makes it feel like a clipboard study. Same data, but spoken like a friend curious about their life:
+
+1. **"What insurance or financial stuff have you got going on, if any?"** *(If nothing - what's the reason? Cost, never got round to it, didn't know where to start?)*
+2. **"When was the last time you actually sat down and looked at it?"**
+3. **"And how do you feel about the person who set it up for you - if there is one?"**
+
+Let them ramble. Don't react. Don't sell. Don't recommend. Take notes. The data isn't the point; the *practice of running a structured 5-minute conversation about money* is the point.
+
+---
+
+### Setting the meeting - two cleaner asks
+
+The Academy version of the appointment ask reads like 1990s sales training. Two ways to ask that don't feel scripted:
+
+**The honest framing:**
+> "Cool, that's the survey done. So once I'm officially licensed - probably [month] - I'd want to come back and properly sit down with you for 30 minutes. Not to sell you anything, more like a free second opinion on what you've already got. You'd be one of the first I'd want to do it with. Sound good?"
+
+**The lighter framing:**
+> "Done with the survey. Honestly, if any of that made you go 'hmm, I should look at this properly' - let me come back when I'm licensed and we do it together. 30 minutes, no products on the table that day, just you walking me through what you've got and me telling you what I'd flag. Fair?"
+
+Both end in a yes. Both drop the "may I get in touch with you" formality.
+
+### The time close - one ask, two specific options
+
+Skip the three-step funnel ("weekdays or weekends? office or evening? day 1 or day 2?"). Combine into one line:
+
+> "Easiest for you - Tuesday around 7pm, or Saturday morning say 10ish?"
+
+Two specific options. They pick one. If neither works, *they* counter-offer. You're done in one sentence instead of four.
+
+### Closing off - rolling the contact ask into the goodbye
+
+Asking for email and DOB at the end of a call feels like form-filling. Roll it into the wrap-up so it sounds like organisation, not data-collection:
+
+> "Cool, locked in. Drop me your email - I'll send the calendar invite and Zoom link. Oh and quick one - DOB? Some of the planning stuff needs it, and I'd rather have it in my notes now than ask you again next month."
+
+Optional, only if it's natural for the relationship:
+> "Mind if I add you on IG? Easier than texting if I want to share something useful between now and then."
+
+The *"I'd rather have it in my notes now"* is the move - it frames the ask as efficiency for them, not collection for you.
 
 ### The 30-meeting practice rule (the RNF gate)
 
@@ -105,24 +149,16 @@ By Survey 30, you can call any friend without freezing. That's the goal.
 
 **The reps are the practice. The practice is what makes you confident enough to call your real warm market.**
 
-### Texting friends who never pick up
+### Texting friends who never pick up - the typed-text version
 
-For the friend who'd rather text than answer a call:
+For the friend who's allergic to phone calls and prefers chat. Use this if voice notes (Version C) feel too much for the relationship:
 
-> Hey [name], hope you're well! Quick one - I just started in financial advisory and part of the training is doing a short market survey with people I know (5 mins, just a few questions). Would really appreciate the help if you can spare the time this week. Could I call you Tuesday evening or Thursday around lunch?
+> "Eh [name] - random one. I just started training as an FC and part of it is running a short market survey with people I know. Three questions, 5 minutes max. You game? Can do it over a quick call, or honestly even on text if calls aren't your thing. Lemme know."
 
-Same script, async. Notice the binary time close at the end - same logic as the phone version.
+For a slow texter:
+> "Hey [name] - poke me when you've got 5 mins. New chapter for me - started in financial advisory. Need to run a short market survey on a few friends as part of training. Three questions. No rush if it's a busy week."
 
-### The "by the way" call (lunch aimai)
-
-Whenever you're meeting a friend for lunch / coffee / a non-work reason:
-
-> By the way, I recently started in financial advisory. I'd love to chat about it over a proper coffee sometime - no pressure, just want to share what I'm doing.
-
-Or the Singapore-flavoured variant:
-> I'm around the area, lunch aimai?
-
-During lunch, your friend almost always asks "what are you doing these days?" - and that's your 10-minute window. You're not pitching. You're a friend with a new chapter they want to know about.
+Same destination, less LinkedIn-formal.
 
 ---
 
@@ -568,13 +604,16 @@ Both end at the same 30-minute appointment. The choice is about the contact's pr
 
  **Why:** Activity is the only metric the FC fully controls. Closes (A), appointments (B), and premium (D) are downstream outcomes of activity - they cannot be optimised directly. Tracking calls made per day (target: 20/day, 100/week, 400/month) is what produces the downstream outcomes mathematically. New FCs who track outcomes get demoralised by variance; those who track activity stay in motion.
 
-8. **A prospect says "Not interested" on a cold call. The right response is:**
- - A) Apologise and hang up immediately
- - B) Reframe gently: "I can understand you're not interested in something you haven't seen - would you be free for a short time on...?" (correct)
- - C) Argue with the prospect that they need this
- - D) Send them a follow-up text right away
+8. **A prospect cuts you off with "Not interested" four seconds into a cold call. The most effective immediate response is to:**
+ - A) Acknowledge they wouldn't be interested in something they haven't seen yet, then ask again for a short slot to show them what it actually is (correct)
+ - B) Pause and ask "what specifically aren't you interested in?" - getting them to articulate the no often reveals it's a misunderstanding
+ - C) Drop the call ask, offer to text them a one-pager instead, and let them come back to you on their own time
+ - D) Treat the "not interested" as a clear no, thank them, and end the call - respecting it now keeps the door open for a different FC later
 
- **Why:** "Not interested" is a reflex objection - a social defence, not a real refusal. The reframe acknowledges the defence and asks again, earning you the next 30 seconds. Apologising and hanging up (A) treats every reflex as a real no. Arguing (C) burns the relationship and never converts. An immediate follow-up text (D) is too aggressive in the same hour. Day 44 covers objection handling in depth.
+ **Why:** "Not interested" inside the first 4 seconds is almost always a reflex objection - a social defence triggered by the format of the call, not a considered judgement on your offer. The reframe (A) names the defence ("you haven't seen it yet") and re-asks - it earns you the next 30 seconds, which is all you need to get to the real conversation.
+ - **B is plausible but backfires.** Asking "what specifically aren't you interested in?" forces the prospect to *defend* the no out loud. A soft reflex becomes a firm position. You've made the call adversarial.
+ - **C feels considerate but converts at zero.** Sending a one-pager replaces a verbal commitment with a passive read - prospects who couldn't say yes to 5 minutes on the phone will not read your PDF. It's the FC's pacifier, not the prospect's path forward.
+ - **D treats every reflex as a real refusal.** If you accept the first "no" at face value on every cold call, you cannot hit the activity numbers - the math (100 calls -> 1 sale) assumes you handle reflex objections, not just real ones. Day 44 covers how to tell the difference between a reflex and a real no.
 
 9. **Setting a cold or warm appointment, the correct close is:**
  - A) Open-ended: "When are you free?"
