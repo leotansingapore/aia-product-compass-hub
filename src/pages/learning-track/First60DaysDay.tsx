@@ -669,14 +669,15 @@ export default function First60DaysDay() {
           aria-live="polite"
         >
           <div className="pointer-events-auto mx-auto max-w-3xl">
-            <div className="flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-4 shadow-elegant backdrop-blur">
+            <div className="flex items-center gap-2 rounded-2xl border border-primary/30 bg-background/95 p-2 pl-3 shadow-elegant backdrop-blur sm:gap-3 sm:pl-4">
               <ClipboardCheck className="h-5 w-5 shrink-0 text-primary" />
-              <p className="flex-1 text-sm font-medium leading-snug">
-                <span className="hidden sm:inline">Ready to lock today in? </span>
-                Take the quiz to unlock Day {dayNumber + 1}.
+              <p className="flex-1 text-xs font-medium leading-snug sm:text-sm">
+                <span className="hidden sm:inline">Ready to lock today in? Take the quiz to unlock Day {dayNumber + 1}.</span>
+                <span className="sm:hidden">Unlock Day {dayNumber + 1}</span>
               </p>
-              <Button size="sm" onClick={goToQuiz} className="shrink-0 gap-1.5 bg-gradient-primary text-primary-foreground hover:opacity-95">
-                Take the quiz
+              <Button size="sm" onClick={goToQuiz} className="shrink-0 gap-1 bg-gradient-primary px-3 text-primary-foreground hover:opacity-95 sm:gap-1.5 sm:px-4">
+                <span className="hidden sm:inline">Take the quiz</span>
+                <span className="sm:hidden">Quiz</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
