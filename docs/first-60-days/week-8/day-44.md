@@ -51,6 +51,31 @@ A specific concern that, if addressed, would open a meeting. A real objection co
 
 **The rookie mistake:** treating every objection as a real one -> over-justifying -> losing the prospect.
 
+### A finer cut: Type 1 vs Type 2 paradigm-shift
+
+Within reflex objections, ARQ distinguishes two further patterns that need different responses. Day 38 introduced this — read it again here because it's the single biggest determinant of whether the response lands:
+
+- **Type 1 — concept dismissal.** *"I don't believe in insurance"*, *"not in the market"*, *"insurance companies just want my money"*. The prospect is rejecting the *idea*, not your specific ask. **Counter-arguing here deepens the dismissal.** Lead with a curious ARQ instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe to the part they raised.
+- **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"already have policies"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The three frameworks below (Skip-Q, Feel-Felt-Found, Boomerang) all assume Type 2.
+
+**The diagnostic in one move:** when the objection lands, ask yourself *"are they rejecting the whole industry or just my specific ask?"* If the whole industry, run Type 1 (curious-ARQ first, reframe second). If just your ask, run Type 2 (cushion + framework + ART back to the appointment ask).
+
+### Cushion-first — the move that runs under every framework
+
+Before any of the three frameworks below, **acknowledge before you reframe**. The cushion is what separates a script that lands from a script that grates. New FCs default to content-first because they're nervous; trained advisors do cushion-first reflexively.
+
+Cushion lexicon (any of these works as the opening half-sentence of any objection response):
+
+- *"That makes complete sense"*
+- *"That's totally fair"*
+- *"Honestly, fair — and..."*
+- *"I appreciate you sharing that"*
+- *"You're not the first person to feel that way"*
+- *"Totally respect that"* / *"I get it"*
+- *"I'd probably feel the same way in your shoes"*
+
+If you're about to say *"however"*, *"but"*, *"actually"*, or any reframe word — there must be a cushion line before it. The cushion can be one short sentence; it's the *presence* of the acknowledgement that matters, not the length. Full treatment in [docs/_voice-canon-scripts.md §3](../../_voice-canon-scripts.md).
+
 ### A third pattern you'll meet later - uncertainty-driven objections
 
 Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection - *"too expensive"* -> you rebut cleanly -> *"need to speak to my wife"* -> you rebut -> *"let me compare a bit more"* -> you rebut -> *"bad timing"* -> and so on.

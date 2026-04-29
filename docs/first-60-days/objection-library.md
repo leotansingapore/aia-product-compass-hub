@@ -99,6 +99,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 ### "I don't believe in insurance"
 
 - **Framework:** A
+- **Type:** **Paradigm-shift Type 1** — concept dismissal. Prospect is rejecting the entire idea, not your specific ask. Curious-ARQ before any reframe; counter-arguing here deepens the dismissal.
 - **Trigger:** Prospect dismisses the entire concept — usually rooted in a specific past experience or generational view.
 - **Approach:** Run full ARQ. The objection is too vague to handle directly. Surface the specific experience or belief underneath. Never argue the concept itself.
 
@@ -114,11 +115,17 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 - **Framework:** C (Boomerang)
 - **Trigger:** Prospect uses age as the disqualifier — common from NSFs, fresh grads, 20-somethings.
-- **Approach:** Young IS the qualifier — premiums lock at today's age and today's health. Make the time-to-act point, then close.
+- **Approach:** Young IS the qualifier — premiums lock at today's age and today's health. Make the time-to-act point, then close. **Profile-tune the directness:** the same logic lands hard on a D and bounces off an S/I, so two variants below.
 
-**Boomerang version:** "That's exactly why — premiums lock in at the age and health you sign at. The 25-year-old version of you can buy cover the 35-year-old version can't afford. The window is now, and it closes quietly. 20 minutes — Tuesday 7pm or Saturday 10am?"
+**D-profile / DC-profile variant** (direct, results-focused — most NSFs and the bottom-line types):
 
-**Skip-Q stock:** "Honest answer — being young is the only reason this makes sense to even talk about. Premiums and underwriting both get harder fast. 20 minutes is all I'm asking for."
+> "That's exactly why — premiums lock in at the age and health you sign at. The 25-year-old version of you can buy cover the 35-year-old version can't afford. The window is now, and it closes quietly. 20 minutes — Tuesday 7pm or Saturday 10am?"
+
+**S-profile / I-profile variant** (warmer, less confrontational — most "let me think about it" types):
+
+> "Totally hear you — and most of the people I respect at your age think exactly the same way at first. The thing that surprised me, working with this profession, is how much premiums and underwriting are locked in by the age and health you sign at. Could there be a possibility 20 minutes is worth a quick look? Worst case, it's a coffee and you've got the info for whenever you do start thinking about it."
+
+**Skip-Q stock (any profile, when you don't know yet):** "Honest answer — being young is the only reason this makes sense to even talk about. Premiums and underwriting both get harder fast. 20 minutes is all I'm asking for."
 
 ---
 
@@ -186,7 +193,7 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 - **Trigger:** Prospect mentions an existing advisor — especially family, long-time agent, or employer-tied.
 - **Approach:** Never attack the existing advisor. Reframe to complement — same-life-stage second pair of eyes that the existing advisor can't give.
 
-**Family / loyalty version:** "Honestly — totally respect that, especially if it's family or someone you've trusted for years. (Feel) I get it — swapping advisors feels like you're being disloyal, and I'd never ask you to do that. (Felt) Most of the clients I work with felt exactly the same when we first met. (Found) What they found was that keeping their existing advisor and adding me as a same-life-stage second pair of eyes was the actual win — your aunt's got the long view of your family, which is irreplaceable. What I do differently is I'm in your life stage, watching the same products and CPF changes coming out for our generation, and that perspective fades a bit once an advisor is 20 years ahead of you. So no replacement, just a coffee where I share what I'm seeing — and you take what's useful back to your aunt for action. Sound reasonable?"
+**Family / loyalty version (cushion-first):** "Honestly — really appreciate you being upfront about that. *(Cushion)* Loyalty to someone who's served you well, especially family, is something I'd never ask you to question. *(Feel)* I get it — swapping advisors can feel like a loyalty thing, and I wouldn't even bring that up as an option. *(Felt)* A lot of my clients felt exactly the same when we first met. *(Found)* What they found was that keeping their existing advisor *and* having a same-life-stage second pair of eyes was the actual win — your aunt has the long view of your family, which is irreplaceable. What I bring is a different angle: I'm in your life stage, watching the same products and CPF changes coming out for our generation, and that perspective fades a bit once an advisor is 20 years ahead of you. So no replacement, just a coffee where I share what I'm seeing — and you take what's useful back to your aunt for action. Would 30 minutes be worth it?"
 
 **Shorter version when rapport is good:** "Totally fair. My honest take: most of my clients in your situation kept their existing advisor and added me as a same-life-stage second pair of eyes. They stay the long-view person; I'm the 'what's the new product this year' person. 30-min coffee, no pressure, you walk away with one or two takeaways for whoever you work with. Open to it?"
 
@@ -220,25 +227,40 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "No money"
 
-- **Framework:** C (Boomerang)
+- **Framework:** C (Boomerang) — but soften the directness; the original Boomerang lands too hard on a stressed prospect
 - **Trigger:** Lack of disposable income framed as the disqualifier.
-- **Approach:** No buffer means the wrong $50/month decision costs more. The plan frees up the buffer.
+- **Approach:** No buffer means small money decisions matter *more*, not less. Reframe to the existing-spend conversation, not the new-expense one.
 
-**Boomerang:** "That's exactly why — when there's no buffer, the wrong $50/month decision costs you more. The plan is what frees up the buffer."
+**Softened Boomerang (cushion-first):** "Totally fair — and honestly, that's actually a good reason to talk, not a reason to skip it. When there's no buffer, even small money decisions matter more, not less. What I'd cover is more about what you already pay than adding new expenses. Would 20 minutes — Tuesday 7pm or Saturday 10am — be worth it?"
 
-**Skip-Q stock:** "Totally fair — and that's actually a good reason to talk, not a reason to skip it. What I'd cover is more about what you already pay for than adding new expenses. Free 20 minutes — Tuesday 7pm or Saturday 10am?"
+**Skip-Q stock (when you don't have time for the full version):** "Totally fair. What I'd cover is more about what you already pay for than adding new expenses. Free 20 minutes — Tuesday 7pm or Saturday 10am?"
 
 ---
 
 ### "Let me think about it"
 
-- **Framework:** A
+- **Framework:** A (Acknowledge-Q-Reframe) + Iceberg peel
 - **Trigger:** Post-pitch ambiguous objection — could mean (1) the offer, (2) timing, (3) trust in you, or (4) needing to consult someone.
-- **Approach:** Run full ARQ. Each meaning needs a different response.
+- **Approach:** ARQ Rule 4 (two distinct options) to anchor the answer, then **Iceberg peel** — go one layer deeper after they pick. Don't stop at the first answer.
 
-**ARQ diagnostic:** "Totally fair — and I want to make sure I'm not the reason you're hesitating. Is the part you want to think about the offer itself, the timing, or whether I'm the right person to do it with?"
+**Step 1 — ARQ diagnostic with two distinct options:** "Totally fair — and I want to make sure I'm not the reason you're hesitating. Quick one — is the part you want to think about the offer itself, the timing, or whether I'm the right person to do it with?"
 
-**Iceberg-style probe (Day 40 next-60-days):** "Got it. Is it the premium, the commitment, needing to talk to someone, or a hidden concern? Genuinely no wrong answer — I just want to address the right thing."
+**Step 2 — Iceberg peel (after they answer):** "Got it. And just so I respond to the right thing — when you say *[their answer]*, is it more about *[specific concern A]* or *[specific concern B]*? Genuinely no wrong answer."
+
+> **Worked example.** They say *"the timing"*. Peel: *"Got it — when you say timing, is it more about cashflow being tight right now, or you've got something big coming up like a wedding or a renovation that you want to clear first?"* The fishbone (cashflow vs upcoming-spend) needs different responses; the surface "timing" answer doesn't tell you which.
+
+---
+
+### "I'll think about it and let you know" (vague stall)
+
+- **Framework:** A (curious-ARQ) — distinct from the active "let me think" above
+- **Type:** **Paradigm-shift Type 2** — they accept the concept but you haven't given them enough certainty to commit. Looping territory if you're post-pitch.
+- **Trigger:** Polite passive stall — usually a softer no than they're saying. Different from active *"let me think"* which has real content underneath. This one is *"please go away nicely."*
+- **Approach:** Surface what's actually underneath. Most of the time it's one of three buckets: budget concern, partner consult, or *"I'm not sure you're the right person yet."* Naming the three buckets gives them permission to pick honestly.
+
+**Cushion-first surfacing question:** "Totally respect that. *(Cushion)* Quick one before we leave it there — most of the people I've worked with who said this had one of three things going on underneath: budget concern, wanting to talk to a partner first, or honestly not feeling sure I'm the right person yet. None of those are wrong, just helps me know what to follow up with. Could you share which it is?"
+
+> **Watch out:** if they pick "not the right person yet" — don't try to talk yourself into being the right person. Acknowledge, ask if they have anyone in mind they trust more, and offer to compare notes with that person if useful. The respect this shows often flips them back.
 
 ---
 
@@ -262,9 +284,9 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 - **Trigger:** Pricing pushback — sticker shock, value mismatch, or genuine cash flow.
 - **Approach:** ARQ first. 'Compared to what?' surfaces the real concern. Avoid '$10/day = 2 coffees' — sounds glib.
 
-**Acknowledge + ARQ:** "Fair feedback. Quick one — when you say expensive, is it expensive vs your monthly budget, or expensive vs what you thought protection would cost? Different problem each way and I'd hate to fix the wrong one."
+**Acknowledge + ARQ Rule 4 (two distinct options):** "Fair feedback. Quick one — when you say expensive, is it expensive vs your monthly budget, or expensive vs what you thought protection would cost? Different problem each way and I'd hate to fix the wrong one."
 
-**If budget-tight — restructure:** "Got it. Then let's not look at this plan — let's look at your budget first and reverse-engineer what protection actually fits in. Better to have $80/month of the right thing than $300/month of the wrong thing. 20 minutes to map it?"
+**If budget-tight — restructure with ARQ Rule 5 (non-committal):** "Got it. Then perhaps the better starting point is to look at your budget first, and reverse-engineer what protection might actually fit. Honestly, $80 a month of the right thing tends to outperform $300 a month of the wrong thing. Could there be a possibility we map that in 20 minutes — Tuesday 7pm or Saturday 10am?"
 
 **If perception — show the numbers:** "Fair — and I'd rather show you the math than argue about it. The illustration shows exactly where every dollar goes. Tuesday 7pm or Saturday 10am to walk through it?"
 
@@ -296,11 +318,13 @@ The single source of truth for objection-handling scripts on `/objections`. Ever
 
 ### "Send me info / post it out"
 
-- **Framework:** Skip-Q
+- **Framework:** Skip-Q + ARQ Rule 6 (authority quoting)
 - **Trigger:** Prospect deflecting to async channel to avoid the meeting.
-- **Approach:** Generic info wastes their time more than a 20-minute call.
+- **Approach:** Generic info wastes their time more than a 20-minute call. Borrow authority — most senior planners say the same thing — to make the push back land as advice rather than self-interest.
 
 **Stock response:** "Happy to — but anything I send blind will either be too generic to use or too long to read. Quicker if I see your situation first, then I send the relevant 2 pages after. Tuesday 7pm or Saturday 10am?"
+
+**Authority-quote variant (ARQ Rule 6):** "Happy to — but the reason I push back: most of the senior planners I've trained under say the same thing. Generic material wastes the prospect's time more than a 20-minute call. Quicker if I see your situation first, then I send the relevant 2 pages after. Would Tuesday 7pm or Saturday 10am work?"
 
 ---
 
