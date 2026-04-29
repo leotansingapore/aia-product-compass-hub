@@ -121,6 +121,34 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 - *"Honestly, that's part of why I joined"*
 - *"It would mean a lot"*
 
+### Cushioning — the IBCT habit that runs under every script
+
+Cushioning is the move that separates a script that lands from a script that grates. **Any response longer than two sentences** — especially objection handling, follow-ups, and disagreement — should open with a cushion line: a brief acknowledgement that the prospect's position is reasonable, before you hit the content.
+
+Without cushioning, the prospect feels argued *with*. With cushioning, they feel heard, and the content lands as advice instead of pushback. New FCs default to content-first because they're nervous and want to "get the point in"; trained advisors do cushion-first reflexively.
+
+The cushion lexicon (use these as openers to objection responses):
+
+- *"That makes complete sense"* / *"that's totally fair"*
+- *"Honestly, fair — and..."*
+- *"I appreciate you sharing that"* / *"appreciate you being upfront"*
+- *"I hear you — and..."*
+- *"You're not the first person to feel that way"*
+- *"Totally respect that"* / *"I get it"*
+- *"That's a real concern, and..."*
+- *"I might be wrong, but..."*
+- *"I'd probably feel the same way in your shoes"*
+
+The rule: **acknowledge before you reframe.** If you're about to say *"however"*, *"but"*, *"actually"*, or any reframe word — there must be a cushion line before it. The cushion can be one short sentence; it's the *presence* of the acknowledgement that matters, not the length.
+
+What this looks like in practice:
+
+> Bad: *"Actually, that's exactly why you should look at this now — premiums lock in by age."*
+>
+> Good: *"That's totally fair — and honestly, most people I respect think the same way at first. The thing that surprised me is how much premiums lock in by age and health you sign at — the 25-year-old version of you can buy cover the 35-year-old can't afford."*
+
+Same content. The cushion line at the start changes whether the prospect listens to the rest.
+
 ---
 
 ## 4. Patterns by channel

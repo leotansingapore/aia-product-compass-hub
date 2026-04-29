@@ -235,6 +235,19 @@ If yes, sell it. If no, don't.
 
 This is the most important thing on this page.
 
+### What "sales" actually means in this profession
+
+Most new FCs flinch at the word *"sales"* because they associate it with the bad version — pressure, manipulation, closing the prospect on something they don't really need. SAPT (the Lusi Group sales bootcamp many senior advisors come through) defines it differently and it's worth memorising:
+
+> **Sales is helping someone act upon a decision that is important and good for them.**
+
+Two halves, equally weighted:
+
+- **Part 1 — *helping them act*.** A prospect who agrees with you that protection matters but doesn't actually buy the policy is a prospect you've failed, not respected. Conviction without action is wasted on both sides. The job includes pushing past the inertia — *"can we settle the application now while it's fresh?"* — without pushing past their best interest.
+- **Part 2 — *important and good for them*.** Anything you push that fails this test is no longer sales — it's a transaction at someone else's expense. The first half makes the work matter; the second half is what keeps you sleeping at night for the next 30 years.
+
+When you feel uncomfortable closing — and most FCs do, in Year 1 — sit with this definition. The discomfort usually isn't about Part 1 (pushing for commitment); it's about whether you've fully internalised Part 2 (this product, for this person, right now). When Part 2 is genuinely true, Part 1 stops feeling like pressure and starts feeling like your job.
+
 ### Two markers of success that don't lie
 
 Pay and prestige are easy to measure. They are also unreliable proxies for whether the work was done right. Two markers are more honest:
