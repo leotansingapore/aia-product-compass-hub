@@ -71,7 +71,7 @@ flowchart LR
 **When:** when the prospect is hedging but not giving you a concrete concern.
 
 **Phrasing:**
-> *"For you to feel confident moving forward — what would need to be true? What would I need to show you, or what would you need to see, to feel this was clearly the right decision?"*
+> *"For you to feel confident saying yes — what would need to be true? What would I need to show you, or what would you need to see, to feel this was clearly the right decision?"*
 
 **What it does:** forces the prospect to articulate their decision criteria. You've been guessing at what they need to see; this question makes them tell you directly.
 

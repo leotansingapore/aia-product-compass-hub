@@ -75,7 +75,7 @@ flowchart LR
 
 1. **Initial Briefing.** 30 minutes. I walk through the full program, answer your questions, understand your context. This replaces a "sales call" with a two-way conversation.
 2. **Character Test.** Values-alignment check. Short structured conversation and a self-assessment against the 6 C's from Day 9. Most of this happens naturally through the first two calls.
-3. **1-1 Round.** Deeper conversation on your strengths, weaknesses, current situation, and what you actually want out of the next 12 months. I use the **4Rs framework** here (role title, role responsibilities, role mission, role results) and we align on all four before moving forward.
+3. **1-1 Round.** Deeper conversation on your strengths, weaknesses, current situation, and what you actually want out of the next 12 months. I use the **4Rs framework** here (role title, role responsibilities, role mission, role results) and we align on all four before you decide.
 4. **HR Round.** Working-hours agreement, FLEXI tier selection (0/10/20 hrs), CMFAS exam registration plan. The operational round.
 5. **Final Interview Round.** Commitment conversation. You sign the FLEXI offer. I countersign my commitment to your $2K/$4K income guarantee. Both sides walk in with eyes open.
 
@@ -329,7 +329,7 @@ What you have now that you didn't 14 days ago:
 
 Whichever one you landed on, you earned it with 14 days of honest reading. That's more due diligence than most people do for their career.
 
-If you're moving forward, book the onboarding call. Details on the Skool community or directly with me.
+If you're in, book the onboarding call. Details on the Skool community or directly with me.
 
 If you're not, good luck. Come back in 6 months if conditions change.
 

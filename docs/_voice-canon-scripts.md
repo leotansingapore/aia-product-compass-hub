@@ -96,7 +96,8 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 | "Circle back" | Corporate | *"come back to you"* / *"follow up"* |
 | "Going forward" / "moving forward" | Filler | drop entirely |
 | "At the end of the day" | Cliché | drop |
-| "I would love to" | Try-hard polite | *"I'd be happy to"* / *"happy to"* |
+| "I would love to [verb]" (as substitute for "I'd like to" in formal asks) | Try-hard polite | *"I'd be happy to"* / *"happy to"* |
+| **Carve-out:** *"would love to grab a coffee"* / *"would love to catch up"* / *"would love to stay in touch"* are **permitted** as warm invitations — they read as natural Singaporean WhatsApp warmth, not try-hard. The kill applies to *"I would love to do that for you one day"*-style polite-formal usage, not the reconnect-over-coffee usage. | | |
 | "I want to put it on record" | Lawyer voice | *"just want you to know"* |
 | "In plain English" / "at a glance" | Writer tics | drop |
 | "It is what it is" | Cliché | drop |

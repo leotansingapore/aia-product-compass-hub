@@ -336,7 +336,7 @@ After a "maybe later":
 > Hey [name], following up on our chat last week - you mentioned wanting to think about the retirement piece. No pressure, but happy to grab 30 mins this week or next if it's useful. Tuesday 3pm or Thursday 7pm?
 
 After a "no immediate need" meeting:
-> Hey [name], hope work has been good. Saw this article on the new CPF changes and thought of you - it's relevant to what we discussed. Link below. No need to reply, just sharing.
+> Hey [name], hope work has been good. Saw this article on the new CPF changes and thought of you - it's relevant to what we discussed. Link below. Saw this and thought of you - drop me a note if anything sparks.
 
 ### When to remove someone from the list
 

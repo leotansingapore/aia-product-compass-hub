@@ -306,7 +306,7 @@ _Note: at this stage you're not licensed yet. The "appointment" you book here ru
 
 **Reprospecting / second attempt (friends who rejected you before):**
 
-> "You know a few years ago I reached out to you to talk about financial planning right? Actually I was a stupid noob back then who didn't know anything. So it's a good thing you rejected my request. BUT over the years - especially these 2 years - I've been planning for many couples to have a detailed plan towards financial freedom. After your wedding can I show you what I usually do for people? But no pressure."
+> "You know a few years ago I tried to talk to you about financial planning, right? Honestly, I was a stupid noob back then who didn't know anything. So it's a good thing you said no. BUT over the years - especially these last 2 - I've been planning for many couples to have a proper roadmap towards financial freedom. After your wedding, can I show you what I usually do? No pressure either way."
 
 The reprospecting one is gold - self-deprecating humour disarms them, acknowledges they were right to say no the first time, shows growth, ends with no pressure.
 
@@ -320,9 +320,9 @@ _Source: Academy scripts library, audience=warm-market, category=cold-calling._
 >
 > I just thought of asking - are you currently working with any financial consultant for your planning needs?
 >
-> If not, or if you are open to exploring, I would love to see if we can work together. I have been working with some of our [community/group] friends for years now. They have entrusted me with their financial planning and I am truly blessed to be part of their journey.
+> If not, or if you are open to exploring, I'd be happy to see if we can work together. I have been working with some of our [community/group] friends for years now. They have entrusted me with their financial planning and I am truly blessed to be part of their journey.
 >
-> No pressure at all - I just thought of reaching out to see if you would be open for a quick sharing."
+> No pressure at all - I just thought of dropping you a note to see if you'd be open to a quick conversation."
 
 The genius: starts with a question, not a pitch. Asking "are you currently working with anyone?" is non-threatening. Social proof from the shared community lands without name-dropping.
 

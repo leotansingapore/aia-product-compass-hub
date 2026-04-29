@@ -36,7 +36,7 @@ The close is a single moment at minute 65. By that point, the prospect has absor
 
 ## What a trial close looks like
 
-A trial close is a **temperature check** — a question that asks *"if we were moving forward, would [X] work?"* without asking them to actually move forward yet.
+A trial close is a **temperature check** — a question that asks *"if you decided to do this, would [X] work?"* without asking them to actually move forward yet.
 
 Examples across different pitch moments:
 
@@ -111,7 +111,7 @@ The trial closes built small agreements. The main close cashes them in.
 Three sentence structures for the main close:
 
 ### Structure 1 — The summary close
-> *"Based on everything we've talked about — your priorities around [X], the structure that fits your cashflow, the coverage that hits what matters most to you — I believe we're aligned on moving forward. Shall we start the application?"*
+> *"Based on everything we've talked about — your priorities around [X], the structure that fits your cashflow, the coverage that hits what matters most to you — I believe this fits. Shall we start the application?"*
 
 ### Structure 2 — The assumptive close
 > *"Great — I'll take care of the application now. Before I do, just one thing: would you prefer the first premium on credit card or bank transfer?"*
@@ -155,7 +155,7 @@ That's the structural shape. A pitch with only a main close at minute 60 is the 
 
 **Q1. A trial close is:**
 - A) The final close at the end of the meeting
-- B) A temperature check throughout the meeting — *"if we were moving forward, would [X] work?"* ✓
+- B) A temperature check throughout the meeting — *"if you decided to do this, would [X] work?"* ✓
 - C) A practice close with your mentor
 - D) A backup in case the main close fails
 
