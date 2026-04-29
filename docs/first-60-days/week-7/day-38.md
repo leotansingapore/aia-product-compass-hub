@@ -98,20 +98,27 @@ This is the proven opening. Practise until it's natural.
 
 These show up constantly. Memorise the responses.
 
-| Objection | Response |
-|---|---|
-| **"Not interested"** | "I can understand you're not interested in something you haven't had an opportunity to see. So that you can judge for yourself, would you be free for a short time on...?" |
-| **"Not in the market"** | "I would've been surprised if you said you were in the market for life insurance right now. However, I do have some ideas that will be handy for you when you're ready. Would you be free...?" |
-| **"No money"** | "I can understand you trying to hold down unnecessary expenses. However, I do think you'd find what I have to say of interest - and of course, you'd be under no obligation. Would you be free...?" |
-| **"No need"** | "Of course, you'd be the sole judge of whether this idea would be of value. Since it'll take only a short time for me to explain, would you be free...?" |
-| **"Too busy"** | "I guessed you'd be busy - that's why I phoned for an appointment rather than drop by unannounced. Would you be free...?" |
-| **"What's the idea?"** | "To explain it properly, I'll need to show you some illustrations and discuss them in person. Would you be free...?" |
-| **"Is it insurance?"** | "It's about the protection of your family / a savings plan with a difference. With some illustrations I'm sure you'll find interesting, I can explain it in a brief interview. Would you be free...?" |
-| **"Post it out"** | "I'd be happy to, but what I have in mind will be useful only if it's tailored to your individual needs. That's why I'd like to see you in person. Would you be free...?" |
+> **Diagnostic before you respond — Type 1 or Type 2?** ARQ teaches that most "objections" actually fall into two very different camps, and using the wrong response on the wrong type backfires:
+>
+> - **Type 1 — concept dismissal.** *"Not interested"*, *"not in the market"*, *"don't believe in insurance"*. The prospect is rejecting the *idea*, not your specific ask. Counter-arguing here deepens the dismissal. Lead with a curious question instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe.
+> - **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"what's the idea?"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The ART pattern (Acknowledge / Relate / Turn around to the appointment ask) is what the table below applies.
 
-**Pattern:** acknowledge the objection, reframe it, then **return to asking for the appointment.** The core ask is the same every time.
+| Objection | Type | Response |
+|---|---|---|
+| **"Not interested"** | 1 | *Soft prefix — "Fair, and quick one before I respond — what shaped that for you?"* (Listen.) Then: "I can understand you're not interested in something you haven't had an opportunity to see. So that you can judge for yourself, would you be free for a short time on...?" |
+| **"Not in the market"** | 1 | "I would've been surprised if you said you were in the market for life insurance right now. However, I do have some ideas that will be handy for you when you're ready. Would you be free...?" |
+| **"No money"** | 2 | "I can understand you trying to hold down unnecessary expenses. However, I do think you'd find what I have to say of interest - and of course, you'd be under no obligation. Would you be free...?" |
+| **"No need"** | 2 | "Of course, you'd be the sole judge of whether this idea would be of value. Since it'll take only a short time for me to explain, would you be free...?" |
+| **"Too busy"** | 2 | "I guessed you'd be busy - that's why I phoned for an appointment rather than drop by unannounced. Would you be free...?" |
+| **"What's the idea?"** | 2 | "To explain it properly, I'll need to show you some illustrations and discuss them in person. Would you be free...?" |
+| **"Is it insurance?"** | 2 | "It's about the protection of your family / a savings plan with a difference. With some illustrations I'm sure you'll find interesting, I can explain it in a brief interview. Would you be free...?" |
+| **"Post it out"** | 2 | "I'd be happy to, but what I have in mind will be useful only if it's tailored to your individual needs. That's why I'd like to see you in person. Would you be free...?" |
 
-Most objections are not rejections - they're **reflexes**. Don't take them personally. Respond calmly, and ask for the appointment again.
+**Pattern (Type 2 — ART):** acknowledge the objection, reframe it, then **return to asking for the appointment.** The core ask is the same every time.
+
+**Pattern (Type 1 — ARQ-curious):** ask before you reframe. *"What shaped that view?"* / *"Was there a specific experience behind that, or more of a general feeling?"* Listen to what they actually say. Then reframe to the part they raised, not the generic version of the objection.
+
+Most objections are not rejections — they're **reflexes**. Don't take them personally. Respond calmly, and ask for the appointment again.
 
 ## 5. The ABCD Four Promises
 
@@ -150,7 +157,9 @@ The best time to ask for a referral is **at the end of every meeting**, especial
 > "[Name], I really enjoyed our conversation today, and appreciate you being so generous with your time. The way I grow this practice is mostly through introductions from clients like yourself. Can you think of 2-3 friends who would benefit from the same kind of conversation we just had?"
 
 ### If they say yes
-> "Great. Tell me a bit about them - what's their situation? [Listen.] Would you be comfortable sending them a quick message saying I'll be in touch?"
+> "Great. Quick context so I approach them right - is it more *they're at a similar life stage as you* (career, family, money questions you both have), or *something specific from our conversation today made you think of them* (like the CI piece, or the CPF point)? [Listen.] Got it. Would you be comfortable sending them a quick message right now - I can draft it for you so you don't have to think about it."
+
+The *"is it A or B"* shape is ARQ Rule 4 (two distinct options) — it forces a specific answer instead of a vague *"yeah, she's nice"*. The *"I can draft it for you"* is the SAPT move that lifts conversion meaningfully — clients give names but freeze when asked to write the intro.
 
 ### If they say no or "let me think about it"
 > "No pressure. If any names come to mind later, please let me know."
@@ -158,6 +167,27 @@ The best time to ask for a referral is **at the end of every meeting**, especial
 **Rule:** ask every time. The worst answer is "no." The best answer is 3 names. You'll be surprised how often you get 1-2 names when you simply ask.
 
 > **The referral ask is an ARQ.** "Can you think of 2-3 friends who would benefit..." passes all three ARQ gates - it leads to the objective (specific names), it's specific (a *number*, "2-3," not "anyone"), and it's logical and indisputable (a generous client who just had a useful meeting can't reasonably say no one would benefit). A weaker version - *"Do you know anyone who might be interested?"* - fails Gate 2 (vague) and Gate 1 (yes/no answer goes nowhere). Day 47 covers the [3-point ARQ checklist](../week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) and the [referral-ask question family](../_source-scripts/arq-database.md) is in the ARQ database.
+
+### Names vs endorsements — the SAPT distinction
+
+A name without an endorsement is a cold lead with extra steps. The client tossing you *"oh, my colleague Sarah might be interested"* and walking away is not a referral — it's a contact with no warmth transferred. Sarah, if you call her, has no idea who you are.
+
+A real referral has three layers:
+1. **The name.**
+2. **The why** — what specifically about your conversation made the client think of Sarah.
+3. **An endorsement Sarah will see *before* you reach out** — a short text from the client to Sarah, sent in front of you.
+
+Coach the client to do layers 2 and 3 in the moment:
+
+> "Great - and just so I do this properly, what about today's conversation made you think of Sarah specifically? [Listen.] Perfect, that's exactly what I'd want her to know. Would you be comfortable sending her a quick message right now — something like: *'Hey, just had a really useful chat with [your name] about [the thing]. Mind if she reaches out? I think you'd find it useful.'*"
+
+The text goes out *while you're still in the room*. If the client demurs on sending the text, that's a useful signal — the relationship may not be strong enough to refer yet, and pushing harder now will burn the thread. Park it. Send a polite *"thanks for considering"* and ask again at the next review.
+
+### What this matures into — the FACT method
+
+The basic ask above is the floor — appropriate for your first 6 months. Once you have closed clients and a real practice, the ask gets more structured: SAPT's **FACT method** — Favour / Angle / Connect / Timeline. The Timeline part is the failure point most FCs skip — committing to *when* you'll follow up with the referrer, in front of the referrer.
+
+Full version covered in [Next 60 Days - Day 28: Referral Scripts](../../next-60-days/week-5/day-28.md). For now, the basic ask plus the names-vs-endorsements move is enough to build the muscle.
 
 ## 7. The "natural to referred" transition
 
