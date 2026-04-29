@@ -218,6 +218,30 @@ A single question doesn't surface real gaps. Probe 3-5 times per priority goal.
 ### Mistake 4: Moving to Section 3 (numbers) too fast
 Clients share numbers only after trust. Earn trust in Sections 1 and 2 first.
 
+### Mistake 5 (the one that kills C-profile clients): opening the fact-find with "what 2 problems do you want to fix?"
+
+This is the single most-common ARQ "fact-find sin" — and it tanks the meeting before it starts, especially on a C profile.
+
+**Why it fails:**
+- C profiles need to *see the framework* before they pick a position. Asking *"what 2 problems"* in the first five minutes asks them to commit to a position they haven't analysed yet.
+- D profiles also resist — they hear *"what 2 problems"* as a leading question and read it as a sales setup.
+- Even on I/S profiles where it sometimes lands, the prospect picks the most accessible problem (usually the one they already have a preconception about), and you spend the rest of the meeting solving the wrong one.
+
+**What to do instead:** open with non-committal questions that let them tell you what they're noticing without forcing a commitment.
+
+> Bad: *"Out of all your finances, what are the two problems you'd want to solve first?"*
+>
+> Better: *"Could there be a possibility that as you look at your finances right now, one or two areas feel a bit less settled than the others? Genuinely no wrong answer — sometimes it's clear, sometimes it's not, both are useful information."*
+
+The *could there be a possibility* phrasing (ARQ Rule 5) gives a C profile permission to say *"hmm, yeah, maybe the retirement piece"* without locking them into a position. The *both are useful* gives them permission to say *"actually, I'm not sure"* without feeling stupid.
+
+**The general rule:** in the first 10 minutes of any fact-find, **never ask a question that requires the prospect to commit to a position before they've seen your framework.** Save the position-asking for after they've heard you out.
+
+### Other fact-find sins to watch for
+- **Sin 1: Questions don't match the agenda.** You agreed to discuss retirement; you're asking about the kids' school fees. The prospect feels switched on.
+- **Sin 2: Leading questions.** *"Surely you'd want to retire earlier if you could?"* — the prospect hears the answer in your voice and parrots it back. The data is worthless.
+- **Sin 3: Questions sequenced wrong.** Specifics before context. *"How much do you save per month?"* before *"What's most important to you over the next 10 years?"* — the prospect doesn't know which lens to answer through.
+
 ## 8. Ending Section 2 cleanly
 
 Once you've developed problems on the top 2-3 priorities, transition to Section 3 (numbers):

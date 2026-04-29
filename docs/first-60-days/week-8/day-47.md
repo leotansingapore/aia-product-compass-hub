@@ -304,6 +304,35 @@ If you remember only this:
 5. **Soften trial closes with *may / might / possibility*.** Real yeses come from low-pressure asks, not high-pressure ones.
 6. **Before any question: does it lead to my objective, is it specific, is it logically indisputable?** Three gates. Rewrite if any fails.
 
+## 6b. ARQ Aerobics - the 6-step combat sequence
+
+ARQ-as-principle is what you've been learning. **ARQ Aerobics** is the operational route map — the order to run the moves in when you're sitting across from a real prospect. SPIN is one slice of this; the wider sequence is:
+
+```mermaid
+flowchart LR
+    A["1 . Read DISC<br/>(IBCT layer)"]
+    B["2 . Surface hidden concerns<br/>(curious questions)"]
+    C["3 . Mind closed or open?<br/>(Type 1 vs Type 2)"]
+    D["4 . No-need vs create-need<br/>(SPIN: Situation -> Problem)"]
+    E["5 . ARQ to hot buttons<br/>(SPIN: Implication -> Need-Payoff)"]
+    F["6 . Hit & close<br/>(trial close + ask)"]
+    A --> B --> C --> D --> E --> F
+```
+
+**Step 1 — Read DISC (IBCT layer).** First 60 seconds. Are they D (decisive, fast, results-led), I (warm, story-led, sociable), S (steady, harmony-led, slow to commit), or C (cautious, detail-led, evidence-driven)? Every move below adapts by profile.
+
+**Step 2 — Surface hidden concerns with curious questions.** Most prospects walk in with one or two unspoken concerns about you, your firm, or the industry. Don't address what they say first — address what they're not saying. *"Before we dive in, anything specific you wanted to flag — about me, the firm, or the conversation we're about to have?"*
+
+**Step 3 — Mind closed or open? (Type 1 vs Type 2 paradigm-shift).** Are they dismissing the concept (*"don't believe in insurance"*) or open to the concept but unsure on the specifics? Type 1 needs ARQ-curious *before* any reframe; Type 2 takes SPIN cleanly. (Day 44 covers this in full.)
+
+**Step 4 — No-need vs create-need.** SPIN's Situation -> Problem move. If the prospect doesn't yet feel a gap, you have to surface one with Problem questions before any Implication question can land. Skipping ahead is what makes new FCs sound like they're pitching.
+
+**Step 5 — ARQ to hot buttons.** SPIN's Implication -> Need-Payoff move. Once a problem is on the table, the Implication question quantifies the cost (*"if that happened tomorrow, what would it mean for the family?"*). Need-Payoff confirms the fix is wanted (*"if I could show you a way to handle that for $X a month, would you want to look at it?"*).
+
+**Step 6 — Hit & close.** Trial close (*"may / might / possibility"*) → real close (binary with the better option pre-framed). The Hit is the close question; the Aerobics is everything that earns the right to ask it.
+
+**Why this matters:** new FCs reach for the close (Step 6) without doing Steps 1-5. The close fails, they blame the script. The script was fine; the prep wasn't there. ARQ Aerobics is the prep, run live, in 30-45 minutes.
+
 ## 7. Matching social styles - the 4 M's
 
 While running SPIN, also adapt to the client's style:
