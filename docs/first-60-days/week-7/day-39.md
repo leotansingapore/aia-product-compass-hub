@@ -24,7 +24,10 @@ By the end of today you should be able to:
 
 > **What you do with the list:** Project 100 is the *input* to a deliberate funnel - not just names to call randomly. The canonical 10-step flow from passive Instastory engagement to booked business appointment lives in [The Warm Market Funnel](../warm-market-funnel.md). Build the list today; pick the top 30 contacts to run through the funnel this quarter.
 
-> **Tools:** [Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool) drafts your first 100 messages once the list is built. Full list at [/tools](/tools).
+> [!important] **Today's work submits as Assignment 2.**
+> Today's lesson is the input to **[Assignment 2 - Contact List + Personal Outreach Playbook](../assignments/assignment-02.md)**. After reading this page, head over and complete the assignment - the 100-name list, the priority quota, the per-contact context columns, and the customised opener / objection / follow-up scripts all roll up there. Day 39 explains *what* and *why*; the assignment is *where you do it*.
+>
+> **Tool:** [Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool) drafts the first messages automatically once your list is in. Full tool list at [/tools](/tools).
 
 ---
 
@@ -284,6 +287,19 @@ That sentence, dropped early, sets the expectation. By the time you close (meeti
 
 A great list (Project 100) and a great Marketing Kit are the two halves of being *ready for week 7's calls*. The list answers *who do I call?* The kit answers *what do I show them when they say yes?* Building the list without the kit - or vice versa - leaves the other half of the loop broken.
 
+---
+
+## Submit your work — Assignment 2
+
+This page is the lesson; the deliverable is the assignment. Head to **[Assignment 2 - Contact List + Personal Outreach Playbook](../assignments/assignment-02.md)** and complete it before moving on:
+
+- Build out the full Project 100 list with priority quotas (≤25 Hot, ≥40 Semi-Warm, the rest Cold/Referred).
+- Fill in the per-contact context columns (life stage, last touch, priority, mapped angle).
+- Write your three customised messages — opener, objection handler, follow-up — using the lower-pressure angles from [Day 37](day-37.md).
+
+Don't move on to Day 40 until the list and the playbook exist as a real document. Everything in Weeks 8-10 assumes you have this in hand — the Marketing Kit, the cold-call ladder, the FHC scripts, and the referral asks all run on top of the names you produce here. **No list = no week 8.**
+
+---
 
 ## Quick quiz
 

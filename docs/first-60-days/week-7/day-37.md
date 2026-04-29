@@ -192,14 +192,6 @@ The honest reason is the strongest reason: you'd rather it be you than a strange
 - They sound sincere, not scripted. Read each one out loud and ask: *"would I send this to a friend if I weren't an FC?"* If the only reason it sounds odd is the AIA mention, it's good.
 - They are honest. Honesty is the only frame that doesn't decay - the survey/practice angles have a half-life because the friend eventually realises you're past training.
 
-### The pre-send filter
-
-Before you tap send on any of these, sit with one question for 10 seconds:
-
-> *"If this person says no, will I still want to grab a beer with them next month?"*
-
-If yes, your intent is clean and the message will land right. If no, your intent is the problem - not the script. Re-read the *"People are waiting"* section above and don't send until that flips. The wording matters far less than the energy behind it; people read the energy first, the words second.
-
 ### Most of them already have an agent - and most of those agents have ghosted them
 
 A common reason new FCs hold back from warm market: *"they probably already have an agent."* They might. The reality on the ground is messier, and once you understand it, the conversation gets a lot easier.
@@ -468,12 +460,11 @@ If they think that, you've won - regardless of whether anything was sold.
 ## Today's homework
 
 1. **Pick the warm-market opener that fits your voice** - market survey, seeking-help, policy summary, or one of the lower-pressure angles ("first call", "privilege to serve", "right person right time", "rather it be me than a stranger", "quietly here"). Customise the wording to how you actually speak. Say it out loud 10 times.
-2. **Run the pre-send filter** on the friend you're most nervous to message. *"If they say no, will I still want to grab a beer with them next month?"* Don't send anything until that answer is yes.
-3. **Build your nurture-list tracker** (Google Sheet or Notion) with the 7 columns above.
-4. **Draft your follow-up sequence templates** (touches #1-#7) and save them where you can reuse them.
-5. **List 20 warm contacts** you will open a conversation with this week.
+2. **Build your nurture-list tracker** (Google Sheet or Notion) with the 7 columns above.
+3. **Draft your follow-up sequence templates** (touches #1-#7) and save them where you can reuse them.
+4. **List 20 warm contacts** you will open a conversation with this week.
 
-Do all five before Day 38.
+Do all four before Day 38.
 
 ---
 
