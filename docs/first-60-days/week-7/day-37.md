@@ -49,7 +49,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A["Type A . Warm<br/>Friends, family, ex-colleagues"]
+    A["Type A . Warm<br/>Family + friends + people you've<br/>drifted from for years"]
     B["Type B . Referred<br/>Introduced by existing client"]
     C["Type C . Cold<br/>Digital, events, outreach"]
     A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
@@ -94,6 +94,24 @@ If reading this still feels uncomfortable, **the discomfort isn't about the pros
 ## 5. Warm approach playbook (Type A)
 
 **The problem:** friends and family already have opinions about you. Push too hard and you destroy the relationship. Be too soft and they never take you seriously.
+
+### Widen the net first - warm has 3 rings, not just family and besties
+
+Before you write your warm-market list, fix the misconception that derails most new FCs: **warm doesn't mean only the people you message every week.** That's the Hot ring - and it's tiny. It exhausts in the first 4-6 weeks of activity, and then new FCs panic, decide warm "isn't working", and jump to cold prospecting before they've actually mined the warm pool.
+
+The warm market has three concentric rings, and the real career lives in the middle one:
+
+| Ring | Who's in it | What's true about it |
+|---|---|---|
+| **Hot** (small, ~10-25 people) | Parents, siblings, partner, best friends, the 5 people in your closest WhatsApp group | Will pick up immediately. Will say yes out of love. **Exhausts fastest.** Often kept *off* the early list out of awkwardness, then jumped at last when nothing else is working. |
+| **Semi-Warm / Lukewarm** (the real market, 50+ people) | Ex-colleagues, secondary-school alumni, JC / poly / uni classmates, sports / church / community groups, people from old hobbies, your spouse's circle, neighbours you wave at, the wedding guest list, the LinkedIn connections you actually remember meeting | **This is where the long-term pipeline lives.** Largest pool, lowest competition (almost no one reconnects with them first), real relationship equity from prior shared context. The "haven't spoken in years" people are not lost contacts - they're the most under-mined asset on your phone. |
+| **Cold** (strangers) | Pure inbound leads, ad-funnel contacts, roadshow scans, referrals you've never met | Rejection at scale. Volume game. Lowest conversion per touch. Necessary later, but skipping past warm to land here is the fastest way to burn out. |
+
+**Cast wide before you cast deep.** A practical test: scroll your full WhatsApp contact list, your full LinkedIn connections, and your full Instagram following list - all of them, not the favourites tab. Anyone you can place a memory to (their wedding, a project at work, a class in school, a holiday) belongs on the Project 100 list. **Most new FCs underestimate this number by 5-10x.** They count maybe 30 names; their actual reachable warm pool is closer to 300.
+
+The Day 39 - Project 100 page treats this in full, with the priority quota (<=25 Hot, >=40 Semi-Warm, rest cold/referred) and the mining technique for finding the missing semi-warm names. Skim it before you write your list, not after. See [[day-39|Day 39 - Project 100]].
+
+> **Worth saying twice:** the friend you haven't spoken to in 7 years is more valuable than the cousin you message every day. The cousin will say yes once. The drifted friend has untouched relationship equity, no other FC has reconnected with them yet, and the reconnect itself is a gift to both sides.
 
 ### The "market survey" opener
 
