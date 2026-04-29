@@ -15,7 +15,9 @@ do_not_apply_to:
 
 **Read this before writing or editing any consultant-facing script in this repo.** If you are an AI subagent and your task touches a quoted message, opener, follow-up, or objection response, follow this canon. If a script in the repo violates the canon and is not labelled `_canonical_`, fix it.
 
-The bar: a Singaporean FC in their late 20s should be able to read the script aloud to a friend over kopi without sounding like they're reading off a slide.
+The default register is **professional warm**: a Singaporean Financial Consultant in their late 20s writing to a friend or warm contact who is also a working professional. Sentence-cased, full grammar, sincere — but with clear warmth and the specific disclaimers that signal *"I'm not closing you, this isn't a sales pitch."*
+
+The bar: a friend reading the message should think *"that sounds genuine and useful, and clearly hasn't been written by a marketer."*
 
 ---
 
@@ -25,136 +27,135 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 
 | Register | Channel | Tone | Example anchor |
 |---|---|---|---|
-| **Warm WhatsApp** | WhatsApp / DM to a friend, ex-colleague, classmate | Casual, low-effort, Singlish-tinted, lowercase OK, "lah/sia/ah/leh/lor" if it fits the writer | *"eh long time, just sharing — i joined AIA as an FC. lemme know if you ever got money questions, no pitch."* |
-| **Warm call** | Phone call to a Project 100 contact | Friendly, conversational, mild SG flavour, not Singlish-heavy | *"Hey [name], you got like 5 minutes? Want to ask you a quick favour."* |
+| **Professional warm (default)** | WhatsApp / DM to a friend, ex-colleague, classmate, family contact | Sentence-cased, full grammar, sincere, professional — warmed up with disclaimers and personal phrasing. Light SG turns ("eh", "long time", "totally fair") allowed where the writer naturally uses them. | *"Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. If anything financial ever comes up, it would be my privilege to help. No pitch, no agenda - just so you know I'm here."* |
+| **Casual SG (for genuinely close friends)** | WhatsApp to a best friend, sibling, partner | Looser, slightly Singlish-tinted IF the writer actually talks that way to this person. Never forced. | *"eh free this Sat? want to update you on this AIA thing - no business stuff, just catching up."* |
 | **Cold call (consumer)** | Tele to a Facebook lead / cold prospect | Polite, structured, slightly formal-SG, follow the canonical opener pattern | *"Hi, is this [Name]? I'm [X] from [team], this is a courtesy call - keep this short under a minute."* |
-| **Professional email** | Follow-up after a meeting, proposal cover, claim update | Clear, polite, full sentences, light Singlish only in client-known relationships | *"Hi [name], here's the FHC report we discussed. Take a look when you get a moment - happy to walk through anything that's unclear."* |
+| **Professional email** | Follow-up after a meeting, proposal cover, claim update | Clear, polite, full sentences, no Singlish | *"Hi [name], here's the FHC report we discussed. Take a look when you get a moment - happy to walk through anything that's unclear."* |
 | **Training body copy** | The teaching prose around scripts in day-XX.md files | Direct, second-person, no hype, no jargon, short paragraphs | *"You don't have to pitch this. You just have to ask honestly."* |
 
-If a script doesn't tell you which register it's in, default to **warm WhatsApp** for openers to friends, **cold call** for tele to leads, **professional email** for any written follow-up after a paid meeting.
+**Default to professional warm** for any opener to a friend or warm contact unless the relationship is genuinely so close that casual SG would not feel out of place. When in doubt, professional warm.
 
 ---
 
 ## 2. The five rules
 
-1. **Read it aloud before you publish.** If you wouldn't say it to a friend after two beers without sounding stiff, rewrite. This is the single most important test — every other rule is a tactic for passing it.
-2. **Cut LinkedIn vocabulary.** "Privilege", "sounding board", "drop you a line", "planting a flag", "open door", "first call", "leverage", "robust", "comprehensive", "synergy", "circle back", "touch base", "moving forward". None of these appear in real WhatsApp texts. Strip them.
-3. **Match the channel length.** WhatsApp is short and choppy — break long messages into 2-3 bubbles. Phone openers are under 60 seconds. Emails are scannable. The first instinct of bad scripts is to cram everything into one paragraph.
-4. **Lower the temperature with disclaimers.** *"sharing only"*, *"fyi"*, *"just to flag"*, *"no need to reply"*, *"no pitch"*, *"no agenda"*, *"random question"*, *"out of curiosity"*, *"quick one"*. These are the SG-specific signals that say *"I'm not closing you, this isn't a setup."* Use them generously in warm openers.
-5. **Sound like a person, not a script.** Lower-case starts, em-dashes via hyphens (`-`), the occasional typo or contraction, sentence fragments, "haha" / "lol" where natural. Real WhatsApps have texture. Polished scripts have none, and that's why they read as fake.
+1. **Read it aloud before you publish.** If a friend reading the message would think it sounded scripted, marketed, or "American business polite", rewrite. The single most important test.
+2. **Cut US business jargon.** Words and phrases that don't appear in normal Singaporean professional conversation: *"sounding board"*, *"drop you a line"*, *"planting a flag"*, *"opening the door"*, *"be your first call"*, *"reach out"* (as a verb between people who already know each other), *"circle back"*, *"touch base"*, *"going forward"*, *"moving forward"*, *"leverage"*, *"synergy"*, *"end of the day"*. None of these belong.
+3. **Keep grammar clean and sentence-cased.** Sentence fragments and lowercase starts are *not* the goal. The professional register comes from clarity and warmth, not from breaking grammar. Real WhatsApp messages from working adults are mostly grammatical.
+4. **Use disclaimers to lower the temperature, not particles.** *"sharing only"*, *"just sharing"*, *"no need to reply"*, *"no pitch"*, *"no agenda"*, *"random question"*, *"out of curiosity"*, *"quick one"*, *"sharing this only"* — these signal *"this isn't a sales pitch"* without the message having to feel casual. They are the lever, not "lah/sia/haha".
+5. **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"pleasure to help"*, *"honour to be your consultant"* — these are not banned. They land when the writer means them. They only become embarrassing when they are performative or wrapped in marketing fluff. Use them once per message, not three times.
 
 ---
 
 ## 3. Lexicon
 
-### Use freely (warm WhatsApp + warm call)
+### Use freely
 
-| SG word | Where it fits |
+| Phrase | Where it fits |
 |---|---|
-| **lah** | End of an opinion or soft assertion: *"timing's not right lah"*, *"all good lah"* |
-| **ah** | Soft tag at sentence end: *"random question ah"*, *"no pitching anything ah"* |
-| **sia** | Mild emphasis or surprise: *"long time sia"*, *"haven't heard from him in years sia"* |
-| **leh** | Mild request or query softener: *"can help me one thing leh?"* |
-| **lor** | Resignation or conclusion: *"forced one lor"* |
-| **eh** | Opener instead of "hey": *"eh [name]"* |
-| **fyi / btw** | Light flag for an FYI message |
-| **lemme** | Lemme know, lemme send you |
-| **damn** | Mild emphasis: *"damn many people just floating"* |
-| **haha / lol** | Tone softener — use sparingly, where you'd actually laugh |
-| **quite** | SG hedge: *"quite excited"*, *"quite weird"* |
-| **already** | SG perfective: *"haven't started already?"*, *"got the plan already?"* |
-| **also** | End-of-sentence emphasis: *"no need to reply also"* |
-| **only** | Hedge: *"sharing only"*, *"asking only"* |
-| **one** | SG pronoun: *"can help me one thing?"*, *"forced one lah"* |
+| *"Sharing only"* / *"Just sharing"* | Frame any informational message as non-transactional |
+| *"Quick one"* / *"Quick question"* | Open with a low-effort signal |
+| *"Random question"* / *"Out of curiosity"* | Surface something gently (e.g. asking about an existing agent) |
+| *"No pitch, no agenda"* | The clearest disclaimer line |
+| *"No need to reply"* | Removes the obligation |
+| *"It would be my privilege"* / *"my pleasure"* | Sincere offer of service - allowed and effective when meant |
+| *"Service [your/their] financial needs"* | Acceptable formal phrase, fits the AIA context |
+| *"Long time!"* / *"Hope you're well"* | Reconnecting opener |
+| *"Totally fair"* / *"Totally respect that"* | Acknowledging a no without arguing |
+| *"Honestly"* | Sincerity marker |
+| *"Rather you have someone you actually know than [a stranger / start from scratch]"* | The honest reason for warm outreach |
+| *"Worth a [coffee / 30 minutes / chat]"* | Low-cost framing for the ask |
+| *"Whenever you're ready"* | Removes time pressure |
+| *"Sharing this only"* / *"Just so you know"* | Mild flag |
 
-### Use with care
+### Use sparingly (only where naturally part of the writer's voice)
 
-- **Sis / bro** — only if the writer-character would actually use these in real life. Don't sprinkle for flavour.
-- **Sia / leh** — overusing sounds like parody. One per message at most.
-- **Singlish phonetic spellings** ("dunno", "liao", "dey") — avoid in printed scripts unless the writer in-character explicitly speaks that way.
+- **Singlish particles** (*lah, ah, sia, leh, lor*) — at most one per message, only when the writer normally talks this way to that contact. Forced flavour reads as parody.
+- **"Eh [name]"** as an opener — fine for a real friend, weird for an ex-colleague who only knows your professional voice. Default to *"Hey [name]"*.
+- **"Haha" / "lol"** — only where there's something to actually laugh at. Don't sprinkle for warmth.
+- **Lowercase starts and missing punctuation** — only in the most casual contexts. Default is sentence-cased.
+- **"Lemme" / "btw" / "fyi"** — fine in genuinely casual messages, drop in professional warm.
 
 ### Kill on sight (anywhere FC-facing)
 
 | Kill word/phrase | Why | Replace with |
 |---|---|---|
-| "It would be a privilege" | Sounds corporate | *"would be happy to"* / *"would mean a lot"* |
-| "Just opening the door" | LinkedIn copy | *"just so you know I'm here"* / *"just lemme know"* |
-| "Be your first call" | Marketing speak | *"just ping me"* / *"better me than a stranger"* |
-| "Sounding board" | American business jargon | *"someone to ask"* / *"random question"* |
-| "Drop you a line" | Stiff | *"text you"* / *"message you"* |
+| "Sounding board" | American business jargon | *"someone to ask"* / *"second opinion"* |
+| "Drop you a line" | Stiff, US business polite | *"text you"* / *"message you"* |
 | "Plant a flag" / "planting a flag" | Try-hard metaphor | *"just letting you know I'm around"* |
-| "Reach out" | Overused | *"text"* / *"call"* / *"message"* |
-| "Touch base" | Corporate | *"catch up"* / *"ping you"* |
+| "Be your first call" | Marketing speak | *"I'd be the person you turn to"* / *"I'm here when you need"* |
+| "Opening the door" | LinkedIn copy | *"so you know I'm here when you're ready"* |
+| "Reach out" (between people who know each other) | Overused | *"text"* / *"message"* / *"send me a note"* |
+| "Touch base" | Corporate | *"catch up"* / *"check in"* |
 | "Circle back" | Corporate | *"come back to you"* / *"follow up"* |
-| "Leverage" | Corporate | *"use"* |
 | "Going forward" / "moving forward" | Filler | drop entirely |
 | "At the end of the day" | Cliché | drop |
-| "I would love to" | Try-hard | *"I'd be happy to"* / *"happy to"* |
+| "I would love to" | Try-hard polite | *"I'd be happy to"* / *"happy to"* |
 | "I want to put it on record" | Lawyer voice | *"just want you to know"* |
 | "In plain English" / "at a glance" | Writer tics | drop |
 | "It is what it is" | Cliché | drop |
-| "Fresh pair of eyes" | Cliché but acceptable in moderation | OK once per doc, not per script |
 | "Solutions" (instead of "policies" / "products" / "plans") | Corporate evasion | name the thing |
-| "Service you" (in client-pitched context) | Reads ambiguously | *"help you"* / *"work with you"* |
+| "Synergy" / "leverage" / "robust" / "comprehensive" | Corporate | use plain English |
 
-### Phrases that work (steal these freely)
+### Phrases that work (steal these)
 
-- *"Eh [name], quick one..."*
-- *"Eh [name], heads up — ..."*
-- *"Just sharing..."*
-- *"Sharing only..."*
-- *"FYI..."*
-- *"Random question ah — ..."*
-- *"Out of curiosity..."*
-- *"Not selling you anything haha"*
-- *"No need to reply also"*
+- *"Hey [name] - sharing only..."*
+- *"Hey [name] - quick one"*
+- *"Hey [name] - long time!"*
+- *"Just sharing, I've recently joined AIA as a Financial Consultant"*
+- *"Random question - ..."*
+- *"Out of curiosity - ..."*
+- *"Not messaging to pitch you anything"*
 - *"No pitch, no agenda"*
-- *"Whenever you're ready, just ping me"*
-- *"Better me than [stranger / random agent / Google]"*
-- *"That's all, no need to do anything"*
-- *"Lemme know"* / *"just lemme know"*
-- *"Save me can?"* (when asking a favour)
-- *"You want it? I send you."* (offering a resource — classic 2-Liner)
-- *"Can?"* / *"Down?"* / *"Keen?"* (closing a soft ask)
-- *"All good"* / *"All good lah"* (acknowledging a no)
+- *"No need to reply"*
+- *"It would be my privilege to service any of your financial needs"*
+- *"Rather you have someone you actually know than a stranger"*
+- *"Whenever you're ready, I'm here"*
+- *"Totally fair - appreciate you being straight with me"*
+- *"Honestly, that's part of why I joined"*
+- *"It would mean a lot"*
 
 ---
 
 ## 4. Patterns by channel
 
-### Warm WhatsApp opener (cold-from-warm contact)
+### Professional warm WhatsApp opener (warm contact)
 
-Three ingredients, in order:
+Three ingredients:
 
-1. **Casual greeting** + signal of low effort: *"eh [name], quick one"*, *"hey [name], heads up"*, *"long time! just sharing"*
-2. **The honest reason** in 1-2 sentences: what you've started, why you're messaging *them* specifically (or that you're not pitching)
-3. **The non-ask close**: *"no need to reply also"*, *"just so you know"*, *"lemme know if [low-bar trigger]"*
+1. **Sentence-cased greeting** + signal of low effort: *"Hey [name] - sharing only"*, *"Hey [name] - quick one"*, *"Hey [name] - long time!"*
+2. **The honest reason** in 1-2 sentences: what you've started, why you're messaging *them* specifically, that you're not pitching
+3. **The non-pressuring close**: *"No need to reply"*, *"Just so you know I'm here"*, *"Whenever you're ready, I'm here"*
 
 What good looks like:
 
-> "eh [name], quick one — i just joined AIA as an FC. not selling you anything ah haha. just lemme know if you ever got money questions next time, better me than some random agent online. that's all, no need to do anything."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
 
-What bad looks like (rewrite this):
+What bad looks like:
 
-> "Hi [Name]. I would like to inform you that I have recently begun my career as a Financial Consultant with AIA. It would be a privilege to be the person you turn to for any financial needs. Please feel free to reach out at your convenience."
+> "Hi [Name]. I would like to inform you that I have recently begun my career as a Financial Consultant with AIA. Just wanted to put it on record that I'd want to be your first call. Don't want you Googling some stranger when I'm right here." *(too LinkedIn — "put it on record", "first call", "Googling some stranger" all sound scripted.)*
 
-### Warm follow-up (after a soft no)
+What also bad looks like:
+
+> "eh [name], heads up - i just joined AIA as an FC. not selling you anything ah haha. just lemme know if you ever got money questions next time. better me than some random agent online lah." *(over-casual — Singlish particles forced, lowercase starts, reads as text-speak from a teenager rather than a professional.)*
+
+### Warm follow-up after a soft no
 
 Goals: drop the pressure, name a future scenario explicitly, leave the relationship lighter than you found it.
 
-> "all good lah, appreciate you being honest. if anything changes down the road, or you just want to ask about something money-related, ping me anytime. no expectations on your end."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side."
 
 ### Cold call opener
 
 Use the canonical pattern from the Academy scripts. Don't reinvent it.
 
-> "Hi, is this [Name]? I'm [X] from [team]. I'll keep this short, less than a minute. We're currently running a [campaign / financial literacy session] and you opted in recently — is now a quick moment to chat?"
+> "Hi, is this [Name]? I'm [X] from [team]. I'll keep this short, less than a minute. We're currently running a [campaign / financial literacy session] and you opted in recently - is now a quick moment to chat?"
 
 Then: short value prop → soft close (*"the worst case is X, best case is Y"*) → tentative time slot.
 
-### Cold call objection (pattern)
+### Cold call objection (4-step pattern)
 
-The Academy scripts use this 4-step shape consistently — keep using it:
+The Academy scripts use this 4-step shape — keep using it:
 
 1. **Acknowledge** the objection without arguing it: *"I get it"*, *"makes sense"*, *"perfectly fair"*
 2. **Common ground / Reframe**: short, specific
@@ -163,15 +164,15 @@ The Academy scripts use this 4-step shape consistently — keep using it:
 
 ### Post-meeting referral ask (warm)
 
-After a meeting where the prospect was engaged. Keep it short, specific, and number-based.
+After a meeting where the prospect was engaged. Specific, number-based, low-pressure.
 
-> "[Name], really enjoyed our conversation today. The way I grow this practice is mostly through intros from people like you, not cold calls. Got 1 or 2 people you think could use the same kind of conversation we had? No pressure if nothing comes to mind."
+> "[Name], I really enjoyed our conversation today, and appreciate you being so generous with your time. The way I grow this practice is mostly through introductions from clients like yourself. Can you think of 2-3 friends who would benefit from the same kind of conversation we just had? No pressure if nothing comes to mind."
 
-### Open-door close (after a final no)
+### Open-door close after a final no
 
 Never let a no end the relationship. Name the future scenario explicitly so the prospect feels permission to come back.
 
-> "all good — appreciate you being straight with me. if anything changes down the road, or you just want to ask about something money-related, ping me anytime. no expectations on your end. and if anyone you know happens to come up — friend got new baby, colleague changing jobs, anything — would mean a lot if you remembered me. only if it comes naturally though, don't go digging on my behalf."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me. Only if it comes naturally though, no need to dig on my behalf."
 
 ---
 
@@ -179,62 +180,63 @@ Never let a no end the relationship. Name the future scenario explicitly so the 
 
 | Anti-pattern | Example (bad) | Fix |
 |---|---|---|
-| Marketing-deck phrasing in WhatsApp | *"It would be my privilege and pleasure to service any of your financial needs."* | *"would be happy to help if any money question comes up next time, no pitch."* |
-| The "I want to put it on record" voice | *"Just wanted to put it on record that I'd want to be your first call."* | *"just so you know — better me than a stranger."* |
-| Try-hard metaphors | *"Consider this me planting a flag."* | *"just letting you know i'm around."* |
-| US/UK business English | *"If you ever want a sounding board on something money-related..."* | *"if you ever want to ask about anything money-related..."* |
-| Over-explaining the offer | 4 sentences listing CPF / insurance / retirement / investment | one sentence: *"any money thing — CPF, insurance, whatever"* |
-| The thesaurus problem | *"Should the opportunity arise..."* | *"if anything comes up..."* |
-| Marketing politeness ("would love to") | *"I would love to do that for you one day..."* | *"happy to do that for you one day if you want..."* |
-| Three commas in one warm WhatsApp | *"Hi [name], just to share, I've moved into financial consulting, and I'd want to be your first call."* | break into 2 bubbles, 1 idea each |
-| Em-dashes in dialogue (use hyphens) | *"Hey — quick one — just sharing"* | *"Hey - quick one. Just sharing."* (single hyphen with spaces in this repo's style) |
-| Capital-S Solutions / capital-N Needs | *"Can I help you with your Financial Needs?"* | *"any money question — happy to help"* |
+| US business polite | *"If you ever want a sounding board on something money-related..."* | *"If there's ever a financial question you'd like a second opinion on..."* |
+| Try-hard metaphors | *"Consider this me planting a flag."* | *"Just so you know I'm here when you're ready."* |
+| Marketing-deck phrasing | *"It would be my privilege and pleasure to be that person for you, for any financial need that comes up. Just opening the door."* | *"It would be my privilege to service any of your financial needs."* (sincere version, drop the "opening the door") |
+| The "put it on record" voice | *"Just wanted to put it on record that I'd want to be your first call."* | *"Just wanted you to know - if anything ever comes up, I'd be the person you turn to."* |
+| Forced Singlish-flavour | *"eh random question ah - last time your agent actually sat down with you when?"* | *"Random question - when was the last time your agent actually sat down with you for a proper review?"* |
+| Lowercase + missing punctuation in professional warm | *"hey [name] just sharing"* | *"Hey [name] - sharing only"* |
+| Over-explaining the offer | 4 sentences listing CPF / insurance / retirement / investment | one cleaner sentence: *"if anything financial ever comes up - CPF, protection, savings, retirement"* |
+| The thesaurus problem | *"Should the opportunity arise..."* | *"If anything ever comes up..."* |
+| Marketing politeness ("would love to") | *"I would love to do that for you one day..."* | *"I'd be happy to do that for you one day"* / *"It would be my privilege to..."* |
+| "Reach out" between people who know each other | *"Just reaching out to share..."* | *"Just sharing..."* / *"Just messaging to share..."* |
+| Capital-S Solutions / capital-N Needs | *"Can I help you with your Financial Needs?"* | *"any financial question - happy to help"* |
 
 ---
 
 ## 6. Before-and-after rewrites
 
-These are the actual edits made to Day 37 in this round. Use them as voice-tuning calibration.
+Real edits made to Day 37 in this round, calibrated to professional warm.
 
 ### "First call" angle
 
-**Before (too formal, US business English):**
+**Before (too LinkedIn):**
 > "Hey [name] - quick one. You might've seen, I've moved into financial consulting at AIA. Not messaging to pitch you anything. Just wanted to put it on record that if anything financial ever comes up - protection, savings, retirement, even a quick CPF question - I'd want to be your first call. No pressure to act on it. Just don't want you Googling some stranger when I'm right here."
 
-**After (real SG WhatsApp):**
-> "Eh [name], heads up - I just joined AIA as an FC. Not selling you anything ah haha. Just lemme know if you ever got money questions next time - CPF, insurance, whatever. Better me than some random agent online lah. That's all, no need to do anything."
+**After (professional warm):**
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
 
 ### "Privilege to serve" angle
 
 **Before (corporate, performative):**
 > "Hey [name] - sharing only. I'm now an FC at AIA. Most of my friends already have something in place, and that's totally fine. But if there's ever a money question you'd rather ask someone you actually know than someone random - it would honestly be a privilege and a pleasure to be that person for you, for any financial need that comes up. No agenda, no pitch. Just opening the door."
 
-**After (warm but unfussy):**
-> "Hey [name] - just sharing, I'm with AIA now as an FC. I know most people already got someone, no worries. But if ever you got a money question and rather ask someone you actually know - happy to be that person for you anytime. No pitch, no agenda, just lemme know."
+**After (professional warm — keeps the "privilege and pleasure" sincerely, drops the closing cliché):**
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just wanted you to know I'm here when you're ready."
 
 ### Surfacing a ghosted agent
 
-**Before (too neat):**
-> "Random question — when was the last time your agent actually checked in with you? Like a proper review, not the standard Christmas broadcast?"
+**Before:**
+> "Random question — when was the last time your agent actually checked in with you? Like a proper review, not a Christmas broadcast."
 
-**After (more SG):**
-> "Eh random question ah - last time your agent actually sat down with you for a proper review when? Or just blast you the standard Christmas broadcast every year?"
+**After (professional warm):**
+> "Random question - when was the last time your agent actually sat down with you for a proper review? A real one, not just the standard Christmas broadcast?"
 
 ### Open-door close after a no
 
 **Before (US business polite):**
 > "Totally fair - appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side."
 
-**After (SG natural):**
-> "All good lah, appreciate you being straight with me. If anything changes down the road, or you just want to ask about something money-related, ping me anytime. No expectations on your end."
+**After (professional warm — drop "sounding board" + "door's open"):**
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side."
 
-### Touch #7 — final follow-up before nurture
+### Touch #7 final follow-up
 
 **Before:**
 > "Hey [name] - all good, timing's clearly not right and I'm not going to keep chasing. Just know my door's open any time - even if it's 6 months or a year from now. I'll keep sending the occasional useful thing here and there, and when you're ready to talk, just drop me a message."
 
 **After:**
-> "Hey [name] - all good, timing's clearly not right lah, not gonna keep chasing you. Whenever you're ready - even if it's 6 months or a year later - just ping me. I'll send the occasional useful thing here and there, no need to reply also."
+> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'm here. I'll send the occasional useful thing along the way, no obligation to reply. When you'd like to talk, just drop me a message."
 
 ---
 
@@ -242,14 +244,14 @@ These are the actual edits made to Day 37 in this round. Use them as voice-tunin
 
 Before committing any FC-facing script, run through this:
 
-- [ ] Read each quoted message **out loud**. Did anything sound stiff or like a brochure?
+- [ ] Read each quoted message **out loud**. Does it sound scripted, marketed, or "American business polite"? If yes, rewrite.
 - [ ] Scan for kill words (Section 3). Replace any you find.
-- [ ] Is the register right for the channel (Section 1)? A WhatsApp shouldn't read like an email.
-- [ ] Are at least one or two of the SG voice tags (Section 3 *Phrases that work*) present in warm-channel scripts? If none, the script will still read American.
+- [ ] Is the register right for the channel (Section 1)? Default is **professional warm** unless the relationship genuinely warrants casual SG.
+- [ ] Is the message **sentence-cased with clean grammar**, not lowercased text-speak? Professional warm ≠ casual SG.
+- [ ] Are the disclaimer phrases present (Section 3)? *"Sharing only"*, *"no pitch"*, *"no need to reply"* — at least one in any warm-cold opener.
 - [ ] Did you pre-send filter? (*"If this person says no, will I still want to grab a beer with them next month?"*)
-- [ ] Is the disclaimer present? (*"no pitch"*, *"sharing only"*, *"no need to reply"* — at least one in any warm-cold opener)
-- [ ] Did you break long messages into 2-3 short ones for WhatsApp scripts?
-- [ ] If you're an AI editor, did you preserve canonical AIA scripts (Market Survey verbatim, ABCD, official objection table)? **Don't humanize curriculum-quoted material.** Only humanize the modern variants and AI-drafted alternatives.
+- [ ] If you used *"privilege"* / *"pleasure"* / *"honour"*, is it sincere? (Once per message is fine. Three times reads as performance.)
+- [ ] If you're an AI editor, did you preserve canonical AIA scripts (Market Survey verbatim, ABCD, official objection table)? **Don't humanize curriculum-quoted material.**
 
 If a script passes the checklist, it's ready. If it fails on more than 2 items, rewrite from scratch using the Section 4 patterns.
 
@@ -257,12 +259,13 @@ If a script passes the checklist, it's ready. If it fails on more than 2 items, 
 
 ## 8. What this canon does NOT change
 
-Some scripts in this repo are quoted *verbatim* from AIA training materials. These read formally on purpose — they're the "memorise and naturalise" baseline that consultants are tested against in agency training. **Don't humanize these:**
+Some scripts in this repo are quoted *verbatim* from AIA training materials. These read formally on purpose — they're the "memorise and naturalise" baseline that consultants are tested against. **Don't humanize these:**
 
 - The full Market Survey script in [docs/first-60-days/week-7/day-38.md](first-60-days/week-7/day-38.md) (Sections 3 - the AIA-canonical opening, agenda, appointment-setting, closing-off blocks)
 - The objection-handling table in Day 38 (the verbatim "Mr...., I would have been surprised if..." style — that's the AIA training convention)
 - The ABCD Four Promises (Day 38, Section 5) — these are scripted opening statements that the AIA curriculum explicitly says to *memorise, internalise, naturalise*
 - Anything in `_source-supplementary/` or `_source-holos-transcripts/` — these are source materials, not editable
+- Anything in `_source-scripts/` and `next-60-days/_source-articles/` — these are canonical script bank, treat as reference
 - Anything in `next-60-days/week-5/scripts/` (referral scripts library) — those are the canonical referral asks taught in week 5
 
 Where appropriate, **add** a humanized "modern variant" alongside the canonical script — never delete the canonical version.
@@ -274,10 +277,11 @@ Where appropriate, **add** a humanized "modern variant" alongside the canonical 
 If you are a subagent (creative-strategist, copy-writer, brand-post-writer, or similar) and your task involves writing or editing FC-facing scripts in this repo:
 
 1. Read this canon **before** drafting any quoted message.
-2. Default to the **warm WhatsApp** register unless the channel is explicitly something else.
+2. Default to the **professional warm** register unless the channel is explicitly cold call, email, or genuinely casual.
 3. Use Section 3 lexicon and Section 4 patterns as your style anchor.
 4. Run Section 7 checklist on your draft before returning output.
-5. If the human asks you to write in a register that conflicts with this canon (e.g. "make it more formal for an email"), follow the human — but flag that you're departing from the warm-WhatsApp default.
-6. Do not silently humanize canonical AIA scripts (Section 8). If you're unsure whether a script is canonical, ask before editing.
+5. **Do not over-correct toward Singlish text-speak.** Lowercase starts, sprinkled "lah/sia/haha/lemme", and missing punctuation are the wrong direction. Professional warm is sentence-cased, fully grammatical, with sincere phrasing and real disclaimers.
+6. Sincere phrases like *"It would be my privilege"*, *"my pleasure"*, *"to service your financial needs"* are allowed and often correct — once per message.
+7. Do not silently humanize canonical AIA scripts (Section 8). If you're unsure whether a script is canonical, ask before editing.
 
-The single test for any output: would a Singaporean FC in their late 20s actually send this message to a friend? If no, rewrite.
+The single test for any output: would a working professional in their late 20s send this message to a friend without thinking it sounded scripted? If no, rewrite. If it sounds like text-speak from a teenager, rewrite the other way.

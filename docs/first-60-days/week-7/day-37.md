@@ -131,69 +131,70 @@ The Day 39 - Project 100 page treats this in full, with the priority quota (<=25
 
 ### Make these scripts your own before you send anything
 
-Every script below is the *floor*, not the ceiling. Read each one out loud. If it sounds like a brochure when you say it — and most of these will, until you rewrite them — chuck the polished version and type it the way you'd actually WhatsApp a friend at 9pm.
+Every script below is the *floor*, not the ceiling. Read each one out loud. If it doesn't sound like something you'd actually say to a friend, rewrite — but the target is **professional warm**, not text-speak.
 
-The texts that work in Singapore look like real WhatsApps, not LinkedIn posts:
-- Lower-case starts. Half-finished sentences. The occasional typo. "Lah", "ah", "sia", "leh", "lor", "haha", "fyi", "btw" — all welcome where they fit your normal voice. Don't force them in if you don't actually use them.
-- Short messages, sent in 2-3 bubbles, not one long paragraph. Real conversations look choppy on a phone.
-- Cut anything that sounds like sales training. *"Be your first call"*, *"opening the door"*, *"sounding board"*, *"drop you a line"*, *"planting a flag"*, *"would be a privilege"* — nobody actually talks like this. If you wouldn't say it before joining AIA, don't say it now.
-- Use the small tags that signal "not selling": *"fyi"*, *"just sharing"*, *"sharing only"*, *"no need to reply"*, *"no pitch"*, *"no agenda"*. They lower the temperature instantly.
-- Test: read each script out loud. If your friend would notice it sounds slightly off, rewrite. Your normal voice with one professional disclaimer always beats a polished script.
+The voice the curriculum is calibrated to:
+- **Sentence-cased, fully grammatical messages.** Not lower-case shorthand, not sprinkled "lah/sia/haha". A working professional in their late 20s writing to another working professional - warm but not casual.
+- **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"my pleasure"*, *"to service your financial needs"* — these land when the writer means them. Use them once per message, not three times.
+- **Disclaimers do the heavy lifting on tone.** *"Sharing only"*, *"no pitch"*, *"no agenda"*, *"no need to reply"*, *"random question"*, *"out of curiosity"*, *"quick one"* — these signal *"this isn't a sales pitch"* without the message having to feel casual.
+- **Cut US business jargon.** *"Sounding board"*, *"drop you a line"*, *"planting a flag"*, *"opening the door"*, *"be your first call"*, *"reach out"*, *"circle back"*, *"touch base"*, *"going forward"* — none of these belong. Plain English instead.
+- **Mild SG turns are fine where natural.** *"Long time!"*, *"Hey [name]"*, *"Quick one"*, *"Honestly"*, *"Totally fair"* — these read as warm and Singaporean without being forced. *"Eh [name]"* works for a real friend, but default is *"Hey [name]"*.
+- **Short paragraphs, scannable.** WhatsApp-friendly, but full sentences inside each.
 
-The versions below are written as one Singaporean would text another. Adapt to your own register — some people lah every other sentence, some never. Match yours, not mine.
+The versions below sit at this register. Adjust closer to casual SG only if the relationship is genuinely close enough — never the other way round.
 
 ### The "market survey" opener
 
 Don't pitch. Ask for help.
 
-> "Eh [name], can help me one thing? I'm joining AIA as an FC soon. Part of training I need to do a short market survey — basically chat with a few people about how they think about money. 5 mins on the phone or 30 mins coffee, up to you. No pitching anything, promise haha. Help me out can?"
+> "Hey [name] - quick one. I'm joining AIA as a Financial Consultant soon, quite excited. Part of training is I need to do a short market survey with people I trust - just to understand what people actually care about when it comes to money. No pitching, no products, promise. 5 minutes on the phone or 30 over coffee, your call. Would you be able to help me out?"
 
 **Why it works:**
 - It's true. You are learning, and you do need the reps.
 - It flips the frame — they're helping you, not the other way round.
 - "No pitching, no products" is the line that drops their guard. Most people brace for a sales pitch the moment you say "financial". Take that off the table early.
-- 8 out of 10 warm contacts will say yes — saying yes to "help me out for 5 mins" is much easier than saying yes to "let me sell you something".
+- 8 out of 10 warm contacts will say yes — saying yes to *"help me out for 5 minutes"* is much easier than saying yes to *"let me sell you something"*.
 
 **The seeking-help angle** (use if a straight survey feels too formal):
 
-> "Eh [name], small favour — I'm joining AIA as an FC soon. Need to practise a few pitches with friends first, forced one lah. Need to clear 5 by end of month. Quick Zoom or coffee, whichever's easier for you. Just want your honest feedback so I know what's not landing. Save me can?"
+> "Hey [name] - small favour. I'm joining AIA as a Financial Consultant soon, and need to practise a few pitches with friends before I start meeting actual prospects. Need to clear 5 by end of the month. Quick Zoom or coffee, whichever's easier for you - I just want your honest feedback so I know what's working and what isn't. Could you help?"
 
 **The policy summary angle** (works really well for friends with multiple policies):
 
-> "Hey [name], fyi I'm becoming an FC soon. Part of training got this market survey thing. Bonus for you: if you let me practise on yours, I'll do up a one-pager of all your existing policies so you can finally see what you're covered for in one place. No pitching anything ah. Keen?"
+> "Hey [name] - sharing only, I'm becoming a Financial Consultant soon. As part of training, I'm doing a market survey to understand what plans people actually have. The bonus for you: if you let me practise on yours, I'll put together a one-page summary of all your existing policies so you can finally see what you're covered for in one place. No pitching anything. Keen?"
 
 ### Lower-pressure angles - when "training reps" framing feels too forced
 
-The three openers above ask the friend to do *you* a favour (help with a survey, let you practise, give feedback). That works for ~70% of contacts. For the other 30% - the close friends who'd see through a "favour" framing, the distant friends where formality fits better, the proud friends who don't want to be your guinea pig - drop the training reps angle entirely and just put the door on the table.
+The three openers above ask the friend to do *you* a favour (help with a survey, let you practise, give feedback). That works for ~70% of contacts. For the other 30% - the close friends who'd see through a "favour" framing, the distant friends where formality fits better, the proud friends who don't want to be your guinea pig - drop the training reps angle entirely and just be straight about why you're messaging.
 
-The honest reason you're reaching out is the strongest reason: you'd rather it be you than a stranger when life shifts.
+The honest reason is the strongest reason: you'd rather it be you than a stranger when life shifts.
 
 **The "first call" angle** (close friends who respect honesty over scripts):
 
-> "Eh [name], heads up — I just joined AIA as an FC. Not selling you anything ah haha. Just lemme know if you ever got money questions next time — CPF, insurance, whatever. Better me than some random agent online lah. That's all, no need to do anything."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. Not messaging to pitch you anything. But if anything financial ever comes up - CPF, protection, savings, retirement - it would be my privilege to be the person you turn to. Rather you have someone you actually know than start from scratch with a stranger. No need to reply, just so you know I'm here."
 
-**The "privilege to serve" angle** (friends you respect, where slightly more sincere phrasing lands):
+**The "privilege to serve" angle** (friends you respect, where sincere phrasing lands well):
 
-> "Hey [name] — just sharing, I'm with AIA now as an FC. I know most people already got someone, no worries. But if ever you got a money question and rather ask someone you actually know — happy to be that person for you anytime. No pitch, no agenda, just lemme know."
+> "Hey [name] - sharing only, I've recently joined AIA as a Financial Consultant. I know most of my friends already have someone, which is great. But if there's ever a financial question you'd rather ask someone you trust over someone random, it would be my privilege and pleasure to service any of your financial needs. No pitch, no agenda - just wanted you to know I'm here when you're ready."
 
 **The "right person, right time" angle** (distant warm — old classmates, ex-colleagues, drifted friends):
 
-> "Eh [name], long time! Just fyi — I've started as a financial consultant at AIA. Not chasing anything from you, no need to reply also haha. Just want to flag — most people only end up sorting their CPF or insurance when something big happens. New job, baby, parent fall sick, house. When that time comes for you, just remember you got someone to ask. Should catch up properly soon also!"
+> "Hey [name] - long time! Sharing only, I've recently started as a Financial Consultant with AIA. Not chasing anything from you today. The honest reason I'm messaging: most people only end up sorting their CPF or first plan when life shifts - a job change, a baby, a parent's diagnosis, a house. When that day comes for you, I'd rather you message me than start with a stranger. So just letting you know I'm here. No need to reply."
 
 **The "rather it be me than a stranger" angle** (close-but-not-best friends):
 
-> "Hey [name] — joining AIA as an FC. Anyway, since this insurance/financial stuff comes up for everyone at some point — rather you have someone you actually know than some random agent. Got any questions just ask, even small one like 'what am I doing with my CPF lol'. No need to come for any meeting."
+> "Hey [name] - I've recently joined AIA as a Financial Consultant. Since this kind of thing comes up for everyone at some point, I'd rather you have someone you actually know and trust handling it than whoever happens to be in front of you at the moment. If you ever want a second opinion on anything money-related - even a quick CPF question - just send me a note. No appointment, no pitch."
 
 **The "quietly here" angle** (very distant warm — haven't spoken in years):
 
-> "Hey [name], long time! Hope you're doing well. Just sharing — I've moved into financial consulting. Not selling you anything haha, half the people I tell already got things sorted. Just so you know who to ask if any money question pop up in the next year or two. Take care!"
+> "Hey [name] - long time, hope you're well. Just sharing, I've recently moved into financial consulting. Not messaging to sell you anything - half the people I tell already have things sorted, which is great. The reason I'm reaching back out is so you know who to ask if a question comes up in the next year or two. That's it - take care!"
 
 **Why these work better than "training reps" framing for some contacts:**
 
 - They don't ask the friend for a favour. Asking a busy friend to "help me practise" can feel like a chore, especially for older or more senior contacts.
 - They name the real reason out loud: you'd rather it be you than a stranger when their light turns on.
-- They lower the response cost. The friend doesn't have to commit to a meeting, a survey, or a coffee. They just have to acknowledge the door is open. Many will respond with their own opening *"actually, can I ask you something..."*
-- They sound like *you*, not a recruiter. Read each one out loud and ask: *"would I send this to a friend if I weren't an FC?"* If yes, it's good.
+- They lower the response cost. The friend doesn't have to commit to a meeting, a survey, or a coffee. They just have to acknowledge they know who you are now. Many will respond with their own opening *"actually, can I ask you something..."*
+- They sound sincere, not scripted. Read each one out loud and ask: *"would I send this to a friend if I weren't an FC?"* If the only reason it sounds odd is the AIA mention, it's good.
 - They are honest. Honesty is the only frame that doesn't decay - the survey/practice angles have a half-life because the friend eventually realises you're past training.
 
 ### The pre-send filter
@@ -231,15 +232,15 @@ That's the unmet need sitting underneath every warm conversation. The client isn
 
 You don't have to pitch this. You just have to ask honestly:
 
-> "Eh random question ah — last time your agent actually sat down with you for a proper review when? Or just blast you the standard Christmas broadcast every year?"
+> "Random question - when was the last time your agent actually sat down with you for a proper review? A real one, not just the standard Christmas broadcast?"
 
 Or:
 
-> "Out of curiosity — if you suddenly need to claim or update a beneficiary, you know who to call?"
+> "Out of curiosity - if you suddenly needed to make a claim or update a beneficiary, would you know who to call?"
 
-8 out of 10 times you'll hear something between *"honestly no idea sia"* and *"haven't heard from him in years lah."* That's not your invitation to pitch. It's your invitation to say something like:
+8 out of 10 times you'll hear something between *"honestly, no idea"* and *"haven't heard from him in years."* That's not your invitation to pitch. It's your invitation to say something like:
 
-> "Ya honestly that's part of why I joined this industry. Damn many people just floating like that — agent stopped messaging, or they got pass down their parents' agent and don't even know the guy. Whenever you want someone who'll actually still be around in 30 years, just lemme know lah. No rush."
+> "Honestly, that's part of why I joined this industry. So many people are just floating - their existing agent stopped contacting them, or they inherited their parents' agent and have never even met the person. Whenever you want someone who's actually going to be around for the next 30 years and not the next 3, I'm here. No rush."
 
 #### Why this isn't poaching
 
@@ -266,7 +267,7 @@ The friend isn't yours to take. But if their existing agent has already left the
 
 When a warm contact asks *"so what do you do now?"* — the moment everyone fumbles:
 
-> "I help people make sense of their money — insurance, savings, retirement, all that. Mostly I sit with someone, go through what they've got, and tell them what's actually working and what's leaking money. Happy to do that for you one day if you want, no pressure — just a fresh pair of eyes on your situation."
+> "I help people make sense of their money - protection, savings, retirement, the full picture. Most of my work is sitting down with someone, understanding what they already have, and showing them what's actually working and what's leaking money. It would be my privilege to do that for you one day - no pressure, just a second opinion on your situation."
 
 Practise this out loud until it sounds like you, not a script. The test: can you say it after two beers without sounding stiff? If yes, it's ready.
 
@@ -325,7 +326,7 @@ Most first meetings don't close. That's normal. What kills conversion isn't the 
 
 ### The "open door" message (touch #7)
 
-> "Hey [name] — all good, timing's clearly not right lah, not gonna keep chasing you. Whenever you're ready — even if it's 6 months or a year later — just ping me. I'll send the occasional useful thing here and there, no need to reply also."
+> "Hey [name] - all good, the timing isn't right and I won't keep chasing. Whenever you're ready - whether that's 6 months from now or a year - I'm here. I'll send the occasional useful thing along the way, no obligation to reply. When you'd like to talk, just drop me a message."
 
 **Why 7 and not 3:** industry data consistently shows 60%+ of sales happen after touch 5. Most new FCs quit at touch 2 or 3. The follow-up is the sale.
 
@@ -340,7 +341,7 @@ Two failure modes silently shut the door:
 
 What an open-door close sounds like instead:
 
-> "All good lah, appreciate you being straight with me. If anything changes down the road, or you just want to ask about something money-related, ping me anytime. No expectations on your end. And if anyone you know happens to come up in conversation — friend got new baby, colleague changing jobs, parent fall sick, whatever — would mean a lot if you remembered me. Only if it comes naturally though, don't go digging on my behalf."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me. Only if it comes naturally though, no need to dig on my behalf."
 
 What this line is doing:
 
