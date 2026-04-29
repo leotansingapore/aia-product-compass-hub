@@ -25,23 +25,19 @@ Memorise this map. It's the schematic David uses in Module 2 to navigate the ent
 
 | Plan | Type | Notes |
 |---|---|---|
-| **Pro Lifetime Protector (PLP)** | Investment-Linked Policy | Living-benefits ILP variant |
-| **Guarantee Protect Plus (GPP)** | Limited-pay whole life participating | **Cornerstone plan** - most-recommended |
-| **Life Dividends** | 10-pay life with coupons | Niche use cases |
+| [**Pro Lifetime Protector (PLP)**](/product/core-pro-lifetime-protector) | Investment-Linked Policy | Living-benefits ILP variant |
+| [**Guaranteed Protect Plus (GPP)**](/product/core-guaranteed-protect-plus) | Limited-pay whole life participating | **Cornerstone plan** - most-recommended |
 
 ### Plans **with no** Cash Value
 
 | Plan | Type | Notes |
 |---|---|---|
-| **Secure Flexi Term (SFT)** | Customisable term | Flexible structuring |
-| **FaceTerm** | Versatile term | Covered in Module 2 |
-| **Enhanced Critical Protector (ECP)** | Standalone cancer cover | Cancer-specific |
-| **Ultimate Critical Cover (UCC)** | Multi-claim CI | Recurring CI events |
+| [**Secure Flexi Term (SFT)**](/product/secure-flexi-term) | Customisable term | Flexible structuring |
+| [**Ultimate Critical Cover (UCC)**](/product/core-ultimate-critical-cover) | Multi-claim CI | Recurring CI events |
 
 ### Standalone CI
 
-- **UCC** and **ASC (Absolute Critical Cover)** - the two main standalone CI options
-- ASC has both cash-value and no-cash-value variants; covers relapse, benign tumours, multi-claim with waiting periods
+- [**UCC (Ultimate Critical Cover)**](/product/core-ultimate-critical-cover) is the standalone CI workhorse - multi-claim coverage across 150 conditions with the unlimited reset benefit (full deep-dive in section 0d below).
 
 ### A&H - Accident & Health (no cash value)
 
