@@ -76,6 +76,22 @@ describe("parseQuiz", () => {
     expect(parseQuiz(noQuiz)).toEqual([]);
   });
 
+  it("accepts the literal '(correct)' suffix as the correct-answer marker", () => {
+    const body = `## Quick quiz\n\n1. **Pseudo-asset question?**\n - A) The family car\n - B) A primary home with an outstanding mortgage\n - C) Cash savings in a high-interest savings account (correct)\n - D) A $50,000 luxury watch held for personal use\n\n **Why:** Cash savings produce inflows.\n`;
+    const quiz = parseQuiz(body);
+    expect(quiz).toHaveLength(1);
+    const q = quiz[0];
+    expect(q.options).toHaveLength(4);
+    const correct = q.options.filter((o) => o.correct);
+    expect(correct).toHaveLength(1);
+    expect(correct[0].key).toBe("C");
+    // Marker must NOT leak into the displayed text
+    expect(correct[0].text).toBe("Cash savings in a high-interest savings account");
+    expect(correct[0].text).not.toContain("(correct)");
+    // Wrong answers stay verbatim
+    expect(q.options.find((o) => o.key === "A")?.text).toBe("The family car");
+  });
+
   it("flags every option marked with ✓ as correct (multi-correct questions)", () => {
     const multi = `## Quick quiz\n\n1. **Pick all that apply?**\n - A) right ✓\n - B) wrong\n - C) also right ✓\n - D) nope\n`;
     const quiz = parseQuiz(multi);

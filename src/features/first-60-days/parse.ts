@@ -165,8 +165,12 @@ function parseQuestionBlock(block: string, index: number): QuizQuestion | null {
       inExplanationParagraph = false;
       const key = optMatch[1];
       let text = optMatch[2];
-      const correct = /\s*✓\s*$/.test(text);
-      if (correct) text = text.replace(/\s*✓\s*$/, "").trim();
+      // Day quizzes use either a trailing checkmark (✓) or a literal "(correct)" suffix
+      // to flag the right answer. Both must be stripped from the displayed text and
+      // surfaced as the `correct` boolean.
+      const correctRe = /\s*(?:✓|\(correct\))\s*$/i;
+      const correct = correctRe.test(text);
+      if (correct) text = text.replace(correctRe, "").trim();
       options.push({ key, text, correct });
       continue;
     }
