@@ -46,19 +46,94 @@ Bonus checks:
 Visit `/learning-track/first-60-days/day/<N>` for each day below. Days marked
 with ✱ are known to contain wide tables — verify these first.
 
-| Range | Notes |
-|-------|-------|
-| Day 1–7 (Week 1) | ✱ Day 3 (RING table), ✱ Day 6 (lecture-notes timestamps) |
-| Day 8–14 (Week 2) | ✱ Day 10 (warm-market funnel), ✱ Day 12 (assignment grid) |
-| Day 15–21 (Week 3) | ✱ Day 20, Day 21 (objection matrices) |
-| Day 22–28 (Week 4) | ✱ Day 23 (product comparison) |
-| Day 29–35 (Week 5) | ✱ Day 25, Day 27 (CPF tables) |
-| Day 36–42 (Week 6) | ✱ Day 31, Day 32, Day 33, Day 36 |
-| Day 43–49 (Week 7) | ✱ Day 40, Day 41 |
-| Day 50–56 (Week 8) | — |
-| Day 57–60 (Week 9–10) | — |
+Tick each day after verifying **all tabs** (Lesson · Reflection · Quiz · Assignment if present) pass the 4 criteria above. Days marked ✱ are known to contain wide tables — verify these first.
 
-For each day, check **all tabs**: Lesson · Reflection · Quiz · (Assignment if present).
+#### Week 1 (Day 1–7)
+
+- [ ] Day 1 — Lesson · Reflection · Quiz
+- [ ] Day 2 — Lesson · Reflection · Quiz
+- [ ] Day 3 ✱ — Lesson · Reflection · Quiz (RING table)
+- [ ] Day 4 — Lesson · Reflection · Quiz
+- [ ] Day 5 — Lesson · Reflection · Quiz
+- [ ] Day 6 ✱ — Lesson · Reflection · Quiz (lecture-notes timestamps)
+- [ ] Day 7 — Lesson · Reflection · Quiz
+
+#### Week 2 (Day 8–14)
+
+- [ ] Day 8 — Lesson · Reflection · Quiz
+- [ ] Day 9 — Lesson · Reflection · Quiz
+- [ ] Day 10 ✱ — Lesson · Reflection · Quiz (warm-market funnel)
+- [ ] Day 11 — Lesson · Reflection · Quiz
+- [ ] Day 12 ✱ — Lesson · Reflection · Quiz · Assignment (assignment grid)
+- [ ] Day 13 — Lesson · Reflection · Quiz
+- [ ] Day 14 — Lesson · Reflection · Quiz
+
+#### Week 3 (Day 15–21)
+
+- [ ] Day 15 — Lesson · Reflection · Quiz
+- [ ] Day 16 — Lesson · Reflection · Quiz
+- [ ] Day 17 — Lesson · Reflection · Quiz
+- [ ] Day 18 — Lesson · Reflection · Quiz
+- [ ] Day 19 — Lesson · Reflection · Quiz
+- [ ] Day 20 ✱ — Lesson · Reflection · Quiz (objection matrix)
+- [ ] Day 21 ✱ — Lesson · Reflection · Quiz (objection matrix)
+
+#### Week 4 (Day 22–28)
+
+- [ ] Day 22 — Lesson · Reflection · Quiz
+- [ ] Day 23 ✱ — Lesson · Reflection · Quiz (product comparison)
+- [ ] Day 24 — Lesson · Reflection · Quiz
+- [ ] Day 25 ✱ — Lesson · Reflection · Quiz (CPF table)
+- [ ] Day 26 — Lesson · Reflection · Quiz
+- [ ] Day 27 ✱ — Lesson · Reflection · Quiz (CPF table)
+- [ ] Day 28 — Lesson · Reflection · Quiz
+
+#### Week 5 (Day 29–35)
+
+- [ ] Day 29 — Lesson · Reflection · Quiz
+- [ ] Day 30 — Lesson · Reflection · Quiz
+- [ ] Day 31 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 32 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 33 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 34 — Lesson · Reflection · Quiz
+- [ ] Day 35 — Lesson · Reflection · Quiz
+
+#### Week 6 (Day 36–42)
+
+- [ ] Day 36 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 37 — Lesson · Reflection · Quiz
+- [ ] Day 38 — Lesson · Reflection · Quiz
+- [ ] Day 39 — Lesson · Reflection · Quiz
+- [ ] Day 40 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 41 ✱ — Lesson · Reflection · Quiz
+- [ ] Day 42 — Lesson · Reflection · Quiz
+
+#### Week 7 (Day 43–49)
+
+- [ ] Day 43 — Lesson · Reflection · Quiz
+- [ ] Day 44 — Lesson · Reflection · Quiz
+- [ ] Day 45 — Lesson · Reflection · Quiz
+- [ ] Day 46 — Lesson · Reflection · Quiz
+- [ ] Day 47 — Lesson · Reflection · Quiz
+- [ ] Day 48 — Lesson · Reflection · Quiz
+- [ ] Day 49 — Lesson · Reflection · Quiz
+
+#### Week 8 (Day 50–56)
+
+- [ ] Day 50 — Lesson · Reflection · Quiz
+- [ ] Day 51 — Lesson · Reflection · Quiz
+- [ ] Day 52 — Lesson · Reflection · Quiz
+- [ ] Day 53 — Lesson · Reflection · Quiz
+- [ ] Day 54 — Lesson · Reflection · Quiz
+- [ ] Day 55 — Lesson · Reflection · Quiz
+- [ ] Day 56 — Lesson · Reflection · Quiz
+
+#### Week 9–10 (Day 57–60)
+
+- [ ] Day 57 — Lesson · Reflection · Quiz
+- [ ] Day 58 — Lesson · Reflection · Quiz
+- [ ] Day 59 — Lesson · Reflection · Quiz
+- [ ] Day 60 — Lesson · Reflection · Quiz
 
 ### Week wrap-ups
 
