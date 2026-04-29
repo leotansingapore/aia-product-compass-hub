@@ -1,0 +1,65 @@
+{
+  "source_product": "/product/warm-market-flow",
+  "source_product_title": "Warm Market Flow",
+  "video_count_total": 7,
+  "video_count_with_content": 7,
+  "skipped": [],
+  "videos": [
+    {
+      "order": 0,
+      "title": "Warm Market Flow",
+      "file": "00-warm-market-flow.md",
+      "youtube_url": "",
+      "transcript_chars": 6230,
+      "lecture_notes_chars": 5060
+    },
+    {
+      "order": 1,
+      "title": "Canned Sales Track",
+      "file": "01-canned-sales-track.md",
+      "youtube_url": "https://youtu.be/TAsMoWdXLyg",
+      "transcript_chars": 23277,
+      "lecture_notes_chars": 8372
+    },
+    {
+      "order": 2,
+      "title": "Module 1 - New FC Training",
+      "file": "02-module-1-new-fc-training.md",
+      "youtube_url": "https://youtu.be/EtAo1of4h8U",
+      "transcript_chars": 84463,
+      "lecture_notes_chars": 11583
+    },
+    {
+      "order": 3,
+      "title": "Module 2 - Risk Management Products Overview",
+      "file": "03-module-2-risk-management-products-overview.md",
+      "youtube_url": "https://youtu.be/y12lyQRhay0",
+      "transcript_chars": 96273,
+      "lecture_notes_chars": 23219
+    },
+    {
+      "order": 4,
+      "title": "Module 3 - Wealth Accumulation Products Overview",
+      "file": "04-module-3-wealth-accumulation-products-overview.md",
+      "youtube_url": "https://youtu.be/8rZJ3uZSwqw",
+      "transcript_chars": 90600,
+      "lecture_notes_chars": 16784
+    },
+    {
+      "order": 5,
+      "title": "Module 4 - Prospecting & Pipeline Strategy",
+      "file": "05-module-4-prospecting-pipeline-strategy.md",
+      "youtube_url": "",
+      "transcript_chars": 0,
+      "lecture_notes_chars": 15363
+    },
+    {
+      "order": 6,
+      "title": "Sharing by Gabriel",
+      "file": "06-sharing-by-gabriel.md",
+      "youtube_url": "",
+      "transcript_chars": 46632,
+      "lecture_notes_chars": 13898
+    }
+  ]
+}
