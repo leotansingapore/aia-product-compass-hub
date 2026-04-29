@@ -69,55 +69,111 @@ The fix is called **looping** - you stop rebutting and go back into mini-present
 
 Don't confuse the two - applying a prospecting reframe during a post-pitch objection wastes the moment, and looping during a prospecting reflex is overkill.
 
-## 2. The 10 standard objection responses (memorise)
+## 2. The three frameworks every objection response uses
 
-These are battle-tested and work.
+Every script in this day - and every Academy script in the Library at the bottom - is built on one of three named frameworks. Once you know which framework matches which objection, the words come naturally and you stop sounding like you're reading a card.
 
-### "Not interested"
-> "I can understand you're not interested in something you haven't had an opportunity to see. So that you can judge for yourself, would you be free for a short time on...?"
+### Framework A - The Acknowledge -> Question -> Reframe pattern (the default)
 
-### "Not in the market"
-> "I would've been surprised if you said you were in the market for life insurance right now. However, I do have some ideas that will be handy for you when you're ready. Would you be free...?"
+This is the **workhorse** for prospecting objections. The pattern is three beats:
 
-### "No money"
-> "I can understand you trying to hold down unnecessary expenses. However, I do think you'd find what I have to say of interest - and of course, you'd be under no obligation. Would you be free...?"
+1. **Acknowledge.** Don't argue. "Fair," "Totally get it," "Most people say the same."
+2. **Question (ARQ - Asking the Right Question).** Before you respond, surface what the prospect actually means. The Q is what separates this pattern from a generic reframe - it stops you from arguing against the wrong objection. The ARQ principle is the parent move here, fully covered on [Day 47](day-47.md).
+3. **Reframe.** Show why the objection is exactly why the meeting matters - then close on the time ask. "Tuesday 7pm or Saturday 10am?"
 
-### "No need"
-> "Of course, you'd be the sole judge of whether this particular idea would be of value to you. Since it'll take only a short time for me to explain it, would you be free...?"
+**Why the Q step matters:** "Not interested" can mean "not interested in insurance," "not interested in advisors," or "not interested *right now* because of timing." All three need different reframes. Skip the Q and you'll reframe against the wrong objection roughly 30% of the time.
 
-### "Too busy"
-> "I guessed you'd be busy - that's why I phoned for an appointment rather than dropping by unannounced. Would you be free...?"
+**ARQ in practice on this pattern:**
 
-### "Wasting your time"
-> "On the chance that you'll see value in the idea, I'd be happy to spend the time with you. Would you be free for a short time on...?"
+> Prospect: "Not interested."
+>
+> You (Acknowledge): "Totally fair."
+>
+> You (ARQ): "Just so I respect your time - is that not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
 
-### "What's the idea?"
-> "To explain it properly, I'd need to show you some illustrations and discuss them personally with you. Would you be free...?"
+About 70% of the time the real answer is **timing or trust** - both of which reopen. The other 30% will tell you cleanly that it's a real no, and you stop wasting their time and yours.
 
-### "Is it insurance?"
-> "It's about the protection of your family / a savings plan with a difference that I'd like to talk to you about. With some illustrations I'm sure you'll find interesting, I can explain it in a brief interview. Would you be free...?"
+**The skip-Q exception.** When the objection is unmistakably a 1-second stock reflex ("too busy", "no money", "what's the idea?"), asking ARQ adds friction the prospect doesn't want. Go Acknowledge -> Reframe directly and trust the reframe to do the diagnostic work. The 10 stock responses below are skip-Q examples.
 
-### "Post it out"
-> "I'd be happy to, but what I have in mind will be useful only if it's tailored to your individual needs. That's why I'd like to see you in person. Would you be free...?"
+> **Rule of thumb:** if you can predict the objection 5 seconds before they say it, skip Q. If the objection caught you off-guard or sounded vague, **always run ARQ first**.
 
-### "For the obstinate objector"
-> "Could we leave it this way: I'd like to meet you, and if I'm in your neighbourhood during the next few months, I'd like to drop in and say hello. If you have a few moments at that time, I'll be glad to show you what I have in mind."
+### Framework B - Feel, Felt, Found (the empathy frame)
 
-**The pattern in every response:**
-1. **Acknowledge** - don't argue.
-2. **Reframe** - show that the objection is precisely why the meeting matters.
-3. **Return to the ask** - "Would you be free...?"
+For objections with **emotional or relationship weight** - loyalty, family, prior bad experience.
 
-Same structure, 10 variations. Memorise. Internalise. Naturalise.
+1. **Feel:** "I understand how you feel."
+2. **Felt:** "Many of my clients felt the same when I first reached out."
+3. **Found:** "What they found was - having a same-life-stage second pair of eyes didn't replace what they already had, it added to it."
+
+**Use for:** "I already have an advisor and we're family," "I had a bad experience with an FA before," "I don't believe in insurance after watching my parents."
+
+The "felt" line is what disarms - you're naming a peer group the prospect can compare themselves to, not arguing with them. **Watch out:** Feel-Felt-Found tips into manipulative when overused on small reflex objections. Reserve it for the genuinely emotional ones; default to AQR otherwise.
+
+### Framework C - Boomerang (the "that's exactly why" frame)
+
+Turn the objection into the **reason** to meet. Works when the prospect names a state they think disqualifies them - and you flip it so the state is the qualifier.
+
+| Objection | Boomerang |
+|---|---|
+| "I'm too busy." | "That's exactly why - busy people without a plan compound their problems. 30 minutes now saves the 3 hours of admin you'll need later." |
+| "I don't have money to plan." | "That's exactly why - when there's no buffer, the wrong $50/month decision costs you more. The plan is what frees up the buffer." |
+| "I'm not the spending type." | "That's exactly why - disciplined savers without structure leak money to inflation. The structure protects the discipline you already have." |
+| "I already have policies." | "That's exactly why - most people who already have cover don't actually know what it does day-to-day. The 30 minutes is what turns the policy you own into a plan you understand." |
+
+**Use carefully.** Boomerang done badly sounds glib. The acknowledge step ("Totally get it - and") still has to land first. Skip it and the prospect feels manipulated.
+
+### Picking the right framework
 
 ```mermaid
-flowchart LR
-    A["Objection heard"] --> B["Acknowledge<br/>Don't argue"]
-    B --> C["Reframe<br/>Show the meeting still matters"]
-    C --> D["Return to the ask<br/>Would you be free...?"]
+flowchart TD
+    A["Objection heard"] --> B{"Does it have<br/>emotional or relationship<br/>weight?<br/>(family, loyalty, hurt)"}
+    B -- "Yes" --> C["Framework B<br/>Feel-Felt-Found"]
+    B -- "No" --> D{"Is the prospect naming<br/>a state they think<br/>disqualifies them?"}
+    D -- "Yes" --> E["Framework C<br/>Boomerang<br/>(that's exactly why)"]
+    D -- "No" --> F["Framework A<br/>Acknowledge -> Question (ARQ)<br/>-> Reframe"]
 ```
 
-## 3. The psychology of rejection
+**Default to Framework A.** Most prospecting objections fall here. Use B for emotional weight; use C when the prospect's objection literally describes why they think they're not a fit. **A fourth pattern - looping for uncertainty - lives at the post-pitch stage and is covered in Next 60 Days Day 40, not here.**
+
+> **The principle that powers all three frameworks:** **ARQ - Asking the Right Questions.** Framework A names it explicitly in the Q step; Framework B's "Felt" beat is a question disguised as a statement (it asks the prospect to compare themselves to a peer group); Framework C's Boomerang assumes you've already asked enough to know what the prospect thinks disqualifies them. Day 47 is the deep-dive on ARQ as a meta-skill - SPIN is its grammar for fact-finding, the Q step here is its grammar for objections.
+
+## 3. The 10 standard reflex objections (skip-Q applied)
+
+These are battle-tested skip-Q responses - the reflex is so unambiguous that asking ARQ would slow the call down. The reframe itself does the diagnostic work. Memorise the rhythm; the exact words can flex with your voice.
+
+### "Not interested"
+> "Fair - wouldn't expect you to be interested in something you haven't seen yet. Just so you can judge for yourself, would Tuesday 7pm or Saturday 10am work?"
+
+### "Not in the market"
+> "Honestly I'd have been surprised if you said you were. I do have ideas that'll be useful for you when you're ready, though - quicker to share them now than from scratch later. Tuesday 7pm or Saturday 10am?"
+
+### "No money"
+> "Totally fair - and that's actually a good reason to talk, not a reason to skip it. What I'd cover is more about what you already pay for than adding new expenses. Free 20 minutes - Tuesday 7pm or Saturday 10am?"
+
+### "No need"
+> "Fair, and you'd be the only person who can call that. Since it's only 20 minutes, would Tuesday 7pm or Saturday 10am work to let you make that call for yourself?"
+
+### "Too busy"
+> "I guessed you would be - that's why I called to schedule rather than just showing up. 20 minutes on Tuesday 7pm, or Saturday 10am?"
+
+### "Wasting your time"
+> "Worst case it's 20 minutes and you walk away with one or two takeaways - that's still better than where most people start. Tuesday 7pm or Saturday 10am?"
+
+### "What's the idea?"
+> "Honestly the worst thing I could do is summarise it badly over the phone. Give me 20 minutes to walk you through it properly with the actual numbers - Tuesday 7pm or Saturday 10am?"
+
+### "Is it insurance?"
+> "Could be, depending on your situation. For some people it's insurance, for others it's actually just rearranging what they already pay for. Easier to figure out in 20 minutes than over the phone - Tuesday 7pm or Saturday 10am?"
+
+### "Post it out / send me info"
+> "Happy to - but anything I send blind will either be too generic to use or too long to read. Quicker if I see your situation first, then I send the relevant 2 pages after. Tuesday 7pm or Saturday 10am?"
+
+### "For the obstinate objector" (the soft fallback)
+> "Could we leave it this way - I'd like to meet you, and if I'm in your neighbourhood over the next few months, I'd like to drop in and say hello. If you have a few moments at that time, I'll be glad to share what I have in mind."
+
+This last one **drops the time ask entirely** - it's the only response in the set that does. Use it as your soft exit when the prospect is genuinely closing the door but you want to keep it cracked open.
+
+## 4. The psychology of rejection
 
 Most new FCs quit prospecting in Month 1-2 because **rejection feels personal.**
 
@@ -132,7 +188,7 @@ Your prospects are doing the same thing when you call. **Their reflex is about t
 - After each rejection, write one sentence: "What could I have said differently?" Usually the answer is nothing.
 - At end of day, review: you made 20 calls, got 17 reflex objections, booked 2 meetings. **Normal.** Celebrate.
 
-## 4. When "no" actually means "no"
+## 5. When "no" actually means "no"
 
 Some objections are final. Respect them:
 
@@ -148,7 +204,7 @@ Some objections are final. Respect them:
 
 Singapore's PDPA regulations require consent for ongoing contact. Beyond legality - it's a matter of respect and reputation. A client who felt harassed will tell 10 friends.
 
-## 5. The follow-up strategy for "soft no"
+## 6. The follow-up strategy for "soft no"
 
 Not all no's are final. Many are "not right now."
 
@@ -176,7 +232,7 @@ flowchart LR
 - "Just checking in!" every 10 days. Empty.
 - Pretending to be busy / important. Transparent.
 
-## 6. The "no" that was actually a "not yet"
+## 7. The "no" that was actually a "not yet"
 
 Real story frequently repeated across the industry:
 
@@ -188,7 +244,7 @@ Real story frequently repeated across the industry:
 
 The pattern repeats across careers. **The relationship matters more than the month-2 conversion.**
 
-## 7. The emotional hygiene rule
+## 8. The emotional hygiene rule
 
 Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day - even if the math is the same. The fix is **structured recovery**, not a low call ceiling. Power-hour blocks of 30-50 dials are normal and necessary if you want to hit 100 calls/week.
 
@@ -203,13 +259,13 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
 ## Quick quiz
 
-1. **The structure of every objection response is:**
+1. **The default structure of Framework A (the workhorse for prospecting objections) is:**
  - A) Argue, persuade, push
- - B) Acknowledge, reframe, return to the ask (correct)
+ - B) Acknowledge, ask the right question (ARQ), reframe and close on the time ask (correct)
  - C) Deflect, change topic, rebook
  - D) Apologise, send info, follow up
 
- **Why:** Every standard objection response follows the same three-beat pattern - acknowledge the prospect's position so they feel heard, reframe to show why the meeting is still worth having, then return cleanly to the appointment ask. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your own credibility and gives the prospect a way to stall indefinitely.
+ **Why:** The Acknowledge -> Question -> Reframe pattern adds an explicit ARQ (Asking the Right Question) step between acknowledge and reframe, because "Not interested" can mean three different things and each needs a different reframe. Arguing (A) creates resistance; deflecting (C) abandons the ask; apologising and sending info (D) removes your credibility. The Q step can be skipped only when the objection is unmistakably a stock reflex - the 10 standard responses on Day 44 are the skip-Q examples.
 
 2. **"Not interested" is most likely:**
  - A) A real final no
@@ -259,6 +315,30 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
 
  **Why:** All other objection responses end with "Would you be free...?" - they maintain the meeting ask. The obstinate objector response is different because it drops the ask entirely and replaces it with a casual "if I'm in your neighbourhood" framing, removing all pressure and keeping a door open without forcing it. There are no facts or arguments (A), no discounts (C), and no clarifying questions (D) - just a graceful exit that preserves the relationship for a future approach.
 
+8. **The "Question" step in the Acknowledge -> Question -> Reframe pattern (i.e. ARQ) exists primarily to:**
+ - A) Stretch the call so the prospect can't hang up quickly
+ - B) Surface which version of the objection the prospect actually means - so the reframe targets the right one (correct)
+ - C) Force the prospect to defend their objection out loud so they back down
+ - D) Buy the FC time to think of a comeback
+
+ **Why:** "Not interested" can mean not interested in insurance, not interested in advisors generally, or wrong timing - three different objections needing three different reframes. ARQ is the diagnostic that prevents reframing against the wrong one (which happens roughly 30% of the time without it). Stretching the call (A) is irrelevant to conversion; making the prospect defend their no (C) converts a soft reflex into a firm position - the opposite of what you want; thinking time (D) is a side benefit, not the purpose.
+
+9. **A prospect says "I already have policies." The most useful first move is:**
+ - A) Tell them their existing policies probably have gaps and offer a review
+ - B) Ask which sub-flavour they mean - old/never reviewed, parent or employer-bought, or recently reviewed - and adapt the reframe to match (correct)
+ - C) Pivot the conversation to investments since insurance is already covered
+ - D) Acknowledge politely and disengage - respect the no
+
+ **Why:** "I already have policies" is three different objections in one phrasing, and each opens with a different reframe (free second opinion for an old plan; parent-vs-current life stage for parent-bought; one-tweak validation for recently reviewed). Telling them their policies have gaps without knowing which sub-flavour (A) is presumptuous and burns trust. Pivoting to investments (C) abandons the family they actually need help on. Disengaging (D) treats a soft reflex as a firm no - this objection is a Boomerang opportunity, not a real refusal.
+
+10. **The "Already have an advisor" objection is best handled with:**
+ - A) Direct comparison showing why you're the better choice
+ - B) Feel-Felt-Found - acknowledge the loyalty, name a peer group who felt the same, reframe to "complement, don't replace" (correct)
+ - C) A list of products you offer that the existing advisor probably doesn't
+ - D) Asking who the existing advisor is so you can call them later
+
+ **Why:** "Already have an advisor" carries emotional and relationship weight - especially when the existing advisor is family. Feel-Felt-Found is the framework built for that exact load - it acknowledges the loyalty (Feel), names a peer group of clients who shared the same instinct (Felt), and reframes around adding a same-life-stage second pair of eyes rather than replacing anyone (Found). Direct comparison (A) attacks the existing advisor and burns the relationship; product listing (C) does the same; asking for the existing advisor's name (D) is unprofessional and risks being read as predatory.
+
 ---
 
 ## Objection-Handling Library
@@ -267,17 +347,18 @@ Here are the canonical objection scripts for the situations that come up most. P
 
 ### Objection taxonomy at a glance
 
-The Academy library has 11 dedicated objection scripts. They cluster into 5 families:
+The Academy library covers six objection families. Pick the family first; the script second.
 
-| Family | When you hear it | Scripts in this family |
-|---|---|---|
-| **Push-away / "not interested"** | First 30 seconds, reflex defence | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
-| **"I already have someone"** | Existing advisor, family advisor, employer cover | "Already have an advisor" objection script |
-| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Video-Off objection (Zoom), texting-EQ 4-step framework |
-| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Cost of Delay (Pre-Retirees) - paying with time vs money |
-| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Recruitment objection handling (telemarketer angle) |
+| Family | When you hear it | Default framework | Scripts in this family |
+|---|---|---|---|
+| **Push-away / "not interested"** | First 30 seconds, reflex defence | Framework A (skip-Q or full ARQ) | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| **"I already have policies"** | Coverage already in place - basic cover, parent-bought, "comprehensive" | Framework C (Boomerang) | "Already have policies" - free second opinion script (below) |
+| **"I already have someone"** | Existing advisor, family advisor, employer cover | Framework B (Feel-Felt-Found) | "Already have an advisor" objection script |
+| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Framework A (full ARQ) | Video-Off objection (Zoom), texting-EQ 4-step framework |
+| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Framework A (full ARQ) | Cost of Delay (Pre-Retirees) - paying with time vs money |
+| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Framework A (full ARQ) | Recruitment objection handling (telemarketer angle) |
 
-Use the family to pick the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
+Use the family to pick the right framework, then the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
 
 ### "Not interested in insurance"
 
@@ -303,19 +384,49 @@ If they're still not interested after both pivots: "I see - can I ask why? No pr
 
 _Source: Academy scripts library, audience=general, category=objection-handling._
 
+### "I already have policies"
+
+**Use this when** the prospect says they're already covered - "I have something from when I was younger," "my parents bought one for me," or "I'm fully covered already." Framework C (Boomerang) is the default; ARQ surfaces which sub-flavour you're dealing with.
+
+**Step 1 - Acknowledge + ARQ to surface the sub-flavour:**
+
+> "Smart - most people I respect already have something in place. Quick one before I assume - when you say 'already have,' is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
+
+The ARQ buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
+
+**Step 2 - Reframe by sub-flavour:**
+
+| Sub-flavour | The reframe |
+|---|---|
+| **(a) Old plan, never reviewed** | "Quick one - if you had to draw your current cover from memory right now, could you? Most people can't, and that's not carelessness, it's just that policies pile up over time. The 30 minutes I'm asking for is exactly that - you walk me through what you've got, I tell you what I'd flag if it were my own family. **No products on the table that day. Just a free second opinion.** Worth doing?" |
+| **(b) Parent or employer-bought** | "Got it - and you'd be surprised how often the cover that made sense at 25 isn't the cover that makes sense at 32. Parents tend to buy the plan they would've wanted at *your* age, which is usually conservative. Employer cover dies the day you change jobs. Both are good starting points; neither is the finish line. 30 minutes to map yours - Tuesday 7pm or Saturday 10am?" |
+| **(c) Comprehensive, recently reviewed** | "Honestly - then you're already ahead of 80% of the people I speak to. Just one ask: a same-life-stage second opinion never costs you anything, and even on solid plans I usually find one tweak worth $3-5k of value over the lifetime. If I find nothing, you've validated your own work. If I find something, you've made $4k off a coffee. 30 minutes - worth it?" |
+
+**The principle:** never tell the prospect their existing policy is bad. Tell them they own a *policy* and you'd help them turn it into a *plan*. The 30 minutes is positioned as a free second opinion, not a sales conversation.
+
+_Source: Academy script bank + ARQ adaptation. Audience=warm-market or cold; category=objection-handling._
+
 ### "Already have an advisor"
 
-**Use this when** the prospect mentions an existing advisor - especially if it's a family member or close friend.
+**Use this when** the prospect mentions an existing advisor - family member, long-time agent, employer-tied advisor. Framework B (Feel-Felt-Found) is the default; **never attack the existing advisor.**
 
-**The script (acknowledge -> common ground -> different perspective -> safety valve)**
+**The principle:** complement, don't replace. You're not asking the prospect to fire their aunt; you're offering a same-life-stage second opinion that the existing advisor can't give.
 
-When the prospect says: "My advisor is my aunt so I usually go to her. I have bad experiences with friends as advisors so I tend to stay away. Just being honest. If I ever need to approach someone else, I'll let you know."
+**Script - the family/loyalty version:**
 
-> "Something my clients have shared with me is that they wanted an advisor who'd be there for them for the next 4-5 decades, in the same life stage as them - while an older advisor can stay on as a concurrent mentor at the same time. Anyway, I'm really hoping we can have a super casual chat about this, so moving forward I can communicate and advise my own friends better in the same situation."
+When the prospect says: "My advisor is my aunt so I usually go to her" / "I've been with my advisor for 10 years, all good."
 
-**The reframe:** you can have *two* advisors. Position yourself as the relatable, same-life-stage one. Position the existing advisor as a mentor. Don't try to replace - complement.
+> "Honestly - totally respect that, especially if it's family or someone you've trusted for years. **(Feel)** I get it - swapping advisors feels like you're being disloyal, and I'd never ask you to do that. **(Felt)** Most of the clients I work with felt exactly the same when we first met. **(Found)** What they found was that keeping their existing advisor *and* adding me as a same-life-stage second pair of eyes was the actual win - your aunt's got the long view of your family, which is irreplaceable. What I do differently is I'm in your life stage, watching the same products and CPF changes coming out for our generation, and that perspective fades a bit once an advisor is 20 years ahead of you. So no replacement, just a coffee where I share what I'm seeing - and you take what's useful back to your aunt for action. Sound reasonable?"
 
-_Source: Academy scripts library, audience=warm-market, category=objection-handling._
+**Shorter version when rapport is good:**
+
+> "Totally fair. My honest take: most of my clients in your situation kept their existing advisor and added me as a same-life-stage second pair of eyes. They stay the long-view person; I'm the 'what's the new product this year' person. 30-min coffee, no pressure, you walk away with one or two takeaways for whoever you work with. Open to it?"
+
+**The reframe in one line:** you can have *two* advisors. Position yourself as the relatable, same-life-stage one. Position the existing advisor as the long-view mentor. Don't try to replace - complement.
+
+**Watch out:** if the prospect says "my advisor is my best friend's father and we're really close," **drop the ask**. Use the obstinate-objector exit ("if I'm in your neighbourhood I'd love to drop in for a coffee") and walk away with the relationship intact. Forcing this one burns the door.
+
+_Source: Academy scripts library, audience=warm-market, category=objection-handling. Reworked from the Academy original to use Feel-Felt-Found explicitly and drop the awkward "I want to advise my own friends better" framing - that line made the FC sound like they were using the prospect for practice rather than helping them._
 
 ### Texting EQ 4-Step Framework (for DM/text objections)
 
