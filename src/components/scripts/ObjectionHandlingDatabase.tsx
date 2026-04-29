@@ -21,6 +21,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useScripts } from "@/hooks/useScripts";
 import type { ObjectionEntry, ObjectionResponse } from "@/hooks/useObjections";
 import { ObjectionEditorDialog } from "./ObjectionEditorDialog";
+import { ArqFrameworkReference } from "./ArqFrameworkReference";
+import { CuratedObjectionsLibrary } from "./CuratedObjectionsLibrary";
 
 // Fuzzy matching: checks if all characters of query appear in order in target
 function fuzzyMatch(target: string, query: string): { match: boolean; score: number } {
@@ -555,6 +557,12 @@ export function ObjectionHandlingDatabase() {
 
   return (
     <div>
+      {/* ARQ framework primer - the reference at the top so newbies know HOW to construct a response */}
+      <ArqFrameworkReference />
+
+      {/* Curriculum-anchored library - mirrored from Day 44 + Day 40 (next-60-days) */}
+      <CuratedObjectionsLibrary />
+
       {/* Search + Add */}
       <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
         <div className="flex-1 relative">
