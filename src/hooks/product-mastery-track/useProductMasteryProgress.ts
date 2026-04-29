@@ -86,7 +86,7 @@ async function migrateLegacyIfNeeded(userId: string): Promise<boolean> {
 export function useProductMasteryProgress() {
   const { user } = useSimplifiedAuth();
   const { isAdmin } = useAdmin();
-  const isAdminUser = typeof isAdmin === "function" ? isAdmin() : Boolean(isAdmin);
+  const isAdminUser = Boolean(isAdmin);
   const qc = useQueryClient();
   const userId = user?.id ?? null;
 
