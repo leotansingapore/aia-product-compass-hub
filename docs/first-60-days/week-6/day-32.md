@@ -137,7 +137,7 @@ Quick math:
 - Their final retirement pot at 65 will be roughly **0.42 x a full doubling smaller.** That's about **25% less** in final capital, on the same contribution plan started 5 years earlier.
 
 **Your framing (gentle, not pushy):**
-> "Waiting 5 years isn't the end of the world. Mathematically, it costs you roughly 25% of your retirement capital. That might be worth $200K at 65. You can decide if the 5-year break is worth $200K to you - not my decision. But I want you to know the number, so the decision is informed."
+> "Honestly, waiting 5 years sounds reasonable when life feels full. And mathematically, it costs you roughly 25% of your retirement capital. That might be worth $200K at 65. You can decide if the 5-year break is worth $200K to you - not my decision. But I want you to know the number, so the decision is informed."
 
 **Then - silent.** Let them sit with it. Don't press.
 

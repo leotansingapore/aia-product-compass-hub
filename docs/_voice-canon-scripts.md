@@ -114,13 +114,31 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 - *"Out of curiosity - ..."*
 - *"Not messaging to pitch you anything"*
 - *"No pitch, no agenda"*
-- *"No need to reply"*
 - *"It would be my privilege to service any of your financial needs"*
 - *"Rather you have someone you actually know than a stranger"*
 - *"Whenever you're ready, I'm here"*
 - *"Totally fair - appreciate you being straight with me"*
 - *"Honestly, that's part of why I joined"*
 - *"It would mean a lot"*
+
+### 3.4 Signature framings worth absorbing
+
+A small bank of one-liners and framings that compress big ideas into something a client (or an FC) can actually repeat. Use sparingly — one per page or call is plenty. Each one is a *principle*, not a slogan. Don't drop them as quotes; absorb them and let them shape the surrounding sentence.
+
+| Framing | Where it lands | Why it works |
+|---|---|---|
+| *"Be a good person first, then focus on what you do."* | Mindset / referrals / conviction beats | Inverts the FC's instinct to lead with what they sell. Referrals are downstream of being trusted as a human. |
+| *"How much you change equals how much you gain."* | Accountability / growth-mindset / activity tracking | Drops the externalising story (markets, agency, prospects) and puts agency back on the FC. |
+| *"Tweak your approach when you can't seem to connect."* | Rapport / objection-handling / DISC mismatch | The default rookie move is *try harder with the same script*. The actual move is *change the script to fit the person*. |
+| *"Helping someone act upon a decision that is important and good for them."* | Definition of sales (foundational) | Replaces the bad-version frame ("convincing"). Both halves matter — you must push for the action, AND it must be genuinely good for them. |
+| *"A habit of making fewer statements, and asking more good questions."* | Fact-find / objections / referral asking | Statements get defended; conclusions get owned. The single biggest skill upgrade for new FCs. |
+| *"Six months of growth versus eleven years of no growth."* | First-60-days conviction / weekly KPI | Compresses the compounding argument into a number a new FC can repeat to themselves on a hard week. |
+| *"Don't reinvent the wheel — and don't use it in parts."* | Following frameworks / not cherry-picking | New FCs love to skip steps. The frameworks compound; pulling out one piece collapses the whole. |
+| *"Age is just a figure."* | Mid-career switch / second-careers conviction | For FCs who think they're too late. The work rewards skill, not seniority. |
+| *"5% of your breakthrough comes from class. 95% from implementing."* | Unlock gates / weekly review / assignment completion | Reframes the curriculum as scaffolding for action, not the action itself. |
+| *"Don't shove a goal down their throat."* | Closing / hot buttons / fact-find sins | The prospect's goal must be the prospect's, not yours. The moment it sounds like *your* goal, the close dies. |
+
+Use these in body copy where they fit, and in coaching conversations with junior FCs. They're the kind of phrases that, repeated often enough, become the way the team thinks.
 
 ### Cushioning — the habit that runs under every script
 

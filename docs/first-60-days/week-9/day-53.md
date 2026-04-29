@@ -418,7 +418,7 @@ The CST worked example (CI hits a $45K-income earner):
 
 > *"What is your annual income? x 12, plus 13th-month bonus. Now: a major CI in Singapore - how long out of work? Cancer 1-1.5 years. Major stroke 5-10 years. **Average 3.5 years. Round down to 3.** With your annual income at $X, 3 years = $3X of income lost."*
 
-> *"Would a $50-100K hospital bill be more painful, or a $135K loss of income? Obviously the loss of income. But people only see expenses because expenses are upfront. They don't see they lost their income over a period of time. **It is the lack of income that kills people financially.**"*
+> *"Would a $50-100K hospital bill be more painful, or a $135K loss of income? Most people I ask actually pause here - and the answer flips once they think it through. Obviously the loss of income. But people only see expenses because expenses are upfront. They don't see they lost their income over a period of time. **It is the lack of income that kills people financially.**"*
 
 **3. Personal Accident - the gap-filler**
 
@@ -428,7 +428,7 @@ The CST worked example (CI hits a $45K-income earner):
 | **Minor sprain - X-ray + MRI + physio (~$3-4K, no admission)** | (no) | (no) | (yes) |
 | **Lose 1 limb / 1 eye** | (depends) | (no) (TPD = 2 limbs/eyes) | (yes) |
 
-> *"What if I, as a Financial Planner, get into an accident and lose one of my arms? How much would I claim from my life insurance? **Zero.** But if that happens, I'd lose a lot of income - I'd do things slower, people may not trust me, clients may drop me. Where do you think I'll be claiming a few hundred K from? **The accident plan.**"*
+> *"You'll see why this hits - bear with me a sec. What if I, as a Financial Planner, get into an accident and lose one of my arms? How much would I claim from my life insurance? **Zero.** But if that happens, I'd lose a lot of income - I'd do things slower, people may not trust me, clients may drop me. Where do you think I'll be claiming a few hundred K from? **The accident plan.**"*
 
 #### Wealth Accumulation (briefly, on the same Page 1)
 

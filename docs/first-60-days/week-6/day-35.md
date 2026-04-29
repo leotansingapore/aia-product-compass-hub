@@ -176,7 +176,7 @@ The classic client line: **"I don't want to risk my money. I'll just keep it in 
 
 **Your response:**
 
-> "I understand the instinct. But let's look at the math. Your $100,000 in the bank today will still show $100,000 in 20 years. But with 2% annual inflation, it'll buy what $67,000 buys today. You've silently lost $33,000 of purchasing power - without a single bad statement to show for it.
+> "That's totally fair - that instinct exists for good reason. And honestly, the math is the surprising part. Let's look at it. Your $100,000 in the bank today will still show $100,000 in 20 years. But with 2% annual inflation, it'll buy what $67,000 buys today. You've silently lost $33,000 of purchasing power - without a single bad statement to show for it.
 >
 > The risk isn't market volatility. The risk is **not keeping up with inflation.** It's slower, quieter, and more certain than market losses.
 >

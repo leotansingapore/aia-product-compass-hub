@@ -88,7 +88,7 @@ When you draw this for a client, you draw a horizontal timeline with three tick 
 **Draw:** A red dot on Age 30. From that dot, draw a rising line up to Age 65. Label the start *"$5,000/mth - your desired lifestyle"*. Label the slope *"2.5% p.a. inflation"*.
 
 **Say (slowly, while drawing):**
-> "Today, $5,000 a month gives you the lifestyle you want. But inflation doesn't sleep - at 2.5% a year, the same lifestyle gets more expensive every year. So this line is the cost of *the same lifestyle*, going up over the next 35 years."
+> "$5,000 a month is a comfortable number - most people in your stage feel the same. The catch is that inflation doesn't sleep - at 2.5% a year, the same lifestyle gets more expensive every year. So this line is the cost of *the same lifestyle*, going up over the next 35 years."
 
 **Pause.** Let the curve sit on the page for a beat.
 

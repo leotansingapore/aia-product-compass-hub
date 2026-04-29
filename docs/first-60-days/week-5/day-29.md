@@ -179,7 +179,7 @@ Client 35, has been contributing $500/month to an ILP at 6% for 3 years. Balance
 - **Cost of stopping: ~$385,000.**
 
 **Your framing:**
-> "I'm not here to tell you what to do. But here's the number, so you're making this decision with full information: stopping now costs you roughly $385,000 by age 65. That's the car - and 20 more cars on top."
+> "I get it - the cost is real, and stopping feels responsible. I'm not here to tell you what to do. But here's the number, so you're making this decision with full information: stopping now costs you roughly $385,000 by age 65. That's the car - and 20 more cars on top."
 
 You don't guilt them. You give them the number. Let them decide.
 
