@@ -284,6 +284,74 @@ Tomorrow, the energy lifts: **cross-sell and bundling.** Once you've handled obj
 
 ---
 
+## Quiz
+
+1. **The Perfect / Imperfect / Partially Perfect frame is used to handle which objection?**
+- A) "Fees are too high"
+- B) "I'll just buy S&P500" ✓
+- C) "I want my dividends now"
+- D) "Other companies have lower charges"
+
+**Why:** The frame is the central conviction story for the S&P500 objection — Perfect (perfect timing across asset classes and geographies, doesn't exist), Imperfect (one geography, one asset class, all the time = the riskiest portfolio), Partially Perfect (diversified across asset classes and geographies — what APA's underlying mandate gives you). You're not attacking S&P500; you're questioning the assumption that 100% US equity is the rational default.
+
+2. **The volatility math at the heart of the S&P500-vs-APA debate is roughly:**
+- A) 11% S&P500 vs 21% APA
+- B) 21% S&P500 vs 11% APA ✓
+- C) 30% S&P500 vs 15% APA
+- D) Same volatility, different returns
+
+**Why:** S&P500 has ~21% 10-year volatility (and ~42% 2-SD drawdown). APA's diversified international fund is ~11% (with ~20% 2-SD drawdown). Roughly the same expected return, half the volatility — the "body shot" of the conviction story. Memorise both numbers; recite them as a pair.
+
+3. **A prospect says "I want my dividends now, not at 65." The closing math number you anchor to is:**
+- A) $300,000 cost over 10 years
+- B) $700,000 cost over 30 years
+- C) $1.3 million cost end-to-end ✓
+- D) $3 million cost end-to-end
+
+**Why:** Manulife with-dividends finishes at ~$490k (4.9x). APA with reinvested dividends finishes at ~$1.8M (18x). The $1.3M gap is the cost of taking dividends early — the script is "Would you prefer dividends now when you're earning 6k/month and don't need it, or in the future when you actually need it?" The number — $1.3M — is what makes the close land.
+
+4. **AIA's perpetual supplementary charge **after** the Initial Investment Period (IIP) is:**
+- A) 0% ✓
+- B) 0.6%
+- C) 0.7%
+- D) 1.2%
+
+**Why:** Post-IIP perpetual fee — AIA 0%, GE 0.6%, Manulife 0.7%, FWD 1.2%. AIA's 3.9% supplementary disappears at year 10 entirely; competitors charge a perpetual fee that never goes away. On a $1M pot at year 30, FWD's 1.2% is $12k/year forever; AIA's is $0. This is the close on "other companies have lower charges" — show the perpetual side-by-side, not the day-1 number.
+
+5. **The break-even logic that handles "the 3.9% fee is too high" rests on what?**
+- A) AIA's IRR is always higher than competitors from year 1
+- B) The 3.9% supplementary ends at year 10 while the 5% and 8% bonuses compound perpetually ✓
+- C) The charge is tax-deductible
+- D) AIA waives the supplementary on early surrender
+
+**Why:** The acknowledge-and-walk-break-even response doesn't argue that 3.9% is small — it concedes the cost up front, then shows the structural inversion. Years 1-10 you pay 3.9%. Year 11 onward you pay 0% supplementary while collecting 5%/8% special bonus on annualised premium. The break-even crossover is engineered into the product around year 34 at $12k/year — and after that, AIA is effectively paying the client.
+
+6. **The single line that handles ~80% of generic pushback ("DIY is cheaper / S&P500 is better / fees are high") is:**
+- A) "Trust the process — APA is the gold standard"
+- B) "Buy S&P500 too — put it at the top of your pyramid where you can take risk. APA is the foundation, the part you don't touch. Different jobs." ✓
+- C) "AIA has been around for over 100 years"
+- D) "You'll regret not starting today"
+
+**Why:** The reframe collapses the false binary. You're not asking the prospect to choose between APA and S&P500 — you're slotting them into different jobs in the same pyramid. Prospects accept "complement, not compete" almost every time and the objection dissolves without a fight. Memorise this line; it's the universal de-escalator.
+
+7. **Once an APA case is closed and the client is comfortable, the cross-sell sequencing that maximises lifetime value is:**
+- A) Bundle PWV, HSGM, and riders into a single follow-up appointment to lock in the case
+- B) Layer riders onto APA first, then HSGM and PWV across **separate** appointments ✓
+- C) Wait 12 months before raising any cross-sell to avoid pressure
+- D) Pitch PWV first because it has the highest premium
+
+**Why:** Day 4's expansion logic — once objections are handled, the next move is upsizing the existing case (riders, secondary insured) and pairing with HSGM for medical and PWV as the ILP capstone. **Always separate appointments** so each conversation has the space it needs. Bundling collapses everyone into a confused review and kills momentum; waiting 12 months wastes the trust window you just earned.
+
+8. **The disclosure pattern that builds (rather than burns) credibility on the "other companies have lower charges" objection is:**
+- A) Show only AIA's numbers and let the prospect compare on their own
+- B) Compare AIA side-by-side with named competitors using like-for-like rows ✓
+- C) Refuse to discuss competitors and stay focused on AIA's strengths
+- D) Quote competitor weaknesses without naming them
+
+**Why:** "Don't show AIA charges in isolation — always compare with competitors so AIA looks better." When a prospect names a competitor, pull out the relevant row (15-yr cash value, 40-yr IRR, perpetual fee, welcome bonus) and show side-by-side. Numbers do the persuasion; the disclosure itself signals confidence and reframes you from "salesperson" to "consultant who's done the homework." Refusing to compare (C) reads as evasion. Quoting unnamed weaknesses (D) reads as smear.
+
+---
+
 ## Related
 
 - Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
