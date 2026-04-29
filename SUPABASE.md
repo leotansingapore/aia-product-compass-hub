@@ -127,6 +127,52 @@ Not blocking: localStorage works for single-device study sessions and is what `u
 
 ---
 
+### Pending: Content Studio drafts + voice profile tables (standalone Content Studio app)
+
+The standalone Content Studio app (`/Users/leo/Documents/New project/content-studio/`, deployed at `content-studio-beige-eta.vercel.app`) currently keeps draft history and the FC voice profile in `localStorage` (`content-studio-drafts-${userId}`, `content-studio-voice-${userId}`). Both should migrate to Supabase so an FC's drafts and voice profile follow them across browsers/devices. Once these tables land, the Content Studio frontend can swap localStorage reads/writes for Supabase reads/writes.
+
+```sql
+create table public.content_studio_drafts (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  hook text,
+  draft text not null,
+  pillar text,
+  pillar_detail text,
+  audience text,
+  format text,
+  platform text,
+  cta_type text,
+  vibe_source_id text,
+  created_at timestamptz not null default now()
+);
+
+alter table public.content_studio_drafts enable row level security;
+create policy "Users manage own drafts" on public.content_studio_drafts
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+create index content_studio_drafts_user_idx on public.content_studio_drafts (user_id, created_at desc);
+
+create table public.content_studio_voice_profiles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  past_posts jsonb not null default '[]'::jsonb,
+  voice_summary text,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.content_studio_voice_profiles enable row level security;
+create policy "Users manage own voice" on public.content_studio_voice_profiles
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+```
+
+Notes:
+- This is a **separate** Content Studio app from the in-Hub Content Studio described above (the in-Hub one already has its own `social_content_drafts` proposal at the top of this file). The two will eventually consolidate but for now both live in parallel.
+- v1 ships with `localStorage` as the source of truth; capped at 50 drafts per user (FIFO) and 5 past-post slots.
+- Voice summary is generated once from the FC's pasted past posts via the `generate-social-content` edge function (`mode: "voice-summary"`) and re-distilled on demand.
+- Once migrated, the Content Studio frontend can swap localStorage reads/writes for Supabase. Capping at 50 drift-out moves to a server-side trim or a `LIMIT 50` query.
+
+---
+
 ## Completed (recent)
 
 #### Product Mastery Track DB-backed progress + leaderboard scoring — landed 2026-04-28

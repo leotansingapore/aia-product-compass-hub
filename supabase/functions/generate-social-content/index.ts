@@ -11,22 +11,26 @@ type Format = "carousel" | "short-video" | "text-post" | "story";
 type Platform = "linkedin" | "instagram" | "facebook" | "tiktok";
 type CtaType = "dm-keyword" | "comment-keyword" | "save-share" | "book-call" | "open-question";
 type Audience = "young-adult" | "working-adult" | "parent" | "pre-retiree" | "general";
-type Mode = "hooks" | "body" | "post";
+type Mode = "hooks" | "body" | "post" | "voice-summary" | "hashtags" | "image-prompt";
 
 interface RequestBody {
-  pillar: Pillar;
-  pillarDetail: string;
-  ideaSource: string;
+  pillar?: Pillar;
+  pillarDetail?: string;
+  ideaSource?: string;
   ideaContext?: string;
-  format: Format;
-  platform: Platform;
-  ctaType: CtaType;
+  format?: Format;
+  platform?: Platform;
+  ctaType?: CtaType;
   styleReference?: string;
   audience?: Audience;
   mode?: Mode;
   n?: number;
   chosenHook?: string;
   stream?: boolean;
+  voiceSummary?: string;
+  singlish?: boolean;
+  posts?: string[];
+  draft?: string;
 }
 
 const PILLAR_GUIDE: Record<Pillar, string> = {
@@ -110,7 +114,7 @@ function audienceLine(audience?: Audience): string {
 }
 
 function basePromptLines(body: RequestBody): string[] {
-  return [
+  const lines = [
     "You are a content drafting assistant for an AIA financial consultant in Singapore.",
     "You produce one social-media post draft at a time, using the framework taught in Day 40-42 of their training:",
     "- Every post must hit Authority + Social + a soft CTA. The CTA is mandatory.",
@@ -125,25 +129,41 @@ function basePromptLines(body: RequestBody): string[] {
     `## Audience`,
     audienceLine(body.audience),
     "",
-    `## Pillar: ${body.pillar}`,
-    PILLAR_GUIDE[body.pillar],
+    `## Pillar: ${body.pillar ?? "topic"}`,
+    PILLAR_GUIDE[body.pillar ?? "topic"],
     body.pillarDetail ? `Specific pillar detail: ${body.pillarDetail}` : "",
     "",
-    `## Idea source: ${body.ideaSource}`,
+    `## Idea source: ${body.ideaSource ?? ""}`,
     body.ideaContext
       ? `Context from FC: ${body.ideaContext}`
       : "If no context provided, infer a plausible Singapore-specific scenario.",
     "",
-    `## Platform: ${body.platform}`,
-    PLATFORM_VOICE[body.platform],
+    `## Platform: ${body.platform ?? "linkedin"}`,
+    PLATFORM_VOICE[body.platform ?? "linkedin"],
     "",
-    `## Format: ${body.format}`,
-    FORMAT_GUIDE[body.format],
+    `## Format: ${body.format ?? "text-post"}`,
+    FORMAT_GUIDE[body.format ?? "text-post"],
     "",
-    `## CTA style: ${body.ctaType}`,
-    CTA_GUIDE[body.ctaType],
+    `## CTA style: ${body.ctaType ?? "open-question"}`,
+    CTA_GUIDE[body.ctaType ?? "open-question"],
     body.styleReference ? `\n## Style reference (match the structural pattern, don't copy verbatim)\n${body.styleReference}` : "",
   ];
+  if (body.voiceSummary && body.voiceSummary.trim().length > 0) {
+    lines.push(
+      "",
+      "## Voice profile (match this consultant's tone/structure)",
+      "This consultant's voice profile (match this tone/structure):",
+      body.voiceSummary.trim(),
+    );
+  }
+  if (body.singlish === true) {
+    lines.push(
+      "",
+      "## Singlish",
+      "Use light Singlish where it lands naturally - 'lah', 'leh', 'can?', 'shiok' - but keep the post readable for non-SG audiences. Don't overdo it; aim for 1-3 Singlish moments per post max.",
+    );
+  }
+  return lines;
 }
 
 function postSystemPrompt(body: RequestBody, variantIndex: number): string {
@@ -188,6 +208,101 @@ function userPrompt(body: RequestBody, mode: Mode): string {
     return `Produce one ${body.platform} hook for a ${body.format}, following the system instructions.`;
   }
   return `Draft my ${body.platform} ${body.format} now, following the system instructions.`;
+}
+
+function voiceSummarySystemPrompt(body: RequestBody): string {
+  const lines = [
+    "You are a writing-voice analyst. You receive several past social-media posts written by one consultant.",
+    "Distil the consultant's voice into TWO short paragraphs.",
+    "Paragraph 1: tone and voice traits - formality level, warmth, signature words, recurring phrases, level of vulnerability, how they handle authority vs personal.",
+    "Paragraph 2: structural patterns - how they open hooks, paragraph length, line-break habits, list usage, typical post length, how they close / CTA, any repeating frameworks.",
+    "Be specific and quotable. Reference 1-2 short patterns verbatim if they recur. No bullet points; flowing prose.",
+    "Output ONLY the two paragraphs. No preamble. No headers like 'Paragraph 1'. Just the prose.",
+  ];
+  if (body.singlish === true) {
+    lines.push("Note: the consultant has Singlish ON - call out any local SG flavour you notice.");
+  }
+  return lines.join("\n");
+}
+
+function voiceSummaryUserPrompt(body: RequestBody): string {
+  const posts = (body.posts ?? []).filter((p) => typeof p === "string" && p.trim().length > 0);
+  const numbered = posts
+    .map((p, i) => `--- Past post ${i + 1} ---\n${p.trim()}`)
+    .join("\n\n");
+  return `Here are the consultant's past posts. Distil their voice.\n\n${numbered}`;
+}
+
+function hashtagsSystemPrompt(body: RequestBody): string {
+  const lines = [
+    "You generate hashtag suggestions for an AIA financial consultant in Singapore.",
+    "Return strict JSON of the form: {\"hashtags\": [\"...\", \"...\"]} with 5-8 entries.",
+    "Rules:",
+    "- Do NOT include the # prefix; just the word(s).",
+    "- Mix 1-2 broad tags + 3-5 niche/SG-relevant tags (e.g. sgfinance, cpfsg, sgwealth, sgmoney).",
+    "- Match the platform tone: LinkedIn = professional. Instagram = visual. Facebook = sparse. TikTok = trend-aware.",
+    "- No spammy unrelated tags. No competitor brand tags. No #ad #sponsored unless marked.",
+    "- Camel-case multi-word tags (financialFreedom).",
+    "- Output ONLY the JSON. No markdown fences.",
+  ];
+  return lines.join("\n");
+}
+
+function hashtagsUserPrompt(body: RequestBody): string {
+  return [
+    `Platform: ${body.platform ?? "linkedin"}`,
+    `Pillar: ${body.pillar ?? "topic"} - ${body.pillarDetail ?? ""}`,
+    `Audience: ${body.audience ?? "general"}`,
+    "",
+    "Draft:",
+    body.draft ?? "",
+  ].join("\n");
+}
+
+function imagePromptSystemPrompt(_body: RequestBody): string {
+  return [
+    "You write a 1-2 line image-generation prompt that the consultant can paste into Canva, Midjourney, or kie.ai.",
+    "Return strict JSON: {\"prompt\": \"...\"}.",
+    "Rules:",
+    "- 1-2 lines maximum. No quotes inside the prompt itself.",
+    "- Describe a clean, modern, brand-safe SG-relevant scene.",
+    "- No real people's faces, no logos, no text overlays unless they are short and obviously fake numbers.",
+    "- Lean editorial / lifestyle / minimal-graphic, not stock-cheesy.",
+    "- Output ONLY the JSON. No markdown fences.",
+  ].join("\n");
+}
+
+function imagePromptUserPrompt(body: RequestBody): string {
+  return [
+    `Platform: ${body.platform ?? "linkedin"}`,
+    `Pillar: ${body.pillar ?? "topic"} - ${body.pillarDetail ?? ""}`,
+    "",
+    "Draft:",
+    body.draft ?? "",
+  ].join("\n");
+}
+
+function tryParseJson<T = unknown>(raw: string): T | null {
+  if (!raw) return null;
+  let cleaned = raw.trim();
+  // Strip markdown fences if the model added them.
+  cleaned = cleaned.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "").trim();
+  try {
+    return JSON.parse(cleaned) as T;
+  } catch (_) {
+    // Fall through.
+  }
+  // Best-effort: find first { and last }.
+  const first = cleaned.indexOf("{");
+  const last = cleaned.lastIndexOf("}");
+  if (first !== -1 && last !== -1 && last > first) {
+    try {
+      return JSON.parse(cleaned.slice(first, last + 1)) as T;
+    } catch (_) {
+      return null;
+    }
+  }
+  return null;
 }
 
 interface ResolvedRequest {
@@ -450,6 +565,85 @@ function handleStream(
   });
 }
 
+async function handleVoiceSummary(apiKey: string, body: RequestBody): Promise<Response> {
+  const posts = (body.posts ?? []).filter(
+    (p) => typeof p === "string" && p.trim().length >= 1,
+  );
+  if (posts.length < 1) {
+    return jsonResponse({ error: "voice-summary requires at least 1 past post" }, 400);
+  }
+  try {
+    const text = await callOpenAINonStream(
+      apiKey,
+      voiceSummarySystemPrompt(body),
+      voiceSummaryUserPrompt({ ...body, posts }),
+    );
+    return jsonResponse({ voiceSummary: text.trim() });
+  } catch (err) {
+    console.error("voice-summary error:", err);
+    return jsonResponse(
+      { error: err instanceof Error ? err.message : "voice summary failed" },
+      500,
+    );
+  }
+}
+
+async function handleHashtags(apiKey: string, body: RequestBody): Promise<Response> {
+  if (!body.draft || body.draft.trim().length === 0) {
+    return jsonResponse({ error: "hashtags requires a draft" }, 400);
+  }
+  try {
+    const text = await callOpenAINonStream(
+      apiKey,
+      hashtagsSystemPrompt(body),
+      hashtagsUserPrompt(body),
+    );
+    const parsed = tryParseJson<{ hashtags?: unknown }>(text);
+    let hashtags: string[] = [];
+    if (parsed && Array.isArray(parsed.hashtags)) {
+      hashtags = (parsed.hashtags as unknown[])
+        .filter((x): x is string => typeof x === "string")
+        .map((x) => x.replace(/^#+/, "").trim())
+        .filter((x) => x.length > 0)
+        .slice(0, 8);
+    }
+    return jsonResponse({ hashtags });
+  } catch (err) {
+    console.error("hashtags error:", err);
+    return jsonResponse(
+      { error: err instanceof Error ? err.message : "hashtags failed" },
+      500,
+    );
+  }
+}
+
+async function handleImagePrompt(apiKey: string, body: RequestBody): Promise<Response> {
+  if (!body.draft || body.draft.trim().length === 0) {
+    return jsonResponse({ error: "image-prompt requires a draft" }, 400);
+  }
+  try {
+    const text = await callOpenAINonStream(
+      apiKey,
+      imagePromptSystemPrompt(body),
+      imagePromptUserPrompt(body),
+    );
+    const parsed = tryParseJson<{ prompt?: unknown }>(text);
+    let prompt = "";
+    if (parsed && typeof parsed.prompt === "string") {
+      prompt = parsed.prompt.trim();
+    } else {
+      prompt = text.trim();
+    }
+    return jsonResponse({ prompt });
+  } catch (err) {
+    console.error("image-prompt error:", err);
+    return jsonResponse(
+      { error: err instanceof Error ? err.message : "image-prompt failed" },
+      500,
+    );
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -460,16 +654,29 @@ serve(async (req) => {
     return jsonResponse({ error: "Invalid JSON body" }, 400);
   }
 
+  const apiKey = Deno.env.get("OPENAI_API_KEY");
+  if (!apiKey) {
+    return jsonResponse({ error: "OpenAI API key not configured" }, 500);
+  }
+
+  const requestedMode: Mode = (raw.mode as Mode) ?? "post";
+
+  // Auxiliary modes have their own validation paths.
+  if (requestedMode === "voice-summary") {
+    return handleVoiceSummary(apiKey, raw);
+  }
+  if (requestedMode === "hashtags") {
+    return handleHashtags(apiKey, raw);
+  }
+  if (requestedMode === "image-prompt") {
+    return handleImagePrompt(apiKey, raw);
+  }
+
   if (!raw.pillar || !raw.format || !raw.platform || !raw.ideaSource || !raw.ctaType) {
     return jsonResponse(
       { error: "Missing required fields: pillar, format, platform, ideaSource, ctaType" },
       400,
     );
-  }
-
-  const apiKey = Deno.env.get("OPENAI_API_KEY");
-  if (!apiKey) {
-    return jsonResponse({ error: "OpenAI API key not configured" }, 500);
   }
 
   const { body, mode, n, wantStream } = resolveRequest(req, raw);
