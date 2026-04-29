@@ -594,15 +594,16 @@ export default function First60DaysDay() {
       {dayNumber % 6 === 0 && <WeekWrapup weekNumber={day.week} />}
 
       {/* Footer nav */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-4 sm:gap-3 sm:pt-5">
         {prev ? (
           <Button
             variant="ghost"
+            size="sm"
             onClick={() => navigate(`/learning-track/first-60-days/day/${prev.dayNumber}`)}
             onMouseEnter={() => prefetchDay(prev.dayNumber)}
             onFocus={() => prefetchDay(prev.dayNumber)}
             onTouchStart={() => prefetchDay(prev.dayNumber)}
-            className="group -ml-3 gap-2 text-muted-foreground hover:text-foreground"
+            className="group -ml-2 gap-1.5 text-muted-foreground hover:text-foreground sm:-ml-3 sm:gap-2"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             <span className="flex flex-col items-start leading-tight">
@@ -618,6 +619,7 @@ export default function First60DaysDay() {
         {next && (
           <Button
             variant={nextUnlocked ? "default" : "secondary"}
+            size="sm"
             disabled={!nextUnlocked}
             aria-label={
               nextUnlocked
@@ -629,8 +631,10 @@ export default function First60DaysDay() {
             onFocus={() => nextUnlocked && prefetchDay(next.dayNumber)}
             onTouchStart={() => nextUnlocked && prefetchDay(next.dayNumber)}
             className={cn(
-              "group max-w-[60%] gap-2 whitespace-normal text-left sm:max-w-none",
-              nextUnlocked && "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95",
+              "group gap-2 whitespace-normal text-left",
+              nextUnlocked
+                ? "bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
+                : "h-auto basis-full justify-center py-2 text-xs leading-snug sm:basis-auto sm:py-1.5 sm:text-sm",
             )}
           >
             {nextUnlocked ? (
@@ -644,7 +648,7 @@ export default function First60DaysDay() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </>
             ) : (
-              <span className="text-xs leading-snug sm:text-sm">
+              <span>
                 {hasReflection && !quizPassed && !reflectionSubmitted
                   ? "Finish quiz + reflection to unlock"
                   : !quizPassed
