@@ -27,6 +27,8 @@ That question is too direct. Prospects give rehearsed answers (*"save for retire
 
 **The fix:** ask questions that prospects *can't* answer generically. Questions that force a specific memory or image to the surface — which brings the emotion with it.
 
+> **This is ARQ in action.** Surfacing hot buttons is one of the [10 jobs of a right question](../../first-60-days/week-8/day-47.md#the-10-jobs-a-right-question-arq-can-do) covered on First 60 Days Day 47 — specifically jobs 2 (identify priorities), 5 (motivate action), and 9 (get the prospect to self-reflect). Run every question below through the [3-point ARQ checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) before you ask: (1) does it lead to my objective, (2) is it specific enough to force a specific answer, (3) is it logical and indisputable. Generic versions ("what are your financial goals?") fail Gate 2.
+
 ---
 
 ## 9 social hot-button questions

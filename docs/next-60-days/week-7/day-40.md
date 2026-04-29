@@ -24,13 +24,15 @@ By the time you close today you'll run the Anchor-Disrupt-Ask framework on any r
 
 Objections come in three shapes. Each uses a different tool:
 
-| Class | Example | Tool |
-|---|---|---|
-| **Reflex / brush-off** (first 30 sec of a call or opener) | *"I'm busy."* *"Not interested."* *"Send me an email."* | **Anchor-Disrupt-Ask** |
-| **Clear objection** (explicit reasoning stated) | *"Too expensive."* *"Comparing with NTUC — theirs is cheaper."* | **ART** |
-| **Ambiguous objection** (vague / could mean multiple things) | *"Let me think about it."* *"I'm not sure."* | **Iceberg** |
+| Class | Example | Tool | Maps to First 60 Days framework |
+|---|---|---|---|
+| **Reflex / brush-off** (first 30 sec of a call or opener) | *"I'm busy."* *"Not interested."* *"Send me an email."* | **Anchor-Disrupt-Ask** | Day 44 Framework A (skip-Q version) |
+| **Clear objection** (explicit reasoning stated) | *"Too expensive."* *"Comparing with NTUC — theirs is cheaper."* | **ART** | Day 44 Framework A (full Acknowledge -> Question -> Reframe) |
+| **Ambiguous objection** (vague / could mean multiple things) | *"Let me think about it."* *"I'm not sure."* | **Iceberg** | Day 44 Framework A (Q step is the iceberg dive) |
 
 Using the wrong tool wastes the moment. Anchor-Disrupt-Ask on a C who just asked a precise question makes you sound like a cold-caller. ART on *"let me think"* tries to argue a ghost — you haven't surfaced what they're actually objecting to.
+
+> **The common engine across all three:** **ARQ - Asking the Right Questions.** Anchor-Disrupt-Ask ends in an Ask; ART's "T" turns around with a question; Iceberg's whole Step 1 is right-question diagnostics. The three tools differ in *when* the question fires (start, middle, surfacing), not in *whether*. The full ARQ deep-dive lives on First 60 Days [Day 47 - ARQ](../../first-60-days/week-8/day-47.md), and the ARQ question-bank for objections is in the [ARQ database](../../first-60-days/_source-scripts/arq-database.md) (Obsidian only).
 
 ---
 
@@ -108,7 +110,7 @@ flowchart LR
     S2 --> S3["Step 3 · Redirect<br/>to hot buttons"]
 ```
 
-**Step 1 — Clarify with right questions.** *Is it the premium? Is it the commitment? Is it needing to talk to someone? Is it a hidden concern?* Surface the real issue before trying to solve it.
+**Step 1 — Clarify with right questions (ARQ).** *Is it the premium? Is it the commitment? Is it needing to talk to someone? Is it a hidden concern?* Surface the real issue before trying to solve it. Run each clarifying question through the [3-point ARQ checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) before you ask it - the precision step matters most here, since vague clarifying questions invite vague answers.
 
 **Step 2 — Acknowledge and help resolve the actual concern** (not the surface phrase).
 
