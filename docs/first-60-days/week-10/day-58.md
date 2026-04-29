@@ -170,6 +170,54 @@ Married or divorced since policy inception, kids born but not named, parents sti
 
 **Rule:** during review, expect to find 3-5 of these 6 gaps per client. Don't over-recommend - pick the top 1-2 for initial recommendations.
 
+## 5b. Five portfolio-shape patterns that signal a restructure (not just a gap)
+
+Some gaps you fix by *adding* a product. Others are signals that the entire portfolio is built on a flawed structure - the right answer there is **restructuring**, not stacking. Five patterns to recognise:
+
+### Pattern 1 - Single-claim CI only (no multi-claim, no recurring CI)
+
+**What you'll see:** Client has $200K-$500K of CI cover via a Major CI rider on a whole-life policy, or a standalone CI plan. **Once they claim, that's it.** No second payout if cancer recurs, no payout if a heart attack follows the cancer.
+
+**The gap:** the *"I had a heart attack, now I'm scared of cancer too"* scenario. Single-claim CI plans don't address it.
+
+**The restructure:** layer **[UCC (Ultimate Critical Cover)](/product/core-ultimate-critical-cover)** on top - the unlimited reset benefit covers up to 5 separate claims (1-year waiting period between each), max 5x the base sum. Don't replace the existing CI; supplement it.
+
+### Pattern 2 - Endowment-only (no real cash-value engine)
+
+**What you'll see:** 1-2 endowment plans purchased years ago. They mature at fixed dates with fixed payouts. Cash value relative to total premiums paid is low - typically 1.5-2.5x at maturity.
+
+**The gap:** the client thinks they have wealth accumulation. They don't, really - returns barely beat inflation, and there's no protection bundled in.
+
+**The restructure:** keep endowments running until maturity (don't surrender - lost cash value), but supplement with a proper **wealth engine + protection split** - APA (or PWV for higher-net-worth) for the cash value, plus SFT for pure protection. The client's overall return profile improves materially.
+
+### Pattern 3 - Whole-life-only (the "accelerated payout" trap)
+
+**What you'll see:** One large whole-life plan from 8-15 years ago, with CI rider attached. Looks comprehensive at first glance.
+
+**The hidden problem:** **the CI rider is *accelerated***. When CI is claimed, the death/TPD coverage is reduced or eliminated by the same amount. Claim $300K CI on a $500K whole-life → death cover drops to $200K. If the policy terminates, the cash value also drops to zero.
+
+**The restructure:** the cleaner architecture is **decoupled** - SFT for pure death/TPD (cheap, high sum), UCC for pure CI (multi-claim, doesn't cannibalise life cover), and a pure ILP (PLP or PWV) for accumulation. Three jobs, three products. Each does its job without compromising the others. Whether to keep or surrender the existing whole-life depends on cash-value math (see [Day 55 next-60-days](/learning-track/next-60-days/day/55) - the cash-value trap).
+
+### Pattern 4 - PLP-equivalent (ILP-with-coverage hybrid)
+
+**What you'll see:** An ILP that bundles whole-life coverage and investment in one wrapper. Looks efficient. The mortality charge inside the ILP is doing the protection job; the funds underneath are doing the accumulation job.
+
+**The hidden problem:** at older ages the mortality charge inside the ILP escalates dramatically and starts eating into the investment value. The hybrid that looked efficient at 30 quietly destroys returns at 55-65.
+
+**The restructure:** decouple into **APA (Pro Achiever - pure investment) + SFT (pure protection)**. Better expected returns on the investment side (APA's bonuses + perpetual fee structure beat the ILP wrapper post-IIP), better protection economics on the SFT side. The "all in one wrapper" isn't actually cheaper once the long-horizon math runs.
+
+### Pattern 5 - Old whole-life with high cash value + low coverage
+
+**What you'll see:** A whole-life from a previous generation. Sum assured is $100K-$300K (looked big in 1995, looks small in 2026). Cash value has built up nicely over 20-30 years.
+
+**The opportunity:** the cash value is doing nothing - it's locked inside a policy with insufficient coverage for the client's current life stage.
+
+**The restructure (two paths):**
+- **Path A - Repurpose:** keep the whole-life, draw down or use the cash value as a base, and stack a modern protection layer (SFT + UCC) on top to bring total cover to current need.
+- **Path B - Convert + restructure:** if the cash value can be converted to a Platinum Wealth Venture (PWV) or similar, the client gets the wealth-accumulation engine they actually need. Or simpler: surrender or paid-up the old plan, redeploy capital into APA + SFT for a clean wealth + protection split. **Cash-value math must be transparent** - any restructure that destroys accumulated value for fresh commission is churning, not restructuring.
+
+> **Where the full restructuring playbook lives:** [Day 55 next-60-days - Policy Restructuring](/learning-track/next-60-days/day/55) covers the 5 objectives, the 4 factors to audit, the cash-value ethics trap, and the 3 cases where restructuring is the wrong call. Day 58 is for *spotting* the restructure-shaped problem during a policy review; Day 55 is for *running* the restructure conversation post-licence.
+
 ## 6. The "policy snapshot" deliverable
 
 A powerful value-add: after the review, give the client a clean **one-page summary** of their entire portfolio.

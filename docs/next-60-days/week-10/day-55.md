@@ -138,6 +138,85 @@ Client has 5 tiny ILPs from different advisors, each with different funds, diffe
 
 ---
 
+## Five common patterns by portfolio shape
+
+Beyond the categorical cases above, here are the five most common restructure shapes you'll see when running policy summaries (see [First 60 Days Day 58](../../first-60-days/week-10/day-58.md) for the upstream review process). Each pattern names the structural flaw, then the restructure architecture - not just "add another product."
+
+### Pattern 1 — Single-claim CI only (no recurring claims)
+
+**What the client owns:** $200K-$500K of CI cover via a Major CI rider on a whole-life, or a standalone CI plan that pays once and ends.
+
+**The structural flaw:** *"I had a heart attack, now I'm scared of cancer too"* — the second event has zero cover. Single-claim CI plans don't reset.
+
+**The restructure (supplement, don't replace):** layer **UCC (Ultimate Critical Cover)** on top of the existing CI — UCC's unlimited reset benefit covers up to 5 separate claims (1-year waiting period between each), max 5× the base sum. Existing CI keeps doing its job; UCC closes the multi-claim gap.
+
+**Cash-value math:** none — UCC is added, nothing surrendered. Clean restructure.
+
+### Pattern 2 — Endowment-only (low cash-value engine)
+
+**What the client owns:** 1-2 endowment plans purchased years ago. Fixed maturity, fixed payout. Cash value at maturity is typically 1.5-2.5× total premiums paid - barely beats inflation, and no protection bundled in.
+
+**The structural flaw:** the client *thinks* they have wealth accumulation. They have an inflation hedge with bad returns and no protection.
+
+**The restructure:** **keep endowments running until maturity** (surrendering early loses cash value - the trap from Section 5 above). Supplement with a proper **wealth + protection split** - APA (Pro Achiever) for the wealth engine, SFT for the protection. Client's portfolio shifts from "1 weak product" to "3 strong products doing 3 different jobs."
+
+**Cash-value math:** zero downside on existing - they continue. Net: better return profile + protection added at marginal cost.
+
+### Pattern 3 — Whole-life-only (the "accelerated payout" trap)
+
+**What the client owns:** one large whole-life from 8-15 years ago, with CI rider attached. Sum assured looks adequate. Cash value has built up.
+
+**The structural flaw — most people miss this:** the CI rider on a whole-life is *accelerated*. **Claiming CI reduces the death/TPD coverage by the same amount.** Claim $300K CI on a $500K whole-life → death cover drops to $200K. If the policy terminates after the CI claim, accumulated cash value is reduced or eliminated. Two of the three jobs (death + cash) get cannibalised by the third (CI).
+
+**The restructure (decouple):** the cleaner architecture is three separate products doing three separate jobs:
+- **SFT (Secure Flexi Term)** - pure death/TPD, high sum, low cost.
+- **UCC** - pure CI, multi-claim, doesn't cannibalise life cover.
+- **PLP or PWV** - pure ILP for accumulation.
+
+Each does its job without compromising the others. Whether to keep, paid-up, or surrender the existing whole-life depends on the cash-value math (run it transparently per Section 5). Often the right move is **paid-up** - stop paying premiums, keep accumulated cash value, layer the new architecture on top.
+
+**Cash-value math:** must run. Premium savings on the surrender side need to compare against accumulated and projected cash value. If math doesn't favour replacement, don't replace.
+
+### Pattern 4 — PLP-equivalent (ILP-with-coverage hybrid)
+
+**What the client owns:** an ILP that bundles whole-life coverage and investment inside one wrapper. The mortality charge inside the ILP is doing the protection job; the funds underneath are doing the accumulation job.
+
+**The structural flaw:** at older ages the mortality charge inside the ILP **escalates dramatically** and starts eating into the investment value. The hybrid that looked efficient at age 30 quietly destroys returns at 55-65. *"All in one wrapper"* sounds elegant; the long-horizon math doesn't agree.
+
+**The restructure (decouple):** **APA (Pro Achiever) + SFT** - separate the investment from the protection. APA's bonus structure and perpetual fee profile post-IIP beat the ILP wrapper for accumulation. SFT covers pure protection at a level premium for the chosen tenure - no escalating mortality charge.
+
+> **The pitch:** *"Right now you've got one product trying to do two jobs. The mortality charge inside it gets expensive after 50, and quietly drags your investment value down for 20+ years. APA + SFT is the same money split into two specialists - the wealth engine doesn't pay for protection, and the protection doesn't compromise the wealth. Long-run, you'll be materially ahead."*
+
+**Cash-value math:** if the existing ILP has built up value, decide whether to surrender (loss), reduce (paid-up where possible), or keep running while building APA+SFT alongside. Run all three scenarios and present transparently.
+
+### Pattern 5 — Old whole-life with high cash value, low coverage
+
+**What the client owns:** a whole-life from a previous generation. Sum assured is $100K-$300K (looked big in 1995, looks small in 2026). Cash value has built up nicely over 20-30 years.
+
+**The structural flaw:** the cash value is doing nothing - it's locked inside a policy with insufficient coverage for the client's current life stage. Premium continues but adds little.
+
+**The restructure (two paths):**
+
+**Path A — Repurpose without surrender.** Keep the whole-life, set it to **paid-up** (premiums stop, accumulated cash value continues to grow). Stack a modern protection layer (SFT + UCC) on top to bring total cover to current need. The existing cash value is preserved; the protection gap is closed by new products.
+
+**Path B — Convert + restructure.** Surrender the old whole-life and redeploy the released capital into **PWV (Platinum Wealth Venture)** for accumulation, plus **SFT** for pure protection. This works *only* if the cash value released exceeds what the whole-life would compound to over the remaining life - run the projection both ways.
+
+> **Where it crosses into churning:** if you recommend Path B without showing the projected whole-life cash value at maturity, you're hiding the offset. The recommendation needs to win on transparent math, not on premium savings or commission.
+
+**Cash-value math:** mandatory, both paths. Path A is almost always safer; Path B can be right but needs the full projection.
+
+---
+
+### How to choose between patterns when more than one applies
+
+A single client can show 2-3 of these patterns simultaneously (e.g. old whole-life + ILP-with-coverage + single-claim CI). **Don't fix all three in one meeting.** Sequence by leverage:
+
+1. **Cheapest fix first** — almost always Pattern 1 (UCC on top of existing CI). No surrender, low premium add, high coverage gain.
+2. **Then the structural decouple** — Patterns 3, 4, or 5 if the math supports it. Run cash-value transparently.
+3. **Wealth supplement** — Pattern 2 last. Endowments running to maturity is fine; the wealth + protection split builds alongside.
+
+Stacked in this order, the client experiences continuous coverage improvement without ever feeling churned.
+
 ## When restructuring is the wrong call
 
 Clear cases where you should *not* restructure:
