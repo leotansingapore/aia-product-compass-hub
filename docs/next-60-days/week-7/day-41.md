@@ -137,7 +137,9 @@ Then you walk through the recommendation and transition into one of the four clo
 
 ## The 4 Closing Techniques
 
-Four closes to have in your toolkit. Each fits different profiles and moments:
+Four closes to have in your toolkit. Each fits different profiles and moments.
+
+> **Every close is a question.** Look at the lines below: each one ends with an implicit or explicit ARQ - "correct?", "credit card or bank transfer?", "shall we proceed?", "are we good to proceed?". The close is not a statement that asks for the buy; it's a question that assumes it. The full ARQ deep-dive is on [Day 43](../week-8/day-43.md) and [Day 44 next-60-days](../week-8/day-44.md), and the foundational ARQ principle (with the 3-point checklist for testing any closing question) is on First 60 Days [Day 47](../../first-60-days/week-8/day-47.md).
 
 ### Close 1 — Assumptive Close
 Skip the *"will you?"* beat. Assume the yes and move to logistics.

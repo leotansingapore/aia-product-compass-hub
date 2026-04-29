@@ -15,6 +15,8 @@ tags: [first-60-days, week-8, skills, arq]
 
 > **Where you've already met ARQ:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that was ARQ applied to objection handling. Today, ARQ goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also ARQ.
 
+> **Where ARQ goes deeper:** **Next 60 Days Day 43-44** is the post-license, post-pitch deep-dive on ARQ - Day 43 covers the 6 Golden Rules, Day 44 covers Silence as a Tool (the 5-10 seconds after a loaded question that most new FCs ruin by talking). Today's content is the foundation; the deep-dive is the next layer once you're licensed and running real fact-finds.
+
 ## What you'll walk away with
 
 By the end of today you should be able to:

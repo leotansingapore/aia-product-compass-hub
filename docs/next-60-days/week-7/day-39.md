@@ -17,6 +17,8 @@ tags: [next-60-days, week-7, new-fc, hot-buttons, pain-before-gain, visualisatio
 
 By the time you close today you'll run the 3-part framework (Gather Intel → Preparation → Presentation) on every hot-button-driven pitch, use the 4-step execution inside the Presentation (Framing → More Framing → Technique → Motivate to Action), and apply visualisation ethically — *"Imagine if…"* questions that make the stakes real without manufacturing fear.
 
+> **The "Imagine if…" move is pure ARQ.** Visualisation works because the prospect builds the loss in their own head from a question, not from your statement. *"Imagine if you couldn't work for 6 months — what would your family have to give up first?"* runs through all three ARQ gates: it leads to objective (loss aversion activated), it's specific (one timeline, one decision point), and it's logical and indisputable (no prospect can answer "nothing" without sounding unreasonable). Day 43 and 44 next-60-days go deeper on the question grammar; First 60 Days [Day 47](../../first-60-days/week-8/day-47.md) covers the foundational ARQ principle.
+
 ---
 
 ## Why pain-before-gain works
