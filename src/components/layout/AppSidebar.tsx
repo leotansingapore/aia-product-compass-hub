@@ -29,7 +29,8 @@ import {
   Target,
   Headset,
   Trophy,
-  
+  Wrench,
+
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { prefetchHandlers } from "@/utils/routePrefetch";
@@ -160,6 +161,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
     { title: "Content Studio", url: "/content-studio", icon: Sparkles, dataAttr: undefined, sectionId: "content-studio" },
+    { title: "Tools", url: "/tools", icon: Wrench, dataAttr: undefined, sectionId: "tools" },
     ...(isAdminUser ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 

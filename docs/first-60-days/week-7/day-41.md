@@ -53,7 +53,7 @@ flowchart LR
     A --> B --> C --> A
 ```
 
-> **Tool: [Content Studio](https://content-studio-beige-eta.vercel.app).** The Tuesday draft is where most new FCs stall - blank page, no first sentence. Content Studio takes the topic + audience + platform and outputs an editable starter draft (Authority / Social / CTA structure baked in). The job is still to make it sound like you - cut 30%, add your own voice, swap in a real client moment. Treat it as scaffolding, not the final post.
+> **Tools:** [Content Studio](https://content-studio-beige-eta.vercel.app) breaks the Tuesday blank page - topic + audience + platform in, Authority / Social / CTA draft out. Still your job to add the voice. Full list of tools at [/tools](/tools).
 
 ## 2. What to post about - the idea mine
 

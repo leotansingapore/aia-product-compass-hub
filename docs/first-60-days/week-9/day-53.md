@@ -716,6 +716,8 @@ This appendix is the source script for **[Assignment 1 Part B](../assignments/as
 
 **[Insurance CST - Practice Run (20 slides)](/slides/day-53-insurance-cst-practice.html)** - self-contained Reveal.js deck for new FCs to deliver to a friend as honest, in-training practice. Opens with the "I am not licensed yet, this is practice, your feedback is what I am asking for" frame, walks through the four risks, the five AIA coverage types in plain English, sample plans, and a soft next step. Dark mode, mobile-responsive, includes speaker notes.
 
+> **Tools:** Practice deck at [/slides/day-53-insurance-cst-practice.html](/slides/day-53-insurance-cst-practice.html). Full list at [/tools](/tools).
+
 ## Related
 
 - Previous: [[day-52|Day 52 - CST: The Wealth Angle]]

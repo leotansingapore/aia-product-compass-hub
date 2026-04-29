@@ -674,4 +674,5 @@ _Source: Academy scripts library, audience=general, category=confirmation._
 - Previous: [[../week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]]
 - Next: [[day-44|Day 44 - Handling Resistance & Objections]]
 - Practice tool: [Content Studio](https://content-studio-beige-eta.vercel.app) for digital prospecting drafts
+- All training tools: [/tools](/tools)
 - Week 8 summary: [[README|Week 8 - The Approach & First Meetings]]

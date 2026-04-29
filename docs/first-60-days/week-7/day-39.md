@@ -24,6 +24,8 @@ By the end of today you should be able to:
 
 > **What you do with the list:** Project 100 is the *input* to a deliberate funnel - not just names to call randomly. The canonical 10-step flow from passive Instastory engagement to booked business appointment lives in [The Warm Market Funnel](../warm-market-funnel.md). Build the list today; pick the top 30 contacts to run through the funnel this quarter.
 
+> **Tools:** [Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool) drafts your first 100 messages once the list is built. Full list at [/tools](/tools).
+
 ---
 
 ## 1. What is Project 100?

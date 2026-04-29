@@ -51,6 +51,7 @@ const CMFASChat = lazyWithRetry(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazyWithRetry(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazyWithRetry(() => import("./pages/RoleplayFeedback"));
 const ContentStudio = lazyWithRetry(() => import("./pages/ContentStudio"));
+const Tools = lazyWithRetry(() => import("./pages/Tools"));
 
 const Categories = lazyWithRetry(() => import("./pages/Categories"));
 const AdminDashboard = lazyWithRetry(() => import("./pages/AdminDashboard"));
@@ -153,6 +154,7 @@ const App = () => (
                     <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RequireTier feature="roleplay"><RoleplayFeedback /></RequireTier></RequireAuth>} />
                     <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/content-studio" element={<RequireAuth><ContentStudio /></RequireAuth>} />
+                    <Route path="/tools" element={<RequireAuth><Tools /></RequireAuth>} />
                     <Route path="/admin" element={
                       <RequireAuth>
                         <ProtectedAdminPage>

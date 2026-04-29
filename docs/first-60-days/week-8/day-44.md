@@ -21,6 +21,8 @@ By the end of today you should be able to:
 2. **Distinguish** a genuine "no" from a reflex "no" - and handle each differently.
 3. **Stay calm** in the moment when an objection feels personal (it almost never is).
 
+> **Tools:** [Scripts Database](/scripts) for the canonical objection-handling scripts. [Roleplay](/roleplay) to practise your responses. Full list at [/tools](/tools).
+
 ---
 
 ## 1. Reflex vs real objections

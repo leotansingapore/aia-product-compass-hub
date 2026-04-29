@@ -248,6 +248,8 @@ If you're in Month 8 and still 90% natural market, **something is wrong.** Eithe
 
 Here are the canonical scripts for warm-market openers, market-survey rapport, and referral asks. Practise them out loud, then make them yours.
 
+> **Tools:** [Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool) helps draft your first 100 messages with audience and life-stage hooks already wired in. Full list at [/tools](/tools).
+
 _Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
 
 ### Warm Market - Conversation Openers (by Life Stage)
