@@ -37,7 +37,7 @@ This is the approach for **anyone you already know**. Friends, ex-colleagues, cl
 - The "by the way" call when meeting friends socially.
 - Texting a friend who never picks up the phone.
 
-**Volume target before you move into appointments:** 30 completed market surveys. That's the floor. Below 30, you don't yet have the reps for your tonality and pace to settle.
+**Volume target before your RNF clears:** 30 completed market surveys. That's the floor, not a ceiling. Below 30, you don't yet have the reps for your tonality and pace to settle - and you'll carry that stiffness into your real, post-licensed warm market. The licensing window (CMFAS / M9 / M9A / HI / RES5 study and exams) is exactly when you put these reps in. Full practice ladder + log template + failure modes in [Assignment 2 - Part C](../assignments/assignment-02.md).
 
 ### The mindset shift that unlocks the warm call
 
@@ -61,7 +61,15 @@ This is the canonical AIA market survey script. Use it word-for-word until it be
 **Agenda - the survey ask**
 > As you may have learnt, I am intending to embark on the career of a Financial Advisor (or: currently interning with a Financial Services Agency) and I am tasked to do a simple market survey with the people that I know. Would you be able to help me by giving me 5 minutes of your time?
 
-*(They almost always say yes. Run Survey questions 1, 2, 3.)*
+*(They almost always say yes. Run the 3 survey questions:)*
+
+> **Q1.** Do you have any insurance policies or financial plans? (Yes / No - if no, why?)
+>
+> **Q2.** When was the last time you did a review of your policies?
+>
+> **Q3.** How do you feel about your existing consultant's service?
+
+These three questions are the *survey*. They take 2-3 minutes. Don't react, don't sell, don't recommend - just listen and write the answers down. The data isn't the point; the *practice* of running a structured 5-minute conversation is the point.
 
 **Setting the appointment - using survey question 4**
 > Thanks [name]. By the way, when I am officially licensed to start my practice (or: let's say I decide to embark on the practice as a Financial Advisor), one of my priorities is to extend my service to my closest friends. You are one of those whom I highly regard. Till then, may I get in touch with you for a 30-minute session to share with you the type of solutions I can offer?
@@ -84,9 +92,9 @@ This is the canonical AIA market survey script. Use it word-for-word until it be
 >
 > *(Optional)* May I have your permission to add you on Instagram or Facebook so we can keep each other updated?
 
-### The 30-meeting practice rule
+### The 30-meeting practice rule (the RNF gate)
 
-> Do **30 of these warm market surveys** before you move into the application/proposal phase.
+> Do **30 of these warm market surveys before your RNF goes through.** It's a hard floor for a reason - covered below.
 
 Why 30? Because:
 - The first 5 will feel awkward. Your tonality is stiff. You over-apologise.
