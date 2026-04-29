@@ -174,6 +174,8 @@ If your digital lead-gen is flat, run a **30-day push.** This is a structured ex
 - Publish 3 posts + 1 carousel + 10-15 stories.
 - Engage on 10 other people's posts daily.
 
+> **Tool: [Content Studio](/content-studio).** Production week is where the push lives or dies. Use Content Studio to generate the 10-12 pillar drafts (it accepts pillar + audience + platform and produces Authority / Social / CTA-structured drafts). Never publish raw output - rewrite into your voice, swap generic examples for real client moments, then publish. The tool's job is scaffolding so you don't burn 4 hours on each post; your job is the voice.
+
 ### Week 3 - Amplification
 - Double down on what's working.
 - Reach out to 20 warm-market contacts: "Just started posting more - if you find any of this useful, sharing would help."
