@@ -174,7 +174,16 @@ Married or divorced since policy inception, kids born but not named, parents sti
 
 A powerful value-add: after the review, give the client a clean **one-page summary** of their entire portfolio.
 
-**What to include:**
+### The canonical template
+
+The team's standard Policy Summary deck lives in Google Slides:
+
+- **[Policy Summary template (Google Slides)](https://docs.google.com/presentation/d/1jSd8ItG4iYoqG15vNucdznF6ui7NbsQj/edit?usp=sharing&ouid=111495546637672510643&rtpof=true&sd=true)** - the master template. Make a copy, rename, fill in the client's data.
+- **[Sample completed Policy Summary](https://docs.google.com/presentation/d/1CHEgyoSgNfo7TSARzF75UnlPjHoyUtcy/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** - a worked example to anchor what "good" looks like before you fill yours in.
+
+Open the template and the sample side-by-side the first time. The structure does most of the work for you - the discipline is filling each section with the client's actual numbers, not freestyling the layout.
+
+**What every summary includes:**
 - Table of all policies with key data (insurer, type, sum assured, premiums, end date if applicable).
 - Total coverage across all.
 - Identified gaps vs baseline.
@@ -185,6 +194,28 @@ A powerful value-add: after the review, give the client a clean **one-page summa
 - They keep the summary - it becomes a reference document.
 - It demonstrates professionalism and value - **before any sale.**
 - When spouse, parents, or friends ask about their own policies, they'll remember your work.
+
+## 6b. Practise with friends *before* you're licensed
+
+This is the highest-leverage pre-licence activity in the entire 60 days, and most new FCs miss it.
+
+Even before your RNF clears, you can:
+
+1. **Pick 3-5 close friends from your Project 100.** Tell them honestly: *"I'm in training, and one of the best ways for me to get reps is to do a policy summary for someone whose policies I can actually see. Want me to do yours? Free, just send me whatever policy docs you've got."*
+2. **Get hold of their policy documents.** They'll dig out PDFs, screenshots from the AIA+ app, or emailed renewal letters. Whatever they have.
+3. **Build the summary using the canonical template.** Fill in the table. Compute their gaps against the baseline (10x life, 5x major CI, 2x early CI, max-tier hospital, 60-70% disability income).
+4. **Walk them through it - no recommendations.** *"Here's what you've got. Here's where the gaps are. When I'm licensed in [month], we'll come back and look at how to close them."*
+5. **Save the summary.** When licensing clears, you re-engage with: *"I made you that summary back in March. I'm licensed now - want to look at the gaps together?"*
+
+**Why this is the best pre-licence rep:**
+- You build the muscle memory for reading insurer policy docs across providers (AIA, Pru, GE, Manulife, FWD, NTUC, Singlife, Etiqa).
+- You produce a tangible deliverable - the friend sees value before any sale conversation.
+- The "I'll come back when I'm licensed" handoff naturally schedules the post-licence appointment - no awkward re-pitch needed.
+- Friends who got value tell other friends. Referrals start before your first commission.
+
+**Compliance note:** during the pre-licence summary you are **not advising, recommending, or selling**. You are doing a structured read-out of what they already own and noting gaps against generic benchmarks. State this explicitly: *"I can't recommend anything yet because I'm not licensed. But I can show you what you've got - that's allowed."*
+
+**Day 43's warm-market survey** (`/learning-track/first-60-days/day/43`) and the policy-summary practice are complementary - the survey gets the conversation started, the summary closes the loop with a tangible deliverable.
 
 ## 7. The ethical review - what to AVOID
 

@@ -84,7 +84,7 @@ export const CURATED_OBJECTIONS: CuratedObjection[] = [
       },
     ],
     watchOut:
-      "Never label the existing policy as bad. Reframe to free second opinion - they own a policy; you'd help them turn it into a plan.",
+      "Never label the existing policy as bad. Reframe to free second opinion - they own a policy; you'd help them turn it into a plan. The deliverable for the free second opinion is the canonical Policy Summary deck (template + sample linked from Day 58 'Policy Summary - Riders, Exclusions, Structure').",
     source: { day: "Day 44 — Handling Resistance & Objections", path: "/learning-track/first-60-days/day/44" },
   },
   {

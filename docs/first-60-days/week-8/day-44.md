@@ -404,6 +404,8 @@ The ARQ buys you 5 seconds to pick the right reframe. Each sub-flavour gets a di
 
 **The principle:** never tell the prospect their existing policy is bad. Tell them they own a *policy* and you'd help them turn it into a *plan*. The 30 minutes is positioned as a free second opinion, not a sales conversation.
 
+**The deliverable for the free second opinion** is the canonical Policy Summary deck - the [template](https://docs.google.com/presentation/d/1jSd8ItG4iYoqG15vNucdznF6ui7NbsQj/edit) + a [sample completed summary](https://docs.google.com/presentation/d/1CHEgyoSgNfo7TSARzF75UnlPjHoyUtcy/edit) live in Google Slides. [Day 58](../week-10/day-58.md) covers how to read any insurer's policy docs and build the summary; pre-licence FCs should be running this on 3-5 friends' policies as the highest-leverage practice rep.
+
 _Source: Academy script bank + ARQ adaptation. Audience=warm-market or cold; category=objection-handling._
 
 ### "Already have an advisor"
