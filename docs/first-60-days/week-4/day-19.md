@@ -23,6 +23,8 @@ By the end of today you should be able to:
 2. **Count** the right number (rejections, not appointments).
 3. **State** the Law of Large Numbers ratios you'll be tracking for the next 60 days.
 
+> **Where the actual scripts live:** today's day frames *why* prospecting works (numbers, not luck). The *how* lives in three companion docs - [The Warm Market Funnel](../warm-market-funnel.md) (10-step social-first flow), [Day 43 - Warm Market Survey + Cold Calls](../week-8/day-43.md), and [Day 39 - Project 100](../week-7/day-39.md) (the list this all runs against).
+
 ---
 
 ## 1. What prospecting actually is

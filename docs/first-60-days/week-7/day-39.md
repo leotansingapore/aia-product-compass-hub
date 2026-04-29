@@ -22,6 +22,8 @@ By the end of today you should be able to:
 2. **Segment** prospects into the right buckets for the right activity.
 3. **Maintain** the list as a living asset, not a one-time exercise.
 
+> **What you do with the list:** Project 100 is the *input* to a deliberate funnel - not just names to call randomly. The canonical 10-step flow from passive Instastory engagement to booked business appointment lives in [The Warm Market Funnel](../warm-market-funnel.md). Build the list today; pick the top 30 contacts to run through the funnel this quarter.
+
 ---
 
 ## 1. What is Project 100?

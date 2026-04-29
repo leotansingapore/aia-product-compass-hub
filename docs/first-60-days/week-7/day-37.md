@@ -23,6 +23,8 @@ By the end of today you should be able to:
 3. **Nurture** a "not now" prospect for 6-12 months until they're ready.
 4. **Structure** a weekly prospecting rhythm that generates 3-5 first meetings every week.
 
+> **For the social-first warm path:** the full 10-step funnel (Instastory -> Casual Meet -> 2-Liner Hook -> Business Appointment) lives in the canonical [Warm Market Funnel](../warm-market-funnel.md) reference. Use that doc when the relationship is genuinely warm and the contact is a Project 100 name; use the cold-call flow on Day 43 for everyone else.
+
 ---
 
 ## 1. The 6-step Financial Planning Process - where the Approach sits

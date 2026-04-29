@@ -31,6 +31,8 @@ By the end of today you should be able to:
 
 This is the approach for **anyone you already know**. Friends, ex-colleagues, classmates, family contacts, your Project 100 list. They will pick up the phone because of who you are - not because of what you're offering.
 
+> **Phone-first vs social-first.** This Market Survey is the **phone-first** warm path - good for contacts you've spoken to recently or who'd answer a ring. For contacts you've drifted from but who you still see on Instagram or LinkedIn, run the social-first [Warm Market Funnel](../warm-market-funnel.md) instead - same destination (a 30-min business appointment), softer doorway through Instastory engagement and casual meet-ups. Pick by channel, not preference.
+
 ### When you use it
 
 - Your Project 100 list (Day 19).
