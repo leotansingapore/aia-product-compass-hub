@@ -131,17 +131,12 @@ The Day 39 - Project 100 page treats this in full, with the priority quota (<=25
 
 ### Make these scripts your own before you send anything
 
-Every script below is the *floor*, not the ceiling. Read each one out loud. If it doesn't sound like something you'd actually say to a friend, rewrite — but the target is **professional warm**, not text-speak.
+Every script below is a starting point, not a script to read off. Two rules:
 
-The voice the curriculum is calibrated to:
-- **Sentence-cased, fully grammatical messages.** Not lower-case shorthand, not sprinkled "lah/sia/haha". A working professional in their late 20s writing to another working professional - warm but not casual.
-- **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"my pleasure"*, *"to service your financial needs"* — these land when the writer means them. Use them once per message, not three times.
-- **Disclaimers do the heavy lifting on tone.** *"Sharing only"*, *"no pitch"*, *"no agenda"*, *"no need to reply"*, *"random question"*, *"out of curiosity"*, *"quick one"* — these signal *"this isn't a sales pitch"* without the message having to feel casual.
-- **Cut US business jargon.** *"Sounding board"*, *"drop you a line"*, *"planting a flag"*, *"opening the door"*, *"be your first call"*, *"reach out"*, *"circle back"*, *"touch base"*, *"going forward"* — none of these belong. Plain English instead.
-- **Mild SG turns are fine where natural.** *"Long time!"*, *"Hey [name]"*, *"Quick one"*, *"Honestly"*, *"Totally fair"* — these read as warm and Singaporean without being forced. *"Eh [name]"* works for a real friend, but default is *"Hey [name]"*.
-- **Short paragraphs, scannable.** WhatsApp-friendly, but full sentences inside each.
+1. **Read each one out loud.** If it doesn't sound like something *you* would actually say to a friend, rewrite the wording until it does. Keep the structure and the disclaimers ("no pitch", "no agenda", "no need to reply") — those are doing real work — but the rest should land in your voice.
+2. **Match the relationship.** A best friend gets a more casual version. An ex-colleague you respect gets a slightly more formal version. The script doesn't dictate the register; the relationship does.
 
-The versions below sit at this register. Adjust closer to casual SG only if the relationship is genuinely close enough — never the other way round.
+The mistake to avoid: copying these verbatim and sending them as-is. The friend will read the message, sense it was scripted, and the warmth dies in the first line.
 
 ### The "market survey" opener
 
