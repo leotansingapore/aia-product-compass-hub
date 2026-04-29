@@ -12,16 +12,18 @@ tags: [first-60-days, week-7, skills]
 
 # Day 37 - The Approach: Cold, Warm, Follow-Up & Nurture
 
-> **The one idea for today:** The Approach is not the first step to a sale - it's the first step to a **lifetime relationship.** Cold, warm, and referred prospects each need a different opener, a different follow-up rhythm, and a nurture plan that keeps them alive long after "not now."
+> **The one idea for today:** The Approach is not the first step to a sale - it's the first step to a **lifetime relationship.** Warm and cold prospects each need a different opener, a different follow-up rhythm, and a nurture plan that keeps them alive long after "not now." (Referred prospects come once you're post-RNF with a client base - that's a Next 60 Days topic.)
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Open** a warm, cold, or referred conversation using a script you'd actually say out loud.
+1. **Open** a warm or cold conversation using a script you'd actually say out loud.
 2. **Run** a 7-touch follow-up sequence after a first meeting - without feeling pushy.
 3. **Nurture** a "not now" prospect for 6-12 months until they're ready.
 4. **Structure** a weekly prospecting rhythm that generates 3-5 first meetings every week.
+
+> **Why no referrals lesson today:** before RNF you don't have clients yet, so referred prospects aren't a working channel for you. Referral-asking, the FACT method, the 4 angles, intro scripts and the borrowed-trust window are all covered properly in [[../../next-60-days/week-5/README|Next 60 Days - Week 5: Referrals From Day One]] once you're licensed and have closed first cases.
 
 > **For the social-first warm path:** the full 10-step funnel (Instastory -> Casual Meet -> 2-Liner Hook -> Business Appointment) lives in the canonical [Warm Market Funnel](../warm-market-funnel.md) reference. Use that doc when the relationship is genuinely warm and the contact is a Project 100 name; use the cold-call flow on Day 43 for everyone else.
 
@@ -47,19 +49,17 @@ flowchart LR
 
 **"No one buys everything at one go."** Year 1: hospital + basic term. Year 3: CI after a scare. Year 5: regular savings. Year 8: ILP for the kid. Year 12: retirement top-ups. Year 25: estate planning. Same client, 7+ sales events.
 
-## 3. Three prospect types - three different approaches
+## 3. Two prospect types you have today - two different approaches
 
 ```mermaid
 flowchart LR
     A["Type A . Warm<br/>Family + friends + people you've<br/>drifted from for years"]
-    B["Type B . Referred<br/>Introduced by existing client"]
-    C["Type C . Cold<br/>Digital, events, outreach"]
+    C["Type B . Cold<br/>Digital, events, outreach"]
     A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
-    B -->|"Hardest to get<br/>easiest to close"| M
     C -->|"Slowest route<br/>but scalable"| M
 ```
 
-You cannot use the same opener on all three. The rest of today is the playbook for each.
+> **Referred leads come later.** Once you have closed clients (post-RNF), referrals become the highest-converting channel - borrowed trust closes 3x more than cold. That whole playbook is in [[../../next-60-days/week-5/README|Next 60 Days - Week 5]]. For now, your two real channels are warm and cold, and you cannot use the same opener on both. The rest of today is the playbook for each.
 
 ---
 
@@ -76,6 +76,20 @@ So yes, the agency helps you with cold. But if you're skipping warm because it f
 Warm prospecting is not *"hey, let's chat about insurance."* Warm is **being present.** Showing up. Being the person your friends already trust, so when life happens, you're the first call.
 
 > The worst feeling in this job is finding out your friend bought from some random advisor who got there first. Don't let that be you.
+
+### People are waiting - the part nobody tells new FCs
+
+The reason warm prospecting feels disingenuous isn't because it *is* disingenuous. It's because the new FC hasn't internalised this yet: **most of your warm contacts are quietly waiting for someone they trust to help them get started.**
+
+They know they should sort out protection. They know they should look at their CPF. They know retirement isn't going to plan itself. What they don't have is a person - someone they trust, who actually knows them, who isn't going to pitch off a script. They've been delaying because the only options in front of them are strangers off Google or that one school friend who became an agent and immediately got pushy.
+
+Read that again. Some of your friends are *literally* waiting for someone to start the conversation properly. You showing up - gently, without an agenda, just naming that you're now the person who can help - is a gift, not an imposition.
+
+The reverse is also true: **people smell intentions from a mile away.** If you message a friend with the silent goal of *closing a sale*, they'll feel it. The wording on screen will read fine and still land wrong. You don't fix that with better copy - you fix it by sorting out the question of *"do I genuinely want to help this person, or do I want their commission?"* before you hit send.
+
+Once the answer is the first one, there's nothing awkward about reaching out. You're a friend offering to be useful. That's it.
+
+> A consultant with genuine intent reaching out to friends should feel **proud**, not embarrassed. The embarrassment most new FCs feel is a signal that they haven't sorted their own intent yet - not that the reach-out itself is wrong.
 
 ### The Taxi Cab Theory - applied to insurance
 
@@ -135,6 +149,95 @@ Don't pitch. Ask for help.
 
 > "Hey [name] - sharing only, I'm becoming a Financial Consultant soon. As part of training, I need to do a market survey - basically understand what policies you have and help my friends do up a one-page summary of all their plans. No pitching anything. So if you let me practise on yours, I can help you lay everything out in one place. Can?"
 
+### Lower-pressure angles - when "training reps" framing feels too forced
+
+The three openers above ask the friend to do *you* a favour (help with a survey, let you practise, give feedback). That works for ~70% of contacts. For the other 30% - the close friends who'd see through a "favour" framing, the distant friends where formality fits better, the proud friends who don't want to be your guinea pig - drop the training reps angle entirely and just put the door on the table.
+
+The honest reason you're reaching out is the strongest reason: you'd rather it be you than a stranger when life shifts.
+
+**The "first call" angle** (close friends who respect honesty over scripts):
+
+> "Hey [name] - quick one. You might've seen, I've moved into financial consulting at AIA. Not messaging to pitch you anything. Just wanted to put it on record that if anything financial ever comes up - protection, savings, retirement, even a quick CPF question - I'd want to be your first call. No pressure to act on it. Just don't want you Googling some stranger when I'm right here."
+
+**The "privilege to serve" angle** (friends you respect, where formality lands well):
+
+> "Hey [name] - sharing only. I'm now an FC at AIA. Most of my friends already have something in place, and that's totally fine. But if there's ever a money question you'd rather ask someone you actually know than someone random - it would honestly be a privilege and a pleasure to be that person for you, for any financial need that comes up. No agenda, no pitch. Just opening the door."
+
+**The "right person, right time" angle** (distant warm - old classmates, ex-colleagues, drifted friends):
+
+> "Hey [name] - long time. Sharing only: I've started as a Financial Consultant at AIA. Not chasing anything from you today. The honest reason I'm dropping you a line - most people end up sorting out their first plan or their CPF when life shifts: a job change, a baby, a parent's diagnosis, a house. When that day comes for you, I'd rather you message me than start from scratch with a stranger. So consider this me planting a flag. When you're ready, I'm here."
+
+**The "rather it be me than a stranger" angle** (close-but-not-best friends):
+
+> "Hey [name] - joining AIA as an FC. I know this kind of thing comes up in everyone's life eventually, and most people end up working with whoever happened to be in front of them at the moment. I'd rather you have someone you actually know and trust handling it. If you ever want a sounding board on anything money-related - even a what-am-I-doing-with-my-CPF kind of question - just drop me a line. No appointment, no pitch."
+
+**The "quietly here" angle** (very distant warm - haven't spoken in years):
+
+> "Hey [name] - long time, hope you're well. Just wanted to share that I've moved into financial consulting. Not reaching out to sell you anything - half the people I tell already have things sorted, which is great. The reason I'm messaging is so you know who to ask if a question pops up in the next year or two. That's it. Take care."
+
+**Why these work better than "training reps" framing for some contacts:**
+
+- They don't ask the friend for a favour. Asking a busy friend to "help me practise" can feel like a chore, especially for older or more senior contacts.
+- They name the real reason out loud: you'd rather it be you than a stranger when their light turns on.
+- They lower the response cost. The friend doesn't have to commit to a meeting, a survey, or a coffee. They just have to acknowledge the door is open. Many will respond with their own opening *"actually, can I ask you something..."*
+- They sound like *you*, not a recruiter. Read each one out loud and ask: *"would I send this to a friend if I weren't an FC?"* If yes, it's good.
+- They are honest. Honesty is the only frame that doesn't decay - the survey/practice angles have a half-life because the friend eventually realises you're past training.
+
+### The pre-send filter
+
+Before you tap send on any of these, sit with one question for 10 seconds:
+
+> *"If this person says no, will I still want to grab a beer with them next month?"*
+
+If yes, your intent is clean and the message will land right. If no, your intent is the problem - not the script. Re-read the *"People are waiting"* section above and don't send until that flips. The wording matters far less than the energy behind it; people read the energy first, the words second.
+
+### Most of them already have an agent - and most of those agents have ghosted them
+
+A common reason new FCs hold back from warm market: *"they probably already have an agent."* They might. The reality on the ground is messier, and once you understand it, the conversation gets a lot easier.
+
+What you'll actually find when you have a casual catch-up:
+
+- The agent they bought from years ago has stopped contacting them entirely. No annual review, no birthday message, no follow-up after a job change or new baby.
+- The "agent" is their *parents'* agent - someone in their fifties or sixties who sold the parents a plan in the 1990s and never built a relationship with the kid. The kid took over the policies by inheritance, not choice. They've never even met this person.
+- The agent has left the industry but nobody told the client. The policy is still in force, but service is now a phone tree at the insurer.
+- The client is technically "serviced" but feels invisible - *"yeah I have someone, but I haven't heard from them in two years."*
+
+You don't surface any of this by asking *"do you have an agent?"* (the answer is almost always yes). You surface it by spending 30 minutes on a normal coffee catch-up and letting the topic come up naturally - *"oh, when did you get that plan? Who handled it for you?"* or *"hospital plan - yeah, who's your guy for that?"*
+
+When you hear *"actually I haven't spoken to him in years"* or *"that's my dad's agent, I've never even met him"*, you've found the opening. The friend isn't bound to that agent in any meaningful way - they just hadn't been given a reason to switch. You being present, accessible, and actually their friend *is* the reason.
+
+#### What this sounds like, from the client's side
+
+The frustration on the client side is bigger than most new FCs realise. Spend any time on this and you'll hear the same complaint, almost verbatim:
+
+> *"To me it's crazy - who's going to service me when they pass away? When I need to make claims the most at 50 years old, they're no longer around. Agents should grow up and grow old together with you."*
+
+That's the unmet need sitting underneath every warm conversation. The client isn't shopping for a better illustration. They're looking for someone who'll still be there in 30 years - when their parent has a stroke, when their own CI claim happens, when they're sorting out their kids' policies. **You being 25-35, just starting your career, planning to be in this for the long run - that is the strongest possible value proposition for warm contacts in the same age bracket.**
+
+#### How to surface it in conversation (without sounding pitchy)
+
+You don't have to pitch this. You just have to ask honestly:
+
+> "Random one - when was the last time your agent actually checked in with you? Like a proper review, not a Christmas broadcast."
+
+Or:
+
+> "Who handles your stuff if you need to make a claim or update a beneficiary? Just curious."
+
+8 out of 10 times you'll hear something between *"honestly, no idea"* and *"I haven't heard from them in years."* That's not your invitation to pitch. It's your invitation to say:
+
+> "Yeah, that's actually one of the reasons I joined this industry. So many people are floating without a real consultant. Whenever you're ready to have someone who's properly going to be around for the long run, I'm here. No rush."
+
+#### Why this isn't poaching
+
+A common mental block: *"isn't it wrong to take a friend away from their existing agent?"* If the existing agent is genuinely servicing the client, yes - that's not a relationship to disrupt. But:
+
+- **Servicing means servicing.** Annual review, regular contact, claim support, life-event check-ins. If none of that is happening, the agent has effectively ended the relationship without telling the client. You're not poaching; you're filling a vacuum.
+- **The client owns the decision.** Switching is the client's call, not yours. You don't have to convince them. You just have to be visible and competent so that when they decide *"actually, I want someone who's around"*, you're the obvious option.
+- **It's genuinely better for them.** A 50-year-old client whose 70-year-old agent has retired is in a worse position than a 50-year-old client with a 45-year-old consultant who'll still be active when their CI claim hits at 65. You being there longer is the upgrade - not a marketing line, a structural fact.
+
+The friend isn't yours to take. But if their existing agent has already left the room, your job is to walk in.
+
 ### The 3 things you do in a warm first meeting
 
 1. **Ask about them** - career, family, what's on their mind financially, what they worry about.
@@ -156,38 +259,7 @@ Practise this out loud until it sounds like you, not a script. The test: can you
 
 ---
 
-## 6. Referred approach playbook (Type B)
-
-**The rule:** referred prospects arrive with borrowed trust. Don't waste it.
-
-### How to ask for the referral (from an existing client)
-
-Do this right after a claim got paid, an annual review that went well, or any moment where the client just said "thanks":
-
-> "Glad I could help with this one. One small favour - the way I grow my practice is through intros from people like you, not cold calls. Got 1 or 2 people you think could use the same conversation we had? Family, colleague, close friend - anyone who comes to mind. No pressure at all. If a name pops up, a warm intro from you would mean a lot."
-
-**Don't:**
-- Ask for "anyone you know." Vague = zero names.
-- Ask for names before you've delivered real value.
-- Accept a phone number without an intro - warm intros close 3x more than cold referrals.
-
-### How the intro should happen
-
-Ask the client to send **one message on your behalf, right there in front of you**:
-
-> "Hey [name] - this is [your name], my financial consultant. She helped me sort out my protection last month. Thought of you because you mentioned [specific thing]. She'll reach out, worth 30 mins, trust me."
-
-Once the client hits send, **you message the referred prospect within 24 hours**. Don't wait. The borrowed trust has a half-life of about a day.
-
-### Your opening message to the referred prospect
-
-> "Hi [name] - [referrer] just dropped me your contact. She mentioned you were thinking about [specific thing she said]. I helped her with exactly that last month, so happy to share what we did. Coffee or a 30-min Zoom, totally up to you - no pitch, just a chat. Which week works better - this week or next?"
-
-**Why this works:** the referrer has done the trust transfer. You only need to confirm the topic and propose a time.
-
----
-
-## 7. Cold approach playbook (Type C)
+## 6. Cold approach playbook (Type B)
 
 **The challenge:** no pre-existing trust. You build it **before** the first meeting, not in it.
 
@@ -211,7 +283,7 @@ Once they've replied and engaged with the resource:
 
 > "Glad it landed. If you ever want a proper walk-through of how this applies to your own situation - 30 mins, no pitch, just a conversation - I'm happy to do that. No rush, just keep me in mind."
 
-Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 9).
+Many say yes in that moment. Those who say "not now" go into your **nurture list** (Section 8).
 
 ### Cold sources that actually work in Month 1-6
 
@@ -224,7 +296,7 @@ Many say yes in that moment. Those who say "not now" go into your **nurture list
 
 ---
 
-## 8. The 7-touch follow-up sequence (after any first meeting)
+## 7. The 7-touch follow-up sequence (after any first meeting)
 
 Most first meetings don't close. That's normal. What kills conversion isn't the meeting - it's the **dropped follow-up**.
 
@@ -270,7 +342,7 @@ What this line is doing:
 
 ---
 
-## 9. The nurture system (keeping "not now" prospects alive)
+## 8. The nurture system (keeping "not now" prospects alive)
 
 After touch #7, every prospect who didn't convert goes into a **nurture list**. The goal: stay top-of-mind for 6-12 months without being annoying.
 
@@ -339,7 +411,7 @@ Write that somewhere you'll see it on days when prospecting feels slow. It is th
 
 ---
 
-## 10. Weekly prospecting rhythm
+## 9. Weekly prospecting rhythm
 
 The pipeline only works if prospecting is a **habit**, not a mood. The weekly rhythm for a Month 1-6 FC:
 
@@ -364,7 +436,7 @@ Do not treat a "no" as a failure. Each "not now" becomes nurture - and nurture b
 
 ---
 
-## 11. The Approach mindset - what you're actually doing
+## 10. The Approach mindset - what you're actually doing
 
 **You're not:**
 - Trying to close in the first meeting.
@@ -386,12 +458,13 @@ If they think that, you've won - regardless of whether anything was sold.
 
 ## Today's homework
 
-1. **Write your warm-market opener** in your own words - the "market survey" framing, customised to how you actually speak. Say it out loud 10 times.
-2. **Build your nurture-list tracker** (Google Sheet or Notion) with the 7 columns above.
-3. **Draft your follow-up sequence templates** (touches #1-#7) and save them where you can reuse them.
-4. **List 20 warm contacts** you will open the market-survey conversation with this week.
+1. **Pick the warm-market opener that fits your voice** - market survey, seeking-help, policy summary, or one of the lower-pressure angles ("first call", "privilege to serve", "right person right time", "rather it be me than a stranger", "quietly here"). Customise the wording to how you actually speak. Say it out loud 10 times.
+2. **Run the pre-send filter** on the friend you're most nervous to message. *"If they say no, will I still want to grab a beer with them next month?"* Don't send anything until that answer is yes.
+3. **Build your nurture-list tracker** (Google Sheet or Notion) with the 7 columns above.
+4. **Draft your follow-up sequence templates** (touches #1-#7) and save them where you can reuse them.
+5. **List 20 warm contacts** you will open a conversation with this week.
 
-Do all four before Day 38.
+Do all five before Day 38.
 
 ---
 
@@ -405,13 +478,13 @@ Do all four before Day 38.
 
  **Why:** the warm market already has opinions about you. The market-survey framing is true, removes sales pressure, and earns a real conversation. Direct pitches and brochures trigger the defensive reflex that kills warm relationships.
 
-2. **A referred prospect closes fastest because:**
- - A) They have more money to spend
- - B) The referrer has already transferred trust (correct)
- - C) They respond better to cold scripts
- - D) They are more financially literate
+2. **When a warm contact says they "already have an agent", the real question to ask is:**
+ - A) Whether the agent's commission is higher than yours
+ - B) When the agent last actually checked in or did a review (correct)
+ - C) Whether their existing policies can be cancelled
+ - D) Which insurer the agent represents
 
- **Why:** the trust advantage comes from the referrer, not from the prospect's wealth or literacy. Borrowed trust shortens the journey from skepticism to decision, which is why referred leads convert 3x more than cold.
+ **Why:** "having an agent" and "being serviced" are not the same thing. A large share of warm contacts are technically attached to an agent who has stopped contacting them, retired, or is their parents' agent they've never met. Surfacing the *actual* level of service - via a casual question, not a pitch - reveals whether there's a real relationship to respect or a vacuum you can step into.
 
 3. **The correct sequence for a cold prospect is:**
  - A) DM -> meeting -> content
