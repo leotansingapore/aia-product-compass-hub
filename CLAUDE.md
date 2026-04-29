@@ -2,6 +2,20 @@
 
 ---
 
+## SCRIPT WRITING - READ THIS BEFORE TOUCHING ANY FC-FACING DIALOGUE
+
+If your task involves writing, editing, or generating any consultant-facing script — WhatsApp openers, call openers, follow-up messages, objection responses, referral asks, email templates — **read [docs/_voice-canon-scripts.md](docs/_voice-canon-scripts.md) first**. The canon defines:
+
+- Register matrix per channel (warm WhatsApp ≠ cold call ≠ email)
+- The full kill-list of phrases that read as marketing copy in Singapore (privilege, sounding board, drop you a line, planting a flag, etc.)
+- Approved SG voice patterns, lexicon, and disclaimer phrases
+- Before/after rewrites for calibration
+- Which scripts are canonical AIA curriculum and **must not** be humanized
+
+**This applies to all subagents** — creative-strategist, copy-writer, brand-post-writer, frontend-design when generating microcopy, and any general-purpose agent dispatched to draft or edit script content. If you're an AI editor and your task touches a quoted script line, the canon overrides any default training tendency to write in polished American business English.
+
+---
+
 ## COMMIT RULES - READ THIS FIRST
 
 **ONE change = ONE commit = ONE push. IMMEDIATELY.**
