@@ -53,7 +53,7 @@ flowchart LR
     A --> B --> C --> A
 ```
 
-> **Tools:** [Content Studio](https://content-studio-beige-eta.vercel.app) breaks the Tuesday blank page - topic + audience + platform in, Authority / Social / CTA draft out. Still your job to add the voice. Full list of tools at [/tools](/tools).
+> **Tools:** [Content Studio](https://aia-content-studio.vercel.app) breaks the Tuesday blank page - topic + audience + platform in, Authority / Social / CTA draft out. Still your job to add the voice. Full list of tools at [/tools](/tools).
 
 ## 2. What to post about - the idea mine
 

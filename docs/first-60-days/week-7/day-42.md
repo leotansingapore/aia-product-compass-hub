@@ -174,7 +174,7 @@ If your digital lead-gen is flat, run a **30-day push.** This is a structured ex
 - Publish 3 posts + 1 carousel + 10-15 stories.
 - Engage on 10 other people's posts daily.
 
-> **Tools:** [Content Studio](https://content-studio-beige-eta.vercel.app) generates the 10-12 pillar drafts so production week doesn't stall - then you rewrite into your voice and swap in real client moments before posting. Full list of tools at [/tools](/tools).
+> **Tools:** [Content Studio](https://aia-content-studio.vercel.app) generates the 10-12 pillar drafts so production week doesn't stall - then you rewrite into your voice and swap in real client moments before posting. Full list of tools at [/tools](/tools).
 
 ### Week 3 - Amplification
 - Double down on what's working.

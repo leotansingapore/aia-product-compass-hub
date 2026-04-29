@@ -158,7 +158,7 @@ If you don't have a professional presence yet, here's the minimum for Week 7:
 
 **Time needed:** 2 hours to do all three platforms reasonably. Do it this weekend.
 
-> **Tools:** [Content Studio](https://content-studio-beige-eta.vercel.app) drafts your first batch of posts (intro, authority, social proof) - platform-specific output you edit into your own voice. Full list of tools at [/tools](/tools).
+> **Tools:** [Content Studio](https://aia-content-studio.vercel.app) drafts your first batch of posts (intro, authority, social proof) - platform-specific output you edit into your own voice. Full list of tools at [/tools](/tools).
 
 ## 6. The reconnection move
 
