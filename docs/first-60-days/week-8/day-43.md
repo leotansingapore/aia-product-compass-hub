@@ -203,6 +203,8 @@ A district producer who closed 12 cases in one month switched from a generic AID
 
 The thesis is simple. Every prospect has one specific problem they're already half-thinking about. **Find it. Make that the agenda for the meeting. Don't pitch anything else.**
 
+> **ARQ in action.** This whole section is **ARQ — Asking the Right Questions** applied to cold calls. The "find their pinpoint" step is literally Day 47's ARQ principle in 60 seconds: ask the question that surfaces the problem they already half-know they have, then make *that* the agenda. Day 47 covers the underlying principle and SPIN as the long-form version of this same move.
+
 #### Why generic scripts under-convert
 
 The "we help a lot of people with insurance planning, do you think you'd be interested to talk to me?" opener gets the same answer almost every time: *"No."* The prospect isn't refusing your help - they're refusing a generic ask. There's nothing in your sentence that maps to a problem in their head.
