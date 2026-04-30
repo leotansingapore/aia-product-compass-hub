@@ -339,6 +339,10 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         text: 'Three ways to earn cash on top of your base commissions. Stack them if you move fast and bring a friend.',
       },
       {
+        kind: 'paragraph',
+        text: 'One important gate: every reward below pays out only after all four exams are cleared and you are contracted as a licensed financial advisor. The papers earn the licence, the licence earns the cheque.',
+      },
+      {
         kind: 'rewardCard',
         icon: 'zap',
         eyebrow: 'Challenge 1 of 3',
@@ -802,8 +806,13 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         kind: 'paragraph',
         text: 'Use the [CMFAS registration link](https://tinyurl.com/CMFASregistration2025), or message [@cmfas_bot](https://t.me/cmfas_bot) on Telegram. Either path works — pick one and do it.',
       },
+      {
+        kind: 'paragraph',
+        text: 'Before you commit to a date, [check the SCI College exam schedule](https://www.scicollege.org.sg/Exam/ExamRegistration) so you know which sittings are open in the next few weeks.',
+      },
     ],
     linkResources: [
+      { label: 'Check the SCI exam schedule', href: 'https://www.scicollege.org.sg/Exam/ExamRegistration' },
       { label: 'Register for CMFAS exams', href: 'https://tinyurl.com/CMFASregistration2025' },
       { label: 'Ask @cmfas_bot on Telegram', href: 'https://t.me/cmfas_bot' },
     ],
