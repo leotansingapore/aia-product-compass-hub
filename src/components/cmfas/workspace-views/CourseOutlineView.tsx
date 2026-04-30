@@ -94,13 +94,6 @@ const OUTLINE: OutlineSection[] = [
         hint: '24/7 AI tutor on Telegram (@cmfas_bot)',
         href: wizardStep("register-m9-exam"),
       },
-      {
-        number: '3.4',
-        id: 'flashcards',
-        title: 'Learn Faster Using Flashcards',
-        hint: 'Revisely decks per paper',
-        href: wizardStep("first-practice"),
-      },
     ],
   },
   {

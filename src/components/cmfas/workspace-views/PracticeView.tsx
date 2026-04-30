@@ -1,14 +1,6 @@
-import { ExternalLink, MessageCircle, ScrollText, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ExternalLink, MessageCircle, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from '../cmfasTheme';
-
-const FLASHCARD_DECKS = [
-  { paper: 'M9', url: 'https://revisely.com/flashcards/decks/R9ikkh' },
-  { paper: 'M9A', url: 'https://revisely.com/flashcards/decks/CVxXJ7' },
-  { paper: 'HI', url: 'https://revisely.com/flashcards/decks/4Bz9fm' },
-  { paper: 'RES5', url: 'https://revisely.com/flashcards/decks/1KxDpT' },
-];
 
 export function PracticeView() {
   return (
@@ -83,44 +75,6 @@ export function PracticeView() {
           </div>
         </a>
 
-        {/* Flashcards */}
-        <div
-          className={cn(
-            'rounded-2xl border p-5 md:col-span-2',
-            cmfasRoom.surface,
-          )}
-        >
-          <div className="flex items-start gap-4">
-            <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-              <Sparkles className={cn('h-6 w-6', cmfasRoom.brassText)} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>Flashcards</h3>
-              <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-                Fast review of the key definitions and frameworks per paper.
-              </p>
-              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {FLASHCARD_DECKS.map((deck) => (
-                  <a
-                    key={deck.paper}
-                    href={deck.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(
-                      'flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-semibold transition-colors',
-                      cmfasRoom.brassBorderSoft,
-                      cmfasRoom.text,
-                      cmfasRoom.brassBgHover,
-                    )}
-                  >
-                    <span>{deck.paper}</span>
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
