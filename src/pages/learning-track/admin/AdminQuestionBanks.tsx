@@ -4,7 +4,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useAdminStudyProgress } from "@/hooks/useAdminStudyProgress";
 import { PRODUCT_LABELS } from "@/types/questionBank";
 
@@ -27,6 +35,7 @@ function staleLabel(iso: string | null): string {
 
 export default function AdminQuestionBanks() {
   const { stats, loading, error } = useAdminStudyProgress();
+  const isMobile = useIsMobile();
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("mastery");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
@@ -107,13 +116,139 @@ export default function AdminQuestionBanks() {
         </CardContent>
       </Card>
 
-      <Input
-        placeholder="Filter by name or email…"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="max-w-sm"
-      />
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <Input
+          placeholder="Filter by name or email…"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="w-full sm:max-w-sm"
+        />
+        {isMobile && (
+          <Select
+            value={`${sortKey}:${sortDir}`}
+            onValueChange={(v) => {
+              const [k, d] = v.split(":") as [SortKey, "asc" | "desc"];
+              setSortKey(k);
+              setSortDir(d);
+            }}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="mastery:desc">Mastery % (highest)</SelectItem>
+              <SelectItem value="mastery:asc">Mastery % (lowest)</SelectItem>
+              <SelectItem value="mastered:desc">Mastered (most)</SelectItem>
+              <SelectItem value="mastered:asc">Mastered (fewest)</SelectItem>
+              <SelectItem value="lastStudied:desc">Last studied (newest)</SelectItem>
+              <SelectItem value="lastStudied:asc">Last studied (oldest)</SelectItem>
+              <SelectItem value="name:asc">Name (A–Z)</SelectItem>
+              <SelectItem value="name:desc">Name (Z–A)</SelectItem>
+            </SelectContent>
+          </Select>
+        )}
+      </div>
 
+      {isMobile ? (
+        <div className="space-y-2">
+          {filtered.map((l) => {
+            const isOpen = expanded.has(l.user_id);
+            const touched = l.product_breakdown.filter((b) => b.last_studied !== null);
+            const daysStale = daysSince(l.last_studied);
+            return (
+              <div
+                key={l.user_id}
+                className={cn(
+                  "rounded-lg border bg-card",
+                  !l.has_studied && "opacity-60",
+                )}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleExpand(l.user_id)}
+                  className="flex w-full items-start gap-2 p-3 text-left hover:bg-muted/40 transition-colors"
+                >
+                  {isOpen ? (
+                    <ChevronDown className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  )}
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div>
+                      <div className="text-sm font-medium truncate">
+                        {l.display_name ?? "(unnamed)"}
+                      </div>
+                      {l.email && (
+                        <div className="text-xs text-muted-foreground truncate">{l.email}</div>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <div className="text-muted-foreground">Mastered</div>
+                        <div className="font-semibold text-foreground">
+                          {l.total_mastered} / {l.total_questions}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-muted-foreground">Last studied</div>
+                        <div
+                          className={cn(
+                            "font-semibold",
+                            daysStale >= 14
+                              ? "text-destructive"
+                              : daysStale >= 7
+                                ? "text-amber-600 dark:text-amber-400"
+                                : "text-foreground",
+                          )}
+                        >
+                          {staleLabel(l.last_studied)}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Progress value={l.mastery_pct} className="h-2" />
+                      <span className="text-[11px] text-muted-foreground tabular-nums w-10 text-right">
+                        {l.mastery_pct}%
+                      </span>
+                    </div>
+                  </div>
+                </button>
+                {isOpen && (
+                  <div className="border-t bg-muted/20 p-3">
+                    {touched.length === 0 ? (
+                      <p className="text-xs text-muted-foreground italic">
+                        No product banks touched yet.
+                      </p>
+                    ) : (
+                      <div className="space-y-2">
+                        {touched.map((b) => (
+                          <div
+                            key={b.product_slug}
+                            className="rounded-md border bg-background p-2.5 space-y-1.5"
+                          >
+                            <div className="text-sm font-medium truncate">
+                              {PRODUCT_LABELS[b.product_slug] ?? b.product_slug}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {b.mastered_count} / {b.study_total} · {staleLabel(b.last_studied)}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Progress value={b.mastery_pct} className="h-1.5" />
+                              <span className="text-[11px] tabular-nums w-10 text-right">
+                                {b.mastery_pct}%
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
       <div className="overflow-x-auto rounded-md border">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
@@ -252,6 +387,7 @@ export default function AdminQuestionBanks() {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }
