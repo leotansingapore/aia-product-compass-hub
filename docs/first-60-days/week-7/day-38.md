@@ -166,7 +166,7 @@ The *"is it A or B"* shape forces a specific answer instead of a vague *"yeah, s
 
 **Rule:** ask every time. The worst answer is "no." The best answer is 3 names. You'll be surprised how often you get 1-2 names when you simply ask.
 
-> **The referral ask is an Right-question.** "Can you think of 2-3 friends who would benefit..." passes all thre. Right-question gates - it leads to the objective (specific names), it's specific (a *number*, "2-3," not "anyone"), and it's logical and indisputable (a generous client who just had a useful meeting can't reasonably say no one would benefit). A weaker version - *"Do you know anyone who might be interested?"* - fails Gate 2 (vague) and Gate 1 (yes/no answer goes nowhere). Day 47 covers the [3-point right-question checklist](../week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) and the [referral-ask question family](../_source-scripts/arq-database.md) is in the right-question database.
+> **The referral ask is an Right-question.** "Can you think of 2-3 friends who would benefit..." passes all three right-question gates - it leads to the objective (specific names), it's specific (a *number*, "2-3," not "anyone"), and it's logical and indisputable (a generous client who just had a useful meeting can't reasonably say no one would benefit). A weaker version - *"Do you know anyone who might be interested?"* - fails Gate 2 (vague) and Gate 1 (yes/no answer goes nowhere). Day 47 covers the [3-point right-question checklist](../week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) and the [referral-ask question family](../_source-scripts/right-question-database.md) is in the right-question database.
 
 ### Names vs endorsements — the distinction that decides conversion
 

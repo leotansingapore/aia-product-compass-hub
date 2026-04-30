@@ -15,7 +15,7 @@ tags: [next-60-days, week-8, new-fc, questions, silence, listening]
 
 > **The one idea for today:** The silence after a good question is where the real answer lives. Fill it and you rob the prospect of the moment that sells them.
 
-> **Th. Right-question thread.** Yesterday's [Day 43](day-43.md) covered the 6 Golden Rules and the right-question construction. Today is the *delivery* skill - asking the right question is wasted if you fill the 5-10 seconds afterwards with your own voice. The silence is the conversion. First 60 Days references: [Day 47](../../first-60-days/week-8/day-47.md) for the meta-principle, [Day 44](../../first-60-days/week-8/day-44.md) for the Q step in objection handling, [right-question database](../../first-60-days/_source-scripts/arq-database.md) for the question bank.
+> **The Right-question thread.** Yesterday's [Day 43](day-43.md) covered the 6 Golden Rules and the right-question construction. Today is the *delivery* skill - asking the right question is wasted if you fill the 5-10 seconds afterwards with your own voice. The silence is the conversion. First 60 Days references: [Day 47](../../first-60-days/week-8/day-47.md) for the meta-principle, [Day 44](../../first-60-days/week-8/day-44.md) for the Q step in objection handling, [right-question database](../../first-60-days/_source-scripts/right-question-database.md) for the question bank.
 
 By the time you close today you'll hold 5–10 seconds of silence after a loaded question without filling it, tell apart productive silence (prospect thinking) from dead silence (you lost them) and respond to each differently, and sequence questions into a chain where each answer deepens the next — the discovery funnel that produces a real Fact-Find.
 

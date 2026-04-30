@@ -136,7 +136,7 @@ Send via text, WhatsApp, or DM - whichever channel they prefer. Two lines:
 What goes in the blanks:
 
 - **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, school-fund kickoff, wedding budget planning, parent-care logistics).
-- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together. **Reference [[arq-database|the right-question database]] for the closing question that turns the resource send into a conversation.**
+- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together. **Reference [[right-question-database|the right-question database]] for the closing question that turns the resource send into a conversation.**
 - **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples, business owners, expats moving overseas).
 - **[common problems]** - the headline pains that group recognises in themselves.
 - **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on, a checklist they can tick this weekend).
@@ -231,6 +231,6 @@ By Week 6, the first 1-2 booked appointments out of this funnel show up. By Week
 
 ## Related resources
 
-- [[_source-scripts/arq-database|ARQ Script Database]] *(Obsidian only)* - the question bank that powers Step 3, Step 9, and the resource follow-up
+- [[_source-scripts/right-question-database|Right-Question Script Database]] *(Obsidian only)* - the question bank that powers Step 3, Step 9, and the resource follow-up
 - [[_source-scripts/market-survey-script|Market Survey Script]] *(Obsidian only)* - phone-first alternative to this funnel
 - [[_source-scripts/already-have-an-advisor-objection-script|"Already Have an Advisor" Objection Script]] *(Obsidian only)* - what to say if Step 4 surfaces this

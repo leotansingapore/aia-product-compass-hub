@@ -1,11 +1,11 @@
 ---
-title: ARQ Script Database — Asking the Right Questions
+title: Right-Question Script Database — Asking the Right Questions
 audience: any
-purpose: master reference for ARQ moves across objections, fact-find, and stories
+purpose: master reference for right-question moves across objections, fact-find, and stories
 related_days: [day-44, day-45, day-47]
 ---
 
-# ARQ — Asking the Right Questions: Script Database
+# Asking the Right Questions: Script Database
 
 The single most leveraged sales skill is asking the right question instead of making the right statement. People defend statements; they own conclusions they reach themselves.
 
@@ -15,7 +15,7 @@ This file is a **bank of right questions**, organised by where you'd use each on
 
 1. **Pick the use-case.** Objection handling (Day 44 Q step), fact-finding (Day 47 SPIN), story closing (Day 45 6P), or generic discovery.
 2. **Pick a question that fits the prospect.** Adapt names, numbers, and life-stage language.
-3. **Run the 3-point ARQ check** before you ask:
+3. **Run the 3-point right-question check** before you ask:
    - Does it lead to my objective?
    - Is it specific enough to force a specific answer?
    - Is it logical and indisputable — can the prospect disagree without sounding unreasonable?
@@ -23,7 +23,7 @@ This file is a **bank of right questions**, organised by where you'd use each on
 
 ---
 
-## Section 1 — The 3-point ARQ checklist (run on every question)
+## Section 1 — The 3-point right-question checklist (run on every question)
 
 Every question below has been pre-tested. When you write your own, gate them through:
 
@@ -37,13 +37,13 @@ If a question fails any gate, rewrite before asking.
 
 ---
 
-## Section 2 — ARQ for Objection Handling (Day 44 Q step)
+## Section 2 — Right Questions for Objection Handling (Day 44 Q step)
 
 Use these as the **Q** in the Acknowledge → Question → Reframe pattern. Always follow with a reframe and the time ask.
 
 ### 2.1 Diagnostic question-backs (most leveraged)
 
-When the objection is vague, ambiguous, or could mean three different things — ARQ here saves you from reframing against the wrong one.
+When the objection is vague, ambiguous, or could mean three different things — the right-question move here saves you from reframing against the wrong one.
 
 > **"Not interested."**
 > "Just so I respect your time properly — when you say not interested, is it not interested in insurance specifically, not interested in talking to advisors at all, or not the right timing? Any of those is fine, I just want to know which."
@@ -85,9 +85,9 @@ For follow-up touches inside the 6-touch sequence on Day 44.
 
 ---
 
-## Section 3 — ARQ for Fact-Find (Day 47 SPIN)
+## Section 3 — Right Questions for Fact-Find (Day 47 SPIN)
 
-The four SPIN phases each have an ARQ shape. Use these as templates, not scripts — the right wording depends on what the prospect just said.
+The four SPIN phases each have a right-question shape. Use these as templates, not scripts — the right wording depends on what the prospect just said.
 
 ### 3.1 Situation questions (warm up the data)
 
@@ -137,13 +137,13 @@ Purpose: get the prospect to articulate the value of solving the problem, in the
 
 ---
 
-## Section 4 — ARQ for Story Closes (Day 45 6P)
+## Section 4 — Right Questions for Story Closes (Day 45 6P)
 
-A 6P story without a closing question is forgotten by the next morning. The closing ARQ is what hands the story's relevance over to the prospect.
+A 6P story without a closing question is forgotten by the next morning. The closing right-question is what hands the story's relevance over to the prospect.
 
 The pattern: after the **Purpose** beat, ask a question that maps the story onto *their* life.
 
-| Story type | Closing ARQ |
+| Story type | Closing right-question |
 |---|---|
 | **CI gap (crisis arc)** — Marcus | "If a $30k cap was the difference for Marcus's family, what would the cap on your current cover be?" |
 | **Compounding (positive arc)** — Priya | "What's stopping you from being Priya at [their age] instead of waiting?" |
@@ -156,7 +156,7 @@ The pattern: after the **Purpose** beat, ask a question that maps the story onto
 
 ---
 
-## Section 5 — Generic ARQ patterns (use anywhere)
+## Section 5 — Generic right-question patterns (use anywhere)
 
 These work in any phase of any conversation. Memorise the shapes; the words flex.
 
@@ -196,7 +196,7 @@ Tests whether their objection is rational or emotional — both are fine, but yo
 > "Is the hesitation more about the numbers not adding up, or more about not being sure it's the right time?"
 
 ### 5.8 The referral-ask question family
-The end-of-meeting ARQ that turns a single client into a network. Day 38 covers the principle; these are the question variants.
+The end-of-meeting right-question that turns a single client into a network. Day 38 covers the principle; these are the question variants.
 
 > **Standard:** "Can you think of 2-3 friends who would benefit from the kind of conversation we just had?"
 
@@ -208,11 +208,11 @@ The end-of-meeting ARQ that turns a single client into a network. Day 38 covers 
 
 **Why specific-segment beats standard:** the standard version leaves the client to filter from their entire network; the segment version pre-filters to a relevant pocket and only asks for 2-3 names from there. Same gate-1 (specific names) but stronger gate-2 (forces a tighter answer).
 
-**The follow-up ARQ when they give a name:** "Tell me a bit about them - what's their situation?" - immediately moves the conversation from a name to a context, which is what you actually need to make the warm-introduction text useful.
+**The follow-up right-question when they give a name:** "Tell me a bit about them - what's their situation?" - immediately moves the conversation from a name to a context, which is what you actually need to make the warm-introduction text useful.
 
 ---
 
-## Section 6 — ARQ anti-patterns (questions that fail the 3-point check)
+## Section 6 — Right-question anti-patterns (questions that fail the 3-point check)
 
 Avoid these. Each one breaks at least one gate.
 
@@ -236,7 +236,7 @@ Same goal. The first sounds like a sermon. The second forces the prospect to do 
 
 ---
 
-## Section 7 — Building your own ARQ
+## Section 7 — Building your own right questions
 
 When you draft a question, run it through this:
 
@@ -255,6 +255,6 @@ The discipline is small but the payoff is huge. 5 minutes on your top 5 question
 
 - Day 44 — Handling Resistance & Objections (the Q step in ARC pattern)
 - Day 45 — Storytelling: The Hook (closing question after the Purpose beat)
-- Day 47 — ARQ: Asking the Right Questions (full deep-dive, SPIN as the grammar)
-- [[market-survey-script|Market Survey Script]] — applies ARQ in warm-market opening
-- [[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]] — text-channel ARQ
+- Day 47 — Right Questions: Asking the Right Questions (full deep-dive, SPIN as the grammar)
+- [[market-survey-script|Market Survey Script]] — applies right-questioning in warm-market opening
+- [[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]] — text-channel right-questions

@@ -419,7 +419,7 @@ _Source: Academy scripts library, audience=general, category=objection-handling.
 
 > "Smart - most people I respect already have something in place. Quick one before I assume - when you say 'already have,' is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
 
-Th. Right-question buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
+The Right-question buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
 
 **Step 2 - Reframe by sub-flavour:**
 

@@ -9,7 +9,7 @@ Use as voice/tone reference for any first-60-days or next-60-days day file that 
 
 ## ARQ database
 
-- [[arq-database|ARQ Script Database — Asking the Right Questions]] — 7-section master file: 3-point checklist, objection-handling Q-banks, SPIN fact-find templates, story-closing questions, generic patterns, anti-patterns, and a "build your own ARQ" drill.
+- [[right-question-database|Right-Question Script Database]] — 7-section master file: 3-point checklist, objection-handling Q-banks, SPIN fact-find templates, story-closing questions, generic patterns, anti-patterns, and a "build your own right questions" drill.
 
 ## Warm Market scripts
 
