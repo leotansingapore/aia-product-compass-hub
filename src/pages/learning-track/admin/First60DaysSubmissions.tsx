@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { loadDay } from "@/features/first-60-days/content";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
@@ -86,6 +87,7 @@ export default function First60DaysSubmissions() {
     staleTime: 30_000,
   });
 
+  const isMobile = useIsMobile();
   const [userFilter, setUserFilter] = useState("");
   const [dayFilter, setDayFilter] = useState<string>("all");
   const [submittedOnly, setSubmittedOnly] = useState<string>("all");
@@ -150,37 +152,39 @@ export default function First60DaysSubmissions() {
   return (
     <div className="space-y-3" data-testid="first-60-days-submissions">
       <Card>
-        <CardContent className="flex flex-wrap items-center gap-3 p-3">
+        <CardContent className="space-y-2 p-3 sm:flex sm:flex-wrap sm:items-center sm:gap-3 sm:space-y-0">
           <Input
             placeholder="Search by name or email…"
             value={userFilter}
             onChange={(e) => setUserFilter(e.target.value)}
-            className="max-w-xs"
+            className="w-full sm:max-w-xs"
           />
-          <Select value={dayFilter} onValueChange={setDayFilter}>
-            <SelectTrigger className="w-40">
-              <SelectValue placeholder="Day" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All days</SelectItem>
-              {dayOptions.map((n) => (
-                <SelectItem key={n} value={String(n)}>
-                  Day {n}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={submittedOnly} onValueChange={setSubmittedOnly}>
-            <SelectTrigger className="w-44">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All submissions</SelectItem>
-              <SelectItem value="submitted">Submitted only</SelectItem>
-              <SelectItem value="draft">Drafts only</SelectItem>
-            </SelectContent>
-          </Select>
-          <Badge variant="secondary" className="ml-auto">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
+            <Select value={dayFilter} onValueChange={setDayFilter}>
+              <SelectTrigger className="w-full sm:w-40">
+                <SelectValue placeholder="Day" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All days</SelectItem>
+                {dayOptions.map((n) => (
+                  <SelectItem key={n} value={String(n)}>
+                    Day {n}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={submittedOnly} onValueChange={setSubmittedOnly}>
+              <SelectTrigger className="w-full sm:w-44">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All submissions</SelectItem>
+                <SelectItem value="submitted">Submitted only</SelectItem>
+                <SelectItem value="draft">Drafts only</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Badge variant="secondary" className="self-start sm:ml-auto sm:self-auto">
             {rows.length} {rows.length === 1 ? "row" : "rows"}
           </Badge>
         </CardContent>
@@ -192,6 +196,101 @@ export default function First60DaysSubmissions() {
             No reflection submissions match your filters yet.
           </CardContent>
         </Card>
+      ) : isMobile ? (
+        <div className="space-y-2">
+          {rows.map((row) => {
+            const rowKey = `${row.user_id}-${row.day_number}`;
+            const isOpen = Boolean(expanded[rowKey]);
+            const summary = daySummaryMap.get(row.day_number);
+            const dayInfo = loadedDays[row.day_number];
+            const answers = answersToRecord(row.reflection_answers);
+            const isSubmitted = Boolean(row.reflection_submitted_at);
+            return (
+              <div key={rowKey} className="rounded-lg border bg-card">
+                <button
+                  type="button"
+                  onClick={() => setExpanded((s) => ({ ...s, [rowKey]: !s[rowKey] }))}
+                  className="flex w-full items-start gap-2 p-3 text-left hover:bg-muted/40 transition-colors"
+                >
+                  {isOpen ? (
+                    <ChevronDown className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  )}
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-medium truncate">
+                        {personLabel(row.profile, row.user_id)}
+                      </span>
+                      <Badge
+                        variant={isSubmitted ? "default" : "outline"}
+                        className={cn(
+                          "text-[10px] font-semibold uppercase tracking-wide shrink-0",
+                          isSubmitted &&
+                            "border-emerald-500/60 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/10",
+                        )}
+                      >
+                        {isSubmitted ? "Submitted" : "Draft"}
+                      </Badge>
+                    </div>
+                    {row.profile?.email && (
+                      <div className="text-xs text-muted-foreground truncate">
+                        {row.profile.email}
+                      </div>
+                    )}
+                    <div className="text-xs text-muted-foreground">
+                      <span className="font-medium text-foreground">Day {row.day_number}</span>
+                      {summary && <span> · {summary.title}</span>}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground">
+                      {row.reflection_submitted_at
+                        ? new Date(row.reflection_submitted_at).toLocaleString()
+                        : "Not yet submitted"}
+                    </div>
+                  </div>
+                </button>
+                {isOpen && (
+                  <div className="border-t bg-muted/30 px-3 py-3">
+                    {!dayInfo ? (
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Loader2 className="h-3 w-3 animate-spin" /> Loading prompts…
+                      </div>
+                    ) : dayInfo.reflection.length > 0 ? (
+                      <div className="space-y-3">
+                        {dayInfo.reflection.map((prompt) => {
+                          const a = answers[String(prompt.index)] ?? "";
+                          return (
+                            <div key={prompt.index} className="space-y-1">
+                              <div className="text-xs font-semibold text-muted-foreground">
+                                {prompt.index}. {prompt.question}
+                              </div>
+                              {a ? (
+                                <div className="whitespace-pre-wrap break-words rounded-md border bg-background p-3 text-sm">
+                                  {a}
+                                </div>
+                              ) : (
+                                <div className="text-xs italic text-muted-foreground">
+                                  No answer
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="text-sm text-muted-foreground">
+                        Raw answers:{" "}
+                        <pre className="mt-1 overflow-auto rounded bg-background p-2 text-xs">
+                          {JSON.stringify(answers, null, 2)}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       ) : (
         <div className="overflow-hidden rounded-md border">
           <table className="w-full text-sm">
