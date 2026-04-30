@@ -6,7 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type SessionRow = {
   id: string;
@@ -164,6 +172,7 @@ export default function AdminRoleplay() {
     queryFn: fetchAll,
     staleTime: 30_000,
   });
+  const isMobile = useIsMobile();
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("lastSession");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
@@ -253,13 +262,160 @@ export default function AdminRoleplay() {
         </CardContent>
       </Card>
 
-      <Input
-        placeholder="Filter by name or email…"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="max-w-sm"
-      />
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <Input
+          placeholder="Filter by name or email…"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="w-full sm:max-w-sm"
+        />
+        {isMobile && (
+          <Select
+            value={`${sortKey}:${sortDir}`}
+            onValueChange={(v) => {
+              const [k, d] = v.split(":") as [SortKey, "asc" | "desc"];
+              setSortKey(k);
+              setSortDir(d);
+            }}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lastSession:desc">Last session (newest)</SelectItem>
+              <SelectItem value="lastSession:asc">Last session (oldest)</SelectItem>
+              <SelectItem value="sessions:desc">Sessions (most)</SelectItem>
+              <SelectItem value="sessions:asc">Sessions (fewest)</SelectItem>
+              <SelectItem value="score:desc">Avg score (highest)</SelectItem>
+              <SelectItem value="score:asc">Avg score (lowest)</SelectItem>
+              <SelectItem value="name:asc">Name (A–Z)</SelectItem>
+              <SelectItem value="name:desc">Name (Z–A)</SelectItem>
+            </SelectContent>
+          </Select>
+        )}
+      </div>
 
+      {isMobile ? (
+        <div className="space-y-2">
+          {filtered.map((l) => {
+            const isOpen = expanded.has(l.userId);
+            const daysStale = daysSince(l.lastSessionAt);
+            return (
+              <div key={l.userId} className="rounded-lg border bg-card">
+                <button
+                  type="button"
+                  onClick={() => toggleExpand(l.userId)}
+                  className="flex w-full items-start gap-2 p-3 text-left hover:bg-muted/40 transition-colors"
+                >
+                  {isOpen ? (
+                    <ChevronDown className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  ) : (
+                    <ChevronRight className="h-4 w-4 mt-0.5 text-muted-foreground shrink-0" />
+                  )}
+                  <div className="flex-1 min-w-0 space-y-2">
+                    <div>
+                      <div className="text-sm font-medium truncate">{l.name}</div>
+                      {l.email && (
+                        <div className="text-xs text-muted-foreground truncate">{l.email}</div>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-xs">
+                      <div>
+                        <div className="text-muted-foreground">Sessions</div>
+                        <div className="font-semibold text-foreground">
+                          {l.completedSessions}/{l.totalSessions}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-muted-foreground">Avg</div>
+                        <div className="font-semibold text-foreground">
+                          {l.avgScore !== null ? `${l.avgScore}/100` : "—"}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-muted-foreground">Last</div>
+                        <div
+                          className={cn(
+                            "font-semibold",
+                            daysStale >= 14
+                              ? "text-destructive"
+                              : daysStale >= 7
+                                ? "text-amber-600 dark:text-amber-400"
+                                : "text-foreground",
+                          )}
+                        >
+                          {staleLabel(l.lastSessionAt)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+                {isOpen && (
+                  <div className="border-t bg-muted/20 p-3 space-y-2">
+                    {l.sessions.map((s) => (
+                      <div
+                        key={s.id}
+                        className="rounded-md border bg-background p-3 space-y-1.5"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-medium break-words">
+                              {s.scenario_title}
+                            </div>
+                            <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                              <Badge variant="outline" className="text-[10px] uppercase">
+                                {s.scenario_difficulty}
+                              </Badge>
+                              {!s.ended_at && (
+                                <Badge variant="secondary" className="text-[10px] uppercase">
+                                  Incomplete
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                          {s.video_url && (
+                            <a
+                              href={s.video_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex shrink-0 items-center gap-1.5 rounded border bg-background px-2 py-1 text-xs hover:bg-muted/60 transition-colors"
+                            >
+                              <Video className="h-3.5 w-3.5" />
+                              Recording
+                            </a>
+                          )}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {new Date(s.started_at).toLocaleString()} · {formatDuration(s.duration_seconds)}
+                        </div>
+                        {s.feedback && (
+                          <div className="flex flex-wrap gap-1.5 text-[11px] pt-1">
+                            <span className="rounded bg-muted/60 px-1.5 py-0.5">
+                              Overall <span className="font-semibold">{s.feedback.overall_score}</span>
+                            </span>
+                            <span className="rounded bg-muted/60 px-1.5 py-0.5">
+                              Comms {s.feedback.communication_score}
+                            </span>
+                            <span className="rounded bg-muted/60 px-1.5 py-0.5">
+                              Listen {s.feedback.active_listening_score}
+                            </span>
+                            <span className="rounded bg-muted/60 px-1.5 py-0.5">
+                              Objection {s.feedback.objection_handling_score}
+                            </span>
+                            <span className="rounded bg-muted/60 px-1.5 py-0.5">
+                              Product {s.feedback.product_knowledge_score}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
       <div className="overflow-x-auto rounded-md border">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
@@ -401,6 +557,7 @@ export default function AdminRoleplay() {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }
