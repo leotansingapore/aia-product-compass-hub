@@ -6,7 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { TOTAL_DAYS } from "@/features/first-14-days/summaries";
 
 type ProgressRow = {
@@ -110,6 +118,7 @@ export default function AdminFirst14Days() {
     staleTime: 30_000,
   });
 
+  const isMobile = useIsMobile();
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("lastActive");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
@@ -186,13 +195,98 @@ export default function AdminFirst14Days() {
         </CardContent>
       </Card>
 
-      <Input
-        placeholder="Filter by name or email…"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="max-w-sm"
-      />
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <Input
+          placeholder="Filter by name or email…"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="w-full sm:max-w-sm"
+        />
+        {isMobile && (
+          <Select
+            value={`${sortKey}:${sortDir}`}
+            onValueChange={(v) => {
+              const [k, d] = v.split(":") as [SortKey, "asc" | "desc"];
+              setSortKey(k);
+              setSortDir(d);
+            }}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="lastActive:desc">Last active (newest)</SelectItem>
+              <SelectItem value="lastActive:asc">Last active (oldest)</SelectItem>
+              <SelectItem value="currentDay:desc">Current day (highest)</SelectItem>
+              <SelectItem value="currentDay:asc">Current day (lowest)</SelectItem>
+              <SelectItem value="quizzesPassed:desc">Quizzes (most)</SelectItem>
+              <SelectItem value="quizzesPassed:asc">Quizzes (fewest)</SelectItem>
+              <SelectItem value="name:asc">Name (A–Z)</SelectItem>
+              <SelectItem value="name:desc">Name (Z–A)</SelectItem>
+            </SelectContent>
+          </Select>
+        )}
+      </div>
 
+      {isMobile ? (
+        <div className="space-y-2">
+          {filtered.map((l) => {
+            const pct = Math.round((l.quizzesPassed / TOTAL_DAYS) * 100);
+            const daysStale = daysSince(l.lastActive);
+            const staleLabel =
+              daysStale === 0
+                ? "today"
+                : daysStale === 1
+                  ? "yesterday"
+                  : Number.isFinite(daysStale)
+                    ? `${daysStale} days ago`
+                    : "never";
+            return (
+              <div key={l.userId} className="rounded-lg border bg-card p-3 space-y-2">
+                <div>
+                  <div className="text-sm font-medium truncate">{l.name}</div>
+                  {l.email && (
+                    <div className="text-xs text-muted-foreground truncate">{l.email}</div>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <div className="text-muted-foreground">Current day</div>
+                    <div className="font-semibold text-foreground">Day {l.currentDay}</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground">Quizzes</div>
+                    <div className="font-semibold text-foreground">
+                      {l.quizzesPassed} / {TOTAL_DAYS}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground">Reflections</div>
+                    <div className="font-semibold text-foreground">{l.reflectionsSaved}</div>
+                  </div>
+                  <div>
+                    <div className="text-muted-foreground">Last active</div>
+                    <div
+                      className={cn(
+                        "font-semibold",
+                        daysStale >= 7 ? "text-destructive" : "text-foreground",
+                      )}
+                    >
+                      {staleLabel}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <Progress value={pct} className="h-2" />
+                  <span className="text-[11px] text-muted-foreground tabular-nums w-10 text-right">
+                    {pct}%
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
       <div className="overflow-x-auto rounded-md border">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
@@ -280,6 +374,7 @@ export default function AdminFirst14Days() {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }
