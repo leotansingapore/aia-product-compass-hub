@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Brain, FileText, Home, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
+import { Brain, FileText, Home, Lightbulb, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
-export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'syllabus';
+export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
 
 interface NavItemSpec {
   id: WorkspaceMode;
@@ -46,6 +46,7 @@ export function buildNavSpec({
       },
       { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false },
       { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete },
+      { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false },
       { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete },
       { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false },
     ],
