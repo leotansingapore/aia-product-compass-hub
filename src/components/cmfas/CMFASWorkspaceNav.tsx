@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Brain, FileText, Home, Lightbulb, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
+import { Brain, CalendarCheck, FileText, Home, Lightbulb, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
-export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
+export type WorkspaceMode = 'today' | 'book' | 'papers' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
 
 interface NavItemSpec {
   id: WorkspaceMode;
@@ -52,21 +52,25 @@ export function buildNavSpec({
     badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
   };
   const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
+  const book: NavItemSpec = { id: 'book', label: 'Book a paper', icon: CalendarCheck, locked: false };
   const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
   const papers: NavItemSpec = { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete };
   const syllabus: NavItemSpec = { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false };
   const rewards: NavItemSpec = { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false };
 
-  // Setup phase — Study Desk leads, reference follows.
+  // Setup phase — Study Desk leads, reference follows. Booking shortcut sits
+  // right after Study Desk so it is visible as soon as the learner finishes
+  // the early account-creation steps and has to lock in their first date.
   if (!readyComplete) {
     return {
-      items: [studyDesk, syllabus, papers, studyTips, practice, rewards],
+      items: [studyDesk, book, syllabus, papers, studyTips, practice, rewards],
     };
   }
 
-  // Post-onboarding — daily reference first, Study Desk last.
+  // Post-onboarding — daily reference first, Study Desk last. Book sits high
+  // because cadence is the single biggest determinant of pace.
   return {
-    items: [studyTips, practice, papers, syllabus, rewards, studyDesk],
+    items: [studyTips, book, practice, papers, syllabus, rewards, studyDesk],
   };
 }
 
