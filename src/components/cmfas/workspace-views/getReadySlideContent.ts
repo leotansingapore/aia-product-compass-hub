@@ -62,17 +62,77 @@ type ReadySlide = {
 export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
   welcome: {
     section: 'Section 1',
-    slideHeading: 'Rules of the Game',
-    paragraphs: [
-      "It's strange how many people spend years on a degree to earn $3–4k a month but won't put in a few months of certification work for the shot at a five-figure income.",
-      'Over the next few months, most of your time goes into studying financial certifications — the CMFAS exams.',
-      'Plan for at least one hour a day on the exams.',
-      'There are 4 exams, and each one should take at most a month of focused study.',
-      'Treat them as "obstacles" or "tests" of your conviction and commitment.',
-      'The more exams you pass, the more content unlocks for you.',
-      'Anyone can enter BMT, but not everyone makes it into OCS, and only a few become commandos.',
-      'Think of this as a two-way test: you learn what the business really looks like before placing any bets, and your conviction and commitment get tested in return.',
-      'The more exams you clear, the more courses open up and the further you progress. Anyone can join BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer.',
+    slideHeading: 'Why the Exams Come First',
+    paragraphs: [],
+    blocks: [
+      {
+        kind: 'intro',
+        text: 'Welcome to the first 60 days. Most of that time goes into clearing four CMFAS papers — M9, M9A, HI, and RES5. There is a deliberate reason for that order of operations.',
+      },
+
+      { kind: 'heading', text: 'The exams are the licence' },
+      {
+        kind: 'paragraph',
+        text: 'In Singapore, advising on regulated products requires clearing all four papers. No licence, no client work. The exams are not a hurdle bolted onto training — they are the gate that lets the rest of the career happen.',
+      },
+      {
+        kind: 'paragraph',
+        text: 'Plan for at least one hour a day. Each paper should take at most a month of focused study, four months at a steady pace and faster once the rhythm compounds.',
+      },
+
+      { kind: 'heading', text: 'A two-way test' },
+      {
+        kind: 'paragraph',
+        text: 'Treat each paper as a test of conviction and commitment. The reasoning runs both ways: the trainee learns what the business actually looks like before placing real bets, and the team sees whether the discipline is real.',
+      },
+      {
+        kind: 'paragraph',
+        text: "It's strange how many people spend years on a degree to earn $3–4k a month but won't put in a few months of certification work for the shot at a five-figure income. The exams are the cheapest, fastest filter the industry has.",
+      },
+
+      { kind: 'heading', text: 'Each pass unlocks more of the program' },
+      {
+        kind: 'paragraph',
+        text: 'The curriculum tiers open as papers fall. Anyone can enter BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer. The same logic applies here — see the three Finternship™ stages below.',
+      },
+
+      { kind: 'heading', text: 'Common questions' },
+
+      { kind: 'heading', text: 'Why these four papers specifically?' },
+      {
+        kind: 'paragraph',
+        text: 'M9, M9A, HI, and RES5 are the standard CMFAS bundle for advising on life insurance, investment-linked plans, structured products, health insurance, and the rules of conduct. Together they unlock the full advisory licence used day to day in this team.',
+      },
+
+      { kind: 'heading', text: 'How long does this actually take?' },
+      {
+        kind: 'paragraph',
+        text: 'Plan for at most a month per paper at a steady pace — four months total. Most trainees move faster than this once the second paper makes the first feel easier in hindsight.',
+      },
+
+      { kind: 'heading', text: "What's the pass mark?" },
+      {
+        kind: 'paragraph',
+        text: 'M9, M9A, and HI each need 70%. RES5 has split sections: Part I requires 75% and Part II requires 80%. Every paper is fully MCQ. See [Section 5 — Exam Syllabus & Format](/cmfas-exams/syllabus) for the full breakdown of question count and timing.',
+      },
+
+      { kind: 'heading', text: 'Where are the exams taken?' },
+      {
+        kind: 'paragraph',
+        text: 'Bookings and the exams themselves run through SCI College. The very next slide walks through creating an SCI student account — that is the first hard prerequisite before any paper can be booked.',
+      },
+
+      { kind: 'heading', text: 'What happens after a fail?' },
+      {
+        kind: 'paragraph',
+        text: 'Re-sit. SCI College allows resits with a fee. Drop a note in the FINternship support chat first — the team will help regroup on the weak topics before the next attempt rather than rushing into another booking blind.',
+      },
+
+      { kind: 'heading', text: 'How do you know when to book a paper?' },
+      {
+        kind: 'paragraph',
+        text: 'Score consistently above the pass mark on the question bank under timed conditions, ideally on Premium Papers rather than chapter-by-chapter revision. The Practice surface in this room ([open Practice](/cmfas-exams/practice)) is built around that readiness check.',
+      },
     ],
     pathStages: [
       {
