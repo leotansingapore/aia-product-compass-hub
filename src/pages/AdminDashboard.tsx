@@ -105,7 +105,12 @@ export default function AdminDashboard() {
             <span className="hidden xs:inline sm:inline">Categories</span>
             <span className="xs:hidden sm:hidden">Cats</span>
           </TabsTrigger>
-        </TabsList>
+          </TabsList>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:hidden"
+          />
+        </div>
 
         <TabsContent value="users">
           <Suspense fallback={<PanelFallback />}><UnifiedUserDirectory /></Suspense>
