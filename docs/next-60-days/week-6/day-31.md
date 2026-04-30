@@ -34,6 +34,47 @@ DISC is the framework that tells you, in the first 2–3 minutes of a meeting, *
 
 ---
 
+## The bigger frame DISC sits inside — the 3 Cs of Communication
+
+DISC is the *Convince* layer of a wider communication model. Before we go deep on profiling for the rest of the week, it's worth seeing where DISC fits in the full picture.
+
+| Layer | Sub-skills | What it does |
+|---|---|---|
+| **Connect** (5) | Smile · pay a sincere compliment · ask about *them* · listen attentively · acknowledge what they said | Drops the prospect's guard. The first 2 minutes of every meeting. |
+| **Convince** (1) | Match their logic — DISC | Adjusts how the same content lands across four very different brains. The whole of Week 6. |
+| **Comfort** (4) | Tonality (warm, not flat) · pace (slightly faster than conversational) · body language (open) · choice of words (no jargon) | Keeps them open across the next 30+ minutes. |
+
+**The order matters.** New FCs jump straight to *Convince* (the substance) before they've done *Connect* (the warm-up). The prospect feels rushed and shuts down. Conversely, advisors who do *Connect* well but never get to a real *Convince* feel pleasant but never close.
+
+Today's lesson is the *Convince* layer. The *Connect* and *Comfort* layers — particularly the sincere-compliment 4-rule below — are what make Convince actually land.
+
+### The sincere-compliment 4-rule (Connect sub-skill #2)
+
+Almost every meeting opens with a compliment. Most new FCs get it wrong because they over-rehearse, and the line comes out generic. Four rules:
+
+1. **Sincere — don't rush it.** A compliment fired off in the first three seconds reads as scripted. Slow down. Make it the third or fourth thing you say, not the first.
+2. **Compliment the subject, not the object.** Bad: *"Wow, your house is so nice."* Good: *"You really put a lot of thought into how you set up the place — it shows."* The first compliments the *thing*; the second compliments *them*.
+3. **Personalised, not generic.** Cut *"quite friendly"*, *"approachable"*, *"easygoing"* — these read as filler. Use something only this person would recognise: *"You handled the [specific situation] way better than I would've."*
+4. **Profile-tailored** *(this is where DISC comes in)*. D and DC profiles want recognition of *what they did* (results, decisions, calls they made). I and IS profiles want recognition of *who they are* (energy, warmth, the kind of friend they are). S profiles want recognition of *consistency* (showing up, being there, dependability). C profiles want recognition of *thinking* (the rigour, the analysis, the care taken).
+
+A sincere, personalised, profile-tailored compliment in the first 30 seconds drops the prospect's guard more than any script line will. Skip it and the meeting starts with the prospect on guard, which makes everything in Days 32-35 less effective.
+
+### The 5 Steps to Build Rapport — the full Connect ritual
+
+Connect runs in this order in every first meeting:
+
+1. **Eye contact + smile** — non-verbal warmth before any words
+2. **Pay the compliment** (using the 4 rules above)
+3. **Ask about *them*** — open-ended, hot-button-seeking. Their work, their family, what's been on their mind
+4. **Listen attentively** — no interrupting. The silence after they finish is where trust lands
+5. **Acknowledge** — paraphrase / clarify / compliment the intent / words of empathy. *"What I'm hearing is..."*, *"That's actually really considered — most people at your stage haven't thought that far ahead"*, *"I can see why that's been weighing on you"*
+
+Most new FCs skip step 5 — they hear, nod, and move to the next question. **Acknowledgement is what makes the prospect feel heard, which is what opens them up for the rest of the meeting.** No acknowledgement means no real Connect, no matter how well steps 1-4 went.
+
+> **Where this goes deeper:** the cushioning move — the habit of opening any longer response with an acknowledgement before the content — is the same Connect skill applied to objection handling and disagreement. Day 40 (Objection Turnaround) covers cushioning as the habit that runs underneath every reframe.
+
+---
+
 ## The 2 axes behind DISC
 
 The 4 profiles aren't random — they come from 2 underlying dimensions:

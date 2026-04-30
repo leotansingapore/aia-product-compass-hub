@@ -32,7 +32,67 @@ Objections come in three shapes. Each uses a different tool:
 
 Using the wrong tool wastes the moment. Anchor-Disrupt-Ask on a C who just asked a precise question makes you sound like a cold-caller. ART on *"let me think"* tries to argue a ghost — you haven't surfaced what they're actually objecting to.
 
-> **The common engine across all three:** **Asking the Right Questions.** Anchor-Disrupt-Ask ends in an Ask; ART's "T" turns around with a question; Iceberg's whole Step 1 is right-question diagnostics. The three tools differ in *when* the question fires (start, middle, surfacing), not in *whether*. The the full right-question diagnostic deep-dive lives on First 60 Days [Day 47 - Right Questions](../../first-60-days/week-8/day-47.md), and the right-question question-bank for objections is in the [right-question database](../../first-60-days/_source-scripts/right-question-database.md) (Obsidian only).
+> **The common engine across all three:** **Asking the Right Questions.** Anchor-Disrupt-Ask ends in an Ask; ART's "T" turns around with a question; Iceberg's whole Step 1 is right-question diagnostics. The three tools differ in *when* the question fires (start, middle, surfacing), not in *whether*. The full right-question diagnostic deep-dive lives on First 60 Days [Day 47 - Right Questions](../../first-60-days/week-8/day-47.md), and the right-question question-bank for objections is in the [right-question database](../../first-60-days/_source-scripts/right-question-database.md) (Obsidian only).
+
+---
+
+## Cushioning — the move that runs underneath all three tools
+
+Before Anchor-Disrupt-Ask, before ART, before Iceberg — there is one move that decides whether *any* of them actually lands: **cushioning**. The half-second of acknowledgement that comes between the prospect's objection and your response.
+
+Without it, the prospect feels argued *with*. With it, they feel heard, and the same content lands as advice instead of pushback. New FCs default to content-first because they're nervous and want to "get the point in"; experienced advisors do cushion-first reflexively. **It's the single most-violated rule in objection handling, and the cheapest one to fix.**
+
+### Why cushioning works
+
+Three things happen in the prospect's brain when they raise an objection:
+
+1. They've committed to a position (briefly).
+2. They're scanning your response to see whether you'll *fight them on it* or *acknowledge it.*
+3. If they sense you're about to argue — even half a syllable in — they harden the position before you're done speaking.
+
+A cushion line short-circuits step 3. The prospect hears acknowledgement, drops their guard half a beat, and is now actually *available to listen* to whatever comes next. Without the cushion, the rest of your script is hitting a wall.
+
+### The cushion lexicon
+
+Any one of these works as the opening half-sentence of an objection response. Mix them — defaulting to the same line every time becomes a tic.
+
+- *"That makes complete sense"* / *"That's totally fair"*
+- *"Honestly, fair — and..."*
+- *"I appreciate you sharing that"* / *"appreciate you being upfront"*
+- *"I hear you — and..."*
+- *"You're not the first person to feel that way"*
+- *"Totally respect that"* / *"I get it"*
+- *"That's a real concern, and..."*
+- *"I'd probably feel the same way in your shoes"*
+
+Five forms a cushion can take, beyond a stock acknowledgement: a *sincere compliment* on what the prospect just said (*"that's actually really considered"*), *appreciation of their intention* (*"I can see why you're thinking this through"*), *empathy with how they feel* (*"that hesitation makes total sense"*), *paraphrasing what they said back* (*"so what I'm hearing is..."*), or *taking ownership for a misstep* (*"that's on me — I should have framed it differently"*). Any of these is a cushion. The principle is *acknowledge before you reframe.*
+
+### The rule
+
+If you're about to say *"however"*, *"but"*, *"actually"*, or any reframe word — there must be a cushion line before it. The cushion can be one short sentence; it's the *presence* of the acknowledgement that matters, not the length.
+
+### Before-and-after
+
+**Before** *(content-first, no cushion):*
+> Prospect: *"I think it's too expensive."*
+>
+> You: *"Actually, that's exactly why we need to talk about value, not just price..."*
+
+**After** *(cushion-first, same content):*
+> Prospect: *"I think it's too expensive."*
+>
+> You: *"That's totally fair — and most people I respect feel exactly the same way at first. The thing that surprised me is..."*
+
+Same content. The cushion line at the start changes whether the prospect listens to the rest. **Apply this before every Anchor-Disrupt-Ask, every ART, and every Iceberg below.**
+
+### Profile-tune the cushion
+
+- **D-profile** — keep the cushion short and crisp. *"Fair"* is enough. Don't linger.
+- **I-profile** — warmer cushion, slight smile in the voice. *"I really appreciate you saying that — most people don't."*
+- **S-profile** — the longest cushion. *"That makes complete sense, and I'd probably feel the same way."* Let them feel heard before you reframe.
+- **C-profile** — cushion that respects their thinking. *"That's actually a really good question, and it's one I want to make sure I answer properly."* Validates the analysis.
+
+The cushion lexicon stays the same; the *length* and *register* flex by profile.
 
 ---
 
