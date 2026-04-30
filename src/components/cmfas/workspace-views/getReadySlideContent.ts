@@ -64,15 +64,15 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
     section: 'Section 1',
     slideHeading: 'Rules of the Game',
     paragraphs: [
-      "It is puzzling to me how people spend years on a degree just to earn $3-4k/mth but don't have the patience to spend a few months clearing some certifications to have the chance to earn a 5 figure income within a few months.",
-      'In the next few months, you will be spending the majority of the time studying financial certifications, called the CMFAS exams.',
-      'I would suggest that you spend at least 1 hour a day studying for the exams.',
-      'There are 4 exams, and it should take at most 1 month to study for each exam.',
-      'Treat these as "obstacles" or "tests" of your conviction and commitment.',
-      'The more you pass these exams, the more content I will "unlock" for you.',
-      'Just as how anyone and everyone can enter into BMT, not everyone can go into OCS, or make it to becoming a commando.',
-      'So treat this as a two way test. For yourself, to learn more about the business before placing your bets, and for myself, to check for your convictions and commitment to us.',
-      'The more you study and pass the exams, the more courses you will unlock, and you will progress to the next level. Think of it this way: Anyone can join BMT, but not everyone will enter OCS Foundation Term and OCS Pro Term, and eventually commission as an Officer.',
+      "It's strange how many people spend years on a degree to earn $3–4k a month but won't put in a few months of certification work for the shot at a five-figure income.",
+      'Over the next few months, most of your time goes into studying financial certifications — the CMFAS exams.',
+      'Plan for at least one hour a day on the exams.',
+      'There are 4 exams, and each one should take at most a month of focused study.',
+      'Treat them as "obstacles" or "tests" of your conviction and commitment.',
+      'The more exams you pass, the more content unlocks for you.',
+      'Anyone can enter BMT, but not everyone makes it into OCS, and only a few become commandos.',
+      'Think of this as a two-way test: you learn what the business really looks like before placing any bets, and your conviction and commitment get tested in return.',
+      'The more exams you clear, the more courses open up and the further you progress. Anyone can join BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer.',
     ],
     pathStages: [
       {
@@ -80,23 +80,23 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         tagline: 'Everyone starts here.',
         bullets: [
           'Focus on the exams: plan for about two hours of study per day.',
-          'Unlock basic financial planning modules.',
+          'Unlock the basic financial planning modules.',
         ],
       },
       {
         title: 'Finternship™ Fastrack',
-        tagline: 'Progress here after you pass 1 exam.',
+        tagline: 'Progress here after passing 1 exam.',
         bullets: [
           'Unlock more financial planning modules.',
-          'Start shadowing me on appointments to learn on the job.',
+          'Start shadowing your mentor on appointments to learn on the job.',
         ],
       },
       {
         title: 'Finternship™ Accelerator',
-        tagline: 'Progress here after you pass 4 exams.',
+        tagline: 'Progress here after passing 4 exams.',
         bullets: [
           'Start learning how to do cold prospecting.',
-          'Unlock my scripts and presentation templates.',
+          "Unlock the team's scripts and presentation templates.",
         ],
       },
     ],
