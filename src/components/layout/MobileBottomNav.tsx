@@ -58,13 +58,22 @@ const QUICK_LINKS: QuickLink[] = [
   { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
 ];
 
-const ADMIN_LINK: QuickLink = {
-  name: "Admin Panel",
-  href: "/admin",
-  icon: ShieldCheck,
-  color: "text-red-500",
-  bg: "bg-red-50 dark:bg-red-950/30",
-};
+const ADMIN_LINKS: QuickLink[] = [
+  {
+    name: "Admin Panel",
+    href: "/admin",
+    icon: ShieldCheck,
+    color: "text-red-500",
+    bg: "bg-red-50 dark:bg-red-950/30",
+  },
+  {
+    name: "Track Admin",
+    href: "/learning-track/admin",
+    icon: GraduationCap,
+    color: "text-amber-500",
+    bg: "bg-amber-50 dark:bg-amber-950/30",
+  },
+];
 
 export function MobileBottomNav() {
   const location = useLocation();
@@ -90,7 +99,7 @@ export function MobileBottomNav() {
       if (isAdminBypass) return true;
       return canAny(item.features as any);
     });
-    return showAdmin ? [...filtered, ADMIN_LINK] : filtered;
+    return showAdmin ? [...filtered, ...ADMIN_LINKS] : filtered;
   }, [canAny, isAdminBypass, showAdmin]);
 
   return (
