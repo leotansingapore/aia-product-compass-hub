@@ -148,6 +148,7 @@ const App = () => (
                     <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
                     <Route path="/cmfas-exams" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams/:workspaceMode" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
+                    <Route path="/cmfas-exams/:workspaceMode/:slideSlug" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas/module/:moduleId" element={<RequireAuth><RequireTier feature="cmfas"><CMFASModuleDetail /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas/module/:moduleId/video/:videoSlugOrId" element={<RequireAuth><RequireTier feature="cmfas"><CMFASVideoDetail /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas/chat/:moduleId?" element={<RequireAuth><RequireTier feature="cmfas"><CMFASChat /></RequireTier></RequireAuth>} />

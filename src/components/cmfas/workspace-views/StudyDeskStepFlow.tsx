@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import {
   ArrowLeft,
   ArrowRight,
@@ -29,7 +29,9 @@ import { GET_READY_STEPS } from './getReadyData';
 import {
   GET_READY_SLIDES,
   getSlideById,
+  getSlideIndexBySlug,
   getSlidesForSection,
+  slideIdToSlug,
   type GetReadyLinkResource,
   type SlideEntry,
   type VerificationField,
@@ -37,12 +39,16 @@ import {
 
 const DESK_SLIDE_PARAM = 'deskSlide';
 const SLIDE_COUNT = GET_READY_SLIDES.length;
+const STUDY_DESK_BASE = '/cmfas-exams/today';
 
-function parseSlideIndex(raw: string | null): number {
-  if (raw == null) return 0;
-  const n = Number.parseInt(raw, 10);
+function clampSlideIndex(n: number): number {
   if (Number.isNaN(n)) return 0;
   return Math.min(Math.max(0, n), SLIDE_COUNT - 1);
+}
+
+function slideUrlForIndex(index: number): string {
+  const slide = GET_READY_SLIDES[clampSlideIndex(index)];
+  return `${STUDY_DESK_BASE}/${slideIdToSlug(slide.slideId)}`;
 }
 
 /** Can jump to slide k given progress: same or earlier always allowed; later requires every prior slide to be "done". */
@@ -451,7 +457,9 @@ export function StudyDeskStepFlow({
     submitSlide,
     getScreenshotSignedUrl,
   } = useSlideSubmissions();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { slideSlug } = useParams<{ slideSlug?: string }>();
+  const [searchParams] = useSearchParams();
   /** Both progress sources have settled — landing logic and the page body
    *  read this so they don't render against stale empty hooks (would show
    *  Section 1 with later sections appearing locked). */
@@ -473,10 +481,13 @@ export function StudyDeskStepFlow({
     [isSubmitted, isItemCompleted],
   );
 
-  const slideIndex = useMemo(
-    () => parseSlideIndex(searchParams.get(DESK_SLIDE_PARAM)),
-    [searchParams],
-  );
+  const slideIndex = useMemo(() => {
+    if (slideSlug) {
+      const i = getSlideIndexBySlug(slideSlug);
+      if (i !== -1) return i;
+    }
+    return 0;
+  }, [slideSlug]);
   const slide = GET_READY_SLIDES[slideIndex];
   const section = useMemo(
     () => GET_READY_STEPS.find((s) => s.id === slide.sectionId),
@@ -507,62 +518,60 @@ export function StudyDeskStepFlow({
   const vField = slide.verification[0];
   const formValid = isValid(vField, vState);
 
+  /** Legacy back-compat — `?deskSlide=N` from old bookmarks. Rewrite once to
+   *  the slug-based URL and strip the param so the address bar matches the
+   *  per-slide route. Runs before the landing effect so we don't double-bump. */
+  const legacyParamResolvedRef = useRef(false);
+  useEffect(() => {
+    if (legacyParamResolvedRef.current) return;
+    const raw = searchParams.get(DESK_SLIDE_PARAM);
+    if (raw == null) return;
+    legacyParamResolvedRef.current = true;
+    const target = clampSlideIndex(Number.parseInt(raw, 10));
+    const next = new URLSearchParams(searchParams);
+    next.delete(DESK_SLIDE_PARAM);
+    const qs = next.toString();
+    navigate(`${slideUrlForIndex(target)}${qs ? `?${qs}` : ''}`, { replace: true });
+  }, [searchParams, navigate]);
+
   /** Landing effect: once BOTH progress sources have hydrated from Supabase,
-   *  either (a) seed the URL with the first-incomplete slide if it's missing,
-   *  or (b) bump the URL FORWARD if the learner is parked on a slide they've
-   *  already finished (covers across-device resume + URL stripped to bare).
-   *  Runs ONCE per page mount only — subsequent navigation (section-tab clicks,
-   *  back/forward) is respected so learners can revisit completed sections
-   *  without being yanked back to the latest. */
+   *  either (a) seed the URL with the first-incomplete slide if no slug is in
+   *  the URL, or (b) bump the URL FORWARD if the learner is parked on a slide
+   *  they've already finished (covers across-device resume + URL stripped to
+   *  bare). Runs ONCE per page mount only — subsequent navigation is respected
+   *  so learners can revisit completed sections without being yanked back. */
   const landingResolvedRef = useRef(false);
   useEffect(() => {
     if (!isReady) return;
+    if (legacyParamResolvedRef.current && searchParams.get(DESK_SLIDE_PARAM) != null) return;
     if (landingResolvedRef.current) return;
     landingResolvedRef.current = true;
 
     const firstIncomplete = GET_READY_SLIDES.findIndex((s) => !isSlideDone(s.slideId));
     const target = firstIncomplete === -1 ? SLIDE_COUNT - 1 : firstIncomplete;
-    const currentParam = searchParams.get(DESK_SLIDE_PARAM);
 
-    if (currentParam == null) {
-      setSearchParams(
-        (prev) => {
-          const next = new URLSearchParams(prev);
-          next.set(DESK_SLIDE_PARAM, String(target));
-          return next;
-        },
-        { replace: true },
-      );
+    if (!slideSlug) {
+      navigate(slideUrlForIndex(target), { replace: true });
       return;
     }
 
-    const currentIndex = parseSlideIndex(currentParam);
+    const currentIndex = getSlideIndexBySlug(slideSlug);
+    if (currentIndex === -1) {
+      navigate(slideUrlForIndex(target), { replace: true });
+      return;
+    }
     const currentSlideId = GET_READY_SLIDES[currentIndex]?.slideId;
     if (currentIndex < target && currentSlideId && isSlideDone(currentSlideId)) {
-      setSearchParams(
-        (prev) => {
-          const next = new URLSearchParams(prev);
-          next.set(DESK_SLIDE_PARAM, String(target));
-          return next;
-        },
-        { replace: true },
-      );
+      navigate(slideUrlForIndex(target), { replace: true });
     }
-  }, [isReady, searchParams, isSlideDone, setSearchParams]);
+  }, [isReady, slideSlug, searchParams, isSlideDone, navigate]);
 
   const goToIndex = useCallback(
     (k: number) => {
       if (!canAccessSlideIndex(k, slideIndex, isSlideDone)) return;
-      setSearchParams(
-        (prev) => {
-          const next = new URLSearchParams(prev);
-          next.set(DESK_SLIDE_PARAM, String(k));
-          return next;
-        },
-        { replace: true },
-      );
+      navigate(slideUrlForIndex(k), { replace: true });
     },
-    [isSlideDone, setSearchParams, slideIndex],
+    [isSlideDone, navigate, slideIndex],
   );
 
   const handleSubmitAndAdvance = useCallback(async () => {
@@ -577,14 +586,7 @@ export function StudyDeskStepFlow({
       onSelectWorkspaceMode('papers');
       return;
     }
-    setSearchParams(
-      (prev) => {
-        const next = new URLSearchParams(prev);
-        next.set(DESK_SLIDE_PARAM, String(slideIndex + 1));
-        return next;
-      },
-      { replace: true },
-    );
+    navigate(slideUrlForIndex(slideIndex + 1), { replace: true });
   }, [
     formValid,
     submitting,
@@ -594,7 +596,7 @@ export function StudyDeskStepFlow({
     vState,
     isLast,
     onSelectWorkspaceMode,
-    setSearchParams,
+    navigate,
     slideIndex,
   ]);
 
