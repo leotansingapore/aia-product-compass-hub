@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import {
   useAllFirst60DaysDayMeta,
@@ -23,6 +24,7 @@ export default function First60DaysAdmin() {
   const days = DAY_SUMMARIES;
   const metaQuery = useAllFirst60DaysDayMeta();
   const qc = useQueryClient();
+  const isMobile = useIsMobile();
 
   const byDay = useMemo(() => {
     const m: Record<number, DayMeta> = {};
@@ -104,6 +106,112 @@ export default function First60DaysAdmin() {
         </CardContent>
       </Card>
 
+      {isMobile ? (
+        <div className="space-y-2">
+          {days.map((day) => {
+            const dirty = Boolean(drafts[day.dayNumber]);
+            const busy = upsertMutation.isPending && upsertMutation.variables?.dayNumber === day.dayNumber;
+            const slidesUrl = (effectiveValue(day.dayNumber, "slides_url") as string | null) ?? "";
+            const videoUrl = (effectiveValue(day.dayNumber, "video_url") as string | null) ?? "";
+            const durationVal = effectiveValue(day.dayNumber, "video_duration_sec");
+            const published = Boolean(effectiveValue(day.dayNumber, "published") ?? true);
+            return (
+              <div
+                key={day.dayNumber}
+                className={`rounded-lg border bg-card p-3 space-y-3 ${dirty ? "ring-1 ring-primary/40" : ""}`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold">Day {day.dayNumber}</span>
+                      <Badge variant="outline" className="text-[10px]">
+                        Week {day.week}
+                      </Badge>
+                    </div>
+                    <div className="text-xs text-muted-foreground break-words">{day.title}</div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-[11px] text-muted-foreground">
+                      {published ? "Published" : "Hidden"}
+                    </span>
+                    <Switch
+                      checked={published}
+                      onCheckedChange={(c) => setDraft(day.dayNumber, { published: c })}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="block space-y-1">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
+                      Slides URL
+                    </span>
+                    <Input
+                      type="url"
+                      placeholder="https://docs.google.com/presentation/.../embed"
+                      value={slidesUrl}
+                      onChange={(e) =>
+                        setDraft(day.dayNumber, { slides_url: e.target.value || null })
+                      }
+                    />
+                  </label>
+                  <label className="block space-y-1">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
+                      Video URL
+                    </span>
+                    <Input
+                      type="url"
+                      placeholder="https://youtu.be/..."
+                      value={videoUrl}
+                      onChange={(e) =>
+                        setDraft(day.dayNumber, { video_url: e.target.value || null })
+                      }
+                    />
+                  </label>
+                  <label className="block space-y-1">
+                    <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
+                      Duration (sec)
+                    </span>
+                    <Input
+                      type="number"
+                      inputMode="numeric"
+                      min={0}
+                      value={
+                        durationVal !== null && durationVal !== undefined
+                          ? String(durationVal)
+                          : ""
+                      }
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        setDraft(day.dayNumber, {
+                          video_duration_sec: v === "" ? null : Number(v),
+                        });
+                      }}
+                    />
+                  </label>
+                </div>
+                <Button
+                  size="sm"
+                  variant={dirty ? "default" : "outline"}
+                  disabled={!dirty || busy}
+                  onClick={() =>
+                    upsertMutation.mutate({ dayNumber: day.dayNumber, patch: drafts[day.dayNumber] })
+                  }
+                  className="w-full"
+                >
+                  {busy ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Save className="h-4 w-4 mr-1.5" />
+                      {dirty ? "Save changes" : "Saved"}
+                    </>
+                  )}
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
       <div className="overflow-x-auto rounded-md border">
         <table className="w-full min-w-[900px] text-sm">
           <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
@@ -202,6 +310,7 @@ export default function First60DaysAdmin() {
           </tbody>
         </table>
       </div>
+      )}
         </TabsContent>
         <TabsContent value="submissions" className="space-y-3">
           <First60DaysSubmissions />
