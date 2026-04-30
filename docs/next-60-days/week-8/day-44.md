@@ -36,6 +36,8 @@ The new FC, uncomfortable with the silence, fills it:
 
 The skill isn't asking good questions. It's *asking them and then shutting up long enough for the question to do its work.*
 
+> **Three things must happen in this order — and silence is the third.** (1) Cushion ([Day 40](../week-7/day-40.md#cushioning--the-move-that-runs-underneath-all-three-tools)), (2) right-question that passes the 3-point checklist ([Day 43](day-43.md#the-3-point-checklist--is-this-a-good-question)), (3) silence (this page). Skip step 1 and the prospect feels argued with. Skip step 2 and you're surfacing the wrong thing. Skip step 3 and the prospect's own conclusion never lands. The three together are the unit; teaching them as separate skills is what makes new FCs apply them in isolation and wonder why their fact-finds don't move.
+
 ---
 
 ## What happens in 10 seconds of silence

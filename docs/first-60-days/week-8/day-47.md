@@ -80,6 +80,8 @@ Before asking any question, run it through three gates:
 
 If all three pass, ask it. If any fails, rewrite before asking. **This checklist is the right-question test** - apply it at every phase of SPIN (Situation, Problem, Implication, Need-Payoff), in the Q step of objection handling on Day 44, and on the closing question of any 6P story on Day 45.
 
+> **Right questions without cushioning is interrogation.** Before any probing question — especially the Implication and Need-Payoff questions that bring weight to the surface, and the Q step in objection handling — open with one of the cushion lines from the [voice canon §3](../../_voice-canon-scripts.md). *"That's totally fair — and quick one before I respond..."* / *"Honestly, I appreciate you sharing that — quick one..."* The question lands; the cushion gets you the right to ask it. Skip the cushion and even a perfect right-question makes the prospect feel argued *with*. Next 60 Days Day 40 covers the cushioning move in full.
+
 ## 2. Needs vs wants - the crucial distinction
 
 People don't buy what they **need.** They buy what they **want.**

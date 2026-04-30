@@ -13,18 +13,20 @@ related:
 
 The single source of truth for objection-handling scripts on `/objections`. Every entry is tagged to one of the **3 frameworks**:
 
-- **Framework A — Acknowledge → Question  → Reframe** — the workhorse. ~70% of objections close on this alone.
+- **Framework A — Acknowledge → Question → Reframe** — the workhorse. ~70% of objections close on this alone.
 - **Framework B — Feel, Felt, Found** — for emotional / relationship-weighted objections.
 - **Framework C — Boomerang ("that's exactly why")** — turn the disqualifier into the qualifier.
 - **skip-Q** — Framework A with the question step skipped, used only when the reflex is unmistakably stock.
 
 > **Asking the Right Questions.** A hundred statements are never as powerful as one right question. People defend statements; they own conclusions they reach themselves.
 
+> **Cushion before any framework.** Every entry below assumes you open with a cushion line ("that's totally fair", "honestly fair — and...", "appreciate you sharing that") before the framework fires. The cushion is the move that decides whether the rest of the script lands; full treatment in [Next 60 Days Day 40 — Cushioning](../next-60-days/week-7/day-40.md#cushioning--the-move-that-runs-underneath-all-three-tools).
+
 ## How to use this file
 
 - **Live page:** `/objections` mirrors this content via `src/data/curatedObjections.ts`. Edit the TS file (or this markdown + regenerate) — both should agree.
 - **Day reference:** Each entry links back to the Day file where the framework is taught.
-- **Voice rules:** Acknowledge first, never argue, always close on a time ask (or use the soft exit).
+- **Voice rules:** Cushion first, acknowledge, never argue, always close on a time ask (or use the soft exit).
 
 ---
 

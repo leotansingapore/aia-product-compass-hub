@@ -130,6 +130,8 @@ Before asking any question, test it:
 
 If all 3 pass, it's a right question. If any fails, rewrite before asking.
 
+> **The pairing rule:** the 3-point checklist tests *the question*. The cushion tests *the delivery*. Both have to pass — a perfect right-question delivered without a cushion still makes the prospect feel argued with, and a cushion in front of a sloppy question still wastes the moment. Cushion + right-question is the unit. See [Day 40](../week-7/day-40.md#cushioning--the-move-that-runs-underneath-all-three-tools) for the cushion treatment, and [First 60 Days Day 47](../../first-60-days/week-8/day-47.md) for how this checklist applies across SPIN's four phases.
+
 ---
 
 ## Worked example — answering *"why should I work with you?"*

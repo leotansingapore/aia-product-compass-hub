@@ -380,7 +380,7 @@ The principles can stay; the brand identifiers must not. When you would have wri
 
 ### What lives in source folders is exempt
 
-The ingested PDFs in `docs/first-60-days/_source-supplementary/{ibct-2024-run-4, sapt-2024-run-3, arq-2025-academy}/` are the actual third-party documents and keep their original names because they ARE those documents. Those folders are gitignored — they don't ship to the repo or to Lovable. Internal references inside the curriculum's *own* notes must still avoid the brand names even when discussing concepts that came from those source PDFs.
+The ingested PDFs in `docs/first-60-days/_source-supplementary/{behavioural-competency-ingest, sales-training-ingest, right-questions-ingest}/` are the actual third-party documents and keep their original names because they ARE those documents. Those folders are gitignored — they don't ship to the repo or to Lovable. Internal references inside the curriculum's *own* notes must still avoid the brand names even when discussing concepts that came from those source PDFs.
 
 ### How to verify before you commit
 

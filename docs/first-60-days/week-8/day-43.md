@@ -51,13 +51,11 @@ That framing matters. The prospect's brain hears "help me out for 5 minutes" and
 
 ### The 3 Cs of Communication — what's running underneath the script
 
-Before you read the script versions below, the underlying communication framework that makes any of them land:
-
-- **Connect (5 sub-skills)** — smile (audible in your voice on the phone), eye contact (in person), pay a sincere compliment (see *Sincere compliment* sidebar below), ask about *them*, listen and acknowledge what they say.
-- **Convince (1 sub-skill)** — match their logic. A D-profile prospect wants the bottom line in 60 seconds; an S wants relationship and reassurance first. Same script, different pacing.
-- **Comfort (4 sub-skills)** — tonality (warm, not flat), pace (slightly faster than conversational), body language (open, in person), choice of words (no jargon, no Solutions / Needs).
+The underlying communication framework that makes any script land: **Connect** (smile + sincere compliment + ask about them + listen + acknowledge), **Convince** (match their logic by DISC profile), **Comfort** (tonality, pace, body language, choice of words).
 
 The script you pick below is the *what*. The 3 Cs are the *how*. Without Connect, the prospect doesn't open up. Without Convince, the appointment ask falls flat. Without Comfort, you sound scripted even when you aren't.
+
+> **Full treatment in [Next 60 Days Day 31](../../next-60-days/week-6/day-31.md#the-bigger-frame-disc-sits-inside--the-3-cs-of-communication)** — including the full 5 Steps to Build Rapport and the profile-tuned variant of every move. Today's sidebar is the prerequisite gist; the deep-dive is post-RNF when you're running real meetings.
 
 ### Sincere compliment — the four-rule micro-skill
 
