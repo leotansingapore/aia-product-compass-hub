@@ -195,7 +195,7 @@ export default function AdminAssignments() {
         placeholder="Filter by name or email…"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        className="max-w-sm"
+        className="w-full sm:max-w-sm"
       />
 
       <div className="space-y-2">
@@ -238,19 +238,19 @@ export default function AdminAssignments() {
                     const formValues = parseFormValues(sub?.submission_text);
                     return (
                       <div key={a.slug} className="p-4 space-y-3">
-                        <div className="flex items-center justify-between gap-2">
-                          <div>
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <div className="min-w-0 flex-1">
                             <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                               Assignment {a.frontmatter.order}
                             </div>
-                            <div className="text-sm font-semibold">{a.frontmatter.title}</div>
+                            <div className="text-sm font-semibold break-words">{a.frontmatter.title}</div>
                           </div>
                           {sub ? (
-                            <Badge className="bg-green-500/15 text-green-700 dark:text-green-300 border-green-500/30 text-[10px] font-semibold uppercase">
+                            <Badge className="bg-green-500/15 text-green-700 dark:text-green-300 border-green-500/30 text-[10px] font-semibold uppercase shrink-0">
                               Submitted
                             </Badge>
                           ) : (
-                            <Badge variant="outline" className="text-[10px] font-semibold uppercase">
+                            <Badge variant="outline" className="text-[10px] font-semibold uppercase shrink-0">
                               Not yet
                             </Badge>
                           )}
@@ -267,11 +267,11 @@ export default function AdminAssignments() {
                             href={sub.file_url ?? "#"}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-xs hover:bg-muted/60 transition-colors"
+                            className="flex w-full items-center gap-2 rounded-lg border bg-background px-3 py-2 text-xs hover:bg-muted/60 transition-colors sm:inline-flex sm:w-auto sm:max-w-full"
                           >
-                            <FileText className="h-3.5 w-3.5 text-muted-foreground" />
-                            <span className="truncate max-w-xs">{sub.file_name}</span>
-                            <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                            <FileText className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                            <span className="truncate min-w-0 flex-1">{sub.file_name}</span>
+                            <ExternalLink className="h-3 w-3 text-muted-foreground shrink-0" />
                           </a>
                         )}
 
