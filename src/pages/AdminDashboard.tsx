@@ -39,72 +39,70 @@ export default function AdminDashboard() {
         <PlatformControls />
       </div>
       <Tabs defaultValue={initialTab}>
-        <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-wrap h-auto gap-0 !bg-transparent !p-0 border-b border-border rounded-none justify-start">
+        <div className="relative -mx-1 sm:mx-0 mb-4 sm:mb-6">
+          <TabsList className="w-max sm:w-auto h-auto gap-0 !bg-transparent !p-0 border-b border-border rounded-none justify-start flex overflow-x-auto sm:flex-wrap scrollbar-none px-1 sm:px-0">
           <TabsTrigger
             value="users"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <Users className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">User Management</span>
-            <span className="xs:hidden sm:hidden">Users</span>
+            <span>User Management</span>
           </TabsTrigger>
           <TabsTrigger
             value="video-progress"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <Video className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Video Progress</span>
-            <span className="xs:hidden sm:hidden">Videos</span>
+            <span>Video Progress</span>
           </TabsTrigger>
           <TabsTrigger
             value="performance"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <BarChart3 className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Performance</span>
-            <span className="xs:hidden sm:hidden">Perf</span>
+            <span>Performance</span>
           </TabsTrigger>
           <TabsTrigger
             value="question-bank"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <BookOpen className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Question Bank</span>
-            <span className="xs:hidden sm:hidden">Bank</span>
+            <span>Question Bank</span>
           </TabsTrigger>
           <TabsTrigger
             value="leaderboard"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <Trophy className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Leaderboard</span>
-            <span className="xs:hidden sm:hidden">Board</span>
+            <span>Leaderboard</span>
           </TabsTrigger>
           <TabsTrigger
             value="tier-requests"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <Inbox className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Tier Requests</span>
-            <span className="xs:hidden sm:hidden">Requests</span>
+            <span>Tier Requests</span>
           </TabsTrigger>
           <TabsTrigger
             value="feedback"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <MessageSquare className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Feedback</span>
-            <span className="xs:hidden sm:hidden">Feedback</span>
+            <span>Feedback</span>
           </TabsTrigger>
           <TabsTrigger
             value="categories"
-            className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
           >
             <FolderTree className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Categories</span>
-            <span className="xs:hidden sm:hidden">Cats</span>
+            <span>Categories</span>
           </TabsTrigger>
-        </TabsList>
+          </TabsList>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:hidden"
+          />
+        </div>
 
         <TabsContent value="users">
           <Suspense fallback={<PanelFallback />}><UnifiedUserDirectory /></Suspense>
