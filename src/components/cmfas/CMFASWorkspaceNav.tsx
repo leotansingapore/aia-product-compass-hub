@@ -23,10 +23,19 @@ export interface CMFASWorkspaceNavItems {
 }
 
 /**
- * Single ordered nav list — flat, learner-journey order:
- *   Setup → Orient → Learn → Drill → Reward.
- * Locks fall on Tutorials + Practice (gated by `readyComplete`); the other
- * three are always available.
+ * Single ordered nav list — order flips after onboarding.
+ *
+ * **Setup phase** (Study Desk not yet complete): Study Desk leads the rail —
+ * the learner's job right now is to finish onboarding (account creation,
+ * resources access, exam booking). Reference items follow.
+ *
+ * **Post-onboarding** (Study Desk complete): the rail reorders to surface
+ * the daily-use items first — Study Tips and Practice are what learners
+ * actually open every day. Study Desk drops to the end as a quiet "done"
+ * link in case anyone needs to revisit a setup step.
+ *
+ * Locks fall on Tutorials + Practice (gated by `readyComplete`); the rest
+ * are always available.
  */
 export function buildNavSpec({
   readyProgress,
@@ -35,21 +44,29 @@ export function buildNavSpec({
   readyProgress: { done: number; total: number };
   readyComplete: boolean;
 }): CMFASWorkspaceNavItems {
+  const studyDesk: NavItemSpec = {
+    id: 'today',
+    label: 'Study desk',
+    icon: Home,
+    locked: false,
+    badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
+  };
+  const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
+  const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
+  const papers: NavItemSpec = { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete };
+  const syllabus: NavItemSpec = { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false };
+  const rewards: NavItemSpec = { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false };
+
+  // Setup phase — Study Desk leads, reference follows.
+  if (!readyComplete) {
+    return {
+      items: [studyDesk, syllabus, papers, studyTips, practice, rewards],
+    };
+  }
+
+  // Post-onboarding — daily reference first, Study Desk last.
   return {
-    items: [
-      {
-        id: 'today',
-        label: 'Study desk',
-        icon: Home,
-        locked: false,
-        badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
-      },
-      { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false },
-      { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete },
-      { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false },
-      { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete },
-      { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false },
-    ],
+    items: [studyTips, practice, papers, syllabus, rewards, studyDesk],
   };
 }
 

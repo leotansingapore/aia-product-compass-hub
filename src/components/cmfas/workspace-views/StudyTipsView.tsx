@@ -2,6 +2,7 @@ import {
   BookOpen,
   Brain,
   CalendarCheck,
+  CalendarClock,
   CheckCircle2,
   ClipboardList,
   ExternalLink,
@@ -119,6 +120,69 @@ export function StudyTipsView() {
           step by step. The papers earn the licence; this guide earns the licence fast.
         </p>
       </header>
+
+      {/* ─── Book your next paper ─────────────────────────────────────────
+       *  Surfaced at the top so the booking step is one click from the
+       *  most-referenced page in the workspace. Sticking to a paper-every-
+       *  fortnight cadence is the single biggest determinant of pace.
+       */}
+      <section
+        className={cn(
+          'rounded-2xl border-2 p-5',
+          cmfasRoom.brassBorder,
+          'bg-primary/5',
+        )}
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex items-start gap-3 min-w-0">
+            <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+              <CalendarClock className={cn('h-5 w-5', cmfasRoom.brassText)} />
+            </div>
+            <div className="min-w-0">
+              <p className={cn('text-[10px] font-bold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
+                Lock the date
+              </p>
+              <h2 className={cn('mt-0.5 font-serif text-xl font-bold leading-tight sm:text-2xl', cmfasRoom.text)}>
+                Book your next paper.
+              </h2>
+              <p className={cn('mt-1 max-w-xl text-sm', cmfasRoom.textMuted)}>
+                A real exam date is the single biggest thing that pulls a learner through the question bank.
+                Aim for one paper every two weeks.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 sm:items-end sm:shrink-0">
+            <a
+              href="https://www.scicollege.org.sg/Exam/ExamRegistration"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                'inline-flex items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition-colors',
+                cmfasRoom.brassBorder,
+                cmfasRoom.text,
+                cmfasRoom.brassBgHover,
+              )}
+            >
+              <span>Check the SCI exam schedule</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href="https://tinyurl.com/CMFASregistration2025"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                'inline-flex items-center justify-between gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition-colors',
+                cmfasRoom.brassBorder,
+                cmfasRoom.brassBgSoft,
+                cmfasRoom.brassText,
+              )}
+            >
+              <span>Register for an exam</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* ─── Strategy + How long ───────────────────────────────────────── */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
