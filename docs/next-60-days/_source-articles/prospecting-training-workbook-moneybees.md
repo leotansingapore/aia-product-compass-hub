@@ -138,7 +138,7 @@ S profiles read emotions well *but* overthink — assuming budget or risk-tolera
 ### The Art of Acknowledging
 - **Paraphrase** to confirm understanding (*"So it sounds like you're feeling a bit cautious…"*)
 - **Ask clarifying questions** (*"Is the upcoming probation end affecting this decision?"*)
-- **ICBT compliments** (Intent / Believability / Congruence / Timing)
+- **Sincere compliments framework** (Intent / Believability / Congruence / Timing)
 - **Empathy words** (*"I completely understand how that feels…"*)
 
 ### Spotting hot buttons

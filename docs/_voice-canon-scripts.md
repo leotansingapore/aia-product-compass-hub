@@ -21,6 +21,21 @@ The bar: a friend reading the message should think *"that sounds genuine and use
 
 ---
 
+## TL;DR — the 6 rules to remember if you only read this
+
+If you're short on time, the canon collapses to these six. Anything else is detail.
+
+1. **Default register is professional warm.** Sentence-cased, full grammar, sincere. Not lowercase Singlish, not LinkedIn polish. (§1, §2)
+2. **Cushion before you reframe.** Any objection response over 2 sentences must open with *"that's totally fair"*, *"honestly, fair — and..."*, or equivalent. (§3 cushioning, §5)
+3. **End on a low-bar invitation, never on a door-closer.** *"Would love to grab a coffee sometime"* / *"Drop me a note anytime"* — not *"no need to reply"*, *"that's it"*, *"take care!"*. (§2 rule 4-5, §3 kill list)
+4. **Cut US business jargon.** *"Sounding board"*, *"reach out"*, *"circle back"*, *"touch base"*, *"moving forward"*, *"plant a flag"*, *"opening the door"*, *"be your first call"* — strip them. (§3 kill list)
+5. **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"my pleasure to help"*, *"to service your financial needs"* — once per message, when meant. (§2 rule 6)
+6. **No competitor brand names, ever.** *IBCT*, *SAPT*, *ARQ*, *Lusi Group*, *Coach Mac*, *the bootcamp* — never appear in curriculum notes. The principles can stay; the brand identifiers must not. (§10)
+
+If your draft passes all six, ship it. If it fails on more than one, rewrite from scratch using §4 patterns.
+
+---
+
 ## 1. Audiences and registers
 
 Pick the register that matches the channel. A WhatsApp message and a cold call do not share a voice.
@@ -337,5 +352,42 @@ If you are a subagent (creative-strategist, copy-writer, brand-post-writer, or s
 5. **Do not over-correct toward Singlish text-speak.** Lowercase starts, sprinkled "lah/sia/haha/lemme", and missing punctuation are the wrong direction. Professional warm is sentence-cased, fully grammatical, with sincere phrasing and real disclaimers.
 6. Sincere phrases like *"It would be my privilege"*, *"my pleasure"*, *"to service your financial needs"* are allowed and often correct — once per message.
 7. Do not silently humanize canonical AIA scripts (Section 8). If you're unsure whether a script is canonical, ask before editing.
+8. **Never use competitor brand names.** See §10 below — this is a hard line.
 
 The single test for any output: would a working professional in their late 20s send this message to a friend without thinking it sounded scripted? If no, rewrite. If it sounds like text-speak from a teenager, rewrite the other way.
+
+---
+
+## 10. No external bootcamp / competitor brand names
+
+The curriculum draws on principles from several external sales-training programs, but **none of those program names appear in the published curriculum**. This is non-negotiable.
+
+### What never appears in any curriculum file
+
+- *IBCT* (Individual Behavioural Competency Technology)
+- *SAPT* (Sales Aptitude & Proficiency Technology)
+- *ARQ* (Asking Right Questions) — as a literal acronym; the principle is referenced as "asking the right questions" or "right-question move"
+- *Lusi Group*, *Lusi Lim*, *Coach Mac* — by name
+- *"the bootcamp"*, *"the trainer course"*, *"the framework from [external program]"* — any phrasing that credits an external source
+
+### Why
+
+These are competitor / third-party programs. Crediting them in our curriculum (a) advertises competitors to our consultants, (b) creates copyright risk on the proprietary frameworks, (c) makes the curriculum feel derivative rather than canonical.
+
+### What to do instead
+
+The principles can stay; the brand identifiers must not. When you would have written *"the IBCT 8-Step framework"*, write *"the 8-Step Recovery framework"* or just *"the framework below"*. When you would have written *"SAPT's FACT method"*, write *"the FACT method"* (the method name is generic enough). When you would have written *"a habit from ARQ training"*, write *"a habit of asking the right questions"*.
+
+### What lives in source folders is exempt
+
+The ingested PDFs in `docs/first-60-days/_source-supplementary/{ibct-2024-run-4, sapt-2024-run-3, arq-2025-academy}/` are the actual third-party documents and keep their original names because they ARE those documents. Those folders are gitignored — they don't ship to the repo or to Lovable. Internal references inside the curriculum's *own* notes must still avoid the brand names even when discussing concepts that came from those source PDFs.
+
+### How to verify before you commit
+
+```bash
+grep -rn --include="*.md" -E "\b(IBCT|SAPT|ARQ|Lusi Group|Coach Mac)\b" \
+  docs/first-60-days docs/next-60-days docs/_voice-canon-scripts.md \
+  | grep -v "_source-supplementary/\|_source-articles/\|_source-holos\|_source-decks\|_inbox/"
+```
+
+Should return zero hits. If you see hits in your draft, scrub before committing.
