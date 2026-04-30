@@ -628,33 +628,13 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
 
   // ── Section 3 · Exam Resources ───────────────────────────────────────────
   {
-    slideId: 'section-3.step-1-ask-leo',
-    sectionId: 'access-question-bank',
-    indexWithinSection: 1,
-    totalInSection: 8,
-    section: 'Section 3 · Exam Resources',
-    slideHeading: 'Ask Leo to create your iRecruit account',
-    eyebrow: 'Part 1 · Step 1 of 5',
-    blocks: [
-      {
-        kind: 'intro',
-        text: 'You cannot reach the question bank without a personal iRecruit account. Getting one is a 5-minute task.',
-      },
-      {
-        kind: 'paragraph',
-        text: 'On your FINternship support chat, send Leo your **name, email, and mobile number** so he can create your account. While you wait, start Step 2.',
-      },
-    ],
-    verification: [],
-  },
-  {
     slideId: 'section-3.step-2-login-irecruit',
     sectionId: 'access-question-bank',
-    indexWithinSection: 2,
-    totalInSection: 8,
+    indexWithinSection: 1,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Log in to iRecruit',
-    eyebrow: 'Part 1 · Step 2 of 5',
+    eyebrow: 'Part 1 · Step 1 of 4',
     blocks: [
       {
         kind: 'paragraph',
@@ -676,11 +656,11 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.step-3-navigate',
     sectionId: 'access-question-bank',
-    indexWithinSection: 3,
-    totalInSection: 8,
+    indexWithinSection: 2,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Navigate to the M9 exam bank',
-    eyebrow: 'Part 1 · Step 3 of 5',
+    eyebrow: 'Part 1 · Step 2 of 4',
     blocks: [
       {
         kind: 'paragraph',
@@ -704,11 +684,11 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.step-4-start-session',
     sectionId: 'access-question-bank',
-    indexWithinSection: 4,
-    totalInSection: 8,
+    indexWithinSection: 3,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Start a practice session',
-    eyebrow: 'Part 1 · Step 4 of 5',
+    eyebrow: 'Part 1 · Step 3 of 4',
     blocks: [
       {
         kind: 'paragraph',
@@ -740,11 +720,11 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.step-5-mobile-login',
     sectionId: 'access-question-bank',
-    indexWithinSection: 5,
-    totalInSection: 8,
+    indexWithinSection: 4,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Log in to iLearn on mobile',
-    eyebrow: 'Part 1 · Step 5 of 5',
+    eyebrow: 'Part 1 · Step 4 of 4',
     blocks: [
       {
         kind: 'paragraph',
@@ -761,8 +741,8 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.part-2-study-tips',
     sectionId: 'access-question-bank',
-    indexWithinSection: 6,
-    totalInSection: 8,
+    indexWithinSection: 5,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Exam study tips & resources',
     eyebrow: 'Part 2 · Save yourself hours',
@@ -789,8 +769,8 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.part-3-chatbot',
     sectionId: 'access-question-bank',
-    indexWithinSection: 7,
-    totalInSection: 8,
+    indexWithinSection: 6,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Chatbot access — your 24/7 CMFAS tutor',
     eyebrow: 'Part 3 · Ask anything anytime',
@@ -809,8 +789,8 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
   {
     slideId: 'section-3.part-4-flashcards',
     sectionId: 'access-question-bank',
-    indexWithinSection: 8,
-    totalInSection: 8,
+    indexWithinSection: 7,
+    totalInSection: 7,
     section: 'Section 3 · Exam Resources',
     slideHeading: 'Learn faster with flashcards',
     eyebrow: 'Part 4 · Spaced repetition',
@@ -954,4 +934,25 @@ const SLIDE_BY_ID: Record<string, SlideEntry> = Object.fromEntries(
 
 export function getSlideById(slideId: string): SlideEntry | undefined {
   return SLIDE_BY_ID[slideId];
+}
+
+/** URL-safe slug derived from `slideId`. Source-of-truth for `/cmfas-exams/today/:slideSlug`. */
+export function slideIdToSlug(slideId: string): string {
+  return slideId.replace(/\./g, '-');
+}
+
+const SLIDE_BY_SLUG: Record<string, SlideEntry> = Object.fromEntries(
+  GET_READY_SLIDES.map((s) => [slideIdToSlug(s.slideId), s] as const),
+);
+
+export function getSlideBySlug(slug: string): SlideEntry | undefined {
+  return SLIDE_BY_SLUG[slug];
+}
+
+const SLIDE_INDEX_BY_SLUG: Record<string, number> = Object.fromEntries(
+  GET_READY_SLIDES.map((s, i) => [slideIdToSlug(s.slideId), i] as const),
+);
+
+export function getSlideIndexBySlug(slug: string): number {
+  return SLIDE_INDEX_BY_SLUG[slug] ?? -1;
 }
