@@ -8,23 +8,29 @@ const active = "border-primary text-foreground";
 export default function AdminLayout() {
   return (
     <div className="space-y-4" data-testid="admin-layout-page">
-      <nav className="flex gap-1 border-b overflow-x-auto" aria-label="Admin sections">
-        <NavLink to="first-14-days" className={({ isActive }) => cn(tab, isActive && active)}>
-          First 14 Days
-        </NavLink>
-        <NavLink to="first-60-days" className={({ isActive }) => cn(tab, isActive && active)}>
-          First 60 Days
-        </NavLink>
-        <NavLink to="assignments" className={({ isActive }) => cn(tab, isActive && active)}>
-          Assignments
-        </NavLink>
-        <NavLink to="question-banks" className={({ isActive }) => cn(tab, isActive && active)}>
-          Question Banks
-        </NavLink>
-        <NavLink to="roleplay" className={({ isActive }) => cn(tab, isActive && active)}>
-          Roleplay
-        </NavLink>
-      </nav>
+      <div className="relative">
+        <nav className="flex gap-1 border-b overflow-x-auto" aria-label="Admin sections">
+          <NavLink to="first-14-days" className={({ isActive }) => cn(tab, isActive && active)}>
+            First 14 Days
+          </NavLink>
+          <NavLink to="first-60-days" className={({ isActive }) => cn(tab, isActive && active)}>
+            First 60 Days
+          </NavLink>
+          <NavLink to="assignments" className={({ isActive }) => cn(tab, isActive && active)}>
+            Assignments
+          </NavLink>
+          <NavLink to="question-banks" className={({ isActive }) => cn(tab, isActive && active)}>
+            Question Banks
+          </NavLink>
+          <NavLink to="roleplay" className={({ isActive }) => cn(tab, isActive && active)}>
+            Roleplay
+          </NavLink>
+        </nav>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:hidden"
+        />
+      </div>
       <Outlet />
     </div>
   );
