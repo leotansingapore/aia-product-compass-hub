@@ -28,7 +28,6 @@ const RESOURCES: ReadonlyArray<{ label: string; href?: string; hint: string }> =
   { label: 'iLearn portal (iRecruit)', href: 'https://joinus.aia.com.sg/app/login', hint: 'The canonical question bank.' },
   { label: 'CMFAS chatbot · @cmfas_bot', href: 'https://t.me/cmfas_bot', hint: '24/7 explainer for any question.' },
   { label: 'SCI key concepts + textbooks', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ', hint: 'Reference, not required reading.' },
-  { label: 'Flashcards (Revisely)', hint: 'Decks per paper — see below.' },
   { label: 'SCI chapter checkpoint questions', hint: 'Inside the SCI student account.' },
   { label: 'SCI mock exam', hint: 'Run 4–5 times max — questions repeat.' },
 ];
@@ -50,7 +49,7 @@ const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.Comp
     title: 'Step 3 · Build memory retention',
     icon: Brain,
     body:
-      'Some questions are hard to remember — math with workings, exact figures, technical definitions. Copy those questions into a personal doc. Paste in the chatbot answer or key-concept text alongside. Use the flashcards for reinforcement on the move.',
+      'Some questions are hard to remember — math with workings, exact figures, technical definitions. Copy those questions into a personal doc and paste the chatbot answer or key-concept text alongside. That doc becomes the personal cheat-sheet for end-of-day revision.',
   },
   {
     title: 'Step 4 · Develop accuracy',
@@ -80,15 +79,8 @@ const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.Comp
     title: 'Step 8 · Exam day',
     icon: Trophy,
     body:
-      'Use the flashcards and the trimmed notes on the train or bus. In the exam itself, read each question carefully and check workings + answers at least twice end-to-end before submitting.',
+      'Skim the trimmed notes doc on the train or bus. In the exam itself, read each question carefully and check workings + answers at least twice end-to-end before submitting.',
   },
-];
-
-const FLASHCARD_DECKS: ReadonlyArray<{ paper: string; url: string }> = [
-  { paper: 'M9', url: 'https://revisely.com/flashcards/decks/PnO9i6' },
-  { paper: 'M9A', url: 'https://revisely.com/flashcards/decks/CVxXJ7' },
-  { paper: 'HI', url: 'https://revisely.com/flashcards/decks/4Bz9fm' },
-  { paper: 'RES5', url: 'https://revisely.com/flashcards/decks/1KxDpT' },
 ];
 
 const PRACTICE_TACTICS: ReadonlyArray<string> = [
@@ -362,39 +354,28 @@ export function StudyTipsView() {
         </div>
       </section>
 
-      {/* ─── Flashcards ────────────────────────────────────────────────── */}
+      {/* ─── Ready to book? ────────────────────────────────────────────── */}
       <section className={cn('rounded-2xl border p-5', cmfasRoom.surface)}>
-        <div className="flex items-start gap-3">
-          <div className={cn('flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-            <Sparkles className={cn('h-5 w-5', cmfasRoom.brassText)} />
-          </div>
-          <div className="min-w-0 flex-1">
-            <h2 className={cn('text-base font-semibold', cmfasRoom.text)}>Flashcards</h2>
-            <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-              Drilled from the iLearn pool, the chatbot, the textbook, and the SCI key-concepts pages. Use them
-              after some iLearn practice — quick revision on the move and the hour before the exam, not a memory drill.
-            </p>
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {FLASHCARD_DECKS.map((deck) => (
-                <a
-                  key={deck.paper}
-                  href={deck.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    'flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-semibold transition-colors',
-                    cmfasRoom.brassBorderSoft,
-                    cmfasRoom.text,
-                    cmfasRoom.brassBgHover,
-                  )}
-                >
-                  <span>{deck.paper}</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <h2 className={cn('text-sm font-semibold uppercase tracking-[0.15em]', cmfasRoom.text)}>
+          Ready to book? Check these first.
+        </h2>
+        <ul className={cn('mt-3 space-y-1.5 text-sm leading-relaxed', cmfasRoom.text)}>
+          <li className="flex items-start gap-2">
+            <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+            <span>Cleared the full iLearn bank for the paper (~1,000 questions).</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+            <span>Scoring consistently above the pass mark on Premium Papers under timed conditions.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+            <span>Done at least one full SCI mock paper end-to-end.</span>
+          </li>
+        </ul>
+        <p className={cn('mt-3 text-xs', cmfasRoom.textMuted)}>
+          Don't wait for a perfect score — book once those three land. Fear of booking is what stretches a 4-week paper into 8.
+        </p>
       </section>
 
       {/* ─── Communication / next-steps ─────────────────────────────────── */}

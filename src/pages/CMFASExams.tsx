@@ -35,7 +35,6 @@ import {
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { StudyDeskView } from "@/components/cmfas/workspace-views/StudyDeskView";
 import { READY_STEP_IDS } from "@/components/cmfas/workspace-views/getReadyData";
-import { BookView } from "@/components/cmfas/workspace-views/BookView";
 import { PapersView } from "@/components/cmfas/workspace-views/PapersView";
 import { PracticeView } from "@/components/cmfas/workspace-views/PracticeView";
 import { RewardsView } from "@/components/cmfas/workspace-views/RewardsView";
@@ -51,11 +50,10 @@ import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
-const WORKSPACE_MODES: WorkspaceMode[] = ["today", "book", "papers", "practice", "rewards", "study-tips", "syllabus"];
+const WORKSPACE_MODES: WorkspaceMode[] = ["today", "papers", "practice", "rewards", "study-tips", "syllabus"];
 /** Modes that get their own URL segment under `/cmfas-exams/`. The default
  *  `today` (study desk) lives at the bare `/cmfas-exams` path. */
 const PATH_WORKSPACE_MODES: ReadonlyArray<Exclude<WorkspaceMode, "today">> = [
-  "book",
   "syllabus",
   "papers",
   "study-tips",
@@ -225,7 +223,6 @@ export default function CMFASExams() {
     if (activeMode === "today") {
       return <StudyDeskView onSelectWorkspaceMode={setMode} />;
     }
-    if (activeMode === "book") return <BookView />;
     if (activeMode === "papers") return <PapersView />;
     if (activeMode === "practice") return <PracticeView />;
     if (activeMode === "rewards") return <RewardsView />;
