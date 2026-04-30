@@ -819,30 +819,36 @@ export default function FinancialAdvisorDifferentiation() {
 
         {/* Tabs */}
         <Tabs value={activeTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-7 mb-8">
-            {TABS.map((t) => {
-              const Icon = t.icon;
-              const pct = tabProgress[t.id] ?? 0;
-              return (
-                <Link
-                  key={t.id}
-                  to={`${BASE_PATH}/${t.id}`}
-                  className={`flex flex-col items-center gap-1 py-3 rounded-md px-2 text-sm font-medium transition-all relative ${activeTab === t.id ? 'bg-background text-foreground shadow-sm' : ''}`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span className="text-[10px] sm:text-xs hidden sm:block">{t.label}</span>
-                  {pct > 0 && pct < 100 && t.id !== "output" && (
-                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-1 bg-muted rounded-full overflow-hidden">
-                      <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
-                    </div>
-                  )}
-                  {pct === 100 && t.id !== "output" && (
-                    <CheckCircle2 className="absolute top-1 right-1 h-3 w-3 text-green-500" />
-                  )}
-                </Link>
-              );
-            })}
-          </TabsList>
+          <div className="relative mb-8">
+            <TabsList className="flex w-full overflow-x-auto sm:grid sm:grid-cols-7">
+              {TABS.map((t) => {
+                const Icon = t.icon;
+                const pct = tabProgress[t.id] ?? 0;
+                return (
+                  <Link
+                    key={t.id}
+                    to={`${BASE_PATH}/${t.id}`}
+                    className={`flex flex-col items-center gap-1 py-3 rounded-md px-3 text-sm font-medium transition-all relative shrink-0 min-w-[76px] sm:min-w-0 sm:shrink ${activeTab === t.id ? 'bg-background text-foreground shadow-sm' : ''}`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span className="text-[10px] sm:text-xs">{t.label}</span>
+                    {pct > 0 && pct < 100 && t.id !== "output" && (
+                      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-1 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
+                      </div>
+                    )}
+                    {pct === 100 && t.id !== "output" && (
+                      <CheckCircle2 className="absolute top-1 right-1 h-3 w-3 text-green-500" />
+                    )}
+                  </Link>
+                );
+              })}
+            </TabsList>
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:hidden"
+            />
+          </div>
 
           {/* ===== PERSONALITY TAB ===== */}
           <TabsContent value="personality" className="space-y-6">
