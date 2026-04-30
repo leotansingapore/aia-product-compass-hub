@@ -39,7 +39,8 @@ export default function AdminDashboard() {
         <PlatformControls />
       </div>
       <Tabs defaultValue={initialTab}>
-        <TabsList className="mb-4 sm:mb-6 w-full sm:w-auto flex-wrap h-auto gap-0 !bg-transparent !p-0 border-b border-border rounded-none justify-start">
+        <div className="relative -mx-1 sm:mx-0 mb-4 sm:mb-6">
+          <TabsList className="w-max sm:w-auto h-auto gap-0 !bg-transparent !p-0 border-b border-border rounded-none justify-start flex overflow-x-auto sm:flex-wrap scrollbar-none px-1 sm:px-0">
           <TabsTrigger
             value="users"
             className="flex items-center gap-1.5 flex-1 sm:flex-none rounded-none border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
