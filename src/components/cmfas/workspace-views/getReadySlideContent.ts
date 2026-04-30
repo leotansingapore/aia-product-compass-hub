@@ -532,15 +532,16 @@ export interface SlideEntry {
  * as the linear-nav position. Authored once, read everywhere.
  */
 export const GET_READY_SLIDES: readonly SlideEntry[] = [
-  // ── Section 1 · Rules of the Game ────────────────────────────────────────
+  // ── Section 1 · Why the Exams Come First ─────────────────────────────────
   {
     slideId: 'section-1.rules-of-the-game',
     sectionId: 'welcome',
     indexWithinSection: 1,
     totalInSection: 1,
     section: 'Section 1',
-    slideHeading: 'Rules of the Game',
+    slideHeading: 'Why the Exams Come First',
     paragraphs: GET_READY_SLIDE.welcome.paragraphs,
+    blocks: GET_READY_SLIDE.welcome.blocks,
     pathStages: GET_READY_SLIDE.welcome.pathStages,
     closingParagraphs: GET_READY_SLIDE.welcome.closingParagraphs,
     verification: [],
