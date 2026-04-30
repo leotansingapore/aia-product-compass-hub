@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { EyeOff, MoreVertical, Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -50,8 +50,16 @@ import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
 const WORKSPACE_MODES: WorkspaceMode[] = ["today", "papers", "practice", "rewards", "syllabus"];
+/** Modes that get their own URL segment under `/cmfas-exams/`. The default
+ *  `today` (study desk) lives at the bare `/cmfas-exams` path. */
+const PATH_WORKSPACE_MODES: ReadonlyArray<Exclude<WorkspaceMode, "today">> = [
+  "syllabus",
+  "papers",
+  "practice",
+  "rewards",
+];
 
-function isWorkspaceMode(value: string | null): value is WorkspaceMode {
+function isWorkspaceMode(value: string | null | undefined): value is WorkspaceMode {
   return value != null && (WORKSPACE_MODES as string[]).includes(value);
 }
 
@@ -62,7 +70,9 @@ export default function CMFASExams() {
   const isAdminUser = isAdmin() && !isViewingAsUser;
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const urlMode = searchParams.get("mode");
+  /** Workspace mode now lives in the URL path: `/cmfas-exams/:workspaceMode`.
+   *  Bare `/cmfas-exams` resolves to the default "today" study desk. */
+  const { workspaceMode: pathMode } = useParams<{ workspaceMode?: string }>();
 
   // Resolve CMFAS category (for admin publish/edit) ---------------------------
   const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
@@ -80,32 +90,42 @@ export default function CMFASExams() {
   }, [isItemCompleted]);
   const readyComplete = readyProgress.done >= readyProgress.total;
 
-  /** Home with no `?mode=` is always the study desk (merged outline + get-ready). */
+  /** Bare `/cmfas-exams` is always the study desk (merged outline + get-ready). */
   const defaultWorkspaceMode: WorkspaceMode = "today";
-  const activeMode: WorkspaceMode = isWorkspaceMode(urlMode) ? urlMode : defaultWorkspaceMode;
+  const activeMode: WorkspaceMode = isWorkspaceMode(pathMode) ? pathMode : defaultWorkspaceMode;
 
-  // Legacy `?mode=ready` (removed as a product surface) — strip so bookmarks stay on the desk.
+  // Legacy back-compat: bookmarks of `/cmfas-exams?mode=papers` (and friends)
+  // land here from before unique URLs existed. Rewrite to the matching
+  // path-based URL so the address bar reflects the page the learner is on.
   useEffect(() => {
-    if (searchParams.get("mode") === "ready") {
-      setSearchParams(
-        (prev) => {
-          const next = new URLSearchParams(prev);
-          next.delete("mode");
-          return next;
-        },
-        { replace: true },
-      );
+    const legacyMode = searchParams.get("mode");
+    if (!legacyMode) return;
+    // `?mode=ready` was retired as a surface — strip it.
+    if (legacyMode === "ready") {
+      const next = new URLSearchParams(searchParams);
+      next.delete("mode");
+      setSearchParams(next, { replace: true });
+      return;
     }
-  }, [searchParams, setSearchParams]);
+    if (isWorkspaceMode(legacyMode)) {
+      const next = new URLSearchParams(searchParams);
+      next.delete("mode");
+      const qs = next.toString();
+      const target =
+        legacyMode === defaultWorkspaceMode
+          ? `/cmfas-exams${qs ? `?${qs}` : ""}`
+          : `/cmfas-exams/${legacyMode}${qs ? `?${qs}` : ""}`;
+      navigate(target, { replace: true });
+    }
+  }, [searchParams, setSearchParams, navigate, defaultWorkspaceMode]);
 
   const setMode = useCallback(
     (mode: WorkspaceMode) => {
-      setSearchParams(
-        mode === defaultWorkspaceMode ? {} : { mode: mode as string },
-        { replace: true },
-      );
+      const path =
+        mode === defaultWorkspaceMode ? "/cmfas-exams" : `/cmfas-exams/${mode}`;
+      navigate(path, { replace: true });
     },
-    [setSearchParams, defaultWorkspaceMode],
+    [navigate, defaultWorkspaceMode],
   );
 
   // Admin: publish-toggle on the CMFAS category ------------------------------
@@ -145,6 +165,14 @@ export default function CMFASExams() {
       setMode("today");
     }
   }, [readyComplete, activeMode, setMode]);
+
+  // Unknown path segment (e.g. `/cmfas-exams/bogus`) — silently rewrite to the
+  // study desk so the URL bar stops showing a non-existent page.
+  useEffect(() => {
+    if (pathMode != null && !isWorkspaceMode(pathMode)) {
+      navigate("/cmfas-exams", { replace: true });
+    }
+  }, [pathMode, navigate]);
 
   // Loading / missing category ----------------------------------------------
   const structuredData: StructuredData = {

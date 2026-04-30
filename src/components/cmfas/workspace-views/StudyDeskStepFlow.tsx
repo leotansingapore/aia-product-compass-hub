@@ -59,7 +59,7 @@ function canAccessSlideIndex(
   return true;
 }
 
-/** In-app `Link` for paths like `/cmfas-exams?mode=practice`; not `//` or `mailto:`. */
+/** In-app `Link` for paths like `/cmfas-exams/practice`; not `//` or `mailto:`. */
 function isInternalAppPath(href: string) {
   return href.startsWith('/') && !href.startsWith('//');
 }
