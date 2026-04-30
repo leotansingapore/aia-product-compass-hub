@@ -93,7 +93,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { kind: 'heading', text: 'Each pass unlocks more of the program' },
       {
         kind: 'paragraph',
-        text: 'The curriculum tiers open as papers fall. Anyone can enter BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer. The same logic applies here — see the three Finternship™ stages below.',
+        text: 'The curriculum tiers open as papers fall. Anyone can enter BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer. The same logic applies here: each paper cleared opens up more of the next-stage content — financial planning modules first, then live-appointment shadowing, then cold prospecting and the full team script library.',
       },
 
       { kind: 'heading', text: 'Common questions' },
@@ -132,32 +132,6 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       {
         kind: 'paragraph',
         text: 'Score consistently above the pass mark on the question bank under timed conditions, ideally on Premium Papers rather than chapter-by-chapter revision. The Practice surface in this room ([open Practice](/cmfas-exams/practice)) is built around that readiness check.',
-      },
-    ],
-    pathStages: [
-      {
-        title: 'Finternship™ Bootcamp',
-        tagline: 'Everyone starts here.',
-        bullets: [
-          'Focus on the exams: plan for about two hours of study per day.',
-          'Unlock the basic financial planning modules.',
-        ],
-      },
-      {
-        title: 'Finternship™ Fastrack',
-        tagline: 'Progress here after passing 1 exam.',
-        bullets: [
-          'Unlock more financial planning modules.',
-          'Start shadowing your mentor on appointments to learn on the job.',
-        ],
-      },
-      {
-        title: 'Finternship™ Accelerator',
-        tagline: 'Progress here after passing 4 exams.',
-        bullets: [
-          'Start learning how to do cold prospecting.',
-          "Unlock the team's scripts and presentation templates.",
-        ],
       },
     ],
     closingParagraphs: [
@@ -542,7 +516,6 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     slideHeading: 'Why the Exams Come First',
     paragraphs: GET_READY_SLIDE.welcome.paragraphs,
     blocks: GET_READY_SLIDE.welcome.blocks,
-    pathStages: GET_READY_SLIDE.welcome.pathStages,
     closingParagraphs: GET_READY_SLIDE.welcome.closingParagraphs,
     verification: [],
   },
