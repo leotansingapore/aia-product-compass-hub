@@ -96,6 +96,16 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         text: 'The curriculum tiers open as papers fall. Anyone can enter BMT, but not everyone makes it through OCS Foundation Term and Pro Term to commission as an Officer. The same logic applies here: each paper cleared opens up more of the next-stage content — financial planning modules first, then live-appointment shadowing, then cold prospecting and the full team script library.',
       },
 
+      { kind: 'heading', text: 'The exams are not the career' },
+      {
+        kind: 'paragraph',
+        text: "The licence is the foot in the door — it does not prepare anyone for the actual job. What prepares an FC for real client work is the [First 60 Days curriculum](/learning-track/first-60-days) and the [8 assignments](/learning-track/pre-rnf/assignments). Those are at least as important as the papers, and arguably more so, because they cover what happens after the licence: prospecting, the right questions to ask, building trust, structuring a recommendation, closing, and onboarding the client.",
+      },
+      {
+        kind: 'paragraph',
+        text: "Plan to run both tracks in parallel. Mornings on exam study, afternoons or evenings on the curriculum and the assignments. Treat the assignments as the real career rehearsal: they are scored, reviewed, and built around the live behaviours top producers run every week. Knock out the papers fast so the bulk of your runway can go into the work that actually compounds.",
+      },
+
       { kind: 'heading', text: 'Common questions' },
 
       { kind: 'heading', text: 'Why these four papers specifically?' },
