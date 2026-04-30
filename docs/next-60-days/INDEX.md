@@ -188,7 +188,7 @@ Pre-drafted content pieces and ingested third-party frameworks (warm-market scri
 - [[_source-articles/market-survey-warm-market|Market Survey — Warm Market Script]] — Week 4 (warm outreach)
 - [[_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days (Operational)]] — team operational setup integrated into W1 D2–D4, W3 D15, W4 D20/D22/D23, W8 D47 (income structure, Lark/CRM, vision board, pledge sheet, cold-call infra, product presenters, marketing kits)
 - [[_source-articles/reaching-out-without-feeling-salesy|Reaching Out Without Feeling Salesy]] — Week 4 (warm outreach)
-- [[_source-articles/sapt-workbook-moneybees|SAPT Workbook — Sales & Prospecting Training]] — Weeks 1–10 (primary on W5 D28 FACT Method; W4 D19/D22; W2 D7–8)
+- [[_source-articles/prospecting-training-workbook-moneybees|Prospecting Training Workbook]] — Weeks 1–10 (primary on W5 D28 FACT Method; W4 D19/D22; W2 D7–8)
 - [[_source-articles/social-proof-scripts-and-sales-cycle|Social Proof Closing + CAR Sales Cycle]] — Weeks 5 & 9 (referral ask, paper-flip close, CAR diagnostic)
 - [[_source-articles/strategic-target-list-abc-123|Strategic Target List — ABC + 1/2/3 Segmentation]] — Week 1 (database + revenue math)
 - [[_source-articles/texting-eq-warm-client|Texting EQ — Warm Client Acquisition]] — Week 3 (DM funnel, 11 rules, objection handling)

@@ -8,7 +8,7 @@ primary_sources:
   - "[[../_source-articles/reaching-out-without-feeling-salesy]]"
   - "[[../_source-articles/winning-warm-market-value-first]]"
   - "[[../_source-articles/texting-eq-warm-client]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 20
 tags: [next-60-days, week-4, new-fc, warm-market, outreach, vulnerability, rapport]
 ---

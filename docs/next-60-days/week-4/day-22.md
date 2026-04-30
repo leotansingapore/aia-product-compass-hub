@@ -8,7 +8,7 @@ primary_sources:
   - "[[../_source-articles/market-survey-warm-market]]"
   - "[[../_source-articles/cold-prospecting-5-pillars]]"
   - "[[../_source-articles/warm-prospecting-methodology]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
   - "[[../_source-articles/winning-warm-market-value-first]]"
 duration_minutes: 20
 tags: [next-60-days, week-4, new-fc, cold-market, prospecting, abcd-promises]

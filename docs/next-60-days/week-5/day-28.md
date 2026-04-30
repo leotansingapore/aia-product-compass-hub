@@ -7,7 +7,7 @@ kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-holos-decks/referral-asking]]"
   - "[[../_source-articles/social-proof-scripts-and-sales-cycle]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 25
 tags: [next-60-days, week-5, new-fc, referrals, scripts, fact-method]
 ---

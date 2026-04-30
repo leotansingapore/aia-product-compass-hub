@@ -9,7 +9,7 @@ primary_sources:
   - "[[../_source-articles/warm-prospecting-methodology]]"
   - "[[../_source-articles/warm-market-success]]"
   - "[[../_source-articles/strategic-target-list-abc-123]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 20
 tags: [next-60-days, week-4, new-fc, prospecting, mindset, master-map, taxonomy]
 ---

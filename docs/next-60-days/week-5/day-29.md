@@ -7,7 +7,7 @@ kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-articles/social-proof-scripts-and-sales-cycle]]"
   - "[[../_source-articles/strategic-target-list-abc-123]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 20
 tags: [next-60-days, week-5, new-fc, flywheel, car, sales-cycle, systems]
 ---

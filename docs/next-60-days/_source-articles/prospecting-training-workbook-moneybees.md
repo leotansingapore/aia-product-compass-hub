@@ -1,7 +1,7 @@
 ---
-title: "SAPT Workbook — Sales & Prospecting Training (MoneyBees)"
+title: "Prospecting Training Workbook (MoneyBees)"
 topic: "full sales-prospecting-referral training: 8 Rules, abundance mindset, 4 types of prospects, rapport 5-step, Art of Teaser, Crafting What Do You Do (5 profiles), smooth interjections, tailored strategies by DISC, unconventional cold call, FACT referral method"
-source: "SAPT Workbook — The MoneyBees agency. Lusi & Kelvin as primary coach voices. Two formats confirmed identical: PDF (50 pages) and Google Doc (docs.google.com/document/d/10jrZeGefOPHOu-5nV9jfDLxR9TB2MQ7aMs4KsGsoev8)"
+source: "Internal prospecting training workbook (MoneyBees agency, ingested from PDF + Google Doc)"
 ingested: 2026-04-20
 status: mapped
 course: your-next-60-days
@@ -12,7 +12,7 @@ primary_slots:
   - "Week 4 Day 19 — Prospecting mindset (the master map) — Lead Gen vs Prospecting, 4 Types of Prospects (10/20/60/10), Abundance Mindset, Sales Cycle Stages, Reasons Sales People Fail, BRILLIANT checklist"
   - "Week 4 Day 22 — Cold prospecting scripts — Unconventional Cold Calling Script (the 'favour, don't hang up' opener)"
   - "Week 2 Day 7-8 — Intent Statement — Art of Teaser (3 tips + Lady's Skirt theory + 4 traps to avoid), Crafting 'What Do You Do?' answers for 5 profiles"
-  - "Week 4 Day 20 — Reaching out to friends without feeling salesy — 5 Steps to Build Rapport (eye contact/smile, compliments not flattery, ask about them, listen attentively, acknowledge) + Art of Acknowledging (paraphrase, clarify, IBCT, empathy)"
+  - "Week 4 Day 20 — Reaching out to friends without feeling salesy — 5 Steps to Build Rapport (eye contact/smile, compliments not flattery, ask about them, listen attentively, acknowledge) + Art of Acknowledging (paraphrase, clarify, sincere compliment, empathy)"
 secondary_slots:
   - "Week 1 Day 1 — Day 1 of Your Real Career — Redefining Sales ('help someone act on a decision that is important and good for them'), Two-Part Ethical Selling, Overcoming the Pushy Myth, Reasons Sales People Fail"
   - "Week 1 Day 4 — Your Story first draft — Speaking from the Heart (vulnerability > polish)"
@@ -29,11 +29,11 @@ secondary_slots:
   - "Week 9 Day 52-53 — Objections — Navigating Client Objections and Stubbornness, Anticipating and Addressing Objections Early"
   - "Week 10 Day 56 — After-sales onboarding — Client Experience driving referrals, How To Make Clients Your Ambassadors"
   - "Week 10 Day 57 — Building Moments — Competency & Going The Extra Mile (Melissa's sambal + toy), Resourcefulness (medical-specialist network example)"
-related_frameworks: [8 Rules of Practice, IBCT, 4 Types of Prospects (10/20/60/10), Sales Cycle 7 Stages, BRILLIANT Checklist, 5 Steps to Build Rapport, Art of Acknowledging, Art of Teaser + Lady's Skirt, Crafting What Do You Do (5 profiles), Smooth Interjections, Tailored Strategies by DISC, Unconventional Cold Call, How To Make Ambassadors (4 principles), FACT Method for Referrals]
+related_frameworks: [8 Rules of Practice, Behavioural Competency, 4 Types of Prospects (10/20/60/10), Sales Cycle 7 Stages, BRILLIANT Checklist, 5 Steps to Build Rapport, Art of Acknowledging, Art of Teaser + Lady's Skirt, Crafting What Do You Do (5 profiles), Smooth Interjections, Tailored Strategies by DISC, Unconventional Cold Call, How To Make Ambassadors (4 principles), FACT Method for Referrals]
 tags: [source-article, sales, prospecting, referrals, rapport, teaser, disc, cold-calling, objection-handling, next-60-days, sapt, moneybees]
 ---
 
-# SAPT Workbook — Sales & Prospecting Training
+# Prospecting Training Workbook
 
 > **Thesis:** Sales is not transaction — it is *"helping someone act upon a decision that is important and good for him/her."* Everything that follows (prospecting, rapport, teasers, referrals, closing) is engineered to protect that principle while actually producing revenue.
 
@@ -42,7 +42,7 @@ tags: [source-article, sales, prospecting, referrals, rapport, teaser, disc, col
 ## Part 1 — The 8 Rules + Wisdom
 
 1. **Ask more right questions, make less statements.**
-2. Be a good person first, then focus on what you do. *(Apply IBCT — focus on the person, not your process.)*
+2. Be a good person first, then focus on what you do. *(Focus on the person first, not your process.)**
 3. **5% of breakthrough comes from attending class. 95% comes from implementing.**
 4. Apply what you learn **immediately**.
 5. Practice × 3. New skills need repetition. Be patient, have faith.
@@ -84,7 +84,7 @@ Lusi's definition: *"Sales is helping someone act upon a decision that is import
 5. Too much distraction
 
 ### BRILLIANT in Sales (12-item reflection checklist)
-IBCT · Presence · Questions · Storytelling · Hot Buttons · Closing (狠心做好事) · Adaptability · Logic · Conviction · Special Forte · Emotional Management · Time Management
+People Skills · Presence · Questions · Storytelling · Hot Buttons · Closing (狠心做好事) · Adaptability · Logic · Conviction · Special Forte · Emotional Management · Time Management
 
 ### S Profile Strengths & Weaknesses
 S profiles read emotions well *but* overthink — assuming budget or risk-tolerance limits the client hasn't actually expressed.
@@ -133,12 +133,12 @@ S profiles read emotions well *but* overthink — assuming budget or risk-tolera
 2. **Pay compliments, not flattery** — observation-based. Also: receive compliments with a simple *"thank you"* — never contradict them
 3. **Ask questions about them** — open-ended, hot-button-seeking, with the "Why" follow-up
 4. **Listen attentively** — active listening, no interrupt
-5. **Acknowledge** — paraphrase, clarify, IBCT-style compliment, words of empathy
+5. **Acknowledge** — paraphrase, clarify, sincere personalised compliment, words of empathy
 
 ### The Art of Acknowledging
 - **Paraphrase** to confirm understanding (*"So it sounds like you're feeling a bit cautious…"*)
 - **Ask clarifying questions** (*"Is the upcoming probation end affecting this decision?"*)
-- **IBCT compliments** (Intent / Believability / Congruence / Timing)
+- **ICBT compliments** (Intent / Believability / Congruence / Timing)
 - **Empathy words** (*"I completely understand how that feels…"*)
 
 ### Spotting hot buttons
@@ -329,7 +329,7 @@ Events lower the bar for passive clients. Inviting someone to an event is easier
 
 ## Mapping to Your Next 60 Days
 
-| Day | SAPT sections used |
+| Day | workbook sections used |
 |---|---|
 | **D1** | Redefining Sales, Two-Part Ethical Selling, Pushy Myth, Reasons Sales People Fail |
 | **D4** | Speaking from the Heart (vulnerability > polish) |
@@ -359,6 +359,6 @@ Events lower the bar for passive clients. Inviting someone to an event is easier
 Source deck: **MoneyBees**. Primary voices: **Lusi** and **Kelvin**. Named cases (Jonathan / Melissa / Advisor B) and direct coach quotes live here at source-level.
 
 ## Cross-reference notes
-- **CAR framework** (Calling/Appointments/Referrals) lives in [[social-proof-scripts-and-sales-cycle]] — SAPT's FACT Method is the referral-generation twin of that file's 10-name paper-flip ask. Don't redefine CAR here.
+- **CAR framework** (Calling/Appointments/Referrals) lives in [[social-proof-scripts-and-sales-cycle]] — the FACT Method is the referral-generation twin of that file's 10-name paper-flip ask. Don't redefine CAR here.
 - **ABC/123 segmentation** (10/20/60/10 is a different segmentation) lives in [[strategic-target-list-abc-123]] — complementary to Part 4's 4 Types of Prospects, not a duplicate.
 - **Full texting framework** → [[texting-eq-warm-client]]

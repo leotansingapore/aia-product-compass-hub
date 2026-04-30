@@ -6,7 +6,7 @@ big_idea: "The pattern interrupt is the one line that turns your opener from scr
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-03-11-intent-statement]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, intent-statement, pattern-interrupt, what-do-you-do]
 ---

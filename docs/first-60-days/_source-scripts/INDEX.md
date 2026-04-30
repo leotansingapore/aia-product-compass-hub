@@ -3,11 +3,11 @@
 Two collections live here:
 
 1. **Warm Market Scripts** — 13 entries pulled from the academy `scripts` table (target_audience = warm-market). Source URL: https://leo-academy.lovable.app/scripts?audience=warm-market
-2. **ARQ — Asking the Right Questions** — master question bank used across Day 44 (objection handling), Day 45 (storytelling), Day 47 (fact-find / SPIN).
+2. **Asking the Right Questions** — master question bank used across Day 44 (objection handling), Day 45 (storytelling), Day 47 (fact-find / SPIN).
 
-Use as voice/tone reference for any first-60-days or next-60-days day file that quotes warm-market language or ARQ-style questioning.
+Use as voice/tone reference for any first-60-days or next-60-days day file that quotes warm-market language or right-question-style questioning.
 
-## ARQ database
+## Right-Question Database
 
 - [[right-question-database|Right-Question Script Database]] — 7-section master file: 3-point checklist, objection-handling Q-banks, SPIN fact-find templates, story-closing questions, generic patterns, anti-patterns, and a "build your own right questions" drill.
 

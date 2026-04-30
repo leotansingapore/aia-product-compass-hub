@@ -6,7 +6,7 @@ big_idea: "The silence around referrals isn't politeness. It's a compound-intere
 kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-holos-decks/referral-asking]]"
-  - "[[../_source-articles/sapt-workbook-moneybees]]"
+  - "[[../_source-articles/prospecting-training-workbook-moneybees]]"
 duration_minutes: 20
 tags: [next-60-days, week-5, new-fc, referrals, mindset, compounding]
 ---
