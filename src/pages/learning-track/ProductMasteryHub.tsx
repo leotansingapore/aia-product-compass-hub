@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { getAllWeeks, prefetchDay } from "@/features/product-mastery-track/content";
 import { TOTAL_DAYS } from "@/features/product-mastery-track/summaries";
 import { useProductMasteryProgress } from "@/hooks/product-mastery-track/useProductMasteryProgress";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const BASE_PATH = "/learning-track/product-mastery";
 
@@ -26,7 +27,9 @@ function warmDay(dayNumber: number) {
 
 export default function ProductMasteryHub() {
   const weeks = getAllWeeks();
-  const { isDayComplete, isUnlocked } = useProductMasteryProgress();
+  const { isDayComplete, isUnlocked: rawIsUnlocked } = useProductMasteryProgress();
+  const { isActualAdmin } = useAdmin();
+  const isUnlocked = (dayNumber: number) => isActualAdmin || rawIsUnlocked(dayNumber);
 
   const totalDone = weeks.reduce(
     (acc, w) => acc + w.days.filter((d) => isDayComplete(d.dayNumber)).length,
