@@ -83,7 +83,8 @@ export default function ProductMasteryDay() {
   const [activeTab, setActiveTab] = useState<string>("read");
   const progress = useProductMasteryProgress();
   const { markRead, isQuizPassed, isDayComplete, isUnlocked } = progress;
-  const unlocked = isUnlocked(dayNumber);
+  const { isActualAdmin } = useAdmin();
+  const unlocked = isActualAdmin || isUnlocked(dayNumber);
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
 
   useEffect(() => {
