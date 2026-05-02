@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { getAllWeeks, prefetchDay } from "@/features/product-mastery-track/content";
 import { TOTAL_DAYS } from "@/features/product-mastery-track/summaries";
 import { useProductMasteryProgress } from "@/hooks/product-mastery-track/useProductMasteryProgress";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const BASE_PATH = "/learning-track/product-mastery";
 
