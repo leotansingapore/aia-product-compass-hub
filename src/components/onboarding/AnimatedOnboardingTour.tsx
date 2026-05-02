@@ -443,12 +443,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                 onClick={() => jump(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={cn(
-                  "h-1.5 rounded-full transition-all duration-500",
+                  "flex h-8 items-center rounded-full px-1 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
                   active
-                    ? "w-8 bg-white sm:w-10"
+                    ? "w-10 bg-white sm:w-12"
                     : done
-                    ? "w-4 bg-white/70 sm:w-6"
-                    : "w-4 bg-white/20 hover:bg-white/40 sm:w-6"
+                    ? "w-6 bg-white/70 sm:w-8"
+                    : "w-6 bg-white/20 hover:bg-white/40 sm:w-8"
                 )}
               />
             );
