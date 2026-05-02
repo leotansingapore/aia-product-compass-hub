@@ -96,7 +96,7 @@ export function AdminViewSwitcher() {
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
 
   return (
-    <div className="fixed top-2 left-2 sm:top-auto sm:bottom-16 sm:left-4 z-[9991]">
+    <div className="fixed bottom-[4.5rem] md:bottom-16 right-3 sm:right-auto sm:left-4 z-[9991]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
@@ -105,16 +105,16 @@ export function AdminViewSwitcher() {
             aria-label={viewAsTier ? `View as ${activeLabel}` : 'View as…'}
             className={cn(
               'shadow-lg gap-2 transition-opacity',
-              // On mobile: compact icon-only pill, semi-transparent until tapped, so it
-              // doesn't sit ON TOP of page content above the bottom nav.
-              'h-9 w-9 p-0 rounded-full opacity-60 hover:opacity-100 active:opacity-100',
+              // Mobile: tiny semi-transparent icon button, parked above the bottom nav on
+              // the right edge (opposite the AI chat bubble which sits a bit higher).
+              'h-7 w-7 p-0 rounded-full opacity-40 hover:opacity-100 active:opacity-100',
               'sm:h-9 sm:w-auto sm:px-3 sm:rounded-md sm:opacity-100',
             )}
           >
             {viewAsTier ? (
-              <EyeOff className="h-4 w-4" />
+              <EyeOff className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             ) : (
-              <Eye className="h-4 w-4" />
+              <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             )}
             <span className="hidden sm:inline">
               {viewAsTier ? `View: ${activeLabel}` : 'View as…'}
