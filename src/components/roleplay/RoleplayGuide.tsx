@@ -12,14 +12,16 @@ export function RoleplayGuide() {
     <Card className="bg-muted/30 border-border/50">
       <CardContent className="p-3 sm:p-6">
         {/* Mobile: inline horizontal steps */}
-        <div className="flex items-center justify-between sm:hidden">
+        <div className="space-y-2 sm:hidden">
           {steps.map((item, i) => (
-            <div key={item.step} className="flex items-center gap-1.5">
+            <div key={item.step} className="flex items-center gap-2 rounded-lg border border-border/50 bg-background/40 px-3 py-2">
               <div className="w-6 h-6 bg-gradient-to-br from-primary to-primary-glow rounded-full flex items-center justify-center shrink-0">
                 <span className="text-primary-foreground font-bold text-[10px]">{item.step}</span>
               </div>
-              <span className="text-[11px] font-medium text-foreground">{item.title}</span>
-              {i < steps.length - 1 && <span className="text-muted-foreground/40 mx-1">→</span>}
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                <p className="text-[11px] leading-snug text-muted-foreground">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>

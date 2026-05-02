@@ -56,17 +56,17 @@ export const RoleplayScenarioCard = memo(function RoleplayScenarioCard({ scenari
             <div className="flex flex-col gap-1.5 min-w-0 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 sm:gap-y-1">
               <div className="flex flex-wrap items-center gap-1.5 min-w-0">
                 <Badge
-                  className={`${categoryColors[scenario.category]} text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0 h-4 sm:h-5 transition-none pointer-events-none max-w-full truncate`}
+                  className={`${categoryColors[scenario.category]} max-w-full whitespace-normal break-words px-1.5 py-0.5 text-[9px] sm:h-5 sm:px-1.5 sm:py-0 sm:text-[10px] transition-none pointer-events-none`}
                 >
                   {scenario.category}
                 </Badge>
                 <Badge
-                  className={`${difficultyColors[scenario.difficulty]} text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0 h-4 sm:h-5 transition-none pointer-events-none max-w-full truncate`}
+                  className={`${difficultyColors[scenario.difficulty]} max-w-full whitespace-normal break-words px-1.5 py-0.5 text-[9px] sm:h-5 sm:px-1.5 sm:py-0 sm:text-[10px] transition-none pointer-events-none`}
                 >
                   {scenario.difficulty}
                 </Badge>
               </div>
-              <span className="text-[10px] sm:text-xs text-muted-foreground inline-flex items-center gap-0.5 sm:ml-auto tabular-nums">
+              <span className="text-[10px] sm:text-xs text-muted-foreground inline-flex w-full items-center gap-0.5 tabular-nums sm:ml-auto sm:w-auto">
                 <Clock className="h-2.5 w-2.5 shrink-0 sm:h-3 sm:w-3" aria-hidden />
                 <span className="break-words">{scenario.duration}</span>
               </span>

@@ -414,10 +414,10 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       </div>
 
       {/* Fixed top-right skip */}
-      <div className="absolute right-6 top-5 z-40 md:right-12 md:top-6">
+      <div className="absolute right-3 top-5 z-40 md:right-12 md:top-6">
         <button
           onClick={finish}
-          className="group flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-medium text-white/90 backdrop-blur transition hover:border-white/40 hover:bg-white/20"
+          className="group flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white/90 backdrop-blur transition hover:border-white/40 hover:bg-white/20 sm:px-4"
         >
           {paused ? (
             <Pause className="h-3.5 w-3.5" />
@@ -432,7 +432,8 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       <div
         className="absolute inset-x-0 bottom-0 z-40 flex flex-col gap-3 border-t border-white/5 bg-gradient-to-t from-black/40 to-transparent px-4 pb-[max(env(safe-area-inset-bottom),1rem)] pt-4 backdrop-blur-sm sm:px-6 md:flex-row md:items-center md:justify-between md:border-0 md:bg-none md:px-12 md:pb-10 md:pt-0 md:backdrop-blur-none"
       >
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex min-w-max items-center gap-1.5 sm:gap-2">
           {slides.map((s, i) => {
             const done = i < index;
             const active = i === index;
@@ -442,28 +443,36 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                 onClick={() => jump(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={cn(
-                  "h-1.5 rounded-full transition-all duration-500",
-                  active
-                    ? "w-8 bg-white sm:w-10"
-                    : done
-                    ? "w-4 bg-white/70 sm:w-6"
-                    : "w-4 bg-white/20 hover:bg-white/40 sm:w-6"
+                  "flex h-8 w-6 items-center justify-center rounded-full transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:w-8",
+                  active ? "" : ""
                 )}
-              />
+              >
+                <span
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-500",
+                    active
+                      ? "w-6 bg-white sm:w-8"
+                      : done
+                      ? "w-4 bg-white/70 sm:w-5"
+                      : "w-4 bg-white/20 hover:bg-white/40 sm:w-5"
+                  )}
+                />
+              </button>
             );
           })}
           <span className="ml-2 text-[10px] text-white/60 sm:ml-3 sm:text-xs">
             {index + 1} / {total}
           </span>
+          </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2 sm:gap-3">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:items-center sm:justify-end sm:gap-3">
           <Button
             variant="ghost"
             size="sm"
             onClick={prev}
             disabled={index === 0}
-            className="text-white hover:bg-white/10 hover:text-white disabled:opacity-30"
+            className="min-h-[44px] justify-center text-white hover:bg-white/10 hover:text-white disabled:opacity-30 sm:w-auto"
           >
             <ArrowLeft className="h-4 w-4 sm:mr-2" />
             <span className="hidden sm:inline">Back</span>
@@ -478,7 +487,7 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
                   onClose();
                   navigate("/learning-track");
                 }}
-                className="border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
+                className="min-h-[44px] justify-center border border-white/20 bg-white/10 text-white backdrop-blur hover:bg-white/20"
               >
                 <span className="hidden sm:inline">Open my track</span>
                 <span className="sm:hidden">My track</span>
@@ -486,7 +495,7 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
               <Button
                 size="sm"
                 onClick={finish}
-                className="bg-white text-slate-900 hover:bg-white/90"
+                className="min-h-[44px] justify-center bg-white text-slate-900 hover:bg-white/90"
               >
                 <span className="hidden sm:inline">Start exploring</span>
                 <span className="sm:hidden">Start</span>
@@ -497,7 +506,7 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
             <Button
               size="sm"
               onClick={next}
-              className="bg-white text-slate-900 hover:bg-white/90"
+              className="min-h-[44px] justify-center bg-white text-slate-900 hover:bg-white/90"
             >
               Next
               <ArrowRight className="ml-1.5 h-4 w-4 sm:ml-2" />
