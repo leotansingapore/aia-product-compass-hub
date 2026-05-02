@@ -96,7 +96,7 @@ export function AdminViewSwitcher() {
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
 
   return (
-    <div className="fixed bottom-20 md:bottom-16 left-3 sm:left-4 z-[9991]">
+    <div className="fixed top-2 left-2 sm:top-auto sm:bottom-16 sm:left-4 z-[9991]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
