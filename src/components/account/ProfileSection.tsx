@@ -106,15 +106,15 @@ export function ProfileSection() {
       {/* Profile header card */}
       <Card className="border shadow-sm">
         <CardContent className="p-4 md:p-6">
-          <div className="flex items-center gap-3 md:gap-5">
+          <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-5">
             <Avatar className="h-14 w-14 md:h-20 md:w-20 border-2 border-primary/20 shrink-0">
               <AvatarImage src={profile?.avatar_url || undefined} />
               <AvatarFallback className="text-lg md:text-2xl font-bold bg-primary/10 text-primary">
                 {initials}
               </AvatarFallback>
             </Avatar>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-base md:text-xl font-bold truncate">{displayName}</h3>
+            <div className="flex-1 min-w-0 w-full">
+              <h3 className="text-base md:text-xl font-bold break-words">{displayName}</h3>
               <p className="text-xs md:text-sm text-muted-foreground truncate">
                 {profile?.email || user?.email}
               </p>
@@ -122,7 +122,7 @@ export function ProfileSection() {
                 variant="outline"
                 size="sm"
                 onClick={() => setEditing(true)}
-                className="mt-2 h-8 text-xs gap-1.5"
+                className="mt-3 min-h-[44px] w-full gap-1.5 text-xs sm:mt-2 sm:h-8 sm:w-auto"
               >
                 <Edit3 className="h-3 w-3" />
                 Edit Profile
@@ -133,7 +133,7 @@ export function ProfileSection() {
       </Card>
 
       {/* Activity stats */}
-      <div className="grid grid-cols-3 gap-2 md:gap-4">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:gap-4">
         <StatCard icon={CheckCircle2} label="Quizzes Done" value={quizCount} color="emerald" />
         <StatCard icon={BookOpen} label="Roleplays" value={roleplayCount} color="blue" />
         <StatCard icon={Video} label="Videos" value={videoCount} color="amber" />
