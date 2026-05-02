@@ -22,6 +22,7 @@ import { loadDay, prefetchDay, WEEK_META } from "@/features/product-mastery-trac
 import { DAY_SUMMARIES } from "@/features/product-mastery-track/summaries";
 import type { Day } from "@/features/product-mastery-track/types";
 import { useProductMasteryProgress } from "@/hooks/product-mastery-track/useProductMasteryProgress";
+import { useAdmin } from "@/hooks/useAdmin";
 
 const DayQuiz = lazy(() =>
   import("@/components/first-60-days/DayQuiz").then((m) => ({ default: m.DayQuiz })),
