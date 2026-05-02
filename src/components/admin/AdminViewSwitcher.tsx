@@ -96,13 +96,20 @@ export function AdminViewSwitcher() {
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
 
   return (
-    <div className="fixed bottom-20 md:bottom-16 left-4 z-[9991]">
+    <div className="fixed bottom-20 md:bottom-16 left-3 sm:left-4 z-[9991]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
             variant={viewAsTier ? 'destructive' : 'secondary'}
             size="sm"
-            className="shadow-lg gap-2"
+            aria-label={viewAsTier ? `View as ${activeLabel}` : 'View as…'}
+            className={cn(
+              'shadow-lg gap-2 transition-opacity',
+              // On mobile: compact icon-only pill, semi-transparent until tapped, so it
+              // doesn't sit ON TOP of page content above the bottom nav.
+              'h-9 w-9 p-0 rounded-full opacity-60 hover:opacity-100 active:opacity-100',
+              'sm:h-9 sm:w-auto sm:px-3 sm:rounded-md sm:opacity-100',
+            )}
           >
             {viewAsTier ? (
               <EyeOff className="h-4 w-4" />
@@ -112,7 +119,7 @@ export function AdminViewSwitcher() {
             <span className="hidden sm:inline">
               {viewAsTier ? `View: ${activeLabel}` : 'View as…'}
             </span>
-            <ChevronDown className="h-3 w-3 opacity-70" />
+            <ChevronDown className="hidden sm:inline h-3 w-3 opacity-70" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" side="top" className="w-52">
