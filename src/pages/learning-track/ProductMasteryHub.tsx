@@ -27,7 +27,9 @@ function warmDay(dayNumber: number) {
 
 export default function ProductMasteryHub() {
   const weeks = getAllWeeks();
-  const { isDayComplete, isUnlocked } = useProductMasteryProgress();
+  const { isDayComplete, isUnlocked: rawIsUnlocked } = useProductMasteryProgress();
+  const { isActualAdmin } = useAdmin();
+  const isUnlocked = (dayNumber: number) => isActualAdmin || rawIsUnlocked(dayNumber);
 
   const totalDone = weeks.reduce(
     (acc, w) => acc + w.days.filter((d) => isDayComplete(d.dayNumber)).length,
