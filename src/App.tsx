@@ -83,6 +83,7 @@ const LearningTrackPostRnf = lazyWithRetry(() => import("./pages/learning-track/
 const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-track/Resources"));
 const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
+const LearningTrackFirst60DaysWeekRecap = lazyWithRetry(() => import("./pages/learning-track/First60DaysWeekRecap"));
 const LearningTrackFirst60DaysReference = lazyWithRetry(() => import("./pages/learning-track/First60DaysReference"));
 const LearningTrackProductMastery = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryHub"));
 const LearningTrackProductMasteryDay = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryDay"));
@@ -217,6 +218,7 @@ const App = () => (
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
+                      <Route path="first-60-days/recap/:weekNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysWeekRecap /></RequireTier>} />
                       <Route path="first-60-days/reference/:slug" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysReference /></RequireTier>} />
                       <Route path="next-60-days" element={<LearningTrackNext60Days />} />
                       <Route path="next-60-days/day/:dayNumber" element={<LearningTrackNext60DaysDay />} />

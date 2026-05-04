@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, ChevronRight, ClipboardList, GraduationCap, Lock, Sparkles } from "lucide-react";
+import { CheckCircle2, ChevronRight, ClipboardList, Film, GraduationCap, Lock, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { getAllWeeks, prefetchDay, TOTAL_DAYS } from "@/features/first-60-days/content";
+import { getAllWeeks, prefetchDay, TOTAL_DAYS, WEEKS_WITH_RECAP } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
 
@@ -209,6 +209,29 @@ export default function First60Days() {
                       </li>
                     );
                   })}
+                  {WEEKS_WITH_RECAP.has(week.weekNumber) && (
+                    <li className="flex items-center gap-2 pt-1.5 mt-1.5 border-t border-dashed border-border/60 text-[13px]">
+                      <Film className="h-3.5 w-3.5 text-primary shrink-0" />
+                      {anyUnlocked ? (
+                        <Link
+                          to={`/learning-track/first-60-days/recap/${week.weekNumber}`}
+                          className="hover:text-primary transition-colors line-clamp-1"
+                        >
+                          <span className="text-primary/80 tabular-nums mr-2 text-[10px] font-semibold uppercase tracking-wider">
+                            Recap
+                          </span>
+                          <span className="font-medium">Week {week.weekNumber} Recap</span>
+                        </Link>
+                      ) : (
+                        <span className="line-clamp-1 text-muted-foreground/60">
+                          <span className="tabular-nums mr-2 text-[10px] font-semibold uppercase tracking-wider">
+                            Recap
+                          </span>
+                          <span>Week {week.weekNumber} Recap</span>
+                        </span>
+                      )}
+                    </li>
+                  )}
                 </ul>
                 <div className="border-t border-border/60 pt-3 flex items-center justify-between gap-3">
                   <span className="text-xs text-muted-foreground tabular-nums">

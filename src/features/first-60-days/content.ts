@@ -16,6 +16,20 @@ const weekReadmeLoaders = import.meta.glob<string>(
   { query: "?raw", import: "default" },
 );
 
+// Discover which weeks have a recap.md available — used by the hub UI to render
+// the "Week N Recap" entry at the end of each week's day list.
+const recapPaths = import.meta.glob<string>(
+  "/docs/first-60-days/week-*/recap.md",
+  { query: "?raw", import: "default" },
+);
+const WEEK_RECAP_RE = /\/docs\/first-60-days\/week-(\d+)\/recap\.md$/;
+const _weeksWithRecap = new Set<number>();
+for (const path of Object.keys(recapPaths)) {
+  const m = path.match(WEEK_RECAP_RE);
+  if (m) _weeksWithRecap.add(Number(m[1]));
+}
+export const WEEKS_WITH_RECAP: ReadonlySet<number> = _weeksWithRecap;
+
 const PATH_RE = /\/docs\/first-60-days\/week-\d+\/day-(\d+)\.md$/;
 
 const loaderByDay: Record<number, () => Promise<string>> = {};
