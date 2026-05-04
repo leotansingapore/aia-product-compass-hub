@@ -25,6 +25,9 @@ export default function AdminLayout() {
           <NavLink to="roleplay" className={({ isActive }) => cn(tab, isActive && active)}>
             Roleplay
           </NavLink>
+          <NavLink to="/cmfas-exams/manage" className={({ isActive }) => cn(tab, isActive && active)}>
+            CMFAS Exams
+          </NavLink>
         </nav>
         <div
           aria-hidden
