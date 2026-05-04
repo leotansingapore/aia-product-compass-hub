@@ -57,7 +57,11 @@ export function useMyTierRequests() {
       return (data ?? []) as TierUpgradeRequest[];
     },
     enabled: !!user?.id,
-    staleTime: 30_000,
+    // Upgrade requests are mostly long-lived (pending until reviewed). The
+    // create mutation invalidates on success, so we don't need aggressive
+    // background refetching.
+    staleTime: 5 * 60_000,
+    gcTime: 10 * 60_000,
   });
 
   const createMutation = useMutation({

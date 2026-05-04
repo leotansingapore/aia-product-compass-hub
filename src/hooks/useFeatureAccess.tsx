@@ -48,7 +48,10 @@ export function useFeatureAccess() {
       if (error) throw error;
       return (data ?? []) as TierPermissionRow[];
     },
-    staleTime: 5 * 60_000,
+    // tier_permissions changes only when an admin edits the matrix — bump
+    // staleTime so we don't refetch on every navigation.
+    staleTime: 15 * 60_000,
+    gcTime: 30 * 60_000,
   });
 
   // Build tier → Set<featureKey> lookup. Static `TIER_FEATURE_MATRIX` is

@@ -36,7 +36,10 @@ export function useUserTier() {
       return normalizeTier(data?.tier_level);
     },
     enabled: !!user?.id,
-    staleTime: 60_000,
+    // 15 min — tier rarely changes mid-session, and the realtime channel
+    // below invalidates this query immediately on any update.
+    staleTime: 15 * 60_000,
+    gcTime: 30 * 60_000,
   });
 
   // Realtime: when the admin flips this user's tier (approve flow, manual
