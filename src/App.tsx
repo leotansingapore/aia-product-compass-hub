@@ -75,7 +75,6 @@ const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
 const Library = lazyWithRetry(() => import("./pages/Library"));
 const LearningTrack = lazyWithRetry(() => import("./pages/LearningTrack"));
 const LearningTrackIndex = lazyWithRetry(() => import("./pages/learning-track/LearningTrackIndex"));
-const LearningTrackExplorer = lazyWithRetry(() => import("./pages/learning-track/Explorer"));
 const LearningTrackPreRnf = lazyWithRetry(() => import("./pages/learning-track/PreRnf"));
 const FinancialAdvisorDifferentiation = lazyWithRetry(() => import("./pages/learning-track/FinancialAdvisorDifferentiation"));
 const OutreachBuilder = lazyWithRetry(() => import("./pages/learning-track/OutreachBuilder"));

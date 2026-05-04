@@ -19,6 +19,12 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Pre-bundle lucide-react in dev so Vite serves one chunk instead of
+  // hundreds of individual icon ESM modules. The "1.2 MB lucide" reading
+  // we saw in dev was the un-bundled module tree, not the prod output.
+  optimizeDeps: {
+    include: ['lucide-react'],
+  },
   build: {
     // Target evergreen browsers — shaves dozens of KB of legacy transforms/polyfills.
     target: 'es2020',
