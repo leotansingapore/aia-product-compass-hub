@@ -19,6 +19,8 @@ const corsHeaders = {
 const VIDEO_MAP: Record<string, string> = {
   "week-1":
     "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-1/fastrack-training-1-preview.mp4",
+  "week-2":
+    "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-2/fastrack-training-2-preview.mp4",
 };
 
 Deno.serve(async (req) => {
