@@ -184,7 +184,7 @@ export default function AdminFirst14Days() {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3" data-testid="admin-first-14-days-hub">
       <Card>
         <CardContent className="p-4 text-sm text-muted-foreground">
           One row per prospect. <span className="font-medium text-foreground">Current day</span>{" "}
