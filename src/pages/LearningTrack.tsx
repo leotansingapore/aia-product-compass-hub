@@ -95,8 +95,6 @@ export default function LearningTrack() {
               {showPostRnfTab && (
                 <NavLink to="/learning-track/post-rnf" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Post-RNF Training</NavLink>
               )}
-              <NavLink to="/learning-track/first-60-days" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>First 60 Days</NavLink>
-              <NavLink to="/learning-track/product-mastery" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Product Mastery</NavLink>
               <NavLink to="/learning-track/admin" className={({ isActive }) => cn(LT_TAB_LINK_CLASS, isActive && LT_TAB_ACTIVE_CLASS)}>Admin</NavLink>
             </nav>
           }
