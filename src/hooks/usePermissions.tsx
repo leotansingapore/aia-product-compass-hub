@@ -13,13 +13,50 @@ const permissionsCache = new Map<string, {
 }>();
 const CACHE_DURATION = 30 * 1000; // 30 seconds
 
+// In-flight dedupe — when several components mount in the same tick, share one RPC.
+// `hasInitialized.current` is per-instance, so without this, 3-4 simultaneous
+// `usePermissions()` callers each fire `get_user_admin_role` before the cache populates.
+const inflightAdminRole = new Map<string, Promise<string>>();
+
+async function fetchAdminRoleDeduped(userId: string): Promise<string> {
+  const cached = permissionsCache.get(userId);
+  if (cached && Date.now() - cached.timestamp < CACHE_DURATION && cached.version === PERMISSIONS_VERSION) {
+    return cached.adminRole;
+  }
+  const inflight = inflightAdminRole.get(userId);
+  if (inflight) return inflight;
+
+  const promise = (async () => {
+    try {
+      const { data, error } = await supabase.rpc('get_user_admin_role', { user_id: userId });
+      if (error) {
+        console.error('Error fetching user admin role:', error);
+        return 'user';
+      }
+      const role = (data as string | null) || 'user';
+      permissionsCache.set(userId, {
+        adminRole: role,
+        timestamp: Date.now(),
+        version: PERMISSIONS_VERSION,
+      });
+      return role;
+    } finally {
+      inflightAdminRole.delete(userId);
+    }
+  })();
+  inflightAdminRole.set(userId, promise);
+  return promise;
+}
+
 // Export function to manually clear permissions cache
 export const clearPermissionsCache = (userId?: string) => {
   if (userId) {
     permissionsCache.delete(userId);
+    inflightAdminRole.delete(userId);
     console.log('[Permissions] Cache cleared for user:', userId);
   } else {
     permissionsCache.clear();
+    inflightAdminRole.clear();
     console.log('[Permissions] All caches cleared');
   }
 };
@@ -43,59 +80,22 @@ export function usePermissions() {
 
   const fetchUserPermissions = useCallback(async () => {
     if (!user || hasInitialized.current) return;
-    
+
     hasInitialized.current = true;
-    setLoading(true);
-    
-    // Check cache first
-    const cacheKey = user.id;
-    const cached = permissionsCache.get(cacheKey);
-    if (cached && 
-        Date.now() - cached.timestamp < CACHE_DURATION && 
-        cached.version === PERMISSIONS_VERSION) {
-      console.log('[Permissions] Using cached permissions:', { 
-        adminRole: cached.adminRole 
-      });
-      setUserAdminRole(cached.adminRole);
-      setLoading(false);
-      return;
-    }
-    
+
     // Clear stale cache if version mismatch
+    const cached = permissionsCache.get(user.id);
     if (cached && cached.version !== PERMISSIONS_VERSION) {
-      console.log('[Permissions] Cache version mismatch, clearing cache');
-      permissionsCache.delete(cacheKey);
+      permissionsCache.delete(user.id);
     }
-    
+
+    setLoading(true);
     try {
-      // Get user's admin role
-      const { data: adminRoleData, error: adminRoleError } = await supabase.rpc('get_user_admin_role', {
-        user_id: user.id
-      });
-
-      if (adminRoleError) {
-        console.error('Error fetching user admin role:', adminRoleError);
-        setUserAdminRole('user');
-      } else {
-        setUserAdminRole(adminRoleData || 'user');
-      }
-
-      // Cache the results with version
-      const permissionsData = {
-        adminRole: adminRoleData || 'user',
-        timestamp: Date.now(),
-        version: PERMISSIONS_VERSION
-      };
-      
-      console.log('[Permissions] Fetched and cached new permissions:', {
-        userId: user.id,
-        adminRole: permissionsData.adminRole,
-        version: permissionsData.version
-      });
-      
-      permissionsCache.set(user.id, permissionsData);
+      const role = await fetchAdminRoleDeduped(user.id);
+      setUserAdminRole(role);
     } catch (error) {
       console.error('Error in fetchUserPermissions:', error);
+      setUserAdminRole('user');
     } finally {
       setLoading(false);
     }

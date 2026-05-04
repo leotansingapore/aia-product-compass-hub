@@ -1,8 +1,12 @@
+import { Suspense, lazy } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronRight, ClipboardList, Sparkles } from "lucide-react";
+import { ChevronRight, ClipboardList, Loader2, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Next60Days from "./Next60Days";
-import Next60DaysAssignments from "./Next60DaysAssignments";
+
+// Lazy each child so loading /next-60-days doesn't pull the (much heavier)
+// Next60DaysAssignments chunk into the same bundle, and vice versa.
+const Next60Days = lazy(() => import("./Next60Days"));
+const Next60DaysAssignments = lazy(() => import("./Next60DaysAssignments"));
 
 type PostRnfView = "next60" | "assignments";
 
@@ -75,7 +79,15 @@ export default function PostRnfTrack() {
         </div>
       </div>
 
-      {view === "next60" ? <Next60Days /> : <Next60DaysAssignments />}
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center py-10">
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        }
+      >
+        {view === "next60" ? <Next60Days /> : <Next60DaysAssignments />}
+      </Suspense>
     </div>
   );
 }
