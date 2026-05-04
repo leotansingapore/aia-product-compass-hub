@@ -115,7 +115,8 @@ export default function AdminFirst14Days() {
   const query = useQuery({
     queryKey: ["first-14-days-progress-admin"],
     queryFn: fetchAllProgress,
-    staleTime: 30_000,
+    staleTime: 5 * 60_000,
+    gcTime: 10 * 60_000,
   });
 
   const isMobile = useIsMobile();
