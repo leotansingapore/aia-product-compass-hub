@@ -3,11 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { ArrowLeft, ArrowRight, Film } from "lucide-react";
+import { ArrowLeft, ArrowRight, Film, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
-import { WEEK_META } from "@/features/first-60-days/content";
+import { loadWeekReadme, WEEK_META } from "@/features/first-60-days/content";
 import { convertWikilinks } from "@/features/first-60-days/parse";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 
@@ -27,10 +27,12 @@ export default function First60DaysWeekRecap() {
   const { weekNumber: rawWeek } = useParams<{ weekNumber: string }>();
   const weekNumber = Number(rawWeek);
   const [body, setBody] = useState<string | null>(null);
+  const [wrapup, setWrapup] = useState<string | null>(null);
   const [missing, setMissing] = useState(false);
 
   useEffect(() => {
     setBody(null);
+    setWrapup(null);
     setMissing(false);
     const loader = loaderFor(weekNumber);
     if (!loader) {
@@ -46,6 +48,13 @@ export default function First60DaysWeekRecap() {
       })
       .catch(() => {
         if (!cancelled) setMissing(true);
+      });
+    loadWeekReadme(weekNumber)
+      .then((b) => {
+        if (!cancelled) setWrapup(b ?? null);
+      })
+      .catch(() => {
+        /* wrap-up is optional — silently skip if README is missing */
       });
     return () => {
       cancelled = true;
@@ -125,7 +134,37 @@ export default function First60DaysWeekRecap() {
         </div>
       </section>
 
-      {/* Body */}
+      {/* Week wrap-up — the editorial summary from week-N/README.md, same content
+          that already shows on the last day of the week. */}
+      {wrapup ? (
+        <section className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-card shadow-card">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.4]"
+            aria-hidden
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse at top right, hsl(var(--primary) / 0.14), transparent 55%), radial-gradient(ellipse at bottom left, hsl(var(--accent) / 0.12), transparent 55%)",
+            }}
+          />
+          <div className="relative px-5 py-5 sm:px-8 sm:py-8">
+            <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+              <Sparkles className="h-3 w-3" />
+              Week {weekNumber} wrap-up
+            </div>
+            <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+                components={dayMarkdownComponents}
+              >
+                {wrapup}
+              </ReactMarkdown>
+            </article>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Recap recording + lecture notes */}
       <Card>
         <CardContent className="prose prose-sm max-w-none p-4 sm:prose-base sm:p-6 dark:prose-invert">
           {body === null ? (
