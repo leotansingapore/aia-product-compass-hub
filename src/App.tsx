@@ -45,6 +45,7 @@ const ProductDetail = lazyWithRetry(() => import("./pages/ProductDetail"));
 const Bookmarks = lazyWithRetry(() => import("./pages/Bookmarks"));
 const ConsultantLanding = lazyWithRetry(() => import("./pages/ConsultantLanding"));
 const CMFASExams = lazyWithRetry(() => import("./pages/CMFASExams"));
+const CMFASManage = lazyWithRetry(() => import("./pages/CMFASManage"));
 const CMFASModuleDetail = lazyWithRetry(() => import("./pages/cmfas/CMFASModuleDetail"));
 const CMFASVideoDetail = lazyWithRetry(() => import("./pages/cmfas/CMFASVideoDetail"));
 const CMFASChat = lazyWithRetry(() => import("./pages/cmfas/CMFASChat"));
@@ -147,6 +148,7 @@ const App = () => (
                     <Route path="/consultant-landing" element={<RequireAuth><RequireTier feature="consultant-landing"><ConsultantLanding /></RequireTier></RequireAuth>} />
                     <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
                     <Route path="/cmfas-exams" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
+                    <Route path="/cmfas-exams/manage" element={<RequireAuth><ProtectedAdminPage><CMFASManage /></ProtectedAdminPage></RequireAuth>} />
                     <Route path="/cmfas-exams/:workspaceMode" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams/:workspaceMode/:slideSlug" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas/module/:moduleId" element={<RequireAuth><RequireTier feature="cmfas"><CMFASModuleDetail /></RequireTier></RequireAuth>} />

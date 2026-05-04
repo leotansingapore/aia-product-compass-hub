@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { EyeOff, MoreVertical, Plus } from "lucide-react";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { EyeOff, MoreVertical, Plus, Settings } from "lucide-react";
 import { toast } from "sonner";
 
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdrop";
-import { CMFASAdminLayout } from "@/components/cmfas/admin/CMFASAdminLayout";
 import {
   CMFASWorkspaceFloatingNav,
   CMFASWorkspaceMobileMenu,
@@ -231,25 +230,6 @@ export default function CMFASExams() {
     return <StudyDeskView onSelectWorkspaceMode={setMode} />;
   };
 
-  // Admin-only surface — 3-tab content-management layout (Modules, Exam
-  // resources, Admin progress). Admins "View as user" to drop into the
-  // learner flow for testing.
-  if (isAdminUser) {
-    return (
-      <ProtectedPage pageId="cmfas-exams">
-        <PageLayout
-          title="CMFAS Exam Preparation - FINternship (Admin)"
-          description="Admin content management for CMFAS Exam Preparation modules, resources, and learner progress."
-          keywords="CMFAS exam, admin, content management, learner progress"
-          structuredData={structuredData}
-          className={cn("flex min-h-dvh flex-col bg-background text-foreground")}
-        >
-          <CMFASAdminLayout />
-        </PageLayout>
-      </ProtectedPage>
-    );
-  }
-
   return (
     <ProtectedPage pageId="cmfas-exams">
       <PageLayout
@@ -346,7 +326,13 @@ export default function CMFASExams() {
                           Admin
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-48 bg-background z-50">
+                      <DropdownMenuContent align="end" className="w-52 bg-background z-50">
+                        <DropdownMenuItem asChild className="cursor-pointer">
+                          <Link to="/cmfas-exams/manage">
+                            <Settings className="mr-2 h-4 w-4" />
+                            Manage content
+                          </Link>
+                        </DropdownMenuItem>
                         <DropdownMenuItem
                           className="cursor-pointer"
                           onClick={() => setCreateModuleOpen(true)}
