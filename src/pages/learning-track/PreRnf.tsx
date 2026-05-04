@@ -1,16 +1,12 @@
-import { Link, NavLink, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GraduationCap, Loader2, ChevronRight, ClipboardList, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useLearningTrackPhases } from "@/hooks/learning-track/useLearningTrackPhases";
 import { useLearningTrackProgress } from "@/hooks/learning-track/useLearningTrackProgress";
 import { useLockMap } from "@/hooks/learning-track/useLockMap";
 import { AdminTrackView } from "@/components/learning-track/AdminTrackView";
-import First60Days from "@/pages/learning-track/First60Days";
 import First60DaysAssignments from "@/pages/learning-track/First60DaysAssignments";
-
-type PreRnfView = "first60" | "assignments";
 
 export default function PreRnfTrack() {
   const { itemId } = useParams<{ itemId?: string }>();
@@ -63,19 +59,6 @@ export default function PreRnfTrack() {
 }
 
 function PreRnfLearnerView() {
-  // Tab state is driven by the URL so each view is linkable / shareable:
-  //   /learning-track/pre-rnf/first-60-days  → First 60 Days (default)
-  //   /learning-track/pre-rnf/assignments    → Assignments grid
-  //   /learning-track/pre-rnf/assignments/:itemId → Assignments, item expanded
-  const { pathname } = useLocation();
-  const view: PreRnfView = pathname.includes("/assignments") ? "assignments" : "first60";
-
-  const tabClass = (isActive: boolean) =>
-    cn(
-      "rounded-full px-4 py-1.5 transition-colors",
-      isActive ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
-    );
-
   return (
     <div className="space-y-4" data-testid="pre-rnf-page">
       <div className="max-w-3xl mx-auto space-y-2.5 px-1 sm:px-0">
@@ -95,7 +78,7 @@ function PreRnfLearnerView() {
         </Link>
 
         <Link
-          to="/learning-track/pre-rnf/assignments"
+          to="/learning-track/first-60-days"
           className="group relative flex items-center gap-3 sm:gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-3 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
         >
           <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -103,8 +86,8 @@ function PreRnfLearnerView() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
-            <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">Assignments</h3>
-            <p className="text-xs text-muted-foreground line-clamp-1">Weekly deliverables that turn the lessons into real reps with real prospects.</p>
+            <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">First 60 Days</h3>
+            <p className="text-xs text-muted-foreground line-clamp-1">The day-by-day curriculum that builds your foundation as a financial consultant.</p>
           </div>
           <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
         </Link>
@@ -125,32 +108,7 @@ function PreRnfLearnerView() {
         </Link>
       </div>
 
-      <div className="max-w-3xl mx-auto px-1 sm:px-0">
-        <div
-          role="tablist"
-          aria-label="Pre-RNF training sections"
-          className="inline-flex rounded-full border bg-muted/50 p-1 text-xs font-semibold"
-        >
-          <NavLink
-            role="tab"
-            to="/learning-track/pre-rnf/first-60-days"
-            aria-selected={view === "first60"}
-            className={tabClass(view === "first60")}
-          >
-            First 60 Days
-          </NavLink>
-          <NavLink
-            role="tab"
-            to="/learning-track/pre-rnf/assignments"
-            aria-selected={view === "assignments"}
-            className={tabClass(view === "assignments")}
-          >
-            Assignments
-          </NavLink>
-        </div>
-      </div>
-
-      {view === "first60" ? <First60Days /> : <First60DaysAssignments />}
+      <First60DaysAssignments />
     </div>
   );
 }

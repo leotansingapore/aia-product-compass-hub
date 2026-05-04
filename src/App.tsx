@@ -193,8 +193,8 @@ const App = () => (
                       <Route path="explorer/:itemId" element={<Navigate to="/learning-track/first-14-days" replace />} />
                       <Route path="first-14-days" element={<RequireTier feature="explorer-track"><LearningTrackFirst14Days /></RequireTier>} />
                       <Route path="first-14-days/day/:dayNumber" element={<RequireTier feature="explorer-track"><LearningTrackFirst14DaysDay /></RequireTier>} />
-                      <Route path="pre-rnf" element={<Navigate to="/learning-track/pre-rnf/first-60-days" replace />} />
-                      <Route path="pre-rnf/first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
+                      <Route path="pre-rnf" element={<Navigate to="/learning-track/pre-rnf/assignments" replace />} />
+                      <Route path="pre-rnf/first-60-days" element={<Navigate to="/learning-track/first-60-days" replace />} />
                       <Route path="pre-rnf/assignments" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       {/* Outreach Builder — both old (assignment-02) and new (outreach-playbook) URLs supported */}
