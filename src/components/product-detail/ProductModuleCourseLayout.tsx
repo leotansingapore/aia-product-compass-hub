@@ -81,6 +81,15 @@ function extractFirstStreamableVideoUrlFromRich(rich: string | undefined): strin
   return null;
 }
 
+export interface ProductExtraTab {
+  /** Stable tab value used by the underlying Tabs primitive. Should be a slug. */
+  value: string;
+  /** Tab trigger label. */
+  label: React.ReactNode;
+  /** Panel content rendered when the tab is active. */
+  content: React.ReactNode;
+}
+
 export interface ProductModuleCourseLayoutProps {
   /** Must match `useVideoProgress` / video_progress keys for this product */
   productId: string;
@@ -97,6 +106,8 @@ export interface ProductModuleCourseLayoutProps {
   originalSlug?: string;
   /** Count of product-level resources (links + files). Drives the Resources tab badge. */
   resourceCount?: number;
+  /** Product-specific extra tabs appended after the standard three. */
+  extraTabs?: ProductExtraTab[];
 }
 
 export function ProductModuleCourseLayout({
@@ -111,14 +122,22 @@ export function ProductModuleCourseLayout({
   hasExam,
   originalSlug,
   resourceCount = 0,
+  extraTabs,
 }: ProductModuleCourseLayoutProps) {
   const resourcesLabel = resourceCount > 0 ? `Resources (${resourceCount})` : "Resources";
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [shouldAutoplay, setShouldAutoplay] = useState(false);
-  const [activeTab, setActiveTab] = useState<"course-content" | "resources" | "my-notes">(defaultTab);
+  const [activeTab, setActiveTab] = useState<string>(defaultTab);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const extraTabsList = extraTabs ?? [];
+  const totalTabs = 3 + extraTabsList.length;
+  // Static class strings keep Tailwind's content scanner happy.
+  const tabsGridColsClass =
+    totalTabs <= 3 ? "grid-cols-3" : totalTabs === 4 ? "grid-cols-4" : "grid-cols-5";
+  const tabsGridColsClassSm =
+    totalTabs <= 3 ? "sm:grid-cols-3" : totalTabs === 4 ? "sm:grid-cols-4" : "sm:grid-cols-5";
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, getCourseProgress } =
     useVideoProgress(productId);
@@ -671,14 +690,14 @@ export function ProductModuleCourseLayout({
 
         {/* ── Right main content ── */}
         <main className="flex-1 min-w-0 overflow-y-auto">
-          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="w-full min-w-0">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
             {useZincLessonChrome ? (
               <div className="bg-zinc-950">
                 <div className="p-4">{lessonHeroMain}</div>
                 {renderLessonNav("dark")}
                 <div className="sticky top-0 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                   <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    <TabsList className="inline-flex h-auto w-full grid grid-cols-3 gap-1 bg-muted/50 p-1">
+                    <TabsList className={cn("inline-flex h-auto w-full grid gap-1 bg-muted/50 p-1", tabsGridColsClass)}>
                       <TabsTrigger value="course-content" className="min-h-10 text-sm">
                         Course content
                       </TabsTrigger>
@@ -688,6 +707,11 @@ export function ProductModuleCourseLayout({
                       <TabsTrigger value="my-notes" className="min-h-10 text-sm">
                         My notes
                       </TabsTrigger>
+                      {extraTabsList.map((t) => (
+                        <TabsTrigger key={t.value} value={t.value} className="min-h-10 text-sm">
+                          {t.label}
+                        </TabsTrigger>
+                      ))}
                     </TabsList>
                   </div>
                 </div>
@@ -697,7 +721,7 @@ export function ProductModuleCourseLayout({
                 {renderLessonNav("light")}
                 <div className="sticky top-0 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                   <div className="overflow-x-auto overflow-y-hidden px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                    <TabsList className="inline-flex h-auto w-full grid grid-cols-3 gap-1 bg-muted/50 p-1">
+                    <TabsList className={cn("inline-flex h-auto w-full grid gap-1 bg-muted/50 p-1", tabsGridColsClass)}>
                       <TabsTrigger value="course-content" className="min-h-10 text-sm">
                         Course content
                       </TabsTrigger>
@@ -707,6 +731,11 @@ export function ProductModuleCourseLayout({
                       <TabsTrigger value="my-notes" className="min-h-10 text-sm">
                         My notes
                       </TabsTrigger>
+                      {extraTabsList.map((t) => (
+                        <TabsTrigger key={t.value} value={t.value} className="min-h-10 text-sm">
+                          {t.label}
+                        </TabsTrigger>
+                      ))}
                     </TabsList>
                   </div>
                 </div>
@@ -724,6 +753,11 @@ export function ProductModuleCourseLayout({
                 <TabsContent value="my-notes" className="mt-0 focus-visible:outline-none">
                   {tabMyNotes}
                 </TabsContent>
+                {extraTabsList.map((t) => (
+                  <TabsContent key={t.value} value={t.value} className="mt-0 focus-visible:outline-none">
+                    {t.content}
+                  </TabsContent>
+                ))}
               </div>
             </div>
           </Tabs>
@@ -734,7 +768,7 @@ export function ProductModuleCourseLayout({
           MOBILE / TABLET: Original stacked layout with Sheet drawer
          ═══════════════════════════════════════════════════════════ */}
       <div className="lg:hidden">
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)} className="w-full min-w-0">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
           {/* Lesson bar + video + nav + tab strip (stacked under player when embed exists) */}
           <div
             className={cn(
@@ -820,7 +854,7 @@ export function ProductModuleCourseLayout({
 
             <div className="sticky top-0 z-10 border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
               <div className="mx-auto max-w-7xl overflow-x-auto overflow-y-hidden px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-4">
-                <TabsList className="inline-flex h-auto w-max gap-1 bg-muted/50 p-1 sm:w-full sm:grid sm:grid-cols-3">
+                <TabsList className={cn("inline-flex h-auto w-max gap-1 bg-muted/50 p-1 sm:w-full sm:grid", tabsGridColsClassSm)}>
                   <TabsTrigger
                     value="course-content"
                     className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
@@ -839,6 +873,15 @@ export function ProductModuleCourseLayout({
                   >
                     My notes
                   </TabsTrigger>
+                  {extraTabsList.map((t) => (
+                    <TabsTrigger
+                      key={t.value}
+                      value={t.value}
+                      className="min-h-[44px] shrink-0 justify-center whitespace-nowrap px-2 text-xs sm:min-h-10 sm:px-3 sm:text-sm"
+                    >
+                      {t.label}
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
               </div>
             </div>

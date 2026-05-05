@@ -73,6 +73,7 @@ const ProductExam = lazyWithRetry(() => import("./pages/ProductExam"));
 const QuestionBanks = lazyWithRetry(() => import("./pages/QuestionBanks"));
 const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
 const Library = lazyWithRetry(() => import("./pages/Library"));
+const CriticalIllnessConditions = lazyWithRetry(() => import("./pages/CriticalIllnessConditions"));
 const LearningTrack = lazyWithRetry(() => import("./pages/LearningTrack"));
 const LearningTrackIndex = lazyWithRetry(() => import("./pages/learning-track/LearningTrackIndex"));
 const LearningTrackPreRnf = lazyWithRetry(() => import("./pages/learning-track/PreRnf"));
@@ -246,6 +247,7 @@ const App = () => (
                     <Route path="/product/pro-lifetime-protector/study" element={<RequireAuth><RequireTier feature="question-banks"><ProLifetimeProtectorStudy /></RequireTier></RequireAuth>} />
                     <Route path="/product/solitaire-pa/study" element={<RequireAuth><RequireTier feature="question-banks"><SolitairePaStudy /></RequireTier></RequireAuth>} />
                     <Route path="/product/ultimate-critical-cover/study" element={<RequireAuth><RequireTier feature="question-banks"><UltimateCriticalCoverStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/critical-illness-conditions" element={<RequireAuth><CriticalIllnessConditions /></RequireAuth>} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

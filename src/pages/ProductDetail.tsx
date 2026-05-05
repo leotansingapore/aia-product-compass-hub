@@ -11,7 +11,8 @@ import {
 
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
 import { ProductSyncButton } from "@/components/product-detail/ProductSyncButton";
-import { ProductModuleCourseLayout } from "@/components/product-detail/ProductModuleCourseLayout";
+import { ProductModuleCourseLayout, type ProductExtraTab } from "@/components/product-detail/ProductModuleCourseLayout";
+import UccSalesInfo from "@/components/product-detail/UccSalesInfo";
 import { ProductContinueLearning } from "@/components/product-detail/ProductContinueLearning";
 import { SubModulesSection } from "@/components/product-detail/SubModulesSection";
 import { VideoEditingInterface } from "@/components/video-editing/VideoEditingInterface";
@@ -66,6 +67,26 @@ const LEGACY_TO_CORE_SLUG: Record<string, string> = {
 
 // CMFAS lesson products — surface the ActionStepsEditor only for these.
 const CMFAS_PRODUCT_IDS = new Set<string>(Object.values(moduleIdToProductId));
+
+// Product slugs that get a "Sales info" sales-cheatsheet tab in addition to
+// the standard course-content/resources/my-notes tabs.
+const UCC_PRODUCT_IDS = new Set<string>([
+  'ultimate-critical-cover',
+  'core-ultimate-critical-cover',
+]);
+
+function getProductExtraTabs(productId: string): ProductExtraTab[] {
+  if (UCC_PRODUCT_IDS.has(productId)) {
+    return [
+      {
+        value: 'sales-info',
+        label: 'Sales info',
+        content: <UccSalesInfo />,
+      },
+    ];
+  }
+  return [];
+}
 
 export default function ProductDetail() {
   const {
@@ -295,6 +316,7 @@ export default function ProductDetail() {
                   hasExam={hasExamProduct}
                   originalSlug={continueOriginalSlug}
                   resourceCount={resourceCount}
+                  extraTabs={getProductExtraTabs(product.id)}
                   tabResources={
                     <ProductUsefulLinks
                       links={product.useful_links || []}
