@@ -400,6 +400,18 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )}
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip={isCollapsed ? "CI Conditions" : undefined}>
+                      <NavLink
+                        to="/critical-illness-conditions"
+                        {...prefetchHandlers("/critical-illness-conditions")}
+                        className={getNavClassName('/critical-illness-conditions')}
+                      >
+                        <Shield className="h-4 w-4" />
+                        {!isCollapsed && <span>CI Conditions</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>

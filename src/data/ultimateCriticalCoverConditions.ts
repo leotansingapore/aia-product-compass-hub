@@ -2030,3 +2030,61 @@ export const COVERED_CONDITION_COUNT = ULTIMATE_CRITICAL_COVER_CONDITIONS.length
 export const EARLY_STAGE_COUNT = ULTIMATE_CRITICAL_COVER_CONDITIONS.filter(c => c.earlyStage.covered).length;
 export const INTERMEDIATE_STAGE_COUNT = ULTIMATE_CRITICAL_COVER_CONDITIONS.filter(c => c.intermediateStage.covered).length;
 export const MAJOR_STAGE_COUNT = ULTIMATE_CRITICAL_COVER_CONDITIONS.filter(c => c.majorStage.covered).length;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Appendix 2 — Glossary terms referenced by many of the 73 CI definitions.
+// Source: AIA UCC Product Summary v1.0 (012024), Appendix 2.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface AdlItem {
+  /** Roman numeral label as printed in the Product Summary (i, ii, iii…). */
+  label: string;
+  /** Activity name (e.g. "Washing"). */
+  name: string;
+  /** The full definition of this activity. */
+  definition: string;
+}
+
+export const ACTIVITIES_OF_DAILY_LIVING: AdlItem[] = [
+  {
+    label: "i",
+    name: "Washing",
+    definition:
+      "the ability to wash in the bath or shower (including getting into and out of the bath or shower) or wash satisfactorily by other means;",
+  },
+  {
+    label: "ii",
+    name: "Dressing",
+    definition:
+      "the ability to put on, take off, secure and unfasten all garments and, as appropriate, any braces, artificial limbs or other surgical appliances;",
+  },
+  {
+    label: "iii",
+    name: "Transferring",
+    definition:
+      "the ability to move from a bed to an upright chair or wheelchair and vice versa;",
+  },
+  {
+    label: "iv",
+    name: "Mobility",
+    definition: "the ability to move indoors from room to room on level surfaces;",
+  },
+  {
+    label: "v",
+    name: "Toileting",
+    definition:
+      "the ability to use the lavatory or otherwise manage bowel and bladder functions so as to maintain a satisfactory level of personal hygiene;",
+  },
+  {
+    label: "vi",
+    name: "Feeding",
+    definition:
+      "the ability to feed oneself once food has been prepared and made available.",
+  },
+];
+
+export const PERMANENT_NEUROLOGICAL_DEFICIT_DEFINITION =
+  "Permanent Neurological Deficit refers to symptoms of dysfunction in the nervous system that are present on clinical examination and expected to last throughout the lifetime of the Insured. Symptoms that are covered include numbness, paralysis, localized weakness, dysarthria (difficulty with speech), aphasia (inability to speak), dysphagia (difficulty swallowing), visual impairment, difficulty in walking, lack of coordination, tremor, seizures, dementia, delirium and coma.";
+
+export const PERMANENT_DEFINITION =
+  "Permanent means expected to last throughout the lifetime of the Insured.";

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Search, FileText } from "lucide-react";
+import { Search, FileText, BookOpen } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,9 @@ import {
   EARLY_STAGE_COUNT,
   INTERMEDIATE_STAGE_COUNT,
   MAJOR_STAGE_COUNT,
+  ACTIVITIES_OF_DAILY_LIVING,
+  PERMANENT_NEUROLOGICAL_DEFICIT_DEFINITION,
+  PERMANENT_DEFINITION,
   type CriticalIllnessCondition,
   type CriticalIllnessStage,
 } from "@/data/ultimateCriticalCoverConditions";
@@ -251,6 +254,63 @@ export default function CriticalIllnessConditions() {
             </Accordion>
           )}
         </div>
+
+        {/* Appendix-2 glossary — terms referenced by many of the 73 definitions. */}
+        <section className="mt-8">
+          <div className="mb-3 flex items-center gap-2">
+            <BookOpen className="h-4 w-4 text-muted-foreground" aria-hidden />
+            <h2 className="text-base font-semibold tracking-tight text-foreground">
+              Glossary terms used in the definitions
+            </h2>
+          </div>
+          <p className="mb-4 text-xs text-muted-foreground">
+            Several of the 73 definitions reference these standardised terms from Appendix 2 of the Product Summary.
+          </p>
+
+          <div className="space-y-3">
+            <Card>
+              <CardContent className="p-4">
+                <p className="text-sm font-semibold text-foreground">Activities of Daily Living (ADLs)</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  The six activities used to assess loss of independent existence. The
+                  Insured must be unable to perform a defined number of these (typically
+                  three or more) for the relevant CI claim to be admitted.
+                </p>
+                <ol className="mt-3 space-y-2">
+                  {ACTIVITIES_OF_DAILY_LIVING.map((adl) => (
+                    <li key={adl.label} className="flex gap-3 text-sm leading-relaxed">
+                      <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                        {adl.label}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="font-medium text-foreground">{adl.name}</span>{" "}
+                        <span className="text-foreground/80">— {adl.definition}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <p className="text-sm font-semibold text-foreground">Permanent Neurological Deficit</p>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/90">
+                  {PERMANENT_NEUROLOGICAL_DEFICIT_DEFINITION}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <p className="text-sm font-semibold text-foreground">Permanent</p>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/90">
+                  {PERMANENT_DEFINITION}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
       </div>
     </PageLayout>
   );
