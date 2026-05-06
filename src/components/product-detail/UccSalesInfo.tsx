@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
 import {
   Award,
   CalendarDays,
   CheckCircle2,
-  ExternalLink,
   HeartPulse,
   Info,
   RefreshCw,
@@ -352,28 +350,6 @@ export default function UccSalesInfo() {
       </section>
 
       {/* Cross-link */}
-      <section>
-        <Card>
-          <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold text-foreground">
-                Need the full clinical definition for any condition?
-              </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                Browse all 73 critical illnesses with Early / Intermediate / Major Stage
-                wording — search by name or symptom.
-              </p>
-            </div>
-            <Link
-              to="/critical-illness-conditions"
-              className="inline-flex items-center gap-1.5 self-start rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 sm:self-center"
-            >
-              Open conditions list
-              <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-            </Link>
-          </CardContent>
-        </Card>
-      </section>
     </div>
   );
 }
