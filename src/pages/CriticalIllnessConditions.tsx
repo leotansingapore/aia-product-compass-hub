@@ -5,12 +5,6 @@ import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group";
@@ -62,43 +56,37 @@ function StageBlock({
   );
 }
 
-function ConditionItem({ condition }: { condition: CriticalIllnessCondition }) {
-  const stages: Array<"early" | "intermediate" | "major"> = ["early", "intermediate", "major"];
-  const stageCovered = stages.filter((s) => {
-    if (s === "early") return condition.earlyStage.covered;
-    if (s === "intermediate") return condition.intermediateStage.covered;
-    return condition.majorStage.covered;
-  });
-
+function ConditionCard({ condition }: { condition: CriticalIllnessCondition }) {
   return (
-    <AccordionItem value={`c-${condition.number}`} className="border-b border-border/60">
-      <AccordionTrigger className="px-2 py-3 text-left hover:no-underline">
-        <div className="flex w-full items-start justify-between gap-3 pr-2">
+    <Card
+      id={`condition-${condition.number}`}
+      className="scroll-mt-24"
+    >
+      <CardContent className="p-4 sm:p-5">
+        <div className="mb-3 flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex items-baseline gap-2">
               <span className="shrink-0 font-mono text-xs text-muted-foreground">
                 #{condition.number}
               </span>
-              <span className="text-sm font-medium leading-snug text-foreground sm:text-base">
+              <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
                 {condition.name}
-              </span>
+              </h3>
             </div>
-            <div className="mt-1 flex flex-wrap gap-1">
-              {stageCovered.includes("early") && (
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {condition.earlyStage.covered && (
                 <Badge variant="secondary" className="text-[10px]">Early</Badge>
               )}
-              {stageCovered.includes("intermediate") && (
+              {condition.intermediateStage.covered && (
                 <Badge variant="secondary" className="text-[10px]">Intermediate</Badge>
               )}
-              {stageCovered.includes("major") && (
+              {condition.majorStage.covered && (
                 <Badge variant="secondary" className="text-[10px]">Major</Badge>
               )}
             </div>
           </div>
         </div>
-      </AccordionTrigger>
-      <AccordionContent className="px-2">
-        <div className="space-y-3 pt-1">
+        <div className="space-y-3">
           <StageBlock
             label="Early Stage"
             stage={condition.earlyStage}
@@ -115,8 +103,8 @@ function ConditionItem({ condition }: { condition: CriticalIllnessCondition }) {
             toneClass="border-rose-500/20 bg-rose-500/5"
           />
         </div>
-      </AccordionContent>
-    </AccordionItem>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -240,18 +228,15 @@ export default function CriticalIllnessConditions() {
           </p>
         </div>
 
-        {/* Accordion list */}
-        <div className="mt-5 rounded-lg border bg-card">
+        {/* Conditions list — every definition is rendered inline so advisors
+            can scan or Cmd-F a term without clicking. */}
+        <div className="mt-5 space-y-3">
           {filtered.length === 0 ? (
-            <div className="px-4 py-12 text-center text-sm text-muted-foreground">
+            <div className="rounded-lg border bg-card px-4 py-12 text-center text-sm text-muted-foreground">
               No conditions match your search.
             </div>
           ) : (
-            <Accordion type="multiple" className="w-full">
-              {filtered.map((c) => (
-                <ConditionItem key={c.number} condition={c} />
-              ))}
-            </Accordion>
+            filtered.map((c) => <ConditionCard key={c.number} condition={c} />)
           )}
         </div>
 
