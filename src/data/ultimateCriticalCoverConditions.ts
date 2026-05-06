@@ -119,11 +119,11 @@ The unequivocal Diagnosis of Acute Severe Ulcerative Colitis is finalised by gas
       covered: true,
       definition: `Diagnosis of Dementia including Alzheimer’s Disease Diagnosis of dementia by neurological assessment by an appropriate Specialist confirming cognitive impairment characterised by a Mini Mental State Examination score of 24 or less out of 30 or assessed by two (2) neuropsychometric tests performed six (6) months apart with a battery of tests which clearly define the severity of the impairment. The Insured must have been placed on disease modifying treatment prescribed by a Specialist and must be under the continuous care of a Specialist.
 
-Coverage on Early Stage Alzheimer’s Disease expires on the Policy Anniversary occurring on or immediately following the Insured’s 85th                T birthday.                         e
+Coverage on Early Stage Alzheimer’s Disease expires on the Policy Anniversary occurring on or immediately following the Insured’s 85th birthday.
 
-• The following are excluded:
+The following are excluded:
 
-• Drug or alcohol related brain damage                   •`,
+• Drug or alcohol related brain damage`,
     },
     intermediateStage: {
       covered: true,
@@ -137,7 +137,11 @@ Coverage on Early Stage Alzheimer’s Disease expires on the Policy Anniversary 
 
 This Diagnosis must be supported by the clinical confirmation of an appropriate consultant and supported by our appointed doctor.
 
-he following are xcluded: Non-organic diseases such as neurosis and psychiatric illnesses; and Drug or alcohol related brain damage.`,
+The following are excluded:
+
+• Non-organic diseases such as neurosis and psychiatric illnesses; and
+
+• Drug or alcohol related brain damage.`,
     },
     majorStage: {
       covered: true,
@@ -345,11 +349,11 @@ Chronic Relapsing Pancreatitis caused by alcohol use is excluded.`,
       covered: true,
       definition: `Coma for 48 hours Coma that persists for at least 48 hours. This Diagnosis must be supported by evidence of all of the following:
 
-• No response to external stimuli for at least 48         • hours;
+• No response to external stimuli for at least 48 hours;
 
-• The use of life support measures to sustain             • life; and
+• The use of life support measures to sustain life; and
 
-• Brain damage resulting in Permanent                    • Neurological Deficit which must be assessed at least 30 days after the onset of the coma.
+• Brain damage resulting in Permanent Neurological Deficit which must be assessed at least 30 days after the onset of the coma.
 
 Coma resulting directly from alcohol or drug abuse is excluded.
 
@@ -359,7 +363,11 @@ Medically induced coma also does not fulfil this definition.`,
       covered: true,
       definition: `Coma for 72 hours Coma that persists for at least 72 continuous hours. This Diagnosis must be supported by evidence of all of the following:
 
-No response to external stimuli for at least 72 hours; The use of life support measures to sustain life; and Brain damage resulting in Permanent Neurological Deficit which must be assessed at least 30 days after the onset of the coma.
+• No response to external stimuli for at least 72 hours;
+
+• The use of life support measures to sustain life; and
+
+• Brain damage resulting in Permanent Neurological Deficit which must be assessed at least 30 days after the onset of the coma.
 
 Coma resulting directly from alcohol or drug abuse is excluded. Medically induced coma also does not fulfil this definition. Severe Epilepsy Severe epilepsy confirmed by all of the following:
 
@@ -671,11 +679,11 @@ Explanatory note: 0.5ng/ml = 0.5ug/L = 500pg/ml`,
     name: `HIV due to Blood Transfusion and Occupationally Acquired HIV`,
     earlyStage: {
       covered: true,
-      definition: `HIV due to Assault or Occupationally Acquired HIV A) Infection with the Human Immunodeficiency Virus (HIV) which resulted from a physical or sexual assault occurring after the Issue Date, date of               • endorsement or Reinstatement Date of your Policy/ Supplementary Agreement (where                  • applicable), whichever is the later, provided that all the following conditions are met:
+      definition: `HIV due to Assault or Occupationally Acquired HIV A) Infection with the Human Immunodeficiency Virus (HIV) which resulted from a physical or sexual assault occurring after the Issue Date, date of endorsement or Reinstatement Date of your Policy/ Supplementary Agreement (where applicable), whichever is the later, provided that all the following conditions are met:
 
 • The incident must be reported to the appropriate authority and that a criminal case must be opened; and
 
-• Proof of the assault            • giving rise to the infection must be reported to us within 30 days of the assault taking place; and
+• Proof of the assault giving rise to the infection must be reported to us within 30 days of the assault taking place; and
 
 • Proof that the assault involved a definite source of the HIV infected fluids; and
 
@@ -695,7 +703,11 @@ B) Infection with the Human Immunodeficiency Virus (HIV) which resulted from an 
       covered: true,
       definition: `HIV due to Organ Transplant Infection with the Human Immunodeficiency Virus (HIV) through an organ transplant, provided that all of the following conditions are met:
 
-The organ transplant was medically necessary or given as part of a medical treatment; and The organ transplant was received in Singapore after the Issue Date, date of endorsement or Reinstatement Date of your Policy/ Supplementary Agreement (where applicable), whichever is the later; and The source of the infection is established to be from the Institution that provided the transplant and the Institution is able to trace the origin of the HIV to the infected transplanted organ.
+• The organ transplant was medically necessary or given as part of a medical treatment; and
+
+• The organ transplant was received in Singapore after the Issue Date, date of endorsement or Reinstatement Date of your Policy/ Supplementary Agreement (where applicable), whichever is the later; and
+
+• The source of the infection is established to be from the Institution that provided the transplant and the Institution is able to trace the origin of the HIV to the infected transplanted organ.
 
 This benefit will not apply where a cure has become available prior to the infection. "Cure" means any treatment that renders the HIV inactive or non-infectious.`,
     },
@@ -1619,9 +1631,9 @@ The Diagnosis of Progressive Supranuclear Palsy must be confirmed by a Physician
 
 This Diagnosis must be confirmed by:
 
-• The presence of bacterial infection in          • cerebrospinal fluid by lumbar puncture; and
+• The presence of bacterial infection in cerebrospinal fluid by lumbar puncture; and
 
-• A consultant neurologist.                    •
+• A consultant neurologist.
 
 Bacterial Meningitis in the presence of HIV infection is excluded.`,
     },
@@ -1631,7 +1643,9 @@ Bacterial Meningitis in the presence of HIV infection is excluded.`,
 
 This Diagnosis must be confirmed by:
 
-The presence of bacterial infection in cerebrospinal fluid by lumbar puncture; and A consultant neurologist.
+• The presence of bacterial infection in cerebrospinal fluid by lumbar puncture; and
+
+• A consultant neurologist.
 
 Bacterial Meningitis in the presence of HIV infection is excluded.`,
     },
