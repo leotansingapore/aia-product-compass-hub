@@ -18,6 +18,8 @@ import { solitairePaExamQuestions } from '../src/data/solitairePaExamQuestions';
 import { solitairePaStudyBank } from '../src/data/solitairePaStudyBank';
 import { ultimateCriticalCoverExamQuestions } from '../src/data/ultimateCriticalCoverExamQuestions';
 import { ultimateCriticalCoverStudyBank } from '../src/data/ultimateCriticalCoverStudyBank';
+import { guaranteedProtectPlusExamQuestions } from '../src/data/guaranteedProtectPlusExamQuestions';
+import { guaranteedProtectPlusStudyBank } from '../src/data/guaranteedProtectPlusStudyBank';
 
 const SUPABASE_URL = 'https://hgdbflprrficdoyxmdxe.supabase.co';
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -61,6 +63,8 @@ const banks: Array<{ slug: string; type: 'study' | 'exam'; data: SourceQuestion[
   { slug: 'solitaire-pa', type: 'study', data: solitairePaStudyBank },
   { slug: 'ultimate-critical-cover', type: 'exam', data: ultimateCriticalCoverExamQuestions },
   { slug: 'ultimate-critical-cover', type: 'study', data: ultimateCriticalCoverStudyBank },
+  { slug: 'guaranteed-protect-plus', type: 'exam', data: guaranteedProtectPlusExamQuestions },
+  { slug: 'guaranteed-protect-plus', type: 'study', data: guaranteedProtectPlusStudyBank },
 ];
 
 async function seed() {

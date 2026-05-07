@@ -24,6 +24,7 @@ const productDescriptions: Record<string, string> = {
   "pro-lifetime-protector": "Hybrid ILP combining lifetime protection with investment growth.",
   "solitaire-pa": "Personal accident plan for outpatient and accident coverage.",
   "ultimate-critical-cover": "Multi-pay critical illness plan with unlimited claims.",
+  "guaranteed-protect-plus": "Whole-life par plan — accumulator + booster multipliers with optional CI riders.",
 };
 
 const products: ProductQuizEntry[] = PRODUCT_SLUGS.map((slug) => ({

@@ -32,6 +32,7 @@ export const PRODUCT_SLUGS = [
   'pro-lifetime-protector',
   'solitaire-pa',
   'ultimate-critical-cover',
+  'guaranteed-protect-plus',
 ] as const;
 
 export const PRODUCT_LABELS: Record<string, string> = {
@@ -41,6 +42,7 @@ export const PRODUCT_LABELS: Record<string, string> = {
   'pro-lifetime-protector': 'Pro Lifetime Protector',
   'solitaire-pa': 'Solitaire PA',
   'ultimate-critical-cover': 'Ultimate Critical Cover',
+  'guaranteed-protect-plus': 'Guaranteed Protect Plus',
 };
 
 export const CATEGORY_LABELS: Record<QuestionCategory, string> = {

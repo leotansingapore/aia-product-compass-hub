@@ -103,6 +103,7 @@ const HealthshieldGoldMaxStudy = lazyWithRetry(() => import("./pages/Healthshiel
 const ProLifetimeProtectorStudy = lazyWithRetry(() => import("./pages/ProLifetimeProtectorStudy"));
 const SolitairePaStudy = lazyWithRetry(() => import("./pages/SolitairePaStudy"));
 const UltimateCriticalCoverStudy = lazyWithRetry(() => import("./pages/UltimateCriticalCoverStudy"));
+const GuaranteedProtectPlusStudy = lazyWithRetry(() => import("./pages/GuaranteedProtectPlusStudy"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -246,6 +247,7 @@ const App = () => (
                     <Route path="/product/pro-lifetime-protector/study" element={<RequireAuth><RequireTier feature="question-banks"><ProLifetimeProtectorStudy /></RequireTier></RequireAuth>} />
                     <Route path="/product/solitaire-pa/study" element={<RequireAuth><RequireTier feature="question-banks"><SolitairePaStudy /></RequireTier></RequireAuth>} />
                     <Route path="/product/ultimate-critical-cover/study" element={<RequireAuth><RequireTier feature="question-banks"><UltimateCriticalCoverStudy /></RequireTier></RequireAuth>} />
+                    <Route path="/product/guaranteed-protect-plus/study" element={<RequireAuth><RequireTier feature="question-banks"><GuaranteedProtectPlusStudy /></RequireTier></RequireAuth>} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
