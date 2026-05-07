@@ -163,18 +163,15 @@ export function useFirst60DaysProgress() {
       return data;
     },
     enabled: Boolean(userId),
-    // Mutations always invalidate this key, so we don't need a short stale
-    // window. Keep the hub instant on revisits — most users navigate hub →
-    // day → hub many times per session.
-    staleTime: 5 * 60_000,
+    // Short stale window + focus refetch so progress made on another
+    // device shows up when the user returns to this one. Cross-device
+    // mutations can't invalidate this query, so we re-check the server.
+    staleTime: 30_000,
     gcTime: 30 * 60_000,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    placeholderData: (prev) => prev,
+    refetchOnWindowFocus: true,
     // Paint the hub immediately on revisits using the last-seen progress
-    // snapshot. The background refetch then reconciles with Supabase.
-    initialData: userId ? readCachedProgress(userId) : undefined,
-    initialDataUpdatedAt: 0,
+    // snapshot, then let the refetch reconcile with Supabase.
+    placeholderData: userId ? readCachedProgress(userId) : undefined,
   });
 
   useEffect(() => {

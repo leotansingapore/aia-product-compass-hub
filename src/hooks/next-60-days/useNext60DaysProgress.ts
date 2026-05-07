@@ -144,10 +144,12 @@ export function useNext60DaysProgress() {
     queryKey: ["next-60-days-progress", userId],
     queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
     enabled: Boolean(userId),
-    staleTime: 5 * 60_000,
+    // Short stale window + focus refetch so progress made on another
+    // device shows up when the user returns to this one. Cross-device
+    // mutations can't invalidate this query, so we re-check the server.
+    staleTime: 30_000,
     gcTime: 30 * 60_000,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
     placeholderData: (prev) => prev,
   });
 
