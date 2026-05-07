@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, ChevronRight, Lock } from "lucide-react";
+import { BookOpen, CheckCircle2, ChevronRight, GraduationCap, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { getAllWeeks, prefetchDay } from "@/features/product-mastery-track/content";
+import { WEEK_META, getAllWeeks, prefetchDay } from "@/features/product-mastery-track/content";
 import { TOTAL_DAYS } from "@/features/product-mastery-track/summaries";
 import { useProductMasteryProgress } from "@/hooks/product-mastery-track/useProductMasteryProgress";
 import { useAdmin } from "@/hooks/useAdmin";
+import { PRODUCT_SLUGS } from "@/types/questionBank";
+
+const PRODUCT_SLUG_SET = new Set<string>(PRODUCT_SLUGS);
 
 const BASE_PATH = "/learning-track/product-mastery";
 
@@ -61,6 +64,8 @@ export default function ProductMasteryHub() {
           );
           const entryDay = firstIncompleteUnlocked ?? week.days[0];
           const href = `${BASE_PATH}/day/${entryDay.dayNumber}`;
+          const productSlug = WEEK_META[week.weekNumber]?.productSlug;
+          const hasBank = !!productSlug && PRODUCT_SLUG_SET.has(productSlug);
 
           return (
             <Card
@@ -170,6 +175,55 @@ export default function ProductMasteryHub() {
                     )}
                   </Button>
                 </div>
+                {hasBank && (
+                  <div className="border-t border-border/60 pt-3 space-y-2">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      End-of-week practice
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button
+                        asChild={!isLocked}
+                        variant="outline"
+                        size="sm"
+                        className="gap-1.5 text-xs"
+                        disabled={isLocked}
+                      >
+                        {isLocked ? (
+                          <span>
+                            <BookOpen className="h-3.5 w-3.5 text-blue-500" />
+                            Question Bank
+                          </span>
+                        ) : (
+                          <Link to={`/product/${productSlug}/study`}>
+                            <BookOpen className="h-3.5 w-3.5 text-blue-500" />
+                            Question Bank
+                          </Link>
+                        )}
+                      </Button>
+                      <Button
+                        asChild={!isLocked}
+                        size="sm"
+                        className="gap-1.5 text-xs"
+                        disabled={isLocked}
+                      >
+                        {isLocked ? (
+                          <span>
+                            <GraduationCap className="h-3.5 w-3.5" />
+                            Take Exam
+                          </span>
+                        ) : (
+                          <Link
+                            to={`/product/${productSlug}/exam`}
+                            state={{ from: "product-mastery" }}
+                          >
+                            <GraduationCap className="h-3.5 w-3.5" />
+                            Take Exam
+                          </Link>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           );
