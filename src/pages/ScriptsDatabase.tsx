@@ -2017,21 +2017,27 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     <TabsList className="bg-transparent p-0 h-auto gap-1.5 flex-wrap justify-start">
                       {script.versions.map((v, i) => (
                         <ContextMenu key={i}>
+                          {/* Wrapper span absorbs ContextMenuTrigger's `data-state`
+                              so the inner TabsTrigger's own `data-state="active|inactive"`
+                              from Radix Tabs is preserved (otherwise the active-tab
+                              highlight `data-[state=active]:bg-primary` never matches). */}
                           <ContextMenuTrigger asChild>
-                            <TabsTrigger value={String(i)} style={{ cursor: 'pointer' }}
-                              className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
-                              onDoubleClick={(e) => {
-                                if (isAdmin && onMetadataSave) {
-                                  e.stopPropagation();
-                                  e.preventDefault();
-                                  setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
-                                  setEditingVersionTitle(i);
-                                }
-                              }}>
-                              <span title="Right-click to duplicate · Double-click to rename (admin)">
-                                {v.title || v.author || `Version ${i + 1}`}
-                              </span>
-                            </TabsTrigger>
+                            <span className="inline-flex">
+                              <TabsTrigger value={String(i)} style={{ cursor: 'pointer' }}
+                                className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                                onDoubleClick={(e) => {
+                                  if (isAdmin && onMetadataSave) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
+                                    setEditingVersionTitle(i);
+                                  }
+                                }}>
+                                <span title={isAdmin ? "Right-click for options · Double-click to rename" : "Right-click for options"}>
+                                  {v.title || v.author || `Version ${i + 1}`}
+                                </span>
+                              </TabsTrigger>
+                            </span>
                           </ContextMenuTrigger>
                           <ContextMenuContent className="w-44">
                             {isAuthenticated && (
@@ -2060,21 +2066,27 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {/* User version tabs */}
                       {userVersions.map((uv) => (
                         <ContextMenu key={`uv-${uv.id}`}>
+                          {/* Wrapper span absorbs ContextMenuTrigger's `data-state`
+                              so the inner TabsTrigger's own `data-state="active|inactive"`
+                              from Radix Tabs is preserved (otherwise the active-tab
+                              highlight `data-[state=active]:bg-primary` never matches). */}
                           <ContextMenuTrigger asChild>
-                            <TabsTrigger value={`uv-${uv.id}`} style={{ cursor: 'pointer' }}
-                              className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
-                              onDoubleClick={(e) => {
-                                if (currentUserId === uv.user_id) {
-                                  e.stopPropagation();
-                                  e.preventDefault();
-                                  setEditUserVersionName(uv.author_name);
-                                  setEditingUserVersionId(uv.id);
-                                }
-                              }}>
-                              <span title={currentUserId === uv.user_id ? "Right-click to duplicate or rename · Double-click to rename" : "Right-click to duplicate"}>
-                                {uv.author_name}
-                              </span>
-                            </TabsTrigger>
+                            <span className="inline-flex">
+                              <TabsTrigger value={`uv-${uv.id}`} style={{ cursor: 'pointer' }}
+                                className="text-xs px-3 py-1 h-auto rounded-full border border-border bg-muted/40 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-sm hover:bg-muted transition-colors"
+                                onDoubleClick={(e) => {
+                                  if (currentUserId === uv.user_id) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    setEditUserVersionName(uv.author_name);
+                                    setEditingUserVersionId(uv.id);
+                                  }
+                                }}>
+                                <span title={currentUserId === uv.user_id ? "Right-click for options · Double-click to rename" : "Right-click for options"}>
+                                  {uv.author_name}
+                                </span>
+                              </TabsTrigger>
+                            </span>
                           </ContextMenuTrigger>
                           <ContextMenuContent className="w-44">
                             {isAuthenticated && (
