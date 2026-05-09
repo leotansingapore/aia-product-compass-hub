@@ -127,15 +127,15 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     category: 'product-facts'
   },
   {
-    question: "What waiting periods, exclusions and free-look terms apply on GPP at policy inception?",
+    question: "What waiting periods, exclusions and free-look terms apply across the GPP base plan and its CI riders at policy inception?",
     options: [
       "30-day waiting on all conditions; no survival period; 7-day free-look",
-      "90 days waiting period for most CI conditions, 1 year for ADHD-caused conditions, 7-day survival period required after diagnosis, 14-day free-look from policy receipt, suicide excluded in the first policy year, pre-existing conditions/surgeries excluded, TPD not covered if from deliberate self-endangerment/suicide/war, Premium Pause not available to full-time MPs.",
+      "Under the Critical Protector Life / Early Critical Protector Life riders: 90 days waiting period for most CI conditions, 1 year for ADHD-caused conditions, 7-day survival period after diagnosis. Under the GPP base plan: 14-day free-look from policy receipt, suicide excluded in the first policy year, pre-existing conditions/surgeries excluded, TPD not covered if from deliberate self-endangerment/suicide/war, Premium Pause not available to full-time MPs.",
       "180-day waiting; 30-day survival; 60-day free-look",
       "No waiting period or exclusions"
     ],
     correct: 1,
-    explanation: "Standard exam-style summary: 90-day waiting (1-year for ADHD), 7-day survival, 14-day free-look, year-1 suicide exclusion, pre-existing exclusion, TPD exclusions for self-endangerment/war, and no Premium Pause for full-time MPs.",
+    explanation: "Split by where the rule lives. CI riders (Critical Protector Life / Early Critical Protector Life): 90-day waiting (1-year for ADHD) + 7-day survival. GPP base: 14-day free-look, year-1 suicide exclusion, pre-existing exclusion, TPD exclusions for self-endangerment/war, and no Premium Pause for full-time MPs. The base PS does not specify a CI waiting period -- that's a rider-level rule.",
     category: 'product-facts'
   },
   {

@@ -399,7 +399,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
 
   // Q29 -- correct: 1
   {
-    question: "What is the standard waiting period for most CI conditions under GPP, and how long for ADHD-related conditions?",
+    question: "Under the GPP CI riders (Critical Protector Life / Early Critical Protector Life), what is the standard waiting period for most CI conditions, and how long for ADHD-related conditions?",
     options: [
       "30 days for CI; 6 months for ADHD",
       "90 days for most CI conditions; 1 year for conditions caused by ADHD",
@@ -407,7 +407,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "No waiting period for either"
     ],
     correct: 1,
-    explanation: "Most CI conditions have a 90-day waiting period from policy inception; conditions caused by ADHD have a 1-year waiting period.",
+    explanation: "Per the Critical Protector Life / Early Critical Protector Life rider PSs (NOT the GPP base PS): most CI conditions carry a 90-day waiting period from policy inception; conditions caused by ADHD carry a 1-year waiting period.",
     category: 'product-facts'
   },
 
@@ -449,7 +449,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Age 65"
     ],
     correct: 0,
-    explanation: "Entry-age caps depend on premium term: 25-year max age 50, 20-year max age 55, 15-year max age 60.",
+    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure): 25-year term max entry age 50, 20-year max 55, 15-year max 60. The Product Summary's Terminal Bonus tables only segment by entry age 0-20 and 21-70.",
     category: 'product-facts'
   },
 
@@ -463,7 +463,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Age 65"
     ],
     correct: 1,
-    explanation: "The 20-year term caps entry at age 55.",
+    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure), the 20-year term caps entry at age 55.",
     category: 'product-facts'
   },
 
@@ -477,7 +477,7 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
       "Age 70"
     ],
     correct: 2,
-    explanation: "The 15-year term caps entry at age 60 -- the longest age window of the three.",
+    explanation: "Per AIA's internal underwriting guide (NOT in the canonical Product Summary or Brochure), the 15-year term caps entry at age 60 -- the longest age window of the three.",
     category: 'product-facts'
   },
 
