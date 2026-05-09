@@ -1839,5 +1839,135 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     correct: 1,
     explanation: "Per Product Summary Page 2: pre-65 uses the severe-disability test (loss of 2 limbs/eyes or combinations + 6-month inability to work); from age 65, it switches to the ADL test (2 of 6 -- transferring, mobility, toileting, dressing, washing, feeding); TPD coverage ends at age 70.",
     category: 'product-facts'
+  },
+
+  // ============================================================
+  // CURRICULUM-GAP CLOSURES (Q131-Q139) -- audit Section C, 2026-04-27
+  // ============================================================
+
+  // Q131 -- correct: 1
+  {
+    question: "What 'anti-market' disclosure does the GPP curriculum recommend you state up-front in a sales appointment, and why is it positioned as a trust move?",
+    options: [
+      "'Cash value beats every fixed deposit on the market' -- proves GPP is superior",
+      "'This product can lose value year-on-year, the year-1 cash value is below premiums paid, and it only makes sense if you can hold for 10+ years' -- the disclosure pre-empts buyer's remorse and signals you're not pitching, you're advising",
+      "'Vitality Platinum is achievable for everyone' -- builds aspiration",
+      "There is no anti-market disclosure -- always lead with strengths"
+    ],
+    correct: 1,
+    explanation: "Day 1 + Day 5 frame the anti-market disclosure (year-1 cash value gap, non-guaranteed bonuses, 10-yr horizon required) as the highest-leverage trust move. The FC who states the downsides up-front is the FC the prospect trusts to disclose more later -- this differentiates a fiduciary from a hard-seller and protects against free-look cancellations.",
+    category: 'compliance'
+  },
+
+  // Q132 -- correct: 1
+  {
+    question: "Per Day 4's 'four-bucket' coverage map, which AIA product anchors each bucket: (1) CI + Death + Savings, (2) Hospitalisation, (3) Accident, (4) Wealth?",
+    options: [
+      "(1) Term, (2) GPP, (3) PWV, (4) HSGM",
+      "(1) GPP, (2) HSGM, (3) Solitaire / Centurion PA, (4) APA / PWV",
+      "All four buckets sit inside GPP",
+      "(1) PWV, (2) HSGM, (3) GPP, (4) Solitaire PA"
+    ],
+    correct: 1,
+    explanation: "Day 4 lines 270-278 set the bucket-to-product map: GPP for CI+Death+Savings (the protection backbone), HSGM for hospitalisation, Solitaire / Centurion PA for accident, APA / PWV for the wealth bucket. This is the expansion roadmap you walk every client through after the GPP close.",
+    category: 'advisory-skills'
+  },
+
+  // Q133 -- correct: 0
+  {
+    question: "Per the Day 5 curriculum, what 6 milestones must all be hit before an FC can declare 'the case is closed'?",
+    options: [
+      "FHR signed, iPOS+ submitted, first GIRO confirmed, free-look passed, AIA Vitality enrolled, next-conversation booked",
+      "Quotation sent, payment received, policy issued",
+      "Free-look only -- once 14 days pass, the case is closed",
+      "First call done, e-signature collected, premium paid"
+    ],
+    correct: 0,
+    explanation: "Day 5 lines 360-372 spell out the 6-step 'case closed' definition: FHR signed, iPOS+ submitted, first GIRO confirmed, free-look period passed, AIA Vitality enrolment confirmed, next-conversation booked. Anything short of all six leaves a leaky pipeline.",
+    category: 'closing'
+  },
+
+  // Q134 -- correct: 1
+  {
+    question: "What is the 'Apple Store layering' analogy in Phase 5 of the GPP pitch flow, and what sequencing rule does it teach?",
+    options: [
+      "Show the most expensive bundle first to make GPP look cheap",
+      "Quote the base price first (without Early CI), then layer add-ons (Early CI, multiplier upgrades) the same way Apple sells the iPhone with optional AppleCare and storage tiers -- price first, then layer",
+      "Always discount the rider by 20%",
+      "Bundle everything together upfront so the client sees one number"
+    ],
+    correct: 1,
+    explanation: "Day 2 lines 216-219 use the Apple Store layering analogy: base GPP first, then Early CI as the layered upsell. The sequencing rule is 'price first, then layer' -- never quote with the rider already baked in or you anchor on the bigger number and lose the binary close.",
+    category: 'closing'
+  },
+
+  // Q135 -- correct: 1
+  {
+    question: "Per Day 2's appointment pacing rule, what is the time-budget for the GPP single visit, and what's the explicit fallback when you hit the limit?",
+    options: [
+      "60 minutes; if you hit the limit, drop the multiplier explanation",
+      "25 minutes; if you can't compress to that, book a second visit rather than rushing the close",
+      "10 minutes; never extend beyond",
+      "No time budget -- take as long as the client wants"
+    ],
+    correct: 1,
+    explanation: "Day 2 lines 286-290 set the 25-minute single-visit budget. If the client wants to dig in, the curriculum's pacing rule is 'compress and book a second visit' rather than rush the close in the same meeting -- a rushed close leads to buyer's remorse and free-look cancellations.",
+    category: 'advisory-skills'
+  },
+
+  // Q136 -- correct: 1
+  {
+    question: "Per Day 4's expansion strategy, which adjacent move has the highest conversion rate after a GPP close?",
+    options: [
+      "Cold-calling the parents on the FHR's emergency contact list",
+      "Spouse cross-sell -- mirroring the same GPP + UCC pair on the spouse's life",
+      "LinkedIn outbound to the client's colleagues",
+      "Door-knocking the client's residential block"
+    ],
+    correct: 1,
+    explanation: "Day 4 lines 332-338 flag spouse cross-sell as the highest-conversion adjacent move: same risk profile, same household economics, and the trust transfer from the just-closed primary policy. Mirror the GPP + UCC pair on the spouse before chasing referrals further out.",
+    category: 'advisory-skills'
+  },
+
+  // Q137 -- correct: 1
+  {
+    question: "Per Day 5, what is the post-close cadence for a newly-issued GPP policy, and what's the Day 30 ask?",
+    options: [
+      "No cadence is needed -- once the case is closed, move on",
+      "Day 30: confirm GIRO + Vitality enrolled, ask for one referral; Day 60-90: review-style call to check life changes and seed the next product conversation",
+      "Day 7: cancel call; Day 60: re-quote",
+      "Day 365: annual review only"
+    ],
+    correct: 1,
+    explanation: "Day 5 lines 339-358 set the post-close routine: Day 30 = service touch (GIRO + Vitality confirmed + first referral ask), Day 60-90 = soft-review call to surface life changes and warm up the next product (HSGM / PA / APA-ladder). Skipping these makes the case feel transactional and kills repeat business.",
+    category: 'advisory-skills'
+  },
+
+  // Q138 -- correct: 1
+  {
+    question: "Per Day 5 + the GPP Product Summary, what compliance step on pre-existing conditions must be completed during fact-find, even when the client says 'I have nothing'?",
+    options: [
+      "No question is required -- the iPOS+ form auto-flags pre-existing",
+      "Document the question + the client's verbatim answer (e.g. 'Any hospitalisation in the last 5 years? -- Client said no'), and explicitly state that undisclosed pre-existing conditions can void claims",
+      "Skip the question if the client looks healthy",
+      "Only ask for cancer history"
+    ],
+    correct: 1,
+    explanation: "Document-the-question is a hard compliance rule. The curriculum (Day 5 Part 1) and the GPP PS exclusions list both require explicit disclosure that undisclosed pre-existing conditions are excluded from claims. The defensive move is to write the question + the client's verbatim answer in the fact-find -- this protects both client and FC at claim time.",
+    category: 'compliance'
+  },
+
+  // Q139 -- correct: 1
+  {
+    question: "Per Day 3's 'structural inversion' framing, how should the FC prioritise GPP's two value drivers in the client conversation?",
+    options: [
+      "Lead with the headline cash value -- it's the visible number that sells",
+      "Lead with protection (death + TPD + CI) as the headline; treat cash value as the anchor / 'side benefit' that compounds quietly",
+      "Lead with the Vitality boost -- it's the differentiator",
+      "Don't mention cash value at all"
+    ],
+    correct: 1,
+    explanation: "Day 3 lines 34-46 prescribe the 'structural inversion' frame: protection is the headline, cash value is the anchor. Leading with cash value commoditises GPP into a bank-deposit comparison and invites the 'why not ETF + term?' objection -- protection-first is harder to attack and matches the product's actual underwriting purpose.",
+    category: 'sales-angles'
   }
 ];
