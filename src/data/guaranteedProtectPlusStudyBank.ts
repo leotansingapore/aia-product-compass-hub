@@ -1969,5 +1969,67 @@ export const guaranteedProtectPlusStudyBank: StudyQuestion[] = [
     correct: 1,
     explanation: "Day 3 lines 34-46 prescribe the 'structural inversion' frame: protection is the headline, cash value is the anchor. Leading with cash value commoditises GPP into a bank-deposit comparison and invites the 'why not ETF + term?' objection -- protection-first is harder to attack and matches the product's actual underwriting purpose.",
     category: 'sales-angles'
+  },
+
+  // ============================================================
+  // SUITABILITY DEEPENING (Q140-Q143) -- 2026-05-09
+  // Brings GPP study suitability category from 1 to 5
+  // (matches other balanced products).
+  // ============================================================
+
+  // Q140 -- correct: 1
+  {
+    question: "Per the curriculum, what minimum monthly budget makes limited-pay GPP a sensible recommendation rather than over-stretching the client?",
+    options: [
+      "Any amount above $50/month",
+      "Approximately $200-300/month at minimum -- below this the booster sum assured is too small for the limited-pay structure to outperform pure term + a separate savings plan",
+      "Only clients earning above $200k/year",
+      "There is no budget threshold"
+    ],
+    correct: 1,
+    explanation: "Below ~$200-300/month the booster SA is too small for the limited-pay whole-life premium to be efficient on a per-dollar-of-cover basis. At that budget term + separate savings dominates. Document the threshold in the fact-find before recommending GPP.",
+    category: 'suitability'
+  },
+
+  // Q141 -- correct: 0
+  {
+    question: "Which client profile is the canonical 'wrong fit' for the 5x multiplier specifically, vs 2x or 3x?",
+    options: [
+      "Mid-career parent who needs MAXIMUM lifelong protection because the breadwinner role extends past 65 and dependents remain",
+      "Young single client with high disposable income who wants the cheapest premium and accepts the post-65 coverage drop",
+      "Sophisticated investor who treats GPP as a wealth tool with full understanding of the post-65 drop",
+      "Client who explicitly wants the largest day-1 cover for the lowest premium and has confirmed no post-65 dependents"
+    ],
+    correct: 0,
+    explanation: "5x has the smallest residual base (1/5 of total cover) and the largest post-65 collapse. A breadwinner with dependents past 65 is the worst fit -- they need the LARGEST residual base (= 2x). Suitability flag: surface the post-65 drop explicitly when a breadwinner client picks 5x.",
+    category: 'suitability'
+  },
+
+  // Q142 -- correct: 2
+  {
+    question: "A 40-year-old client says: 'I already have $200k of term life through my employer, so I don't need GPP.' What's the suitability-driven response?",
+    options: [
+      "Agree and walk away",
+      "Push GPP regardless of the existing cover",
+      "Map the gap: employer term ends at job loss (no portability), no CI, no TPD post-employment, no cash value, no lifetime protection. GPP fills the portable + lifetime + CI + cash-value gaps the employer term cannot.",
+      "Tell them to drop the employer term"
+    ],
+    correct: 2,
+    explanation: "Employer term is non-portable, no CI, no TPD post-employment, no cash value, no lifetime protection. Suitability is gap analysis, not absolute cover. Frame GPP as filling the structural gaps the employer plan can't.",
+    category: 'suitability'
+  },
+
+  // Q143 -- correct: 0
+  {
+    question: "Per Day 5, which THREE 'walk away from the case' signals together rule out GPP regardless of how persuasive the rest of the pitch could be?",
+    options: [
+      "Time horizon under 10 years; budget below the limited-pay floor; explicit need for fully liquid / penalty-free access in the early years",
+      "Client is over 50; client is unmarried; client has no kids",
+      "Client lives outside Singapore; client has Vitality Bronze; client smokes",
+      "Client wants 5x; client is aged 30-40; client wants $1m cover"
+    ],
+    correct: 0,
+    explanation: "Day 5 walk-away signals: (1) horizon < 10 yrs (cash value gap), (2) budget below the limited-pay floor (term + savings dominates), (3) liquidity-first need (early surrender penalty wipes the value proposition). Any one is a yellow flag; all three together is a hard recommend-something-else.",
+    category: 'suitability'
   }
 ];

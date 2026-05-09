@@ -452,5 +452,299 @@ export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
     correct: 1,
     explanation: "A 25-year-old policy has significant accumulated bonuses -- don't surrender outright. Lay out partial withdrawal vs IDF 50% vs IDF 100% based on the client's actual cashflow need.",
     category: 'roleplay'
+  },
+
+  // ============================================================
+  // CATEGORY-PARITY EXAM QUESTIONS (Q37-Q56) -- 2026-05-09
+  // Brings GPP exam to parity with other products (5 each in
+  // suitability / compliance / advisory-skills / closing).
+  // ============================================================
+
+  // ---------- SUITABILITY (5) ----------
+
+  // Q37
+  {
+    question: "Which of the following client profiles is the curriculum's strongest 'walk away from GPP' signal?",
+    options: [
+      "30-year-old earning $80k/year, married, 2 kids, looking for protection + savings",
+      "55-year-old planning to retire in under 10 years, wants liquid savings with no protection requirement",
+      "40-year-old self-employed, wants stable cash value as part of a diversified portfolio",
+      "35-year-old single, $15k/yr CI gap, looking for limited-pay protection"
+    ],
+    correct: 1,
+    explanation: "Day 5 walk-away rule #1: time horizon under 10 years. The early-year surrender value sits below total premiums paid for the first decade, so a sub-10-year client gets a worse deal than pure term + a separate savings vehicle. Walk away or recommend the alternative.",
+    category: 'suitability'
+  },
+
+  // Q38
+  {
+    question: "Per the curriculum, what monthly budget threshold is required before limited-pay GPP becomes a sensible recommendation rather than over-stretching the client?",
+    options: [
+      "Any amount above $50/month",
+      "Approximately $200-300/month at minimum -- below this the booster sum assured is too small for the limited-pay structure to outperform pure term + a separate savings plan",
+      "Only clients earning above $200k/year",
+      "There is no budget threshold; GPP scales linearly down to zero"
+    ],
+    correct: 1,
+    explanation: "Below ~$200-300/month, the booster sum assured is too small for the limited-pay whole-life premium to be efficient on a per-dollar-of-cover basis. At that budget, term + separate savings dominates. Document the threshold rule in the fact-find before recommending.",
+    category: 'suitability'
+  },
+
+  // Q39
+  {
+    question: "A 40-year-old client says: 'I already have $200k of term life through my employer, so I don't need GPP.' What's the suitability-driven response?",
+    options: [
+      "Agree and walk away",
+      "Push GPP regardless of the existing cover",
+      "Map the gap: employer term ends when employment ends (TPD ends at job loss, no portability), no CI, no cash value, no lifetime protection. GPP fills the portable + lifetime + CI + cash-value gaps that employer term cannot. Suitability is about gap analysis, not absolute cover.",
+      "Tell them to drop the employer term"
+    ],
+    correct: 2,
+    explanation: "Employer term is non-portable, no CI, no TPD post-employment, no cash value, no lifetime protection. The suitability case for GPP is the structural gap, not the absolute sum assured.",
+    category: 'suitability'
+  },
+
+  // Q40
+  {
+    question: "Which client profile is the canonical 'wrong fit' for the 5x multiplier specifically (vs 2x or 3x)?",
+    options: [
+      "Young single client with high disposable income who wants the cheapest premium and accepts the post-65 coverage drop",
+      "Mid-career parent who needs MAXIMUM lifelong protection because the breadwinner role extends past 65 and dependents remain",
+      "Client who explicitly wants the largest day-1 cover for the lowest premium and has confirmed no post-65 dependents",
+      "Sophisticated investor who treats GPP as a wealth tool with full understanding of the post-65 drop"
+    ],
+    correct: 1,
+    explanation: "5x has the smallest residual base (1/5 of total cover) and the largest post-65 collapse. A breadwinner with dependents past 65 is the worst fit -- they need the LARGEST residual base, which is 2x. Suitability flag: surface the post-65 drop explicitly when 5x is chosen.",
+    category: 'suitability'
+  },
+
+  // Q41
+  {
+    question: "Per Day 5, which THREE 'walk away from the case' signals together rule out GPP regardless of how persuasive the rest of the pitch could be?",
+    options: [
+      "Time horizon under 10 years; budget below the limited-pay floor; explicit need for fully liquid / penalty-free access in the early years",
+      "Client is over 50; client is unmarried; client has no kids",
+      "Client lives outside Singapore; client has Vitality Bronze; client smokes",
+      "Client wants 5x; client is aged 30-40; client wants $1m cover"
+    ],
+    correct: 0,
+    explanation: "Day 5 walk-away rules: (1) time horizon < 10 years (cash value gap), (2) budget too small for limited-pay structure (term + savings dominates), (3) liquidity-first need (early surrender penalty wipes out the value proposition). Any one is a yellow flag; all three together is a hard 'recommend a different product'.",
+    category: 'suitability'
+  },
+
+  // ---------- COMPLIANCE (5) ----------
+
+  // Q42
+  {
+    question: "Per the GPP curriculum, when is the 'anti-market' disclosure (year-1 cash value gap, non-guaranteed bonuses, 10-yr horizon required) ideally delivered in the appointment?",
+    options: [
+      "After the iPOS+ submission, as a closing formality",
+      "Up-front in Phase 1 -- before the illustrator, before the pitch -- positioned as the trust move that distinguishes a fiduciary from a hard-seller",
+      "Only if the client asks about downsides",
+      "It is not required and should be avoided to protect the close"
+    ],
+    correct: 1,
+    explanation: "Day 1 + Day 5 frame the anti-market disclosure as a Phase 1 trust move, BEFORE the illustrator and pitch. Stating downsides up-front pre-empts buyer's remorse, signals fiduciary stance, and protects against free-look cancellations. Delivering it late looks defensive.",
+    category: 'compliance'
+  },
+
+  // Q43
+  {
+    question: "Per Day 5, which FOUR disclosures must be delivered as a single recited block before the iPOS+ binary close?",
+    options: [
+      "Cover amount, premium, pay term, multiplier",
+      "Bonuses are non-guaranteed; early-year cash value sits below premiums paid; accelerated CI claims reduce the death benefit; Premium Pause is a 12-month interest-free LOAN, not a waiver",
+      "Free-look period, GIRO date, Vitality enrolment, FHR signature",
+      "Suicide year-1 exclusion, pre-existing exclusion, 90-day waiting, war exclusion"
+    ],
+    correct: 1,
+    explanation: "The RNF-clean closing block is: (1) bonuses non-guaranteed, (2) early-year cash value below premiums, (3) accelerated CI reduces death benefit, (4) Premium Pause is a loan not a waiver. Delivering all four as a single recited block before iPOS+ submission is the standard FC discipline taught in Day 5.",
+    category: 'compliance'
+  },
+
+  // Q44
+  {
+    question: "During fact-find, the client says 'I have nothing' when asked about pre-existing conditions. What is the compliance-driven action?",
+    options: [
+      "Skip the question -- the iPOS+ form will catch it later",
+      "Document the question + the client's verbatim answer (e.g. 'Any hospitalisation in last 5 yrs? -- Client: No') and explicitly state that undisclosed pre-existing conditions can void claims; have the client initial the section",
+      "Only ask about cancer history",
+      "Move on without recording the response"
+    ],
+    correct: 1,
+    explanation: "Document-the-question is a hard compliance rule. The PS exclusions list and Day 5 curriculum both require explicit disclosure that undisclosed pre-existing conditions are excluded from claims. Writing the question + verbatim answer + initialling protects both client and FC at claim time.",
+    category: 'compliance'
+  },
+
+  // Q45
+  {
+    question: "Which of the following clients is explicitly excluded by the GPP Product Summary from exercising the Premium Pause Option?",
+    options: [
+      "Anyone earning under S$50,000/year",
+      "Self-employed, family-business employees, voluntary resignation/retirement, AND full-time Members of Parliament",
+      "Anyone aged over 60",
+      "Clients on a 25-year premium term"
+    ],
+    correct: 1,
+    explanation: "PS Page 7 Premium Pause exclusions: self-employed, family-business employees, voluntary resignation/retirement and other voluntary terminations are excluded. Day 5 also names full-time MPs explicitly. The compliance discipline is to confirm employment type at fact-find before promising the Premium Pause Option.",
+    category: 'compliance'
+  },
+
+  // Q46
+  {
+    question: "Per the GPP base PS, what is the suicide exclusion window, and how must this be disclosed?",
+    options: [
+      "There is no suicide exclusion; full death benefit pays out from day 1",
+      "Suicide within the FIRST POLICY YEAR is excluded from the death benefit; this must be disclosed as part of the iPOS+ exclusions block, not buried in fine print",
+      "Suicide is excluded for 5 years",
+      "Suicide is excluded only if undisclosed"
+    ],
+    correct: 1,
+    explanation: "PS suicide clause: year-1 exclusion only. Compliance requires explicit disclosure during the exclusions block at iPOS+ time, alongside pre-existing, war, and self-endangerment TPD exclusions. Burying it in fine print is a free-look risk if the family later discovers it during a year-1 claim.",
+    category: 'compliance'
+  },
+
+  // ---------- ADVISORY SKILLS (5) ----------
+
+  // Q47
+  {
+    question: "Per Day 4's 'four-bucket' coverage map, which AIA product anchors each bucket: (1) CI + Death + Savings, (2) Hospitalisation, (3) Accident, (4) Wealth?",
+    options: [
+      "(1) Term, (2) GPP, (3) PWV, (4) HSGM",
+      "(1) GPP, (2) HSGM, (3) Solitaire / Centurion PA, (4) APA / PWV",
+      "All four sit inside GPP",
+      "(1) PWV, (2) HSGM, (3) GPP, (4) Solitaire PA"
+    ],
+    correct: 1,
+    explanation: "Day 4 four-bucket map: GPP (CI + Death + Savings), HSGM (Hospitalisation), Solitaire / Centurion PA (Accident), APA / PWV (Wealth). After every GPP close, walk the client through the remaining 3 buckets to seed the expansion roadmap.",
+    category: 'advisory-skills'
+  },
+
+  // Q48
+  {
+    question: "Per Day 2's appointment pacing rule, what is the time-budget for the GPP single visit, and what's the explicit fallback if you can't compress to that?",
+    options: [
+      "60 minutes; if you hit the limit, drop the multiplier explanation",
+      "25 minutes single visit; if you can't compress, BOOK A SECOND VISIT rather than rushing the close in the same session",
+      "10 minutes; never extend",
+      "No time budget -- take as long as the client wants"
+    ],
+    correct: 1,
+    explanation: "Day 2 pacing rule: 25-minute single visit; if it doesn't fit, book a second visit rather than rush the close. A rushed close drives buyer's remorse and free-look cancellations. The advisory discipline is to PROTECT the close by deliberately walking away from same-day pressure when the conversation runs long.",
+    category: 'advisory-skills'
+  },
+
+  // Q49
+  {
+    question: "Per Day 5's post-close cadence, what are the Day 30 and Day 60-90 service touches for a newly-issued GPP policy?",
+    options: [
+      "No cadence is needed once the policy is issued",
+      "Day 30: confirm GIRO + Vitality enrolment + ask for one referral; Day 60-90: review-style call to check life changes and seed the next product (HSGM / PA / APA-ladder)",
+      "Day 7: cancel call; Day 60: re-quote",
+      "Day 365: annual review only"
+    ],
+    correct: 1,
+    explanation: "Day 5 lines 339-358: Day 30 = service touch (confirm GIRO + Vitality + first referral ask), Day 60-90 = soft review (life changes + warm up next product). Skipping these makes the case feel transactional, kills repeat business, and concedes the next product to a competitor.",
+    category: 'advisory-skills'
+  },
+
+  // Q50
+  {
+    question: "After a GPP close, which adjacent move is the highest-conversion expansion play per Day 4?",
+    options: [
+      "Cold-calling the parents on the FHR's emergency contact list",
+      "Spouse cross-sell -- mirroring the same GPP + UCC pair on the spouse's life",
+      "LinkedIn outbound to the client's colleagues",
+      "Door-knocking the client's residential block"
+    ],
+    correct: 1,
+    explanation: "Day 4 lines 332-338: spouse cross-sell is the highest-conversion adjacent move -- same risk profile, same household economics, plus trust transfer from the just-closed primary policy. Mirror the GPP + UCC pair on the spouse before chasing referrals further out.",
+    category: 'advisory-skills'
+  },
+
+  // Q51
+  {
+    question: "Per Day 2's Phase 5 method, what is the 'Apple Store layering' analogy, and what sequencing rule does it enforce?",
+    options: [
+      "Show the most expensive bundle first to make GPP look cheap",
+      "Quote the BASE plan first (without Early CI), then layer add-ons (Early CI, multiplier upgrades) the way Apple sells iPhone with optional AppleCare and storage tiers -- 'price first, then layer'",
+      "Always discount the rider by 20%",
+      "Bundle everything together upfront so the client sees one number"
+    ],
+    correct: 1,
+    explanation: "Day 2 lines 216-219: Apple Store layering = base price first, layer add-ons. Never quote the rider already baked in -- you anchor on the bigger number and lose the binary close in Phase 5. The sequencing rule is the structural enabler of the 'with or without Early CI?' close.",
+    category: 'advisory-skills'
+  },
+
+  // ---------- CLOSING (5) ----------
+
+  // Q52
+  {
+    question: "What is the actual close-the-deal binary in the GPP 6-phase pitch flow, and which phase delivers it?",
+    options: [
+      "Phase 4 (iPOS+ quotation): 'Yearly or monthly premium?'",
+      "Phase 5 (Layer Early CI): 'Would you prefer with Early CI or without Early CI?'",
+      "Phase 1 (Open): 'Do you want CI cover?'",
+      "Phase 6 (Package): 'GPP or term?'"
+    ],
+    correct: 1,
+    explanation: "Day 2 + Day 5: Phase 5 ends with 'with or without Early CI?' -- the formal close binary. By that point the prospect has cleared the four hoops (need, fit, affordability, trust) and the binary turns the conversation into a yes-yes choice instead of yes-no.",
+    category: 'closing'
+  },
+
+  // Q53
+  {
+    question: "Per Day 5, what 6 milestones must ALL be hit before the case is genuinely 'closed'?",
+    options: [
+      "FHR signed, iPOS+ submitted, first GIRO confirmed, free-look period passed, AIA Vitality enrolled, next-conversation booked",
+      "Quotation sent, payment received, policy issued",
+      "Free-look only -- once 14 days pass, the case is closed",
+      "First call done, e-signature collected, first premium paid"
+    ],
+    correct: 0,
+    explanation: "Day 5 lines 360-372: 'closed' = FHR signed + iPOS+ submitted + first GIRO + free-look passed + Vitality enrolled + next conversation booked. Skipping any one leaves a leaky pipeline -- e.g. no Vitality enrolment means no PUD adjustment leverage, no booked next call means no expansion path.",
+    category: 'closing'
+  },
+
+  // Q54
+  {
+    question: "In Phase 5 of the pitch, the client clears all four hoops but says 'Let me think about it overnight.' What's the closing-discipline response?",
+    options: [
+      "Agree to call back tomorrow with no specific commitment",
+      "Anchor a specific time + format ('Let's lock in 30 minutes tomorrow at 7pm via Zoom -- I'll bring two scenarios so you can pick'), restate the binary, and confirm what specifically they want to think about so you can address it then",
+      "Push for an immediate signature with pressure tactics",
+      "Walk away and stop following up"
+    ],
+    correct: 1,
+    explanation: "Don't accept open-ended 'let me think' as the close. The discipline: (1) book a specific follow-up slot, (2) restate the binary so it doesn't dissolve overnight, (3) surface the specific concern so you prepare an answer. Open-ended deferrals close at <20%; anchored deferrals close at 60-70%.",
+    category: 'closing'
+  },
+
+  // Q55
+  {
+    question: "What is the 'four hoops' decision framework in Phase 5, and what role does it play right before the close?",
+    options: [
+      "A pricing tier (Bronze, Silver, Gold, Platinum)",
+      "Need confirmed, Fit confirmed, Affordability confirmed, Trust confirmed -- four explicit micro-commits the FC walks the client through before asking the binary, so the close lands on a primed yes-yes choice",
+      "Four objections you must overcome",
+      "Four product features you must list"
+    ],
+    correct: 1,
+    explanation: "Four hoops = Need / Fit / Affordability / Trust -- each one a micro-yes the FC obtains before the Phase 5 binary. The close is built on the four hoops, not delivered cold. If a hoop hasn't cleared, the binary will fail; loop back to that hoop instead of forcing the close.",
+    category: 'closing'
+  },
+
+  // Q56
+  {
+    question: "After the Phase 5 binary closes 'with Early CI', what is the immediate next move in Phase 6 before the FC leaves the appointment?",
+    options: [
+      "Pack up and schedule the iPOS+ for next week",
+      "Lock in the package on the spot: confirm sum assured + multiplier + pay term + Early CI sizing + Vitality enrolment + GIRO date in writing, then start the iPOS+ submission while the commitment is fresh -- never wait days when the binary just landed",
+      "Discuss whether to add other riders",
+      "Re-open the multiplier choice"
+    ],
+    correct: 1,
+    explanation: "Phase 6 (Package) immediately after the binary close: lock the package in writing, start iPOS+ live. Waiting days lets the commitment dissolve. The FC discipline is 'binary close -> immediate iPOS+' -- same appointment if possible, same day at minimum.",
+    category: 'closing'
   }
 ];
