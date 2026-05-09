@@ -1549,7 +1549,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [newVersionContent, setNewVersionContent] = useState("");
   const [editingUserVersionId, setEditingUserVersionId] = useState<string | null>(null);
   const [editUserVersionName, setEditUserVersionName] = useState("");
+  // Inline content editing for user versions (own version OR admin can edit)
+  const [editingUserVersionContentId, setEditingUserVersionContentId] = useState<string | null>(null);
+  const [editingUserVersionContent, setEditingUserVersionContent] = useState("");
   const newVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
+  const userVersionEditorRef = useRef<MinimalRichEditorHandle>(null);
   const inlineEditorRefA = useRef<MinimalRichEditorHandle>(null);
   const inlineEditorRefB = useRef<MinimalRichEditorHandle>(null);
   // Read initial version tab from URL if this card is the one in the URL
@@ -1960,7 +1964,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-primary/15 text-primary text-[10px] font-bold">
                         {script.versions.length + userVersions.length}
                       </span>
-                      {isAuthenticated && <span className="text-[10px] text-muted-foreground/50 hidden sm:inline">· right-click a tab for options</span>}
+                      {isAuthenticated && <span className="text-[10px] text-muted-foreground/60 hidden sm:inline">· right-click a tab to edit, rename, duplicate</span>}
                     </div>
                     {/* Inline rename inputs — rendered outside TabsList to avoid styling conflicts */}
                     {editingVersionTitle !== null && isAdmin && (
@@ -2039,7 +2043,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               </TabsTrigger>
                             </span>
                           </ContextMenuTrigger>
-                          <ContextMenuContent className="w-44">
+                          <ContextMenuContent className="w-48">
                             {isAuthenticated && (
                               <ContextMenuItem
                                 onClick={() => {
@@ -2058,6 +2062,31 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               >
                                 <Copy className="h-3.5 w-3.5 mr-2" />
                                 Duplicate to my version
+                              </ContextMenuItem>
+                            )}
+                            {isAdmin && onMetadataSave && (
+                              <>
+                                <ContextMenuSeparator />
+                                <ContextMenuItem
+                                  onClick={() => {
+                                    setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
+                                    setEditingVersionTitle(i);
+                                  }}
+                                >
+                                  <Pencil className="h-3.5 w-3.5 mr-2" />
+                                  Rename
+                                </ContextMenuItem>
+                              </>
+                            )}
+                            {isAdmin && onInlineSave && (
+                              <ContextMenuItem
+                                onClick={() => {
+                                  setActiveVersionTab(String(i));
+                                  setTimeout(() => startInlineEdit(i), 0);
+                                }}
+                              >
+                                <Pencil className="h-3.5 w-3.5 mr-2" />
+                                Edit content
                               </ContextMenuItem>
                             )}
                           </ContextMenuContent>
@@ -2088,7 +2117,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               </TabsTrigger>
                             </span>
                           </ContextMenuTrigger>
-                          <ContextMenuContent className="w-44">
+                          <ContextMenuContent className="w-48">
                             {isAuthenticated && (
                               <ContextMenuItem
                                 onClick={() => {
@@ -2104,9 +2133,22 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 Duplicate to my version
                               </ContextMenuItem>
                             )}
-                            {currentUserId === uv.user_id && (
+                            {(currentUserId === uv.user_id || isAdmin) && (
                               <>
                                 <ContextMenuSeparator />
+                                <ContextMenuItem
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveVersionTab(`uv-${uv.id}`);
+                                    setTimeout(() => {
+                                      setEditingUserVersionContent(uv.content);
+                                      setEditingUserVersionContentId(uv.id);
+                                    }, 0);
+                                  }}
+                                >
+                                  <Pencil className="h-3.5 w-3.5 mr-2" />
+                                  Edit content
+                                </ContextMenuItem>
                                 <ContextMenuItem
                                   onClick={(e) => {
                                     e.stopPropagation();
@@ -2116,6 +2158,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 >
                                   <Pencil className="h-3.5 w-3.5 mr-2" />
                                   Rename
+                                </ContextMenuItem>
+                                <ContextMenuSeparator />
+                                <ContextMenuItem
+                                  className="text-destructive focus:text-destructive"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    deleteUserVersion.mutate(uv.id);
+                                  }}
+                                >
+                                  <Trash2 className="h-3.5 w-3.5 mr-2" />
+                                  Delete
                                 </ContextMenuItem>
                               </>
                             )}
@@ -2326,63 +2379,131 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     </TabsContent>
                   ))}
                   {/* User version tab contents */}
-                  {userVersions.map((uv) => (
+                  {userVersions.map((uv) => {
+                    const canEditUv = currentUserId === uv.user_id || isAdmin;
+                    const isEditingUvContent = editingUserVersionContentId === uv.id;
+                    const startUvContentEdit = () => {
+                      setEditingUserVersionContent(uv.content);
+                      setEditingUserVersionContentId(uv.id);
+                    };
+                    const cancelUvContentEdit = () => {
+                      setEditingUserVersionContentId(null);
+                      setEditingUserVersionContent("");
+                    };
+                    const saveUvContentEdit = async () => {
+                      const latest =
+                        (await userVersionEditorRef.current?.getMarkdownForSave()) ??
+                        editingUserVersionContent;
+                      updateUserVersion.mutate(
+                        { id: uv.id, content: latest, authorName: uv.author_name },
+                        { onSuccess: () => cancelUvContentEdit() }
+                      );
+                    };
+                    return (
                      <TabsContent key={`uv-${uv.id}`} value={`uv-${uv.id}`}>
-                       <div
-                         className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${currentUserId === uv.user_id ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
-                         onDoubleClick={() => { /* user versions are not inline-editable here, use the edit button */ }}
-                         title={currentUserId === uv.user_id ? "Double-click to rename • Use duplicate to branch" : undefined}
-                       >
-                         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
-                       </div>
-                       <div className="flex items-center gap-1 mt-2 flex-wrap">
-                         <CopyButton text={uv.content} />
-                         <button
-                           className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
-                           title="Copy link to this version"
-                           onClick={() => {
-                             const url = new URL(window.location.href);
-                             url.pathname = `/scripts/${script.id}`;
-                             url.searchParams.set("v", `uv-${uv.id}`);
-                             navigator.clipboard.writeText(url.toString());
-                             toast.success("Version link copied!");
-                           }}
-                         >
-                           <Link2 className="h-3 w-3" /> Copy link
-                         </button>
-                         {isAuthenticated && (
-                           <button
-                             className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
-                             title="Duplicate this version to edit as your own"
-                             onClick={() => {
-                               addUserVersion.mutate(
-                                 { content: uv.content, authorName: `Copy of ${uv.author_name}` },
-                                 { onSuccess: (newVersion) => {
-                                     if (newVersion?.id) {
-                                       const tabId = `uv-${newVersion.id}`;
-                                       manualTabRef.current = tabId;
-                                       setActiveVersionTab(tabId);
-                                       setEditUserVersionName(`Copy of ${uv.author_name}`);
-                                       setEditingUserVersionId(newVersion.id);
-                                       setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
-                                     }
-                                   }
-                                 }
-                               );
-                             }}
+                       {isEditingUvContent ? (
+                         <div className="space-y-2">
+                           <div className="border rounded-lg overflow-hidden">
+                             <MinimalRichEditor
+                               ref={userVersionEditorRef}
+                               value={editingUserVersionContent}
+                               onChange={setEditingUserVersionContent}
+                               onSave={saveUvContentEdit}
+                               onCancel={cancelUvContentEdit}
+                               autoFocus
+                             />
+                           </div>
+                           <div className="flex items-center gap-2 justify-end">
+                             <Button variant="ghost" size="sm" onClick={cancelUvContentEdit} disabled={updateUserVersion.isPending}>Cancel</Button>
+                             <Button size="sm" onClick={saveUvContentEdit} disabled={updateUserVersion.isPending}>
+                               {updateUserVersion.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
+                               Save
+                             </Button>
+                           </div>
+                         </div>
+                       ) : (
+                         <>
+                           <div
+                             className={`bg-muted/50 rounded-lg p-3 sm:p-4 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto ${canEditUv ? 'cursor-text hover:border-primary/40 transition-colors' : ''}`}
+                             onDoubleClick={() => { if (canEditUv) startUvContentEdit(); }}
+                             title={canEditUv ? "Double-click to edit content" : undefined}
                            >
-                             <Copy className="h-3 w-3" /> Duplicate
-                           </button>
-                         )}
-                         {(currentUserId === uv.user_id || isAdmin) && (
-                           <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2"
-                             onClick={() => deleteUserVersion.mutate(uv.id)}>
-                             <Trash2 className="h-3 w-3 mr-1" /> Delete version
-                           </Button>
-                         )}
-                       </div>
+                             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
+                           </div>
+                           <div className="flex items-center gap-1 mt-2 flex-wrap">
+                             {canEditUv && (
+                               <Button
+                                 variant="outline"
+                                 size="sm"
+                                 className="h-7 text-xs gap-1"
+                                 onClick={startUvContentEdit}
+                               >
+                                 <Pencil className="h-3 w-3" /> Edit content
+                               </Button>
+                             )}
+                             {canEditUv && (
+                               <Button
+                                 variant="outline"
+                                 size="sm"
+                                 className="h-7 text-xs gap-1"
+                                 onClick={() => {
+                                   setEditUserVersionName(uv.author_name);
+                                   setEditingUserVersionId(uv.id);
+                                 }}
+                               >
+                                 <Pencil className="h-3 w-3" /> Rename
+                               </Button>
+                             )}
+                             <CopyButton text={uv.content} />
+                             <button
+                               className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
+                               title="Copy link to this version"
+                               onClick={() => {
+                                 const url = new URL(window.location.href);
+                                 url.pathname = `/scripts/${script.id}`;
+                                 url.searchParams.set("v", `uv-${uv.id}`);
+                                 navigator.clipboard.writeText(url.toString());
+                                 toast.success("Version link copied!");
+                               }}
+                             >
+                               <Link2 className="h-3 w-3" /> Copy link
+                             </button>
+                             {isAuthenticated && (
+                               <button
+                                 className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
+                                 title="Duplicate this version to edit as your own"
+                                 onClick={() => {
+                                   addUserVersion.mutate(
+                                     { content: uv.content, authorName: `Copy of ${uv.author_name}` },
+                                     { onSuccess: (newVersion) => {
+                                         if (newVersion?.id) {
+                                           const tabId = `uv-${newVersion.id}`;
+                                           manualTabRef.current = tabId;
+                                           setActiveVersionTab(tabId);
+                                           setEditUserVersionName(`Copy of ${uv.author_name}`);
+                                           setEditingUserVersionId(newVersion.id);
+                                           setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), 400);
+                                         }
+                                       }
+                                     }
+                                   );
+                                 }}
+                               >
+                                 <Copy className="h-3 w-3" /> Duplicate
+                               </button>
+                             )}
+                             {canEditUv && (
+                               <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2 ml-auto"
+                                 onClick={() => deleteUserVersion.mutate(uv.id)}>
+                                 <Trash2 className="h-3 w-3 mr-1" /> Delete version
+                               </Button>
+                             )}
+                           </div>
+                         </>
+                       )}
                     </TabsContent>
-                  ))}
+                    );
+                  })}
                 </Tabs>
               )
             ) : (
