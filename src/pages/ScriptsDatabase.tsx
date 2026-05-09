@@ -1543,7 +1543,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const [tagDraft, setTagDraft] = useState("");
 
   // User versions (all users can add their own versions)
-  const { userVersions, addVersion: addUserVersion, updateVersion: updateUserVersion, deleteVersion: deleteUserVersion, userId: currentUserId } = useScriptUserVersions(script.id);
+  const { userVersions, isLoading: userVersionsLoading, addVersion: addUserVersion, updateVersion: updateUserVersion, deleteVersion: deleteUserVersion, userId: currentUserId } = useScriptUserVersions(script.id);
   const [showNewVersionForm, setShowNewVersionForm] = useState(false);
   const [newVersionName, setNewVersionName] = useState("");
   const [newVersionContent, setNewVersionContent] = useState("");
@@ -1572,8 +1572,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   // Ensures the deep-link toast fires only once
   const deepLinkToastFiredRef = useRef(false);
 
-  // When version tab changes, update the URL ?v= param if this card is open by URL
+  // When version tab changes, update the URL ?v= param if this card is open by URL.
+  // Also marks the tab as manually pinned so the search auto-switch effect won't
+  // yank the user away on the next render (e.g. after a mutation re-issues
+  // userVersions or script.versions).
   const setActiveVersionTab = useCallback((tab: string) => {
+    manualTabRef.current = tab;
     setActiveVersionTabState(tab);
     if (isOpenByUrl) {
       setSearchParams(prev => {
@@ -1594,10 +1598,14 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     toast(`Viewing version: ${versionName}`, { duration: 3000 });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Apply deep-linked user version tab once userVersions load, then toast
+  // Apply deep-linked user version tab once userVersions load, then toast.
+  // If the linked user-version no longer exists (deleted, or shared by another
+  // user with a private version) fall back to the first official version so we
+  // don't strand the page on a ghost tab where nothing is highlighted.
   useEffect(() => {
     if (urlVersionAppliedRef.current) return;
     if (!urlVersionParam || !urlVersionParam.startsWith("uv-")) return;
+    if (userVersionsLoading) return;
     const targetId = urlVersionParam.replace("uv-", "");
     const found = userVersions?.find(uv => uv.id === targetId);
     if (found) {
@@ -1607,29 +1615,50 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
         deepLinkToastFiredRef.current = true;
         toast(`Viewing version: ${found.author_name || "User version"}`, { duration: 3000 });
       }
+    } else {
+      // Linked user version is gone — bail out cleanly.
+      urlVersionAppliedRef.current = true;
+      setActiveVersionTabState("0");
+      if (!deepLinkToastFiredRef.current) {
+        deepLinkToastFiredRef.current = true;
+        toast("That version is no longer available — showing the first version.", { duration: 3500 });
+      }
     }
-  }, [userVersions, urlVersionParam]);
+  }, [userVersions, urlVersionParam, userVersionsLoading]);
 
-  // Auto-switch to the matching version tab when search query changes (unless user just manually set it)
+  // Auto-switch to the matching version tab when the SEARCH QUERY changes.
+  // Critical: only fire on real searchQuery transitions. Mutations
+  // (add / rename / delete user version) re-issue `userVersions` and
+  // `script.versions` references — if those were in deps, every save
+  // would yank the user back to tab 0.
+  const lastSearchQueryRef = useRef<string | null>(searchQuery ?? null);
   useEffect(() => {
     // Don't override while a uv- deep link is still pending (userVersions not loaded yet)
     if (!urlVersionAppliedRef.current) return;
 
+    const prev = lastSearchQueryRef.current;
+    const curr = searchQuery ?? "";
+    if (prev === curr) return;
+    lastSearchQueryRef.current = curr;
+
     if (manualTabRef.current !== null) {
-      // Clear the manual lock after one cycle so future search changes work normally
+      // User explicitly picked a tab — don't override on the first cycle.
       manualTabRef.current = null;
       return;
     }
-    if (!searchQuery?.trim()) {
+    if (!curr.trim()) {
+      // Search cleared. Reset to first official version.
       setActiveVersionTab("0");
+      manualTabRef.current = null;
       return;
     }
-    const q = searchQuery.toLowerCase();
+    const q = curr.toLowerCase();
     const matchingIdx = script.versions.findIndex(v =>
       v.content?.toLowerCase().includes(q) || v.author?.toLowerCase().includes(q)
     );
     if (matchingIdx !== -1) {
       setActiveVersionTab(String(matchingIdx));
+      manualTabRef.current = null;
       return;
     }
     const matchingUv = userVersions.find(uv =>
@@ -1637,10 +1666,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     );
     if (matchingUv) {
       setActiveVersionTab(`uv-${matchingUv.id}`);
+      manualTabRef.current = null;
       return;
     }
     setActiveVersionTab("0");
-  }, [searchQuery, script.versions, userVersions]);
+    manualTabRef.current = null;
+  }, [searchQuery, script.versions, userVersions, setActiveVersionTab]);
 
 
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
@@ -1853,9 +1884,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                       {roleLabels[script.script_role] || script.script_role}
                     </Badge>
                   )}
-                  {/* Tags — removable by admin inline, hidden on mobile */}
+                  {/* Tags — removable by admin inline, hidden on mobile.
+                      Dedupe in the UI: bad data with repeated tags causes React
+                      "two children with the same key" warnings and double-renders. */}
                   <span className="hidden sm:contents">
-                    {(script.tags || []).map((tag) => (
+                    {Array.from(new Set(script.tags || [])).map((tag) => (
                       <Badge key={tag} variant="outline" className={`text-[10px] bg-accent/30 gap-1 ${isAdmin && onMetadataSave ? 'pr-0.5' : ''}`}>
                         {tag}
                         {isAdmin && onMetadataSave && (
@@ -1881,7 +1914,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                             onKeyDown={async (e) => {
                               if (e.key === 'Enter' && tagDraft.trim()) {
                                 e.preventDefault();
-                                await saveMetaField({ tags: [...(script.tags || []), tagDraft.trim().toLowerCase()] });
+                                const newTag = tagDraft.trim().toLowerCase();
+                                const existing = script.tags || [];
+                                if (!existing.includes(newTag)) {
+                                  await saveMetaField({ tags: [...existing, newTag] });
+                                }
                                 setTagDraft(""); setAddingTag(false);
                               } else if (e.key === 'Escape') { setTagDraft(""); setAddingTag(false); }
                             }}
@@ -1978,10 +2015,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           onKeyDown={async (e) => {
                             if (e.key === 'Enter') {
                               e.preventDefault();
-                              const newVersions = script.versions.map((ver, idx) =>
-                                idx === editingVersionTitle ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
-                              );
-                              if (onInlineSave) await onInlineSave(script.id, newVersions);
+                              const v = script.versions[editingVersionTitle];
+                              const trimmed = versionTitleDraft.trim();
+                              const original = (v?.title || v?.author || `Version ${editingVersionTitle + 1}`);
+                              const finalName = trimmed || original;
+                              if (v && finalName !== (v.title || v.author)) {
+                                const newVersions = script.versions.map((ver, idx) =>
+                                  idx === editingVersionTitle ? { ...ver, author: finalName, title: finalName } : ver
+                                );
+                                if (onInlineSave) await onInlineSave(script.id, newVersions);
+                              }
                               setEditingVersionTitle(null);
                             } else if (e.key === 'Escape') {
                               setEditingVersionTitle(null);
@@ -1989,9 +2032,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           }}
                           onBlur={async () => {
                             const v = script.versions[editingVersionTitle];
-                            if (v && versionTitleDraft !== (v.title || v.author)) {
+                            const trimmed = versionTitleDraft.trim();
+                            const original = (v?.title || v?.author || `Version ${editingVersionTitle + 1}`);
+                            const finalName = trimmed || original;
+                            if (v && finalName !== (v.title || v.author)) {
                               const newVersions = script.versions.map((ver, idx) =>
-                                idx === editingVersionTitle ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver
+                                idx === editingVersionTitle ? { ...ver, author: finalName, title: finalName } : ver
                               );
                               if (onInlineSave) await onInlineSave(script.id, newVersions);
                             }
@@ -2010,10 +2056,30 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           placeholder="Version name…"
                           className="h-7 text-xs px-2 rounded-full border border-primary bg-background text-foreground outline-none ring-1 ring-primary w-40"
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter') { e.preventDefault(); const uv = userVersions.find(u => u.id === editingUserVersionId); if (uv) updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name }); setEditingUserVersionId(null); }
-                            else if (e.key === 'Escape') setEditingUserVersionId(null);
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              const uv = userVersions.find(u => u.id === editingUserVersionId);
+                              if (uv) {
+                                const finalName = editUserVersionName.trim() || uv.author_name;
+                                if (finalName !== uv.author_name) {
+                                  updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: finalName });
+                                }
+                              }
+                              setEditingUserVersionId(null);
+                            } else if (e.key === 'Escape') {
+                              setEditingUserVersionId(null);
+                            }
                           }}
-                          onBlur={() => { const uv = userVersions.find(u => u.id === editingUserVersionId); if (uv && editUserVersionName !== uv.author_name) updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: editUserVersionName || uv.author_name }); setEditingUserVersionId(null); }}
+                          onBlur={() => {
+                            const uv = userVersions.find(u => u.id === editingUserVersionId);
+                            if (uv) {
+                              const finalName = editUserVersionName.trim() || uv.author_name;
+                              if (finalName !== uv.author_name) {
+                                updateUserVersion.mutate({ id: uv.id, content: uv.content, authorName: finalName });
+                              }
+                            }
+                            setEditingUserVersionId(null);
+                          }}
                         />
                         <span className="text-[11px] text-muted-foreground">Press Enter to save · Esc to cancel</span>
                       </div>
@@ -2164,6 +2230,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                   className="text-destructive focus:text-destructive"
                                   onClick={(e) => {
                                     e.stopPropagation();
+                                    if (!confirm(`Delete version "${uv.author_name}"? This cannot be undone.`)) return;
+                                    if (activeVersionTab === `uv-${uv.id}`) {
+                                      manualTabRef.current = "0";
+                                      setActiveVersionTab("0");
+                                    }
                                     deleteUserVersion.mutate(uv.id);
                                   }}
                                 >
@@ -2365,8 +2436,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                  size="sm"
                                  className="h-6 text-xs text-destructive hover:text-destructive px-2 ml-auto"
                                  onClick={async () => {
+                                   const versionName = v.title || v.author || `Version ${i + 1}`;
+                                   if (!confirm(`Delete version "${versionName}"? This cannot be undone.`)) return;
                                    const newVersions = script.versions.filter((_, idx) => idx !== i);
                                    await onInlineSave(script.id, newVersions);
+                                   manualTabRef.current = "0";
                                    setActiveVersionTab("0");
                                  }}
                                >
@@ -2494,7 +2568,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              )}
                              {canEditUv && (
                                <Button variant="ghost" size="sm" className="h-6 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 px-2 ml-auto"
-                                 onClick={() => deleteUserVersion.mutate(uv.id)}>
+                                 onClick={() => {
+                                   if (!confirm(`Delete version "${uv.author_name}"? This cannot be undone.`)) return;
+                                   // If we're deleting the currently-active tab, jump back to the
+                                   // first official version so we don't end up on a ghost tab.
+                                   if (activeVersionTab === `uv-${uv.id}`) {
+                                     manualTabRef.current = "0";
+                                     setActiveVersionTab("0");
+                                   }
+                                   deleteUserVersion.mutate(uv.id);
+                                 }}>
                                  <Trash2 className="h-3 w-3 mr-1" /> Delete version
                                </Button>
                              )}
