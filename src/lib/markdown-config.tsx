@@ -68,12 +68,32 @@ export const markdownComponents: Components = {
     </h4>
   ),
 
-  // Paragraphs with proper spacing — use div if children contain a block element (e.g. VideoEmbed)
+  // Paragraphs with proper spacing. Use div when children include a block
+  // element so we don't emit invalid HTML (e.g. <div> inside <p>). The most
+  // common case is a markdown link whose href points at a video — our `a:`
+  // renderer turns that into a div-based InlineVideoEmbed. We detect that
+  // ahead of render by re-running the same `detectVideoEmbed` check on
+  // anchor children, instead of trying to introspect React component types
+  // (which doesn't work because react-markdown passes our `a` override as
+  // an opaque function reference).
   p: ({ children }: any) => {
     const childArray = Array.isArray(children) ? children : [children];
-    const hasBlockChild = childArray.some(
-      (c: any) => c?.type === 'div' || (typeof c === 'object' && c?.props?.className?.includes('my-4'))
-    );
+    const isBlockChild = (c: any): boolean => {
+      if (!c || typeof c !== 'object') return false;
+      if (c.type === 'div') return true;
+      if (typeof c.props?.className === 'string' && c.props.className.includes('my-4')) return true;
+      // Markdown link children — react-markdown passes the original tag as
+      // a string `node.tagName` on the props object; for an <a> rendered by
+      // our override, we receive the href and can re-detect video URLs.
+      if (typeof c.props?.href === 'string' && detectVideoEmbed(c.props.href)) return true;
+      // One-level recursion — covers shapes like <strong><link/></strong>.
+      if (c.props?.children) {
+        const inner = Array.isArray(c.props.children) ? c.props.children : [c.props.children];
+        if (inner.some(isBlockChild)) return true;
+      }
+      return false;
+    };
+    const hasBlockChild = childArray.some(isBlockChild);
     if (hasBlockChild) {
       return <div className="mb-3 last:mb-0">{children}</div>;
     }
