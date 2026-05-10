@@ -15,6 +15,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from "rehype-sanitize";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from '@/lib/markdown-config';
 import { areSameVideoEmbedSource, detectVideoEmbed } from '@/lib/video-embed-utils';
 import { VideoEmbed } from '@/lib/video-embed';
@@ -548,7 +550,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           },
                         }}
                         remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeRaw]}
+                        rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]}
                       >
                         {currentVideo.rich_content}
                       </ReactMarkdown>

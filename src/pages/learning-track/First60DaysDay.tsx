@@ -54,11 +54,21 @@ function TabFallback() {
 
 // rehype-raw pulls in a full HTML parser (~50 kB). Only a handful of day files
 // actually use raw HTML, so we lazy-load the plugin and cache the module so
-// subsequent days that also need it don't re-fetch.
+// subsequent days that also need it don't re-fetch. We also chain
+// rehype-sanitize behind it with our shared schema so any raw HTML that
+// makes it through (admin-authored markdown can in principle contain
+// anything) is filtered before React renders it.
 let rehypeRawPromise: Promise<PluggableList> | null = null;
 function loadRehypeRaw(): Promise<PluggableList> {
   if (!rehypeRawPromise) {
-    rehypeRawPromise = import("rehype-raw").then((m) => [m.default]);
+    rehypeRawPromise = Promise.all([
+      import("rehype-raw"),
+      import("rehype-sanitize"),
+      import("@/lib/markdown-sanitize"),
+    ]).then(([raw, sanitize, schemaMod]) => [
+      raw.default,
+      [sanitize.default, schemaMod.markdownSanitizeSchema] as const,
+    ] as unknown as PluggableList);
   }
   return rehypeRawPromise;
 }

@@ -42,7 +42,14 @@ function TabFallback() {
 let rehypeRawPromise: Promise<PluggableList> | null = null;
 function loadRehypeRaw(): Promise<PluggableList> {
   if (!rehypeRawPromise) {
-    rehypeRawPromise = import("rehype-raw").then((m) => [m.default]);
+    rehypeRawPromise = Promise.all([
+      import("rehype-raw"),
+      import("rehype-sanitize"),
+      import("@/lib/markdown-sanitize"),
+    ]).then(([raw, sanitize, schemaMod]) => [
+      raw.default,
+      [sanitize.default, schemaMod.markdownSanitizeSchema] as const,
+    ] as unknown as PluggableList);
   }
   return rehypeRawPromise;
 }

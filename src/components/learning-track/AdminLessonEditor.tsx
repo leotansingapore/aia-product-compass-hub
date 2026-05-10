@@ -13,6 +13,8 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { detectVideoEmbed } from "@/lib/video-embed-utils";
 import { VideoEmbed } from "@/lib/video-embed";
 import { Button } from "@/components/ui/button";
@@ -385,7 +387,7 @@ function LessonContentPreview({ body, onEdit }: { body: string; onEdit: () => vo
       <article className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary prose-img:rounded-lg">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
+          rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]}
           components={{
             a: ({ href, children, ...props }) => {
               if (href) {

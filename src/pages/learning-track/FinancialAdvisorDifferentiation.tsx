@@ -683,11 +683,16 @@ export default function FinancialAdvisorDifferentiation() {
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    toast.success("Copied to clipboard");
-    setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      toast.success("Copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Insecure context or permission denied — surface, don't show fake success.
+      toast.error("Couldn't copy — your browser blocked clipboard access");
+    }
   };
 
   // ============ RENDER HELPERS ============

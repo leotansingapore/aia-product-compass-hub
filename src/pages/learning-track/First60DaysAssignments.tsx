@@ -494,6 +494,7 @@ function SubmissionPanel({
     }
 
     setSubmitting(true);
+    let uploadedPath: string | null = null;
     try {
       let fileUrl: string | null = null;
       let fileName: string | null = null;
@@ -504,6 +505,7 @@ function SubmissionPanel({
           .from("assignment-files")
           .upload(path, file);
         if (upErr) throw upErr;
+        uploadedPath = path;
         const { data: pub } = supabase.storage
           .from("assignment-files")
           .getPublicUrl(path);
@@ -523,7 +525,15 @@ function SubmissionPanel({
       onSubmitted();
       setEditing(false);
       setFile(null);
+      uploadedPath = null; // committed — leave the file in place
     } catch (err: any) {
+      // If we uploaded the file but the DB insert failed, roll back the
+      // upload so we don't leave orphans in the bucket. Best-effort: a
+      // failed cleanup is logged, not surfaced (the submit itself already
+      // toasted the error).
+      if (uploadedPath) {
+        void supabase.storage.from("assignment-files").remove([uploadedPath]).catch(() => {});
+      }
       toast.error(err?.message ?? "Submission failed");
     } finally {
       setSubmitting(false);

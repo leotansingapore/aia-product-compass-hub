@@ -23,6 +23,8 @@ import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 
@@ -503,7 +505,7 @@ function ServicingScriptCard({
                       onDoubleClick={() => { if (isAuthenticated && onInlineSave) { setEditingVersionIdx(i); setEditContent(v.content); } }}
                       title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
                     >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>
                         {v.content}
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
@@ -545,7 +547,7 @@ function ServicingScriptCard({
                       onDoubleClick={() => { if (currentUserId === uv.user_id) { setEditUserVersionContent(uv.content); setEditingUserVersionId(uv.id); } }}
                       title={currentUserId === uv.user_id ? "Double-click to edit" : undefined}
                     >
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>
                         {uv.content}
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">

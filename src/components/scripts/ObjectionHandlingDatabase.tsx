@@ -142,10 +142,14 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
   // Default to first tab
   const currentTab = activeTab || responses[0]?.id || "__add__";
 
-  const handleCopy = (content: string, id: string) => {
-    navigator.clipboard.writeText(content);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const handleCopy = async (content: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      toast.error("Couldn't copy — your browser blocked clipboard access");
+    }
   };
 
   const handleSubmitVersion = async () => {
@@ -341,10 +345,14 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
   const [open, setOpen] = useState(false);
   const [copiedVersionIdx, setCopiedVersionIdx] = useState<number | null>(null);
 
-  const handleCopy = (content: string, idx: number) => {
-    navigator.clipboard.writeText(content);
-    setCopiedVersionIdx(idx);
-    setTimeout(() => setCopiedVersionIdx(null), 2000);
+  const handleCopy = async (content: string, idx: number) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      setCopiedVersionIdx(idx);
+      setTimeout(() => setCopiedVersionIdx(null), 2000);
+    } catch {
+      toast.error("Couldn't copy — your browser blocked clipboard access");
+    }
   };
 
   return (
