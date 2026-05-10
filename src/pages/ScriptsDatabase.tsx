@@ -1982,15 +1982,26 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
         </CollapsibleTrigger>
         <CollapsibleContent>
           <CardContent className="pt-0 pb-4 px-3 sm:px-6">
-            {script.versions.length > 1 ? (
+            {/* Show the multi-version tabs view whenever there are 2+ rows total
+                across official + user versions. Previously this gated on
+                `script.versions.length > 1` only, which silently hid every
+                user-version when the script shipped with one canonical version. */}
+            {(script.versions.length + userVersions.length) > 1 ? (
               isMobile ? (
                 /* Mobile: dropdown version selector */
                 <MobileVersionSelector
                   versions={script.versions}
+                  userVersions={userVersions}
                   searchQuery={searchQuery}
                   isAuthenticated={isAuthenticated}
+                  isAdmin={isAdmin}
+                  currentUserId={currentUserId}
+                  userDisplayName={userDisplayName}
                   onInlineSave={onInlineSave}
                   scriptId={script.id}
+                  addUserVersion={addUserVersion}
+                  updateUserVersion={updateUserVersion}
+                  deleteUserVersion={deleteUserVersion}
                 />
               ) : (
                 <Tabs value={activeVersionTab} onValueChange={setActiveVersionTab}>

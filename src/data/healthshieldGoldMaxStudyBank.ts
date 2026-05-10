@@ -1033,7 +1033,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "AIA premiums are actually the lowest in the market"
     ],
     correct: 2,
-    explanation: "Redirect from price to value — $2M annual, unlimited lifetime, 500+ AQHP doctors, and 13-month pre/post coverage justify any premium difference.",
+    explanation: "Redirect from price to value — $2M annual, unlimited lifetime, 600+ AQHP specialists (Brochure p.5), and 13-month pre/post coverage justify any premium difference.",
     category: 'sales-angles'
   },
 

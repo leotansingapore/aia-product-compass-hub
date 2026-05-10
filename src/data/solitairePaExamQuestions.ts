@@ -413,11 +413,11 @@ export const solitairePaExamQuestions: ExamQuestion[] = [
     options: [
       "Suggest they get workers' compensation insurance instead",
       "Tell them cooking burns are excluded from PA coverage",
-      "Explain that Feature 4 covers burns and scalds as a lump sum, Feature 6 covers medical treatment up to $5,000 per accident with unlimited claims -- making PA ideal for their occupation",
+      "Explain that the Accidental Dismemberment and Burns Benefit (Feature 4) pays a lump sum for third-degree burns rated by % body surface area (Head: 2% = 50% / 8% = 100%; Body: 10% = 50% / 20% = 100%), and Feature 6 (Medical Reimbursement) covers treatment up to $5,000 per accident with unlimited claims -- making PA directly relevant to their occupation",
       "Recommend they switch to a less dangerous occupation"
     ],
     correct: 2,
-    explanation: "Feature 4 specifically covers burns and scalds with a lump sum payout, and Feature 6 covers medical expenses. For someone working around hot oil daily, this is directly relevant.",
+    explanation: "The canonical benefit name is 'Accidental Dismemberment and Burns Benefit' (PS p.6, Brochure p.2) -- there is no 'scalds' wording in either source. Burns are paid as a lump sum under Benefit 4 only, rated by % body surface area (PS p.4 Schedule of Indemnity). Feature 6 covers medical expenses up to $5,000 per accident.",
     category: 'roleplay'
   },
 

@@ -1689,11 +1689,11 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     options: [
       "Just mention the premium amount and coverage term.",
       "Read through the entire policy document word by word.",
-      "Summarize: 150 illnesses covered, unlimited claims with 12-month reset, Enhancer covers same-illness relapses, Early CI adds early-stage coverage, Premium Waiver stops premiums after first claim, plus Teladoc access. Total cost and sum assured.",
+      "Summarize: 73 critical illnesses across 150 condition-stages (42 Early / 35 Intermediate / 73 Major); unlimited claims at MAJOR stage only (early/intermediate capped at 500% of cover and S$350k per-life per same CI); restoration window of 12 months from the latest diagnosed CI; Enhancer's Ultimate Relapse covers 5 named conditions with a 2-year wait; Early CI adds early-stage coverage; Premium Waiver stops premiums after first claim; plus Teladoc access. Then total cost + sum assured.",
       "Only mention the Teladoc benefit as it is the most unique feature."
     ],
     correct: 2,
-    explanation: "A comprehensive summary covers the key features (150 illnesses, unlimited claims), all rider benefits, Teladoc, and the financial details -- giving the client confidence in their decision.",
+    explanation: "Use canonical framing: 73 underlying critical illnesses, 150 condition-stage entries (Brochure p.13), unlimited claims at MAJOR stage only (Brochure footnote 1 p.14), restoration runs from the latest diagnosed CI. Surface the Enhancer's relapse caveats (5 named conditions, 2-year wait) so the client doesn't expect 'second of any illness' coverage.",
     category: 'roleplay'
   },
 
