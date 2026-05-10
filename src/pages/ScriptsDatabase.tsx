@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
-import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
+import { useScriptUserVersions, type ScriptUserVersion } from "@/hooks/useScriptUserVersions";
 
 // These three only mount on demand:
 //   - ScriptEditorDialog → opens when admin clicks "Add" or "Edit"
@@ -1289,29 +1289,73 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   }
   return null;
 }
+/**
+ * Mobile-only version selector. Mirrors the desktop tab strip's capability set
+ * (official + user versions, edit / rename / duplicate / delete) but in a
+ * single dropdown so the screen stays usable on a phone. Previously this
+ * component ignored user versions entirely, so phone users couldn't see, edit,
+ * or rename their own customisations.
+ */
 function MobileVersionSelector({
   versions,
+  userVersions,
   searchQuery,
   isAuthenticated,
+  isAdmin,
+  currentUserId,
+  userDisplayName,
   onInlineSave,
   scriptId,
+  addUserVersion,
+  updateUserVersion,
+  deleteUserVersion,
 }: {
   versions: ScriptVersion[];
+  userVersions: ScriptUserVersion[];
   searchQuery: string;
   isAuthenticated?: boolean;
+  isAdmin?: boolean;
+  currentUserId?: string;
+  userDisplayName?: string;
   onInlineSave?: (id: string, versions: ScriptVersion[]) => Promise<void>;
   scriptId?: string;
+  addUserVersion: ReturnType<typeof useScriptUserVersions>["addVersion"];
+  updateUserVersion: ReturnType<typeof useScriptUserVersions>["updateVersion"];
+  deleteUserVersion: ReturnType<typeof useScriptUserVersions>["deleteVersion"];
 }) {
-  const [activeVersion, setActiveVersion] = useState("0");
+  // activeKey is "0", "1"... for official, or "uv-<id>" for user versions
+  const [activeKey, setActiveKey] = useState("0");
   const [editing, setEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
+  const [renameDraft, setRenameDraft] = useState("");
+  const [renaming, setRenaming] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [newContent, setNewContent] = useState("");
   const editorRef = useRef<MinimalRichEditorHandle>(null);
-  const idx = parseInt(activeVersion);
-  const v = versions[idx] || versions[0];
+  const newEditorRef = useRef<MinimalRichEditorHandle>(null);
+
+  const isUv = activeKey.startsWith("uv-");
+  const officialIdx = !isUv ? parseInt(activeKey, 10) : -1;
+  const activeOfficial = !isUv ? versions[officialIdx] || versions[0] : null;
+  const activeUv = isUv ? userVersions.find(u => u.id === activeKey.slice(3)) : null;
+  // Defensive fallback if the selected uv was just deleted
+  const fallbackOfficial = versions[0];
+
+  // If the current uv was deleted, jump back to "0"
+  useEffect(() => {
+    if (isUv && !activeUv) setActiveKey("0");
+  }, [isUv, activeUv]);
+
+  const activeContent = activeUv?.content ?? activeOfficial?.content ?? fallbackOfficial?.content ?? "";
+  const activeName = activeUv?.author_name ?? activeOfficial?.title ?? activeOfficial?.author ?? "Version 1";
+  const canEditActive = isUv
+    ? (currentUserId === activeUv?.user_id || !!isAdmin)
+    : (!!isAdmin && !!onInlineSave);
 
   const startEdit = () => {
-    setEditContent(v.content);
+    setEditContent(activeContent);
     setEditing(true);
   };
 
@@ -1321,43 +1365,150 @@ function MobileVersionSelector({
   };
 
   const saveEdit = async () => {
-    if (!onInlineSave || !scriptId) return;
     setIsSaving(true);
     const latest = (await editorRef.current?.getMarkdownForSave()) ?? editContent;
-    const updated = versions.map((ver, i) => i === idx ? { ...ver, content: latest } : ver);
-    await onInlineSave(scriptId, updated);
-    setIsSaving(false);
-    setEditing(false);
+    if (isUv && activeUv) {
+      updateUserVersion.mutate(
+        { id: activeUv.id, content: latest, authorName: activeUv.author_name },
+        {
+          onSuccess: () => { setEditing(false); setIsSaving(false); },
+          onError: () => setIsSaving(false),
+        }
+      );
+    } else if (onInlineSave && scriptId && activeOfficial) {
+      const updated = versions.map((ver, i) => i === officialIdx ? { ...ver, content: latest } : ver);
+      await onInlineSave(scriptId, updated);
+      setEditing(false);
+      setIsSaving(false);
+    } else {
+      setIsSaving(false);
+    }
   };
+
+  const startRename = () => {
+    setRenameDraft(activeName);
+    setRenaming(true);
+  };
+
+  const commitRename = () => {
+    const trimmed = renameDraft.trim();
+    if (isUv && activeUv) {
+      const finalName = trimmed || activeUv.author_name;
+      if (finalName !== activeUv.author_name) {
+        updateUserVersion.mutate({ id: activeUv.id, content: activeUv.content, authorName: finalName });
+      }
+    } else if (!isUv && activeOfficial && onInlineSave && scriptId && isAdmin) {
+      const original = activeOfficial.title || activeOfficial.author || `Version ${officialIdx + 1}`;
+      const finalName = trimmed || original;
+      if (finalName !== (activeOfficial.title || activeOfficial.author)) {
+        const updated = versions.map((ver, i) => i === officialIdx ? { ...ver, author: finalName, title: finalName } : ver);
+        onInlineSave(scriptId, updated);
+      }
+    }
+    setRenaming(false);
+  };
+
+  const duplicateActive = () => {
+    const sourceName = activeName;
+    addUserVersion.mutate(
+      { content: activeContent, authorName: `Copy of ${sourceName}` },
+      {
+        onSuccess: (newVersion) => {
+          if (newVersion?.id) {
+            setActiveKey(`uv-${newVersion.id}`);
+            setEditing(false);
+          }
+        },
+      }
+    );
+  };
+
+  const deleteActiveUv = () => {
+    if (!isUv || !activeUv) return;
+    if (!confirm(`Delete version "${activeUv.author_name}"? This cannot be undone.`)) return;
+    setActiveKey("0");
+    deleteUserVersion.mutate(activeUv.id);
+  };
+
+  const submitNewVersion = async () => {
+    const latest = (await newEditorRef.current?.getMarkdownForSave()) ?? newContent;
+    if (!latest.trim()) return;
+    addUserVersion.mutate(
+      { content: latest.trim(), authorName: newName.trim() || userDisplayName || "My Version" },
+      {
+        onSuccess: (newVersion) => {
+          setShowAddForm(false);
+          setNewName("");
+          setNewContent("");
+          if (newVersion?.id) setActiveKey(`uv-${newVersion.id}`);
+        },
+      }
+    );
+  };
+
+  const totalRows = versions.length + userVersions.length;
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-2 mb-3">
-        {versions.length > 1 ? (
-          <Select value={activeVersion} onValueChange={(val) => { setActiveVersion(val); setEditing(false); }}>
-            <SelectTrigger className="h-8 text-xs bg-background flex-1">
+      <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
+        {totalRows > 1 ? (
+          <Select value={activeKey} onValueChange={(val) => { setActiveKey(val); setEditing(false); setRenaming(false); }}>
+            <SelectTrigger className="h-8 text-xs bg-background flex-1 min-w-[8rem]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-popover z-50">
               {versions.map((ver, i) => (
-                <SelectItem key={i} value={String(i)} className="text-xs">
-                  {ver.title || ver.author}
+                <SelectItem key={`o-${i}`} value={String(i)} className="text-xs">
+                  {ver.title || ver.author || `Version ${i + 1}`}
+                </SelectItem>
+              ))}
+              {userVersions.map((uv) => (
+                <SelectItem key={`uv-${uv.id}`} value={`uv-${uv.id}`} className="text-xs">
+                  {uv.author_name}{currentUserId === uv.user_id ? " (mine)" : ""}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
         ) : (
-          <span className="text-xs text-muted-foreground font-medium flex-1">{v.title || v.author}</span>
+          <span className="text-xs text-muted-foreground font-medium flex-1">{activeName}</span>
         )}
-        <div className="flex items-center gap-1 shrink-0">
-          {isAuthenticated && onInlineSave && !editing && (
-            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={startEdit}>
+        <div className="flex items-center gap-1 shrink-0 flex-wrap">
+          {!editing && !renaming && canEditActive && (
+            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={startEdit} title="Edit content">
               <Pencil className="h-3 w-3" /> Edit
             </Button>
           )}
-          {!editing && <CopyButton text={v.content} />}
+          {!editing && !renaming && canEditActive && (
+            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={startRename} title="Rename version">
+              <Pencil className="h-3 w-3" /> Rename
+            </Button>
+          )}
+          {!editing && !renaming && isAuthenticated && (
+            <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={duplicateActive} title="Duplicate to my version">
+              <Copy className="h-3 w-3" /> Duplicate
+            </Button>
+          )}
+          {!editing && !renaming && <CopyButton text={activeContent} />}
         </div>
       </div>
+
+      {renaming && (
+        <div className="flex items-center gap-2 mb-3">
+          <Input
+            value={renameDraft}
+            onChange={(e) => setRenameDraft(e.target.value)}
+            placeholder="Version name…"
+            className="h-8 text-xs flex-1"
+            autoFocus
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') { e.preventDefault(); commitRename(); }
+              else if (e.key === 'Escape') setRenaming(false);
+            }}
+          />
+          <Button size="sm" onClick={commitRename} className="h-8 text-xs">Save</Button>
+          <Button size="sm" variant="ghost" onClick={() => setRenaming(false)} className="h-8 text-xs">Cancel</Button>
+        </div>
+      )}
 
       {editing ? (
         <div className="space-y-2">
@@ -1381,7 +1532,48 @@ function MobileVersionSelector({
         </div>
       ) : (
         <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+            {highlightText(activeContent, searchQuery)}
+          </ReactMarkdown>
+        </div>
+      )}
+
+      <div className="flex items-center gap-2 mt-3 flex-wrap">
+        {isAuthenticated && !showAddForm && !editing && !renaming && (
+          <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={() => { setShowAddForm(true); setNewName(userDisplayName || "My Version"); }}>
+            <Plus className="h-3 w-3" /> Add my version
+          </Button>
+        )}
+        {isUv && canEditActive && !editing && !renaming && (
+          <Button variant="ghost" size="sm" className="h-7 text-xs text-destructive hover:text-destructive hover:bg-destructive/10 ml-auto" onClick={deleteActiveUv}>
+            <Trash2 className="h-3 w-3 mr-1" /> Delete
+          </Button>
+        )}
+      </div>
+
+      {showAddForm && (
+        <div className="mt-3 border rounded-lg p-3 bg-muted/20 space-y-2">
+          <Input
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="Version name (e.g. 'My Style')"
+            className="text-sm h-8"
+            autoFocus
+          />
+          <MinimalRichEditor
+            ref={newEditorRef}
+            value={newContent}
+            onChange={setNewContent}
+            placeholder="Write your version… (supports markdown)"
+          />
+          <div className="flex justify-end gap-2">
+            <Button variant="ghost" size="sm" onClick={() => { setShowAddForm(false); setNewName(""); setNewContent(""); }}>
+              <X className="h-3.5 w-3.5 mr-1" /> Cancel
+            </Button>
+            <Button size="sm" disabled={!newContent.trim() || addUserVersion.isPending} onClick={submitNewVersion}>
+              {addUserVersion.isPending ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Adding…</> : "Add Version"}
+            </Button>
+          </div>
         </div>
       )}
     </div>
