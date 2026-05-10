@@ -1886,17 +1886,22 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null || !onInlineSave) return;
     setIsSaving(true);
-    const latest =
-      (await inlineEditorRefA.current?.getMarkdownForSave()) ??
-      (await inlineEditorRefB.current?.getMarkdownForSave()) ??
-      editContent;
-    const updatedVersions = script.versions.map((v, i) =>
-      i === editingVersionIdx ? { ...v, content: latest } : v
-    );
-    await onInlineSave(script.id, updatedVersions);
-    setEditingVersionIdx(null);
-    setEditContent("");
-    setIsSaving(false);
+    try {
+      const latest =
+        (await inlineEditorRefA.current?.getMarkdownForSave()) ??
+        (await inlineEditorRefB.current?.getMarkdownForSave()) ??
+        editContent;
+      const updatedVersions = script.versions.map((v, i) =>
+        i === editingVersionIdx ? { ...v, content: latest } : v
+      );
+      await onInlineSave(script.id, updatedVersions);
+      // Only close the editor on success — on failure leave the user in edit
+      // mode with their unsaved changes so they can retry without retyping.
+      setEditingVersionIdx(null);
+      setEditContent("");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleEditorBlur = () => {
@@ -1968,7 +1973,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         onKeyDown={async (e) => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
-                            await saveMetaField({ stage: titleDraft });
+                            const trimmed = titleDraft.trim();
+                            const finalName = trimmed || script.stage;
+                            if (finalName !== script.stage) await saveMetaField({ stage: finalName });
                             setEditingTitle(false);
                           } else if (e.key === 'Escape') {
                             setTitleDraft(script.stage);
@@ -1976,7 +1983,9 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                           }
                         }}
                         onBlur={async () => {
-                          if (titleDraft !== script.stage) await saveMetaField({ stage: titleDraft });
+                          const trimmed = titleDraft.trim();
+                          const finalName = trimmed || script.stage;
+                          if (finalName !== script.stage) await saveMetaField({ stage: finalName });
                           setEditingTitle(false);
                         }}
                       />
@@ -2529,6 +2538,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                    className="h-7 text-xs gap-1"
                                    title="Duplicate this version as your own copy"
                                    onMouseDown={(e) => e.preventDefault()}
+                                   disabled={addUserVersion.isPending}
                                    onClick={() => {
                                      const sourceName = v.title || v.author || `Version ${i + 1}`;
                                      addUserVersion.mutate(
@@ -2556,6 +2566,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                    className="h-7 text-xs gap-1"
                                    title="Add a new blank version"
                                    onMouseDown={(e) => e.preventDefault()}
+                                   disabled={addUserVersion.isPending}
                                    onClick={() => {
                                      addUserVersion.mutate(
                                        { content: "", authorName: userDisplayName || "My Version" },
@@ -2607,9 +2618,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              </button>
                              {isAuthenticated && (
                                <button
-                                 className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20"
+                                 className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors rounded border border-transparent hover:border-primary/20 disabled:opacity-60 disabled:cursor-not-allowed"
                                  title="Duplicate this version to edit as your own"
+                                 disabled={addUserVersion.isPending}
                                  onClick={() => {
+                                   if (addUserVersion.isPending) return;
                                    const sourceName = v.title || v.author || `Version ${i + 1}`;
                                    addUserVersion.mutate(
                                      { content: v.content, authorName: `Copy of ${sourceName}` },

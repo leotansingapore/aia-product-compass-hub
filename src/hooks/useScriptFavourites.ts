@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
@@ -22,7 +23,14 @@ export function useScriptFavourites() {
     enabled: !!userId,
   });
 
-  const favouriteIds = new Set(favourites.map(f => f.script_id));
+  // Memoize the lookup Set so downstream consumers (the filter useMemo in
+  // ScriptsDatabase, every ScriptCard's `isFavourite` prop) don't see a brand
+  // new reference on every parent render. Without this every keystroke in the
+  // search box was re-running the full filter for all 107 scripts.
+  const favouriteIds = useMemo(
+    () => new Set(favourites.map(f => f.script_id)),
+    [favourites]
+  );
 
   const toggleFavourite = useMutation({
     mutationFn: async (scriptId: string) => {
