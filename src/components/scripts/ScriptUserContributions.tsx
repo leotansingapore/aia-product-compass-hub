@@ -21,10 +21,15 @@ function CopyBtn({ text }: { text: string }) {
       variant="ghost"
       size="sm"
       className="h-7 gap-1 text-xs"
-      onClick={() => {
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch {
+          // navigator.clipboard rejects on insecure context or denied permission
+          toast.error("Couldn't copy — your browser blocked clipboard access");
+        }
       }}
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}

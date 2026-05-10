@@ -5,7 +5,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { MinimalRichEditor, type MinimalRichEditorHandle } from "@/components/MinimalRichEditor";
 import { useScriptUserVersions, type ScriptUserVersion } from "@/hooks/useScriptUserVersions";
 
@@ -1537,7 +1539,7 @@ function MobileVersionSelector({
         </div>
       ) : (
         <div className="bg-muted/50 rounded-lg p-3 text-sm leading-relaxed border prose prose-sm dark:prose-invert max-w-none overflow-x-auto">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>
             {highlightText(activeContent, searchQuery)}
           </ReactMarkdown>
         </div>
@@ -2618,7 +2620,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                             onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(i); }}
                             title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
                           >
-                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>{highlightText(v.content, searchQuery)}</ReactMarkdown>
                           </div>
                           <div className="flex items-center gap-1 mt-2 flex-wrap">
                              <CopyButton text={v.content} />
@@ -2737,7 +2739,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              onDoubleClick={() => { if (canEditUv) startUvContentEdit(); }}
                              title={canEditUv ? "Double-click to edit content" : undefined}
                            >
-                             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{uv.content}</ReactMarkdown>
+                             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>{uv.content}</ReactMarkdown>
                            </div>
                            <div className="flex items-center gap-1 mt-2 flex-wrap">
                              {canEditUv && (
@@ -2980,7 +2982,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                         onDoubleClick={() => { if (isAuthenticated && onInlineSave) startInlineEdit(0); }}
                         title={isAuthenticated && onInlineSave ? "Double-click to edit" : undefined}
                       >
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>{highlightText(script.versions[0]?.content || "", searchQuery)}</ReactMarkdown>
                       </div>
                        <div className="flex items-center gap-1 mt-2 flex-wrap">
                         <CopyButton text={script.versions[0]?.content || ""} />
@@ -3671,7 +3673,7 @@ export default function ScriptsDatabase() {
     });
   }, [updateScript, refetch]);
 
-  const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
+  const { mergeState, pendingMerge, merging, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     dbScripts,
     async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); },
     handleMergeUndo,
@@ -4385,9 +4387,10 @@ export default function ScriptsDatabase() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmMerge} className="gap-1.5">
-              <GitMerge className="h-4 w-4" /> Merge versions
+            <AlertDialogCancel disabled={merging}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmMerge} disabled={merging} className="gap-1.5">
+              {merging ? <Loader2 className="h-4 w-4 animate-spin" /> : <GitMerge className="h-4 w-4" />}
+              {merging ? "Merging…" : "Merge versions"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

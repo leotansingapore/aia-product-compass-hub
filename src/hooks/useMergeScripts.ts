@@ -123,29 +123,51 @@ export function useMergeScripts(
   const cancelTapSelect = useCallback(() => setMergeState(EMPTY_STATE), []);
 
   // ── Confirm / Cancel merge ───────────────────────────────────────────────
+  const [merging, setMerging] = useState(false);
   const confirmMerge = useCallback(async () => {
-    if (!pendingMerge) return;
+    if (!pendingMerge || merging) return;
     const { source, target } = pendingMerge;
     // Snapshot old versions for undo
     const previousVersions = [...target.versions];
-    const newVersions: ScriptVersion[] = [
-      ...target.versions,
-      ...source.versions.map(v => ({
+
+    // Dedup against the target's existing content. Without this, merging
+    // twice (or merging when both scripts share a canonical version)
+    // appended duplicates with names like "AIA Original (from \"Source\")"
+    // sitting next to "AIA Original" — confusing for the consultant
+    // reviewing afterwards.
+    const norm = (s?: string) => (s ?? "").replace(/\s+/g, " ").trim();
+    const existingContents = new Set(target.versions.map(v => norm(v.content)));
+    const incoming = source.versions
+      .filter(v => !existingContents.has(norm(v.content)))
+      .map(v => ({
         ...v,
         author: v.author ? `${v.author} (from "${source.stage}")` : `From "${source.stage}"`,
         title: v.title ? `${v.title} (from "${source.stage}")` : undefined,
-      })),
-    ];
-    await onSave(target.id, newVersions);
-    setPendingMerge(null);
-    onMergeComplete?.(target.id, previousVersions, target.stage);
-  }, [pendingMerge, onSave, onMergeComplete]);
+      }));
 
-  const cancelMerge = useCallback(() => setPendingMerge(null), []);
+    if (incoming.length === 0) {
+      // Nothing new to add — close dialog and notify caller without saving.
+      setPendingMerge(null);
+      return;
+    }
+
+    const newVersions: ScriptVersion[] = [...target.versions, ...incoming];
+    setMerging(true);
+    try {
+      await onSave(target.id, newVersions);
+      setPendingMerge(null);
+      onMergeComplete?.(target.id, previousVersions, target.stage);
+    } finally {
+      setMerging(false);
+    }
+  }, [pendingMerge, merging, onSave, onMergeComplete]);
+
+  const cancelMerge = useCallback(() => { if (!merging) setPendingMerge(null); }, [merging]);
 
   return {
     mergeState,
     pendingMerge,
+    merging,
     startDrag,
     endDrag,
     onDragOver,

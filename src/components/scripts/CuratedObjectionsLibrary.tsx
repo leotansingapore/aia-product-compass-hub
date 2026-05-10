@@ -94,16 +94,23 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, forceOpen }: Objecti
     }
   }, [forceOpen]);
 
-  const handleCopy = (content: string, id: string) => {
-    navigator.clipboard.writeText(content);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const handleCopy = async (content: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch {
+      // Clipboard API rejects on non-secure contexts (HTTP) or when the user
+      // denies the permission prompt — surface that instead of silently
+      // showing a fake "copied!" state.
+      toast({ title: "Couldn't copy", description: "Your browser blocked clipboard access.", variant: "destructive" });
+    }
   };
 
   const handlePracticeInRoleplay = () => {
     // Copy the prospect line (the title is the prospect's actual words) so the
     // FC can paste it into the Tavus chat as the opener line if needed.
-    navigator.clipboard.writeText(`"${obj.title}"`);
+    void navigator.clipboard.writeText(`"${obj.title}"`).catch(() => {});
     toast({
       title: "Prospect line copied",
       description: `Use any roleplay scenario, drop "${obj.title}" as their opener and respond using ${FRAMEWORK_NAMES[obj.framework].split(" — ")[0]}.`,

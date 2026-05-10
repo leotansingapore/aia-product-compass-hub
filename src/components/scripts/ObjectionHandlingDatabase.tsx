@@ -2,6 +2,8 @@ import { useState, useMemo, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -260,7 +262,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                         </div>
                       </div>
                       <div className="prose prose-sm dark:prose-invert max-w-none text-sm">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents as any}>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents as any}>
                           {resp.content}
                         </ReactMarkdown>
                       </div>

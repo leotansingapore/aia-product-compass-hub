@@ -28,6 +28,8 @@ import ReactMarkdown from "react-markdown";
 import { MinimalRichEditor } from "@/components/MinimalRichEditor";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
 import { AddToPlaybookDialog } from "@/components/playbooks/AddToPlaybookDialog";
 import { toast } from "sonner";
@@ -98,10 +100,14 @@ function SectionAnchorLink({ anchor, shareToken }: { anchor: string; shareToken?
   return (
     <button
       title="Copy link to this section"
-      onClick={() => {
-        navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch {
+          // Insecure context or denied permission — don't pretend it worked.
+        }
       }}
       className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
     >
@@ -119,11 +125,15 @@ function CopyButton({ text }: { text: string }) {
       variant="ghost"
       size="sm"
       className="h-7 gap-1 text-xs"
-      onClick={(e) => {
+      onClick={async (e) => {
         e.stopPropagation();
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch {
+          // Browser blocked clipboard access — leave button in default state.
+        }
       }}
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -165,11 +175,18 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null) return;
     setIsSaving(true);
-    const updatedVersions = item.script.versions.map((v: any, i: number) =>
-      i === editingVersionIdx ? { ...v, content: editContent } : v
-    );
-    await onInlineSave(item.script_id, updatedVersions);
-    setEditingVersionIdx(null); setEditContent(""); setIsSaving(false);
+    try {
+      const updatedVersions = item.script.versions.map((v: any, i: number) =>
+        i === editingVersionIdx ? { ...v, content: editContent } : v
+      );
+      await onInlineSave(item.script_id, updatedVersions);
+      // Only close on success — on failure leave the edit state intact so the
+      // user can retry without retyping.
+      setEditingVersionIdx(null);
+      setEditContent("");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -254,7 +271,7 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
                     </div>
                   ) : (
                     <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 rounded-lg p-3 sm:p-4 overflow-x-auto">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>
                         {version.content || ""}
                       </ReactMarkdown>
                     </div>
