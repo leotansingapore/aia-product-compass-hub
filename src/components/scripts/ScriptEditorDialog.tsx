@@ -789,9 +789,14 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       ...pasteImages.map(img => ({ label: img.name, url: img.url, type: "image" as const })),
       ...pastePdfs.map(pdf => ({ label: pdf.name, url: pdf.url, type: "pdf" as const })),
     ];
-    await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) } as any);
-    setSaving(false);
-    onClose();
+    try {
+      await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) } as any);
+      // Only close on success — on failure leave the dialog open with the
+      // user's edits intact so they can retry.
+      onClose();
+    } finally {
+      setSaving(false);
+    }
   };
 
   const updateVersion = (index: number, field: keyof ScriptVersion, value: string) => {

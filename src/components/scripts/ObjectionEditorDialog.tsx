@@ -245,25 +245,27 @@ export function ObjectionEditorDialog({ open, onClose, onSave, editingEntry }: P
   const handleSubmit = async () => {
     if (!formTitle.trim()) return;
     setSaving(true);
-    await onSave({
-      title: formTitle,
-      category: formCategory,
-      description: formDescription || undefined,
-      tags: formTags,
-      initialResponse: formInitialResponse || undefined,
-    });
+    try {
+      await onSave({
+        title: formTitle,
+        category: formCategory,
+        description: formDescription || undefined,
+        tags: formTags,
+        initialResponse: formInitialResponse || undefined,
+      });
 
-    // If multiple items, move to next
-    const selectedItems = classifiedItems.filter(i => i.selected);
-    const nextIndex = currentItemIndex + 1;
-    if (!isEditing && selectedItems.length > 1 && nextIndex < selectedItems.length) {
-      setSavedCount(prev => prev + 1);
-      loadItemIntoForm(selectedItems, nextIndex);
+      // If multiple items, move to next
+      const selectedItems = classifiedItems.filter(i => i.selected);
+      const nextIndex = currentItemIndex + 1;
+      if (!isEditing && selectedItems.length > 1 && nextIndex < selectedItems.length) {
+        setSavedCount(prev => prev + 1);
+        loadItemIntoForm(selectedItems, nextIndex);
+        toast.success(`Saved! (${nextIndex}/${selectedItems.length})`);
+      } else {
+        onClose();
+      }
+    } finally {
       setSaving(false);
-      toast.success(`Saved! (${nextIndex}/${selectedItems.length})`);
-    } else {
-      setSaving(false);
-      onClose();
     }
   };
 

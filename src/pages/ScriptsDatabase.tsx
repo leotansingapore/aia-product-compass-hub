@@ -1366,22 +1366,27 @@ function MobileVersionSelector({
 
   const saveEdit = async () => {
     setIsSaving(true);
-    const latest = (await editorRef.current?.getMarkdownForSave()) ?? editContent;
-    if (isUv && activeUv) {
-      updateUserVersion.mutate(
-        { id: activeUv.id, content: latest, authorName: activeUv.author_name },
-        {
-          onSuccess: () => { setEditing(false); setIsSaving(false); },
-          onError: () => setIsSaving(false),
-        }
-      );
-    } else if (onInlineSave && scriptId && activeOfficial) {
-      const updated = versions.map((ver, i) => i === officialIdx ? { ...ver, content: latest } : ver);
-      await onInlineSave(scriptId, updated);
-      setEditing(false);
-      setIsSaving(false);
-    } else {
-      setIsSaving(false);
+    try {
+      const latest = (await editorRef.current?.getMarkdownForSave()) ?? editContent;
+      if (isUv && activeUv) {
+        updateUserVersion.mutate(
+          { id: activeUv.id, content: latest, authorName: activeUv.author_name },
+          {
+            onSuccess: () => { setEditing(false); setIsSaving(false); },
+            onError: () => setIsSaving(false),
+          }
+        );
+        return; // mutation callbacks own setIsSaving from here
+      }
+      if (onInlineSave && scriptId && activeOfficial) {
+        const updated = versions.map((ver, i) => i === officialIdx ? { ...ver, content: latest } : ver);
+        await onInlineSave(scriptId, updated);
+        setEditing(false);
+      }
+    } finally {
+      // Only the mutation branch already cleared isSaving; otherwise reset
+      // here so a failed onInlineSave still releases the spinner.
+      if (!(isUv && activeUv)) setIsSaving(false);
     }
   };
 
@@ -1589,31 +1594,42 @@ function ScriptVersionHistory({ scriptId, onRollback }: { scriptId: string; onRo
   const loadHistory = async () => {
     if (showHistory) { setShowHistory(false); return; }
     setLoadingHistory(true);
-    const { data, error } = await supabase
-      .from('script_version_history' as any)
-      .select('*')
-      .eq('script_id', scriptId)
-      .order('created_at', { ascending: false })
-      .limit(20);
-    if (!error) setHistory(data || []);
-    setLoadingHistory(false);
-    setShowHistory(true);
+    try {
+      const { data, error } = await supabase
+        .from('script_version_history' as any)
+        .select('*')
+        .eq('script_id', scriptId)
+        .order('created_at', { ascending: false })
+        .limit(20);
+      if (error) {
+        toast.error('Could not load version history');
+        return;
+      }
+      setHistory(data || []);
+      setShowHistory(true);
+    } finally {
+      setLoadingHistory(false);
+    }
   };
 
   const handleRollback = async (entry: any) => {
     if (!confirm('Are you sure you want to rollback to this version? The current content will be saved to history first.')) return;
     setRollingBack(true);
-    const versions = (entry.versions as unknown as ScriptVersion[]) || [];
-    await onRollback(versions);
-    // Reload history
-    const { data } = await supabase
-      .from('script_version_history' as any)
-      .select('*')
-      .eq('script_id', scriptId)
-      .order('created_at', { ascending: false })
-      .limit(20);
-    setHistory(data || []);
-    setRollingBack(false);
+    try {
+      const versions = (entry.versions as unknown as ScriptVersion[]) || [];
+      await onRollback(versions);
+      // Reload history (best-effort — keep stale list if this fails so the user
+      // still sees something, the rollback itself already succeeded).
+      const { data } = await supabase
+        .from('script_version_history' as any)
+        .select('*')
+        .eq('script_id', scriptId)
+        .order('created_at', { ascending: false })
+        .limit(20);
+      setHistory(data || []);
+    } finally {
+      setRollingBack(false);
+    }
   };
 
   return (
@@ -1869,8 +1885,11 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
     setIsSaving(true);
-    await onMetadataSave(script.id, updates);
-    setIsSaving(false);
+    try {
+      await onMetadataSave(script.id, updates);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const startInlineEdit = (versionIdx: number) => {

@@ -221,12 +221,15 @@ export function ScriptsChatWidget({ initialMode = "scripts" }: ScriptsChatWidget
         messages: [...messages, userMsg],
         mode,
         onDelta: (chunk) => upsertAssistant(chunk),
-        onDone: () => setIsLoading(false),
+        onDone: () => {},
       });
     } catch (e) {
       console.error(e);
-      setIsLoading(false);
       toast.error("Failed to get response. Please try again.");
+    } finally {
+      // Always reset isLoading. streamChat returns early on 429/402 without
+      // calling onDone — without this finally the spinner stayed forever.
+      setIsLoading(false);
     }
   };
 

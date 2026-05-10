@@ -150,11 +150,16 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
     if (!newVersionContent.trim()) return;
     const name = newVersionName.trim() || userDisplayName || "Anonymous";
     setSubmitting(true);
-    await onAddResponse(entry.id, newVersionContent.trim(), name);
-    setNewVersionContent("");
-    setNewVersionName("");
-    setAddingVersion(false);
-    setSubmitting(false);
+    try {
+      await onAddResponse(entry.id, newVersionContent.trim(), name);
+      // Only clear/close on success — on failure leave the user's draft so
+      // they can retry.
+      setNewVersionContent("");
+      setNewVersionName("");
+      setAddingVersion(false);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

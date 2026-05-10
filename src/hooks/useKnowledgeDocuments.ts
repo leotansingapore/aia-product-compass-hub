@@ -72,6 +72,9 @@ export function useKnowledgeDocuments() {
     if (docError) {
       toast.error('Failed to create document record');
       console.error(docError);
+      // Roll back the storage upload so we don't leave orphaned files in
+      // the bucket (every retry would otherwise consume more quota).
+      void supabase.storage.from('knowledge-files').remove([filePath]).catch(() => {});
       return null;
     }
 
@@ -92,16 +95,23 @@ export function useKnowledgeDocuments() {
   const deleteDocument = async (id: string, filePath: string) => {
     if (!isAdmin) { toast.error('Admin access required'); return false; }
 
-    // Delete from storage
-    await supabase.storage.from('knowledge-files').remove([filePath]);
-
-    // Delete record (cascades to chunks)
+    // Delete the DB row first. If this fails we still have the storage file,
+    // but the user-visible state is consistent. If we deleted storage first
+    // and the DB delete failed, the row would still reference a missing file.
     const { error } = await supabase.from('knowledge_documents').delete().eq('id', id);
     if (error) {
       toast.error('Failed to delete document');
       console.error(error);
       return false;
     }
+
+    // Best-effort storage cleanup. Don't surface errors to the user — the
+    // record is already gone and a dangling object in the bucket is just
+    // wasted bytes, not a UX problem.
+    const { error: storageErr } = await supabase.storage
+      .from('knowledge-files')
+      .remove([filePath]);
+    if (storageErr) console.warn('Knowledge file storage cleanup failed:', storageErr);
 
     toast.success('Document deleted');
     fetchDocuments();

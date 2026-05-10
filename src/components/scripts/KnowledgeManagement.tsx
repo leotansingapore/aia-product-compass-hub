@@ -38,16 +38,24 @@ export function KnowledgeManagement() {
     if (file.size > 20 * 1024 * 1024) { toast.error("File too large. Max 20MB."); return; }
 
     setUploading(true);
-    await uploadDocument(file, title.trim());
-    setUploading(false);
-    setTitle("");
-    if (fileRef.current) fileRef.current.value = "";
+    try {
+      await uploadDocument(file, title.trim());
+      // Only reset on success — on failure leave the title and selected file
+      // so the user can fix the underlying issue and retry without re-typing.
+      setTitle("");
+      if (fileRef.current) fileRef.current.value = "";
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleSync = async () => {
     setSyncing(true);
-    await syncScripts();
-    setSyncing(false);
+    try {
+      await syncScripts();
+    } finally {
+      setSyncing(false);
+    }
   };
 
   return (
