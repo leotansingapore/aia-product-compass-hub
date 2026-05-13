@@ -557,7 +557,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     </div>
                   </CardContent>
                 </Card>
-              ) : !videoInfo ? (
+              ) : !videoInfo && !currentVideo?.description?.trim() ? (
                 <Card>
                   <CardContent className="p-8 sm:p-12 flex flex-col items-center justify-center text-center gap-3">
                     <div className="rounded-full bg-muted p-4">
