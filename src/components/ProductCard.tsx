@@ -277,12 +277,14 @@ export const ProductCard = memo(function ProductCard({
             >
               {title}
             </CardTitle>
-            <CardDescription
-              title={description}
-              className="line-clamp-2 text-sm leading-relaxed text-muted-foreground"
-            >
-              {description?.trim() ? description : "No description yet."}
-            </CardDescription>
+            {description?.trim() ? (
+              <CardDescription
+                title={description}
+                className="line-clamp-2 text-sm leading-relaxed text-muted-foreground"
+              >
+                {description}
+              </CardDescription>
+            ) : null}
           </div>
         </CardHeader>
 
