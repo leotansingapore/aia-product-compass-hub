@@ -89,7 +89,9 @@ export function QuestionBanksList() {
                   <Brain className="h-5 w-5 text-primary shrink-0" />
                   <CardTitle className="text-base sm:text-lg truncate">{product.title}</CardTitle>
                 </div>
-                <Badge variant="secondary" className="shrink-0">{studyCount + examCount} total</Badge>
+                {studyCount + examCount > 0 && (
+                  <Badge variant="secondary" className="shrink-0">{studyCount + examCount} total</Badge>
+                )}
               </div>
               <CardDescription className="mt-1 text-xs sm:text-sm">{product.description}</CardDescription>
             </CardHeader>
@@ -134,7 +136,7 @@ export function QuestionBanksList() {
                   </>
                 );
               })()}
-              {studyCount === 0 && (
+              {studyCount === 0 && examCount > 0 && (
                 <Button
                   size="sm"
                   className="gap-1.5 min-h-[44px] sm:min-h-0 w-full sm:w-auto"
@@ -149,6 +151,9 @@ export function QuestionBanksList() {
                     {examCount}
                   </Badge>
                 </Button>
+              )}
+              {studyCount === 0 && examCount === 0 && (
+                <p className="text-xs text-muted-foreground">Questions coming soon.</p>
               )}
             </CardContent>
           </Card>
