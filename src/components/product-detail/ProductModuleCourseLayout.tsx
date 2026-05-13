@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  ClipboardList,
   Clock,
   FileText,
   Lightbulb,
@@ -75,10 +74,6 @@ function extractFirstStreamableVideoUrlFromRich(rich: string | undefined): strin
   }
   for (const c of candidates) {
     if (detectVideoEmbed(c).isVideo) return sanitizeLessonMediaUrl(c) || c;
-  }
-  for (const c of candidates) {
-    const s = sanitizeLessonMediaUrl(c);
-    if (s) return s;
   }
   return null;
 }
@@ -447,48 +442,9 @@ export function ProductModuleCourseLayout({
       </div>
     ) : null;
 
-  /** In-tab only lessons (no stream URL in field or body): quiz / assignment / reading. */
-  const lessonHeroPlaceholder =
-    !hasVideoEmbed && !resolvedLessonStreamUrl && processedVideos.length > 0 && currentVideo ? (
-      <div className="relative overflow-hidden rounded-none bg-black shadow-xl lg:rounded-lg">
-        <div className="relative aspect-video w-full">
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center text-zinc-400">
-            {currentVideo.type === "quiz" ? (
-              <>
-                <Brain className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                <p className="text-sm font-medium text-zinc-300">Quiz</p>
-                <p className="max-w-md text-xs leading-relaxed text-zinc-500">
-                  Open the <span className="font-medium text-zinc-400">Course content</span> tab to take this quiz.
-                </p>
-              </>
-            ) : currentVideo.type === "assignment" ? (
-              <>
-                <ClipboardList className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                <p className="text-sm font-medium text-zinc-300">Assignment</p>
-                <p className="max-w-md text-xs leading-relaxed text-zinc-500">
-                  Open the <span className="font-medium text-zinc-400">Course content</span> tab to complete this
-                  assignment.
-                </p>
-              </>
-            ) : (
-              <>
-                <FileText className="h-10 w-10 shrink-0 opacity-40" aria-hidden />
-                <p className="text-sm font-medium text-zinc-300">Lesson content</p>
-                <p className="max-w-md text-xs leading-relaxed text-zinc-500">
-                  Use the <span className="font-medium text-zinc-400">Course content</span> tab for this lesson&apos;s
-                  notes and materials.
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    ) : null;
+  const lessonHeroMain = hasVideoEmbed ? videoHero : fallbackStreamHero;
 
-  const lessonHeroMain = hasVideoEmbed ? videoHero : fallbackStreamHero ?? lessonHeroPlaceholder;
-
-  const useZincLessonChrome =
-    hasVideoEmbed || Boolean(fallbackStreamHero) || Boolean(lessonHeroPlaceholder);
+  const useZincLessonChrome = hasVideoEmbed || Boolean(fallbackStreamHero);
 
   /* ── Course content (below video) ── */
   const courseContentInner = (
