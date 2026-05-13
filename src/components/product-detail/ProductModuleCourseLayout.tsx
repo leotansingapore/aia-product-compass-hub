@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { formatDuration, getVideoEmbedInfo } from "@/components/video-editing/videoUtils";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
+import { useAutoFillVideoDuration } from "@/hooks/useAutoFillVideoDuration";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
 import ReactMarkdown from "react-markdown";
@@ -138,6 +139,7 @@ export function ProductModuleCourseLayout({
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, getCourseProgress } =
     useVideoProgress(productId);
+  const autoFillDuration = useAutoFillVideoDuration(productId);
 
   const processedVideos = useMemo(
     () =>
@@ -394,6 +396,7 @@ export function ProductModuleCourseLayout({
             playsInline
             autoPlay={shouldAutoplay}
             onError={() => setVideoError(true)}
+            onLoadedMetadata={(e) => autoFillDuration(currentVideo?.id, e.currentTarget.duration)}
           />
         ) : (
           <iframe
