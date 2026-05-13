@@ -130,7 +130,7 @@ export function VideoEditingInterface({
   const handleAddPageToFolder = async (folderName: string) => {
     const newPage: TrainingVideo = {
       id: `temp-${Date.now()}`,
-      title: 'New Page',
+      title: 'New Text Lesson',
       url: '',
       description: '',
       category: folderName || '',
