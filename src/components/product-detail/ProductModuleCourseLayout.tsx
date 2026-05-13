@@ -17,7 +17,7 @@ import {
   List,
   Play,
 } from "lucide-react";
-import { formatDuration, getVideoEmbedInfo } from "@/components/video-editing/videoUtils";
+import { fetchVideoDuration, formatDuration, getVideoEmbedInfo } from "@/components/video-editing/videoUtils";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAutoFillVideoDuration } from "@/hooks/useAutoFillVideoDuration";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
@@ -226,6 +226,20 @@ export function ProductModuleCourseLayout({
     setShouldAutoplay(true);
     setOutlineOpen(false);
   }, []);
+
+  useEffect(() => {
+    if (!videoInfo || !resolvedLessonStreamUrl) return;
+    if (videoInfo.type !== "vimeo" && videoInfo.type !== "wistia") return;
+    let cancelled = false;
+    const videoId = currentVideo?.id;
+    fetchVideoDuration(resolvedLessonStreamUrl).then((d) => {
+      if (cancelled) return;
+      if (typeof d === "number") autoFillDuration(videoId, d);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [videoInfo, resolvedLessonStreamUrl, currentVideo?.id, autoFillDuration]);
 
   useEffect(() => {
     if (!videoInfo || videoInfo.type !== "youtube") return;
