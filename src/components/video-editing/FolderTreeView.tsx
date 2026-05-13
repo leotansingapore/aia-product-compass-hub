@@ -221,7 +221,11 @@ function SortableVideoItem({
           onClick={(e) => { e.stopPropagation(); e.preventDefault(); onVideoSelect(index); }}
           onPointerDown={(e) => e.stopPropagation()}
         >
-          <Play className="h-4 w-4 text-primary flex-shrink-0" />
+          {video.url?.trim() ? (
+            <Play className="h-4 w-4 text-primary flex-shrink-0" />
+          ) : (
+            <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+          )}
           <span className="text-sm truncate">{video.title}</span>
         </button>
       </div>
