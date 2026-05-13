@@ -22,6 +22,7 @@ interface ProductsGridProps {
   onTogglePublish?: (productId: string, published: boolean) => void;
   onNestingChange?: () => void;
   completionMap?: Record<string, number>;
+  searchQuery?: string;
 }
 
 export function ProductsGrid({
@@ -34,14 +35,20 @@ export function ProductsGrid({
   onTogglePublish,
   onNestingChange,
   completionMap,
+  searchQuery,
 }: ProductsGridProps) {
   if (products.length === 0) {
+    const isSearching = !!searchQuery?.trim();
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground text-sm">No products found matching your search.</p>
-        {onClearFilters && (
-          <Button 
-            variant="outline" 
+        <p className="text-muted-foreground text-sm">
+          {isSearching
+            ? `No products in ${categoryName} match "${searchQuery}".`
+            : `No products in ${categoryName} yet.`}
+        </p>
+        {isSearching && onClearFilters && (
+          <Button
+            variant="outline"
             className="mt-4"
             onClick={onClearFilters}
           >

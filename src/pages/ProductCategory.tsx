@@ -411,6 +411,7 @@ export default function ProductCategory() {
             onTogglePublish={handleToggleProductPublish}
             onNestingChange={refetch}
             completionMap={completionMap}
+            searchQuery={searchQuery}
           />
         )}
 
