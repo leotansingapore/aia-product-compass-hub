@@ -370,7 +370,7 @@ function RecursiveFolderItem({
               <FolderPlus className="h-4 w-4 mr-2" /> Add sub-folder
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onAddPageToFolder(node.path)}>
-              <FileText className="h-4 w-4 mr-2" /> Add page here
+              <FileText className="h-4 w-4 mr-2" /> Add text lesson here
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => onDeleteFolder(node.path)} className="text-destructive">

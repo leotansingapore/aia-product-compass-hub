@@ -258,7 +258,7 @@ export function VideoEditingLayout({
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
                       <FilePlus className="h-4 w-4 mr-2" />
-                      Add Page
+                      Add Text Lesson
                     </DropdownMenuItem>
                     {onAddQuiz && (
                       <DropdownMenuItem onClick={onAddQuiz} className="cursor-pointer">
@@ -376,7 +376,7 @@ export function VideoEditingLayout({
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={onAddPageToRoot} className="cursor-pointer">
                     <FilePlus className="h-4 w-4 mr-2" />
-                    Add Page
+                    Add Text Lesson
                   </DropdownMenuItem>
                   {onAddQuiz && (
                     <DropdownMenuItem onClick={onAddQuiz} className="cursor-pointer">

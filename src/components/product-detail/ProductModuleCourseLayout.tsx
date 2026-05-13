@@ -599,7 +599,7 @@ export function ProductModuleCourseLayout({
   const isCurrentCompleted = currentVideo ? !!getVideoProgress(currentVideo.id)?.completed : false;
 
   const renderLessonNav = (tone: "dark" | "light") =>
-    processedVideos.length > 1 ? (
+    processedVideos.length > 0 && currentVideo ? (
       <div
         className={cn(
           "flex items-center justify-between gap-3 border-t px-4 py-3",
