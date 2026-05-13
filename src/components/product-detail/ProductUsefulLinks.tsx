@@ -140,6 +140,21 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
   const productFiles = extractFiles(links);
   const resourceFolders = extractFolders(links);
 
+  const hasAnyResources =
+    transformedLinks.length > 0 ||
+    productFiles.length > 0 ||
+    resourceFolders.some((f) => f.links.length > 0);
+
+  if (!canEdit && !hasAnyResources) {
+    return (
+      <ProtectedSection sectionId="product_links">
+        <div className="rounded-lg border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
+          No resources for this product yet.
+        </div>
+      </ProtectedSection>
+    );
+  }
+
   return (
     <ProtectedSection sectionId="product_links">
       <Card>
