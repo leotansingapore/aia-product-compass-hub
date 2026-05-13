@@ -199,6 +199,8 @@ function SortableVideoItem({
   onEditVideo,
   onDeleteVideo,
 }: SortableVideoItemProps) {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const isTextLesson = !video.url?.trim();
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: video.id,
   });
@@ -255,14 +257,43 @@ function SortableVideoItem({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="bg-background z-50">
           <DropdownMenuItem onClick={() => onEditVideo(index)}>
-            <Edit className="h-4 w-4 mr-2" /> Edit video
+            <Edit className="h-4 w-4 mr-2" /> {isTextLesson ? 'Edit lesson' : 'Edit video'}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => onDeleteVideo(index)} className="text-destructive">
-            <Trash2 className="h-4 w-4 mr-2" /> Delete video
+          <DropdownMenuItem
+            onClick={() => setShowDeleteConfirm(true)}
+            className="text-destructive"
+          >
+            <Trash2 className="h-4 w-4 mr-2" /> {isTextLesson ? 'Delete lesson' : 'Delete video'}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <AlertDialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Delete {isTextLesson ? 'text lesson' : 'video'} "{video.title}"?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently remove the lesson{video.rich_content ? ', including its written content' : ''}.
+              This can't be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                onDeleteVideo(index);
+                setShowDeleteConfirm(false);
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

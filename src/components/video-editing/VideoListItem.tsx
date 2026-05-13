@@ -1,6 +1,17 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Edit, Trash2, Play, ArrowUp, ArrowDown, Clock } from 'lucide-react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { getVideoEmbedInfo, formatDuration } from './videoUtils';
 import { VideoEditForm } from './VideoEditForm';
 import type { TrainingVideo } from '@/hooks/useProducts';
@@ -32,6 +43,9 @@ export function VideoListItem({
   onMoveDown,
   existingCategories = []
 }: VideoListItemProps) {
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const isTextLesson = !video.url?.trim();
+
   if (isEditing) {
     return (
       <div className="border rounded-lg p-4">
@@ -79,7 +93,7 @@ export function VideoListItem({
           <Button size="sm" variant="ghost" onClick={onEdit}>
             <Edit className="h-3 w-3" />
           </Button>
-          <Button size="sm" variant="ghost" onClick={onDelete}>
+          <Button size="sm" variant="ghost" onClick={() => setShowDeleteConfirm(true)}>
             <Trash2 className="h-3 w-3" />
           </Button>
         </div>
@@ -95,6 +109,32 @@ export function VideoListItem({
           />
         </div>
       )}
+
+      <AlertDialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              Delete {isTextLesson ? 'text lesson' : 'video'} "{video.title}"?
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This will permanently remove the lesson{video.rich_content ? ', including its written content' : ''}.
+              This can't be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                onDelete();
+                setShowDeleteConfirm(false);
+              }}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
