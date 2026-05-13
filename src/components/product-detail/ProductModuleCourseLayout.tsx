@@ -227,6 +227,62 @@ export function ProductModuleCourseLayout({
     setOutlineOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (!videoInfo || videoInfo.type !== "youtube") return;
+    if (!iframeRef.current) return;
+    const iframe = iframeRef.current;
+    const videoId = currentVideo?.id;
+    let cancelled = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let player: any = null;
+
+    const init = () => {
+      if (cancelled) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const YT = (window as any).YT;
+      if (!YT?.Player) return;
+      try {
+        player = new YT.Player(iframe, {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          events: {
+            onReady: (e: { target: { getDuration?: () => number } }) => {
+              try {
+                const d = e.target.getDuration?.();
+                if (typeof d === "number") autoFillDuration(videoId, d);
+              } catch {
+                // ignore
+              }
+            },
+          },
+        });
+      } catch {
+        // ignore
+      }
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    if (w.YT?.Player) {
+      init();
+    } else {
+      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+      const prev = w.onYouTubeIframeAPIReady;
+      w.onYouTubeIframeAPIReady = () => {
+        try { prev?.(); } catch { /* ignore */ }
+        init();
+      };
+    }
+
+    return () => {
+      cancelled = true;
+      try { player?.destroy?.(); } catch { /* ignore */ }
+    };
+  }, [videoInfo, iframeSrc, currentVideo?.id, autoFillDuration]);
+
   /* ── Sidebar content (shared between persistent sidebar & mobile Sheet) ── */
   const sidebarContent = (
     <div className="space-y-3">
