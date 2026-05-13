@@ -9,6 +9,16 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import {
   ChevronDown,
   ChevronRight,
   MoreHorizontal,
@@ -291,6 +301,14 @@ function RecursiveFolderItem({
 }: RecursiveFolderItemProps) {
   const isExpanded = expandedFolders.has(node.path);
   const isDropTarget = dropTargetFolder === node.path && activeType === 'video';
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // Count of items that will be moved to root if this folder is deleted —
+  // includes lessons in nested sub-folders so the admin sees the full blast
+  // radius before confirming.
+  const countNested = (n: FolderNode): number =>
+    n.videos.length + n.children.reduce((sum, child) => sum + countNested(child), 0);
+  const totalLessonsInFolder = countNested(node);
 
   const {
     attributes,
@@ -377,11 +395,47 @@ function RecursiveFolderItem({
               <FileText className="h-4 w-4 mr-2" /> Add text lesson here
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onDeleteFolder(node.path)} className="text-destructive">
+            <DropdownMenuItem
+              onClick={() => setShowDeleteConfirm(true)}
+              className="text-destructive"
+            >
               <Trash2 className="h-4 w-4 mr-2" /> Delete folder
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <AlertDialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete "{node.name}"?</AlertDialogTitle>
+              <AlertDialogDescription>
+                {totalLessonsInFolder === 0 ? (
+                  <>This folder is empty. It will be removed.</>
+                ) : (
+                  <>
+                    This folder contains <strong>{totalLessonsInFolder}</strong>{' '}
+                    {totalLessonsInFolder === 1 ? 'lesson' : 'lessons'}
+                    {node.children.length > 0 ? ' (including sub-folders)' : ''}.{' '}
+                    The folder will be removed and all lessons inside will move to the
+                    top level. This can't be undone.
+                  </>
+                )}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  onDeleteFolder(node.path);
+                  setShowDeleteConfirm(false);
+                }}
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              >
+                Delete folder
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
 
       {/* Expanded content */}
