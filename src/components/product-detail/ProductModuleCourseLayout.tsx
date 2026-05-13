@@ -237,17 +237,19 @@ export function ProductModuleCourseLayout({
               {completedCount}/{processedVideos.length}
             </span>
           </div>
-          {totalDuration > 0 && (
-            <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              <span>Total: {totalDuration >= 3600
-                ? `${Math.floor(totalDuration / 3600)}h ${Math.floor((totalDuration % 3600) / 60)}m`
-                : formatDuration(totalDuration)
-              }</span>
-              <span className="mx-1">|</span>
-              <span>{processedVideos.length} lessons</span>
-            </div>
-          )}
+          <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            {totalDuration > 0 && (
+              <>
+                <Clock className="h-3 w-3" />
+                <span>Total: {totalDuration >= 3600
+                  ? `${Math.floor(totalDuration / 3600)}h ${Math.floor((totalDuration % 3600) / 60)}m`
+                  : formatDuration(totalDuration)
+                }</span>
+                <span className="mx-1">|</span>
+              </>
+            )}
+            <span>{processedVideos.length} lesson{processedVideos.length === 1 ? "" : "s"}</span>
+          </div>
         </div>
       )}
 
