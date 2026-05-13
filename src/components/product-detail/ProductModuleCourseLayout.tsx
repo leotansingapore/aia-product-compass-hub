@@ -699,7 +699,7 @@ export function ProductModuleCourseLayout({
           <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur px-4 py-3">
             <p className="text-xs text-muted-foreground truncate">{productTitle}</p>
             <h2 className="text-sm font-semibold truncate mt-0.5">
-              {currentVideo?.title ?? "Select a lesson"}
+              {currentVideo?.title ?? (processedVideos.length === 0 ? "No lessons yet" : "Select a lesson")}
             </h2>
           </div>
           <div className="p-3">
