@@ -512,7 +512,7 @@ export function ProductModuleCourseLayout({
             </div>
           </CardContent>
         </Card>
-      ) : !hasVideoEmbed && processedVideos.length > 0 ? (
+      ) : !hasVideoEmbed && !currentVideo?.description?.trim() && processedVideos.length > 0 ? (
         <Card className="min-w-0">
           <CardContent className="flex flex-col items-center justify-center gap-3 p-6 text-center sm:p-12">
             <div className="rounded-full bg-muted p-4">
