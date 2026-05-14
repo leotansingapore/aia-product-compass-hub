@@ -12,10 +12,10 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "3.9% p.a. for the first 10 years",
       "3.6% p.a. for the first 5 years only",
       "4.0% p.a. for the first 8 years",
-      "3.60% p.a. for the first 10 policy years, deducted monthly even during Premium Holiday"
+      "3.60% p.a. for the first 7 policy years, deducted monthly even during Premium Holiday"
     ],
     correct: 3,
-    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 10 policy years (including during Premium Holiday). Pro Achiever runs 3.9% p.a. for the same 10-year duration, so PWV has the lower rate at the same duration.",
+    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly for the first 7 policy years (including during Premium Holiday). Pro Achiever runs 3.9% p.a. for the same 10-year duration, so PWV has the lower rate at the same duration.",
     category: 'product-facts'
   },
 
@@ -46,15 +46,15 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "What is the Welcome Bonus structure for a PWV policy with S$12,000 annualised regular premium per the canonical Product Summary?",
+    question: "What is the Welcome Bonus structure for a PWV policy with S$42,000 annualised regular premium per the canonical Product Summary?",
     options: [
       "5% in Years 1, 2, and 3 totaling 15%",
       "5% in Year 1 and 5% in Year 2, totaling 10%",
-      "Year-by-year rates of 3%, 5%, 7%, 9%, 11% across the first 5 policy years (35% cumulative)",
+      "Year-by-year rates of 3%, 4%, 5% across years 1-3 (12% cumulative)",
       "3% per year for 5 years totaling 15%"
     ],
     correct: 2,
-    explanation: "PS Section 3.3 (p.2): for annualised regular premium in the S$12,000-and-above band, Welcome Bonus rates per policy year are 3%, 5%, 7%, 9%, 11% in policy years 1 through 5, totalling 35%. The middle band (S$9,000-S$11,999) totals 26%; the lowest band (S$7,800-S$8,999) totals 16%.",
+    explanation: "PS Section 3.3 (p.2): for annualised regular premium in the S$42,000-and-above band, Welcome Bonus rates per policy year are 3%, 4%, 5% in policy years 1, 2, 3 (totalling 12%) (3% Y1 + 4% Y2 + 5% Y3). The middle band (S$24,000-S$41,999) totals 3% (Year 1 only); the lowest band (S$18,000-S$23,999) totals 0%.",
     category: 'product-facts'
   },
 
@@ -114,12 +114,12 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     question: "What is the Performance Bonus in PWV per the canonical Product Summary?",
     options: [
       "A one-time 7% bonus at the beginning of Year 8",
-      "0.30% p.a. of Regular Premium Policy Value, payable yearly from the beginning of policy year 9 onwards",
+      "0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of policy year 8 onwards",
       "1% p.a. of total fund value from Year 5 onwards",
       "An annual bonus equal to the fund's actual performance minus a benchmark"
     ],
     correct: 1,
-    explanation: "PS Section 3.5 (p.2): Performance Bonus is 0.30% p.a. of Regular Premium Policy Value, paid yearly from the beginning of the 9th policy year onwards as long as the policy is in force and not on Premium Holiday. The brochure communicates 0.4% from Year 8; PS overrides.",
+    explanation: "PS Section 3.5: Performance Bonus is 0.40% p.a. of Regular Premium Policy Value, payable yearly from the beginning of the 8th policy year onwards (provided all regular premiums paid). Per PWV 2.0 PS v1.0 042025.",
     category: 'product-facts'
   },
 
@@ -211,7 +211,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "Avoid specific timelines and focus on emotional benefits",
       "Only mention the Welcome Bonus since it comes first",
       "Compare all three bonuses to fixed deposit interest rates",
-      "Show a timeline: Welcome Bonus in Years 1-3, Investment Bonus at Year 8, Performance Bonus annually from Year 8 onwards"
+      "Show a timeline: Welcome Bonus in Years 1-3 (max 12%), Investment Bonus at Years 8-11 (2.5%×4), Performance Bonus from Year 8 (0.40%), Performance Bonus annually from Year 8 onwards"
     ],
     correct: 3,
     explanation: "Numbers-oriented clients respond best to a clear, visual timeline showing when each bonus activates and how they compound. The three distinct layers (upfront, one-time at Year 8, and recurring from Year 8) demonstrate how the policy rewards long-term commitment.",
@@ -236,11 +236,11 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     options: [
       "Offer to waive the minimum premium requirement",
       "Suggest they wait until their income doubles before starting",
-      "Cite PS Section 6.1 (p.6) — minimum is S$7,800/year (S$650/month) — and reframe a flagship S$12,000/year structure as S$1,000/month to compare to their discretionary spending and to longer-term commitments",
+      "Cite PS Section 6.1 (p.6) — minimum is S$18,000/year (S$650/month) — and reframe a flagship S$42,000/year structure as S$1,000/month to compare to their discretionary spending and to longer-term commitments",
       "Recommend Pro Achiever instead since PWV is only for wealthy clients"
     ],
     correct: 2,
-    explanation: "PS Section 6.1 (p.6): minimum regular premium is S$7,800 annual / S$650 monthly. Reframing a flagship S$12,000/year structure as S$1,000/month (qualifying for the 35% Welcome Bonus band per PS Section 3.3) makes the amount manageable and lands the long-vs-short-commitment comparison.",
+    explanation: "PS Section 6.1 (p.6): minimum regular premium is S$18,000 annual / S$650 monthly. Reframing a flagship S$42,000/year structure as S$1,000/month (qualifying for the 12% Welcome Bonus band (top tier) per PS Section 3.3) makes the amount manageable and lands the long-vs-short-commitment comparison.",
     category: 'sales-angles'
   },
 
@@ -279,7 +279,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "Suggest clients should ignore charges entirely and focus only on returns"
     ],
     correct: 1,
-    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. for the first 10 policy years. Pro Achiever runs 3.9% p.a. for 10 years. Same duration, lower rate on PWV.",
+    explanation: "PS Section 5.2 (p.4): PWV's Supplementary Charge is 3.60% p.a. for the first 7 policy years. Pro Achiever runs 3.9% p.a. for 10 years. Lower rate AND shorter duration on PWV (3.60% for 7 years vs PA 3.9% for 10 years).",
     category: 'sales-angles'
   },
 
@@ -355,13 +355,13 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
   {
     question: "A prospect objects: 'Insurance companies earn too much commission from products like this.' How do you counter per the canonical Product Summary?",
     options: [
-      "PWV has 100% allocation on regular premiums per PS Section 4.1 — full contribution goes into invested units from Day 1, and the Supplementary Charge applies separately for the first 10 policy years",
+      "PWV has 100% allocation on regular premiums per PS Section 4.1 — full contribution goes into invested units from Day 1, and the Supplementary Charge applies separately for the first 7 policy years",
       "Deny that any commission is earned on PWV policies",
       "Change the subject to the product benefits without addressing the concern",
       "Agree that commissions are high and offer to reduce yours"
     ],
     correct: 0,
-    explanation: "PS Section 4.1 (p.3): 100% of regular premium is used to purchase units at bid price. PS Section 5.2 (p.4): the 3.60% p.a. Supplementary Charge applies separately for the first 10 policy years, deducted monthly from policy value.",
+    explanation: "PS Section 4.1 (p.3): 100% of regular premium is used to purchase units at bid price. PS Section 5.2 (p.4): the 3.60% p.a. Supplementary Charge applies separately for the first 7 policy years, deducted monthly from policy value.",
     category: 'objection-handling'
   },
 
@@ -396,11 +396,11 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
     options: [
       "Tell them the 3.6% charge is waived if they choose Elite Funds",
       "Admit that ETFs are always better value with no counter-argument",
-      "The 3.60% supplementary charge runs for the first 10 policy years (PS Section 5.2), and PWV bundles death benefit, three bonus layers, GIO, and Secondary Insured — none of which ETFs provide",
+      "The 3.60% supplementary charge runs for the first 7 policy years (PS Section 5.2), and PWV bundles death benefit, three bonus layers, GIO, and Secondary Insured — none of which ETFs provide",
       "Say ETFs are too volatile for any serious wealth accumulation"
     ],
     correct: 2,
-    explanation: "PS Section 5.2 (p.4): the 3.60% p.a. Supplementary Charge applies for the first 10 policy years. PWV bundles benefits ETFs cannot replicate: death benefit (PS Section 3.1), three bonus layers (PS Sections 3.3-3.5), GIO, and Secondary Insured (PS Section 3.7).",
+    explanation: "PS Section 5.2 (p.4): the 3.60% p.a. Supplementary Charge applies for the first 7 policy years. PWV bundles benefits ETFs cannot replicate: death benefit (PS Section 3.1), three bonus layers (PS Sections 3.3-3.5), GIO, and Secondary Insured (PS Section 3.7).",
     category: 'objection-handling'
   },
 
@@ -422,7 +422,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "During a roleplay, a prospect asks: 'I want to invest S$12,000/year (top Welcome Bonus band) but want income from dividends. How does that work?' What do you explain?",
+    question: "During a roleplay, a prospect asks: 'I want to invest S$42,000/year (top Welcome Bonus band) but want income from dividends. How does that work?' What do you explain?",
     options: [
       "'All dividends must be reinvested for the first 10 years.'",
       "'Dividends are paid annually by cheque.'",
@@ -430,7 +430,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "'Dividend income is only available after the 5-year premium term ends.'"
     ],
     correct: 2,
-    explanation: "PS Section 3.3 (p.2): annualised regular premium of S$12,000 and above earns the top Welcome Bonus band (35% cumulative). PS Section 8.4 (p.10): dividends of S$50 or above are paid via PayNow (NRIC/FIN); smaller amounts are automatically reinvested as additional units.",
+    explanation: "PS Section 3.3 (p.2): annualised regular premium of S$42,000 and above earns the top Welcome Bonus band (12% cumulative). PS Section 8.4 (p.10): dividends of S$50 or above are paid via PayNow (NRIC/FIN); smaller amounts are automatically reinvested as additional units.",
     category: 'roleplay'
   },
 
@@ -443,7 +443,7 @@ export const platinumWealthVentureExamQuestions: ExamQuestion[] = [
       "'You can increase premiums through the top-up mechanism to get the higher bonus.'"
     ],
     correct: 2,
-    explanation: "PS Section 6.1 (p.6) states 'Varying of regular premium is not allowed.' To access a higher Welcome Bonus band (PS Section 3.3 sets the bands at S$7,800-$8,999 / $9,000-$11,999 / $12,000+), the client would need a new policy. Top-ups are subject to a 3% premium charge and do not count toward the Welcome Bonus.",
+    explanation: "PS Section 6.1 (p.6) states 'Varying of regular premium is not allowed.' To access a higher Welcome Bonus band (PS Section 3.3 sets the bands at S$18,000-S$23,999 / S$24,000-S$41,999 / S$42,000+), the client would need a new policy. Top-ups are subject to a 3% premium charge and do not count toward the Welcome Bonus.",
     category: 'roleplay'
   },
 
