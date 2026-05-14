@@ -7,99 +7,47 @@ primary_slides: "n/a"
 duration_minutes: 50
 tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 ---
-# Day 5 — Compliance + Close: Disclosures, Four-Hoops Close, Paperwork, Delivery
+# Day 5 — Disclosures, Four-Hoops Close, Paperwork, Delivery
 
-> **Today's frame:** Disclose proactively, close in layers. The non-guaranteed bonus, accelerated CI, and Premium-Pause-as-loan are all things RNF will sample-audit you on — and all things that build trust if delivered as credibility moves rather than buried in fine print. The close is the formal version of decisions already made through the four hoops.
+# Part 1 — Risk Disclosures as Objection-Handling
 
-
----
-
-# Part 1 — Compliance + Risk Disclosures (RNF-Relevant Phrasing)
-
-> **The frame for Part 1:** Three things must land in your verbal walkthrough — the non-guaranteed bonus, the accelerated CI mechanic, and Premium Pause as a loan. Burying them in BI fine print is how FCs lose audits.
-
-By the end of Part 1 you should be able to: deliver the four required disclosures cleanly, recognise when GPP is the wrong product for the prospect (and say so), and pass an RNF sample audit without a coaching note.
+The three disclosures aren't there to scare the prospect — they're there to surface the three objections you already know are coming, and handle them on your terms. Treat each one as an objection you can reframe.
 
 ---
 
-## The principle
+## The disclosures, reframed as objections
 
-A prospect who hears the risks *up front* and still signs is a prospect who signed for the right reasons. They won't free-look out at week 2. They won't complain to MAS. They'll refer you.
+### Disclosure 1 — "Bonuses aren't guaranteed"
 
-A prospect who only finds out about risks at week 3 — by reading the policy contract — feels deceived. That's the cancellation. That's the complaint. That's the RNF audit.
+Anticipated objection: *"The illustration shows bonuses — but they're not guaranteed, right?"*
 
-> *"A bonus rate is used in the policy illustration — the actual benefits payable may vary according to the future experience of the participating fund. Investment rate of return is not guaranteed. Past performance is not indicative of future performance."*
+The reframe:
 
-Say this *out loud* in the appointment, in plain language. Don't bury it in a 60-page contract.
+> *"Right, the bonuses aren't guaranteed — they're tied to AIA's participating fund performance. Two things on that. One — the BI shows you two columns: the guaranteed column is locked, no matter what. So even worst-case, the guaranteed column is yours. Two — historically AIA's par fund has tracked very close to the illustrated rate. The illustrated total is the projection, the guaranteed column is the floor. Either way you walk away ahead vs pure term that pays nothing if you don't claim."*
 
----
+### Disclosure 2 — "Cash values lower than premiums paid in early years"
 
-## The four required disclosures
+Anticipated objection: *"Why is my cash value less than what I've paid in?"*
 
-### Disclosure 1 — "Bonuses are not guaranteed"
+The reframe:
 
-GPP is a participating plan. Anything past the guaranteed cash value column in the BI is **non-guaranteed** and depends on the participating fund's performance.
-
-> *"Just to be very clear — the cash value I'm showing you has two parts. The guaranteed column is locked. The illustrated total is guaranteed PLUS non-guaranteed bonuses based on how AIA's participating fund performs. The actual amount could be higher or lower than what I'm showing.*
->
-> *Historically AIA's par fund has performed well, but the future is not guaranteed. We've shown both columns so you can see the floor and the projection."*
-
-The verbatim:
-
-> *"A bonus rate is used in the policy illustration — the actual benefits payable may vary according to the future experience of the participating fund."*
-
-### Disclosure 2 — "Cash values may be lower than premiums paid (early years)"
-
-> *"In the early years — typically the first 5 to 10 years — the cash value of the policy will be lower than the total premiums you've paid. That's because the costs of distribution and the risk component are front-loaded.*
->
-> *By the end of the pay term, the cash value catches up. By age 65, you should be back to premium parity or above. By age 100, you're well above. But early surrender means you take a loss.*
->
-> *Honest version: if you can't commit to at least 10 years, this is the wrong plan. We should look at something else."*
-
-The verbatim:
-
-> *"The policy involves high costs — case rate of value payable may be less than total payment paid."*
-
-That last sentence is the RNF-protection move. **Say it out loud.**
+> *"In the first 5 to 10 years, yes, the cash value sits below total premiums paid — that's the cost of distribution and the risk component being front-loaded. By the end of the pay term, it catches up. By age 65, you're at parity or above. By 100, you're well above. The early-year dip is the structural price for the lifetime cover + cash refund at maturity. If you stayed in term, you'd be paying for cover you don't get to keep — same money, nothing back. With GPP that money compounds back to you."*
 
 ### Disclosure 3 — "Accelerated CI reduces death benefit"
 
-This is the most important mechanic to disclose proactively (covered in detail Day 3 Part 1):
+Anticipated objection — and often a real surprise: *"Wait, if I claim CI, the death cover comes down?"*
 
-> *"One thing I want to flag clearly — if you make a CI claim, the death benefit gets reduced by the claim amount. So if your death cover is $500k and you claim $100k for early-stage cancer, your remaining death benefit is $400k. That's how accelerated CI works.*
->
-> *It's not stacked on top — it's drawn down from. This keeps the premium affordable. If you want CI fully stacked on top of death, that's a different product structure (more expensive)."*
+The reframe:
 
-The verbatim:
-
-> *"If you claim for early CI, do you still get the death coverage? Yes, but the death coverage will actually be reduced."*
+> *"Yes — accelerated CI means the CI claim draws from your death benefit, not on top of it. So if death cover is $500K and you claim $100K for early-stage cancer, the remaining death benefit is $400K. That's the trade-off — accelerated CI keeps the premium meaningfully lower than a fully-stacked structure. If you want CI fully on top of death, that's a different product and a higher premium. For most prospects, accelerated is the right balance of cover-per-dollar."*
 
 ### Disclosure 4 — "Premium Pause is a loan, not a waiver"
 
-> *"There's a feature called Premium Pause — useful if you lose your job. But I want to be clear: it's a 12-month interest-free LOAN, not a waiver. You still owe the premiums; you just have 12 months to pay them back interest-free. After that, interest accrues.*
->
-> *Most clients never use it. It's there as a safety net, not a benefit."*
+Anticipated objection: *"If I lose my job, can I just pause without consequence?"*
 
-The verbatim:
+The reframe:
 
-> *"There will be a 12-month period where you don't have to pay, but take note this is not free money — you still have to pay back. There is no interest charged on this loan, but you just have to pay it back. After 12 months, there will be interest on the outstanding loan."*
-
----
-
-## The "anti-market" disclosure (the trust move)
-
-The single biggest credibility move in a GPP appointment:
-
-> *"This plan is not for everyone. The anti-market for GPP is people who:*
->
-> *- Want the absolute lowest possible premium per dollar of cover*
-> *- Are confident they'll invest the difference and outperform 2% (and have the discipline)*
-> *- Need their money back in under 10 years*
-> *- Don't value the cash refund at maturity*
->
-> *If any of those describe you, GPP is the wrong plan. We should be looking at term + a separate investment plan instead. Are you OK committing for 25 years and accepting that the cash value is lower than premiums paid in the early years?"*
-
-If they hesitate on the 25-year commitment, **stop the close.** Recommend pure term instead. RNF would rather you walk away from a wrong-fit case than book a complaint.
+> *"You can pause — it's a 12-month interest-free loan, not a free waiver. The premiums are still owed; you just have 12 months to repay interest-free. After that, interest accrues. The Pause exists as a safety net for unemployment, not as a casual feature. Most clients never use it. The framing for the prospect — it's there if life happens, it's not a way to skip premiums."*
 
 ---
 
@@ -157,46 +105,20 @@ If a prospect wants more than $3M CI cover via AIA, you can't write it. Refer to
 
 ---
 
-## When to walk away from a case
+## Reframing the hard objections
 
-Three scenarios where the right move is to NOT close:
+Three objections that surface most often, and the reframes:
 
-1. **Time horizon under 10 years.** GPP is wrong for them. Recommend pure term or a savings plan.
-2. **Cannot afford the minimum without sacrificing the emergency fund or higher-priority protection.** Build the foundation first.
-3. **Genuinely term-only mindset (no value placed on cash refund).** Pitch term and respect the close. Trust compounds.
+### "My time horizon is under 10 years"
+Reframe it: GPP is the long-term protection bucket. The lifetime cover sits on top of a 15/20/25-year pay term, but the protection runs to age 100 regardless. The 10-year minimum holding logic is about cash-value optics in the BI — but the cover is doing its job from day 1. If they need *cash* in under 10 years that's a different conversation; the cover argument doesn't care about that horizon.
 
-*"I don't think GPP is right for you, let me show you something else"* is one of the highest-trust moves in the product set.
+### "I can't afford the minimum"
+Reframe it: GPP at the minimum is still cheaper than equivalent CI cover via a standalone CI policy + term combination over a 25-year window. We're not asking them to budget for a luxury — we're matching the floor of cover they already need to a structure that doesn't expire worthless. If genuinely can't, then reduce the multiplier or scale back the SA rather than walking.
 
----
-
-## The RNF-clean closing block
-
-Deliver this as one block right before the iPOS+ binary close:
-
-> *"Before we authenticate, four things to make sure I've covered:*
->
-> *One — bonuses in the illustration are not guaranteed. The actual cash value depends on AIA's participating fund performance.*
->
-> *Two — in the early years, your cash value will be lower than what you've paid. By age 65, it catches up. If you surrender early, you take a loss.*
->
-> *Three — if you make a CI claim, the death benefit reduces by that amount. It's accelerated, not stacked.*
->
-> *Four — Premium Pause is a 12-month interest-free loan, not a free waiver.*
->
-> *Any of those four concern you?"*
-
-If "no" — RNF audit pass. Move to Phase 7 paperwork.
-
-If "yes" — slow down. Address it. Better to spend 15 more minutes than to book a complaint.
+### "Term gives me more cover per dollar"
+Reframe it: True, term wins on cost-per-dollar today. But the moment health changes, term gets harder to renew and pure term expires with nothing back. GPP gets you a lower-but-permanent cover floor plus the cash refund — the trade-off is structural, not "wrong vs right." Some clients run both (term layer + GPP floor), which is often the cleanest answer for higher-cover prospects.
 
 ---
-
-## Drill (Part 1)
-
-1. **Memorise the four disclosures** word-for-word. Recite each in under 30 seconds.
-2. **Practise the anti-market disclosure** out loud, 3 times. Notice if it feels uncomfortable — it should. The discomfort is the credibility.
-3. **Memorise the closing disclosure block** (4 things, ~75 seconds total). This is what an RNF audit listens for.
-4. **Pick 1 prospect from your pipeline** for whom GPP is the wrong product. Write the script for telling them so. Practise it.
 
 ---
 
@@ -412,13 +334,13 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 ---
 
 ## Quiz
-1. **Why does Day 5 insist disclosures be made out loud, not buried in BI fine print?**
-- A) Regulation requires verbal disclosure
-- B) Disclosing risks up front builds trust, prevents free-look cancellations, and protects against RNF audit findings ✓
+1. **Why does Day 5 reframe each disclosure as an objection-handler rather than just stating it?**
+- A) Regulation requires it
+- B) The prospect is already thinking these objections — surfacing and reframing them on your terms builds more conviction than waiting for the prospect to raise them defensively ✓
 - C) AIA pays a bonus for verbal disclosure
-- D) BI fine print is too small to read
+- D) Disclosures aren't required at all
 
-**Why:** Day 5 Part 1 frames proactive disclosure as the credibility move that prevents week-2 free-look outs, MAS complaints, and RNF audit failures.
+**Why:** Each "disclosure" is an anticipated objection. Reframing it (e.g., bonuses aren't guaranteed → but the guaranteed column is locked, AND historically the par fund tracks close to illustrated) keeps the conversation moving toward conviction instead of toward doubt.
 
 2. **What does it mean that GPP's bonus is "non-guaranteed"?**
 - A) AIA can revoke already-credited bonuses anytime
@@ -428,13 +350,13 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 
 **Why:** Product Summary Section 3 confirms RB once declared is guaranteed but future bonuses depend on the participating fund's experience and can vary from illustrations.
 
-3. **What is the "anti-market" disclosure and why is it the biggest credibility move?**
-- A) A disclaimer about competitor products
-- B) Telling the prospect explicitly who GPP is NOT for (lowest premium seekers, BTID disciples, sub-10-year horizons), so they self-select ✓
-- C) A statement that GPP is illegal for foreigners
-- D) A pricing footnote about market volatility
+3. **A prospect probes: "term gives me more cover per dollar than GPP. Why GPP?" Best reframe?**
+- A) Tell them term is wrong and GPP is always better
+- B) Acknowledge term wins on cost-per-dollar today, then reframe the structural trade-off: term expires worthless and gets harder to renew as health changes; GPP gives a lower-but-permanent cover floor plus cash refund at maturity. Often the cleanest answer is to run both — term layer + GPP floor ✓
+- C) Recommend pure term and walk away
+- D) Suggest they wait until they're older
 
-**Why:** Day 5 Part 1 says naming the anti-market out loud — and walking away if the prospect fits it — is one of the highest-trust moves in the product set.
+**Why:** Reframe the trade-off honestly — it's structural, not "wrong vs right." For higher-cover prospects, running term + GPP together is often the answer rather than picking one.
 
 4. **What are the four hoops a prospect must clear before the Phase 6 binary close?**
 - A) FHR / NRIC / GIRO / signature
@@ -476,21 +398,21 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 
 **Why:** Day 5 Part 2 specifies the actual close-the-deal moment is the binary at end of Phase 5: "Would you prefer without Early CI or with Early CI?"
 
-9. **The RNF-clean closing block recites four disclosures back-to-back. Which list is correct?**
+9. **The four GPP disclosures, treated as objection reframes, are:**
 - A) Cover amount / premium / pay term / multiplier
 - B) Bonuses non-guaranteed / early cash value below premiums paid / accelerated CI reduces death benefit / Premium Pause is a loan ✓
 - C) Free-look / GIRO / Vitality / FHR
 - D) Suicide / pre-existing / waiting period / war exclusion
 
-**Why:** Day 5 Part 1 lists the four disclosures: non-guaranteed bonus, early-year cash-value gap, accelerated CI, and Premium Pause as interest-free loan.
+**Why:** Each one — bonuses, early-year cash value gap, accelerated CI, Premium Pause — is an objection the prospect is already thinking, and each one has a reframe that converts the objection into conviction.
 
-10. **Scenario: A 28-year-old prospect tells you they "need their money back within 5 years if anything comes up." Per Day 5, what is the correct move?**
-- A) Sell GPP anyway and reassure them about surrender value
-- B) Decline the case for GPP — recommend pure term + a separate savings plan, since GPP requires a 10-year+ time horizon and the early-year cash value will be below premiums paid ✓
+10. **Scenario: A 28-year-old prospect says they "might need the money back within 5 years if anything comes up." Per Day 5, the right move is:**
+- A) Decline the case and walk away
+- B) Reframe — GPP is the long-term protection bucket. The cover runs from day 1 regardless of pay term. The 10-year horizon logic is about cash-value optics in the BI, not about whether the cover is doing its job. If they truly need cash inside 5 years, that's a separate emergency-fund conversation; the cover argument still stands ✓
 - C) Push the 15-year pay term to compress the timeline
 - D) Promise a free-look extension
 
-**Why:** Day 5 Part 1 explicitly says time horizon under 10 years means GPP is wrong — recommend pure term or a savings plan, and the "anti-market" disclosure plus the "when to walk away" rules apply.
+**Why:** Most "wrong fit" objections come from misframed expectations. Reframe the time-horizon worry — the cover works from day 1, the 10-year framing is about cash-value optics — before walking away from the case.
 
 ## Related
 

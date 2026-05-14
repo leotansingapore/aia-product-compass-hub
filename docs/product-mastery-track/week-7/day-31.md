@@ -19,7 +19,7 @@ Part 1 covers what PWV is. Part 2 covers the Drawing Concept (the 7-panel signat
 
 PWV 2.0 is a 5-year premium-paying ILP designed for pre-retirees converting accumulated wealth (CPF excess, maturing endowments, lazy cash) into a quarterly dividend income stream while preserving capital. The first 5 minutes aren't a product pitch — they're permission to have the rest of the conversation.
 
-By the end of Part 1 you should be able to: describe PWV in two sentences, name the three structural "moats" vs CPF Life, recite the four bonus mechanisms, and recognise when PWV is the wrong product (under-50 prospects, no accumulated wealth).
+By the end of Part 1 you should be able to: describe PWV in two sentences, name the three structural "moats" vs CPF Life, recite the four bonus mechanisms, and recognise the personas most likely to push back on PWV (under-50 prospects, no accumulated wealth) — and the reframes for each.
 
 ---
 

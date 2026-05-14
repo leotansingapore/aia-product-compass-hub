@@ -17,7 +17,7 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **The one idea for Part 1:** PLP is a "two-in-one" plan — one premium dollar splits between protection (the floor) and investment (the engine). It evolves with the buyer: protection-focused in their 20s-40s, retirement-focused in their golden years.
 
-By the end of Part 1 you should be able to: (1) describe PLP in two sentences without notes, (2) name the Plus vs Max distinction (locked at issue, not alterable), (3) state the four most-quoted numbers cold, (4) recognise when PLP is the wrong product.
+By the end of Part 1 you should be able to: (1) describe PLP in two sentences without notes, (2) name the Plus vs Max distinction (locked at issue, not alterable), (3) state the four most-quoted numbers cold, (4) recognise the toughest objections to PLP and the reframes for each.
 
 ---
 

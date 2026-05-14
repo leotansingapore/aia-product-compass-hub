@@ -114,7 +114,7 @@ Then permission to draw:
 1. **Run the discovery question out loud, twice.** Practise the bridge from "family or own income" into "mind if I sketch it on paper."
 2. **Recall the four numbers without notes** (15/20/25 · 65/75 · 2x/3x/5x · $3M aggregate).
 3. **List 3 prospects in your pipeline** for whom GPP is the right product. For each, write one sentence on which trigger applies.
-4. **List 1 prospect** for whom GPP is the wrong product. Write one sentence on what you'd recommend instead.
+4. **Pick the toughest objection you've heard recently on GPP** — "term is cheaper", "what if I can't afford 25 years", "5-year horizon", "I don't value cash refund". Write your reframe for that specific prospect. Run it out loud once.
 
 ---
 

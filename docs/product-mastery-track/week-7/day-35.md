@@ -17,7 +17,7 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 
 > **The one idea for Part 1:** PWV is an ILP. Capital NOT guaranteed during the term. Dividends NOT guaranteed. Past performance NOT indicative. The FC who delivers these crisply earns trust because the client has been waiting to find out the catch — and naming risks first, then reframing, turns compliance into reassurance.
 
-By the end of Part 1 you should be able to deliver all 10 critical compliance points cleanly, recognise when PWV is the wrong product, and pass an RNF sample audit without a coaching note.
+By the end of Part 1 you should be able to deliver the critical risk disclosures as objection reframes, and use the 14-day free-look as a closing tool for "I want to think about it" rather than as a defensive disclosure.
 
 ---
 
@@ -86,48 +86,30 @@ Examples:
 
 Don't dwell on the risk. State, reframe, move.
 
-## The "anti-market" disclosure
+## Reframing the hardest pre-retiree objections
 
-> *"This plan isn't right for everyone. The anti-market for PWV is people who:*
->
-> *- Need short-term liquidity (PWV requires 7-10 year horizon)*
-> *- Want fully guaranteed returns (consider CPF Life or fixed deposits)*
-> *- Are uncomfortable with non-guaranteed dividend income*
-> *- Don't have at least 5 years of stable premium-paying capacity*
->
-> *If any of those describe you, PWV isn't the right plan. Be honest with me."*
+The most common pre-retiree pushbacks on PWV, and the reframes:
 
-If the prospect hesitates on any of these, slow down. The wrong sale is worse than no sale.
+### "I don't want to lock my money up for 7-10 years at my age"
+Reframe it: this slice is the dividend-income slice — it's designed to deliver retirement income, not act as the emergency-cash bucket. Most pre-retirees already hold cash, CPF Life, and other liquid buckets; PWV sits as the income-engine layer alongside those. We're not asking you to put the emergency fund here; we're matching this slice to the retirement-income job.
 
-## The full RNF-clean closing block
+### "I want fully guaranteed returns — CPF Life or a fixed deposit instead"
+Reframe it: CPF Life and FDs cap the upside at the published rate. PWV's projection is conservative at 6% (actual par-fund history is around 7%) — and importantly, you keep optionality on the dividend payout vs reinvestment, you can step the income up over time, and the death benefit floor is contractual. The honest comparison is: do you want a capped-but-guaranteed number, or a slightly-flexible number with upside that's underwritten by a 100-year-old institution?
 
-Deliver as one block right before signature:
+### "Dividends aren't guaranteed — what if AIA cuts them?"
+Reframe it: dividends aren't contractually guaranteed, but the participating fund is regulated under the SIA and the fund's performance has tracked close to the illustrated rates historically. Plus, even in a soft year you can switch from cash payout to reinvestment, which lets the policy value catch up. The non-guaranteed shape is what gives the upside potential vs an annuity.
 
-> *"Before we authenticate, four things to make sure I've covered:*
->
-> *One — capital is NOT guaranteed during the term. Dividends are NOT guaranteed. Past performance is NOT indicative.*
->
-> *Two — 14-day free-look from receipt of policy documents. During free-look you can cancel; AIA refunds premiums minus market value adjustments and any medical fees.*
->
-> *Three — surrender and partial withdrawal charges apply in years 1-10. Premium Holiday Charge applies if you pause regular premium payments.*
->
-> *Four — fees and charges aren't guaranteed. AIA reserves the right to vary with at least 1 month's written notice.*
->
-> *Any of those concern you?"*
-
-If "no" — RNF audit pass. Move to in-meeting execution.
-
-If "yes" — slow down. Address it.
+### "What if fees go up?"
+Reframe it: fees can be revised with 1 month's notice — that's standard ILP industry language. AIA has not historically moved charges arbitrarily on existing policies, and at the projected 6% (already conservative vs actual 7%), the math holds even with modest fee movement.
 
 ---
 
 ## Drill (Part 1)
 
-1. **Memorise the 3 ILP pillar disclosures** word-for-word.
-2. **Practise the closing block** (4 things, ~90 seconds total).
-3. **Practise the reframe discipline** — state risk, name protection, move on. 3 examples.
-4. **Practise the anti-market disclosure** in your own voice.
-5. **Memorise the suicide clause + misrepresentation clause windows** (1 year / 2 years).
+1. **Run the 4 reframes out loud** — liquidity / guaranteed-return / dividend-not-guaranteed / fee-revisability. Time each at 30-45 seconds.
+2. **Practise the state-reframe-move pattern** with three examples from the table above.
+3. **Memorise the suicide clause + misrepresentation clause windows** (1 year / 2 years).
+4. **Pick the toughest objection you've heard recently** for PWV — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -356,13 +338,13 @@ The **roleplay assignment.** A complete pre-retiree appointment with Mr Lim Wei 
 
 **Why:** Day 5's Pillar 3 disciplines: ALWAYS use 6% in client conversation; brochure case studies show 8% — disregard those when projecting in front of a real client.
 
-9. **According to Day 5's full RNF-clean closing block, the four things to confirm before authentication are:**
+9. **The four PWV risk items that should be reframed as objection-handling are:**
 - A) Premium amount, fund choice, beneficiary, address
-- B) Capital and dividends not guaranteed; 14-day free-look; surrender/withdrawal charges in years 1-10 + Premium Holiday Charge; fees not guaranteed (1 month notice for changes) ✓
+- B) Capital and dividends not guaranteed; surrender/withdrawal charges in years 1-10 + Premium Holiday Charge; fees not guaranteed (1 month notice for changes); 14-day free-look (used as a closing tool, not a defensive disclosure) ✓
 - C) Age, health, occupation, income
 - D) SingPass, PayNow, GIRO, witnesses
 
-**Why:** Day 5 specifies the verbatim closing block with these four points — delivered as one block right before signature, with "Any of those concern you?"
+**Why:** Each item is an objection the prospect is already thinking — surface and reframe each on your terms rather than reciting them back-to-back before signature.
 
 10. **You are 75 minutes into the closing meeting with Mr Lim. He has signed the application, made payment, set dividend preference, and SingPass-authenticated. He says "Let's do beneficiary nominations another day — I need to think about who to name." Per Day 5's "case is closed" definition and the 12-item checklist, what is the correct move?**
 - A) Agree, schedule a follow-up — the case is essentially closed

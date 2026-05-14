@@ -17,7 +17,7 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 > **The one idea for today:** APA is a pure investment plan. The edge isn't its 100% investment allocation — most comparable options have that too. The edge is the stackable Welcome and Special bonuses over time, a capital-guaranteed death benefit floor, and the legacy continuity through the secondary insured feature.
 
-By the end of today you should be able to: (1) describe APA in two sentences without notes, (2) name the three commitment terms and three fund routes, (3) state the four most important numbers in the plan, (4) recognise when APA is the wrong product for the prospect.
+By the end of today you should be able to: (1) describe APA in two sentences without notes, (2) name the three commitment terms and three fund routes, (3) state the four most important numbers in the plan, (4) recognise the prospect personas most likely to push back on APA — and the reframes for each.
 
 ---
 
@@ -139,7 +139,7 @@ Permission to walk them through:
 1. **Run the discovery-first opener out loud, twice.** No notes. Practise the bridge into the retirement-gap question, and the pre-frame ("what's your honest reaction to locking money away for 10–20 years?"). Stop yourself if you slide into feature-dumping.
 2. **Write down the four key numbers** (3.9% / 5% & 8% / 10-yr IIP bonus at $400-$600-$1,000 tiers / $2,400 minimum) without looking. Verify the welcome bonus figures in iPOS before drilling them — those are the ones you'll actually quote.
 3. **List 3 prospects in your pipeline** for whom APA would be the right fit. For each, write one sentence on the *gap* APA solves for them specifically (not the features APA has).
-4. **List 1 prospect for whom APA is the wrong product.** Write one sentence on what you'd recommend instead. Practise the anti-market disclosure out loud — cushion first, then the disqualifier.
+4. **Pick the toughest objection you've heard recently on APA** — "I'll just DIY", "what if it doesn't hit 8%", "I want liquidity", "I don't want to lock money up for 10 years". Write your reframe for that specific prospect. Run it out loud once.
 
 ---
 

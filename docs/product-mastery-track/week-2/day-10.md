@@ -18,7 +18,7 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **The one idea for Part 1:** PLP is an ILP — three pillar disclosures verbatim every meeting. Premiums not guaranteed. Policy values not guaranteed. Past performance not indicative. The 14-day free-look + 75/50/0% surrender schedule + 5-year reinstatement + suicide-year-1 limit complete the compliance picture.
 
-By the end of Part 1 you should be able to deliver all 3 ILP pillars cleanly, deploy the 14-day free-look + reinstatement disclosures, and pass an RNF sample audit.
+By the end of Part 1 you should be able to deliver the 3 ILP pillars (non-guaranteed returns, surrender charges, fees subject to change) as objection reframes, and use the 14-day free-look as a closing tool for "I want to think about it" rather than as a defensive disclosure.
 
 ---
 
@@ -100,38 +100,15 @@ This is a useful safety net — if the prospect lapses due to financial stress, 
 
 > *"Protected up to specified limits by SDIC."* [Brochure p.9]
 
-## The full RNF-clean closing block
+## Use disclosures as objection-handling, not as a defensive recitation
 
-Deliver as one block right before signature:
+Each "disclosure" the FC will deliver — non-guaranteed returns, early surrender charges, fees subject to change, the 14-day free-look — is an objection the prospect is already thinking. Frame each one as an anticipated objection and reframe it on your terms. Don't deliver them as a back-to-back compliance block before signature; that plants doubt at the worst possible moment.
 
-> *"Before we authenticate, four things to make sure I've covered:*
->
-> *One — premiums are NOT guaranteed. Policy values are NOT guaranteed. Past performance is NOT indicative of future performance.*
->
-> *Two — 14-day free-look from receipt of policy documents. During free-look you can cancel; AIA refunds premiums minus any adjustment for fund value movement.*
->
-> *Three — early termination involves high costs. Year 1 surrender charge is 75%. Year 2 is 50%. Year 3 onwards no charge.*
->
-> *Four — fees and charges aren't guaranteed. AIA reserves the right to vary with at least 1 month's written notice.*
->
-> *Any of those four concern you?"*
-
-If "no" — RNF audit pass. Move to portfolio selection.
-
-If "yes" — slow down. Address it. Better 15 more minutes than a complaint.
-
-## The "anti-market" disclosure (the trust move)
-
-> *"This plan isn't right for everyone. The anti-market for PLP is people who:*
->
-> *- Want pure investment only (APA is the right plan)*
-> *- Are totally risk-averse to non-guaranteed returns*
-> *- Can't commit at least 10 years to the plan*
-> *- Need short-term access to funds*
->
-> *If any of those describe you, PLP isn't right. Be honest with me."*
-
-If they hesitate on the 10-year commitment, slow down. The wrong sale is worse than no sale.
+For PLP specifically:
+- "Returns not guaranteed" → reframe with the AIA par-fund track record + the alternative (guaranteed loss to inflation in fixed deposits)
+- "Surrender charges in Y1-Y2" → reframe as "AIA only earns money if you break the rules" — 100% allocated, charges only bite if you exit early; just stay the course
+- "Fees can change with 1 month's notice" → reframe with AIA's track record of not arbitrarily moving charges + this is industry-standard ILP language
+- "14-day free-look" → use as a closing tool for "I want to think about it", not as a defensive disclosure
 
 ## Bonus disclosure for AIA Vitality
 
@@ -143,11 +120,10 @@ For Vitality-enrolled prospects, this is a separate disclosure to deliver.
 
 ## Drill (Part 1)
 
-1. **Memorise the 3 ILP pillars** word-for-word. Recite each in under 30 seconds.
-2. **Practise the closing block** (4 things, ~90 seconds total).
-3. **Practise the anti-market disclosure** in your own voice. Notice the discomfort — that's the credibility.
-4. **Memorise the surrender schedule** (75/50/0%) and the reinstatement window (5 years).
-5. **Pick 1 prospect** for whom PLP is the wrong product. Write the script for telling them so.
+1. **Run the 3 ILP reframes out loud** — non-guaranteed returns, surrender charges, fees subject to change. Time each at 30-45 seconds.
+2. **Practise the free-look close** for "I want to think about it" — get the line natural.
+3. **Memorise the surrender schedule** (75/50/0%) and the reinstatement window (5 years).
+4. **Pick the toughest objection you've heard recently** for PLP — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 

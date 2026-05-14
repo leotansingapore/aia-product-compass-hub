@@ -19,7 +19,7 @@ Part 1 covers compliance and disclosures. Part 2 covers the direct close, SQS wo
 
 Three honest disclosures (yearly-renewable not guaranteed, price can change, cover steps down at 75 and ends at 80) plus the standard exclusion list. Solitaire PA's compliance burden is the same as any RNF-regulated H&S product despite the lighter paperwork.
 
-By the end of Part 1 you should be able to deliver the disclosures cleanly, recite the major exclusions, distinguish covered Policy Extensions from exclusions, and pass an RNF audit.
+By the end of Part 1 you should be able to reframe each disclosure as objection-handling, recite the major exclusions, and distinguish covered Policy Extensions from exclusions.
 
 ---
 
@@ -120,41 +120,23 @@ BUT:
 
 **Don't conflate the two when speaking to clients.** Make this distinction crystal clear.
 
-## The full RNF-clean closing block
+## Reframe each item as objection-handling
 
-Deliver as one block right before signature:
+The four items above (yearly-renewable / not-guaranteed renewable, age-75 step-down + age-80 termination, pre-existing exclusion, 14-day free-look) need to be in the prospect's awareness. Surface each as a reframe when it naturally comes up, not as a back-to-back block before signature:
 
-> *"Before we move forward, four things to make sure I've covered:*
->
-> *One — this is a yearly-renewable accident and health policy. Not guaranteed renewable. AIA can re-price with 31 days' notice.*
->
-> *Two — basic benefits reduce by 50% from your 75th birthday renewal. Optional benefits stop at 75. Policy terminates at 80.*
->
-> *Three — pre-existing conditions are excluded from claims, even though the policy is guaranteed-issue. Plus exclusions for illegal activity, intentional self-injury, alcohol/drug-related accidents, professional sports, racing other than on foot or swimming.*
->
-> *Four — 14-day free-look from receipt. Cancel within that window, you get the premium back minus medical fees.*
->
-> *Any of those concern you?"*
-
-If "no" — RNF audit pass. Move to SQS submission.
-
-If "yes" — slow down. Address it.
-
-## The "anti-market" disclosure
-
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
-
-> *"To be straight with you — Solitaire PA isn't always the right call. If you have generous, lifetime, portable group PA from your employer with no caps that follows you when you leave the job, you may not need this. Or if you'd rather just absorb outpatient costs from cash without claiming, this isn't your plan. For most people though, neither of those holds."*
+- **"Not guaranteed renewable"** → reframe: this is standard for accident plans across the market — AIA can re-price with 31 days' notice, same as every competitor. The trade-off is guaranteed-issue at the start with no underwriting. Worth far more than a fixed-premium plan that requires medicals.
+- **"Benefits reduce at 75, policy terminates at 80"** → reframe: the high-utility years are precisely the working/family-responsibility years before 75. By 75 most retirees have hospital plans + savings to absorb minor accidents. The age-80 cut-off is when accident plans across the market typically taper anyway.
+- **"Pre-existing conditions excluded"** → reframe: pre-existing exclusion is universal across accident plans. The distinction worth flagging: guaranteed-issue means no underwriting at entry, but pre-existing conditions still won't claim. Most prospects don't have material pre-existing accident-relevant conditions, so in practice this rarely bites.
+- **"14-day free-look"** → use as a closing tool for "let me think about it" — not as a defensive disclosure.
 
 ---
 
 ## Drill (Part 1)
 
-1. **Memorise the 3 honest disclosures** word-for-word.
+1. **Run the 4 reframes out loud** — yearly-renewable, age 75/80 step-down, pre-existing exclusion, free-look as a closing tool. Time each at 30-45 seconds.
 2. **Recite the major exclusion list** (war, illegal, intentional, alcohol, professional sport, pre-existing).
 3. **Memorise the policy extensions list** (food poisoning, dengue, motorcycling, etc.).
-4. **Practise the pre-existing conditions distinction** ("guaranteed-issue but not covered for claims").
-5. **Memorise the closing block** (4 things, ~75 seconds total).
+4. **Pick the toughest objection you've heard recently** for Solitaire PA — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 

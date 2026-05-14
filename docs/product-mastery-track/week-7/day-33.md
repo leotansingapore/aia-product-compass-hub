@@ -324,7 +324,7 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (think-about-it,
 - A) It is unique to AIA and competitors cannot match it
 - B) Loss aversion is approximately 2x stronger than gain motivation, and the angle names existing pain as a specific number ✓
 - C) It triggers urgency from MAS-imposed deadlines
-- D) It is the only angle that satisfies RNF compliance
+- D) It is the only angle approved for client conversation
 
 **Why:** Day 3 frames the healthcare angle as loss made specific — leveraging loss aversion (~2x stronger than gain motivation) by naming $412K of premium leakage.
 

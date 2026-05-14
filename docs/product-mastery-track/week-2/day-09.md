@@ -143,7 +143,7 @@ When a prospect drifts back to "let me just stick with cheaper":
 
 > **The one idea for Part 2:** PLP rarely sells alone. Its highest-leverage placement is as the permanent floor underneath a GPP + UCC stack — covering booster years with GPP, lifelong CI tail with UCC, and permanent death/legacy floor with PLP. For families: PLP + Child Critical Cover rider with conversion privilege. For HNW: PLP + Payor Benefit + Milestone Option.
 
-By the end of Part 2 you should be able to deploy the 4 stack patterns per prospect type, recommend the rider strategy correctly (strip LCC, sell UCC separately for CI), recognise when PLP is the wrong product, and book the next cross-sell appointment.
+By the end of Part 2 you should be able to deploy the 4 stack patterns per prospect type, recommend the rider strategy correctly (strip LCC, sell UCC separately for CI), reframe the most common pushbacks on PLP, and book the next cross-sell appointment.
 
 ---
 

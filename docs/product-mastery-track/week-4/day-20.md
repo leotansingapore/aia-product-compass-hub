@@ -16,9 +16,9 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 # Part 1 — Compliance + Risk Disclosures (6 Pillars)
 
-> **The one idea for Part 1:** Six pillars, said out loud and acknowledged, separate a clean book from an MAS complaint. The LIA 2019 standard definitions cover the 37 severe-stage conditions; the early/intermediate definitions are AIA-determined — flag this so the prospect knows where to read more.
+> **The frame for Part 1:** Six structural items — 14-day free-look, 7-day survival, 90-day waiting, 2-year Enhancer relapse interval, pre-existing exclusion, no cash value — are real. Use each as an objection reframe when it comes up naturally, not as a defensive block before signature. The LIA 2019 standard definitions cover the 37 severe-stage conditions; the early/intermediate definitions are AIA-determined.
 
-By the end of Part 1 you should be able to deliver all 6 disclosures cleanly in under 90 seconds total, recognise when UCC is the wrong product, and pass an RNF sample audit.
+By the end of Part 1 you should be able to reframe each of the 6 items as objection-handling, and recognise the few prospects for whom UCC's structural shape (no cash value, 5% non-accidental death benefit) genuinely doesn't fit.
 
 ---
 
@@ -73,39 +73,19 @@ Two parts:
 
 UCC is non-participating, no cash value. Early termination = lose all premiums paid.
 
-## The full RNF-clean closing block
+## Use the six pillars as objection-handling, not a defensive block
 
-Deliver as one block right before signature:
+The six items above (14-day free-look, 7-day survival, 90-day waiting, 2-year Enhancer relapse interval, pre-existing exclusion, premium-not-guaranteed + no cash value) are real and should be in the prospect's awareness. But don't recite them back-to-back before signature as a defensive block — that plants doubt at the worst moment.
 
-> *"Before we authenticate, six things to make sure I've covered:*
->
-> *One — 14-day free-look from receipt. Cancel within that window, you get the premium back.*
->
-> *Two — 7-day survival period. You must survive 7 days from diagnosis or surgery for the claim to be payable.*
->
-> *Three — 90-day waiting on the named cardiac and cancer conditions, from policy issue.*
->
-> *Four — 2-year wait between Enhancer relapse claims for the same illness.*
->
-> *Five — pre-existing conditions are excluded unless declared and accepted at underwriting. Suicide in year 1 returns premiums only.*
->
-> *Six — premiums are not guaranteed. UCC has no cash value, so early termination means losing what you've paid.*
->
-> *Any of those six concern you?"*
+Surface them as objection reframes when they come up naturally:
 
-If "no" — RNF audit pass. Move to signature.
+- **"No cash value, no surrender value"** → reframe: UCC is pure CI, decoupled from any cash-value structure. That's precisely the structural reason it's affordable for $1M+ of cover. If you want cash value alongside CI, GPP is the layered product — but it's a different premium conversation.
+- **"What if I get diagnosed in the first 90 days?"** → reframe: 90-day waiting is industry-wide and applies to the named cardiac + cancer conditions specifically (not the full list). Honest framing: "no insurer covers Day-1 cancer claims to prevent fraud. Your unrelated CIs are covered from day 1."
+- **"7-day survival is harsh"** → reframe: 7 days is among the shortest survival periods in the market. Many competitor plans require 14 or 30 days. For CI claims that pay out hundreds of thousands, 7 days is the industry's working compromise.
 
-If "yes" — slow down. Address it. Better 15 more minutes than a complaint.
-
-## The "anti-market" disclosure
-
-> *"This plan isn't right for everyone. The anti-market for UCC is people who:*
->
-> *- Want cash value or surrender value (UCC has none)*
-> *- Need death cover as the primary purpose (UCC's death benefit is only 5% non-accidental)*
-> *- Aren't sure they can hold the premium for the full term*
->
-> *If any of those describe you, UCC isn't the right plan. Be honest with me."*
+For UCC specifically, the anti-market reframes:
+- **"I want cash value"** → UCC isn't the cash-value product. PLP or GPP carries that. UCC's structural decoupling is what makes the multi-claim + unlimited Major-stage claims affordable.
+- **"I want death cover as primary"** → UCC's death benefit is only 5% non-accidental — by design. If death is the primary need, that's a term-life or whole-life conversation. UCC slots in alongside, not instead of.
 
 ## Coverage caps and aggregate limits to disclose
 
@@ -134,11 +114,9 @@ Important disclosure for cross-shopping prospects.
 
 ## Drill (Part 1)
 
-1. **Memorise the 6 pillars** word-for-word. Recite each in under 30 seconds.
-2. **Practise the closing block** (6 things, ~90 seconds total).
-3. **Practise the anti-market disclosure** in your own voice. Notice the discomfort — that's the credibility.
-4. **Memorise the LIA 2019 vs AIA-determined distinction.** This is a frequent question.
-5. **Pick 1 prospect** for whom UCC is the wrong product. Write the script for telling them so.
+1. **Run the 6 reframes out loud** — no cash value, 90-day waiting, 7-day survival, 2-year Enhancer interval, pre-existing exclusion, premium-not-guaranteed. Time each at 30-45 seconds.
+2. **Memorise the LIA 2019 vs AIA-determined distinction.** This is a frequent cross-shopping question.
+3. **Pick the toughest objection you've heard recently** for UCC — "no cash value" / "death cover too low" / "what if I get diagnosed in the waiting period" — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 

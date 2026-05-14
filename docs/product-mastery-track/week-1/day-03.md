@@ -35,7 +35,7 @@ Year 10+:      Charges: 0%           Bonuses: 5% special perpetual
 Year 21+:      Charges: 0%           Bonuses: 8% special perpetual
 ```
 
-The whole plan is engineered for the long-hold client. If your prospect won't hold 10 years, **APA is the wrong product** — say so.
+The plan is engineered for the long-hold client. If your prospect surfaces a sub-10-year worry, don't walk away — reframe: this is the long-term bucket, not the emergency fund. The cover/structure works from day 1; the 10-year horizon is about cash-value optics, not whether the plan is doing its job.
 
 ---
 
@@ -161,7 +161,7 @@ The trial close at the end hands the conversation back. If they hesitate on the 
 
 ## Surrender, withdrawal, and pause schedules
 
-These are the numbers RNF will sample-audit you on. Know them cold.
+These are the numbers a sharp prospect will probe. Know them cold so you don't fumble mid-pitch.
 
 ### Surrender charge schedule (10-year IIP)
 

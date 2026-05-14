@@ -153,6 +153,10 @@ The general rule: don't walk away from a case just because the prospect surfaces
 
 By the end of today you should be able to: deliver the Phase 6 + 7 close cleanly in under 6 minutes, set up the SMS auth + GIRO in the room, calendar 3+ post-close touchpoints, and time the referral ask to maximise conversion.
 
+>[!leo]
+> I think this is weird so if we're gonna be talking about the close, 
+
+
 ---
 
 ## The close is just the formal acknowledgement

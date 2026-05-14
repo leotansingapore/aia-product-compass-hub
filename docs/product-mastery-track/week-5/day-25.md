@@ -17,9 +17,9 @@ Part 1 covers the four mandatory disclosures plus RNF-relevant phrasing. Part 2 
 
 # Part 1 — Compliance + Risk Disclosures
 
-Four lines, said out loud and acknowledged by the prospect, separate a clean book from an MAS complaint: premiums-not-guaranteed, one-IP-per-MediSave, MAS switching disclosure, value-added-services-not-contractual. Make them part of the close, not a footnote.
+Four items — premiums-not-guaranteed, one-IP-per-MediSave, the MAS switching disclosure, value-added-services-not-contractual — are real and need to be in the prospect's awareness. But surface each as an objection reframe when it comes up naturally; don't recite them back-to-back as a defensive block right before iPOS authentication.
 
-By the end of Part 1 you should be able to deliver all four mandatory disclosures cleanly in under 90 seconds total, recognise when HSGM is the wrong product (and say so), and pass an RNF sample audit without a coaching note.
+By the end of Part 1 you should be able to reframe each of the four items as objection-handling, and use the MAS switching disclosure verbatim where required.
 
 
 
@@ -99,36 +99,23 @@ The script:
 | AIA Customer Care | 1800 248 8000 |
 | Pre-authorisation processing | 3 working days [Brochure p.6] |
 
-## The RNF-clean closing block
+## Reframe each of the four items as objection-handling
 
-Deliver as one block right before iPOS authentication:
+The four items above are real and need to be in the prospect's awareness. But don't recite them back-to-back before iPOS authentication — that plants doubt at the wrong moment. Surface each as an objection reframe when it naturally comes up:
 
-> *"Before we authenticate, four things to make sure I've covered:*
->
-> *One — premiums are not guaranteed. AIA can re-price the portfolio. Premiums also climb with age.*
->
-> *Two — only one MediSave-approved IP per person at a time. If we move forward, your existing IP (if any) auto-terminates.*
->
-> *Three — MAS requires me to flag: switching from an existing health insurance policy may be detrimental. There may be early-termination penalties; the new policy may cost more or have fewer benefits.*
->
-> *Four — services like Teladoc, Vitality, WhiteCoat are current value-adds, not contractual. AIA can change or withdraw them.*
->
-> *Any of those four concern you?"*
-
-If "no" — RNF audit pass. Move to Phase 8 paperwork.
-
-If "yes" — slow down. Address it. Better 15 more minutes than a complaint.
+- **"Premiums aren't guaranteed and climb with age"** → reframe: yes, premiums step up with age — that's structural for all IP plans across all insurers, not unique to AIA. The trade-off is full-life cover with lifetime guaranteed renewability. Worth far more long-term than a flat-premium term IP that runs out at 65.
+- **"Only one MediSave-approved IP per person"** → reframe: that's MediSave policy, not an AIA constraint. Take a moment to verify their existing IP — usually they're switching from a less comprehensive plan, in which case the auto-termination is the right move, not a loss.
+- **"MAS switching disclosure"** → MAS does require this language, so deliver the verbatim. Then immediately reframe: this is the standard MAS warning attached to ANY IP switch. The reason we're moving them is the specific cover gap we've already discussed.
+- **"Value-added services aren't contractual"** → reframe: Teladoc, Vitality, WhiteCoat are bonus features on top of the core contractual IP cover. The cover that pays your hospital bills is contractual. The value-adds are extras AIA layers in; if any one of them changes, the core IP cover is unaffected.
 
 ---
 
 ## Drill (Part 1)
 
-1. **Memorise the four disclosures** word-for-word. Recite each in under 30 seconds.
-2. **Practise the MAS switching disclosure verbatim.** This one must be word-for-word.
-3. **Memorise the anti-market disclosure** out loud, 3 times. Notice if it feels uncomfortable — it should. The discomfort is the credibility.
-4. **Memorise the closing disclosure block** (4 things, ~90 seconds total).
-5. **Memorise the pre-existing waiting periods** (10/10/24 months).
-6. **Pick 1 prospect from your pipeline** for whom HSGM is the wrong product. Write the script for telling them so.
+1. **Run the 4 reframes out loud** — premium escalation, one-IP-per-person, MAS switching disclosure, value-add nature. Time each at 30-45 seconds.
+2. **Practise the MAS switching disclosure verbatim** — this is the one item where the wording is regulated, so deliver word-for-word, then reframe.
+3. **Memorise the pre-existing waiting periods** (10/10/24 months).
+4. **Pick the toughest objection you've heard recently** for HSGM — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -268,7 +255,7 @@ The **roleplay assignment.** A complete HSGM appointment — Phases 1 through 8 
 - C) Free-look period, GIRO authority, premium frequency, AWL amount
 - D) Cancer Care Pro consent, Emergency Care Pro consent, rider consent, base consent
 
-**Why:** The four mandatory disclosures, said out loud and acknowledged, are what stand between a clean sale and an MAS complaint during free-look.
+**Why:** These four items are real and need to be in the prospect's awareness. Surface each as an objection reframe when it comes up naturally rather than reciting them as a defensive block before signature.
 
 2. **The MAS switching disclosure must be:**
 - A) Paraphrased to fit the prospect's language preference
