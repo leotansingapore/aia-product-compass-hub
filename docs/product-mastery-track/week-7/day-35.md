@@ -69,7 +69,7 @@ The discipline: ALWAYS use 6% in client conversation. Never 7%, never 8%. The br
 | Suicide clause | Liability limited to 100% of policy value if within 1 year of issue/reinstatement [PS p.9, Section 7.6] |
 | Material misrepresentation clause | 2-year window from issue/reinstatement [PS p.9, Section 7.6] |
 | Reinstatement window | Within 5 years from policy lapse [PS p.9, Section 7.4] |
-| Minimum premium | S$7,800 annual / S$3,900 semi / S$1,950 quarterly / S$650 monthly [PS p.6, Section 6.1] |
+| Minimum premium | S$18,000 annual / S$9,000 semi / S$4,500 quarterly / S$1,500 monthly [PS p.6, Section 6.1] |
 
 ## The reframe discipline (compliance into reassurance)
 

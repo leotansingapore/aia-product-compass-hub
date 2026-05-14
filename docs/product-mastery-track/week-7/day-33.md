@@ -120,7 +120,7 @@ Memorise these from PS Section 5:
 | Charge | Value | Duration |
 |---|---|---|
 | **Top-up Premium Charge** | 3% of top-up | Per top-up [PS p.4, Section 5.1] |
-| **Supplementary Charge** | 3.60% p.a. of Regular Premium Policy Value | Monthly, **first 10 policy years only** [PS p.4, Section 5.2] |
+| **Supplementary Charge** | 3.60% p.a. of Regular Premium Policy Value | Monthly, **first 7 policy years only** [PS v1.0 042025 Section 5.2] |
 | **Premium Holiday Charge** | 60% (early years) tapering to 0% from year 8 | If regular premium not paid by due date [PS p.5, Section 5.4] |
 | **Full Surrender Charge** | 70% Y1 / 50% Y5 / 30% Y7 / 0% Y11+ | [PS p.5, Section 5.5] |
 | **Partial Withdrawal Charge factor** | Y1 = 2.333 / Y8 = 0.250 / Y11+ = 0 | [PS p.4, Section 5.6] |
@@ -140,11 +140,11 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | 16% / 26% / 35% over 5 years | Premium tier ($7.8K-$8.99K / $9K-$11.99K / $12K+) [PS p.2, Section 3.3] |
+| **Welcome Bonus** | 0% / 3% / 12% over years 1-3 | Premium tier ($18K-$23.99K / $24K-$41.99K / $42K+) [PS v1.0 042025 Section 3.3] |
 | **Investment Bonus** | 2.5% per year | Years 9, 10, 11, 12 [PS p.2, Section 3.4] |
-| **Performance Bonus** | 0.30% p.a. of Regular Premium Policy Value | From year 9 onwards [PS p.2, Section 3.5] |
+| **Performance Bonus** | 0.40% p.a. of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
 
-Note: brochure communicates Performance Bonus as **0.4% from year 8** [Brochure p.2]. Use PS canonical (0.30% from year 9) in writing.
+Note: canonical PWV 2.0 PS v1.0 042025 Section 3.5 confirms 0.40% from beginning of year 8 (matches brochure).
 
 ## Partial withdrawal mechanics
 
@@ -162,15 +162,15 @@ Note: brochure communicates Performance Bonus as **0.4% from year 8** [Brochure 
 |---|---|---|
 | 1 | HSGM A lifetime premium | ~$412,000 |
 | 2 | Top-up Premium Charge | 3% per top-up |
-| 3 | Supplementary Charge | 3.60% p.a., first 10 years only |
-| 4 | Welcome Bonus tier 3 ($12K+) | 35% cumulative over 5 years |
-| 5 | Investment Bonus | 2.5% × 4 years (years 9-12) |
-| 6 | Performance Bonus | 0.30% p.a. from year 9 |
+| 3 | Supplementary Charge | 3.60% p.a., first 7 years only |
+| 4 | Welcome Bonus tier 3 ($42K+) | 12% cumulative over years 1-3 |
+| 5 | Investment Bonus | 2.5% × 4 years (years 8-11) |
+| 6 | Performance Bonus | 0.40% p.a. from year 8 |
 | 7 | Full Surrender Y1 charge | 70% |
 | 8 | Full Surrender Y11+ charge | 0% |
 | 9 | Partial Withdrawal Y1 factor | 2.333 |
 | 10 | Free-look | 14 days |
-| 11 | Min regular premium | S$7,800/year (S$650/mo) |
+| 11 | Min regular premium | S$18,000/year (S$1,500/mo) |
 | 12 | Min top-up | S$1,000 |
 | 13 | Min policy value after partial withdrawal | S$10,000 |
 | 14 | Conservative dividend projection | 6% (always project at this) |
@@ -190,7 +190,7 @@ Note: brochure communicates Performance Bonus as **0.4% from year 8** [Brochure 
 
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
-> **The one idea for Part 2:** Pre-retirees ask the same five questions in 80% of meetings. Memorise scripted answers with specific numbers from the Product Summary — the FC who quotes "3.60% supplementary charge for the first 10 policy years" (not "around 3.5%") is perceived as a technician. That perception shift is what turns a hesitant client into a buyer.
+> **The one idea for Part 2:** Pre-retirees ask the same five questions in 80% of meetings. Memorise scripted answers with specific numbers from the Product Summary — the FC who quotes "3.60% supplementary charge for the first 7 policy years" (not "around 3.5%") is perceived as a technician. That perception shift is what turns a hesitant client into a buyer.
 
 By the end of Part 2 you should be able to deliver each answer in under 60 seconds with the page citation, distinguish curiosity from objection, and run all 5 answers in random order.
 
@@ -255,7 +255,7 @@ This is the single most reassuring fact about PWV. Always emphasise.
 **A:** Three to know:
 
 ### 1. Supplementary Charge — 3.60% p.a.
-On Regular Premium Policy Value, deducted monthly, **first 10 policy years only**. **Zero from year 11 onwards.** [PS p.4]
+On Regular Premium Policy Value, deducted monthly, **first 7 policy years only**. **Zero from year 8 onwards.** [PS p.4]
 
 ### 2. Premium Charge — 3%
 On any top-up premiums you make. [PS p.4]
@@ -268,8 +268,8 @@ Per S$1,000 of Sum-at-Risk per year. Sample at age 55 male: $7.12; female: $5.22
 | Bonus | Offset |
 |---|---|
 | Welcome Bonus | Up to 35% over years 1-5 |
-| Investment Bonus | 2.5% per year in years 9-12 |
-| Performance Bonus | 0.30% per year from year 9 onwards |
+| Investment Bonus | 2.5% per year in years 8-11 |
+| Performance Bonus | 0.40% per year from year 8 onwards |
 
 > *"The bonuses largely offset the fees, and after year 10 the supplementary charge stops while the bonuses continue."*
 
@@ -303,7 +303,7 @@ But if they push:
 1. **Recite each of the 5 answers** out loud. Time each. Target: 60 seconds.
 2. **Memorise the page citation for each** (Q1: Brochure p.5 / Q2: PS p.1 Section 3.1 / Q3: PS p.5, p.7 / Q4: PS p.10 Section 8.4 / Q5: PS p.4, p.14-15).
 3. **Practise the "not guaranteed" language** in 3 different framings.
-4. **Memorise the 5 bonus offsets to the fees** (Welcome 35% / Investment 2.5% × 4 / Performance 0.30%).
+4. **Memorise the 5 bonus offsets to the fees** (Welcome 0%/3%/12% by premium band over Y1-3 / Investment 2.5% × 4 / Performance 0.40%).
 5. **Pair up with a peer** — have them ask the questions in random order. Score on accuracy + page citation.
 
 ---
@@ -349,11 +349,11 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (think-about-it,
 
 5. **What is the PWV Supplementary Charge and how long does it apply?**
 - A) 1.45% p.a. for the entire policy term
-- B) 3.60% p.a. of Regular Premium Policy Value, monthly, first 10 policy years only ✓
+- B) 3.60% p.a. of Regular Premium Policy Value, monthly, first 7 policy years only ✓
 - C) 5% p.a. for the first 5 years
 - D) 3% per top-up indefinitely
 
-**Why:** PS p.4 Section 5.2 (cited in Day 3): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly, first 10 policy years only.
+**Why:** PS p.4 Section 5.2 (cited in Day 3): Supplementary Charge is 3.60% p.a. of Regular Premium Policy Value, deducted monthly, first 7 policy years only.
 
 6. **According to Day 3's fee architecture, what is the Full Surrender Charge in Year 1 and Year 11+?**
 - A) Y1 = 50%, Y11+ = 5%

@@ -152,7 +152,7 @@ State this proactively at Phase 7 delivery. Don't wait for them to ask.
 | Total CI cover across all AIA CI policies | $3M aggregate |
 | Early CI per-episode cap | $350k |
 | Single Major CI claim per condition | 100% per claim, 1 claim per condition |
-| Special-condition payout | 20% of SA, capped $25k each, max 5 claims, ends at age 21 |
+| Special Conditions payout | 20% of SA OR $25K (whichever lower) per condition; max 5 claims; cease at age 85 (per GPP IV brochure footnote 7)|Special Conditions payout | 20% of SA OR $25K (whichever lower) per condition; max 5 claims; cease at age 85 (per GPP IV brochure footnote 7) |
 
 If a prospect wants more than $3M CI cover via AIA, you can't write it. Refer to a multi-insurer top-up strategy.
 

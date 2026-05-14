@@ -27,7 +27,7 @@ By the end of Part 1 you should be able to: describe PWV in two sentences, name 
 
 A SGD-denominated, **5-year premium-paying Investment-Linked Plan** issued by AIA. 100% of regular premium invested from day 1 (no upfront sales load) [Brochure p.2, PS p.1].
 
-The product summary technically allows up to 8-year premium term, but the 5-year flagship structure is the field standard. Designed for pre-retirees aged 50-65 who have:
+Canonical premium term per PWV 2.0 PS v1.0 042025 Section 2: 5 years. Designed for pre-retirees aged 50-65 who have:
 - CPF OA excess (after FRS at 55)
 - Maturing endowments
 - Existing legacy ILPs underperforming
@@ -63,19 +63,19 @@ The bridge:
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | 16% / 26% / 35% (cumulative across 5 years) | Premium band: $7.8K-$8.99K / $9K-$11.99K / $12K+ [PS p.2, Section 3.3] |
-| **Investment Bonus** | 2.5% per year | At start of policy years 9, 10, 11, 12 [PS p.2, Section 3.4] |
-| **Performance Bonus** | 0.30% p.a. of Regular Premium Policy Value | From year 9 onwards [PS p.2, Section 3.5] |
-| **Loyalty / Reset** | (covered Day 3) | After year 10 the supplementary charge stops |
+| **Welcome Bonus** | 0% / 3% / 12% (cumulative across years 1-3) | Premium band: $18K-$23.99K / $24K-$41.99K / $42K+ [PS v1.0 042025 Section 3.3] |
+| **Investment Bonus** | 2.5% per year | At start of policy years 8, 9, 10, 11 [PS p.2, Section 3.4] |
+| **Performance Bonus** | 0.40% p.a. of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
+| **Loyalty / Reset** | (covered Day 3) | After year 7 the supplementary charge stops |
 
 ## The 5 numbers you must know cold
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **S$7,800/year** | Minimum regular premium (S$650/month) [PS p.6, Section 6.1] |
-| 2 | **3.60% p.a.** | Supplementary charge on Regular Premium Policy Value, monthly, **first 10 years only** [PS p.4, Section 5.2] |
+| 1 | **S$18,000/year** | Minimum regular premium (S$1,500/month) [PS p.6, Section 6.1] |
+| 2 | **3.60% p.a.** | Supplementary charge on Regular Premium Policy Value, monthly, **first 7 years only** [PWV 2.0 PS v1.0 042025 Section 5.2] |
 | 3 | **14 days** | Free-look period from receipt of policy documents [PS p.8, Section 7.3] |
-| 4 | **5 years** | Premium-paying term (flagship structure; 8-year option in PS) |
+| 4 | **5 years** | Premium-paying term (per PWV 2.0 PS v1.0 042025 Section 2) |
 | 5 | **6% / 7%** | Project at 6% with client (underpromise); fund history ~7% (AIA Global Adventurous Income Fund) [Brochure p.5] |
 
 ## Target client profile
@@ -369,10 +369,10 @@ Day 2: how to actually run the meeting. Part 1 — the 16-point Discovery Deep D
 5. **What is the minimum regular premium for PWV cited in Day 1?**
 - A) S$3,900/year (S$325/month)
 - B) S$5,400/year (S$450/month)
-- C) S$7,800/year (S$650/month) ✓
-- D) S$12,000/year (S$1,000/month)
+- C) S$18,000/year (S$1,500/month) ✓
+- D) S$12,000/year (S$1,000/month) [wrong — actual canonical PWV 2.0 minimum is S$18,000/year]
 
-**Why:** Day 1's "5 numbers you must know cold" lists S$7,800/year minimum (S$650/month) per PS p.6 Section 6.1.
+**Why:** Day 1's "5 numbers you must know cold" lists S$18,000/year minimum (S$1,500/month) per PWV 2.0 PS v1.0 042025 Section 6.1.
 
 6. **According to Day 1, the Welcome Bonus tiers are based on what?**
 - A) The fund chosen for allocation
@@ -380,7 +380,7 @@ Day 2: how to actually run the meeting. Part 1 — the 16-point Discovery Deep D
 - C) The age of the policyholder
 - D) Whether the policy uses cash or SRS
 
-**Why:** The 4 bonus types table cites premium bands: $7.8K-$8.99K (16% cumulative), $9K-$11.99K (26%), and $12K+ (35%) per PS p.2 Section 3.3.
+**Why:** The 4 bonus types table cites premium bands per PWV 2.0 PS v1.0 042025 Section 3.3: $18K-$23.99K (0% total), $24K-$41.99K (3% Y1 only), $42K+ (3%/4%/5% across Y1/Y2/Y3 = 12% total).
 
 7. **In the Cynthia case, what is the FRS amount used and what is the resulting OA excess?**
 - A) FRS $213,000; excess $167,000
