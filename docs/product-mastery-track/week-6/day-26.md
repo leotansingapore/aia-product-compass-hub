@@ -1,7 +1,7 @@
 ---
 week: 6
 day: 26
-title: "Solitaire PA — Solitaire PA Foundations — Universal-Fit + Partial-Disability Gap"
+title: "Solitaire PA Foundations — Universal-Fit + Partial-Disability Gap"
 primary_source: solitaire-pa-product-summary
 primary_slides: "n/a"
 duration_minutes: 50
