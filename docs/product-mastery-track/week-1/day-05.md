@@ -9,183 +9,142 @@ tags: [product-mastery-track, week-1, pro-achiever]
 ---
 # Day 5 — Disclosures, Paperwork, Post-Close Referral Architecture
 
-> **Today's frame:** The disclosure is a credibility move, not a sale-killer. Once it's clean, the close is just the formal acknowledgement of decisions already made — and the 90-day post-close architecture turns every closed case into 2–3 referrals.
+# Part 1 — Risk Disclosures as Objection-Handling
+
+The four required disclosures aren't there to scare the prospect — they're there to surface the four objections you already know are coming, and handle them on your terms. Treat each one as an objection you can reframe.
 
 ---
 
-# Part 1 — Compliance + Risk Disclosures — RNF-Clean Phrasing for ILPs
+## The four disclosures, reframed as objections
 
-> **The one idea for today:** APA is an Investment-Linked Policy. Returns are NOT guaranteed. The client carries investment risk. The script that works is to use the disclosure as a *credibility* move — *"I'm telling you this so you trust me"* — rather than burying it. Honest disclosure builds bigger cases.
+### Disclosure 1 — "Returns aren't guaranteed"
 
-By the end of today you should be able to: deliver the four required disclosures cleanly, recognise when APA is the wrong product for the prospect (and say so), and pass an RNF sample audit without a coaching note.
+Anticipated objection: *"But it's not guaranteed — what if it doesn't hit 8%?"*
 
----
+The reframe:
 
-## The principle
-
-A prospect who hears the risks *up front* and still signs is a prospect who signed for the right reasons. They won't free-look out at week 2. They won't complain to MAS. They'll refer you.
-
-A prospect who only finds out about risks at week 3 — by reading the policy contract — feels deceived. That's the cancellation. That's the complaint. That's the RNF audit.
-
-> *"Risk is that there's a penalty upon early surrender or withdrawal. Cash values may be lower than premiums paid. Investment risk."*
-
-Walk through this verbally during the appointment, in the same straightforward wording you'd use with a friend. Don't leave it for the client to find inside a 60-page contract three weeks later.
-
----
-
-## The four required disclosures
-
-### Disclosure 1 — "Returns are not guaranteed"
-
-> *"Just to be very clear — the projected 8% is illustrative. It's not guaranteed. The actual return depends on the actual fund performance. It can be a bit higher, it can be a bit lower. We've shown 4% as the conservative floor and 8% as the historical average — the real number will sit somewhere on that spectrum, year by year."*
-
-The verbatim:
-
-> *"It's not guaranteed 8% all the time — it can be a bit higher, it can be a bit lower."*
-
-### Disclosure 2 — "Cash values may be lower than premiums paid"
-
-> *"In the early years, especially the first 2–3 years, the cash value of your policy will be lower than the total premiums you've paid. This is because of the supplementary charge in the first 10 years. By year 10 the charge ends. By year 15 the bonuses have caught up. But early surrender means you take a loss — that's the trade-off for the long-term bonus structure."*
-
-### Disclosure 3 — "Penalty on early surrender or withdrawal"
-
-> *"I want to be upfront on what happens if you exit early. If you surrender within the first 2 years, you get back zero — 100% surrender charge. From year 3 onwards the charge tapers down. Partial withdrawal in the first 10 years carries a charge. After year 10, you can withdraw freely.*
+> *"Yes, it's not guaranteed — and honestly, that's a feature, not a bug. The alternative to non-guaranteed market returns is a guaranteed loss to inflation if you leave the money in the bank or a fixed deposit.*
 >
-> *The honest version of that: if your time horizon is shorter than 10 years, this is the wrong plan for you and we should look at something else."*
+> *Second thing — the 8% in our illustration is actually the MAS-imposed ceiling. We're not allowed to project higher than 8% on a benefit illustration. If you look at the actual historical track record on our Investing Success deck, the returns have been higher than 8% p.a. So when we show you 8%, we're already showing you the conservative version. The real number can land higher."*
 
-Naming the wrong-fit case yourself, in your own appointment, is what protects both the client and your RNF file. It also tends to be the moment most prospects decide they trust you.
+Have the Investing Success & Track Record deck open (slide 4: 10-year fund performance, slide 21: 20-year back-test at 7.6% p.a., slide 28: AIA Global Technology 15-year DCA at 331% return). Walk them through one chart, not a lecture.
 
-### Disclosure 4 — "Partial withdrawal is not a feature to count on"
 
-> *"Partial withdraw should not be used as a selling point. It should not be used to finance the premium of the basic as well as the rider plan attached. Do not tell a customer that you can withdraw anytime."*
+### Disclosure 2 — The supplementary charge in the first 10 years
 
-> *"Best is don't even cancel or withdraw anything at all because there will be some charges. This is all the different reasons how AIA earns money — don't give AIA the chance to earn anything from you."*
+Anticipated objection: *"3.9% supplementary charge is high — that's eating into my returns."*
 
-That second line is the discipline frame: every withdrawal is a fee for AIA and a loss of compounding for the client. Frame it that way.
+The reframe:
 
----
-
-## The anti-market disclosure (naming who the plan isn't for)
-
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier, then a real check:
-
-> *"Honestly, this plan isn't right for everyone. Four situations where I'd actively tell you not to do it: if you want short-term liquidity, if you want guaranteed cash values, if you're risk-averse to investment, or if you'd need this money back inside 10 years. Any of those — APA is the wrong tool, and we should be looking at an endowment or fixed deposit instead.*
+> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus from year 10 onwards, and a bigger one from year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
 >
-> *No agenda either way — I'd rather you hear that now than 6 months from now when you wish you'd taken a different option. Are you genuinely OK with a 10+ year commitment and with carrying investment risk on this slice of your money?"*
+> *If you compare APA against a DIY platform with a 1% perpetual platform fee at the same 8% IIRR, APA actually pulls ahead from policy year 17 onwards because of how those bonuses compound. By year 30, APA is roughly $130K ahead on a $12K-a-year premium."*
 
-The verbatim source line we're drawing on:
+Refer the prospect to the APA-vs-DIY year-17 crossover table in the Investing Success deck (slide 40) for the math. The supplementary charge is the price you pay early to access bonuses that DIY platforms cannot replicate.
 
-> *"Anti-market is basically people who want a short-term fixed return plan with short-term liquidity. They are adverse to investment risk. They wish to have guaranteed cash values."*
 
-If they hesitate on the 10-year commitment, that's the signal to stop the close and look at an ESI or term endowment instead. A walked-away wrong-fit case is a much better outcome than a booked-then-complained case — for the client, for you, and for the RNF file.
+### Disclosure 3 — Surrender, withdrawal, and pause charges
 
----
+Anticipated objection: *"What if I need to access the money? Or what if I want to surrender early?"*
 
-## The 14-day free-look (state it)
+The reframe — "don't let AIA earn this money":
 
-> *"After we issue the policy, AIA mails the contract to you. You have 14 days from receipt — or 14 days from the SMS notification, whichever comes first — to free-look the policy. If you change your mind in that window, AIA refunds you the premium paid, with no interest. There may be small adjustments because the funds might have moved up or down — but you get back your premiums, capped at the maximum of what you put in. You don't get to keep any profit."*
-
-The verbatim:
-
-> *"If you do decide to cancel the policy, the insurer will refund you the premium paid without interest. There would be some adjustments because the funds might have changed in value, but refund is always subject to a maximum of premiums paid — you do not get back the profit."*
-
-State this proactively at Phase 7. Don't make them ask.
-
----
-
-## The 4% / 8% projection convention (RNF requires both)
-
-| Required | Compliance reason |
-|---|---|
-| Show the 4% projection | MAS requires both projection rates be presented |
-| Show the 8% projection | Standard illustrative rate for unit-linked plans |
-| Disclose neither is guaranteed | MAS — verbal AND written |
-
-Your phrasing on the projections (verbatim):
-
-> *"Don't look at the 4% — 4% is really on the conservative side. Most of the time our portfolio has grown roughly 8%. It's not guaranteed 8%, it can be higher, it can be lower."*
-
-The compliance test: did the prospect HEAR the words *"not guaranteed"* during the appointment? If yes, you pass. If no, you fail.
-
----
-
-## The exclusions (mention if relevant)
-
-For APA's accidental death rider (built-in, first 2 policy years):
-
-- War or warlike operations
-- Illegal or unlawful activities
-- Suicide or attempted suicide (typically excluded in first policy year — verify in policy)
-- Self-inflicted injury
-- Drug or alcohol intoxication
-- Pre-existing medical conditions
-- Professional sports
-- Air travel as crew
-- Military training exercises (varies by policy)
-
-You don't need to read the full list. State that exclusions exist and refer them to the policy contract:
-
-> *"Standard exclusions apply for the accidental death feature — war, illegal activity, intoxication, professional sports, that kind of thing. Full list is in the policy contract on page X. Anything that you do that might fall under those? If yes, let me know now."*
-
-That last question is the credibility checkpoint. They'll either say no (clean) or flag a concern (and you handle it before the close, not after).
-
----
-
-## Termination triggers (state at Phase 7)
-
-The policy ends if:
-
-- The original insured dies
-- The policyholder voluntarily surrenders
-- The original insured reaches age 100 (maturity)
-- The policy value drops to or below $0 on any valuation day
-- Misrepresentation or fraud is discovered (policy is voided)
-
-> *"The policy ends in five scenarios. Death of the insured. Surrender. Age 100 maturity. Policy value drops to zero or below. Or — important — if any information you gave us during application turns out to be false. Misrepresentation voids the policy entirely. So please double-check the answers you've just given me."*
-
-That last sentence is the application-honesty checkpoint. Ask before they sign.
-
----
-
-## The RNF-clean closing block
-
-The full disclosure as a single block right before SMS auth:
-
-> *"Before we authenticate, three things I want to make sure I've actually covered with you properly.*
+> *"Yes, you can pause, withdraw, or surrender at any point. But here's the honest framing — 100% of your premium is invested from day one. So how does AIA actually make money on this plan? Not from the premium, because every dollar goes to investment.*
 >
-> *One — returns are illustrative, not guaranteed. The 8% is the historical average; actual returns will depend on actual fund performance.*
+> *AIA makes its money when you break the rules of the plan. When you withdraw early, surrender, pause — that's when AIA collects. If you withdraw $1,000 in the first 2 years, AIA can take back up to ~400% of that on the surrender side because that's how the charge structure works.*
 >
-> *Two — there are charges in the first 10 years. If you surrender or withdraw early, you'll come out with less than you put in. The plan only works long-term.*
->
-> *Three — you have 14 days to free-look from when AIA sends you the contract. If anything I said today doesn't match what's in the policy document, you can cancel for a refund.*
->
-> *Any of those land differently than how you've been thinking about it?"*
+> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. After 10 years the Special Bonus kicks in at 5% per year. After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
 
-If the answer is "nothing", you're clean — move to SMS auth. If the answer surfaces something, slow down and work through it before authenticating. Fifteen extra minutes now is cheaper than a complaint or a free-look cancellation later.
+The discipline frame: every withdrawal is AIA earning money on you. Frame it that way and most prospects stop probing for the exit clause.
 
 ---
 
-## When to walk away from a case
+### Disclosure 4 — The "long-term-only commitment" objections
 
-Three scenarios where the right move is to not close:
+Anticipated objections — *"I don't want to lock my money up that long"*, *"I want liquidity"*, *"I don't want investment risk"*, *"I want guaranteed cash values"*.
 
-1. **Time horizon under 10 years.** APA is wrong. Recommend an ESI or term endowment instead.
-2. **Cannot stomach a 30%+ drawdown without panic-selling.** They'll cancel at the first market crash. Recommend a more conservative product, or step them through building tolerance first.
-3. **Cannot afford the minimum without dipping into emergency fund.** Emergency fund comes first, always. Refer to a savings plan, not an investment plan.
+The reframe — the long-term lock is a guard against yourself, not against you:
 
-Saying *"honestly, I don't think APA is right for you yet — let me show you what would fit better"* in an appointment is one of the most underrated moves in this whole curriculum. It usually costs you a same-day close. It usually earns you the referral and the long-term relationship.
+> *"Honestly, the biggest enemy of any investor's return isn't the market. It's themselves — emotions, greed, fear in a market drop. The more flexible an investment is, the more likely you are to do exactly the wrong thing in a market crash.*
+>
+> *This plan precisely forces you to think long-term. Because you've already committed the premium, you stop second-guessing in volatile months. That long horizon is actually the safety net — you have time on your side, you don't have to time the market, and you won't screw up your retirement by panic-selling at the bottom.*
+>
+> *On the specific objections —"*
+>
+> *—"I don't want risk." But do you want to guarantee a loss to inflation by leaving everything in fixed deposits or a savings account?*
+>
+> *—"I want liquidity." Sure — and we're not asking you to put everything here. We follow a one-third rule: long-term bucket first, then mid-term, then short-term. If you budget properly, this slice doesn't conflict with your short-term goals. But 100% liquidity means itchy fingers — you'll touch the money.*
+
+If they're young, the time horizon is the asset, not the constraint. The long lock is the discipline they're paying for.
+
+ 
+ 
 
 ---
+
+## The 14-day free-look — use it as a close, not a disclosure
+
+The 14-day free-look exists and is real. But don't volunteer it at the point of sale if the client is already saying yes — it just plants doubt.
+
+Use it as an **objection-handling tool** when the client says *"I want to think about it"*:
+
+> *"Totally fair. The way I'd suggest it though — let's just get the signature in today. You don't even have to make payment immediately, payment can come in next month. And after the policy is issued, AIA gives you a 14-day free-look window. If you change your mind in that window, you get your premium back, no questions asked.*
+>
+> *So really, the cost of signing today is zero — you keep the option to walk away for 14 more days. The cost of waiting is the application doesn't go in, the welcome bonus tier for this year might shift, and we have to do this conversation again. Want to lock it in and use the free-look window as your thinking time?"*
+
+That's the move. Sign today, keep the 14-day off-ramp as their security blanket. The free-look stops being a defensive disclosure and starts being a tool to bridge a "let me think" into a signature.
+
+---
+
+## The 4% / 8% projection — handle it as an objection
+
+The illustration shows both 4% and 8%. The prospect will almost always probe: *"But these aren't guaranteed, right?"*
+
+The counter:
+
+> *"Right, it's not guaranteed. Two things on that.*
+>
+> *One — MAS only allows us to project up to a maximum of 8% on a benefit illustration. We can't show you a number higher than that, even if the actual track record is higher.*
+>
+> *Two — if you look at the actual past track record on this fund, the returns have been a fair bit higher than 8% p.a. over long windows. So when we show you 8% in the illustration, we're already showing you the conservative version of what's been delivered historically. The real number can land higher than what's on this page."*
+
+Have the Investing Success deck ready (slide 4 for the 10-year cross-fund returns, slide 21 for the 20-year 7.6% back-test, slide 28 for the AIA Global Tech DCA back-test). Drop the verbatim "*don't look at the 4%, 4% is really on the conservative side*" only if the prospect anchors on the 4% line.
+
+---
+
+## Reframing the hard objections (keep the case alive)
+
+Most "walk away" moments are actually managed-expectation moments. The three hardest objections and how to reframe each:
+
+### "My time horizon is under 10 years"
+
+> *"Fair, but this is the long-term bucket — it's not meant to compete with your short-term and mid-term money. If you've budgeted properly, you should have separate slices set aside for those. This slice is the long-term one — and you have to plan for retirement anyway, that part doesn't go away.*
+>
+> *I'm not asking you to put everything here. But I'm also not going to recommend you put everything in the bank with 100% liquidity, because that doesn't help you in the long term either. We just need to right-size this slice."*
+
+### "I can't stomach a 30% drawdown"
+
+> *"That's actually exactly the reason APA fits you — compared to DIY stocks, ETFs, or concentrating in one industry / one country, APA is significantly safer. It's globally diversified across countries, sectors, and asset classes. Think of it as a stock portfolio with lower risk than stock-picking, with higher returns than fixed deposits, and the diversification doing the heavy lifting on the safety side.*
+>
+> *Markets do go up in the long run. And because you're young, your time horizon is the asset. The drawdown matters far less when you're not selling at the bottom."*
+
+### "I can't afford the minimum"
+
+> *"Honestly, if you genuinely can't, then we don't force it. But most working adults can find $200 a month — that's the APA minimum. If you can't save $200 a month for the single most important thing you're saving for (your own financial freedom), what else are you actually able to save for?*
+>
+> *Let's look at your monthly outflow together for 5 minutes — usually we find the $200."*
+
+The general rule: don't walk away from a case just because the prospect surfaces an objection. Reframe it. The objections above almost always come from misframed expectations, not from APA being structurally wrong for them.
+
 
 ---
 
 ## Drill (Part 1)
 
-1. **Memorise the four disclosures** word-for-word. Recite each in under 30 seconds.
-2. **Practice the anti-market disclosure** out loud, 3 times. Notice if it feels uncomfortable — it should. The discomfort is the credibility.
-3. **Memorise the closing disclosure block** (3 things, 60 seconds total). This is what an RNF audit listens for.
-4. **Pick 1 prospect from your pipeline** for whom APA is the wrong product. Write the script for telling them so. Practice it.
-
+1. **Run the four reframes out loud** — "returns not guaranteed", "supplementary charge", "surrender / withdrawal", "long-term lock". Time each at 30-45 seconds. Notice which reframe lands cleanest in your mouth; that's the one you'll use most.
+2. **Practice the free-look close** for "I want to think about it" — get the line *"the cost of signing today is zero, you keep the 14-day off-ramp"* sounding natural.
+3. **Practice the "don't let AIA earn this money" frame** until you can deliver it conversationally, not as a script.
+4. **Pick the toughest objection you've heard recently** ("under 10 years", "30% drawdown", "can't afford the minimum") and write your reframe for that specific prospect. Run it out loud once.
 ---
 
 # Part 2 — The Close, Paperwork, Delivery — and the Post-Close Referral Architecture
@@ -432,45 +391,45 @@ The roleplay assignment. A complete APA appointment recorded on Loom, scored aga
 ---
 
 ## Quiz
-1. **What are the four required disclosures for an APA appointment?**
+1. **What are the four disclosures that you handle as objection reframes during an APA appointment?**
 - A) Returns guaranteed / capital guaranteed / no charges / unlimited withdrawals
-- B) Returns not guaranteed / cash values may be lower than premiums paid / penalty on early surrender or withdrawal / partial withdrawal not a feature to count on ✓
+- B) Returns aren't guaranteed / supplementary charge in first 10 years / surrender-withdrawal-pause charges / long-term-only commitment ✓
 - C) AIA's market cap / fund manager bios / fund holdings / commission rate
 - D) Free-look only / capital guarantee only / dividend rate only / fund switching only
 
-**Why:** These are the four disclosures that, delivered up front, separate trustworthy FCs from product-pushers and prevent week-2 free-look cancellations.
+**Why:** Each is an objection the prospect is already thinking — surface and reframe each instead of letting them sit unspoken.
 
-2. **The "anti-market" disclosure says APA is the wrong plan for whom?**
-- A) Anyone over age 50
-- B) People who want short-term liquidity, guaranteed cash values, are risk-averse, or need money back in under 10 years ✓
-- C) Anyone earning less than $5k/month
-- D) Singaporeans with existing CPF balances
+2. **A prospect says "but the returns aren't guaranteed." What's the reframe?**
+- A) Walk back the 8% projection and only show the 4% column
+- B) Acknowledge it's not guaranteed, point out that fixed deposits guarantee a loss to inflation, and note that MAS caps illustrations at 8% — actual track record is higher ✓
+- C) Promise the historical 8% will hold for them
+- D) Show the brochure cover page
 
-**Why:** Saying this aloud is the credibility move; if any of those describe the prospect, recommend ESI or term endowment instead.
+**Why:** The reframe surfaces the alternative (guaranteed loss to inflation) and uses the Investing Success deck to show that the 8% projection is actually the MAS-capped conservative version.
 
-3. **How long is the APA free-look window?**
-- A) 7 days
-- B) 14 days from receipt of contract or SMS notification (whichever earlier) ✓
-- C) 21 days
-- D) 30 days
+3. **How long is the APA free-look window, and how should you use it in the appointment?**
+- A) 7 days — state proactively at Phase 7
+- B) 14 days from receipt of contract or SMS notification (whichever earlier) — use it as an objection-handler for "I want to think about it", not as a defensive disclosure ✓
+- C) 21 days — state with the exclusions block
+- D) 30 days — state during application
 
-**Why:** AIA refunds premium paid without interest in the 14-day window, capped at the maximum of premiums paid — client doesn't keep any profit.
+**Why:** Volunteering the free-look at the moment of sale plants doubt. Use it instead to bridge "let me think about it" into a same-day signature: the cost of signing today is zero because the 14-day off-ramp exists.
 
-4. **What is the RNF compliance test for the projection disclosure?**
-- A) Did the prospect sign the form?
-- B) Did the prospect HEAR the words "not guaranteed" verbally during the appointment? ✓
-- C) Was the 4% rate omitted from the illustration?
-- D) Was the projection limited to 8% only?
+4. **A prospect probes "but it's not guaranteed — what if it doesn't hit 8%?". Best reframe?**
+- A) Show only the 4% column
+- B) Two-part counter: MAS caps the illustration at 8% (we can't show higher even though track record is higher); and historical returns on this fund have exceeded 8% p.a., so the 8% on paper is already the conservative version ✓
+- C) Promise 8% will hold
+- D) Skip the question
 
-**Why:** MAS requires both 4% and 8% projections AND verbal disclosure that neither is guaranteed — the audit listens for the verbal phrase.
+**Why:** This is the reframe pattern — acknowledge, then explain WHY the 8% projection understates the historical performance (MAS cap + actual track record).
 
-5. **The RNF-clean closing block covers which three things?**
-- A) Returns are illustrative not guaranteed / charges in first 10 yrs and surrender = loss / 14-day free-look ✓
-- B) Commission paid to FC / AIA's solvency / fund manager fees
-- C) Beneficiary nomination / CPF impact / tax residency
-- D) Hospital coverage / CI definition / accidental exclusions
+5. **A prospect says "what if I need to access the money or surrender early?". What's the "don't let AIA earn this money" frame?**
+- A) Show the surrender table line-by-line
+- B) Point out that 100% of the premium is invested — AIA only earns money when you break the rules (withdraw, surrender, pause). The plan is low cost UNLESS you give AIA the chance to collect. Just pay guai guai and the Special Bonus kicks in at 5% from Y10 and 8% from Y20. ✓
+- C) Recommend a fixed deposit instead
+- D) Skip the question
 
-**Why:** Delivered as a single block right before SMS auth: "any of those three concern you?" — if no, you've passed compliance.
+**Why:** This reframe shifts the prospect's mental model — the surrender charge isn't a "punishment for needing flexibility", it's the structure that lets the plan run at low cost when you follow the rules.
 
 6. **The four-rule wrap (used at Phase 4 setup AND Phase 6 close) is what?**
 - A) Save / spend / share / invest
