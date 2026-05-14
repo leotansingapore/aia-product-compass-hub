@@ -81,7 +81,7 @@ The longer the IIP, the higher the welcome bonus tier — that's how AIA prices 
 |---|---|---|
 | **Elite Portfolios** | AIA picks (3 risk profiles: Conservative / Balanced / Adventurous) | Default for most prospects, especially young adults |
 | **AIA Guided Portfolios** | AIA-built using Mercer research insights (PA brochure p.5); 3 risk-profile options|**AIA Guided Portfolios** | AIA-built using Mercer research insights (PA brochure p.5); 3 risk-profile options | Prospects who want a multi-manager touch |
-| **Self-Select** | Client picks from a wide selection of ILP sub-funds (incl. GDIF — Global Dynamic Income Fund — for dividend strategies, ~5% yield) | Sophisticated investors only |
+| **Self-Select** | Client picks from 41 ILP sub-funds (incl. GDIF — Global Dynamic Income Fund — for dividend strategies at ~5% yield) | Sophisticated investors only |
 
 Default 90% of the time: **Elite Adventurous** for a young adult, **Elite Balanced** for someone 35+ with kids.
 

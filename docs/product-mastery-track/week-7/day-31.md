@@ -149,13 +149,15 @@ Use this in training. **Never use it with a real client** — always use the cli
 | SA | S$235,000 |
 | MA | S$75,000 |
 | Combined OA + SA | S$380,000 |
-| FRS at 55 | S$236,000 |
+| FRS at 55 | S$236,000 ⚠️ |
 | Excess OA at 55 | S$144,000 |
 | RA growth to age 65 | ~S$350,000 (4% p.a.) |
 | CPF Life monthly | ~S$1,760 |
 | Capital depletion | $350K / $1,760 = 198 months ≈ 16 years → balance hits zero ~age 81 |
 | ERS comparison | $472K (2x FRS) → $3,420/month (1.94x payout) |
 | PWV scenario | $40K/year × 5 years = $200K → ~$350K at 65 (illustrator) → ~$2,041/month at 6% dividend |
+
+> **⚠️ FRS year-stamp note (update annually):** S$236,000 is the **projected FRS for a client turning 55 in ~2028**. Current FRS per CPF Board: **2025 = S$213K · 2026 = S$220.4K · 2027 = S$227.8K · 2028 = S$236K (projected)**. Always pull the actual FRS from cpf.gov.sg / CPF LIFE Estimator for the prospect's specific age-55 year at the start of every Drawing Concept appointment.
 
 [Video 4]
 
