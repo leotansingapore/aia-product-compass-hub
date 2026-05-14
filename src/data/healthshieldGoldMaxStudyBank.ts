@@ -161,7 +161,7 @@ export const healthshieldGoldMaxStudyBank: StudyQuestion[] = [
       "over 967"
     ],
     correct: 1,
-    explanation: "The April 2026 brochure quotes over 600 AIA Quality Healthcare Partner (AQHP) specialists. Older training videos reference different historical numbers — always use the current brochure figure. Cite: Brochure p.5.",
+    explanation: "The April 2026 brochure quotes over 600 AIA Quality Healthcare Partner (AQHP) specialists. The SMA IP Providers Survey 2022 (published August 2023) cites over 500 private specialists. The full AIA panel — across all specialties, not just private specialists — totals 962 doctors as of 2026-05-14 (https://healthcare.aia.com.sg/aiaplus/oaop). Always use the current brochure figure (over 600 AQHP specialists) when quoting AQHP. Older training videos reference different historical numbers. Cite: Brochure p.5; SMA Survey 2022 https://www.8world.com/singapore/ip-providers-ranking-2161476 ; AIA panel page https://healthcare.aia.com.sg/aiaplus/oaop",
     category: 'product-facts'
   },
 
