@@ -33,15 +33,15 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A prospect is comparing prices. Per the Day 1 / Video 1 illustrative comparison (Prudential equivalent at ~$56/month for the same profile), how should you frame UCC's price?",
+    question: "A prospect is comparing UCC to Prudential PRUActive Protect on critical illnesses covered. What is the correct factual comparison?",
     options: [
-      "UCC would cost about $63/month -- roughly 11% more expensive",
-      "UCC is illustratively ~11% cheaper based on Day 1 / Video 1 figures (e.g., ~$50/month for a 25-year-old male, $100k SA, paid to age 75) -- always verify the current iPOS quote because competitor pricing is time-bound and not in any AIA-canonical PDF",
-      "UCC would cost about $53/month -- roughly 6% cheaper",
-      "UCC would cost the same at $56/month"
+      "PRUActive Protect covers more illnesses than UCC",
+      "PRUActive Protect covers 37 CIs vs UCC's 73 across 150 condition-stages (per Prudential's published brochure). Multi-claim on PRUActive Protect also requires the separate Protect Me Again rider — UCC's multi-claim is built in. Always verify current pricing in iPOS",
+      "Both cover the same number of illnesses",
+      "PRUActive Protect covers 60 CIs vs UCC's 73"
     ],
     correct: 1,
-    explanation: "Per Day 1: competitor pricing comparisons are illustrative and time-bound -- always verify in iPOS before quoting. The 11%-cheaper figure is not in any AIA-canonical PDF.",
+    explanation: "Per the published PRUActive Protect brochure (prudential.com.sg): 37 critical illnesses covered. UCC covers 73 underlying CIs across 150 condition-stage entries. PRUActive Protect's multi-claim requires the separate Protect Me Again rider; UCC's is built in. Competitor pricing is time-bound — always verify in iPOS.",
     category: 'product-facts'
   },
 
@@ -271,28 +271,28 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "How should you compliantly position UCC's claim structure against Great Eastern's CI plan?",
+    question: "How should you compliantly position UCC's claim structure against Great Eastern's GREAT Critical Cover: Complete?",
     options: [
       "Great Eastern's 3-claim limit is actually better because it keeps premiums low",
       "There is no advantage -- both plans have the same claim limits",
-      "Lead with UCC's canonical structure: unlimited claims at MAJOR stage across different illnesses (early+intermediate capped at 500% combined / S$350,000 per-life on the same CI), with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI. The Great Eastern '~53 illnesses, 3-claim limit, 300% cap, 2x reset' figures come from Day 1 / Video 1 -- illustrative and time-bound, always verify in iPOS",
+      "Lead with UCC's canonical structure: unlimited claims at MAJOR stage across different illnesses (early+intermediate capped at 500% combined / S$350,000 per-life on the same CI), with restoration to 100% if the policy is in force 12 months after the date of the latest diagnosed CI. Then cite GE's published facts: 53 CIs covered, multi-claim capped at 3 (with Protect Me Again rider), coverage to age 99, sum assured $50K-$350K, and a death benefit of only $25K. Source: greateasternlife.com",
       "Great Eastern covers more illnesses despite the 3-claim limit"
     ],
     correct: 2,
-    explanation: "Lead with UCC's canonical numbers (Brochure p.13, PS p.4 / p.7). Day 1 / Day 4 explicitly flag the GE 53-illness, 3-claim, 300% cap figures as illustrative -- they are not in any AIA-canonical PDF.",
+    explanation: "Lead with UCC's canonical numbers (Brochure p.13, PS p.4 / p.7), then cite GE's published facts directly from GE's website (53 CIs, 3-claim cap with rider, $25K death benefit, $50K-$350K sum assured, coverage to age 99). Always verify current pricing in iPOS.",
     category: 'sales-angles'
   },
 
   {
-    question: "A client already has BCC. How should you position UCC relative to their existing coverage?",
+    question: "A client already has Beyond Critical Cover (BCC). Both UCC and BCC are AIA products. How should you position UCC relative to their existing AIA coverage?",
     options: [
       "Recommend cancelling BCC since UCC is strictly superior",
-      "UCC complements BCC by covering 46 additional illnesses (150 vs 104) with unlimited claims, creating layered protection",
+      "UCC and BCC are both AIA products and can be held together. UCC adds breadth (73 CIs across 150 condition-stage entries) and unlimited Major-stage claims; BCC retains its built-in relapse coverage and age-85 premium refund (per BCC's AIA PDF) — creating layered AIA protection",
       "Advise the client that BCC and UCC cannot be held simultaneously",
       "Suggest replacing BCC with UCC to avoid paying two premiums"
     ],
     correct: 1,
-    explanation: "UCC is best positioned as complementary to BCC, not a replacement. UCC covers 46 more illnesses than BCC's 104 and offers unlimited claims vs BCC's 200% maximum payout.",
+    explanation: "BCC is another AIA CI product, not a competitor. UCC is best positioned as complementary to BCC, never a replacement. For BCC's exact specs (illness count, refund mechanic, claim cap), cite BCC's own AIA product PDFs.",
     category: 'sales-angles'
   },
 
@@ -340,28 +340,28 @@ export const ultimateCriticalCoverExamQuestions: ExamQuestion[] = [
   },
 
   {
-    question: "A client says: 'BCC is better because it refunds 100% of premiums at age 85.' How do you differentiate UCC?",
+    question: "A client says: 'BCC is better because it refunds 100% of premiums at age 85.' Both UCC and BCC are AIA products. How do you differentiate UCC?",
     options: [
       "Agree and recommend BCC instead since the premium refund is objectively better",
       "UCC will also offer a premium refund in a future product update",
-      "UCC trades the refund for lower premiums and unlimited claims (vs BCC's 200% cap). Investing the premium savings can potentially build more than the refund amount. It depends on the client's priority: breadth of coverage or built-in refund.",
+      "Both UCC and BCC are AIA products with different design priorities. UCC trades the age-85 refund for lower premiums and unlimited Major-stage claims (vs BCC's 200% cap, per BCC PDF). Premium savings can be invested for potentially greater returns than the refund. Or — hold both AIA products together for layered protection.",
       "The premium refund from BCC is taxable, making it less valuable than it appears"
     ],
     correct: 2,
-    explanation: "Position the trade-off honestly: UCC offers more illnesses (150 vs 104), unlimited claims (vs 200% cap), and lower premiums. The savings can be invested for potentially greater returns than the refund.",
+    explanation: "BCC is another AIA product, not a competitor. Position the trade-off honestly: UCC offers 73 CIs across 150 condition-stages, unlimited Major-stage claims (vs BCC's 200% cap per BCC's PDF), and lower premiums. Savings can be invested for potential greater returns than the refund, or both AIA products can be held together.",
     category: 'objection-handling'
   },
 
   {
-    question: "A client's Prudential agent told them: 'Prudential covers related illnesses better than AIA.' How do you correct this?",
+    question: "A client's Prudential agent told them: 'Prudential covers related illnesses better than AIA.' How do you correct this factually?",
     options: [
       "Agree that Prudential has better related-illness coverage and offer a different selling point",
       "Tell the client their Prudential agent is dishonest and cannot be trusted",
-      "Actually, Prudential's 'related illness' restriction blocks subsequent heart claims. Under UCC, coronary heart disease, bypass, heart attack, and transplant are each claimable separately with no related-illness restriction.",
+      "Per the Prudential PRUActive Protect brochure, the plan covers only 37 CIs (vs UCC's 73), and the 'related illness' rule blocks subsequent claims for related conditions like a heart progression. Under UCC, coronary heart disease, bypass, heart attack, and transplant are each claimable separately after the 12-month reset.",
       "Explain that related illness coverage is not important for most clients"
     ],
     correct: 2,
-    explanation: "Correct the misconception factually: Prudential's restriction actually blocks related claims, while UCC allows each condition in a progression to be claimed separately after the 12-month reset.",
+    explanation: "Correct the misconception factually using Prudential's own published brochure: PRUActive Protect covers 37 CIs and applies a related-illness restriction. UCC has no related-illness block and covers 73 CIs across 150 condition-stages.",
     category: 'objection-handling'
   },
 

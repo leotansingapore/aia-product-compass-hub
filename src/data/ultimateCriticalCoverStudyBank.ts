@@ -341,45 +341,45 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q25 -- correct: 3
+  // Q25 -- correct: 2 (Prudential PRUActive Protect spec)
   {
-    question: "Per the Day 1 / Day 4 illustrative comparison, how does UCC's premium compare to Prudential's equivalent CI product?",
+    question: "How does Prudential's PRUActive Protect compare to UCC on number of critical illnesses covered?",
     options: [
-      "UCC is approximately 11% more expensive",
-      "UCC is approximately the same price",
-      "UCC is approximately 6% cheaper",
-      "UCC is approximately 11% cheaper based on Day 1 illustrative figures (always verify current iPOS quote -- competitor pricing is time-bound and not in any AIA-canonical PDF)"
+      "PRUActive Protect covers more illnesses than UCC",
+      "Both cover the same number of illnesses",
+      "PRUActive Protect covers 37 CIs vs UCC's 73 across 150 condition-stages (per Prudential's published brochure)",
+      "PRUActive Protect covers 60 CIs vs UCC's 73"
     ],
-    correct: 3,
-    explanation: "Day 1 / Day 4 cite Video 1 with the explicit caveat that competitor figures are illustrative and time-bound. The 11% figure is not in any AIA-canonical PDF -- always verify in iPOS before quoting.",
+    correct: 2,
+    explanation: "Per the published PRUActive Protect brochure (prudential.com.sg), the plan covers 37 critical illnesses. UCC covers 73 underlying CIs across 150 condition-stage entries. Multi-claim on PRUActive Protect also requires the separate Protect Me Again rider; UCC's multi-claim is built in. Always verify pricing in iPOS (competitor pricing is time-bound).",
     category: 'product-facts'
   },
 
-  // Q26 -- correct: 0
+  // Q26 -- correct: 0 (GE GREAT Critical Cover spec, replaces Manulife)
   {
-    question: "Per the Day 1 illustrative comparison, how does UCC's premium compare to Manulife's equivalent CI product?",
+    question: "What is the most accurate sum-assured comparison between UCC and GE GREAT Critical Cover: Complete?",
     options: [
-      "UCC is approximately 29% cheaper based on Day 1 illustrative figures (always verify current iPOS quote -- competitor pricing is time-bound and not in any AIA-canonical PDF)",
-      "UCC is approximately 15% cheaper",
-      "UCC is approximately 29% more expensive",
-      "UCC is approximately the same price"
+      "GE offers $50K – $350K sum assured with only a $25K death benefit; UCC's max sum assured is higher",
+      "GE offers $50K – $1M sum assured",
+      "GE has no minimum sum assured",
+      "GE matches UCC's max sum assured"
     ],
     correct: 0,
-    explanation: "Day 1 cites Video 1 with the explicit caveat that competitor pricing figures are illustrative and time-bound. The 29% figure is not in any AIA-canonical PDF -- always verify in iPOS before quoting.",
+    explanation: "Per GE's published terms for GREAT Critical Cover: Complete: sum assured range is $50K – $350K (lower than competitors), and the death benefit is only $25K — minimal legacy value. Source: greateasternlife.com.",
     category: 'product-facts'
   },
 
-  // Q27 -- correct: 1
+  // Q27 -- correct: 1 (Singlife Multi-Pay CI spec)
   {
-    question: "Per the Day 1 illustrative comparison, how does UCC's premium compare to SingLife's equivalent CI product?",
+    question: "How does Singlife Multi-Pay Critical Illness compare to UCC on CIs covered?",
     options: [
-      "UCC is approximately 10% cheaper",
-      "UCC is approximately 22% cheaper based on Day 1 illustrative figures (always verify current iPOS quote -- competitor pricing is time-bound and not in any AIA-canonical PDF)",
-      "UCC is approximately 30% cheaper",
-      "UCC is approximately 5% more expensive"
+      "Singlife covers more CIs than UCC",
+      "Singlife covers 60 CIs vs UCC's 73 — missing 13 conditions (per Singlife's published brochure)",
+      "Singlife covers 100 CIs",
+      "Singlife covers the same 73 CIs as UCC"
     ],
     correct: 1,
-    explanation: "Day 1 cites Video 1 with the explicit caveat that competitor pricing figures are illustrative and time-bound. The 22% figure is not in any AIA-canonical PDF -- always verify in iPOS before quoting.",
+    explanation: "Per the Singlife Multi-Pay CI brochure (2023), the plan covers 60 critical illnesses — 13 fewer than UCC's 73. Many conditions are also listed as 'Not applicable' for Early / Intermediate stages, narrowing real-world early-stage coverage further.",
     category: 'product-facts'
   },
 
@@ -607,17 +607,17 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     category: 'product-facts'
   },
 
-  // Q44 -- correct: 2
+  // Q44 -- correct: 2 (GE GREAT Critical Cover coverage term)
   {
-    question: "Per the Day 1 illustrative comparison, how does UCC's premium compare to Great Eastern's equivalent CI product?",
+    question: "What is the maximum coverage term for GE GREAT Critical Cover: Complete?",
     options: [
-      "About 11% cheaper",
-      "About 22% cheaper",
-      "About 6% cheaper based on Day 1 illustrative figures (always verify current iPOS quote -- competitor pricing is time-bound and not in any AIA-canonical PDF)",
-      "About 29% cheaper"
+      "To age 65 only",
+      "To age 75 only",
+      "Up to age 99 (per GE's current published terms)",
+      "Whole life with no maximum"
     ],
     correct: 2,
-    explanation: "Day 1 cites Video 1 with the explicit caveat that competitor pricing figures are illustrative and time-bound. The 6% figure is not in any AIA-canonical PDF -- always verify in iPOS before quoting.",
+    explanation: "Per GE's current published terms for GREAT Critical Cover: Complete, coverage term is up to age 99 (Source: greateasternlife.com). UCC's three plan-term options are To 65 / 75 / 85. Always verify current pricing in iPOS.",
     category: 'product-facts'
   },
 
@@ -863,17 +863,17 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     category: 'sales-angles'
   },
 
-  // Q62 -- correct: 1
+  // Q62 -- correct: 0 (PRUActive Protect: 37 CIs + rider-only multi-claim)
   {
-    question: "When comparing UCC to Prudential, which specific restriction should you highlight?",
+    question: "When comparing UCC to Prudential PRUActive Protect, which weakness is factually correct per Prudential's published brochure?",
     options: [
-      "Prudential has fewer covered illnesses",
-      "Prudential's 'related illness' restriction blocks subsequent heart claims",
-      "Prudential has no premium waiver option",
-      "Prudential does not cover early-stage illnesses"
+      "PRUActive Protect covers 37 CIs (vs UCC's 73 across 150 condition-stages), and its multi-claim requires a separate Protect Me Again rider",
+      "PRUActive Protect has no premium waiver option",
+      "PRUActive Protect does not cover early-stage illnesses",
+      "PRUActive Protect limits coverage to age 65"
     ],
-    correct: 1,
-    explanation: "Prudential's 'related illness' restriction means that after claiming for coronary heart disease, subsequent heart-related claims may be blocked.",
+    correct: 0,
+    explanation: "Per the published PRUActive Protect brochure: the plan covers 37 critical illnesses, and multi-claim is delivered via the separate Protect Me Again rider rather than built in. Coverage term is 10-99 years, customisable. Brochure URL: prudential.com.sg.",
     category: 'sales-angles'
   },
 
@@ -905,65 +905,65 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
     category: 'sales-angles'
   },
 
-  // Q65 -- correct: 3
+  // Q65 -- correct: 3 (BCC = AIA product, not competitor)
   {
-    question: "Which type of client is BCC better suited for compared to UCC?",
+    question: "Both UCC and BCC (Beyond Critical Cover) are AIA critical illness products. Which type of client is BCC better suited for compared to UCC?",
     options: [
       "Budget-conscious clients who want flexibility",
       "Clients who value unlimited claims above all",
       "Young clients with low coverage needs",
-      "Clients who want a premium refund guarantee and built-in relapse coverage"
+      "Clients who want a premium refund guarantee at age 85 and built-in relapse coverage"
     ],
     correct: 3,
-    explanation: "BCC is better for clients who want a guaranteed premium refund at age 85 and prefer relapse coverage built into the base plan without needing riders.",
+    explanation: "BCC is another AIA CI product (not a competitor). It is better positioned for clients who want a guaranteed premium refund at age 85 and prefer relapse coverage built into the base plan without needing riders. For BCC's exact specs, cite BCC's own AIA product PDFs.",
     category: 'sales-angles'
   },
 
   // Q66 -- correct: 0
   {
-    question: "Which type of client is UCC better suited for compared to BCC?",
+    question: "Both UCC and BCC are AIA products. Which type of client is UCC better suited for?",
     options: [
-      "Budget-conscious clients who want flexibility and value unlimited claims",
+      "Budget-conscious clients who want flexibility, term choice (To 65 / 75 / 85), and value unlimited Major-stage claims",
       "Clients who want guaranteed premium refund at maturity",
       "Clients who prefer built-in relapse coverage",
       "Clients who want the highest possible first-year commission"
     ],
     correct: 0,
-    explanation: "UCC is better for budget-conscious clients who value flexibility in coverage term options and want the unlimited claims feature.",
+    explanation: "UCC is AIA's flagship multi-claim CI plan, better suited for clients who value flexibility in coverage term and the unlimited Major-stage claims feature. UCC and BCC can also be held together — they are complementary AIA products.",
     category: 'sales-angles'
   },
 
   // Q67 -- correct: 1
   {
-    question: "What does BCC offer at age 85 that UCC does not?",
+    question: "What does AIA's BCC offer at age 85 that AIA's UCC does not?",
     options: [
       "Unlimited claims for same illness",
-      "100% premium refund",
+      "100% premium refund (per BCC's product PDF)",
       "Coverage for 200 illnesses",
       "Free Teladoc membership for life"
     ],
     correct: 1,
-    explanation: "BCC offers a 100% premium refund at age 85, while UCC has no premium refund feature.",
+    explanation: "BCC, another AIA CI product, offers a 100% premium refund at age 85; UCC has no premium refund feature. Always cite BCC's own AIA PDFs for the exact refund mechanics.",
     category: 'sales-angles'
   },
 
   // Q68 -- correct: 2
   {
-    question: "How many illnesses does BCC cover compared to UCC?",
+    question: "How does AIA's BCC compare to AIA's UCC on number of illnesses covered? (Both are AIA products.)",
     options: [
-      "BCC covers 150, UCC covers 104",
+      "BCC covers 150 condition-stages, UCC covers 104",
       "BCC covers 200, UCC covers 150",
-      "BCC covers 104, UCC covers 150",
-      "Both cover 150 illnesses"
+      "BCC covers 104 illnesses (per BCC PDF), UCC covers 73 CIs across 150 condition-stages",
+      "Both cover the same illnesses"
     ],
     correct: 2,
-    explanation: "BCC covers 104 illnesses while UCC covers 150, giving UCC broader illness coverage.",
+    explanation: "BCC (another AIA product) covers 104 illnesses per BCC's own product PDF, while UCC covers 73 CIs across 150 condition-stage entries. UCC has the broader underlying CI panel. Both AIA products can be held together for layered protection.",
     category: 'sales-angles'
   },
 
   // Q69 -- correct: 3
   {
-    question: "What is the maximum claim payout for BCC?",
+    question: "What is the maximum claim payout for AIA's BCC (per BCC's product PDF)?",
     options: [
       "100% of sum assured",
       "Unlimited",
@@ -971,7 +971,7 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
       "200% of sum assured"
     ],
     correct: 3,
-    explanation: "BCC has a maximum claim payout of 200% of sum assured, compared to UCC's unlimited potential payout.",
+    explanation: "BCC (another AIA product) has a maximum claim payout of 200% of sum assured per its product PDF, compared to UCC's unlimited potential payout at Major stage. Always verify BCC figures against BCC's own AIA PDFs.",
     category: 'sales-angles'
   },
 
@@ -1121,15 +1121,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q80 -- correct: 2
   {
-    question: "A client asks: 'Why doesn't UCC have a premium refund like BCC?' How should you respond?",
+    question: "A client asks: 'Why doesn't UCC have a premium refund like BCC?' (Both are AIA products.) How should you respond?",
     options: [
       "UCC is simply a worse product than BCC in this regard.",
       "Premium refunds are a gimmick that you should not consider.",
-      "UCC trades the premium refund for lower premiums and unlimited claims. You can invest the premium savings to build a fund that potentially exceeds the refund amount.",
-      "You should buy BCC instead if you want a premium refund."
+      "Both UCC and BCC are AIA products designed for different priorities. UCC trades the age-85 refund for lower premiums and unlimited Major-stage claims. Clients can invest the premium savings, or hold both UCC and BCC together for layered AIA protection.",
+      "You must choose between them — they cannot be held together."
     ],
     correct: 2,
-    explanation: "Position the lack of premium refund as a trade-off: lower premiums and unlimited claims. The premium savings can be invested to potentially build more than the refund would return.",
+    explanation: "Position the difference as an internal AIA product trade-off: UCC sacrifices the age-85 refund for lower premiums and unlimited Major-stage claims. The two AIA products can also be held together for layered protection.",
     category: 'objection-handling'
   },
 
@@ -1359,15 +1359,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q97 -- correct: 0
   {
-    question: "A client says: 'BCC seems better because it includes relapse coverage and a premium refund.' How do you differentiate UCC compliantly?",
+    question: "A client says: 'BCC seems better because it includes relapse coverage and a premium refund.' Both UCC and BCC are AIA products. How do you differentiate UCC compliantly?",
     options: [
-      "Lead with UCC's canonical structure: 73 CIs across 150 condition-stage entries, unlimited major-stage claims with 12-month restoration after the latest diagnosed CI, the optional Enhancer for 5 named relapse conditions, and the Catastrophic CI Benefit (one-time 100% top-up that does not reduce base cover). For BCC's exact figures and refund mechanics, cite BCC's own PDFs -- BCC is a separate product not documented in the UCC source-resources",
+      "Both are AIA products with different design priorities. Lead with UCC's canonical structure: 73 CIs across 150 condition-stage entries, unlimited Major-stage claims with 12-month restoration after the latest diagnosed CI, the optional Enhancer for 5 named relapse conditions, and the Catastrophic CI Benefit (one-time 100% top-up that does not reduce base cover). For BCC's exact figures and refund mechanics, cite BCC's own AIA product PDFs. Or — recommend holding both for layered AIA protection.",
       "You are right, BCC is the better product overall.",
       "UCC and BCC are exactly the same product.",
       "BCC is being discontinued, so you should choose UCC."
     ],
     correct: 0,
-    explanation: "Stay inside UCC's canonical scope. BCC (Beyond Critical Care) is a separate product not in the UCC source-resources; the 104-illness figure and built-in-refund framing must be sourced from BCC's own PDFs, not asserted from the UCC bank.",
+    explanation: "BCC is another AIA product, not a competitor. Stay inside UCC's canonical scope when describing UCC; cite BCC's own AIA PDFs for the 104-illness figure and refund mechanics. Both AIA products can also be held together.",
     category: 'objection-handling'
   },
 
@@ -1643,15 +1643,15 @@ export const ultimateCriticalCoverStudyBank: StudyQuestion[] = [
 
   // Q117 -- correct: 1
   {
-    question: "You are presenting UCC to a client who already has BCC. How do you position the difference?",
+    question: "You are presenting UCC to a client who already has BCC. Both are AIA products. How do you position the difference?",
     options: [
       "Cancel your BCC and replace it with UCC.",
-      "Your BCC gives you built-in relapse coverage and a premium refund at 85, which is great. UCC could complement it by covering the 46 additional illnesses BCC does not cover, with unlimited claims. Together they create comprehensive layered protection.",
+      "Your AIA BCC gives you built-in relapse coverage and a 100% premium refund at age 85 (per BCC's PDF), which is great. UCC complements it by covering 73 CIs across 150 condition-stage entries with unlimited Major-stage claims. Holding both AIA products together creates layered protection — different design priorities, same insurer.",
       "BCC and UCC are the same product. You do not need both.",
       "BCC is being discontinued, so you need UCC as a replacement."
     ],
     correct: 1,
-    explanation: "Position UCC as complementary to BCC rather than a replacement, highlighting the additional 46 illnesses and unlimited claims as added layers of protection.",
+    explanation: "Position UCC as complementary to BCC rather than a replacement. Both are AIA products and can be held together. Always cite BCC's own AIA PDFs for BCC's exact illness count, refund mechanic, and claim cap.",
     category: 'roleplay'
   },
 
