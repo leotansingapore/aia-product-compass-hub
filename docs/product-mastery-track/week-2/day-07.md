@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** A clean fact-find prevents the wrong sale. Three qualifying conditions, then the 5-step pitch flow that converts the abstract age-100 illustration into a felt monthly profit. The linearisation step is the one most FCs skip — and the one that lands.
 
-This is a merged module — Part 1 covers the qualifying fact-find. Part 2 covers the 5-step pitch flow with the linearisation math. Estimated read + drill: ~60 minutes.
 
 ---
 

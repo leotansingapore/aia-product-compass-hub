@@ -11,8 +11,6 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 > **Today's frame:** The disclosure is a credibility move, not a sale-killer. Once it's clean, the close is just the formal acknowledgement of decisions already made — and the 90-day post-close architecture turns every closed case into 2–3 referrals.
 
-This is a merged module — Part 1 covers the first half (originally Day 09), Part 2 covers the second half (originally Day 10). Estimated read + drill time: ~50 minutes. Take it in two sittings if you need to.
-
 ---
 
 # Part 1 — Compliance + Risk Disclosures — RNF-Clean Phrasing for ILPs
@@ -31,7 +29,7 @@ A prospect who only finds out about risks at week 3 — by reading the policy co
 
 > *"Risk is that there's a penalty upon early surrender or withdrawal. Cash values may be lower than premiums paid. Investment risk."*
 
-Say this *out loud* in the appointment, in plain language. Don't bury it in a 60-page contract.
+Walk through this verbally during the appointment, in the same straightforward wording you'd use with a friend. Don't leave it for the client to find inside a 60-page contract three weeks later.
 
 ---
 
@@ -51,11 +49,11 @@ The verbatim:
 
 ### Disclosure 3 — "Penalty on early surrender or withdrawal"
 
-> *"If you surrender within the first 2 years, you get back zero — 100% surrender charge. From year 3 onwards the charge tapers down. Partial withdrawal in the first 10 years carries a charge. After year 10, you can withdraw freely.*
+> *"I want to be upfront on what happens if you exit early. If you surrender within the first 2 years, you get back zero — 100% surrender charge. From year 3 onwards the charge tapers down. Partial withdrawal in the first 10 years carries a charge. After year 10, you can withdraw freely.*
 >
-> *Honest version: if your time horizon is under 10 years, this is the wrong plan. We should look at something else."*
+> *The honest version of that: if your time horizon is shorter than 10 years, this is the wrong plan for you and we should look at something else."*
 
-That last sentence is the RNF-protection move. **Say it out loud.**
+Naming the wrong-fit case yourself, in your own appointment, is what protects both the client and your RNF file. It also tends to be the moment most prospects decide they trust you.
 
 ### Disclosure 4 — "Partial withdrawal is not a feature to count on"
 
@@ -67,24 +65,19 @@ That second line is the discipline frame: every withdrawal is a fee for AIA and 
 
 ---
 
-## The "anti-market" disclosure (says it out loud)
+## The anti-market disclosure (naming who the plan isn't for)
 
-The single biggest credibility move in an APA appointment:
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier, then a real check:
 
-> *"This plan is not for everyone. The anti-market for APA is people who:*
+> *"Honestly, this plan isn't right for everyone. Four situations where I'd actively tell you not to do it: if you want short-term liquidity, if you want guaranteed cash values, if you're risk-averse to investment, or if you'd need this money back inside 10 years. Any of those — APA is the wrong tool, and we should be looking at an endowment or fixed deposit instead.*
 >
-> *- Want short-term liquidity*
-> *- Want guaranteed cash values*
-> *- Are risk-averse to investment*
-> *- Need their money back in under 10 years*
->
-> *If any of those describe you, APA is the wrong plan. We should be looking at endowments or fixed deposits instead. Are you OK committing for 10+ years and accepting investment risk?"*
+> *No agenda either way — I'd rather you hear that now than 6 months from now when you wish you'd taken a different option. Are you genuinely OK with a 10+ year commitment and with carrying investment risk on this slice of your money?"*
 
-The verbatim:
+The verbatim source line we're drawing on:
 
 > *"Anti-market is basically people who want a short-term fixed return plan with short-term liquidity. They are adverse to investment risk. They wish to have guaranteed cash values."*
 
-If they hesitate on the 10-year commitment, **stop the close.** Recommend an ESI or term endowment instead. RNF would rather you walk away from a wrong-fit case than book a complaint.
+If they hesitate on the 10-year commitment, that's the signal to stop the close and look at an ESI or term endowment instead. A walked-away wrong-fit case is a much better outcome than a booked-then-complained case — for the client, for you, and for the RNF file.
 
 ---
 
@@ -156,33 +149,31 @@ That last sentence is the application-honesty checkpoint. Ask before they sign.
 
 ## The RNF-clean closing block
 
-The full disclosure delivered as a single block right before the SMS auth:
+The full disclosure as a single block right before SMS auth:
 
-> *"Before we authenticate, three things to make sure I've covered properly.*
+> *"Before we authenticate, three things I want to make sure I've actually covered with you properly.*
 >
-> *One — returns are illustrative, not guaranteed. The 8% is the historical average; actual returns depend on actual fund performance.*
+> *One — returns are illustrative, not guaranteed. The 8% is the historical average; actual returns will depend on actual fund performance.*
 >
-> *Two — there are charges in the first 10 years. If you surrender or withdraw early, you'll lose money. Hold for 10+ years or this is the wrong plan.*
+> *Two — there are charges in the first 10 years. If you surrender or withdraw early, you'll come out with less than you put in. The plan only works long-term.*
 >
-> *Three — you have 14 days to free-look from when AIA sends you the contract. If anything I said today doesn't match the policy document, you can cancel.*
+> *Three — you have 14 days to free-look from when AIA sends you the contract. If anything I said today doesn't match what's in the policy document, you can cancel for a refund.*
 >
-> *Any of those three concern you?"*
+> *Any of those land differently than how you've been thinking about it?"*
 
-If the answer is "no," you've passed compliance. SMS auth and close.
-
-If the answer is "yes" — slow down. Address it. Better to spend 15 more minutes than to book a complaint.
+If the answer is "nothing", you're clean — move to SMS auth. If the answer surfaces something, slow down and work through it before authenticating. Fifteen extra minutes now is cheaper than a complaint or a free-look cancellation later.
 
 ---
 
 ## When to walk away from a case
 
-Three scenarios where the right move is to NOT close:
+Three scenarios where the right move is to not close:
 
-1. **Time horizon under 10 years.** APA is wrong for them. Recommend ESI or term endowment.
-2. **Cannot stomach a 30%+ drawdown without panic-selling.** They'll cancel at the first market crash. Recommend a more conservative product or no investment at all yet.
-3. **Cannot afford the minimum without sacrificing emergency fund.** They need to build the emergency fund first. Refer to a savings plan, not an investment plan.
+1. **Time horizon under 10 years.** APA is wrong. Recommend an ESI or term endowment instead.
+2. **Cannot stomach a 30%+ drawdown without panic-selling.** They'll cancel at the first market crash. Recommend a more conservative product, or step them through building tolerance first.
+3. **Cannot afford the minimum without dipping into emergency fund.** Emergency fund comes first, always. Refer to a savings plan, not an investment plan.
 
-Saying *"I don't think APA is right for you, let me show you something else"* in an appointment is the most under-appreciated trust-building move there is. Use it.
+Saying *"honestly, I don't think APA is right for you yet — let me show you what would fit better"* in an appointment is one of the most underrated moves in this whole curriculum. It usually costs you a same-day close. It usually earns you the referral and the long-term relationship.
 
 ---
 
@@ -241,21 +232,21 @@ The verbatim:
 
 > *"I can't really help you and force you to earn more or force you to spend less. But what I can do today is help you automate step 4 — every month, before you spend anything, $200 goes to work for you first."*
 
-### Step 2 — The Option-A vs Option-B frame
+### Step 2 — The option frame
 
-> *"Two options:*
+> *"Two ways to go from here.*
 >
-> *Option A — keep doing what you're doing. Save in cash. Hope inflation is kind. Hope you have the discipline for 40 years.*
+> *Option A — keep things as they are. Save in cash, hope inflation is gentle, hope your discipline holds for 40 years.*
 >
-> *Option B — automate $300 a month into APA. Capital-guaranteed death benefit. Bonuses from year 10. You stop having to think about it.*
+> *Option B — automate $300 a month into APA. Capital-guaranteed death benefit. Bonuses kicking in from year 10. You stop having to think about this part.*
 >
-> *Which one would you prefer — option A or B?"*
+> *Neither is wrong. Which one actually sounds like where you want to be?"*
 
-They say B. Always.
+The cushion line — *"neither is wrong"* — is what keeps this from feeling like a forced choice. Most clients pick B because by Phase 6 they've already mentally agreed it's where they're heading. If you get a hesitation rather than a yes, that's the signal to slow down and ask what's still on their mind — don't push through.
 
 ### Step 3 — The bridge into Phase 7
 
-> *"Save first before you spend, and really just spend below your means."*
+> *"Save first, then spend what's left — that's really the whole game. Let me show you what setting that up looks like."*
 
 That's the bridge into authentication.
 
@@ -285,9 +276,9 @@ Notice the question is rhetorical — they already told you DBS at Phase 1. You'
 
 Send. Wait. They click. Done.
 
-### Step 4 — Calendar the next review (DO NOT SKIP)
+### Step 4 — Calendar the next review
 
-This is the most-skipped step in the whole appointment. **Don't.** Use specific milestones:
+This is the step most FCs skip when they're tired at the end of an appointment — and it's the one that sets up the relationship for everything that follows. Anchor it to a specific upcoming milestone, not a vague "let's catch up later":
 
 > *"We can review next time when you graduate from your university, in a few years time. I'll wish you on your birthday before that."*
 
@@ -310,7 +301,7 @@ Set the calendar entry **in front of the client.** They see you do it. The trust
 
 ## The post-close 90-day architecture
 
-This is where most FCs leave money on the table. The 90 days after policy issue are the highest-trust window of your entire relationship — and the highest-conversion referral window. Run it with discipline.
+The 90 days after policy issue are the highest-trust window you'll get with this client — they've just made a decision, the service is fresh, the doubts are still settle-able. Most FCs underuse this window because the case feels "done" the moment SMS auth completes. Run the three touchpoints below and the case turns into a relationship instead of a transaction.
 
 ### Day 7–14 post-issue — Free-look check-in
 
@@ -329,17 +320,13 @@ This is the relationship moment. They get a real human checking in about a $300 
 
 ### Day 60–90 — The referral ask
 
-This is the one. After 60+ days of post-sale service, the referral ask carries no awkwardness:
+By this point you've had 60+ days of post-sale service in the bank — which is what makes the ask sit naturally rather than awkwardly:
 
-> *"Hey [name] — quick favour. The plan we set up is humming along, GIRO is debiting, no issues. I run my business through introductions, not cold outreach. Is there one or two people in your circle — friends, colleagues, family — who you think would benefit from the same conversation we had?*
+> *"Hey [name] — quick one. The plan we set up is humming along, GIRO's clean, no issues from my side. I run most of my practice through introductions rather than cold outreach. Off the top of your head, anyone in your circle — friend, colleague, family — who you think would actually benefit from the same conversation we had?*
 >
-> *No pressure. If someone comes to mind, I'd be grateful for an intro."*
+> *No pressure if nothing comes to mind. If someone does, I'd really appreciate the intro."*
 
-The verbatim discipline (from Day 1's source):
-
-> *"If you wish them and they're not a client yet, it's going to be a lot easier to close next time."*
-
-Same logic on referrals — by Day 90 you've earned the ask through service.
+The discipline that makes this work, from Day 1's source: *"If you wish them and they're not a client yet, it's going to be a lot easier to close next time."* Same logic on referrals — by Day 90 you've banked enough service moments that the ask doesn't feel transactional.
 
 ### The intro mechanism
 
@@ -347,7 +334,7 @@ Don't accept a phone number. Ask for a **WhatsApp intro in front of you** if pos
 
 > *"Tell you what — pull up Sarah's number, send her this message:*
 >
-> *'Hey Sarah, this is Marcus — he's my financial advisor and he set up my APA last quarter. I thought of you because you mentioned wanting to start investing. He's going to reach out — worth 30 mins, trust me.'*
+> *'Hey Sarah, this is Marcus — he's my financial advisor and he set up my APA last quarter. I thought of you because you mentioned wanting to start investing. He'll message you — worth 30 mins, trust me.'*
 >
 > *Send it now. I'll WhatsApp her in 24 hours."*
 
@@ -414,15 +401,15 @@ That's the target the entire 10-day track is calibrated to.
 
 ## The "case is closed" definition
 
-A case is NOT closed at SMS auth. A case is closed when:
+A case isn't really closed at SMS auth — that's the application going in. The case is closed when:
 
-1. ✅ SMS authenticated
-2. ✅ GIRO debit confirmed (Day 30)
-3. ✅ 14-day free-look window passed without cancellation
-4. ✅ First annual review booked in calendar
-5. ✅ At least 1 referral name captured (Day 60–90)
+1. SMS authenticated
+2. GIRO debit confirmed (Day 30)
+3. 14-day free-look window passed without cancellation
+4. First annual review booked in calendar
+5. At least 1 referral name captured (Day 60–90)
 
-If you stop at SMS auth and never run #2–5, you closed half a case. The other half — the renewal-income half, the referral half — is left on the table.
+Stopping at step 1 means you got the application in but didn't lock in the renewal-income or the referral pipeline. Those are the parts that compound — and the parts most FCs leave on the table without realising they did.
 
 ---
 

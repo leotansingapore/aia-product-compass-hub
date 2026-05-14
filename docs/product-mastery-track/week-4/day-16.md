@@ -11,15 +11,15 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 > **Today's frame:** UCC is the layered CI plan that fills the gap GPP and whole-life plans leave open. Master the pure-CI definition and the staircase visual; the rest of the curriculum builds from there.
 
-This is a merged module — Part 1 covers what UCC is and who it's for. Part 2 covers the signature pitch concept (the multi-claim staircase). Estimated read + drill: ~55 minutes.
+Part 1 covers what UCC is and who it's for. Part 2 covers the signature pitch concept — the multi-claim staircase.
 
 ---
 
 # Part 1 — UCC in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-> **The one idea for Part 1:** UCC is a regular-premium, non-participating CI plan covering 73 critical illnesses across three severity stages. Three plan terms (To 65 / 75 / 85), no cash value, but unlimited claims for major-stage CI with a 12-month reset between claims — the Ultimate Reset Benefit.
+UCC is a regular-premium, non-participating CI plan covering 73 critical illnesses across 150 condition-stage entries. Three plan terms (To 65 / 75 / 85), no cash value, but unlimited claims for major-stage CI with a 12-month reset between claims — the Ultimate Reset Benefit.
 
-By the end of Part 1 you should be able to: state the three plan terms, name the 42/35/73 condition counts cold, distinguish UCC from GPP/PLP single-claim CI in one sentence, and recognise the 4 trigger conditions that make UCC the right product.
+By the end of Part 1 you should be able to state the three plan terms, name the 42/35/73 condition counts, explain how UCC differs from single-claim CI bundled into GPP/PLP, and recognise the 4 trigger conditions that point to UCC.
 
 ---
 
@@ -29,8 +29,8 @@ A SGD-denominated, **non-participating regular-premium critical illness plan** i
 
 Distinguishing features:
 - **No cash value** — pure CI, no surrender benefit, no maturity benefit
-- **150 medical conditions** across three stages: 42 Early Stage, 35 Intermediate Stage, 73 Major Stage [Brochure p.13]
-- **Unlimited claims for major-stage CI** with 100% reset of Current Insured Amount 12 months after the latest admitted claim — the **Ultimate Reset Benefit** [Product Summary p.7]
+- **73 underlying critical illnesses** mapped across 150 condition-stage entries: 42 Early Stage, 35 Intermediate Stage, 73 Major Stage [Brochure p.13]
+- **Unlimited claims for major-stage CI**, with the Current Insured Amount resetting to 100% twelve months after the latest admitted claim — the **Ultimate Reset Benefit** [Product Summary p.7]
 
 The line that opens every UCC conversation:
 
@@ -72,11 +72,11 @@ Use these as your internal qualification — if at least one is true, UCC is on 
 
 Every UCC sale starts with at least one of these gaps. If none apply, UCC may not be the right product right now.
 
-## The 5 numbers you must know cold
+## The 5 numbers worth knowing
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **150 / 42 / 35 / 73** | Total conditions / Early / Intermediate / Major Stage [Brochure p.13] |
+| 1 | **150 / 42 / 35 / 73** | Total condition-stage entries / Early / Intermediate / Major Stage (73 underlying CIs) [Brochure p.13] |
 | 2 | **12 months** | Ultimate Reset Benefit — restores Insured Amount to 100% after latest admitted claim [PS p.7] |
 | 3 | **S$350,000** | Per-life cap on combined Early + Intermediate stage payouts for the same CI [Brochure p.14] |
 | 4 | **500%** | Combined cap on total Early + Intermediate stage payouts (across all stages) [PS p.4] |
@@ -91,36 +91,40 @@ Every UCC sale starts with at least one of these gaps. If none apply, UCC may no
 
 Always pull live IPOS quote — these are illustrative only.
 
-## The 5-minute intro script
+## Intro shape
 
-> *"This is AIA Ultimate Critical Cover — UCC. The reason we layer this on top of your existing CI cover: three things.*
->
-> *One — it's pure CI. No cash value, no death cover, no savings tied in. That decoupling matters: if you claim CI, your other policies are untouched.*
->
-> *Two — multi-claim. After each major-stage CI claim, your full coverage resets to 100% twelve months later. So you can claim again, and again. Most plans pay once and stop.*
->
-> *Three — 150 conditions across three stages. Early-stage detection nowadays catches things at year zero — UCC pays at that early stage too, while bundled plans usually only pay on major stage.*
->
-> *Three terms — To 65, To 75, or To 85. Which makes more sense for you?"*
+Open with a question, not a feature list. Most CI prospects are worried about one of two scenarios — being stuck on a single big claim, or losing other cover because a CI claim ate it up.
 
-That's 60 seconds. End with the question — they pick the term, the close has started.
+> *"Quick one — your concern with CI cover, is it more about not having enough on one big claim, or more about your other cover surviving if you have to claim?"*
+
+Then the contrast that puts UCC in context:
+
+> *"Most CI plans pay once and stop. UCC is multi-claim — after a major-stage claim, the full cover resets 12 months later. And it's standalone, so a CI claim doesn't touch your other policies."*
+
+Permission to walk them through:
+
+> *"Mind if I sketch how the multi-claim staircase works? Easier to see than describe."*
+
+### Talk-track when they ask "so how does it actually work?"
+
+> *"Three pieces. One — pure CI, no cash value or death cover bundled in. Two — multi-claim: after a major-stage claim, full cover resets to 100% twelve months later. Three — 150 conditions across three stages, including early-stage where most modern diagnoses land. Term options are To 65, To 75, or To 85."*
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
-2. **Write down the 5 key numbers** (150 / 42 / 35 / 73 / 12 months / S$350K / 500% / S$3M). Repeat tomorrow.
-3. **Recite the UCC-vs-single-claim-CI distinction** in two sentences.
-4. **List 3 prospects in your pipeline** for whom UCC is the right product. For each, write which trigger applies.
+1. **Run the discovery question out loud, twice.** Practise the bridge from "single big claim vs other cover surviving" into "mind if I sketch the staircase."
+2. **Recall the key numbers without notes** (150 / 42 / 35 / 73 / 12 months / S$350K / 500% / S$3M).
+3. **Say the UCC-vs-single-claim-CI distinction out loud** in two sentences.
+4. **List 3 prospects in your pipeline** for whom UCC fits. For each, write which trigger applies.
 
 ---
 
 # Part 2 — The Signature Pitch Concept: The Multi-Claim Staircase
 
-> **The one idea for Part 2:** One picture closes UCC. The heart-condition progression visual showing claim → 12-month wait → reset → claim again is the entire conviction in one diagram. While walking the prospect up the staircase you simultaneously beat competitors (Prudential's "related illness" block, Great Eastern's three-claim cap).
+The staircase is the visual that does the heavy lifting for UCC. The heart-condition progression — claim → 12-month wait → reset → claim again — is the whole conviction in one diagram. Walking the prospect up the staircase also surfaces where single-claim competitors fall short (Prudential's "related illness" block, Great Eastern's three-claim cap).
 
-By the end of Part 2 you should be able to: draw the staircase from memory, recite the heart-condition progression script, deploy the per-episode caps without notes, and use the staircase to crush single-claim competitor comparisons.
+By the end of Part 2 you should be able to draw the staircase from memory, run the heart-condition progression script, recall the per-episode caps without notes, and use the staircase to handle single-claim competitor comparisons.
 
 ---
 
@@ -149,7 +153,7 @@ After each step, ask:
 
 > *"Can you still claim again? Yes."*
 
-The repetition lands the multi-claim mechanic. The brochure illustrates this with **Robert at age 43** — 4 separate claims totalling S$500,000 across 8 years from a single S$100,000 base [Brochure p.10]. Reference this when the prospect asks for proof.
+The repetition lands the multi-claim mechanic. The brochure illustrates this with **Robert at age 43** — 4 separate claims totalling S$500,000 across 8 years from a single S$100,000 base [Brochure p.10]. Use this when the prospect wants a worked example before they trust the mechanic.
 
 ## The verbatim Phase-2 script
 
@@ -163,7 +167,7 @@ The brochure framing:
 
 > *"It's ultimate assurance knowing your coverage fully resets every 12 months from the last claim. With this benefit, you are covered against different critical illnesses with unlimited claims for major stages."* [Brochure p.3]
 
-## The per-episode caps (memorise)
+## The per-episode caps
 
 | Stage | Cap |
 |---|---|
@@ -175,54 +179,54 @@ The brochure framing:
 
 ## Differentiation while walking the staircase
 
-When a prospect cross-shops, drop the competitor mechanics into the staircase walk. UCC covers **73 critical illnesses across 150 condition-stages**.
+When a prospect mentions another insurer, cushion before you compare. Something like *"that's totally fair — most of the multi-pay plans on the market do look similar at first glance"* — and then walk them through the mechanics. UCC covers **73 underlying critical illnesses across 150 condition-stage entries**.
 
 ### vs Prudential PRUActive Protect
 
 > *"For Prudential, you cannot claim because it's a related CI. Coronary artery disease versus bypass versus heart attack — as long as it's related to the same area, all the future claims related to heart conditions are not claimable anymore."* [Video 5]
 
 - 37 critical illnesses covered (vs UCC's 73)
-- Max claims: Up to 3 (separate Protect Me Again rider required)
+- Multi-claim is NOT built in — requires a separate "Protect Me Again" rider
 - Coverage term: 10 to 99 years (customisable)
 - Sum assured: $50K – $500K
-- UCC has no "related illness" block; no 3-claim cap; multi-claim built in
-- Brochure: https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruactive-protect/pruactive-protect-brochure-en.pdf
+- UCC has no "related illness" block, no 3-claim cap, and multi-claim is built in (no extra rider)
+- Source: https://www.prudential.com.sg/products/critical-illness-insurance/pruactive-protect
 
 ### vs Great Eastern GREAT Critical Cover: Complete
 
 > *"For Great Eastern, you can only claim if it is less than three times. After three times, the policy will cease."* [Video 5]
 
 - 53 critical illnesses covered (vs UCC's 73)
-- Max claims: Up to 3 (with Protect Me Again rider)
+- Multi-claim caps at 3 (with rider)
 - Coverage term: Up to age 99
 - Sum assured: $50K – $350K
 - Death benefit only $25K — minimal legacy value
-- UCC has no claim count cap on major-stage claims and a higher sum-assured ceiling
-- Brochure: https://www.greateasternlife.com/sg/en/personal-insurance/lifepedia/medical-coverage/find-the-right-critical-illness-plan.html
+- UCC has no claim-count cap on major-stage claims, and a higher sum-assured ceiling
+- Source: https://www.greateasternlife.com
 
 ### vs Singlife Multi-Pay Critical Illness
 
-- 60 critical illnesses covered (vs UCC's 73 — missing 13)
-- Max claims: Multiple
+- 60 critical illnesses covered per Singlife's 2023 brochure (vs UCC's 73)
+- Multi-claim available
 - Coverage term: Whole life
 - Many conditions show "Not applicable" at Early/Intermediate stages
-- No unlimited coverage reset
-- Brochure: https://singlife.com/content/dam/public/sg/documents/critical-illness-insurance/singlife-multipay-critical-illness/brochure-2023.pdf
+- No unlimited coverage reset built in
+- Source: https://singlife.com/content/dam/public/sg/documents/critical-illness-insurance/singlife-multipay-critical-illness/brochure-2023.pdf
 
 ### Headline comparison (verify exact pricing in iPOS)
 
 | Plan | CIs covered | Max claims | Coverage term |
 |---|---|---|---|
-| **AIA UCC** | **73 (across 150 condition-stages)** | **Unlimited at Major stage** | **To 65 / 75 / 85** |
-| Prudential PRUActive Protect | 37 | Up to 3 (rider) | 10 to 99 years |
+| **AIA UCC** | **73 (across 150 condition-stage entries)** | **Unlimited at Major stage (built in)** | **To 65 / 75 / 85** |
+| Prudential PRUActive Protect | 37 | Up to 3 (separate rider) | 10 to 99 years |
 | GE GREAT Critical Cover: Complete | 53 | Up to 3 (rider) | Up to age 99 |
 | Singlife Multi-Pay CI | 60 | Multiple | Whole life |
 
-**Always verify current iPOS quote before citing pricing — figures are time-bound.**
+Pricing comparisons go stale fast — always pull the live iPOS quote before quoting a premium.
 
-## Same-illness recurrence — Enhancer matters
+## Same-illness recurrence — why the Enhancer matters
 
-The base UCC is unlimited across **different** CIs but pays only **once per illness**. Same-illness recurrence (e.g. cancer relapse) requires the **UCC Enhancer rider** — covered in detail Day 3 Part 1.
+The base UCC is unlimited across **different** CIs but pays only **once per illness**. Same-illness recurrence — for example a cancer relapse — needs the **UCC Enhancer rider** (covered in detail Day 3 Part 1).
 
 The verbatim:
 
@@ -242,11 +246,11 @@ The Enhancer adds 5 named relapse conditions at 50% of cover per episode (capped
 
 ## Drill (Part 2)
 
-1. **Draw the staircase visual on paper** from memory. Time yourself — should take under 90 seconds.
-2. **Recite the heart-condition progression script** without looking. 3 times.
-3. **Memorise the per-episode caps** (S$350K Early/Intermediate, 500% combined, S$25K Angioplasty, 7-day survival).
-4. **Memorise the Robert case study** (S$100K base → 4 claims = S$500K).
-5. **Practise the competitor differentiation** (Prudential related-illness, GE three-claim cap) — drop into staircase walk smoothly.
+1. **Draw the staircase from memory on paper.** Aim for under 90 seconds.
+2. **Run the heart-condition progression script** without looking, three times.
+3. **Hold the per-episode caps in your head** (S$350K Early/Intermediate, 500% combined, S$25K Angioplasty, 7-day survival).
+4. **Hold the Robert case study** (S$100K base → 4 claims = S$500K).
+5. **Practise the competitor reframes** (Prudential related-illness rule, GE three-claim cap) so they slot in mid-walk without breaking the staircase rhythm.
 
 ---
 

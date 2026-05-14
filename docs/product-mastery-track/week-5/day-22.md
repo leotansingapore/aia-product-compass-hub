@@ -9,17 +9,17 @@ tags: [product-mastery-track, week-5, healthshield-gold-max]
 ---
 # Day 2 — Run the Meeting: Fact-Find + 8-Phase Pitch Flow
 
-> **Today's frame:** The fact-find is what most FCs skip and what decides whether the pitch lands. Three things first: confirm what the prospect already has via CPF Healthcare Dashboard, get their own ranking via the four-pillar question, and read urgency. Then escalate through 8 phases — pain before solution, every time, with checkpoints.
+> **Today's frame:** The fact-find is what most FCs skip, and it's what decides whether the pitch lands. Three things first: confirm what the prospect already has via CPF Healthcare Dashboard, get their own ranking via the four-pillar question, and read urgency. Then escalate through 8 phases — pain before solution, every time, with checkpoints.
 
-This is a merged module — Part 1 covers the fact-find. Part 2 covers the 8-phase pitch flow. Estimated read + drill: ~60 minutes.
+Part 1 covers the fact-find. Part 2 covers the 8-phase pitch flow.
 
 ---
 
 # Part 1 — The Fact-Find: What to Ask Before Pitching HSGM
 
-> **The one idea for Part 1:** Walk in asking the four-pillar question and listening — the prospect points at hospitalisation themselves, and the rest of the meeting is downhill. Walk in already pitching and the prospect resists.
+Walk in asking the four-pillar question and listening — the prospect points at hospitalisation themselves, and the rest of the meeting is downhill. Walk in already pitching, the prospect resists.
 
-By the end of Part 1 you should be able to: pull up the CPF Healthcare Dashboard with the prospect in 60 seconds, run the four-pillar discovery question naturally, surface the urgency signal (pre-existing-condition risk), and walk away with everything IPOS needs.
+By the end of Part 1 you should be able to: pull up the CPF Healthcare Dashboard with the prospect in 60 seconds, run the four-pillar discovery question naturally, surface the urgency signal (pre-existing-condition risk), and walk away with everything iPOS needs.
 
 ---
 
@@ -79,15 +79,13 @@ The prospect's brain finishes the sentence themselves.
 
 ## Step 4 — Surface urgency (pre-existing condition risk)
 
-If the prospect says *"I'll buy next time"*:
+If the prospect says *"I'll buy next time"*, cushion before reframing:
 
-> *"What if something happens between now and then? If you develop a pre-existing condition before you buy, you may face outright rejection, loading on premiums, or exclusions on certain conditions."*
+> *"That's totally fair — there's never a perfectly convenient time. The one thing I'd want you to think about is the underwriting window. If anything shows up on a medical report between now and then — a borderline reading, a single specialist visit — you could be looking at outright decline, premium loading, or an exclusion on whichever condition surfaced. The cost of waiting isn't just premium inflation, it's the door quietly closing."*
 
-The cost of waiting isn't just inflation — it's the underwriting window closing. Every year delayed is age + risk of any condition surfacing.
+## Step 5 — Capture the iPOS-quote data
 
-## Step 5 — Capture the IPOS-quote data
-
-Before you open IPOS, you need:
+Before you open iPOS, you need:
 
 - ✅ Age next birthday
 - ✅ Smoker / non-smoker (smoker premium ~**40.8% higher** [Video 3])
@@ -125,7 +123,7 @@ Use these to honestly answer "is it worth waiting?" — the answer is no, costs 
 
 # Part 2 — The 1-1 Pitch Flow: 8 Phases with Checkpoints
 
-> **The one idea for Part 2:** Pain comes before solution every single time. Never name a feature before naming the problem it solves. Pre-authorisation only makes sense after the prospect feels the pain of paying S$50K upfront and waiting two weeks for reimbursement. Use checkpoints — never lecture more than 2–3 minutes.
+Pain comes before solution every single time. Never name a feature before naming the problem it solves. Pre-authorisation only makes sense after the prospect feels the pain of paying S$50K upfront and waiting two weeks for reimbursement. Use checkpoints — never lecture for more than 2–3 minutes without asking a question.
 
 By the end of Part 2 you should be able to: name all 8 phases in order, deploy the problem-feature-benefit pattern on every feature, demo Teladoc + AIA Quality Healthcare Partners + AIA+ app live from your phone, and close on the two-option binary.
 
@@ -175,11 +173,13 @@ Never name a feature without naming the problem first. Four examples, in order o
 
 ### AIA Quality Healthcare Partners (preferred provider panel)
 
-> *"Do you want to speak to some shady doctor? Some doctors see you have insurance and overcharge or prescribe unnecessary treatments. With AIA's preferred provider panel — over 600 specialists vetted by AIA — that risk is screened out. Plus you get appointment booking within 3 working days."*
+> *"One thing most people don't think about — when a doctor sees you have insurance, the temptation to overcharge or pile on extra investigations is real. The AIA Quality Healthcare Partner panel solves that two ways: over 600 specialists vetted by AIA on transparent pricing, and appointment booking within 3 working days. You're choosing from a curated list, not gambling on whoever answers the phone."*
+
+The full AIA panel across all specialties is 962 doctors (healthcare.aia.com.sg/aiaplus/oaop) — quote that figure only if a prospect probes panel breadth.
 
 ### Teladoc personal case management
 
-> *"If a doctor says you need chemo, is that 100% the right treatment? Wouldn't you want a second opinion, or even a third? With Teladoc personal case management, you get connected to over 50,000 leading global specialists. This service normally costs around S$20,000. It is free for our customers."*
+> *"If a doctor recommends chemo or surgery, is that 100% the only path? Most people I sit with want a second opinion before something that big — but they don't know where to start, and asking another doctor in the same hospital feels awkward. Teladoc connects you to a panel of over 50,000 global specialists for a structured second opinion. That service usually costs around S$20,000 out of pocket. AIA customers get it included."*
 
 ### AIA+ app + telemedicine
 
@@ -189,21 +189,21 @@ Demo all four LIVE if possible — open the AIA+ app, show the preferred-provide
 
 ## Phase 8 — The two-option close
 
-Never ask "do you want to buy?" — that's a one-shot binary that invites *"let me think about it."* Always ask:
+Never ask "do you want to buy?" — that's a one-shot binary that invites *"let me think about it."* Use the soft-choice frame instead:
 
 > *"Which would you prefer — public or private?"*
 
-Both answers move the meeting forward to IPOS. The rider is **assumed in** — never offer with-rider/without-rider as the choice (that fragments the close).
+Both answers move the meeting forward to iPOS. The rider is **assumed in** — never offer with-rider/without-rider as the choice (that fragments the close).
 
-The bridge into Phase 8 (after Phase 7 demos):
+The bridge into Phase 8 (after Phase 7 demos) is a permission close:
 
-> *"Is it okay if I take the next 10 minutes and walk you through the numbers?"*
+> *"Mind if I take the next 10 minutes and walk you through the numbers?"*
 
-Permission re-ask — gives them control while you set up IPOS.
+Giving them control while you set up iPOS lowers resistance more than a hard transition would.
 
 ## Reference numbers for Phase 6 (price reveal)
 
-Verify in IPOS at quote time — these move with each rate update. Approximate bands:
+Verify in iPOS at quote time — these move with each rate update. Approximate bands:
 
 | Plan | Young adult cash band |
 |---|---|
@@ -214,11 +214,11 @@ Plus ~S$29/year MediSave shortfall for young Plan A (the AIA top-up exceeds the 
 
 ## Phase reference: AIA Quality Healthcare Partner specialist count
 
-The brochure says **over 600**. Older videos say "over 380" (Video 0) or "900+" (Video 6/7) or "967". Use the brochure number and verify live on aia.com.sg/qualityhealthcare. [Brochure p.5]
+The April 2026 brochure (p.5) cites **over 600 AQHP specialists**. The full AIA panel across all specialties is **962 doctors** (healthcare.aia.com.sg/aiaplus/oaop). The SMA IP Providers Survey 2022 cites over 500 private specialists across the AIA network. Use 600+ as the headline number in the pitch; verify before each meeting in case AIA refreshes the brochure.
 
 ## Pacing rule
 
-If you're approaching the 30-minute mark and you're still in Phase 7, you're losing them. Compress the demo, jump to the two-option close, set up IPOS while reinforcing value, and book delivery for next session. **Better to close in two visits than to lose in one.**
+If you're approaching the 30-minute mark and you're still in Phase 7, you're losing them. Compress the demo, jump to the two-option close, set up iPOS while reinforcing value, and book delivery for next session. **Better to close in two visits than to lose in one.**
 
 ---
 

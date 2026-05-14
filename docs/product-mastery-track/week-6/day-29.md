@@ -11,27 +11,25 @@ tags: [product-mastery-track, week-6, solitaire-pa]
 
 > **Today's frame:** Surface frequency, not probability. The FC's claim book is the proof. Then position Solitaire PA as Bucket 4 in the Total Wealth four-bucket model — always paired with HSGM in a basic-medical conversation.
 
-This is a merged module — Part 1 covers the 5 objections. Part 2 covers Total Wealth four-bucket positioning + family expansion. Estimated read + drill: ~55 minutes.
+Part 1 covers the 5 objections. Part 2 covers Total Wealth four-bucket positioning and family expansion.
 
 ---
 
-# Part 1 — Top 5 Objections (the Conviction-Story Heart)
+# Part 1 — Top 5 Objections
 
-> **The one idea for Part 1:** PA objections cluster around perceived irrelevance, perceived smallness, and routine stalling. Frequency beats probability arguments — the FC's own claim book is the proof. Surface 1-2 PA claims processed weekly, real screenshots S$14.50 to S$156 — the line is high-frequency and high-trust.
+PA objections cluster around perceived irrelevance, perceived smallness, and routine stalling. Frequency beats probability — the FC's own claim book is the proof. Surface 1-2 PA claims processed weekly, real screenshots S$14.50 to S$156. The line is high-frequency and high-trust.
 
-By the end of Part 1 you should be able to recite all 5 conviction stories from memory, deploy the FC's-claim-book frequency argument, and reframe "PA is cheap" from a negative to a positive (low premium = no excuse not to bundle).
+By the end of Part 1 you should be able to recite all 5 responses from memory, deploy the FC's-claim-book frequency argument, and reframe "PA is cheap" from a negative to a positive (low premium = no excuse not to bundle).
 
 ---
 
 ## Objection 1 — "I'm careful — I won't have an accident"
 
-**The frame:** Accident = unexpected. The whole definition is that you didn't plan for it.
+**The frame:** Accident, by definition, means the bit you didn't plan for.
 
-**The script:**
+**The script (cushion → reframe → trial close):**
 
-> *"Accident = unexpected. The whole definition is that you didn't plan for it. Recreational sports, insect bites, food poisoning, kitchen cuts — none of those are reckless behaviour.*
->
-> *In my book of clients, I'm processing one or two accident claims every single week. These are people who 'wouldn't have an accident' until they did."* [Video 5, Video 6]
+> *"Totally fair — and I respect that, you're not someone who takes silly risks. The thing is, "accident" by definition means unexpected. Recreational sports, insect bites, food poisoning, kitchen cuts — none of that is reckless. Across my book of clients I'm processing one or two accident claims every single week. These are careful people, right up until something landed they didn't see coming. Worth at least seeing the numbers?"* [Video 5, Video 6]
 
 **The conviction:**
 - The definition of accident excludes intentionality
@@ -40,13 +38,13 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## Objection 2 — "My employer's group PA already covers me"
 
-**The frame:** Employer GPA has structural weaknesses — low caps, tied to job, narrow coverage.
+**The frame:** Employer GPA has three structural weaknesses — low caps, tied to job, narrow coverage.
 
-**The script:**
+**The script (cushion → three-point reframe → trial close):**
 
-> *"Employer GPA usually has low caps — often S$50,000 to S$200,000 max. It's tied to your job — resign or retrenched and it's gone. It rarely covers TCM, chiropractic, partial-disability schedule, or worldwide 24/7.*
+> *"That makes sense — corporate cover usually does a fair job while you have it. Three things worth checking, though. The caps are typically low — S$50,000 to S$200,000 maximum. It's tied to your job, so resignation or retrenchment ends it overnight. And it rarely covers TCM, chiropractic, the full partial-disability schedule, or 24/7 worldwide claims.*
 >
-> *Solitaire PA Plan 4 carries S$2.25 million on dismemberment, S$5,000 per accident on medical reimbursement with unlimited accidents, plus the entire Schedule of Indemnity for partial losses — and it's portable, lifetime."* [Video 9]
+> *Solitaire PA Plan 4 carries S$2.25 million on dismemberment, S$5,000 per accident on medical reimbursement with no cap on the number of accidents, plus the full Schedule of Indemnity for partial losses. And it stays yours regardless of employer. Worth layering it under, not replacing — does that make sense?"* [Video 9]
 
 **The numbers:**
 - Employer GPA cap range: S$50,000-S$200,000 (illustrative — flagged in source-quality notes)
@@ -64,7 +62,7 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 **The script (from Video 9):**
 
-> *"I never sell PA in a standalone meeting. It's part of a basic-medical-insurance conversation — hospital plan plus accident plan, inpatient plus outpatient. We're already talking about your hospital cover; this is the missing piece on top of that. Together, we're talking maybe S$45 a month for a young working adult."* [Video 9]
+> *"Honestly, fair — and that's exactly why I don't run PA as a standalone meeting. It's part of a basic-medical conversation — hospital plan plus accident plan, inpatient plus outpatient. We're already talking about your hospital cover; this is the missing piece on top. Together, we're looking at about S$45 a month for a young working adult."* [Video 9]
 
 **The conviction:**
 - Bundling = HSGM (B2 ward) ~S$20-25/month + Solitaire PA Plan 1 ~S$19/month = ~S$45/month
@@ -73,13 +71,11 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## Objection 4 — "What's the actual claim probability?"
 
-**The frame:** Don't argue probability — show frequency from your own book.
+**The frame:** Don't argue probability — show frequency from your own claim book.
 
-**The script:**
+**The script (cushion → frequency proof → trial close):**
 
-> *"Of all the policies I service, the accident plan is the one I claim for the most. Every week I'm processing one or two claims for clients — TCM visits, chiropractor, food poisoning, polyclinic stitches.*
->
-> *The claim screenshots range from S$14.50 to S$156. Death and TPD claims are the rare ones. Accident claims are the routine ones."* [Video 5, Video 10]
+> *"That's a good question, and I appreciate you wanting to see the data. Honestly, probability is the wrong lens — frequency is the right one. Across my entire book of clients, the accident plan is the policy I claim on the most. Every week I'm processing one or two claims — TCM visits, chiropractor, food poisoning, polyclinic stitches. The claim screenshots range from S$14.50 to S$156. Death and TPD claims are the rare ones. Accident claims are the routine ones. Mind if I show you a few of the actual screenshots?"* [Video 5, Video 10]
 
 **The conviction:**
 - Frequency > probability. Show real claims, not statistics.
@@ -90,11 +86,15 @@ If you have real claim screenshots from your own book — show them. Concrete > 
 
 ## Objection 5 — "I'll think about it"
 
-**The frame:** Reduce to daily cost + present binary choice.
+**The frame:** Cushion, narrow the actual concern, then daily-cost reframe.
 
 **The script:**
 
-> *"The premium is S$0.62 to S$2.34 a day depending on plan. You're already spending more than that on coffee or your MRT fare without thinking. The real question isn't the price — it's whether the next time you fall off your bike or your kid needs stitches, you'd rather not pay out of pocket. Plan 1, 2, 3, or 4?"* [Video 7]
+> *"Totally fair — and to help you think clearly, what specifically would you want to consider? The plan tier, the cost, or whether you need it at all?"*
+
+(Wait. Let them surface the real concern.)
+
+> *"Got it. Worth noting — across Plans 1 to 4, the premium is S$0.62 to S$2.34 a day. You're spending more than that on coffee or MRT without thinking about it. The actual question isn't the price — it's whether next time someone falls off a bike or a kid needs stitches, you'd rather not pay out of pocket. Plan 1, 2, 3, or 4?"* [Video 7]
 
 **The conviction:**
 - Daily cost reframe collapses "let me think" into a non-issue
@@ -123,7 +123,7 @@ Direct close. Don't elaborate.
 
 # Part 2 — Total Wealth Four-Bucket + Family Expansion
 
-> **The one idea for Part 2:** Solitaire PA = Bucket 4 in the Total Wealth four-bucket model. Always sold paired with HSGM (Bucket 3). For prospects already covered on Buckets 2-3 with thin life cover, Solitaire PA's partial-disability cover is the only place lose-ONE events get paid. The Plan 2+ family hook (10% off Star Protector Plus for kids until 21) turns PA into a multi-generational entry point.
+Solitaire PA sits as Bucket 4 in the Total Wealth four-bucket model — always sold paired with HSGM (Bucket 3). For prospects already covered on Buckets 2-3 with thin life cover, Solitaire PA's partial-disability cover is the only place lose-ONE events get paid. The Plan 2+ family hook (10% off Star Protector Plus for kids until 21) turns PA into a multi-generational entry point.
 
 By the end of Part 2 you should be able to draw the Total Wealth four-bucket diagram from memory, recommend the right bundle per prospect (HSGM + Solitaire PA + family riders), and surface the Star Protector Plus family-conversion hook.
 
@@ -209,9 +209,9 @@ This is a PUSH from Plan 1 → Plan 2 for parents.
 
 ## Layering with GPP/PLP — the partial-disability cross-sell
 
-GPP and PLP pay only on TPD-strict (lose two-of-any). Solitaire PA's Benefit 3 (Accidental PTD) and Benefit 4 (Accidental Dismemberment + Burns Schedule) catch the partial cases.
+GPP and PLP pay only on TPD-strict (lose two-of-any). Solitaire PA's Benefit 3 (Accidental Permanent Total Disability) and Benefit 4 (Accidental Dismemberment and Burns Schedule) catch the partial cases.
 
-Plus the **Monthly Disability Care optional benefit** pays:
+Plus the **Monthly Disability Care Benefit** (optional) pays:
 - S$2,000/month at Plan 4
 - Trigger: unable to perform 2 of 6 ADLs
 - Maximum: 120 months lifetime
@@ -220,14 +220,14 @@ Plus the **Monthly Disability Care optional benefit** pays:
 
 [PS p.11]
 
-This is the only AIA stack that pays out on **partial AND total** disability:
+This is the only AIA stack that pays out across the full disability spectrum:
 - Total disability (lose 2-of-any) → GPP/PLP TPD payout
 - Partial disability (lose 1-of-any) → Solitaire PA Schedule of Indemnity
-- ADL-based disability (can't dress, bathe, etc.) → Solitaire PA Monthly Disability Care
+- ADL-based disability (can't dress, bathe, etc.) → Solitaire PA Monthly Disability Care Benefit
 
 The script:
 
-> *"Your GPP covers death and total disability — that's lose two arms or two eyes. Solitaire PA picks up where GPP stops — single losses on the Schedule of Indemnity, plus monthly disability income if you can't do 2 of 6 ADLs."*
+> *"Your GPP covers death and total disability — that's lose two arms or two eyes. Solitaire PA picks up where GPP stops — single losses on the Schedule of Indemnity, plus a Monthly Disability Care Benefit if you can't do 2 of 6 ADLs."*
 
 ## Cross-sell discipline rules
 
@@ -244,7 +244,7 @@ The script:
 1. **Draw the Total Wealth four-bucket diagram** from memory.
 2. **Memorise the bundle math** — HSGM B + Solitaire PA Plan 1 = ~S$45/month for young adult.
 3. **Practise the Star Protector Plus pitch** for parent prospects.
-4. **Memorise the Monthly Disability Care mechanics** (S$2,000/mo, 120 months, 90-day deferment, 2-of-6 ADLs).
+4. **Memorise the Monthly Disability Care Benefit mechanics** (S$2,000/mo, 120 months, 90-day deferment, 2-of-6 ADLs).
 5. **Pick 3 prospects from your pipeline.** For each, recommend the right bundle.
 
 ---
@@ -296,7 +296,7 @@ Day 5: compliance + close. Part 1 — the disclosures (yearly-renewable not guar
 
 **Why:** Day 4 Bundle 1 calculates ~S$45/month total — HSGM B at ~S$20-25/month plus Solitaire PA Plan 1 at ~S$19/month basic.
 
-6. **The Monthly Disability Care optional benefit at Plan 4 has what mechanics?**
+6. **The Monthly Disability Care Benefit at Plan 4 has what mechanics?**
 - A) S$1,000/month, max 60 months, 30-day deferment, 1 of 6 ADLs
 - B) S$2,000/month, max 120 months lifetime, 90-day deferment, trigger is inability to perform 2 of 6 ADLs, premium waived while paid ✓
 - C) S$2,000/month, max 240 months, 180-day deferment, 3 of 6 ADLs
@@ -332,7 +332,7 @@ Day 5: compliance + close. Part 1 — the disclosures (yearly-renewable not guar
 - A) Decline to write Solitaire PA because employer GPA already exists
 - B) Layer Solitaire PA UNDER the employer cover (portable, lifetime, S$2.25M Plan 4 dismemberment, partial-disability schedule) and push Plan 2+ for the Star Protector Plus family discount ✓
 - C) Replace the employer GPA entirely with Plan 1
-- D) Recommend just the Monthly Disability Care benefit standalone
+- D) Recommend just the Monthly Disability Care Benefit standalone
 
 **Why:** Day 4 cross-sell rules require layering under (not replacing) employer GPA, citing Plan 4's S$2.25M dismemberment and the Schedule of Indemnity, plus pushing Plan 2+ to unlock the Star Protector Plus 10% discount for the children.
 

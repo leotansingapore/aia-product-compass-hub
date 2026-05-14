@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 > **Today's frame:** Internalise three pieces of math (single-claim base mechanics, Enhancer 50% relapse + 100% Catastrophic top-up, per-episode caps). Then memorise the 5 questions every prospect asks on "unlimited" — and the exact mechanic for each answer. The FC's fluency is the trust test.
 
-This is a merged module — Part 1 covers the numbers and Enhancer mechanics. Part 2 covers the top 5 client questions. Estimated read + drill: ~55 minutes.
 
 ---
 
@@ -242,7 +241,7 @@ But if they push:
 
 ## What's coming next
 
-Day 4: the conviction stories. Part 1 — the 5 hardest objections (this is where UCC is won or lost). Part 2 — cross-sell + bundling: the canonical GPP + UCC pairing, plus 6 real restructure case studies from Video 8.
+Day 4: the conviction stories. Part 1 — the 5 hardest objections (the toughest objections live here). Part 2 — cross-sell + bundling: the canonical GPP + UCC pairing, plus 6 real restructure case studies from Video 8.
 
 ---
 

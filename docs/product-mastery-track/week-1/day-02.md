@@ -11,8 +11,6 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 > **Today's frame:** Pre-fit the recommendation through a 5-minute fact-find, then run a 7-phase appointment in 20–30 minutes where every phase ends with a client micro-commitment.
 
-This is a merged module — Part 1 covers the first half (originally Day 03), Part 2 covers the second half (originally Day 04). Estimated read + drill time: ~55 minutes. Take it in two sittings if you need to.
-
 ---
 
 # Part 1 — The Fact-Find — What to Ask Before Pitching APA
@@ -94,21 +92,23 @@ That answer is your real risk read.
 
 ### 4. Existing portfolio (what they already do)
 
-This is the question that determines which **Day 7 objection** you'll need to pre-handle:
+This is the question that pre-loads which **Day 4 objection arc** you'll likely run into:
 
-> *"Are you already investing? Stocks, ETFs, robo-advisors? Tell me what you're doing now."*
+> *"Out of curiosity — are you already investing on your own? Stocks, ETFs, a robo, anything like that? Just want to understand what you've already got going on before I suggest anything."*
+
+The "out of curiosity" opener and the *"before I suggest anything"* tail keep this from feeling like an audit. You're framing yourself as someone fitting a recommendation, not gating one.
 
 Translate their answer into your prep:
 
-| Their answer | The objection you'll face |
+| Their answer | The objection arc you're likely to run |
 |---|---|
-| "I buy S&P500 / SPY / CSPX" | Day 7 Objection 1 — Perfect / Imperfect / Partially Perfect |
-| "I use StashAway / Endowus / Syfe" | Day 7 Objection 2 — perpetual fee math |
-| "I pick stocks myself" | Day 7 Objection 2 — DIY exhaustion + tool vs service |
-| "I have an old ILP from another company" | Day 7 Objection 4 — competitor charges comparison |
-| "I just keep cash in DBS / OCBC / UOB" | Day 2 retirement reverse-engineer is your whole pitch |
+| "I buy S&P500 / SPY / CSPX" | Day 4 Objection 1 — Perfect / Imperfect / Partially Perfect |
+| "I use StashAway / Endowus / Syfe" | Day 4 Objection 2/3 — perpetual fee math, DIY tool vs service |
+| "I pick stocks myself" | Day 4 Objection 2 — DIY exhaustion + tool vs service |
+| "I have an old ILP from another company" | Day 4 Objection 4 — competitor charges comparison |
+| "I just keep cash in DBS / OCBC / UOB" | The Day 1 retirement reverse-engineer carries the whole pitch |
 
-**You should know within 2 minutes of meeting the prospect which objection arc you're running.**
+Aim to have a working read on which arc you're running before you start drawing anything — it'll save you 5 minutes of mismatched pitch later.
 
 ### 5. The goal anchor
 
@@ -160,16 +160,16 @@ This calibrates how hard you need to swing the contrast.
 
 ## What a complete fact-find looks like
 
-5–8 minutes max. You should walk away with:
+5–8 minutes max. By the end you should have:
 
-- ✅ Date of birth + 3+ other calendar milestones
-- ✅ Income / expenses / savings (specific numbers)
-- ✅ Risk read (the 30% drawdown question)
-- ✅ Existing portfolio (which objection arc you're running)
-- ✅ Life goal (what to anchor the recommendation to)
-- ✅ Bank account + monthly cadence preference
+- Date of birth + 3+ other calendar milestones
+- Income / expenses / savings (specific numbers, not "around five-ish")
+- Risk read (the 30% drawdown question, or your own version of it)
+- Existing portfolio (so you know which objection arc to expect)
+- Life goal (what to anchor the recommendation to)
+- Bank account + monthly cadence preference
 
-If you walk away missing any of these, you'll fumble the close. Go back and ask.
+Missing one or two of these isn't fatal — but you'll feel it at Phase 5 when you're guessing instead of recommending. If something's missing, loop back naturally before you start the pitch: *"One thing I forgot to ask earlier — ..."*
 
 ---
 
@@ -336,13 +336,15 @@ The standard close illustration to memorize:
 
 Then the 3-options ladder — let the client self-select:
 
-> *"You can start at $200, $250, or $300 a month — which one feels right?"*
+> *"You can start at $200, $250, or $300 a month — which one feels right for where you are now? We can always top up later if your income grows."*
 
-The three-option frame is a Phase 5 closing technique. They never reject all three.
+Three options gives the client a soft choice rather than a yes-no decision — they tend to pick the middle or the one closest to what they were already thinking. The *"top up later"* tail removes the fear of locking in too high.
 
-> *"$50 more per month means about $600,000 more in projected returns. Just throwing it out there."*
+If you want to plant a gentle anchor for going up a tier:
 
-That's the urgency anchor for upgrade.
+> *"For context — $50 more per month over 40 years works out to roughly $600k more in projected returns. Not pushing the higher tier, just so you can see the trade-off."*
+
+Naming that it's not a push is what keeps it from feeling like one.
 
 **Phase 5 micro-commit targets:** *"Monthly is fine"* AND *"Option B sounds smarter"* (or whichever option they pick — what matters is that they pick).
 
@@ -350,23 +352,23 @@ That's the urgency anchor for upgrade.
 
 ## Phase 6 — Close (3 min)
 
-The close is just the formal version of decisions already made. Wrap with the four rules from Phase 4:
+By Phase 6 most of the decisions have already been made — you're just collecting them into one cleaner version. Wrap with the four rules from Phase 4:
 
-> *"Recap: earn more — that's on you. Spend less — that's on you. Get insured — separate conversation. Automate investing — that's what we set up today."*
+> *"Quick recap before we lock anything in. Four things make someone financially free: earn more, spend less, get properly insured, and automate the investing. Earn more and spend less — honestly, those are on you, no plan can do that for you. Insurance is a separate conversation we should book. The piece I can help you with today is automating the investing."*
 
-Then the option-A vs option-B frame:
+Then the soft option frame:
 
-> *"Option A: keep doing what you're doing. Save in cash, hope inflation is kind, hope you have the discipline for 40 years. Option B: automate $250 a month into APA, capital-guaranteed death benefit, bonuses from year 10, and you stop having to think about it.*
+> *"So two ways to go from here. Option A — keep things as they are, save in cash, see what discipline and inflation do over the next 40 years. Option B — automate $250 a month into APA, capital-guaranteed death benefit, bonuses kicking in from year 10, and you stop having to think about it.*
 >
-> *Which one would you prefer — option A or B?"*
+> *Neither is wrong. Which one sounds more like where you actually want to be?"*
 
-They say B.
+The *"neither is wrong"* line is the cushion — it keeps the close from feeling like a forced choice. Most clients pick B because by this point they've already mentally agreed it's where they want to go.
 
-> *"Save first before you spend, and really just spend below your means."*
+Then the bridge into implementation:
 
-That's the bridge into Phase 7.
+> *"Save first before you spend — that's the whole game. Let me show you what setting that up actually looks like."*
 
-**Phase 6 micro-commit target:** *"Let's do option B."*
+**Phase 6 micro-commit target:** *"Let's do option B."* If you get a hesitation instead of a yes, slow down and ask *"what's the bit that's still on your mind?"* — don't bulldoze through.
 
 ---
 
@@ -396,7 +398,7 @@ That last sentence is the *handoff* into the post-close relationship. Birthday w
 
 ## The pacing rule
 
-If you're approaching the 30-minute mark and you're still in Phase 5, you're losing them. Compress the numbers, jump to the option-A/B close, and book the implementation for the next session. **Better to close in two visits than to lose in one.**
+If you're approaching the 30-minute mark and you're still in Phase 5, attention is starting to drop off. Compress the numbers, move to the option-A/B frame, and book the implementation for a follow-up session if needed. Two clean visits beat one rushed one — and a follow-up gives the prospect time to think rather than feel pushed.
 
 ---
 
@@ -425,7 +427,7 @@ That's the benchmark. The flow above is calibrated to it.
 
 ## What's coming next
 
-Day 3: the math behind APA. Every number a sharp prospect will probe — supplementary charge, bonus mechanics, surrender schedule, break-even — plus the 5 client questions that come up in every appointment, with crisp scripted answers.
+Day 3: the math behind APA. The numbers a sharp prospect will probe — supplementary charge, bonus mechanics, surrender schedule, break-even — plus the five client questions that come up in most first appointments, with worked answers.
 
 ---
 
@@ -502,13 +504,13 @@ Day 3: the math behind APA. Every number a sharp prospect will probe — supplem
 
 **Why:** The three-options ladder lets the client self-select; "$50 more = $600k more in projected returns" is the urgency anchor.
 
-10. **A prospect says "I buy S&P500 / SPY" during the fact-find. Which Day 4 objection arc are you running?**
+10. **A prospect says "I buy S&P500 / SPY" during the fact-find. Which Day 4 objection arc are you likely to run?**
 - A) Day 4 Objection 4 — competitor charges comparison
 - B) Day 4 Objection 1 — Perfect / Imperfect / Partially Perfect frame ✓
 - C) Day 4 Objection 5 — dividend trap
 - D) Day 4 Objection 3 — fees too high
 
-**Why:** "I buy S&P500" maps directly to the Perfect/Imperfect/Partially Perfect conviction story you should know within 2 minutes of meeting.
+**Why:** "I buy S&P500" maps directly to the Perfect / Imperfect / Partially Perfect conviction story — knowing this early lets you pre-build the Phase 4 setup rather than scrambling for it mid-pitch.
 
 ## Related
 

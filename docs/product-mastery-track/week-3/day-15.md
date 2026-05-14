@@ -11,13 +11,12 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** Disclose proactively, close in layers. The non-guaranteed bonus, accelerated CI, and Premium-Pause-as-loan are all things RNF will sample-audit you on — and all things that build trust if delivered as credibility moves rather than buried in fine print. The close is the formal version of decisions already made through the four hoops.
 
-This is the final module. Part 1 covers compliance + risk disclosures. Part 2 covers the four-hoops layered close, paperwork, and delivery. Estimated read + drill: ~50 minutes.
 
 ---
 
 # Part 1 — Compliance + Risk Disclosures (RNF-Relevant Phrasing)
 
-> **The one idea for Part 1:** Three things must land in your verbal walkthrough — the non-guaranteed bonus, the accelerated CI mechanic, and Premium Pause as a loan. Saying them out loud is the credibility move. Burying them in BI fine print is how FCs lose audits.
+> **The frame for Part 1:** Three things must land in your verbal walkthrough — the non-guaranteed bonus, the accelerated CI mechanic, and Premium Pause as a loan. Burying them in BI fine print is how FCs lose audits.
 
 By the end of Part 1 you should be able to: deliver the four required disclosures cleanly, recognise when GPP is the wrong product for the prospect (and say so), and pass an RNF sample audit without a coaching note.
 
@@ -166,7 +165,7 @@ Three scenarios where the right move is to NOT close:
 2. **Cannot afford the minimum without sacrificing the emergency fund or higher-priority protection.** Build the foundation first.
 3. **Genuinely term-only mindset (no value placed on cash refund).** Pitch term and respect the close. Trust compounds.
 
-Saying *"I don't think GPP is right for you, let me show you something else"* is the most under-appreciated trust-building move in the whole product set. Use it.
+*"I don't think GPP is right for you, let me show you something else"* is one of the highest-trust moves in the product set.
 
 ---
 
@@ -330,7 +329,7 @@ Set the calendar entry **in front of the prospect.** They see you do it. Trust s
 
 ## The post-close 90-day architecture
 
-Same discipline as the APA track — the 90 days post-issue are the highest-trust window of the entire relationship.
+Same discipline as the APA track — the 90 days post-issue are the highest-trust window of the relationship.
 
 ### Day 7–14 — Free-look check-in
 
@@ -435,7 +434,7 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 - C) A statement that GPP is illegal for foreigners
 - D) A pricing footnote about market volatility
 
-**Why:** Day 5 Part 1 says naming the anti-market out loud — and walking away if the prospect fits it — is the most under-appreciated trust-building move in the product set.
+**Why:** Day 5 Part 1 says naming the anti-market out loud — and walking away if the prospect fits it — is one of the highest-trust moves in the product set.
 
 4. **What are the four hoops a prospect must clear before the Phase 6 binary close?**
 - A) FHR / NRIC / GIRO / signature

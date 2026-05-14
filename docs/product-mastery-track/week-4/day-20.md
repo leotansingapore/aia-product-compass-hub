@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 > **Today's frame:** State the 6 compliance pillars in your own voice, in plain English, before the prospect signs. Then close on the prospect's choice of term, sequence the Enhancer (default) and ECPWP (after term), and hand off Teladoc/WhiteCoat/Vitality at delivery. The prospect who signs is also the prospect who refers.
 
-This is the final module. Part 1 covers the 6 compliance pillars. Part 2 covers the term-then-rider close, Premium Waiver framing, AIA Vitality, post-close handoff. Estimated read + drill: ~50 minutes.
 
 ---
 

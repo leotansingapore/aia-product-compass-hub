@@ -9,17 +9,17 @@ tags: [product-mastery-track, week-5, healthshield-gold-max]
 ---
 # Day 1 — HSGM Foundations: What It Is + First-Line-of-Defence + Travel Package
 
-> **Today's frame:** HSGM is the conviction product that should sit at the base of every protection plan. It does one job — when the bill arrives, it pays the hospital so the client doesn't have to. Lock that idea in first; everything else (riders, ward classes, cancer add-ons, math) is detail.
+> **Today's frame:** HSGM is the foundation of any protection plan. It does one job — when the bill arrives, it pays the hospital so the client doesn't have to. Lock that idea in first; everything else (riders, ward classes, cancer add-ons, math) is detail.
 
-This is a merged module — Part 1 covers what HSGM is and why MediShield Life leaves a gap. Part 2 covers the signature pitch sequence: first-line-of-defence + travel-package + value-stack-before-price. Estimated read + drill: ~55 minutes.
+Part 1 covers what HSGM is and why MediShield Life leaves a gap. Part 2 covers the signature pitch sequence: first-line-of-defence, the travel-package wraparound, and value-stack-before-price.
 
 ---
 
 # Part 1 — HSGM in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-> **The one idea for Part 1:** MediShield Life subsidises bills only for B2/C-class wards in public hospitals. The moment the client upgrades the ward or steps into a private hospital, they face a gap. HSGM closes that gap. It pays the hospital, not the client — that's the difference vs CI insurance.
+MediShield Life subsidises bills only for B2/C-class wards in public hospitals. The moment the client upgrades the ward or steps into a private hospital, they face a gap. HSGM closes that gap. It pays the hospital, not the client — that's the difference vs CI insurance.
 
-By the end of Part 1 you should be able to: (1) describe HSGM in two sentences without notes, (2) name the three plan tiers and what they cover, (3) explain the difference between hospitalisation insurance (reimbursement) and CI insurance (lump sum), (4) state the four most-quoted numbers cold.
+By the end of Part 1 you should be able to: describe HSGM in two sentences without notes, name the three plan tiers and what they cover, explain the difference between hospitalisation insurance (reimbursement) and CI insurance (lump sum), and state the four most-quoted numbers cold.
 
 ---
 
@@ -35,21 +35,25 @@ Three plan tiers:
 | **HSG Max B** | A-class ward or lower in a public hospital |
 | **HSG Max B Lite** | 4-bedder B1-class ward or lower in a public hospital |
 
-The line that opens every HSGM conversation:
+## How to open the HSGM conversation
 
-> *"MediShield Life subsidises your bills only if you stay in C and B2 wards of public hospitals. The moment you upgrade your ward, or step into a private hospital, you face the gap. HSGM closes that gap."*
+Don't lead with a slogan. Surface the prospect's current cover first, then draw the gap:
+
+> *"Out of curiosity — if you ended up in hospital tomorrow, do you know which ward you'd be in, and how much of the bill would actually be covered?"*
+
+Most prospects pause. Then the bridge:
+
+> *"MediShield Life is sized for B2 and C-class wards in public hospitals — that's its design. The moment you upgrade your ward or go private, the bill pro-rates and the gap is yours to fund. HSGM is what closes that gap."*
 
 ## HSGM vs CI insurance — the distinction that matters
 
-This is the question every prospect asks. Burn the answer in:
+This is the question every prospect asks. Two clean lines:
 
-> *"CI payout is used to pay you. Hospital payout is used to pay the hospital."*
+> *"CI pays you — a lump sum to replace lost income while you recover. HSGM pays the hospital — reimbursement on the bill itself."*
 
-Then the closing line:
+Then the trial close:
 
-> *"If you have CI but no hospital plan, your lump sum gets eaten up by medical bills. If you have hospital plan but no CI, who pays your personal expenses when you cannot work for years? You need both."*
-
-That's the conviction — HSGM and CI solve different problems. They're complementary, not competing.
+> *"If you only had CI and a S$200K bill landed, the lump sum gets eaten by the hospital before it ever helps your family. If you only had HSGM and you couldn't work for two years, the bills are covered but there's no income coming in. Most people I sit with end up needing both — does that line up with how you've been thinking about it?"*
 
 ## Trigger condition (when HSGM applies)
 
@@ -66,11 +70,11 @@ For minor outpatient (stitches, A&E visits without admission), HSGM doesn't appl
 
 ## Anti-market
 
-The disclosure that builds trust:
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
 
-> *"This plan isn't right if you only ever expect to use C-class public-hospital care and would rather not pay anything for upgrade options. You'll still have MediShield Life as your safety net. But if you'd want to choose your doctor or your room class even once over the next 50 years, HSGM is the foundation."*
+> *"To be straight with you — HSGM isn't always the answer. If you genuinely only ever see yourself using C-class public-hospital care, and you'd rather not pay anything for the option to upgrade, then MediShield Life on its own is enough. The question is whether, over the next 50 years, there's even one scenario where you'd want to choose your doctor or your room. If yes, HSGM is the foundation. If no, you can stop here."*
 
-## The four numbers you must know cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
@@ -79,29 +83,33 @@ The disclosure that builds trust:
 | 3 | **75 (next birthday)** | Last entry age. Coverage period: **lifetime** [Brochure p.12] |
 | 4 | **+55.8%** | Singapore medical inflation 2004 to 2024 [Brochure p.1] |
 
-If a prospect probes any of these and you fumble, you've lost the room.
+Drill these till they fall out of your mouth. The point isn't passing a test — it's that fumbling a number mid-pitch reads as "this person doesn't really know the plan," and the prospect quietly checks out.
 
-## The 5-minute intro script
+## Opening the HSGM conversation — discovery first, then talk-track
 
-Practise out loud:
+The discovery question (use this before any feature talk):
 
-> *"This is AIA HealthShield Gold Max — our flagship Integrated Shield Plan. The reason every protection portfolio needs one: three things.*
->
-> *One — MediShield Life is sized for B2 and C-class public-hospital wards. The moment you upgrade or go private, you face a real gap. HSGM closes that gap.*
->
-> *Two — it pays the hospital, not you. Up to S$2 million a year, lifetime, unlimited claims, no premium change after a claim.*
->
-> *Three — it's portable for life. Your employer's medical disappears when the job disappears. HSGM follows you whether or not you keep the job.*
->
-> *Three plan tiers — A for private, B for A-class public, B Lite for B1-class public. What kind of hospital experience do you want when something happens?"*
+> *"If something landed you in hospital tomorrow — say two nights, a procedure, some follow-up — would you rather be in a private room with a doctor you chose, or in a 6-bedder in a public hospital? No right answer, I'm just trying to understand how you'd want it to play out."*
 
-That's 60 seconds. Time it. End with the question — the prospect picks the tier, you've already started the close.
+Reflect and bridge:
+
+> *"Got it. So a private room matters to you. That's exactly the gap MediShield Life leaves wide open — it's sized for B2 and C-class. Mind if I sketch out what that gap looks like in numbers?"*
+
+### When they say yes — the feature talk-track
+
+Three things, in order:
+
+1. **It closes the ward-class gap.** MediShield Life subsidises B2/C-class only; HSGM Max A removes pro-ration on private bills and pays up to S$2 million a year.
+2. **It pays the hospital, not the client.** Lifetime, unlimited claims, no premium loading because you claimed.
+3. **It's portable for life.** Employer medical disappears with the job. HSGM follows the person, not the payroll.
+
+Three plan tiers — A for private, B for A-class public, B Lite for B1-class public. Once they're nodding through the three points, the natural next question is *"Which tier would actually fit how you'd want this to go?"* — and the close has already started.
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
+1. **Run the discovery question out loud** with a colleague playing a prospect who hasn't thought about wards. Practise the reflect-and-bridge until the move feels natural, not scripted.
 2. **Write down the four key numbers** (S$2M / 13 months / age 75 / 55.8% inflation) without looking. Repeat tomorrow morning.
 3. **Recite the HSGM-vs-CI distinction** in two sentences. Then in one sentence.
 4. **List 3 prospects in your pipeline** for whom HSGM is the right product. For each, write one sentence on which trigger applies (no IP yet, employer-cover-only, ageing parent, family with young kids, etc.)
@@ -110,7 +118,7 @@ That's 60 seconds. Time it. End with the question — the prospect picks the tie
 
 # Part 2 — The Signature Pitch Concept: First Line of Defence + Travel Package + Value-Stack Before Price
 
-> **The one idea for Part 2:** The signature HSGM pitch isn't a single hook — it's a sequence: name hospitalisation as the first line of defence, draw the travel-package picture for 13-month pre/post, stack the values without revealing price, then let the prospect anchor themselves at S$200/month before you reveal the real cost. Done in this order, the prospect closes themselves on the concept before any number gets debated.
+The HSGM pitch is a sequence, not a single hook: ask the prospect to rank hospitalisation against the other protection pillars, draw the travel-package picture for the 13-month pre/post window, stack the values without revealing price, then let the prospect anchor themselves around S$200/month before you reveal the real cost. In this order, the prospect convinces themselves on the concept before any number gets debated.
 
 By the end of Part 2 you should be able to: deploy the four-pillar discovery question and let the prospect rank, draw the travel-package analogy in 30 seconds, value-stack the headline features without notes, and anchor on price after the prospect guesses.
 
@@ -122,29 +130,29 @@ Lay out the four protection categories and ask the prospect to name which is fir
 
 > *"Out of all the coverages — hospitalisation, accident, critical illness, death or disability — which one do you think is the first line of defence?"*
 
-They almost always say **hospitalisation** themselves. If they don't, follow up:
+They almost always say **hospitalisation** themselves. If they don't, walk them through it gently:
 
-> *"Out of all the coverages, hospitalisation is the first line of defence. If you get into an accident, you will be hospitalised. If you get a critical illness, you will be hospitalised. Even in death or disability, you will be hospitalised first."*
+> *"Most people I sit with end up saying hospitalisation, and the reason is structural — if you get into an accident, you're hospitalised first. If a critical illness shows up, you're hospitalised first. Even in death or disability, there's almost always a hospital bill before anything else. So whichever way the wheel turns, hospital cover is the door everyone walks through."*
 
-Either way, the prospect has now agreed (out loud) that hospitalisation comes first. That's the foundational micro-commit for the entire pitch.
+Either way, the prospect has now agreed — out loud — that hospitalisation comes first. That's the foundational micro-commit for the entire pitch.
 
 ## Move 2 — The travel-package analogy (13 months pre/post)
 
 The metaphor that lands the wraparound coverage:
 
-> *"It is kind of like a travel package — not just the tour itself, but the ticket there and the ticket back is covered fully."*
+> *"It's a bit like a travel package — you don't just get the tour itself. The ticket there and the ticket back are covered too."*
 
 Then make it concrete:
 
 > *"Before the hospitalisation, you need MRI scans and specialist consults. After, you need follow-up consultations and chemotherapy. All of that is covered — up to 13 months on each side under HSG Max A with an AIA preferred provider."*
 
-Most competitor IPs cap at 6 months pre/post. AIA's 13-month wraparound is a tangible differentiator. Drop the contrast in if the prospect cross-shops.
+Most competitor IPs cap at 6 months pre/post. AIA's 13-month wraparound is a real differentiator. Mention it if the prospect is cross-shopping; otherwise let the picture do the work.
 
 ## Move 3 — The unlimited-lifetime claim phrase
 
-> *"You can claim again, and again, and again, and again. Claim this year, it resets. Claim next year, it resets. There is no limit on the number of claims for life."*
+> *"You can claim this year, and the limit resets next year. Claim again next year, it resets again. There's no cap on the number of claims over your lifetime."*
 
-The repetition is deliberate. It lands the "this is structurally different from a one-shot CI plan" point.
+The point isn't the repetition — it's the contrast with a one-shot CI lump sum. Once the prospect notices the structural difference, they stop comparing the two on price.
 
 ## Move 4 — Value-stack before price-anchor
 
@@ -172,11 +180,7 @@ Then the reveal:
 
 The contrast between their anchor and the actual number is the conversion moment.
 
-The closing line for the conviction stack:
-
-> *"You bao ga liao."* (Hokkien — "everything is covered")
-
-When you can drop this in the right tone with the right prospect, it lands harder than any English equivalent.
+For the right prospect — older, Hokkien-speaking, casual register — *"you bao ga liao"* lands naturally as a closing line on the stack. For everyone else, *"that covers basically everything that matters"* does the same job without forcing it.
 
 ## Move 5 — The cancer-drug-coverage angle (when relevant)
 
@@ -216,7 +220,7 @@ The script for cancer-history prospects:
 
 ## What's coming next
 
-Day 2: how to actually run the meeting. Part 1 — the fact-find (CPF Healthcare Dashboard check, four-pillar discovery, urgency push, capturing IPOS-quote-ready data). Part 2 — the 8-phase pitch flow (Open → First Line of Defence → Pain → Value-Stack → Price-Anchor → Reveal → Demo Differentiators → Two-Option Close) with checkpoints and live demos.
+Day 2: how to actually run the meeting. Part 1 — the fact-find (CPF Healthcare Dashboard check, four-pillar discovery, urgency push, capturing iPOS-quote-ready data). Part 2 — the 8-phase pitch flow (Open → First Line of Defence → Pain → Value-Stack → Price-Anchor → Reveal → Demo Differentiators → Two-Option Close) with checkpoints and live demos.
 
 ---
 

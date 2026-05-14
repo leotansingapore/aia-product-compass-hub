@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** Three sentences verbatim every meeting (the ILP disclosures). Then close on two budget options. Match the portfolio to the prospect's risk profile (never above). Defend retention at delivery — a competing FC six months later can show the prospect the Year-1 charges still visible and convince them they bought a bad plan. The defense begins at delivery, not at the next review.
 
-This is the final module. Part 1 covers ILP compliance + risk disclosures. Part 2 covers the budget-choice close, portfolio matching, retention defense. Estimated read + drill: ~50 minutes.
 
 ---
 

@@ -9,17 +9,17 @@ tags: [product-mastery-track, week-6, solitaire-pa]
 ---
 # Day 3 — The Math + The Q&A: 4 Plans × 8 Benefits + Top 5 Questions
 
-> **Today's frame:** The numbers split into headline drama (lump sums 1-5) and workhorse cover (reimbursement 6-7 + broken bones rider). Memorise both layers. The 5 client questions all loop to "is this worth it?" — answer with frequency, not lifetime.
+> **Today's frame:** The numbers split into headline drama (lump sums, benefits 1-5) and workhorse cover (reimbursement, benefits 6-7, plus the broken bones rider). Memorise both layers. The 5 client questions all loop back to "is this worth it?" — answer with frequency, not lifetime probabilities.
 
-This is a merged module — Part 1 covers the numbers. Part 2 covers the top 5 client questions. Estimated read + drill: ~50 minutes.
+Part 1 covers the numbers. Part 2 covers the top 5 client questions.
 
 ---
 
 # Part 1 — The Numbers: 4 Plans × 8 Benefits + Optional Riders
 
-> **The one idea for Part 1:** 4 plans, 8 basic benefits per plan, 3 optional benefit groups. Premium tables vary by age band, occupation class, payment frequency. 50% benefit reduction at 75, terminates at 80. Optional benefits terminate at 75.
+4 plans, 8 basic benefits per plan, 3 optional benefit groups. Premium tables vary by age band, occupation class, and payment frequency. Basic benefit insured amounts reduce 50% at age 75 and the policy terminates at 80. Optional benefits terminate at 75.
 
-By the end of Part 1 you should be able to recite the full basic-benefit insured amount table cold, walk through the optional benefits, deploy the renewal bonus mechanics, and quote the broken-bones schedule highlights.
+By the end of Part 1 you should be able to recite the full basic-benefit insured amount table cold, walk through the optional benefits, deploy the Renewal Bonus mechanics, and quote the Broken Bones Schedule highlights.
 
 ---
 
@@ -184,7 +184,7 @@ Mention only if asked. The cost is justified by the per-accident reimbursement w
 
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
-> **The one idea for Part 2:** Five questions cover ~80% of every Solitaire PA conversation. The KK Hospital story answers Q1 and Q2 simultaneously. Memorise the answers as one-paragraph deliveries with supporting numbers.
+Five questions cover roughly 80% of every Solitaire PA conversation. The KK Hospital story answers Q1 and Q2 simultaneously. Memorise the answers as one-paragraph deliveries with supporting numbers.
 
 By the end of Part 2 you should be able to deliver each answer in under 30 seconds with a closing question.
 
@@ -192,19 +192,19 @@ By the end of Part 2 you should be able to deliver each answer in under 30 secon
 
 ## Q1 — "I rarely get into accidents. Is this necessary?"
 
-**A:** Accidents are unpredictable. They can happen to anyone, anytime. The cost of treating minor injuries — or more serious falls and dismemberments — can add up very quickly. Having personal accident insurance ensures you're not financially strained by these sudden expenses.
+**A (cushion → reframe → trial close):**
 
-> *"Remember: it's better to have a plan and not need it, than to need it and not have it."* [Video 2]
+> *"Totally fair — most people I sit with say that, and they're usually right that they're careful. The thing is, "accident" by definition means the bit you didn't see coming. Of all the policies I service across my book, the accident plan is the one I claim on the most — every week I'm processing one or two claims for clients. Buffet that didn't sit right, kid needing stitches at the playground, finger jammed at the gym. Worth at least seeing the numbers?"*
 
-The frequency anchor:
-
-> *"Of all the policies I service, the accident plan is the one I claim for the most. Every week I'm processing one or two claims for clients."* [Video 5, Video 10]
+[Video 2, Video 5, Video 10]
 
 ## Q2 — "I already have health insurance. Why do I need PA?"
 
-**A:** Health insurance covers medical expenses from illnesses. Personal accident insurance focuses specifically on unexpected accidents. PA includes a wider range of incidents — minor injuries, insect bites, food poisoning. Hospital plans only pay if you're warded for at least 6 hours or you have surgery.
+**A (cushion → reframe → trial close):**
 
-> *"A child needing stitches at KK Hospital — that came home with a few-hundred-dollar bill that the hospital plan denied. PA covers those outpatient cases."* [Video 2, Video 5]
+> *"That's a fair question — it's not obvious from the policy wording. Your hospital plan only triggers when you're warded six hours or undergoing surgery. PA covers the wider net — minor injuries, insect bites, food poisoning, outpatient stuff. I had a client whose kid needed stitches at KK Hospital and came home with a few-hundred-dollar bill that the hospital plan denied flat. PA's where that gets paid. Make sense?"*
+
+[Video 2, Video 5]
 
 ## Q3 — "Is the $5K medical reimbursement a lifetime cap?"
 
@@ -228,7 +228,9 @@ If you have real claim screenshots, show them. Range S$14.50 to S$156 [Video 10]
 
 ## Q5 — "Why Plan 4 instead of Plan 1?"
 
-**A:** Plan 4 is about 4 times more expensive than Plan 1, but the coverage is 7 to 7.5 times higher.
+**A (cushion → math → trial close):**
+
+> *"Honestly, fair question — that's the right thing to push back on. Plan 4 is roughly 4× the premium of Plan 1, but the headline insured amounts are about 7.5× higher."*
 
 | | Plan 1 | Plan 4 | Multiplier |
 |---|---|---|---|
@@ -236,7 +238,7 @@ If you have real claim screenshots, show them. Range S$14.50 to S$156 [Video 10]
 | Major Dismemberment | S$300,000 | S$2,250,000 | 7.5× |
 | Accidental Death | S$100,000 | S$750,000 | 7.5× |
 
-> *"For 4 times the price, you're getting 7 times the value. It's more worth it."* [Video 3, Video 4, Video 7]
+> *"For roughly 4× the cost, you're getting 7× the value. That's the curve that makes Plan 4 the better dollar for most people I sit with. Want me to run both sets of numbers for your age and class?"* [Video 3, Video 4, Video 7]
 
 ## Bonus question — "What happens at age 75?"
 

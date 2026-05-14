@@ -9,15 +9,15 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 ---
 # Day 2 — Run the Meeting: 16-Point Discovery + 7-Phase Pitch Flow
 
-> **Today's frame:** Discovery is where amateur FCs reveal themselves. The 16-point checklist is non-negotiable — every minute saved in discovery costs five minutes in objection handling. Then the source's explicit 7 phases run in order, with Phase 5 (Gap Analysis) as the emotional fulcrum and Phase 6 (Solution) showing the discipline of restraint.
+> **Today's frame:** Discovery is where amateur FCs reveal themselves. The 16-point checklist is non-negotiable — every minute saved in discovery costs five minutes in objection handling. Then the explicit 7 phases run in order, with Phase 5 (Gap Analysis) as the emotional fulcrum and Phase 6 (Solution) showing the discipline of restraint.
 
-This is a merged module — Part 1 covers the 16-point Discovery. Part 2 covers the 7-phase pitch flow. Estimated read + drill: ~65 minutes.
+Part 1 covers the 16-point Discovery. Part 2 covers the 7-phase pitch flow.
 
 ---
 
 # Part 1 — The Fact-Find: 16-Point Discovery Deep Dive
 
-> **The one idea for Part 1:** Run the full 16-point checklist EVERY time, even when the client seems impatient. Use SingPass IN the meeting — never accept "I'll send you my policies later." Every data point you skip becomes a hole in your proposal that the client uses to delay.
+Run the full 16-point checklist every time, even when the client seems impatient. Use SingPass in the meeting — never accept "I'll send you my policies later." Every data point you skip becomes a hole in your proposal that the client uses to delay.
 
 By the end of Part 1 you should be able to: deliver the SingPass-in-meeting move fluently, run the 16-point checklist in 15-20 minutes, identify the household decision-maker, and walk away with everything Phase 5 (Gap Analysis) needs.
 
@@ -33,7 +33,9 @@ This converts the discovery from "interrogation" to "professional work."
 
 ## The SingPass-in-meeting move (highest-leverage tactic)
 
-> *"Before we go further, can I help you log in via SingPass right now? It pulls every insurance policy across every insurer in one place — saves us both a lot of follow-up emails."*
+A permission close that compresses two weeks of document chasing into ten minutes:
+
+> *"Mind if I help you log in via SingPass right now? It pulls every insurance policy across every insurer into one screen — saves us both a lot of follow-up emails, and we can actually look at the gaps in this meeting."*
 
 This single move:
 - Converts a 2-week document-chasing cycle into a 10-minute live extraction
@@ -110,7 +112,7 @@ If any data point is missing, the gap analysis fumbles. Go back and ask.
 
 # Part 2 — The 7-Phase Pitch Flow (Phases 1-7)
 
-> **The one idea for Part 2:** The 7 phases run in non-negotiable order. Phase 5 (Gap Analysis) is the emotional fulcrum — the moment the client FEELS the cost of doing nothing. Phase 6 must NOT collapse into a product pitch — discipline of restraint at Phase 6 is what separates closers from pitchers. Then Phase 7 closes with same-day summary PDF.
+The 7 phases run in non-negotiable order. Phase 5 (Gap Analysis) is the emotional fulcrum — the moment the client feels the cost of doing nothing. Phase 6 must not collapse into a product pitch — restraint at Phase 6 is what separates closers from pitchers. Phase 7 closes with a same-day summary PDF.
 
 By the end of Part 2 you should be able to deliver all 7 phases by name with time budgets, deploy the verbatim phrases for each, recognise Phase 5's emotional fulcrum, and avoid the Phase 6 collapse.
 

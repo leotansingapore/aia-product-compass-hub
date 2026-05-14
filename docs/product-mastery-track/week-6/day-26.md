@@ -9,15 +9,13 @@ tags: [product-mastery-track, week-6, solitaire-pa]
 ---
 # Day 1 — Solitaire PA Foundations: Universal-Fit + Partial-Disability Gap
 
-> **Today's frame:** Solitaire PA is the missing piece between hospital plan and life/CI cover. Universal fit — every prospect needs it. The signature pitch is the partial-disability gap diagram: TPD claims trigger only on lose-two-of-any. The Schedule of Indemnity pays on lose-one (single finger, single eye, single ear, fracture-with-non-union).
-
-This is a merged module — Part 1 covers what Solitaire PA is. Part 2 covers the partial-disability gap signature concept. Estimated read + drill: ~50 minutes.
+> **Today's frame:** Solitaire PA sits between the hospital plan and the life/CI cover. It's universally suitable — almost every prospect has a gap here. The signature pitch is the partial-disability gap diagram: TPD claims trigger only on lose-two-of-any. The Schedule of Indemnity pays on lose-one (single finger, single eye, single ear, fracture-with-non-union).
 
 ---
 
 # Part 1 — Solitaire PA in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-> **The one idea for Part 1:** Hospital plans cover inpatient (≥6 hours warded or surgical procedure). Life/CI plans cover catastrophic events (death, TPD-strict, major CI). Solitaire PA covers everything in the middle — outpatient injury, minor accidents, partial disability — for as little as S$0.62/day.
+Hospital plans cover inpatient (at least 6 hours warded or a surgical procedure). Life/CI plans cover catastrophic events (death, TPD-strict, major CI). Solitaire PA covers everything in the middle — outpatient injury, minor accidents, partial disability — for as little as S$0.62/day.
 
 By the end of Part 1 you should be able to describe Solitaire PA in two sentences, name the four plan tiers, state the four most-quoted numbers cold, and recognise why this is universal-fit.
 
@@ -44,11 +42,17 @@ Specific exposures **policy-extended in**:
 
 [Product Summary p.12]
 
-## The line that opens every Solitaire PA conversation
+## How to open the Solitaire PA conversation
 
-> *"It covers the stuff that these two policies don't have. It's more for those minor injuries."* [Video 4]
+Don't lead with a slogan. Open with a discovery question that surfaces the prospect's own thinking:
 
-The brochure framing:
+> *"Out of curiosity — if your kid sliced their hand chopping veg and needed stitches at KK Hospital tomorrow, do you know if any of your existing policies actually pay for that?"*
+
+Most prospects pause. Then bridge:
+
+> *"That's the gap Solitaire PA fills — outpatient injury, food poisoning, insect bites, partial-disability events. Your hospital plan only kicks in if you're warded six hours or have surgery. Your life and CI only trigger on the catastrophic stuff. Everything in between sits in this product."*
+
+The brochure framings (use sparingly, as flavour):
 
 > *"From kitchen hiccups to stairway slip-ups, insect bites to food poisoning, we'll cover you for it all."* [Brochure p.1]
 
@@ -67,7 +71,7 @@ The brochure framing:
 
 **Class 3-4 occupations** (manual labour, higher-risk professions): premiums load ~75% above Class 1-2. Plan 4 Class 3-4 = S$1,512.75/year.
 
-## The 4 numbers you must know cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
@@ -94,40 +98,36 @@ Every prospect:
 
 ## Anti-market
 
-> *"This plan isn't right for someone who has a generous, lifetime, portable group PA from their employer with no caps. Or someone who'd rather self-insure outpatient costs from cash. For most people, neither of those is true."*
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
 
-## The 5-minute intro script
+> *"To be honest — Solitaire PA isn't right for everyone. If you've got a genuinely portable, lifetime employer group PA with no caps that follows you across jobs, you may not need this. Or if you'd actually rather just absorb outpatient bills from cash without ever bothering to claim, this isn't your plan. For most people though, neither of those holds."*
 
-> *"This is AIA Solitaire PA. The reason every prospect needs accident cover regardless of profile: three things.*
->
-> *One — accidents are unpredictable AND high-frequency. The bills you DON'T expect are the ones that hurt the most.*
->
-> *Two — your hospital plan only covers inpatient. Six-hour warding minimum, or surgery. Anything outpatient — stitches at KK, food poisoning, motorcycle bumps — you pay out of pocket.*
->
-> *Three — your life and TPD coverage only triggers on catastrophic events. Lose two arms, lose two legs, lose two eyes. Lose ONE finger or ONE eye? Nothing.*
->
-> *Solitaire PA fills both gaps — outpatient AND partial. Starting at S$0.62 a day, no medical check-up needed.*
->
-> *Four plan tiers — Plan 1 to 4. Want me to show you what Plan 1 to Plan 4 look like side by side?"*
+## The Solitaire PA talk-track (after discovery surfaces the gap)
 
-That's 60 seconds. End with the question — they pick "yes" and you've started Phase 4 of the pitch flow.
+Three points, in order:
+
+1. **Accidents are unpredictable and high-frequency.** The bills you don't expect are the ones that hurt — and outpatient bills slip through both hospital plans and life cover.
+2. **Your hospital plan only triggers on inpatient.** Six-hour warding minimum, or surgery. Stitches at KK, food poisoning, motorcycle bumps — those come out of your pocket.
+3. **Your life and TPD only trigger on catastrophic events** — lose two arms, two legs, two eyes. Lose one finger or one eye and nothing pays. Solitaire PA's Schedule of Indemnity is where partial losses get paid.
+
+Starting at S$0.62 a day, no medical check-up. Four plan tiers, Plan 1 to 4. Once the prospect's nodding through these, the natural next move is a permission close: *"Mind if I sketch out what Plan 1 and Plan 4 look like side by side?"*
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
+1. **Run the discovery question with a colleague** playing a prospect who has both an IP and term life. Practise the reflect-and-bridge until the move feels natural.
 2. **Memorise the 4 plan-tier daily costs** (S$0.62 / S$1.02 / S$1.63 / S$2.34).
-3. **Recite the definition of accident** ("unexpected and unintentional, NOT self-inflicted, NOT minor illnesses").
+3. **Recite the definition of accident** ("unexpected and unintentional, not self-inflicted, not minor illnesses").
 4. **List 5 prospects in your pipeline.** For each, write which Class (1-2 or 3-4) and which plan you'd recommend.
 
 ---
 
 # Part 2 — The Signature Pitch Concept: The Partial-Disability Coverage Gap
 
-> **The one idea for Part 2:** Life/TPD plans only pay on lose-TWO. Solitaire PA's Schedule of Indemnity pays on lose-ONE — a single finger phalanx is 5%, a single eye is 100%, a single ear is 25%. At Plan 4 Benefit 4 = S$750,000, one finger phalanx loss = S$37,500. Draw the diagram. The prospect stares at the gap. The pitch is over.
+Life and TPD plans only pay on lose-TWO. Solitaire PA's Schedule of Indemnity pays on lose-ONE — a single finger phalanx is 5%, a single eye is 100%, a single ear is 25%. At Plan 4 Benefit 4 of S$750,000, a single finger phalanx loss pays S$37,500. Draw the diagram for the prospect; when they see the gap on paper, the case mostly makes itself.
 
-By the end of Part 2 you should be able to: draw the partial-disability gap diagram from memory, recite the Schedule of Indemnity highlights, compute partial payouts on the spot for any plan tier, and reframe Solitaire PA from "cheap minor cover" to "the only place partial losses are paid at meaningful sums."
+By the end of Part 2 you should be able to: draw the partial-disability gap diagram from memory, recite the Schedule of Indemnity highlights, compute partial payouts on the spot for any plan tier, and reframe Solitaire PA from "cheap minor cover" to "the only place partial losses get paid at meaningful sums."
 
 ---
 
@@ -172,9 +172,9 @@ Aggregate cap: **125% of insured amount per accident** [PS p.4].
 
 > *"If you get an accident plan, it's only maybe one finger, you know, one eyeball, or one cut, or one ear lost."* [Video 1]
 
-The price-anchor reframe:
+The price-anchor reframe (use when the prospect cross-shops against death cover):
 
-> *"$100–$200 a month for death coverage that's so hard to claim. This is only $20 a month and so much easier to claim."* [Video 3]
+> *"Out of curiosity — you pay roughly $100 to $200 a month for death coverage, and most people I sit with go their whole lives without it ever triggering. Solitaire PA is about $20 a month, and the claim window is the everyday stuff — fall off a bike, burn a hand, food poisoning. Same insurer, very different probability of using it."* [adapted from Video 3]
 
 ## Compute partial payouts on the spot
 
@@ -202,9 +202,9 @@ Pull up the calculator if needed. The number lands.
 
 ## The reframe (this is the conversion)
 
-The signature concept REFRAMES Solitaire PA from "cheap minor cover" to **"the only place a partial-disability event is paid out at meaningful sums."**
+The signature concept reframes Solitaire PA from "cheap minor cover" into the only place a partial-disability event is paid out at meaningful sums.
 
-> *"Most prospects pay hundreds a month for death and TPD cover that almost never triggers. Then they pay nothing for the partial-disability cover that's the most likely to trigger. Solitaire PA fixes the inversion."*
+> *"Most pre-retirees I sit with end up paying hundreds a month for death and TPD cover that almost never triggers, and nothing for the partial-disability cover that's actually the most likely to trigger. Solitaire PA fixes that inversion."*
 
 ## When NOT to pull out the gap diagram
 

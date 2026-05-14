@@ -9,15 +9,15 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 ---
 # Day 3 — The Math + The Q&A: Healthcare Cost Angle, Color-Coded Review, Top 5 Questions
 
-> **Today's frame:** Move from problem-painting to problem-pricing. The healthcare angle works because pre-retirees already feel the pain — naming it as $412K converts vague worry into a sharp number. The asset-vs-expense reframe gives the client a way out. The color-coded policy review transforms FC from product-pitcher to portfolio-doctor. Then memorise the five questions every prospect asks.
+> **Today's frame:** Move from problem-painting to problem-pricing. The healthcare angle works because pre-retirees already feel the pain — naming it as $412K converts vague worry into a sharp number. The asset-vs-expense reframe gives the client a way out. The color-coded policy review shifts the FC from product-pitcher to portfolio-doctor. Then memorise the five questions every prospect asks.
 
-This is a merged module — Part 1 covers healthcare angle + policy review numbers. Part 2 covers the top 5 questions. Estimated read + drill: ~60 minutes.
+Part 1 covers the healthcare angle and policy review numbers. Part 2 covers the top 5 questions.
 
 ---
 
 # Part 1 — The Numbers: Healthcare Angle + Color-Coded Policy Review
 
-> **The one idea for Part 1:** Loss aversion (~2x stronger than gain motivation) is the conversion lever for pre-retirees. The healthcare angle ($412K lifetime premium) is loss made specific. The color-coded policy review (Green = Keep, Orange = Optimize, Red = Restructure/Surrender) makes the recommendation visual. Both convert PWV from a product to a portfolio decision.
+Loss aversion is roughly twice as strong as gain motivation, which is the conversion lever for pre-retirees. The healthcare angle ($412K lifetime premium) is loss made specific. The Color-Coded Policy Review (Green = Keep, Orange = Optimize, Red = Restructure / Surrender) makes the recommendation visual. Both convert PWV from a product into a portfolio decision.
 
 By the end of Part 1 you should be able to recite the healthcare premium escalation numbers, deploy the asset-vs-expense reframe, classify any existing policy as Green/Orange/Red, and quote the PWV fee architecture cold.
 
@@ -96,9 +96,11 @@ Examples:
 Premium savings examples [Video 19]:
 | Optimisation | Annual savings |
 |---|---|
-| Rider downgrade A-plan to Value | ~S$1,400/year |
+| Rider downgrade (e.g. AIA Max VitalHealth Pro A → Pro B-rider) — **verify in iPOS for the specific client's case** | ~S$1,400/year (illustrative) |
 | Annual vs monthly payment | 2-3% |
 | Junior to adult policy upgrade | 3x coverage for $30 more |
+
+> **Verify in iPOS:** the rider downgrade savings shown here are illustrative. Run the actual two quotes side-by-side for any specific client before recommending a downgrade.
 
 ### Red = RESTRUCTURE / SURRENDER
 > *"Red means Restructure or Surrender — poor returns, redundant coverage, or excessive cost."*
@@ -113,18 +115,18 @@ The reframe script:
 
 > *"Your NTUC whole life is yielding 1.07% — your bank fixed deposit gives you 2.5%. By restructuring this and your other two red policies, you'll save $7,000 per year. That's money that could be working for you instead."*
 
-## The PWV fee architecture (must know cold)
+## The PWV fee architecture (worth memorising)
 
-Memorise these from PS Section 5:
+Memorise these from PS Section 5 of PWV 2.0 PS v1.0 042025:
 
 | Charge | Value | Duration |
 |---|---|---|
-| **Top-up Premium Charge** | 3% of top-up | Per top-up [PS p.4, Section 5.1] |
-| **Supplementary Charge** | 3.60% p.a. of Regular Premium Policy Value | Monthly, **first 7 policy years only** [PS v1.0 042025 Section 5.2] |
-| **Premium Holiday Charge** | 60% (early years) tapering to 0% from year 8 | If regular premium not paid by due date [PS p.5, Section 5.4] |
-| **Full Surrender Charge** | 70% Y1 / 50% Y5 / 30% Y7 / 0% Y11+ | [PS p.5, Section 5.5] |
-| **Partial Withdrawal Charge factor** | Y1 = 2.333 / Y8 = 0.250 / Y11+ = 0 | [PS p.4, Section 5.6] |
-| **Benefit Charge** | Per Sum-at-Risk per year | Age/gender-rated [PS p.14-15, Appendix A] |
+| **Top-up Premium Charge** | **3%** of top-up | Per top-up [PS Section 5.1] |
+| **Supplementary Charge** | **3.60% p.a.** of Regular Premium Policy Value | Monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS v1.0 042025 Section 5.2] |
+| **Premium Holiday Charge** | Tapering schedule (high in early years, 0% from year 8) | If regular premium not paid by due date [PS Section 5.4] |
+| **Full Surrender Charge** | 70% Y1 / 50% Y5 / 30% Y7 / 0% Y11+ | [PS Section 5.5] |
+| **Partial Withdrawal Charge factor** | Allowed from Year 1 with a **declining charge factor** | [PS Section 5.6] |
+| **Benefit Charge** | Per Sum-at-Risk per year | Age/gender-rated [PS Appendix A] |
 
 Sample Benefit Charges (per S$1,000 SAR, annual):
 
@@ -134,17 +136,16 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 | 55 | $7.12 | $5.22 |
 | 60 | $10.89 | $8.44 |
 
-[PS p.14-15, Appendix A]
+[PS Appendix A] (Verify in iPOS at quote time — these are illustrative.)
 
-## The 4 PWV bonus types (offset against the fees)
+## The 4 PWV bonus mechanisms (offset against the fees)
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | 0% / 3% / 12% over years 1-3 | Premium tier ($18K-$23.99K / $24K-$41.99K / $42K+) [PS v1.0 042025 Section 3.3] |
-| **Investment Bonus** | 2.5% per year | Years 9, 10, 11, 12 [PS p.2, Section 3.4] |
-| **Performance Bonus** | 0.40% p.a. of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
-
-Note: canonical PWV 2.0 PS v1.0 042025 Section 3.5 confirms 0.40% from beginning of year 8 (matches brochure).
+| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium tier ($18K-$23.99K / $24K-$41.99K / $42K+) [PS v1.0 042025 Section 3.3] |
+| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years **8, 9, 10, 11** [PS v1.0 042025 Section 3.4] |
+| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
+| **Supplementary Charge drop-off** | 3.60% p.a. → **0%** | After year 7 [PS v1.0 042025 Section 5.2] |
 
 ## Partial withdrawal mechanics
 
@@ -152,9 +153,10 @@ Note: canonical PWV 2.0 PS v1.0 042025 Section 3.5 confirms 0.40% from beginning
 |---|---|
 | Minimum partial withdrawal | S$1,000 |
 | Minimum policy value remaining after | S$10,000 |
-| Withdrawal charge factor | Year 1 = 2.333 down to Year 11+ = 0 |
+| Availability | **From Year 1** |
+| Withdrawal charge factor | **Declining** — highest in early years, scaling to 0 from Year 11+ |
 
-[PS p.7, Section 6.4]
+[PS Section 6.4. Verify the exact year-by-year factor in iPOS at quote time.]
 
 ## The numbers cheat sheet
 
@@ -163,18 +165,19 @@ Note: canonical PWV 2.0 PS v1.0 042025 Section 3.5 confirms 0.40% from beginning
 | 1 | HSGM A lifetime premium | ~$412,000 |
 | 2 | Top-up Premium Charge | 3% per top-up |
 | 3 | Supplementary Charge | 3.60% p.a., first 7 years only |
-| 4 | Welcome Bonus tier 3 ($42K+) | 12% cumulative over years 1-3 |
-| 5 | Investment Bonus | 2.5% × 4 years (years 8-11) |
+| 4 | Welcome Bonus (top tier, $42K+) | 12% cumulative (3% / 4% / 5% across Y1 / Y2 / Y3) |
+| 5 | Investment Bonus | 2.5% × 4 years (Y8, Y9, Y10, Y11) = 10% cumulative |
 | 6 | Performance Bonus | 0.40% p.a. from year 8 |
 | 7 | Full Surrender Y1 charge | 70% |
 | 8 | Full Surrender Y11+ charge | 0% |
-| 9 | Partial Withdrawal Y1 factor | 2.333 |
+| 9 | Partial Withdrawal | Allowed from Year 1, declining charge factor |
 | 10 | Free-look | 14 days |
-| 11 | Min regular premium | S$18,000/year (S$1,500/mo) |
+| 11 | Min regular premium | S$18,000/year annual (S$9K semi / S$4.5K qtr / S$1.5K mo) |
 | 12 | Min top-up | S$1,000 |
 | 13 | Min policy value after partial withdrawal | S$10,000 |
 | 14 | Conservative dividend projection | 6% (always project at this) |
 | 15 | Historical fund yield (AIA Global Adventurous Income) | ~7% p.a. since inception |
+| 16 | Secondary Insured max age at appointment | 75 |
 
 ---
 
@@ -183,14 +186,14 @@ Note: canonical PWV 2.0 PS v1.0 042025 Section 3.5 confirms 0.40% from beginning
 1. **Recite the healthcare premium escalation numbers** ($412K HSGM A lifetime, $565 → $3,006/year escalation).
 2. **Practise the asset-vs-expense reframe** in your own voice.
 3. **Memorise the Color-Coded Policy Review framework** (Green/Orange/Red with examples).
-4. **Memorise the PWV fee architecture** — Top-up 3%, Supplementary 3.60%, Surrender 70/50/30/0%.
-5. **Memorise the 4 bonus types** with triggers.
+4. **Memorise the PWV fee architecture** — Top-up 3%, Supplementary 3.60% (first 7 years), Full Surrender 70/50/30/0%.
+5. **Memorise the 4 bonus mechanisms** with triggers (Welcome max 12% / Investment 10% across Y8-Y11 / Performance 0.40% from Y8 / Supplementary drop-off after Y7).
 
 ---
 
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
-> **The one idea for Part 2:** Pre-retirees ask the same five questions in 80% of meetings. Memorise scripted answers with specific numbers from the Product Summary — the FC who quotes "3.60% supplementary charge for the first 7 policy years" (not "around 3.5%") is perceived as a technician. That perception shift is what turns a hesitant client into a buyer.
+Pre-retirees ask the same five questions in 80% of meetings. Memorise scripted answers with specific numbers from the Product Summary — the FC who quotes "3.60% supplementary charge for the first 7 policy years" (not "around 3.5%") is read as a technician, not a salesperson. That perception shift is what turns a hesitant client into a buyer.
 
 By the end of Part 2 you should be able to deliver each answer in under 60 seconds with the page citation, distinguish curiosity from objection, and run all 5 answers in random order.
 
@@ -198,9 +201,11 @@ By the end of Part 2 you should be able to deliver each answer in under 60 secon
 
 ## Q1 — "What's the dividend rate, and is it guaranteed?"
 
-**A:** We project at 6% to be conservative. The AIA Global Adventurous Income Fund has historically achieved around 7% per annum since inception.
+**A (cushion → conservative projection → proof):**
 
-> *"Dividends are not guaranteed — that's regulated and I have to say it — but I'll show you actual quarterly payouts from real clients so you can see what's been happening, not just projections. Here's what a client with $120K invested received last quarter: $2,100. That's real money, not a projection."*
+> *"Great question — and I'm glad you asked because the honest answer matters. Dividends are not guaranteed; that's regulated and I'll always say it. We project at 6% conservatively. The AIA Global Adventurous Income Fund has historically achieved around 7% per annum since inception, but past performance is not a guarantee.*
+>
+> *That said — I can show you actual quarterly payouts from real clients so you can see what's been happening, not just projections. One client with $120K invested received about $2,100 last quarter. Real money, not a slide deck."*
 
 [Sources: Brochure p.5, PS p.13]
 
@@ -227,12 +232,12 @@ This is the single most reassuring fact about PWV. Always emphasise.
 
 | Layer | Mechanic |
 |---|---|
-| **Partial withdrawal** | From day 1, but charge factor decreases yearly (Year 1 = 2.333 → Year 8 = 0.250 → Year 11+ = 0) |
-| **Full surrender** | After year 7, no surrender charges (70% Y1 → 50% Y5 → 30% Y7 → 0% Y11+) |
+| **Partial withdrawal** | Allowed from Year 1, declining charge factor over time, zero from Year 11+ |
+| **Full surrender** | Charge tapers from 70% Y1 → 50% Y5 → 30% Y7 → 0% Y11+ |
 
-> *"After year 7 there are no surrender charges on full surrender either. So the plan is built to be liquid after year 7. If you need access in years 1-7, you have it — you just pay a charge. Most of my clients never trigger this."*
+> *"The plan is built to be fully liquid after year 11 on a full surrender. You can also take partial withdrawals from Year 1 — the charge factor declines each year. So if you need access in years 1-10, you have it — you just pay a charge. Most of my clients never need to trigger it."*
 
-[Sources: PS p.5, Section 5.5; PS p.7, Section 6.4]
+[Sources: PS Section 5.5, PS Section 6.4. Verify the exact partial-withdrawal year-by-year factor in iPOS at quote time.]
 
 ## Q4 — "How are the dividends paid out?"
 
@@ -255,23 +260,23 @@ This is the single most reassuring fact about PWV. Always emphasise.
 **A:** Three to know:
 
 ### 1. Supplementary Charge — 3.60% p.a.
-On Regular Premium Policy Value, deducted monthly, **first 7 policy years only**. **Zero from year 8 onwards.** [PS p.4]
+On Regular Premium Policy Value, deducted monthly, **first 7 policy years only**. **Zero from year 8 onwards.** Charged even during Premium Holiday. [PS v1.0 042025 Section 5.2]
 
-### 2. Premium Charge — 3%
-On any top-up premiums you make. [PS p.4]
+### 2. Top-up Premium Charge — 3%
+On any top-up premiums you make. [PS Section 5.1]
 
 ### 3. Benefit Charge — age/gender-rated
-Per S$1,000 of Sum-at-Risk per year. Sample at age 55 male: $7.12; female: $5.22. [PS p.14-15]
+Per S$1,000 of Sum-at-Risk per year. Sample at age 55 male: $7.12; female: $5.22. [PS Appendix A — verify in iPOS]
 
 ### Against these fees, you receive bonuses:
 
 | Bonus | Offset |
 |---|---|
-| Welcome Bonus | Up to 35% over years 1-5 |
-| Investment Bonus | 2.5% per year in years 8-11 |
-| Performance Bonus | 0.40% per year from year 8 onwards |
+| Welcome Bonus | Up to **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1-Y3) |
+| Investment Bonus | **2.5% × 4 years = 10% cumulative** across Y8-Y11 |
+| Performance Bonus | **0.40% per year** from Y8 onwards |
 
-> *"The bonuses largely offset the fees, and after year 10 the supplementary charge stops while the bonuses continue."*
+> *"The bonuses largely offset the fees through the first 7 years, and from year 8 the supplementary charge stops while the Investment and Performance Bonuses kick in."*
 
 ## Bonus question — "Why not just keep my money in fixed deposit at 2.85%?"
 
@@ -301,10 +306,10 @@ But if they push:
 ## Drill (Part 2)
 
 1. **Recite each of the 5 answers** out loud. Time each. Target: 60 seconds.
-2. **Memorise the page citation for each** (Q1: Brochure p.5 / Q2: PS p.1 Section 3.1 / Q3: PS p.5, p.7 / Q4: PS p.10 Section 8.4 / Q5: PS p.4, p.14-15).
+2. **Memorise the source citations** (Q1: Brochure p.5 / Q2: PS Section 3.1 / Q3: PS Sections 5.5 + 6.4 / Q4: PS Section 8.4 / Q5: PS v1.0 042025 Section 5.2 + Appendix A).
 3. **Practise the "not guaranteed" language** in 3 different framings.
-4. **Memorise the 5 bonus offsets to the fees** (Welcome 0%/3%/12% by premium band over Y1-3 / Investment 2.5% × 4 / Performance 0.40%).
-5. **Pair up with a peer** — have them ask the questions in random order. Score on accuracy + page citation.
+4. **Memorise the 4 bonus offsets to the fees** (Welcome max 12% / Investment 10% across Y8-Y11 / Performance 0.40% from Y8 / Supplementary drop-off after Y7).
+5. **Pair up with a peer** — have them ask the questions in random order. Score on accuracy and source citation.
 
 ---
 
@@ -369,7 +374,7 @@ Day 4: defence + expansion. Part 1 — the 5 hardest objections (think-about-it,
 - C) Min S$2,000 withdrawal; min S$20,000 remaining
 - D) Min S$5,000 withdrawal; min S$50,000 remaining
 
-**Why:** PS p.7 Section 6.4 (cited in Day 3): minimum partial withdrawal is S$1,000 and policy value remaining after withdrawal must be at least S$10,000.
+**Why:** PS Section 6.4 (cited in Day 3): minimum partial withdrawal is S$1,000 and policy value remaining after withdrawal must be at least S$10,000. Partial withdrawals are allowed from Year 1 with a declining charge factor.
 
 8. **In Q2 (death benefit), what does the client's family receive?**
 - A) The total premiums paid only

@@ -9,7 +9,7 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 ---
 # Day 4 — Defence + Expansion: Top 5 Objections + Cross-sell
 
-> **Today's frame:** This is the day GPP is won or lost. The 5 objections all loop back to the same question: *"could I get the same outcome cheaper somewhere else?"* The answer is consistent — GPP is not the cheapest; it is the most durable. Limited pay + lifelong cover + cash back + booster during peak years. No other product does all four under one premium.
+> **Today's frame:** The toughest GPP objections live here. The 5 objections all loop back to the same question: *"could I get the same outcome cheaper somewhere else?"* The answer is consistent — GPP is not the cheapest; it is the most durable. Limited pay + lifelong cover + cash back + booster during peak years. No other product does all four under one premium.
 
 This is the longest module in the track. Part 1 covers the 5 objections (the conviction-story heart). Part 2 covers cross-sell + bundling. Estimated read + drill: ~65 minutes. Take in two sittings.
 

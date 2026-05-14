@@ -9,15 +9,15 @@ tags: [product-mastery-track, week-6, solitaire-pa]
 ---
 # Day 5 — Compliance + Close: Disclosures, Direct Close, Self-Claim Handoff
 
-> **Today's frame:** Three honest disclosures (yearly-renewable, premium not guaranteed, 50%-at-75 + age-80 termination) plus the standard exclusion list. Then close on the four-option question. SQS paperwork is the lightest in the AIA stack — SingPass, no medical, no FHR for Plans 1-3. Post-sale: turn every claim into a referral.
+> **Today's frame:** Three honest disclosures (yearly-renewable, premium not guaranteed, 50%-at-75 plus age-80 termination) plus the standard exclusion list. Then close on the four-option question. SQS paperwork is the lightest in the AIA stack — SingPass, no medical, no FHR for Plans 1-3. Post-sale: turn every claim into a referral.
 
-This is the final module. Part 1 covers compliance + disclosures. Part 2 covers the direct close, SQS workflow, AIA+ self-claim handoff, post-sale rhythm. Estimated read + drill: ~50 minutes.
+Part 1 covers compliance and disclosures. Part 2 covers the direct close, SQS workflow, AIA+ self-claim handoff, and post-sale rhythm.
 
 ---
 
 # Part 1 — Compliance + Risk Disclosures
 
-> **The one idea for Part 1:** Three honest disclosures (yearly-renewable not guaranteed, price can change, cover steps down at 75 and ends at 80) + the standard exclusion list. Solitaire PA's compliance burden is the same as any RNF-regulated H&S product despite the lighter paperwork.
+Three honest disclosures (yearly-renewable not guaranteed, price can change, cover steps down at 75 and ends at 80) plus the standard exclusion list. Solitaire PA's compliance burden is the same as any RNF-regulated H&S product despite the lighter paperwork.
 
 By the end of Part 1 you should be able to deliver the disclosures cleanly, recite the major exclusions, distinguish covered Policy Extensions from exclusions, and pass an RNF audit.
 
@@ -142,7 +142,9 @@ If "yes" — slow down. Address it.
 
 ## The "anti-market" disclosure
 
-> *"This plan isn't right for someone who has generous, lifetime, portable group PA from their employer with no caps. Or someone who'd rather self-insure outpatient costs from cash. For most people, neither of those is true."*
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
+
+> *"To be straight with you — Solitaire PA isn't always the right call. If you have generous, lifetime, portable group PA from your employer with no caps that follows you when you leave the job, you may not need this. Or if you'd rather just absorb outpatient costs from cash without claiming, this isn't your plan. For most people though, neither of those holds."*
 
 ---
 
@@ -158,7 +160,7 @@ If "yes" — slow down. Address it.
 
 # Part 2 — Direct Close, SQS Workflow, AIA+ Self-Claim Handoff
 
-> **The one idea for Part 2:** Close is one sentence ("Plan 1, 2, 3, or 4?"). SQS paperwork is the lightest in the AIA stack — SingPass + no medical + no FHR for Plans 1-3. Post-sale: every PA claim processed within days via PayNow becomes a referral-quality moment. PA is a service-relationship product, not a one-off.
+Close is one sentence — *"Plan 1, 2, 3, or 4?"*. SQS paperwork is the lightest in the AIA stack: SingPass, no medical, no FHR for Plans 1-3. Post-sale, every PA claim processed within days via PayNow becomes a referral-quality moment. PA is a service-relationship product, not a one-off.
 
 By the end of Part 2 you should be able to deliver the close cleanly, run SQS without notes, demo the AIA+ self-claim app, and book the post-sale claim-handoff service.
 

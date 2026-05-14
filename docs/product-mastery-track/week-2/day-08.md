@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** This is the agent-only chapter — the 88-page Product Summary distilled to ~15 numbers an FC must own. The "laptop" analogy explains the front-loaded charges; the Sum-at-Risk formula drives Max's killer feature; the LCC 300% cap + 12-month Power Reset is the multi-claim engine.
 
-This is a merged module — Part 1 covers the math. Part 2 covers the top 5 client questions. Estimated read + drill: ~60 minutes.
 
 ---
 

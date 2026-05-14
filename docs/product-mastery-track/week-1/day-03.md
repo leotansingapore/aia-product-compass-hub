@@ -11,8 +11,6 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 > **Today's frame:** APA looks painful in years 1–10 and unbeatable from year 11 onward. Once you can defend the numbers, you can answer the 5 questions every prospect asks in 30 seconds each.
 
-This is a merged module — Part 1 covers the first half (originally Day 05), Part 2 covers the second half (originally Day 06). Estimated read + drill time: ~55 minutes. Take it in two sittings if you need to.
-
 ---
 
 # Part 1 — The Numbers — Premiums, Illustrations, Returns, Fees, Charges
@@ -23,9 +21,9 @@ By the end of today you should be able to: state every key number from memory, w
 
 ---
 
-## The structural inversion (this is the heart)
+## The structural inversion
 
-Most FCs lose APA cases because they treat the 3.9% supplementary charge defensively. Don't. Lean into it:
+A lot of APA cases come apart because the FC treats the 3.9% supplementary charge defensively — bracing for the objection rather than walking the prospect through what the charge is buying. The honest move is to lead with it:
 
 > *"After 10 years there's no more supplementary charge. But the bonuses are perpetual. The trick for this plan is to really hold long-term."*
 
@@ -74,11 +72,11 @@ Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of 
 | Duration | First 10 policy years only (10-yr IIP). Drops to 0% after that |
 | What it covers | Distribution costs (commission), ongoing servicing, AIA admin |
 
-The disclosure script that builds trust:
+The disclosure that builds trust is to surface the charge yourself, before they probe it:
 
-> *"Yes, there is a 3.9% charge in the first 10 years. After year 10, it goes to zero. The trade-off is the bonuses: you get welcome bonus in the first 3 years, then 5% special bonus from year 10, then 8% from year 21. The charges are front-loaded. The bonuses are forever."*
+> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a welcome bonus in years 1–3, then 5% special bonus from year 10, then 8% from year 21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
 
-Don't hide this. Lead with it. Saying it out loud is the credibility move.
+Naming the cost yourself flips the prospect's read of you from "selling" to "explaining" — and the rest of the conversation gets easier.
 
 ---
 
@@ -153,11 +151,11 @@ This is the chart you draw when a sharp prospect says "the fees are too high." C
 
 After break-even, the plan is **net-positive from bonuses alone** — AIA is paying the client.
 
-The script:
+The script (cushion first, then walk the math):
 
-> *"Look at the math: at $12k/year premium, by year 34 the cumulative bonuses are bigger than the cumulative charges. From that point onward, AIA is effectively paying YOU. That's why this plan only works long-term — you have to hold past the break-even."*
+> *"Honestly, fair concern — and the 3.9% is real, I'm not going to dress that up. The bit that's easy to miss is the structure: at $12k/year premium, by year 34 the cumulative bonuses are bigger than the cumulative charges. From that point on, the net economics flip — the bonuses are effectively paying you. Which is also why this plan only works if you can hold past break-even. Does the long-hold piece line up with how you've been thinking about this money?"*
 
-This is the line that separates FCs who can defend the plan from FCs who can't.
+The trial close at the end hands the conversation back. If they hesitate on the long-hold piece, you've found the real objection — and it's better surfaced now than after the close.
 
 ---
 
@@ -258,7 +256,7 @@ Print this, laminate it, keep it in your folio.
 
 # Part 2 — Top 5 Client Questions — Crisp, Scripted Answers
 
-> **The one idea for today:** Every APA prospect asks the same five questions in some form. Today you memorise the crisp answer to each — number, analogy, micro-commit. Tomorrow you face the harder *objections.* These are the questions; tomorrow are the attacks.
+> **The one idea for today:** Most APA prospects ask some version of the same five questions in the first appointment. Today you build the worked answer to each — cushion, reframe, trial close. Tomorrow we move to the heavier conviction stories. A question is the prospect probing; an objection is the prospect telling you the fit isn't there yet — different responses for each.
 
 By the end of today you should be able to: deliver each of the 5 answers in under 30 seconds, end each answer with a question that hands the conversation back, and recognise which Day 7 objection is hiding behind a Day 6 question.
 
@@ -278,15 +276,15 @@ Memorise the pattern, then memorise the 5 answers.
 
 ## Question 1 — "Why ILP and not just a unit trust or fund?"
 
-The answer:
+Cushion, then walk the three things a DIY route doesn't give them, then trial close:
 
-> *"Three things that you cannot get from a direct fund: one — the welcome bonus in the first 3 years. Two — the loyalty bonus from year 10 onwards. Three — a capital-guaranteed death benefit that pays your beneficiary even in a market crash. Plus — and this is real — you get me. I'm in your corner for the next 30+ years.*
+> *"That's a totally fair question — it's the first one I'd ask too. Three things APA gives you that a direct unit trust doesn't. One, the welcome bonus in years 1–3. Two, the perpetual 5% / 8% special bonus from year 10. Three, a capital-guaranteed death benefit that pays your beneficiary at least everything you put in, even if the market is down 50% the day before.*
 >
-> *Direct funds give you the investment. APA gives you the wrapper that *adds* on top of the investment. Does that distinction make sense?"*
+> *Direct funds give you the investment. APA gives you a wrapper that adds on top of it — and someone (me) to keep an eye on it with you over the years. Does that distinction make sense, or is there a piece you'd want me to dig into more?"*
 
-The closing question is the micro-commit. They'll say "yes."
+The "is there a piece you'd want me to dig into" tail invites the real question if there is one, rather than forcing a "yes" they don't quite believe.
 
-The verbatim AIA framing:
+The verbatim AIA framing on the no-insurance-charge point, for when a prospect probes whether part of their premium goes to insurance:
 
 > *"It's a pure investment plan — none of the fees go into the insurance part. There's no insurance charges. It's 100% investment, the full amount is being invested."*
 
@@ -294,13 +292,15 @@ The verbatim AIA framing:
 
 ## Question 2 — "Can I take money out anytime?"
 
-The answer:
+Cushion, give the honest answer (technically yes), then the recommendation (don't), then a soft check on the emergency fund:
 
-> *"Technically yes — partial withdrawal is allowed. But the design is for long-term. If you withdraw in the first 10 years, there are charges. After year 10, no charge. Minimum withdrawal is $1,000, and you need to keep at least $10,000 in the plan.*
+> *"Honestly, fair to ask — most people want to know what their exits look like. Technically yes, partial withdrawal is allowed. The design is for long-term hold though — withdraw in the first 10 years and there's a charge, after year 10 it's zero. Minimum withdrawal is $1,000 and you need to keep at least $10,000 in the plan.*
 >
-> *Honestly? My job is to tell you not to. Every withdrawal in the first 10 years is AIA earning a fee from you. The plan is built to compound. So treat it like your retirement account, not your emergency fund. Got an emergency fund separately, right?"*
+> *My job is to actually tell you not to use this as your liquidity bucket. Every early withdrawal is AIA earning a fee from you and your compounding getting clipped. Better to treat APA like your retirement account, and have a separate emergency fund that handles the unexpected stuff.*
+>
+> *Out of curiosity — do you have an emergency fund set aside already, or is that something we should look at first?"*
 
-That last sentence is the micro-commit AND a fact-find — you're checking they have an actual emergency fund.
+That last question pivots cleanly into a fact-find moment without sounding like one. If they don't have an emergency fund, that's a different conversation — and a bigger trust deposit than pushing through with APA would have been.
 
 The verbatim source:
 
@@ -314,15 +314,15 @@ The verbatim source:
 
 ## Question 3 — "What if I die before maturity?"
 
-The answer:
+Cushion (this is usually the most sensitive of the five — people don't enjoy asking it), then the floor, then the accidental-death bump, then a soft pivot into nomination:
 
-> *"Capital guarantee. Even if the market is down 50% the day you die, your beneficiary gets back at minimum everything you put in. The exact wording: the higher of total premiums paid plus top-ups minus withdrawals, OR current policy value. Whichever is higher.*
+> *"That's a real concern, and one of the better reasons to ask up front — it's exactly the scenario the design protects against. Capital guarantee: even if the market is down 50% the day you pass, your beneficiary gets back at minimum everything you put in. Specifically, the higher of (total premiums paid + top-ups − withdrawals) or current policy value — whichever's larger.*
 >
-> *And — bonus feature — if it's accidental death within the first 2 policy years, your beneficiary gets an *additional* 100% of premiums paid. So if you'd put in $20,000 and got hit by a car, your beneficiary gets $40,000.*
+> *There's also a built-in feature for the first 2 policy years — if it's accidental death within 90 days of the accident, your beneficiary gets an additional 100% of premiums paid. So $20,000 in becomes $40,000 out.*
 >
-> *Have you set up your beneficiary nomination already? If not, we'll do it as part of this paperwork."*
+> *Have you already nominated a beneficiary on your existing policies, or is that something we should clean up as part of the paperwork today?"*
 
-The closing question moves you into Phase 7 paperwork mode.
+The closing question is a quiet pivot into the paperwork. If they've never done a nomination, this is also where you earn trust — most people haven't, and helping them get it right matters more than the APA close itself.
 
 > *"No matter how low the portfolio goes, you at least get the full amount that you put in. There's some capital guarantee in case of market downturn."*
 
@@ -330,35 +330,35 @@ The closing question moves you into Phase 7 paperwork mode.
 
 ## Question 4 — "What if I can't pay one year? Can I pause?"
 
-The answer:
+Cushion, explain the pass mechanic, name the heavier option (Premium Holiday) honestly, then check their cash-flow read:
 
-> *"Yes. The plan has a feature called Premium Pass — you get one pass for every 5 years of premiums paid. So a 10-year IIP gives you 1 pass, a 15-year gives you 2, and a 20-year gives you 3. Each pass lets you skip up to 12 months of premium with zero charge.*
+> *"Totally fair — life happens, and any plan you commit to for 10+ years should have somewhere to flex. APA has a built-in feature called Premium Pass. You get one pass for every 5 years of premium you've paid in — so 10-year IIP gives you 1 pass, 15-year gives you 2, 20-year gives you 3. Each one lets you skip up to 12 months of premium with no charge.*
 >
-> *Beyond that, there's also Premium Holiday — but it carries a charge, so we treat it as a last resort.*
+> *Beyond that there's Premium Holiday, which does carry a charge, so we treat it as a last-resort lever rather than a feature.*
 >
-> *Most clients never use either. But it's nice to know it's there. Your salary's stable for the next few years, right?"*
+> *Most clients never need either, but it's good to know it's there. How do you feel about your income stability over the next few years — anything coming up that might make a 12-month pause more likely than not?"*
 
-That last sentence quietly anchors stability. They'll say yes.
+The open-ended question at the end is real intel. If they flag a possible career break, planned sabbatical, or a partner going back to school — that changes which IIP you recommend and at what premium tier.
 
 ---
 
 ## Question 5 — "Can I take dividends now? I want passive income today."
 
-The answer:
+Cushion, give the technical "yes", then run the math reframe, then hand the choice back:
 
-> *"Possible — from year 10 or 11, you can switch into dividend mode using GDIF or AGDIF. Yield's about 5–7% per year on the account value.*
+> *"Honestly, fair question — most people I sit down with ask some version of this. Technically yes: from year 10 or 11 you can switch into dividend mode using GDIF or AGDIF. Yield's roughly 5–7% per year on account value.*
 >
-> *But honest math: if you have $10,000 in there, that's about $600 a year — $50 a month. You're earning $6k/month right now. Is $50/month meaningful to you?*
+> *Here's the bit that catches most people though. On a $10,000 balance at year 10, 5–7% is about $600 a year — call it $50 a month. You're earning $6k a month right now. Would $50 a month change anything material for you today?*
 >
-> *The smarter move is reinvest. Let it compound. Take dividends when you actually need them — at retirement. Make sense?"*
+> *Most clients say not really. Which is why the smarter setup is usually: let it compound now, switch on dividend mode later when the balance is doing real work. But it's your money and your call — would you rather have dividends landing now, or compounded into a meaningfully bigger payout later?"*
 
-The verbatim:
+The verbatim source line we're drawing on:
 
 > *"Is $600 per year significant for you? If you're earning 6k per month and you're getting $600 per year of dividends, I do not think there is any significance in taking out the dividends now."*
 >
 > *"Would you prefer dividends now when you don't need it, or in the future when you actually need it?"*
 
-That second question almost always closes the dividend objection in 5 seconds. They'll always say "future."
+The two-option close at the end works because you've already given them permission to pick either — the cushion line "it's your money and your call" removes the sense of being pushed.
 
 ---
 
@@ -404,11 +404,9 @@ For US-residency or US-citizen prospects, flag immediately and refer to speciali
 
 ---
 
-## The handover-to-day-7 transition
+## The handover into Day 4 (questions vs objections)
 
-If a prospect asks Question 1, 2, 3, 4, or 5 — they're curious, they're not objecting. Today's answers handle them.
-
-But if they ask:
+The five answers above handle *curious* prospects. If a prospect asks:
 
 - *"Why not just buy S&P500?"*
 - *"Why not just DIY ETFs?"*
@@ -416,7 +414,7 @@ But if they ask:
 - *"Other companies have lower charges"*
 - *"I want my dividends now (not later)"*
 
-— those are **objections**, not questions. They need the conviction stories from Day 7. Recognise the difference: a question opens a door; an objection slams one shut.
+— those are sitting one rung deeper. They need the conviction stories from Day 4, not the Q&A scripts here. The cleanest way to tell the difference live: a question is the prospect probing for information; an objection is the prospect telling you the recommendation doesn't fit yet. Different responses, different energy.
 
 ---
 
@@ -424,10 +422,10 @@ But if they ask:
 
 ## Drill (Part 2)
 
-1. **Recite each of the 5 answers out loud.** Time each. Target: 30 seconds. If you're over 45 seconds, cut adjectives.
-2. **Practise the closing question on each** — make sure each ends with a *question*, not a statement. The micro-commit is the magic.
-3. **Pair up with a peer** (or self-record). Have them ask each question in random order. Score whether you delivered the answer in 30 seconds with a closing question.
-4. **Memorise the dividend math** ($600/yr on $10k). Recite without looking.
+1. **Recite each of the 5 answers out loud.** Aim for roughly 30–45 seconds each. If yours runs long, the usual culprit is finishing the cushion before the reframe begins — tighten the bridge between the two, not the content itself.
+2. **Check each answer ends with a question, not a statement.** The trial close is what hands the conversation back and tells you whether you've landed it. If you find yourself ending on a declaration, rewrite.
+3. **Pair up with a peer** (or self-record). Have them ask the five questions in random order. After each, ask them: did the cushion feel real, or did it sound like a script? That's the calibration that matters more than the timer.
+4. **Memorise the dividend math** ($600/yr on $10k at 5–7% yield). The number does the work — recite without looking until it falls out naturally.
 
 ---
 

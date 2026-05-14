@@ -11,8 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** PLP is a regular-premium investment-linked policy that combines lifetime protection (to age 100) with a wealth accumulation engine. One plan, two engines. Master the Plus-vs-Max distinction and the lifeboat analogy; the rest of the curriculum builds on these.
 
-This is a merged module — Part 1 covers what PLP is and the Plus/Max distinction. Part 2 covers the lifeboat-on-the-ship signature concept. Estimated read + drill: ~55 minutes.
-
 ---
 
 # Part 1 — PLP in 5 Minutes: What It Is, Who It's For, Why It Exists
@@ -27,11 +25,17 @@ By the end of Part 1 you should be able to: (1) describe PLP in two sentences wi
 
 A SGD-denominated, **regular-premium investment-linked policy (ILP)** issued by AIA. Combines lifetime protection (to age 100) with a Mercer-guided wealth accumulation engine. [Brochure p.1, Product Summary p.1]
 
-The line that opens every PLP conversation:
+Open with a question, not a claim:
+
+> *"Quick one — for the next 20 years, is it more about making sure your family is covered, or building something you can draw on later?"*
+
+Then the contrast:
+
+> *"Two ways to do this. Buy term and invest the rest separately. Or PLP — one premium splits between protection and investment, and the cover stays on to 100 even after you stop paying in."*
+
+The training-video frames for when they ask how it actually works:
 
 > *"Pro Lifetime Protector is a one-stop protection and investment solution that helps you stay on top of your changing needs."* [Video 0]
-
-Then the "two-in-one" framing:
 
 > *"It's a two-in-one plan. A lot of people really love this idea of having a two-in-one because they don't have to pay for an additional plan for insurance — they can combine both."* [Video 5]
 
@@ -69,7 +73,7 @@ The structural pitch:
 
 Same plan, two life stages.
 
-## The four numbers you must know cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
@@ -78,7 +82,7 @@ Same plan, two life stages.
 | 3 | **S$100/month** | Minimum regular premium. Top-up min S$1,000 [PS p.5] |
 | 4 | **2%** | Special bonus on regular premiums from 10th annual premium onwards [PS p.2] |
 
-If a prospect asks any of these and you fumble, you've lost the room.
+Drill these till they fall out of your mouth. The point isn't passing a test — it's that fumbling a number mid-pitch reads as "this person doesn't really know the plan," and the prospect quietly checks out.
 
 ## The brochure's headline framing
 
@@ -94,31 +98,35 @@ This is the price-anchor headline — but verify in iPOS at quote time. The illu
 
 ## Anti-market
 
-The disclosure that builds trust:
+> *"PLP isn't for everyone. If you want pure investment only, prefer DIY or robo-advisors, can't sit with non-guaranteed returns, can't commit S$100/month, or need short-term access to funds, this isn't your plan. PLP needs at least a 10-year horizon."* [Video 14]
 
-> *"This plan isn't right for someone who wants pure investment only, prefers DIY/robo-advisors, is totally risk-averse to non-guaranteed returns, can't afford the S$100/month minimum, or wants short-term access to funds. PLP needs at least a 10-year horizon."* [Video 14]
+## Discovery first, then the talk-track
 
-Saying this out loud separates trustworthy FCs from product-pushers.
+Open with a question, not features. Let the prospect name their own picture, then bridge.
 
-## The 5-minute intro script
+### Discovery
 
-> *"This is AIA Pro Lifetime Protector — PLP. Three things make it different from any other plan we offer.*
+> *"Quick one — when you think about cover and savings together, which one's been on your mind more? Protecting the family, or building something for retirement?"*
+
+Most land in one camp. Bridge:
+
+> *"Got it. The plan shape's different depending on which side matters more. PLP is the one I reach for when both matter at once — let me show you how it handles both."*
+
+Then permission:
+
+> *"Mind if I sketch it for you?"*
+
+### Talk-track when they ask "so how does it actually work?"
+
+> *"Three things. One — two-in-one: protection and investment in one premium. Two — after 10 years, you can stop paying. Policy keeps growing, cover stays on, all the way to 100. Three — the cover gets cheaper as your money grows. On Max, once policy value crosses your insured amount, insurance charge effectively zeroes out."*
 >
-> *One — it's two-in-one. Protection plus investment, in one plan, on one premium. The premium splits — part funds the cover, part goes into a Mercer-guided sub-fund.*
->
-> *Two — it's the only plan you can pause. After 10 years of paying, you can stop. The policy keeps growing. The cover keeps protecting. To age 100.*
->
-> *Three — your insurance gets cheaper as your money grows, not more expensive. On the Max plan, once your policy value crosses your insured amount, insurance is free.*
->
-> *Two structural choices to make: Plus or Max — different death benefit calculations. And one of three Mercer-guided portfolios — Adventurous, Balanced, Cautious. Which life stage are we solving for — protection now, or retirement income later?"*
-
-That's 60 seconds. End with the question — they pick the life stage, the close has started.
+> *"Two structural choices inside — Plus or Max for the death benefit shape, and one of three Mercer-guided portfolios. We match them to the life stage."*
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
+1. **Run the discovery question out loud, twice.** Practise the bridge from "which side matters more" into "let me sketch it for you." If you feature-dump before they answer, restart.
 2. **Write down the 4 key numbers** (age 100 / 18-70 / S$100 min / 2% bonus year 10+).
 3. **Recite the Plus-vs-Max distinction** in two sentences.
 4. **List 3 prospects in your pipeline** for whom PLP is the right product. For each, write whether you'd recommend Plus or Max.

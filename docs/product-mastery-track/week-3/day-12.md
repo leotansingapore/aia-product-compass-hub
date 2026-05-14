@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** Before you draw the rocket-ship, you need three pieces of intelligence — the coverage gap, the budget reality, and the cash-value pain point. Then run the source's explicit 6-phase flow (Open → Illustrator → Pitch → iPOS+ → Layer Early CI → Package) for the close. Skip the fact-find and you'll argue against term later instead of qualifying for whole life upfront.
 
-This is a merged module — Part 1 covers the fact-find. Part 2 covers the explicit 6-phase pitch flow from the source (videos 9–14). Estimated read + drill: ~60 minutes. Take in two sittings if you need to.
 
 ---
 

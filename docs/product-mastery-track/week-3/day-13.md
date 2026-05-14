@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** Internalise three pieces of math (multiplier mechanics, accelerated CI, cash-value vs alternatives), and the 5 questions every prospect asks. That's enough to handle 80% of the appointment without slides — and to defend the plan against the sharp prospect who runs their own arithmetic.
 
-This is a merged module — Part 1 covers the numbers and mechanics. Part 2 covers the top 5 client questions. Estimated read + drill: ~55 minutes. Take in two sittings if you need to.
 
 ---
 
@@ -372,7 +371,7 @@ The verbatim:
 
 ## What's coming next
 
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (GPP vs Term, GPP vs Whole Life, "I already have CI", "why pay for cover I won't use", BTID). This is where GPP is won or lost — the conviction-story heart. Part 2 — cross-sell + bundling: GPP + UCC packaging, GPP-on-spouse, the Mum-to-Baby + Payer Benefit play for young families.
+Day 4: defence + expansion. Part 1 — the 5 hardest objections (GPP vs Term, GPP vs Whole Life, "I already have CI", "why pay for cover I won't use", BTID). The conviction-story heart of the GPP track. Part 2 — cross-sell + bundling: GPP + UCC packaging, GPP-on-spouse, the Mum-to-Baby + Payer Benefit play for young families.
 
 ---
 

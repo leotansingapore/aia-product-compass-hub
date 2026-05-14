@@ -9,17 +9,19 @@ tags: [product-mastery-track, week-5, healthshield-gold-max]
 ---
 # Day 5 — Compliance + Close: Disclosures, Two-Option Close, Paperwork, Delivery
 
-> **Today's frame:** Compliance moves are not optional and not boring. The four MAS-required disclosures, said out loud and acknowledged, are what stand between a clean sale and a chargeback during free-look. The two-option close — "private or public?" with rider assumed in — is the natural end of a meeting run correctly from the four-pillar question onward.
+> **Today's frame:** Compliance moves aren't optional and they aren't boring. The four MAS-required disclosures, said out loud and acknowledged, are what stand between a clean sale and a chargeback during free-look. The two-option close — "private or public?" with the rider assumed in — is the natural end of a meeting run correctly from the four-pillar question onward.
 
-This is the final module. Part 1 covers the four mandatory disclosures + RNF-relevant phrasing. Part 2 covers the two-option close, IPOS workflow, breakfast-comparison framing, and post-close service rhythm. Estimated read + drill: ~50 minutes.
+Part 1 covers the four mandatory disclosures plus RNF-relevant phrasing. Part 2 covers the two-option close, iPOS workflow, breakfast-comparison framing, and post-close service rhythm.
 
 ---
 
 # Part 1 — Compliance + Risk Disclosures
 
-> **The one idea for Part 1:** Four lines, said out loud and acknowledged by the prospect, separate a compliant book from an MAS complaint: premiums-not-guaranteed, one-IP-per-MediSave, MAS switching disclosure, value-added-services-not-contractual. Make them part of the close, not a footnote.
+Four lines, said out loud and acknowledged by the prospect, separate a clean book from an MAS complaint: premiums-not-guaranteed, one-IP-per-MediSave, MAS switching disclosure, value-added-services-not-contractual. Make them part of the close, not a footnote.
 
 By the end of Part 1 you should be able to deliver all four mandatory disclosures cleanly in under 90 seconds total, recognise when HSGM is the wrong product (and say so), and pass an RNF sample audit without a coaching note.
+
+
 
 ---
 
@@ -61,19 +63,13 @@ The lead-in:
 
 This protects the FC against future "but you said Teladoc was free!" complaints.
 
-## The "anti-market" disclosure (the trust move)
+## The "anti-market" disclosure
 
-The single biggest credibility move:
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
 
-> *"This plan isn't right for everyone. The anti-market for HSGM is people who:*
->
-> *- Will only ever use C-class public-hospital wards (MediShield Life is enough for that)*
-> *- Don't want to pay any premium for upgrade options (HSGM is the upgrade)*
-> *- Have a pre-existing condition that would be excluded — better to talk to an underwriter directly first*
->
-> *If any of those describe you, HSGM might not be the right plan. Be honest with me."*
+> *"To be straight with you — HSGM isn't right for everyone. If you genuinely only ever see yourself using C-class public-hospital wards, MediShield Life is enough on its own. If you don't want to pay any premium for upgrade options, this isn't your plan. And if you've already got a pre-existing condition that's likely to be excluded, it's worth a conversation with an underwriter before we even apply. If any of those describe you, just say so — the right move is sometimes not to sell."*
 
-If the prospect hesitates on any of these, slow down. The right move is sometimes to NOT sell.
+If the prospect hesitates on any of these, slow down.
 
 ## The pre-existing exclusion details
 
@@ -105,7 +101,7 @@ The script:
 
 ## The RNF-clean closing block
 
-Deliver as one block right before IPOS authentication:
+Deliver as one block right before iPOS authentication:
 
 > *"Before we authenticate, four things to make sure I've covered:*
 >
@@ -138,9 +134,9 @@ If "yes" — slow down. Address it. Better 15 more minutes than a complaint.
 
 # Part 2 — The Two-Option Close, Paperwork, Delivery, Post-Close Service Rhythm
 
-> **The one idea for Part 2:** A clean close looks like one question — *"private or public?"* — followed by a smooth IPOS workflow while you reinforce value, walk through the four mandatory disclosures, and book the policy-anniversary review. The close is not an event; it's the natural end of a meeting that was run correctly.
+A clean close looks like one question — *"private or public?"* — followed by a smooth iPOS workflow while you reinforce value, walk through the four mandatory disclosures, and book the policy-anniversary review. The close isn't an event; it's the natural end of a meeting that was run correctly.
 
-By the end of Part 2 you should be able to deliver the two-option close cleanly in under 5 minutes, set up IPOS in front of the prospect with rider + Cancer Care Pro defaulted in, run the breakfast-comparison reframe naturally, and book the post-close review rhythm.
+By the end of Part 2 you should be able to deliver the two-option close cleanly in under 5 minutes, set up iPOS in front of the prospect with rider + Cancer Care Pro defaulted in, run the breakfast-comparison reframe naturally, and book the post-close review rhythm.
 
 ---
 
@@ -156,35 +152,35 @@ If the prospect picks **public** → HSG Max B + AIA Max VitalHealth Pro B (Canc
 
 If the prospect picks **B Lite** → HSG Max B Lite + AIA Max VitalHealth Pro B Lite (this is rare; usually budget-driven, often a temporary stop-gap).
 
-## Close while you set up IPOS
+## Close while you set up iPOS
 
 Use the time to reinforce value. The kopi-vs-cover frame:
 
-> *"While I set up the quote, let me just summarise. S$2 million a year, guaranteed for life, 13 months before and after, claim again and again every year. Cheaper than a daily Singaporean breakfast."*
+> *"While I set up the quote — quick summary. S$2 million a year, covered for life, 13 months either side of any hospitalisation, you can claim every year and the limit resets. Cheaper than a daily Singaporean breakfast."*
 
-> *"How much do you think a typical kopitiam breakfast costs? S$5? S$6? Times 30 days, that's S$150–S$180 a month. Your hospital plan with rider is around S$80 a month for private — about S$2 a day, less than a kopi and toast."*
+> *"Out of curiosity — what does a typical kopitiam breakfast set you back these days? S$5 or S$6? Times 30 days, that's S$150 to S$180 a month. Your hospital plan with rider lands around S$80 a month for private — roughly S$2 a day, less than a kopi and toast."*
 
-That reframe converts most price hesitations.
+That reframe handles most price hesitations.
 
 ## Cancer Care Pro — included by default
 
 Don't ask "do you want Cancer Care Pro?" — that fragments the decision. Default it in:
 
-> *"Cancer Care Pro lifts your outpatient cancer drug coverage. I always include it by default on Plan A — let me know if you want to remove it, but it's what most clients keep."*
+> *"I include Cancer Care Pro on Plan A by default — it lifts your outpatient cancer drug ceilings significantly. Let me know if you want to take it out, but it's what most clients keep on."*
 
-Most clients keep it. The opt-out frame is more powerful than opt-in.
+Most clients keep it. Opt-out frames convert better than opt-in for cover decisions like this.
 
 ## Quote one number — cash all-in
 
-When the IPOS quote is ready:
+When the iPOS quote is ready:
 
-> *"I'll pull up the IPOS quote now. The cash portion all-in is S$[X] a month — that's the rider plus the small MediSave shortfall. The base plan and the MediShield Life portion come out of MediSave automatically."*
+> *"I'll pull up the iPOS quote now. The cash portion all-in is S$[X] a month — that's the rider plus the small MediSave shortfall. The base plan and the MediShield Life portion come out of MediSave automatically."*
 
-ONE number. Don't introduce a fork between with-rider/without-rider. The without-rider version is structurally weaker.
+ONE number. Don't introduce a fork between with-rider/without-rider — the without-rider version is structurally weaker and offering it signals doubt.
 
-## IPOS workflow path
+## iPOS workflow path
 
-Memorise the IPOS path:
+Memorise the iPOS path:
 
 ```
 Hospitalisation Plan
@@ -202,7 +198,7 @@ Hospitalisation Plan
 
 If the meeting room allows:
 
-- **Laptop:** runs IPOS quote
+- **Laptop:** runs iPOS quote
 - **iPad:** shows brochure summary / benefit table page
 - **Phone:** has AIA+ app open for any final demo (preferred-provider directory, Teladoc launch screen)
 

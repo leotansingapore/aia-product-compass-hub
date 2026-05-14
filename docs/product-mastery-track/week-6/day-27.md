@@ -9,15 +9,15 @@ tags: [product-mastery-track, week-6, solitaire-pa]
 ---
 # Day 2 — Run the Meeting: Fact-Find + 7-Phase Pitch Flow
 
-> **Today's frame:** The fact-find for PA is short but not skip-able. Three confirmations, then the 7-phase pitch flow. Always sold paired with HSGM (basic-medical bundle), never standalone.
+> **Today's frame:** The fact-find for PA is short but not skippable. Three confirmations, then the 7-phase pitch flow. Always sold paired with HSGM (basic-medical bundle), never standalone.
 
-This is a merged module — Part 1 covers the 5-minute fact-find. Part 2 covers the 7-phase pitch flow. Estimated read + drill: ~50 minutes.
+Part 1 covers the 5-minute fact-find. Part 2 covers the 7-phase pitch flow.
 
 ---
 
 # Part 1 — The Fact-Find: 5 Minutes, 3 Confirmations
 
-> **The one idea for Part 1:** The fact-find is shorter than for life or wealth, but skipping it costs the close. Three confirmations carry the rest of the meeting: outpatient gap exists, lifestyle/commute creates real probability of minor accident, occupation class and income are clean for the recommended plan.
+The PA fact-find is shorter than for life or wealth, but skipping it costs the close. Three confirmations carry the rest of the meeting: outpatient gap exists, lifestyle/commute creates real probability of minor accident, occupation class and income are clean for the recommended plan.
 
 By the end of Part 1 you should be able to: deploy the existing-coverage audit, classify the prospect by occupation (Class 1-2 vs 3-4), recognise income restrictions for Plan 4, and walk away with the data SQS needs.
 
@@ -38,9 +38,15 @@ If employer GPA exists → ask cap. Most are S$50K-S$200K and tied to job. Solit
 
 ### Confirmation 2 — Lifestyle/commute creates probability
 
-> *"Do you play sports?"* / *"Do you like buffets? Oysters?"* / *"Anyone you know ever got dengue?"* [Video 3]
+Question stack — out of curiosity, help me understand:
 
-> *"You might also want to look out for clients who are on motorbikes, who are more prone to accidents, or let's just say they are perhaps more active in nature."* [Video 5]
+> *"Out of curiosity — what do your weekends usually look like? Sports, hiking, anything active?"*
+>
+> *"Help me understand — how do you usually get to work? MRT, drive, motorbike?"*
+>
+> *"Anyone in the family ever picked up dengue? Or had a stomach bug from a buffet?"*
+
+[adapted from Video 3, Video 5]
 
 Capture in fact-find:
 - Occupation
@@ -120,7 +126,7 @@ If any are missing, the close fumbles. Go back and ask.
 
 # Part 2 — The 7-Phase Pitch Flow
 
-> **The one idea for Part 2:** Open with the loophole story (theirs or KK), define accident, run the 3 coverage tiers (relatable → serious → extreme), draw the partial-disability gap, frame 4×/7× price-vs-coverage, anchor on daily cost, demo AIA+ app, close on "Plan 1, 2, 3, or 4?". 30 minutes total when bundled with HSGM.
+Open with the loophole story (theirs or KK), define accident, run the 3 coverage tiers (relatable → serious → extreme), draw the partial-disability gap, frame 4×/7× price-vs-coverage, anchor on daily cost, demo the AIA+ app, close on "Plan 1, 2, 3, or 4?". About 30 minutes total when bundled with HSGM.
 
 By the end of Part 2 you should be able to deliver all 7 phases in sequence, demo the AIA+ self-claim app live, run the price/coverage 4×/7× framing without notes, and close on the four-option choice.
 
@@ -259,7 +265,7 @@ If a prospect is comparing on $1 differences with a competitor, refer them to th
 
 ## The pacing rule
 
-If you're approaching the 30-minute mark and still in Phase 5, you're losing them. Compress to "Plan 1, 2, 3, or 4?" close, set up SQS for next session.
+If you're approaching the 30-minute mark and still in Phase 5, you're losing them. Compress to the "Plan 1, 2, 3, or 4?" close and set up SQS for the next session.
 
 ---
 

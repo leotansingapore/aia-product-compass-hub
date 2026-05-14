@@ -9,15 +9,13 @@ tags: [product-mastery-track, week-1, pro-achiever]
 ---
 # Day 1 — What It Is + The Signature Pitch Concept
 
-> **Today's frame:** Pure investment plan, 100% allocation, with bonuses you cannot get if you DIY. The retirement-income reverse-engineer is the whiteboard sequence that anchors every APA close.
-
-This is a merged module — Part 1 covers the first half (originally Day 01), Part 2 covers the second half (originally Day 02). Estimated read + drill time: ~55 minutes. Take it in two sittings if you need to.
+> **Today's frame:** APA is a pure investment plan. The real edge isn't "100% allocated" on its own — most retail unit trusts are also 100% allocated. The edge is the Welcome and Special bonuses you can't replicate on a DIY route. The retirement-income reverse-engineer is the whiteboard sequence that anchors most APA closes.
 
 ---
 
 # Part 1 — APA in 5 Minutes — What It Is, Who It's For, Why It Exists
 
-> **The one idea for today:** AIA Pro Achiever 3.0 is a *pure* investment plan. 100% of every dollar of premium goes to work from day one — and on top of that, AIA stacks Welcome and Special bonuses you cannot get on any DIY route. Anchor those three things — *100% allocated, bonuses, legacy continuity* — before any number leaves your mouth.
+> **The one idea for today:** APA is a pure investment plan. The edge isn't its 100% investment allocation — most comparable options have that too. The edge is the stackable Welcome and Special bonuses over time, a capital-guaranteed death benefit floor, and the legacy continuity through the secondary insured feature.
 
 By the end of today you should be able to: (1) describe APA in two sentences without notes, (2) name the three commitment terms and three fund routes, (3) state the four most important numbers in the plan, (4) recognise when APA is the wrong product for the prospect.
 
@@ -27,17 +25,19 @@ By the end of today you should be able to: (1) describe APA in two sentences wit
 
 A SGD-denominated, **Investment-Linked Policy (ILP)** issued by AIA. Matures at age 100 of the original insured. **No medical underwriting** — guaranteed issuance. The prospect's premium buys units in funds; the funds grow (or shrink) based on actual market performance. Returns are **not guaranteed.**
 
-The line that opens every APA conversation:
-
-> *"ProAchiever 3.0 is the best-selling investment plan compared to 2.0 and the older version. 100% will be invested right from the start."*
-
-That second sentence is the most important sentence in this entire track. Hold it.
+Don't open an APA conversation with a feature claim. Open with discovery — what they're trying to solve, where their CPF sits, what their retirement horizon looks like. Only once you understand the gap do you name APA as the vehicle that fits. Save the product facts below for the moment they ask *how does it actually work?*
 
 ## The three things that make APA different
 
-### 1. 100% premium allocation from day 1
+### 1. 100% premium allocation — read this carefully
 
-There is **no allocation charge**, **no bid-offer spread**. Every dollar your client pays goes into units immediately. Most retail unit trusts and most competitor ILPs claw back 3-5% before a single unit is bought. APA does not.
+There is **no allocation charge**, **no bid-offer spread** on APA. Every dollar of premium buys units from day one. The honest framing of where this is actually a differentiator:
+
+- **Versus older-generation ILPs** that had legacy allocation periods (e.g. only 50–80% allocated in years 1–2) — yes, APA's 100% allocation is a real edge.
+- **Versus ILPs that bundle insurance** (e.g. AIA Pro Lifetime Protector) — yes, because PLP has insurance charges drawn from your units. APA does not.
+- **Versus a vanilla retail unit trust** — be careful. Most popular retail unit trusts on platforms like FSMOne, Endowus, or Syfe are also effectively 100% invested (no front-end sales charge on the common funds). Don't claim a false advantage here.
+
+So when a prospect says *"I already DIY my own unit trusts — why APA?"*, the honest answer isn't "we're 100% allocated and you're not". It's "the Welcome and Special bonuses don't exist on DIY platforms — and that's the actual stacking advantage". See point 2.
 
 ### 2. Stackable bonuses that compound
 
@@ -55,35 +55,36 @@ Even in a market crash, the beneficiary gets back at least **100% of total regul
 
 ## The container vs. the ingredients
 
-The single most useful framing for a first-time prospect:
+A framing that works for first-time prospects:
 
-> *"Think of ProAchiever 3.0 as simply just a fund. A vehicle. The actual funds that you invest in is really still up to you."*
+> *"Think of Pro Achiever 3.0 as the vehicle. The actual funds you invest in inside it — that's the part we customise to you."*
 >
-> *"ProAchiever is just a container — the actual ingredients that you put inside this container is really up to you."*
+> *"Pro Achiever is the container. The ingredients inside the container — Elite, Self-Select, the specific funds — that's where the conversation about returns and risk really lives."*
 
-This unhooks the conversation from "what's the return?" and puts it on "what goes inside?" — where you have control.
+This unhooks the conversation from *"what's the return?"* and puts it on *"what goes inside?"* — where the client actually has control.
 
 ## The three commitment terms (IIP)
 
 Your prospect picks an **Initial Investment Period** at signup:
 
-| IIP | Hold period | Welcome bonus reach |
+| IIP | Where it fits | Welcome bonus reach |
 |---|---|---|
-| 10-year | shortest commitment | smallest |
-| 15-year | sweet spot — most cases land here | meaningful |
-| 20-year | maximum | largest |
+| **10-year** | The most common choice in practice — fastest path to being surrender-charge-free | smaller, but still meaningful at higher premium tiers |
+| **15-year** | When the premium term suits the client's cash-flow horizon — bigger welcome bonus | meaningful |
+| **20-year** | Maximum bonus, but only worth it for long-runway clients (younger, longer income horizon, willing to commit) | largest |
 
-The longer the IIP, the higher the welcome bonus tier — that's how AIA prices loyalty.
+The longer the IIP, the higher the welcome bonus tier. **In real practice, most APA cases land on the 10-year IIP** — don't default to recommending 15-year just because the bonus is bigger. The right IIP is the one the client can actually stay in.
 
 ## The three fund routes
 
 | Route | Who picks the funds | Best for |
 |---|---|---|
-| **Elite Portfolios** | AIA picks (3 risk profiles: Conservative / Balanced / Adventurous) | Default for most prospects, especially young adults |
-| **AIA Guided Portfolios** | AIA-built using Mercer research insights (PA brochure p.5); 3 risk-profile options|**AIA Guided Portfolios** | AIA-built using Mercer research insights (PA brochure p.5); 3 risk-profile options | Prospects who want a multi-manager touch |
-| **Self-Select** | Client picks from 41 ILP sub-funds (incl. GDIF — Global Dynamic Income Fund — for dividend strategies at ~5% yield) | Sophisticated investors only |
+| **Elite Portfolios** | AIA-managed, 3 risk profiles (Conservative / Balanced / Adventurous) | **The default we recommend for most clients.** Hands-off, professionally rebalanced. |
+| **Self-Select** | Client picks from 41 ILP sub-funds | Clients who want to customise. A common default within Self-Select is the **Adventurous index fund** (~1% p.a. AUM charge — the lowest fund management fee on the platform). |
 
-Default 90% of the time: **Elite Adventurous** for a young adult, **Elite Balanced** for someone 35+ with kids.
+**Guided Portfolios is no longer offered** — if you see it in older training material, ignore that row.
+
+Default 90% of the time: **Elite Adventurous** for a young adult, **Elite Balanced** for someone in their late 30s or 40s with kids. Self-Select is fine when the client genuinely wants to pick — not a "sophisticated investors only" gate.
 
 ## Who APA is for (target market)
 
@@ -94,38 +95,40 @@ Default 90% of the time: **Elite Adventurous** for a young adult, **Elite Balanc
 
 ## Who APA is NOT for (anti-market)
 
-This is the disclosure you say to a prospect to *build* trust:
+Naming who the plan isn't for is one of the highest-trust moves you can make in a meeting. It signals you're not pushing a product — you're matching one.
 
-> *"This plan is not for someone who wants short-term liquidity, guaranteed cash values, or a fixed return. If you're risk-averse to investment, APA is not the right plan."*
+> *"That's a fair question to ask up front. Honestly, this plan isn't for everyone. If what you're looking for is short-term liquidity, guaranteed cash values, or a fixed return, APA is the wrong vehicle — and I'd rather tell you that now than walk you into something that doesn't fit."*
 
-Saying this *out loud* is the move that separates trustworthy FCs from product-pushers. Use it.
+That cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
 
-## The four numbers you must know cold
+## The four numbers worth knowing cold
 
 | # | Number | What it means |
 |---|---|---|
 | 1 | **3.9% p.a.** | Supplementary charge on account value, **for the first 10 policy years only.** Drops to 0% after that |
 | 2 | **5% / 8%** | Special bonus from year 10 / year 21 (calculated on annualized premium) |
-| 3 | **75%** | Maximum welcome bonus possible (longest IIP, highest premium tier) |
+| 3 | **Welcome bonus at 10-yr IIP** | Memorise the bonus at the lowest IIP × the common premium tiers ($400/mo, $600/mo, $1,000/mo). Those are the numbers you actually quote in pitches — not the 75% theoretical max. |
 | 4 | **$2,400/yr ($200/mo)** | Minimum policy size. Top-up minimum: $1,000 |
 
-If a prospect asks about any number and you fumble these four, you've lost the room.
+The "75% maximum welcome bonus" line gets thrown around a lot, but in practice it only applies at the longest IIP × the highest premium tier. The numbers that matter in real conversations are the **10-year IIP welcome bonuses at $400, $600, and $1,000/mo** — verify them in iPOS or your latest illustration and commit those three figures to memory.
 
-## The 5-minute intro script
+## Intro shape
 
-This is the script your hand should know. Practise it out loud once before the next prospect:
+Open with discovery, not features.
 
-> *"This is AIA Pro Achiever 3.0 — our flagship long-term investment plan. The reason we use this plan instead of having you DIY: three things.*
->
-> *One — 100% of every dollar you put in goes straight to investment from day one. No allocation charge, no spread.*
->
-> *Two — AIA stacks bonuses on top. A Welcome Bonus in the first 3 years, then a Special Bonus from year 10 onwards, and a bigger one from year 21 onwards. These bonuses don't exist if you DIY.*
->
-> *Three — even in a market crash, the death benefit is capital-guaranteed. Whatever happens to the market, your family at least gets back what you put in.*
->
-> *Think of it as a container. The container is APA. The actual investments inside the container — Elite Portfolios, Guided, or Self-Select — that's where we customise to your risk profile and time horizon."*
+> *"Quick one — when you think about retirement, what's the picture in your head? Same lifestyle, simpler, or planning to do more? And roughly when do you want the option to slow down — 60? 65? Earlier?"*
 
-That's 60 seconds. Time it. If yours is 90 seconds, cut the adjectives.
+Then the bridge:
+
+> *"Most people in your position run into the same gap. CPF Life pays from 65, but the payout's usually a fraction of what they actually spend monthly today. The shortfall is the part to plan for."*
+
+Permission to walk them through:
+
+> *"Mind if I sketch the shortfall for you?"*
+
+### Talk-track when they ask "so how does it actually work?"
+
+> *"Three pieces. One — premium goes to investment from day one. Two — AIA layers Welcome and Special bonuses on top that DIY platforms can't replicate. Three — even in a market crash, the death benefit returns at least what you put in. Inside the plan we pick the funds together — Elite Portfolios for hands-off, or Self-Select."*
 
 ---
 
@@ -133,10 +136,10 @@ That's 60 seconds. Time it. If yours is 90 seconds, cut the adjectives.
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
-2. **Write down the four key numbers** (3.9% / 5% & 8% / 75% / $2,400) without looking. Repeat tomorrow morning.
-3. **List 3 prospects in your pipeline** for whom APA would be the right product. For each, write one sentence on *why now*.
-4. **List 1 prospect in your pipeline** for whom APA is the wrong product. Write one sentence on *what you'd recommend instead*. (This is the FC discipline that separates pros from pushers.)
+1. **Run the discovery-first opener out loud, twice.** No notes. Practise the bridge into the retirement-gap question, and the pre-frame ("what's your honest reaction to locking money away for 10–20 years?"). Stop yourself if you slide into feature-dumping.
+2. **Write down the four key numbers** (3.9% / 5% & 8% / 10-yr IIP bonus at $400-$600-$1,000 tiers / $2,400 minimum) without looking. Verify the welcome bonus figures in iPOS before drilling them — those are the ones you'll actually quote.
+3. **List 3 prospects in your pipeline** for whom APA would be the right fit. For each, write one sentence on the *gap* APA solves for them specifically (not the features APA has).
+4. **List 1 prospect for whom APA is the wrong product.** Write one sentence on what you'd recommend instead. Practise the anti-market disclosure out loud — cushion first, then the disqualifier.
 
 ---
 
@@ -203,9 +206,9 @@ $9,400 × 12 × 20 = $2.3 million
 
 **Pause.** Let it sit. Most clients react here.
 
-### Step 4 — The contrast (this is the conversion)
+### Step 4 — The contrast
 
-The contrast is the most important moment in the entire pitch. Two scenarios, side by side:
+The contrast is where most APA cases turn. Two scenarios, side by side:
 
 ```
 Cash savings only           APA + dividend mode
@@ -221,7 +224,7 @@ Say it:
 
 > *"If you don't do this, you have to save $5.4k a month, capital depleted to zero. But if you do this, just have to invest $1,300 a month, you can preserve the capital and you can still enjoy a 12k a month of dividends."*
 
-That sentence is the close. Most prospects don't need to hear anything else after this.
+After that, hand the conversation back instead of selling. *"Does that line up with how you've been thinking about retirement, or does it change the picture for you?"* Most prospects need a beat to react — let them.
 
 ---
 
@@ -273,27 +276,27 @@ Then transition into the whiteboard:
 
 ---
 
-## The dividend question that closes hesitant prospects
+## The dividend question that lands well with hesitant prospects
 
-If a prospect says *"can I take dividends out now?"* — your answer is the question that flips them:
+If a prospect asks *"can I take dividends out now?"*, cushion before you reframe — don't argue:
 
-> *"Would you prefer dividends now when you're earning 6k per month and don't need it, versus getting dividends in future when you actually need it?"*
+> *"Totally fair question — most people ask this. Honestly, you can, but let me ask it back to you: would you rather have dividends landing in your account now while you're earning $6k a month and don't really need them, or have them landing in 25 years when that monthly income is the difference between working and not working?"*
 
-They always say "future."
+Most prospects answer "future" without thinking too hard. Then:
 
-> *"Then we let it compound."*
+> *"Right — so we let it compound. The money's still yours, you just give it a runway."*
 
-That's the close on the "can I take dividends early?" objection — handled in 2 sentences.
+The flip works because you cushioned first ("totally fair", "most people ask"). Drop the cushion and the same question reads as a gotcha — and trust takes a hit even if they say yes.
 
 ---
 
 ## The framing line that anchors the whole pitch
 
-Before you start drawing, say this:
+Before you start drawing, install the frame in a sentence:
 
-> *"The most expensive thing in life is actually your retirement — it's your freedom, the ability to become financially free."*
+> *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20–30 years where you'd like the option to stop working. That's what these numbers are really about."*
 
-Most clients have never thought about retirement as the most expensive item on their balance sheet. This line installs that frame.
+Most clients have never sized retirement as the biggest line item on their balance sheet. Once they do, the rest of the conversation gets easier.
 
 ---
 

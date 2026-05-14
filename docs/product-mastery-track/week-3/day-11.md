@@ -11,13 +11,12 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** GPP is AIA's participating whole-life plan engineered for the prospect who wants serious CI/death cover but won't pay for pure term that "expires worthless." The product's signature move is the booster mechanism — high temporary cover layered on top of a smaller lifetime base. Get the booster diagram into your hand and 80% of the pitch follows naturally.
 
-This is a merged module — Part 1 covers the foundations (what GPP is, who it's for, the four key numbers). Part 2 covers the signature pitch concept (the rocket-ship + travel-class diagram). Estimated read + drill time: ~55 minutes. Take it in two sittings if you need to.
 
 ---
 
 # Part 1 — GPP in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-> **The one idea for Part 1:** Three things in one wrapper — death + TPD coverage, optional accelerated CI rider, and guaranteed cash value to age 100. You pay for a limited term (15/20/25 years), the cover is for life. The cash refund at the end is the entire reason this product exists.
+> **The frame for Part 1:** GPP is whole-life with a booster. Limited pay (15/20/25 years), lifetime cover to 100, optional accelerated CI rider. The edge is the cash refund at maturity if no claim — that's what makes it the answer for the prospect who doesn't want term that expires worthless.
 
 By the end of Part 1 you should be able to: (1) describe GPP in two sentences without notes, (2) state the three pay terms and the booster cut-off ages, (3) recognise the three trigger points where GPP is the right call, (4) recognise when GPP is the *wrong* product (pure budget shoppers, term-only mindset).
 
@@ -32,15 +31,13 @@ A SGD-denominated **participating whole life plan** issued by AIA. Built around 
 
 Result: heavy cover during the high-responsibility years (mortgage, kids, peak earning), lifetime cover after the booster falls off, and at the end of the day — *cash back*.
 
-The line that opens every GPP conversation:
+Open with a question, not a product claim:
 
-> *"It covers for death, coverage and disability and also for critical illness. This is our most popular policies, especially when you meet someone that is interested to get covered for critical illness."*
+> *"Quick question — for insurance, are you OK paying for 30 years and getting nothing back if no claim? Or you'd rather get something back?"*
 
-Pair it immediately with the cash-value reframe:
+Then the contrast:
 
-> *"Some people, they also want a bit of cash value at the end of it. They don't just want to pay and then they don't get back anything."*
-
-That second sentence is the entire reason GPP beats pure term in this prospect's head.
+> *"Term is cheaper. GPP costs more, but at 65 if no claim you get the money back plus bonuses. That's the difference."*
 
 ## The three things that make GPP different
 
@@ -62,13 +59,9 @@ If no claim is made, the prospect gets all premiums back **plus accumulated bonu
 
 ## The "buying a house" framing
 
-The single most useful reframe for a first-time prospect:
-
-> *"Whole life: it's like buying a house. You pay the mortgage for 20 years. It's a bit more expensive in term, but at least you own the house forever.*
+> *"Whole life is like buying a house. Pay the mortgage 20 years, more expensive monthly, but you own the house forever.*
 >
-> *Term life: you only pay until 65 but after 65 there's no more coverage. So it's like renting a house — you're just paying that rent every month, even though it's cheaper."*
-
-This installs the *limited-pay-but-lifelong* mental model in 30 seconds.
+> *Term is like renting. Cheaper monthly until 65, but nothing's yours at the end."*
 
 ## Three trigger points to reach for GPP
 
@@ -89,13 +82,9 @@ Use these as your internal qualification — if at least one is true, GPP is on 
 
 ## Who GPP is NOT for (anti-market)
 
-This is the disclosure you say to a prospect to *build* trust:
+> *"GPP isn't for everyone. If you prefer only the cheapest possible premium, term would be a better fit."*
 
-> *"This plan isn't right for someone whose only goal is the cheapest possible premium. If you genuinely don't care about cash back at maturity and just want maximum cover per dollar until 65, term is the right tool. We can compare them side by side."*
-
-Saying this out loud is the move that separates trustworthy FCs from product-pushers. Use it.
-
-## The four numbers you must know cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
@@ -104,32 +93,28 @@ Saying this out loud is the move that separates trustworthy FCs from product-pus
 | 3 | **2x / 3x / 5x** | Multiplier choices (default = 3x) |
 | 4 | **$3M aggregate** | Total CI cover cap across all AIA CI policies |
 
-If a prospect probes any of these and you fumble, you've lost the room.
+## Intro shape
 
-## The 5-minute intro script
+Open with discovery, not features.
 
-Practise this out loud once before your next prospect:
+> *"Quick one — when you think about CI cover, is it more about not burdening the family if something happens, or about your own income if you're sick for a long time?"*
 
-> *"This is AIA Guaranteed Protect Plus — our flagship whole-life-with-booster plan. The reason we use this plan instead of pure term: three things.*
->
-> *One — limited pay, lifetime cover. You pay for 15, 20, or 25 years, but you're covered until age 100.*
->
-> *Two — a booster that gives you heavy cover during your high-responsibility years (mortgage, kids, peak earning) and drops off at 65 when those obligations shrink.*
->
-> *Three — at the end of the day, even if you make no claim, you get all your premiums back plus bonuses. Term gives you nothing back. This gives you something back.*
->
-> *Think of it like buying a house versus renting. Term is renting — cheaper monthly but you own nothing at the end. GPP is buying — bit more expensive monthly, but the house is yours for life."*
+Then permission to draw:
 
-That's 60 seconds. Time it. If yours runs to 90, cut adjectives.
+> *"Mind if I sketch it on paper? Easier to see than describe."*
+
+### Talk-track when they ask "so how does it actually work?"
+
+> *"Three pieces. Pay for 15, 20, or 25 years, covered to 100. There's a booster for the high-responsibility years that drops off at 65 or 75. If you never claim, you get the premiums back at maturity with bonuses on top. We match the multiplier to your responsibility window."*
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
-2. **Write down the four key numbers** (15/20/25 · 65/75 · 2x/3x/5x · $3M aggregate) without looking. Repeat tomorrow morning.
+1. **Run the discovery question out loud, twice.** Practise the bridge from "family or own income" into "mind if I sketch it on paper."
+2. **Recall the four numbers without notes** (15/20/25 · 65/75 · 2x/3x/5x · $3M aggregate).
 3. **List 3 prospects in your pipeline** for whom GPP is the right product. For each, write one sentence on which trigger applies.
-4. **List 1 prospect** for whom GPP is the wrong product. Write one sentence on what you'd recommend instead. (FC discipline that separates pros from pushers.)
+4. **List 1 prospect** for whom GPP is the wrong product. Write one sentence on what you'd recommend instead.
 
 ---
 

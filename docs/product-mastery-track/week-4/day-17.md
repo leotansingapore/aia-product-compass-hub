@@ -9,17 +9,17 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 ---
 # Day 2 — Run the Meeting: 5 Power Questions + 5-Phase Pitch Flow
 
-> **Today's frame:** Open every UCC conversation with discovery questions, not product. The 5 power questions surface the four structural gaps in the prospect's existing cover. The 5-phase flow then converts the gaps into a closed case in 25 minutes — with the prospect calculating their own total premium on their own calculator.
+Open every UCC conversation with discovery questions, not product. The 5 power questions surface the four structural gaps in the prospect's existing cover. The 5-phase flow then converts those gaps into a closed case in about 25 minutes — with the prospect calculating their own total premium on their own calculator.
 
-This is a merged module — Part 1 covers the 5-power-question fact-find. Part 2 covers the source's explicit 5-phase pitch flow. Estimated read + drill: ~60 minutes.
+Part 1 covers the 5-power-question fact-find. Part 2 covers the source's explicit 5-phase pitch flow.
 
 ---
 
 # Part 1 — The Fact-Find: 5 Power Questions That Surface Bundled-CI Gaps
 
-> **The one idea for Part 1:** The questions are more powerful than the calculator. Calculators are crutches; what closes is the prospect's own answers exposing the four structural gaps. Listen for: (1) no Early CI, (2) no multi-claim, (3) CI bundled with death/savings, (4) coverage shortfall vs 5-year income-replacement need.
+The questions do more work than the calculator. Calculators confirm; the close comes from the prospect's own answers exposing the four structural gaps: (1) no Early CI, (2) no multi-claim, (3) CI bundled with death/savings, (4) coverage shortfall vs 5-year income-replacement need.
 
-By the end of Part 1 you should be able to: deliver all 5 power questions in sequence, recognise which structural gap each "no/I-don't-know" answer reveals, deploy the 5-year recovery-period frame for income replacement, and pivot from any answer into UCC.
+By the end of Part 1 you should be able to run the 5 power questions in sequence, hear which structural gap each "no / I don't know" answer points to, use the 5-year recovery-period frame for income replacement, and pivot from any answer into UCC.
 
 ---
 

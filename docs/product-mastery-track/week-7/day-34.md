@@ -9,32 +9,32 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 ---
 # Day 4 — Defence + Expansion: Top 5 Objections + APA→PWV Restructure
 
-> **Today's frame:** Objections in Meeting 2 mean the client is close — they're processing the actual decision, not deflecting. Slow down, narrow, answer with a specific number. Then the cross-sell is the legacy-ILP restructure — the FC's biggest case-size lever. Always document both scenarios in writing before recommending surrender.
+> **Today's frame:** Objections in Meeting 2 mean the client is close — they're processing the actual decision, not deflecting. Slow down, narrow, answer with a specific number. The cross-sell is the legacy-ILP restructure — the FC's biggest case-size lever. Always document both scenarios in writing before recommending surrender.
 
-This is the longest module in the track. Part 1 covers the 5 objections. Part 2 covers the APA→PWV restructure sequence. Estimated read + drill: ~65 minutes.
+Part 1 covers the 5 objections. Part 2 covers the APA→PWV restructure sequence.
 
 ---
 
-# Part 1 — Top 5 Objections (the Conviction-Story Heart)
+# Part 1 — Top 5 Objections
 
-> **The one idea for Part 1:** Every objection is a buying signal. The discipline is to slow down, narrow vague objections to specifics, and answer with a specific number rather than a reassurance. The FC who memorises these five and responds without hesitation closes Meeting 2.
+Every objection is a buying signal. The discipline is to slow down, narrow vague objections to specifics, and answer with a specific number rather than a reassurance. The FC who memorises these five and responds without hesitation closes Meeting 2.
 
-By the end of Part 1 you should be able to recite all 5 conviction stories from memory, narrow vague objections with a clarifying question, deploy specific numbers (not vague phrases), and avoid the common Meeting 2 collapse.
+By the end of Part 1 you should be able to recite all 5 responses from memory, narrow vague objections with a clarifying question, deploy specific numbers (not vague phrases), and avoid the common Meeting 2 collapse.
 
 ---
 
 ## Objection 1 — "I need to think about it"
 
-**The frame:** This is a vague stall. Narrow it before answering.
+**The frame:** Vague stall. Cushion, then narrow to a specific concern.
 
-**The script:**
+**The script (cushion → narrowing question):**
 
-> *"Of course. To help you think clearly, what specific aspect would you like to consider? Is it the amount, the timing, or the product itself?"*
+> *"Totally fair — and I want you to think it through properly, not feel rushed. To help you think clearly, what specifically would you want to consider? Is it the amount, the timing, or the product itself?"*
 
 **The conviction:**
 - Vague objections collapse when narrowed
 - Three options surface the actual concern (usually one of the three)
-- "Think about it" without a specific concern = stalling, not consideration
+- "Think about it" without a specific concern is stalling, not consideration
 
 **Sources:** Video 30
 
@@ -42,11 +42,11 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## Objection 2 — "I want to discuss with my spouse"
 
-**The frame:** Don't agree and lose momentum. Offer to meet both.
+**The frame:** Don't agree and lose momentum. Cushion, then offer to meet both.
 
 **The script:**
 
-> *"That's important. Would it help if I met with both of you together? I can address any questions directly. When can you both be free?"*
+> *"Of course — that's how it should be done. Would it help if I sat down with both of you together? Any question your spouse has, I'd rather address directly than have it relayed through you. When works for both of you?"*
 
 **The conviction:**
 - Single-spouse meetings to "go discuss" rarely return
@@ -59,11 +59,11 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## Objection 3 — "The market is too volatile right now"
 
-**The frame:** Volatility is the REASON for dollar-cost averaging, not the reason against.
+**The frame:** Volatility is the reason for dollar-cost averaging, not the reason against.
 
-**The script:**
+**The script (cushion → reframe → trial close):**
 
-> *"That's exactly why dollar cost averaging over 5 years works — you're buying at different price points across the cycle. Plus the death benefit floor means your family receives at least the total premiums you've paid in, regardless of where the market goes."*
+> *"Honestly, fair — and I'd be uncomfortable with any plan that asked you to lump-sum into a volatile market too. The shape of PWV is actually a 5-year staggered premium, so you're buying at different price points across the cycle by design. On top of that, the death benefit floor means your family receives at least the total premiums you've paid in, regardless of where the market sits. Does that change how you'd weigh the timing concern?"*
 
 **The conviction:**
 - 5-year DCA = buy at different price points = average down the entry
@@ -82,11 +82,11 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 **The frame:** PWV's capital floor on death is also "guaranteed." The yield differential is the real story.
 
-**The script:**
+**The script (cushion → reframe with numbers → trial close):**
 
-> *"Your capital is also guaranteed here on death — your family receives at least what you invested. The difference is your money works at 6% instead of 2.5%. Over 20 years, that's around $300K in lost compounding.*
+> *"That makes total sense — guaranteed is reassuring, especially at this stage of life. Two things worth flagging though. Your capital is also contractually protected here on death — your family receives at least what you invested. The bigger difference is the yield: 6% conservative on PWV vs 2.5% on FD. On $200K of capital, that's around $7,000 a year — and over 20 years, roughly $300K in compounded growth you'd otherwise leave on the table.*
 >
-> *And FDs roll at the prevailing rate — when SIBOR drops, your income drops. With PWV your dividend frequency is quarterly and your underlying fund yield has been more stable than FD rates."*
+> *FDs also roll at the prevailing rate — when SIBOR drops, your income drops with it. PWV pays quarterly dividends and the underlying fund yield has been more stable than FD rates historically. Worth at least pressure-testing both side-by-side?"*
 
 **The conviction:**
 - Capital floor on death is contractual (re-emphasise)
@@ -104,13 +104,13 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## Objection 5 — "I'll do it next year"
 
-**The frame:** The cost of waiting is quantifiable. Turn the delay into a number.
+**The frame:** Cushion, then turn the delay into a number.
 
 **The script:**
 
-> *"Every year you wait, the cost of the same outcome increases. You're 52 today. If we start now, your $144K OA excess at 55 lines up perfectly to fund year 4. Wait a year, you're 53 starting — same plan, same outcome, but you've burned one year of compounding.*
+> *"Totally fair — life rarely has a perfect moment for something this size. The one thing I'd want you to weigh is the cost of waiting. You're 52 today. If we start now, your $144K OA excess at 55 lines up to fund Year 4 of the premiums. Wait a year, you're 53 starting — same plan, same outcome, but you've burned a year of compounding.*
 >
-> *On a 5-year staggered plan, that one-year delay reduces your year-21 policy value by roughly $60K. Let me show you the delay cost analysis."*
+> *On a 5-year staggered plan, a one-year delay reduces your year-21 policy value by roughly $60K. Mind if I show you the delay-cost analysis side-by-side?"*
 
 **The conviction:**
 - Delay cost is real and computable
@@ -128,9 +128,9 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 
 ## The single line that handles 80% of pushback
 
-When a prospect drifts back to "let me consider":
+When a prospect drifts back to "let me consider", cushion before reframing:
 
-> *"You don't need new money — the plan funds itself from resources you already have. The question isn't whether to do this — it's whether to start now while the funding mechanism aligns with your CPF OA timing, or wait and lose a year of compounding. Every objection so far is solvable. Which is the one that's actually stopping you?"*
+> *"Totally respect that — and the good news is, you don't need new money for this. The plan funds itself from resources you already have. The actual question isn't whether to do this — it's whether to start now while the funding mechanism aligns with your CPF OA timing, or wait and lose a year of compounding. Every concern so far has been solvable. Which one is actually stopping you?"*
 
 This narrows the conversation to the real concern. Ask. Wait.
 
@@ -148,7 +148,7 @@ This narrows the conversation to the real concern. Ask. Wait.
 
 # Part 2 — Cross-Sell: APA→PWV Legacy ILP Restructuring Sequence
 
-> **The one idea for Part 2:** A pre-retiree with three under-performing legacy policies represents $150K-$300K of redeployable capital sitting in the wrong vehicle. The capital is INVISIBLE to the client until the FC pulls it together via SingPass and quantifies true yield. The discipline: never recommend surrender without writing the comparison both ways. The FC who handles this cleanly earns trust that compounds — the client refers spouse, sibling, colleague.
+A pre-retiree with three under-performing legacy policies represents $150K-$300K of redeployable capital sitting in the wrong vehicle. The capital is invisible to the client until the FC pulls it together via SingPass and quantifies true yield. The discipline: never recommend surrender without writing the comparison both ways. The FC who handles this cleanly earns trust that compounds — the client refers spouse, sibling, colleague.
 
 By the end of Part 2 you should be able to: deploy the 5-step restructure sequence, recognise when to surrender vs hold, document the trade-off in writing, and redeploy freed-up cashflow into PWV.
 
@@ -270,21 +270,18 @@ The compliance discipline. Don't restructure if:
 
 Respect any case where the math says hold. The FC who acknowledges this earns more trust than the FC who always recommends surrender.
 
-## The full surrender charge schedule (PWV — for comparison purposes)
+## The full surrender charge schedule (PWV 2.0 — for comparison purposes)
 
-| Policy Year | Charge |
+| Policy Year | Charge (illustrative) |
 |---|---|
 | 1 | 70% |
-| 2 | 60% |
-| 3 | 50% |
-| 4 | 40% |
-| 5 | 30% (continues sliding) |
+| 5 | 50% |
 | 7 | 30% |
 | 11+ | **0%** |
 
-[PS p.5, Section 5.5]
+[PS v1.0 042025 Section 5.5. Verify the exact year-by-year tapering schedule in iPOS or the policy contract.]
 
-The legacy ILP's surrender schedule will differ — pull from its policy contract. Compare both schedules side-by-side.
+The legacy ILP's surrender schedule will differ — pull it from its policy contract. Compare both schedules side-by-side before recommending surrender.
 
 ## Cross-sell discipline rules
 

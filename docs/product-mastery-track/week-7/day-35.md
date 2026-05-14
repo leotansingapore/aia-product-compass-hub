@@ -11,8 +11,6 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 
 > **Today's frame:** Compliance is foundation, not tax. Deliver crisply (not mumbled, not buried). Then gentle close — pre-retirees have time, capital, and skepticism, so high-pressure closes don't work. Always Two Never Three converts decisions into preferences. Complete the full 12-item checklist in one 89-minute session — every follow-up is a future cancellation in disguise.
 
-This is the final module. Part 1 covers the 10 critical compliance points. Part 2 covers gentle close + 12-item execution checklist. Estimated read + drill: ~65 minutes.
-
 ---
 
 # Part 1 — Compliance + Risk Disclosures (10 Critical Points)

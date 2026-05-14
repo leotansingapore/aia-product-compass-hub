@@ -9,15 +9,15 @@ tags: [product-mastery-track, week-5, healthshield-gold-max]
 ---
 # Day 3 — The Math + The Q&A: Numbers, Charges, Top 5 Client Questions
 
-> **Today's frame:** Internalise three pieces of math (premium structure with MediSave AWL + cash, deductible/co-insurance/cap mechanics, Cancer Care Pro outpatient ceilings), and the 5 questions every prospect asks. That's enough to handle 80% of the appointment without slides.
+> **Today's frame:** Internalise three pieces of math — the premium structure (MediSave AWL + cash), the deductible / co-insurance / cap mechanics, and Cancer Care Pro outpatient ceilings — plus the 5 questions every prospect asks. That covers about 80% of the appointment without slides.
 
-This is a merged module — Part 1 covers the numbers. Part 2 covers the top 5 client questions. Estimated read + drill: ~55 minutes.
+Part 1 covers the numbers. Part 2 covers the top 5 client questions.
 
 ---
 
 # Part 1 — The Numbers: Premiums, Deductibles, Claim Limits, Cancer Care Pro Mechanics
 
-> **The one idea for Part 1:** HSGM's premium has two layers — MediSave-payable (base + AIA top-up, capped by AWL) and cash-only (the rider). Lead the quote with the cash component. The 90-cent cheque story makes the deductible memorable; the worked example on brochure page 9 makes pre-authorisation matter.
+HSGM's premium has two layers — MediSave-payable (base + AIA top-up, capped by AWL) and cash-only (the rider). Lead the quote with the cash component. The 90-cent cheque story makes the deductible memorable; the worked example on brochure page 9 makes pre-authorisation matter.
 
 By the end of Part 1 you should be able to: explain the MediSave / cash split correctly (no "fully MediSave-payable" claim), draw the deductible / co-insurance / cap structure on a whiteboard, recite the brochure-page-9 Tom worked example from memory, and quote Cancer Care Pro outpatient ceilings without notes.
 
@@ -60,14 +60,14 @@ Ward-tied, not plan-tied. Deductible only applies to inpatient and day-surgery /
 ## Co-insurance — the % you keep paying inside
 
 | Without rider | **10%** of bill above deductible |
-| With AIA Max VitalHealth Pro | **5%** capped at **S$6,000/policy year** |
+| With AIA Max VitalHealth Pro A | **5%** capped at **S$6,000/policy year** |
 
-The S$6,000 cap requires **at least one** of:
+The S$6,000 annual co-insurance cap on **AIA Max VitalHealth Pro A** triggers when **at least one** of these applies:
 1. Treatment by an AIA preferred provider, OR
 2. Certificate of pre-authorisation, OR
 3. A&E referral from a Singapore hospital
 
-If none — the 5% has no cap. [Brochure p.16]
+If none of the three applies, the 5% co-insurance has no cap. [Brochure p.16]
 
 The disclosure script that builds trust:
 
@@ -91,7 +91,7 @@ The rider converts unbounded medical risk into a known annual maximum.
 
 ## The brochure-page-9 Tom worked example (memorise)
 
-The single most useful concrete number to know:
+The reference number to anchor "why pre-auth matters":
 
 ```
 Tom — S$200,000 private hospital bill
@@ -189,9 +189,9 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
-> **The one idea for Part 2:** Five questions cover ~80% of what comes up in a real meeting. Memorise the answer in two clean sentences each — looking like an expert means not flipping through the brochure.
+Five questions cover roughly 80% of what comes up in a real meeting. Memorise the answer in two clean sentences each — looking like an expert means not flipping through the brochure.
 
-By the end of Part 2 you should be able to deliver each answer in under 30 seconds, with the closing question that hands the conversation back.
+By the end of Part 2 you should be able to deliver each answer in under 30 seconds, with a closing question that hands the conversation back.
 
 ---
 
@@ -235,9 +235,11 @@ By the end of Part 2 you should be able to deliver each answer in under 30 secon
 
 ## Q5 — "What if I claim — do my premiums go up?"
 
-**A:** **No.** AIA HealthShield Gold Max has **no change in premiums after a claim**. This is on the brochure cover.
+**A:** **No.** AIA HealthShield Gold Max has **no change in premiums after a claim** — that's stated on the brochure cover.
 
-> *"Premiums move with age and with periodic re-pricing across the whole portfolio, but they don't load up against the individual because that individual claimed. Prudential PruShield uses Claims-Based Pricing where each claim pushes the next year's premium higher (verify current escalation tiers at prudential.com.sg/products/health-insurance/medical/claims-based-pricing) — AIA does not."*
+> *"Premiums move with age and with periodic re-pricing across the whole portfolio, but they don't load up against you individually just because you claimed. That's the no-claim-loading guarantee. Worth knowing — Prudential's PruShield uses Claims-Based Pricing where each claim pushes the next year's premium higher (prudential.com.sg/products/health-insurance/medical/claims-based-pricing). AIA does not work that way."*
+
+Worth also flagging: Great Eastern paused pre-authorisation certificates for Mount Elizabeth admissions (straitstimes.com/singapore/insurer-great-eastern-pauses-pre-authorisation-certificates-for-mount-elizabeth-admissions). Mention only if the prospect cross-shops GE on the pre-auth feature.
 
 [Source: Brochure p.1 + p.2, Video 4, Video 7, Video 19]
 

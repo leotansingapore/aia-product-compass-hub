@@ -9,17 +9,17 @@ tags: [product-mastery-track, week-7, platinum-wealth-venture]
 ---
 # Day 1 — PWV Foundations: 5-Min Intro + THE PWV Drawing Concept
 
-> **Today's frame:** PWV is the canonical pre-retiree spine product. The 7-panel Drawing Concept is its irreplaceable asset — built live on whiteboard or iPad using the prospect's OWN CPF balances and existing policies. Master this single move and the rest of the curriculum is application; skip it and you're a brochure-reader.
+> **Today's frame:** PWV 2.0 is the pre-retiree spine product. The 7-panel Drawing Concept is its irreplaceable asset — built live on whiteboard or iPad using the prospect's OWN CPF balances and existing policies. Master this single move and the rest of the curriculum is application; skip it and you're reading a brochure.
 
-This is the longest module in the track. Part 1 covers what PWV is. Part 2 covers THE Drawing Concept (the 7-panel signature whiteboard). Estimated read + drill: ~70 minutes.
+Part 1 covers what PWV is. Part 2 covers the Drawing Concept (the 7-panel signature whiteboard).
 
 ---
 
 # Part 1 — PWV in 5 Minutes: What It Is, Who It's For, Why It Exists
 
-> **The one idea for Part 1:** PWV is a 5-year premium-paying ILP designed for pre-retirees converting accumulated wealth (CPF excess, maturing endowments, lazy cash) into a quarterly dividend income stream while preserving capital. Not a product pitch in the first 5 minutes — permission to have the rest of the conversation.
+PWV 2.0 is a 5-year premium-paying ILP designed for pre-retirees converting accumulated wealth (CPF excess, maturing endowments, lazy cash) into a quarterly dividend income stream while preserving capital. The first 5 minutes aren't a product pitch — they're permission to have the rest of the conversation.
 
-By the end of Part 1 you should be able to: describe PWV in two sentences, name the three structural "moats" vs CPF Life, recite the four bonus types, and recognise when PWV is the wrong product (under-50 prospects, no accumulated wealth).
+By the end of Part 1 you should be able to: describe PWV in two sentences, name the three structural "moats" vs CPF Life, recite the four bonus mechanisms, and recognise when PWV is the wrong product (under-50 prospects, no accumulated wealth).
 
 ---
 
@@ -27,21 +27,25 @@ By the end of Part 1 you should be able to: describe PWV in two sentences, name 
 
 A SGD-denominated, **5-year premium-paying Investment-Linked Plan** issued by AIA. 100% of regular premium invested from day 1 (no upfront sales load) [Brochure p.2, PS p.1].
 
-Canonical premium term per PWV 2.0 PS v1.0 042025 Section 2: 5 years. Designed for pre-retirees aged 50-65 who have:
+Canonical premium term per PWV 2.0 PS v1.0 042025 Section 2: **5 years**. Designed for pre-retirees aged 50-65 who have:
 - CPF OA excess (after FRS at 55)
 - Maturing endowments
 - Existing legacy ILPs underperforming
 - Lazy cash sitting in fixed deposits
 
-PWV converts these into a quarterly dividend income stream that the client can either spend now or compound into a bigger income stream later.
+PWV converts these into a quarterly dividend income stream that the client can either draw down now or compound into a bigger income stream later.
 
-The line that opens every PWV conversation:
+## How to open the PWV conversation
 
-> *"AIA Platinum Wealth Venture 2.0 is a 5-year commitment that gives you the freedom to put your money to other uses thereafter."*
+Don't lead with the product. Start with a discovery question that surfaces what the prospect actually wants out of retirement:
 
-Then the framing line:
+> *"Out of curiosity — when you picture your retirement, what does the monthly cashflow side of it look like? Have you mapped out where the income actually comes from?"*
 
-> *"From day one, 100% of your premium goes to work. There's no upfront sales load eating into your capital."*
+Most pre-retirees pause. Then the bridge:
+
+> *"That's the question I sit on with most pre-retirees I meet. There's usually CPF Life, maybe a maturing endowment or two, possibly rental — but the gap between what they want and what those produce is rarely closed. Mind if I sketch out what your picture might look like, using your actual CPF numbers?"*
+
+This is a permission close, not a pitch. The client agreeing to the sketch is the first micro-yes of the meeting.
 
 ## The 3 structural moats vs CPF Life
 
@@ -59,24 +63,24 @@ The bridge:
 
 > *"We're not saying CPF Life is bad — it's compulsory and it provides guaranteed income. But it may not be the most efficient tool for your full retirement picture."*
 
-## The 4 bonus types (memorise)
+## The 4 bonus mechanisms (memorise)
 
 | Bonus | Value | Trigger |
 |---|---|---|
-| **Welcome Bonus** | 0% / 3% / 12% (cumulative across years 1-3) | Premium band: $18K-$23.99K / $24K-$41.99K / $42K+ [PS v1.0 042025 Section 3.3] |
-| **Investment Bonus** | 2.5% per year | At start of policy years 8, 9, 10, 11 [PS p.2, Section 3.4] |
-| **Performance Bonus** | 0.40% p.a. of Regular Premium Policy Value | From year 8 onwards [PS v1.0 042025 Section 3.5] |
-| **Loyalty / Reset** | (covered Day 3) | After year 7 the supplementary charge stops |
+| **Welcome Bonus** | Tiered: max **12% cumulative** at $42K+ band (3% / 4% / 5% across Y1 / Y2 / Y3) | Premium band: $18K-$23.99K / $24K-$41.99K / $42K+ [PS v1.0 042025 Section 3.3] |
+| **Investment Bonus** | **2.5% × 4 years = 10% cumulative** | At start of policy years 8, 9, 10, 11 [PS v1.0 042025 Section 3.4] |
+| **Performance Bonus** | **0.40% p.a.** of Regular Premium Policy Value | From year 8 onwards, payable yearly [PS v1.0 042025 Section 3.5] |
+| **Supplementary Charge stops** | 3.60% p.a. charge runs for **first 7 policy years only** | From year 8 the charge drops to zero [PS v1.0 042025 Section 5.2] |
 
-## The 5 numbers you must know cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
-| 1 | **S$18,000/year** | Minimum regular premium (S$1,500/month) [PS p.6, Section 6.1] |
-| 2 | **3.60% p.a.** | Supplementary charge on Regular Premium Policy Value, monthly, **first 7 years only** [PWV 2.0 PS v1.0 042025 Section 5.2] |
+| 1 | **S$18,000/year** | Minimum annual regular premium (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly) [PS v1.0 042025 Section 6.1] |
+| 2 | **3.60% p.a.** | Supplementary Charge on Regular Premium Policy Value, monthly, **first 7 policy years only** (charged even during Premium Holiday) [PS v1.0 042025 Section 5.2] |
 | 3 | **14 days** | Free-look period from receipt of policy documents [PS p.8, Section 7.3] |
-| 4 | **5 years** | Premium-paying term (per PWV 2.0 PS v1.0 042025 Section 2) |
-| 5 | **6% / 7%** | Project at 6% with client (underpromise); fund history ~7% (AIA Global Adventurous Income Fund) [Brochure p.5] |
+| 4 | **5 years** | Premium-paying term [PS v1.0 042025 Section 2] |
+| 5 | **6% / 7%** | Project at 6% with client (underpromise); fund history around 7% on AIA Global Adventurous Income Fund [Brochure p.5] |
 
 ## Target client profile
 
@@ -87,38 +91,36 @@ The bridge:
 
 ## Anti-market
 
-> *"PWV isn't right for someone under 50 without accumulated wealth, or for someone who needs short-term liquidity in years 1-7. If you don't have at least 5 years of stable premium-paying capacity, this isn't your plan."*
+Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
 
-## The 5-minute intro script
+> *"To be straight with you — PWV isn't right for everyone. If you're under 50 without accumulated wealth to redeploy, or if you might need short-term liquidity in the first 7 years, or if you don't have 5 years of stable premium-paying capacity, this isn't your plan. If any of those describe you, just say so — we can map a different direction. The wrong sale here is worse than no sale."*
 
-> *"This is AIA Platinum Wealth Venture 2.0 — PWV. The reason we use this for pre-retirees specifically: three things.*
->
-> *One — capital preservation. Death benefit is the higher of total premiums paid or current policy value. Your family never receives less than what you put in.*
->
-> *Two — quarterly dividends. From year 1, you can either receive cash payouts via PayNow or reinvest. You decide each quarter.*
->
-> *Three — liquidity. After 7 years, full access to your cash value with no surrender charges. The plan works for you, not the other way around.*
->
-> *We're not selling you a policy today. We're showing you whether you're ready for retirement, and where the gaps are.*
->
-> *Want me to draw your retirement picture using your own numbers?"*
+## The PWV talk-track (after discovery surfaces the gap)
 
-That's 60 seconds. End with the question — they say yes, you draw the 7 panels.
+Three points, in order:
+
+1. **Capital preservation.** The death benefit is the higher of total regular premiums paid plus top-ups (less withdrawals) or current policy value. Your family never receives less than what you put in.
+2. **Quarterly dividends.** From the time the fund declares dividends, you choose each quarter — cash payout via PayNow, or reinvestment. Switchable.
+3. **Liquidity after year 7.** Full access to cash value with no surrender charges from year 11. Partial withdrawals are available from year 1 with a declining charge factor.
+
+Then the permission close into the Drawing Concept:
+
+> *"Mind if I sketch out what this could look like, using your actual CPF balances and existing policies?"*
 
 ---
 
 ## Drill (Part 1)
 
-1. **Say the 5-minute intro out loud, twice.** Time both. Cut whatever takes you above 60 seconds.
+1. **Run the discovery question + permission close out loud** with a colleague. Practise the reflect-and-bridge until it feels natural and not scripted.
 2. **Memorise the 3 moats** (interest after 65, bequest after 81, liquidity).
-3. **Memorise the 4 bonus types** with their triggers.
+3. **Memorise the 4 bonus mechanisms** with their triggers (Welcome max 12% / Investment 10% / Performance 0.40% p.a. / Supplementary 7-year drop-off).
 4. **List 5 prospects in your pipeline aged 50+.** For each, identify their accumulated wealth source (CPF excess, maturing endowment, legacy ILP, fixed deposit, etc.).
 
 ---
 
 # Part 2 — THE PWV Drawing Concept (7-Panel Signature Whiteboard)
 
-> **The one idea for Part 2:** This is the single most important section in the entire 5-day curriculum. The PWV Drawing Concept is a 7-panel sequential whiteboard built LIVE in front of the client using THEIR OWN CPF balances and existing policies. The client watches a story being constructed using their numbers — by Panel 7, they've invested 25 minutes of attention and the conclusion (buy PWV) feels like THEIR conclusion, not yours. Master this and you'll close cases that brochure-readers will never close.
+The PWV Drawing Concept is a 7-panel sequential whiteboard built live in front of the client using their own CPF balances and existing policies. The client watches a story being constructed using their numbers — by Panel 7, they've invested 25 minutes of attention, and the conclusion feels like theirs.
 
 By the end of Part 2 you should be able to draw all 7 panels from memory in under 25 minutes, deploy each panel's verbatim script, recognise when to use the FRS-vs-ERS optional aside, and recognise when to skip the drawing (if the prospect is hostile or time-pressured).
 
@@ -368,13 +370,13 @@ Day 2: how to actually run the meeting. Part 1 — the 16-point Discovery Deep D
 
 **Why:** Day 1 says PWV is wrong for prospects under 50 without accumulated wealth or those needing short-term liquidity in years 1-7.
 
-5. **What is the minimum regular premium for PWV cited in Day 1?**
+5. **What is the minimum regular premium for PWV 2.0?**
 - A) S$3,900/year (S$325/month)
 - B) S$5,400/year (S$450/month)
 - C) S$18,000/year (S$1,500/month) ✓
-- D) S$12,000/year (S$1,000/month) [wrong — actual canonical PWV 2.0 minimum is S$18,000/year]
+- D) S$12,000/year (S$1,000/month)
 
-**Why:** Day 1's "5 numbers you must know cold" lists S$18,000/year minimum (S$1,500/month) per PWV 2.0 PS v1.0 042025 Section 6.1.
+**Why:** Per PWV 2.0 PS v1.0 042025 Section 6.1, the minimum annual regular premium is S$18,000 (S$9,000 semi / S$4,500 quarterly / S$1,500 monthly).
 
 6. **According to Day 1, the Welcome Bonus tiers are based on what?**
 - A) The fund chosen for allocation
