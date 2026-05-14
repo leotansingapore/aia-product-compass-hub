@@ -117,7 +117,7 @@ By the end of Part 1 you should be able to recite all 5 conviction stories from 
 >
 > *The catch is medical underwriting. If you've made claims or developed any condition between now and then, the new insurer can decline you, load your premium, or exclude the condition. So switching is easy when you're healthy and hard when you're not — which is exactly why the buy-when-healthy logic matters.*
 >
-> *AIA also has the strongest claims rating in the SMA Integrated Shield Plan Providers' Ranking Survey, so the case for switching out is usually weak in the first place — AIA was rated highest overall by experts in the SMA 2022 ranking (published June 2023)."*
+> *AIA also has the strongest claims rating in the SMA Integrated Shield Plan Providers' Ranking Survey, so the case for switching out is usually weak in the first place — AIA was rated highest overall by experts in the SMA 2022 ranking (published August 2023, Overall Rating 3.86 vs Prudential 3.27, NTUC 3.22, AXA 2.56, GE 2.50; https://www.8world.com/singapore/ip-providers-ranking-2161476)."*
 
 **The conviction:**
 - Portability is structural to the IP system, not a sales claim

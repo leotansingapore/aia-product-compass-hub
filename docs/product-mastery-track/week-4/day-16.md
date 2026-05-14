@@ -175,31 +175,50 @@ The brochure framing:
 
 ## Differentiation while walking the staircase
 
-When a prospect cross-shops, drop the competitor mechanics into the staircase walk:
+When a prospect cross-shops, drop the competitor mechanics into the staircase walk. UCC covers **73 critical illnesses across 150 condition-stages**.
 
-### vs Prudential
+### vs Prudential PRUActive Protect
 
 > *"For Prudential, you cannot claim because it's a related CI. Coronary artery disease versus bypass versus heart attack — as long as it's related to the same area, all the future claims related to heart conditions are not claimable anymore."* [Video 5]
 
-UCC has no "related illness" block — different illness, different claim, regardless of body area.
+- 37 critical illnesses covered (vs UCC's 73)
+- Max claims: Up to 3 (separate Protect Me Again rider required)
+- Coverage term: 10 to 99 years (customisable)
+- Sum assured: $50K – $500K
+- UCC has no "related illness" block; no 3-claim cap; multi-claim built in
+- Brochure: https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruactive-protect/pruactive-protect-brochure-en.pdf
 
-### vs Great Eastern
+### vs Great Eastern GREAT Critical Cover: Complete
 
 > *"For Great Eastern, you can only claim if it is less than three times. After three times, the policy will cease."* [Video 5]
 
-UCC has no claim count cap on major-stage claims. Reset, claim, reset, claim — for as long as the policy is in force.
+- 53 critical illnesses covered (vs UCC's 73)
+- Max claims: Up to 3 (with Protect Me Again rider)
+- Coverage term: Up to age 99
+- Sum assured: $50K – $350K
+- Death benefit only $25K — minimal legacy value
+- UCC has no claim count cap on major-stage claims and a higher sum-assured ceiling
+- Brochure: https://www.greateasternlife.com/sg/en/personal-insurance/lifepedia/medical-coverage/find-the-right-critical-illness-plan.html
 
-### Sample pricing benchmark (illustrative, time-bound)
+### vs Singlife Multi-Pay Critical Illness
 
-UCC vs competitors on S$100,000 cover [Video 1]:
-- ~11% cheaper than Prudential
-- ~6% cheaper than Great Eastern
-- ~29% cheaper than Manulife
-- ~22% cheaper than Singlife
+- 60 critical illnesses covered (vs UCC's 73 — missing 13)
+- Max claims: Multiple
+- Coverage term: Whole life
+- Many conditions show "Not applicable" at Early/Intermediate stages
+- No unlimited coverage reset
+- Brochure: https://singlife.com/content/dam/public/sg/documents/critical-illness-insurance/singlife-multipay-critical-illness/brochure-2023.pdf
 
-UCC covers 150 conditions vs Great Eastern Great Critical Cover ~53 conditions per Video 1.
+### Headline comparison (verify exact pricing in iPOS)
 
-**Always verify current iPOS quote before citing competitor pricing — these figures move.**
+| Plan | CIs covered | Max claims | Coverage term |
+|---|---|---|---|
+| **AIA UCC** | **73 (across 150 condition-stages)** | **Unlimited at Major stage** | **To 65 / 75 / 85** |
+| Prudential PRUActive Protect | 37 | Up to 3 (rider) | 10 to 99 years |
+| GE GREAT Critical Cover: Complete | 53 | Up to 3 (rider) | Up to age 99 |
+| Singlife Multi-Pay CI | 60 | Multiple | Whole life |
+
+**Always verify current iPOS quote before citing pricing — figures are time-bound.**
 
 ## Same-illness recurrence — Enhancer matters
 

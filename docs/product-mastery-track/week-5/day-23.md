@@ -237,7 +237,7 @@ By the end of Part 2 you should be able to deliver each answer in under 30 secon
 
 **A:** **No.** AIA HealthShield Gold Max has **no change in premiums after a claim**. This is on the brochure cover.
 
-> *"Premiums move with age and with periodic re-pricing across the whole portfolio, but they don't load up against the individual because that individual claimed. Some competitors use claims-based pricing where each claim pushes the next year's premium higher — AIA does not."*
+> *"Premiums move with age and with periodic re-pricing across the whole portfolio, but they don't load up against the individual because that individual claimed. Prudential PruShield uses Claims-Based Pricing where each claim pushes the next year's premium higher (verify current escalation tiers at prudential.com.sg/products/health-insurance/medical/claims-based-pricing) — AIA does not."*
 
 [Source: Brochure p.1 + p.2, Video 4, Video 7, Video 19]
 

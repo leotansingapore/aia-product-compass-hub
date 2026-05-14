@@ -138,11 +138,11 @@ Most prospects say no.
 
 ### The vs-1%-perpetual-fee comparison:
 
-> *"Compare this to a robo-advisor charging 1% perpetual. Sounds cheaper, right?*
+> *"Compare this to a platform like iFAST charging roughly 1% perpetual. Sounds cheaper, right?*
 >
 > *On a $1 million portfolio, that's $10,000 a year — forever. APA is $0 after year 10.*
 >
-> *Over a 60-year hold, APA returns about $1.2 million MORE than a 1% perpetual-fee robo-advisor."*
+> *Over a 60-year hold, APA returns about $1.2 million MORE than a 1% perpetual-fee platform."*
 
 > *"Even APA can literally be cheaper than a robo-advisor in the long term."*
 
@@ -154,60 +154,90 @@ Most prospects say no.
 
 ## Objection 4 — "Other companies have lower charges"
 
-The competitor matrix (memorise — this is the kill shot for cross-shoppers):
+The competitor matrix (memorise — this is the kill shot for cross-shoppers).
 
-### Perpetual supplementary charges (after IIP)
+**Source for the verified rows below:** `_source-resources/competitor-analysis/APA-Competitor-Analysis.pdf`. Rows marked *(illustrative)* are scenario-level talking points from the Loom training — keep the structure but flag the assumptions if a client asks for the BI.
 
-| Company | Charge after IIP |
+### Perpetual / supplementary charges after the Initial Investment Period (verified)
+
+| Company / Product | Charge after IIP |
 |---|---|
-| **AIA** | **0%** |
-| Great Eastern | 0.6% perpetual |
-| Manulife | 0.7% perpetual |
-| FWD | 1.2% perpetual (1.8% initial) |
+| **AIA Pro Achiever (post-IIP)** | **0%** |
+| FWD Invest Plus | **1.2% p.a. LIFELONG** supplementary charge from month 25 (year 2) onwards |
+| FWD Invest First Max | Accumulation account charge tapers: 1.6% (Y1–10) → 1.4% (Y11–20) → 1.2% (Y21+) — never zero |
+| iFAST / robo-advisor benchmark | ~1% p.a. perpetual on account value |
 
-### Welcome bonus (15-yr IIP, <$12k premium)
+The pattern is the same across every competitor we've seen: **a small-looking annual fee that never switches off**. APA's supplementary charge ends entirely after the 10-year IIP. Manulife and Great Eastern have their own structures — quote them only with the latest brochure in hand, not from memory.
 
-| Company | Welcome bonus |
+### FWD Invest Plus — initial account charge by term
+
+| Premium payment term | Initial account charge (years 1 to end of IIP) |
 |---|---|
-| **AIA** | **48–63%** |
-| Manulife | 10% |
-| FWD | 17% |
+| 15–19 years | 1.8% p.a. |
+| 20–24 years | 1.4% p.a. |
+| 25–29 years | 1.2% p.a. |
+| 30 years | 1.0% p.a. |
 
-AIA is roughly **4x** the welcome bonus of the closest competitor.
+Effective total in the early years (Invest Plus): roughly **3%** (1.8% initial + 1.2% supplementary). After year 1 / month 25, the 1.2% supplementary kicks in and **never leaves**.
 
-### 40-year IRR ($3.6k/yr × 15 yrs)
+### Welcome bonus (verified, AIA Pro Achiever 3.0 canonical bands)
 
-| Company | IRR |
-|---|---|
-| **AIA** | **4.99%** |
-| Manulife | 4.61% |
-| Great Eastern | 4.42% |
+| Premium band | IIP 10 | IIP 15 | IIP 20 |
+|---|---|---|---|
+| $2,400 / year | 5% | 8% | 10% |
+| $4,800 / year | 23% | 33% | 45% |
+| $7,200 / year | 38% | 48% | 60% |
+| $12,000+ / year | 53% | 63% | 75% |
 
-### 40-year fund value ($1k/month × 10 yrs, 35-yr-old male)
+### Welcome bonus — competitor comparison (verified)
 
-| Company | Fund value |
-|---|---|
-| **AIA** | **$1.8M** |
-| Manulife | $1.6M |
-| Great Eastern | $1.0M |
+| Lock-in / band | AIA Pro Achiever | Manulife (LifeFinity / similar) | FWD Invest Plus |
+|---|---|---|---|
+| 10-yr lock-in, <$12K | 5–53% (band-dependent) | 0% | — |
+| 10-yr lock-in, ≥$12K | 53% | 5% | — |
+| 15-yr lock-in, <$12K | 8–63% (band-dependent) | 10% | 17–21% (Reward Band 1–5) |
+| 15-yr lock-in, ≥$12K | 63% | 15% | 17–21% (Reward Band 1–5) |
+| 20-yr lock-in, <$12K | 10–75% (band-dependent) | 15% | Higher bands |
+| 20-yr lock-in, ≥$12K | 75% | 20% | Higher bands |
 
-### 15-year cash value comparison (AIA vs Great Eastern, like-for-like)
+Caveat to memorise: FWD's reward-band system pays *per year of premium term* and scales with longer commitments (e.g. 30-yr term × ≥$48K = ~34% at Reward Band 5). Don't say "AIA is always 4x" — say **"at the same band, AIA's welcome bonus runs 3–5x the Manulife figure"** and bring the brochure to prove it.
+
+### Surrender / withdrawal penalties (verified)
+
+- **AIA Pro Achiever IIP 10:** ~5% by year 10, drops to **0% from year 11 onwards**.
+- **Manulife (LifeFinity / similar):** Year 1–2 = 100% surrender penalty; **5–40% penalty still applies as far out as year 10**, with the Minimum Investment Period extending up to **19+ years** in some configurations.
+
+That's the structural point: AIA's IIP ends at year 10 and the client gets full flexibility. Competing ILPs keep the client locked in for nearly twice as long.
+
+### 40-year fund value — *illustrative, no saved BI*
+
+> The figures below come from the original Pro Achiever Loom training (Video 16) and were not pulled from a fresh, dated benefit illustration. Use them as a directional talking point. If the prospect wants the math, generate a fresh BI for the specific case — don't quote these numbers as if they're from a current illustration.
+
+```
+AIA Pro Achiever:  ~$1.8M
+Manulife:          ~$1.6M
+Great Eastern:     ~$1.0M
+(Same 35-yr-old male, $1,000/mo for 10 yrs, 40-yr hold)
+```
+
+### 15-year cash value (AIA vs Great Eastern) — *illustrative, no saved BI*
 
 ```
 AIA:           $661,000
 Great Eastern: $553,000
 AIA advantage: $108,000
+(3.6K/yr × 15 yrs scenario from Video 16)
 ```
 
-### The disclosure pattern:
+### The disclosure pattern
 
 > *"Don't show AIA charges in isolation — always compare with competitors so AIA looks better."*
 
-When a prospect mentions a competitor name, pull out the relevant row and show side-by-side. Numbers do the work.
+When a prospect mentions a competitor name, pull out the relevant *verified* row and show side-by-side. For the illustrative rows, walk through the assumption ("same age, same premium, same hold period") so the client understands it's an apples-to-apples scenario, not a guaranteed projection.
 
-### The FWD-specific punch:
+### The FWD-specific punch
 
-> *"FWD's plan looks attractive on day 1 — 1.8% initial sounds low. But the 1.2% supplementary is **lifelong** — it never goes away. AIA's 3.9% disappears at year 10 and the bonuses are perpetual. So 5 years from now, your FWD policy is paying $12k/year in fees on a $1M pot. Your AIA policy is paying $0 in supplementary."*
+> *"FWD Invest Plus looks attractive on day 1 — the initial account charge is 1.8% (or even lower at longer terms). But the supplementary charge is 1.2% per year, **lifelong**, kicking in from the second year. AIA's 3.9% supplementary disappears entirely at year 10, and the bonuses keep paying after that. Five years from now, your FWD policy is still paying 1.2% on the whole pot every year. Your AIA policy is paying 0% in supplementary."*
 
 ---
 
@@ -217,7 +247,7 @@ The verbatim:
 
 > *"Would you prefer dividends now when you're earning 6k per month and don't need it, or in the future when you actually need it?"*
 
-Then the math (this is the close):
+Then the math (this is the close) — *illustrative scenario from Video 16; no saved BI*:
 
 ```
 Scenario A — Manulife with-dividends ($100k in over 10 yrs):
@@ -228,6 +258,8 @@ Scenario B — APA with reinvested dividends ($100k in over 10 yrs):
 
 Cost of taking dividends early: $1.3 million
 ```
+
+> If you're using these numbers live with a client, run a fresh AIA Pro Achiever BI alongside a current Manulife with-dividend BI to confirm the gap on the specific case. The principle (taking dividends short-circuits the bonus compounding) is the load-bearing point — the exact dollar gap will vary by age, premium, and fund mix.
 
 The script:
 
@@ -259,13 +291,14 @@ That reframe collapses the false binary. Prospects accept "complement, not compe
 | 4 | APA international 2 SD drawdown | ~20% |
 | 5 | US estate tax | 40% above USD 1M |
 | 6 | US dividend withholding | 30% |
-| 7 | 40-yr IRR: AIA vs Manulife vs GE | 4.99% / 4.61% / 4.42% |
-| 8 | 40-yr fund value: AIA vs Man vs GE ($1k/mo × 10 yrs) | $1.8M / $1.6M / $1.0M |
-| 9 | 15-yr cash value: AIA vs GE | $661k vs $553k |
-| 10 | Welcome bonus (15-yr IIP, <$12k): AIA vs FWD vs Man | 48–63% / 17% / 10% |
-| 11 | Perpetual fee post-IIP: AIA vs GE vs Man vs FWD | 0% / 0.6% / 0.7% / 1.2% |
-| 12 | Dividend trap cost (10k/yr × 10 yrs) | $1.3M |
-| 13 | 60-yr APA vs 1% robo advantage | ~$1.2M |
+| 7 | 40-yr IRR: AIA vs Manulife vs GE *(illustrative, Video 16)* | 4.99% / 4.61% / 4.42% |
+| 8 | 40-yr fund value: AIA vs Man vs GE ($1k/mo × 10 yrs) *(illustrative, Video 16)* | $1.8M / $1.6M / $1.0M |
+| 9 | 15-yr cash value: AIA vs GE *(illustrative, Video 16)* | $661k vs $553k |
+| 10 | Welcome bonus (15-yr IIP, <$12k): AIA vs Manulife vs FWD *(verified)* | 8–63% / 10% / 17–21% |
+| 11 | Post-IIP supplementary charge: AIA vs FWD Invest Plus *(verified)* | 0% / 1.2% LIFELONG from Y2 |
+| 11a | FWD Invest First Max accumulation charge *(verified)* | 1.6% Y1–10 → 1.4% Y11–20 → 1.2% Y21+ |
+| 12 | Dividend trap cost (10k/yr × 10 yrs) *(illustrative, Video 16)* | $1.3M |
+| 13 | 60-yr APA vs 1% iFAST / robo-advisor advantage *(illustrative, Video 20)* | ~$1.2M |
 
 ---
 
@@ -273,8 +306,8 @@ That reframe collapses the false binary. Prospects accept "complement, not compe
 
 1. **Recite the Perfect/Imperfect/Partially Perfect frame** out loud, 3 times. Time it — should be under 60 seconds.
 2. **Memorise the volatility math** (21% vs 11%, 42% vs 20% drawdown). Recite from memory.
-3. **Memorise the competitor matrix** — perpetual fees, welcome bonus, 40-year IRR. All four columns.
-4. **Memorise the $1.3M dividend trap number** + the $1.2M robo-advisor advantage.
+3. **Memorise the competitor matrix** — FWD Invest Plus 1.2% lifelong supplementary, FWD Invest First Max tapering accumulation charge, AIA welcome bonus bands by IIP × premium, Manulife withdrawal lock-in length. Verified rows from `APA-Competitor-Analysis.pdf`.
+4. **Memorise the $1.3M dividend trap number** + the $1.2M long-hold advantage vs iFAST 1% perpetual fee. (Both are illustrative scenarios — quote with assumptions, run a fresh BI for the live case.)
 5. **Run a roleplay.** Pair with a peer or simulate. Have them throw all 5 objections at you in random order. Score yourself on whether you used the script, the analogy, AND the closing question.
 6. **Identify the objection you're weakest on.** Write the answer out by hand. Re-read tomorrow.
 
@@ -316,7 +349,7 @@ Tomorrow, the energy lifts: **cross-sell and bundling.** Once you've handled obj
 - C) 0.7%
 - D) 1.2%
 
-**Why:** Post-IIP perpetual fee — AIA 0%, GE 0.6%, Manulife 0.7%, FWD 1.2%. AIA's 3.9% supplementary disappears at year 10 entirely; competitors charge a perpetual fee that never goes away. On a $1M pot at year 30, FWD's 1.2% is $12k/year forever; AIA's is $0. This is the close on "other companies have lower charges" — show the perpetual side-by-side, not the day-1 number.
+**Why:** AIA's 3.9% supplementary disappears entirely at year 10 (for IIP 10). FWD Invest Plus charges a **1.2% supplementary lifelong from year 2 onwards**; FWD Invest First Max sits at **1.2% from year 21 onwards** as its accumulation charge taper. iFAST runs at roughly 1% perpetually. None of them switch off — AIA's does. On a $1M pot at year 30, FWD Invest Plus's 1.2% is $12k/year forever; AIA's is $0. This is the close on "other companies have lower charges" — show the lifelong side-by-side, not the day-1 number. (Source: `APA-Competitor-Analysis.pdf`.)
 
 5. **The break-even logic that handles "the 3.9% fee is too high" rests on what?**
 - A) AIA's IRR is always higher than competitors from year 1
