@@ -338,9 +338,78 @@ Bring up the Investing Success & Track Record deck — slide 4 shows 10-year fun
 
 Position it honestly: AIA's funds, on average across the lineup, have a verified long-term track record that competes with or beats the standard ETF benchmarks. Don't claim "#1 on every metric" — point at the deck.
 
+### The retirement reverse-engineering whiteboard demo
+
+Once outsourcing-to-AIA is established, this is the demo that closes most APA cases. Pull out a piece of paper. The reason it works: most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
+
+Anchor first:
+
+> *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20-30 years where you'd like the option to stop working. That's what these numbers are really about."*
+
+Then run the four steps.
+
+**Step 1 — Anchor the desired monthly income (today's dollars)**
+
+> *"In today's dollars — forget inflation for now — what kind of monthly income would you want when you retire? Just a normal lifestyle, no luxuries."*
+
+Most clients say **$3,000-$5,000/month.** Use $4,000 as the worked example. Write it on the paper:
+
+```
+Today: $4,000/month
+```
+
+**Step 2 — Inflate to retirement age**
+
+> *"That's in today's money. Inflation runs at about 3% per year. You're 30, retiring at 65 — that's 35 years. Want to guess what $4,000 today looks like at 65?"*
+
+Let them guess. They'll say $5K, $6K, $7K. Then reveal:
+
+```
+Today: $4,000/month
+At 65: ~$9,400/month  (3% inflation × 35 years)
+```
+
+> *"Almost $9.5K a month — just to keep the same lifestyle you have today."*
+
+**Step 3 — Multiply by the retirement window**
+
+> *"If you want that income from 65 to 85 — that's 20 years — how much do you need in the pot?"*
+
+Let them try. Then write:
+
+```
+$9,400 × 12 × 20 = $2.3 million
+```
+
+> *"$2.3 million. That's the number."*
+
+**Pause.** Let it sit. Most clients react here.
+
+**Step 4 — The contrast (this is where most APA cases turn)**
+
+Two scenarios, side by side:
+
+```
+Cash savings only           APA + dividend mode
+————————————                ————————————
+Save $5,400/month for       Invest $1,300/month for
+35 years                    35 years
+↓                           ↓
+Pot depletes to $0 at 85    Capital preserved
+                            Dividends ~$10-11K/mo for life
+```
+
+> *"If you don't do this, you have to save $5,400/month, and the pot still depletes to zero. If you do this, just $1,300/month, you preserve the capital, AND you can still draw about $10-11K/month in dividends for life."*
+
+Then hand it back instead of selling:
+
+> *"Does that line up with how you've been thinking about retirement, or does it change the picture for you?"*
+
+Most prospects need a beat to react — let them.
+
 ### Transition into Phase 4
 
-> *"That's how people outsource their investments to us. The next part — let me show you exactly what the numbers will look like if you outsource to us."*
+> *"That's how people outsource their investments to us. The next part — let me show you the actual quotation and how the dividend mechanics work."*
 
 ---
 
@@ -402,6 +471,51 @@ Address the four reassurances before the prospect asks:
 - **Regular withdrawals at retirement** — *"You don't have to take it as a lump sum. You can draw $7,500/month till you're 80+, or $10,000/month till 75. So $500/mo of savings now turns into $10K/mo of retirement income later."*
 - **Ad-hoc withdrawals** — *"Life happens. Age 35 — $50K for house downpayment. Age 45 — $50K for car. Age 55 — $100K for kids' education. Returns are slightly lower but still substantial."*
 - **Payment pauses** — *"If you have a hard year, pause 1-2 years, resume when ready. The plan adapts."*
+
+### Dividend mode — the year-10+ mechanic
+
+The reason the APA route works at $1,300/mo while the bank route demands $5,400/mo: at **year 10 onwards** you can switch the plan into **dividend mode** (using GDIF or AGDIF). The mechanics:
+
+- Dividends pay out monthly
+- Capital stays invested
+- The plan keeps paying for the rest of the client's life
+- The death benefit transfers to the next generation
+
+### The withdrawal-age tradeoff (delay-gratification ladder)
+
+Same plan, same premium — the only thing that changes is when the client flips the dividend switch:
+
+| Start dividends at | Monthly dividend |
+|---|---|
+| Age 55 | ~$3,800/mo |
+| Age 60 | ~$5,840/mo |
+| Age 65 | ~$8,500/mo |
+
+The line that lands:
+
+> *"You don't have to decide right now whether you want to start drawing at 55, 60, or 65. The longer you delay, the better the dividends. We can flip the switch when the time comes."*
+
+This is what handles *"what if I need it earlier?"* — you don't lock the answer at sign-up.
+
+### The dividend question flip — handling "can I take dividends out now?"
+
+If a prospect probes *"can I take dividends out now?"*, cushion before you reframe — don't argue:
+
+> *"Totally fair question — most people ask this. Honestly, you can — but let me ask it back to you: would you rather have dividends landing in your account NOW while you're earning $6K/month and don't really need them, or have them landing in 25 years when that monthly income is the difference between working and not working?"*
+
+Most prospects answer "future" without thinking hard. Then:
+
+> *"Right — so we let it compound. The money's still yours, you just give it a runway."*
+
+The flip works because you cushioned first ("totally fair", "most people ask"). Drop the cushion and the same question reads as a gotcha — and trust takes a hit even if they say yes.
+
+### The limited-pay variant (for higher earners)
+
+For a prospect who can pay more upfront for fewer years:
+
+> *"Pay $12,000/year for 10 years — that's $120,000 total — then stop. Let it compound to age 65. You'll have about $4,300/month in dividends and roughly $700,000 of capital still preserved."*
+
+This is the *"I want to be done paying by 40"* variant. Many tech professionals, doctors, and dentists prefer this. Bring it up if the prospect surfaces a strong income but a finite-runway commitment preference.
 
 ### The one-third rule
 
@@ -696,7 +810,7 @@ Then run the SMS approval flow, link the card / bank, set the auto-debit on payd
 
 ### The 6-step application close
 
-1. Send the iPOS+ quotation to the customer
+1. Open iPOS+ quotation on screen
 2. Walk through the quotation with them on screen
 3. Get customer signature
 4. Collect payment details

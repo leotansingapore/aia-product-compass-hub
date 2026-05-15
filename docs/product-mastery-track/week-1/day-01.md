@@ -1,23 +1,15 @@
 ---
 week: 1
 day: 1
-title: "Pro Achiever 3.0 — APA Foundations — What It Is + The Signature Pitch Concept"
+title: "Pro Achiever 3.0 — APA Foundations — What It Is, Who It's For"
 primary_source: pro-achiever-product-summary
 primary_slides: "n/a"
-duration_minutes: 55
+duration_minutes: 30
 tags: [product-mastery-track, week-1, pro-achiever]
 ---
-# Day 1 — What It Is + The Signature Pitch Concept
+# Day 1 — APA Foundations: What It Is, Who It's For
 
-> **Today's frame:** APA is a pure investment plan. The real edge isn't "100% allocated" on its own — most retail unit trusts are also 100% allocated. The edge is the Welcome and Special bonuses you can't replicate on a DIY route. The retirement-income reverse-engineer is the whiteboard sequence that anchors most APA closes.
-
----
-
-# Part 1 — APA in 5 Minutes — What It Is, Who It's For, Why It Exists
-
-> **The one idea for today:** APA is a pure investment plan. The edge isn't its 100% investment allocation — most comparable options have that too. The edge is the stackable Welcome and Special bonuses over time, a capital-guaranteed death benefit floor, and the legacy continuity through the secondary insured feature.
-
-By the end of today you should be able to: (1) describe APA in two sentences without notes, (2) name the three commitment terms and three fund routes, (3) state the four most important numbers in the plan, (4) recognise the prospect personas most likely to push back on APA — and the reframes for each.
+APA is a pure investment plan. The edge isn't its 100% investment allocation — most comparable retail options have that too. The edge is the stackable Welcome and Special bonuses over time, the capital-guaranteed death-benefit floor, and the legacy continuity through the secondary insured feature.
 
 ---
 
@@ -112,208 +104,22 @@ That cushion line ("honestly... isn't for everyone") before the disqualifier is 
 
 The "75% maximum welcome bonus" line gets thrown around a lot, but in practice it only applies at the longest IIP × the highest premium tier. The numbers that matter in real conversations are the **10-year IIP welcome bonuses at $400, $600, and $1,000/mo** — verify them in iPOS or your latest illustration and commit those three figures to memory.
 
-## Intro shape
-
-Open with discovery, not features.
-
-> *"Quick one — when you think about retirement, what's the picture in your head? Same lifestyle, simpler, or planning to do more? And roughly when do you want the option to slow down — 60? 65? Earlier?"*
-
-Then the bridge:
-
-> *"Most people in your position run into the same gap. CPF Life pays from 65, but the payout's usually a fraction of what they actually spend monthly today. The shortfall is the part to plan for."*
-
-Permission to walk them through:
-
-> *"Mind if I sketch the shortfall for you?"*
-
-### Talk-track when they ask "so how does it actually work?"
-
-> *"Three pieces. One — premium goes to investment from day one. Two — AIA layers Welcome and Special bonuses on top that DIY platforms can't replicate. Three — even in a market crash, the death benefit returns at least what you put in. Inside the plan we pick the funds together — Elite Portfolios for hands-off, or Self-Select."*
-
 ---
 
----
+## The signature pitch concept + dividend mode now live in Day 2
 
-## Drill (Part 1)
+The four-step retirement reverse-engineering whiteboard demo (the $4K → $9.4K at 65 → $2.3M pot → $5,400/mo cash vs $1,300/mo APA-route contrast), plus the dividend-mode mechanics (age 55/60/65 ladder, limited-pay variant, and the dividend-question flip), have been moved into the appointment-flow doc where they fit the actual sales conversation:
 
-1. **Run the discovery-first opener out loud, twice.** No notes. Practise the bridge into the retirement-gap question, and the pre-frame ("what's your honest reaction to locking money away for 10–20 years?"). Stop yourself if you slide into feature-dumping.
-2. **Write down the four key numbers** (3.9% / 5% & 8% / 10-yr IIP bonus at $400-$600-$1,000 tiers / $2,400 minimum) without looking. Verify the welcome bonus figures in iPOS before drilling them — those are the ones you'll actually quote.
-3. **List 3 prospects in your pipeline** for whom APA would be the right fit. For each, write one sentence on the *gap* APA solves for them specifically (not the features APA has).
-4. **Pick the toughest objection you've heard recently on APA** — "I'll just DIY", "what if it doesn't hit 8%", "I want liquidity", "I don't want to lock money up for 10 years". Write your reframe for that specific prospect. Run it out loud once.
+- **Whiteboard reverse-engineering demo** → [Day 2 · Phase 3](./day-02.md#phase-3--problems-of-investing--aia-solution-5-min)
+- **Dividend mode mechanics + age ladder + limited-pay variant + dividend-question flip** → [Day 2 · Phase 4](./day-02.md#phase-4--investment-illustrations--option-closing-5-7-min)
 
----
-
-# Part 2 — The Signature Pitch Concept — Retirement Income Reverse-Engineering
-
-> **The one idea for today:** The single most powerful APA pitch is a whiteboard sequence that takes the prospect from *"how much do I need at 65?"* to *"how cheaply can I get there with APA dividend mode?"* You make them guess the number first, then write the impossible cash savings figure ($5,400/month), then reveal the APA figure ($1,300/month). Same retirement, **a quarter of the monthly cost** — and the capital is preserved.
-
-By the end of today you should be able to: draw the four-step retirement reverse-engineer from memory, run the whiteboard sequence in under 8 minutes, and produce the dividend-mode reveal that closes most APA cases.
-
----
-
-## Why this concept works
-
-Most prospects have *never* sat down and calculated their actual retirement number. When you make them guess first, then reveal, the number lands as a shock — and a shocked brain is the only brain that buys.
-
-> *"Ask them to guess first, so they have an anchoring point to compare against the answer."*
-
-The contrast is the conversion. Skip the guess and you're just citing numbers.
-
----
-
-## The four steps (draw on whiteboard)
-
-### Step 1 — Anchor the desired monthly income (today's dollars)
-
-Ask:
-
-> *"In today's dollars — forget inflation for now — what kind of monthly income would you want when you retire? Just a normal lifestyle, no luxuries."*
-
-Most clients say **$3,000–$5,000/month.** Use $4,000 as the worked example. Write it on the whiteboard:
-
-```
-Today: $4,000/month
-```
-
-### Step 2 — Inflate to retirement age
-
-Now ask:
-
-> *"That's in today's money. Inflation typically runs at about 3% per year. You're 30, you want to retire at 65 — that's 35 years. Want to guess what $4,000 today will look like at 65?"*
-
-Let them guess. They'll say $5,000, $6,000, $7,000.
-
-Reveal:
-
-```
-Today: $4,000/month
-At 65: ~$9,400/month (3% inflation × 35 years)
-```
-
-> *"Almost $9.5k a month — just to keep the same lifestyle you have today."*
-
-### Step 3 — Multiply by the retirement window
-
-> *"If you want that income from 65 to 85 — that's 20 years — how much do you need in the pot?"*
-
-Let them try. Then write:
-
-```
-$9,400 × 12 × 20 = $2.3 million
-```
-
-> *"$2.3 million. That's the number."*
-
-**Pause.** Let it sit. Most clients react here.
-
-### Step 4 — The contrast
-
-The contrast is where most APA cases turn. Two scenarios, side by side:
-
-```
-Cash savings only           APA + dividend mode
-————————————                ————————————
-Save $5,400/month for       Invest $1,300/month
-35 years                    for 35 years
-↓                           ↓
-Pot depletes to $0 at 85    Capital preserved
-                            Dividends ~$10–11k/mo for life
-```
-
-Say it:
-
-> *"If you don't do this, you have to save $5.4k a month, capital depleted to zero. But if you do this, just have to invest $1,300 a month, you can preserve the capital and you can still enjoy a 12k a month of dividends."*
-
-After that, hand the conversation back instead of selling. *"Does that line up with how you've been thinking about retirement, or does it change the picture for you?"* Most prospects need a beat to react — let them.
-
----
-
-## The dividend-mode toggle
-
-The reason the APA route works: at year 10+ you can switch the plan into **dividend mode** (using GDIF or AGDIF). Dividends pay out monthly. The capital stays invested. The plan keeps paying for the rest of the client's life — and the death benefit transfers to the next generation.
-
-The withdrawal-age tradeoff is your delay-gratification ladder:
-
-| Start dividends at | Monthly dividend |
-|---|---|
-| Age 55 | ~$3,800/mo |
-| Age 60 | ~$5,840/mo |
-| Age 65 | ~$8,500/mo |
-
-Same plan. Same premium. The difference is when you flip the switch.
-
-> *"You don't have to tell me now or decide now whether to withdraw at 55, 60 or 65. The longer you delay, the better the dividends will be."*
-
-This is the line that handles "what if I need the money earlier?" — you don't lock the answer at sign-up.
-
----
-
-## The limited-pay variant (for higher earners)
-
-For a prospect who can pay more upfront for fewer years:
-
-> *"Pay $12,000/year for 10 years — that's $120,000 total — then stop. Let it compound to age 65. You'll have about $4,300/month in dividends and roughly $700,000 of capital still preserved."*
-
-This is the *"I want to be done paying by 40"* variant. Many tech professionals and dentists prefer this.
-
----
-
-## The one-third rule (use this earlier in the appointment)
-
-Before you draw the retirement number, set up the budgeting frame:
-
-> *"There are three buckets you should split your income into:*
->
-> *One — short-term: food, transport, day-to-day.*
-> *Two — medium-term: house, wedding, holidays.*
-> *Three — long-term: insurance, investments.*
->
-> *The mistake most people make is they plan short-term and medium-term first, and only invest what's left. The right move is to plan long-term first — fund retirement first — then medium and short."*
-
-Then transition into the whiteboard:
-
-> *"So let me show you what 'plan long-term first' actually looks like in numbers."*
-
----
-
-## The dividend question that lands well with hesitant prospects
-
-If a prospect asks *"can I take dividends out now?"*, cushion before you reframe — don't argue:
-
-> *"Totally fair question — most people ask this. Honestly, you can, but let me ask it back to you: would you rather have dividends landing in your account now while you're earning $6k a month and don't really need them, or have them landing in 25 years when that monthly income is the difference between working and not working?"*
-
-Most prospects answer "future" without thinking too hard. Then:
-
-> *"Right — so we let it compound. The money's still yours, you just give it a runway."*
-
-The flip works because you cushioned first ("totally fair", "most people ask"). Drop the cushion and the same question reads as a gotcha — and trust takes a hit even if they say yes.
-
----
-
-## The framing line that anchors the whole pitch
-
-Before you start drawing, install the frame in a sentence:
-
-> *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20–30 years where you'd like the option to stop working. That's what these numbers are really about."*
-
-Most clients have never sized retirement as the biggest line item on their balance sheet. Once they do, the rest of the conversation gets easier.
-
----
-
----
-
-## Drill (Part 2)
-
-1. **Draw the four-step diagram on a piece of paper** from memory. Time yourself. Should take under 5 minutes including the contrast box.
-2. **Run the whiteboard sequence out loud** — pretend a prospect is in front of you. Time it. Target: 8 minutes start to finish.
-3. **Memorise the worked numbers:** $4k today → $9.4k at 65 → $2.3M pot → $5,400/mo cash route vs $1,300/mo APA route. Recite without looking.
-4. **Write the dividend ladder** ($3,800 / $5,840 / $8,500) on the back of a business card. Carry it for a week.
+Day 1's job is the structural foundation (what APA is, the three differentiators, the IIP and fund-route choices, who APA is and isn't for). Day 2 is where the appointment flow runs.
 
 ---
 
 ## What's coming next
 
-Day 2: how to actually run the meeting. The 5-minute fact-find that captures life stage + cash flow + risk + portfolio + goal — followed by the 7-phase pitch flow that delivers the close in 20–30 minutes with 8+ micro-yeses.
+Day 2: how to actually run the meeting. The complete appointment flow — Phase 0 (pre-appointment setup) through Phase 5B (value-prop and final close). The whiteboard reverse-engineering demo sits inside Phase 3; the dividend-mode mechanics inside Phase 4.
 
 ---
 
@@ -382,21 +188,21 @@ Day 2: how to actually run the meeting. The 5-minute fact-find that captures lif
 
 **Why:** The Day 1 anti-market disclosure says APA is the wrong plan for someone wanting short-term liquidity, guaranteed cash values, or who is risk-averse.
 
-9. **In the retirement reverse-engineer, what are the worked numbers ($4k today at age 30, retire at 65)?**
-- A) $9,400/mo at 65, $2.3M pot, $5,400/mo cash route vs $1,300/mo APA route ✓
-- B) $7,000/mo at 65, $1.7M pot, $4,000/mo cash route vs $1,000/mo APA route
-- C) $12,000/mo at 65, $3M pot, $6,000/mo cash route vs $2,000/mo APA route
-- D) $5,000/mo at 65, $1.2M pot, $3,000/mo cash route vs $800/mo APA route
+9. **Per Day 1, where in the curriculum does the retirement reverse-engineering whiteboard demo and the dividend-mode mechanics actually live now?**
+- A) Day 1 Part 2
+- B) Day 2 Phase 3 (whiteboard demo) and Phase 4 (dividend-mode mechanics, age ladder, limited-pay variant, dividend-question flip) ✓
+- C) Day 3 Part 1
+- D) The Investing Success & Track Record deck
 
-**Why:** $4k today inflated 3% over 35 years gives ~$9.4k/mo, ×12×20 yrs = $2.3M; cash-savings route requires $5,400/mo, APA dividend mode just $1,300/mo.
+**Why:** The signature pitch concept was moved into the Day 2 appointment-flow doc where it fits the actual sales conversation. Day 1 stays focused on the structural foundation.
 
-10. **A prospect asks, "Can I take dividends out now?" — what is the closing flip-question?**
-- A) "Yes, you can take dividends from year 1 onwards"
-- B) "Would you prefer dividends now when you're earning $6k/month and don't need it, vs in future when you actually need it?" ✓
-- C) "Dividends aren't allowed before retirement"
-- D) "Let me check the policy terms"
+10. **A prospect who fits the anti-market for APA (wants liquidity, guaranteed cash values, sub-10-year horizon) — what's the right move?**
+- A) Sell APA anyway and emphasise dividends
+- B) Be upfront about who APA isn't for, recommend an endowment or fixed deposit instead, and use the cushion-before-disqualifier pattern ✓
+- C) Lower the premium until it fits
+- D) Switch them to Elite Conservative and proceed
 
-**Why:** This 2-sentence flip handles the "dividends early" objection — they always say "future" → "Then we let it compound."
+**Why:** The Day 1 anti-market disclosure says APA is wrong for prospects wanting short-term liquidity, guaranteed cash values, fixed return, or a sub-10-year horizon. The cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
 
 ## Related
 
