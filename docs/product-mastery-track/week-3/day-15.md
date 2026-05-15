@@ -333,6 +333,125 @@ The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 �
 
 ---
 
+# Case Study Vault — GPP Field Receipts
+
+Term protection case studies from real closes. Common patterns: prospect believes a "life plan" gives better coverage than term, prospect bought from MINDEF / IFA / banker without knowing what they actually have, prospect is paying too much for too little cover.
+
+> **Universal toolkit:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — Term vs Life comparison (Drawing 6), BTIR comparison (Drawing 5), and the 4-quadrant coverage grid (Drawing 3).
+
+### Case Index
+
+| Case | Prospect type | Anchor | Headline receipt |
+|---|---|---|---|
+| **G1** | 25-yo first-time term buyer | $1M term till 65 | $70/mo for $1M Death/TPD cover till 65 (vs whole-life equivalent $250+/mo) |
+| **G2** | Singlife Elite Term holder | AIA term + standalone CI comparison | Singlife Elite Term $2,550/yr ≈ AIA Death/TPD $713 + CI/ECI Multi-claim $1,837 = $2,550 same price, AIA wins on claims service |
+| **G3** | MINDEF Singlife enlistee | NSF discount disappears post-NS | Cheap during NS, but no multi-claim CI, no recurring benefits, needs supplementation |
+
+---
+
+## Case G1 — The 25-yo first-time $1M term buyer
+
+> **TLDR**
+> - 25-yo working adult, new income, needs to lock in cover while young and healthy
+> - Quoted **$1M Death / TPD term till 65 at $70/mo** (~$840/yr)
+> - Compared with whole-life equivalent for same $1M cover: ~$3,000+/yr — 3.5× the premium
+> - **Attack: at 25 there is no reason to pay 3.5× for a "limited-pay lifelong" plan when the actual cover need (income replacement during working years) is exactly what term solves.**
+
+### The structural argument
+
+| Setup | Premium | Cover till | Cover quality | Cash value |
+|---|---|---|---|---|
+| **GPP term till 65** | $70/mo | 65 | $1M Death / TPD, fixed | $0 (premium-only) |
+| **Whole-life equivalent** | ~$250/mo | Lifelong | $200-300K Death / TPD (smaller for same premium) | ~$100-200K @65 |
+
+For a 25-yo, the structural argument:
+- The cover need is **during working years**, when they have dependants / mortgage / income replacement obligations. After 65, the cover need diminishes (kids independent, mortgage paid).
+- Buying lifelong cover means paying for cover they may not need after 65, at 3.5× the cost.
+- The **$180/mo difference** ($250 − $70), if invested at 8% for 40 years, compounds to **~$560K** — vastly more than the whole-life's cash value at 65.
+
+### The structural attack script
+
+> *"At 25, the question isn't 'should I get lifelong cover or term?' — it's 'what does my cover actually need to do?' Your cover needs to replace your income during the years you have dependants, a mortgage, kids in school. That's roughly the next 40 years until retirement.*
+>
+> *$1M term till 65: $70 a month. $1M of cover for the entire window when you need it most. After 65, your cover need has dropped — your kids are independent, mortgage is paid down.*
+>
+> *Whole-life equivalent for the same $1M would be $250+ a month — and you'd be paying that premium for life. Yes, you get cash value at the end. But that $180 a month difference, invested at 8% over 40 years, compounds to about $560K. That's vastly more than any whole-life cash value at 65, and it's fully liquid.*
+>
+> *Term + invest the rest. The cover need is solved by the term. The 'lifelong cash value' is solved by the investment — more efficiently."*
+
+---
+
+## Case G2 — The Singlife Elite Term price comparison
+
+> **TLDR**
+> - Prospect has / is being quoted **Singlife Elite Term** at $2,550/yr for Death + TPD + CI/ECI multi-claim
+> - AIA equivalent (decoupled): **GPP $713/yr for Death/TPD + UCC $1,837/yr for CI/ECI Multi-claim = $2,550/yr same price**
+> - Same price. Different claims service ecosystem.
+> - **Attack: the price comparison doesn't favour either side. The differentiator is claims service, agent continuity, and the value-add ecosystem (TeleDoc, Vitality, etc.).**
+
+### The structural comparison
+
+| Dimension | Singlife Elite Term | AIA GPP + UCC |
+|---|---|---|
+| Annual premium | $2,550 | $2,550 ($713 + $1,837) |
+| Death / TPD | Included | $713/yr standalone (GPP) |
+| CI / ECI multi-claim | Included | $1,837/yr standalone (UCC) |
+| Claims department | Singlife (smaller, often outsourced) | AIA in-house |
+| Agent continuity | IFA (channel switches frequently) | Tied agent (long-term servicing) |
+| Value-add ecosystem | Limited | Vitality, TeleDoc, Altitude, priority hospital |
+
+### The closer line
+
+> *"On price, Singlife Elite Term and AIA's equivalent setup are within $5 of each other — basically the same. So the question becomes: when you actually need to claim, which company processes faster? Which agent is still going to be here in 10 years? Which ecosystem of services do you actually use?*
+>
+> *Singlife outsources most claims processing. AIA has in-house claims, same building, single point of accountability. Singlife agents are typically IFAs who rotate firms every 2-3 years. I'm a tied AIA agent — my compensation is structured for the 30-year servicing relationship.*
+>
+> *And on the value-add side, AIA bundles Vitality (premium discounts for staying healthy), TeleDoc (medical concierge), AIA Altitude (rewards), and priority hospital access. Singlife doesn't have that ecosystem.*
+>
+> *Same price. AIA wins on service, continuity, and ecosystem."*
+
+---
+
+## Case G3 — The MINDEF Singlife enlistee
+
+> **TLDR**
+> - NSF / NSman client, currently subscribed to **3 MINDEF Singlife plans** (Term / Accident / CI) because premiums are heavily subsidised during NS
+> - Coverage: ~$100-150K death / TPD, ~$50K CI, ~$50K accident — at very low monthly premiums (~$30-50/mo total)
+> - **The structural blind spot:** MINDEF premiums are subsidised during NS only. Post-NS, premiums rise sharply, and the structure doesn't support multi-claim CI or recurring benefits.
+> - **Attack: keep the MINDEF plans during NS for affordability, but layer GPP + UCC on top to build the proper long-term cover structure (multi-claim CI, longer-term Death/TPD, locked-in at young-age pricing).**
+
+### The structural problem
+
+MINDEF Singlife plans are a **subsidised entry-level cover** designed for the NS / NSman tier. They're good for what they are — cheap, basic cover during low-income years. But they're structurally inadequate as a long-term cover plan because:
+
+1. **Post-NS pricing rises sharply** — what costs $20/mo as an NSman costs $80-120/mo as a working adult.
+2. **No multi-claim CI depth** — single-claim CI, after the first event the cover ends.
+3. **No Early CI / recurring features** — covers Major CI only, not the Stage 0 / carcinoma in situ tier that catches most modern diagnoses.
+4. **Cover continuity tied to NS service status** — when NS obligations end, the structure can lapse or convert to a much more expensive private plan.
+
+### The structural recommendation
+
+**Don't terminate MINDEF plans.** They're cheap, and during NS years they're a useful safety net.
+
+**Layer AIA GPP + UCC on top** while the prospect is still in their 20s — premiums are locked at age-25 pricing, multi-claim CI is in place, and the cover survives the NS-to-civilian transition without restructure.
+
+| Setup | Monthly | Cover |
+|---|---|---|
+| Keep MINDEF plans (during NS) | ~$30-50 | Basic safety net |
+| **Layer AIA GPP ($1M Death/TPD till 65)** | ~$70 | Long-term Death / TPD locked at 25 pricing |
+| **Layer AIA UCC ($300K recurring Early CI till 65)** | ~$155 | Multi-claim Early CI catches early-stage diagnoses |
+| **Total combined** | ~$255-275/mo | Comprehensive cover; future-proof |
+
+### The structural attack script
+
+> *"MINDEF Singlife plans are a great deal during NS — cheap premiums, basic cover. Keep them. But here's the structural blind spot: when NS ends, your premiums rise. And MINDEF plans only cover Major CI single-claim — they don't cover Early CI or recurring claims.*
+>
+> *Most serious illnesses today get caught at Stage 0 or Stage 1, which is Early CI territory, not Major CI. MINDEF wouldn't pay out for those. And if you have one event in your 40s and a different illness in your 50s, MINDEF's single-claim structure means the second event doesn't pay.*
+>
+> *Layer AIA GPP + UCC on top while you're still 25. Premiums are locked at age-25 pricing — $70/mo for $1M Death/TPD, $155/mo for $300K recurring Early CI. The MINDEF plans handle the immediate years. The AIA plans build the structurally complete cover for the rest of your life."*
+
+---
+
 ## Quiz
 1. **Why does Day 5 reframe each disclosure as an objection-handler rather than just stating it?**
 - A) Regulation requires it

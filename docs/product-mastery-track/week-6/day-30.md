@@ -286,6 +286,122 @@ The **roleplay assignment.** A complete Solitaire PA appointment with Jared (34,
 
 ---
 
+# Case Study Vault — Solitaire PA Field Receipts
+
+Accident plan case studies. Solitaire PA is the lowest-friction close in the AIA stack — small premium, broad coverage, clear value-add. Most prospects under-buy it because the dollar amounts feel small, but on a per-claim ratio it's often the highest-utility plan in the portfolio.
+
+> **Universal toolkit:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — accident vs hospital scope Venn, Plan 1 vs Plan 2 SPA comparison, and the 4-quadrant coverage grid (where accident is the bottom-right quadrant).
+
+### Case Index
+
+| Case | Prospect type | Anchor | Headline receipt |
+|---|---|---|---|
+| **S1** | Young Singlife client paying $200/mo for wrong coverage | Cancel wrong plan, redirect to basic medical | $200/mo Singlife death/TPD/CI cancelled → $36/mo SPA + HSGM (basic medical) |
+| **S2** | Plan 1 vs Plan 2 upsell | Plan tier upgrade | $10/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement |
+| **S3** | Parents accident coverage | Multi-generational accident cover | $400+/yr accident plan for both parents — covers fall-related injuries MediShield doesn't |
+
+---
+
+## Case S1 — The young Singlife client redirect
+
+> **TLDR**
+> - Young working adult, **<$1K in savings, no dependants, no accident or hospital plan**
+> - Singlife agent had him buy a **$200/mo Death/TPD/CI plan** — structurally wrong for his situation
+> - Leo's recommendation: **cancel the Singlife plan (save $200/mo), buy SPA + HSGM at $36/mo** (covers the actual gap)
+> - **Attack: responsible advisor frame — what they need is basic medical and accident coverage at his stage of life, not Death/TPD/CI without dependants.**
+
+### The structural problem
+
+A young single adult with no dependants and minimal savings has a specific coverage hierarchy:
+
+1. **First**: Hospital plan (medical expense protection — the most likely large claim)
+2. **Second**: Accident plan (covers minor injuries, accidental death, dismemberment — high-frequency, low-severity)
+3. **Third**: CI / ECI (income replacement when ill — matters more once income is meaningful)
+4. **Fourth**: Death / TPD (for dependants — irrelevant until there are dependants or significant debt)
+
+The Singlife agent inverted this hierarchy. They sold a $200/mo Death/TPD/CI plan to a young client with no dependants, no debt, no savings, and no basic medical coverage. Structurally wrong.
+
+### The structural attack script
+
+> *"Let's pause and look at what you actually need at your stage of life. You're 26, working, no dependants, less than $1,000 in savings. The thing most likely to wipe you out financially is a $5K-$20K medical bill from a hospital stay or an accident. That's the first protection priority.*
+>
+> *What you currently have: a $200-a-month Singlife plan covering Death and CI. The Death coverage is structurally irrelevant — you have no dependants to protect. The CI coverage might matter eventually, but at your income level the priority is far lower than medical.*
+>
+> *What you don't have: hospital plan, accident plan. The two things most likely to actually trigger a claim at your age.*
+>
+> *Honest recommendation: cancel the Singlife plan, save $200 a month. Buy a Solitaire PA accident plan and a HealthShield Gold Max hospital plan for about $36 a month combined. You'll have $164 a month saved, the right coverage for your situation, and a structure that scales up as your life situation changes."*
+
+### The "responsible advisor" frame
+
+This case is one of Leo's canonical examples of *responsible advisory* — refusing to upsell when the prospect needs to downsell to the right structure. From the chat log: *"I think we need to be responsible advisors, looking out for our clients, ensuring what they buy is really what they need at their current situation."*
+
+The trust this builds long-term is significant. The prospect saves money now, gets the right coverage, and remembers the FC who told them the truth instead of pushing more product. LTV over 30 years dwarfs the $200/mo near-term loss.
+
+---
+
+## Case S2 — The Plan 1 vs Plan 2 upsell
+
+> **TLDR**
+> - Prospect quoted **Solitaire PA Plan 1** at base pricing
+> - Plan 2 costs **~$10/mo more** but delivers **2.5× the coverage** on death / disability / dismemberment + more medical reimbursement
+> - **Attack: at $10/mo differential, the coverage uplift is structurally far above the cost.**
+
+### The structural comparison
+
+| Coverage area | Plan 1 | Plan 2 | Plan 3 (Premier) | Plan 4 (Elite) |
+|---|---|---|---|---|
+| Accidental death | $100K | **$250K** | $500K | $1M |
+| Accidental TPD | $100K | $250K | $500K | $1M |
+| Permanent dismemberment | scaled | 2.5× scaled | scaled higher | top tier |
+| Medical reimbursement per event | $3K | $5K | $10K | $20K |
+| Daily hospital cash | $50/day | $100/day | $150/day | $250/day |
+| Monthly premium (approx) | $20 | $30 | $50 | $80 |
+
+The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospect, but the coverage uplift is 2-3× across every line. For most prospects, Plan 2 is structurally the correct entry point.
+
+### The closer line
+
+> *"Plan 1 is the entry plan, Plan 2 is what I'd actually recommend for you. The differential is about $10 a month — basically a meal out. For that $10/mo, your accidental death cover jumps from $100K to $250K, your permanent dismemberment cover scales similarly, and your per-event medical reimbursement goes from $3K to $5K. Same structural plan, just sized to actually handle a real claim. It's structurally one-sided to skip the upgrade."*
+
+---
+
+## Case S3 — Parents accident coverage (multi-generational)
+
+> **TLDR**
+> - Working-adult prospect (35-45-yo) considering coverage for elderly parents
+> - **Highest accident claim window: age 65+** (fall-related fractures, mobility incidents, vehicular accidents)
+> - Recommend **Plan 2 SPA for each parent at $200-400/yr** — covers what MediShield won't (TCM, outpatient injuries, dengue, food poisoning)
+> - **Attack: parents on basic medical only have a high accident-claim exposure. SPA fills the gap at very low cost.**
+
+### Why parents need SPA specifically
+
+MediShield Life and most hospital plans require **hospitalisation ≥6 hours or surgery** to trigger a claim. They don't cover:
+
+- TCM treatment
+- Outpatient injury (sprains, minor fractures handled at A&E)
+- Dengue / food poisoning treatment
+- Daily expenses while injured but not hospitalised
+- Accidental death lump sum
+- Permanent dismemberment
+
+For elderly parents, falls are the dominant claim trigger — and most fall injuries are either outpatient (sprain, hairline fracture) or short hospital stays. SPA covers the wider scope.
+
+### The structural recommendation
+
+| Parent | SPA Plan 2 cost | Coverage |
+|---|---|---|
+| Mother | ~$200-300/yr | $250K accidental death + $5K per accident medical + $100/day hospital cash |
+| Father | ~$200-300/yr | Same |
+| **Total for both** | **~$400-600/yr** | Comprehensive accident cover |
+
+### The closer line
+
+> *"Your parents' hospital plan covers them if they're warded for 6 hours or have surgery. What it doesn't cover: a sprain at A&E, a TCM visit for a back injury, dengue treatment, food poisoning. And those are the most common claims for people in their 60s and 70s — they're not always hospitalised, but they generate real expenses.*
+>
+> *Solitaire PA Plan 2 for both your parents is about $400-600 a year combined. That covers $5K per accident in medical reimbursement, $100/day hospital cash if they are warded, and $250K of accidental death cover each. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
+
+---
+
 ## Quiz
 1. **According to Day 5, what are the three honest disclosures every Solitaire PA close must include?**
 - A) Yearly-renewable not guaranteed; cover steps down at 75 and ends at 80; premium not guaranteed ✓

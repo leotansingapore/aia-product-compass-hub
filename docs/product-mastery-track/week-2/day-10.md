@@ -272,6 +272,156 @@ The **roleplay assignment.** A complete PLP appointment with Mr Tan Wei Ming (42
 
 ---
 
+# Case Study Vault — PLP Field Receipts
+
+PLP and whole-life restructure case studies. Pattern: prospects bought from parents' family agent years ago, got a too-small bundled life plan, never reviewed it. Most are perfect candidates for the **decoupling** play — terminate the bundled coverage, separate it into term + standalone CI + pure investment.
+
+> **Universal toolkit:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — BTIR comparison (Drawing 5), Term vs Life comparison (Drawing 6), and the whole-life cash-value redirect diagram (Tier 3 restructure).
+
+> Also cross-reference [Pro Achiever Day 5 Case A](../pro-achiever/day-05.md#case-a--the-pru-active-life-prospect-play-a-receipt) — the canonical Pruvantage / Pru Active Life restructure case which directly applies to PLP cross-shop scenarios.
+
+### Case Index
+
+| Case | Prospect type | Anchor | Headline receipt |
+|---|---|---|---|
+| **P1** | Young adult, $200/mo whole-life from parents' agent | Decoupling restructure | $200/mo bundled → $1.6K/yr term + UCC + $800/yr APA redirect = +$100K at retirement |
+| **P2** | Pre-retiree with $96K NTUC Living Policy | Restructure for cash flow | Surrender $96K cash value → $500/mo passive income via dividend mode + term keeps cover intact |
+| **P3** | SME owner with legacy floor need | PLP as legacy stack (when it's the right answer) | When NOT to decouple — when PLP genuinely serves the legacy / inheritance / lifelong cover need |
+
+---
+
+## Case P1 — The young adult $200/mo bundled whole-life restructure
+
+> **TLDR**
+> - Young working adult, paying **$200/mo whole-life** for $200K death/TPD/CI + $100K Early CI
+> - Originally placed by parents' family agent years ago, never reviewed
+> - Structural flaws: cover erodes on CI claim, cash value forfeited on full claim, single-claim only
+> - Restructure: **decoupled term + UCC + APA**. Premium reduces from $2.4K/yr to $1.6K/yr. **$800/yr saved → invested at 8% over 35 yrs = ~$100K of extra retirement value**, plus better CI cover with multi-claim depth.
+> - **Attack: parents' agent placed an adequate plan for 1995. The structure no longer makes sense for someone planning to retire in 2055.**
+
+### The structural critique
+
+Bundled whole-life plans have three structural failures:
+
+1. **Cover erodes on claim.** Pay premiums for 30 years, claim CI once, see the death cover reduced by the claim amount and the cash value forfeited. The plan partially terminates the moment you use it.
+2. **Single-claim only.** No multi-claim CI depth. Recovery from cancer at 45 doesn't entitle you to cover for a heart attack at 60.
+3. **Cash value drag.** The "investment" side projects at 2-3% — lower than CPF OA's guaranteed 2.5%. The bundled structure forces the investment to be conservative because it has to fund the cover.
+
+### The restructure setup
+
+| Component | Old structure | New structure |
+|---|---|---|
+| Death cover | $200K (erodes on CI claim) | $500K-$1M term ($60-90/mo) |
+| CI cover | $200K single-claim | **$300K recurring multi-claim** (UCC) |
+| Cash value | $50-100K @65 (depending on age started) | $0 (no bundled investment) |
+| Investment | Bundled, ~2-3% effective | **$800/yr (or more) into APA** at 8% |
+| Monthly | $200 ($2,400/yr) | $130 + ($800/yr APA redirect) = $1,560/yr + $800/yr = $2,360/yr total OR $130 + ~$70 APA at age 25 = $200/mo combined |
+| At 65 | ~$100-200K cash value | Term: $0 + UCC recurring CI: ~$300K available + APA: ~$80-100K compounded |
+
+Same approximate monthly outflow. Multi-claim CI. Death cover doesn't erode. Cash compounding at 8% instead of 2-3%.
+
+### The structural attack script
+
+> *"Your parents' family agent set this plan up for you when you were 18. $200 a month, $200K of death cover, $200K of CI, $100K Early CI. At the time, it was reasonable.*
+>
+> *But here's what the plan does structurally. Once you claim for CI, the death cover gets reduced by the same amount. Claim the Early CI, the death cover shrinks. Claim full CI, the cash value goes to zero. The plan partially terminates the moment you actually use it. And it only pays once — no multi-claim depth.*
+>
+> *Same $200 a month, decoupled: $60-90/month for $500K-$1M term cover, plus $130/month for $300K recurring multi-claim Early CI via UCC. That's $190-220/mo. Or — if you can squeeze it — keep the $200/mo total and redirect what's left into APA. Either way, you have: better death cover, multi-claim CI that pays repeatedly, and the investment side compounding at 8% instead of 2-3%.*
+>
+> *Yes, you lose the surrender value from the existing whole-life. Run the math. If you've been paying for 5-10 years, the surrender penalty is probably small. The upgrade is structurally clear-cut."*
+
+---
+
+## Case P2 — The pre-retiree NTUC Living Policy cash unlock
+
+> **TLDR**
+> - Pre-retiree with **NTUC Living Policy** — $93/mo premium, $96K accumulated cash value, modest death + CI coverage bundled
+> - Restructure: **surrender the Living Policy ($96K cash unlocked)**, add a small term policy to preserve death/CI cover, redirect the $96K into APA / PWV for dividend mode
+> - Result: **$500/mo of passive dividend income** unlocked from previously dormant cash value, plus term cover intact
+> - **Attack: most pre-retirees have a legacy life policy from their 30s that's no longer doing useful work. Unlock the cash value, redirect into income.**
+
+### The structural opportunity
+
+The NTUC Living Policy is paying premiums of $93/mo to maintain a structure that, at pre-retirement age, no longer serves the original purpose:
+- Cover need has diminished (dependants grown, mortgage paid)
+- Cash value is sitting at 2-3% effective return
+- Premium continues monthly with no improvement to the prospect's retirement picture
+
+### The restructure setup
+
+| Component | Old structure | New structure |
+|---|---|---|
+| NTUC Living Policy | $93/mo premium, $96K cash value, ~$50-100K bundled cover | **Surrendered** — $96K cash released |
+| Death / CI cover replacement | Bundled in Living Policy | Small term policy: ~$30-40/mo for equivalent or larger coverage |
+| Cash flow | -$93/mo (premium going out) | -$30-40/mo (term premium only) |
+| $96K cash | Trapped, earning 2-3% | **Redirected into APA / PWV dividend mode** at 6% yield = **$5,760/yr = $480/mo of dividends** |
+
+Net change for the prospect:
+- **$500/mo of new dividend income** (from $96K cash redirect at 6% yield)
+- **$50-60/mo of premium freed up** ($93 old − $30-40 new term)
+- Death/CI cover preserved via the term replacement
+- Capital ($96K) stays intact for inheritance vs being drawn down by ongoing premiums
+
+### The structural attack script
+
+> *"Your NTUC Living Policy is paying $93 a month. It's been doing that for 25+ years. Pull up the in-force illustration — you've got about $96K of cash value sitting in there, earning roughly 2-3% effective. The cover side is modest, bundled with the cash, and at your current age the cover need has dropped significantly anyway.*
+>
+> *Restructure: surrender the Living Policy. That unlocks $96K in cash. Replace the death/CI cover with a small term policy at $30-40/mo — same or better cover, decoupled from the cash.*
+>
+> *Then redirect the $96K into a dividend-mode product at 6% yield. That generates about $480 a month of passive income — for life. Plus you save $50-60/mo on the freed premium. Net effect: you gain ~$540/mo of cash flow, your cover is preserved, and the $96K stays intact for inheritance instead of slowly being drawn down by ongoing premiums on a plan that's not doing real work anymore."*
+
+### The honesty check
+
+Always run the surrender penalty math before recommending this move. Most life policies bought 20-25 years ago have minimal surrender penalty by now. If the prospect is mid-tenure (5-15 years in), paid-up status may be the cleaner move than full surrender.
+
+---
+
+## Case P3 — When PLP is genuinely the right answer (legacy floor)
+
+> **TLDR**
+> - **Not every case is a decoupling case.** PLP genuinely serves a real structural need for specific prospect profiles.
+> - SME owner, $300K+ income, two kids, has the BTIR pieces already in place — needs a **legacy floor** that pays a guaranteed lump sum regardless of investment outcomes
+> - PLP works as: **the bottom of the wealth pyramid** — lifelong cover, cash value, premium discontinuance optionality, and a guaranteed bequest
+> - **Counter-attack frame: PLP is correct when the prospect wants stability + legacy + lifelong cover with limited-pay, not when they're looking for the best risk-adjusted return.**
+
+### When PLP is structurally correct
+
+The prospect profile where PLP is the right answer:
+- **Has dependants** (spouse, children, ageing parents)
+- **High income, surplus cash flow** ($200K+/yr household)
+- **Already has term cover** for working-years income replacement
+- **Wants lifelong cover** beyond 65 — for legacy / inheritance certainty
+- **Values guaranteed cash value** — accepts lower effective return for capital stability
+- **Wants limited-pay structure** — pay for 10-25 years, then cover continues for life without further premium
+
+For this profile, decoupling into pure term + APA actually loses something the prospect wants: the guaranteed lifelong cover with capital floor. Term ends at 65-75; APA's death benefit floor is 100% of premium paid (not a fixed sum assured); the prospect's legacy isn't tied to a contractually defined lump sum.
+
+### The structural defence of PLP
+
+| Feature | PLP delivers | BTIR (term + APA) delivers |
+|---|---|---|
+| Lifelong cover | ✅ Yes, regardless of investment outcomes | ❌ No, term ends at 65-75 |
+| Limited-pay | ✅ Yes (10-25 years premium, then cover continues) | ❌ Term: lifelong premium until lapse. APA: 10-yr IIP min + investment |
+| Guaranteed cash value | ✅ Yes (par fund mechanism) | ❌ No, APA value market-linked |
+| Premium discontinuance | ✅ Use cash value to suspend premiums | ⚠️ Term lapses without premium |
+| Legacy lump sum | ✅ Contractually defined sum assured | ⚠️ Depends on APA value at death + term still in force |
+
+### When NOT to recommend PLP
+
+- Young prospect (under 35) with no dependants and no surplus cash — PLP premiums are heavy at $300-500/mo for meaningful cover, and the cover need is term-shaped, not lifelong-shaped
+- Prospect with limited budget who can only afford one product — term + investment is better risk-adjusted return
+- Investment-savvy prospect who wants growth-optimised returns and accepts no cover floor
+
+### The structural defence script (when prospect challenges PLP)
+
+> *"PLP isn't trying to deliver the best investment return — that's APA's job. PLP is doing a different job: it's the lifelong cover floor with a guaranteed lump sum at the end. If you're looking for the best risk-adjusted return, decoupled term + APA wins. If you're looking for lifelong cover, limited premium pay, and a contractually defined legacy that doesn't depend on market outcomes, PLP is the structurally correct answer.*
+>
+> *The structural difference: APA gives you a death benefit floor of 100% of premiums paid. PLP gives you a contractually defined sum assured for life. For prospects who want their family to inherit a fixed dollar amount no matter what the market does, PLP is the answer. For prospects who want growth-optimised retirement with full liquidity, decoupled wins.*
+>
+> *Different jobs. Different tools. Most high-income families with dependants want both — PLP at the foundation of the pyramid (legacy floor), APA at the next tier (growth pot). Not either-or."*
+
+---
+
 ## Quiz
 1. **The 3 ILP pillar disclosures (verbatim, every meeting) are:**
 - A) Premiums guaranteed, policy values guaranteed, past performance indicative

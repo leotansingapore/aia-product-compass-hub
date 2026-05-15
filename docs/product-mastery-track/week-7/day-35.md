@@ -273,6 +273,178 @@ The **roleplay assignment.** A complete pre-retiree appointment with Mr Lim Wei 
 
 ---
 
+# Case Study Vault — PWV Field Receipts
+
+Anonymised case studies from real PWV closes — pre-retiree restructures, ILP cross-shops, and CPF-redirect plays. Each case has the prospect profile, what they were sold by the competitor, the structural attack, and the verified math.
+
+> **Universal toolkit for these cases:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — the retirement-gap calculation, the source-of-funds ledger, the dividend-vs-drawdown comparison, and the triple multi-fund vs single-fund diagram are the four drawings that close most PWV cases.
+
+### Case Index
+
+| Case | Prospect type | Target play | Anchor | Headline receipt |
+|---|---|---|---|---|
+| **L** | 50-yo with Citibank PIW $300K, USD-denominated | SGD-endowment alternative | PWV / SWB / PGLP / RS | Citibank PIW 3% real return (after FX) vs PWV 3.9-6%+ SGD-domiciled |
+| **M** | 58-yo with $185K OA + $52K matured Pru payout | Retirement healthcare funding angle | $300K PWV opening | OA → dividend pot for hospital + lifestyle; capital preserved for bequest |
+| **N** | 56-yo IT manager with 4 Manulife savings + 1 ILP from DBS bankers | Single-fund vs multi-fund + agent-disappearance | PWV consolidation | Overbought 6 plans across 4 bankers, none servicing; restructure proposal |
+| **O** | 50-yo pre-retiree, multi-policy CI + endowment portfolio | Restructure for retirement income | $1M PWV target | $7,200/mo retirement target → $1M-1.5M dividend pot |
+
+---
+
+## Case L — The Citibank PIW SGD-redirect
+
+> **TLDR**
+> - 50-yo prospect proposed a $300K PIW (Premier Income Wealth) by a Citibank private banker
+> - Source: funds in Ringgit at a Malaysian bank, wanting to park better than FD yields (~1.2% p.a.)
+> - PIW headline yield: ~4.39% p.a. on USD-denominated US bonds
+> - After currency risk (USD depreciating ~1.5-2% p.a. against SGD long-term), the **real net return is ~3% p.a. or lower**
+> - SGD-based alternatives from AIA:
+>   - **Smart Wealth Builder (SWB):** 3.62-3.70% p.a.
+>   - **Platinum Gift for Life (PGLP):** ~3.5% p.a. dividend income from Y4 onwards, capital preserved for next generation
+>   - **Retirement Saver (RS):** ~3.90% p.a. monthly retirement income
+> - **Attack: the headline PIW yield looks higher only because the bank quotes gross. Strip the FX risk and PIW is at parity with — or below — SGD alternatives, with none of the legacy / capital-guarantee features.**
+
+**The structural attack:**
+
+> *"Citibank quoted you 4.39% on a $300K PIW. That number is right on the brochure. What they didn't show you: it's USD-denominated, and over a 15-year horizon, USD typically depreciates 1.5-2% per year against SGD. So your real net return is closer to 3% — and you carry the currency risk for the entire holding period.*
+>
+> *On the SGD side, we have three options that all sit at 3.5-3.9% net, with no FX exposure. Same return, less risk. And if you want monthly income flowing rather than just accumulation, the Retirement Saver gives you ~3.9% as a monthly dividend stream from year 1, or PGLP gives you ~3.5% income from year 4 onwards while the capital stays locked for life — that's a passive income engine for you and a managed-policy inheritance for your spouse / kids."*
+
+**The verified comparison (per AIA's product summaries — verify in iPOS at quote time):**
+
+| Product | Currency | Net yield (long-term) | Capital preservation | Notes |
+|---|---|---|---|---|
+| Citibank PIW | USD | ~3% after FX drag | Yes (US bonds, principal at maturity) | Currency risk, no Singapore safety net |
+| AIA Smart Wealth Builder (SWB) | SGD | 3.62-3.70% p.a. | Yes (par fund) | Endowment structure, capital guaranteed at maturity |
+| AIA Platinum Gift for Life (PGLP) | SGD | ~3.5% p.a. dividends from Y4 | Yes (lifelong) | 3-generation play, secondary insured supported |
+| AIA Retirement Saver (RS) | SGD | ~3.90% p.a. | Yes | Monthly retirement income from start |
+
+### The framing question Leo uses
+
+> *"Same money. SGD instead of USD. No FX risk. Comparable or better net yield. And — for the PGLP route — the capital stays in the policy for life and gets inherited by your spouse with the dividend stream still flowing. The PIW pays you back the principal at maturity. The PGLP keeps the principal earning for you, your spouse, and your kids."*
+
+---
+
+## Case M — The pre-retiree OA-redirect (retirement healthcare funding)
+
+> **TLDR**
+> - 58-yo prospect with **$185K in CPF OA** doing nothing (0% interest after 65, illiquid in RA after top-up)
+> - Plus a **$52K matured Prudential payout** sitting uninvested
+> - Plus a legacy AIA Pro Achiever with 1.4% IRR (poorly performing, can paid-up + redirect)
+> - Hospital plan: existing AIA private with rider — needs ongoing funding through retirement
+> - **Attack: if he does nothing, OA depletes by ~80 funding hospital premiums + lifestyle. If he redirects $237K (OA + Pru) into PWV dividend mode, hospital plan is funded perpetually and capital stays intact for bequest.**
+
+**The structural problem (the retirement healthcare funding angle):**
+
+The pre-retiree's biggest blind spot: **hospital plan premiums escalate steeply from age 60 onwards.** A private hospital plan that costs $1,000/yr in your 40s costs $3,000-5,000/yr in your 60s and $8,000-12,000/yr in your 70s. Over the 30+ year retirement horizon, that's **$200K-$400K of cumulative hospital premiums alone**.
+
+If the prospect is funding these from OA / cash drawdown, they're chipping away at the principal. By age 85, the principal is materially smaller — sometimes zero. Their bequest at death: $0.
+
+The redirect play:
+
+1. **Stop funding hospital premiums from depleting capital.** Instead, redirect existing OA + matured-Pru cash into a PWV / GDIF-equivalent dividend pot at ~5-6% yield.
+2. **Use the dividends to fund the hospital plan.** $237K at 6% = $14,220/yr of dividends — comfortably covers hospital plan premiums for the rest of life.
+3. **Principal stays intact.** The capital remains in the policy, gets inherited by spouse (with secondary insured set up), keeps generating dividends for the next generation.
+
+**The before / after drawing:**
+
+| Scenario | OA / cash trajectory | Bequest at 85 |
+|---|---|---|
+| **Do nothing:** keep OA in CPF, fund hospital premiums from drawdown | Depletes from $237K to ~$0 by age 85-90 | $0 |
+| **Do something:** $237K into PWV dividend mode | Capital stays at $237K, generates dividends that cover hospital + lifestyle | $237K + dividends for spouse |
+
+This is Leo's canonical "retirement healthcare funding angle" — see the [Drawings Playbook → Tier 3: Retirement → Retirement healthcare funding angle](../pro-achiever/drawings-playbook.md#retirement-healthcare-funding-angle).
+
+### The structural attack script
+
+> *"Your $185K in OA is doing nothing for you after age 65 — interest stops, and if you top up to RA it gets locked. Your $52K Pru payout is sitting in the bank earning 0.5%. Combined that's $237K of capital that's structurally idle.*
+>
+> *Over the next 25 years, your hospital plan premiums will compound — by your 70s you're paying $8K-12K a year just for the cover. If you fund that from drawdown, that's $200-300K of principal gone over your retirement. Your bequest at 85: zero.*
+>
+> *Alternative: same $237K, redirected into a PWV dividend-mode policy. At a 6% yield, that's $14,220/year of dividends — perpetually. That covers your hospital plan, leaves something for lifestyle, and the principal stays intact. When you pass, your spouse inherits a working dividend engine, not just the leftover cash. Three generations of income from one redirect today."*
+
+---
+
+## Case N — The Manulife multi-policy DBS-banker portfolio
+
+> **TLDR**
+> - 56-yo IT manager with **5 Manulife plans** placed by **4 different DBS bankers** over 5 years
+> - Plans: 1 Manulife ILP + 4 Manulife savings plans, no one servicing them currently
+> - Plus an AIA HSG B-Lite (no rider) and a $40K/year PWV already with Leo
+> - **Attack: bankers don't service post-sale. Manulife's single-fund products require active agent rebalancing that doesn't happen. The prospect is structurally over-bought and under-serviced.**
+
+### The agent-disappearance map
+
+| Plan | Sold by | Currently serviced? |
+|---|---|---|
+| Manulife ILP | DBS banker #1 (left 3 yrs ago) | No |
+| Manulife savings plan #1 | DBS banker #2 (rotated to different role) | No |
+| Manulife savings plan #2 | DBS banker #3 (left the bank) | No |
+| Manulife savings plan #3 | DBS banker #4 (current rep, doesn't know the prospect) | No (transactional only) |
+| Manulife savings plan #4 | Same DBS banker | No |
+| AIA HSG B-Lite (no rider) | AIA agent (not Leo) | Not actively reviewed |
+| AIA PWV $40K/year | Leo | Yes |
+
+**The structural pattern:** banker-sold ILPs have zero post-sale servicing. The bank's compensation model doesn't reward retention. The agent who closed the case has moved on within 2-3 years; the next banker handles the prospect transactionally if at all.
+
+### The restructure recommendation
+
+1. **Audit the 4 Manulife savings plans.** Pull the in-force illustrations for each. Calculate the projected monthly income at 65 from each. Many low-tier Manulife savings plans deliver under $200/mo income at 65 on $100K+ of premium — structurally inferior to a single PWV at the same money.
+2. **Upgrade the HSG B-Lite to HSG B + rider** — the rider waives the $3,500 deductible and caps co-insurance at 5%. Single biggest hospital coverage upgrade.
+3. **Surface the agent-disappearance pattern** as the framing — *"You bought from 4 different bankers, none of whom are servicing you. AIA tied agency means I'll be here for the 30-year servicing relationship, not just the initial sale."*
+
+### The structural attack script
+
+> *"You've got 4 separate Manulife savings plans, bought from 4 different DBS bankers over 5 years. Pull up your statements — when was the last time any of them did a review with you? When was the last time anyone explained how each plan was performing?*
+>
+> *That's the banker pattern. They close, get the commission, and rotate to a different role within 18-24 months. The next banker who 'services' your case is someone you've never met. By year 5, your plans are effectively orphaned — they keep deducting premiums, but no one's monitoring them.*
+>
+> *And Manulife specifically — they're single-fund products. Your agent is supposed to actively rebalance the allocation. If no one's doing that, your funds drift. I've seen prospects with 50% China + 50% Tech because the original agent set that allocation 5 years ago and no one's touched it since.*
+>
+> *We can audit each of the 4 plans, identify the underperformers, and consolidate into a structurally cleaner setup."*
+
+---
+
+## Case O — The pre-retiree $7.2K/mo retirement target
+
+> **TLDR**
+> - 50-yo, currently FRS-on-track via SA alone
+> - Multiple CI plans with little/no cash value + several endowments (legacy from younger years)
+> - Considering ERS top-up but exploring alternatives
+> - Desired retirement income: **$7,200/mo at 65** (factoring 2.5% annual inflation on her current $5K/mo lifestyle)
+> - **Attack: ERS locks $200K+ for marginal income gain. PWV / dividend pot gives more income, full liquidity, secondary insured for legacy.**
+
+### The retirement gap calculation
+
+Using the Drawings Playbook → Drawing 4 (Retirement-gap calculation):
+
+| Component | Amount |
+|---|---|
+| Current monthly spending | $5,000 |
+| Inflated to age 65 (2.5% × 15 yrs) | $7,200/mo |
+| Projected CPF Life payout at 65 (FRS) | ~$1,800/mo |
+| Monthly retirement income shortfall | **$5,400/mo** ($64,800/yr) |
+| Capital needed at 65 (at 6% dividend yield) | **~$1.08M** |
+
+### The structural attack: ERS vs PWV vs DIY
+
+| Option | $200K committed | Monthly income at 65 | Liquidity | Inheritance |
+|---|---|---|---|---|
+| **CPF ERS top-up** | $200K (RA top-up) | ~$1,500/mo additional CPF Life | Zero (locked in RA) | Zero bequest after age 80-ish (CPF Life Standard payout pattern) |
+| **AIA PWV (SGD)** | $200K single-premium / phased | ~$1,000-1,100/mo dividends at 6% yield | Full (surrender any time after Y11) | Full bequest + dividend continuation via secondary insured |
+| **DIY (S&P 500 + dividend ETFs)** | $200K | Variable, USD-denominated, ~$700-900/mo at 5% yield after taxes | Full | 40% US estate tax + 30% dividend withholding tax — heirs inherit 60-70% |
+
+ERS top-up gives slightly higher absolute income but at the cost of total liquidity and zero bequest. PWV delivers comparable income with full flexibility and a 3-generation legacy structure.
+
+### The closer line
+
+> *"If you top up to ERS, you're committing $200K to CPF for a marginal $1,500/mo income lift. That money is locked, illiquid, and once CPF Life Standard pays out for 30 years, the bequest stops. You've effectively given $200K to CPF.*
+>
+> *The PWV alternative: same $200K, generates $1,000-1,100/mo of dividends — slightly less monthly than ERS, but the capital stays intact, and your spouse inherits a working dividend engine. Net total benefit over 30 years: meaningfully larger when you include the bequest. Net total flexibility: vastly larger because you can surrender / withdraw / restructure at any point from Y11.*
+>
+> *ERS makes sense for prospects who need maximum income certainty and have no legacy goals. PWV makes sense for prospects who want comparable income, full flexibility, and a structured inheritance."*
+
+---
+
 ## Quiz
 1. **According to Day 5, what is the correct frame for compliance disclosures?**
 - A) A regulatory tax to get through as quickly as possible

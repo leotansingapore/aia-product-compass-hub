@@ -248,6 +248,138 @@ The **roleplay assignment.** A complete HSGM appointment — Phases 1 through 8 
 
 ---
 
+# Case Study Vault — HSGM Field Receipts
+
+Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C-only plan, no rider, no idea about the $3,500 deductible or 10% co-insurance, and assumes "I'm covered." On inspection, the gap is significant.
+
+> **Universal toolkit:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — hospital plan with/without rider (Tier 3), Plan A vs B vs C ward comparison, accident vs hospital scope Venn.
+
+### Case Index
+
+| Case | Prospect type | Anchor | Headline receipt |
+|---|---|---|---|
+| **H1** | Prospect with HSG B-Lite, no rider | Rider upgrade + plan upgrade | $3,500 deductible exposure + 10% co-pay → with rider, capped at $3K |
+| **H2** | Prospect with GE P-Optimum (competitor) | AIA HSGM private vs GE P-Optimum | $800/yr AIA Vitalcare A vs $1.1K GE equivalent + GE limitations + pre-auth suspension |
+| **H3** | Hospital coverage on parents (multi-generational) | Parents' plan upgrade for hospitalisation gap | $1.3K/yr private B rider for parents → covers what MediShield doesn't |
+
+---
+
+## Case H1 — The HSG B-Lite + no rider upgrade
+
+> **TLDR**
+> - Prospect has **AIA HSG B-Lite, no rider** — basic hospital cover at lowest tier
+> - **Exposure on a typical $10K hospital bill:** $3,500 deductible + 10% co-insurance ($650) = **$4,150 out of pocket**
+> - With rider: $0 deductible + 5% co-pay capped at $3,000 = **max $3,000 out of pocket** (often much less for moderate bills)
+> - **Attack: most prospects don't realise the deductible exists. Walk them through the actual claim math on a $10K and $30K bill.**
+
+### The deductible / co-insurance math (the visceral attack)
+
+| Bill scenario | HSG B-Lite, no rider — out of pocket | HSG B + rider — out of pocket |
+|---|---|---|
+| $5,000 bill | $3,500 deductible + 10% of remainder ($150) = **$3,650** | 5% of $5,000 = **$250** |
+| $10,000 bill | $3,500 deductible + 10% of remainder ($650) = **$4,150** | 5% of $10,000 = **$500** |
+| $30,000 bill | $3,500 deductible + 10% of remainder ($2,650) = **$6,150** | 5% capped at $3,000 = **$3,000** |
+| $100,000 bill | $3,500 deductible + 10% of remainder ($9,650) = **$13,150** | 5% capped at $3,000 = **$3,000** |
+
+The rider is the **single biggest delta in the entire AIA hospital product line**. At ~$200-500/yr depending on ward tier, it saves $3,000-$10,000 on any single significant claim.
+
+### The April rider deadline (regulatory urgency)
+
+From April 2026 (verify the exact effective date in iPOS), MAS rules around riders are tightening — the maximum co-insurance cap on the rider rises from $3,000 to $6,000. Existing riders bought before the deadline are typically grandfathered at the lower cap. This is a **time-sensitive close moment** — prospects who buy / upgrade before the deadline lock in the better terms permanently.
+
+### The structural attack script
+
+> *"Your HSG B-Lite covers the hospital bill — that's true. What it doesn't tell you on the surface is that there's a $3,500 deductible you pay upfront, plus 10% of everything above that. On a $10,000 bill, that's $4,150 out of your pocket. On a $30,000 bill, $6,150. The cover isn't 'fully paid' — there's a meaningful exposure window.*
+>
+> *Adding the rider: no deductible, just 5% of the bill capped at $3,000. So on a $30K bill, you pay $3,000. On a $100K bill, you also pay $3,000. The rider is the single biggest cover delta in the entire hospital plan structure.*
+>
+> *Cost: roughly $200-500/year depending on ward tier. For a fraction of one expected hospital claim, you eliminate the deductible exposure for life. And — heads up — MAS is changing rider terms in April. Locking in the rider before the deadline grandfathers you at the better cap. Worth doing now, not later."*
+
+### The ward tier upsell (B-Lite → B → A)
+
+While the prospect is in restructure mode, the second move: upgrade from B-Lite to B or A. The differential pricing is small but the ward access doubles:
+
+- **B-Lite** → can stay in C ward only
+- **B** → can stay in B or C
+- **A** → can stay in A, B, or C — full flexibility
+
+Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the rider, the prospect goes from "$3,500 deductible exposed + restricted to C ward" to "$3,000 cap + can choose any ward" — the actual structural answer for someone planning to retire with proper coverage.
+
+---
+
+## Case H2 — The GE P-Optimum private hospital cross-shop
+
+> **TLDR**
+> - Prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** vs AIA Vitalcare A rider at $800+/yr
+> - GE's headline price is cheaper, **but the cover scope is significantly narrower** with hard limitations
+> - AIA equivalent (Vitalcare A Saver): roughly **$800-1,100** for full private coverage
+> - **GE recently suspended pre-authorisation** — meaning prospects can't get treatment pre-approved, causing claim delays and out-of-pocket exposure
+> - **Attack: cheaper headline price ≠ better coverage. Decompose the limitations.**
+
+### The structural comparison
+
+| Dimension | GE P-Optimum (private hospital) | AIA HSGM with Vitalcare A rider |
+|---|---|---|
+| Premium | ~$300-500/yr | ~$800-1,100/yr |
+| Pre-authorisation | **Recently suspended** (claim delays) | Active and routine |
+| Coverage limits | Multiple sub-limits per category | Higher per-condition limits |
+| 12-month pre/post coverage | Limited | Yes |
+| Claim limit per year | Capped lower | Up to $1M private hospital |
+| Hospital network | Selected | Full panel, including premier private hospitals |
+| Doctor ratings | N/A | Rated #1 by 200+ Singapore doctors (latest poll) |
+
+### The closer line
+
+> *"GE P-Optimum is cheaper on the brochure — about $300 a year vs $800-1,100 for AIA's equivalent. But pull up the actual policy summary and you'll see GE has multiple sub-limits per claim category, and they recently suspended pre-authorisation — meaning you can't get treatment pre-approved before going in. That's a real exposure for anyone with elective procedures.*
+>
+> *AIA's HSGM with the Vitalcare A rider gives you up to $1M of private hospital coverage per year, active pre-authorisation, 12 months of cover before and after each event, and access to the full premier private panel. Plus, the plan was rated #1 by over 200 Singapore doctors in the latest poll.*
+>
+> *The price difference is $500-700/year. For a mother who'll likely use the plan within the next 10-15 years, that's structurally well worth the upgrade — and arguing the lower-cost plan would only save money if you never claim, which is the opposite of why you bought the plan."*
+
+---
+
+## Case H3 — The parents' plan upgrade for multi-generational coverage
+
+> **TLDR**
+> - Prospect (working adult) wants to upgrade parents' hospital coverage — currently on **MediShield Life only** or basic Plan C
+> - Mother on **GE DPS** (Dependent Protection Scheme, basic group cover) — token coverage at most
+> - Recommended: **B + rider for both parents** at $1.3K/yr per parent — covers what MediShield doesn't
+> - **Attack: most older parents are on a C-tier or no-rider plan because no one upgraded them. Adult children paying for parents' coverage is a high-LTV moment.**
+
+### The structural gap for elderly parents
+
+Older parents typically have:
+- **MediShield Life** (universal, but limited claim caps and only covers C / B2 wards in restructured hospitals)
+- **No private rider** — exposed to large out-of-pocket on significant claims
+- **No accident plan** — exposed to fall-related injuries, fractures, etc.
+
+A common elderly-parent claim scenario:
+- Mother falls, breaks hip, requires surgery + 2 weeks of inpatient rehab
+- Total bill: $25,000-40,000 in private hospital
+- Out of pocket on MediShield only: $15K+
+
+### The recommended upgrade
+
+| Plan | Cost/yr | Coverage |
+|---|---|---|
+| MediShield Life (existing) | ~$1,000 | C / B2 ward, limited caps |
+| **AIA HSG B + rider for parent** | ~$1,300 | Up to B ward, rider waives deductible, caps co-pay at $3K |
+| **AIA Solitaire PA Plan 2 for parent** | ~$200-400 | Accident reimbursement up to $5K/event |
+
+Total upgrade cost: ~$1,500-1,700/yr per parent. For two parents: ~$3,000-3,400/yr.
+
+For a working adult earning $80K+/yr, this is a small fraction of income that translates to dramatically reduced family financial exposure on parental medical events.
+
+### The structural attack script
+
+> *"Your parents are on MediShield Life with a basic GE DPS plan. That gives them C-tier ward access and minimal claim caps. The structural problem: most elderly hospital claims are bigger than MediShield's caps. A hip fracture, a stroke, a cancer diagnosis — these run $30K-$80K in private hospital, and MediShield covers maybe 30-50% of that. The rest is out of pocket — yours or theirs.*
+>
+> *Upgrade plan: B + rider for both parents at ~$1,300/yr each. The rider waives the $3,500 deductible and caps the co-pay at 5%, max $3,000. Plus an accident plan at ~$200-400/yr each for fall-related coverage that the hospital plan doesn't fully address.*
+>
+> *Total: about $3,000-3,400/yr for both parents. Versus the alternative — a single uncovered medical event in your parents' 70s costing $30K-50K out of pocket. The math is structurally one-sided."*
+
+---
+
 ## Quiz
 1. **What are the four mandatory MAS-aligned disclosures the FC must deliver before authentication?**
 - A) Smoker loading, BMI declaration, occupation class, family history

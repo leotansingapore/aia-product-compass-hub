@@ -264,6 +264,204 @@ The **roleplay assignment.** A complete UCC appointment as a layered upsell to a
 
 ---
 
+# Case Study Vault — UCC Field Receipts
+
+Anonymised CI case studies from real closes. The pattern: most prospects believe they have CI coverage but on inspection have either nothing, an under-coverage figure (e.g., $30-50K), or a hybrid life-plan that erodes on claim.
+
+> **Universal toolkit:** the [APA Drawings Playbook](../pro-achiever/drawings-playbook.md) — the CI / ECI / Relapse "buffet" analogy, the GPP vs UCC comparison drawing, and the decoupling diagram (term + standalone CI + pure invest) are the three drawings that close most UCC cases.
+
+### Case Index
+
+| Case | Prospect type | Target play | Anchor | Headline receipt |
+|---|---|---|---|---|
+| **U1** | "Company insurance" prospect | Under-coverage exposure | $1M SFT + $300K UCC | Company plan: $60K Death / $30K CI = 5-10 months expenses. Closed $4.6K UCC + $1.7K SFT + $1.9K HSG + $224 SPA + $1.7K SFT (Full Suite) |
+| **U2** | Young adult with $200K whole-life from parents' agent | Decoupling restructure | UCC multi-claim + GPP term | $200/mo whole-life → $1.6K/yr UCC + term, $800/yr savings invested = +$100K at retirement, CI cover recurring |
+| **U3** | 38-yo with GPP only (no Early CI) | UCC upsell to existing GPP | $300K ECI UCC layer | GPP-only client → adds Early CI ($1,852-2,185/yr to 65), buffet analogy unlocks "5 servings" reframe |
+| **U4** | Pre-retiree with mixed CI riders | Restructure to standalone multi-claim | $300K UCC + relapse | Existing $100K life-plan-bundled CI → $300K multi-claim recurring UCC, savings retained as cash value |
+
+---
+
+## Case U1 — The "company insurance" exposure (Full Suite close)
+
+> **TLDR**
+> - Working professional, "company insurance" gave him **$60K Death / $30K CI** = ~5-10 months of expenses in event of death or CI
+> - Plus: company cover **lapses on job change**, and by then he may have pre-existing conditions (uninsurable)
+> - Closed: **$1M term (SFT) + $300K recurring Early CI (UCC) + private hospital + accident plan + APA wealth slot**
+> - Total premium: ~$10.4K/year. Total FYC: ~$2K in one hour.
+> - **Attack: don't believe "I have company insurance." Pull the actual policy summary. Most company cover is structurally under-sized for income replacement and lapses on job change.**
+
+### The structural exposure
+
+| Need | Company cover | Norm for income replacement | Gap |
+|---|---|---|---|
+| Death | $60,000 | 10-20× annual income (~$1M for $60-100K earner) | $940K |
+| CI | $30,000 | 5-10× annual income | $270-470K |
+| Hospital | Group medical (limited) | Private rider | Significant |
+| Accident | Workplace accident only | Off-work hours + outpatient | Significant |
+| Cover continuity on job change | Lapses immediately | Permanent until policy term | Critical |
+
+A 5-10 month income runway for a death or CI claim is structurally not retirement-grade. The prospect can't fund:
+- Mortgage during recovery period
+- Spouse's adjusted income needs
+- Children's education trajectory
+- Inflation-adjusted lifestyle over 5-15 years post-claim
+
+### The restructure setup (per Leo's actual close)
+
+| Component | Annual premium | Coverage / value |
+|---|---|---|
+| **AIA Pro Achiever (APA) wealth** | $4,800 | Long-term wealth build |
+| **Ultimate Critical Cover (UCC)** | $1,800 | $300K CI / ECI multi-claim |
+| **HealthShield Gold Max (HSGM)** | $1,900 | Private hospital plan |
+| **Solitaire PA (SPA)** | $224 | $5K/accident reimbursement + accidental DD |
+| **Singapore Family Term (SFT)** | $1,700 | $1M Death / TPD term |
+| **Total premium** | **$10,424/yr** | |
+
+Outcome added to the prospect:
+- $1M Death / TPD coverage (replaces the $60K company gap)
+- $300K recurring CI / ECI coverage (replaces the $30K company gap, with multi-claim depth)
+- Private hospital plan
+- Accident plan
+- Long-term wealth accumulation engine
+
+**FYC: ~$2K in one hour** (per Leo's chat log). All from "don't always believe your clients when they say they're covered — dig deeper."
+
+### The structural attack script
+
+> *"For many years, you've said you've got 'company insurance.' Let me pull up the actual policy summary with you... ok. Death cover: $60,000. CI cover: $30,000.*
+>
+> *If something happens — death or CI — your family has roughly 5-10 months of your current expenses covered. After that, they're on their own.*
+>
+> *And the part most people don't realise: company insurance lapses the moment you change jobs. The next job, you'll be older, possibly with conditions that make private cover more expensive — or impossible. So this $60K / $30K isn't even guaranteed; it goes away with the job.*
+>
+> *The structural answer: build the actual cover now, while you're young and healthy. $1M term plan for death — that's just $70-100/month at your age. $300K Critical Illness with multi-claim depth — that's another $150/month. Private hospital plan, accident plan, and a wealth slot for retirement. All in, roughly $800-1,000/month. Your family is then properly covered, and the cover doesn't depend on your job."*
+
+---
+
+## Case U2 — The young adult's $200/mo whole-life restructure
+
+> **TLDR**
+> - Young working adult, paying **$200/mo whole-life plan** placed by parents' family agent years ago
+> - Coverage: **$200K death + $200K TPD + $200K CI + $100K Early CI** — all bundled in one life plan
+> - **Structural flaw:** once Early CI is claimed, the death / TPD cover is partially terminated; cash value forfeited on full CI claim
+> - Restructure into **GPP term plan with recurring CI coverage + APA** at $1.6K/yr (down from $2.4K/yr), redirecting $800/yr savings into investments
+> - Result at 65 (8%): roughly **+$100K of extra retirement value** + CI cover that pays out repeatedly + death cover intact
+> - **Attack: "covered" by parents' agent doesn't mean "properly structured." Decouple the bundled plan.**
+
+### The structural flaw of the bundled whole-life
+
+The prospect's bundled $200/mo whole-life is structurally three plans crammed into one premium:
+1. **Death / TPD cover** ($200K)
+2. **CI / Early CI cover** ($200K + $100K)
+3. **Cash-value accumulation** (the "investment" side)
+
+The problems:
+- **Coverage erodes on claim.** Claim Early CI → death cover reduced by claim amount. Claim full CI → death cover wiped and cash value forfeited.
+- **Single-claim limit.** No multi-claim depth. If you recover from cancer and then have a heart attack at 60, the second CI doesn't pay.
+- **Cash-value side is conservative.** The "investment" component projects at ~2-3% p.a. — lower than CPF OA's guaranteed 2.5%.
+- **Costs more for less coverage.** $2.4K/yr for $200K death + $200K CI. A term plan delivers the same death cover for ~$70/mo ($840/yr) at the same age.
+
+### The decoupled restructure (3 separate optimised pieces)
+
+| New structure | Annual premium | What it does |
+|---|---|---|
+| **GPP term plan ($500K-$1M death + $300K recurring CI)** | $1,600 | Cover, decoupled, multi-claim CI |
+| **APA wealth slot** | $9,600 ($800/mo) — assuming the prospect commits more | Pure investment, compounds at 8% |
+| **Or just redirect the $800/yr savings** | Saved $800/yr from the original $2,400/yr | Compounded to retirement |
+| **Old whole-life** | $0 (surrender / paid-up) | Loss of bundled cover, but cover replaced by decoupled term |
+
+If just the $800/yr savings is redirected (the lower-commitment version): $800/yr × 35 years × 8% compounding = **~$100K of additional retirement value** at 65, on top of the recurring CI cover that pays multi-claim.
+
+### The structural attack script
+
+> *"You've had this whole-life plan since you were 18 — your parents' family agent set it up. $200 a month, $200K of death cover, $200K of CI, $100K Early CI. Let me show you what most people don't realise about whole-life plans.*
+>
+> *Once you claim for CI, the death cover gets reduced by the same amount. Claim TPD, the cash value goes to zero. The plan partially terminates the moment you actually use it. And it only pays once — if you recover from cancer at 45 and have a heart attack at 60, the second event doesn't pay.*
+>
+> *Same $200 a month, decoupled: a term plan with recurring CI multi-claim ($500K-$1M death + $300K CI that pays multiple times) for about $130 a month, and you save $70 a month — roughly $800 a year — to invest in APA. That $800 invested over the next 35 years at 8% compounds to about $100K at retirement.*
+>
+> *Yes, you lose the surrender value from the existing whole-life. But you gain: CI cover that pays out repeatedly, death cover that stays intact, and an additional ~$100K of liquid retirement savings. More coverage, more cash value, more flexibility."*
+
+> Honesty check: surrender penalty on the existing whole-life must be costed. Most whole-life policies bought 5-10 years ago have small or zero surrender penalty. Verify in the in-force illustration before recommending.
+
+---
+
+## Case U3 — The GPP-only upsell to add Early CI
+
+> **TLDR**
+> - 38-yo client with existing GPP term plan, **no Early CI rider**, no multi-claim feature
+> - Has good Major CI cover, but Early CI (carcinoma in situ, mild stroke, Stage 0 cancer) not covered
+> - Upsell: add **$300K Early CI via UCC**, recurring multi-claim, until 65 or 75
+> - Pricing: **$1,852-2,185/yr** depending on coverage term
+> - **Attack: GPP alone leaves a structural gap. The "buffet analogy" (CI vs ECI vs Relapse) makes the gap visceral.**
+
+### The buffet-analogy script (the visceral upsell)
+
+> *"Think of CI claims as a buffet. There are three tables.*
+>
+> *The **Major CI buffet** is the biggest — unlimited servings of every dish. Stage 3 cancer, severe stroke, major heart attack, every late-stage illness. You can claim as many times as you need, as long as it's a different illness. That's what your GPP covers right now.*
+>
+> *But there's a second table — the **Early CI buffet**. It covers Stage 0 cancer, carcinoma in situ, mild stroke, early-stage heart attack. Up to 5 servings — meaning up to 5 separate Early CI claims over your life. Same illnesses as Major CI, but caught earlier and claimable when the diagnosis is far less severe.*
+>
+> *The third table — **Relapse** — is for 6 specific illnesses: cancer, heart attack, stroke, organ transplant, paralysis, and one more. If you've already claimed and recovered, you can come back to the buffet 2 years later and claim again for the same illness.*
+>
+> *Right now you're at the Major CI buffet only. Most of the cases that actually arise — and the ones where early intervention matters most — are at the Early CI buffet. Adding the Early CI layer is roughly $150-180/month for $300K of recurring multi-claim coverage. The earlier the diagnosis, the easier the recovery, and the less your career and income get disrupted."*
+
+### Why this case is structurally important
+
+- **Most CI claims are caught early.** Carcinoma in situ, Stage 0 / Stage 1 cancer, mild stroke, early Type 2 diabetes complications — these are the diagnoses that show up at routine medical checkups in your 40s-50s.
+- **GPP alone misses these.** The prospect thinks they have "CI cover" but doesn't realise the GPP covers Major CI only.
+- **Cost is modest compared to the gap closed.** $1,852-2,185/yr buys $300K of recurring Early CI coverage with multi-claim depth.
+
+### The structural attack
+
+> *"You bought GPP at 25, 13 years ago. Major CI cover is solid. But the medical landscape has shifted — most serious illnesses now get caught at Stage 0 or Stage 1, before they qualify for Major CI claims. Your GPP wouldn't pay out for those.*
+>
+> *The Early CI rider closes that gap. $300K of recurring Early CI cover until 65 is about $150-180 a month. Over 27 years to retirement, that's roughly $48K-$58K of total premium for what could be a $300K-$1.5M (multi-claim) payout if cancer / heart attack / stroke gets caught early. Single biggest gap-close move in the CI category."*
+
+---
+
+## Case U4 — The pre-retiree CI restructure to standalone multi-claim
+
+> **TLDR**
+> - Pre-retiree (~55), has **CI bundled inside a $100K whole-life plan** — single-claim only, cover erodes on claim
+> - Existing whole-life cash value: ~$33K (modest, but unlocks if surrendered or paid-up)
+> - Restructure: replace bundled $100K CI with **$300K recurring multi-claim Early CI (UCC) + term-rider death cover**
+> - Pricing comparison: **$96/mo new structure vs $108/mo old structure = $12/mo more for 3× CI cover + multi-claim + recurring**
+> - **Attack: at pre-retirement age, the CI exposure window is highest (peak likelihood). Single-claim $100K is structurally inadequate.**
+
+### The structural problem at pre-retirement age
+
+- **CI risk peaks 50-70.** This is the window where the prospect's CI exposure is highest, and where multi-claim depth matters most (e.g., one cancer event in 50s, recovery, possible secondary event in 60s).
+- **Bundled life-plan CI doesn't multi-claim.** Single-claim only, and the death cover gets reduced.
+- **Cash value forfeited on full CI claim** — the prospect's "retirement savings" inside the whole-life evaporates.
+
+### The restructure setup
+
+| Plan | Old structure ($108/mo) | New structure ($96/mo) |
+|---|---|---|
+| Death cover | $100K from bundled life plan | $200K-500K from term rider |
+| CI cover | $100K single-claim, erodes on death cover | **$300K recurring multi-claim ECI** via UCC |
+| Cash value | $33K trapped in policy | $33K released as APA top-up (after surrender) |
+| Premium | $108/mo | **$96/mo (lower)** |
+
+Net change for the prospect:
+- 3× the CI cover
+- Multi-claim depth (claim cancer in 50s, claim again for stroke in 60s)
+- Death cover intact regardless of CI claim
+- $33K cash unlocked for APA top-up (additional retirement value at 65)
+- $12/mo lower premium
+
+### The structural attack script
+
+> *"Your current life plan gives you $100K of CI cover, single-claim. If you have one CI event, the cover pays out and your death cover reduces. If a second CI event happens later — different illness, same body — the policy doesn't pay again. Your cash value is also gone the moment the CI claim is paid.*
+>
+> *At 55, your CI risk window is just starting. Most prospects in their 50s and 60s will have either a cancer scare, a cardiovascular event, or a metabolic complication — and the chance of more than one event over 20 years is meaningful.*
+>
+> *Restructure: standalone $300K recurring multi-claim CI from UCC, plus a separate term rider for death cover. Same monthly outflow — actually $12/mo cheaper. 3× the CI cover, multi-claim depth, death cover doesn't erode on CI claim, and your existing $33K cash value gets released as an APA top-up to compound for retirement. Multiple wins from one restructure."*
+
+---
+
 ## Quiz
 1. **How long is the UCC free-look period, and from when does it run for an e-policy?**
 - A) 7 days from purchase
