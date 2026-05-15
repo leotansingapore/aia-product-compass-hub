@@ -25,19 +25,24 @@ Part 1 gives you (a) the hot-button categories APA serves, (b) the prospect arch
 
 The hot-button framework (see [HOLOS Hot Buttons deck](../../next-60-days/_source-holos-decks/hot-buttons.md)): something very important to the prospect, often the source of motivation behind their decisions. The seven canonical categories:
 
-| Hot button | How it shows up for APA prospects |
-|---|---|
-| **Loved ones** | "I don't want my wife / kids to struggle financially." "I want to leave something behind." |
-| **Dreams / goals** | "I want to retire at 55, not 65." "I want to travel after 60." |
-| **Pride / hobby / skill** | "I'm proud of building wealth on my own." (Often shows up as DIY resistance — handle carefully.) |
-| **Faith / religion** | Less common for APA; sometimes overlaps with stewardship framing. |
-| **Needs vs reality** | "I know CPF Life won't be enough but I don't have a plan." (The single most common APA driver.) |
-| **Values / beliefs** | "I believe in compounding." "I believe markets work long-term." "I think being prepared matters." |
+**The single most common APA hot button: "I want to invest, but I don't have the time or skills to DIY."** Most prospects fall here. They know they should be investing for retirement, but managing a portfolio yourself takes time, technical skill, and emotional discipline most people don't have. APA solves that — outsource the management, get equity-like returns without equity-level risk.
+
+**For the prospect who's already DIY-investing**, the frame isn't *"replace your DIY with APA"*. It's *"APA complements your DIY"*:
+
+- DIY = your trading account ($10K-$50K), short-to-medium-term, high-effort, high-emotion. You stay sharp doing this.
+- APA = the long-term retirement vehicle ($1M-$3M target), low-effort, automated, professionally managed, globally diversified. Different tool, different job.
+- Not either-or — both. APA is the safety net so even if your DIY goes sideways, your retirement is structurally protected.
+
+The other hot button categories that surface (less common but worth mapping):
+
+| Hot button                 | How it shows up for APA prospects                                                                                      |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Loved ones**             | "I don't want my wife / kids to struggle financially." "I want to leave something behind."                             |
+| **Dreams / goals**         | "I want to retire at 55, not 65." "I want to travel after 60."                                                         |
+| **Needs vs reality**       | "I know CPF Life won't be enough but I don't have a plan."                                                             |
+| **Values / beliefs**       | "I believe in compounding." "I believe markets work long-term." "I think being prepared matters."                      |
 | **Bad experiences / fear** | "I lost money in crypto / a single stock." "I'm scared of inflation." "I'm scared of running out of money in old age." |
 
-The strongest APA prospects fire on **two or three buttons simultaneously**: needs-vs-reality + fear (the most common combo), or loved-ones + values (the legacy-driven combo), or fear + bad-experience (the DIY-burnout combo).
-
-When a prospect names a hot button, you mark it mentally — that becomes the anchor you'll come back to in Phase 3 problem-build and Phase 5B value-stack.
 
 ## The seven APA prospect archetypes (memorise the patterns)
 
@@ -175,18 +180,62 @@ When a prospect says *"I already DIY my own unit trusts — why APA?"*, the hone
 
 ### 2. Stackable bonuses that compound (Welcome + Special)
 
-Two bonus mechanics, both calculated on annualized premium, both stack on top of fund returns.
+Two bonus mechanics, both calculated on **annualised regular premium** (not policy value), both stack on top of fund returns. Verified from the canonical Product Summary.
 
-**Welcome Bonus (Y1-Y3):** depending on annualized premium tier and IIP option
+#### Welcome Bonus — paid in Y1, Y2, Y3 (depending on premium tier and IIP option)
 
-**Special Bonus (Y10 onwards):** loyalty bonus that runs for the rest of the policy
+**IIP 10 (10-year Initial Investment Period)**
 
-Full tables in the "Bonuses" subsection below.
+| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
+|---|---|---|---|---|
+| Year 1 | 5% | 5% | 10% | 15% |
+| Year 2 | — | 8% | 13% | 18% |
+| Year 3 | — | 10% | 15% | 20% |
+| **Total** | **5%** | **23%** | **38%** | **53%** |
+
+**IIP 15**
+
+| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
+|---|---|---|---|---|
+| Year 1 | 8% | 8% | 13% | 18% |
+| Year 2 | — | 11% | 16% | 21% |
+| Year 3 | — | 14% | 19% | 24% |
+| **Total** | **8%** | **33%** | **48%** | **63%** |
+
+**IIP 20**
+
+| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
+|---|---|---|---|---|
+| Year 1 | 10% | 10% | 15% | 20% |
+| Year 2 | — | 15% | 20% | 25% |
+| Year 3 | — | 20% | 25% | 30% |
+| **Total** | **10%** | **45%** | **60%** | **75%** |
+
+**Worked example** at $12,000/year premium on a 10-yr IIP:
+- Y1: 15% × $12,000 = $1,800
+- Y2: 18% × $12,000 = $2,160
+- Y3: 20% × $12,000 = $2,400
+- **Total over 3 years: $6,360**
+
+#### Special Bonus — loyalty bonus from Year 10 onwards
+
+| Policy Year (annual premium) | Special Bonus (% of annualised regular premium) |
+|---|---|
+| Years 10-20 | **5%** |
+| Years 21 onwards | **8%** |
+
+Per-tier annual dollar amounts:
+
+| Annualised premium | Year 10-20 Special Bonus | Year 21+ Special Bonus |
+|---|---|---|
+| $6,000/yr ($500/mo) | $300/yr | $480/yr |
+| $7,200/yr ($600/mo) | $360/yr | $576/yr |
+| $8,400/yr ($700/mo) | $420/yr | $672/yr |
+| $12,000/yr ($1,000/mo) | $600/yr | $960/yr |
+
+Over a 40-year hold ($12K premium, age 25 → 65), the Special Bonus alone adds roughly **$45,000+** in cumulative value. If the Secondary Insured continues the policy for another 40 years on top of that — another $45K+. That's **structural alpha you cannot get on any DIY platform.**
 
 > *"After 10 years, there will be this thing called the 5% special bonus from year 10. After 20 years, there's an 8% special bonus."*
-
->[!leo]
->please put the table of welcome bonuses and special bonuses from the product summary
 
 ### 3. Capital-guaranteed death benefit
 
@@ -233,157 +282,85 @@ The prospect picks one of three IIPs at signup. **Cannot be changed after issue.
 | **15-year** | When the premium term suits the client's cash-flow horizon | Up to 63% over Y1-Y3 |
 | **20-year** | Maximum bonus, only worth it for long-runway clients | Up to 75% over Y1-Y3 |
 
-The longer the IIP, the higher the Welcome Bonus tier. **In real practice, most APA cases land on the 10-year IIP** — don't default to recommending 15-year just because the bonus is bigger. The right IIP is the one the client can actually stay in.
+**In practice, we sell 10-year IIP the overwhelming majority of the time.** The longer IIPs give a higher Welcome Bonus on paper, but the right IIP is the one the client can stay in without breaking the commitment.
 
->[!leo]
->can really 
-
+**Commission is identical across all three IIPs.** There's no incentive on the FC side to push a longer IIP — the recommendation should always come from the client's actual cash-flow horizon, not from the Welcome Bonus headline.
 
 ## The two fund routes
 
-| Route | Who picks the funds | Best for |
-|---|---|---|
-| **Elite Portfolios** | AIA-managed, 3 risk profiles (Conservative / Balanced / Adventurous) | **The default we recommend for most clients.** Hands-off, professionally rebalanced. |
-| **Self-Select** | Client picks from 41 ILP sub-funds | Clients who want to customise. A common default: the **Adventurous index fund** (~1% p.a. AUM charge — the lowest fund management fee on the platform). |
+| Route                | Who picks the funds                                                  | Best for                                                                                                                                                |
+| -------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Elite Portfolios** | AIA-managed, 3 risk profiles (Conservative / Balanced / Adventurous) | Hands-off, professionally rebalanced. Use for prospects who explicitly want AIA to choose. |
+| **Self-Select**      | Client picks from 41 ILP sub-funds                                   | The default in practice. The **Adventurous index fund** has the lowest fund management charge on the platform (~1% p.a.), which produces the best-looking projection on the Benefit Illustration. |
 
 (Note: **AIA Guided Portfolios is no longer offered.** Ignore that row if you see it in older training material.)
 
-Default 90% of the time: **Elite Adventurous** for a young adult, **Elite Balanced** for someone in their late 30s or 40s with kids. Self-Select is fine when the client genuinely wants to pick — not a "sophisticated investors only" gate.
+**In practice: 99% of the time, allocate 100% to the Self-Select Adventurous Index Fund.** Reason: it carries the lowest FMC on the platform, which means the iPOS+ Benefit Illustration projects the most attractive numbers for the prospect to look at. Elite Portfolios are fine when the prospect explicitly asks for AIA-managed risk profiling, but they're not the structural default.
 
-**Fund switching:** unlimited, free. The prospect can switch from Elite Adventurous to Elite Balanced to Self-Select India Equity etc. at any time, at zero cost.
+**Fund switching:** unlimited, free. The prospect can switch between any of the 41 sub-funds at any time, at zero cost.
 
-## Welcome Bonus — canonical table (verified from Product Summary)
+## Death benefit — the capital-guaranteed floor (a real benefit, not a feature)
 
-The Welcome Bonus is paid as additional units on each basic regular premium received in Year 1, Year 2, and Year 3. Rates vary by **annualized premium tier** and **IIP option**.
+The death benefit is one of the most under-appreciated parts of APA. In any other DIY investment, your family inherits whatever the market value is on the day you die — could be up, could be down 30%. APA puts a floor under that.
 
-### IIP 10 (10-year Initial Investment Period)
+On the original insured's death, the beneficiary gets the **higher** of:
 
-| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
-|---|---|---|---|---|
-| Year 1 | 5% | 5% | 10% | 15% |
-| Year 2 | — | 8% | 13% | 18% |
-| Year 3 | — | 10% | 15% | 20% |
-| **Total** | **5%** | **23%** | **38%** | **53%** |
+- **100% of total regular premiums paid + total top-up premiums − total partial withdrawals**, OR
+- the current policy value
 
-### IIP 15
+That means even in a worst-case market crash, your family gets at least the full premium you paid in (less withdrawals). The market risk on the way out is on AIA, not on your spouse and kids. The upside if the policy value has grown is yours. It's the only investment vehicle most clients will ever own where the floor is contractually guaranteed.
 
-| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
-|---|---|---|---|---|
-| Year 1 | 8% | 8% | 13% | 18% |
-| Year 2 | — | 11% | 16% | 21% |
-| Year 3 | — | 14% | 19% | 24% |
-| **Total** | **8%** | **33%** | **48%** | **63%** |
+Note: if a Secondary Insured was appointed before the death of the Insured, the death benefit is not paid out — the policy continues with the SI as the new Insured (see Differentiator #4). Most clients should always appoint an SI; the death benefit is the fallback if they didn't.
 
-### IIP 20
+## Charges — and why they reframe as features, not taxes
 
-| Policy Year | $2,400-$4,799 | $4,800-$7,199 | $7,200-$11,999 | ≥$12,000 |
-|---|---|---|---|---|
-| Year 1 | 10% | 10% | 15% | 20% |
-| Year 2 | — | 15% | 20% | 25% |
-| Year 3 | — | 20% | 25% | 30% |
-| **Total** | **10%** | **45%** | **60%** | **75%** |
+The reframe is simple: **AIA only earns money on the charges if you break the rules of the plan**. If you follow the rules (pay your premium, don't surrender, don't withdraw early), the only charge that touches you is the supplementary charge — and even that runs only for 10 years before dropping to zero. The rest of the charges are deliberately designed as "this exists if you deviate from the plan." If you stay the course, AIA earns nothing from you on those line items and *pays you back* over time through the Welcome and Special Bonus structure.
 
-**Worked example** for a $12,000/year premium on a 10-yr IIP:
-- Year 1: 15% × $12,000 = $1,800
-- Year 2: 18% × $12,000 = $2,160
-- Year 3: 20% × $12,000 = $2,400
-- **Total over 3 years: $6,360**
+### Supplementary Charge — the real one
+**3.9% p.a. of policy value, deducted monthly, for the first 10 policy years only.** Drops to **0% from Year 11 onwards.**
 
-The "75% maximum Welcome Bonus" line gets thrown around but only applies at the 20-yr IIP × $12K+ premium tier. In real conversations, focus on the **10-yr IIP × $400/mo, $600/mo, $1,000/mo** rows — those are the figures most cases actually quote.
+The reframe: yes there's a charge early — but it's time-limited, and the Welcome Bonus (up to 53% over Y1-Y3 at $12K+ premium / 10-yr IIP) plus the Special Bonus (5% from Y10, 8% from Y21) more than compensate for it over the policy life. Compare to most competitor ILPs which carry a **perpetual** 1%-ish platform fee — on a $1M portfolio that's $10K/yr forever. APA's curve is "high early, then nothing." Competitors' curve is "low early, then bleeding for 40 years."
 
-## Special Bonus — canonical schedule
+### Top-Up Premium Charge — 0%
+You can add lump sums of $1,000+ at any time. Every dollar buys units at NAV. **No front-end charge.**
 
-After the Welcome Bonus expires at Year 3, the Special Bonus kicks in at Year 10 and runs for the rest of the policy.
+### Switching Charge — 0%
+Unlimited fund switches between any of the 41 sub-funds. **No charge.** Pivot from Elite Adventurous to Self-Select India Equity to dividend mode (GDIF / AGDIF) whenever it suits the strategy.
 
-| Policy Year (annual premium) | Special Bonus (% of annualised regular premium) |
-|---|---|
-| Years 10-20 | **5%** |
-| Years 21 onwards | **8%** |
-
-Per-tier annual dollar amounts:
-
-| Annualised premium | Year 10-20 Special Bonus | Year 21+ Special Bonus |
-|---|---|---|
-| $6,000/yr ($500/mo) | $300/yr | $480/yr |
-| $7,200/yr ($600/mo) | $360/yr | $576/yr |
-| $8,400/yr ($700/mo) | $420/yr | $672/yr |
-| $12,000/yr ($1,000/mo) | $600/yr | $960/yr |
-
-Over a 40-year hold (e.g. age 25 → 65 with a $12K premium), the Special Bonus alone adds roughly $45,000+ in cumulative value to the policy — and if the secondary insured continues the policy for another 40 years, that's another $45K+ on top.
-
-## Charges (what comes out of the policy value)
-
-### Supplementary Charge
-- **3.9% p.a. of policy value, deducted monthly, for the first 10 policy years only**
-- Drops to 0% from Year 11 onwards
-- The "high charge early, then zero" curve — contrast with most competitor ILPs that have a perpetual 1%-ish platform fee
-
-### Top-Up Premium Charge
-- **0%** — top-ups buy units at NAV, no front-end charge
-
-### Switching Charge
-- **0%** — unlimited fund switches between sub-funds at no cost
-
-### Surrender Charges (full surrender, on policy value)
-
-The penalty for surrendering early. On a 10-year IIP:
+### Surrender Charges — AIA only earns if you exit early
+On a 10-year IIP:
 
 | Policy Year of surrender | Surrender Charge |
 |---|---|
 | Years 1-2 | 100% (no surrender value paid) |
 | Years 3-4 | tapers down |
 | Years 5-10 | further taper |
-| Year 11+ | 0% |
+| **Year 11+** | **0%** |
 
-(Exact schedule varies slightly by IIP option — verify in iPOS at quote time.)
+The reframe: this isn't a punishment. AIA only collects on the surrender charge if the policyholder breaks the long-term commitment. If you stay invested as the plan was designed, you never pay this — and from Year 11 onwards it's structurally zero. The charge exists to make sure AIA can run the bonus structure profitably; people who break the rules subsidise the bonuses for everyone who doesn't. (Exact schedule varies slightly by IIP option — verify in iPOS at quote time.)
 
-### Partial Withdrawal Charges
-- Apply during the IIP, on a sliding scale similar to the full surrender table
-- Year 11+: 0%
-- Subject to a minimum remaining policy value
+### Partial Withdrawal Charges — same logic
+Applies during the IIP on a sliding scale similar to surrender. Year 11+: 0%. Subject to a minimum remaining policy value. Same reframe — if the prospect leaves the capital alone, this charge doesn't touch them.
 
-### Premium Holiday Charge
-- If the client stops paying regular premiums during the IIP, a Premium Holiday Charge applies on the policy value during the holiday window
-- Designed to discourage casual breaks in premium payment
+### Premium Holiday Charge — same logic
+If the client temporarily stops paying premiums during the IIP, a charge applies on the policy value during the holiday window. The reframe: AIA's plan is designed around consistent monthly contributions; pausing breaks the compounding structure, and the charge keeps AIA neutral. If the client stays disciplined, they never pay this.
 
 ## Premium flexibility features
 
 ### Premium Pass
-- Allows the client to **stop paying regular premiums** after 10 years (on a 10-yr IIP) while keeping the policy in force
-- Policy value continues to grow; bonuses still apply (where eligible)
-- Different from Premium Holiday: Premium Pass is permanent (you've finished your pay term); Premium Holiday is temporary
+After 10 years (on a 10-yr IIP), the client can permanently **stop paying regular premiums** while keeping the policy in force. Policy value continues to grow; bonuses still apply. Different from Premium Holiday: Premium Pass is permanent (you've finished the pay term); Premium Holiday is a temporary pause inside the IIP.
 
 ### Premium Holiday
-- A temporary pause in premium payment during the IIP — useful for job loss / financial emergencies
-- Premium Holiday Charge applies during the pause
-- Policy must be reinstated by resuming premiums before policy lapses
+A temporary pause during the IIP — useful for job loss or short-term cash flow issues. Premium Holiday Charge applies during the pause. Policy must be reinstated by resuming premiums before lapse.
 
 ### Top-up Premiums
-- Lump-sum additions of $1,000 or more at any time
-- Top-up Premium Charge: 0%
+Lump-sum additions of $1,000 or more at any time. Top-up Premium Charge: 0%.
 
 ### Partial Withdrawals
-- $500 minimum, subject to remaining policy value
-- Partial Withdrawal Charges apply during IIP (sliding scale similar to surrender)
+$500 minimum, subject to remaining policy value. Partial Withdrawal Charges apply during IIP only.
 
 ### Fund Switching
-- Unlimited, free, instant
-- The prospect can pivot from Elite Adventurous to Self-Select to dividend mode (GDIF / AGDIF) at any time
-
-## Death Benefit and Accidental Death Benefit
-
-### Basic Death Benefit
-The higher of:
-- **100% of total regular premiums paid + total top-up premiums − total partial withdrawals**, OR
-- the current policy value
-
-This is the capital-guaranteed floor. Even in a market crash, the beneficiary gets back at least what was put in (less any withdrawals).
-
-### Accidental Death Benefit (ADB)
-For the first 2 policy years, in addition to the basic death benefit, AIA pays 100% of total regular premiums paid if death is accidental. Standard exclusions apply (suicide, war, illegal activity, professional sports, etc. — verify in policy contract).
-
-**Note:** if a Secondary Insured was appointed before the death of the Insured, the death benefit is not paid out — the policy continues with the SI as the new Insured (see Differentiator #4).
-
+Unlimited, free, instant.
 ## Who APA is for (target market)
 
 - Anyone aged 1 month to 70 with a long-term horizon (10+ years minimum, ideally 20-40)
@@ -391,35 +368,19 @@ For the first 2 policy years, in addition to the basic death benefit, AIA pays 1
 - Someone willing to commit to a regular monthly premium they won't stop
 - Cases land most often in the **$4.8K-$6K annual premium band** (case sizes have trended up from $3.8K average to $5K)
 
-## Who APA is NOT for (anti-market)
+## The four "wrong-fit" objections — actually still APA-fit with the right reframe
 
-Naming who APA isn't for is one of the highest-trust moves in a meeting. It signals you're matching a product, not pushing one.
+The four most common reasons prospects think APA isn't for them — almost always misframed expectations, not structural mismatches. Treat each as an objection to reframe, not as a reason to walk the case.
 
-> *"Honestly, this plan isn't right for everyone. If you want short-term liquidity, guaranteed cash values, or a fixed return, APA is the wrong vehicle — I'd rather tell you that now than walk you into something that doesn't fit."*
+| Objection (as stated) | The reframe (full handling in Day 5) |
+|---|---|
+| **"My horizon is under 10 years"** | This is the long-term bucket — it shouldn't conflict with short or mid-term goals. If you've budgeted properly, this slice is separate from your liquid funds. You have to plan for retirement anyway. |
+| **"I want guaranteed cash values / fixed returns"** | But do you want to guarantee a *loss* to inflation? Fixed-return options cap your upside at 2-3%; APA's projection is conservative at the MAS-allowed 8% (track record is higher). The capital-guaranteed death-benefit floor is your actual structural guarantee. |
+| **"I'm risk-averse to investment"** | APA is *less* risky than DIY stocks / single-industry exposure / crypto — globally diversified across countries, sectors, asset classes, with professional management. Equity-like returns with lower volatility because of the diversification. |
+| **"I need liquidity"** | We're not asking you to put everything here — the one-third rule (covered in Day 2 Phase 3) carves out short-term and mid-term liquidity separately. APA is the long-term third. The structural lock is precisely what protects you from emotional decisions in market drops. |
 
-The four anti-market profiles:
+Day 5 covers each of these reframes in full as objection-handling. The point on Day 1 is: don't walk away from these prospects. The vast majority of APA cases close *after* a reframe, not because the prospect's situation perfectly matches an idealised target profile on the first pass.
 
-1. **Sub-10-year horizon** — APA needs at least 10 years to make sense; recommend an endowment or fixed deposit
-2. **Wants guaranteed cash values** — APA is non-participating; recommend a participating endowment
-3. **Risk-averse to investment** — APA carries fund risk; recommend a savings plan or annuity
-4. **Needs liquidity** — APA has surrender charges in the IIP; recommend a flexible savings product
-
-That cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
-
-## Key numbers worth memorising
-
-| # | Number | What it means |
-|---|---|---|
-| 1 | **3.9% p.a.** | Supplementary charge on policy value, **first 10 policy years only**; drops to 0% after that |
-| 2 | **5% / 8%** | Special Bonus from Year 10 / Year 21 (calculated on annualized premium) |
-| 3 | **15% / 18% / 20%** | Welcome Bonus per year (Y1/Y2/Y3) at $12K+ annualised premium on a 10-yr IIP — total 53% / $6,360 |
-| 4 | **$2,400/yr ($200/mo)** | Minimum annual premium; minimum top-up is $1,000 |
-| 5 | **10 / 15 / 20** | IIP options (years) — locked at signup |
-| 6 | **41** | Number of ILP sub-funds available in Self-Select |
-| 7 | **age 100** | Policy maturity |
-| 8 | **14 days** | Free-look period from receipt of contract |
-
-The "75% maximum Welcome Bonus" line is a real number (20-yr IIP × $12K+ premium), but in real conversations the relevant figures are the **10-year IIP welcome bonuses at $400, $600, and $1,000/mo** — verify them in iPOS before drilling them.
 
 ## The signature pitch concept + dividend mode → Day 2
 
