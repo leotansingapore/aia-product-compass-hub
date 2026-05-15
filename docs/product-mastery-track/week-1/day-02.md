@@ -89,7 +89,7 @@ Make it relatable, not corporate. The frame:
 
 The underlying message: schools don't teach wealth-building. The system shapes employees, not entrepreneurs. That's why self-learning is critical — and why this conversation matters.
 
-### Introduce Moneybies + free resources (send via WhatsApp NOW)
+### Introduce Moneybees + free resources (send via WhatsApp NOW)
 
 > *"That's why we created Moneybies — an educational platform for young adults."*
 
@@ -338,9 +338,33 @@ Bring up the Investing Success & Track Record deck — slide 4 shows 10-year fun
 
 Position it honestly: AIA's funds, on average across the lineup, have a verified long-term track record that competes with or beats the standard ETF benchmarks. Don't claim "#1 on every metric" — point at the deck.
 
-### The retirement reverse-engineering whiteboard demo
+### The one-third budgeting rule (set this up first)
 
-Once outsourcing-to-AIA is established, this is the demo that closes most APA cases. Pull out a piece of paper. The reason it works: most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
+Before running the retirement numbers, install the budgeting frame. This is what makes the retirement reverse-engineer land — without it, the prospect hears the monthly contribution figure as "money I don't have" rather than "money I should already be allocating."
+
+> *"There are three buckets you should split your income into:*
+>
+> *One — short-term: food, transport, day-to-day expenses, eating out, the things you spend every month.*
+>
+> *Two — medium-term: house downpayment, wedding, holidays, car, the bigger 3-to-7-year goals.*
+>
+> *Three — long-term: insurance, investments, the 20-to-40-year retirement bucket.*
+>
+> *The mistake most people make is they plan short-term and medium-term first, then invest whatever's left at the end of the month. The right move is the opposite. Plan long-term first — fund retirement first — then fund medium-term, then short-term."*
+
+Then drop the rule of thumb:
+
+> *"As a working benchmark: aim for roughly 1/3 of your income to each bucket. Within the long-term third, about 10% goes to insurance and 20% goes to investments. So someone earning $3,000/month should have around $600/month in the long-term investing bucket."*
+
+The prospect's pushback is often *"but I can't save 1/3 right now"*. That's fine — anchor the percentage and adjust:
+
+> *"Totally fair if you can't hit 33% today. But let's at least get the principle right: long-term first, not last. Whatever you can spare right now goes into the long-term bucket first — even if it's $200/month to start."*
+
+Now you've earned permission to run the actual retirement numbers.
+
+### The retirement reverse-engineering whiteboard
+
+Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
 
 Anchor first:
 
@@ -401,11 +425,6 @@ Pot depletes to $0 at 85    Capital preserved
 
 > *"If you don't do this, you have to save $5,400/month, and the pot still depletes to zero. If you do this, just $1,300/month, you preserve the capital, AND you can still draw about $10-11K/month in dividends for life."*
 
-Then hand it back instead of selling:
-
-> *"Does that line up with how you've been thinking about retirement, or does it change the picture for you?"*
-
-Most prospects need a beat to react — let them.
 
 ### Transition into Phase 4
 
@@ -517,21 +536,21 @@ For a prospect who can pay more upfront for fewer years:
 
 This is the *"I want to be done paying by 40"* variant. Many tech professionals, doctors, and dentists prefer this. Bring it up if the prospect surfaces a strong income but a finite-runway commitment preference.
 
-### The one-third rule
+### The option close — lead with the leverage math, then offer three tiers
 
-Anchor on a clean budgeting frame:
+The point of the option close isn't just "pick a number" — it's to show the prospect that a small bump in monthly premium translates into a big difference in retirement cash value. Once they see the leverage, the three-tier choice frames itself.
 
-> *"I suggest investing at least 20-25% of your income every month."*
+Run the math on screen or on paper, anchored against the $600/month baseline you've been working with:
 
-| 1/3 | 1/3 | 1/3 |
+| Monthly premium | Approx. value at age 65 | Vs $600/mo baseline |
 |---|---|---|
-| **Short-term** — food, transport, daily needs | **Medium-term** — house, car, wedding, holidays | **Long-term** — 10% insurance + 20% investments |
+| **$500/mo** | ~$1,100,000 | -$316K |
+| **$600/mo** | ~$1,416,700 | baseline |
+| **$700/mo** | ~$1,650,000 | +$233K |
 
-For someone earning $3,000/month, that puts $600/mo in the long-term investing bucket.
+> *"Look at the difference. Going from $500 to $700 — that's $200 a month, basically one less restaurant dinner a week — adds over half a million dollars to your retirement pot. The leverage of an extra $100 to $200 per month is enormous because of how long it compounds."*
 
-### The option close — three tiers
-
-Always Two Never Three becomes the three-options ladder for APA:
+Then offer the three tiers:
 
 | Option | Premium | Position |
 |---|---|---|
@@ -539,20 +558,42 @@ Always Two Never Three becomes the three-options ladder for APA:
 | Option 2 | **$600/mo** | "Sweet spot. Balanced. Can always increase as income grows." |
 | Option 3 | **$700/mo** | "Start here, never have to increase again. Set-and-forget retirement planning." |
 
-Below $500 → *"Probably not effective for your retirement goal — let's at least start at $500."*
+Then ask:
+
+> *"Looking at those three — which one would you prefer?"*
+
+This is the upsell moment. Most prospects who came in for $500 will pick $600 or $700 once they see the cash-value gap themselves. Anchor below $500 as *"probably not effective for your retirement goal — let's at least start at $500."*
 
 ### The decision moment
 
-> *"Mr Prospect, which option would you prefer?"*
-
 Goal of Phase 4: get the option close, get buy-in on a monthly amount, confirm they're open to commit at that level.
+
+### Reinforce with the Special Bonus structure
+
+Once the prospect picks a tier, reinforce the choice by surfacing how APA's structural bonuses compound on top of whatever they chose. This is the moment to bring up the **Special Bonus mechanic** — most prospects don't know APA pays bonuses on top of the investment growth.
+
+> *"And there's something I want you to know about what you've just picked. APA isn't just the fund returns — AIA adds a Special Bonus on top of your annualized premium.*
+>
+> *Starting from year 10, you get a 5% Special Bonus per year on your annualized premium. From year 21 onwards, that 5% steps up to 8% per year — for the rest of the policy."*
+
+Run the math on their chosen tier:
+
+| If they picked | Annualised premium | Special Bonus from Y10 | Special Bonus from Y21 |
+|---|---|---|---|
+| $500/mo | $6,000/yr | $300/yr | $480/yr |
+| $600/mo | $7,200/yr | $360/yr | $576/yr |
+| $700/mo | $8,400/yr | $420/yr | $672/yr |
+
+Then close the value reinforcement:
+
+> *"That bonus stack is what DIY platforms can't replicate. It's structurally baked into the plan. So at $600/month, the projected $1.4M at 65 already includes that bonus stack working in the background. The longer you hold, the more it compounds — and from year 21 it accelerates."*
+
+This reinforces the decision they just made AND surfaces a fact most prospects haven't been told. It's not a re-pitch — it's a *"here's why what you just chose is going to compound harder than you might have realised"* moment.
 
 ### Two paths after the option close
 
-- **Conservative:** *"Let me prepare a detailed quotation for our next meeting where we'll go through Phase 5 — the actual application."*
-- **Aggressive (case-by-case):** *"Great choice. Let me pull up the application form and get you started right now."*
-
-The case for aggressive: fresh grad picking $1,000/mo with low cognitive friction — close on the spot, lose them to the weekend otherwise.
+- **Conservative:** set a next meeting to go through more details about the plan, illustration walkthrough, riders, etc.
+- **Aggressive (case-by-case):** try to close on the spot. Best when the prospect has high momentum and low cognitive friction — e.g. fresh grad picking $1,000/mo, momentum is hot, lose them to the weekend otherwise.
 
 ---
 
