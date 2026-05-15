@@ -192,19 +192,29 @@ These are anonymised but verified case studies — pulled from real competitor i
 
 The pattern across all of them: the prospect already feels covered, the policy looks fine on its face, the structural flaw is invisible until you walk them through the actual math. These are the receipts that move "I'll think about it" to "show me the proposal."
 
-All APA projections below come from running the actual APA calculation engine (`growing-age-calculator` repo, `simulateTraditionalGrowth`) with 10-yr IIP cap. The script lives at `growing-age-calculator/tools/run-case-studies.ts` — run it to generate fresh numbers for any new prospect scenario.
+All APA projections below come from running the actual APA calculation engine (`growing-age-calculator` repo, `simulateTraditionalGrowth`). The script lives at `growing-age-calculator/tools/run-case-studies.ts` — run it to generate fresh numbers for any new prospect scenario.
+
+### A note on APA premium duration (read before quoting any of these numbers)
+
+APA's 10-year IIP is the **minimum** premium term, not a cap. Most prospects elect to continue paying premiums beyond Y10 — the Special Bonus (5% Y11-20, 8% Y21+) only credits in years where premium is being paid, and continued contributions keep compounding the base.
+
+For **apples-to-apples comparison against a competitor's quote, match the competitor's payment duration**. If the prospect's quote is FWD at $600/mo for 25 years, run APA at $600/mo for 25 years. If they're comparing whole-life paying 30 years till 65, run APA continuous till 65.
+
+The 10-year IIP framing remains valid as **a separate shape proposition**: same total premium front-loaded into 10 years instead of stretched across 25-30 — that "shape" advantage shows up in Case G, where the same $180K paid in over 10 years instead of 25 produces a materially better outcome at 65.
+
+Each case below uses the duration that matches the prospect's current quote / existing policy.
 
 ### Case Index — which case matches the prospect in front of you?
 
-| Case | Prospect type | Target play | Anchor monthly | Headline receipt |
+| Case | Prospect type | Target play | Duration matched | Headline receipt |
 |---|---|---|---|---|
-| **[A](#case-a--the-pru-active-life-prospect-play-a-receipt)** | 35-yo whole-life holder | Play A (BTIR restructure) | $371.86/mo Pru bundle | Pru: $124K @70 → APA: $176K @65 |
-| **[B](#case-b--the-fwd-invest-first-summit-prospect-play-b--fee-attack-receipt)** | 25-yo ILP holder | Play B (fee attack) | $600/mo FWD | 11.2% TDC vs APA ~5-6%; 7.26x vs 9.25x multiple |
-| **[C](#case-c--the-fragmented-coverage-young-adult-consolidation-receipt)** | 24-yo, 5 plans | Consolidation | $807.80/mo across 5 plans | Choice Saver $38K @35 → APA $545K @65 |
-| **[D](#case-d--the-pre-retiree-cash-value-redirect-play-a-pre-retiree-variant)** | 50-yo, paid-up whole-life | Play A (pre-retiree variant) | $400/mo + $50K cash-value redirect | $82K monthly slot + ~$154K lump-sum at 65 |
-| **[E](#case-e--the-mid-career-peak-earner-welcome-tier-1-receipt)** | 45-yo, peak earnings | Play C (BTIR fresh start) | $1,200/mo APA | Welcome stack $7,632 + $355K @65 |
-| **[F](#case-f--the-diy-platform-investor-supplement-receipt)** | 30-yo with $80K in Endowus/StashAway | Supplement (not restructure) | $1,000/mo APA | $808K @65 alongside DIY |
-| **[G](#case-g--the-same-money-fwd-comparison-receipt)** | 25-yo deciding FWD vs APA | Play B (pre-signing close) | $1,500/mo APA = $180K same total as FWD | APA $1.69M vs FWD $1.31M at 65 |
+| **[A](#case-a--the-pru-active-life-prospect-play-a-receipt)** | 35-yo whole-life holder | Play A (BTIR restructure) | $321/mo APA × 30 yrs vs Pru × 30 yrs | Pru: $124K @70 → APA: **$338K @65** |
+| **[B](#case-b--the-fwd-invest-first-summit-prospect-play-b--fee-attack-receipt)** | 25-yo ILP holder | Play B (fee + structure attack) | $600/mo APA × 25 yrs vs FWD × 25 yrs | APA $1.19M vs FWD $1.31M @65 — close; **win on structure + tier-bump** |
+| **[C](#case-c--the-fragmented-coverage-young-adult-consolidation-receipt)** | 24-yo, 5 plans | Consolidation | $500/mo APA × 40 yrs continuous | Choice Saver $38K @35 → APA **$1.14M @65** |
+| **[D](#case-d--the-pre-retiree-cash-value-redirect-play-a-pre-retiree-variant)** | 50-yo, paid-up whole-life | Play A (pre-retiree variant) | $400/mo APA × 15 yrs + $50K cash-value redirect | $106K monthly slot + ~$150K lump-sum at 65 = **~$256K** |
+| **[E](#case-e--the-mid-career-peak-earner-welcome-tier-1-receipt)** | 45-yo, peak earnings | Play C (BTIR fresh start) | $1,200/mo APA × 20 yrs continuous | Welcome tier 1 stack + **$550K @65** |
+| **[F](#case-f--the-diy-platform-investor-supplement-receipt)** | 30-yo with $80K in Endowus/StashAway | Supplement (not restructure) | $1,000/mo APA × 35 yrs continuous | **$1.60M @65** alongside DIY |
+| **[G](#case-g--the-same-money-fwd-comparison-receipt)** | 25-yo deciding FWD vs APA | Play B (front-load shape close) | APA $1,500 × 10 yrs IIP vs FWD $600 × 25 yrs (same $180K) | APA **$1.69M** vs FWD $1.31M @65 — front-load wins |
 
 ---
 
@@ -214,8 +224,8 @@ All APA projections below come from running the actual APA calculation engine (`
 > - Prospect pays **$371.86/mo** for Pru Active Life bundle (3 policies stacked)
 > - At 8% projection, surrender value at 70: **$124,038** on ~$134K premium paid
 > - Cover **erodes itself** on any CI / TPD claim — the cash they're "saving for retirement" disappears the day they need it
-> - BTIR restructure: $50/mo term + $321/mo APA on 10-yr IIP projects **$175,724 at 65** at 8%
-> - **Same monthly outflow → ~$51K more cash at 65, paid in ~$77K less premium, and cover doesn't erode on claim**
+> - BTIR restructure (matched duration): $50/mo term + $321/mo APA continuous till 65 projects **$338,366 at 65** at 8%, $175,068 at 4% floor
+> - **Same monthly outflow, same 30-yr duration → ~$214K more cash at 65, plus pure term cover that doesn't erode on claim**
 
 **Profile:** prospect was sold Pru Active Life as the "all-in-one" whole-life bundle. Three policies stacked: base whole-life, supplementary cover rider, accident rider.
 
@@ -260,44 +270,46 @@ So after ~30 years of paying $371.86/mo (~$133K in premiums), the policy returns
 >
 > *And the part most people don't realise: if you ever claim on the CI rider, your death and TPD cover drops by the amount paid out. If you claim TPD, the cash value you're hoping to use at 70 is gone the moment the policy pays. The structure cannibalises itself the one time you actually need it.*
 >
-> *Same $371.86 a month, decoupled: ~$50/mo for $500K-$1M of pure term cover till 65, and $321/mo into APA on a 10-year IIP. The APA stops taking premium after year 10 — your budget is freed from year 11 onwards. And the cover stays intact even if you claim."*
+> *Same $371.86 a month, decoupled across the same 30-year horizon: ~$50/mo for $500K-$1M of pure term cover till 65, and $321/mo into APA. APA at the 8% projection lands $338K at 65 versus your $124K at 70. And the cover stays intact even if you claim."*
 
-### The restructure setup (verified APA numbers — 35-year-old, 10-yr IIP, 8% IIRR)
+### The restructure setup (verified APA numbers — matched duration, 30 years, age 35→65)
 
-Numbers below come from running the actual APA calculation engine (`growing-age-calculator` repo, `simulateTraditionalGrowth`) — not illustrative placeholders.
+Numbers below come from running the actual APA calculation engine (`growing-age-calculator` repo, `simulateTraditionalGrowth`) at continuous pay matching the Pru policy's 30-year payment horizon.
 
-| Setup | Monthly | Total paid over 30 years | Cover for 30 years | Cash at 65 (8%) |
-|---|---|---|---|---|
-| Pru Active Life bundle (existing) | $371.86 | ~$133,870 | $500K Death/TPD + $150K CI (erodes on claim) | $124,038 (@70, not 65) |
-| BTIR: APA + standalone term | $371 Y1-10, $50 Y11-30 | ~$56,520 | $500K-$1M term till 65 (does not erode on claim) | **$175,724** APA |
+| Setup | Monthly | Total paid over 30 years | Cover for 30 years | Cash at 65 (8%) | Cash at 65 (4%) |
+|---|---|---|---|---|---|
+| Pru Active Life bundle (existing) | $371.86 | ~$133,870 | $500K Death/TPD + $150K CI (erodes on claim) | $124,038 (@70, not 65) | meaningfully lower |
+| BTIR: APA + standalone term (matched duration) | $321 APA + $50 term continuous | ~$133,560 | $500K-$1M term till 65 (does not erode on claim) | **$338,366** APA | **$175,068** APA |
 
-The APA projection comes from `simulateTraditionalGrowth(321, 35, 65, 8)` with 10-year IIP cap — runs $321/mo for 10 years ($38,520 total premium), then compounds at 8% with no further deductions until 65.
+The APA projection comes from `simulateTraditionalGrowth(321, 35, 65, 8)` running $321/mo continuous for 30 years ($111,708 total APA premium) plus ~$50/mo term ($18K total).
 
-**Net effect for the prospect:**
-- ~$77,350 less premium paid over 30 years
-- ~$51,700 more cash at 65 (and at 65, not 70)
-- 20 years of freed budget (~$321/mo) to invest however they want — at 8% compounding, that's another ~$176K by 65 in any sensible vehicle
+**Net effect for the prospect (matched duration, same monthly outflow):**
+- ~$214,000 more cash at 65 (and at 65, not 70 — five extra years of usable retirement income)
 - Pure term cover for the full 30 years that **doesn't erode if claimed**
+- Both Welcome Bonus stack (5% Y1) and Special Bonus stack (5% Y11-20, 8% Y21+ on annualised premium, which only credits while premium is being paid)
 
-### The 4% floor (honesty check)
+### Alternative shape — 10-yr IIP front-load
 
-The APA projection at the **regulatory 4% lower bound** (running the same engine with `interestRate=4`):
-- APA value at 65: **$69,246**
+For prospects who prefer to clear premium obligations early:
 
-So even on the worst-case projection APA itself is allowed to show, the restructure beats Pru's 8% projected surrender value at age 70 ($124,038) by paying ~$77K less in premium, with 20 years of freed budget left over. The 8% case is the upside. The 4% case is the floor. Pru's 4% case looks materially worse than $124K — verify in their own illustration when running the actual numbers in the appointment.
+- $321/mo APA × 10 years only ($38,520 total premium) → $175,724 at 65 at 8%, $69,246 at 4%
+- After year 10, monthly budget is fully freed ($371/mo = ~$67K of cash flow over Y11-30 to invest elsewhere)
+- Same monthly outflow, but the prospect stops paying APA after year 10. Their freed budget compounded elsewhere at 8% ≈ another ~$176K by 65 in any sensible vehicle
+
+Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 ($338K vs $175K) because of continued Special Bonus credits and the larger compounding base. The front-load shape gives premium freedom from year 11. Pick the shape that fits the prospect's cash-flow picture.
 
 > Caveat: surrender penalty and lost in-flight bonuses on the existing Pru Active Life must be costed honestly before any move. Run the math in writing. Don't push the restructure if the surrender penalty wipes the gain.
 
 ---
 
-## Case B — The FWD Invest First Summit prospect (Play B / fee attack receipt)
+## Case B — The FWD Invest First prospect (Play B / fee attack receipt)
 
 > **TLDR**
 > - 25-yo prospect quoted FWD Invest First Summit at **$600/mo for 25 years = $180,000 total**
 > - FWD's own illustration shows TDC reaching **11.2% at age 65** and total deductions at 8% = **$434,343 (24.9% lifetime erosion)**
-> - APA on same $600/mo (10-yr IIP, only $72K total): **$665,828 at 65 → 9.25x multiple vs FWD's 7.26x**
+> - **Apples-to-apples (same $600/mo × 25 yrs):** APA $1,187,405 at 65 (8%) vs FWD $1,306,872 — **near parity** on raw return at this premium tier
 > - Sum insured = 105% of policy value (cover crashes with the market). APA floor = 100% of premiums guaranteed
-> - **Same monthly. APA delivers more cash per dollar invested and stops taking premium after year 10.**
+> - **Two ways APA wins at this prospect tier:** (1) **bump to $1,000+/mo** for Welcome Bonus tier 1 (15/18/20%); (2) **switch to 10-yr IIP front-load** (same $180K) → APA $1.69M at 65 vs FWD $1.31M ([Case G](#case-g--the-same-money-fwd-comparison-receipt))
 
 **Profile:** 25-year-old non-smoker, sold FWD Invest First Summit at $600/mo on a 25-year premium term, policy till age 100. Sum insured: 105% of policy value (a near-zero death benefit — this is a pure investment ILP with a token life-cover wrapper).
 
@@ -352,24 +364,36 @@ The FWD Invest First Summit sum-insured field reads "105% of policy value" — m
 
 > *"Look at your sum insured: 105% of policy value. If the market drops 30%, your life cover drops with it. APA's death benefit floor is 100% of total premiums paid, contractually guaranteed. Your worst-case payout in APA is what you put in. Your worst-case in FWD is whatever the units are worth that day."*
 
-### The same-money APA comparison (verified APA numbers — 25-year-old, 10-yr IIP, 8% IIRR)
+### The apples-to-apples APA comparison (verified APA numbers — matched duration, 25 yrs)
 
-Run from `simulateTraditionalGrowth(600, 25, 65, 8)` with 10-yr IIP cap.
+Run from `simulateTraditionalGrowth(600, 25, 65, 8)` with premium pay matching FWD's 25-year premium term (premium ends at age 50, policy compounds to 65).
 
-| Setup | Monthly | Total paid | At age 65 (8%) | Premium-to-value multiple |
-|---|---|---|---|---|
-| FWD Invest First Summit (existing illustration) | $600 × 25 years | $180,000 | $1,306,872 surrender | **7.26x** |
-| APA on 10-yr IIP (same monthly) | $600 × 10 years | $72,000 | $665,828 | **9.25x** |
+| Setup | Monthly | Total paid | At age 65 (8%) | At age 65 (4%) | Premium-to-value (8%) |
+|---|---|---|---|---|---|
+| FWD Invest First Summit (existing illustration) | $600 × 25 years | $180,000 | $1,306,872 | not in FWD illustration | 7.26x |
+| APA — same monthly, same 25-yr pay | $600 × 25 years | $180,000 | **$1,187,405** | **$399,161** | 6.60x |
 
-Same monthly outflow. APA stops taking premium after 10 years; FWD keeps charging for 25.
+**Reading this honestly:** at the $600/mo premium tier (which lands in APA's $7,200-$11,999 Welcome Bonus tier — 10/13/15%, not the top tier), the absolute-return gap at matched duration is small (~$120K, ~9%). At this tier, **APA's edge is structural, not raw absolute return** at the same shape:
 
-**The killer line for the FWD prospect:** *"You pay $600 a month for 25 years to FWD, $180K total. You get back $1.3M at 65 — a 7.26x multiple on your money. With APA at the same $600/mo on a 10-year premium term, you only pay in $72K total and get back $666K — a 9.25x multiple. APA delivers more cash per dollar invested. And you stop paying after year 10, so years 11-25 your $600 a month goes wherever you want."*
+- **Death benefit floor:** APA contractually pays 100% of premiums paid as a death benefit floor. FWD's death benefit = 105% of policy value (cover crashes with the market).
+- **Currency / estate-tax:** APA is SGD-denominated; FWD's allocation includes USD-domiciled funds with potential US estate-tax exposure on death.
+- **Secondary insured:** APA supports a managed-policy inheritance; FWD does not.
+- **Surrender flexibility:** APA's surrender charge cliffs to 0% from Y11. FWD's surrender charges run further into the policy life.
+- **Singapore par-fund backing:** APA sits inside AIA's institutional managers (Wellington, BlackRock, Baillie Gifford, Capital Group) with no headline manager change risk.
 
-**At the 4% projection floor:** APA returns $179,179 at 65 from $72K premium (2.49x). FWD's floor is meaningfully worse because of the perpetual deduction layer (run their own 4% column to confirm in the appointment).
+### The two ways APA wins at this prospect (the actual close)
+
+If raw-return parity isn't enough to close — and it usually isn't on its own — the prospect needs to see one of two shape changes:
+
+**Move 1 — Bump premium tier to unlock Welcome Bonus tier 1.** If the prospect can stretch to $1,000+/mo ($12K+/yr annualised), APA cuts in the top Welcome Bonus tier: 15% Y1 + 18% Y2 + 20% Y3 = **53% of annualised premium** in bonus credits across years 1-3. FWD has no equivalent. At $1,200/mo this is $7,632 of guaranteed bonus stack in the first three years before compounding even starts. See [Case E](#case-e--the-mid-career-peak-earner-welcome-tier-1-receipt) for the verified numbers.
+
+**Move 2 — Switch to the 10-yr IIP front-load shape.** Same $180,000 total premium, but front-loaded into 10 years instead of 25. APA at $1,500/mo for 10 years projects **$1,692,753 at 65 (8%)** — that's $385,881 more than FWD's same-money 25-year stretch. Full receipt in [Case G](#case-g--the-same-money-fwd-comparison-receipt). The structural reason: front-loaded dollars get more compounding time before deductions slow them.
+
+Pick the move that fits the prospect. If they can't go above $600/mo and they can't front-load, the honest pitch is "FWD and APA are within ~9% on raw return at this shape — APA wins on structural certainty (death benefit floor, no FX/estate-tax exposure, secondary insured, Singapore-domiciled). Pick APA for the cleaner structure, not the bigger number."
 
 ### The restructure setup
 
-For an FWD prospect already locked in: the math has to be run case-by-case (surrender vs continue, lost booster bonuses, etc.). For a prospect comparing FWD vs APA *before* signing — APA wins on TDC, on premium-to-value multiple, on the Welcome + Special Bonus stack (FWD has neither), and on the death benefit floor.
+For an FWD prospect already locked in: the math has to be run case-by-case (surrender vs continue, lost booster bonuses, etc.). For a prospect comparing FWD vs APA *before* signing — close on Move 1 (tier-bump) or Move 2 (front-load shape) plus the structural ledger above.
 
 ---
 
@@ -379,8 +403,8 @@ For an FWD prospect already locked in: the math has to be run case-by-case (surr
 > - 24-yo with **5 plans across 2 insurers = $807.80/mo** total outflow
 > - Singlife Choice Saver at **4.25% PIRR** is the biggest piece: $296/mo → projected maturity at 35: $38,135 (on ~$61K paid in)
 > - Death cover only $35K, no hospitalisation, no ECI, no income protection
-> - Restructure to **$500/mo APA on 10-yr IIP** ($60K total premium): projected **$545,463 at 65 (8%)**, $147,078 at 4% floor
-> - **Same monthly outflow. 5 plans → 4. Death gap closed from $35K to $1M+. Wealth slot moved from 4.25% PIRR endowment to 8% APA projection.**
+> - Restructure to **$500/mo APA continuous to 65** ($234K total premium across 40 years): projected **$1,135,467 at 65 (8%)**, $444,085 at 4% floor
+> - **Same monthly outflow. 5 plans → 4. Death gap closed from $35K to $1M+. Wealth slot moved from 4.25% PIRR endowment to 8% APA projection with the Special Bonus stack accruing the whole way.**
 
 **Profile:** 24-year-old, working professional. Already holds five separate plans across two insurers — small premiums each, no holistic plan, big gaps in protection.
 
@@ -416,7 +440,7 @@ Five policies, **$807.80/mo**, and still underwater on every major protection li
 >
 > *Meanwhile your death cover is $35,000 and your TPD cover is $34,500. If anything serious happened, you'd be exposed.*
 >
-> *Same $807 a month, restructured: keep the AIA CI policies because they're already paid into. Replace the Singlife Choice Saver and the AIA Investment with a single APA at $500/mo on a 10-year premium term — total premium $60K over 10 years. Projected at 65 at 8% is $545,463 (verified from the APA engine). At the 4% floor, $147,078. Versus the Singlife Choice Saver's projected $38,135 at 35 on $60,560 of premium paid in. The remaining $200-250/mo plugs the protection gap with a term policy at $500K-$1M, plus a hospital plan."*
+> *Same $807 a month, restructured: keep the AIA CI policies because they're already paid into. Replace the Singlife Choice Saver and the AIA Investment with a single APA at $500/mo continuous to 65 — total premium $234K over 40 years. Projected at 65 at 8% is $1,135,467 (verified from the APA engine). At the 4% floor, $444,085. Versus the Singlife Choice Saver's projected $38,135 at 35 on $60,560 of premium paid in. The remaining $200-250/mo plugs the protection gap with a term policy at $500K-$1M, plus a hospital plan."*
 
 ### The restructure setup
 
@@ -435,16 +459,18 @@ Five policies, **$807.80/mo**, and still underwater on every major protection li
 
 Same premium outlay. Five policies down to four. Death/TPD gap closed from $35K to $1M+. Hospital and accident gaps closed. Wealth slot moved from 4.25% endowment to 8% APA projection.
 
-**The verified APA numbers (engine output):**
+**The verified APA numbers (engine output — $500/mo continuous to 65, 40-yr pay):**
 
 | Age | APA value at 8% | APA value at 4% (floor) |
 |---|---|---|
 | 35 | $70,394 | $58,889 |
-| 45 | $143,082 | $82,069 |
-| 55 | $279,367 | $109,866 |
-| 65 | **$545,463** | $147,078 |
+| 45 | $230,470 | $154,649 |
+| 55 | $539,184 | $281,178 |
+| 65 | **$1,135,467** | **$444,085** |
 
-Premium paid: $60,000 (10 × $500 × 12). After year 10, no further APA premium — pure compounding to 65. Singlife Choice Saver cash value (if surrendered) can be added as a lump-sum top-up to accelerate the base.
+Premium paid: $234,000 (40 × $500 × 12, ending at age 64). Continuous-pay keeps the Special Bonus stack (5% Y11-20, 8% Y21+) credited every year. Singlife Choice Saver cash value (if surrendered) can be added as a lump-sum top-up to accelerate the base.
+
+> Alternative shape — 10-yr IIP at $500/mo: $545,463 at 65 (8%). Lower absolute number than continuous-pay but premium budget freed after year 10 to spread across hospital plan, term cover, or a second APA top-up.
 
 > Honesty check on Singlife Choice Saver surrender: most low-PIRR endowments have surrender penalties in early years that ease off after ~10 years. Run the math. If surrender penalty wipes the gain, paid-up status (stop paying, let it run to maturity, redirect the $296 elsewhere) is often the cleaner move.
 
@@ -455,8 +481,8 @@ Premium paid: $60,000 (10 × $500 × 12). After year 10, no further APA premium 
 > **TLDR**
 > - 50-yo holding paid-up whole-life with **~$50K cash value** sitting at 3-4% par-fund projection
 > - Dependants are out, mortgage paid down — the original cover need has expired
-> - Redirect: **$400/mo APA + $50K lump-sum top-up** into a fresh APA
-> - Combined projection at 65 (8%): **~$232K** (monthly: $81,918 + lump-sum: ~$150K)
+> - Redirect: **$400/mo APA continuous to 65 (15 yrs pay) + $50K lump-sum top-up** into a fresh APA
+> - Combined projection at 65 (8%): **~$256K** (monthly: $106,201 + lump-sum: ~$150K)
 > - **Stop paying for cover they don't need. Wake up the dormant cash value. Same monthly budget, materially bigger retirement pot.**
 
 **Profile:** 50-year-old prospect with a long-running whole-life policy ($300-500/mo for 15-20+ years). Children are independent, mortgage is paid down, the original cover need has expired. The policy has accumulated meaningful cash value (~$50K-$150K depending on how long they've been paying) and they're staring at 15 more years of premiums on cover they no longer materially need.
@@ -471,11 +497,11 @@ Redirect both into a fresh APA started at 50.
 
 ### The verified APA numbers (engine output)
 
-Monthly slot — $400/mo APA, 10-yr IIP, age 50→65:
+Monthly slot — $400/mo APA, continuous pay age 50→65 (15 years):
 
-| Setup | At 65 (8%) | At 65 (4% floor) |
-|---|---|---|
-| $400/mo for 10 years ($48,000 total premium) | **$81,918** | $56,745 |
+| Setup | Total premium | At 65 (8%) | At 65 (4% floor) |
+|---|---|---|---|
+| $400/mo continuous to 65 | $67,200 (last premium at age 64) | **$106,201** | $78,780 |
 
 Lump-sum cash-value redirect — $50,000 from whole-life cash value (3% APA top-up charge):
 - Net into APA: $48,500
@@ -486,9 +512,9 @@ Lump-sum cash-value redirect — $50,000 from whole-life cash value (3% APA top-
 
 | Stream | At 8% | At 4% |
 |---|---|---|
-| Monthly APA ($400 × 10 yrs) | $81,918 | $56,745 |
+| Monthly APA ($400 × 15 yrs continuous) | $106,201 | $78,780 |
 | Lump-sum redirect (~$50K cash value) | ~$150,000 | ~$85,000 |
-| **Combined at 65** | **~$232,000** | **~$142,000** |
+| **Combined at 65** | **~$256,000** | **~$164,000** |
 
 ### The structural attack
 
@@ -516,9 +542,9 @@ If all four answer in favour of the move, the restructure is a clear win. If any
 > **TLDR**
 > - 45-yo peak earner with $1,500-2,000/mo of surplus cash flow to allocate
 > - At **$1,200/mo APA** ($14,400/yr) the prospect hits **Welcome Bonus tier 1: 15% / 18% / 20% across Y1-Y3 = $7,632 bonus stack**
-> - 10-yr IIP ($144K total premium): projects **$355,226 at 65 (8%)**, $202,959 at 4% floor
-> - Premium-to-value multiple at 65 is only 2.47x (shorter compounding window) — close on **structural certainty**, not raw ROI
-> - **20 years of compounding is enough to build a serious supplementary retirement engine — and the bonus stack is contractually guaranteed regardless of market performance.**
+> - Continuous pay to 65 (20 yrs, $273,600 total premium): projects **$549,836 at 65 (8%)**, $362,030 at 4% floor
+> - Premium-to-value multiple at 65 is ~2.0x (shorter compounding window) — close on **structural certainty**, not raw ROI
+> - **20 years of compounding with Special Bonus credits every year (5% Y11-20, then 8% beyond) — bonus stack is contractually guaranteed regardless of market performance.**
 
 **Profile:** 45-year-old peak earner, household income $200K+, no major dependants left in the system, fixed costs covered, has surplus monthly cash flow of $1,500-2,000/mo to allocate to long-term wealth. Already has some legacy ILP or endowment that's middling. Wants to build a serious retirement engine in the 20 years they have left.
 
@@ -530,26 +556,26 @@ Most mid-career prospects don't know this tier exists. They think the "Welcome B
 
 ### The verified APA numbers (engine output)
 
-$1,200/mo APA, 10-yr IIP, age 45→65:
+$1,200/mo APA, continuous pay age 45→65 (20 years):
 
 | Age | At 8% | At 4% floor |
 |---|---|---|
 | 50 | $83,143 | — |
 | 55 | $174,766 | $145,634 |
-| 60 | $254,220 | — |
-| **65** | **$355,226** | **$202,959** |
+| 60 | $342,187 | — |
+| **65** | **$549,836** | **$362,030** |
 
-Total premium paid: $144,000 (10 × $1,200 × 12). After year 10, no further APA premium.
+Total premium paid: $273,600 (20 × $1,200 × 12, last premium at age 64). Special Bonus credits 5% Y11-20 on annualised premium, going to 8% Y21+ — accrues every year premium is being paid.
 
 ### The structural attack
 
 > *"At your premium level — $1,200 a month — you hit the top Welcome Bonus tier. Year 1 you get 15% bonus on your premium. Year 2: 18%. Year 3: 20%. Across Year 1-3, the bonus stack is 53% of your annual premium — that's $7,632 of bonus added on top of $43,200 of premium you've paid in. It's like a 17% kicker in the first three years before compounding even starts.*
 >
-> *Then from Year 11 onwards, the supplementary charge cliffs to zero, and the Special Bonus kicks in at 5% of annualised premium per year ($720/yr in your case), going to 8% from year 21. Stacked together, the structure is doing two jobs you can't replicate with a DIY ETF: it's loading the front with bonuses, and removing the recurring drag from the back. At 65, on the 8% projection, $144K of premium projects to $355K — a 2.47x multiple in 20 years."*
+> *Then from Year 11 onwards, the supplementary charge cliffs to zero, and the Special Bonus kicks in at 5% of annualised premium per year ($720/yr in your case), going to 8% from year 21 — credited every year you keep paying premium. Stacked together, the structure is doing two jobs you can't replicate with a DIY ETF: it's loading the front with bonuses, and removing the recurring drag from the back. At 65, on the 8% projection, continuous-pay $1,200/mo across 20 years projects to $549,836."*
 
 ### Why this case is harder than the younger cases
 
-The premium-to-value multiple at 65 is **2.47x** — much lower than Case B (9.25x) or Case F (6.73x) because the prospect only has 20 years of compounding, not 40. The case is harder to close on raw ROI; it's easier to close on **structural certainty**:
+The premium-to-value multiple at 65 is **~2.0x** — much lower than the younger cases because the prospect only has 20 years of compounding, not 40. The case is harder to close on raw ROI; it's easier to close on **structural certainty**:
 
 - The Welcome Bonus stack is contractually paid in Y1-3 regardless of market performance — it's a guaranteed kicker
 - The Special Bonus from Y10 is guaranteed
@@ -564,8 +590,8 @@ A DIY portfolio at 45 has none of these structural guarantees. APA's edge over D
 > **TLDR**
 > - 30-yo with $50K-$100K already in Endowus/StashAway/iFAST/Tiger — knows what FMC means
 > - **Do not try to replace their DIY portfolio.** Position APA as the **retirement layer alongside**, not a swap
-> - **$1,000/mo APA on 10-yr IIP ($120K total premium)** projects **$807,621 at 65 (8%)** — 6.73x multiple
-> - DIY's 0.4-0.6% perpetual AUM fee costs $4-6K/year on a $1M pot at 65 — APA's curve goes to **0% supplementary from Y11**
+> - **$1,000/mo APA continuous to 65 (35 yrs, $408K total premium)** projects **$1,595,164 at 65 (8%)** — Welcome Bonus tier 1 kicks in at this premium
+> - DIY's 0.4-0.6% perpetual AUM fee costs $4-6K/year on a $1M pot at 65 — APA's supplementary curve cliffs to **0% from Y11** and the Special Bonus accrues every year premium is being paid
 > - **DIY portfolio keeps doing the trading-account job. APA runs as the retirement-portfolio engine alongside.**
 
 **Profile:** 30-year-old, finance-aware, already has $50K-$100K in Endowus/StashAway/iFAST/Tiger. Knows what FMC means. Comfortable with markets. Reads finance content. The prospect doesn't need APA "explained" — they need APA *positioned* as a different job from their DIY portfolio.
@@ -582,16 +608,19 @@ If you try to position APA as a DIY-platform replacement, the finance-aware pros
 
 ### The verified APA numbers (engine output)
 
-$1,000/mo APA, 10-yr IIP, age 30→65:
+$1,000/mo APA, continuous pay age 30→65 (35 years):
 
-| Age | At 8% | Multiple on premium |
+| Age | At 8% | Cumulative premium |
 |---|---|---|
-| 35 | $69,286 | 1.15x |
-| 45 | $211,850 | 1.77x |
-| 55 | $413,636 | 3.45x |
-| **65** | **$807,621** | **6.73x** |
+| 35 | $69,286 | $60,000 |
+| 40 | $145,638 | $120,000 |
+| 45 | $285,156 | $180,000 |
+| 55 | $732,263 | $300,000 |
+| **65** | **$1,595,164** | **$408,000** |
 
-Total premium paid: $120,000 (10 × $1,000 × 12). After year 10, no further premium — pure compounding to 65.
+Total premium paid: $408,000 across 35 years. At $1,000/mo = $12,000/yr annualised, the prospect hits **Welcome Bonus tier 1** (15% Y1 + 18% Y2 + 20% Y3 = $6,360 stack on the first three years' premiums). From Y11 onwards, the supplementary charge cliffs to 0% and the Special Bonus credits 5% then 8% of annualised premium every year premium is being paid.
+
+> Alternative shape — 10-yr IIP at $1,000/mo ($120K total premium): $807,621 at 65 (8%). Half the absolute value but premium budget freed for years 11-35.
 
 ### The structural attack
 
@@ -599,9 +628,9 @@ Total premium paid: $120,000 (10 × $1,000 × 12). After year 10, no further pre
 >
 > *Endowus charges 0.4-0.6% AUM fee. That's fair for what it does — fund execution and rebalancing on the trading-account side. But that 0.4-0.6% applies forever, every year, on the entire balance. On a $1M retirement pot at 65, that's $4,000-$6,000 a year in fee drag, perpetually.*
 >
-> *APA's structure is the opposite. There's a 3.9% supplementary charge in the first 10 years, then it cliffs to zero from year 11. Plus a 5% Welcome Bonus stack in years 1-3 ($1,500 on your $10,000 annual premium in the first year alone), and a perpetual 5% Special Bonus from year 10, going to 8% from year 21.*
+> *APA's structure is the opposite. There's a 3.9% supplementary charge in the first 10 years, then it cliffs to zero from year 11. At your premium level — $1,000 a month, $12,000 a year — you hit the top Welcome Bonus tier: 15% Y1 + 18% Y2 + 20% Y3 = $6,360 of bonus credits in the first three years. From year 10 onwards the Special Bonus credits 5% of your annualised premium every year, going to 8% from year 21 — every year you continue paying.*
 >
-> *Different cost curve. Front-loaded charge, back-loaded bonuses. On $1,000 a month for 10 years — $120K total in — the engine projects $808K at 65 on the 8% case. That's a 6.73x multiple, with no further premium contribution after year 10. Your Endowus portfolio keeps doing its job. This is the second engine running alongside it."*
+> *Different cost curve. Front-loaded charge, back-loaded bonuses. On $1,000 a month continuous to 65 — $408K total in — the engine projects $1,595,164 at 65 on the 8% case. Your Endowus portfolio keeps doing its job. This is the second engine running alongside it."*
 
 ### Why this case is structurally important
 
@@ -612,12 +641,12 @@ The DIY-savvy prospect is the future of every advisor's book. They aren't going 
 ## Case G — The same-money FWD comparison (receipt for the cross-shop close)
 
 > **TLDR**
-> - 25-yo cross-shopping FWD vs APA before signing
+> - 25-yo cross-shopping FWD vs APA before signing. **This is the front-load shape alternative to Case B's matched-duration comparison.**
 > - Same **$180,000 total premium**. FWD pays $600/mo × 25 yrs. APA pays **$1,500/mo × 10 yrs (10-yr IIP)**
 > - At 65 (8%): FWD $1,306,872 (7.26x) vs APA **$1,692,753 (9.40x) — $385,881 more**
 > - $1,500/mo hits Welcome Bonus tier 1 ($9,540 stack Y1-3)
 > - APA prospect has **15 freed years** (Y11-25) where the $1,500/mo budget goes anywhere they want — FWD's prospect is still paying premium
-> - **Apples-to-apples on same money in: APA delivers more cash, more cash-flow flexibility, and stops taking premium 15 years earlier.**
+> - **The structural reason APA wins this comparison and not Case B's matched-duration version: front-loaded dollars get more compounding time before deductions slow them down. Shape matters as much as total amount.**
 
 **Profile:** 25-year-old at the cross-shop stage. They've been quoted FWD Invest First Summit at $600/mo for 25 years — $180,000 total premium. They're weighing FWD vs APA before signing anything. The prospect wants the apples-to-apples answer: *same money in, what comes out?*
 
