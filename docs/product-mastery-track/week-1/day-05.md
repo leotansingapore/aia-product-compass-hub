@@ -44,8 +44,9 @@ When a competitor name surfaces in the appointment, don't argue the competitor d
 > In fact, for APA, after 10 years, there are no supplementary charges, and there will be a 5% loyalty bonus of annual premiums per year, which increases to 8% per year after 20 years. 
 >So you have more charges earlier on, but then over time, the nett charges actually reduce and even drop to zero eventually the longer you hold the plan.
 
-In fact, you can illustrate the above point using our presenter here: https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees
-![[Pasted image 20260515153636.png]]
+In fact, you can illustrate the above point using our presenter here: **[present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees](https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees)**
+
+![Long-Term Investment Illustrator — Break-even Fees chart at 0% assumed return over 20yr IIP with $7.2K annual premium: net charges turn negative around Year 33 as bonuses overtake fees, and by Year 66 bonuses exceed total charges by $19,332](/pro-achiever/day-05/ltii-break-even-fees.png)
 
 ### Where APA structurally wins, in one row per battleground
 

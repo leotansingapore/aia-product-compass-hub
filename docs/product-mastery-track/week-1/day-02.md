@@ -244,7 +244,8 @@ Frame yourself as a **financial doctor**, not a salesperson. Same as a medical c
 > *"Before recommending solutions, we need to understand your current finances."*
 
 Run four ratios in order. The point isn't to "audit" them — it's to surface the gap they'll feel emotionally in Phase 3.
-![[Pasted image 20260515230641.png]]
+
+![Slide deck: Personal Finance Health Check — Are You Ready? Four ratios shown side by side: Liquidity (3-6 months), Savings Ratio (at least 10-20%), Invested Assets to Net Worth (above 50%), Debt Service Ratio (below 50%)](/pro-achiever/day-02/phase-2-health-check-slide.png)
 
 ### Ratio 1 — Liquidity Ratio
 
@@ -313,7 +314,7 @@ The default guidance:
 
 Pull up the online calculator at **[present.financeillustrator.com/total-wealth-concept/retirement](https://present.financeillustrator.com/total-wealth-concept/retirement)** — share screen or hand them your laptop. This is the prospect-facing calculator from the same Growing Age Calculator suite you'll use again in Phase 4.
 
-![[Pasted image 20260515230720.png]]
+![Retirement Lifestyle Calculator — $3K/mo lifestyle today inflates to $10,037/mo at 65, lump sum needed $2.4M](/pro-achiever/day-02/phase-2-rlc-screenshot.png)
 
 *"What's the biggest purchase in your life? It's actually retirement."*
 
@@ -328,7 +329,8 @@ That's the on-screen shock. Now move to paper for the deeper walkthrough — the
 
 ### The retirement reverse-engineering whiteboard
 
-![[Pasted image 20260515232506.png]]
+![Hand-drawn whiteboard: $3k/mth lifestyle today, $8k×12×20 = $2.1M at 65, save $4k/mth vs invest <$1k/mth, shortfall vs existing policies](/pro-achiever/day-02/phase-2-whiteboard-2.4m.png)
+
 Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
 
 > **Note on the numbers below:** all worked examples use a 25-year-old prospect retiring at 65 (40-year horizon) with $3K/month of desired retirement income (in today's dollars) and a 2.5% inflation assumption. **Verify the actual figures in iPOS at quote time** for the specific prospect's age, premium tier, and IIRR assumption — the numbers move with all three.
@@ -424,7 +426,7 @@ They'll say "goes up." Confirm:
 
 ### The one-third budgeting rule (anchor where the $1,000 comes from)
 
-![[Pasted image 20260515231403.png]]
+![Hand-drawn pie chart: $10k/mth split into three thirds — short-term (food, bills, loans, entertainment), mid-term (house, reno, kids education, holidays), long-term (investments 25%, insurance 5-10%)](/pro-achiever/day-02/phase-2-one-third-pie.png)
 
 After the cash-savings shock, the prospect's question is *"where does that $1,000/month come from in my budget?"* Install the one-third rule here.
 
@@ -456,7 +458,8 @@ Acknowledge insurance is its own conversation:
 
 ### The lump-sum trap — why you don't take the $2.4M out
 
-![[Pasted image 20260515232527.png]]
+![Hand-drawn diagram: $2.1M peak at age 65, dividend arrows pulling $10k/mth for retirement, three benefits — income / capital / legacy passed to next generation as a policy not cash](/pro-achiever/day-02/phase-2-lump-sum-trap.png)
+
 Now the most important reframe. Most prospects assume the $2.4M is something they "withdraw at 65 and spend." Reverse that.
 
 > *"Mr Prospect, let's say at 65 you actually get there — you've got the $2.4M sitting in your account. Do you think you should just take it out as a lump sum and spend it down at $10K/month? Or do you think it's smarter to leave it inside and just withdraw the income?"*
@@ -498,7 +501,8 @@ That's the bridge.
 ## Phase 3 — Problems of Investing → AIA Solution (5 min)
 
 Now that investing is established as a must-have, surface the problems most people run into when they try to invest themselves.
-![[Pasted image 20260515231119.png]]
+
+![Slide deck: Obstacles in DIY Investing — SIT Test (Skills, Interest, Time) alongside "Why 90% of People Lose Money in the Stock Market" with the six pitfalls (stock picking, no patience, market timing, hot tips, IPO speculation, leverage)](/pro-achiever/day-02/phase-3-sit-test-obstacles.png)
 
 ### The common investing problems
 
@@ -589,7 +593,8 @@ The conceptual sell is done in Phase 3. Phase 4 is where you show the projected 
 > **Tool note:** at this phase you don't pull up the iPOS+ illustration yet. Use the **Long-Term Investment Illustrator** at **[present.financeillustrator.com/long-term-investment-illustrator](https://present.financeillustrator.com/long-term-investment-illustrator)** (part of the Growing Age Calculator). The official iPOS+ quote comes at a later phase when you're closing on the actual contract — using it too early gets the prospect anchored on a specific premium number before they've bought the *concept*.
 
 ### Open the Long-Term Investment Illustrator
-![[Pasted image 20260515232636.png]]
+
+![Long-Term Investment Illustrator: 25-year-old saving $1,000/month, Policy Growth tab showing $2.1M policy value by 65 at 8% IIRR, total cash benefits $7.5M against $468K premiums paid — 16.05× total](/pro-achiever/day-02/phase-4-ltii-policy-growth.png)
 
 Pull up the illustrator on the agreed monthly amount (from the Phase 2 whiteboard, that was $1,000/mo). Walk the prospect through the projected values year by year, anchoring the 5% dividend yield assumption.
 
