@@ -27,6 +27,67 @@ The right move: **draw the concept on a single piece of paper or whiteboard FIRS
 
 Slides are *your* tool to remember the structure, the source citations, the exact numbers. They are not the prospect's content. Splashing the deck all at once is the fastest way to lose engagement.
 
+### The "10 drawings every FC should commit to memory"
+
+The drawings below are the ones that close cases consistently across hundreds of appointments. Learn to draw each from scratch on a blank whiteboard or piece of paper without a reference — that's the bar:
+
+1. **The 1/3 Rule circle** — divide a circle into short-term / medium-term / long-term thirds, label monthly amounts in each
+2. **The diversified portfolio pie chart** — divide a circle into countries (US, China, Global), sectors (tech, healthcare, finance), and asset classes (bonds, equities, REITs, covered calls)
+3. **The 4-quadrant coverage grid** — Death/TPD top-left, CI/ECI top-right, Hospital bottom-left, Accident bottom-right, with norms / current cover for each
+4. **The retirement-gap calculation** — current expenses → inflated future expenses → CPF Life payout → shortfall → monthly save required (split: in bank vs in APA)
+5. **The BTIR comparison** — Whole-life (one box, two jobs done badly) vs Term + APA (two boxes, each job optimised)
+6. **The Term vs Life comparison** — Term pays less, savings reinvested grow to a number that exceeds the life plan's cash value
+7. **The AIA-vs-S&P-500 / DIY structural list** — no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship
+8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% Y10-20, 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
+9. **The hospital-income "pit" drawing** — a downward dip representing lost income during hospitalisation, with the hospital-income plan filling the pit
+10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled
+
+Leo's note to the team: *"Eventually, my goal is to digitlise every one of these drawings, and categorise them so its easier to retrieve/find/use. But for now, please bear with me and just, do your best to understand every single picture, as I never do anything randomly. And everything is done for a reason."*
+
+Use [Excalidraw](https://app.excalidraw.com/) on a tablet or laptop for clean digital drawings, or pen-and-paper for in-person appointments. The pen-and-paper version has a side benefit: the prospect can take the drawing home, which reduces buyer's remorse — in the post-meeting summary text, just refer back to each part of the drawing.
+
+### The "knowledge trap" — why over-explaining kills the close
+
+A common new-FC failure pattern: the FC has just learned a lot of product detail (welcome bonus tiers, fund options, supplementary charge mechanics, secondary insured rules) and tries to teach all of it during the appointment. The unconscious belief: *"If I give the prospect enough information, they'll be convinced enough to buy."*
+
+The reality:
+
+> *"It's called a 'knowledge trap.' You know too much and you expect that because you gave so much value and info to the client, he needs to buy. But that's actually your downfall."* — Leo
+
+The prospect's brain has limited capacity. When you overload it, two things happen:
+1. They go into passive-listening mode and stop engaging with the structure you're building
+2. They develop "decision fatigue" — every additional detail makes saying yes feel harder, not easier, because each detail introduces another question they could ask
+
+**The rule: give just enough information for the prospect to feel the structural gap, then close.** Resist the urge to explain every detail. Save the deep product mechanics for the post-sale education conversation.
+
+### The "TMI mode" anti-pattern — sequencing matters
+
+A specific failure pattern Leo has documented from his own appointments:
+
+> *"Mistake I made: went through his policy summary (15 policies), then went through the retirement healthcare funding angle, then went back to policy summary to get his source of funding mechanism. Effect: overloaded his brain and he was 'TMI mode' for the 1.5 hours."*
+
+The corrected sequence:
+
+1. **First**: open with the retirement-healthcare-funding angle (or whichever angle the prospect's situation calls for). Build the structural gap conceptually.
+2. **Then**: pull up the policy summary as **ammunition** — "here's what you have, here's how we can use these existing resources to fund the gap"
+3. **Never**: lead with the policy summary as a list. It overwhelms the prospect before they understand why any of it matters.
+
+Same content, different sequence. The first version closes. The second version overloads.
+
+### Avoid filler words during the call
+
+> *"Minimize words like 'right, right' or 'okay, okay' just to fill silence — they can distract from professionalism."*
+
+Silence is fine. Let the prospect think. Let them say something. Don't feel you have to fill every pause.
+
+### Pre-frame your questions instead of asking literally
+
+Bad: *"Do you know how CPF LIFE works?"* — feels like a test; the prospect feels uncomfortable.
+
+Good: *"Many pre-retirees aren't clear on their CPF LIFE payouts, which affects retirement planning. Can I have your OA / SA balances so I can give you an accurate calculation?"* — provides context for why the question matters.
+
+The pattern: explain why you need the information *before* you ask for it. The prospect now feels collaborated with, not interrogated.
+
 ---
 
 ## Phase 0 — Pre-Appointment Setup

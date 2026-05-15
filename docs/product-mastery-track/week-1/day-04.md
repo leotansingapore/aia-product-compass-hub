@@ -273,6 +273,62 @@ The trial close at the end lets the prospect agree to "complement, not compete" 
 
 ---
 
+## High-leverage closing lines (field-tested)
+
+These are quoted directly from Leo's actual appointments — they close consistently. Drill them until they sound natural, not memorised.
+
+### "Insurance is something where when you need it, you can't buy it"
+
+When the prospect says "*let me think about it / I'll come back to you next year*", the close:
+
+> *"There's something about insurance that most people don't realise until it's too late. Insurance is one of those things where when you need it, you can't buy it. And when you don't need it, you can buy it. The right time to lock in your cover is when you're healthy, when you have no exclusions, when you're young enough that premiums are affordable. The wrong time is after a diagnosis — by then the door is permanently shut. That's the structural urgency, not me trying to rush you."*
+
+**The proof point Leo uses:** *"I met a client recently whose dad was just diagnosed with prostate cancer. No CI coverage. Only a basic hospital plan, C ward, no rider. Permanently uninsurable now. The son committed $10-12K a year of premiums for the rest of the family — mum, son himself — in a single review, because the family suddenly realised: insurance is for the people who can still buy it. Not for the people who need it. That's the painful reality most people don't see until it's their family."*
+
+### "What's the point of $300K in the bank if you're broke at 60?"
+
+When the prospect resists investing because they want liquidity: pull up Goals Mapper and run two scenarios side-by-side.
+
+> *"Let's run two scenarios. Scenario 1: you keep your money in the bank, no investment. By age 60, your cash runs out — you're broke. Yes, today you might have $200K-300K sitting in the bank, but it gets eaten by retirement expenses faster than you think. What's the point of $300K in the bank today if you're broke at 60?*
+>
+> *Scenario 2: you invest $800 a month into APA. Your bank balance is lower during your working years ($50K-200K) — but at 60 you have a massive accumulating asset behind you, and your runway extends to 85. Different shape, dramatically different outcome.*
+>
+> *And before you worry about liquidity — let me actually map your real goals. Marriage, house down payment, kids. With $800 a month into APA, do any of these get blocked? Let's check."*
+
+Leo's actual result on this script: a prospect who walked in wanting to add $50/mo of investment ended up at **$9,600/year** after seeing the two scenarios.
+
+### "Take dividends now, or reinvest till 65?"
+
+When the prospect is offered a dividend-paying competitor plan that pays out from year 1 (the GE / Pulsar / par-plan pattern):
+
+> *"Look at the math carefully. If you take dividends from year 1 at 7% yield, your account value stays small. By 65, you might have $300K in the policy. 7% of $300K is $21K/yr of retirement income.*
+>
+> *Now look at the alternative — reinvest those dividends until 65. By then your account value has compounded to $1M. 7% of $1M is $70K/yr of retirement income. Same product, same yield, same total contribution. Same person, same horizon. The only difference: when you started taking dividends.*
+>
+> *When you're young, you don't need the dividends. When you're old, you need them. Taking dividends now — when you don't need them — eats into the retirement pot you need later. The structurally correct move is reinvest until 65, then switch on the dividend mode."*
+
+### "Your Welcome + Loyalty bonuses total $18K - $23K" (the bonus stack offset)
+
+When the prospect questions the 3.9% supplementary charge in Y1-10, give them the dollar receipt for the offset:
+
+> *"Let me show you what offsets the supplementary charge. At your $1,000/mo premium tier, the Welcome Bonus across Y1-3 is 15% + 18% + 20% on annualised premium — that's $6,360 of bonus credited in the first three years alone. Then from Y10 onwards, the Special Bonus credits 5% per year, going to 8% from Y21 — every year you keep paying premium. Over a 25-30 year hold, that totals around $18,000 - $23,000 of bonus stack.*
+>
+> *That's the structural offset to the supplementary charge. The fee curve isn't 'high then zero' — it's 'high in Y1-10, then zero from Y11, and meanwhile bonus credits accumulate the whole way.' Net effective fee over the policy life is materially lower than competitors who have a 'low then perpetual' curve."*
+
+### "Be the long agent, not the loud agent"
+
+When the prospect is comparing across multiple agents and looking for the best deal at sale-point:
+
+> *"There's a saying in this industry: it's not survival of the fittest, it's survival of the longest. Most agents earn their entire compensation upfront, so they have no economic incentive to stick around after the sale. The IFA who sold your friend a plan — gone in 2 years. The DBS banker who cold-called you — moved divisions in 18 months.*
+>
+> *I'm a tied AIA agent. My compensation is structured for the 30-year servicing relationship. I will be here when you need to claim. I will be here when you want to restructure. I will be here when you want to add coverage for your kids. That continuity isn't a marketing claim — it's a structural compensation alignment. The 'long agent' wins because they're built to last."*
+
+### The "company insurance" trap (when prospect says they're already covered)
+
+> *"Don't always assume your company coverage is enough. I just had a case — a 30-yo client said his employer covered everything. We pulled the policy summary: $60K Death, $30K CI. That's 5-10 months of expenses in the event of death or critical illness. Massive under-coverage. And the moment you change jobs, the cover lapses — by then you'll be older, possibly with pre-existing conditions, and unable to get private cover. Let me actually pull your policy summary and we can check what's really there."*
+
+---
+
 ## The numbers cheat sheet (Day 7)
 
 | # | Item | Value |

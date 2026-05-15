@@ -75,6 +75,84 @@ This is the Three Cost Circles framework from [Day 2 Phase 5B](./day-02.md#phase
 
 ---
 
+## The "tied agent vs IFA / banker" framework (the agent-continuity attack)
+
+A pattern across cross-shop appointments: prospects assume "independent" or "bank-sold" advisers give better advice because they're not tied to one company. The structural reality is the opposite — IFA and banker channels are typically *less* aligned with long-term client outcomes than a tied AIA agent. This framework gives an FC four questions to surface that structurally.
+
+### Use this when
+
+The prospect surfaces one of:
+- *"I bought from an IFA — they can recommend any company so I trust them more"*
+- *"My banker at DBS / Citi / UOB / Standard Chartered sold me this plan, they know what's best"*
+- *"My friend joined Finexis / Synergy IFA / a different agency, he's helping me with my finances"*
+
+### The four questions to walk the prospect through
+
+**Q1. The claims-processing speed question.**
+
+> *"You bought from an IFA, which means they're juggling contracts across many different companies — Singlife, Manulife, FWD, AIA, and so on. When you actually need to claim — say a CI diagnosis — they have to deal with multiple companies' claims departments simultaneously. Versus a tied AIA agent who only deals with AIA's claims department, knows every CSO by name, knows how to fast-track the paperwork. Which model do you want when you're actually sick?"*
+
+**Q2. The in-house vs outsourced claims question.**
+
+> *"Many smaller insurers outsource their claims departments to third-party administrators. That means longer turnaround, more handoffs, more friction in your hardest moment. AIA's claims department is fully in-house — same building, same payroll, single point of accountability. Which one do you want processing your hospital bill?"*
+
+**Q3. The agent-rotation question (the killer).**
+
+> *"Here's the structural pattern most prospects don't see: IFAs and bankers churn through firms frequently. I've seen clients whose Finexis agent left for Synergy IFA after 2 years, then their case got passed to whoever was available, who then left the firm a year later. By year 3 they had no agent — their plan was orphaned. Bankers are even worse — they're staff who rotate roles within the bank, often within 12-18 months. You bought from your DBS banker, then six months later they're in a different division and someone you've never met is supposedly servicing your $500/mo plan.*
+>
+> *The structural reason: IFA and banker compensation is heavily upfront-loaded. They earn most of their commission at the point of sale. They have no economic reason to stick around for the 30-year servicing period.*
+>
+> *A tied AIA agent — like me — has compensation structured for long-term renewal income. I literally make more if I keep servicing you over decades. That's why you don't see AIA tied agents churning through firms. We're built for the long game. Which model do you want when this plan needs to last 30+ years?"*
+
+**Q4. The value-add ecosystem question.**
+
+> *"Beyond just the policy itself — AIA gives you AIA Vitality, TeleDoc (medical concierge), AIA Healthcare priority hospital access, AIA Altitude rewards, AIA Healthshield's pre-authorisation network. None of these come with an IFA-placed Tokio Marine policy or a bank-placed Manulife policy. Do you just want a plan, or do you want a plan plus an ecosystem of services?"*
+
+### The closer line
+
+> *"The 'independent' or 'banker' label sounds objective on the surface. But structurally — claims processing, agent continuity, value-add ecosystem — tied agents at large companies outperform smaller IFAs and rotating bankers across every dimension that actually matters when you need the plan to work. The professional ratings of large tied agencies vs IFAs consistently reflect this."*
+
+---
+
+## The triple multi-fund vs single-fund argument (structural fund management)
+
+The other structural advantage prospects often miss when comparing APA against competitor ILPs: **fund management architecture**.
+
+### Single-fund competitors (Manulife / Singlife / Prudential / Tokio Marine)
+
+Most competitor ILPs offer a **single-fund product** where the prospect (or their agent) picks the allocation, and the agent is responsible for rebalancing over time. The structural risks:
+
+- **Agent dependency.** If the agent goes MIA, leaves the industry, or doesn't proactively rebalance, the fund allocation drifts and the prospect ends up with skewed exposure. (Real example Leo has seen: Pulsar holders with 50% China + 50% Tech because the original agent never rebalanced.)
+- **No professional stewardship layer.** The prospect is effectively the portfolio manager — but without the time, tools, or expertise to actually manage a long-term portfolio.
+
+### APA's multi-fund architecture (the structural answer)
+
+APA's Adventurous Index Fund (the 99% default route for new APA prospects) sits inside AIA Investment Management's broader fund ecosystem, with allocations managed by institutional managers:
+
+- **Wellington Management** (one of the world's largest active asset managers)
+- **BlackRock** (the world's largest asset manager)
+- **Baillie Gifford** (long-horizon growth specialist)
+- **Capital Group** (one of the oldest US-based asset managers)
+
+For dividend-mode prospects switching to GDIF, the multi-manager approach extends across **Franklin Income Fund + Allianz Income Growth Fund + AIA's in-house Equity Income Fund** — a triple-manager diversification within the dividend product itself.
+
+### Why this matters for the prospect
+
+| Structural feature | APA | Single-fund competitors |
+|---|---|---|
+| Active rebalancing | Done professionally by institutional managers | Depends on the agent (who may MIA) |
+| Global diversification | Built-in by default (Adventurous Index Fund) | Depends on agent's allocation choice |
+| Fund-manager continuity | Multi-manager redundancy — one manager's change doesn't disrupt the whole portfolio | Single-fund = single point of failure |
+| Total AUM under management | $328B+ (AIA group, as of latest report) | Varies by competitor, typically smaller |
+
+### The structural attack
+
+> *"Your competitor product is a single-fund ILP — meaning your agent picks the allocation, and your agent is responsible for rebalancing over time. What happens when your agent retires, switches firms, or just gets too busy? Your allocation drifts. Real example I've seen: prospects with 50% China and 50% Tech funds because the original agent never rebalanced after they got recommended that allocation 5 years ago.*
+>
+> *APA is structurally different. Your Adventurous Index Fund is managed by Wellington, BlackRock, Baillie Gifford, and Capital Group — four of the world's largest institutional managers. The rebalancing is done by professionals, not by your agent. If I leave the industry tomorrow, your APA keeps compounding exactly as designed. That's a different category of structural certainty."*
+
+---
+
 # Part 2 — Restructure Plays (convert existing portfolios into APA)
 
 The frame: most prospects already have *something* — a whole-life policy, a hybrid ILP, a DIY portfolio. So our job may not even to add existing policies. Its to optimise their existing portfolio, so as to increase their long term retirement returns, or increase their coverage, with the same premiums, or maintain the same returns and coverage with lesser premiums.
@@ -215,6 +293,10 @@ Each case below uses the duration that matches the prospect's current quote / ex
 | **[E](#case-e--the-mid-career-peak-earner-welcome-tier-1-receipt)** | 45-yo, peak earnings | Play C (BTIR fresh start) | $1,200/mo APA × 20 yrs continuous | Welcome tier 1 stack + **$550K @65** |
 | **[F](#case-f--the-diy-platform-investor-supplement-receipt)** | 30-yo with $80K in Endowus/StashAway | Supplement (not restructure) | $1,000/mo APA × 35 yrs continuous | **$1.60M @65** alongside DIY |
 | **[G](#case-g--the-same-money-fwd-comparison-receipt)** | 25-yo deciding FWD vs APA | Play B (front-load shape close) | APA $1,500 × 10 yrs IIP vs FWD $600 × 25 yrs (same $180K) | APA **$1.69M** vs FWD $1.31M @65 — front-load wins |
+| **[H](#case-h--the-hsbc-pulsar-net-yield-attack)** | 30-yo with HSBC Pulsar ILP | Net-yield attack (gimmick exposure) | $1,000/mo APA × 25 yrs vs Pulsar | Pulsar net yield **0.83% at 4%**, **4.7% at 8%**; AIA: 2.74% / 6.68%. ~70% surrender-value gap |
+| **[I](#case-i--the-tokio-marine-ifa-ilp-attack)** | Prospect sold $2K/mo Tokio Marine by IFA | "IFA" gimmick debunk + 30-yr lock attack | $2,000/mo APA × 30+ yrs continuous | Tokio $3.8M vs AIA $5M @long-term = **$1.2M difference**; 30-yr lock-in vs APA 0% from Y11 |
+| **[J](#case-j--the-manulife-ready-income-poor-retirement-receipt)** | DBS-banker-sold Manulife Ready Income | "Banker = no servicing" + dollar-poor retirement attack | $350/mo APA × 10-yr IIP | Manulife $42K @65 + $1.2K/yr income vs **APA $267K @65 + ~$2.6K/mo dividend potential** |
+| **[K](#case-k--the-ge-flexi-cash-endowment-attack)** | 30-yo sold GE Flexi-cash endowment | Endowment underperformance | $500/mo APA × 25 yrs vs GE endowment | GE $200K @55 (break-even Y20, <3% return) vs **APA $701K @65** at same money |
 
 ---
 
@@ -695,6 +777,236 @@ After year 10, the APA prospect has 15 freed years where they're not paying prem
 - Discretionary spending (early retirement runway)
 
 The "10-year IIP" structure isn't just a math advantage — it's a **time / cash-flow advantage** that FWD's 25-year structure can't match.
+
+---
+
+## Case H — The HSBC Pulsar net-yield attack
+
+> **TLDR**
+> - Prospect sold HSBC Pulsar at $1,000/mo, lured by the **168% startup bonus** gimmick
+> - Stated projection rates of 4% / 8% — but actual **net yield after all fees**: **0.83% at 4%**, **4.7% at 8%**
+> - AIA APA's net yields: **2.74% at 4%**, **6.68% at 8%** — roughly 2-3× higher net yield at the same projection assumptions
+> - Over a 25-year hold, APA's surrender value runs **~70% higher** than Pulsar's
+> - USD-denominated funds + no investment stewardship → many Pulsar prospects end up with skewed allocations (50% China / 50% Tech is a real pattern Leo has seen in the field)
+> - **Attack: walk the prospect through the stated-yield vs net-yield gap on their own illustration. The 168% bonus is the headline; the perpetual charges are the silent erosion.**
+
+**Profile:** 30-year-old, sold a $1,000/mo HSBC Pulsar ILP under the AXA legacy brand. Pulsar's marketing leans hard on the 168% startup bonus credited in the early policy years — visually compelling on a pitch deck but structurally a gimmick once the perpetual charges run.
+
+### The net-yield calculation (the structural attack)
+
+Pulsar's illustrated returns are **gross of fees**. The net yield — what the prospect actually keeps after FMC, advisory fees, ongoing charges — is dramatically lower:
+
+| Stated projection | Pulsar net yield (after all fees) | AIA APA net yield (after all fees) |
+|---|---|---|
+| 4% gross | **0.83%** | **2.74%** |
+| 8% gross | **4.7%** | **6.68%** |
+
+The 4% case is the regulatory floor. **Pulsar's net yield at the regulatory floor is below CPF OA's guaranteed 2.5%.** That's not a wealth product — that's a structured underperformance.
+
+### The verified APA numbers (engine output — matched duration, 25-yr pay continuous)
+
+`simulateTraditionalGrowth(1000, 30, 65, 8)` with 25-yr premium pay (premium ends age 55, policy compounds to 65):
+
+| Age | At 8% | At 4% floor |
+|---|---|---|
+| 35 | $69,286 | — |
+| 45 | $285,156 | — |
+| 55 | $732,263 | $314,292 |
+| 65 | **$1,429,738** | **$578,850** |
+
+Total premium paid: $300,000 (25 × $1,000 × 12).
+
+### The structural attack
+
+> *"Pull up your Pulsar illustration. They show you 4% and 8% projection rates — those are the **gross returns** before any of their charges apply. Now look at their fee schedule: FMC of 1-1.5%, advisory fee up to 1%, ongoing charge perpetual. By the time you account for everything, your **net yield at the 4% projection is 0.83%**. That's below what your CPF Ordinary Account guarantees you — 2.5%, no risk.*
+>
+> *At the 8% projection, your net is 4.7%. APA's equivalent net at 8% is 6.68%. Over a 25-year hold, that 2-percentage-point gap compounds into roughly 70% more surrender value at the end. The 168% startup bonus you were sold on is real — but it's offset by perpetual fees that just keep deducting forever. APA's curve is the opposite: heavy charges in Y1-10, then cliff to zero from Y11 onwards, with the Special Bonus stack credited every year you continue paying."*
+
+### The currency-risk and stewardship attack (the second layer)
+
+Pulsar's funds are USD-denominated. Two structural drags:
+1. **USD currency depreciation** — projected at 1.5-2% p.a. against SGD over a 25-year horizon. That's 1.5-2 percentage points of effective yield reduction on top of the FMC.
+2. **No investment stewardship** — Pulsar relies on the agent to actively rebalance the fund allocation. Leo has seen real Pulsar portfolios at **50% China / 50% Tech** because the original agent went MIA and the prospect never adjusted. APA's funds (Adventurous Index Fund default) are professionally managed with global diversification baked in — no agent dependency.
+
+### The restructure recommendation
+
+For a Pulsar prospect already locked in: run the math case-by-case (surrender penalty, lost bonus credits, etc.). The 168% startup bonus may be partially clawed back on early surrender — verify in the in-force illustration. For a prospect comparing Pulsar vs APA *before* signing, the net-yield comparison is decisive: 2-3× higher net yield at both 4% and 8% projections.
+
+---
+
+## Case I — The Tokio Marine IFA ILP attack
+
+> **TLDR**
+> - 30-yo sold $2,000/mo Tokio Marine ILP through an "IFA" (Independent Financial Adviser) — branded as objective but only sold one company's product
+> - Real receipts from Leo's actual case: **AIA $5M vs Tokio $3.8M long-term = $1.2M difference** at the same $24K/yr outflow
+> - Tokio's fee stack: higher FMC + 1% p.a. advisory fee + 1.2% p.a. ongoing charge + **30-year surrender lock-in** (3× APA's 10-year cliff)
+> - **120% bonus rate gimmick** at startup — same pattern as Pulsar, looks great short-term, eaten by perpetual charges long-term
+> - **Attack: "Independent" is marketing language. The IFA still only sold one company's product. Decompose the fee stack and the lock-in. APA structurally wins on every dimension.**
+
+**Profile:** 30-year-old, household-income SGD professional. Sold a $2,000/mo Tokio Marine ILP by an "IFA" — Independent Financial Adviser. The word "independent" is positioned as objective / unbiased advice, but ultimately a single product (Tokio Marine) was placed.
+
+### What "Independent" actually means (the framing attack)
+
+> *"The word 'independent' sounds like the IFA can give you objective advice across all companies. But look at what they actually sold you — one product, from one company: Tokio Marine. They could have picked APA, Singlife, Manulife, AIA, Pru — but they picked Tokio. So whether you call them tied or independent, ultimately what was placed was one specific product."*
+
+Tied agents have **PRIDE** in their company and accountability for long-term service. IFAs rotate firms frequently (Finexis → Synergy IFA pattern Leo has seen multiple times) — the prospect loses agent continuity and the original IFA's compensation is typically upfront-loaded, so they have a structural incentive to churn.
+
+### The fee-stack decomposition
+
+| Cost dimension | Tokio Marine | AIA APA |
+|---|---|---|
+| FMC (fund management fee) | Higher (~1.3-1.5%) | ~1.0% on the Adventurous Index Fund |
+| Advisory fee | **1.0% p.a. perpetual** (often maxed out by IFAs) | 0% — built into supplementary charge during Y1-10 only |
+| Ongoing charge | **1.2% p.a. perpetual** | 3.9% Y1-10, **0% from Y11** |
+| Surrender lock-in | **30 years** | 10 years (0% surrender charge from Y11) |
+| Startup bonus | 120% gimmick | Welcome Bonus tier 1 = 15/18/20% on premium (not on balance) — actually delivered, not clawed back |
+
+The 120% startup bonus looks compelling but is structurally a marketing accelerant. By year 30 of the 30-year lock-in, the cumulative effect of three perpetual fee layers vastly exceeds the initial bonus.
+
+### The verified APA numbers (engine output — $2,000/mo continuous to 65)
+
+`simulateTraditionalGrowth(2000, 30, 65, 8)` continuous pay:
+
+| Age | At 8% | At 4% floor |
+|---|---|---|
+| 35 | $138,571 | — |
+| 45 | $570,312 | $427,736 |
+| 55 | $1,464,526 | $864,790 |
+| 65 | **$3,190,328** | **$1,428,377** |
+
+Total premium paid: $840,000 across 35 years.
+
+### Leo's actual case receipt
+
+From Leo's real Tokio Marine case study: **AIA $5M vs Tokio $3.8M at long-term ($1.2M gap) on the same $24K/year**. The engine projects $3.2M at age 65 — the $5M figure likely runs to a later age (e.g., 75 or 80) per the iPOS+ illustration Leo ran in the actual appointment. Always verify the time horizon in iPOS at quote time when citing this case.
+
+The structural reason for the gap is consistent across both views: APA's supplementary charge cliffs to 0% from Y11 while Tokio's three perpetual fee layers compound on a growing base.
+
+### The structural attack
+
+> *"You're paying $2,000 a month for 30 years. That's $720K of premium. Tokio's projection at the end of the lock-in shows you around $3.8M long-term. AIA's projection at the same money — same monthly, same horizon — shows you around $5M. $1.2M difference.*
+>
+> *The reason: Tokio's fees never stop deducting. There's a 1.3% FMC inside the fund, a 1% advisory fee on top of that, and a 1.2% ongoing charge perpetually. As your account value grows, those percentages turn into bigger and bigger dollar amounts. At $3M of account value, 3.5% of perpetual fees is $105,000 per year — forever.*
+>
+> *AIA's curve is opposite. 3.9% supplementary in Y1-10, then 0% from Y11. The Special Bonus actually credits 5% then 8% of your annualised premium every year from Y10 onwards. The longer you hold, the less you pay in fees — and the more bonus you accrue."*
+
+### The 30-year lock-in attack
+
+> *"Tokio locks you in for 30 years. If you surrender before then, the surrender charge eats your principal. APA's surrender charge cliffs to 0% from Year 11 onwards. So if your life situation changes — you get retrenched, you have a medical emergency, you need to pause premiums — APA gives you the flexibility to do that without penalty. Tokio doesn't. That's not just a financial difference, that's a structural risk you carry for 30 years."*
+
+---
+
+## Case J — The Manulife Ready Income poor-retirement receipt
+
+> **TLDR**
+> - DBS banker sold the prospect Manulife Ready Income at **$4,200/yr × 10 yrs = $42,000 total**
+> - At 65, Manulife delivers **only $42K of cash value** and a **$1.2K/yr ($100/mo) retirement income** stream
+> - Same $350/mo into APA on 10-yr IIP → projected **$267,725 at 65** and **~$2,600/mo dividend potential** at 65 (vs Manulife's $100/mo)
+> - **DBS bankers don't service the policy after sale** — pure transactional cold-call closes. Once the policy is placed, no follow-up, no review, no servicing.
+> - **Attack: surface the dollar-poor retirement outcome ($100/mo income is irrelevant at retirement). Layer in the bank-agent-disappearance trope.**
+
+**Profile:** Working adult, age 30-ish, cold-called by a DBS banker. Bought Manulife Ready Income because "the bank rep said it's a good retirement plan." Then never heard from the banker again.
+
+### What the Manulife illustration actually delivers
+
+| Manulife Ready Income figures (per Leo's case) | Amount |
+|---|---|
+| Annual premium | $4,200 |
+| Premium term | 10 years |
+| Total premium paid | $42,000 |
+| Cash value at 65 | **$42,000** (essentially break-even, ~0% real return) |
+| Retirement income from 65 | **$1,200/yr (~$100/mo)** |
+
+At a $4,200/yr premium for 10 years, the prospect is told they're "building retirement income." The actual retirement income — $100/mo — is structurally meaningless. It won't cover one utility bill at age 65 in a 2.5%-inflation-adjusted world.
+
+### The verified APA numbers (engine output — matched duration)
+
+`simulateTraditionalGrowth(350, 30, 65, 8)` with 10-yr IIP (matching Manulife's premium term):
+
+| Age | At 8% | At 4% floor |
+|---|---|---|
+| 40 | $48,279 | — |
+| 50 | $98,131 | $56,399 |
+| 60 | $191,600 | — |
+| 65 | **$267,725** | **$87,357** |
+
+Total premium paid: $42,000 (matching Manulife's outlay exactly).
+
+### The retirement-income reframe
+
+At age 65 with $267,725 in APA, switching to dividend mode at a 7% yield (GDIF default) generates roughly **$18,740/yr or $1,562/mo** of retirement income — sustainable for life, with the capital preserved.
+
+That's **15× the Manulife income stream from the same $42K of premium**. Same money in, dramatically different outcome.
+
+### The structural attack
+
+> *"Your DBS banker sold you Manulife Ready Income at $4,200 a year for 10 years — $42,000 total. Pull up the illustration: at 65, you get back about $42,000 in cash value, and a retirement income of $1,200 a year. That's $100 a month. Inflated forward 35 years, $100 a month at age 65 won't even cover one utility bill.*
+>
+> *Same exact $42,000 going into APA at $350 a month for 10 years. At 65 on the 8% projection, you have $267,725 sitting in the policy. Switch on dividend mode, you get roughly $1,500 a month of retirement income, for life, and your capital stays intact. Same money in. 15× the retirement income out. That's the structural difference.*
+>
+> *And — your DBS banker. When was the last time they followed up with you? They don't service the policy after the sale. They're pure transactional. You don't have an agent — you have a salesperson who closed you and moved on."*
+
+### The bank-agent-disappearance trope (closer's line)
+
+> *"There's a pattern with bank-sold policies. The banker calls you, sells you the plan, gets the commission, and you never hear from them again. Worse, when they leave the bank in 2-3 years, the policy gets passed to whoever happens to handle it next — usually a different banker who's never met you. Versus a tied AIA agent — we're staff with the company, we don't rotate, and our compensation is structured for long-term servicing, not just the initial sale."*
+
+---
+
+## Case K — The GE Flexi-cash endowment attack
+
+> **TLDR**
+> - 30-yo sold GE Flexi-cash endowment: **$6,000/yr × 25 years = $150,000 total premium**
+> - GE delivers **only $200K at 55 (maturity)** — break-even at year 20, effective return **<3% p.a.**
+> - Same $500/mo into APA × 25 yrs continuous → projected **$701,423 at 65 (8%)**, $285,557 at 4% floor
+> - **Bought from friend-agent** who later left the industry — policy got orphaned, no servicing, no review for years
+> - **Attack: an endowment at <3% effective is worse than letting the money sit in CPF OA at 2.5% guaranteed. The "savings plan" label is misleading.**
+
+**Profile:** 30-year-old young professional, sold GE Flexi-cash by a friend who's now left the industry. The policy has been sitting untouched for 5+ years. The friend never reviewed it after sale. The prospect doesn't realise the structural underperformance.
+
+### What the GE Flexi-cash illustration delivers
+
+| GE Flexi-cash figures (per Leo's case) | Amount |
+|---|---|
+| Annual premium | $6,000 |
+| Premium term | 25 years |
+| Total premium paid | $150,000 |
+| Maturity value at 25 years (age 55) | **$200,000** |
+| Break-even point | Year 20 (i.e., 20 years to recover principal) |
+| Effective return | **<3% p.a.** |
+
+A 25-year savings plan that delivers under 3% effective return is structurally inferior to:
+- CPF OA at 2.5% guaranteed (and CPF OA is liquid)
+- A bond-and-equity portfolio at a sensible 4-5%
+- APA at 6-8% effective net yield
+
+### The verified APA numbers (engine output — $500/mo continuous to 65, 25-yr pay)
+
+`simulateTraditionalGrowth(500, 30, 65, 8)` with 25-yr continuous pay:
+
+| Age | At 8% | At 4% floor |
+|---|---|---|
+| 35 | $32,630 | — |
+| 45 | $139,051 | $104,775 |
+| 55 | $359,245 | $213,308 |
+| 65 | **$701,423** | **$285,557** |
+
+Total premium paid: $150,000 (matching GE's outlay exactly).
+
+### The structural attack
+
+> *"Your GE Flexi-cash plan is paying $6,000 a year for 25 years — that's $150,000 of premium going in. At maturity at 55, you get back $200,000. Break-even point — when you first have your principal back — is at year 20. So for the first 20 years of holding this plan, you're underwater on what you put in. Effective return: under 3% per year.*
+>
+> *Same exact $150,000 going into APA at $500/mo for 25 years. At 55, you have around $359K — already 80% more than GE delivers at the same age. Hold to 65, you have $701,423 — that's 3.5× what GE delivers. Same money in. Materially different outcome.*
+>
+> *The reason GE underperforms here isn't bad luck — it's structural. Endowments are designed for capital preservation, not growth. They're a category of product positioned as 'safe savings' but at the cost of meaningful return. If you wanted real safety at 2.5% guaranteed, CPF OA does that without any insurance wrapper. If you wanted growth, an investment-linked plan is the structural answer."*
+
+### The friend-agent-orphan trope
+
+> *"You bought this plan from a friend, and that friend has since left the industry. Who's been servicing this policy for the past 5 years? When was your last policy review with anyone? This is the orphaned-policy pattern — friends sell, friends leave, the policy sits and underperforms while no one is watching."*
+
+### The restructure recommendation
+
+For the GE Flexi-cash holder mid-term: run the surrender penalty math honestly. Most endowment plans have heavy surrender penalties in the early years that ease off after Y15-20. If the prospect is already 8+ years in, the surrender penalty may be modest. Cash value redirected as APA top-up is then the cleaner move. If they're earlier than that, paid-up status + redirect the freed monthly premium is usually better than full surrender.
 
 ---
 
