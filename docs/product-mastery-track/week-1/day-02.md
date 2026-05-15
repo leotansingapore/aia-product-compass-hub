@@ -11,7 +11,7 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 A complete APA appointment runs in seven phases — Phase 0 (pre-appointment) through Phase 5B (value-prop and final close). Each phase has a hard time budget and a target micro-commitment. The job is to engineer the close across the phases, not improvise it.
 
-**Realistic total runtime: 40-50 minutes** for a thorough first appointment (excluding Phase 0, which happens before the call starts). Phase 3 alone is ~12-15 minutes because it carries the conceptual whiteboard work (reverse-engineer + savings-vs-investing + procrastination + discipline + one-third rule + lump-sum trap). Phase 4 is another 10-12 minutes because it includes the illustration, the AIA-vs-DIY pre-empt, the option close, and the bonus reinforcement.
+**Realistic total runtime: 40-50 minutes**.
 
 If you're trying to compress this to 20 minutes, you'll skip the problem build-up and lose the close. The two ways FCs lose APA cases: skipping the problem build-up (leaping to "$200/month buys you this plan" before the prospect feels the gap), and running over 60 minutes (energy and attention die past minute 50-55).
 
@@ -21,9 +21,9 @@ The single biggest sequencing mistake is opening the appointment by sharing your
 
 The right move: **draw the concept on a single piece of paper or whiteboard FIRST**, then pull up the slides as a reference *for yourself* — not for the prospect to study.
 
-- The retirement reverse-engineer in Phase 3? Draw it on paper, one number at a time, with the prospect's calculator in their hand.
+- Reverse engineering how much they need to plan for retirement? Draw it on paper, one number at a time, with the prospect's calculator in their hand.
 - The dividend-mode mechanic in Phase 4? Draw the arrows showing capital staying, dividends flowing out.
-- The AIA-vs-DIY comparison? Draw five quick sketches, not a 5-slide deck.
+- The AIA-vs-DIY comparison? Draw one table as a comparison, not a 5-slide deck.
 
 Slides are *your* tool to remember the structure, the source citations, the exact numbers. They are not the prospect's content. Splashing the deck all at once is the fastest way to lose engagement.
 
@@ -244,6 +244,7 @@ Frame yourself as a **financial doctor**, not a salesperson. Same as a medical c
 > *"Before recommending solutions, we need to understand your current finances."*
 
 Run four ratios in order. The point isn't to "audit" them — it's to surface the gap they'll feel emotionally in Phase 3.
+![[Pasted image 20260515230641.png]]
 
 ### Ratio 1 — Liquidity Ratio
 
@@ -310,26 +311,185 @@ The default guidance:
 
 ### Retirement Lifestyle Calculator — the shock
 
-> *"What's the biggest purchase in your life? It's actually retirement."*
+Pull up the online calculator at **[present.financeillustrator.com/total-wealth-concept/retirement](https://present.financeillustrator.com/total-wealth-concept/retirement)** — share screen or hand them your laptop. This is the prospect-facing calculator from the same Growing Age Calculator suite you'll use again in Phase 4.
 
-Run the math in front of them:
+![[Pasted image 20260515230720.png]]
+
+*"What's the biggest purchase in your life? It's actually retirement."*
+
+Quick on-screen shock — run the math live on the calculator first:
 
 1. **Ask** desired monthly retirement income in today's dollars (typical answer: $4,000/mo)
 2. **Inflate** at 2.5% — at age 65, that becomes roughly **$10,740/mo**
 3. **Total over 20 retirement years** — roughly **$3.29 million**
 4. **Monthly savings needed in the bank** to get there — roughly **$6,858/month**
 
-### Reality check + humour
+That's the on-screen shock. Now move to paper for the deeper walkthrough — the prospect needs to *do the math themselves*, not just watch a tool produce numbers. The whiteboard exercise below uses a slightly more conservative example ($3K/mo lifestyle) so the prospect lands on a number they could believably hit with an investing plan.
 
-> *"Is saving $6,858 a month possible for you?"*
+### The retirement reverse-engineering whiteboard
 
-Then defuse with humour (humour raises agreeability):
+![[Pasted image 20260515232506.png]]
+Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
+
+> **Note on the numbers below:** all worked examples use a 25-year-old prospect retiring at 65 (40-year horizon) with $3K/month of desired retirement income (in today's dollars) and a 2.5% inflation assumption. **Verify the actual figures in iPOS at quote time** for the specific prospect's age, premium tier, and IIRR assumption — the numbers move with all three.
+
+Anchor first:
+
+> *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20-30 years where you'd like the option to stop working. That's what these numbers are really about."*
+
+Then run the three steps.
+
+**Step 1 — Anchor the desired monthly income (today's dollars)**
+
+> *"In today's dollars — forget inflation for now — what kind of monthly income would you want when you retire? Just a normal lifestyle, no luxuries."*
+
+Most clients say **$3,000-$5,000/month.** Use **$3,000** as the worked example. Write it on the paper:
+
+```
+Today: $3,000/month
+```
+
+**Step 2 — Inflate to retirement age**
+
+> *"That's in today's money. Inflation runs at about 2.5% per year. You're 25, retiring at 65 — that's 40 years. Want to guess what $3,000 today looks like at 65?"*
+
+Let them guess. They'll say $4K, $5K, $7K. Then reveal:
+
+```
+Today: $3,000/month
+At 65: ~$10,000/month   (2.5% inflation × 40 years)
+```
+
+> *"Roughly $10K a month — just to keep the same lifestyle you have today."*
+
+**Step 3 — Multiply by the retirement window (have them calculate)**
+
+Hand them their phone:
+
+> *"Pull out your calculator. $10,000 × 12 months × 20 years — what do you get?"*
+
+Let them compute it. They'll say $2.4M.
+
+```
+$10,000 × 12 × 20 = $2.4 million
+```
+
+> *"$2.4 million. That's the number."*
+
+**Pause.** Let it sit. Most clients react here.
+
+### Savings vs investing — why investing is cheaper
+
+Now divide that pot by the years between now and retirement. Have them calculate again:
+
+> *"If you only saved cash, how much per month would you need? Take $2.4M and divide by 40 years and 12 months."*
+
+Let them work it out:
+
+```
+$2,400,000 ÷ 40 ÷ 12 = $5,400/month in bank savings
+```
+
+> *"$5,400 a month in cash savings. Mr Prospect — what's your current income? What are your expenses? Is $5,400/month of pure savings even realistic?"*
+
+It almost never is. Sit with that for a moment. Then defuse with humour — agreeability climbs when they laugh:
 
 > *"Maybe you need multiple jobs… or find a sugar daddy or sugar mommy to cover expenses!"*
 
-### The conclusion that bridges to Phase 3
+Then the relief:
 
-> *"Obviously that's not realistic. Which is why investing isn't just nice-to-have — it's a MUST-HAVE."*
+> *"With a proper investing plan, we can reduce that down to roughly $1,000 a month. Same retirement number. One-fifth of the monthly commitment. That's why investing isn't just a good-to-have — it's a must-have."*
+
+```
+Cash savings only           Proper investing plan
+————————————                ————————————
+$5,400/month for 40 years   $1,000/month for 40 years
+```
+
+### Procrastination — the cost of starting late
+
+The next move is to make the *start now* decision feel concrete. Most prospects mentally tell themselves they'll get to this "later". Pre-empt it.
+
+> *"A lot of people procrastinate on the investing piece. They don't start at 25 — they only start at 45. Make a guess — if you wait until 45, do you think the $1,000/month figure stays the same, or goes up?"*
+
+They'll say "goes up." Confirm:
+
+> *"It goes up a LOT. Same retirement target, half the runway — the monthly cost jumps several times over. The single biggest lever you have on this whole calculation is **when you start.** That's why we want to lock this in now, not in 20 years."*
+
+### Discipline — systematic, monthly, no breaks
+
+> *"And the second piece — once you start, you have to be consistent. The mistake people make isn't usually not starting. It's starting at $1,000 for 6 months, then dropping it, then bumping it back up, then dropping again. The compounding only works if the contribution is systematic."*
+
+> *"That's why we set up a monthly auto-debit. You fix yourself to invest every month before you even see the money. No willpower needed — the system carries it."*
+
+### The one-third budgeting rule (anchor where the $1,000 comes from)
+
+![[Pasted image 20260515231403.png]]
+
+After the cash-savings shock, the prospect's question is *"where does that $1,000/month come from in my budget?"* Install the one-third rule here.
+
+> *"Out of your total income, the way to think about it is three buckets — equal thirds.*
+>
+> *One third — short-term: food, transport, day-to-day expenses, daily bills and necessities.*
+>
+> *One third — medium-term: rental, house, kids, wedding, holidays — the 3-to-7-year goals.*
+>
+> *One third — long-term: investments and insurance. The 20-to-40-year retirement bucket."*
+
+Then name the mistake most people make:
+
+> *"The biggest mistake people make is they focus a lot on short-term spending, a lot on medium-term, and they neglect long-term entirely. They simply don't care about the long term — they just cover themselves for short-term and spend the rest. And then 20 years later, the future them has nothing to retire on.*
+>
+> *The future you is going to thank you — or not — depending on what you allocate today."*
+
+Walk through a worked example tied to the prospect's actual income:
+
+> *"Let's say you take home $3,000/month after CPF. About $1,000 short-term, $1,000 medium-term, and $1,000 long-term. Within that long-term third, roughly 10% of income to insurance, 20% to investments — so about $600 going to APA. That's where the monthly investing figure comes from. Not new money — money you should already be allocating."*
+
+The cushion for prospects who can't hit a clean 33% today:
+
+> *"Totally fair if you can't hit a third right now. The principle is what matters: long-term first, not last. Even $200/month into the long-term bucket today beats waiting 5 years for $1,000."*
+
+Acknowledge insurance is its own conversation:
+
+> *"Insurance is part of the long-term bucket too — that's a separate session. Today we're focused on the wealth-building half. We'll come back to the protection side after we've locked this in."*
+
+### The lump-sum trap — why you don't take the $2.4M out
+
+![[Pasted image 20260515232527.png]]
+Now the most important reframe. Most prospects assume the $2.4M is something they "withdraw at 65 and spend." Reverse that.
+
+> *"Mr Prospect, let's say at 65 you actually get there — you've got the $2.4M sitting in your account. Do you think you should just take it out as a lump sum and spend it down at $10K/month? Or do you think it's smarter to leave it inside and just withdraw the income?"*
+
+Wait for the answer. Most arrive at "leave it inside." Confirm with the math:
+
+> *"Right. If you took $2.4M out and spent $10K/mo, the pot depletes year by year — and if you live to 90 instead of 85, you've run out. But here's what happens if you keep the capital invested and only withdraw the dividends..."*
+
+The 5% dividend yield reveal:
+
+> *"At about a 5% dividend yield on $2.4M, the plan pays you roughly $10K/month — exactly the income you wanted. AND the capital doesn't drop. It stays at $2.4M while you're drawing the $10K/month. Like a cake you keep eating that never gets smaller."*
+
+The three-birds-one-stone close:
+
+> *"So with the same plan, you kill three birds with one stone.*
+>
+> *One — you get the $10K/month retirement income for life.*
+>
+> *Two — the $2.4M capital is preserved. Lifelong. Not depleting.*
+>
+> *Three — when you pass on, that $2.4M becomes the inheritance for your kids and loved ones. It's not 'either income or legacy' — it's both."*
+
+Then hand it back instead of selling:
+
+> *"Does that line up with how you've been thinking about retirement, or does it change the picture?"*
+
+Let them react. Most prospects need a beat — let them.
+
+### The bridge into Phase 3
+
+The retirement math has now made *investing* (not bank savings) the only realistic path — $1,000/mo invested vs $5,400/mo saved, capital preserved, legacy preserved. The next move is to hand them the implementation question.
+
+> *"So that's the case for investing — same retirement number, one-fifth the monthly commitment, capital preserved, legacy preserved. The question now isn't *whether* to invest. It's *how*. Because most people who try to do this themselves run into very specific problems — and that's what we want to walk through next."*
 
 That's the bridge.
 
@@ -338,6 +498,7 @@ That's the bridge.
 ## Phase 3 — Problems of Investing → AIA Solution (5 min)
 
 Now that investing is established as a must-have, surface the problems most people run into when they try to invest themselves.
+![[Pasted image 20260515231119.png]]
 
 ### The common investing problems
 
@@ -415,159 +576,6 @@ Bring up the Investing Success & Track Record deck — slide 4 shows 10-year fun
 
 Position it honestly: AIA's funds, on average across the lineup, have a verified long-term track record that competes with or beats the standard ETF benchmarks. Don't claim "#1 on every metric" — point at the deck.
 
-### The retirement reverse-engineering whiteboard
-
-Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
-
-> **Note on the numbers below:** all worked examples use a 25-year-old prospect retiring at 65 (40-year horizon) with $3K/month of desired retirement income (in today's dollars) and a 2.5% inflation assumption. **Verify the actual figures in iPOS at quote time** for the specific prospect's age, premium tier, and IIRR assumption — the numbers move with all three.
-
-Anchor first:
-
-> *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20-30 years where you'd like the option to stop working. That's what these numbers are really about."*
-
-Then run the three steps.
-
-**Step 1 — Anchor the desired monthly income (today's dollars)**
-
-> *"In today's dollars — forget inflation for now — what kind of monthly income would you want when you retire? Just a normal lifestyle, no luxuries."*
-
-Most clients say **$3,000-$5,000/month.** Use **$3,000** as the worked example. Write it on the paper:
-
-```
-Today: $3,000/month
-```
-
-**Step 2 — Inflate to retirement age**
-
-> *"That's in today's money. Inflation runs at about 2.5% per year. You're 25, retiring at 65 — that's 40 years. Want to guess what $3,000 today looks like at 65?"*
-
-Let them guess. They'll say $4K, $5K, $7K. Then reveal:
-
-```
-Today: $3,000/month
-At 65: ~$10,000/month   (2.5% inflation × 40 years)
-```
-
-> *"Roughly $10K a month — just to keep the same lifestyle you have today."*
-
-**Step 3 — Multiply by the retirement window (have them calculate)**
-
-Hand them their phone:
-
-> *"Pull out your calculator. $10,000 × 12 months × 20 years — what do you get?"*
-
-Let them compute it. They'll say $2.4M.
-
-```
-$10,000 × 12 × 20 = $2.4 million
-```
-
-> *"$2.4 million. That's the number."*
-
-**Pause.** Let it sit. Most clients react here.
-
-### Savings vs investing — why investing is cheaper
-
-Now divide that pot by the years between now and retirement. Have them calculate again:
-
-> *"If you only saved cash, how much per month would you need? Take $2.4M and divide by 40 years and 12 months."*
-
-Let them work it out:
-
-```
-$2,400,000 ÷ 40 ÷ 12 = $5,400/month in bank savings
-```
-
-> *"$5,400 a month in cash savings. Mr Prospect — what's your current income? What are your expenses? Is $5,400/month of pure savings even realistic?"*
-
-It almost never is. Sit with that for a moment.
-
-Then the relief:
-
-> *"With a proper investing plan, we can reduce that down to roughly $1,000 a month. Same retirement number. One-fifth of the monthly commitment. That's why investing isn't just a good-to-have — it's a must-have."*
-
-```
-Cash savings only           Proper investing plan
-————————————                ————————————
-$5,400/month for 40 years   $1,000/month for 40 years
-```
-
-### Procrastination — the cost of starting late
-
-The next move is to make the *start now* decision feel concrete. Most prospects mentally tell themselves they'll get to this "later". Pre-empt it.
-
-> *"A lot of people procrastinate on the investing piece. They don't start at 25 — they only start at 45. Make a guess — if you wait until 45, do you think the $1,000/month figure stays the same, or goes up?"*
-
-They'll say "goes up." Confirm:
-
-> *"It goes up a LOT. Same retirement target, half the runway — the monthly cost jumps several times over. The single biggest lever you have on this whole calculation is **when you start.** That's why we want to lock this in now, not in 20 years."*
-
-### Discipline — systematic, monthly, no breaks
-
-> *"And the second piece — once you start, you have to be consistent. The mistake people make isn't usually not starting. It's starting at $1,000 for 6 months, then dropping it, then bumping it back up, then dropping again. The compounding only works if the contribution is systematic."*
-
-> *"That's why we set up a monthly auto-debit. You fix yourself to invest every month before you even see the money. No willpower needed — the system carries it."*
-
-### The one-third budgeting rule (anchor where the $1,000 comes from)
-
-After the cash-savings shock, the prospect's question is *"where does that $1,000/month come from in my budget?"* Install the one-third rule here.
-
-> *"Out of your total income, the way to think about it is three buckets — equal thirds.*
->
-> *One third — short-term: food, transport, day-to-day expenses, daily bills and necessities.*
->
-> *One third — medium-term: rental, house, kids, wedding, holidays — the 3-to-7-year goals.*
->
-> *One third — long-term: investments and insurance. The 20-to-40-year retirement bucket."*
-
-Then name the mistake most people make:
-
-> *"The biggest mistake people make is they focus a lot on short-term spending, a lot on medium-term, and they neglect long-term entirely. They simply don't care about the long term — they just cover themselves for short-term and spend the rest. And then 20 years later, the future them has nothing to retire on.*
->
-> *The future you is going to thank you — or not — depending on what you allocate today."*
-
-Walk through a worked example tied to the prospect's actual income:
-
-> *"Let's say you take home $3,000/month after CPF. About $1,000 short-term, $1,000 medium-term, and $1,000 long-term. Within that long-term third, roughly 10% of income to insurance, 20% to investments — so about $600 going to APA. That's where the monthly investing figure comes from. Not new money — money you should already be allocating."*
-
-The cushion for prospects who can't hit a clean 33% today:
-
-> *"Totally fair if you can't hit a third right now. The principle is what matters: long-term first, not last. Even $200/month into the long-term bucket today beats waiting 5 years for $1,000."*
-
-Acknowledge insurance is its own conversation:
-
-> *"Insurance is part of the long-term bucket too — that's a separate session. Today we're focused on the wealth-building half. We'll come back to the protection side after we've locked this in."*
-
-### The lump-sum trap — why you don't take the $2.4M out
-
-Now the most important reframe. Most prospects assume the $2.4M is something they "withdraw at 65 and spend." Reverse that.
-
-> *"Mr Prospect, let's say at 65 you actually get there — you've got the $2.4M sitting in your account. Do you think you should just take it out as a lump sum and spend it down at $10K/month? Or do you think it's smarter to leave it inside and just withdraw the income?"*
-
-Wait for the answer. Most arrive at "leave it inside." Confirm with the math:
-
-> *"Right. If you took $2.4M out and spent $10K/mo, the pot depletes year by year — and if you live to 90 instead of 85, you've run out. But here's what happens if you keep the capital invested and only withdraw the dividends..."*
-
-The 5% dividend yield reveal:
-
-> *"At about a 5% dividend yield on $2.4M, the plan pays you roughly $10K/month — exactly the income you wanted. AND the capital doesn't drop. It stays at $2.4M while you're drawing the $10K/month. Like a cake you keep eating that never gets smaller."*
-
-The three-birds-one-stone close on Phase 3:
-
-> *"So with the same plan, you kill three birds with one stone.*
->
-> *One — you get the $10K/month retirement income for life.*
->
-> *Two — the $2.4M capital is preserved. Lifelong. Not depleting.*
->
-> *Three — when you pass on, that $2.4M becomes the inheritance for your kids and loved ones. It's not 'either income or legacy' — it's both."*
-
-Then hand it back instead of selling:
-
-> *"Does that line up with how you've been thinking about retirement, or does it change the picture?"*
-
-Let them react. Most prospects need a beat — let them.
-
 ### Transition into Phase 4
 
 > *"Now let me show you the actual quotation, how the dividend mechanics work, and what makes AIA different from doing this DIY."*
@@ -576,15 +584,18 @@ Let them react. Most prospects need a beat — let them.
 
 ## Phase 4 — Investment Illustrations + AIA-vs-DIY + Option Close (8-10 min)
 
-The conceptual sell is done in Phase 3. Phase 4 is where you show the actual quotation and pre-empt the "why AIA instead of DIY" objections before the prospect surfaces them.
+The conceptual sell is done in Phase 3. Phase 4 is where you show the projected numbers visually and pre-empt the "why AIA instead of DIY" objections before the prospect surfaces them.
 
-### Open the iPOS+ illustration
+> **Tool note:** at this phase you don't pull up the iPOS+ illustration yet. Use the **Long-Term Investment Illustrator** at **[present.financeillustrator.com/long-term-investment-illustrator](https://present.financeillustrator.com/long-term-investment-illustrator)** (part of the Growing Age Calculator). The official iPOS+ quote comes at a later phase when you're closing on the actual contract — using it too early gets the prospect anchored on a specific premium number before they've bought the *concept*.
 
-Pull up an iPOS+ quote on the agreed monthly amount (from Phase 3, that was $1,000/mo). Walk the prospect through the projected values year by year, anchoring the 5% dividend yield assumption.
+### Open the Long-Term Investment Illustrator
+![[Pasted image 20260515232636.png]]
 
-> *"Here's what $1,000/month looks like as an actual quote. Total premium going in over 40 years — $480,000. Projected fund value at 65 — about $2.4 million. At a 5% dividend yield, that pays you the $10K/mo we worked out earlier, while the $2.4M capital stays intact."*
+Pull up the illustrator on the agreed monthly amount (from the Phase 2 whiteboard, that was $1,000/mo). Walk the prospect through the projected values year by year, anchoring the 5% dividend yield assumption.
 
-### Cost-of-delay shock (anchor the urgency on iPOS numbers)
+> *"Here's what $1,000/month looks like in the illustrator. Total premium going in over 40 years — $480,000. Projected fund value at 65 — about $2.4 million. At a 5% dividend yield, that pays you the $10K/mo we worked out earlier, while the $2.4M capital stays intact."*
+
+### Cost-of-delay shock (anchor the urgency on illustrator numbers)
 
 > *"The math at $1,000/month works because you're starting now. What do you think happens if you wait 5 years?"*
 
@@ -1067,7 +1078,7 @@ By this point in the appointment, the prospect has said yes 8-10 times in micro-
 
 - *"Yes, that's my birthday"* (Phase 1)
 - *"OK, I'll check out the resources you sent"* (Phase 1)
-- *"Yeah, $2.4 million is a lot"* (Phase 3)
+- *"Yeah, $2.4 million is a lot"* (Phase 2 whiteboard)
 - *"Outsourcing makes sense"* (Phase 3)
 - *"Monthly is fine"* (Phase 4)
 - *"Option B sounds smarter"* (Phase 5B Option A/B)
