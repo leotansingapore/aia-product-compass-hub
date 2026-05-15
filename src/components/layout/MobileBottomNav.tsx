@@ -11,6 +11,9 @@ import {
   MessageSquarePlus,
   ShieldCheck,
   Trophy,
+  TrendingUp,
+  Pencil,
+  Archive,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -30,6 +33,27 @@ interface MobileNavItem {
   features?: readonly string[];
 }
 
+// Sales Playbooks deep-links to the user's last-visited sub-tab when present —
+// scripts/servicing/objections/playbooks/flows/concept-cards/case-vault all
+// write `sales-playbooks-last-route` into localStorage when navigated to.
+function readSalesPlaybooksRoute(): string {
+  try {
+    return localStorage.getItem("sales-playbooks-last-route") || "/scripts";
+  } catch {
+    return "/scripts";
+  }
+}
+
+const SALES_PLAYBOOK_ROUTES = [
+  "/scripts",
+  "/servicing",
+  "/objections",
+  "/playbooks",
+  "/flows",
+  "/concept-cards",
+  "/case-vault",
+];
+
 const PRIMARY_ITEMS: MobileNavItem[] = [
   {
     name: "Learning",
@@ -37,9 +61,18 @@ const PRIMARY_ITEMS: MobileNavItem[] = [
     icon: GraduationCap,
     features: [FEATURES.EXPLORER_TRACK, FEATURES.PRE_RNF_TRACK, FEATURES.POST_RNF_TRACK],
   },
-  { name: "Board", href: "/leaderboard", icon: Trophy },
   { name: "Library", href: "/library", icon: BookOpen, features: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
+  // Sales Playbooks — daily-use for post-RNF consultants. Deep-links to the
+  // last-visited tab (scripts / servicing / objections / playbooks / flows /
+  // concept-cards / case-vault).
+  {
+    name: "Sales",
+    href: "/scripts",
+    icon: TrendingUp,
+    features: [FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
+  },
+  { name: "Board", href: "/leaderboard", icon: Trophy },
 ];
 
 interface QuickLink {
@@ -52,6 +85,11 @@ interface QuickLink {
 }
 
 const QUICK_LINKS: QuickLink[] = [
+  // Sales Playbooks sub-tabs surfaced individually so post-RNF consultants can
+  // deep-link to the exact tool they need (Concept Cards for drilling drawings,
+  // Case Vault for browsing real-prospect receipts).
+  { name: "Concept Cards", href: "/concept-cards", icon: Pencil, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30", features: [FEATURES.CONCEPT_CARDS] },
+  { name: "Case Vault", href: "/case-vault", icon: Archive, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.CASE_VAULT] },
   { name: "Question Banks", href: "/library?tab=banks", icon: Brain, color: "text-indigo-500", bg: "bg-indigo-50 dark:bg-indigo-950/30", features: [FEATURES.QUESTION_BANKS] },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30", features: [FEATURES.ROLEPLAY] },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30", features: [FEATURES.BOOKMARKS] },
@@ -107,16 +145,21 @@ export function MobileBottomNav() {
       <nav className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50 safe-area-pb">
         <div className="flex items-stretch justify-around">
           {visiblePrimary.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? location.pathname === "/"
-                : location.pathname.startsWith(item.href);
+            // Sales tab is active on any Sales Playbooks sub-route — and
+            // deep-links to whichever sub-tab the user last visited.
+            const isSales = item.name === "Sales";
+            const effectiveHref = isSales ? readSalesPlaybooksRoute() : item.href;
+            const isActive = (() => {
+              if (isSales) return SALES_PLAYBOOK_ROUTES.some((r) => location.pathname.startsWith(r));
+              if (item.href === "/") return location.pathname === "/";
+              return location.pathname.startsWith(item.href);
+            })();
 
             return (
               <NavLink
                 key={item.name}
-                to={item.href}
-                {...prefetchHandlers(item.href)}
+                to={effectiveHref}
+                {...prefetchHandlers(effectiveHref)}
                 className={cn(
                   "relative flex flex-col items-center justify-center px-1 py-2 min-h-[56px] flex-1 transition-colors",
                   isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"

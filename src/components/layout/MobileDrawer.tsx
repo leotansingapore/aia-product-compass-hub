@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive } from "lucide-react";
+import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -30,9 +30,14 @@ export function MobileDrawer() {
 
   const salesPlaybooksRoute = (() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })();
 
+  // Sales Playbooks is gated on the Playbooks/Scripts features (post-RNF tier).
+  // Admins bypass via useFeatureAccess.can() so they always see these entries.
+  const canSalesPlaybooks = can(FEATURES.PLAYBOOKS) || can(FEATURES.SCRIPTS);
   const resourceItems = [
-    { name: "Sales Playbooks", href: salesPlaybooksRoute, icon: TrendingUp },
-  ];
+    canSalesPlaybooks && { name: "Sales Playbooks", href: salesPlaybooksRoute, icon: TrendingUp },
+    can(FEATURES.CONCEPT_CARDS) && { name: "Concept Cards", href: "/concept-cards", icon: Pencil, indent: true },
+    can(FEATURES.CASE_VAULT) && { name: "Case Vault", href: "/case-vault", icon: Archive, indent: true },
+  ].filter(Boolean) as { name: string; href: string; icon: any; indent?: boolean }[];
 
   const handleLinkClick = () => {
     setOpen(false);
@@ -112,32 +117,35 @@ export function MobileDrawer() {
             <Separator className="mb-6" />
 
             {/* Resources */}
-            <div className="mb-6">
-              <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
-                Resources
-              </h3>
-              <div className="space-y-1">
-                {resourceItems.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.href}
-                    onClick={handleLinkClick}
-                    className={({ isActive }) =>
-                      cn(
-                        "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                        "hover:bg-muted",
-                        isActive
-                          ? "bg-muted text-primary font-medium"
-                          : "text-muted-foreground"
-                      )
-                    }
-                  >
-                    <item.icon className="h-4 w-4 shrink-0" />
-                    <span>{item.name}</span>
-                  </NavLink>
-                ))}
+            {resourceItems.length > 0 && (
+              <div className="mb-6">
+                <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
+                  Resources
+                </h3>
+                <div className="space-y-1">
+                  {resourceItems.map((item) => (
+                    <NavLink
+                      key={item.name}
+                      to={item.href}
+                      onClick={handleLinkClick}
+                      className={({ isActive }) =>
+                        cn(
+                          "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                          "hover:bg-muted",
+                          item.indent && "ml-4",
+                          isActive
+                            ? "bg-muted text-primary font-medium"
+                            : "text-muted-foreground"
+                        )
+                      }
+                    >
+                      <item.icon className="h-4 w-4 shrink-0" />
+                      <span>{item.name}</span>
+                    </NavLink>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {isAdmin && !isViewingAsUser && (
               <>

@@ -182,7 +182,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const isCollapsed = state === "collapsed";
   const currentPath = location.pathname;
 
-  const salesPlaybookRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards'];
+  const salesPlaybookRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault'];
   const isActive = useMemo(() => (path: string) => {
     if (path === "/") return currentPath === "/";
     // "Sales Playbooks" link should be active on any sales sub-route
