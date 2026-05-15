@@ -292,6 +292,9 @@ PLP and whole-life restructure case studies. Pattern: prospects bought from pare
 
 ## Case P1 — The young adult $200/mo bundled whole-life restructure
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p1) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Young working adult, paying **$200/mo whole-life** for $200K death/TPD/CI + $100K Early CI
 > - Originally placed by parents' family agent years ago, never reviewed
@@ -333,6 +336,9 @@ Same approximate monthly outflow. Multi-claim CI. Death cover doesn't erode. Cas
 ---
 
 ## Case P2 — The pre-retiree NTUC Living Policy cash unlock
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p2) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - Pre-retiree with **NTUC Living Policy** — $93/mo premium, $96K accumulated cash value, modest death + CI coverage bundled
@@ -377,6 +383,9 @@ Always run the surrender penalty math before recommending this move. Most life p
 ---
 
 ## Case P3 — When PLP is genuinely the right answer (legacy floor)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p3) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - **Not every case is a decoupling case.** PLP genuinely serves a real structural need for specific prospect profiles.

@@ -302,6 +302,9 @@ Each case below uses the duration that matches the prospect's current quote / ex
 
 ## Case A — The Pru Active Life prospect (Play A receipt)
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-a) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Prospect pays **$371.86/mo** for Pru Active Life bundle (3 policies stacked)
 > - At 8% projection, surrender value at 70: **$124,038** on ~$134K premium paid
@@ -385,6 +388,9 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 ---
 
 ## Case B — The FWD Invest First prospect (Play B / fee attack receipt)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-b) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 25-yo prospect quoted FWD Invest First Summit at **$600/mo for 25 years = $180,000 total**
@@ -481,6 +487,9 @@ For an FWD prospect already locked in: the math has to be run case-by-case (surr
 
 ## Case C — The fragmented-coverage young adult (consolidation receipt)
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-c) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 24-yo with **5 plans across 2 insurers = $807.80/mo** total outflow
 > - Singlife Choice Saver at **4.25% PIRR** is the biggest piece: $296/mo → projected maturity at 35: $38,135 (on ~$61K paid in)
@@ -560,6 +569,9 @@ Premium paid: $234,000 (40 × $500 × 12, ending at age 64). Continuous-pay keep
 
 ## Case D — The pre-retiree cash-value redirect (Play A pre-retiree variant)
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-d) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 50-yo holding paid-up whole-life with **~$50K cash value** sitting at 3-4% par-fund projection
 > - Dependants are out, mortgage paid down — the original cover need has expired
@@ -621,6 +633,9 @@ If all four answer in favour of the move, the restructure is a clear win. If any
 
 ## Case E — The mid-career peak earner (Welcome tier 1 receipt)
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-e) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 45-yo peak earner with $1,500-2,000/mo of surplus cash flow to allocate
 > - At **$1,200/mo APA** ($14,400/yr) the prospect hits **Welcome Bonus tier 1: 15% / 18% / 20% across Y1-Y3 = $7,632 bonus stack**
@@ -668,6 +683,9 @@ A DIY portfolio at 45 has none of these structural guarantees. APA's edge over D
 ---
 
 ## Case F — The DIY platform investor (supplement receipt)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-f) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 30-yo with $50K-$100K already in Endowus/StashAway/iFAST/Tiger — knows what FMC means
@@ -721,6 +739,9 @@ The DIY-savvy prospect is the future of every advisor's book. They aren't going 
 ---
 
 ## Case G — The same-money FWD comparison (receipt for the cross-shop close)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-g) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 25-yo cross-shopping FWD vs APA before signing. **This is the front-load shape alternative to Case B's matched-duration comparison.**
@@ -782,6 +803,9 @@ The "10-year IIP" structure isn't just a math advantage — it's a **time / cash
 
 ## Case H — The HSBC Pulsar net-yield attack
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-h) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Prospect sold HSBC Pulsar at $1,000/mo, lured by the **168% startup bonus** gimmick
 > - Stated projection rates of 4% / 8% — but actual **net yield after all fees**: **0.83% at 4%**, **4.7% at 8%**
@@ -835,6 +859,9 @@ For a Pulsar prospect already locked in: run the math case-by-case (surrender pe
 ---
 
 ## Case I — The Tokio Marine IFA ILP attack
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-i) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 30-yo sold $2,000/mo Tokio Marine ILP through an "IFA" (Independent Financial Adviser) — branded as objective but only sold one company's product
@@ -898,6 +925,9 @@ The structural reason for the gap is consistent across both views: APA's supplem
 
 ## Case J — The Manulife Ready Income poor-retirement receipt
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-j) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - DBS banker sold the prospect Manulife Ready Income at **$4,200/yr × 10 yrs = $42,000 total**
 > - At 65, Manulife delivers **only $42K of cash value** and a **$1.2K/yr ($100/mo) retirement income** stream
@@ -953,6 +983,9 @@ That's **15× the Manulife income stream from the same $42K of premium**. Same m
 ---
 
 ## Case K — The GE Flexi-cash endowment attack
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-k) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 30-yo sold GE Flexi-cash endowment: **$6,000/yr × 25 years = $150,000 total premium**

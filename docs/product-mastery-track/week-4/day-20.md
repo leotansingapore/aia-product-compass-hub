@@ -283,6 +283,9 @@ Anonymised CI case studies from real closes. The pattern: most prospects believe
 
 ## Case U1 — The "company insurance" exposure (Full Suite close)
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u1) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Working professional, "company insurance" gave him **$60K Death / $30K CI** = ~5-10 months of expenses in event of death or CI
 > - Plus: company cover **lapses on job change**, and by then he may have pre-existing conditions (uninsurable)
@@ -340,6 +343,9 @@ Outcome added to the prospect:
 
 ## Case U2 — The young adult's $200/mo whole-life restructure
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u2) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Young working adult, paying **$200/mo whole-life plan** placed by parents' family agent years ago
 > - Coverage: **$200K death + $200K TPD + $200K CI + $100K Early CI** — all bundled in one life plan
@@ -388,6 +394,9 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 
 ## Case U3 — The GPP-only upsell to add Early CI
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u3) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 38-yo client with existing GPP term plan, **no Early CI rider**, no multi-claim feature
 > - Has good Major CI cover, but Early CI (carcinoma in situ, mild stroke, Stage 0 cancer) not covered
@@ -422,6 +431,9 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 ---
 
 ## Case U4 — The pre-retiree CI restructure to standalone multi-claim
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u4) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - Pre-retiree (~55), has **CI bundled inside a $100K whole-life plan** — single-claim only, cover erodes on claim

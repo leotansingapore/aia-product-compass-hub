@@ -266,6 +266,9 @@ Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C
 
 ## Case H1 — The HSG B-Lite + no rider upgrade
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h1) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Prospect has **AIA HSG B-Lite, no rider** — basic hospital cover at lowest tier
 > - **Exposure on a typical $10K hospital bill:** $3,500 deductible + 10% co-insurance ($650) = **$4,150 out of pocket**
@@ -309,6 +312,9 @@ Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the ri
 
 ## Case H2 — The GE P-Optimum private hospital cross-shop
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h2) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** vs AIA Vitalcare A rider at $800+/yr
 > - GE's headline price is cheaper, **but the cover scope is significantly narrower** with hard limitations
@@ -339,6 +345,9 @@ Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the ri
 ---
 
 ## Case H3 — The parents' plan upgrade for multi-generational coverage
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h3) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - Prospect (working adult) wants to upgrade parents' hospital coverage — currently on **MediShield Life only** or basic Plan C

@@ -304,6 +304,9 @@ Accident plan case studies. Solitaire PA is the lowest-friction close in the AIA
 
 ## Case S1 — The young Singlife client redirect
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s1) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Young working adult, **<$1K in savings, no dependants, no accident or hospital plan**
 > - Singlife agent had him buy a **$200/mo Death/TPD/CI plan** — structurally wrong for his situation
@@ -341,6 +344,9 @@ The trust this builds long-term is significant. The prospect saves money now, ge
 
 ## Case S2 — The Plan 1 vs Plan 2 upsell
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s2) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - Prospect quoted **Solitaire PA Plan 1** at base pricing
 > - Plan 2 costs **~$10/mo more** but delivers **2.5× the coverage** on death / disability / dismemberment + more medical reimbursement
@@ -366,6 +372,9 @@ The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospe
 ---
 
 ## Case S3 — Parents accident coverage (multi-generational)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s3) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - Working-adult prospect (35-45-yo) considering coverage for elderly parents

@@ -292,6 +292,9 @@ Anonymised case studies from real PWV closes — pre-retiree restructures, ILP c
 
 ## Case L — The Citibank PIW SGD-redirect
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-l) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 50-yo prospect proposed a $300K PIW (Premier Income Wealth) by a Citibank private banker
 > - Source: funds in Ringgit at a Malaysian bank, wanting to park better than FD yields (~1.2% p.a.)
@@ -325,6 +328,9 @@ Anonymised case studies from real PWV closes — pre-retiree restructures, ILP c
 ---
 
 ## Case M — The pre-retiree OA-redirect (retirement healthcare funding)
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-m) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 58-yo prospect with **$185K in CPF OA** doing nothing (0% interest after 65, illiquid in RA after top-up)
@@ -366,6 +372,9 @@ This is Leo's canonical "retirement healthcare funding angle" — see the [Drawi
 
 ## Case N — The Manulife multi-policy DBS-banker portfolio
 
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-n) · 🎨 [Drill the drawings used](/concept-cards)
+
+
 > **TLDR**
 > - 56-yo IT manager with **5 Manulife plans** placed by **4 different DBS bankers** over 5 years
 > - Plans: 1 Manulife ILP + 4 Manulife savings plans, no one servicing them currently
@@ -405,6 +414,9 @@ This is Leo's canonical "retirement healthcare funding angle" — see the [Drawi
 ---
 
 ## Case O — The pre-retiree $7.2K/mo retirement target
+
+> <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-o) · 🎨 [Drill the drawings used](/concept-cards)
+
 
 > **TLDR**
 > - 50-yo, currently FRS-on-track via SA alone
