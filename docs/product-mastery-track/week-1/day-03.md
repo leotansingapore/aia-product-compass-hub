@@ -13,197 +13,190 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 ---
 
-# Part 1 — The Numbers — Premiums, Illustrations, Returns, Fees, Charges
+# Part 1 — The Numbers (Q&A format)
 
-> **The one idea for today:** APA is *deliberately* structured to look bad in years 1–10 and great from year 11 onward. The 3.9% supplementary charge ends at year 10. The 5% / 8% bonuses pay forever. The break-even crossover is around year 34 at $12k/year premium — and after that, AIA is effectively paying the client. Once you can draw this curve, the "fees are too high" objection collapses.
+Part 1 is structured as Q&A pairs — each question is something a Pro Achiever FC needs to answer cold, either to a probing prospect or to themselves. The answer is the canonical response with the supporting math and reframes.
 
-By the end of today you should be able to: state every key number from memory, walk through the break-even math on a whiteboard, linearize any projection into "$X/month of effective passive income," and present the supplementary charge as a feature, not a bug.
+The frame: APA is *deliberately* structured to look bad in years 1-10 and great from year 11 onward. The 3.9% supplementary charge ends at year 10. The 5% / 8% bonuses pay forever. The break-even crossover is around year 34 at $12K/year premium — and after that, AIA is effectively paying the client. Once you can draw this curve, the "fees are too high" objection collapses.
+
+> **Note on the worked numbers:** examples use a 25-year-old prospect at $12K/year premium on a 10-year IIP with an 8% IIRR projection on the Self-Select Adventurous Index Fund. **Verify in iPOS at quote time** for the specific prospect's age, premium tier, and risk profile.
 
 ---
 
-## The structural inversion
+### Q1: Why is APA structured to look bad in years 1-10 and great from year 11 onward?
 
-A lot of APA cases come apart because the FC treats the 3.9% supplementary charge defensively — bracing for the objection rather than walking the prospect through what the charge is buying. The honest move is to lead with it:
+**A:** Because the bonus stack is engineered to reward long-hold behaviour. Charges are front-loaded (3.9% supplementary for the first 10 years), bonuses are back-loaded (Welcome Bonus Y1-Y3, then Special Bonus 5% from Y10, then 8% from Y21). The plan deliberately makes early exit expensive — that's how AIA can afford to give a 53% Welcome Bonus + perpetual 5/8% Special Bonus to disciplined holders.
+
+The honest framing for the prospect (don't get defensive about the early-years charge — lead with it):
 
 > *"After 10 years there's no more supplementary charge. But the bonuses are perpetual. The trick for this plan is to really hold long-term."*
 
-Draw this on the whiteboard if you have to:
+The curve to draw on paper:
 
 ```
-Years 1–10:    Charges: 3.9% p.a.    Bonuses: 5%–75% welcome (years 1–3)
+Years 1-10:    Charges: 3.9% p.a.    Bonuses: 5%-75% welcome (years 1-3)
 Year 10+:      Charges: 0%           Bonuses: 5% special perpetual
 Year 21+:      Charges: 0%           Bonuses: 8% special perpetual
 ```
 
-The plan is engineered for the long-hold client. If your prospect surfaces a sub-10-year worry, don't walk away — reframe: this is the long-term bucket, not the emergency fund. The cover/structure works from day 1; the 10-year horizon is about cash-value optics, not whether the plan is doing its job.
+If a prospect surfaces a sub-10-year worry, don't walk — reframe: this is the long-term bucket, not the emergency fund. The plan is doing its job from day 1; the 10-year horizon is about cash-value optics, not the plan's actual function.
 
 ---
 
-## The bonus mechanics (memorise)
+### Q2: How does the Welcome Bonus pay out across the first 3 years?
 
-### Welcome Bonus
+**A:** Paid as additional units on each basic regular premium received in Y1, Y2, Y3 — depending on the annualised premium tier and IIP option. Full canonical table is in Day 1 Part 2. The headline numbers:
 
-- Paid across years 1–3
-- **5% to 75%** of annualized premium
-- Higher premium tier + longer IIP = higher bonus
-- Tier breakpoints: $4.8k / $7.2k / $12k annual premium
+- **5% to 75%** range across all tiers and IIPs
+- Higher premium tier × longer IIP = higher bonus
+- Tier breakpoints: $2,400 / $4,800 / $7,200 / $12,000 annual premium
+- At $12K+ premium on a 10-year IIP: 15% / 18% / 20% across Y1/Y2/Y3 = **53% total = $6,360**
 
-### Special Bonus
+---
 
-- **5% per year from year 10 onward** (10-year IIP)
-- **8% per year from year 21 onward**
-- Calculated on **annualized premium**, not account value (this is the most-missed detail)
-- Perpetual while premiums are paid
+### Q3: How does the Special Bonus pay out from Year 10 onwards?
+
+**A:** It's a loyalty bonus calculated on **annualised regular premium** (not policy value — this is the most-missed detail):
+
+- **5% per year from Year 10-20** (on a 10-yr IIP)
+- **8% per year from Year 21 onwards**
+- Perpetual for the rest of the policy as long as the premium is paid
 
 The script that prevents the most common confusion:
 
 > *"5% of your annualized premium, not 5% of the account value. Please take note, there's a difference."*
 
-Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12k/year premium, that's an extra $600/year credited from year 10 onward. Forever.
+Most prospects assume "5%" means 5% of their pot. It doesn't — it means 5% of their *annual premium*, added to the pot. On a $12K/year premium that's an extra $600/year from Year 10 onward. Forever.
 
 ---
 
-## The supplementary charge
+### Q4: What is the supplementary charge, and how do I explain it without sounding defensive?
+
+**A:** The supplementary charge is the only meaningful early-year cost on the plan.
 
 | Detail | Value |
 |---|---|
-| Rate | **3.9% per annum** of account value |
+| Rate | **3.9% per annum** of policy value |
 | Frequency | Monthly deduction |
-| Duration | First 10 policy years only (10-yr IIP). Drops to 0% after that |
+| Duration | First 10 policy years only (10-yr IIP). Drops to 0% from Year 11 |
 | What it covers | Distribution costs (commission), ongoing servicing, AIA admin |
 
-The disclosure that builds trust is to surface the charge yourself, before they probe it:
+The disclosure that builds trust is to surface the charge yourself, before the prospect probes it:
 
-> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a welcome bonus in years 1–3, then 5% special bonus from year 10, then 8% from year 21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
+> *"One thing I want to flag up front — there's a 3.9% supplementary charge for the first 10 years. After year 10 it goes to zero, but you'd feel it in the early years. The trade-off is on the other side of the same wall: a Welcome Bonus in Y1-Y3, then 5% Special Bonus from Y10, then 8% from Y21. Front-loaded charges, perpetual bonuses. I'd rather you hear that from me than spot it in the contract later."*
 
-Naming the cost yourself flips the prospect's read of you from "selling" to "explaining" — and the rest of the conversation gets easier.
+Naming the cost yourself flips the prospect's read of you from "selling" to "explaining."
 
 ---
 
-## The illustration discipline (4% vs 8%)
+### Q5: How do I read the 4% vs 8% projection on the iPOS+ Benefit Illustration?
 
-AIA's iPulse / Sales Illustrator shows two projection rates. Your discipline:
+**A:** AIA's iPOS+ Benefit Illustrator shows two projection rates: 4% and 8%. MAS requires both. Your discipline:
 
-- **Anchor on 8%.** That's the historical average for the Elite Adventurous portfolio.
-- **Show 4% as the conservative floor.** Never present 4% as the headline.
-- **Never present 8% as guaranteed.** Always disclose: "It's not guaranteed 8% all the time — it can be a bit higher, it can be a bit lower."
+- **Anchor on 8%** — that's the historical average for the Adventurous portfolio
+- **Show 4% as the conservative floor** — never present it as the headline
+- **Never present 8% as guaranteed** — always disclose: "It's not guaranteed; the actual return depends on actual fund performance"
 
 The exact phrasing:
 
 > *"Don't look at the 4% — 4% is really on the conservative side. Most of the time our portfolio has grown roughly 8%. It's not guaranteed 8%, it can be higher, it can be lower."*
 
-The 4% number stays in the illustration as compliance protection. Your job is to direct attention to 8% while making the disclosure honestly.
+The 4% number stays in the illustration as compliance protection. Your job is to direct attention to 8% while making the disclosure honestly. (The fuller reframe — "MAS caps the projection at 8%; actual track record has run higher" — sits in Day 5 Phase 1 Disclosure 1.)
 
 ---
 
-## The linearization technique
+### Q6: How do I linearise the projected fund value into a monthly income figure the prospect can feel?
 
-This is the move that makes a 45-year projection feel real to a 22-year-old.
+**A:** The move that makes a 45-year projection feel real to a 22-year-old. Take the maturity gain, divide by years, divide by months:
 
-The standard close illustration (memorise these numbers):
+**Worked example** (age 20, $200/month, Elite Adventurous, 8% projected):
 
 ```
-Age 20, $200/month, Elite Adventurous, 8% projected
-─────────────────────────────────────────────────
-Total premium paid (over 45 years): $96,000
+Total premium paid over 45 years:    $96,000
 Projected value at age 65:           $411,600
 Net gain:                            $315,600
-```
-
-Now linearize:
-
-```
-$315,600 gain ÷ 45 years ÷ 12 months = ~$583/month
+$315,600 ÷ 45 yrs ÷ 12 mo =          ~$583/month
 ```
 
 The script:
 
 > *"For every $200 you put in, you're effectively earning back $583 a month in the long run. That's much more impactful than quoting a lump sum 40 years away."*
 
-A 22-year-old can't picture $411,600. They CAN picture $583/month of passive income for life. Always linearize.
-
-> *"Linearize the returns — take the maturity result, minus what they put in, divide over the years, divide over the months."*
+A 22-year-old can't picture $411,600. They CAN picture $583/month of passive income for life. Always linearise.
 
 ---
 
-## The total cost of distribution
+### Q7: What's the total cost of distribution over the policy lifetime?
 
-When the prospect probes total fees, the disclosure that wins:
+**A:** When the prospect probes total fees, the disclosure that wins is the absolute number divided by months:
 
-> *"Total cost over the 45 years is $6,194. Divide this by 45 years — every month is actually just about $11. Very cheap."*
+> *"Total cost over the 45 years is $6,194. Divide that by 45 years — every month is actually just about $11. Very cheap."*
 
 Then the reframe:
 
 > *"You're hiring an investment consultant for $11 a month."*
 
-This is the honesty-as-credibility move. You're showing the absolute number, then making it feel sane.
+This is the honesty-as-credibility move — show the absolute number, then make it feel sane. (Day 2 Phase 5 has the deeper $38.75/month version on a $12K premium — verify which figure matches the prospect's actual quote.)
 
 ---
 
-## The break-even math (the close on "fees")
+### Q8: When does the policy break even on charges vs bonuses?
 
-This is the chart you draw when a sharp prospect says "the fees are too high." Calculate the year where cumulative bonuses overtake cumulative charges:
+**A:** Break-even is when cumulative bonuses overtake cumulative charges. After that, the plan is **net-positive from bonuses alone** — AIA is effectively paying the client.
 
 | Annual Premium | Break-even year |
 |---|---|
 | $2,400/year (minimum) | ~Year 40 |
 | $12,000/year | ~Year 34 |
 
-After break-even, the plan is **net-positive from bonuses alone** — AIA is paying the client.
-
 The script (cushion first, then walk the math):
 
-> *"Honestly, fair concern — and the 3.9% is real, I'm not going to dress that up. The bit that's easy to miss is the structure: at $12k/year premium, by year 34 the cumulative bonuses are bigger than the cumulative charges. From that point on, the net economics flip — the bonuses are effectively paying you. Which is also why this plan only works if you can hold past break-even. Does the long-hold piece line up with how you've been thinking about this money?"*
+> *"Honestly, fair concern — the 3.9% is real, I'm not going to dress that up. The bit that's easy to miss is the structure: at $12K/year premium, by year 34 the cumulative bonuses are bigger than the cumulative charges. From that point on, the net economics flip — the bonuses are effectively paying you. Which is also why this plan only works if you can hold past break-even. Does the long-hold piece line up with how you've been thinking about this money?"*
 
-The trial close at the end hands the conversation back. If they hesitate on the long-hold piece, you've found the real objection — and it's better surfaced now than after the close.
+The trial close at the end hands the conversation back. If they hesitate on the long-hold piece, you've found the real objection.
 
 ---
 
-## Surrender, withdrawal, and pause schedules
+### Q9: What are the surrender, withdrawal, and pause schedules?
 
-These are the numbers a sharp prospect will probe. Know them cold so you don't fumble mid-pitch.
+**A:** The penalty side of the plan — designed so that AIA only earns these charges if the client breaks the rules (see Day 1 Charges section for the broader reframe).
 
-### Surrender charge schedule (10-year IIP)
+**Surrender charge schedule (10-year IIP):**
 
 | Year | Charge |
 |---|---|
-| 1–2 | 100% (gets back nothing) |
+| 1-2 | 100% (gets back nothing) |
 | 3 | 80% |
 | 4 | 70% |
 | 5 | 60% |
 | 6 | 50% |
-| 7–9 | (sliding down) |
+| 7-9 | (sliding down) |
 | 10 | 5% |
-| 11+ | 0% |
+| **11+** | **0%** |
 
-### Partial withdrawal
+**Partial withdrawal:**
+- Min withdrawal: $1,000
+- Min remaining policy value: $10,000
+- Charge Year 3 onward: ~$53 per $1,000 withdrawn (5.3% effective)
+- After Year 10: drops to 0%
 
-- **Min withdrawal:** $1,000
-- **Min remaining policy value:** $10,000
-- **Charge year 3 onward:** ~$53 per $1,000 withdrawn (5.3% effective)
-- **After year 10:** drops to 0%
-
-### Premium pass
-
+**Premium Pass:**
 - 1 pass per 5 annual premiums paid
 - 10-yr IIP = 1 pass · 15-yr = 2 passes · 20-yr = 3 passes
 - Pause up to 12 months without charge
 
-### Premium reduction charge
-
-- 70% of reduction value at year 5
-- 60% of reduction value at year 15
-- (you almost never need this — most clients increase, not decrease)
+**Premium reduction charge:**
+- 70% of reduction value at Year 5
+- 60% of reduction value at Year 15
+- (You almost never need this — most clients increase, not decrease.)
 
 ---
 
-## The death benefit math
+### Q10: How does the death benefit math work?
 
-The capital guarantee on death:
+**A:** Two layers — the capital-guaranteed floor, plus a small accidental-death rider in the first 2 years.
 
-> *"No matter how low the portfolio goes, you at least get the full amount that you put in. There's some capital guarantee in case of market downturn."*
-
-Specifically:
+The capital guarantee on death (the main benefit):
 
 ```
 Death benefit = HIGHER of:
@@ -211,11 +204,13 @@ Death benefit = HIGHER of:
   • Current policy value
 ```
 
-Plus, in the **first 2 policy years only**, accidental death within 90 days of accident pays an **additional 100% of total regular premiums.**
+The "what if I die in 5 years?" answer:
 
-This is the "what if I die in 5 years?" answer in 2 sentences:
+> *"If something happens to you, your beneficiary gets at least everything you put in — even if the market is down 50%."*
 
-> *"If something happens to you, your beneficiary gets at least everything you put in — even if the market is down 50%. In the first two years, accidental death pays double."*
+In the first 2 policy years, accidental death pays an additional 100% of total regular premiums (subject to standard exclusions per policy contract). After Year 2, only the basic death benefit applies.
+
+(If a Secondary Insured was appointed, the death benefit is NOT paid out — the policy continues with the SI as the new Insured. This is Differentiator #4 — see Day 1.)
 
 ---
 

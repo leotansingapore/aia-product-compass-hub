@@ -29,7 +29,7 @@ That's the move on every objection in this day. Don't argue the position — que
 
 ---
 
-## Objection 1 — "I'll just buy S&P500"
+## Q1 — When the prospect says: "I'll just buy S&P 500"
 
 This is the most common objection in 2026 — every young Singaporean with a Tiger Brokers account thinks SPY is the answer.
 
@@ -88,7 +88,7 @@ Then the discipline angle, cushion first:
 
 ---
 
-## Objection 2 — "I'll just DIY ETFs (Tiger / IBKR / Endowus)"
+## Q2 — When the prospect says: "I'll just DIY ETFs (Tiger / IBKR / Endowus)"
 
 ### The reframe (cushion first):
 
@@ -114,7 +114,7 @@ The trial close at the end lets the prospect tell you whether the service piece 
 
 ---
 
-## Objection 3 — "Fees are too high (3.9% is a lot)"
+## Q3 — When the prospect says: "Fees are too high — 3.9% is a lot"
 
 ### Cushion, concede the headline, then walk the structure:
 
@@ -142,7 +142,7 @@ The trial close at the end lets the prospect tell you whether the service piece 
 
 ---
 
-## Objection 4 — "Other companies have lower charges"
+## Q4 — When the prospect says: "Other companies have lower charges"
 
 The competitor matrix (memorise — this is the structural close for cross-shoppers).
 
@@ -233,7 +233,7 @@ In practice: when a prospect names a competitor, pull out the relevant *verified
 
 ---
 
-## Objection 5 — "I want my dividends now (not waiting until 65)"
+## Q5 — When the prospect says: "I want my dividends now (not waiting until 65)"
 
 Start with a cushion and the trial-close question from the source training:
 
