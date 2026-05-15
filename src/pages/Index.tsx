@@ -1,14 +1,16 @@
-import { useEffect, memo, lazy, Suspense } from "react";
+import { useEffect, memo, Suspense } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useUserTier } from "@/hooks/useUserTier";
+import { lazyWithRetry } from "@/utils/lazyWithRetry";
 
 // Dashboard is admin-only — learners redirect to their learning track before
 // it ever renders. Lazy-loading it keeps the admin-only chunk out of every
-// learner's first paint.
-const Dashboard = lazy(() => import("./Dashboard"));
+// learner's first paint. Use lazyWithRetry to recover from stale chunk hashes
+// after a fresh deploy.
+const Dashboard = lazyWithRetry(() => import("./Dashboard"));
 
 const Index = memo(() => {
   const { user, loading } = useSimplifiedAuth();
