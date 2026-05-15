@@ -69,6 +69,7 @@ const PublicFlowView = lazyWithRetry(() => import("./pages/PublicFlowView"));
 const PublicPlaybookView = lazyWithRetry(() => import("./pages/PublicPlaybookView"));
 const AIAssistant = lazyWithRetry(() => import("./pages/AIAssistant"));
 const ConceptCards = lazyWithRetry(() => import("./pages/ConceptCards"));
+const CaseVault = lazyWithRetry(() => import("./pages/CaseVault"));
 const ProductExam = lazyWithRetry(() => import("./pages/ProductExam"));
 const QuestionBanks = lazyWithRetry(() => import("./pages/QuestionBanks"));
 const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
@@ -190,6 +191,7 @@ const App = () => (
                     <Route path="/flows" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
+                    <Route path="/case-vault" element={<RequireAuth><RequireTier feature="case-vault"><CaseVault /></RequireTier></RequireAuth>} />
                     <Route path="/learning-track" element={<RequireAuth><LearningTrack /></RequireAuth>}>
                       <Route index element={<LearningTrackIndex />} />
                       <Route path="explorer" element={<Navigate to="/learning-track/first-14-days" replace />} />

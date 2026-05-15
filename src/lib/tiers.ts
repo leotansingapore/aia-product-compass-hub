@@ -98,6 +98,7 @@ export const FEATURES = {
   SCRIPTS: 'scripts',
   SERVICING: 'servicing',
   CONCEPT_CARDS: 'concept-cards',
+  CASE_VAULT: 'case-vault',
   CONSULTANT_LANDING: 'consultant-landing',
 } as const;
 
@@ -142,6 +143,7 @@ const POST_RNF_ADDITIONS: readonly FeatureKey[] = [
   FEATURES.SCRIPTS,
   FEATURES.SERVICING,
   FEATURES.CONCEPT_CARDS,
+  FEATURES.CASE_VAULT,
   FEATURES.CONSULTANT_LANDING,
 ];
 
