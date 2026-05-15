@@ -346,7 +346,7 @@ The open-ended question at the end is real intel. If they flag a possible career
 
 Cushion, give the technical "yes", then run the math reframe, then hand the choice back:
 
-> *"Honestly, fair question — most people I sit down with ask some version of this. Technically yes: from year 10 or 11 you can switch into dividend mode using GDIF or AGDIF. Yield's roughly 5–7% per year on account value.*
+> *"Honestly, fair question — most people I sit down with ask some version of this. Technically yes: from year 10 or 11 you can switch into dividend mode using GDIF (Global Dynamic Income Fund). Yield is roughly 5-7% per year on account value.*
 >
 > *Here's the bit that catches most people though. On a $10,000 balance at year 10, 5–7% is about $600 a year — call it $50 a month. You're earning $6k a month right now. Would $50 a month change anything material for you today?*
 >
@@ -366,11 +366,9 @@ The two-option close at the end works because you've already given them permissi
 
 | Fund | Yield | $10k → annual dividend |
 |---|---|---|
-| GDIF (Global Dynamic Income Fund) | ~7% p.a. | ~$700 |
-| GAIF (Global Asian Income Fund) | ~5% p.a. | ~$500 |
-| AGDIF (AIA Global Dividend Income Fund) | ~5–6% p.a. | ~$500–600 |
+| GDIF (Global Dynamic Income Fund) | ~5% p.a. | ~$500 |
 
-These are post-fee yields. Use them for the "$50/month meaningful?" reframe.
+GDIF is the canonical dividend-mode fund for APA at retirement. Yield approximates the post-fee distribution rate (verify in iPOS / fund factsheet at quote time). Use the $50/month reframe to make the case that taking dividends pre-retirement is mathematically pointless on a small balance.
 
 ---
 

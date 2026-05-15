@@ -44,9 +44,7 @@ The other hot button categories that surface (less common but worth mapping):
 | **Bad experiences / fear** | "I lost money in crypto / a single stock." "I'm scared of inflation." "I'm scared of running out of money in old age." |
 
 
-## The seven APA prospect archetypes (memorise the patterns)
-
-You'll meet variations of these. Each comes in with their dominant hot button already loaded — your job is to surface it, not invent it.
+## The seven APA prospect archetypes
 
 ### 1. The retirement-anxious mid-career professional (30-45 yo)
 
@@ -162,8 +160,6 @@ A SGD-denominated, **regular-premium Investment-Linked Policy (ILP)** issued by 
 - **Min partial withdrawal:** $500 (remaining policy value must stay above minimum)
 - **Free-look period:** 14 days from receipt of policy contract
 
-This is the spec sheet. Memorise it.
-
 ## The four structural differentiators
 
 ### 1. 100% premium allocation — read this carefully
@@ -264,14 +260,12 @@ The contrast that lands with prospects:
 >
 > *With APA's secondary insured, she inherits a managed policy. The plan keeps running, keeps paying dividends, keeps compounding — for her lifetime and potentially the next generation's. It's a 100-year policy."*
 
-## The container vs. the ingredients (framing)
+## The container vs. the ingredients 
 
-A framing that works for first-time prospects:
+To answer the question, what is the difference between AIA Pro Achiever vs the funds that you can invest in.
 
 > *"Think of Pro Achiever 3.0 as the container. The actual funds inside the container — Elite Portfolios or Self-Select — that's the part we customise to your risk profile and time horizon. APA is the wrapper. The wrapper gives you the bonuses, the 100% allocation, the death benefit floor, the secondary insured. The funds inside the wrapper determine your return."*
-
-This unhooks the conversation from *"what's the return?"* and puts it on *"what goes inside?"* — where the client actually has agency.
-
+	
 ## Initial Investment Period (IIP) options
 
 The prospect picks one of three IIPs at signup. **Cannot be changed after issue.**
@@ -325,7 +319,7 @@ The reframe: yes there's a charge early — but it's time-limited, and the Welco
 You can add lump sums of $1,000+ at any time. Every dollar buys units at NAV. **No front-end charge.**
 
 ### Switching Charge — 0%
-Unlimited fund switches between any of the 41 sub-funds. **No charge.** Pivot from Elite Adventurous to Self-Select India Equity to dividend mode (GDIF / AGDIF) whenever it suits the strategy.
+Unlimited fund switches between any of the 41 sub-funds. **No charge.** Typical APA lifecycle: start in the Self-Select Adventurous Index Fund for accumulation, then switch into **GDIF (Global Dynamic Income Fund)** at retirement age for dividend mode. Any other sub-fund pivot is free too.
 
 ### Surrender Charges — AIA only earns if you exit early
 On a 10-year IIP:
@@ -381,16 +375,6 @@ The four most common reasons prospects think APA isn't for them — almost alway
 
 Day 5 covers each of these reframes in full as objection-handling. The point on Day 1 is: don't walk away from these prospects. The vast majority of APA cases close *after* a reframe, not because the prospect's situation perfectly matches an idealised target profile on the first pass.
 
-
-## The signature pitch concept + dividend mode → Day 2
-
-The four-step retirement reverse-engineering whiteboard demo and the dividend-mode mechanics (age 55/60/65 ladder, limited-pay variant, dividend-question flip) live in Day 2 where they fit the actual sales conversation:
-
-- **Whiteboard reverse-engineering demo** → [Day 2 · Phase 3](./day-02.md#phase-3--problems-of-investing--aia-solution-5-min)
-- **Dividend mode mechanics + age ladder + limited-pay variant + dividend-question flip** → [Day 2 · Phase 4](./day-02.md#phase-4--investment-illustrations--aia-vs-diy--option-close-8-10-min)
-
-Day 1's job is the structural foundation (pain points + product knowledge). Day 2 is where the appointment flow runs.
-
 ---
 
 ## What's coming next
@@ -408,13 +392,13 @@ Day 2: the complete appointment flow — Phase 0 (pre-appointment setup) through
 
 **Why:** APA is a SGD ILP issued by AIA Singapore Private Limited, has no medical underwriting (guaranteed issuance), and matures at the original insured's age 100.
 
-2. **The seven hot-button categories applied to APA — which two combinations are most common among APA-fit prospects?**
-- A) Faith/religion + Pride/hobby
-- B) Needs-vs-reality + Fear (the retirement-anxious combo) AND Loved-ones + Values (the legacy combo) ✓
-- C) Dreams/goals only
-- D) Pride/hobby only
+2. **What is the single most common APA hot button — the driver that surfaces in the majority of APA-fit prospects?**
+- A) Faith / religion
+- B) "I want to invest, but I don't have the time or skills to DIY." — and for prospects already DIY-investing, APA is positioned as a complement, not a replacement ✓
+- C) "I want guaranteed cash values"
+- D) "I want short-term liquidity"
 
-**Why:** Most APA prospects fire on needs-vs-reality + fear (haven't planned for retirement, scared of running out) or loved-ones + values (legacy continuity for spouse and kids). The other 5 categories show up less frequently as the *dominant* APA driver.
+**Why:** Most APA prospects know they should be investing for retirement but lack the time, technical skill, or emotional discipline to manage a portfolio themselves. APA solves that — equity-like returns without equity-level risk. For prospects already doing DIY: APA is the long-term retirement vehicle ($1M-$3M target) that complements their short-to-medium-term DIY trading account ($10K-$50K), not a replacement for it.
 
 3. **In the SPIN framework, which question type intensifies the cost of inaction and is where most APA cases get made?**
 - A) Situation questions

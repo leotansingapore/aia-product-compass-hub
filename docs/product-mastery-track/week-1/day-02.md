@@ -11,7 +11,9 @@ tags: [product-mastery-track, week-1, pro-achiever]
 
 A complete APA appointment runs in seven phases — Phase 0 (pre-appointment) through Phase 5B (value-prop and final close). Each phase has a hard time budget and a target micro-commitment. The job is to engineer the close across the phases, not improvise it.
 
-The two ways FCs lose APA cases: skipping the problem build-up (leaping to "$200/month buys you this plan" before the prospect feels the gap), and running over time (a 60-minute first appointment is a lost appointment — energy and attention die at minute 35).
+**Realistic total runtime: 40-50 minutes** for a thorough first appointment (excluding Phase 0, which happens before the call starts). Phase 3 alone is ~12-15 minutes because it carries the conceptual whiteboard work (reverse-engineer + savings-vs-investing + procrastination + discipline + one-third rule + lump-sum trap). Phase 4 is another 10-12 minutes because it includes the illustration, the AIA-vs-DIY pre-empt, the option close, and the bonus reinforcement.
+
+If you're trying to compress this to 20 minutes, you'll skip the problem build-up and lose the close. The two ways FCs lose APA cases: skipping the problem build-up (leaping to "$200/month buys you this plan" before the prospect feels the gap), and running over 60 minutes (energy and attention die past minute 50-55).
 
 ### Presentation philosophy — draw concepts first, slides are your reference
 
@@ -354,6 +356,8 @@ Position it honestly: AIA's funds, on average across the lineup, have a verified
 
 Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
 
+> **Note on the numbers below:** all worked examples use a 25-year-old prospect retiring at 65 (40-year horizon) with $3K/month of desired retirement income (in today's dollars) and a 2.5% inflation assumption. **Verify the actual figures in iPOS at quote time** for the specific prospect's age, premium tier, and IIRR assumption — the numbers move with all three.
+
 Anchor first:
 
 > *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20-30 years where you'd like the option to stop working. That's what these numbers are really about."*
@@ -532,6 +536,8 @@ Let them guess (most say "a bit higher"). Then reveal:
 
 > *"A 5-year delay roughly doubles the monthly cost by the time you're 45. The single biggest lever on this whole calculation is **when you start.**"*
 
+(Figures above are ballpark, based on a 25-year-old prospect, 8% IIRR projection on Self-Select Adventurous Index Fund, $2.4M target at 65. **Verify in iPOS at quote time** for the specific prospect's age and risk profile — the cost-of-delay curve steepens further for older starts.)
+
 Real-client anchor:
 
 > *"I have clients who only started at 45 — guess how much they have to save? $4,000-$6,000/month. You only need $1,000 now."*
@@ -563,7 +569,7 @@ Address the four reassurances before the prospect asks:
 
 ### Dividend mode — the year-10+ mechanic
 
-The reason the APA route works at $1,300/mo while the bank route demands $5,400/mo: at **year 10 onwards** you can switch the plan into **dividend mode** (using GDIF or AGDIF). The mechanics:
+The reason the APA route works at $1,000/mo while the bank route demands $5,400/mo: at **year 10 onwards** you can switch the plan into **dividend mode** by moving from the Adventurous Index Fund (the accumulation default) into **GDIF — the Global Dynamic Income Fund**. The mechanics:
 
 - Dividends pay out monthly
 - Capital stays invested
