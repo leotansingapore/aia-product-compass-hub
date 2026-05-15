@@ -22,84 +22,59 @@ Source for verified rows: `_source-resources/competitor-analysis/APA-Competitor-
 
 # Part 1 — Competitor Analysis (attack moves + defend moves)
 
-The frame: **never attack a competitor directly to the prospect.** That reads as desperate and erodes trust. Instead, structurally explain *why* APA is built differently, then let the prospect draw the conclusion. The questions and scripts below are calibrated to that posture.
+The frame: **never attack a competitor directly to the prospect.** That reads as desperate and erodes trust. Instead, structurally explain *why* APA is built differently, then let the prospect draw the conclusion themselves.
+
+For the deep per-competitor product breakdowns, refer to the **[APA Competitor Analysis deck](https://docs.google.com/presentation/d/1o6rnafqQPV6z4n0NcKWOBTFs_6kntjKUolSB3-v_zOc/edit?usp=sharing)** — that's the source of truth for the verified specs across FWD, Manulife, Great Eastern, Prudential, iFAST, Endowus, StashAway, and the rest. This day's job is the *structural pattern* and the *attack frame*, not memorising every competitor's brochure.
 
 ---
 
-## Q1 — When the prospect compares against FWD Invest Plus / Invest First Max
+## The structural pattern across every competitor
 
-The two FWD ILPs are APA's most common direct competitor today. Verified specs:
+Across virtually every alternative the prospect will compare APA against — competitor ILPs (FWD Invest Plus, Manulife Invest Ready, GE GREAT Wealth Advantage, Prudential PRUSelectVantage), participating plans (PRUWealth, GE GREAT Wealth Multiplier), and DIY platforms (iFAST, Endowus, StashAway, Tiger Brokers, IBKR) — **the same pattern repeats**:
 
-**FWD Invest Plus:**
-- Supplementary charge: **1.2% p.a. LIFELONG** from month 25 onward (never drops to zero)
-- Initial account charge in early years: scales with premium term (1.0% to 1.8%)
-- Welcome bonus: 17-21% across reward bands 1-5 (paid per year of premium term, not flat)
-- Effective total in early years: roughly 3.0% (initial + supplementary)
+> **Competitors have lower headline charges in the early years, but they keep charging in some form for the entire life of the policy.** APA's curve is the opposite: higher charges in the first 10 years, then **0% supplementary charge from Year 11 onwards** — plus the Welcome Bonus stack in Y1-Y3 and the Special Bonus from Y10 onward that no DIY platform or competitor ILP replicates.
 
-**FWD Invest First Max:**
-- Accumulation account charge tapers: **1.6% (Y1-10) → 1.4% (Y11-20) → 1.2% (Y21+)**
-- Never zero. Higher overall than Invest Plus over long horizons.
+That's the structural insight. Once a prospect sees the curve, the "fees are too high" objection collapses on its own.
 
-**The reframe (cushion first, then walk the curve):**
+### The cushion-then-walk-the-curve script
 
-> *"FWD's product is actually a serious competitor — I'll give you that. But the curve looks very different from APA's. FWD's supplementary charge runs at 1.2% per year LIFELONG. On a $1M portfolio at retirement, that's $12K/year of charges every year for the rest of your life. APA's supplementary charge runs at 3.9% for the first 10 years and then drops to zero from Year 11. So on a 40-year hold, FWD is paying charges every single year. APA stops paying them in Year 11. The cumulative difference compounds in your favour."*
+When a competitor name surfaces in the appointment, don't argue the competitor down. Cushion, then walk the structure:
 
-Walk them through the Investing Success deck slide 40 (APA-vs-DIY year-17 crossover) — the same math applies to APA-vs-FWD, just with different inputs.
+> *"[Competitor name] has a serious product, I'll give them that. The structural difference is what the charge curve looks like across the full 40-year hold.*
+>
+> *On the competitor side, the supplementary charge stays in some form for the lifetime of the policy — even if the headline number is lower than APA's 3.9% in the first 10 years, it never actually drops to zero. On a $1M portfolio at retirement, a perpetual 1% charge is $10K/year forever — compounding against you.*
+>
+> *APA's supplementary charge runs at 3.9% for the first 10 years, then drops to 0% from Year 11. The Welcome Bonus pays in the first 3 years; the Special Bonus from Year 10 onward is perpetual. So you pay more early, then the structure flips and the plan pays YOU for the rest of the hold.*
+>
+> *Want me to draw the curve on paper? It's easier to see than describe."*
 
----
+The trial close at the end is the move — most prospects will say yes, and the visual settles the conversation.
 
-## Q2 — When the prospect compares against Manulife (LifeFinity / similar)
+### Where APA structurally wins, in one row per battleground
 
-**Verified Manulife specs:**
-- Welcome bonus: 5-20% depending on lock-in and band (significantly below APA's 53-75% at $12K+ premium)
-- Surrender penalty: **5-40% of policy value as far out as Year 10** (vs APA's ~5% by Year 10, 0% from Year 11)
-- Minimum Investment Period (MIP) can extend to **19+ years** in some configurations
+| Battleground | The structural APA edge |
+|---|---|
+| **Long-term supplementary charge** | APA: 0% from Y11. Most competitors keep charging in some form for the lifetime of the policy. |
+| **Welcome Bonus stack** | APA: 5-75% across Y1-Y3 (53% at $12K+ premium / 10-yr IIP). DIY platforms have no equivalent; competitor ILP Welcome Bonuses run roughly 1/3 to 1/5 of APA's at the same tier. |
+| **Special Bonus loyalty stack** | APA: 5% from Y10, 8% from Y21, perpetual. Competitor ILPs and DIY platforms have no equivalent. |
+| **Surrender flexibility from Year 11** | APA: 0% surrender / withdrawal charge from Y11. Manulife-style products often keep meaningful penalties for 15-19+ years. |
+| **Death benefit floor** | APA: 100% of premiums paid is contractually guaranteed (capital-guaranteed floor). DIY platforms have no equivalent; competitor ILPs vary. |
+| **Secondary insured (legacy continuity)** | APA: spouse inherits a managed policy, not cash. Almost no other product has this feature. |
+| **Currency / tax exposure** | APA is SGD-denominated. US-listed ETFs (via Tiger / IBKR) carry US estate tax (~30% above $60K) and US dividend withholding (30%) — structural drags APA avoids. |
 
-**The reframe:**
+### A note on DIY platforms specifically
 
-> *"Manulife has a similar product on the surface, but two structural pieces work differently. One — the Welcome Bonus on a comparable premium tier is roughly 3-5x lower at Manulife than at APA. Two — Manulife's surrender penalty stays meaningful much longer. On a 10-year hold, you'd still pay a 5-40% surrender penalty under Manulife; on APA you'd pay roughly 5% and the penalty drops to zero from Year 11. The flexibility curve is structurally different."*
+DIY platforms (Tiger, IBKR, Endowus, StashAway, iFAST) aren't really a structural competitor to APA — they're solving a different job. They're for the **trading-account** layer of the prospect's wealth ($10K-$50K, short-to-medium-term, high-effort, high-emotion). APA is the **retirement-portfolio** layer ($1M-$3M target, low-effort, automated, professionally managed).
 
----
+If a prospect is already doing DIY, the move isn't "switch from DIY to APA." It's *"keep your DIY for what it does well, and add APA as the long-term retirement layer alongside."* The DIY portfolio gets supplemented by APA, not restructured into it. Same money, two different jobs, two different tools.
 
-## Q3 — When the prospect compares against Great Eastern (GREAT Wealth Multiplier / similar)
+The structural reasons DIY can't replace APA for the retirement-portfolio job:
+- DIY platforms don't have the Welcome Bonus stack ($6,360+ over Y1-Y3 on a $12K premium)
+- No perpetual Special Bonus from Year 10
+- No secondary insured feature (spouse inherits cash to figure out, not a managed policy)
+- US-listed ETFs carry US estate tax and dividend withholding that APA structurally avoids by being SGD-domiciled
 
-**The competitor pricing reference (`docs/_competitor-pricing-reference.md` in compass-hub) has verified GE specs.**
-
-Key attack angles:
-- GE wealth products typically run lower headline charges than APA early, but lack the Welcome Bonus stack
-- 40-year IRR comparison (illustrative, Video 16 — verify in fresh BI): AIA 4.99% vs GE 4.42%
-- GE's payout structures on participating plans are non-guaranteed at higher % than APA's structurally-guaranteed death-benefit floor
-
-**The reframe:**
-
-> *"GE has good products. The structural difference for the wealth-accumulation job is the bonus stack — APA's Welcome and Special Bonuses don't have a direct equivalent on the GE side. Over a 40-year hold, the bonus stack is what makes APA's net IRR (roughly 4.99% on a 40-year illustrative scenario) about 50 basis points above GE's. That's not nothing on a $2.4M pot."*
-
----
-
-## Q4 — When the prospect compares against Prudential (PRUWealth / similar)
-
-Prudential has its own range of ILPs and participating plans. The verified attack moves:
-- Prudential's participating plans (PRUWealth) are different beasts — they're guaranteed-cash-value structures, not pure ILPs. Different job from APA.
-- For PRUSelectVantage (their ILP), the Welcome Bonus tier and Special Bonus structure aren't comparable to APA's
-- For dividend-focused prospects, Prudential's distribution funds have **30% US dividend withholding tax** drag if US-domiciled — APA's GDIF distributions are SGD-domiciled, no withholding
-
-**The reframe:**
-
-> *"Prudential has different products in the wealth space — PRUWealth is a participating endowment, PRUSelectVantage is an ILP. Both have their use cases. For the long-term retirement-income job specifically, APA's bonus stack (53% Welcome on the right tier, perpetual 5/8% Special Bonus) doesn't have a direct match in the Prudential ILP lineup. And on the dividend side at retirement, APA's GDIF distributions are SGD-domiciled — no US withholding."*
-
----
-
-## Q5 — When the prospect compares against DIY platforms (iFAST / Endowus / StashAway / Tiger Brokers)
-
-**Verified context:**
-- iFAST / robo-advisor benchmark: roughly **1% p.a. perpetual** on account value
-- DIY trading via Tiger / IBKR: variable platform fees ($10-30/trade) + currency conversion (0.5-2%) + custody fees
-- None of them have a Welcome Bonus equivalent
-- US-listed ETFs carry US estate tax exposure (~30% above $60K) and US dividend withholding (30%)
-
-**The reframe (this is the Day 2 Phase 5B Three Cost Circles framework — see Day 2):**
-
-> *"DIY platforms are great for the trading account. For the retirement-portfolio job, the structural differences matter. One — they don't have the Welcome Bonus stack ($6,360+ over the first three years on a $12K premium). Two — they don't have the perpetual Special Bonus from Year 10. Three — they don't have the secondary insured feature (your spouse inherits cash to figure out). Four — US-listed ETFs carry US estate tax and dividend withholding that APA structurally avoids by being SGD-domiciled."*
+This is the Three Cost Circles framework from [Day 2 Phase 5B](./day-02.md#phase-5b--value-proposition--final-close-5-8-min) applied at the structural level.
 
 ---
 
@@ -154,8 +129,6 @@ The split structure delivers **higher cover AND higher accumulation** at the sam
 - **Option B: Pay up the whole-life to a paid-up status** (if the policy supports it) and redirect the premium to APA + term.
 - **Option C: Surrender if the surrender value justifies the move** — usually only viable on policies 5+ years in with meaningful cash value AND a strong APA case.
 
-**Important:** never recommend surrendering an existing policy unless the new structure clearly beats holding. Surrender = forfeit of premiums paid in early years. The compliance discipline (Day 4 Part 2) applies — name the surrender cost, walk the math honestly.
-
 ---
 
 ## Play B — Restructure a hybrid ILP (with insurance bundled) into APA + standalone insurance
@@ -179,25 +152,7 @@ For prospects who genuinely need life cover, this isn't a "drop the cover" move 
 
 ---
 
-## Play C — Restructure a DIY portfolio (Tiger / IBKR / robo-advisor) into APA as the retirement layer
-
-**The setup:** prospect has $50K-$200K spread across self-managed accounts. Mediocre returns relative to time spent. Or strong returns but no protection layer.
-
-**The attack** (this isn't a "rip out" — it's "add APA in the slot where DIY doesn't fit"):
-
-> *"DIY is great for the trading-account job — short-to-medium-term, high-effort, sharpness-keeping. Keep it for that. But it's a poor fit for the retirement-portfolio job, for the structural reasons we walked through: no Welcome Bonus stack, no Special Bonus, no death-benefit floor, no secondary insured, currency and tax drag on US-listed ETFs.*
->
-> *The cleanest move is to keep the DIY for what it does well, and add APA as the retirement layer. They run side by side — different tools, different jobs."*
-
-**The math anchor:**
-- DIY platform at 1% perpetual fee on a $1M portfolio at retirement = $10K/year of charges every year for the rest of their life
-- APA at 0% supplementary from Year 11 onwards on the same $1M = $0/year in supplementary charges + ongoing Special Bonus credits
-
-**Use the Investing Success deck slide 40** (APA-vs-DIY year-17 crossover) for the full math — APA pulls ahead from policy year 17 onwards on a $12K-a-year premium scenario at 8% IIRR.
-
----
-
-## Play D — The BTIR (Buy Term + Invest the Rest) angle, with APA as the investment
+## Play C — The BTIR (Buy Term + Invest the Rest) angle, with APA as the investment
 
 **The setup:** prospect is shopping pure-term vs whole-life and undecided. Or they've read enough finance content to know BTIR is a "smart" framing.
 
@@ -213,19 +168,6 @@ For prospects who genuinely need life cover, this isn't a "drop the cover" move 
 - Total monthly: $400-1,100/mo
 
 This is the cleanest setup for prospects who want the BTIR philosophy but actually want to execute it. The "invest the rest" piece is the bit that almost always fails when prospects DIY it.
-
----
-
-## When NOT to restructure
-
-Some cases shouldn't be touched. The disciplined "don't restructure" signals:
-
-- **Existing whole-life policy is 15+ years in** with substantial cash value already accumulated → surrender penalty + lost compounding usually outweighs any APA upside
-- **The existing policy has a participating bonus structure that's still active** → restructuring locks in the loss of bonuses already in flight
-- **The prospect explicitly values the structure of what they have** → don't force a reframe; respect the position
-- **You can't show the math clearly** → if you can't run a fresh BI on both sides and walk the prospect through the comparison, you shouldn't be recommending the move
-
-The compliance discipline applies. Surrender is a real cost. Walk the math honestly or don't make the recommendation.
 
 ---
 
