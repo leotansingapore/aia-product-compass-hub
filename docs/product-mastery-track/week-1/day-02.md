@@ -29,6 +29,8 @@ Slides are *your* tool to remember the structure, the source citations, the exac
 
 ### The "10 drawings every FC should commit to memory"
 
+> **Full playbook:** [APA Drawings Playbook](./drawings-playbook.md) — 30+ diagrams across 3 tiers, with step-by-step drawing instructions, scripts, when-to-use rules, and real-receipt closes. Use it as your daily drill reference.
+
 The drawings below are the ones that close cases consistently across hundreds of appointments. Learn to draw each from scratch on a blank whiteboard or piece of paper without a reference — that's the bar:
 
 1. **The 1/3 Rule circle** — divide a circle into short-term / medium-term / long-term thirds, label monthly amounts in each
