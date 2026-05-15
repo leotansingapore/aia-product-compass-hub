@@ -998,6 +998,81 @@ Anchor the close on principles, not features.
 
 > *"Rather than managing multiple policies across different agents and companies, I can manage everything for you under one roof. This is what we do for clients long-term — but for now, it's about helping you get started today."*
 
+### The close is the formal acknowledgement of decisions already made
+
+By this point in the appointment, the prospect has said yes 8-10 times in micro-commits across Phases 1-5:
+
+- *"Yes, that's my birthday"* (Phase 1)
+- *"OK, I'll check out the resources you sent"* (Phase 1)
+- *"Yeah, $2.4 million is a lot"* (Phase 3)
+- *"Outsourcing makes sense"* (Phase 3)
+- *"Monthly is fine"* (Phase 4)
+- *"Option B sounds smarter"* (Phase 5B Option A/B)
+- *"DBS is my bank"* (Phase 1, used at Phase 7)
+- *"$600 a month works"* (Phase 4 option close)
+
+The Phase 5B close isn't asking for the sale — it's collecting these into the formal close. You're confirming a decision they've already made.
+
+### The four-rule wrap (recap to close the loop)
+
+Before authentication, bring the conversation full circle to the four-rule wrap they heard in Phase 1 / Phase 2:
+
+> *"Quick recap. There are four things that get someone to financial freedom.*
+>
+> *Earn more — that's on you.*
+> *Spend less — that's on you.*
+> *Get insured — separate conversation, we'll book that.*
+> *Automate investing — that's what we set up today.*
+>
+> *I can't help you earn more or spend less. But what I can do today is help you automate step 4 — every month, before you spend anything, $600 goes to work for you first."*
+
+The frame lands because it explicitly names what the FC *can* and *can't* help with — keeps it honest, keeps the trust intact.
+
+### The bridge into Phase 7 (paperwork)
+
+> *"Save first, then spend what's left — that's really the whole game. Let me show you what setting that up looks like."*
+
+That single sentence is the bridge into authentication.
+
+### Phase 7 — Implementation (3 minutes, no more talking, only doing)
+
+**Step 1: Visual confirm on screen.** Open the application screen. Verify the on-screen details with the client:
+
+> *"Just help me to verify your name, your NRIC, contact number, email address — make sure it's correct."*
+
+Eyeball every field together. They're more likely to catch a typo than you are.
+
+**Step 2: Bank + cadence (already captured at Phase 1).**
+
+> *"Every month once the pay comes in, you'll just be debited on a monthly basis into the bank account. DBS, right?"*
+
+The question is rhetorical — they already told you DBS at Phase 1. You're confirming, not asking.
+
+**Step 3: SMS auth.**
+
+> *"After this, I'm just gonna send you this SMS for you to authenticate."*
+
+Send. Wait. They click. Done.
+
+**Step 4: Calendar the next review.** This is the step most FCs skip when they're tired at the end of an appointment — and it's the one that sets up the relationship for everything that follows. Anchor it to a specific upcoming milestone, not a vague "let's catch up later":
+
+> *"We can review next time when you graduate from your university, in a few years' time. I'll wish you on your birthday before that."*
+
+Other anchor moments to pick from:
+
+| Trigger | Approx age | What to discuss |
+|---|---|---|
+| University graduation | 22 | First job income → top-up APA |
+| First job (~6 months in) | 22-23 | Salary stability check, top-up |
+| Marriage | ~28 | Joint planning, riders, HSGM |
+| House purchase | ~30 | Mortgage budgeting, top-up cap |
+| First child | ~32 | Payor benefit, child policy |
+| 35th birthday | 35 | Mid-career review, ramp premium |
+| 40th birthday | 40 | Career-peak top-up, second policy |
+| 50th birthday | 50 | Pre-retiree review, PWV conversation |
+
+**Set the calendar entry in front of the client.** They see you do it. The trust signal compounds.
+
 ### Payment setup
 
 > *"Once the first payment is made, it'll be automatically debited from your bank monthly. Which bank are you using — DBS or OCBC? Credit card or direct debit?"*
