@@ -60,18 +60,27 @@ export interface CaseEntry {
   screenshot?: string;
 }
 
-export const CASE_PRODUCTS: Record<CaseProduct, { label: string; slug: string }> = {
-  APA: { label: "Pro Achiever 3.0", slug: "pro-achiever" },
-  PWV: { label: "Platinum Wealth Venture", slug: "platinum-wealth-venture" },
-  UCC: { label: "Ultimate Critical Cover", slug: "ultimate-critical-cover" },
-  GPP: { label: "Guaranteed Protect Plus", slug: "guaranteed-protect-plus" },
-  HSGM: { label: "HealthShield Gold Max", slug: "healthshield-gold-max" },
-  SPA: { label: "Solitaire PA", slug: "solitaire-pa" },
-  PLP: { label: "Pro Lifetime Protector", slug: "pro-lifetime-protector" },
+export const CASE_PRODUCTS: Record<
+  CaseProduct,
+  { label: string; slug: string; day5Number: number }
+> = {
+  // `day5Number` = the global day number (1-35) for that product's day-05.md
+  // in the product-mastery-track. Used to construct the learning-track URL,
+  // because the learning track is globally numbered, not per-product.
+  APA: { label: "Pro Achiever 3.0", slug: "pro-achiever", day5Number: 5 },
+  PLP: { label: "Pro Lifetime Protector", slug: "pro-lifetime-protector", day5Number: 10 },
+  GPP: { label: "Guaranteed Protect Plus", slug: "guaranteed-protect-plus", day5Number: 15 },
+  UCC: { label: "Ultimate Critical Cover", slug: "ultimate-critical-cover", day5Number: 20 },
+  HSGM: { label: "HealthShield Gold Max", slug: "healthshield-gold-max", day5Number: 25 },
+  SPA: { label: "Solitaire PA", slug: "solitaire-pa", day5Number: 30 },
+  PWV: { label: "Platinum Wealth Venture", slug: "platinum-wealth-venture", day5Number: 35 },
 };
 
-const sourcePath = (slug: string, anchor: string) =>
-  `/learning-track/product-mastery/${slug}/day-05#${anchor}`;
+// Build a /learning-track/product-mastery/day/{N}#anchor URL.
+// Anchors are produced by github-slugger from the H2 case heading — must
+// match exactly what rehype-slug renders on the day page.
+const sourcePath = (product: CaseProduct, anchor: string) =>
+  `/learning-track/product-mastery/day/${CASE_PRODUCTS[product].day5Number}#${anchor}`;
 
 export const CASES: CaseEntry[] = [
   // ─── APA — 11 cases ────────────────────────────────────────────────────
@@ -90,7 +99,7 @@ export const CASES: CaseEntry[] = [
       "The Term vs Life comparison",
       "The before / after restructure",
     ],
-    sourcePath: sourcePath("pro-achiever", "case-a--the-pru-active-life-prospect-play-a-receipt"),
+    sourcePath: sourcePath("APA", "case-a--the-pru-active-life-prospect-play-a-receipt"),
     screenshot: "/case-studies/case-a-pru-bundle.png",
   },
   {
@@ -110,7 +119,7 @@ export const CASES: CaseEntry[] = [
       "The supplementary charge curve",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-b--the-fwd-invest-first-summit-prospect-play-b--fee-attack-receipt"
     ),
     screenshot: "/case-studies/case-b-fwd-tdc.png",
@@ -127,7 +136,7 @@ export const CASES: CaseEntry[] = [
     tags: ["consolidation", "young-adult", "endowment", "duration-matched"],
     drawings: ["The before / after restructure", "Savings vs investing comparison"],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-c--the-fragmented-coverage-young-adult-consolidation-receipt"
     ),
   },
@@ -147,7 +156,7 @@ export const CASES: CaseEntry[] = [
       "The before / after restructure",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-d--the-pre-retiree-cash-value-redirect-play-a-pre-retiree-variant"
     ),
   },
@@ -166,7 +175,7 @@ export const CASES: CaseEntry[] = [
       "The BTIR comparison (decoupling)",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-e--the-mid-career-peak-earner-welcome-tier-1-receipt"
     ),
   },
@@ -185,7 +194,7 @@ export const CASES: CaseEntry[] = [
       "The diversified portfolio pie chart",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-f--the-diy-platform-investor-supplement-receipt"
     ),
   },
@@ -204,8 +213,8 @@ export const CASES: CaseEntry[] = [
       "The Welcome + Loyalty bonus stack",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
-      "case-g--the-same-money-fwd-comparison-receipt"
+      "APA",
+      "case-g--the-same-money-fwd-comparison-receipt-for-the-cross-shop-close"
     ),
   },
   {
@@ -222,7 +231,7 @@ export const CASES: CaseEntry[] = [
       "Pulsar / Tokio / Manulife net-yield exposure",
       "168% / 120% startup-bonus gimmick exposure",
     ],
-    sourcePath: sourcePath("pro-achiever", "case-h--the-hsbc-pulsar-net-yield-attack"),
+    sourcePath: sourcePath("APA", "case-h--the-hsbc-pulsar-net-yield-attack"),
   },
   {
     id: "apa-i",
@@ -238,7 +247,7 @@ export const CASES: CaseEntry[] = [
       "Pulsar / Tokio / Manulife net-yield exposure",
       "The supplementary charge curve",
     ],
-    sourcePath: sourcePath("pro-achiever", "case-i--the-tokio-marine-ifa-ilp-attack"),
+    sourcePath: sourcePath("APA", "case-i--the-tokio-marine-ifa-ilp-attack"),
   },
   {
     id: "apa-j",
@@ -256,7 +265,7 @@ export const CASES: CaseEntry[] = [
       "Lump sum vs dividend mode ('3 birds' reveal)",
     ],
     sourcePath: sourcePath(
-      "pro-achiever",
+      "APA",
       "case-j--the-manulife-ready-income-poor-retirement-receipt"
     ),
   },
@@ -271,7 +280,7 @@ export const CASES: CaseEntry[] = [
     headline: "GE $200K @55 (break-even Y20, <3% return) vs APA $701K @65 at same money",
     tags: ["ge", "flexi-cash", "endowment", "break-even"],
     drawings: ["Savings vs investing comparison", "The before / after restructure"],
-    sourcePath: sourcePath("pro-achiever", "case-k--the-ge-flexi-cash-endowment-attack"),
+    sourcePath: sourcePath("APA", "case-k--the-ge-flexi-cash-endowment-attack"),
   },
 
   // ─── PWV — 4 cases ─────────────────────────────────────────────────────
@@ -290,7 +299,7 @@ export const CASES: CaseEntry[] = [
       "The retirement healthcare funding angle",
       "Source-of-funds vs needs (LHS / RHS ledger)",
     ],
-    sourcePath: sourcePath("platinum-wealth-venture", "case-l--the-citibank-piw-sgd-redirect"),
+    sourcePath: sourcePath("PWV", "case-l--the-citibank-piw-sgd-redirect"),
   },
   {
     id: "pwv-m",
@@ -307,7 +316,7 @@ export const CASES: CaseEntry[] = [
       "Source-of-funds vs needs (LHS / RHS ledger)",
     ],
     sourcePath: sourcePath(
-      "platinum-wealth-venture",
+      "PWV",
       "case-m--the-pre-retiree-oa-redirect-retirement-healthcare-funding"
     ),
   },
@@ -326,7 +335,7 @@ export const CASES: CaseEntry[] = [
       "The before / after restructure",
     ],
     sourcePath: sourcePath(
-      "platinum-wealth-venture",
+      "PWV",
       "case-n--the-manulife-multi-policy-dbs-banker-portfolio"
     ),
   },
@@ -346,7 +355,7 @@ export const CASES: CaseEntry[] = [
       "The retirement-gap calculation",
     ],
     sourcePath: sourcePath(
-      "platinum-wealth-venture",
+      "PWV",
       "case-o--the-pre-retiree-72kmo-retirement-target"
     ),
   },
@@ -365,7 +374,7 @@ export const CASES: CaseEntry[] = [
     tags: ["company-insurance", "under-coverage", "full-suite", "ci"],
     drawings: ["The 4-quadrant coverage grid", "The before / after restructure"],
     sourcePath: sourcePath(
-      "ultimate-critical-cover",
+      "UCC",
       'case-u1--the-company-insurance-exposure-full-suite-close'
     ),
   },
@@ -385,7 +394,7 @@ export const CASES: CaseEntry[] = [
       "The Term vs Life comparison",
     ],
     sourcePath: sourcePath(
-      "ultimate-critical-cover",
+      "UCC",
       "case-u2--the-young-adults-200mo-whole-life-restructure"
     ),
   },
@@ -405,7 +414,7 @@ export const CASES: CaseEntry[] = [
       "CI / ECI / Relapse buffet analogy",
     ],
     sourcePath: sourcePath(
-      "ultimate-critical-cover",
+      "UCC",
       "case-u3--the-gpp-only-upsell-to-add-early-ci"
     ),
   },
@@ -425,7 +434,7 @@ export const CASES: CaseEntry[] = [
       "The BTIR comparison (decoupling)",
     ],
     sourcePath: sourcePath(
-      "ultimate-critical-cover",
+      "UCC",
       "case-u4--the-pre-retiree-ci-restructure-to-standalone-multi-claim"
     ),
   },
@@ -444,7 +453,7 @@ export const CASES: CaseEntry[] = [
     tags: ["young-adult", "first-time", "term", "death-tpd"],
     drawings: ["The Term vs Life comparison", "The 4-quadrant coverage grid"],
     sourcePath: sourcePath(
-      "guaranteed-protect-plus",
+      "GPP",
       "case-g1--the-25-yo-first-time-1m-term-buyer"
     ),
   },
@@ -461,7 +470,7 @@ export const CASES: CaseEntry[] = [
     tags: ["singlife", "elite-term", "same-price", "claims-service"],
     drawings: ["GPP vs UCC comparison", "The Term vs Life comparison"],
     sourcePath: sourcePath(
-      "guaranteed-protect-plus",
+      "GPP",
       "case-g2--the-singlife-elite-term-price-comparison"
     ),
   },
@@ -477,7 +486,7 @@ export const CASES: CaseEntry[] = [
       "Cheap during NS, but no multi-claim CI, no recurring benefits — needs supplementation post-NS",
     tags: ["nsf", "mindef", "singlife", "post-ns"],
     drawings: ["The 4-quadrant coverage grid", "GPP vs UCC comparison"],
-    sourcePath: sourcePath("guaranteed-protect-plus", "case-g3--the-mindef-singlife-enlistee"),
+    sourcePath: sourcePath("GPP", "case-g3--the-mindef-singlife-enlistee"),
   },
 
   // ─── HSGM — 3 cases ────────────────────────────────────────────────────
@@ -494,7 +503,7 @@ export const CASES: CaseEntry[] = [
     tags: ["hsg", "rider", "deductible", "b-lite"],
     drawings: ["Hospital plan with / without rider", "Plan A vs B vs C ward comparison"],
     sourcePath: sourcePath(
-      "healthshield-gold-max",
+      "HSGM",
       "case-h1--the-hsg-b-lite--no-rider-upgrade"
     ),
   },
@@ -511,7 +520,7 @@ export const CASES: CaseEntry[] = [
     tags: ["ge", "p-optimum", "private-hospital", "cross-shop", "pre-auth"],
     drawings: ["Hospital plan with / without rider"],
     sourcePath: sourcePath(
-      "healthshield-gold-max",
+      "HSGM",
       "case-h2--the-ge-p-optimum-private-hospital-cross-shop"
     ),
   },
@@ -528,7 +537,7 @@ export const CASES: CaseEntry[] = [
     tags: ["parents", "multi-generational", "medishield-gap"],
     drawings: ["Hospital plan with / without rider", "Plan A vs B vs C ward comparison"],
     sourcePath: sourcePath(
-      "healthshield-gold-max",
+      "HSGM",
       "case-h3--the-parents-plan-upgrade-for-multi-generational-coverage"
     ),
   },
@@ -546,7 +555,7 @@ export const CASES: CaseEntry[] = [
       "$200/mo Singlife death/TPD/CI cancelled → $36/mo SPA + HSGM (basic medical)",
     tags: ["young-adult", "singlife", "wrong-coverage", "redirect"],
     drawings: ["The 4-quadrant coverage grid", "Accident vs hospital coverage scope"],
-    sourcePath: sourcePath("solitaire-pa", "case-s1--the-young-singlife-client-redirect"),
+    sourcePath: sourcePath("SPA", "case-s1--the-young-singlife-client-redirect"),
   },
   {
     id: "spa-s2",
@@ -560,7 +569,7 @@ export const CASES: CaseEntry[] = [
       "$10/mo more → 2.5× cover for death/disability/dismemberment + more reimbursement",
     tags: ["spa", "upsell", "plan-tiers"],
     drawings: ["Accident vs hospital coverage scope"],
-    sourcePath: sourcePath("solitaire-pa", "case-s2--the-plan-1-vs-plan-2-upsell"),
+    sourcePath: sourcePath("SPA", "case-s2--the-plan-1-vs-plan-2-upsell"),
   },
   {
     id: "spa-s3",
@@ -575,7 +584,7 @@ export const CASES: CaseEntry[] = [
     tags: ["parents", "multi-generational", "accident"],
     drawings: ["Accident vs hospital coverage scope"],
     sourcePath: sourcePath(
-      "solitaire-pa",
+      "SPA",
       "case-s3--parents-accident-coverage-multi-generational"
     ),
   },
@@ -597,7 +606,7 @@ export const CASES: CaseEntry[] = [
       "The BTIR comparison (decoupling)",
     ],
     sourcePath: sourcePath(
-      "pro-lifetime-protector",
+      "PLP",
       "case-p1--the-young-adult-200mo-bundled-whole-life-restructure"
     ),
   },
@@ -617,7 +626,7 @@ export const CASES: CaseEntry[] = [
       "Dividend income vs lump-sum drawdown",
     ],
     sourcePath: sourcePath(
-      "pro-lifetime-protector",
+      "PLP",
       "case-p2--the-pre-retiree-ntuc-living-policy-cash-unlock"
     ),
   },
@@ -634,7 +643,7 @@ export const CASES: CaseEntry[] = [
     tags: ["sme", "legacy", "lifelong", "estate-planning"],
     drawings: ["The Term vs Life comparison"],
     sourcePath: sourcePath(
-      "pro-lifetime-protector",
+      "PLP",
       "case-p3--when-plp-is-genuinely-the-right-answer-legacy-floor"
     ),
   },

@@ -1,7 +1,11 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+// rehype-slug auto-generates id="..." on every heading so in-page #anchor
+// links (e.g. from the Case Vault "Read full case" button) resolve correctly.
+// It is small enough not to need code-splitting.
+import rehypeSlug from "rehype-slug";
 type PluggableList = any[];
 import {
   ArrowLeft,
@@ -55,11 +59,14 @@ function loadRehypeRaw(): Promise<PluggableList> {
 }
 
 function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: boolean } {
-  const [plugins, setPlugins] = useState<PluggableList>([]);
+  // rehype-slug always runs so heading anchors resolve, even when there is
+  // no raw HTML to sanitize. Bigger plugins (rehype-raw + rehype-sanitize)
+  // are still lazy-loaded only when the markdown contains raw HTML.
+  const [plugins, setPlugins] = useState<PluggableList>([rehypeSlug]);
   const [ready, setReady] = useState(!enabled);
   useEffect(() => {
     if (!enabled) {
-      setPlugins([]);
+      setPlugins([rehypeSlug]);
       setReady(true);
       return;
     }
@@ -67,7 +74,7 @@ function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: bo
     let cancelled = false;
     loadRehypeRaw().then((p) => {
       if (!cancelled) {
-        setPlugins(p);
+        setPlugins([rehypeSlug, ...(p as PluggableList)]);
         setReady(true);
       }
     });
@@ -84,6 +91,7 @@ export default function ProductMasteryDay() {
   const { dayNumber: raw } = useParams<{ dayNumber: string }>();
   const dayNumber = Number(raw);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -120,6 +128,28 @@ export default function ProductMasteryDay() {
   const { plugins: dayRehypePlugins, ready: dayRehypeReady } = useRehypePlugins(
     Boolean(day?.hasRawHtml),
   );
+
+  // Scroll to a #hash anchor once the markdown has finished rendering. This is
+  // how the Case Vault "Read full case" button (and any other deep-link with
+  // an #anchor) lands the user directly on the case heading. We wait one
+  // animation frame after dayRehypeReady so the slugged headings are in DOM.
+  useEffect(() => {
+    if (!day || !dayRehypeReady) return;
+    const hash = location.hash?.replace(/^#/, "");
+    if (!hash) return;
+    // Try a few frames — rendering can be a tick after dayRehypeReady flips.
+    let attempts = 0;
+    const tryScroll = () => {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      if (attempts++ < 10) requestAnimationFrame(tryScroll);
+    };
+    requestAnimationFrame(tryScroll);
+  }, [day, dayRehypeReady, location.hash]);
+
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
   const noQuizDay = day !== undefined && day.quiz.length === 0;
