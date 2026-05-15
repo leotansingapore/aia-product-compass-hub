@@ -49,58 +49,66 @@ The other hot button categories that surface (less common but worth mapping):
 ### 1. The retirement-anxious mid-career professional (30-45 yo)
 
 **Dominant button:** needs-vs-reality + fear
-**How they show up:** stable income, decent CPF, no investing plan or only a token amount in stocks/ETFs. They've been "meaning to start" for years.
+**Their pain points:** stable income, decent CPF, no investing plan or only a token amount in stocks/ETFs. They've been "meaning to start" for years.
 **The thing they say:** *"I know I should be doing something about retirement, I just haven't gotten around to it."*
-**Why APA fits:** the systematic monthly auto-debit removes the willpower problem. The bonus stack + 40-year compounding makes up for the lost runway. The retirement reverse-engineer in Phase 3 hits them hard because they've never actually calculated the number.
-**SPIN angle:** Problem + Implication. "What would your retirement look like if your current setup is all you do?" → silence is the gold.
+**Why APA fits — amplify the pain by making it concrete in three moves:**
+
+- **The delay-cost shock.** Walk them through what their monthly figure becomes if they wait. At 25 → $1,000/mo. At 30 → ~$1,400/mo. At 35 → ~$2,000/mo. At 45 → ~$4,200/mo. The curve steepens fast. (Verify in iPOS — figures based on a 25-year-old, 8% IIRR, Self-Select Adventurous Index Fund.)
+- **The retirement-gap shock.** Compare what they'll *actually need* at 65 (~$10,000/mo to keep today's $3,000/mo lifestyle after 40 years at 2.5% inflation — total pot ~$2.4M) against what their current setup will realistically produce. Most prospects have never run this calculation; the gap is obvious once it's on paper.
+- **The dividend reveal.** Show them that APA at retirement, switched into dividend mode (GDIF — Global Dynamic Income Fund), pays out ~$10,000/mo from a preserved $2.4M pot at a ~5% dividend yield — AND the capital stays at $2.4M. Three birds, one plan: income, preserved capital, legacy.
+
+The systematic monthly auto-debit removes the willpower problem they've been losing to for years.
 
 ### 2. The DIY-fatigued investor
 
 **Dominant button:** bad experiences / fear + needs-vs-reality
-**How they show up:** active on Moomoo, IBKR, crypto exchanges. Tired from market-watching at 10pm. Has had real losses. Knows their P&L is mediocre but doesn't want to admit it.
+**Their pain points:** active on Moomoo, IBKR, crypto exchanges. Tired from market-watching at 10pm. Has had real losses. Knows their P&L is mediocre but doesn't want to admit it.
 **The thing they say:** *"I do my own investing — I've got my Moomoo / IBKR / crypto wallet."*
-**Why APA fits:** the Three Cost Circles in Phase 5B (DIY trading fees, time, emotional toll) tap directly into the fatigue. Globally diversified portfolio managed by AIA Investments + Mercer + Wellington + BlackRock removes the burden. Secondary insured solves "what if I die first, my spouse can't manage this."
-**SPIN angle:** Implication. "How many hours a week do you actually spend on this? How comfortable are you with the emotional volatility?"
+**Why APA fits:** the DIY trading fees, the time cost (research, monitoring, execution), and the emotional toll all stop being theirs to carry. The globally diversified APA portfolio is managed by **Wellington Management, BlackRock, Baillie Gifford, and Capital Group** — institutional fund managers normally only accessible to institutional investors. Through APA, retail investors get the same managers running their retirement portfolio. Secondary insured also solves the "if I die first, my spouse can't manage this" worry — often the deeper anxiety underneath the DIY fatigue.
 
 ### 3. The legacy-conscious parent (30-45 yo with young kids)
 
 **Dominant button:** loved ones + values
-**How they show up:** married, 1-3 young children, often newly-bought home. Buying lots of insurance already. Mentions kids unprompted.
+**Their pain points:** married, 1-3 young children, often newly-bought home. Buying lots of insurance already. Mentions kids unprompted.
 **The thing they say:** *"I want to make sure my family is taken care of, no matter what."*
 **Why APA fits:** the secondary insured feature is THE hook — they inherit a managed policy, not a cash lump sum a grieving spouse has to figure out. Capital-guaranteed death benefit floor + dividend continuity to next generation = the legacy structure.
-**SPIN angle:** Problem + Need-payoff. "If something happened to you, what would your spouse do with the existing investments? Would she even know which ones to keep?"
 
 ### 4. The CPF-worrier
 
 **Dominant button:** needs-vs-reality + fear
-**How they show up:** has done the CPF Life math (or seen it on TikTok). Knows the payout doesn't match their lifestyle. Often surfaces this on their own.
+**Their pain points:** has done the CPF Life math (or seen it on TikTok). Knows the payout doesn't match their lifestyle. Often surfaces this on their own.
 **The thing they say:** *"I checked CPF Life — I think it gives maybe $1,500-2,000/month after 65. That's not going to cut it."*
-**Why APA fits:** APA + dividend mode at retirement = the gap-closer. CPF Life is the floor, APA dividends are the top-up that funds the lifestyle they actually want. Phase 3 reverse-engineer makes the gap concrete in dollar terms.
-**SPIN angle:** Need-payoff. "If we could put a plan together that gives you another $5K-10K/month on top of CPF Life, by retirement — does that change the picture?"
+**Why APA fits — close the gap in dollar terms:**
+
+- **Show the inflation-adjusted retirement need.** Use the Day 2 Phase 3 reverse-engineer to convert today's $3K/mo lifestyle into the actual $10K/mo they'll need at 65 (2.5% inflation × 40 years). Total pot needed: ~$2.4M over a 20-year retirement window.
+- **Name the CPF Life gap.** Their CPF Life payout (~$1,500-2,000/mo) lands well below the $10K/mo they actually need. The gap is roughly $8K/mo — that's the dollar-specific pain.
+- **Use APA to close the gap.** Build the $2.4M pot during their working years (auto-debit, ~$1,000/mo at age 25), then switch into dividend mode at retirement (GDIF). The dividend stream tops up CPF Life by exactly the amount the gap requires.
 
 ### 5. The spouse-protection prospect
 
 **Dominant button:** loved ones + fear
-**How they show up:** primary income earner. Spouse is less financially literate (or stay-at-home). Has named beneficiaries on existing policies. Already thinks about "what if I die first."
+**Their pain points:** primary income earner. Spouse is less financially literate (or stay-at-home). Has named beneficiaries on existing policies. Already thinks about "what if I die first."
 **The thing they say:** *"My wife wouldn't know what to do with all this if anything happened to me."*
-**Why APA fits:** secondary insured. Phase 5B Cost Circle #3 (DIY emotional toll → spouse can't replicate) hits hard. The 100-year policy that just keeps running with the wife as the new insured = the answer to their actual fear.
-**SPIN angle:** Implication + Need-payoff. "Walk me through what would happen 6 months after you're gone, with the assets you have today. What would she actually do?"
+**Why APA fits:** secondary insured. The 100-year policy that just keeps running with the wife as the new insured = the answer to their actual fear. A managed policy continuing through AIA beats a cash lump sum the spouse has to figure out — and the spouse doesn't have to replicate the prospect's investment skill, because the institutional fund managers (Wellington, BlackRock, etc.) keep running the portfolio.
 
 ### 6. The inflation-anxious saver
 
 **Dominant button:** fear + values
-**How they show up:** large bank balance ($100K+ sitting in OCBC / DBS). Risk-averse but increasingly aware that "cash is losing value." Doesn't trust stocks but knows fixed deposits are weak.
+**Their pain points:** large bank balance ($100K+ sitting in OCBC / DBS). Risk-averse but increasingly aware that "cash is losing value." Doesn't trust stocks but knows fixed deposits are weak.
 **The thing they say:** *"My money's just sitting in the bank — I know it's not growing but I'm not sure what to do."*
-**Why APA fits:** Phase 2 inflation impact education (0.05% bank vs 2.8% inflation = -2.75%/year, -27.5% over 10 years) names their pain. APA Elite Adventurous or Balanced gives them the equity exposure they're scared to pick themselves, professionally managed.
-**SPIN angle:** Problem + Implication. "Over the last 5 years, do you feel your bank balance has bought more or less? What does that pattern look like over the next 30 years?"
+**Why APA fits:** the inflation math names their pain in numbers — 0.05% bank vs 2.8% inflation = -2.75%/year, -27.5% of purchasing power over 10 years. The Self-Select Adventurous Index Fund gives them the equity exposure they're scared to pick themselves — managed by Wellington / BlackRock / Baillie Gifford / Capital Group, globally diversified, no single-stock or single-country concentration.
 
 ### 7. The high-income procrastinator
 
 **Dominant button:** values + needs-vs-reality
-**How they show up:** $8K-15K+ monthly income, tech / law / consulting / banking. Knows they should have a plan. Time-poor.
+**Their pain points:** $8K-15K+ monthly income, tech / law / consulting / banking. Has cash piling up in the bank because they don't have the skills, the time, or the effort to deploy it properly. Knows they should have a plan; the guilt is recurring.
 **The thing they say:** *"I keep meaning to set this up properly. Just no time."*
-**Why APA fits:** the limited-pay variant ($12K/year × 10 years → $700K capital + $4,300/mo dividends). Set-and-forget. Pay heavy upfront, done by 35-40, capital compounds for the next 30 years.
-**SPIN angle:** Implication + Need-payoff. "If we could lock in your retirement structure in 30 minutes today and never have to revisit, what would that be worth to you?"
+
+**Why APA fits — outsource the three things they don't have:**
+
+- **Skills:** Wellington / BlackRock / Baillie Gifford run the portfolio. The prospect doesn't need to learn asset allocation, factor rotation, or rebalancing.
+- **Time:** the plan auto-debits monthly. Zero ongoing management. They get their hours back.
+- **Effort:** the limited-pay variant ($12K/year × 10 years → $700K capital + ~$4,300/mo dividends at retirement) is the set-and-forget version. Pay heavy upfront, done by 35-40, capital compounds for the next 30 years. The cash sitting in their bank loses to inflation every year they don't deploy it.
 
 ## SPIN-style questions for APA discovery (use during Phase 1 + Phase 2)
 
