@@ -136,18 +136,6 @@ The prospect names the solution. You don't push it.
 - *"Would you rather have $5,400/month coming out of your bank account for the next 40 years, or $1,000/month into a plan that gives you the same retirement?"*
 - *"If your spouse inherited a managed plan that just kept paying her dividends, instead of a portfolio she has to manage — how much does that matter to you?"*
 
-## How Part 1 connects to Day 2
-
-Everything in Part 1 feeds the Day 2 appointment flow:
-
-- **Phase 1 rapport** captures the milestones AND lets you triangulate which archetype the prospect maps to
-- **Phase 2 Financial Health Check** runs Situation + Problem questions
-- **Phase 3 Problems of Investing** runs Implication questions and the retirement reverse-engineer
-- **Phase 4 Investment Illustrations** runs Need-payoff and the option close
-- **Phase 5B Value Proposition** ties everything back to the hot buttons you surfaced in Phase 1
-
-If you don't map the prospect to an archetype during Phase 1, you'll find yourself running a generic pitch in Phase 3 and wondering why it isn't landing. The mapping is the pre-fit.
-
 ---
 
 # Part 2 — The Product Knowledge
