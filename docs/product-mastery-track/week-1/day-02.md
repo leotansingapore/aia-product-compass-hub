@@ -13,6 +13,18 @@ A complete APA appointment runs in seven phases — Phase 0 (pre-appointment) th
 
 The two ways FCs lose APA cases: skipping the problem build-up (leaping to "$200/month buys you this plan" before the prospect feels the gap), and running over time (a 60-minute first appointment is a lost appointment — energy and attention die at minute 35).
 
+### Presentation philosophy — draw concepts first, slides are your reference
+
+The single biggest sequencing mistake is opening the appointment by sharing your iPOS+ slide deck or product brochure on screen. The prospect sees 50 pages of numbers and shuts down. Their brain gets overwhelmed and they go into passive-listening mode.
+
+The right move: **draw the concept on a single piece of paper or whiteboard FIRST**, then pull up the slides as a reference *for yourself* — not for the prospect to study.
+
+- The retirement reverse-engineer in Phase 3? Draw it on paper, one number at a time, with the prospect's calculator in their hand.
+- The dividend-mode mechanic in Phase 4? Draw the arrows showing capital staying, dividends flowing out.
+- The AIA-vs-DIY comparison? Draw five quick sketches, not a 5-slide deck.
+
+Slides are *your* tool to remember the structure, the source citations, the exact numbers. They are not the prospect's content. Splashing the deck all at once is the fastest way to lose engagement.
+
 ---
 
 ## Phase 0 — Pre-Appointment Setup
@@ -338,30 +350,6 @@ Bring up the Investing Success & Track Record deck — slide 4 shows 10-year fun
 
 Position it honestly: AIA's funds, on average across the lineup, have a verified long-term track record that competes with or beats the standard ETF benchmarks. Don't claim "#1 on every metric" — point at the deck.
 
-### The one-third budgeting rule (set this up first)
-
-Before running the retirement numbers, install the budgeting frame. This is what makes the retirement reverse-engineer land — without it, the prospect hears the monthly contribution figure as "money I don't have" rather than "money I should already be allocating."
-
-> *"There are three buckets you should split your income into:*
->
-> *One — short-term: food, transport, day-to-day expenses, eating out, the things you spend every month.*
->
-> *Two — medium-term: house downpayment, wedding, holidays, car, the bigger 3-to-7-year goals.*
->
-> *Three — long-term: insurance, investments, the 20-to-40-year retirement bucket.*
->
-> *The mistake most people make is they plan short-term and medium-term first, then invest whatever's left at the end of the month. The right move is the opposite. Plan long-term first — fund retirement first — then fund medium-term, then short-term."*
-
-Then drop the rule of thumb:
-
-> *"As a working benchmark: aim for roughly 1/3 of your income to each bucket. Within the long-term third, about 10% goes to insurance and 20% goes to investments. So someone earning $3,000/month should have around $600/month in the long-term investing bucket."*
-
-The prospect's pushback is often *"but I can't save 1/3 right now"*. That's fine — anchor the percentage and adjust:
-
-> *"Totally fair if you can't hit 33% today. But let's at least get the principle right: long-term first, not last. Whatever you can spare right now goes into the long-term bucket first — even if it's $200/month to start."*
-
-Now you've earned permission to run the actual retirement numbers.
-
 ### The retirement reverse-engineering whiteboard
 
 Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
@@ -370,111 +358,193 @@ Anchor first:
 
 > *"The most expensive thing you'll ever fund isn't a house or a car — it's the 20-30 years where you'd like the option to stop working. That's what these numbers are really about."*
 
-Then run the four steps.
+Then run the three steps.
 
 **Step 1 — Anchor the desired monthly income (today's dollars)**
 
 > *"In today's dollars — forget inflation for now — what kind of monthly income would you want when you retire? Just a normal lifestyle, no luxuries."*
 
-Most clients say **$3,000-$5,000/month.** Use $4,000 as the worked example. Write it on the paper:
+Most clients say **$3,000-$5,000/month.** Use **$3,000** as the worked example. Write it on the paper:
 
 ```
-Today: $4,000/month
+Today: $3,000/month
 ```
 
 **Step 2 — Inflate to retirement age**
 
-> *"That's in today's money. Inflation runs at about 3% per year. You're 30, retiring at 65 — that's 35 years. Want to guess what $4,000 today looks like at 65?"*
+> *"That's in today's money. Inflation runs at about 2.5% per year. You're 25, retiring at 65 — that's 40 years. Want to guess what $3,000 today looks like at 65?"*
 
-Let them guess. They'll say $5K, $6K, $7K. Then reveal:
-
-```
-Today: $4,000/month
-At 65: ~$9,400/month  (3% inflation × 35 years)
-```
-
-> *"Almost $9.5K a month — just to keep the same lifestyle you have today."*
-
-**Step 3 — Multiply by the retirement window**
-
-> *"If you want that income from 65 to 85 — that's 20 years — how much do you need in the pot?"*
-
-Let them try. Then write:
+Let them guess. They'll say $4K, $5K, $7K. Then reveal:
 
 ```
-$9,400 × 12 × 20 = $2.3 million
+Today: $3,000/month
+At 65: ~$10,000/month   (2.5% inflation × 40 years)
 ```
 
-> *"$2.3 million. That's the number."*
+> *"Roughly $10K a month — just to keep the same lifestyle you have today."*
+
+**Step 3 — Multiply by the retirement window (have them calculate)**
+
+Hand them their phone:
+
+> *"Pull out your calculator. $10,000 × 12 months × 20 years — what do you get?"*
+
+Let them compute it. They'll say $2.4M.
+
+```
+$10,000 × 12 × 20 = $2.4 million
+```
+
+> *"$2.4 million. That's the number."*
 
 **Pause.** Let it sit. Most clients react here.
 
-**Step 4 — The contrast (this is where most APA cases turn)**
+### Savings vs investing — why investing is cheaper
 
-Two scenarios, side by side:
+Now divide that pot by the years between now and retirement. Have them calculate again:
+
+> *"If you only saved cash, how much per month would you need? Take $2.4M and divide by 40 years and 12 months."*
+
+Let them work it out:
 
 ```
-Cash savings only           APA + dividend mode
+$2,400,000 ÷ 40 ÷ 12 = $5,400/month in bank savings
+```
+
+> *"$5,400 a month in cash savings. Mr Prospect — what's your current income? What are your expenses? Is $5,400/month of pure savings even realistic?"*
+
+It almost never is. Sit with that for a moment.
+
+Then the relief:
+
+> *"With a proper investing plan, we can reduce that down to roughly $1,000 a month. Same retirement number. One-fifth of the monthly commitment. That's why investing isn't just a good-to-have — it's a must-have."*
+
+```
+Cash savings only           Proper investing plan
 ————————————                ————————————
-Save $5,400/month for       Invest $1,300/month for
-35 years                    35 years
-↓                           ↓
-Pot depletes to $0 at 85    Capital preserved
-                            Dividends ~$10-11K/mo for life
+$5,400/month for 40 years   $1,000/month for 40 years
 ```
 
-> *"If you don't do this, you have to save $5,400/month, and the pot still depletes to zero. If you do this, just $1,300/month, you preserve the capital, AND you can still draw about $10-11K/month in dividends for life."*
+### Procrastination — the cost of starting late
 
+The next move is to make the *start now* decision feel concrete. Most prospects mentally tell themselves they'll get to this "later". Pre-empt it.
+
+> *"A lot of people procrastinate on the investing piece. They don't start at 25 — they only start at 45. Make a guess — if you wait until 45, do you think the $1,000/month figure stays the same, or goes up?"*
+
+They'll say "goes up." Confirm:
+
+> *"It goes up a LOT. Same retirement target, half the runway — the monthly cost jumps several times over. The single biggest lever you have on this whole calculation is **when you start.** That's why we want to lock this in now, not in 20 years."*
+
+### Discipline — systematic, monthly, no breaks
+
+> *"And the second piece — once you start, you have to be consistent. The mistake people make isn't usually not starting. It's starting at $1,000 for 6 months, then dropping it, then bumping it back up, then dropping again. The compounding only works if the contribution is systematic."*
+
+> *"That's why we set up a monthly auto-debit. You fix yourself to invest every month before you even see the money. No willpower needed — the system carries it."*
+
+### The one-third budgeting rule (anchor where the $1,000 comes from)
+
+After the cash-savings shock, the prospect's question is *"where does that $1,000/month come from in my budget?"* Install the one-third rule here.
+
+> *"Out of your total income, the way to think about it is three buckets — equal thirds.*
+>
+> *One third — short-term: food, transport, day-to-day expenses, daily bills and necessities.*
+>
+> *One third — medium-term: rental, house, kids, wedding, holidays — the 3-to-7-year goals.*
+>
+> *One third — long-term: investments and insurance. The 20-to-40-year retirement bucket."*
+
+Then name the mistake most people make:
+
+> *"The biggest mistake people make is they focus a lot on short-term spending, a lot on medium-term, and they neglect long-term entirely. They simply don't care about the long term — they just cover themselves for short-term and spend the rest. And then 20 years later, the future them has nothing to retire on.*
+>
+> *The future you is going to thank you — or not — depending on what you allocate today."*
+
+Walk through a worked example tied to the prospect's actual income:
+
+> *"Let's say you take home $3,000/month after CPF. About $1,000 short-term, $1,000 medium-term, and $1,000 long-term. Within that long-term third, roughly 10% of income to insurance, 20% to investments — so about $600 going to APA. That's where the monthly investing figure comes from. Not new money — money you should already be allocating."*
+
+The cushion for prospects who can't hit a clean 33% today:
+
+> *"Totally fair if you can't hit a third right now. The principle is what matters: long-term first, not last. Even $200/month into the long-term bucket today beats waiting 5 years for $1,000."*
+
+Acknowledge insurance is its own conversation:
+
+> *"Insurance is part of the long-term bucket too — that's a separate session. Today we're focused on the wealth-building half. We'll come back to the protection side after we've locked this in."*
+
+### The lump-sum trap — why you don't take the $2.4M out
+
+Now the most important reframe. Most prospects assume the $2.4M is something they "withdraw at 65 and spend." Reverse that.
+
+> *"Mr Prospect, let's say at 65 you actually get there — you've got the $2.4M sitting in your account. Do you think you should just take it out as a lump sum and spend it down at $10K/month? Or do you think it's smarter to leave it inside and just withdraw the income?"*
+
+Wait for the answer. Most arrive at "leave it inside." Confirm with the math:
+
+> *"Right. If you took $2.4M out and spent $10K/mo, the pot depletes year by year — and if you live to 90 instead of 85, you've run out. But here's what happens if you keep the capital invested and only withdraw the dividends..."*
+
+The 5% dividend yield reveal:
+
+> *"At about a 5% dividend yield on $2.4M, the plan pays you roughly $10K/month — exactly the income you wanted. AND the capital doesn't drop. It stays at $2.4M while you're drawing the $10K/month. Like a cake you keep eating that never gets smaller."*
+
+The three-birds-one-stone close on Phase 3:
+
+> *"So with the same plan, you kill three birds with one stone.*
+>
+> *One — you get the $10K/month retirement income for life.*
+>
+> *Two — the $2.4M capital is preserved. Lifelong. Not depleting.*
+>
+> *Three — when you pass on, that $2.4M becomes the inheritance for your kids and loved ones. It's not 'either income or legacy' — it's both."*
+
+Then hand it back instead of selling:
+
+> *"Does that line up with how you've been thinking about retirement, or does it change the picture?"*
+
+Let them react. Most prospects need a beat — let them.
 
 ### Transition into Phase 4
 
-> *"That's how people outsource their investments to us. The next part — let me show you the actual quotation and how the dividend mechanics work."*
+> *"Now let me show you the actual quotation, how the dividend mechanics work, and what makes AIA different from doing this DIY."*
 
 ---
 
-## Phase 4 — Investment Illustrations + Option Closing (5-7 min)
+## Phase 4 — Investment Illustrations + AIA-vs-DIY + Option Close (8-10 min)
 
-Pull the Phase 2 retirement calculation back up — the prospect just calculated they need $6,854/mo in a bank account to retire at 65 with $3M. Now contrast that with the investment route.
+The conceptual sell is done in Phase 3. Phase 4 is where you show the actual quotation and pre-empt the "why AIA instead of DIY" objections before the prospect surfaces them.
 
-### The big reveal
+### Open the iPOS+ illustration
 
-| Route | Monthly savings needed |
+Pull up an iPOS+ quote on the agreed monthly amount (from Phase 3, that was $1,000/mo). Walk the prospect through the projected values year by year, anchoring the 5% dividend yield assumption.
+
+> *"Here's what $1,000/month looks like as an actual quote. Total premium going in over 40 years — $480,000. Projected fund value at 65 — about $2.4 million. At a 5% dividend yield, that pays you the $10K/mo we worked out earlier, while the $2.4M capital stays intact."*
+
+### Cost-of-delay shock (anchor the urgency on iPOS numbers)
+
+> *"The math at $1,000/month works because you're starting now. What do you think happens if you wait 5 years?"*
+
+Let them guess (most say "a bit higher"). Then reveal:
+
+| When you start | Monthly investment needed for same $2.4M target |
 |---|---|
-| Bank account (0.05% interest) | **$6,854/month** |
-| Investment account (with APA-style returns) | **$1,246/month** |
+| Now (age 25) | $1,000/mo |
+| Wait 5 years (age 30) | ~$1,400/mo |
+| Wait 10 years (age 35) | ~$2,000/mo |
+| Wait 20 years (age 45) | ~$4,200/mo |
 
-> *"Between $6,854 and $1,246 per month, which one do you think is easier?"*
-
-The cash-flow benefit: **you free up $5,608/month** for everything else in life.
-
-### Cost-of-delay shock
-
-> *"The reason the math works at $1,246 is because you're starting NOW. What do you think happens if you wait 5 years?"*
-
-Let them guess (most say 5-10% drop). Then reveal:
-
-| When you start | Same $3M target → savings/mo needed |
-|---|---|
-| Now (age 25) | works at $1,246/mo |
-| Wait 5 years (age 30) | target slips — ending value $2M instead of $3M |
-| Wait 10 years (age 35) | $1.5M |
-| Wait 20 years (age 45) | $600K |
-
-> *"A 5-year delay costs you $1 million in projected ending value. That's $200,000 per year of wealth — or $16,667/month — that you forfeit by waiting."*
+> *"A 5-year delay roughly doubles the monthly cost by the time you're 45. The single biggest lever on this whole calculation is **when you start.**"*
 
 Real-client anchor:
 
-> *"I have clients who started at age 45 — guess how much they have to save? $6,000/month. You only need $1,246 now."*
+> *"I have clients who only started at 45 — guess how much they have to save? $4,000-$6,000/month. You only need $1,000 now."*
 
 ### Budget adjustment ladder
 
-If $1,246/mo is too high right now:
+If $1,000/mo is too high right now:
 
-> *"What if we start with a more comfortable budget? Even $500/month grows to about $1,100,000 at retirement — still meaningful."*
+> *"What if we start with a more comfortable budget? Even $500/month builds meaningfully — it just means a lower retirement income, or you'll need to top up later as income grows."*
 
 Then "every dollar counts":
 
-| Add per month | Adds at retirement |
+| Add per month | Adds at retirement (40-yr horizon) |
 |---|---|
 | +$50/mo (MRT-fare worth) | ~$120,000 |
 | +$100/mo | ~$250,000 |
@@ -536,6 +606,52 @@ For a prospect who can pay more upfront for fewer years:
 
 This is the *"I want to be done paying by 40"* variant. Many tech professionals, doctors, and dentists prefer this. Bring it up if the prospect surfaces a strong income but a finite-runway commitment preference.
 
+### AIA vs DIY — the five reframes that pre-empt the cross-shopping objection
+
+Most prospects who self-invest are already doing some mix of S&P 500, individual stocks, crypto, robo-advisors (StashAway, Endowus, FSMOne), broker accounts (Moomoo, IBKR). Surface why APA's structural setup beats DIY *for the 40-year retirement-income job* — not for short-term trading. The frame:
+
+> *"Right now you're savvy at managing $10K, $20K in your trading accounts. But we're not talking about that game. We're talking about $2.4 million — $3 million — in your portfolio at 65, in your 60s and 70s, with inheritance flowing to your kids. Different game. Five things you'd struggle to replicate DIY..."*
+
+Then walk through the five reframes. Have the prospect's actual DIY setup in your head (capture it during Phase 1) so each reframe lands on something specific.
+
+#### 1. No currency risk (SGD-denominated, fund-level hedging)
+
+> *"If you're buying S&P 500 or any US-listed ETF, you're holding USD exposure. USD has been weakening recently. Over 40 years, currency movement on $2.4M is not small — that's where 20-30% of your wealth can quietly disappear if SGD strengthens against USD long-term.*
+>
+> *APA is SGD-denominated, and the underlying funds run hedging strategies — so the bulk of currency fluctuation gets absorbed at the fund level, not your statement. You don't carry the FX risk personally."*
+
+#### 2. No US dividend withholding tax
+
+> *"If you're drawing dividend income from US-listed stocks or ETFs, the IRS withholds about 30% before the dividend ever reaches you. Singapore doesn't have a tax treaty that reduces this for individuals.*
+>
+> *Run the math on the retirement number we just calculated. $10K/month × 12 × 20 years of retirement = $2.4M in lifetime dividends. 30% of that is $720K — gone to US tax, before you spend a cent.*
+>
+> *APA's dividend stream is in SGD, paid from a Singapore-domiciled plan. Zero dividend withholding."*
+
+#### 3. No US estate taxes
+
+> *"If you hold US-situs assets — US-listed stocks, ETFs, real estate — and you pass on, the US imposes estate tax above $60,000. Brackets run up to 40%. On a $2.4M US-asset portfolio, your estate could lose $700K+ before your family sees it.*
+>
+> *APA is a Singapore policy. No US estate tax exposure. The full policy value transfers to your nominated beneficiaries."*
+
+#### 4. Secondary insured — inherit a managed policy, not a pile of cash
+
+> *"Here's the part most people don't think about. If you pass on tomorrow and your wife inherits your Moomoo / IBKR / crypto wallet / robo-advisor account — does she know how to manage it? Most spouses don't. What happens next is predictable: she cashes everything out, sits on the money in the bank, maybe buys something she shouldn't. The portfolio is gone within 2-3 years.*
+>
+> *APA has a feature called the secondary insured. You name your spouse, child, or family member as a secondary insured at signup. When you pass on, the policy doesn't liquidate — it continues. AIA keeps managing it. Your wife inherits a managed plan that's still paying out, not a cash lump sum she has to figure out.*
+>
+> *That's worth a lot more than the 1% fund management fee — that's a guarantee your $2.4M doesn't get mismanaged by people who don't have the skills to run it."*
+
+#### 5. S&P 500 isn't always the safest — global diversification across cycles
+
+> *"There's a chart in our internal deck — the 2000 to 2010 period. The S&P 500 actually delivered around 0% over those 10 years. A whole decade of nothing. Meanwhile, emerging markets, international developed, and certain sector indices did very well in the same window.*
+>
+> *No single market wins every decade. Sometimes US wins, sometimes China, sometimes India, sometimes Japan, sometimes nobody. Globally diversified portfolios catch the rotation. The AIA Elite portfolios are built across countries, sectors, and asset classes — that's hard to replicate yourself without managing dozens of ETFs and rebalancing constantly into your 70s."*
+
+Close the comparison:
+
+> *"None of this means DIY is wrong for the $10K-$50K of trading capital you're managing today. It just means for the 40-year retirement-portfolio job — different game, different tool."*
+
 ### The option close — lead with the leverage math, then offer three tiers
 
 The point of the option close isn't just "pick a number" — it's to show the prospect that a small bump in monthly premium translates into a big difference in retirement cash value. Once they see the leverage, the three-tier choice frames itself.
@@ -568,27 +684,62 @@ This is the upsell moment. Most prospects who came in for $500 will pick $600 or
 
 Goal of Phase 4: get the option close, get buy-in on a monthly amount, confirm they're open to commit at that level.
 
-### Reinforce with the Special Bonus structure
+### Reinforce with the long-term loyalty bonuses (Welcome + Special)
 
-Once the prospect picks a tier, reinforce the choice by surfacing how APA's structural bonuses compound on top of whatever they chose. This is the moment to bring up the **Special Bonus mechanic** — most prospects don't know APA pays bonuses on top of the investment growth.
+Once the prospect picks a tier, sweeten the decision by surfacing the two bonus mechanics. APA layers them ON TOP of the projected fund returns — most prospects don't know this, and most cross-shopped competitors don't have anything equivalent.
 
-> *"And there's something I want you to know about what you've just picked. APA isn't just the fund returns — AIA adds a Special Bonus on top of your annualized premium.*
->
-> *Starting from year 10, you get a 5% Special Bonus per year on your annualized premium. From year 21 onwards, that 5% steps up to 8% per year — for the rest of the policy."*
+#### The Welcome Bonus (first 3 years)
 
-Run the math on their chosen tier:
+For a $12,000/year premium (illustrative — verify exact tier in iPOS):
 
-| If they picked | Annualised premium | Special Bonus from Y10 | Special Bonus from Y21 |
+| Policy year | Bonus % on annualised premium | Bonus dollar amount |
+|---|---|---|
+| Year 1 | 15% | ~$1,800 |
+| Year 2 | 18% | ~$2,160 |
+| Year 3 | 23% | ~$2,760 |
+| **Total over 3 years** | | **~$6,360** |
+
+> *"In your first 3 years, AIA gives you a Welcome Bonus on top of your premium. Year 1, 15% extra. Year 2, 18%. Year 3, 23%. On a $12K/year premium, that's about $6,360 over the first three years — money that compounds inside the plan from day one. None of the DIY platforms do this."*
+
+(Verify exact %s in iPOS for the prospect's specific premium tier and IIP length — the Welcome Bonus table varies.)
+
+#### The Special Bonus (Year 10 and Year 21 onwards)
+
+After the Welcome Bonus, the loyalty bonuses kick in:
+
+> *"Then from Year 10 onwards, every single year, AIA gives you a 5% Special Bonus on your annualised premium. And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
+
+Run the per-tier math on their chosen premium:
+
+| If they picked | Annualised premium | Special Bonus from Y10 (per year) | Special Bonus from Y21 (per year) |
 |---|---|---|---|
 | $500/mo | $6,000/yr | $300/yr | $480/yr |
 | $600/mo | $7,200/yr | $360/yr | $576/yr |
 | $700/mo | $8,400/yr | $420/yr | $672/yr |
 
-Then close the value reinforcement:
+#### The "make a guess" close
 
-> *"That bonus stack is what DIY platforms can't replicate. It's structurally baked into the plan. So at $600/month, the projected $1.4M at 65 already includes that bonus stack working in the background. The longer you hold, the more it compounds — and from year 21 it accelerates."*
+This is the move that lands the bonus structure emotionally:
 
-This reinforces the decision they just made AND surfaces a fact most prospects haven't been told. It's not a re-pitch — it's a *"here's why what you just chose is going to compound harder than you might have realised"* moment.
+> *"Quick question — which do you think adds up to more over a lifetime: the $6,360 Welcome Bonus in the first 3 years, or the $600-ish per year that keeps paying from Year 10 onwards?"*
+
+Let them guess. Most pick the $6,360 because it's the bigger upfront number. Then reveal:
+
+> *"Actually, the recurring one is bigger. If you hold this to 60+, the Special Bonus alone adds up to about $45,000 in your lifetime — on this tier. And here's the part most people don't see: if your spouse is named as the secondary insured, the policy continues to your kids' generation — another 40+ years of those bonuses landing in their account. So it's not $45K once. It's $45K + another $45K for the next generation. That's $90K of bonuses on a single policy."*
+
+> *"That bonus stack is what DIY platforms structurally can't replicate. Plus the dividend $10K/month we already worked out. Plus the $2.4M capital being preserved. All on the same plan."*
+
+This is the value-stack moment, not a re-pitch — it reinforces the choice they just made AND surfaces facts they haven't been told.
+
+#### The fees flip (only if they're cross-shopping)
+
+If the prospect raises *"but doesn't APA have higher charges than [competitor]?"*, surface the fees curve:
+
+> *"In APA's first few years, the supplementary charge runs at 3.9% — but it drops to 0% after Year 10. Meanwhile, the Welcome Bonus is sitting on top of your premium, so on net, the early-year charge is more than offset by the bonus.*
+>
+> *Competitors? They typically have lower charges in the first 10 years — but a perpetual platform fee (around 1% per year) that NEVER stops. On a $1M portfolio that's $10K/year. Over 60 years of holding the plan, that's hundreds of thousands of dollars of charges. APA's curve flips: high-ish early, zero from Year 11 onwards. Their curve flips the other way: low-ish early, escalating in absolute terms for life."*
+
+Don't bring this up unless they probe it — leading with charges shifts the conversation away from value.
 
 ### Two paths after the option close
 

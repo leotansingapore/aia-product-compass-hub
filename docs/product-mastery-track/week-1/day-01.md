@@ -19,7 +19,7 @@ A SGD-denominated, **Investment-Linked Policy (ILP)** issued by AIA. Matures at 
 
 Don't open an APA conversation with a feature claim. Open with discovery — what they're trying to solve, where their CPF sits, what their retirement horizon looks like. Only once you understand the gap do you name APA as the vehicle that fits. Save the product facts below for the moment they ask *how does it actually work?*
 
-## The three things that make APA different
+## The four things that make APA different
 
 ### 1. 100% premium allocation — read this carefully
 
@@ -33,7 +33,7 @@ So when a prospect says *"I already DIY my own unit trusts — why APA?"*, the h
 
 ### 2. Stackable bonuses that compound
 
-- **Welcome Bonus:** 5% to 75% over the first 3 years (% depends on premium tier and IIP length)
+- **Welcome Bonus:** 5% to 75% over the first 3 years (% depends on premium tier and IIP length). At a $12K/year premium / 10-year IIP, runs roughly 15% / 18% / 23% across Y1/Y2/Y3 → about $6,360 total over the first 3 years
 - **Special Bonus:** 5% per year from year 10 onward, **8% per year from year 21 onward**
 - Both bonuses are calculated on **annualized premium**, not account value (this matters — you'll handle it on Day 5)
 
@@ -44,6 +44,18 @@ So when a prospect says *"I already DIY my own unit trusts — why APA?"*, the h
 Even in a market crash, the beneficiary gets back at least **100% of total regular premiums paid + top-ups − withdrawals** (or current policy value, whichever is higher).
 
 > *"It's a pure investment policy so there's no medical checkup and also there's a guaranteed death benefit which is capital guaranteed."*
+
+### 4. Secondary insured — inherit a managed policy, not a pile of cash
+
+You name a secondary insured at signup (typically spouse, child, or a family member). When the original insured passes on, the policy *doesn't liquidate to cash*. AIA continues managing it. The dividends, bonuses, and capital stay invested and continue running for the secondary insured's lifetime.
+
+The contrast that lands with prospects:
+
+> *"If you pass on tomorrow and your wife inherits your trading accounts, crypto wallet, robo-advisor — does she know how to manage all of that? Most spouses don't. What happens next is predictable: she cashes everything out, sits on the money, maybe buys something she shouldn't. The portfolio gets mismanaged within 2-3 years.*
+>
+> *With APA's secondary insured, she inherits a *managed policy*. The plan keeps running, keeps paying dividends, keeps compounding — for her lifetime and potentially the next generation's. It's a 100-year policy. The $2.4M doesn't get touched by a spouse or kid trying to figure it out."*
+
+This is the legacy continuity feature. Most prospects haven't been told about it.
 
 ## The container vs. the ingredients
 
@@ -93,7 +105,7 @@ Naming who the plan isn't for is one of the highest-trust moves you can make in 
 
 That cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
 
-## The four numbers worth knowing cold
+## Numbers worth memorising
 
 | # | Number | What it means |
 |---|---|---|
@@ -104,16 +116,7 @@ That cushion line ("honestly... isn't for everyone") before the disqualifier is 
 
 The "75% maximum welcome bonus" line gets thrown around a lot, but in practice it only applies at the longest IIP × the highest premium tier. The numbers that matter in real conversations are the **10-year IIP welcome bonuses at $400, $600, and $1,000/mo** — verify them in iPOS or your latest illustration and commit those three figures to memory.
 
----
 
-## The signature pitch concept + dividend mode now live in Day 2
-
-The four-step retirement reverse-engineering whiteboard demo (the $4K → $9.4K at 65 → $2.3M pot → $5,400/mo cash vs $1,300/mo APA-route contrast), plus the dividend-mode mechanics (age 55/60/65 ladder, limited-pay variant, and the dividend-question flip), have been moved into the appointment-flow doc where they fit the actual sales conversation:
-
-- **Whiteboard reverse-engineering demo** → [Day 2 · Phase 3](./day-02.md#phase-3--problems-of-investing--aia-solution-5-min)
-- **Dividend mode mechanics + age ladder + limited-pay variant + dividend-question flip** → [Day 2 · Phase 4](./day-02.md#phase-4--investment-illustrations--option-closing-5-7-min)
-
-Day 1's job is the structural foundation (what APA is, the three differentiators, the IIP and fund-route choices, who APA is and isn't for). Day 2 is where the appointment flow runs.
 
 ---
 
