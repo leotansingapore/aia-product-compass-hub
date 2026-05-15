@@ -24,7 +24,7 @@ Source for verified rows: `_source-resources/competitor-analysis/APA-Competitor-
 
 The frame: **never attack a competitor directly to the prospect.** That reads as desperate and erodes trust. Instead, structurally explain *why* APA is built differently, then let the prospect draw the conclusion themselves.
 
-For the deep per-competitor product breakdowns, refer to the **[APA Competitor Analysis deck](https://docs.google.com/presentation/d/1o6rnafqQPV6z4n0NcKWOBTFs_6kntjKUolSB3-v_zOc/edit?usp=sharing)** — that's the source of truth for the verified specs across FWD, Manulife, Great Eastern, Prudential, iFAST, Endowus, StashAway, and the rest. This day's job is the *structural pattern* and the *attack frame*, not memorising every competitor's brochure.
+For the deep per-competitor product breakdowns, refer to the **[APA Competitor Analysis deck](https://docs.google.com/presentation/d/1o6rnafqQPV6z4n0NcKWOBTFs_6kntjKUolSB3-v_zOc/edit?usp=sharing)** — that's the source of truth for the verified specs across FWD, Manulife, Great Eastern, Prudential, iFAST, Endowus, StashAway, and the rest. 
 
 ---
 
@@ -40,15 +40,12 @@ That's the structural insight. Once a prospect sees the curve, the "fees are too
 
 When a competitor name surfaces in the appointment, don't argue the competitor down. Cushion, then walk the structure:
 
-> *"[Competitor name] has a serious product, I'll give them that. The structural difference is what the charge curve looks like across the full 40-year hold.*
->
-> *On the competitor side, the supplementary charge stays in some form for the lifetime of the policy — even if the headline number is lower than APA's 3.9% in the first 10 years, it never actually drops to zero. On a $1M portfolio at retirement, a perpetual 1% charge is $10K/year forever — compounding against you.*
->
-> *APA's supplementary charge runs at 3.9% for the first 10 years, then drops to 0% from Year 11. The Welcome Bonus pays in the first 3 years; the Special Bonus from Year 10 onward is perpetual. So you pay more early, then the structure flips and the plan pays YOU for the rest of the hold.*
->
-> *Want me to draw the curve on paper? It's easier to see than describe."*
+> *"[Competitor name] is a great plan, that's for sure. However, what's different is that they have lon term supplementary charges which compound over time. In a long enough time frame, and with a large enough portfolio, imagine whats a 1% charge on a $1mill policy? That's around $10k per year that compounds against you. So even though their supplementary charges are lower than 3.9% in the first 10 years, it never actually drops to zero.
+> In fact, for APA, after 10 years, there are no supplementary charges, and there will be a 5% loyalty bonus of annual premiums per year, which increases to 8% per year after 20 years. 
+>So you have more charges earlier on, but then over time, the nett charges actually reduce and even drop to zero eventually the longer you hold the plan.
 
-The trial close at the end is the move — most prospects will say yes, and the visual settles the conversation.
+In fact, you can illustrate the above point using our presenter here: https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees
+![[Pasted image 20260515153636.png]]
 
 ### Where APA structurally wins, in one row per battleground
 
@@ -78,29 +75,9 @@ This is the Three Cost Circles framework from [Day 2 Phase 5B](./day-02.md#phase
 
 ---
 
-## The numbers cheat sheet — APA vs the field
-
-| Metric | APA | FWD Invest Plus | Manulife | GE | iFAST/Robo |
-|---|---|---|---|---|---|
-| Premium allocation Y1 | 100% | varies | varies | varies | 100% |
-| Welcome bonus (10-yr IIP, $12K+) | 53% | 17-21% (reward band) | 5-15% | varies | none |
-| Supplementary charge Y1-10 | 3.9% | 1.2%+ initial | varies | varies | n/a |
-| Supplementary charge Y11+ | **0%** | **1.2% PERPETUAL** | varies | varies | **~1% PERPETUAL** |
-| Surrender penalty Y10 | ~5% | full IIP-dependent | 5-40% | varies | n/a (no surrender) |
-| Surrender penalty Y11+ | **0%** | varies | still meaningful | varies | n/a |
-| Special Bonus Y10+ | 5% p.a. on AP | none | none | varies | none |
-| Special Bonus Y21+ | 8% p.a. on AP | none | none | varies | none |
-| Death benefit floor | **Capital guaranteed** | varies | varies | varies | none |
-| Secondary insured | **Yes** | no | no | no | no |
-| Currency | SGD | SGD | SGD | SGD | mixed |
-
-(Verified rows from `_source-resources/competitor-analysis/APA-Competitor-Analysis.pdf`. Pricing on every line is time-bound — verify in iPOS or on the competitor's site before quoting in an appointment.)
-
----
-
 # Part 2 — Restructure Plays (convert existing portfolios into APA)
 
-The frame: most prospects already have *something* — a whole-life policy, a hybrid ILP, a DIY portfolio. The restructure is rarely "rip out and replace." It's "right-size what's already there + add APA in the slot where it belongs."
+The frame: most prospects already have *something* — a whole-life policy, a hybrid ILP, a DIY portfolio. So our job may not even to add existing policies. Its to optimise their existing portfolio, so as to increase their long term retirement returns, or increase their coverage, with the same premiums, or maintain the same returns and coverage with lesser premiums.
 
 ---
 
@@ -123,11 +100,43 @@ The frame: most prospects already have *something* — a whole-life policy, a hy
 
 The split structure delivers **higher cover AND higher accumulation** at the same monthly outflow. The whole-life policy is doing both jobs badly because it can't optimise either.
 
-**The restructure choice:**
+### The accelerated-CI / cash-value-depletion problem (the deeper attack)
 
-- **Option A: Reduce the whole-life premium** and add APA alongside. Keeps the whole-life as a small legacy floor; APA does the heavy accumulation lifting.
-- **Option B: Pay up the whole-life to a paid-up status** (if the policy supports it) and redirect the premium to APA + term.
-- **Option C: Surrender if the surrender value justifies the move** — usually only viable on policies 5+ years in with meaningful cash value AND a strong APA case.
+There's a second structural flaw most prospects don't realise about their whole-life policy: **the cover erodes itself if it's ever used.**
+
+Most whole-life policies in Singapore include an accelerated CI / ECI rider — meaning if the prospect claims for critical illness (or early-stage critical illness), the death / TPD coverage is **reduced by the amount paid out** (or eliminated entirely on a full CI claim). And the projected cash value at 65 — the part the prospect is actually planning to retire on — disappears the moment the policy pays out.
+
+So the prospect is paying decades of premium for a structure that cannibalises itself. Make a CI claim, and the death cover shrinks. Make a TPD claim, and the cash-value retirement plan goes to zero.
+
+> *"There's something most whole-life prospects don't see. If you actually claim for CI or ECI on your existing policy, your death and TPD cover gets reduced — and your projected cash value at 65 is gone the moment the policy pays out. You're paying every month for cover that erodes itself if you ever use it.*
+>
+> *The decoupled structure — pure term policy for the cover, APA for the wealth accumulation — means a CI claim on the term policy doesn't touch your APA. The accumulation side keeps compounding regardless of what happens on the cover side."*
+
+That's the structural argument for separating the two jobs.
+
+### The pre-retiree variant — redirect existing cash value into APA
+
+For pre-retirees (50+) with a long-running whole-life policy, the case is often even cleaner. The whole-life policy may no longer be doing meaningful work for them:
+
+- They've already accumulated **sufficient cash value** inside the policy
+- The original cover need has expired — **dependants are independent, mortgage is paid, no one is materially dependent on their income**
+- They're approaching retirement, so the cover the policy was designed to provide is no longer the bottleneck
+
+In that case, the smart move isn't to keep paying premiums on cover they no longer need. It's:
+
+1. **Stop paying further premiums** on the whole-life (paid-up status, or surrender if the cash value justifies it)
+2. **Redirect the accumulated cash value** as a lump-sum top-up into a fresh APA policy
+3. **Free up the monthly premium** they used to pay on the whole-life — redirect that into APA regular premium too
+
+The result: the dormant cash value becomes a working retirement-income engine. The monthly premium that was buying redundant cover becomes monthly contribution to a plan that actually compounds. The prospect's retirement picture improves materially without needing to find new money.
+
+Always run the numbers honestly:
+- What's the current cash value if surrendered today?
+- What are the surrender penalties (most whole-life policies have minimal or zero penalty after 15+ years)?
+- What's the projected APA value at 65 if the cash value is redirected as a top-up?
+- Is the cover loss material (i.e. do they have dependants who'd be exposed)?
+
+If all four answer in favour of the move, the restructure is a clear win.
 
 ---
 
