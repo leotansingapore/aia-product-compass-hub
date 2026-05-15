@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/layout/AdminLayout';
 import { PlatformControls } from '@/components/admin/PlatformControls';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Pencil, ArrowRight } from 'lucide-react';
 
 // Each admin panel is heavy (data tables, charts, mutations). The dashboard
 // has 10 tabs but a single visit only ever uses 1–2 of them. Lazy-load each
@@ -37,6 +40,29 @@ export default function AdminDashboard() {
     >
       <div className="mb-4">
         <PlatformControls />
+      </div>
+
+      {/* Admin shortcut cards — for tools that don't fit the tabbed dashboard. */}
+      <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <Link
+          to="/admin/assign-drawings"
+          className="group rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/20 p-4 transition-all"
+        >
+          <div className="flex items-start gap-3">
+            <div className="shrink-0 h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
+              <Pencil className="h-5 w-5 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="font-semibold text-sm">Assign Drawings</h3>
+                <ArrowRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Bind enhanced handwritten photos to concept cards. Side-by-side picker.
+              </p>
+            </div>
+          </div>
+        </Link>
       </div>
       <Tabs defaultValue={initialTab}>
         <div className="relative -mx-1 sm:mx-0 mb-4 sm:mb-6">

@@ -104,12 +104,23 @@ def enhance_one(image_path: Path, service_role: str) -> dict:
         return {"ok": False, "error": str(e)}
 
 
-def iter_images(input_dir: Path):
-    """Yield image paths from a directory, deterministic order."""
+def iter_images(input_dir: Path, only_photos: bool = True):
+    """Yield image paths from a directory, deterministic order.
+
+    only_photos=True skips files that don't look like camera photos
+    (e.g. screenshots, exported tables). Gemini-flash-image will
+    hallucinate when fed a non-drawing — it tries to "complete" what
+    it thinks should be there. The Telegram export convention is
+    `photo_YYYY-MM-DD_HH-MM-SS.jpg`; everything else (image.png,
+    screenshot*.png, etc.) is filtered out.
+    """
     exts = {".jpg", ".jpeg", ".png", ".webp"}
     for p in sorted(input_dir.iterdir()):
-        if p.is_file() and p.suffix.lower() in exts:
-            yield p
+        if not (p.is_file() and p.suffix.lower() in exts):
+            continue
+        if only_photos and not p.name.lower().startswith("photo_"):
+            continue
+        yield p
 
 
 def main():
@@ -120,12 +131,14 @@ def main():
     ap.add_argument("--skip", type=int, default=0, help="Skip first N images (resume after a failure)")
     ap.add_argument("--dry-run", action="store_true", help="List files only, no API calls")
     ap.add_argument("--sleep", type=float, default=1.0, help="Seconds between calls (default 1.0)")
+    ap.add_argument("--include-non-photos", action="store_true",
+                    help="Include files not matching photo_* (default skips screenshots/tables — they hallucinate)")
     args = ap.parse_args()
 
     input_dir = Path(args.input).expanduser().resolve()
     if not input_dir.is_dir():
         sys.exit(f"Not a directory: {input_dir}")
-    files = list(iter_images(input_dir))[args.skip:]
+    files = list(iter_images(input_dir, only_photos=not args.include_non_photos))[args.skip:]
     if args.limit:
         files = files[: args.limit]
     print(f"Found {len(files)} images in {input_dir}")
