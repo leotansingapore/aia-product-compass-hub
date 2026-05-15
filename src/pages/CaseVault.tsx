@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
@@ -204,7 +204,7 @@ function CaseDetailDialog({
                 {entry.drawings.map((d) => (
                   <Link
                     key={d}
-                    to="/concept-cards"
+                    to={`/concept-cards?q=${encodeURIComponent(d)}`}
                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-primary/10 hover:bg-primary/20 text-primary text-xs font-medium border border-primary/20 transition-colors"
                   >
                     <Pencil className="h-3 w-3" />
@@ -263,6 +263,28 @@ export default function CaseVaultPage() {
   const [filterPlay, setFilterPlay] = useState<string>("All");
   const [selected, setSelected] = useState<CaseEntry | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Auto-open a case if the URL has `?case=<id>` (e.g. from a deep-link
+  // inside day-05.md "Open in Case Vault" badges).
+  useEffect(() => {
+    const caseId = searchParams.get("case");
+    if (!caseId) return;
+    const entry = CASES.find((c) => c.id === caseId);
+    if (entry) {
+      setSelected(entry);
+      setDetailOpen(true);
+    }
+  }, [searchParams]);
+
+  // When the dialog closes, strip the case= param so a refresh doesn't re-open.
+  const handleDialogChange = (open: boolean) => {
+    setDetailOpen(open);
+    if (!open && searchParams.has("case")) {
+      searchParams.delete("case");
+      setSearchParams(searchParams, { replace: true });
+    }
+  };
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -388,7 +410,7 @@ export default function CaseVaultPage() {
       <CaseDetailDialog
         entry={selected}
         open={detailOpen}
-        onOpenChange={setDetailOpen}
+        onOpenChange={handleDialogChange}
       />
     </PageLayout>
   );

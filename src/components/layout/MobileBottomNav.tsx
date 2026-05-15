@@ -52,6 +52,7 @@ const SALES_PLAYBOOK_ROUTES = [
   "/flows",
   "/concept-cards",
   "/case-vault",
+  "/drawings-playbook",
 ];
 
 const PRIMARY_ITEMS: MobileNavItem[] = [

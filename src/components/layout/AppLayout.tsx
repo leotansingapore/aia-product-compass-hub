@@ -54,7 +54,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
   useVersionCheck();
 
   // Hide generic mobile top bar on script hub routes (each page uses BrandedPageHeader + hub tabs)
-  const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault'];
+  const scriptsRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
   const hideMobileHeader = isMobile && scriptsRoutes.some(r => location.pathname.startsWith(r));
 
   // Read sidebar state from cookie for persistence

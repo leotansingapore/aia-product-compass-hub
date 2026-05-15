@@ -1,4 +1,5 @@
-import { lazy, Suspense, useState, useMemo } from 'react';
+import { lazy, Suspense, useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
 import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
@@ -298,6 +299,13 @@ export default function ConceptCardsPage() {
   const [drawCard, setDrawCard] = useState<ConceptCard | null>(null);
   const [editCard, setEditCard] = useState<ConceptCard | null>(null);
   const [search, setSearch] = useState('');
+  // Prefill search from `?q=` URL query — used when arriving from Case Vault
+  // dialog "drawings used" badges to land on the matching concept card.
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearch(q);
+  }, [searchParams]);
   const [filterAudience, setFilterAudience] = useState('All');
   const [filterProduct, setFilterProduct] = useState('All');
   const [quizMode, setQuizMode] = useState(false);
