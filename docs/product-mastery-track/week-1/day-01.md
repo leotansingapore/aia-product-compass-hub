@@ -140,7 +140,7 @@ The prospect names the solution. You don't push it.
 
 # Part 2 — The Product Knowledge
 
-This is the structural foundation you need cold. Every number here is verified against the canonical Product Summary (`_source-resources/product-summary.md`). If a curriculum claim or a question-bank answer contradicts this section, this section wins.
+Every number in this section is verified against the canonical Product Summary (`_source-resources/product-summary.md`). If a curriculum claim or a question-bank answer contradicts this section, this section wins.
 
 ## What APA structurally is
 
@@ -185,6 +185,9 @@ Full tables in the "Bonuses" subsection below.
 
 > *"After 10 years, there will be this thing called the 5% special bonus from year 10. After 20 years, there's an 8% special bonus."*
 
+>[!leo]
+>please put the table of welcome bonuses and special bonuses from the product summary
+
 ### 3. Capital-guaranteed death benefit
 
 Even in a market crash, the beneficiary gets back at least **100% of total regular premiums paid + top-up premiums − partial withdrawals** (or the current policy value, whichever is higher).
@@ -192,8 +195,6 @@ Even in a market crash, the beneficiary gets back at least **100% of total regul
 This is the floor that makes APA different from a pure DIY portfolio — your family doesn't carry market risk on the way out.
 
 > *"It's a pure investment policy so there's no medical checkup and also there's a guaranteed death benefit which is capital guaranteed."*
-
-There's also a built-in **Accidental Death Benefit (ADB)** for the first 2 policy years (within entry-age limits) — additional cover above the basic death benefit if death is accidental.
 
 ### 4. Secondary insured — inherit a managed policy, not a pile of cash
 
@@ -233,6 +234,10 @@ The prospect picks one of three IIPs at signup. **Cannot be changed after issue.
 | **20-year** | Maximum bonus, only worth it for long-runway clients | Up to 75% over Y1-Y3 |
 
 The longer the IIP, the higher the Welcome Bonus tier. **In real practice, most APA cases land on the 10-year IIP** — don't default to recommending 15-year just because the bonus is bigger. The right IIP is the one the client can actually stay in.
+
+>[!leo]
+>can really 
+
 
 ## The two fund routes
 
