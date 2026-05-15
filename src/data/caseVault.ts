@@ -1,7 +1,7 @@
 /**
  * caseVault.ts
  *
- * Curated index of all 31 case study receipts shipped across the 7 AIA
+ * Curated index of all 34 case study receipts shipped across the 7 AIA
  * product-sales tracks. Each case is a real or composite prospect scenario
  * with a verified close — used as drilling material for FCs.
  *
@@ -282,8 +282,27 @@ export const CASES: CaseEntry[] = [
     drawings: ["Savings vs investing comparison", "The before / after restructure"],
     sourcePath: sourcePath("APA", "case-k--the-ge-flexi-cash-endowment-attack"),
   },
+  {
+    id: "apa-gm",
+    code: "GM",
+    product: "APA",
+    title: "The Goals Mapper breakthrough ($50/mo intent → $9,600/yr close)",
+    prospect:
+      "Working adult walking in to increase investments by +$50/mo, has $200K-300K sitting in the bank",
+    play: "Retirement income",
+    anchor: "Goals Mapper liquidity-fear reframe — two scenarios side by side",
+    headline:
+      "$50/mo intent → $9,600/yr close (16× the ask). Goals Mapper showed cash runs out at 60 (no investment) vs cash lasts till 85 (with $800/mo invest) — same retirement, dramatically different sustainability.",
+    tags: ["goals-mapper", "breakthrough", "liquidity-fear", "16x-upsell"],
+    drawings: [
+      "The retirement-gap calculation",
+      "Dividend income vs lump-sum drawdown",
+      "Savings vs investing comparison",
+    ],
+    sourcePath: sourcePath("APA", "case-gm--the-goals-mapper-breakthrough"),
+  },
 
-  // ─── PWV — 4 cases ─────────────────────────────────────────────────────
+  // ─── PWV — 5 cases ─────────────────────────────────────────────────────
   {
     id: "pwv-l",
     code: "L",
@@ -359,8 +378,25 @@ export const CASES: CaseEntry[] = [
       "case-o--the-pre-retiree-72kmo-retirement-target"
     ),
   },
+  {
+    id: "pwv-cy",
+    code: "CY",
+    product: "PWV",
+    title: "The Cynthia breakthrough (2× $36K PWV + 2× $500K PRE + family referrals)",
+    prospect: "Couple — Cynthia's first close after 3 months of zero results",
+    play: "Retirement income",
+    anchor: "2 PWVs + 2 PRE wholes; son + daughter referrals into APA",
+    headline:
+      "2 × $36K PWV + 2 × $500K PRE; clients then referred son ($12K APA) and daughter ($18K APA). First close drove $150-160K FYC by year-end on cold prospecting alone.",
+    tags: ["cynthia", "breakthrough", "couple", "referrals", "cold-prospecting", "first-close"],
+    drawings: [
+      "Source-of-funds vs needs (LHS / RHS ledger)",
+      "Lump sum vs dividend mode ('3 birds' reveal)",
+    ],
+    sourcePath: sourcePath("PWV", "case-cy--the-cynthia-breakthrough"),
+  },
 
-  // ─── UCC — 4 cases ─────────────────────────────────────────────────────
+  // ─── UCC — 5 cases ─────────────────────────────────────────────────────
   {
     id: "ucc-u1",
     code: "U1",
@@ -436,6 +472,28 @@ export const CASES: CaseEntry[] = [
     sourcePath: sourcePath(
       "UCC",
       "case-u4--the-pre-retiree-ci-restructure-to-standalone-multi-claim"
+    ),
+  },
+  {
+    id: "ucc-u5",
+    code: "U5",
+    product: "UCC",
+    title: "The mixed-portfolio Full Suite restructure (Aviva + GTL + GE → AIA)",
+    prospect:
+      "Working adult with existing wealth + risk management policies across GE, Aviva, GTL",
+    play: "Consolidation",
+    anchor: "BTIR decouple → 5-policy AIA suite",
+    headline:
+      "$4.8K APA + $1.8K UCC + $1.9K HSG + $224 SPA + $1.7K SFT = $10.4K/yr premiums. Added $600K retirement, $150K CI/ECI, $1M D/TPD; all under one roof.",
+    tags: ["consolidation", "full-suite", "aviva", "gtl", "ge", "btir"],
+    drawings: [
+      "The 4-quadrant coverage grid",
+      "The before / after restructure",
+      "The BTIR comparison (decoupling)",
+    ],
+    sourcePath: sourcePath(
+      "UCC",
+      "case-u5--the-mixed-portfolio-full-suite-restructure"
     ),
   },
 

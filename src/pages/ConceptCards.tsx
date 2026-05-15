@@ -14,6 +14,7 @@ const ConceptCardUploadDialog = lazy(() => import('@/components/concept-cards/Co
 const ConceptCardFocusMode = lazy(() => import('@/components/concept-cards/ConceptCardFocusMode').then(m => ({ default: m.ConceptCardFocusMode })));
 const ConceptCardViewDialog = lazy(() => import('@/components/concept-cards/ConceptCardViewDialog').then(m => ({ default: m.ConceptCardViewDialog })));
 const ConceptCardEditDialog = lazy(() => import('@/components/concept-cards/ConceptCardEditDialog').then(m => ({ default: m.ConceptCardEditDialog })));
+const DailyDrillDialog = lazy(() => import('@/components/concept-cards/DailyDrillDialog').then(m => ({ default: m.DailyDrillDialog })));
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -21,7 +22,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   Plus, Search, ImageIcon, Trash2, GraduationCap, RotateCcw,
-  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame, Lightbulb
+  CheckCircle, XCircle, Pencil, BookmarkCheck, Focus, CalendarClock, Flame, Lightbulb, Timer
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
@@ -314,6 +315,7 @@ export default function ConceptCardsPage() {
   const [showReviewOnly, setShowReviewOnly] = useState(false);
   const [focusMode, setFocusMode] = useState(false);
   const [dueOnlyMode, setDueOnlyMode] = useState(false);
+  const [drillOpen, setDrillOpen] = useState(false);
 
   // Spaced repetition
   const { dueCards, reviewStats } = useSpacedRepetition(cards);
@@ -423,6 +425,27 @@ export default function ConceptCardsPage() {
                 {PRODUCT_OPTIONS.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
               </SelectContent>
             </Select>
+
+            {/* Daily Drill — 60-sec timer × 3 random Tier 1 cards, with streak tracker. */}
+            <TooltipProvider delayDuration={300}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => setDrillOpen(true)}
+                    className="gap-1.5 h-9"
+                  >
+                    <Timer className="h-4 w-4 shrink-0" />
+                    <span className="hidden xs:inline">Daily Drill</span>
+                    <span className="xs:hidden">Drill</span>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-[220px] text-center text-xs">
+                  3 random Tier 1 drawings, 60 seconds each. Pen + paper. Tracks your streak.
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             <TooltipProvider delayDuration={300}>
               <Tooltip>
@@ -609,6 +632,15 @@ export default function ConceptCardsPage() {
             open={uploadOpen}
             onClose={() => setUploadOpen(false)}
             onCreated={refetch}
+          />
+        </Suspense>
+      )}
+      {drillOpen && (
+        <Suspense fallback={null}>
+          <DailyDrillDialog
+            open={drillOpen}
+            onOpenChange={setDrillOpen}
+            cards={cards}
           />
         </Suspense>
       )}
