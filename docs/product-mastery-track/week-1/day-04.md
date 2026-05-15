@@ -1,15 +1,15 @@
 ---
 week: 1
 day: 4
-title: "Pro Achiever 3.0 — Defence + Expansion — Top 5 Objections + Cross-sell"
+title: "Pro Achiever 3.0 — Defence — Top 5 Cross-Shop Objections + Risk Disclosure Reframes"
 primary_source: pro-achiever-product-summary
 primary_slides: "n/a"
 duration_minutes: 65
 tags: [product-mastery-track, week-1, pro-achiever]
 ---
-# Day 4 — Top 5 Objections + Cross-sell
+# Day 4 — Top 5 Cross-Shop Objections + Risk Disclosure Reframes
 
-> **Today's frame:** The S&P500 conviction story (Perfect / Imperfect / Partially Perfect) is where APA is won or lost. Once handled, the next move is upsizing the case, layering riders, and pairing with HSGM and PWV across separate appointments.
+Day 4 is the objection-handling layer in full. **Part 1** covers the five most common cross-shop objections (S&P 500, DIY ETFs, fees, competitor charges, dividends-now) — the conviction-story heart of the APA sell. **Part 2** covers the four ILP risk-disclosure objections (returns not guaranteed, supplementary charge, surrender/withdrawal, long-term lock) plus the free-look-as-close and the 4%/8% projection counter — these used to live in Day 5 but they're objection reframes, so they belong here.
 
 ---
 
@@ -294,6 +294,122 @@ The trial close at the end lets the prospect agree to "complement, not compete" 
 
 ---
 
+# Part 2 — Risk Disclosures as Objection-Handling
+
+The four "required disclosures" on an ILP aren't there to scare the prospect — they're the four objections you already know are coming. Frame each one as an objection you can reframe on your terms. (Same Q&A pattern as Part 1.)
+
+---
+
+## Q6 — When the prospect says: "But returns aren't guaranteed — what if it doesn't hit 8%?"
+
+**The reframe:**
+
+> *"Yes, it's not guaranteed — and honestly, that's a feature, not a bug. The alternative to non-guaranteed market returns is a guaranteed loss to inflation if you leave the money in the bank or a fixed deposit.*
+>
+> *Second thing — the 8% in our illustration is actually the MAS-imposed ceiling. We're not allowed to project higher than 8% on a Benefit Illustration. If you look at the actual historical track record on our Investing Success deck, the returns have been higher than 8% p.a. So when we show you 8%, we're already showing you the conservative version. The real number can land higher."*
+
+Have the Investing Success & Track Record deck open (slide 4: 10-year fund performance; slide 21: 20-year back-test at 7.6% p.a.; slide 28: AIA Global Technology 15-year DCA at 331% return). Walk them through one chart, not a lecture.
+
+---
+
+## Q7 — When the prospect says: "3.9% supplementary charge is eating into my returns"
+
+**The reframe:**
+
+> *"You're right that the supplementary charge runs at 3.9% for the first 10 years — and only the first 10 years. After Year 10 it drops to 0%. The trade-off is what AIA layers on top: a Welcome Bonus in the first 3 years, a Special Bonus from Year 10 onwards, and a bigger one from Year 21. Over the long run the bonuses more than compensate for the charge — that's the whole reason the plan is structured this way.*
+>
+> *If you compare APA against a DIY platform with a 1% perpetual platform fee at the same 8% IIRR, APA actually pulls ahead from policy year 17 onwards because of how those bonuses compound. By year 30, APA is roughly $130K ahead on a $12K-a-year premium."*
+
+Refer the prospect to the APA-vs-DIY year-17 crossover table in the Investing Success deck (slide 40). The supplementary charge is the price you pay early to access bonuses that DIY platforms cannot replicate.
+
+---
+
+## Q8 — When the prospect says: "What if I need to access the money? Or surrender early?"
+
+**The reframe — "don't let AIA earn this money":**
+
+> *"Yes, you can pause, withdraw, or surrender at any point. But here's the honest framing — 100% of your premium is invested from day one. So how does AIA actually make money on this plan? Not from the premium, because every dollar goes to investment.*
+>
+> *AIA makes its money when you break the rules of the plan. When you withdraw early, surrender, pause — that's when AIA collects. If you withdraw $1,000 in the first 2 years, AIA can take back up to ~400% of that on the surrender side because that's how the charge structure works.*
+>
+> *So my view is — yes, you CAN do all of that, but why would you want to? Why would you actively hand AIA the money you put in to make a return on? Just pay the premium guai guai. After 10 years the Special Bonus kicks in at 5% per year. After 20 years it's 8% per year. The plan is actually very low cost — only people who break the rules so-called 'lose money'."*
+
+The discipline frame: every withdrawal is AIA earning money on you. Frame it that way and most prospects stop probing for the exit clause.
+
+---
+
+## Q9 — When the prospect says: "I don't want to lock my money up that long / I want liquidity / I'm risk-averse / I want guaranteed cash values"
+
+**The reframe — the long-term lock is a guard against yourself, not against you:**
+
+> *"Honestly, the biggest enemy of any investor's return isn't the market. It's themselves — emotions, greed, fear in a market drop. The more flexible an investment is, the more likely you are to do exactly the wrong thing in a market crash.*
+>
+> *This plan precisely forces you to think long-term. Because you've already committed the premium, you stop second-guessing in volatile months. That long horizon is actually the safety net — you have time on your side, you don't have to time the market, and you won't screw up your retirement by panic-selling at the bottom.*
+>
+> *On the specific objections —*
+>
+> *—"I don't want risk." But do you want to guarantee a loss to inflation by leaving everything in fixed deposits or a savings account?*
+>
+> *—"I want liquidity." Sure — and we're not asking you to put everything here. We follow a one-third rule: long-term bucket first, then mid-term, then short-term. If you budget properly, this slice doesn't conflict with your short-term goals. But 100% liquidity means itchy fingers — you'll touch the money."*
+
+If they're young, the time horizon is the asset, not the constraint. The long lock is the discipline they're paying for.
+
+---
+
+## Q10 — When the prospect says: "I want to think about it" — use the 14-day free-look as the close
+
+The 14-day free-look exists and is real. But don't volunteer it at the point of sale if the client is already saying yes — it just plants doubt. Use it as an **objection-handling close** when the client says *"I want to think about it"*:
+
+> *"Totally fair. The way I'd suggest it though — let's just get the signature in today. You don't even have to make payment immediately, payment can come in next month. And after the policy is issued, AIA gives you a 14-day free-look window. If you change your mind in that window, you get your premium back, no questions asked.*
+>
+> *So really, the cost of signing today is zero — you keep the option to walk away for 14 more days. The cost of waiting is the application doesn't go in, the Welcome Bonus tier for this year might shift, and we have to do this conversation again. Want to lock it in and use the free-look window as your thinking time?"*
+
+The move: sign today, keep the 14-day off-ramp as their security blanket. The free-look stops being a defensive disclosure and starts being a tool to bridge a "let me think" into a signature.
+
+---
+
+## Q11 — When the prospect anchors on the 4% projection: "But these aren't guaranteed, right?"
+
+The illustration shows both 4% and 8%. The prospect will almost always probe.
+
+**The reframe:**
+
+> *"Right, it's not guaranteed. Two things on that.*
+>
+> *One — MAS only allows us to project up to a maximum of 8% on a Benefit Illustration. We can't show you a number higher than that, even if the actual track record is higher.*
+>
+> *Two — if you look at the actual past track record on this fund, the returns have been a fair bit higher than 8% p.a. over long windows. So when we show you 8% in the illustration, we're already showing you the conservative version of what's been delivered historically. The real number can land higher than what's on this page."*
+
+Have the Investing Success deck ready (slide 4 for 10-year cross-fund returns; slide 21 for the 20-year 7.6% back-test; slide 28 for the AIA Global Tech DCA back-test). Drop the verbatim *"don't look at the 4% — 4% is really on the conservative side"* only if the prospect anchors on the 4% line.
+
+---
+
+## Q12 — The three "hard objections" that look like walk-away moments (actually reframes)
+
+Most "walk away" moments are managed-expectation moments.
+
+**"My time horizon is under 10 years"**
+
+> *"Fair, but this is the long-term bucket — it's not meant to compete with your short-term and mid-term money. If you've budgeted properly, you should have separate slices set aside for those. This slice is the long-term one — and you have to plan for retirement anyway, that part doesn't go away.*
+>
+> *I'm not asking you to put everything here. But I'm also not going to recommend you put everything in the bank with 100% liquidity, because that doesn't help you in the long term either. We just need to right-size this slice."*
+
+**"I can't stomach a 30% drawdown"**
+
+> *"That's actually exactly the reason APA fits you — compared to DIY stocks, ETFs, or concentrating in one industry / one country, APA is significantly safer. It's globally diversified across countries, sectors, and asset classes. Think of it as a stock portfolio with lower risk than stock-picking, with higher returns than fixed deposits, and the diversification doing the heavy lifting on the safety side.*
+>
+> *Markets do go up in the long run. And because you're young, your time horizon is the asset. The drawdown matters far less when you're not selling at the bottom."*
+
+**"I can't afford the minimum"**
+
+> *"Honestly, if you genuinely can't, then we don't force it. But most working adults can find $200 a month — that's the APA minimum. If you can't save $200 a month for the single most important thing you're saving for (your own financial freedom), what else are you actually able to save for?*
+>
+> *Let's look at your monthly outflow together for 5 minutes — usually we find the $200."*
+
+The general rule: don't walk away from a case just because the prospect surfaces one of these. Reframe it. The objections almost always come from misframed expectations, not from APA being structurally wrong for them.
+
+---
+
 ## Drill (Part 1)
 
 This is the heaviest drill in the track — give it a proper hour rather than splitting it across other prep.
@@ -305,9 +421,18 @@ This is the heaviest drill in the track — give it a proper hour rather than sp
 5. **Run a roleplay.** Pair with a peer or self-record. Have them throw all five objections at you in random order. After each, check whether you cushioned before reframing, and whether you ended on a trial close rather than a declaration.
 6. **Pick the objection you're least settled on.** Write the answer out by hand. Re-read it tomorrow before you go into appointments.
 
+---
+
+## Drill (Part 2)
+
+1. **Run the four disclosure reframes out loud** — "returns not guaranteed", "supplementary charge", "surrender / withdrawal", "long-term lock". Time each at 30-45 seconds. Notice which reframe lands cleanest in your mouth; that's the one you'll use most.
+2. **Practise the free-look close** for "I want to think about it" — get the line *"the cost of signing today is zero, you keep the 14-day off-ramp"* sounding natural.
+3. **Practise the "don't let AIA earn this money" frame** until you can deliver it conversationally, not as a script.
+4. **Pick the toughest Part 2 reframe** ("under 10 years", "30% drawdown", "can't afford the minimum") and write your reframe for a specific prospect you've handled recently. Run it out loud once.
+
 ## What's coming next
 
-Tomorrow shifts to compliance, the close, and the post-close architecture. Once you've handled objections cleanly, the next moves are the disclosures that protect everyone (including the prospect from a wrong-fit close), and the 90-day rhythm that turns a closed case into a real long-term relationship.
+Day 5 shifts to the close and the post-close architecture. With objection-handling consolidated here in Day 4, Day 5 focuses on the engineered close — Phase 6 + Phase 7 paperwork — plus the 90-day post-close rhythm that turns a closed case into a long-term relationship and 2-3 referrals.
 
 ---
 
