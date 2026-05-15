@@ -1,0 +1,474 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Search,
+  Image as ImageIcon,
+  Check,
+  X,
+  ChevronLeft,
+  Pencil,
+  Loader2,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import {
+  useConceptCards,
+  useConceptCardsMutations,
+  type ConceptCard,
+} from "@/hooks/useConceptCards";
+
+interface EnhancedPhoto {
+  /** Storage file name, e.g. enhanced_1778880032994_photo_2025-...png */
+  name: string;
+  /** Public URL */
+  url: string;
+  /** ISO timestamp from the storage object */
+  createdAt: string;
+}
+
+const STORAGE_BUCKET = "concept-card-images";
+const STORAGE_FOLDER = "enhanced";
+
+async function listEnhancedPhotos(): Promise<EnhancedPhoto[]> {
+  // Supabase storage `list()` is paginated; iterate until we've consumed all.
+  const page = 100;
+  let offset = 0;
+  const all: EnhancedPhoto[] = [];
+  while (true) {
+    const { data, error } = await supabase.storage
+      .from(STORAGE_BUCKET)
+      .list(STORAGE_FOLDER, {
+        limit: page,
+        offset,
+        sortBy: { column: "created_at", order: "desc" },
+      });
+    if (error) throw error;
+    if (!data || data.length === 0) break;
+    for (const f of data) {
+      const path = `${STORAGE_FOLDER}/${f.name}`;
+      const { data: pub } = supabase.storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(path);
+      all.push({
+        name: f.name,
+        url: pub.publicUrl,
+        createdAt: f.created_at ?? "",
+      });
+    }
+    if (data.length < page) break;
+    offset += page;
+  }
+  return all;
+}
+
+// ─── Card list item (left pane) ─────────────────────────────────────────
+function CardRow({
+  card,
+  selected,
+  onSelect,
+}: {
+  card: ConceptCard;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  const imgs = (card.image_urls && card.image_urls.length > 0
+    ? card.image_urls
+    : card.image_url
+      ? [card.image_url]
+      : []) as string[];
+  return (
+    <button
+      onClick={onSelect}
+      className={cn(
+        "w-full text-left rounded-xl border p-2.5 transition-all",
+        selected
+          ? "border-primary bg-primary/5 ring-2 ring-primary/30"
+          : "border-border hover:border-primary/40 hover:bg-muted/30"
+      )}
+    >
+      <div className="flex items-start gap-2.5">
+        <div className="shrink-0 w-12 h-12 rounded-md bg-muted/30 border border-border/40 flex items-center justify-center overflow-hidden">
+          {imgs.length > 0 ? (
+            <img
+              src={imgs[0]}
+              alt=""
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <ImageIcon className="h-4 w-4 text-muted-foreground/50" />
+          )}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-sm font-medium leading-snug line-clamp-2">
+            {card.title}
+          </div>
+          <div className="flex flex-wrap gap-1 mt-1">
+            {imgs.length > 0 ? (
+              <Badge
+                variant="outline"
+                className="text-[9px] border-emerald-300 text-emerald-700 dark:text-emerald-400 px-1.5 py-0"
+              >
+                {imgs.length} image{imgs.length === 1 ? "" : "s"}
+              </Badge>
+            ) : (
+              <Badge
+                variant="outline"
+                className="text-[9px] border-amber-300 text-amber-700 dark:text-amber-400 px-1.5 py-0"
+              >
+                no image
+              </Badge>
+            )}
+            {card.tags?.slice(0, 2).map((t) => (
+              <Badge
+                key={t}
+                variant="outline"
+                className="text-[9px] px-1.5 py-0"
+              >
+                {t}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ─── Photo grid tile (right pane) ───────────────────────────────────────
+function PhotoTile({
+  photo,
+  alreadyAssignedTo,
+  selectedCardHasIt,
+  busy,
+  onAssign,
+}: {
+  photo: EnhancedPhoto;
+  alreadyAssignedTo: string[];
+  selectedCardHasIt: boolean;
+  busy: boolean;
+  onAssign: () => void;
+}) {
+  return (
+    <button
+      onClick={onAssign}
+      disabled={busy}
+      className={cn(
+        "group relative rounded-lg overflow-hidden border bg-card transition-all text-left",
+        selectedCardHasIt
+          ? "border-emerald-400 ring-2 ring-emerald-200 dark:ring-emerald-900/60"
+          : alreadyAssignedTo.length > 0
+            ? "border-amber-300 hover:border-amber-400"
+            : "border-border hover:border-primary/60"
+      )}
+    >
+      <div className="aspect-square bg-white">
+        <img
+          src={photo.url}
+          alt={photo.name}
+          loading="lazy"
+          className="w-full h-full object-contain"
+        />
+      </div>
+      {selectedCardHasIt && (
+        <div className="absolute top-1 right-1 z-10 h-6 w-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md">
+          <Check className="h-3.5 w-3.5" />
+        </div>
+      )}
+      {!selectedCardHasIt && alreadyAssignedTo.length > 0 && (
+        <div className="absolute top-1 left-1 z-10 text-[9px] bg-amber-500 text-white px-1.5 py-0.5 rounded font-medium shadow-md">
+          assigned to {alreadyAssignedTo.length}
+        </div>
+      )}
+      {busy && (
+        <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" />
+        </div>
+      )}
+    </button>
+  );
+}
+
+// ─── Page ───────────────────────────────────────────────────────────────
+export default function AssignDrawingsPage() {
+  const { cards, refetch } = useConceptCards();
+  const { updateCard } = useConceptCardsMutations();
+  const [photos, setPhotos] = useState<EnhancedPhoto[] | null>(null);
+  const [photosLoading, setPhotosLoading] = useState(true);
+  const [photosError, setPhotosError] = useState<string | null>(null);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+  const [cardFilter, setCardFilter] = useState<"all" | "missing">("missing");
+  const [cardSearch, setCardSearch] = useState("");
+  const [photoSearch, setPhotoSearch] = useState("");
+  const [busyPhotoUrl, setBusyPhotoUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPhotosLoading(true);
+    setPhotosError(null);
+    listEnhancedPhotos()
+      .then((p) => {
+        if (!cancelled) setPhotos(p);
+      })
+      .catch((e) => {
+        if (!cancelled) setPhotosError(String(e?.message ?? e));
+      })
+      .finally(() => {
+        if (!cancelled) setPhotosLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Reverse index: photo URL → list of card IDs that already include it.
+  const photoToCardIds = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const c of cards) {
+      const urls = [
+        ...(c.image_urls ?? []),
+        ...(c.image_url ? [c.image_url] : []),
+      ];
+      for (const u of urls) {
+        if (!u) continue;
+        if (!map.has(u)) map.set(u, []);
+        map.get(u)!.push(c.id);
+      }
+    }
+    return map;
+  }, [cards]);
+
+  const filteredCards = useMemo(() => {
+    const q = cardSearch.trim().toLowerCase();
+    return cards
+      .filter((c) => {
+        if (cardFilter === "missing") {
+          const has =
+            (c.image_urls && c.image_urls.length > 0) || c.image_url;
+          if (has) return false;
+        }
+        if (!q) return true;
+        return (
+          c.title.toLowerCase().includes(q) ||
+          c.tags?.some((t) => t.toLowerCase().includes(q))
+        );
+      })
+      .sort((a, b) => a.sort_order - b.sort_order);
+  }, [cards, cardFilter, cardSearch]);
+
+  const filteredPhotos = useMemo(() => {
+    if (!photos) return [];
+    const q = photoSearch.trim().toLowerCase();
+    if (!q) return photos;
+    return photos.filter((p) => p.name.toLowerCase().includes(q));
+  }, [photos, photoSearch]);
+
+  const selectedCard = cards.find((c) => c.id === selectedCardId) ?? null;
+
+  const handleAssign = async (photo: EnhancedPhoto) => {
+    if (!selectedCard) {
+      toast.info("Pick a concept card first", {
+        description: "Select a card from the left, then click a photo to assign.",
+      });
+      return;
+    }
+    setBusyPhotoUrl(photo.url);
+    const existing = selectedCard.image_urls ?? [];
+    const already = existing.includes(photo.url);
+    const newUrls = already
+      ? existing.filter((u) => u !== photo.url)
+      : [...existing, photo.url];
+
+    // Also keep `image_url` (legacy single field) pointing at the first image
+    // so older renderers / SRS hooks still find one.
+    const ok = await updateCard(selectedCard.id, {
+      image_urls: newUrls,
+      image_url: newUrls[0] ?? null,
+    });
+    if (ok) {
+      toast.success(already ? "Removed from card" : "Assigned to card");
+      refetch();
+    }
+    setBusyPhotoUrl(null);
+  };
+
+  const missingCount = cards.filter(
+    (c) => !((c.image_urls && c.image_urls.length > 0) || c.image_url)
+  ).length;
+
+  return (
+    <PageLayout
+      title="Assign drawings — admin"
+      description="Bind enhanced handwritten photos to concept cards"
+    >
+      <BrandedPageHeader
+        tone="dark"
+        showOnMobile
+        title="Assign drawings"
+        subtitle={`Pick a concept card on the left, then click a photo on the right to assign. ${missingCount} card${missingCount === 1 ? "" : "s"} still missing an image.`}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Admin", href: "/admin" },
+          { label: "Assign drawings" },
+        ]}
+        actions={
+          <Button asChild variant="outline" size="sm">
+            <Link to="/concept-cards" className="gap-1.5">
+              <ChevronLeft className="h-4 w-4" />
+              Back to Concept Cards
+            </Link>
+          </Button>
+        }
+      />
+
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-6 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-4">
+          {/* ─── LEFT: Cards list ───────────────────────────────── */}
+          <Card className="lg:sticky lg:top-3 lg:self-start lg:max-h-[calc(100vh-2rem)]">
+            <CardContent className="p-3 flex flex-col gap-2">
+              <Tabs
+                value={cardFilter}
+                onValueChange={(v) => setCardFilter(v as "all" | "missing")}
+              >
+                <TabsList className="grid w-full grid-cols-2 h-8">
+                  <TabsTrigger value="missing" className="text-xs">
+                    Missing ({missingCount})
+                  </TabsTrigger>
+                  <TabsTrigger value="all" className="text-xs">
+                    All ({cards.length})
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value={cardFilter} className="mt-0" />
+              </Tabs>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                <Input
+                  placeholder="Filter cards..."
+                  value={cardSearch}
+                  onChange={(e) => setCardSearch(e.target.value)}
+                  className="h-8 pl-7 text-xs"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[60vh] lg:max-h-[calc(100vh-12rem)] pr-1">
+                {filteredCards.length === 0 ? (
+                  <div className="rounded-xl border border-dashed bg-muted/20 p-4 text-center text-xs text-muted-foreground">
+                    No cards match the current filter
+                  </div>
+                ) : (
+                  filteredCards.map((c) => (
+                    <CardRow
+                      key={c.id}
+                      card={c}
+                      selected={selectedCardId === c.id}
+                      onSelect={() => setSelectedCardId(c.id)}
+                    />
+                  ))
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* ─── RIGHT: Photos grid ──────────────────────────────── */}
+          <Card>
+            <CardContent className="p-3 flex flex-col gap-3">
+              {/* Selected-card summary */}
+              {selectedCard ? (
+                <div className="rounded-xl border border-primary/30 bg-primary/5 p-3">
+                  <div className="flex items-start gap-2.5">
+                    <Pencil className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[10px] font-semibold text-primary uppercase tracking-wide">
+                        Assigning to
+                      </div>
+                      <div className="text-sm font-medium leading-snug">
+                        {selectedCard.title}
+                      </div>
+                      <div className="text-[11px] text-muted-foreground mt-0.5">
+                        {(selectedCard.image_urls?.length ?? 0) + (selectedCard.image_url && !selectedCard.image_urls?.includes(selectedCard.image_url) ? 1 : 0)} image
+                        {(selectedCard.image_urls?.length ?? 0) === 1 ? "" : "s"}{" "}
+                        currently. Click a photo to toggle.
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setSelectedCardId(null)}
+                      className="h-7 px-2 text-xs"
+                    >
+                      <X className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50/50 dark:bg-amber-950/20 p-3 text-xs text-amber-900 dark:text-amber-200">
+                  Pick a concept card on the left first. Then clicking a photo
+                  will append it to that card's image list.
+                </div>
+              )}
+
+              {/* Photo search */}
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                <Input
+                  placeholder={`Search ${photos?.length ?? "..."} enhanced photos...`}
+                  value={photoSearch}
+                  onChange={(e) => setPhotoSearch(e.target.value)}
+                  className="h-9 pl-7 text-xs"
+                />
+              </div>
+
+              {/* Photo grid */}
+              {photosLoading ? (
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="aspect-square rounded-lg bg-muted/30 animate-pulse"
+                    />
+                  ))}
+                </div>
+              ) : photosError ? (
+                <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm">
+                  Failed to load photos: {photosError}
+                </div>
+              ) : (photos?.length ?? 0) === 0 ? (
+                <div className="rounded-xl border border-dashed bg-muted/20 p-6 text-center text-sm text-muted-foreground">
+                  No enhanced photos found yet. Run{" "}
+                  <code className="text-xs">tools/enhance-handwritten-drawings.py</code>{" "}
+                  first.
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
+                  {filteredPhotos.map((p) => {
+                    const assignedTo = photoToCardIds.get(p.url) ?? [];
+                    const selectedHasIt =
+                      selectedCard != null &&
+                      assignedTo.includes(selectedCard.id);
+                    return (
+                      <PhotoTile
+                        key={p.url}
+                        photo={p}
+                        alreadyAssignedTo={assignedTo}
+                        selectedCardHasIt={selectedHasIt}
+                        busy={busyPhotoUrl === p.url}
+                        onAssign={() => handleAssign(p)}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </PageLayout>
+  );
+}

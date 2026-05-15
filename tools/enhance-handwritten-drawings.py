@@ -35,7 +35,6 @@ Lovable AI workspace before re-running.
 import argparse
 import base64
 import json
-import os
 import subprocess
 import sys
 import time
@@ -56,7 +55,16 @@ def get_service_role_key() -> str:
     ).decode().strip()
     pat = base64.b64decode(raw.replace("go-keyring-base64:", "")).decode()
     api_url = f"https://api.supabase.com/v1/projects/{PROJECT_REF}/api-keys?reveal=true"
-    req = urllib.request.Request(api_url, headers={"Authorization": f"Bearer {pat}"})
+    # Cloudflare in front of the Supabase Management API blocks the default
+    # Python User-Agent ("Python-urllib/..."). Set a sane UA to get through.
+    req = urllib.request.Request(
+        api_url,
+        headers={
+            "Authorization": f"Bearer {pat}",
+            "User-Agent": "compass-hub-enhance-tool/1.0",
+            "Accept": "application/json",
+        },
+    )
     with urllib.request.urlopen(req, timeout=30) as r:
         keys = json.loads(r.read())
     for k in keys:
