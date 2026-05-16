@@ -31,12 +31,14 @@ import {
   Plus,
   Image as ImageIcon,
   Trash2,
-  FolderInput,
+  Tag,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import type { ConceptCard } from "@/hooks/useConceptCards";
+import { CASES, type CaseEntry } from "@/data/caseVault";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -68,8 +70,6 @@ interface Props {
 }
 
 const STORAGE_BUCKET = "concept-card-images";
-const ENHANCED_PREFIX = "enhanced/";
-const CASE_STUDIES_PREFIX = "case-studies/";
 
 /**
  * Pull the bucket-relative path out of a public storage URL.
@@ -104,7 +104,13 @@ export function DescribeAndBindDialog({
   const [newTags, setNewTags] = useState("");
   const [busy, setBusy] = useState(false);
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
-  const [confirmCaseStudyOpen, setConfirmCaseStudyOpen] = useState(false);
+  // Existing case-study tag rows for this photo, fetched on open.
+  const [existingCaseTags, setExistingCaseTags] = useState<
+    { id: string; case_id: string }[]
+  >([]);
+  // Inline case-tagger UI inside the main dialog.
+  const [casePickerOpen, setCasePickerOpen] = useState(false);
+  const [pendingCaseId, setPendingCaseId] = useState<string | null>(null);
 
   const sourceCard =
     sourceCardId != null ? cards.find((c) => c.id === sourceCardId) ?? null : null;
@@ -128,8 +134,34 @@ export function DescribeAndBindDialog({
       setNewTitle("");
       setNewDescription(initialDescription);
       setNewTags("");
+      setExistingCaseTags([]);
+      setPendingCaseId(null);
     }
   }, [open, initialDescription]);
+
+  // Load existing case-study tags for this photo.
+  useEffect(() => {
+    if (!open || !photoUrl) return;
+    let cancelled = false;
+    (async () => {
+      const { data, error } = await (supabase as any)
+        .from("photo_case_tags")
+        .select("id, case_id")
+        .eq("photo_url", photoUrl);
+      if (cancelled) return;
+      if (!error && Array.isArray(data)) {
+        setExistingCaseTags(data);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [open, photoUrl]);
+
+  const sortedCases = useMemo(
+    () => [...CASES].sort((a, b) => a.title.localeCompare(b.title)),
+    []
+  );
 
   const sortedCards = useMemo(
     () => [...cards].sort((a, b) => a.title.localeCompare(b.title)),
@@ -230,57 +262,50 @@ export function DescribeAndBindDialog({
     onOpenChange(false);
   };
 
-  // ─── Move photo to case-studies storage prefix ──────────────────
-  // The page only lists files under enhanced/, so moving the file to
-  // case-studies/ removes it from the concept-card binding pool. Strip
-  // any card references first so we don't leave broken URLs.
-  const handleMoveToCaseStudies = async () => {
-    if (!photoUrl) return;
-    const path = publicUrlToStoragePath(photoUrl);
-    if (!path || !path.startsWith(ENHANCED_PREFIX)) {
-      toast.error("Photo isn't in the enhanced/ folder — can't move");
-      return;
-    }
+  // ─── Tag photo against a case study (non-destructive) ──────────
+  // Adds a row to photo_case_tags. The photo STAYS bound to whatever
+  // concept cards it already belongs to — this is purely additive
+  // metadata so the CaseVault page can surface it under that case.
+  const handleTagCaseStudy = async (caseId: string) => {
+    if (!photoUrl || !caseId) return;
     setBusy(true);
-
-    // Strip from any cards that reference it
-    const referencing = cards.filter((c) => {
-      const urls = [
-        ...(c.image_urls ?? []),
-        ...(c.image_url ? [c.image_url] : []),
-      ];
-      return urls.includes(photoUrl);
-    });
-    for (const c of referencing) {
-      const { error } = await removeFromCard(c, photoUrl);
-      if (error) {
-        setBusy(false);
-        toast.error(`Failed to strip URL from card "${c.title}"`, {
-          description: error.message,
-        });
+    const { data, error } = await (supabase as any)
+      .from("photo_case_tags")
+      .insert([{ photo_url: photoUrl, case_id: caseId }])
+      .select()
+      .single();
+    setBusy(false);
+    if (error) {
+      // Unique constraint hit = already tagged. Treat as success.
+      if (error.code === "23505") {
+        toast.info("Already tagged to this case");
         return;
       }
-    }
-
-    // Move file from enhanced/X.png → case-studies/X.png
-    const newPath = CASE_STUDIES_PREFIX + path.slice(ENHANCED_PREFIX.length);
-    const { error: mvErr } = await supabase.storage
-      .from(STORAGE_BUCKET)
-      .move(path, newPath);
-    setBusy(false);
-    if (mvErr) {
-      toast.error("Failed to move photo", { description: mvErr.message });
+      toast.error("Failed to tag case", { description: error.message });
       return;
     }
-    toast.success(
-      referencing.length > 0
-        ? `Moved to case studies (removed from ${referencing.length} card${referencing.length === 1 ? "" : "s"})`
-        : "Moved to case studies"
-    );
-    onDeleted?.(photoUrl);
-    onDone();
-    setConfirmCaseStudyOpen(false);
-    onOpenChange(false);
+    setExistingCaseTags((prev) => [
+      ...prev,
+      { id: data.id, case_id: data.case_id },
+    ]);
+    setPendingCaseId(null);
+    const caseTitle = CASES.find((c) => c.id === caseId)?.title ?? caseId;
+    toast.success(`Tagged for case "${caseTitle}"`);
+  };
+
+  const handleUntagCaseStudy = async (rowId: string) => {
+    setBusy(true);
+    const { error } = await (supabase as any)
+      .from("photo_case_tags")
+      .delete()
+      .eq("id", rowId);
+    setBusy(false);
+    if (error) {
+      toast.error("Failed to remove case tag", { description: error.message });
+      return;
+    }
+    setExistingCaseTags((prev) => prev.filter((t) => t.id !== rowId));
+    toast.success("Case tag removed");
   };
 
   // ─── Create new card + bind ─────────────────────────────────────
@@ -619,22 +644,135 @@ export function DescribeAndBindDialog({
                 </div>
               </div>
             )}
+
+            {/* ─── Case-study tags ───────────────────────────────────
+                Non-destructive: tagging here does NOT remove the photo
+                from any concept card — it just adds the photo to the
+                CaseVault reference set for that case. A drawing can be
+                both an evergreen concept AND a case-study artefact. */}
+            <div className="rounded-md border bg-muted/20 p-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <label className="text-xs font-medium text-muted-foreground inline-flex items-center gap-1.5">
+                  <BookOpen className="h-3.5 w-3.5" />
+                  Also tag for case study
+                </label>
+                <span className="text-[10px] text-muted-foreground italic">
+                  doesn't unbind from concept cards
+                </span>
+              </div>
+              {existingCaseTags.length > 0 && (
+                <div className="mt-1.5 flex flex-wrap gap-1">
+                  {existingCaseTags.map((t) => {
+                    const c = CASES.find((cc) => cc.id === t.case_id);
+                    return (
+                      <span
+                        key={t.id}
+                        className="inline-flex items-center gap-1 rounded-md bg-amber-100 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-800 px-1.5 py-0.5 text-[11px]"
+                      >
+                        <Tag className="h-3 w-3" />
+                        {c?.code ? `${c.code} — ` : ""}
+                        {c?.title ?? t.case_id}
+                        <button
+                          type="button"
+                          onClick={() => handleUntagCaseStudy(t.id)}
+                          disabled={busy}
+                          className="ml-0.5 hover:text-destructive disabled:opacity-50"
+                          title="Remove this case tag"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="mt-2 flex gap-1.5">
+                <Popover open={casePickerOpen} onOpenChange={setCasePickerOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      role="combobox"
+                      className="flex-1 justify-between font-normal h-8 text-xs"
+                    >
+                      <span className="truncate">
+                        {pendingCaseId
+                          ? CASES.find((c) => c.id === pendingCaseId)?.title ?? pendingCaseId
+                          : "Pick a case study..."}
+                      </span>
+                      <ChevronsUpDown className="ml-2 h-3.5 w-3.5 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="p-0 w-[--radix-popover-trigger-width]"
+                    align="start"
+                  >
+                    <Command>
+                      <CommandInput placeholder="Search cases by title / product..." />
+                      <CommandList className="max-h-[260px]">
+                        <CommandEmpty>No cases match.</CommandEmpty>
+                        <CommandGroup>
+                          {sortedCases.map((c) => {
+                            const already = existingCaseTags.some(
+                              (t) => t.case_id === c.id
+                            );
+                            return (
+                              <CommandItem
+                                key={c.id}
+                                value={`${c.code} ${c.title} ${c.product} ${c.prospect}`}
+                                disabled={already}
+                                onSelect={() => {
+                                  setPendingCaseId(c.id);
+                                  setCasePickerOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    pendingCaseId === c.id ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs truncate">
+                                    <span className="font-mono text-[10px] text-muted-foreground mr-1.5">
+                                      {c.product}-{c.code}
+                                    </span>
+                                    {c.title}
+                                  </div>
+                                  <div className="text-[10px] text-muted-foreground truncate">
+                                    {c.prospect}
+                                  </div>
+                                </div>
+                                {already && (
+                                  <span className="text-[9px] text-emerald-600 dark:text-emerald-400 ml-2">
+                                    tagged
+                                  </span>
+                                )}
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  disabled={!pendingCaseId || busy}
+                  onClick={() => pendingCaseId && handleTagCaseStudy(pendingCaseId)}
+                  className="h-8 text-xs"
+                >
+                  <Plus className="h-3.5 w-3.5 mr-1" />
+                  Tag
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
         <DialogFooter className="sm:justify-between gap-2 flex-wrap">
           <div className="flex gap-1 flex-wrap">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setConfirmCaseStudyOpen(true)}
-              disabled={busy}
-              className="text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/30"
-              title="Not concept material — belongs to a case study"
-            >
-              <FolderInput className="h-4 w-4 mr-1.5" />
-              Move to case studies
-            </Button>
             <Button
               variant="ghost"
               size="sm"
@@ -671,39 +809,6 @@ export function DescribeAndBindDialog({
           </div>
         </DialogFooter>
       </DialogContent>
-
-      <AlertDialog open={confirmCaseStudyOpen} onOpenChange={setConfirmCaseStudyOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Move to case-studies folder?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This photo will be moved out of the concept-card binding pool and
-              into <code>case-studies/</code> in storage. If any concept cards
-              currently reference it, the URL is stripped from them first. The
-              file itself is preserved — you can still surface it on the Case
-              Vault page later.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={busy}>Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={(e) => {
-                e.preventDefault();
-                handleMoveToCaseStudies();
-              }}
-              disabled={busy}
-              className="bg-amber-600 text-white hover:bg-amber-700"
-            >
-              {busy ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : (
-                <FolderInput className="h-4 w-4 mr-1.5" />
-              )}
-              Move to case studies
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
 
       <AlertDialog open={confirmDeleteOpen} onOpenChange={setConfirmDeleteOpen}>
         <AlertDialogContent>
