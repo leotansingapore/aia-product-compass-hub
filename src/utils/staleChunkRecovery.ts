@@ -76,3 +76,21 @@ export function resetStaleChunkRecovery(): void {
   url.searchParams.delete(STALE_CHUNK_RELOAD_PARAM);
   window.history.replaceState({}, document.title, url.toString());
 }
+
+export function installStaleChunkRecovery(): void {
+  if (typeof window === "undefined") return;
+
+  const handleErrorLike = (value: unknown) => {
+    if (isStaleChunkError(value)) {
+      recoverFromStaleChunk();
+    }
+  };
+
+  window.addEventListener("error", (event) => {
+    handleErrorLike(event.error ?? event.message);
+  });
+
+  window.addEventListener("unhandledrejection", (event) => {
+    handleErrorLike(event.reason);
+  });
+}
