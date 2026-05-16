@@ -25,6 +25,7 @@ import {
   type ConceptCard,
 } from "@/hooks/useConceptCards";
 import photoDescriptionsRaw from "@/data/photo-descriptions.json";
+import { DescribeAndBindDialog } from "@/components/admin/DescribeAndBindDialog";
 
 // Per-URL description bundled into the page chunk so search can match the
 // AI-generated topic tags + one-line summary, and the photo grid can show
@@ -256,6 +257,9 @@ export default function AssignDrawingsPage() {
   // only photos that haven't been attached to any card yet.
   const [photoFilter, setPhotoFilter] = useState<"all" | "unbound">("unbound");
   const [busyPhotoUrl, setBusyPhotoUrl] = useState<string | null>(null);
+  // Describe-and-bind dialog state. Clicking a photo when no card is selected
+  // opens this; lets you either bind to an existing card OR create a new one.
+  const [describePhoto, setDescribePhoto] = useState<EnhancedPhoto | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -342,9 +346,9 @@ export default function AssignDrawingsPage() {
 
   const handleAssign = async (photo: EnhancedPhoto) => {
     if (!selectedCard) {
-      toast.info("Pick a concept card first", {
-        description: "Select a card from the left, then click a photo to assign.",
-      });
+      // No card selected → open the describe-and-bind dialog so you can
+      // either pick an existing card or create a new one in one shot.
+      setDescribePhoto(photo);
       return;
     }
     setBusyPhotoUrl(photo.url);
@@ -551,9 +555,11 @@ export default function AssignDrawingsPage() {
                   })()}
                 </div>
               ) : (
-                <div className="rounded-xl border border-dashed border-amber-300 bg-amber-50/50 dark:bg-amber-950/20 p-3 text-xs text-amber-900 dark:text-amber-200">
-                  Pick a concept card on the left first. Then clicking a photo
-                  will append it to that card's image list.
+                <div className="rounded-xl border border-dashed border-sky-300 bg-sky-50/50 dark:bg-sky-950/20 p-3 text-xs text-sky-900 dark:text-sky-200">
+                  No card selected — clicking a photo will open the{" "}
+                  <strong>Describe &amp; Bind</strong> dialog, where you can
+                  either pick an existing concept card or create a new one
+                  from the drawing.
                 </div>
               )}
 
@@ -639,6 +645,24 @@ export default function AssignDrawingsPage() {
           </Card>
         </div>
       </div>
+
+      <DescribeAndBindDialog
+        open={describePhoto != null}
+        onOpenChange={(o) => {
+          if (!o) setDescribePhoto(null);
+        }}
+        photoUrl={describePhoto?.url ?? null}
+        photoName={describePhoto?.name ?? null}
+        initialDescription={
+          describePhoto
+            ? PHOTO_DESCRIPTIONS.get(describePhoto.url)?.one_line_summary ?? ""
+            : ""
+        }
+        cards={cards}
+        onDone={() => {
+          refetch();
+        }}
+      />
     </PageLayout>
   );
 }

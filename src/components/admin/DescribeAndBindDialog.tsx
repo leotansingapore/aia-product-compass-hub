@@ -1,0 +1,363 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { ChevronsUpDown, Check, Loader2, Plus, Image as ImageIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import type { ConceptCard } from "@/hooks/useConceptCards";
+
+interface Props {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  photoUrl: string | null;
+  photoName: string | null;
+  initialDescription: string;
+  cards: ConceptCard[];
+  /** Called after successful bind/create so the parent can refetch. */
+  onDone: () => void;
+}
+
+type Mode = "pick-existing" | "create-new";
+
+export function DescribeAndBindDialog({
+  open,
+  onOpenChange,
+  photoUrl,
+  photoName,
+  initialDescription,
+  cards,
+  onDone,
+}: Props) {
+  const [mode, setMode] = useState<Mode>("pick-existing");
+  const [description, setDescription] = useState("");
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [newDescription, setNewDescription] = useState("");
+  const [newTags, setNewTags] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  // Reset state when a new photo opens.
+  useEffect(() => {
+    if (open) {
+      setMode("pick-existing");
+      setDescription(initialDescription);
+      setSelectedCardId(null);
+      setNewTitle("");
+      setNewDescription(initialDescription);
+      setNewTags("");
+    }
+  }, [open, initialDescription]);
+
+  const sortedCards = useMemo(
+    () => [...cards].sort((a, b) => a.title.localeCompare(b.title)),
+    [cards]
+  );
+
+  const selectedCard = sortedCards.find((c) => c.id === selectedCardId) ?? null;
+
+  // ─── Bind to existing card ──────────────────────────────────────
+  const handleBindToExisting = async () => {
+    if (!photoUrl || !selectedCard) return;
+    setBusy(true);
+    const existing = selectedCard.image_urls ?? [];
+    if (existing.includes(photoUrl)) {
+      toast.info("Already bound to this card");
+      setBusy(false);
+      return;
+    }
+    const newUrls = [...existing, photoUrl];
+    const { error } = await supabase
+      .from("concept_cards")
+      .update({
+        image_urls: newUrls,
+        image_url: selectedCard.image_url ?? newUrls[0],
+      })
+      .eq("id", selectedCard.id);
+    setBusy(false);
+    if (error) {
+      toast.error("Failed to bind", { description: error.message });
+      return;
+    }
+    toast.success(`Bound to "${selectedCard.title}"`);
+    onDone();
+    onOpenChange(false);
+  };
+
+  // ─── Create new card + bind ─────────────────────────────────────
+  const handleCreateNew = async () => {
+    if (!photoUrl) return;
+    const title = newTitle.trim();
+    if (!title) {
+      toast.error("Title is required");
+      return;
+    }
+    setBusy(true);
+    const tags = newTags
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+    const nextSortOrder = Math.max(0, ...cards.map((c) => c.sort_order ?? 0)) + 1;
+    const { data, error } = await supabase
+      .from("concept_cards")
+      .insert([
+        {
+          title,
+          description: newDescription.trim() || null,
+          image_url: photoUrl,
+          image_urls: [photoUrl],
+          audience: ["General"],
+          product_type: [],
+          tags,
+          sort_order: nextSortOrder,
+        },
+      ])
+      .select()
+      .single();
+    setBusy(false);
+    if (error || !data) {
+      toast.error("Failed to create card", { description: error?.message });
+      return;
+    }
+    toast.success(`Created "${title}" and bound photo`);
+    onDone();
+    onOpenChange(false);
+  };
+
+  if (!photoUrl) return null;
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-3xl">
+        <DialogHeader>
+          <DialogTitle>Describe and bind drawing</DialogTitle>
+          <DialogDescription>
+            Tell me what this drawing shows, then either pick an existing concept card or create a
+            new one.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Photo preview */}
+          <div className="rounded-lg border bg-white p-2 flex items-center justify-center min-h-[260px]">
+            <img
+              src={photoUrl}
+              alt={photoName ?? "drawing"}
+              className="max-h-[420px] w-auto object-contain"
+            />
+          </div>
+
+          {/* Description + action panel */}
+          <div className="flex flex-col gap-3">
+            <div>
+              <label className="text-xs font-medium text-muted-foreground">
+                What does this drawing show?
+              </label>
+              <Textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="e.g. Hand-drawn pie chart split into 3 equal thirds for ST/MT/LT income allocation"
+                className="mt-1 min-h-[88px] text-sm"
+              />
+              <p className="text-[11px] text-muted-foreground mt-1">
+                Pre-filled from AI description if available. Edit freely.
+              </p>
+            </div>
+
+            {/* Mode toggle */}
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={mode === "pick-existing" ? "default" : "outline"}
+                onClick={() => setMode("pick-existing")}
+                className="flex-1"
+              >
+                Bind to existing
+              </Button>
+              <Button
+                size="sm"
+                variant={mode === "create-new" ? "default" : "outline"}
+                onClick={() => setMode("create-new")}
+                className="flex-1"
+              >
+                <Plus className="h-3.5 w-3.5 mr-1" />
+                Create new card
+              </Button>
+            </div>
+
+            {mode === "pick-existing" ? (
+              <div>
+                <label className="text-xs font-medium text-muted-foreground">
+                  Pick a concept card
+                </label>
+                <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      className="w-full justify-between mt-1 font-normal"
+                    >
+                      <span className="truncate">
+                        {selectedCard?.title ?? "Search cards..."}
+                      </span>
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="p-0 w-[--radix-popover-trigger-width]"
+                    align="start"
+                  >
+                    <Command>
+                      <CommandInput placeholder="Search by title or tag..." />
+                      <CommandList className="max-h-[280px]">
+                        <CommandEmpty>No cards match.</CommandEmpty>
+                        <CommandGroup>
+                          {sortedCards.map((c) => {
+                            const photoCount =
+                              (c.image_urls?.length ?? 0) ||
+                              (c.image_url ? 1 : 0);
+                            return (
+                              <CommandItem
+                                key={c.id}
+                                value={`${c.title} ${c.tags?.join(" ") ?? ""}`}
+                                onSelect={() => {
+                                  setSelectedCardId(c.id);
+                                  setPickerOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    selectedCardId === c.id
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                                <div className="flex-1 min-w-0">
+                                  <div className="truncate text-sm">{c.title}</div>
+                                  <div className="flex gap-1 mt-0.5 flex-wrap">
+                                    {c.tags?.slice(0, 3).map((t) => (
+                                      <Badge
+                                        key={t}
+                                        variant="secondary"
+                                        className="text-[10px] px-1 py-0"
+                                      >
+                                        {t}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                                <span className="ml-2 text-[10px] text-muted-foreground flex items-center gap-0.5">
+                                  <ImageIcon className="h-3 w-3" />
+                                  {photoCount}
+                                </span>
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                {selectedCard && (
+                  <div className="mt-2 rounded-md border bg-muted/30 p-2">
+                    <p className="text-xs font-medium">{selectedCard.title}</p>
+                    {selectedCard.description && (
+                      <p className="text-[11px] text-muted-foreground mt-0.5">
+                        {selectedCard.description}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    New card title *
+                  </label>
+                  <Input
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                    placeholder="e.g. The 4-ratio liquidity grid"
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    Card description
+                  </label>
+                  <Textarea
+                    value={newDescription}
+                    onChange={(e) => setNewDescription(e.target.value)}
+                    placeholder="One-sentence summary of what this drawing teaches"
+                    className="mt-1 min-h-[72px] text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    Tags (comma-separated)
+                  </label>
+                  <Input
+                    value={newTags}
+                    onChange={(e) => setNewTags(e.target.value)}
+                    placeholder="e.g. liquidity, retirement, ucc"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={busy}>
+            Cancel
+          </Button>
+          {mode === "pick-existing" ? (
+            <Button
+              onClick={handleBindToExisting}
+              disabled={!selectedCardId || busy}
+            >
+              {busy ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : null}
+              Bind to card
+            </Button>
+          ) : (
+            <Button onClick={handleCreateNew} disabled={!newTitle.trim() || busy}>
+              {busy ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : null}
+              Create card + bind
+            </Button>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
