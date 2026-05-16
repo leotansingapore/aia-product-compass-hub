@@ -1,0 +1,4381 @@
+[
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773310198704_telegram-cloud-photo-size-5-6140762850926989193-y.png",
+    "cluster_id": 0,
+    "cluster_size": 5,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY/stocks comparison",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "USD currency risk",
+      "secondary insured",
+      "capital gifted upon death"
+    ],
+    "key_numbers": [
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD exposure, 40% estate tax, 30-day dividend tax, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773310263465_telegram-cloud-photo-size-5-6140762850926989193-y.png",
+    "cluster_id": 0,
+    "cluster_size": 5,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY/stocks comparison",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "USD currency risk",
+      "secondary insured",
+      "capital gifted upon death"
+    ],
+    "key_numbers": [
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD exposure, 40% estate tax, 30-day dividend tax, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773310292704_telegram-cloud-photo-size-5-6140762850926989193-y.png",
+    "cluster_id": 0,
+    "cluster_size": 5,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY/stocks comparison",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "USD currency risk",
+      "secondary insured",
+      "capital gifted upon death"
+    ],
+    "key_numbers": [
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD exposure, 40% estate tax, 30-day dividend tax, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773310296736_telegram-cloud-photo-size-5-6140762850926989193-y.png",
+    "cluster_id": 0,
+    "cluster_size": 5,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY/stocks comparison",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "USD currency risk",
+      "secondary insured",
+      "capital gifted upon death"
+    ],
+    "key_numbers": [
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD exposure, 40% estate tax, 30-day dividend tax, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882692247_photo_2026-03-03_14-29-15 (6).png",
+    "cluster_id": 0,
+    "cluster_size": 5,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY/stocks comparison",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "USD currency risk",
+      "secondary insured",
+      "capital gifted upon death"
+    ],
+    "key_numbers": [
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD exposure, 40% estate tax, 30-day dividend tax, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773386467044_telegram-cloud-photo-size-5-6136355664725478730-y.png",
+    "cluster_id": 1,
+    "cluster_size": 4,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "term vs whole life comparison",
+      "decoupling strategy",
+      "cash value",
+      "coverage comparison"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$150k",
+      "$250k",
+      "$400k",
+      "$3.6k",
+      "$150k",
+      "$70k",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773386485612_telegram-cloud-photo-size-5-6136355664725478730-y.png",
+    "cluster_id": 1,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "term vs whole life comparison",
+      "decoupling strategy",
+      "cash value",
+      "coverage comparison"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$150k",
+      "$250k",
+      "$400k",
+      "$3.6k",
+      "$150k",
+      "$70k",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773386507364_telegram-cloud-photo-size-5-6136355664725478730-y.png",
+    "cluster_id": 1,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "term vs whole life comparison",
+      "decoupling strategy",
+      "cash value",
+      "coverage comparison"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$150k",
+      "$250k",
+      "$400k",
+      "$3.6k",
+      "$150k",
+      "$70k",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882297315_photo_2026-03-01_16-14-39 (5).png",
+    "cluster_id": 1,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "term vs whole life comparison",
+      "decoupling strategy",
+      "cash value",
+      "coverage comparison"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$150k",
+      "$250k",
+      "$400k",
+      "$3.6k",
+      "$150k",
+      "$70k",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773285687306_telegram-cloud-photo-size-5-6154656425884454685-y.png",
+    "cluster_id": 2,
+    "cluster_size": 4,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage",
+      "ECI (early critical illness)",
+      "relapse benefit",
+      "CI claim frequency",
+      "waiting period"
+    ],
+    "key_numbers": [
+      "$250K",
+      "$200K",
+      "$450K",
+      "1 year",
+      "2 years",
+      "5x"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching slide comparing CI, ECI, and Relapse coverage categories across claim frequency, waiting periods, and final coverage amounts ($450K CI, $200K ECI, $200K Relapse) built from a $250K term plan plus $200K CI/ECI layer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773286066021_telegram-cloud-photo-size-5-6154656425884454685-y.png",
+    "cluster_id": 2,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "slide_screenshot",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage",
+      "ECI (early critical illness)",
+      "relapse benefit",
+      "CI claim frequency",
+      "waiting period"
+    ],
+    "key_numbers": [
+      "$250K",
+      "$200K",
+      "$450K",
+      "1 year",
+      "2 years",
+      "5x"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching slide comparing CI, ECI, and Relapse coverage categories across claim frequency, waiting periods, and final coverage amounts ($450K CI, $200K ECI, $200K Relapse) built from a $250K term plan plus $200K CI/ECI layer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773286343342_telegram-cloud-photo-size-5-6154656425884454685-y.png",
+    "cluster_id": 2,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "slide_screenshot",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage",
+      "ECI (early critical illness)",
+      "relapse benefit",
+      "CI claim frequency",
+      "waiting period"
+    ],
+    "key_numbers": [
+      "$250K",
+      "$200K",
+      "$450K",
+      "1 year",
+      "2 years",
+      "5x"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching slide comparing CI, ECI, and Relapse coverage categories across claim frequency, waiting periods, and final coverage amounts ($450K CI, $200K ECI, $200K Relapse) built from a $250K term plan plus $200K CI/ECI layer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773286529364_telegram-cloud-photo-size-5-6154656425884454685-y.png",
+    "cluster_id": 2,
+    "cluster_size": 4,
+    "is_representative": false,
+    "kind": "slide_screenshot",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage",
+      "ECI (early critical illness)",
+      "relapse benefit",
+      "CI claim frequency",
+      "waiting period"
+    ],
+    "key_numbers": [
+      "$250K",
+      "$200K",
+      "$450K",
+      "1 year",
+      "2 years",
+      "5x"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching slide comparing CI, ECI, and Relapse coverage categories across claim frequency, waiting periods, and final coverage amounts ($450K CI, $200K ECI, $200K Relapse) built from a $250K term plan plus $200K CI/ECI layer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773310402121_telegram-cloud-photo-size-5-6140762850926989191-y.png",
+    "cluster_id": 3,
+    "cluster_size": 3,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "lump sum investment spread over 5 years",
+      "capital guaranteed upon death",
+      "secondary insured",
+      "dividends",
+      "total benefits vs capital"
+    ],
+    "key_numbers": [
+      "$10k",
+      "$100/mth",
+      "$150/mth",
+      "$250/mth",
+      "$50k",
+      "$140k",
+      "$60k",
+      "$124k+",
+      "$40k",
+      "age 90",
+      "600",
+      "1200",
+      "1800",
+      "2400"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn bar chart illustrating a lump sum investment spread over 5 years with escalating monthly premium tiers, showing capital guaranteed on death, secondary insured feature, and total benefits of $140-$60k versus $50k capital at age 90."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773336960664_telegram-cloud-photo-size-5-6140762850926989191-y.png",
+    "cluster_id": 3,
+    "cluster_size": 3,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "lump sum investment spread over 5 years",
+      "capital guaranteed upon death",
+      "secondary insured",
+      "dividends",
+      "total benefits vs capital"
+    ],
+    "key_numbers": [
+      "$10k",
+      "$100/mth",
+      "$150/mth",
+      "$250/mth",
+      "$50k",
+      "$140k",
+      "$60k",
+      "$124k+",
+      "$40k",
+      "age 90",
+      "600",
+      "1200",
+      "1800",
+      "2400"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn bar chart illustrating a lump sum investment spread over 5 years with escalating monthly premium tiers, showing capital guaranteed on death, secondary insured feature, and total benefits of $140-$60k versus $50k capital at age 90."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882730390_photo_2026-03-03_14-29-15 (8).png",
+    "cluster_id": 3,
+    "cluster_size": 3,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "lump sum investment spread over 5 years",
+      "capital guaranteed upon death",
+      "secondary insured",
+      "dividends",
+      "total benefits vs capital"
+    ],
+    "key_numbers": [
+      "$10k",
+      "$100/mth",
+      "$150/mth",
+      "$250/mth",
+      "$50k",
+      "$140k",
+      "$60k",
+      "$124k+",
+      "$40k",
+      "age 90",
+      "600",
+      "1200",
+      "1800",
+      "2400"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn bar chart illustrating a lump sum investment spread over 5 years with escalating monthly premium tiers, showing capital guaranteed on death, secondary insured feature, and total benefits of $140-$60k versus $50k capital at age 90."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882088581_photo_2026-03-01_15-36-21.png",
+    "cluster_id": 4,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "accident term insurance",
+      "CI rider",
+      "premium breakdown",
+      "CPF vs cash payment split"
+    ],
+    "key_numbers": [
+      "$30/mth",
+      "$15/mth",
+      "$111/mth",
+      "$255/mth",
+      "$299/mth",
+      "$204/mth",
+      "$239/mth",
+      "$102/mth",
+      "$119/mth",
+      "$197 CPF",
+      "$282 cash",
+      "$300 CPF",
+      "$1311 cash",
+      "$457 plan 1",
+      "$590 plan 2",
+      "$898 plan 3",
+      "250k till 75",
+      "200k till 75",
+      "100k till 75"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten premium comparison table for a client showing three accident term coverage tiers (250k/200k/100k till age 75) plus B+Rider and A+Rider options with CPF and cash split, totalling three plan costs of $457, $590, and $898 per month."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883092914_photo_2026-03-08_07-35-02 (9).png",
+    "cluster_id": 4,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "premium_quote",
+    "topics": [
+      "accident term insurance",
+      "CI rider",
+      "premium breakdown",
+      "CPF vs cash payment split"
+    ],
+    "key_numbers": [
+      "$30/mth",
+      "$15/mth",
+      "$111/mth",
+      "$255/mth",
+      "$299/mth",
+      "$204/mth",
+      "$239/mth",
+      "$102/mth",
+      "$119/mth",
+      "$197 CPF",
+      "$282 cash",
+      "$300 CPF",
+      "$1311 cash",
+      "$457 plan 1",
+      "$590 plan 2",
+      "$898 plan 3",
+      "250k till 75",
+      "200k till 75",
+      "100k till 75"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten premium comparison table for a client showing three accident term coverage tiers (250k/200k/100k till age 75) plus B+Rider and A+Rider options with CPF and cash split, totalling three plan costs of $457, $590, and $898 per month."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882786069_photo_2026-03-05_08-34-51 (1).png",
+    "cluster_id": 5,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "retirement planning",
+      "risk management",
+      "dynamic asset allocation",
+      "diversification",
+      "fixed income vs stocks",
+      "sector concentration risk"
+    ],
+    "key_numbers": [
+      "$2.4M"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Screenshot of a \"Retirement Planning with Stanley\" presentation slide explaining risk management and dynamic asset allocation in a diversified investment fund, with a summary note about breaking a $2.4M lump sum into 3 different policies."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882882113_photo_2026-03-05_08-34-51 (6).png",
+    "cluster_id": 5,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "slide_screenshot",
+    "topics": [
+      "retirement planning",
+      "risk management",
+      "dynamic asset allocation",
+      "diversification",
+      "fixed income vs stocks",
+      "sector concentration risk"
+    ],
+    "key_numbers": [
+      "$2.4M"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Screenshot of a \"Retirement Planning with Stanley\" presentation slide explaining risk management and dynamic asset allocation in a diversified investment fund, with a summary note about breaking a $2.4M lump sum into 3 different policies."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773291131503_telegram-cloud-photo-size-5-6140762850926989233-y.png",
+    "cluster_id": 6,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "cash coverage split",
+      "cash value vs coverage allocation",
+      "cashflow from policy",
+      "sum assured"
+    ],
+    "key_numbers": [
+      "$618/month cashflow",
+      "$150k sum assured"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing how a single policy block can be split into a cash component and a coverage component, yielding $618/month cashflow plus $150k sum assured."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882589471_photo_2026-03-03_14-29-15 (1).png",
+    "cluster_id": 6,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "cash coverage split",
+      "cash value vs coverage allocation",
+      "cashflow from policy",
+      "sum assured"
+    ],
+    "key_numbers": [
+      "$618/month cashflow",
+      "$150k sum assured"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing how a single policy block can be split into a cash component and a coverage component, yielding $618/month cashflow plus $150k sum assured."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773337283756_telegram-cloud-photo-size-5-6138705793520438674-y.png",
+    "cluster_id": 7,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "FC recruitment / agency joining terms",
+      "scheme allowance",
+      "marketing subsidy",
+      "lead generation"
+    ],
+    "key_numbers": [
+      "$2k/mth",
+      "$3k",
+      "$1k",
+      "50%",
+      "1000 free leads"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A timeline-style slide listing agency joining terms for a new FC: $2k/month scheme, $3k crossover, $1k business allowance, 50% marketing subsidy, 1000 free leads, and a monthly training schedule with no contract or bond required."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882573415_photo_2026-03-03_04-08-39.png",
+    "cluster_id": 7,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "text_notes",
+    "topics": [
+      "FC recruitment / agency joining terms",
+      "scheme allowance",
+      "marketing subsidy",
+      "lead generation"
+    ],
+    "key_numbers": [
+      "$2k/mth",
+      "$3k",
+      "$1k",
+      "50%",
+      "1000 free leads"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A timeline-style slide listing agency joining terms for a new FC: $2k/month scheme, $3k crossover, $1k business allowance, 50% marketing subsidy, 1000 free leads, and a monthly training schedule with no contract or bond required."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773446556847_telegram-cloud-photo-size-5-6136355664725478732-y.png",
+    "cluster_id": 8,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium comparison by sum assured",
+      "coverage tiers",
+      "premium scaling"
+    ],
+    "key_numbers": [
+      "$150k",
+      "$300k",
+      "$600k",
+      "$2931",
+      "$1990",
+      "$1207",
+      "$5862",
+      "$3980",
+      "$2414",
+      "11724",
+      "7960",
+      "4828"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table showing annual or monthly premiums at three coverage levels ($150k, $300k, $600k) across three different plan tiers or products."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882260757_photo_2026-03-01_16-14-39 (3).png",
+    "cluster_id": 8,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium comparison by sum assured",
+      "coverage tiers",
+      "premium scaling"
+    ],
+    "key_numbers": [
+      "$150k",
+      "$300k",
+      "$600k",
+      "$2931",
+      "$1990",
+      "$1207",
+      "$5862",
+      "$3980",
+      "$2414",
+      "11724",
+      "7960",
+      "4828"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table showing annual or monthly premiums at three coverage levels ($150k, $300k, $600k) across three different plan tiers or products."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773250495771_image.png",
+    "cluster_id": 9,
+    "cluster_size": 2,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium timeline",
+      "whole life or endowment premium schedule",
+      "age-based premium illustration",
+      "premium per year breakdown"
+    ],
+    "key_numbers": [
+      "$1800",
+      "10%",
+      "$2100",
+      "15%",
+      "$2400",
+      "18%",
+      "$6360",
+      "$2100",
+      "$600/40",
+      "51% per year",
+      "$960/45",
+      "81 per year",
+      "age 32",
+      "age 42",
+      "age 52",
+      "age 92",
+      "age 100"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn timeline showing a client's insurance premium schedule from age 32 to 100, with increasing annual premiums ($1800 at 10%, $2100 at 15%, $2400 at 18%, totalling $6360) and per-year cost breakdowns at ages 42, 52, 92, and 100."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773250726449_image.png",
+    "cluster_id": 9,
+    "cluster_size": 2,
+    "is_representative": false,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium timeline",
+      "whole life or endowment premium schedule",
+      "age-based premium illustration",
+      "premium per year breakdown"
+    ],
+    "key_numbers": [
+      "$1800",
+      "10%",
+      "$2100",
+      "15%",
+      "$2400",
+      "18%",
+      "$6360",
+      "$2100",
+      "$600/40",
+      "51% per year",
+      "$960/45",
+      "81 per year",
+      "age 32",
+      "age 42",
+      "age 52",
+      "age 92",
+      "age 100"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn timeline showing a client's insurance premium schedule from age 32 to 100, with increasing annual premiums ($1800 at 10%, $2100 at 15%, $2400 at 18%, totalling $6360) and per-year cost breakdowns at ages 42, 52, 92, and 100."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884872660_photo_2026-05-13_11-32-36.png",
+    "cluster_id": 10,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [],
+    "key_numbers": [],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Appointment schedule table for 14 May showing three consultant-client meetings (Kenny with Reyhan and Shadiq via Finternship Ads, Kristy with Matthew via GYP Yakun), all on Zoom."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884850934_photo_2026-05-13_09-35-22.png",
+    "cluster_id": 11,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "coverage gap",
+      "existing policy vs AIA replacement",
+      "IP (Integrated Shield Plan) comparison"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram comparing an existing IP (Integrated Shield Plan) coverage block against a proposed AIA replacement, illustrating a coverage gap or upgrade scenario."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884811376_photo_2026-05-13_09-35-20.png",
+    "cluster_id": 12,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "diversified fund allocation",
+      "geographic diversification",
+      "sector diversification",
+      "asset class diversification",
+      "investment budgeting",
+      "Pinebridge IFast fund"
+    ],
+    "key_numbers": [
+      "$20k-$40k",
+      "$20k",
+      "$20k/yr",
+      "$1k/mch"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn diagram explaining a Pinebridge fund via IFast with a pie chart showing diversification across countries (US, China, Europe, Japan), sectors (bonds, property, gold, financials, health, tech), and asset classes, with client budget notes of $20k-$40k BF, $20k F, and $20k/yr investment ($1k/month)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884775582_photo_2026-05-13_09-35-14.png",
+    "cluster_id": 13,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement income planning",
+      "wealth accumulation curve",
+      "capital preservation",
+      "legacy planning",
+      "save vs invest split",
+      "retirement gap"
+    ],
+    "key_numbers": [
+      "$4k/mth",
+      "$3.5k/mth (save)",
+      "$1k/mth (invest)",
+      "$12k/mth",
+      "$2.8 mill",
+      "$1.5 mill",
+      "$1.3 mill",
+      "$6k/mth",
+      "$9.5k/mth",
+      "2.5%",
+      "age 34",
+      "age 44",
+      "age 65",
+      "age 85"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn wealth accumulation and decumulation curve from age 34 to 85 showing a save/invest split of $3.5k/$1k per month, a peak corpus of $2.8M at age 65, and a retirement drawdown plan delivering $9.5k/month income with capital preservation and legacy planning goals."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884758573_photo_2026-05-13_09-35-13.png",
+    "cluster_id": 14,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "death/term coverage",
+      "accident coverage",
+      "hospitalization/surgery",
+      "multi-claim CI",
+      "premium budgeting",
+      "insurance layering",
+      "breakeven concept"
+    ],
+    "key_numbers": [
+      "$550k + $150k",
+      "$300k",
+      "$1mil",
+      "$300k + $150k = $450k",
+      "$777/yr (term)",
+      "$2272/yr",
+      "$3600/yr",
+      "$6654/yr",
+      "$130/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard diagram showing a layered insurance structure combining Death/Term, CI/CCI, Accident, and Hospitalisation coverage with placeholder premium figures and a flow showing how CI/CCI accelerates into Death/Term benefit."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
+    "cluster_id": 15,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "Death / TPD coverage",
+      "CI vs ECI",
+      "savings component",
+      "retirement corpus at 65"
+    ],
+    "key_numbers": [
+      "$800/yr",
+      "$3k",
+      "$3.6k/yr",
+      "$1 million",
+      "$450k",
+      "$300k",
+      "$100k",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised single-claim Death/TPD payout of $450k and $100k at 65 replacing a crossed-out $15 figure."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884706215_photo_2026-05-13_09-35-09.png",
+    "cluster_id": 16,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "fund comparison",
+      "investment-linked policy (ILP)",
+      "fund selection"
+    ],
+    "key_numbers": [
+      "$50k",
+      "$74k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten note comparing two ILP fund values: Prulink at $50k and I-Fat (iFAST or similar) at $74k, with Pinebridge US Large Cap Research fund named."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884687076_photo_2026-05-13_09-33-15.png",
+    "cluster_id": 17,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "PUW (Paid-Up Waiver / Paid-Up Whole life)",
+      "policy maturity value",
+      "wealth accumulation",
+      "retirement corpus"
+    ],
+    "key_numbers": [
+      "$20k",
+      "15 years",
+      "$1,541,506",
+      "age 65",
+      "$6,059,212"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn note showing a client's PUW policy (paid $20k, held 1 year) projected to grow to $1,541,506 at age 65, then further to $6,059,212 after 15 more years."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884670176_photo_2026-05-13_09-33-13.png",
+    "cluster_id": 18,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "term insurance",
+      "DITIE",
+      "Pru Active Term"
+    ],
+    "key_numbers": [
+      "$550k",
+      "$777.97/year"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten note listing a Pru Active Term policy with $550k coverage for DITIE at a premium of $777.97 per year."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884655461_photo_2026-05-13_09-33-00.png",
+    "cluster_id": 19,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "CI vs ECI",
+      "life multiplier",
+      "death/TPD/CI/ECI coverage",
+      "premium benchmarking"
+    ],
+    "key_numbers": [
+      "$2277/year",
+      "$150k",
+      "$50-$60k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten note showing Pru Life Multiplier Flex at $2,277/year for $150k of Death/TPD/CI/ECI coverage, with a sub-note that $50k-$60k coverage costs less."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884623603_photo_2026-05-12_10-38-34.png",
+    "cluster_id": 20,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "project lifecycle framework",
+      "structured planning process",
+      "feasibility to closure workflow"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "A flowchart depicting a 6-stage project lifecycle (Concept Development \u2192 Feasibility \u2192 Design \u2192 Construction \u2192 Closure \u2192 Post-Closure) with inputs and deliverables at each phase, likely used as a structured-process analogy in financial advisory training."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884603061_photo_2026-05-10_11-20-51.png",
+    "cluster_id": 21,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [],
+    "key_numbers": [],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Appointment scheduling spreadsheet showing three Zoom meetings on 11 May with consultants Gerald and Kenny, paired with leads Danial Troye, Ruban, and Benny, all sourced from Finternship."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884585452_photo_2026-04-12_12-56-13.png",
+    "cluster_id": 22,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "insurance timing",
+      "age vs insurability",
+      "early lock-in"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching note explaining why getting insurance younger is better \u2014 cheaper premiums, healthier, fewer exclusions vs older applicants."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884570161_photo_2026-04-12_12-56-02.png",
+    "cluster_id": 23,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "death/TPD coverage",
+      "CI vs ECI",
+      "multi-pay CI",
+      "term vs CI premium comparison"
+    ],
+    "key_numbers": [
+      "$1M",
+      "$70/mth",
+      "$200k",
+      "age 85: $3516/yr",
+      "age 75: $2436/yr",
+      "age 65: $1470/yr"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Premium comparison showing standalone death/TPD $1M at $70/month versus CI/ECI multi-pay $200k at three coverage-term endpoints (age 65/75/85) ranging from $1470 to $3516/year."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884548491_photo_2026-04-12_12-55-36.png",
+    "cluster_id": 24,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospitalisation coverage",
+      "6-hour warding rule",
+      "HSG A vs HSG B comparison",
+      "personal accident plan",
+      "medical reimbursement"
+    ],
+    "key_numbers": [
+      "$1mill",
+      "$70/mth",
+      "$15/mth",
+      "$2k medical reimbursement",
+      "$224/year"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram comparing hospitalisation plans (HSG A private at $70/mth vs HSG B public at $15/mth, $1M coverage, 6-hour warding rule) alongside a personal accident plan covering fractures, TCM, chiro, surgery with $2k medical reimbursement at $224/year."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884533484_photo_2026-04-12_12-55-25.png",
+    "cluster_id": 25,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "early CI",
+      "major CI",
+      "critical illness coverage",
+      "5-year deferral period",
+      "multiple CI payouts"
+    ],
+    "key_numbers": [
+      "$100k",
+      "5 years",
+      "1 year"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram explaining Early CI vs Major CI coverage (with a concentric-circle diagram), a 5-year deferral/waiting period concept, and multiple $100k payout stages spaced 1 year apart to illustrate multi-pay critical illness benefits."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884517947_photo_2026-04-12_12-55-13.png",
+    "cluster_id": 26,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "Death/TPD coverage gap",
+      "CI vs ECI",
+      "coverage shortfall",
+      "insurance needs analysis"
+    ],
+    "key_numbers": [
+      "$1M",
+      "$200k",
+      "$800k shortfall",
+      "5X income",
+      "$250k",
+      "$200k Major CI",
+      "$100k early CI"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Coverage needs analysis slide showing a client's Death/TPD shortfall of $800k (target $1M, existing $200k) and CI/ECI position with $200k Major CI and $100k early CI against a $250k goal."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884466833_photo_2026-04-12_12-48-00.png",
+    "cluster_id": 27,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "short/mid/long term allocation",
+      "invest vs insure split",
+      "budget pie chart"
+    ],
+    "key_numbers": [
+      "$3k",
+      "$1k",
+      "20%",
+      "$600/mth",
+      "$1k/mth",
+      "10%",
+      "$200-$300/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn pie chart splitting a $3k monthly income into three equal $1k buckets (short-term living expenses, mid-term house/wedding savings, long-term invest/insurance), with bottom notes showing invest at 20% = $600/mth target of $1k/mth and insurance at 10% = $200-$300/mth."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884410056_photo_2026-04-06_10-54-36 (7).png",
+    "cluster_id": 28,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "Death/TPD coverage",
+      "CI vs ECI",
+      "hospitalisation coverage",
+      "accident reimbursement",
+      "income shortfall analysis",
+      "claim multiple / resetting benefit"
+    ],
+    "key_numbers": [
+      "$1M (TR)",
+      "$120k (GPP)",
+      "$350k (5 years income)",
+      "$2000/year (GPP)",
+      "$230k shortfall",
+      "$2M per year hospitalisation",
+      "$2k accident reimbursement",
+      "$3k accident reimbursement (Oct 2026)",
+      "13 months"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "A four-quadrant coverage gap diagram for a specific client showing Death/TPD ($1M TR + $120k GPP), a CI/ECI shortfall of $230k against 5 years income, hospital cover of $2M/year with 13-month resetting claim, and accident reimbursement increasing to $3k in October 2026."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884392748_photo_2026-04-06_10-54-36 (6).png",
+    "cluster_id": 29,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "common pool / merged benefits",
+      "TPD",
+      "death benefit",
+      "ECI claim rules"
+    ],
+    "key_numbers": [
+      "$200k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Diagram explaining how ECI, CI, Death, and TPD benefits share a common merged pool of $200k, with the rule that claiming ECI removes CI entitlement and prevents a death claim."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884377813_photo_2026-04-06_10-54-36 (5).png",
+    "cluster_id": 30,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "ECI coverage scope",
+      "multi-year payout structure"
+    ],
+    "key_numbers": [
+      "$200k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram showing ECI (outer ring) encompassing Major CI (inner ring), alongside a timeline of four $200k annual payouts illustrating a multi-year critical illness benefit structure."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884332191_photo_2026-04-06_10-54-36 (2).png",
+    "cluster_id": 31,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "diversification",
+      "asset allocation",
+      "geographic diversification",
+      "sector diversification",
+      "investment portfolio"
+    ],
+    "key_numbers": [
+      "$1k/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart illustrating portfolio diversification across countries (US, Singapore, China, Europe), sectors (Finance, Healthcare, Tech), and asset classes (Property, Gold, Bonds) funded at $1k/month."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884315941_photo_2026-04-06_10-54-36 (1).png",
+    "cluster_id": 32,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "AIA vs DIY investing",
+      "currency risk",
+      "dividend withholding tax",
+      "US estate tax",
+      "secondary insured",
+      "wealth transfer / inheritance"
+    ],
+    "key_numbers": [
+      "30%",
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A two-column comparison slide contrasting AIA (SGD-denominated, no dividend taxes, nil estate tax, secondary insured) against DIY/ETFs/Stocks (USD currency risk, 30% dividend tax, 40% estate tax, inheritance issues) to position AIA products over self-directed investing."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884299070_photo_2026-03-29_09-04-25.png",
+    "cluster_id": 33,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "bonus/dividend illustration",
+      "policy year timeline",
+      "non-guaranteed bonus rates",
+      "total projected payout"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$1,800",
+      "$2,160",
+      "$2,400",
+      "15%",
+      "18%",
+      "20%",
+      "$6,360",
+      "5%",
+      "$600",
+      "8%",
+      "$960",
+      "$45,000",
+      "year 10",
+      "year 20",
+      "year 84"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn timeline diagram illustrating how annual bonuses from a $12k policy accumulate over years 1\u201384, showing escalating bonus rates (15%, 18%, 20% early; 5% at year 10; 8% from year 20 onward) summing to $6,360 in early years and $45,000 from year 10 to 84."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884283206_photo_2026-03-29_09-02-39.png",
+    "cluster_id": 34,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY investing comparison",
+      "currency risk",
+      "dividend withholding tax",
+      "estate tax",
+      "inheritance risk",
+      "SGD vs USD",
+      "secondary insurance issues"
+    ],
+    "key_numbers": [
+      "$1500 (DIY cost/premium)",
+      "30% dividend tax",
+      "40% estate tax"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA (SGD, NIL dividend/estate taxes, secondary insurance, safer) against DIY investing (USD/currency risk, 30% dividend tax, 40% estate tax, inheritance risk, riskier)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884265197_photo_2026-03-29_09-01-59.png",
+    "cluster_id": 35,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "portfolio diversification",
+      "asset allocation",
+      "geographic diversification",
+      "asset classes"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart illustrating portfolio diversification across countries (US, China, Europe, India), asset classes (bonds, finance, healthcare, tech, gold), and a legend listing three diversification dimensions: Countries, Industry, and Asset Classes."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884248949_photo_2026-03-29_09-00-59.png",
+    "cluster_id": 36,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "long-term investing",
+      "short-term expenses",
+      "medium-term obligations"
+    ],
+    "key_numbers": [
+      "$3.5k",
+      "1.2k/mth",
+      "25%",
+      "5%"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn pie chart splitting a $3.5k income into three equal thirds: long-term investing (25% target, currently 5%), short-term living costs (food, transport), and medium-term commitments (house, travel, kids), with $1.2k/month noted as the investable amount."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884196154_photo_2026-03-29_06-56-32.png",
+    "cluster_id": 37,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY S&P500 comparison",
+      "currency risk",
+      "dividend tax",
+      "estate tax",
+      "inheritance risk",
+      "USD/UL/PAcy risk"
+    ],
+    "key_numbers": [
+      "-30%",
+      "-40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard comparison table contrasting AIA (SGD, no dividend/estate tax, secondary insured, safer) against DIY S&P500 investing (USD currency risk, 30% dividend tax, 40% estate tax, inheritance risk, riskier)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884179353_photo_2026-03-29_06-54-30.png",
+    "cluster_id": 38,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "asset diversification",
+      "geographic allocation",
+      "asset class allocation",
+      "investment portfolio construction",
+      "skills/interest/time framework"
+    ],
+    "key_numbers": [
+      "$1,000/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart showing a $1,000/month investment portfolio diversified by geography (US, China, India, Europe) and asset class (bonds, gold, property, healthcare, tech, finance, cash), with a side list of instrument types including gold, forex, crypto, robo-advisors, and stocks."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884162462_photo_2026-03-29_06-52-26.png",
+    "cluster_id": 39,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement planning",
+      "wealth accumulation",
+      "capital preservation",
+      "income in retirement",
+      "legacy planning",
+      "1/3 budgeting",
+      "save vs invest split"
+    ],
+    "key_numbers": [
+      "$1k/mth",
+      "$3k/mth",
+      "$5.2k",
+      "$1k/mth (inv)",
+      "2.5%",
+      "$10k/mth",
+      "$2.4 mil",
+      "age 27",
+      "age 65",
+      "age 85"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn retirement accumulation curve showing a client saving $5.2k/mth (split: save vs invest) from age 27 to 65 at 2.5% growth, reaching $2.4M, then drawing $10k/mth in retirement while preserving capital for income, capital, and legacy goals through age 85."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884143768_photo_2026-03-29_06-52-06.png",
+    "cluster_id": 40,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "income allocation",
+      "long-term investment",
+      "insurance budgeting",
+      "short-term savings",
+      "renovation fund"
+    ],
+    "key_numbers": [
+      "$6.6k/mth",
+      "$5280",
+      "$4280",
+      "$1,000/mth",
+      "$300/mth",
+      "$1.4k/mth",
+      "$1-$1.5k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn pie chart splitting a client's $6.6k/month take-home (after $1k deduction = $4,280 net) into three equal thirds: long-term investment $1,000/mth + insurance $300/mth, short-term savings $1-$1.5k, and $1.4k/mth for renovation."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884084407_photo_2026-03-28_06-20-47 (1).png",
+    "cluster_id": 41,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "asset class allocation",
+      "1/3 budgeting",
+      "DIY investing risks",
+      "currency risk",
+      "dividend tax",
+      "estate tax",
+      "inheritance tax",
+      "secondary income sources",
+      "crypto",
+      "investment diversification"
+    ],
+    "key_numbers": [
+      "$3-5k",
+      "$3-5k",
+      "USD/SGD",
+      "-30% dividend taxes",
+      "-40% estate taxes"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn iPad diagram comparing two investment approaches \u2014 a pie chart showing asset class diversification vs a 1/3 budgeting breakdown \u2014 alongside a DIY investing risk column listing USD/SGD currency risk, 30% dividend taxes, 40% estate taxes, and inheritance tax, contrasted with secondary income sources including stocks, business, Shopee, property, and crypto."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884066165_photo_2026-03-22_05-22-07.png",
+    "cluster_id": 42,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium restructuring",
+      "coverage top-up",
+      "death/TPD",
+      "ECI/CI",
+      "hospitalisation",
+      "accident coverage",
+      "income replacement"
+    ],
+    "key_numbers": [
+      "$1.2k/month existing premium",
+      "$1k/month (In)",
+      "$200/month (Ins top-up)",
+      "$1.2 mill death/TPD",
+      "$100k ECI",
+      "$20k hospitalisation",
+      "$30/month accident",
+      "$200k existing",
+      "$500k existing",
+      "$0 Publik existing",
+      "53k existing",
+      "$500k existing",
+      "$1.2 mill after",
+      "$300k after",
+      "$100k after Publik",
+      "53k after",
+      "$2 mill after",
+      "$10k/month after",
+      "1 mill diff recurring",
+      "+$1 look recurring",
+      "+$1.5 mill",
+      "10k lth income",
+      "+$700 Inu",
+      "+$170/month Ins"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn whiteboard showing a client (\"Plokmch\") policy restructuring: $1.2k/month existing premium split into $1k In and $200/month Ins top-up, comparing existing vs after coverage across death/TPD, ECI, hospitalisation, and accident, with a diff column showing gains of ~$1.5M coverage and $10k/month income."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884044237_photo_2026-03-22_05-21-37.png",
+    "cluster_id": 43,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium payment timeline",
+      "policy pause / premium holiday",
+      "dividend / bonus yield",
+      "whole life or endowment illustration",
+      "cash value growth phases"
+    ],
+    "key_numbers": [
+      "28",
+      "33",
+      "34",
+      "38",
+      "48",
+      "0-100",
+      "10 years",
+      "$636",
+      "$15k",
+      "$12k",
+      "$600/yr",
+      "$960/yr",
+      "15%",
+      "18%",
+      "20%",
+      "5% per year",
+      "8.1% per year"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn timeline diagram showing a 10-year premium payment plan starting at age 28, with a pause option at age 34, a $15k outlay at age 38, and two projected yield phases (5% p.a. from age 38, 8.1% p.a. from age 48) alongside early bonus percentages of 15-20%."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884026843_photo_2026-03-22_05-20-27.png",
+    "cluster_id": 44,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "diversification (countries/sectors/assets)",
+      "AIA vs DIY investment comparison",
+      "SGD vs USD currency risk",
+      "estate/inheritance risk",
+      "dividend taxes",
+      "investment portfolio allocation"
+    ],
+    "key_numbers": [
+      "30% (dividend taxes)",
+      "40% (estate taxes)"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram comparing AIA (SGD, no tax, NIL secondary insured) vs DIY investing (USD, dividend taxes 30%, estate taxes 40%, inheritance risk) alongside a pie chart showing diversification across countries (US, China, EUR, Japan), sectors (Banks, Prop, Gold, Healthcare, Tech), and assets, with a note on illiquid assets (gold, property, stocks, jewellery) that are hard to sell/mismanage."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883971294_photo_2026-03-22_05-14-27.png",
+    "cluster_id": 45,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "recurring claims",
+      "critical illness coverage"
+    ],
+    "key_numbers": [
+      "$20k",
+      "$200k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing CT (critical illness) nested inside ECT (early critical illness) as concentric ovals, with a timeline below illustrating recurring CI claims of $20k, $20k, and $200k spaced 1 year apart."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883955264_photo_2026-03-22_05-13-34.png",
+    "cluster_id": 46,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "death/TPD coverage",
+      "hospitalisation coverage",
+      "accident coverage",
+      "public vs private hospital",
+      "annual income protection",
+      "coverage gap/shortfall"
+    ],
+    "key_numbers": [
+      "$1mil (Death/TPD)",
+      "$300k (Annual Income)",
+      "$200k (existing single claim)",
+      "$100k (shortfall)",
+      "$250k (existing)",
+      "$1mil (Surgery)",
+      "$100/mth (Private)",
+      "March 2027",
+      "3 years"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn coverage review diagram for a Great Eastern client (parents), mapping existing vs needed coverage across Death/TPD, CI/ECI, hospitalisation, accident, and surgery benefits with a $100k CI shortfall identified."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883936071_photo_2026-03-22_05-02-24.png",
+    "cluster_id": 47,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement income planning",
+      "compound growth",
+      "retirement drawdown",
+      "early retirement trade-off"
+    ],
+    "key_numbers": [
+      "$1k/mth",
+      "$2mil",
+      "$10k/mth",
+      "$7.3k/mth",
+      "$5k/mth",
+      "age 27",
+      "age 55",
+      "age 60",
+      "age 65",
+      "age 85",
+      "50% reduction"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing how saving $1k/month from age 27 grows to $2M by age 65, yielding $10k/month in retirement drawdown until age 85, with a table showing reduced monthly payouts ($7.3k or $5k) if retirement is taken earlier at 60 or 55, and a note that income halves 10 years into drawdown."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883899485_photo_2026-03-22_05-00-05.png",
+    "cluster_id": 48,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CPF OA accumulation",
+      "salary CPF allocation",
+      "renovation financing",
+      "OA wipe-out strategy"
+    ],
+    "key_numbers": [
+      "$6.6k",
+      "$1,500",
+      "$3k",
+      "$13k",
+      "$54k",
+      "$60k",
+      "$50k",
+      "$1,388/mth",
+      "0.37",
+      "0.62",
+      "7 months",
+      "36 months",
+      "Nov 2024"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn calculation showing a client's CPF OA contributions ($6.6k salary x 37% x 62% = $1,500/mth into OA), projecting OA balance scenarios \u2014 one where OA reaches $13k then gets wiped out, and another where $1,500/mth over 36 months grows to ~$54-60k \u2014 with a renovation goal of $50k by Nov 2024 yielding $1,388/mth savings."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883857837_photo_2026-03-22_04-53-27.png",
+    "cluster_id": 49,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "death/TPD coverage",
+      "critical illness coverage sizing",
+      "income replacement multiplier",
+      "existing policy gap analysis"
+    ],
+    "key_numbers": [
+      "$80k",
+      "$400k",
+      "$800k",
+      "$1M",
+      "$70/mth",
+      "$71/mth",
+      "$20/mth",
+      "5-10x multiplier",
+      "5 years",
+      "D50"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn whiteboard diagram comparing a client's Death/TPD coverage (existing D50 at $1M for $70/mth, crossed out) versus a CI/ECI needs analysis using an income-replacement multiplier ($80k x 5-10 = $400k-$800k), with existing CI coverage of $400k and a $20/mth premium reference."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883837803_photo_2026-03-18_12-08-12.png",
+    "cluster_id": 50,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "personal accident insurance",
+      "accidental death benefit",
+      "total permanent disability",
+      "dismemberment benefit",
+      "medical reimbursement",
+      "occupational class pricing"
+    ],
+    "key_numbers": [
+      "$0.60/day",
+      "ages 65",
+      "224.11",
+      "371.82",
+      "500.59",
+      "855.69",
+      "300,000",
+      "750,000",
+      "1,000,000",
+      "1,500,000",
+      "2,000,000",
+      "2,250,000",
+      "100,000",
+      "250,000",
+      "500,000",
+      "2,000",
+      "3,000",
+      "4,000",
+      "5,000",
+      "500",
+      "750",
+      "1,000",
+      "1,250"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Personal accident insurance premium quote for ages 65 last birthday showing 4 levels of coverage across 4 occupational classes, with benefits including accidental death, dismemberment, total permanent disability, and medical reimbursement starting from $0.60/day."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883818310_photo_2026-03-18_12-08-12 (4).png",
+    "cluster_id": 51,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "insurer comparison",
+      "customer satisfaction",
+      "net promoter score",
+      "IP provider ranking"
+    ],
+    "key_numbers": [
+      "1 (worst)",
+      "5 (best/most likely)"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "SMA IP Providers Ranking slide showing AIA ranked #1 in Overall Rating and Likelihood of Recommending among insurers including Great Eastern, NTUC, Prudential, Raffles, and Singlife."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883782283_photo_2026-03-18_12-08-12 (2).png",
+    "cluster_id": 52,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "accident coverage",
+      "personal accident plan",
+      "medical reimbursement",
+      "accident claim types"
+    ],
+    "key_numbers": [
+      "$3,000 per accident"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching diagram showing types of accidents covered (food poisoning, sprains, fractures, broken bones, muscle tears) leading to eligible medical providers (Chiro, Physio, GP, Poly, Specialist, MRI) with a $3,000 reimbursement per accident benefit."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883763288_photo_2026-03-18_12-08-12 (1).png",
+    "cluster_id": 53,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "personal accident severity vs incidence",
+      "risk classification",
+      "PA insurance coverage tiers"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Presenter slide showing a thermometer diagram classifying personal accident risks by severity and incidence: low severity/high incidence (sports, food poisoning, dengue), high severity/low-moderate incidence (traffic accidents, violence, drowning), and catastrophic severity/rare incidence (terrorism, natural disasters)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883687199_photo_2026-03-18_12-08-11 (6).png",
+    "cluster_id": 54,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "ILP fund allocation",
+      "unit trust",
+      "apportionment rate",
+      "fund performance"
+    ],
+    "key_numbers": [
+      "5,137.95 SGD",
+      "7,185.24 SGD",
+      "12,323.20 SGD",
+      "0.799 SGD",
+      "3.966 SGD",
+      "50%",
+      "16 Mar 2026"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a client's ILP Fund Details page showing two GreatLink funds (Income Focus and Singapore Equities) each at 50% apportionment with a total investment value of SGD 12,323.20."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883669869_photo_2026-03-18_12-08-11 (5).png",
+    "cluster_id": 55,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "policy_summary",
+    "topics": [
+      "investment-linked policy fund details",
+      "equity fund allocation",
+      "unit pricing"
+    ],
+    "key_numbers": [
+      "4,917.70 SGD",
+      "5,917.67 SGD",
+      "10,835.57 SGD",
+      "50%",
+      "3,445 SGD unit price",
+      "3,878 SGD unit price"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a client's ILP fund details showing two GreatLink equity funds (ASEAN Growth and Asia Pacific) each at 50% apportionment with a total investment value of SGD 10,835.57 as of 16 March 2026."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883653303_photo_2026-03-18_12-08-11 (4).png",
+    "cluster_id": 56,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "ILP fund allocation",
+      "unit-linked investment",
+      "equity fund apportionment"
+    ],
+    "key_numbers": [
+      "4,286.23 SGD",
+      "4,375.35 SGD",
+      "8,661.59 SGD",
+      "2,311 SGD unit price",
+      "3.878 SGD unit price",
+      "1,854.71 units",
+      "1,128.25 units",
+      "50%",
+      "16 Mar 2026"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a client's ILP fund statement showing two equity funds (GreatLink China Growth and GreatLink Asia Pacific Equity) each at 50% apportionment, with a total investment value of SGD 8,661.59 as at 16 March 2026."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883635009_photo_2026-03-18_12-08-11 (3).png",
+    "cluster_id": 57,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "policy restructuring",
+      "investment-linked plan",
+      "CI coverage",
+      "Death/TPD coverage",
+      "retirement projection",
+      "fund withdrawal strategy"
+    ],
+    "key_numbers": [
+      "$200k Death",
+      "$200k CI",
+      "$600/mth",
+      "$1.1m @ 67",
+      "$500/mth",
+      "$1,632,866 @ 67",
+      "$100/mth",
+      "$30k surrender/withdraw",
+      "4 years studying",
+      "$6k x 5 = $30k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Diagram comparing a client's existing policy ($600/mth, $1.1M at 67) with a proposed restructure splitting $600/mth into $500/mth investments ($1.63M at 67) plus $100/mth standalone coverage ($200k Death/CI), with a withdrawal plan of $30k for 4 years of study fees."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883601199_photo_2026-03-18_12-08-11 (1).png",
+    "cluster_id": 58,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospitalisation coverage",
+      "pre and post hospitalisation",
+      "annual limit reset",
+      "unlimited lifetime claims"
+    ],
+    "key_numbers": [
+      "$2 million per year",
+      "6 hrs/Surgery",
+      "12 months before",
+      "12 months after",
+      "13 months pre and post"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching diagram illustrating a hospitalisation/surgical plan's coverage window \u2014 $2M annual limit, 6-hour surgery threshold, 12-month pre/post coverage, resetting yearly with unlimited lifetime claims."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883586619_photo_2026-03-17_16-16-02.png",
+    "cluster_id": 59,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Excalidraw title card for \"Jing Lu Training 17th March\" with a decorative rocket ship graphic and no financial content visible."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883568979_photo_2026-03-16_14-20-34.png",
+    "cluster_id": 60,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage",
+      "death/TPD coverage",
+      "standalone CI",
+      "standalone death",
+      "cash value",
+      "whole life comparison"
+    ],
+    "key_numbers": [
+      "$250k",
+      "$250/mth",
+      "$208/mth",
+      "$149,709",
+      "$75k",
+      "$62k",
+      "$381/mth",
+      "$4575/year",
+      "$245/mth",
+      "$2947/year",
+      "$176/mth",
+      "$2122/year",
+      "$1mill",
+      "$67/mth",
+      "$97/mth",
+      "age 65",
+      "age 75",
+      "age 85",
+      "20% voucher",
+      "10% discount"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Premium comparison table contrasting ECI+Death/TPD vs CI+Death/TPD whole life plans at $250k coverage against standalone CI (to age 65/75/85) and standalone death ($1M) options, with monthly premiums, cash values, and total paid figures."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883553871_photo_2026-03-16_14-18-35.png",
+    "cluster_id": 61,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "5-10% rule",
+      "1/3 budgeting",
+      "short/mid/long-term savings allocation",
+      "insurance budgeting"
+    ],
+    "key_numbers": [
+      "5-10%",
+      "33%",
+      "25%",
+      "10%",
+      "$1.5k/mth (short term)",
+      "$1.5k/mth (mid term)"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching diagram showing the 5-10% insurance rule and a 1/3 budgeting pie split across short-term ($1.5k/mth), mid-term ($1.5k/mth), and long-term (investments + insurance) allocations."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883537590_photo_2026-03-16_14-17-22.png",
+    "cluster_id": 62,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "life stage planning",
+      "coverage period",
+      "age-based timeline"
+    ],
+    "key_numbers": [
+      "age 26",
+      "age 52",
+      "age 100"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A hand-drawn timeline diagram spanning ages 26 to 100 with a midpoint at 52, showing two bidirectional arrows that divide a client's life into two equal phases, likely illustrating a whole-life or endowment coverage structure split at the midpoint age."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883522664_photo_2026-03-16_14-16-20.png",
+    "cluster_id": 63,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "whole life vs term insurance",
+      "cash value vs no cash value",
+      "limited payment / life-long protection",
+      "Death/TPD/CI/ECI coverage",
+      "buying vs renting house analogy"
+    ],
+    "key_numbers": [
+      "$250k",
+      "$250/mth",
+      "$2.5k/year",
+      "$150/mth",
+      "20-25 years",
+      "age 100"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison diagram contrasting whole life (has cash value, limited payment, $250/mth for $250k Death/TPD/CI/ECI cover) vs term insurance (no cash value, recurring claims, $150/mth) using a buying-vs-renting-a-house analogy."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883490548_photo_2026-03-16_14-13-00.png",
+    "cluster_id": 64,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "death benefit coverage",
+      "accidental death benefit",
+      "subset relationship between death and accidental death"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "A concept diagram using nested ovals to illustrate that accidental death is a subset of all-cause death, used to explain why accidental death benefit riders pay out on top of base death coverage."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883474772_photo_2026-03-16_14-12-19.png",
+    "cluster_id": 65,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "outpatient reimbursement",
+      "personal accident coverage",
+      "medical benefits",
+      "accident insurance"
+    ],
+    "key_numbers": [
+      "$30/mth++",
+      "SGD 250,000.00"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a client's personal accident insurance coverage summary showing outpatient medical bill reimbursement at $30/month and multiple AIA plan coverages including personal accident guard with SGD 250,000 sum assured."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883458717_photo_2026-03-16_14-11-42.png",
+    "cluster_id": 66,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "private vs public hospitalisation",
+      "MediShield / integrated shield plan",
+      "insurance coverage gap",
+      "rising healthcare costs"
+    ],
+    "key_numbers": [
+      "$100/mth",
+      "$25/mth",
+      "$2 Million Dollars"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram comparing private ($100/mth) vs public ($25/mth) hospitalisation with a rising cost curve reaching $2 million, illustrating why private coverage is worth the premium over slower public wards with no single beds."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883440652_photo_2026-03-16_14-10-53.png",
+    "cluster_id": 67,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospitalisation coverage",
+      "guaranteed lifetime renewable",
+      "inpatient surgery",
+      "day surgery (6 hours)",
+      "policy renewal"
+    ],
+    "key_numbers": [
+      "$2 million",
+      "13 months",
+      "6 hours"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching diagram illustrating a hospitalisation plan's guaranteed lifetime renewable structure, showing a $2 million coverage span across two 13-month periods with a 6-hour day surgery threshold and inpatient surgery benefit."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883391763_photo_2026-03-15_15-47-41 (3).png",
+    "cluster_id": 68,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospitalisation plan structure",
+      "MediSave vs cash payment",
+      "CI/ECI coverage",
+      "Death/TPD coverage",
+      "accident coverage",
+      "inpatient surgery waiting period"
+    ],
+    "key_numbers": [
+      "$295.00",
+      "$300.00",
+      "$595.00",
+      "$1016.00",
+      "$99.00",
+      "$1115.00",
+      "$1127.00",
+      "$2million",
+      "age 1-40",
+      "12months",
+      "6hrs surgery"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "A hand-drawn FC diagram breaking down a client's hospitalisation plan (MediShield Life + HealthShield Gold Max + VitalHealth Plan A) showing MediSave vs cash costs, surgery waiting periods, and the broader coverage pillars of Death/TPD, CI/ECI, and accident benefits including AIA Solitaire."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883375620_photo_2026-03-15_15-47-41 (2).png",
+    "cluster_id": 69,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "accidental death and dismemberment",
+      "personal accident insurance",
+      "occupational class",
+      "benefit tiers",
+      "accidental medical reimbursement",
+      "TCM reimbursement"
+    ],
+    "key_numbers": [
+      "$0.60/day",
+      "ages 16-65",
+      "$500,000",
+      "$750,000",
+      "$1,000,000",
+      "$2,000",
+      "$3,000",
+      "$4,000",
+      "$1,000",
+      "$1,250",
+      "224.17",
+      "317.82",
+      "595.92",
+      "451.68"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "AIA Solitaire personal accident plan product slide showing benefit tiers for ages 16-65 across four occupational classes, with annual premiums and coverage limits for accidental death, dismemberment, total disability, burns, and medical reimbursement."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883357843_photo_2026-03-15_15-47-41 (1).png",
+    "cluster_id": 70,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "deductible vs rider comparison",
+      "co-insurance cap",
+      "hospitalisation plan rider",
+      "out-of-pocket costs"
+    ],
+    "key_numbers": [
+      "$1,500",
+      "$396,500",
+      "$3,000",
+      "$6,000",
+      "10%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A hand-drawn comparison diagram showing three hospitalisation plan scenarios \u2014 without rider (10% uncapped co-insurance + $1,500 deductible), with rider (5% of bill capped at $3,000), and with new rider post-1 April (10% of remainder capped at $6,000) \u2014 to illustrate the impact of riders on out-of-pocket costs."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883338671_photo_2026-03-15_03-35-04.png",
+    "cluster_id": 71,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "investing + coverage",
+      "retirement savings",
+      "coverage separation"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn concept diagram showing that combining investing and coverage leads to retirement savings plus separate coverage, illustrating the unbundling or dual-purpose planning concept."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883320543_photo_2026-03-15_03-35-04 (9).png",
+    "cluster_id": 72,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "disability income stream",
+      "ADL trigger",
+      "monthly income benefit"
+    ],
+    "key_numbers": [
+      "$2k/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn diagram showing a Disability Income Stream plan where an ADL (Activities of Daily Living) trigger pays out $2,000/month, noted as \"cashless\" benefit delivery."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883304710_photo_2026-03-15_03-35-04 (8).png",
+    "cluster_id": 73,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "policy restructuring",
+      "CI coverage",
+      "investment component",
+      "D/T/CI bundling",
+      "coverage unbundling"
+    ],
+    "key_numbers": [
+      "$204/mth",
+      "$100k",
+      "$226 @ age 67"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn diagram showing a policy restructure: an existing $204/month plan with overscured and investment components (D/T/CI $100k) is split into separate CI coverage, investment (Inu), and death coverage blocks, projecting $226 at age 67."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883288397_photo_2026-03-15_03-35-04 (7).png",
+    "cluster_id": 74,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement gap",
+      "inflation impact on income needs",
+      "capital depletion",
+      "retirement funding"
+    ],
+    "key_numbers": [
+      "$3,000/mth",
+      "$7,120/mth",
+      "2.5% p.a. inflation",
+      "Age 30",
+      "Age 65",
+      "Age 85",
+      "$1.7M needed",
+      "$0"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A teaching diagram showing how $3,000/month today grows to $7,120/month needed at age 65 due to 2.5% inflation, requiring $1.7M in retirement capital that depletes to zero by age 85."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883234546_photo_2026-03-15_03-35-04 (4).png",
+    "cluster_id": 75,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "ILP (Investment-Linked Policy)",
+      "Death/TPD coverage",
+      "CI vs ECI",
+      "policy value at retirement"
+    ],
+    "key_numbers": [
+      "$400/mth",
+      "$200k Death/TPD",
+      "$200k CI",
+      "$100k ECI",
+      "$186k at 65",
+      "$482,500",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Coverage summary of a client's current ILP at $400/month showing $200k Death/TPD, $200k CI, $100k ECI, and projected value of $186k + $482,500 at age 65."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883219009_photo_2026-03-15_03-35-04 (3).png",
+    "cluster_id": 76,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "ILP restructuring",
+      "CI vs ECI",
+      "Death/TPD coverage",
+      "value at 65",
+      "premium reduction"
+    ],
+    "key_numbers": [
+      "$400/mth",
+      "$200/mth",
+      "$125/mth",
+      "$200k Death/TPD",
+      "$200k CI",
+      "$100k ECI",
+      "$186k at 65",
+      "$482,500",
+      "$300k",
+      "$500k Death/TPD",
+      "$100k CI (recurring)",
+      "$100k ECI (recurring)",
+      "age 65"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Comparison table showing a client's current ILP at $400/mth versus a proposed restructure into a $200/mth ILP (zeroing out CI/ECI riders) plus a separate $125/mth coverage plan with $500k Death/TPD and recurring CI/ECI riders, preserving existing fund value of $482,500."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883200950_photo_2026-03-15_03-35-04 (2).png",
+    "cluster_id": 77,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "ILP review",
+      "CI vs ECI",
+      "Death/TPD coverage",
+      "term coverage",
+      "retirement gap",
+      "policy restructuring"
+    ],
+    "key_numbers": [
+      "$200k Death/TPD",
+      "$600k Death/TPD",
+      "$200k CI",
+      "$100k CI Recurring",
+      "$100k ECI",
+      "$200k ECI",
+      "$668k",
+      "$482,500",
+      "$186k",
+      "$400/mth",
+      "$200/mth",
+      "$125/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Before-and-after comparison table showing coverage and retirement value changes when terminating a GE or AIA ILP and adding term coverage, with Death/TPD, CI, ECI, retirement corpus, and monthly premium figures."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883184554_photo_2026-03-15_03-35-04 (13).png",
+    "cluster_id": 78,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "GE GLA policy replacement",
+      "Inverse Advantage plan",
+      "CI coverage",
+      "investment-linked policy",
+      "death coverage",
+      "policy restructuring",
+      "1/3 budgeting"
+    ],
+    "key_numbers": [
+      "$100k (100m/170/CS)",
+      "$240/mn",
+      "$432k at 67",
+      "$49k/$30k",
+      "$452k",
+      "$240/mn",
+      "$100k",
+      "$49k/$30k",
+      "$27/mn"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn FC diagram showing a client policy restructure from GE GLA and Inverse Advantage plans into a split of CI coverage plus an investment-linked policy plus death coverage, with before/after premium and maturity value comparisons."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883166668_photo_2026-03-15_03-35-04 (12).png",
+    "cluster_id": 79,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "health plan upgrade",
+      "Suplane Health + Rider",
+      "annual premium comparison",
+      "claim cap"
+    ],
+    "key_numbers": [
+      "$404/year",
+      "$6k cap",
+      "$3,500",
+      "101 (criteria)",
+      "$3k cap",
+      "510 (criteria)"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Whiteboard diagram (case 24) comparing two health plan structures under Suplane Health + Rider at $404/year: current plan with $3,500 premium and $6k claim cap vs upgraded plan with 510 criteria and $3k cap."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883149250_photo_2026-03-15_03-35-04 (11).png",
+    "cluster_id": 80,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "death/TPD coverage gap",
+      "CI vs ECI",
+      "multi-claim CI",
+      "hospitalisation coverage",
+      "accident coverage"
+    ],
+    "key_numbers": [
+      "$500k",
+      "$200k",
+      "$300k",
+      "$200k (CI)",
+      "$200k (ECI)"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn four-quadrant coverage gap diagram showing a client who needs $500k death/TPD but only has $200k (shortfall $300k), plus CI/ECI comparison showing $200k CI with multi-claim vs $0 ECI, with hospitalisation (GE) and accident (GE) noted in the lower quadrants."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883107870_photo_2026-03-08_07-35-02.png",
+    "cluster_id": 81,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "CI vs ECI",
+      "premium comparison",
+      "plan restructuring"
+    ],
+    "key_numbers": [
+      "$30/mth",
+      "$239",
+      "$200k CI/ECI coverage",
+      "$184/year",
+      "$4,740/year",
+      "$4,749 existing",
+      "20% voucher",
+      "10% discount"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-written premium comparison showing a client's existing plan totalling $4,749/year versus a proposed new plan at $4,740/year (Plan 2 at $30/mth plus $239 CI/ECI $200k plus $184/year), with a first-year 20% voucher and 10% CI plan discount highlighted."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883071576_photo_2026-03-08_07-35-02 (8).png",
+    "cluster_id": 82,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "accident coverage",
+      "personal accident benefits",
+      "occupational class tiers",
+      "accidental death benefit",
+      "dismemberment benefit",
+      "TPDT benefit",
+      "medical reimbursement"
+    ],
+    "key_numbers": [
+      "$224.11",
+      "$371.82",
+      "$595.93",
+      "$55.69",
+      "$0.60/day",
+      "$100,000",
+      "$300,000",
+      "$750,000",
+      "$1,500,000",
+      "$2,250,000",
+      "$2,000",
+      "$4,000",
+      "$5,000",
+      "$500",
+      "$750",
+      "$1,000",
+      "$1,250"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Personal accident plan comparison table showing 4 tiers of coverage (Plans 1-4) across occupational classes 1-2, listing annual premiums and benefit amounts for accidental death, dismemberment, TPDT, burns, and medical reimbursement benefits from as little as $0.60/day."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883054006_photo_2026-03-08_07-35-02 (7).png",
+    "cluster_id": 83,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "critical illness stages",
+      "early stage CI",
+      "intermediate stage CI",
+      "major stage CI",
+      "carcinoma in situ",
+      "cancer conditions coverage"
+    ],
+    "key_numbers": [
+      "42 conditions (Early Stage)",
+      "35 conditions (Intermediate Stage)",
+      "73 conditions (Major Stage)",
+      "condition 34"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Screenshot of a CI product coverage table showing Major Cancer listed across early (42 conditions), intermediate (35 conditions), and major (73 conditions) stages, with a callout box explaining carcinoma in situ (CIS) as a Stage 0 non-invasive cancer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883037542_photo_2026-03-08_07-35-02 (6).png",
+    "cluster_id": 84,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "paralysis",
+      "irreversible loss of use of limbs",
+      "loss of one limb",
+      "loss of use requiring prosthesis",
+      "early stage CI",
+      "intermediate stage CI",
+      "major stage CI",
+      "CI definitions"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "AIA product document (page 42) showing the definition and claim conditions for Paralysis (Irreversible Loss of Use of Limbs) across early, intermediate, and major stages, including sub-conditions for loss of one limb and loss of use requiring prosthesis."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883020604_photo_2026-03-08_07-35-02 (5).png",
+    "cluster_id": 85,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "policy exclusions",
+      "amateur vs professional sports coverage",
+      "accidental death and injury"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Screenshot of a policy document clause (point 10) covering accidental death or injury during amateur sports/recreation, with professional sports activity expressly excluded."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883002388_photo_2026-03-08_07-35-02 (4).png",
+    "cluster_id": 86,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "Annual Premium Adjustment Percentage",
+      "AIA Vitality membership",
+      "Cumulative Premium Percentage",
+      "policy anniversary adjustments"
+    ],
+    "key_numbers": [
+      "85%",
+      "100%",
+      "-2%",
+      "-1%",
+      "+1%",
+      "+2%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Slide explaining AIA Vitality's Annual Premium Adjustment Percentage table by tier (Bronze/Silver/Gold/Platinum) and the Cumulative Premium Percentage bounds (min 85%, max 100%)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882986883_photo_2026-03-08_07-35-02 (3).png",
+    "cluster_id": 87,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "tiered membership levels",
+      "scoring or rating scale",
+      "Bronze/Silver/Gold/Platinum tiers"
+    ],
+    "key_numbers": [
+      "10",
+      "8",
+      "6",
+      "4",
+      "2",
+      "0",
+      "9",
+      "7",
+      "5",
+      "3",
+      "1",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A tiered scoring table showing numerical sequences for Bronze, Silver, Gold, and Platinum membership levels, likely illustrating how scores or points progress across tiers (Bronze decrements, Silver steady decline, Gold/Platinum increase to a cap of 15)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882971307_photo_2026-03-08_07-35-02 (2).png",
+    "cluster_id": 88,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "age-banded premium pricing",
+      "insurance premium by age group"
+    ],
+    "key_numbers": [
+      "$99.00",
+      "$184.00",
+      "$239.00",
+      "$616.00",
+      "age 26-30",
+      "age 31-35",
+      "age 36-40",
+      "age 41-45"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Age-banded premium table showing insurance premiums increasing from $99/month (age 26-30) to $616/month (age 41-45), illustrating how premiums rise sharply with age."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882940771_photo_2026-03-05_08-34-51.png",
+    "cluster_id": 89,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "retirement planning",
+      "lump sum diversification",
+      "policy structuring",
+      "risk reduction",
+      "dividends from plan"
+    ],
+    "key_numbers": [
+      "$2.4 million"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Telegram summary of a client meeting with Stanley discussing splitting a $2.4M lump sum across 3 policies for retirement planning, diversification benefits, and next-step scheduling."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882900126_photo_2026-03-05_08-34-51 (7).png",
+    "cluster_id": 90,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "CPF OA to fund investment plan",
+      "passive income",
+      "dividends",
+      "resource allocation",
+      "policy surrender value",
+      "legacy planning"
+    ],
+    "key_numbers": [
+      "$2 million",
+      "$10k/month",
+      "$75"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "WhatsApp chat screenshot showing a financial advisor's resource allocation notes for a client named Stanley, detailing a plan to use CPF OA funds to reinvest into a new plan targeting $10k/month passive income, with a Pruview policy referenced for surrender and legacy transfer."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882863413_photo_2026-03-05_08-34-51 (5).png",
+    "cluster_id": 91,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "retirement planning",
+      "secondary insured",
+      "bonus structure",
+      "legacy creation",
+      "perpetual bonus",
+      "5-year pay structure",
+      "deducted ad-hoc fee vs dividends"
+    ],
+    "key_numbers": [
+      "$100k",
+      "$57,600",
+      "$308,760"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a Telegram chat summarising a retirement planning session with a client named Stanley, covering secondary insured options, legacy creation, perpetual bonus structure, and a 5-year pay illustration showing figures of $57,600 and $308,760."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882843541_photo_2026-03-05_08-34-51 (4).png",
+    "cluster_id": 92,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "single-pay vs regular-pay comparison",
+      "retirement planning",
+      "bonus projections",
+      "policy illustrations"
+    ],
+    "key_numbers": [
+      "$57,600",
+      "$210k",
+      "$9,600",
+      "$215,100"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Handwritten WhatsApp message screenshot explaining a single-pay vs traditional regular-pay method comparison for a retirement/savings plan, highlighting that a single upfront payment of ~$57,600 over 5 years yields more than $210k in benefits versus $215,100, and detailing different bonus types (including a ~$9,600/year loyalty or anniversary bonus) compounding over time."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882825773_photo_2026-03-05_08-34-51 (3).png",
+    "cluster_id": 93,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "retirement planning",
+      "bonus structure",
+      "perpetual bonus",
+      "welcome bonus",
+      "investment bonus",
+      "compounding bonuses"
+    ],
+    "key_numbers": [
+      "$57,600",
+      "$57,000",
+      "$9,600",
+      "$100k",
+      "$9,000"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a WhatsApp or chat conversation explaining AIA retirement plan bonus structure to a client named Stanley, detailing perpetual, welcome, and investment bonuses totalling ~$9,600/year on a $57,600 initial fee, with notes on long-term compounding potential exceeding $100k."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882806205_photo_2026-03-05_08-34-51 (2).png",
+    "cluster_id": 94,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "USD vs DIV fund comparison",
+      "estate tax",
+      "inheritance tax",
+      "dividend tax",
+      "capital guarantee",
+      "legacy planning",
+      "diversification"
+    ],
+    "key_numbers": [
+      "USD $2M",
+      "$500k",
+      "estate tax 40%",
+      "dividend taxes 30%"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "AIA Retirement Planning with Stanley slide comparing USD fund vs DIV/Fund on estate tax, dividend tax, inheritance risk, capital guarantee, and diversification for a specific client (Janet/Stanley Tan, Leo, Yoo)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882766379_photo_2026-03-03_14-29-15.png",
+    "cluster_id": 95,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "capital growth",
+      "liquidity vs illiquidity",
+      "sum assured",
+      "dividend income",
+      "whole life / endowment investment tradeoff"
+    ],
+    "key_numbers": [
+      "$2-5k/mtr.",
+      "$500k",
+      "8 years",
+      "year 1",
+      "+$500k Sum Assured"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram contrasting a liquid \"current\" state against an illiquid-for-8-years plan that delivers $2\u20135k monthly dividends from year 1, capital growth to $500k, and a $500k sum assured on death."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882747919_photo_2026-03-03_14-29-15 (9).png",
+    "cluster_id": 96,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "Death/TPD coverage",
+      "accident coverage",
+      "hospitalisation",
+      "disability income",
+      "bequest lump sum"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn four-quadrant teaching diagram mapping insurance coverage types: Death/TPD (bequest lump sum, disability income), CI/ECI (loss of income), Accident (sprains, broken bones, food poisoning, chiro, physio, TCM), and Hospital (N Tac)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882674958_photo_2026-03-03_14-29-15 (5).png",
+    "cluster_id": 97,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "dividend comparison",
+      "lump sum vs regular premium",
+      "endowment/investment dividend yield",
+      "3% dividend rate"
+    ],
+    "key_numbers": [
+      "3%",
+      "$40k",
+      "$1.2k",
+      "$3k/year",
+      "$2928/yr",
+      "$9,000",
+      "$14,640",
+      "$5,640",
+      "5 years"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison of total dividends over the first 5 years between a regular (5yr) plan and a lump-sum plan at 3% dividend rate on $40k, showing lump sum yields $14,640 vs $9,000 \u2014 a $5,640 advantage."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882621915_photo_2026-03-03_14-29-15 (2).png",
+    "cluster_id": 98,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "premium_quote",
+    "topics": [
+      "policy restructuring",
+      "premium comparison",
+      "coverage top-up"
+    ],
+    "key_numbers": [
+      "$110k",
+      "$150k",
+      "$226.8/mth",
+      "$358/mth",
+      "+$150k",
+      "-$33.2/mth",
+      "+$750/mth",
+      "$10"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Before/after policy restructure comparison showing same sum assured (110k+150k) but with a $150k coverage increase and a net premium change from $226.8/mth to $358/mth, plus a new $750/mth benefit gained."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882558153_photo_2026-03-03_04-08-39 (5).png",
+    "cluster_id": 99,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "personal branding",
+      "career development",
+      "brand vs career positioning"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn Venn diagram contrasting Brand and Career, using a TV-wrapping analogy to illustrate that a good personal brand (\"Good TV wrapped with decent material\") matters more than just content/career alone."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882541470_photo_2026-03-03_04-08-39 (4).png",
+    "cluster_id": 100,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "core and satellite portfolio strategy",
+      "portfolio construction",
+      "asset allocation bell curve"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Teaching diagram illustrating a core-and-satellite investment portfolio strategy using a bell curve labelled Peak, Core, and Spread, with a satellite position shown at the tail."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882508079_photo_2026-03-03_04-08-39 (2).png",
+    "cluster_id": 101,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "recruitment strategy",
+      "agent retention",
+      "survival rate"
+    ],
+    "key_numbers": [
+      "1000",
+      "90%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A slide or note contrasting two recruitment philosophies: recruiting 1000 agents and letting 90% drop off naturally versus recruiting fewer agents with a focus on ensuring 90% survive."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882487953_photo_2026-03-03_04-08-39 (1).png",
+    "cluster_id": 102,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "prospecting formula (QO x ASR x CR)",
+      "warm/cold market segmentation",
+      "servicing and referral rate",
+      "VA (virtual assistant) operations",
+      "client gifting",
+      "financial advisor activity metrics"
+    ],
+    "key_numbers": [
+      "$2/hr"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard diagram showing the FA production formula (QO x ASR x CR x servicing/referral rate) with warm/cold market prospecting tactics and VA support structure including ops, servicing, client events, and 50% subsidised gifting."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882466441_photo_2026-03-03_04-08-38.png",
+    "cluster_id": 103,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "FC recruitment value proposition",
+      "AIA vs Manulife comparison",
+      "agency support hierarchy",
+      "soft skills vs company support"
+    ],
+    "key_numbers": [
+      "50%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A pyramid diagram used in FC recruitment, showing layered reasons to join AIA over Manulife \u2014 from company-level benefits (platform, income, bonuses, 50% marketing subsidy) up through agency emotional support to the individual FC at the apex, with soft skills/confidence/loyalty noted on the side."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882444578_photo_2026-03-03_04-08-38 (5).png",
+    "cluster_id": 104,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "financial advisory internship recruitment",
+      "EPS scheme",
+      "lead generation",
+      "career positioning"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn 3-column objection-handling grid for recruiting FCs into an internship programme, segmenting prospects by career intent (purely intern vs stay but need support vs burnt out) and listing tailored talking points including the EPS 1-year student scheme."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882425830_photo_2026-03-03_04-08-38 (4).png",
+    "cluster_id": 105,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "compounding growth",
+      "client acquisition timeline",
+      "recurring customers",
+      "snowball effect"
+    ],
+    "key_numbers": [
+      "6-12 months",
+      "3-6 months"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing a snowball/compounding curve where referrals or recurring customers accelerate exponentially after a 3-12 month ramp-up period, illustrating how an advisor's client base grows over time."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882407718_photo_2026-03-03_04-08-38 (3).png",
+    "cluster_id": 106,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "active vs passive income",
+      "income mix ratio",
+      "financial independence"
+    ],
+    "key_numbers": [
+      "99%",
+      "1%",
+      "76%",
+      "24%",
+      "62%",
+      "38%",
+      "49%",
+      "51%",
+      "44%",
+      "56%",
+      "42%",
+      "58%",
+      "41%",
+      "59%",
+      "40%",
+      "60%",
+      "39%",
+      "61%",
+      "38%",
+      "62%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A table showing a spectrum of Active % vs Passive % income ratios across multiple rows, with the 49/51 split highlighted as the tipping point where passive income overtakes active income."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882387140_photo_2026-03-03_04-08-38 (2).png",
+    "cluster_id": 107,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "market volatility",
+      "investment growth over time",
+      "dollar-cost averaging concept"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn line graph showing a volatile market curve that dips below a baseline then trends upward overall, used to illustrate market fluctuations and long-term investment growth."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882371090_photo_2026-03-03_04-08-38 (1).png",
+    "cluster_id": 108,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "income vs expenses crossover",
+      "retirement gap",
+      "cashflow divergence"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "A simple two-line crossover diagram showing inputs (income) and outputs (expenses) diverging after an intersection point, illustrating the concept of a retirement or cashflow gap where expenses overtake income."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882355371_photo_2026-03-02_14-20-55.png",
+    "cluster_id": 109,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "other",
+    "topics": [],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Screenshot of the Excalidraw+ collaborative whiteboarding tool splash screen \u2014 not a financial advisory diagram."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882334595_photo_2026-03-01_16-14-39.png",
+    "cluster_id": 110,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "insurance + investment combo",
+      "coverage till age 65 vs age 85",
+      "investment growth projection",
+      "life stage planning"
+    ],
+    "key_numbers": [
+      "$150k",
+      "$159k",
+      "age 65",
+      "age 85",
+      "60%"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn diagram showing a combined insurance + investment plan: $150k coverage till age 65 plus $159k investment, with $150k coverage extending to age 85, and a 60% projected investment growth line charted against a two-phase timeline (to 65, then 65 to 85)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882280025_photo_2026-03-01_16-14-39 (4).png",
+    "cluster_id": 111,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "hospitalisation (public vs private)",
+      "accident coverage",
+      "income replacement",
+      "multi-claim CI"
+    ],
+    "key_numbers": [
+      "$600k",
+      "5x income",
+      "$90",
+      "$20",
+      "$30/mth",
+      "5 years"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn 2x2 coverage grid comparing hospitalisation (public $20 / private $90) and accident (food poisoning, insect, sprain, aches at $30/mth) in the bottom rows, with CI/ECI multi-claim at 5x income ($600k, 5-year benefit period) in the top right."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882245833_photo_2026-03-01_16-14-39 (2).png",
+    "cluster_id": 112,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "investment returns comparison",
+      "annual income from investment",
+      "rate of return illustration",
+      "1/3 budgeting or allocation concept"
+    ],
+    "key_numbers": [
+      "$6360",
+      "10%",
+      "15%",
+      "18%",
+      "$40k",
+      "5% per year",
+      "$12k",
+      "$600/yr",
+      "8% per year",
+      "$960/yr",
+      "20 years"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn timeline diagram comparing investment returns at different rates: a $6,360 amount at 10/15/18% vs a $40k sum over 20 years generating $600/yr at 5% or $960/yr at 8% annual yield on a $12k slice."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882203860_photo_2026-03-01_16-04-39.png",
+    "cluster_id": 113,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "short-term savings",
+      "medium-term savings",
+      "investment/insurance allocation",
+      "expense categorisation"
+    ],
+    "key_numbers": [
+      "$5k",
+      "$1.5k/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart dividing a $5k monthly income into three buckets: short-term (ST) for food and bills at $1.5k/mth, daily expenses at $1.5k/mth, and medium-term (MT) covering house reno, wedding/holidays, and investment/insurance (Inv Ing) at $1.5k/day."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882182796_photo_2026-03-01_16-04-39 (1).png",
+    "cluster_id": 114,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement savings growth",
+      "compound growth diagram",
+      "retirement corpus target",
+      "monthly savings to retirement"
+    ],
+    "key_numbers": [
+      "$3K/mth",
+      "age 29",
+      "age 31",
+      "age 65",
+      "2.5%",
+      "$9321/mth",
+      "$2,238,240",
+      "$1.8 mill",
+      "$5K/mth",
+      "$10K/mth",
+      "$2 milk",
+      "$2"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard diagram showing a retirement savings trajectory from age 29 to 65, illustrating how $3K/month contributions grow at 2.5% to reach approximately $2.24M corpus, generating $9,321/month in retirement income, equivalent to $1.8M\u2013$5K/month in withdrawal capacity."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882149341_photo_2026-03-01_15-53-48 (2).png",
+    "cluster_id": 115,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospital income rider",
+      "hospitalisation benefit tiers",
+      "ICU benefit",
+      "daily hospital cash"
+    ],
+    "key_numbers": [
+      "$100/day",
+      "$200/day",
+      "$300/day",
+      "$300",
+      "$450",
+      "$750/day",
+      "$20/mth",
+      "$39+/mth",
+      "$60/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table showing three tiers of a Hospital Income rider \u2014 daily ward payouts ($100/$200/$300 normal, $300/$450/$750 ICU) and corresponding monthly premiums ($20/$39+/$60)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882124889_photo_2026-03-01_15-53-48 (1).png",
+    "cluster_id": 116,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "death benefit vs critical illness split",
+      "coverage stacking",
+      "term/CI ladder concept"
+    ],
+    "key_numbers": [
+      "$250k",
+      "$100k",
+      "$150k",
+      "$70/mo"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing a $250k coverage block split into $100k Death and $150k CT (critical illness), with an arrow pointing to a taller coverage block costing $70/month that provides Death and CT benefits per million \u2014 illustrating how to upgrade or layer CI and death coverage efficiently."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882069470_photo_2026-03-01_15-36-21 (9).png",
+    "cluster_id": 117,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "public vs private healthcare",
+      "hospitalisation cost comparison",
+      "private interest"
+    ],
+    "key_numbers": [
+      "$20/mth",
+      "$90/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting public vs private hospitalisation: public costs $20/mth with longer waiting times, private costs $90/mth with shorter waiting times."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882032169_photo_2026-03-01_15-36-21 (7).png",
+    "cluster_id": 118,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "rider vs no-rider comparison",
+      "threshold/criteria for rider activation",
+      "premium cap",
+      "insurance rider benefits"
+    ],
+    "key_numbers": [
+      "$1Mill",
+      "$350",
+      "5%",
+      "$3k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard diagram comparing a policy without a rider (Kilo-ok up to $1M, $350 premium) versus with a rider (5% capped at $3k), showing the threshold/criteria that triggers the rider benefit."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882013598_photo_2026-03-01_15-36-21 (6).png",
+    "cluster_id": 119,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "rider charges",
+      "4-form bed",
+      "APR charges",
+      "co-insurance / rider fee structure"
+    ],
+    "key_numbers": [
+      "$3k",
+      "$3.5k",
+      "5%",
+      "10%",
+      "$6k cal"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram explaining a hospital rider charge structure: rider covers 5% capped at $3k, which converts to APR charges of $3.5k plus 10% co-insurance on a $6k claim (4-form bed scenario)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881961846_photo_2026-03-01_15-36-21 (3).png",
+    "cluster_id": 120,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "multi-claim CI",
+      "term plan",
+      "life plan",
+      "with/without relapse benefit",
+      "premium comparison"
+    ],
+    "key_numbers": [
+      "$3.1k/plan",
+      "$250k",
+      "$2185",
+      "$3590",
+      "$5372/yr",
+      "$3070",
+      "$4340/yr",
+      "$1852",
+      "$1739/yr",
+      "age 65",
+      "age 75",
+      "age 85"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison of term plan premiums for $250k CI/ECI/Multi-claim coverage at ages 65, 75, and 85, showing annual costs with and without relapse benefit alongside a life plan cost reference of $3.1k/plan."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881943476_photo_2026-03-01_15-36-21 (2).png",
+    "cluster_id": 121,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "Early Critical Illness (ECI)",
+      "relapse coverage",
+      "critical illness conditions"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-written list of critical illness conditions covered under a relapse clause (heart attack, cancer, stroke, organ transplant, paralysis), likely explaining ECI relapse benefit to a client."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881911591_photo_2026-03-01_15-36-21 (1).png",
+    "cluster_id": 122,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage layering",
+      "term insurance stacking",
+      "coverage timeline"
+    ],
+    "key_numbers": [
+      "$500k",
+      "$250k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn timeline diagram comparing two CI/ECI coverage stacking strategies \u2014 one where existing Term+New adds CI $500k then ECI $250k twice, versus a simpler New-only ECI $250k then Term+New CI $500k sequence."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881896919_photo_2026-03-01_07-47-30.png",
+    "cluster_id": 123,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "calculator_screenshot",
+    "topics": [
+      "immediate profit",
+      "short-term investment return",
+      "capital guaranteed"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$600"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Profit calculator slide illustrating a one-day investment scenario: put in $12k on 1 Jan and withdraw $12k + $600 immediate profit on 2 Jan."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881867231_photo_2026-03-01_07-47-30 (4).png",
+    "cluster_id": 124,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "dynamic allocation",
+      "asset class diversification",
+      "global equity ETFs",
+      "geographic diversification",
+      "S&P 500",
+      "NASDAQ",
+      "MSCI Canada",
+      "MSCI Asia ex-Japan"
+    ],
+    "key_numbers": [
+      "$1K/MTH",
+      "18.88%",
+      "18.04%",
+      "14.02%",
+      "8.85%",
+      "7.94%",
+      "7.34%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Slide showing a dynamic allocation portfolio investing $1K/month across global equity ETFs (US, China, EU, Japan) diversified by country, sector, and asset class, with top holdings including iShares S&P 500, SPDR S&P 500, and Vanguard ETFs as of December 2021."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881848955_photo_2026-03-01_07-47-30 (3).png",
+    "cluster_id": 125,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "AIA vs ETFs/DIY stocks comparison",
+      "USD risk",
+      "dividend tax",
+      "US estate tax",
+      "inheritance risk",
+      "SGD vs USD currency risk",
+      "alternative assets"
+    ],
+    "key_numbers": [
+      "40% estate tax",
+      "18%-40% US estate tax rate schedule",
+      "$0 to $10,000 lowest bracket",
+      "More than $1 million top bracket"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Comparison slide contrasting AIA insurance (SGD, no dividend tax, no estate tax, secondary insured) against ETFs/DIY stocks (USD risk, dividend tax, 40% US estate tax, inheritance risk), with a Bloomberg/IRS US estate tax rate schedule embedded."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881831232_photo_2026-03-01_07-47-30 (2).png",
+    "cluster_id": 126,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement gap",
+      "retirement income shortfall",
+      "wealth accumulation curve",
+      "loyalty bonus",
+      "upfront bonus"
+    ],
+    "key_numbers": [
+      "$3K",
+      "$12K/mth",
+      "$3mill",
+      "$1.5mill shortfall",
+      "$3.2K/mth",
+      "2.5%",
+      "age 26",
+      "age 36",
+      "age 46",
+      "age 65",
+      "age 85",
+      "5% per year",
+      "$600/year",
+      "8% per year",
+      "$960/year",
+      "$45,000",
+      "$6,360"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn wealth accumulation curve for a client starting at age 26 with $3K/mth income, targeting $12K/mth retirement income by age 65, showing a $1.5M shortfall and bonus structures ($45K loyalty + $6,360 upfront) maturing at age 85."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881815192_photo_2026-03-01_07-47-30 (1).png",
+    "cluster_id": 127,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "welcome bonus",
+      "investment-linked policy",
+      "annual premium tiers",
+      "bonus allocation"
+    ],
+    "key_numbers": [
+      ">=2,400",
+      ">=4,800",
+      ">=7,200",
+      ">=12,000",
+      "5%",
+      "8%",
+      "10%",
+      "13%",
+      "15%",
+      "18%",
+      "20%",
+      "23%",
+      "38%",
+      "53%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Presenter slide showing a Welcome Bonus table for a 10-year Initial Investment Period ILP, with bonus percentages across Years 1-3 for four annual premium tiers ranging from $2,400 to $12,000, totalling up to 53% in welcome bonuses."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881781589_photo_2026-02-28_06-49-14.png",
+    "cluster_id": 128,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium comparison",
+      "CI vs ECI",
+      "TPD coverage",
+      "death benefit"
+    ],
+    "key_numbers": [
+      "$24/yr",
+      "$26/yr",
+      "$2,486/yr",
+      "$36/yr",
+      "$600",
+      "$62/yr",
+      "$185k",
+      "$278k",
+      "$200k",
+      "age 47"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn premium comparison table for a client starting at age 47, contrasting a Standard plan (~$2,486/yr for $185k) against a Premium plan (~$36/yr + $200k Death/TPD/CI + $200k ECI for $278k total coverage at ~$62/yr)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881764307_photo_2026-02-28_06-48-54.png",
+    "cluster_id": 129,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "Early CI",
+      "Major CI",
+      "critical illness coverage structure"
+    ],
+    "key_numbers": [
+      "$200k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn Venn diagram showing $200k coverage with Early CI as the outer circle and Major CI as the inner subset, illustrating how Early CI encompasses Major CI."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881732580_photo_2026-02-28_06-47-26.png",
+    "cluster_id": 130,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "why now",
+      "insurability / healthy now",
+      "lock-in rates",
+      "no exclusions"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn \"Why Now\" closing argument listing three reasons to buy insurance today: currently healthy, lock-in premiums/coverage, and no exclusions yet."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881701454_photo_2026-02-28_06-46-17.png",
+    "cluster_id": 131,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "policy bonus/dividend projections",
+      "reversionary bonus",
+      "cash value timeline",
+      "participating policy illustration"
+    ],
+    "key_numbers": [
+      "$12k",
+      "$1.2k",
+      "$6,360",
+      "$45,000",
+      "$600/year",
+      "$960/year",
+      "10%",
+      "15%",
+      "18%",
+      "5-8%",
+      "age 27",
+      "age 28",
+      "age 29",
+      "age 37",
+      "age 41",
+      "age 85"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn timeline diagram showing a participating policy's projected bonuses and cash payouts at ages 27\u201385, with annual bonus figures ($600\u2013$960/year), a lump-sum of $45,000, and a reinvestment note comparing 1st Jan vs 2nd Jan timing at 5\u20138% growth."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881683022_photo_2026-02-28_06-45-10.png",
+    "cluster_id": 132,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "asset classes",
+      "investment vehicles",
+      "alternative investments"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-written list of asset classes a client currently holds or is considering: Robo, Stocks, FD, Property, Gold, Cash, Buses, Stocks, Forex, Crypto."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881666517_photo_2026-02-28_06-44-35.png",
+    "cluster_id": 133,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs DIY investing",
+      "currency risk",
+      "dividend withholding tax",
+      "estate tax",
+      "inheritance risk",
+      "SGD vs USD exposure"
+    ],
+    "key_numbers": [
+      "30%",
+      "$1 million",
+      "40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA (SGD, no dividend/estate taxes, secondary insured) against DIY investing in stocks/robo-advisors/ETFs (USD currency risk, 30% dividend tax, up to 40% US estate tax on assets under $1M, inheritance risk)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881635956_photo_2026-02-28_06-43-21.png",
+    "cluster_id": 134,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "cash flow allocation",
+      "short-term vs long-term savings",
+      "insurance vs investment split"
+    ],
+    "key_numbers": [
+      "$3,680/mth",
+      "$1k (ST)",
+      "$1k (MT)",
+      "$1-$1.5k/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart showing a $3,680/month take-home (after CPF) split into three segments: Short-Term ($1k for food, transport, entertainment, bills), Mid-Term ($1k), and Long-Term investments/insurance ($1-$1.5k/month)."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881586863_photo_2026-02-18_14-34-48.png",
+    "cluster_id": 135,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "FYC (First Year Commission)",
+      "LTV (Lifetime Value)",
+      "FYC Rate",
+      "plan mix by product type",
+      "commission planning"
+    ],
+    "key_numbers": [
+      "$360",
+      "$2k",
+      "$4k",
+      "$12k",
+      "$100k",
+      "$24k",
+      "30%",
+      "50%",
+      "35%",
+      "3.51",
+      "12%",
+      "$120.7k",
+      "$12k",
+      "$600",
+      "$2.7k",
+      "$2k",
+      "$9625",
+      "$4.2k",
+      "$15k",
+      "$3.5k",
+      "$2880",
+      "$10,358"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "A hand-drawn commission planning table showing average premium, FYC rate, and FYC-to-LTV ranges across four plan types: Accident, Health, Life, APA (Single Premium), and PWV."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881569331_photo_2026-02-18_14-27-56.png",
+    "cluster_id": 136,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CPF Life vs Dividend Plan comparison",
+      "retirement income",
+      "capital liquidity vs illiquidity",
+      "bequest value",
+      "payout structure",
+      "CPF RA interest rate"
+    ],
+    "key_numbers": [
+      "$213k",
+      "$312,900",
+      "$1694/mth",
+      "age 55",
+      "age 65",
+      "age 80",
+      "4%",
+      "0% interest"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison diagram contrasting a Dividend Plan (liquid capital, guaranteed bequest, flexible payouts) versus CPF Life (illiquid capital, bequest drops to $0 after age 80, fixed payouts), showing a retirement corpus growing from $213k at age 55 to $312,900 at age 65 then declining to 80, with a monthly payout of $1,694."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881464385_photo_2026-02-07_06-37-13.png",
+    "cluster_id": 137,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "short-term savings",
+      "medium-term goals",
+      "long-term investments and insurance",
+      "compound growth",
+      "retirement/wealth accumulation"
+    ],
+    "key_numbers": [
+      "$790/mth",
+      "$250/mth",
+      "$200/mth",
+      "$3.4k/mth",
+      "$600k",
+      "20 years"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn 1/3 budgeting pie chart splitting $790/mth into short-term savings ($250), medium-term goals like property/wedding/kids, and long-term investments/insurance ($200), paired with a compound growth curve showing $200/mth growing to $600k and eventually $3.4k/mth passive income over 20 years."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881426348_photo_2026-02-07_06-36-28.png",
+    "cluster_id": 138,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs SP500/DIY comparison",
+      "currency risk",
+      "estate tax",
+      "dividend tax",
+      "inheritance risk",
+      "BIC alternatives (gold, property, index, robo, forex, business)"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn T-chart comparing AIA insurance (SGD-denominated, nil estate/dividend tax, safer, with secondary insured) against SP500/DIY investing (currency risk in USD, estate tax, dividend tax, riskier, inheritance risk), with a side list of BIC alternative asset classes the client might hold."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881392216_photo_2026-02-07_06-35-21.png",
+    "cluster_id": 139,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "diversification",
+      "asset allocation",
+      "geographic diversification",
+      "market cycles",
+      "portfolio smoothing"
+    ],
+    "key_numbers": [
+      "$200/mth"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn teaching diagram showing diversification across countries, industries, and asset classes (pie chart with US/China/Europe/Japan/Asia/Gold/Bonds/Property/Healthcare/Tech) at $200/month, with overlapping sine waves illustrating how different market cycles combine into a smoother overall return."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881341488_photo_2026-01-26_04-16-51.png",
+    "cluster_id": 140,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs S&P500 comparison",
+      "dividend tax",
+      "estate tax",
+      "cryptocurrency risk",
+      "secondary owner",
+      "investment risk comparison"
+    ],
+    "key_numbers": [
+      "371"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn comparison table contrasting AIA (insurance/investment) vs S&P500 across tax treatment (no tax vs dividend/estate tax), risk, and ownership, with a side note referencing platforms Bitrah Rally, Syfe, and Moomoo."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881323446_photo_2026-01-26_04-11-08.png",
+    "cluster_id": 141,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement income gap",
+      "liquidity planning",
+      "income replacement",
+      "savings accumulation curve"
+    ],
+    "key_numbers": [
+      "$200k",
+      "$15k/yr",
+      "$60k/yr",
+      "$36k/yr",
+      "2.5%",
+      "age 37",
+      "age 50",
+      "age 65",
+      "age 85",
+      "$2.5k/mth",
+      "$3k",
+      "$3.5k/mth",
+      "$3k/mth",
+      "$1.8 mill",
+      "$600k",
+      "$2.4 mill",
+      "$2.5k x 20 years",
+      "K10k x 15 years"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram showing a retirement income/liquidity plan with an accumulation curve from age 37 to 85, calculating that saving $2.5k/month for 20 years yields $1.8M at 50 and $600k at 65, totalling $2.4M, with monthly drawdown bands annotated."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881282968_photo_2026-01-26_04-10-05.png",
+    "cluster_id": 142,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AXA QXUS vs S&P 500 comparison",
+      "dividend tax",
+      "currency risk",
+      "estate tax",
+      "investment-linked policy timeline",
+      "AIA regular premium illustration",
+      "dollar-cost averaging"
+    ],
+    "key_numbers": [
+      "$10k",
+      "$500",
+      "$10,000",
+      "5% = $500",
+      "8% = $800/yr",
+      "age 37",
+      "age 47",
+      "age 57",
+      "estate tax 40%"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn diagram comparing AXA QXUS against S&P 500 on risk/tax factors, then illustrating an AIA investment timeline from age 37-57 with regular top-ups and projected 8% returns of $800/yr."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881233299_photo_2026-01-26_02-28-14.png",
+    "cluster_id": 143,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospital daily benefit",
+      "MSHL coverage cost"
+    ],
+    "key_numbers": [
+      "$830/day"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn note showing MSHL (MediShield Life) hospital daily benefit rate of $830 per day, labelled as point 1 in a larger teaching sequence."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881166139_photo_2026-01-26_02-28-14 (3).png",
+    "cluster_id": 144,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "DPS (Dependants' Protection Scheme)",
+      "existing coverage"
+    ],
+    "key_numbers": [
+      "$55,000"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-written note showing a client's DPS (Dependants' Protection Scheme) policy with Great Eastern for $55,000 in coverage."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881150366_photo_2026-01-26_02-28-14 (2).png",
+    "cluster_id": 145,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium calculation",
+      "sum assured ladder",
+      "budget breakdown",
+      "1/3 budgeting"
+    ],
+    "key_numbers": [
+      "$1,000,000",
+      "$100k",
+      "$2,500",
+      "$97,500",
+      "$9,750",
+      "10%",
+      "5%",
+      "$3,000",
+      "$50k",
+      "<$2.5k"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn working showing a $100k budget minus $2,500 leaving $97,500, with 10% yielding $9,750, alongside a $1M sum assured bracket and a circled $3,000 premium figure against a $50k reference, illustrating a premium affordability or budget-allocation calculation."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881134684_photo_2026-01-26_02-28-14 (1).png",
+    "cluster_id": 146,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "hospitalisation coverage",
+      "day surgery vs inpatient",
+      "medical insurance benefit limit",
+      "waiting period / reinstatement window"
+    ],
+    "key_numbers": [
+      "$200k",
+      "$1 million",
+      "12 months"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn timeline diagram (point 2) showing a $200k day-surgery/hospitalisation benefit with 12-month windows on each side and an overall $1 million coverage sweep, illustrating how a medical plan's benefit structure or reinstatement period works."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881115824_photo_2026-01-24_02-47-17.png",
+    "cluster_id": 147,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "savings allocation",
+      "investment",
+      "compounding growth"
+    ],
+    "key_numbers": [
+      "$200 max",
+      "$200",
+      "$3 mill"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn pie chart illustrating a 1/3 budgeting framework splitting income into savings/investment (CE/LT at $200/month), short-term spending (ST, $200 max), and household/car/misc (MT), with a compounding growth curve projecting to $3 million."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881082384_photo_2026-01-24_02-46-48.png",
+    "cluster_id": 148,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "AIA vs S&P500 comparison",
+      "dividend tax",
+      "estate tax",
+      "currency risk",
+      "investment risk",
+      "portfolio diversification",
+      "asset allocation"
+    ],
+    "key_numbers": [
+      "$200/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn iPad diagram comparing AIA vs S&P500 on tax, estate tax, currency risk, and risk level, alongside a pie chart showing a diversified portfolio across S&P500, China, Japan, Bonds, Tech, Gold/Property, and other assets, with a note on secondary owner at $200/month and alternatives like crypto and Syfe."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880940945_photo_2026-01-18_04-09-58 (2).png",
+    "cluster_id": 149,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "ECI (Early Critical Illness)",
+      "premium comparison by entry age"
+    ],
+    "key_numbers": [
+      "$250k",
+      "age 65",
+      "age 75",
+      "age 85",
+      "$2012",
+      "$3317",
+      "$4885"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn whiteboard showing ECI $250k sum assured premium comparison across three entry ages (65, 75, 85) with annual premiums of $2012, $3317, and $4885 respectively."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880908260_photo_2026-01-18_03-48-31.png",
+    "cluster_id": 150,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium timeline",
+      "policy premium staging",
+      "annual premium outlay",
+      "multi-policy layering"
+    ],
+    "key_numbers": [
+      "$1800",
+      "$2160",
+      "$2400",
+      "$1500",
+      "$600/yr",
+      "$960/yr",
+      "age 26",
+      "age 29",
+      "age 36",
+      "age 46",
+      "90"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Timeline diagram showing a client's staggered insurance premium payments across ages 26 to 46, with multiple policies layered in at different ages totalling $1800+$2160+$2400, and annual premiums of $600/yr and $960/yr at various stages, with coverage or payment running to age 90."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880873337_photo_2026-01-18_03-48-31 (4).png",
+    "cluster_id": 151,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "1/3 budgeting",
+      "income allocation",
+      "retirement income planning",
+      "protection budgeting"
+    ],
+    "key_numbers": [
+      "$7.6k/mth",
+      "age 65",
+      "$11k/mth",
+      "$1.5k/mth",
+      "$1k/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn pie chart showing a client's projected $7.6k/month income at age 65 split into three buckets: $1k/month for food (short term), $1.5k/month for housing/mortgage/renovation, and the remainder for future protection."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880855819_photo_2026-01-18_03-48-31 (3).png",
+    "cluster_id": 152,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "wealth accumulation curve",
+      "retirement income",
+      "corpus / lump sum at retirement",
+      "accumulation phase vs distribution phase"
+    ],
+    "key_numbers": [
+      "age 26",
+      "age 36",
+      "age 65",
+      "$3 million",
+      "$18k/month"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn accumulation curve showing premiums paid from age 26 to 65, building a $3M corpus that pays out $18k/month in retirement \u2014 with a \"back left\" note at age 65 indicating the distribution phase begins."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880823775_photo_2026-01-18_03-48-31 (1).png",
+    "cluster_id": 153,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "text_notes",
+    "topics": [
+      "hospitalisation coverage",
+      "critical illness coverage",
+      "accident coverage",
+      "insurance provider comparison"
+    ],
+    "key_numbers": [
+      "$90/mth",
+      "$239/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Handwritten breakdown of client Pooja's existing insurance: hospitalisation at $90/month with AIA, and critical illness plus accident coverage at $239/month with GE."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880807667_photo_2025-12-28_13-56-41.png",
+    "cluster_id": 154,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "hospital premium funding",
+      "dividend income vs premium payable",
+      "resource depletion vs generation",
+      "retirement income planning",
+      "whole life / endowment cash flow"
+    ],
+    "key_numbers": [
+      "$22,000 (age 50 do-nothing column)",
+      "$50,130 (hospitalization premium payable, age 78)",
+      "$34,420 (career dividend income)",
+      "$150,000+ (total income figures at older ages)",
+      "age 50 to 78 range shown"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Age-by-age spreadsheet comparing two strategies \u2014 depleting savings to pay hospital premiums vs. generating dividend income to cover premiums \u2014 showing annual hospitalization premium payable, dividend certification, career income, and total gross income from age 50 to 78 for a specific client scenario."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880260858_photo_2025-12-28_13-55-33.png",
+    "cluster_id": 155,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [
+      "integrated shield plan comparison",
+      "premium comparison by age",
+      "cumulative payment projection",
+      "MediShield Life vs ISP",
+      "IGP Rider"
+    ],
+    "key_numbers": [
+      "$1,092",
+      "$1,578",
+      "$2,519",
+      "$2,716",
+      "$3,203",
+      "$5,985",
+      "$6,502",
+      "$222,004",
+      "age 74",
+      "age 80",
+      "age 86"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Age-banded premium comparison table showing MediShield Life, Integrated Shield Plan, IGP Rider, and additional costs alongside yearly and cumulative payment totals from approximately age 74 to 86."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880243752_photo_2025-12-28_08-59-41.png",
+    "cluster_id": 156,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "policy_summary",
+    "topics": [
+      "savings & retirement plan",
+      "endowment / regular payout",
+      "retirement income"
+    ],
+    "key_numbers": [
+      "S$54,000",
+      "S$47,400",
+      "S$28,400",
+      "S$46,920",
+      "S$0.00",
+      "Jul 25 2016",
+      "Nov 30 2017",
+      "Mar 15 2018",
+      "Jul 4 2018",
+      "Sep 23 2021"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of a Manulife savings and retirement plan portfolio for insured Lee Hiung Koh (Li Hongke), showing five policies: ManuRegular Payout ERG15, ManuFlexi Growth, ReadyBuilder 10, RetireReady Plus Limited Pay 10, and Manulife SmartRetire III 8 Years, with effective dates from 2016 to 2021 and sum insured values up to S$54,000."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880228338_photo_2025-12-28_08-59-25.png",
+    "cluster_id": 157,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "other",
+    "topics": [
+      "investment-linked plan",
+      "ILP"
+    ],
+    "key_numbers": [
+      "S$20,744.73",
+      "Mar 27, 2023"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Screenshot of Manulife InvestReady (III) 13 Years Flexi 10 ILP policy for client Lee Hiung Koh, showing policy number 2451250074 with an account value of S$20,744.73 effective March 2023."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880213341_photo_2025-12-25_07-21-53.png",
+    "cluster_id": 158,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "income vs expenses budgeting",
+      "cash flow analysis",
+      "40/60 asset allocation",
+      "precious metals investing",
+      "Gold/Silver ETFs",
+      "global equities",
+      "bonds diversification"
+    ],
+    "key_numbers": [
+      "$1308 income",
+      "$400 expenses",
+      "$2k free cash",
+      "$11k locked",
+      "$500 more to save (June 2026 Osaka)",
+      "$958.60 precious metals",
+      "40:60 invest/save split",
+      "$400 Tech",
+      "Cash 40%"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn financial plan for a client named Zheng Zhar showing monthly cash flow ($1308 income, $400 expenses), a 40:60 invest-to-save split, and a portfolio breakdown across Gold/Silver ETFs, global equities, tech, and international bonds."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880160316_photo_2025-12-21_06-38-11 (4).png",
+    "cluster_id": 159,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "Great TotalCare hospitalisation plan",
+      "deductible and co-insurance",
+      "rider cap",
+      "claims process",
+      "budget allocation",
+      "death/TPD coverage",
+      "CI coverage",
+      "hospitalisation coverage",
+      "accident coverage",
+      "investment allocation"
+    ],
+    "key_numbers": [
+      "$28.87/mth",
+      "24 Jul 2017",
+      "$50k",
+      "$100k",
+      "$96500",
+      "$3500 deductible",
+      "10% co-insurance",
+      "$9650",
+      "$13150",
+      "5% rider cap",
+      "$3k",
+      "$500/mth expenses",
+      "$3500/mth income",
+      "$1k assets",
+      "$10k (moto in 1 year)",
+      "$2800 - $500 = $2300/mth",
+      "$100-$200/mth insurance",
+      "$500k death/TPD",
+      "3X income CI",
+      "20-25% investments",
+      "$1k/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-written notes for a client named Daniel covering his mother's Great TotalCare hospitalisation premium, deductible/co-insurance mechanics, and a financial fact-find covering income ($3500/mth), expenses ($500/mth), insurance budget ($100-$200/mth), and recommended coverage across death/TPD, CI, hospitalisation, and investments."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880032994_photo_2025-12-21_06-38-11 (1).png",
+    "cluster_id": 160,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "retirement income gap",
+      "wealth accumulation curve",
+      "monthly income needs at retirement",
+      "lump sum vs monthly income conversion",
+      "milestone expenses (wedding, renovation, house downpayment)"
+    ],
+    "key_numbers": [
+      "$800k + $300k = $1mill",
+      "$9793/mth x 25 x 12 = $2.9mill",
+      "$2mill / 35 + 12 = $4.7k/mth",
+      "2.5% p.a.",
+      "$3k/mth",
+      "$3.5k/mth",
+      "age 26",
+      "age 60",
+      "age 65",
+      "age 85",
+      "$1.2mill",
+      "$2mill",
+      "6% p.a.",
+      "$72k per year",
+      "$120k per year",
+      "$600/mth",
+      "$1k/mth",
+      "$30k",
+      "$50k",
+      "Wedding $50k to $20k",
+      "Reno Hilapia $50k to $20k, $55k shortfall",
+      "House downpayment $75k ~ $55k shortfall",
+      "$600k @ 37% x 0.62 = $131k x 5 = $681k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn iPad diagram showing a client's retirement income gap analysis (age 26-85) with two wealth curves, monthly income targets of $3.5k/mth needing $2.9mill lump sum, and three upcoming milestone expenses: wedding, renovation, and house downpayment with a calculated $681k shortfall."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880015914_image.png",
+    "cluster_id": 161,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "spreadsheet",
+    "topics": [],
+    "key_numbers": [],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Appointment scheduling whiteboard for 8 May showing 7 consultant appointments with lead names, source channels (Toastbox, FINternship, GYP CPF), locations (F2F, Tampines, Zoom), and appointment types."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1774624966669_image.png",
+    "cluster_id": 162,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "CI vs ECI",
+      "critical illness coverage scope"
+    ],
+    "key_numbers": [],
+    "client_or_generic": "generic",
+    "one_line_summary": "Hand-drawn concentric circle diagram showing ECI (Early Critical Illness) as a superset that encompasses CI (Critical Illness), illustrating that ECI covers a broader range of conditions than standard CI."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773480239105_IMG_7687.png",
+    "cluster_id": 163,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium budgeting",
+      "1/3 budgeting",
+      "insurance premium allocation",
+      "multi-insurer comparison"
+    ],
+    "key_numbers": [
+      "$100/mth",
+      "$195 (AIA)",
+      "$205 (GE/G)",
+      "$95 ft",
+      "$20",
+      "$400/mth",
+      "$500/mth"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn diagram breaking down a client's insurance premium budget (~$400-500/mth) across multiple insurers including AIA ($195) and GE ($205), with a 3-4 week timeline noted and a $20 residual figure."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773337245654_telegram-cloud-photo-size-5-6140762850926989187-y.png",
+    "cluster_id": 164,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "overview of resources",
+      "Prime Life policy",
+      "CPFOA",
+      "cash savings",
+      "surrender value",
+      "dividend yield",
+      "cash yield"
+    ],
+    "key_numbers": [
+      "$56k",
+      "$150k",
+      "$96k",
+      "$152k",
+      "$302k",
+      "6%",
+      "1%-2.5%"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn overview of a client's financial resources listing Prime Life SV at $56k, CPF OA, cash savings (with dividend 6% and cash 1-2.5% breakdowns), and surrender values for named clients Yvon and Ari totalling ~$302k."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773309950246_telegram-cloud-photo-size-5-6140762850926989229-y.png",
+    "cluster_id": 165,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "hand_drawn_concept",
+    "topics": [
+      "premium comparison",
+      "coverage upgrade",
+      "before/after cost analysis"
+    ],
+    "key_numbers": [
+      "$226.8/month",
+      "$358/month",
+      "$750/month",
+      "-$131.8/month",
+      "+$750/month",
+      "110k",
+      "150k"
+    ],
+    "client_or_generic": "client_specific",
+    "one_line_summary": "Hand-drawn comparison table showing a client's current vs after coverage (110k+150k) with monthly premiums of $226.80 vs $358 and $750, and the net premium differences, including a current surrender value of $0 at 5/40."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773309567520_telegram-cloud-photo-size-5-6154656425884454680-x.png",
+    "cluster_id": 166,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "Annual Premium Adjustment Percentage",
+      "AIA Vitality Status tiers",
+      "Cumulative Premium Percentage",
+      "policy anniversary adjustments"
+    ],
+    "key_numbers": [
+      "Bronze +2%",
+      "Silver 0%",
+      "Gold -1%",
+      "Platinum -3%",
+      "Minimum Cumulative Premium Percentage 80%",
+      "Maximum Cumulative Premium Percentage 100%",
+      "45 days"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Presenter slide explaining AIA Vitality Status tiers (Bronze to Platinum) and how each tier affects the Annual Premium Adjustment Percentage, with cumulative premium percentage bounds of 80-100%."
+  },
+  {
+    "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773290262157_telegram-cloud-photo-size-5-6154656425884454677-y.png",
+    "cluster_id": 167,
+    "cluster_size": 1,
+    "is_representative": true,
+    "kind": "slide_screenshot",
+    "topics": [
+      "critical illness coverage",
+      "early stage CI vs major CI",
+      "carcinoma in situ",
+      "cancer condition tiers",
+      "CI policy conditions list"
+    ],
+    "key_numbers": [
+      "42 early stage conditions",
+      "35 intermediate stage conditions",
+      "73 major stage conditions",
+      "condition 34"
+    ],
+    "client_or_generic": "generic",
+    "one_line_summary": "Product slide showing a critical illness policy's three-tier cancer coverage (Early/Intermediate/Major Stage) with condition 34 Major Cancer expanded to list early-stage variants including carcinoma in situ, plus an overlay note explaining CIS as a Stage 0 non-invasive cancer."
+  }
+]
