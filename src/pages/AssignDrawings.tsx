@@ -435,28 +435,60 @@ export default function AssignDrawingsPage() {
                     if (boundUrls.length === 0) return null;
                     return (
                       <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {boundUrls.map((u) => (
-                          <a
-                            key={u}
-                            href={u}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group/img relative block rounded-lg overflow-hidden border border-primary/40 bg-white aspect-[4/3]"
-                            title="Click to open full-size in a new tab"
-                          >
-                            <img
-                              src={u}
-                              alt={selectedCard.title}
-                              loading="lazy"
-                              className="w-full h-full object-contain"
-                            />
-                            <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/40 transition-colors flex items-center justify-center">
-                              <span className="text-white text-[10px] font-medium opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/60 px-2 py-0.5 rounded">
-                                Open full-size ↗
-                              </span>
+                        {boundUrls.map((u) => {
+                          const isBusy = busyPhotoUrl === u;
+                          return (
+                            <div
+                              key={u}
+                              className="group/img relative rounded-lg overflow-hidden border border-primary/40 bg-white aspect-[4/3]"
+                            >
+                              <a
+                                href={u}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full h-full"
+                                title="Open full-size in a new tab"
+                              >
+                                <img
+                                  src={u}
+                                  alt={selectedCard.title}
+                                  loading="lazy"
+                                  className="w-full h-full object-contain"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors" />
+                                <span className="absolute bottom-1 right-1 text-[9px] font-medium opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/60 text-white px-1.5 py-0.5 rounded">
+                                  Open ↗
+                                </span>
+                              </a>
+                              {/* Unbind — one click removes this image from
+                                  the card. Stops the parent anchor from
+                                  opening the file at the same time. */}
+                              <button
+                                type="button"
+                                disabled={isBusy}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  // Synthesise an EnhancedPhoto so handleAssign
+                                  // (which expects one) can toggle this URL
+                                  // off the card.
+                                  handleAssign({ name: "", url: u, createdAt: "" });
+                                }}
+                                className="absolute top-1 right-1 z-10 inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm disabled:opacity-50"
+                                title="Unbind this drawing from the card"
+                              >
+                                {isBusy ? (
+                                  <Loader2 className="h-3 w-3 animate-spin" />
+                                ) : (
+                                  <>
+                                    <X className="h-3 w-3" />
+                                    Unbind
+                                  </>
+                                )}
+                              </button>
                             </div>
-                          </a>
-                        ))}
+                          );
+                        })}
                       </div>
                     );
                   })()}
