@@ -645,9 +645,9 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > As a bonus, you will also get these resources after the consultation
 > 
-> ![Free Ultimate Guide to Adulting](/scripts/free-adulting-guide-promo.png)
+> ![Free Ultimate Guide to Adulting](/scripts/free-adulting-guide-promo.webp)
 > 
-> ![Free Ultimate Guide to Investing](/scripts/free-investing-guide-promo.png)
+> ![Free Ultimate Guide to Investing](/scripts/free-investing-guide-promo.webp)
 > 
 > I've scheduled your session for [Confirmed Date & Time A], or [Confirmed Date & Time B] will any of these timings work for you?
 > 
@@ -2673,9 +2673,9 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > ### 📎 Attach These Flyers
 > 
-> ![Hit Your First $10K](/scripts/hit-first-10k.png)
+> ![Hit Your First $10K](/scripts/hit-first-10k.webp)
 > 
-> ![Free Seminar — Sign Up Now](/scripts/free-seminar-signup.png)
+> ![Free Seminar — Sign Up Now](/scripts/free-seminar-signup.webp)
 > 
 > ---
 > 
@@ -2748,7 +2748,7 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > ### 📎 Attach This Brochure
 > 
-> ![FINternship Program Brochure](/scripts/finternship-program-brochure.png)
+> ![FINternship Program Brochure](/scripts/finternship-program-brochure.webp)
 
 ---
 
@@ -2804,7 +2804,7 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > ### 📎 Attach This Ad Flyer
 > 
-> ![McDonald's Voucher Ad](/scripts/mcdonalds-voucher-ad.png)
+> ![McDonald's Voucher Ad](/scripts/mcdonalds-voucher-ad.webp)
 
 **Version 2 (McDonald's Voucher — Text 2 (Campaign Intro))**
 
@@ -3710,17 +3710,17 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > ### 📎 Attach These Flyers
 > 
-> ![FINternship Masterclass Flyer](/scripts/finternship-masterclass.png)
+> ![FINternship Masterclass Flyer](/scripts/finternship-masterclass.webp)
 > 
-> ![Build Your Financial Sandwich](/scripts/financial-sandwich.png)
+> ![Build Your Financial Sandwich](/scripts/financial-sandwich.webp)
 > 
-> ![Build a Future That Pays You Back](/scripts/future-pays-back.png)
+> ![Build a Future That Pays You Back](/scripts/future-pays-back.webp)
 > 
-> ![Earn While They Learn](/scripts/earn-while-learn.png)
+> ![Earn While They Learn](/scripts/earn-while-learn.webp)
 > 
-> ![Your Signature Could Be Here](/scripts/signature-cheque.png)
+> ![Your Signature Could Be Here](/scripts/signature-cheque.webp)
 > 
-> ![From Netflix to Net Worth](/scripts/netflix-to-networth.png)
+> ![From Netflix to Net Worth](/scripts/netflix-to-networth.webp)
 
 **Version 2 (NSF Interview Zoom Confirmation)**
 
@@ -4205,9 +4205,9 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > As a bonus, you will also get these resources after the consultation
 > 
-> ![Free Ultimate Guide to Adulting](/scripts/free-adulting-guide-promo.png)
+> ![Free Ultimate Guide to Adulting](/scripts/free-adulting-guide-promo.webp)
 > 
-> ![Free Ultimate Guide to Investing](/scripts/free-investing-guide-promo.png)
+> ![Free Ultimate Guide to Investing](/scripts/free-investing-guide-promo.webp)
 > 
 > Would sometime next Saturday or Sunday at 10am or 2pm work for you?
 
@@ -5276,7 +5276,7 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > ### 📎 Attach This Flyer
 > 
-> ![Build Your Financial Sandwich](/scripts/financial-sandwich-referral.png)
+> ![Build Your Financial Sandwich](/scripts/financial-sandwich-referral.webp)
 > 
 > ---
 > 
@@ -8831,7 +8831,7 @@ tags: [inbox, scripts, outreach, servicing, sales, playbook, next-60-days]
 > 
 > Example: `Zoom - +65 8313 5494 - Sky (Gab FB Leads)`
 > 
-> ![Google Calendar Example](/scripts/google-calendar-example.png)
+> ![Google Calendar Example](/scripts/google-calendar-example.webp)
 > 
 > ---
 > 
