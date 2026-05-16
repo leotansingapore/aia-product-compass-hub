@@ -138,6 +138,52 @@ export function DescribeAndBindDialog({
 
   const selectedCard = sortedCards.find((c) => c.id === selectedCardId) ?? null;
 
+  /**
+   * Rank cards by simple keyword-overlap with the description text. Used to
+   * populate the "Suggested" chips so the user doesn't have to scroll through
+   * all 55 cards to find the right one.
+   * Scoring: +2 per token shared with title, +1 per token shared with tags,
+   * +1 per token shared with description. Stop-words filtered.
+   */
+  const suggestedCards = useMemo(() => {
+    const text = description.trim().toLowerCase();
+    if (text.length < 8) return [] as ConceptCard[];
+    const STOP = new Set([
+      "the", "a", "an", "of", "for", "and", "or", "to", "in", "on",
+      "with", "is", "are", "by", "at", "into", "from", "as", "be", "this",
+      "that", "it", "its", "split", "shows", "showing", "hand-drawn",
+      "drawn", "hand", "diagram", "chart", "drawing", "pie",
+    ]);
+    const tokens = new Set(
+      text
+        .replace(/[^a-z0-9$%\s/.-]/g, " ")
+        .split(/\s+/)
+        .filter((t) => t.length > 2 && !STOP.has(t))
+    );
+    if (tokens.size === 0) return [];
+    const scored = cards.map((c) => {
+      const titleToks = new Set(c.title.toLowerCase().split(/\s+/));
+      const tagToks = new Set(
+        (c.tags ?? []).flatMap((t) => t.toLowerCase().split(/\s+/))
+      );
+      const descToks = new Set(
+        (c.description ?? "").toLowerCase().split(/\s+/)
+      );
+      let score = 0;
+      for (const t of tokens) {
+        if (titleToks.has(t)) score += 2;
+        if (tagToks.has(t)) score += 1;
+        if (descToks.has(t)) score += 1;
+      }
+      return { card: c, score };
+    });
+    return scored
+      .filter((s) => s.score >= 2)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4)
+      .map((s) => s.card);
+  }, [description, cards]);
+
   // ─── Bind to existing card ──────────────────────────────────────
   const handleBindToExisting = async () => {
     if (!photoUrl || !selectedCard) return;
@@ -423,8 +469,38 @@ export function DescribeAndBindDialog({
 
             {mode === "pick-existing" ? (
               <div>
+                {/* Suggested matches based on the description text. Only
+                    surfaces when the user has actually typed something — so
+                    it stays out of the way otherwise. */}
+                {suggestedCards.length > 0 && (
+                  <div className="mb-2">
+                    <label className="text-xs font-medium text-muted-foreground">
+                      Suggested from your description
+                    </label>
+                    <div className="mt-1 flex flex-wrap gap-1.5">
+                      {suggestedCards.map((c) => (
+                        <button
+                          key={c.id}
+                          type="button"
+                          onClick={() => setSelectedCardId(c.id)}
+                          className={cn(
+                            "rounded-md px-2 py-1 text-[11px] border transition-colors",
+                            selectedCardId === c.id
+                              ? "border-primary bg-primary/10 text-primary"
+                              : "border-border hover:border-primary/40 hover:bg-muted/50"
+                          )}
+                          title={c.description ?? ""}
+                        >
+                          {c.title}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <label className="text-xs font-medium text-muted-foreground">
-                  Pick a concept card
+                  {suggestedCards.length > 0
+                    ? "...or pick any other card"
+                    : "Pick a concept card"}
                 </label>
                 <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
                   <PopoverTrigger asChild>

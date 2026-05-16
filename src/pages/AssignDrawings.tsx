@@ -171,12 +171,16 @@ function PhotoTile({
   selectedCardHasIt,
   busy,
   onAssign,
+  onDescribe,
 }: {
   photo: EnhancedPhoto;
   alreadyAssignedTo: string[];
   selectedCardHasIt: boolean;
   busy: boolean;
   onAssign: () => void;
+  /** Opens the Describe & Bind dialog for this photo, regardless of whether
+   *  a card is currently selected. */
+  onDescribe: () => void;
 }) {
   const desc = PHOTO_DESCRIPTIONS.get(photo.url);
   // Compose a tooltip that shows the AI-generated summary + key topics.
@@ -190,10 +194,7 @@ function PhotoTile({
       ].filter(Boolean).join("\n")
     : photo.name;
   return (
-    <button
-      onClick={onAssign}
-      disabled={busy}
-      title={tooltipText}
+    <div
       className={cn(
         "group relative rounded-lg overflow-hidden border bg-card transition-all text-left",
         selectedCardHasIt
@@ -203,21 +204,53 @@ function PhotoTile({
             : "border-border hover:border-primary/60"
       )}
     >
-      <div className="aspect-square bg-white">
-        <img
-          src={photo.url}
-          alt={desc?.one_line_summary ?? photo.name}
-          loading="lazy"
-          className="w-full h-full object-contain"
-        />
-      </div>
+      <button
+        type="button"
+        onClick={onAssign}
+        disabled={busy}
+        title={tooltipText}
+        className="block w-full text-left"
+      >
+        <div className="aspect-square bg-white">
+          <img
+            src={photo.url}
+            alt={desc?.one_line_summary ?? photo.name}
+            loading="lazy"
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </button>
+
+      {/* Describe & Bind launcher — always opens the dialog so you can write
+          a description, pick any card, create a new one, or move it to
+          case-studies. Sits in the top-right corner, slides in on hover. */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onDescribe();
+        }}
+        disabled={busy}
+        title="Describe this drawing & decide where it goes"
+        className={cn(
+          "absolute top-1 right-1 z-20 inline-flex items-center gap-1 rounded-md bg-slate-700/85 hover:bg-slate-800 text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm disabled:opacity-50 transition-opacity",
+          selectedCardHasIt
+            ? "opacity-0 group-hover:opacity-100"
+            : "opacity-80 hover:opacity-100"
+        )}
+      >
+        <Pencil className="h-3 w-3" />
+        Describe
+      </button>
+
       {selectedCardHasIt && (
-        <div className="absolute top-1 right-1 z-10 h-6 w-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md">
+        <div className="absolute top-1 left-1 z-10 h-6 w-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md pointer-events-none">
           <Check className="h-3.5 w-3.5" />
         </div>
       )}
       {!selectedCardHasIt && alreadyAssignedTo.length > 0 && (
-        <div className="absolute top-1 left-1 z-10 text-[9px] bg-amber-500 text-white px-1.5 py-0.5 rounded font-medium shadow-md">
+        <div className="absolute top-1 left-1 z-10 text-[9px] bg-amber-500 text-white px-1.5 py-0.5 rounded font-medium shadow-md pointer-events-none">
           assigned to {alreadyAssignedTo.length}
         </div>
       )}
@@ -234,11 +267,11 @@ function PhotoTile({
         </div>
       )}
       {busy && (
-        <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
+        <div className="absolute inset-0 bg-background/80 flex items-center justify-center pointer-events-none">
           <Loader2 className="h-5 w-5 animate-spin text-primary" />
         </div>
       )}
-    </button>
+    </div>
   );
 }
 
@@ -669,6 +702,19 @@ export default function AssignDrawingsPage() {
                         selectedCardHasIt={selectedHasIt}
                         busy={busyPhotoUrl === p.url}
                         onAssign={() => handleAssign(p)}
+                        onDescribe={() => {
+                          // If this photo is already bound to the selected
+                          // card, open as "reassign from this card" so the
+                          // dialog will MOVE it on submit; otherwise open
+                          // as a fresh describe.
+                          setDescribePhoto({
+                            url: p.url,
+                            name: p.name,
+                            sourceCardId: selectedHasIt
+                              ? selectedCard!.id
+                              : null,
+                          });
+                        }}
                       />
                     );
                   })}
