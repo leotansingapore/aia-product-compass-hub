@@ -31,6 +31,7 @@ import {
   Plus,
   Image as ImageIcon,
   Trash2,
+  FolderInput,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -54,13 +55,21 @@ interface Props {
   photoName: string | null;
   initialDescription: string;
   cards: ConceptCard[];
+  /**
+   * If set, this photo is already bound to this card. Binding to a
+   * different card or creating a new one will REMOVE it from this source
+   * card (i.e. a move, not a copy).
+   */
+  sourceCardId?: string | null;
   /** Called after successful bind/create so the parent can refetch. */
   onDone: () => void;
-  /** Called after the photo file is deleted from storage so the parent can drop it from the grid. */
+  /** Called after the photo file is deleted/moved out of storage so the parent can drop it from the grid. */
   onDeleted?: (url: string) => void;
 }
 
 const STORAGE_BUCKET = "concept-card-images";
+const ENHANCED_PREFIX = "enhanced/";
+const CASE_STUDIES_PREFIX = "case-studies/";
 
 /**
  * Pull the bucket-relative path out of a public storage URL.
@@ -82,6 +91,7 @@ export function DescribeAndBindDialog({
   photoName,
   initialDescription,
   cards,
+  sourceCardId,
   onDone,
   onDeleted,
 }: Props) {
@@ -94,6 +104,20 @@ export function DescribeAndBindDialog({
   const [newTags, setNewTags] = useState("");
   const [busy, setBusy] = useState(false);
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
+  const [confirmCaseStudyOpen, setConfirmCaseStudyOpen] = useState(false);
+
+  const sourceCard =
+    sourceCardId != null ? cards.find((c) => c.id === sourceCardId) ?? null : null;
+
+  // Helper: strip photoUrl from one card's image_urls + legacy image_url.
+  const removeFromCard = async (card: ConceptCard, url: string) => {
+    const newUrls = (card.image_urls ?? []).filter((u) => u !== url);
+    const newLegacy = card.image_url === url ? newUrls[0] ?? null : card.image_url;
+    return supabase
+      .from("concept_cards")
+      .update({ image_urls: newUrls, image_url: newLegacy })
+      .eq("id", card.id);
+  };
 
   // Reset state when a new photo opens.
   useEffect(() => {
@@ -117,28 +141,99 @@ export function DescribeAndBindDialog({
   // ─── Bind to existing card ──────────────────────────────────────
   const handleBindToExisting = async () => {
     if (!photoUrl || !selectedCard) return;
+    if (sourceCard && selectedCard.id === sourceCard.id) {
+      toast.info("That's already this photo's card");
+      return;
+    }
     setBusy(true);
     const existing = selectedCard.image_urls ?? [];
-    if (existing.includes(photoUrl)) {
-      toast.info("Already bound to this card");
-      setBusy(false);
-      return;
+    if (!existing.includes(photoUrl)) {
+      const newUrls = [...existing, photoUrl];
+      const { error } = await supabase
+        .from("concept_cards")
+        .update({
+          image_urls: newUrls,
+          image_url: selectedCard.image_url ?? newUrls[0],
+        })
+        .eq("id", selectedCard.id);
+      if (error) {
+        setBusy(false);
+        toast.error("Failed to bind", { description: error.message });
+        return;
+      }
     }
-    const newUrls = [...existing, photoUrl];
-    const { error } = await supabase
-      .from("concept_cards")
-      .update({
-        image_urls: newUrls,
-        image_url: selectedCard.image_url ?? newUrls[0],
-      })
-      .eq("id", selectedCard.id);
+
+    // If this was a reassign from another card, strip the URL there.
+    if (sourceCard && sourceCard.id !== selectedCard.id) {
+      const { error } = await removeFromCard(sourceCard, photoUrl);
+      if (error) {
+        setBusy(false);
+        toast.error(`Bound to new card, but couldn't unbind from "${sourceCard.title}"`, {
+          description: error.message,
+        });
+        return;
+      }
+    }
     setBusy(false);
-    if (error) {
-      toast.error("Failed to bind", { description: error.message });
+    toast.success(
+      sourceCard && sourceCard.id !== selectedCard.id
+        ? `Moved from "${sourceCard.title}" → "${selectedCard.title}"`
+        : `Bound to "${selectedCard.title}"`
+    );
+    onDone();
+    onOpenChange(false);
+  };
+
+  // ─── Move photo to case-studies storage prefix ──────────────────
+  // The page only lists files under enhanced/, so moving the file to
+  // case-studies/ removes it from the concept-card binding pool. Strip
+  // any card references first so we don't leave broken URLs.
+  const handleMoveToCaseStudies = async () => {
+    if (!photoUrl) return;
+    const path = publicUrlToStoragePath(photoUrl);
+    if (!path || !path.startsWith(ENHANCED_PREFIX)) {
+      toast.error("Photo isn't in the enhanced/ folder — can't move");
       return;
     }
-    toast.success(`Bound to "${selectedCard.title}"`);
+    setBusy(true);
+
+    // Strip from any cards that reference it
+    const referencing = cards.filter((c) => {
+      const urls = [
+        ...(c.image_urls ?? []),
+        ...(c.image_url ? [c.image_url] : []),
+      ];
+      return urls.includes(photoUrl);
+    });
+    for (const c of referencing) {
+      const { error } = await removeFromCard(c, photoUrl);
+      if (error) {
+        setBusy(false);
+        toast.error(`Failed to strip URL from card "${c.title}"`, {
+          description: error.message,
+        });
+        return;
+      }
+    }
+
+    // Move file from enhanced/X.png → case-studies/X.png
+    const newPath = CASE_STUDIES_PREFIX + path.slice(ENHANCED_PREFIX.length);
+    const { error: mvErr } = await supabase.storage
+      .from(STORAGE_BUCKET)
+      .move(path, newPath);
+    setBusy(false);
+    if (mvErr) {
+      toast.error("Failed to move photo", { description: mvErr.message });
+      return;
+    }
+    toast.success(
+      referencing.length > 0
+        ? `Moved to case studies (removed from ${referencing.length} card${referencing.length === 1 ? "" : "s"})`
+        : "Moved to case studies"
+    );
+    onDeleted?.(photoUrl);
     onDone();
+    setConfirmCaseStudyOpen(false);
     onOpenChange(false);
   };
 
@@ -172,12 +267,29 @@ export function DescribeAndBindDialog({
       ])
       .select()
       .single();
-    setBusy(false);
     if (error || !data) {
+      setBusy(false);
       toast.error("Failed to create card", { description: error?.message });
       return;
     }
-    toast.success(`Created "${title}" and bound photo`);
+
+    // If this was a reassign from another card, strip the URL there.
+    if (sourceCard) {
+      const { error: rmErr } = await removeFromCard(sourceCard, photoUrl);
+      if (rmErr) {
+        setBusy(false);
+        toast.error(`Created new card, but couldn't unbind from "${sourceCard.title}"`, {
+          description: rmErr.message,
+        });
+        return;
+      }
+    }
+    setBusy(false);
+    toast.success(
+      sourceCard
+        ? `Moved photo from "${sourceCard.title}" → new card "${title}"`
+        : `Created "${title}" and bound photo`
+    );
     onDone();
     onOpenChange(false);
   };
@@ -247,10 +359,17 @@ export function DescribeAndBindDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl">
         <DialogHeader>
-          <DialogTitle>Describe and bind drawing</DialogTitle>
+          <DialogTitle>
+            {sourceCard ? "Reassign or reclassify drawing" : "Describe and bind drawing"}
+          </DialogTitle>
           <DialogDescription>
-            Tell me what this drawing shows, then either pick an existing concept card or create a
-            new one.
+            {sourceCard ? (
+              <>
+                Currently bound to <strong>{sourceCard.title}</strong>. Pick a different card, create a new one, or mark it as case-study material to remove from the concept-card pool.
+              </>
+            ) : (
+              "Tell me what this drawing shows, then either pick an existing concept card or create a new one."
+            )}
           </DialogDescription>
         </DialogHeader>
 
@@ -427,17 +546,30 @@ export function DescribeAndBindDialog({
           </div>
         </div>
 
-        <DialogFooter className="sm:justify-between gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setConfirmDeleteOpen(true)}
-            disabled={busy}
-            className="text-destructive hover:text-destructive hover:bg-destructive/10"
-          >
-            <Trash2 className="h-4 w-4 mr-1.5" />
-            Delete photo
-          </Button>
+        <DialogFooter className="sm:justify-between gap-2 flex-wrap">
+          <div className="flex gap-1 flex-wrap">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setConfirmCaseStudyOpen(true)}
+              disabled={busy}
+              className="text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/30"
+              title="Not concept material — belongs to a case study"
+            >
+              <FolderInput className="h-4 w-4 mr-1.5" />
+              Move to case studies
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setConfirmDeleteOpen(true)}
+              disabled={busy}
+              className="text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              <Trash2 className="h-4 w-4 mr-1.5" />
+              Delete photo
+            </Button>
+          </div>
           <div className="flex gap-2">
             <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={busy}>
               Cancel
@@ -450,19 +582,52 @@ export function DescribeAndBindDialog({
                 {busy ? (
                   <Loader2 className="h-4 w-4 animate-spin mr-2" />
                 ) : null}
-                Bind to card
+                {sourceCard ? "Move to selected card" : "Bind to card"}
               </Button>
             ) : (
               <Button onClick={handleCreateNew} disabled={!newTitle.trim() || busy}>
                 {busy ? (
                   <Loader2 className="h-4 w-4 animate-spin mr-2" />
                 ) : null}
-                Create card + bind
+                {sourceCard ? "Move to new card" : "Create card + bind"}
               </Button>
             )}
           </div>
         </DialogFooter>
       </DialogContent>
+
+      <AlertDialog open={confirmCaseStudyOpen} onOpenChange={setConfirmCaseStudyOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Move to case-studies folder?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This photo will be moved out of the concept-card binding pool and
+              into <code>case-studies/</code> in storage. If any concept cards
+              currently reference it, the URL is stripped from them first. The
+              file itself is preserved — you can still surface it on the Case
+              Vault page later.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={busy}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                e.preventDefault();
+                handleMoveToCaseStudies();
+              }}
+              disabled={busy}
+              className="bg-amber-600 text-white hover:bg-amber-700"
+            >
+              {busy ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              ) : (
+                <FolderInput className="h-4 w-4 mr-1.5" />
+              )}
+              Move to case studies
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <AlertDialog open={confirmDeleteOpen} onOpenChange={setConfirmDeleteOpen}>
         <AlertDialogContent>

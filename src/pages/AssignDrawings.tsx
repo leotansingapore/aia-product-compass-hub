@@ -259,7 +259,13 @@ export default function AssignDrawingsPage() {
   const [busyPhotoUrl, setBusyPhotoUrl] = useState<string | null>(null);
   // Describe-and-bind dialog state. Clicking a photo when no card is selected
   // opens this; lets you either bind to an existing card OR create a new one.
-  const [describePhoto, setDescribePhoto] = useState<EnhancedPhoto | null>(null);
+  // When opened from a bound photo's "Reassign" button, sourceCardId is set so
+  // the dialog knows to MOVE (strip from source) instead of just add.
+  const [describePhoto, setDescribePhoto] = useState<{
+    url: string;
+    name: string;
+    sourceCardId: string | null;
+  } | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -348,7 +354,11 @@ export default function AssignDrawingsPage() {
     if (!selectedCard) {
       // No card selected → open the describe-and-bind dialog so you can
       // either pick an existing card or create a new one in one shot.
-      setDescribePhoto(photo);
+      setDescribePhoto({
+        url: photo.url,
+        name: photo.name,
+        sourceCardId: null,
+      });
       return;
     }
     setBusyPhotoUrl(photo.url);
@@ -521,32 +531,55 @@ export default function AssignDrawingsPage() {
                                   Open ↗
                                 </span>
                               </a>
-                              {/* Unbind — one click removes this image from
-                                  the card. Stops the parent anchor from
-                                  opening the file at the same time. */}
-                              <button
-                                type="button"
-                                disabled={isBusy}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  // Synthesise an EnhancedPhoto so handleAssign
-                                  // (which expects one) can toggle this URL
-                                  // off the card.
-                                  handleAssign({ name: "", url: u, createdAt: "" });
-                                }}
-                                className="absolute top-1 right-1 z-10 inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm disabled:opacity-50"
-                                title="Unbind this drawing from the card"
-                              >
-                                {isBusy ? (
-                                  <Loader2 className="h-3 w-3 animate-spin" />
-                                ) : (
-                                  <>
-                                    <X className="h-3 w-3" />
-                                    Unbind
-                                  </>
-                                )}
-                              </button>
+                              {/* Action stack: Reassign + Unbind. Both stop
+                                  the parent anchor from opening the file. */}
+                              <div className="absolute top-1 right-1 z-10 flex gap-1">
+                                <button
+                                  type="button"
+                                  disabled={isBusy}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    // Open Describe & Bind with sourceCardId set
+                                    // so a successful bind/create MOVES the
+                                    // photo here-to-there (strips from this
+                                    // card automatically).
+                                    setDescribePhoto({
+                                      url: u,
+                                      name: "",
+                                      sourceCardId: selectedCard.id,
+                                    });
+                                  }}
+                                  className="inline-flex items-center gap-1 rounded-md bg-slate-700/85 hover:bg-slate-800 text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm disabled:opacity-50"
+                                  title="Reassign to another card, create a new one, or mark as case-study material"
+                                >
+                                  <Pencil className="h-3 w-3" />
+                                  Reassign
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={isBusy}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    // Synthesise an EnhancedPhoto so handleAssign
+                                    // (which expects one) can toggle this URL
+                                    // off the card.
+                                    handleAssign({ name: "", url: u, createdAt: "" });
+                                  }}
+                                  className="inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm disabled:opacity-50"
+                                  title="Unbind this drawing from the card"
+                                >
+                                  {isBusy ? (
+                                    <Loader2 className="h-3 w-3 animate-spin" />
+                                  ) : (
+                                    <>
+                                      <X className="h-3 w-3" />
+                                      Unbind
+                                    </>
+                                  )}
+                                </button>
+                              </div>
                             </div>
                           );
                         })}
@@ -659,12 +692,14 @@ export default function AssignDrawingsPage() {
             : ""
         }
         cards={cards}
+        sourceCardId={describePhoto?.sourceCardId ?? null}
         onDone={() => {
           refetch();
         }}
         onDeleted={(url) => {
           // Drop the photo from local state so it disappears from the grid
-          // without a full storage re-list.
+          // without a full storage re-list (covers both delete and the
+          // move-to-case-studies action).
           setPhotos((prev) =>
             prev ? prev.filter((p) => p.url !== url) : prev
           );
