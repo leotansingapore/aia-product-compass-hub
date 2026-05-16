@@ -24,11 +24,28 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ChevronsUpDown, Check, Loader2, Plus, Image as ImageIcon } from "lucide-react";
+import {
+  ChevronsUpDown,
+  Check,
+  Loader2,
+  Plus,
+  Image as ImageIcon,
+  Trash2,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import type { ConceptCard } from "@/hooks/useConceptCards";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface Props {
   open: boolean;
@@ -39,6 +56,21 @@ interface Props {
   cards: ConceptCard[];
   /** Called after successful bind/create so the parent can refetch. */
   onDone: () => void;
+  /** Called after the photo file is deleted from storage so the parent can drop it from the grid. */
+  onDeleted?: (url: string) => void;
+}
+
+const STORAGE_BUCKET = "concept-card-images";
+
+/**
+ * Pull the bucket-relative path out of a public storage URL.
+ * e.g. ".../object/public/concept-card-images/enhanced/foo.png" → "enhanced/foo.png"
+ */
+function publicUrlToStoragePath(url: string): string | null {
+  const marker = `/object/public/${STORAGE_BUCKET}/`;
+  const i = url.indexOf(marker);
+  if (i === -1) return null;
+  return decodeURIComponent(url.slice(i + marker.length).split("?")[0]);
 }
 
 type Mode = "pick-existing" | "create-new";
@@ -51,6 +83,7 @@ export function DescribeAndBindDialog({
   initialDescription,
   cards,
   onDone,
+  onDeleted,
 }: Props) {
   const [mode, setMode] = useState<Mode>("pick-existing");
   const [description, setDescription] = useState("");
@@ -60,6 +93,7 @@ export function DescribeAndBindDialog({
   const [newDescription, setNewDescription] = useState("");
   const [newTags, setNewTags] = useState("");
   const [busy, setBusy] = useState(false);
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
 
   // Reset state when a new photo opens.
   useEffect(() => {
@@ -145,6 +179,65 @@ export function DescribeAndBindDialog({
     }
     toast.success(`Created "${title}" and bound photo`);
     onDone();
+    onOpenChange(false);
+  };
+
+  // ─── Delete photo from storage ─────────────────────────────────
+  // Removes the file from concept-card-images/<path>. If any concept_cards
+  // still reference this URL (shouldn't happen since the delete button is
+  // mainly for unbound photos, but be safe), strip it from their image_urls
+  // first so we don't leave broken refs.
+  const handleDelete = async () => {
+    if (!photoUrl) return;
+    const path = publicUrlToStoragePath(photoUrl);
+    if (!path) {
+      toast.error("Could not parse storage path from URL");
+      return;
+    }
+    setBusy(true);
+
+    // Strip from any cards that reference it
+    const referencingCards = cards.filter((c) => {
+      const urls = [
+        ...(c.image_urls ?? []),
+        ...(c.image_url ? [c.image_url] : []),
+      ];
+      return urls.includes(photoUrl);
+    });
+    for (const c of referencingCards) {
+      const newUrls = (c.image_urls ?? []).filter((u) => u !== photoUrl);
+      const newLegacy =
+        c.image_url === photoUrl ? newUrls[0] ?? null : c.image_url;
+      const { error: updErr } = await supabase
+        .from("concept_cards")
+        .update({ image_urls: newUrls, image_url: newLegacy })
+        .eq("id", c.id);
+      if (updErr) {
+        toast.error(`Failed to strip URL from card "${c.title}"`, {
+          description: updErr.message,
+        });
+        setBusy(false);
+        return;
+      }
+    }
+
+    // Delete from storage
+    const { error: rmErr } = await supabase.storage
+      .from(STORAGE_BUCKET)
+      .remove([path]);
+    setBusy(false);
+    if (rmErr) {
+      toast.error("Failed to delete photo", { description: rmErr.message });
+      return;
+    }
+    toast.success(
+      referencingCards.length > 0
+        ? `Deleted photo (and removed from ${referencingCards.length} card${referencingCards.length === 1 ? "" : "s"})`
+        : "Deleted photo"
+    );
+    onDeleted?.(photoUrl);
+    onDone();
+    setConfirmDeleteOpen(false);
     onOpenChange(false);
   };
 
@@ -334,30 +427,75 @@ export function DescribeAndBindDialog({
           </div>
         </div>
 
-        <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={busy}>
-            Cancel
+        <DialogFooter className="sm:justify-between gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setConfirmDeleteOpen(true)}
+            disabled={busy}
+            className="text-destructive hover:text-destructive hover:bg-destructive/10"
+          >
+            <Trash2 className="h-4 w-4 mr-1.5" />
+            Delete photo
           </Button>
-          {mode === "pick-existing" ? (
-            <Button
-              onClick={handleBindToExisting}
-              disabled={!selectedCardId || busy}
+          <div className="flex gap-2">
+            <Button variant="ghost" onClick={() => onOpenChange(false)} disabled={busy}>
+              Cancel
+            </Button>
+            {mode === "pick-existing" ? (
+              <Button
+                onClick={handleBindToExisting}
+                disabled={!selectedCardId || busy}
+              >
+                {busy ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : null}
+                Bind to card
+              </Button>
+            ) : (
+              <Button onClick={handleCreateNew} disabled={!newTitle.trim() || busy}>
+                {busy ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                ) : null}
+                Create card + bind
+              </Button>
+            )}
+          </div>
+        </DialogFooter>
+      </DialogContent>
+
+      <AlertDialog open={confirmDeleteOpen} onOpenChange={setConfirmDeleteOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this drawing?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This permanently removes the file from storage. If any concept
+              cards reference it, the URL is stripped from them first. This
+              cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={busy}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                // Prevent the default close so we can show the spinner;
+                // we close manually inside handleDelete.
+                e.preventDefault();
+                handleDelete();
+              }}
+              disabled={busy}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
               {busy ? (
                 <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : null}
-              Bind to card
-            </Button>
-          ) : (
-            <Button onClick={handleCreateNew} disabled={!newTitle.trim() || busy}>
-              {busy ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : null}
-              Create card + bind
-            </Button>
-          )}
-        </DialogFooter>
-      </DialogContent>
+              ) : (
+                <Trash2 className="h-4 w-4 mr-1.5" />
+              )}
+              Delete permanently
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Dialog>
   );
 }

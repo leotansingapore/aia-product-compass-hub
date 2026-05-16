@@ -662,6 +662,13 @@ export default function AssignDrawingsPage() {
         onDone={() => {
           refetch();
         }}
+        onDeleted={(url) => {
+          // Drop the photo from local state so it disappears from the grid
+          // without a full storage re-list.
+          setPhotos((prev) =>
+            prev ? prev.filter((p) => p.url !== url) : prev
+          );
+        }}
       />
     </PageLayout>
   );
