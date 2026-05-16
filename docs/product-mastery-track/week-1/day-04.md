@@ -106,6 +106,8 @@ Most prospects answer no without much hesitation.
 
 > *"Right — so APA does the part that's hard to sustain on your own. You just keep depositing $300 a month."*
 
+The SIT-Test slide from Day 2's Phase 3 anchors the same point — **S**kills + **I**nterest + **T**ime are the three things a DIY investor has to bring every week for 40 years straight; the slide also names the six pitfalls 90% of retail investors fall into. Cross-reference it during this objection if you have the deck handy: see **[Day 2 — DIY Investing SIT-Test slide](/pro-achiever/day-02/phase-3-sit-test-obstacles.png)**.
+
 ### The service framing (only if it fits the relationship):
 
 > *"And honestly — when you buy APA, you're not just getting the plan. You're getting someone (me) to look at it with you every year, flag things when life changes, help you when claims or top-ups or beneficiary nominations come up. That's the part an ETF can't do for you. Whether that matters to you depends on whether you'd actually want a second pair of eyes on this stuff long-term."*
@@ -135,6 +137,12 @@ The trial close at the end lets the prospect tell you whether the service piece 
 > *Over a 60-year hold, APA returns about $1.2 million MORE than a 1% perpetual-fee platform."*
 
 > *"Even APA can literally be cheaper than a robo-advisor in the long term."*
+
+You can illustrate this live with the Long-Term Investment Illustrator at **[present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees](https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees)** — flip into the *vs 1% Perpetual* tab. The crossover lands around Year 17 even on a small-premium scenario; on a real APA-sized account it's massively in the client's favour.
+
+![LTII Break-even Analysis, vs 1% Perpetual tab: competitor charges climb past $30,458 over 80 years while AIA's charge net of bonuses sits at $2,988 — a $27,470 swing for the client, with the crossover landing at Year 17](/pro-achiever/day-04/ltii-vs-1pct-perpetual.png)
+
+And the related "AIA fees vs AIA bonuses" view (already in Day 5's fee-attack section) makes the same point a different way — net AIA charges hit zero around Year 33 once bonuses overtake fees: see **[Day 5 — break-even fees chart](/pro-achiever/day-05/ltii-break-even-fees.png)**.
 
 ### The disclosure-as-credibility move:
 
