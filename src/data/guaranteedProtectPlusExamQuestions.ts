@@ -1,4 +1,4 @@
-import type { ExamQuestion } from './proAchieverExamQuestions';
+import type { QuizQuestion as ExamQuestion } from '@/types/questionBank';
 
 export const guaranteedProtectPlusExamQuestions: ExamQuestion[] = [
 
