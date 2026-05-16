@@ -29,35 +29,50 @@ CONTEXTS_JSON = ROOT / ".tmp/photo-contexts.json"
 DESCS_JSON = ROOT / ".tmp/photo-descriptions.json"
 OUT = ROOT / ".tmp/photo-case-matches.json"
 
-# A small product → aliases dictionary; matching any alias counts as a
-# product-mention hit. Order matters for the dictionary keys.
+# A product → aliases dictionary; matching any alias counts as a
+# product-mention hit. Aliases are intentionally STRICT to avoid substring
+# collisions ("pru" → PUW/PruLink/PruActiveTerm; "tokio" → unrelated text;
+# "ifa" → iFast vs Independent Financial Adviser). Each alias must be the
+# distinguishing exact phrase for that product.
 PRODUCT_ALIASES = {
-    "pru_active_life": ["pru active life", "pruactive life", "pru active"],
-    "pruvantage_we": ["pruvantage we", "pruvantage we", "pruv we"],
+    "pru_active_life": ["pru active life", "pruactive life"],
+    "pruvantage": ["pruvantage"],
     "pru_active_term": ["pru active term", "pruactive term"],
     "pru_active_protect": ["pru active protect", "pruactive protect"],
     "prulink": ["prulink", "pru link"],
-    "fwd_invest_first": ["fwd invest first", "fwd invest first summit", "fwd if"],
-    "fwd_invest_plus": ["fwd invest plus", "fwd ip"],
-    "fwd_term": ["fwd big 3", "fwd term"],
+    "fwd_invest_first": ["fwd invest first", "fwd invest first summit"],
+    "fwd_invest_plus": ["fwd invest plus"],
+    "fwd_big_3": ["fwd big 3"],
     "manulife_investready": ["manulife investready", "manuready", "investready"],
     "manulife_lifefinity": ["manulife lifefinity", "lifefinity"],
     "manulife_retireready": ["retireready", "retire ready"],
     "manulife_smartretire": ["smartretire", "smart retire"],
     "manulife_manuregular": ["manuregular", "manu regular"],
     "manulife_manuflexi": ["manuflexi", "manu flexi"],
-    "manulife": ["manulife"],
-    "great_eastern": ["great eastern", "great e", "great-e", " ge "],
-    "ntuc_income": ["ntuc income", "ntuc"],
+    "manulife": ["manulife"],   # generic Manulife mention — last resort
+    "great_eastern": ["great eastern", " ge ", "ge flexi", "ge whole life", "ge endowment"],
+    "ntuc_income": ["ntuc income", "ntuc living", "ntuc"],
     "singlife": ["singlife"],
-    "tokio_marine": ["tokio marine", "tokio"],
+    "tokio_marine": ["tokio marine"],   # NOT just "tokio" — too ambiguous
     "allianz_elastiq": ["allianz elastiq", "elastiq"],
     "allianz": ["allianz"],
     "aviva": ["aviva"],
-    "ifast": ["ifast", "i-fast"],
+    "ifast": ["ifast", "i-fast", "i fast"],   # the broker, NOT IFA channel
     "endowus": ["endowus"],
-    "tiger": ["tiger broker", "tiger"],
+    "tiger_broker": ["tiger broker", "tiger brokers"],
     "ibkr": ["ibkr", "interactive broker"],
+    "citibank_piw": ["citibank piw", "citi piw"],
+    "dbs": [" dbs ", "dbs banker"],
+}
+
+# Tag terms that are too generic / ambiguous to use for matching on their
+# own. The matcher already gives full weight to product names + specific
+# dollar amounts; tag overlap is supplementary at best.
+AMBIGUOUS_TAGS = {
+    "ifa", "ilp", "term", "ci", "eci", "ge", "manulife", "pru",
+    "restructure", "play-a", "play-b", "play-c", "duration-matched",
+    "fee-attack", "consolidation", "decoupling", "rider", "young-adult",
+    "pre-retiree", "redirect", "couple", "family",
 }
 
 PLAY_KEYWORDS = {
@@ -176,8 +191,9 @@ def main():
             "client_or_generic": d["client_or_generic"],
         })
 
-    # A number is "specific" if it's ≥ $10K — generic $1K / $3K / $10 hit
-    # too many false positives.
+    # A number is "specific" if it's large enough to actually disambiguate
+    # the case. $10K-$30K appears in too many premium discussions; bump to
+    # ≥ $50K for k-suffix and ≥ $0.5M for m-suffix.
     def is_specific_num(num: str) -> bool:
         m = re.search(r"(\d+(?:[.,]\d+)?)\s?([kKmM])", num)
         if not m:
@@ -185,9 +201,9 @@ def main():
         amt = float(m.group(1).replace(",", ""))
         suf = m.group(2).lower()
         if suf == "m":
-            return amt >= 0.1
+            return amt >= 0.5
         if suf == "k":
-            return amt >= 10
+            return amt >= 50
         return False
 
     # Score each photo against each case
@@ -215,10 +231,14 @@ def main():
             for kw in play_hits[:3]:
                 score += 2
                 evidence.append(f"play:{kw}")
-            # Tag keywords (~1 pt each, capped)
+            # Tag keywords (~1 pt each, capped). Drop ambiguous tags
+            # (ifa, ilp, term, ge, manulife, restructure, etc.) — they
+            # produce too many false positives via substring collision.
             tag_hits = []
             for kw in fp["tag_kws"]:
-                if kw and kw in ph["text"]:
+                if not kw or kw in AMBIGUOUS_TAGS:
+                    continue
+                if kw in ph["text"]:
                     tag_hits.append(kw)
             for kw in tag_hits[:3]:
                 score += 1

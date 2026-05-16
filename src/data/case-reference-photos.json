@@ -3,75 +3,50 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884687076_photo_2026-05-13_09-33-15.png",
       "summary": "Hand-drawn note showing a client's PUW policy (paid $20k, held 1 year) projected to grow to $1,541,506 at age 65, then further to $6,059,212 after 15 more years.",
-      "score": 13,
+      "score": 12,
       "evidence": [
         "product:pruactive life",
         "play:whole life",
         "play:cash value",
         "play:restructure",
-        "tag:restructure",
         "tag:whole life"
       ]
     },
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884706215_photo_2026-05-13_09-35-09.png",
-      "summary": "Handwritten note comparing two ILP fund values: Prulink at $50k and I-Fat (iFAST or similar) at $74k, with Pinebridge US Large Cap Research fund named.",
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884811376_photo_2026-05-13_09-35-20.png",
+      "summary": "Hand-drawn diagram explaining a Pinebridge fund via IFast with a pie chart showing diversification across countries (US, China, Europe, Japan), sectors (bonds, property, gold, financials, health, tech",
       "score": 10,
       "evidence": [
-        "product:pruactive life",
+        "product:pruvantage",
         "play:cash value",
         "play:restructure",
-        "tag:restructure"
+        "tag:pruvantage"
       ]
     },
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884670176_photo_2026-05-13_09-33-13.png",
-      "summary": "Handwritten note listing a Pru Active Term policy with $550k coverage for DITIE at a premium of $777.97 per year.",
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
+      "summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised sing",
       "score": 10,
       "evidence": [
-        "product:pruactive life",
+        "product:pruvantage",
         "play:cash value",
         "play:restructure",
-        "tag:restructure"
+        "tag:pruvantage"
       ]
     },
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884655461_photo_2026-05-13_09-33-00.png",
-      "summary": "Handwritten note showing Pru Life Multiplier Flex at $2,277/year for $150k of Death/TPD/CI/ECI coverage, with a sub-note that $50k-$60k coverage costs less.",
-      "score": 10,
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884775582_photo_2026-05-13_09-35-14.png",
+      "summary": "Hand-drawn wealth accumulation and decumulation curve from age 34 to 85 showing a save/invest split of $3.5k/$1k per month, a peak corpus of $2.8M at age 65, and a retirement drawdown plan delivering ",
+      "score": 9,
       "evidence": [
-        "product:pruactive life",
+        "product:pruvantage",
         "play:cash value",
         "play:restructure",
-        "tag:restructure"
+        "tag:pruvantage"
       ]
     }
   ],
   "apa-d": [
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884655461_photo_2026-05-13_09-33-00.png",
-      "summary": "Handwritten note showing Pru Life Multiplier Flex at $2,277/year for $150k of Death/TPD/CI/ECI coverage, with a sub-note that $50k-$60k coverage costs less.",
-      "score": 12,
-      "evidence": [
-        "play:cash value",
-        "play:restructure",
-        "tag:restructure",
-        "num:$50K",
-        "num:$150K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882621915_photo_2026-03-03_14-29-15 (2).png",
-      "summary": "Before/after policy restructure comparison showing same sum assured (110k+150k) but with a $150k coverage increase and a net premium change from $226.8/mth to $358/mth, plus a new $750/mth benefit gai",
-      "score": 12,
-      "evidence": [
-        "play:cash value",
-        "play:restructure",
-        "tag:restructure",
-        "num:$50K",
-        "num:$150K"
-      ]
-    },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773386467044_telegram-cloud-photo-size-5-6136355664725478730-y.png",
       "summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV.",
@@ -79,8 +54,8 @@
       "evidence": [
         "play:whole life",
         "play:cash value",
-        "num:$50K",
-        "num:$150K"
+        "num:$150K",
+        "num:$50K"
       ]
     },
     {
@@ -90,57 +65,30 @@
       "evidence": [
         "play:whole life",
         "play:cash value",
-        "num:$50K",
-        "num:$150K"
-      ]
-    }
-  ],
-  "apa-e": [
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884758573_photo_2026-05-13_09-35-13.png",
-      "summary": "Hand-drawn whiteboard diagram showing a layered insurance structure combining Death/Term, CI/CCI, Accident, and Hospitalisation coverage with placeholder premium figures and a flow showing how CI/CCI ",
-      "score": 6,
-      "evidence": [
-        "num:$550K",
-        "num:$12K"
-      ]
-    }
-  ],
-  "apa-i": [
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884811376_photo_2026-05-13_09-35-20.png",
-      "summary": "Hand-drawn diagram explaining a Pinebridge fund via IFast with a pie chart showing diversification across countries (US, China, Europe, Japan), sectors (bonds, property, gold, financials, health, tech",
-      "score": 5,
-      "evidence": [
-        "tag:ifa",
-        "num:$5M"
+        "num:$150K",
+        "num:$50K"
       ]
     },
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
-      "summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised sing",
-      "score": 5,
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1773386507364_telegram-cloud-photo-size-5-6136355664725478730-y.png",
+      "summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV.",
+      "score": 11,
       "evidence": [
-        "tag:ifa",
-        "num:$5M"
+        "play:whole life",
+        "play:cash value",
+        "num:$150K",
+        "num:$50K"
       ]
     },
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884706215_photo_2026-05-13_09-35-09.png",
-      "summary": "Handwritten note comparing two ILP fund values: Prulink at $50k and I-Fat (iFAST or similar) at $74k, with Pinebridge US Large Cap Research fund named.",
-      "score": 5,
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882297315_photo_2026-03-01_16-14-39 (5).png",
+      "summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV.",
+      "score": 11,
       "evidence": [
-        "tag:ifa",
-        "num:$5M"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884687076_photo_2026-05-13_09-33-15.png",
-      "summary": "Hand-drawn note showing a client's PUW policy (paid $20k, held 1 year) projected to grow to $1,541,506 at age 65, then further to $6,059,212 after 15 more years.",
-      "score": 5,
-      "evidence": [
-        "tag:ifa",
-        "num:$5M"
+        "play:whole life",
+        "play:cash value",
+        "num:$150K",
+        "num:$50K"
       ]
     }
   ],
@@ -148,22 +96,35 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880243752_photo_2025-12-28_08-59-41.png",
       "summary": "Screenshot of a Manulife savings and retirement plan portfolio for insured Lee Hiung Koh (Li Hongke), showing five policies: ManuRegular Payout ERG15, ManuFlexi Growth, ReadyBuilder 10, RetireReady Pl",
-      "score": 10,
+      "score": 14,
       "evidence": [
         "product:manulife",
+        "product:dbs",
         "play:endowment",
-        "tag:manulife",
         "tag:dbs",
-        "tag:endowment"
+        "tag:endowment",
+        "tag:income"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882297315_photo_2026-03-01_16-14-39 (5).png",
+      "summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV.",
+      "score": 11,
+      "evidence": [
+        "product:dbs",
+        "play:whole life",
+        "play:cash value",
+        "tag:dbs",
+        "tag:income"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880228338_photo_2025-12-28_08-59-25.png",
       "summary": "Screenshot of Manulife InvestReady (III) 13 Years Flexi 10 ILP policy for client Lee Hiung Koh, showing policy number 2451250074 with an account value of S$20,744.73 effective March 2023.",
-      "score": 8,
+      "score": 11,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs",
         "tag:income"
       ]
@@ -171,21 +132,10 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880213341_photo_2025-12-25_07-21-53.png",
       "summary": "Hand-drawn financial plan for a client named Zheng Zhar showing monthly cash flow ($1308 income, $400 expenses), a 40:60 invest-to-save split, and a portfolio breakdown across Gold/Silver ETFs, global",
-      "score": 8,
+      "score": 11,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
-        "tag:dbs",
-        "tag:income"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880160316_photo_2025-12-21_06-38-11 (4).png",
-      "summary": "Hand-written notes for a client named Daniel covering his mother's Great TotalCare hospitalisation premium, deductible/co-insurance mechanics, and a financial fact-find covering income ($3500/mth), ex",
-      "score": 8,
-      "evidence": [
-        "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs",
         "tag:income"
       ]
@@ -195,48 +145,44 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883635009_photo_2026-03-18_12-08-11 (3).png",
       "summary": "Diagram comparing a client's existing policy ($600/mth, $1.1M at 67) with a proposed restructure splitting $600/mth into $500/mth investments ($1.63M at 67) plus $100/mth standalone coverage ($200k De",
-      "score": 13,
+      "score": 12,
       "evidence": [
         "product:ge",
         "play:cash value",
         "play:restructure",
-        "tag:ge",
         "num:$200K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883304710_photo_2026-03-15_03-35-04 (8).png",
       "summary": "Hand-drawn diagram showing a policy restructure: an existing $204/month plan with overscured and investment components (D/T/CI $100k) is split into separate CI coverage, investment (Inu), and death co",
-      "score": 13,
+      "score": 12,
       "evidence": [
         "product:ge",
         "play:cash value",
         "play:restructure",
-        "tag:ge",
         "num:$200K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883234546_photo_2026-03-15_03-35-04 (4).png",
       "summary": "Coverage summary of a client's current ILP at $400/month showing $200k Death/TPD, $200k CI, $100k ECI, and projected value of $186k + $482,500 at age 65.",
-      "score": 13,
+      "score": 12,
       "evidence": [
         "product:ge",
         "play:cash value",
         "play:restructure",
-        "tag:ge",
         "num:$200K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883219009_photo_2026-03-15_03-35-04 (3).png",
       "summary": "Comparison table showing a client's current ILP at $400/mth versus a proposed restructure into a $200/mth ILP (zeroing out CI/ECI riders) plus a separate $125/mth coverage plan with $500k Death/TPD an",
-      "score": 13,
+      "score": 12,
       "evidence": [
         "product:ge",
         "play:cash value",
         "play:restructure",
-        "tag:ge",
         "num:$200K"
       ]
     }
@@ -286,40 +232,40 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880243752_photo_2025-12-28_08-59-41.png",
       "summary": "Screenshot of a Manulife savings and retirement plan portfolio for insured Lee Hiung Koh (Li Hongke), showing five policies: ManuRegular Payout ERG15, ManuFlexi Growth, ReadyBuilder 10, RetireReady Pl",
-      "score": 7,
+      "score": 10,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880228338_photo_2025-12-28_08-59-25.png",
       "summary": "Screenshot of Manulife InvestReady (III) 13 Years Flexi 10 ILP policy for client Lee Hiung Koh, showing policy number 2451250074 with an account value of S$20,744.73 effective March 2023.",
-      "score": 7,
+      "score": 10,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880213341_photo_2025-12-25_07-21-53.png",
       "summary": "Hand-drawn financial plan for a client named Zheng Zhar showing monthly cash flow ($1308 income, $400 expenses), a 40:60 invest-to-save split, and a portfolio breakdown across Gold/Silver ETFs, global",
-      "score": 7,
+      "score": 10,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880160316_photo_2025-12-21_06-38-11 (4).png",
       "summary": "Hand-written notes for a client named Daniel covering his mother's Great TotalCare hospitalisation premium, deductible/co-insurance mechanics, and a financial fact-find covering income ($3500/mth), ex",
-      "score": 7,
+      "score": 10,
       "evidence": [
         "product:manulife",
-        "tag:manulife",
+        "product:dbs",
         "tag:dbs"
       ]
     }
@@ -331,8 +277,8 @@
       "score": 9,
       "evidence": [
         "play:retirement income",
-        "num:1.5M",
-        "num:$1M"
+        "num:$1M",
+        "num:1.5M"
       ]
     },
     {
@@ -341,8 +287,8 @@
       "score": 9,
       "evidence": [
         "play:retirement income",
-        "num:1.5M",
-        "num:$1M"
+        "num:$1M",
+        "num:1.5M"
       ]
     },
     {
@@ -351,8 +297,8 @@
       "score": 9,
       "evidence": [
         "play:retirement income",
-        "num:1.5M",
-        "num:$1M"
+        "num:$1M",
+        "num:1.5M"
       ]
     },
     {
@@ -361,97 +307,49 @@
       "score": 9,
       "evidence": [
         "play:retirement income",
-        "num:1.5M",
-        "num:$1M"
-      ]
-    }
-  ],
-  "pwv-cy": [
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880908260_photo_2026-01-18_03-48-31.png",
-      "summary": "Timeline diagram showing a client's staggered insurance premium payments across ages 26 to 46, with multiple policies layered in at different ages totalling $1800+$2160+$2400, and annual premiums of $",
-      "score": 10,
-      "evidence": [
-        "num:$18K",
-        "num:$500K",
-        "num:$12K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880873337_photo_2026-01-18_03-48-31 (4).png",
-      "summary": "Hand-drawn pie chart showing a client's projected $7.6k/month income at age 65 split into three buckets: $1k/month for food (short term), $1.5k/month for housing/mortgage/renovation, and the remainder",
-      "score": 9,
-      "evidence": [
-        "play:retirement income",
-        "num:$18K",
-        "num:$12K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880855819_photo_2026-01-18_03-48-31 (3).png",
-      "summary": "Hand-drawn accumulation curve showing premiums paid from age 26 to 65, building a $3M corpus that pays out $18k/month in retirement \u2014 with a \"back left\" note at age 65 indicating the distribution phas",
-      "score": 8,
-      "evidence": [
-        "play:retirement income",
-        "num:$18K",
-        "num:$12K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884811376_photo_2026-05-13_09-35-20.png",
-      "summary": "Hand-drawn diagram explaining a Pinebridge fund via IFast with a pie chart showing diversification across countries (US, China, Europe, Japan), sectors (bonds, property, gold, financials, health, tech",
-      "score": 7,
-      "evidence": [
-        "play:retirement income",
-        "tag:couple",
-        "num:$12K"
+        "num:$1M",
+        "num:1.5M"
       ]
     }
   ],
   "ucc-u1": [
     {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880032994_photo_2025-12-21_06-38-11 (1).png",
-      "summary": "Hand-drawn iPad diagram showing a client's retirement income gap analysis (age 26-85) with two wealth curves, monthly income targets of $3.5k/mth needing $2.9mill lump sum, and three upcoming mileston",
-      "score": 13,
-      "evidence": [
-        "play:rider",
-        "tag:ci",
-        "num:$300K",
-        "num:$1M",
-        "num:$30K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884410056_photo_2026-04-06_10-54-36 (7).png",
-      "summary": "A four-quadrant coverage gap diagram for a specific client showing Death/TPD ($1M TR + $120k GPP), a CI/ECI shortfall of $230k against 5 years income, hospital cover of $2M/year with 13-month resettin",
-      "score": 11,
-      "evidence": [
-        "tag:ci",
-        "num:$300K",
-        "num:$1M",
-        "num:$30K"
-      ]
-    },
-    {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883955264_photo_2026-03-22_05-13-34.png",
       "summary": "Hand-drawn coverage review diagram for a Great Eastern client (parents), mapping existing vs needed coverage across Death/TPD, CI/ECI, hospitalisation, accident, and surgery benefits with a $100k CI s",
-      "score": 11,
+      "score": 10,
       "evidence": [
-        "tag:ci",
-        "num:$60K",
         "num:$300K",
+        "num:$60K",
         "num:$1M"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883857837_photo_2026-03-22_04-53-27.png",
       "summary": "Hand-drawn whiteboard diagram comparing a client's Death/TPD coverage (existing D50 at $1M for $70/mth, crossed out) versus a CI/ECI needs analysis using an income-replacement multiplier ($80k x 5-10 ",
-      "score": 10,
+      "score": 9,
       "evidence": [
         "tag:company insurance",
         "tag:full suite",
-        "tag:ci",
         "num:$60K",
+        "num:$1M"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778880032994_photo_2025-12-21_06-38-11 (1).png",
+      "summary": "Hand-drawn iPad diagram showing a client's retirement income gap analysis (age 26-85) with two wealth curves, monthly income targets of $3.5k/mth needing $2.9mill lump sum, and three upcoming mileston",
+      "score": 9,
+      "evidence": [
+        "play:rider",
+        "num:$300K",
+        "num:$1M"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
+      "summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised sing",
+      "score": 7,
+      "evidence": [
+        "num:$300K",
         "num:$1M"
       ]
     }
@@ -460,40 +358,36 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
       "summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised sing",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:decoupl",
-        "tag:restructure",
+        "num:$100K"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883320543_photo_2026-03-15_03-35-04 (9).png",
+      "summary": "Hand-drawn diagram showing a Disability Income Stream plan where an ADL (Activities of Daily Living) trigger pays out $2,000/month, noted as \"cashless\" benefit delivery.",
+      "score": 6,
+      "evidence": [
+        "play:decoupl",
         "num:$100K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883304710_photo_2026-03-15_03-35-04 (8).png",
       "summary": "Hand-drawn diagram showing a policy restructure: an existing $204/month plan with overscured and investment components (D/T/CI $100k) is split into separate CI coverage, investment (Inu), and death co",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:decoupl",
-        "tag:restructure",
         "num:$100K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883234546_photo_2026-03-15_03-35-04 (4).png",
       "summary": "Coverage summary of a client's current ILP at $400/month showing $200k Death/TPD, $200k CI, $100k ECI, and projected value of $186k + $482,500 at age 65.",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:decoupl",
-        "tag:restructure",
-        "num:$100K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883219009_photo_2026-03-15_03-35-04 (3).png",
-      "summary": "Comparison table showing a client's current ILP at $400/mth versus a proposed restructure into a $200/mth ILP (zeroing out CI/ECI riders) plus a separate $125/mth coverage plan with $500k Death/TPD an",
-      "score": 7,
-      "evidence": [
-        "play:decoupl",
-        "tag:restructure",
         "num:$100K"
       ]
     }
@@ -502,40 +396,36 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883320543_photo_2026-03-15_03-35-04 (9).png",
       "summary": "Hand-drawn diagram showing a Disability Income Stream plan where an ADL (Activities of Daily Living) trigger pays out $2,000/month, noted as \"cashless\" benefit delivery.",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:eci",
         "num:$300K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883304710_photo_2026-03-15_03-35-04 (8).png",
       "summary": "Hand-drawn diagram showing a policy restructure: an existing $204/month plan with overscured and investment components (D/T/CI $100k) is split into separate CI coverage, investment (Inu), and death co",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:eci",
         "num:$300K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883219009_photo_2026-03-15_03-35-04 (3).png",
       "summary": "Comparison table showing a client's current ILP at $400/mth versus a proposed restructure into a $200/mth ILP (zeroing out CI/ECI riders) plus a separate $125/mth coverage plan with $500k Death/TPD an",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:eci",
         "num:$300K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883184554_photo_2026-03-15_03-35-04 (13).png",
       "summary": "Hand-drawn FC diagram showing a client policy restructure from GE GLA and Inverse Advantage plans into a split of CI coverage plus an investment-linked policy plus death coverage, with before/after pr",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:eci",
         "num:$300K"
       ]
     }
@@ -544,50 +434,44 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883184554_photo_2026-03-15_03-35-04 (13).png",
       "summary": "Hand-drawn FC diagram showing a client policy restructure from GE GLA and Inverse Advantage plans into a split of CI coverage plus an investment-linked policy plus death coverage, with before/after pr",
-      "score": 12,
+      "score": 10,
       "evidence": [
         "play:decoupl",
-        "tag:ci",
-        "tag:restructure",
         "tag:relapse",
-        "num:$300K",
-        "num:$100K"
+        "num:$100K",
+        "num:$300K"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883166668_photo_2026-03-15_03-35-04 (12).png",
+      "summary": "Whiteboard diagram (case 24) comparing two health plan structures under Suplane Health + Rider at $404/year: current plan with $3,500 premium and $6k claim cap vs upgraded plan with 510 criteria and $",
+      "score": 10,
+      "evidence": [
+        "play:decoupl",
+        "tag:relapse",
+        "num:$100K",
+        "num:$300K"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883149250_photo_2026-03-15_03-35-04 (11).png",
+      "summary": "Hand-drawn four-quadrant coverage gap diagram showing a client who needs $500k death/TPD but only has $200k (shortfall $300k), plus CI/ECI comparison showing $200k CI with multi-claim vs $0 ECI, with ",
+      "score": 10,
+      "evidence": [
+        "play:decoupl",
+        "tag:relapse",
+        "num:$100K",
+        "num:$300K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884740766_photo_2026-05-13_09-35-11.png",
       "summary": "Hand-drawn breakdown of a policy structure with three premium components \u2014 $800/yr, $3k, $3.6k/yr savings \u2014 mapped to $1M Death/TPD, $450k CI/ECI, and a $300k savings corpus at 65, with a revised sing",
-      "score": 11,
+      "score": 9,
       "evidence": [
         "play:decoupl",
-        "tag:ci",
-        "tag:restructure",
-        "num:$300K",
-        "num:$100K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883304710_photo_2026-03-15_03-35-04 (8).png",
-      "summary": "Hand-drawn diagram showing a policy restructure: an existing $204/month plan with overscured and investment components (D/T/CI $100k) is split into separate CI coverage, investment (Inu), and death co",
-      "score": 11,
-      "evidence": [
-        "play:decoupl",
-        "tag:ci",
-        "tag:restructure",
-        "num:$300K",
-        "num:$100K"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883234546_photo_2026-03-15_03-35-04 (4).png",
-      "summary": "Coverage summary of a client's current ILP at $400/month showing $200k Death/TPD, $200k CI, $100k ECI, and projected value of $186k + $482,500 at age 65.",
-      "score": 11,
-      "evidence": [
-        "play:decoupl",
-        "tag:ci",
-        "tag:restructure",
-        "num:$300K",
-        "num:$100K"
+        "num:$100K",
+        "num:$300K"
       ]
     }
   ],
@@ -595,45 +479,41 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882297315_photo_2026-03-01_16-14-39 (5).png",
       "summary": "Hand-drawn table comparing a Term plan (under $12k premium, $150k decoupled, $250k and $400k at age 65) against a Life Plan ($3.6k premium, $150k coverage, $70k cash value) with annotations C and CV.",
-      "score": 12,
+      "score": 11,
       "evidence": [
         "product:ge",
-        "tag:ge",
-        "num:$150K",
-        "num:$600K"
+        "num:$600K",
+        "num:$150K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883955264_photo_2026-03-22_05-13-34.png",
       "summary": "Hand-drawn coverage review diagram for a Great Eastern client (parents), mapping existing vs needed coverage across Death/TPD, CI/ECI, hospitalisation, accident, and surgery benefits with a $100k CI s",
-      "score": 12,
+      "score": 11,
       "evidence": [
         "product:great eastern",
-        "tag:ge",
-        "num:$1M",
-        "num:$600K"
+        "num:$600K",
+        "num:$1M"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882260757_photo_2026-03-01_16-14-39 (3).png",
       "summary": "Hand-drawn comparison table showing annual or monthly premiums at three coverage levels ($150k, $300k, $600k) across three different plan tiers or products.",
-      "score": 11,
+      "score": 10,
       "evidence": [
         "product:ge",
-        "tag:ge",
-        "num:$150K",
-        "num:$600K"
+        "num:$600K",
+        "num:$150K"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882203860_photo_2026-03-01_16-04-39.png",
       "summary": "Hand-drawn pie chart dividing a $5k monthly income into three buckets: short-term (ST) for food and bills at $1.5k/mth, daily expenses at $1.5k/mth, and medium-term (MT) covering house reno, wedding/h",
-      "score": 11,
+      "score": 10,
       "evidence": [
         "product:ge",
-        "tag:ge",
-        "num:$1M",
-        "num:$600K"
+        "num:$600K",
+        "num:$1M"
       ]
     }
   ],
@@ -641,40 +521,36 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778882088581_photo_2026-03-01_15-36-21.png",
       "summary": "Handwritten premium comparison table for a client showing three accident term coverage tiers (250k/200k/100k till age 75) plus B+Rider and A+Rider options with CPF and cash split, totalling three plan",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:term",
         "num:$1M"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778884517947_photo_2026-04-12_12-55-13.png",
       "summary": "Coverage needs analysis slide showing a client's Death/TPD shortfall of $800k (target $1M, existing $200k) and CI/ECI position with $200k Major CI and $100k early CI against a $250k goal.",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:term",
+        "num:$1M"
+      ]
+    },
+    {
+      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883391763_photo_2026-03-15_15-47-41 (3).png",
+      "summary": "A hand-drawn FC diagram breaking down a client's hospitalisation plan (MediShield Life + HealthShield Gold Max + VitalHealth Plan A) showing MediSave vs cash costs, surgery waiting periods, and the br",
+      "score": 6,
+      "evidence": [
+        "play:rider",
         "num:$1M"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881831232_photo_2026-03-01_07-47-30 (2).png",
       "summary": "Hand-drawn wealth accumulation curve for a client starting at age 26 with $3K/mth income, targeting $12K/mth retirement income by age 65, showing a $1.5M shortfall and bonus structures ($45K loyalty +",
-      "score": 7,
+      "score": 6,
       "evidence": [
         "play:rider",
-        "tag:term",
-        "num:$1M"
-      ]
-    },
-    {
-      "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778881166139_photo_2026-01-26_02-28-14 (3).png",
-      "summary": "Hand-written note showing a client's DPS (Dependants' Protection Scheme) policy with Great Eastern for $55,000 in coverage.",
-      "score": 7,
-      "evidence": [
-        "play:rider",
-        "tag:term",
         "num:$1M"
       ]
     }
@@ -705,44 +581,40 @@
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883391763_photo_2026-03-15_15-47-41 (3).png",
       "summary": "A hand-drawn FC diagram breaking down a client's hospitalisation plan (MediShield Life + HealthShield Gold Max + VitalHealth Plan A) showing MediSave vs cash costs, surgery waiting periods, and the br",
-      "score": 9,
+      "score": 8,
       "evidence": [
         "product:ge",
         "play:rider",
-        "tag:ge",
         "tag:private hospital"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883184554_photo_2026-03-15_03-35-04 (13).png",
       "summary": "Hand-drawn FC diagram showing a client policy restructure from GE GLA and Inverse Advantage plans into a split of CI coverage plus an investment-linked policy plus death coverage, with before/after pr",
-      "score": 9,
+      "score": 8,
       "evidence": [
         "product:ge",
         "play:rider",
-        "tag:ge",
         "tag:private hospital"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883375620_photo_2026-03-15_15-47-41 (2).png",
       "summary": "AIA Solitaire personal accident plan product slide showing benefit tiers for ages 16-65 across four occupational classes, with annual premiums and coverage limits for accidental death, dismemberment, ",
-      "score": 8,
+      "score": 7,
       "evidence": [
         "product:ge",
         "play:rider",
-        "tag:ge",
         "tag:private hospital"
       ]
     },
     {
       "url": "https://hgdbflprrficdoyxmdxe.supabase.co/storage/v1/object/public/concept-card-images/enhanced/enhanced_1778883357843_photo_2026-03-15_15-47-41 (1).png",
       "summary": "A hand-drawn comparison diagram showing three hospitalisation plan scenarios \u2014 without rider (10% uncapped co-insurance + $1,500 deductible), with rider (5% of bill capped at $3,000), and with new rid",
-      "score": 8,
+      "score": 7,
       "evidence": [
         "product:ge",
         "play:rider",
-        "tag:ge",
         "tag:private hospital"
       ]
     }
@@ -802,7 +674,7 @@
       "summary": "Before/after policy restructure comparison showing same sum assured (110k+150k) but with a $150k coverage increase and a net premium change from $226.8/mth to $358/mth, plus a new $750/mth benefit gai",
       "score": 11,
       "evidence": [
-        "product:ntuc",
+        "product:ntuc living",
         "tag:ntuc",
         "tag:living policy",
         "tag:surrender",
@@ -814,7 +686,7 @@
       "summary": "Hand-drawn comparison table contrasting AIA policy benefits (NIL estate tax, NIL dividend tax, NIL inheritance risk, secondary insured, capital gifted upon death) versus DIY/stocks drawbacks (USD expo",
       "score": 10,
       "evidence": [
-        "product:ntuc",
+        "product:ntuc living",
         "tag:ntuc",
         "tag:living policy",
         "tag:surrender",
@@ -826,7 +698,7 @@
       "summary": "Hand-drawn bar chart illustrating a lump sum investment spread over 5 years with escalating monthly premium tiers, showing capital guaranteed on death, secondary insured feature, and total benefits of",
       "score": 10,
       "evidence": [
-        "product:ntuc",
+        "product:ntuc living",
         "tag:ntuc",
         "tag:living policy",
         "tag:surrender",
@@ -838,7 +710,7 @@
       "summary": "Hand-drawn diagram showing how a single policy block can be split into a cash component and a coverage component, yielding $618/month cashflow plus $150k sum assured.",
       "score": 10,
       "evidence": [
-        "product:ntuc",
+        "product:ntuc living",
         "tag:ntuc",
         "tag:living policy",
         "tag:surrender",

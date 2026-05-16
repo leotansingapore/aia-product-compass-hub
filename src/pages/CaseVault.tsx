@@ -21,7 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Search, ExternalLink, ImageIcon, Pencil } from "lucide-react";
+import { Search, ExternalLink, ImageIcon, Pencil, X, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASES,
@@ -146,6 +146,124 @@ function prospectFromTitle(title: string): string {
     .trim();
 }
 
+// ─── Reference photos grid (right-pane of CaseDetailDialog) ────────────
+// Pulls the auto-matched reference photos for this case, lets the user
+// "Not relevant" wrong matches (persisted to localStorage), and offers a
+// reset button to unhide them. localStorage keys are namespaced per case
+// so curating one case doesn't affect others.
+function CaseReferencePhotos({ caseId }: { caseId: string }) {
+  const HIDDEN_KEY = `case-vault.hidden-ref-photos.${caseId}`;
+  const photos = CASE_REFERENCE_PHOTOS[caseId] ?? [];
+  const [hiddenUrls, setHiddenUrls] = useState<Set<string>>(() => {
+    if (typeof window === "undefined") return new Set();
+    try {
+      const raw = localStorage.getItem(HIDDEN_KEY);
+      return new Set<string>(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  });
+
+  // Re-read localStorage when caseId changes (the same component instance
+  // is reused as the dialog swaps cases).
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(HIDDEN_KEY);
+      setHiddenUrls(new Set<string>(raw ? JSON.parse(raw) : []));
+    } catch {
+      setHiddenUrls(new Set());
+    }
+  }, [HIDDEN_KEY]);
+
+  const persist = (next: Set<string>) => {
+    setHiddenUrls(next);
+    try {
+      localStorage.setItem(HIDDEN_KEY, JSON.stringify(Array.from(next)));
+    } catch {
+      /* localStorage full / disabled — silently degrade */
+    }
+  };
+
+  const visible = photos.filter((p) => !hiddenUrls.has(p.url));
+  if (photos.length === 0) return null;
+
+  const allHidden = visible.length === 0 && hiddenUrls.size > 0;
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-1.5 gap-2 flex-wrap">
+        <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
+          Reference photos from the case-study chat ({visible.length}
+          {hiddenUrls.size > 0 ? <span className="text-amber-600 dark:text-amber-400"> · {hiddenUrls.size} hidden</span> : null})
+        </div>
+        <div className="flex items-center gap-2 text-[9px]">
+          <span className="text-muted-foreground/60 italic">auto-matched · hover for description · ✕ to hide</span>
+          {hiddenUrls.size > 0 && (
+            <button
+              type="button"
+              onClick={() => persist(new Set())}
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+              title="Unhide every photo you previously marked Not relevant for this case"
+            >
+              <RotateCcw className="h-3 w-3" />
+              Reset
+            </button>
+          )}
+        </div>
+      </div>
+      {allHidden ? (
+        <div className="rounded-lg border border-dashed border-amber-300 bg-amber-50/50 dark:bg-amber-950/20 p-3 text-xs text-amber-900 dark:text-amber-200">
+          All auto-matched photos for this case were marked Not relevant. Click Reset above to unhide them.
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {visible.map((p) => (
+            <div
+              key={p.url}
+              className="group/refimg relative rounded-lg overflow-hidden border bg-white aspect-[4/3] hover:border-primary/60 transition-colors"
+            >
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`${p.summary}\n\nEvidence: ${p.evidence.join(", ")}\n(Click thumbnail to open full-size; click ✕ to mark Not relevant)`}
+                className="block w-full h-full"
+              >
+                <img
+                  src={p.url}
+                  alt={p.summary}
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                />
+                <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full group-hover/refimg:translate-y-0 transition-transform bg-black/85 text-white text-[10px] leading-snug px-2 py-1.5 pointer-events-none">
+                  <div className="line-clamp-3">{p.summary}</div>
+                </div>
+              </a>
+              {/* "Not relevant" button — hides this photo locally without
+                  re-running the matcher. Persisted per case. */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const next = new Set(hiddenUrls);
+                  next.add(p.url);
+                  persist(next);
+                }}
+                className="absolute top-1 right-1 z-20 inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm opacity-0 group-hover/refimg:opacity-100 transition-opacity"
+                title="Hide this photo from this case (you can unhide via Reset)"
+              >
+                <X className="h-3 w-3" />
+                Not relevant
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function CaseDetailDialog({
   entry,
   open,
@@ -246,41 +364,10 @@ function CaseDetailDialog({
           {/* Auto-suggested reference photos — drawings/screenshots from the
               Telegram case-study chat whose context matches this case's
               product mentions + dollar amounts. Strong-signal only; the
-              matcher refuses to fall back to generic play/tag overlap. */}
-          {CASE_REFERENCE_PHOTOS[entry.id]?.length > 0 && (
-            <div>
-              <div className="flex items-baseline justify-between mb-1.5">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
-                  Reference photos from the case-study chat ({CASE_REFERENCE_PHOTOS[entry.id].length})
-                </div>
-                <div className="text-[9px] text-muted-foreground/60 italic">
-                  auto-matched · hover for description
-                </div>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {CASE_REFERENCE_PHOTOS[entry.id].map((p) => (
-                  <a
-                    key={p.url}
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`${p.summary}\n\nEvidence: ${p.evidence.join(", ")}`}
-                    className="group/refimg relative block rounded-lg overflow-hidden border bg-white aspect-[4/3] hover:border-primary/60 transition-colors"
-                  >
-                    <img
-                      src={p.url}
-                      alt={p.summary}
-                      loading="lazy"
-                      className="w-full h-full object-contain"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full group-hover/refimg:translate-y-0 transition-transform bg-black/85 text-white text-[10px] leading-snug px-2 py-1.5 pointer-events-none">
-                      <div className="line-clamp-3">{p.summary}</div>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
+              matcher refuses to fall back to generic play/tag overlap.
+              The "Not relevant" button per photo writes to localStorage
+              so wrong matches can be hidden without re-running the matcher. */}
+          <CaseReferencePhotos caseId={entry.id} />
 
           {/* Drawings used */}
           {entry.drawings.length > 0 && (
