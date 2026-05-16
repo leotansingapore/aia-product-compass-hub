@@ -116,6 +116,22 @@ function CaseCard({
 }
 
 // ─── Detail Dialog ──────────────────────────────────────────────────────
+// Strip the "Play X — " prefix from a play label so it reads naturally in
+// a sentence (e.g. "whole-life / endowment restructure" instead of
+// "Play A — Whole-life / endowment restructure").
+function playInSentence(play: string): string {
+  return play.replace(/^Play\s+[A-C]\s+[—–-]\s+/i, "").trim().toLowerCase();
+}
+
+// Strip the "(Play X receipt)" / "(receipt)" suffix and leading "The" so the
+// title reads as a clean noun phrase for use mid-sentence.
+function prospectFromTitle(title: string): string {
+  return title
+    .replace(/\s*\([^)]*receipt[^)]*\)\s*$/i, "")
+    .replace(/^The\s+/i, "")
+    .trim();
+}
+
 function CaseDetailDialog({
   entry,
   open,
@@ -126,6 +142,15 @@ function CaseDetailDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   if (!entry) return null;
+
+  // Build a one-paragraph TL;DR that turns the structured fields into a
+  // story an FC can grasp before they read the full case write-up. Format:
+  //   "A [prospect] who already had [titleNoun]. We ran [play],
+  //    structured as [anchor]. Outcome: [headline]."
+  const titleNoun = prospectFromTitle(entry.title);
+  const playPhrase = playInSentence(entry.play);
+  const tldr = `A ${entry.prospect.toLowerCase()} — ${titleNoun}. The move: ${playPhrase}, structured as ${entry.anchor}. The numbers landed at ${entry.headline}.`;
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[88vh] overflow-y-auto">
@@ -147,33 +172,43 @@ function CaseDetailDialog({
         </DialogHeader>
 
         <div className="space-y-4 mt-2">
-          {/* Receipt callout */}
+          {/* TL;DR — plain-English summary built from the structured fields
+              so an FC opening this card immediately understands what the
+              case is about without needing to decode the title and codes. */}
+          <div className="rounded-xl bg-muted/40 border border-border/60 p-4">
+            <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
+              In plain English
+            </div>
+            <p className="text-sm leading-relaxed">{tldr}</p>
+          </div>
+
+          {/* Outcome callout — the headline number comparison */}
           <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 p-4">
             <div className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide mb-1">
-              Headline receipt
+              The outcome (vs the prospect's existing setup)
             </div>
-            <div className="text-sm text-emerald-900 dark:text-emerald-200 leading-relaxed">
+            <div className="text-sm text-emerald-900 dark:text-emerald-200 leading-relaxed font-medium">
               {entry.headline}
             </div>
           </div>
 
-          {/* Metadata grid */}
+          {/* Metadata grid — kept for reference but compact */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div>
               <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">
-                Prospect type
+                Who they were
               </div>
               <div className="text-foreground">{entry.prospect}</div>
             </div>
             <div>
               <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">
-                Target play
+                Play used
               </div>
               <div className="text-foreground">{entry.play}</div>
             </div>
             <div className="sm:col-span-2">
               <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">
-                Anchor / duration
+                The deal shape (ticket size × duration)
               </div>
               <div className="text-foreground">{entry.anchor}</div>
             </div>
@@ -183,7 +218,7 @@ function CaseDetailDialog({
           {entry.screenshot && (
             <div>
               <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
-                Field receipt
+                Field receipt (real screenshot from the case)
               </div>
               <img
                 src={entry.screenshot}
@@ -198,7 +233,7 @@ function CaseDetailDialog({
           {entry.drawings.length > 0 && (
             <div>
               <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
-                Drawings used in this close
+                Drawings used in this close — click to drill
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {entry.drawings.map((d) => (
