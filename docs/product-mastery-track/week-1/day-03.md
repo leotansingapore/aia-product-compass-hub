@@ -216,45 +216,34 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 
 ## The numbers cheat sheet
 
-Print this, laminate it, keep it in your folio.
 
-| # | Item | Value |
-|---|---|---|
-| 1 | Supplementary charge | 3.9% p.a., first 10 yrs only |
-| 2 | Welcome bonus range | 5% to 75% over years 1–3 |
-| 3 | Special bonus year 10+ | 5% of annualized premium / yr |
-| 4 | Special bonus year 21+ | 8% of annualized premium / yr |
-| 5 | Min annual premium | $2,400 ($200/mo) |
-| 6 | Min top-up | $1,000 |
-| 7 | Min partial withdrawal | $1,000 |
-| 8 | Min remaining policy value | $10,000 |
-| 9 | Premium pass | 1 per 5 yrs paid, 12 mo pause |
-| 10 | Maximum maturity age | 100 |
-| 11 | Free-look | 14 days |
-| 12 | Standard close (age 20, $200/mo, 8%) | $96k in → $411,600 → $583/mo |
-| 13 | Total cost ratio | ~$11/month over 45 yrs |
-| 14 | Break-even year ($12k/yr) | ~Year 34 |
-| 15 | FMC default funds | Conservative ~1.05%, Balanced ~1.25%, Adventurous ~1.45% |
+| #   | Item                                                            | Value                                                    |
+| --- | --------------------------------------------------------------- | -------------------------------------------------------- |
+| 1   | Supplementary charge                                            | 3.9% p.a., first 10 yrs only                             |
+| 2   | Welcome bonus range                                             | 5% to 75% over years 1–3                                 |
+| 3   | Special bonus year 10+                                          | 5% of annualized premium / yr                            |
+| 4   | Special bonus year 21+                                          | 8% of annualized premium / yr                            |
+| 5   | Min annual premium                                              | $2,400 ($200/mo)                                         |
+| 6   | Min top-up                                                      | $1,000                                                   |
+| 7   | Min partial withdrawal                                          | $1,000                                                   |
+| 8   | Min remaining policy value                                      | $10,000                                                  |
+| 9   | Premium pass                                                    | 1 per 5 yrs paid, 12 mo pause                            |
+| 10  | Maximum maturity age                                            | 100                                                      |
+| 11  | Free-look                                                       | 14 days                                                  |
+| 12  | How much does an age 20 earn investing $200/mo till age 65?     | $96k in → $411,600 → $583/mo                             |
+| 13  | Monthly Distribution cost for a $200/mth plan                   | ~$11/month over 45 yrs                                   |
+| 14  | Break-even year where bonuses = supplementary charges ($12k/yr) | ~Year 34                                                 |
+| 15  | FMC of default funds                                            | Conservative ~1.05%, Balanced ~1.25%, Adventurous ~1.45% |
+| 16  | Default funds for most cases                                    | Adventurous Index Fund                                   |
 
----
-
----
-
-## Drill (Part 1)
-
-1. **Write down all 15 numbers from the cheat sheet** without looking. Score yourself out of 15. Repeat tomorrow until 15/15.
-2. **Run the linearization out loud** for 3 different premium levels: $200/mo, $400/mo, $600/mo. Practice the reveal.
-3. **Draw the break-even chart** on a piece of paper from memory. Label years 10, 21, 34.
-4. **Practice the "$11/month investment consultant" reframe** in 3 different tonalities. Pick the one that sounds most natural.
 
 ---
 
 # Part 2 — Top 5 Client Questions — Crisp, Scripted Answers
 
 > **The one idea for today:** Most APA prospects ask some version of the same five questions in the first appointment. Today you build the worked answer to each — cushion, reframe, trial close. Tomorrow we move to the heavier conviction stories. A question is the prospect probing; an objection is the prospect telling you the fit isn't there yet — different responses for each.
-
-By the end of today you should be able to: deliver each of the 5 answers in under 30 seconds, end each answer with a question that hands the conversation back, and recognise which Day 7 objection is hiding behind a Day 6 question.
-
+> 
+> By the end of today you should be able to: deliver each of the 5 answers in under 30 seconds, end each answer with a question that hands the conversation back. 
 ---
 
 ## The pattern (use it for every answer)
@@ -343,13 +332,13 @@ Cushion, give the technical "yes", then run the math reframe, then hand the choi
 
 > *"Honestly, fair question — most people I sit down with ask some version of this. Technically yes: from year 10 or 11 you can switch into dividend mode using GDIF (Global Dynamic Income Fund). Yield is roughly 5-7% per year on account value.*
 >
-> *Here's the bit that catches most people though. On a $10,000 balance at year 10, 5–7% is about $600 a year — call it $50 a month. You're earning $6k a month right now. Would $50 a month change anything material for you today?*
+> *Here's the bit that catches most people though. On a $30,000 balance at year 10, 5–7% is about $1,500 a year — call it $100 a month. You're earning $6k a month right now. Would $100 a month change anything material for you today?*
 >
 > *Most clients say not really. Which is why the smarter setup is usually: let it compound now, switch on dividend mode later when the balance is doing real work. But it's your money and your call — would you rather have dividends landing now, or compounded into a meaningfully bigger payout later?"*
 
 The verbatim source line we're drawing on:
 
-> *"Is $600 per year significant for you? If you're earning 6k per month and you're getting $600 per year of dividends, I do not think there is any significance in taking out the dividends now."*
+> *"Is $1500 per year significant for you? If you're earning 6k per month and you're getting $1500 per year of dividends, I do not think there is any significance in taking out the dividends now."*
 >
 > *"Would you prefer dividends now when you don't need it, or in the future when you actually need it?"*
 
@@ -369,11 +358,33 @@ GDIF is the canonical dividend-mode fund for APA at retirement. Yield approximat
 
 ## The riders question (sometimes asked, sometimes you bring it up)
 
-Even if not asked, you should plant the seed during the answer to Question 3:
+APA carries 5 optional riders. The two that come up most often in real appointments are the **Term Rider** (the restructuring lever) and **ECPWP — Enhanced Critical Payor Waiver** (the premium-protection lever). Both work as the "stack a small protection layer on top of the investment plan" answer when the prospect asks about life or CI cover.
 
-> *"Speaking of protection — APA also has 5 optional riders we can layer on. The most common is ECPWP — that's Enhanced Critical Payor Waiver. If you get a major critical illness or become disabled, AIA waives your future premiums but the plan keeps growing. We can talk about that on the next visit."*
+### The Term Rider — the restructuring lever
 
-That's a Day 8 cross-sell teaser — drops the seed for the next appointment.
+The Term Rider attaches a death / TPD layer directly onto the APA policy. It's almost always **cheaper than a standalone term plan** because the underwriting and admin are bundled into the parent APA contract.
+
+**Pricing benchmark** (male, age 25, $1M death / TPD cover):
+
+| Cover | Standalone product | Monthly premium |
+|---|---|---|
+| $1M Death / TPD | Secure Flexi Term (term plan) | ~$70/month |
+| $1M Death / TPD | APA Term Rider | ~$60/month |
+
+Verify both in iPOS+ at quote time for the specific prospect — pricing varies with age, gender, smoker status, and the cover amount. The structural point: same death / TPD cover, lower premium when it's a rider on APA than a standalone term plan.
+
+### Restructure plays the Term Rider unlocks
+
+When a prospect already owns one of the legacy structures below, APA + Term Rider (+ UCC where CI is needed) is usually the **higher-return, more flexible** replacement at the same outlay. The three scenarios that come up most often:
+
+1. **Whole life policy → APA + Term Rider + UCC (Ultimate Critical Cover).** Whole life bundles death / TPD with CI / ECI into one expensive policy, and any CI / ECI claim **accelerates or terminates** the death / TPD payout — so a single illness wipes out the family's death-benefit protection AND any investing upside. Decoupling into APA (investment) + Term Rider (death / TPD) + UCC (multi-claim CI / ECI) keeps each layer independent: a CI claim on UCC pays out without touching the death / TPD or the APA growth. Net result at age 65, same premium: higher projected returns + multi-claim CI cover instead of single-claim acceleration.
+2. **Hybrid ILP → APA + Term Rider + UCC.** Same concept as the whole life case. Most hybrid ILPs bundle insurance charges that bleed the policy value and cap the long-term upside. Decoupling lets the investment leg compound on the lower APA charge curve while the protection leg sits on a cleaner term structure.
+3. **Endowment + standalone term → APA + Term Rider.** Endowments cap upside at the participating bonus rate; APA's projection at 8% IIRR on the Self-Select Adventurous Index Fund typically outruns a like-for-like endowment over a 30-40 year horizon. Combine that with a Term Rider (cheaper than the existing standalone term) and the prospect ends up with better returns at the same total outflow.
+
+The seed-plant line — use this even when the prospect doesn't ask, during the answer to Question 3:
+
+> *"Speaking of protection — APA also has 5 optional riders we can layer on. The two that come up most often are the Term Rider — if you want a $1M death / TPD layer it's usually cheaper as a rider on APA than as a standalone term plan — and ECPWP, Enhanced Critical Payor Waiver, which means if you get a major critical illness or become disabled, AIA waives your future premiums but the plan keeps growing. If you already own a whole life or a hybrid ILP, there's also a restructure conversation worth having on the next visit."*
+
 
 ---
 
@@ -408,17 +419,6 @@ The five answers above handle *curious* prospects. If a prospect asks:
 - *"I want my dividends now (not later)"*
 
 — those are sitting one rung deeper. They need the conviction stories from Day 4, not the Q&A scripts here. The cleanest way to tell the difference live: a question is the prospect probing for information; an objection is the prospect telling you the recommendation doesn't fit yet. Different responses, different energy.
-
----
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers out loud.** Aim for roughly 30–45 seconds each. If yours runs long, the usual culprit is finishing the cushion before the reframe begins — tighten the bridge between the two, not the content itself.
-2. **Check each answer ends with a question, not a statement.** The trial close is what hands the conversation back and tells you whether you've landed it. If you find yourself ending on a declaration, rewrite.
-3. **Pair up with a peer** (or self-record). Have them ask the five questions in random order. After each, ask them: did the cushion feel real, or did it sound like a script? That's the calibration that matters more than the timer.
-4. **Memorise the dividend math** ($600/yr on $10k at 5–7% yield). The number does the work — recite without looking until it falls out naturally.
 
 ---
 

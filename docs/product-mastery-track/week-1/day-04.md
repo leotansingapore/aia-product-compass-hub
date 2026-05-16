@@ -472,27 +472,8 @@ Most "walk away" moments are managed-expectation moments.
 
 The general rule: don't walk away from a case just because the prospect surfaces one of these. Reframe it. The objections almost always come from misframed expectations, not from APA being structurally wrong for them.
 
----
+--
 
-## Drill (Part 1)
-
-This is the heaviest drill in the track — give it a proper hour rather than splitting it across other prep.
-
-1. **Walk the Perfect / Imperfect / Partially Perfect frame** out loud, three times. Roughly 60 seconds end-to-end is the right pace — slower than that and it stops sounding like a conversation.
-2. **Anchor the volatility math** (~21% vs ~11%, ~42% vs ~20% drawdown). Recite from memory until the numbers come out naturally rather than recited.
-3. **Memorise the verified competitor rows** — FWD Invest Plus 1.2% lifelong supplementary, FWD Invest First Max tapering accumulation charge, AIA welcome bonus bands by IIP × premium, Manulife withdrawal lock-in length. Source: `APA-Competitor-Analysis.pdf`. **Verify in iPOS / current brochures** before quoting any of these to a live client — competitor matrices age fast.
-4. **Memorise the $1.3M dividend trap number** and the ~$1.2M long-hold advantage vs a 1% perpetual platform. Both are illustrative scenarios from Video 16 / Video 20 — quote with assumptions, run a fresh BI for the actual case in front of you.
-5. **Run a roleplay.** Pair with a peer or self-record. Have them throw all five objections at you in random order. After each, check whether you cushioned before reframing, and whether you ended on a trial close rather than a declaration.
-6. **Pick the objection you're least settled on.** Write the answer out by hand. Re-read it tomorrow before you go into appointments.
-
----
-
-## Drill (Part 2)
-
-1. **Run the four disclosure reframes out loud** — "returns not guaranteed", "supplementary charge", "surrender / withdrawal", "long-term lock". Time each at 30-45 seconds. Notice which reframe lands cleanest in your mouth; that's the one you'll use most.
-2. **Practise the free-look close** for "I want to think about it" — get the line *"the cost of signing today is zero, you keep the 14-day off-ramp"* sounding natural.
-3. **Practise the "don't let AIA earn this money" frame** until you can deliver it conversationally, not as a script.
-4. **Pick the toughest Part 2 reframe** ("under 10 years", "30% drawdown", "can't afford the minimum") and write your reframe for a specific prospect you've handled recently. Run it out loud once.
 
 ## What's coming next
 
