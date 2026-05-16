@@ -208,6 +208,9 @@ export default function AssignDrawingsPage() {
   const [cardFilter, setCardFilter] = useState<"all" | "missing">("missing");
   const [cardSearch, setCardSearch] = useState("");
   const [photoSearch, setPhotoSearch] = useState("");
+  // Photo filter — default "unbound" so the grid shrinks as you bind, leaving
+  // only photos that haven't been attached to any card yet.
+  const [photoFilter, setPhotoFilter] = useState<"all" | "unbound">("unbound");
   const [busyPhotoUrl, setBusyPhotoUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -264,12 +267,19 @@ export default function AssignDrawingsPage() {
       .sort((a, b) => a.sort_order - b.sort_order);
   }, [cards, cardFilter, cardSearch]);
 
+  // Photos not yet attached to any concept card.
+  const unboundPhotos = useMemo(() => {
+    if (!photos) return [];
+    return photos.filter((p) => !photoToCardIds.has(p.url));
+  }, [photos, photoToCardIds]);
+
   const filteredPhotos = useMemo(() => {
     if (!photos) return [];
+    const base = photoFilter === "unbound" ? unboundPhotos : photos;
     const q = photoSearch.trim().toLowerCase();
-    if (!q) return photos;
-    return photos.filter((p) => p.name.toLowerCase().includes(q));
-  }, [photos, photoSearch]);
+    if (!q) return base;
+    return base.filter((p) => p.name.toLowerCase().includes(q));
+  }, [photos, unboundPhotos, photoFilter, photoSearch]);
 
   const selectedCard = cards.find((c) => c.id === selectedCardId) ?? null;
 
@@ -414,15 +424,36 @@ export default function AssignDrawingsPage() {
                 </div>
               )}
 
-              {/* Photo search */}
-              <div className="relative">
-                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                <Input
-                  placeholder={`Search ${photos?.length ?? "..."} enhanced photos...`}
-                  value={photoSearch}
-                  onChange={(e) => setPhotoSearch(e.target.value)}
-                  className="h-9 pl-7 text-xs"
-                />
+              {/* Photo filter + search */}
+              <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+                <Tabs
+                  value={photoFilter}
+                  onValueChange={(v) => setPhotoFilter(v as "all" | "unbound")}
+                  className="sm:flex-none"
+                >
+                  <TabsList className="grid grid-cols-2 h-9 w-full sm:w-auto">
+                    <TabsTrigger value="unbound" className="text-xs px-3">
+                      Unbound ({unboundPhotos.length})
+                    </TabsTrigger>
+                    <TabsTrigger value="all" className="text-xs px-3">
+                      All ({photos?.length ?? 0})
+                    </TabsTrigger>
+                  </TabsList>
+                  <TabsContent value={photoFilter} className="mt-0" />
+                </Tabs>
+                <div className="relative flex-1">
+                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                  <Input
+                    placeholder={
+                      photoFilter === "unbound"
+                        ? `Search ${unboundPhotos.length} unbound photos...`
+                        : `Search ${photos?.length ?? "..."} enhanced photos...`
+                    }
+                    value={photoSearch}
+                    onChange={(e) => setPhotoSearch(e.target.value)}
+                    className="h-9 pl-7 text-xs"
+                  />
+                </div>
               </div>
 
               {/* Photo grid */}
@@ -444,6 +475,12 @@ export default function AssignDrawingsPage() {
                   No enhanced photos found yet. Run{" "}
                   <code className="text-xs">tools/enhance-handwritten-drawings.py</code>{" "}
                   first.
+                </div>
+              ) : filteredPhotos.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-emerald-300 bg-emerald-50/40 dark:bg-emerald-950/20 p-6 text-center text-sm text-emerald-800 dark:text-emerald-300">
+                  {photoFilter === "unbound"
+                    ? `Every photo has been bound to at least one card. Switch to "All" to re-assign or remove bindings.`
+                    : "No photos match the current search."}
                 </div>
               ) : (
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
