@@ -107,6 +107,14 @@ export default function First60DaysAssignments() {
     return m;
   }, [submissions]);
 
+  // Memoized: was re-running this 14-item filter on every render. With
+  // submissions changing via realtime + parent re-renders from other state,
+  // this fired dozens of times during a normal session.
+  const completedCount = useMemo(
+    () => (assignments ?? []).filter((a) => !!latestBySlug[a.frontmatter.status_key]).length,
+    [assignments, latestBySlug],
+  );
+
   if (isLoading || !assignments) {
     return (
       <div className="flex items-center justify-center py-20">
@@ -145,14 +153,6 @@ export default function First60DaysAssignments() {
       />
     );
   }
-
-  // Memoized: was re-running this 14-item filter on every render. With
-  // submissions changing via realtime + parent re-renders from other state,
-  // this fired dozens of times during a normal session.
-  const completedCount = useMemo(
-    () => assignments.filter((a) => !!latestBySlug[a.frontmatter.status_key]).length,
-    [assignments, latestBySlug],
-  );
 
   return (
     <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
