@@ -87,6 +87,13 @@ function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: bo
 
 const BASE_PATH = "/learning-track/product-mastery";
 
+// Hoisted to module level so the array identity is stable across renders.
+// react-markdown caches its parse pipeline per plugins-array reference; a new
+// `[remarkGfm]` on each render would invalidate the cache and re-parse the
+// entire day markdown (some days are 60-80KB with tables + mermaid) — 200-400ms
+// of wasted work per tab switch on the day page.
+const REMARK_PLUGINS = [remarkGfm];
+
 export default function ProductMasteryDay() {
   const { dayNumber: raw } = useParams<{ dayNumber: string }>();
   const dayNumber = Number(raw);
@@ -354,7 +361,7 @@ export default function ProductMasteryDay() {
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               {dayRehypeReady ? (
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
+                <ReactMarkdown remarkPlugins={REMARK_PLUGINS} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
                   {day.markdown}
                 </ReactMarkdown>
               ) : (
