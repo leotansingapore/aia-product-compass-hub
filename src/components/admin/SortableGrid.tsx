@@ -4,6 +4,7 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   type DragEndEvent,
@@ -55,8 +56,21 @@ export function SortableGrid({
   onReorder,
   children,
 }: SortableGridProps) {
+  // Three sensors so the same long-press gesture works across input types:
+  // - PointerSensor: modern desktop + most mobile browsers (Pointer Events API)
+  // - TouchSensor: explicit fallback for older mobile browsers / iOS quirks
+  //   where Pointer Events don't fire as expected on long-press
+  // - KeyboardSensor: a11y — Space/Enter to pick up, arrows to move
+  // Both pointer-based sensors share the same delay+tolerance, so the gesture
+  // (hold still ~500ms) feels identical on desktop and mobile.
   const sensors = useSensors(
     useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: LONG_PRESS_DELAY_MS,
+        tolerance: LONG_PRESS_TOLERANCE_PX,
+      },
+    }),
+    useSensor(TouchSensor, {
       activationConstraint: {
         delay: LONG_PRESS_DELAY_MS,
         tolerance: LONG_PRESS_TOLERANCE_PX,
@@ -177,8 +191,18 @@ function SortableItemInner({
       {...attributes}
       {...listeners}
       className={cn(
-        "touch-none",
-        isDragging && "scale-[1.02] shadow-2xl cursor-grabbing",
+        // Only lock touch behaviour DURING an active drag. Before the long-press
+        // activates, leave touch-action alone so users can scroll the page by
+        // swiping from any card. The delay+tolerance activation constraint
+        // means a scroll gesture (movement > 8px) cancels the press before the
+        // sensor captures it, so the browser keeps handling the scroll natively.
+        isDragging
+          ? "touch-none scale-[1.02] shadow-2xl cursor-grabbing"
+          : "touch-pan-y",
+        // Stop iOS Safari from showing the native callout (copy/share menu)
+        // when the user long-presses a card, and stop text selection from
+        // kicking in. Both are confusing on a card that's becoming draggable.
+        "select-none [-webkit-touch-callout:none] [-webkit-user-select:none]",
         className,
       )}
       aria-grabbed={isDragging}
