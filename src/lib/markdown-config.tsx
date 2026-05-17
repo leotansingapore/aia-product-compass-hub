@@ -344,18 +344,21 @@ export const markdownComponents: Components = {
     <hr className="my-4 border-t border-border" />
   ),
 
-  // Tables — wrap in a horizontally scrollable container on mobile so wide
-  // tables don't get squeezed into one-letter-per-line columns.
+  // Tables — wrap in ScrollableX so wide tables horizontally scroll with a
+  // right-edge fade affordance, and narrow tables (2-3 cols) shrink to fit.
+  // Previously hardcoded min-w-[640px] forced even 2-col tables to overflow
+  // a 390px viewport by ~300px with no visible scroll hint.
   table: ({ children }: any) => (
-    <div
-      className="-mx-3 sm:mx-0 mb-3 overflow-x-auto rounded-lg border border-border [-webkit-overflow-scrolling:touch]"
-      role="region"
-      aria-label="Scrollable table"
-      tabIndex={0}
-    >
-      <table className="w-full min-w-[640px] divide-y divide-border text-sm">
-        {children}
-      </table>
+    <div className="-mx-3 sm:mx-0 mb-3">
+      <ScrollableX
+        ariaLabel="Scrollable table"
+        fadeColorClass="from-card"
+        className="overflow-x-auto rounded-lg border border-border [-webkit-overflow-scrolling:touch]"
+      >
+        <table className="w-full min-w-max divide-y divide-border text-sm">
+          {children}
+        </table>
+      </ScrollableX>
     </div>
   ),
   thead: ({ children }: any) => (

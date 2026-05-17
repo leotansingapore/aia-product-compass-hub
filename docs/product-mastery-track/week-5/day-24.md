@@ -207,20 +207,6 @@ flowchart TD
     D --> E["5. Family riders + spouse cross-sell<br/>HSGM for spouse, kids, parents"]
 ```
 
-(Wait — mermaid won't render in some renderers. Use ASCII fallback:)
-
-```
-1. HSGM (today)              → Hospitalisation foundation
-        ↓
-2. Personal Accident         → SEPARATE plan — fills the outpatient gap
-        ↓
-3. CI / SFT / GPP / UCC      → Lump-sum income replacement during recovery
-        ↓
-4. APA accumulation          → The asset that pays future premiums (Video 30)
-        ↓
-5. Spouse / family HSGM      → Lock spouse's premium at current age
-```
-
 Each step is a different conversation. Don't try to close all five today.
 
 ## When to switch a prospect from a competitor IP

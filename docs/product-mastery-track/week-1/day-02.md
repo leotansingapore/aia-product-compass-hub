@@ -34,17 +34,27 @@ Slides are *your* tool to remember the structure, the source citations, the exac
 The drawings below are the ones that close cases consistently across hundreds of appointments. Learn to draw each from scratch on a blank whiteboard or piece of paper without a reference — that's the bar:
 
 1. **The 1/3 Rule circle** — divide a circle into short-term / medium-term / long-term thirds, label monthly amounts in each
+	![[Pasted image 20260517152618.png]]
 2. **The diversified portfolio pie chart** — divide a circle into countries (US, China, Global), sectors (tech, healthcare, finance), and asset classes (bonds, equities, REITs, covered calls)
+![[Pasted image 20260517152846.png]]
+
 3. **The 4-quadrant coverage grid** — Death/TPD top-left, CI/ECI top-right, Hospital bottom-left, Accident bottom-right, with norms / current cover for each
+![[Pasted image 20260517152759.png]]
 4. **The retirement-gap calculation** — current expenses → inflated future expenses → CPF Life payout → shortfall → monthly save required (split: in bank vs in APA)
+![[Pasted image 20260517153117.png]]
 5. **The BTIR comparison** — Whole-life (one box, two jobs done badly) vs Term + APA (two boxes, each job optimised)
+![[Pasted image 20260517153641.png]]
 6. **The Term vs Life comparison** — Term pays less, savings reinvested grow to a number that exceeds the life plan's cash value
+![[Pasted image 20260517154805.png]]
 7. **The AIA-vs-S&P-500 / DIY structural list** — no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship
+![[Pasted image 20260517154152.png]]
 8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% Y10-20, 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
-9. **The hospital-income "pit" drawing** — a downward dip representing lost income during hospitalisation, with the hospital-income plan filling the pit
+![[Pasted image 20260517154110.png]]
+9. **The hospital-income "pit" drawing** + **critical illness pit drawing** — a downward dip representing lost income during hospitalisation or critical illness, with the hospital-income plan  or CI plan filling the pit
+![[Pasted image 20260517154918.png]]
+![[Pasted image 20260517155026.png]]
 10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled
 
-Leo's note to the team: *"Eventually, my goal is to digitlise every one of these drawings, and categorise them so its easier to retrieve/find/use. But for now, please bear with me and just, do your best to understand every single picture, as I never do anything randomly. And everything is done for a reason."*
 
 Use [Excalidraw](https://app.excalidraw.com/) on a tablet or laptop for clean digital drawings, or pen-and-paper for in-person appointments. The pen-and-paper version has a side benefit: the prospect can take the drawing home, which reduces buyer's remorse — in the post-meeting summary text, just refer back to each part of the drawing.
 

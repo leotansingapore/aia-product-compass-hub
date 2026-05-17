@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, CheckCircle2, ChevronRight, GraduationCap, Lock, PlayCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -32,13 +33,50 @@ export default function ProductMasteryHub() {
   const weeks = getAllWeeks();
   const { isDayComplete, isUnlocked: rawIsUnlocked } = useProductMasteryProgress();
   const { isActualAdmin } = useAdmin();
-  const isUnlocked = (dayNumber: number) => isActualAdmin || rawIsUnlocked(dayNumber);
-
-  const totalDone = weeks.reduce(
-    (acc, w) => acc + w.days.filter((d) => isDayComplete(d.dayNumber)).length,
-    0,
+  const isUnlocked = useCallback(
+    (dayNumber: number) => isActualAdmin || rawIsUnlocked(dayNumber),
+    [isActualAdmin, rawIsUnlocked],
   );
-  const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
+
+  // Pre-compute per-week stats and overall totals in one pass so the JSX
+  // below doesn't re-run 35 day-lookups + 7 filter passes on every render.
+  // Previously each render did: weeks.reduce + (per week: filter + filter +
+  // some + find) -> ~100ms wasted work on slower devices on every keystroke
+  // or progress update.
+  const { weekStats, totalDone, totalPct } = useMemo(() => {
+    let done = 0;
+    const stats = weeks.map((week) => {
+      const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
+      done += weekDone;
+      const totalDays = week.days.length;
+      const allDone = totalDays > 0 && weekDone === totalDays;
+      const inProgress = weekDone > 0 && !allDone;
+      const anyUnlocked = week.days.some((d) => isUnlocked(d.dayNumber));
+      const isLocked = !anyUnlocked;
+      const firstIncompleteUnlocked = week.days.find(
+        (d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber),
+      );
+      const entryDay = firstIncompleteUnlocked ?? week.days[0];
+      const productSlug = WEEK_META[week.weekNumber]?.productSlug;
+      const hasBank = !!productSlug && PRODUCT_SLUG_SET.has(productSlug);
+      return {
+        week,
+        weekDone,
+        totalDays,
+        allDone,
+        inProgress,
+        isLocked,
+        entryDay,
+        productSlug,
+        hasBank,
+      };
+    });
+    return {
+      weekStats: stats,
+      totalDone: done,
+      totalPct: TOTAL_DAYS === 0 ? 0 : Math.round((done / TOTAL_DAYS) * 100),
+    };
+  }, [weeks, isDayComplete, isUnlocked]);
 
   return (
     <div className="space-y-4 max-w-3xl mx-auto" data-testid="product-mastery-hub">
@@ -52,20 +90,8 @@ export default function ProductMasteryHub() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {weeks.map((week) => {
-          const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
-          const totalDays = week.days.length;
-          const allDone = totalDays > 0 && weekDone === totalDays;
-          const inProgress = weekDone > 0 && !allDone;
-          const anyUnlocked = week.days.some((d) => isUnlocked(d.dayNumber));
-          const isLocked = !anyUnlocked;
-          const firstIncompleteUnlocked = week.days.find(
-            (d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber),
-          );
-          const entryDay = firstIncompleteUnlocked ?? week.days[0];
+        {weekStats.map(({ week, weekDone, totalDays, allDone, inProgress, isLocked, entryDay, productSlug, hasBank }) => {
           const href = `${BASE_PATH}/day/${entryDay.dayNumber}`;
-          const productSlug = WEEK_META[week.weekNumber]?.productSlug;
-          const hasBank = !!productSlug && PRODUCT_SLUG_SET.has(productSlug);
 
           return (
             <Card
