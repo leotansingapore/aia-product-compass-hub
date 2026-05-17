@@ -182,11 +182,11 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const isCollapsed = state === "collapsed";
   const currentPath = location.pathname;
 
-  const salesPlaybookRoutes = ['/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
+  const salesPlaybookRoutes = ['/sales-playbooks', '/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
   const isActive = useMemo(() => (path: string) => {
     if (path === "/") return currentPath === "/";
-    // "Sales Playbooks" link should be active on any sales sub-route
-    if (path === "/scripts") return salesPlaybookRoutes.some(r => currentPath.startsWith(r));
+    // "Sales Playbooks" link should be active on the hub or any sub-route
+    if (path === "/sales-playbooks") return salesPlaybookRoutes.some(r => currentPath.startsWith(r));
     return currentPath.startsWith(path);
   }, [currentPath]);
 
@@ -390,9 +390,9 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
                         <NavLink
-                          to={(() => { try { return localStorage.getItem('sales-playbooks-last-route') || '/scripts'; } catch { return '/scripts'; } })()}
-                          {...prefetchHandlers('/scripts')}
-                          className={getNavClassName('/scripts')}
+                          to="/sales-playbooks"
+                          {...prefetchHandlers('/sales-playbooks')}
+                          className={getNavClassName('/sales-playbooks')}
                         >
                           <TrendingUp className="h-4 w-4" />
                           {!isCollapsed && <span>Sales Playbooks</span>}

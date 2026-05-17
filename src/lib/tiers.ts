@@ -93,6 +93,7 @@ export const FEATURES = {
   QUESTION_BANKS: 'question-banks',
   ROLEPLAY: 'roleplay',
   KB: 'kb',
+  SALES_PLAYBOOKS: 'sales-playbooks',
   PLAYBOOKS: 'playbooks',
   FLOWS: 'flows',
   SCRIPTS: 'scripts',
@@ -122,6 +123,12 @@ const EXPLORER_FEATURES: readonly FeatureKey[] = [
 
 /**
  * Unlocks when upgrading Explorer → Papers-taker.
+ *
+ * Sales Playbooks (scripts, servicing, playbooks, flows, concept cards, case
+ * vault and the hub) are available to BOTH pre-RNF (papers_taker) and
+ * post-RNF tiers — drilling the scripts/objections/case studies is part of
+ * how pre-RNF FCs prepare for their first real appointments, not gated
+ * behind licensure.
  */
 const PAPERS_TAKER_ADDITIONS: readonly FeatureKey[] = [
   FEATURES.BOOKMARKS,
@@ -130,20 +137,25 @@ const PAPERS_TAKER_ADDITIONS: readonly FeatureKey[] = [
   FEATURES.PRODUCTS,
   FEATURES.QUESTION_BANKS,
   FEATURES.KB,
-];
-
-/**
- * Unlocks when upgrading Papers-taker → Post-RNF.
- */
-const POST_RNF_ADDITIONS: readonly FeatureKey[] = [
-  FEATURES.POST_RNF_TRACK,
-  FEATURES.ROLEPLAY,
+  FEATURES.SALES_PLAYBOOKS,
   FEATURES.PLAYBOOKS,
   FEATURES.FLOWS,
   FEATURES.SCRIPTS,
   FEATURES.SERVICING,
   FEATURES.CONCEPT_CARDS,
   FEATURES.CASE_VAULT,
+];
+
+/**
+ * Unlocks when upgrading Papers-taker → Post-RNF.
+ *
+ * Roleplay and Consultant Landing remain Post-RNF-only — they're tied to
+ * actual licensed-consultant workflow (Tavus avatars cost per session;
+ * the consultant landing page is for shipped FCs).
+ */
+const POST_RNF_ADDITIONS: readonly FeatureKey[] = [
+  FEATURES.POST_RNF_TRACK,
+  FEATURES.ROLEPLAY,
   FEATURES.CONSULTANT_LANDING,
 ];
 

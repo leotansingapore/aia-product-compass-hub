@@ -10,6 +10,7 @@ export const SCRIPTS_HUB_TAB_LINK_CLASS =
 export const SCRIPTS_HUB_TAB_ACTIVE_CLASS = "border-white text-white";
 
 export const SCRIPTS_HUB_TABS = [
+  { key: "hub", label: "All Playbooks", path: "/sales-playbooks" },
   { key: "scripts", label: "Sales Scripts", path: "/scripts" },
   { key: "servicing", label: "Servicing", path: "/servicing" },
   { key: "objections", label: "Objections", path: "/objections" },

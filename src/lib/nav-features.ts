@@ -17,7 +17,7 @@ export const NAV_SECTION_FEATURES: Record<string, readonly FeatureKey[]> = {
   'cmfas-exams': [FEATURES.CMFAS],
   roleplay: [FEATURES.ROLEPLAY],
   categories: [FEATURES.PRODUCTS],
-  'sales-playbooks': [FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
+  'sales-playbooks': [FEATURES.SALES_PLAYBOOKS, FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
   'my-account': [FEATURES.MY_ACCOUNT],
 };
 

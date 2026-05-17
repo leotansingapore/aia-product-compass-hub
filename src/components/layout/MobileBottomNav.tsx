@@ -33,18 +33,11 @@ interface MobileNavItem {
   features?: readonly string[];
 }
 
-// Sales Playbooks deep-links to the user's last-visited sub-tab when present —
-// scripts/servicing/objections/playbooks/flows/concept-cards/case-vault all
-// write `sales-playbooks-last-route` into localStorage when navigated to.
-function readSalesPlaybooksRoute(): string {
-  try {
-    return localStorage.getItem("sales-playbooks-last-route") || "/scripts";
-  } catch {
-    return "/scripts";
-  }
-}
-
+// Sales Playbooks lands on the hub at /sales-playbooks. The hub shows all
+// seven section cards (scripts / servicing / objections / playbooks / flows /
+// concept-cards / case-vault); the FC picks which one to open.
 const SALES_PLAYBOOK_ROUTES = [
+  "/sales-playbooks",
   "/scripts",
   "/servicing",
   "/objections",
@@ -64,14 +57,14 @@ const PRIMARY_ITEMS: MobileNavItem[] = [
   },
   { name: "Library", href: "/library", icon: BookOpen, features: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
-  // Sales Playbooks — daily-use for post-RNF consultants. Deep-links to the
-  // last-visited tab (scripts / servicing / objections / playbooks / flows /
-  // concept-cards / case-vault).
+  // Sales Playbooks — daily-use for both pre-RNF and post-RNF FCs. Lands on
+  // the hub at /sales-playbooks where the FC picks a section (scripts /
+  // servicing / objections / playbooks / flows / concept-cards / case-vault).
   {
     name: "Sales",
-    href: "/scripts",
+    href: "/sales-playbooks",
     icon: TrendingUp,
-    features: [FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
+    features: [FEATURES.SALES_PLAYBOOKS, FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
   },
   { name: "Board", href: "/leaderboard", icon: Trophy },
 ];
@@ -146,10 +139,9 @@ export function MobileBottomNav() {
       <nav className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50 safe-area-pb">
         <div className="flex items-stretch justify-around">
           {visiblePrimary.map((item) => {
-            // Sales tab is active on any Sales Playbooks sub-route — and
-            // deep-links to whichever sub-tab the user last visited.
+            // Sales tab is active on the hub or any Sales Playbooks sub-route.
             const isSales = item.name === "Sales";
-            const effectiveHref = isSales ? readSalesPlaybooksRoute() : item.href;
+            const effectiveHref = item.href;
             const isActive = (() => {
               if (isSales) return SALES_PLAYBOOK_ROUTES.some((r) => location.pathname.startsWith(r));
               if (item.href === "/") return location.pathname === "/";
