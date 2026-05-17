@@ -1,6 +1,6 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useCallback, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Bot, Loader2, X } from "lucide-react";
+import { Bot, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -12,6 +12,62 @@ const ProductKnowledgeChat = lazy(() =>
   import("./ProductKnowledgeChat").then((m) => ({ default: m.ProductKnowledgeChat }))
 );
 
+// Module-level prefetch: kick off the lazy chunk download as soon as the FAB
+// is hovered / touched / focused so by the time the user actually clicks the
+// 18.8KB chunk is already in cache. Without this, the click triggers the
+// download AND mount sequentially — perceived as a 200-400ms "spinner stuck"
+// moment on cold start, especially on slower connections.
+let chatPromise: Promise<unknown> | null = null;
+function prefetchChat() {
+  if (!chatPromise) {
+    chatPromise = import("./ProductKnowledgeChat").catch(() => {
+      chatPromise = null; // allow retry if the prefetch failed
+    });
+  }
+}
+
+// Skeleton shown during Suspense (one-time chunk download). Renders the chat
+// frame — mode-toggle row, welcome bubble with quick-question chips, input
+// bar — so the user perceives the chat as "already loading content" instead
+// of staring at a blank panel with a lone spinner.
+function ChatSkeleton() {
+  return (
+    <div className="flex h-full flex-col">
+      {/* Mode toggle row */}
+      <div className="border-b px-3 py-2">
+        <div className="flex gap-1.5">
+          <div className="h-7 w-20 rounded-md bg-muted/60 animate-pulse" />
+          <div className="h-7 w-20 rounded-md bg-muted/60 animate-pulse" />
+          <div className="h-7 w-20 rounded-md bg-muted/60 animate-pulse" />
+        </div>
+      </div>
+      {/* Welcome message bubble */}
+      <div className="flex-1 overflow-hidden px-4 py-3">
+        <div className="flex gap-3">
+          <div className="h-7 w-7 shrink-0 rounded-full bg-primary/15 animate-pulse" />
+          <div className="flex-1 space-y-2">
+            <div className="h-3 w-1/3 rounded bg-muted/60 animate-pulse" />
+            <div className="h-3 w-5/6 rounded bg-muted/60 animate-pulse" />
+            <div className="h-3 w-3/4 rounded bg-muted/60 animate-pulse" />
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              <div className="h-6 w-32 rounded-full bg-muted/50 animate-pulse" />
+              <div className="h-6 w-40 rounded-full bg-muted/50 animate-pulse" />
+              <div className="h-6 w-28 rounded-full bg-muted/50 animate-pulse" />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Input row */}
+      <div className="border-t px-3 py-2.5">
+        <div className="flex items-center gap-2">
+          <div className="h-9 flex-1 rounded-md bg-muted/50 animate-pulse" />
+          <div className="h-9 w-9 rounded-md bg-primary/30 animate-pulse" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface FloatingAIChatProps {
   productId: string;
   productName: string;
@@ -20,6 +76,15 @@ interface FloatingAIChatProps {
 export function FloatingAIChat({ productId, productName }: FloatingAIChatProps) {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
+  // Track whether we've already started a prefetch this session so the
+  // handlers below don't fire the import() a dozen times on hover-jitter.
+  const prefetchedRef = useRef(false);
+
+  const warmChat = useCallback(() => {
+    if (prefetchedRef.current) return;
+    prefetchedRef.current = true;
+    prefetchChat();
+  }, []);
 
   const portal = (
     <>
@@ -51,13 +116,7 @@ export function FloatingAIChat({ productId, productName }: FloatingAIChatProps) 
 
           {/* Chat body */}
           <div className="flex-1 min-h-0">
-            <Suspense
-              fallback={
-                <div className="flex h-full w-full items-center justify-center">
-                  <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-                </div>
-              }
-            >
+            <Suspense fallback={<ChatSkeleton />}>
               <ProductKnowledgeChat
                 productId={productId}
                 productName={productName}
@@ -67,9 +126,17 @@ export function FloatingAIChat({ productId, productName }: FloatingAIChatProps) 
         </div>
       )}
 
-      {/* FAB */}
+      {/* FAB — onMouseEnter / onFocus / onTouchStart prefetch the chat
+          chunk before the click happens. Effectively removes the 18.8KB
+          cold-start download from the perceived open time. */}
       <Button
-        onClick={() => setIsOpen((o) => !o)}
+        onClick={() => {
+          warmChat();
+          setIsOpen((o) => !o);
+        }}
+        onMouseEnter={warmChat}
+        onFocus={warmChat}
+        onTouchStart={warmChat}
         className={cn(
           "fixed z-[9999] h-14 w-14 rounded-full shadow-lg transition-all duration-300 hover:scale-110",
           "bg-primary hover:bg-primary/90",
