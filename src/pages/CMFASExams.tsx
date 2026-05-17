@@ -29,9 +29,12 @@ import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdro
 import {
   CMFASWorkspaceFloatingNav,
   CMFASWorkspaceMobileMenu,
+  URL_TO_NAV_MODE,
   buildNavSpec,
+  type NavMode,
   type WorkspaceMode,
 } from "@/components/cmfas/CMFASWorkspaceNav";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { StudyDeskView } from "@/components/cmfas/workspace-views/StudyDeskView";
 import { READY_STEP_IDS } from "@/components/cmfas/workspace-views/getReadyData";
@@ -92,9 +95,15 @@ export default function CMFASExams() {
   }, [isItemCompleted]);
   const readyComplete = readyProgress.done >= readyProgress.total;
 
-  /** Bare `/cmfas-exams` is always the study desk (merged outline + get-ready). */
-  const defaultWorkspaceMode: WorkspaceMode = "today";
+  /** Bare `/cmfas-exams` lands on Setup (study desk) until onboarding is
+   *  complete, then flips to Study tips — the daily-use surface. Mirrors the
+   *  nav-rail reorder so the rail and the landing page stay in sync. */
+  const defaultWorkspaceMode: WorkspaceMode = readyComplete ? "study-tips" : "today";
   const activeMode: WorkspaceMode = isWorkspaceMode(pathMode) ? pathMode : defaultWorkspaceMode;
+  /** Nav rail bucket — groups the 6 URL modes into 4 (Practice = practice+papers,
+   *  Setup = today+syllabus). Sub-tabs inside Practice and Setup select between
+   *  the two URLs that map to the same bucket. */
+  const activeNavMode: NavMode = URL_TO_NAV_MODE[activeMode];
 
   // Legacy back-compat: bookmarks of `/cmfas-exams?mode=papers` (and friends)
   // land here from before unique URLs existed. Rewrite to the matching
@@ -121,6 +130,8 @@ export default function CMFASExams() {
     }
   }, [searchParams, setSearchParams, navigate, defaultWorkspaceMode]);
 
+  /** Navigate to a URL mode (one of the 6 internal modes). Used by sub-tab
+   *  clicks inside merged views and by legacy in-app links. */
   const setMode = useCallback(
     (mode: WorkspaceMode) => {
       const path =
@@ -128,6 +139,18 @@ export default function CMFASExams() {
       navigate(path, { replace: true });
     },
     [navigate, defaultWorkspaceMode],
+  );
+
+  /** Navigate to the canonical URL for a nav-rail bucket. Practice defaults
+   *  to questions (papers/videos lives behind the sub-tab); Setup defaults to
+   *  checklist (today/study-desk; syllabus lives behind the sub-tab). */
+  const setNavMode = useCallback(
+    (mode: NavMode) => {
+      const target: WorkspaceMode =
+        mode === "practice" ? "practice" : mode === "setup" ? "today" : mode;
+      setMode(target);
+    },
+    [setMode],
   );
 
   // Admin: publish-toggle on the CMFAS category ------------------------------
@@ -161,7 +184,8 @@ export default function CMFASExams() {
     );
   }, [readyProgress.done, readyProgress.total]);
 
-  // If the URL tries to land on a locked mode, bounce to the study desk.
+  // If the URL tries to land on a locked mode (Practice — both questions and
+  // videos are gated until Get Ready is complete), bounce to Setup.
   useEffect(() => {
     if (!readyComplete && (activeMode === "papers" || activeMode === "practice")) {
       setMode("today");
@@ -218,16 +242,63 @@ export default function CMFASExams() {
     );
   }
 
-  // Active view — Study desk = linear slide path (get ready).
+  /** Sub-tabs surfaced inside the merged Practice and Setup nav buckets.
+   *  Each sub-tab maps to one of the 6 underlying URL modes so deep-links and
+   *  legacy in-app hrefs (e.g. `/cmfas-exams/syllabus`) keep working. */
+  const renderSubTabs = (
+    options: Array<{ value: WorkspaceMode; label: string }>,
+  ) => (
+    <Tabs
+      value={activeMode}
+      onValueChange={(v) => setMode(v as WorkspaceMode)}
+      className="mb-4"
+    >
+      <TabsList className="grid w-full max-w-md grid-cols-2">
+        {options.map((opt) => (
+          <TabsTrigger key={opt.value} value={opt.value}>
+            {opt.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </Tabs>
+  );
+
   const renderActiveView = () => {
-    if (activeMode === "today") {
-      return <StudyDeskView onSelectWorkspaceMode={setMode} />;
-    }
-    if (activeMode === "papers") return <PapersView />;
-    if (activeMode === "practice") return <PracticeView />;
     if (activeMode === "rewards") return <RewardsView />;
     if (activeMode === "study-tips") return <StudyTipsView />;
-    if (activeMode === "syllabus") return <SyllabusView />;
+
+    // Practice bucket — Questions + Videos behind sub-tabs.
+    if (activeMode === "practice" || activeMode === "papers") {
+      return (
+        <>
+          {renderSubTabs([
+            { value: "practice", label: "Question bank" },
+            { value: "papers", label: "Exam tutorials" },
+          ])}
+          {activeMode === "practice" ? <PracticeView /> : <PapersView />}
+        </>
+      );
+    }
+
+    // Setup bucket — Checklist (study desk) + Syllabus & format behind sub-tabs.
+    // Note: the Study desk view itself is the linear slide flow and needs to
+    // fill remaining height; we keep the sub-tabs in normal flow above it.
+    if (activeMode === "today" || activeMode === "syllabus") {
+      return (
+        <>
+          {renderSubTabs([
+            { value: "today", label: "Get-ready checklist" },
+            { value: "syllabus", label: "Syllabus & format" },
+          ])}
+          {activeMode === "today" ? (
+            <StudyDeskView onSelectWorkspaceMode={setMode} />
+          ) : (
+            <SyllabusView />
+          )}
+        </>
+      );
+    }
+
     return <StudyDeskView onSelectWorkspaceMode={setMode} />;
   };
 
@@ -287,14 +358,14 @@ export default function CMFASExams() {
           <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden">
             <CMFASWorkspaceFloatingNav
               groups={navGroups}
-              activeMode={activeMode}
-              onModeChange={setMode}
+              activeMode={activeNavMode}
+              onModeChange={setNavMode}
               onLockedClick={handleLockedClick}
             />
             <CMFASWorkspaceMobileMenu
               groups={navGroups}
-              activeMode={activeMode}
-              onModeChange={setMode}
+              activeMode={activeNavMode}
+              onModeChange={setNavMode}
               onLockedClick={handleLockedClick}
             />
             <main

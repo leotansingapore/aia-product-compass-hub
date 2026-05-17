@@ -1,20 +1,40 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Brain, FileText, Home, Lightbulb, Lock, Menu, PlayCircle, Trophy } from 'lucide-react';
+import { Brain, Lightbulb, Lock, Menu, Settings, Trophy } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
+/** Internal URL-bound modes. Six exist for backward compatibility with
+ *  bookmarks, slide deep-links (`/cmfas-exams/today/:slideSlug`), and
+ *  in-app hrefs in CourseOutlineView / getReadySlideContent. The nav rail
+ *  groups them into 4 buckets via {@link NavMode}. */
 export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
 
+/** What the nav rail surfaces. Six URL modes collapse into four buckets:
+ *  - `practice` contains [Questions (practice), Videos (papers)] as sub-tabs
+ *  - `setup` contains [Checklist (today), Syllabus (syllabus)] as sub-tabs
+ *  - `study-tips` and `rewards` are 1:1 with their URL modes */
+export type NavMode = 'study-tips' | 'practice' | 'rewards' | 'setup';
+
+/** Maps URL mode -> nav rail bucket. */
+export const URL_TO_NAV_MODE: Record<WorkspaceMode, NavMode> = {
+  'study-tips': 'study-tips',
+  practice: 'practice',
+  papers: 'practice',
+  rewards: 'rewards',
+  today: 'setup',
+  syllabus: 'setup',
+};
+
 interface NavItemSpec {
-  id: WorkspaceMode;
+  id: NavMode;
   label: string;
   icon: LucideIcon;
   /** When true, the item is locked + greyed until Ready is complete. */
   locked: boolean;
-  /** Optional badge — e.g. "3/6" on Ready, or a red dot on Today when resumed. */
+  /** Optional badge — e.g. "3/6" on Setup, or a green ✓ once complete. */
   badge?: string;
 }
 
@@ -23,19 +43,19 @@ export interface CMFASWorkspaceNavItems {
 }
 
 /**
- * Single ordered nav list — order flips after onboarding.
+ * Four-item ordered nav list — order flips after onboarding.
  *
- * **Setup phase** (Study Desk not yet complete): Study Desk leads the rail —
+ * **Setup phase** (Study desk not yet complete): **Setup** leads the rail —
  * the learner's job right now is to finish onboarding (account creation,
- * resources access, exam booking). Reference items follow.
+ * resources access, exam booking) and skim the exam format.
  *
- * **Post-onboarding** (Study Desk complete): the rail reorders to surface
- * the daily-use items first — Study Tips and Practice are what learners
- * actually open every day. Study Desk drops to the end as a quiet "done"
- * link in case anyone needs to revisit a setup step.
+ * **Post-onboarding** (Study desk complete): the rail reorders to surface
+ * the daily-use items first — **Study tips** and **Practice** are what
+ * learners actually open every day. **Setup** drops to the end as a quiet
+ * "done" link in case anyone needs to revisit a setup step or the syllabus.
  *
- * Locks fall on Tutorials + Practice (gated by `readyComplete`); the rest
- * are always available.
+ * Locks fall on **Practice** (gated by `readyComplete`); the rest are
+ * always available.
  */
 export function buildNavSpec({
   readyProgress,
@@ -44,31 +64,21 @@ export function buildNavSpec({
   readyProgress: { done: number; total: number };
   readyComplete: boolean;
 }): CMFASWorkspaceNavItems {
-  const studyDesk: NavItemSpec = {
-    id: 'today',
-    label: 'Study desk',
-    icon: Home,
+  const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
+  const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
+  const rewards: NavItemSpec = { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false };
+  const setup: NavItemSpec = {
+    id: 'setup',
+    label: 'Setup',
+    icon: Settings,
     locked: false,
     badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
   };
-  const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
-  const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
-  const papers: NavItemSpec = { id: 'papers', label: 'Exam tutorials', icon: PlayCircle, locked: !readyComplete };
-  const syllabus: NavItemSpec = { id: 'syllabus', label: 'Syllabus & format', icon: FileText, locked: false };
-  const rewards: NavItemSpec = { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false };
 
-  // Setup phase — Study Desk leads, reference follows.
   if (!readyComplete) {
-    return {
-      items: [studyDesk, syllabus, papers, studyTips, practice, rewards],
-    };
+    return { items: [setup, studyTips, practice, rewards] };
   }
-
-  // Post-onboarding — daily reference first, Study Desk last. The booking
-  // CTAs (and cadence + readiness guidance) live at the top of Study Tips.
-  return {
-    items: [studyTips, practice, papers, syllabus, rewards, studyDesk],
-  };
+  return { items: [studyTips, practice, rewards, setup] };
 }
 
 /** Top header — branding only; workspace modes live in {@link CMFASWorkspaceFloatingNav}. */
@@ -83,9 +93,9 @@ export interface CMFASWorkspaceTopBarProps {
 
 export interface CMFASWorkspaceFloatingNavProps {
   groups: CMFASWorkspaceNavItems;
-  activeMode: WorkspaceMode;
-  onModeChange: (mode: WorkspaceMode) => void;
-  onLockedClick?: (mode: WorkspaceMode) => void;
+  activeMode: NavMode;
+  onModeChange: (mode: NavMode) => void;
+  onLockedClick?: (mode: NavMode) => void;
 }
 
 /** Desktop (lg+): title strip only — mode nav is {@link CMFASWorkspaceFloatingNav}. */
@@ -226,9 +236,9 @@ export function CMFASWorkspaceFloatingNav({
 
 interface CMFASWorkspaceMobileMenuProps {
   groups: CMFASWorkspaceNavItems;
-  activeMode: WorkspaceMode;
-  onModeChange: (mode: WorkspaceMode) => void;
-  onLockedClick?: (mode: WorkspaceMode) => void;
+  activeMode: NavMode;
+  onModeChange: (mode: NavMode) => void;
+  onLockedClick?: (mode: NavMode) => void;
 }
 
 /** Mobile/tablet (below lg). Floating hamburger — opens a Sheet listing the same items as the desktop rail.
@@ -242,7 +252,7 @@ export function CMFASWorkspaceMobileMenu({
 }: CMFASWorkspaceMobileMenuProps) {
   const [open, setOpen] = useState(false);
 
-  const select = (id: WorkspaceMode, locked: boolean) => {
+  const select = (id: NavMode, locked: boolean) => {
     if (locked) {
       onLockedClick?.(id);
       return;
