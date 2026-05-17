@@ -41,8 +41,12 @@ const ALL_NAV_ITEMS: NavItem[] = [
   { title: "Admin", url: "/admin", icon: Shield, adminOnly: true },
 ];
 
+// `shrink-0` + `whitespace-nowrap` keep labels on a single line even when the
+// nav is over-full at md (768px) widths — items overflow horizontally instead
+// of wrapping into two lines (which looked broken on the FINternship logo +
+// 6-item row at 768-900px). Outer container scrolls horizontally if needed.
 const LINK_BASE =
-  "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground";
+  "shrink-0 inline-flex items-center gap-1.5 px-2 lg:px-3 py-1.5 rounded-lg text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground whitespace-nowrap";
 const LINK_ACTIVE = "bg-primary/10 text-primary font-semibold";
 
 export const TopNav = memo(function TopNav({
@@ -64,11 +68,11 @@ export const TopNav = memo(function TopNav({
   }, [isAdminUser, isAdminBypass, canAny]);
 
   return (
-    <nav className="sticky top-0 z-40 hidden md:flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 gap-1">
+    <nav className="sticky top-0 z-40 hidden md:flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-2 md:px-3 lg:px-4 gap-1">
       {/* Logo */}
       <NavLink
         to="/"
-        className="flex items-center gap-2 shrink-0 mr-4 hover:opacity-80 transition-opacity"
+        className="flex items-center gap-2 shrink-0 mr-2 lg:mr-4 hover:opacity-80 transition-opacity"
       >
         <img
           src={FINTERNSHIP_LOGO_NAVY}
@@ -78,28 +82,31 @@ export const TopNav = memo(function TopNav({
         />
       </NavLink>
 
-      {/* Nav links */}
-      <div className="flex items-center gap-0.5">
+      {/* Nav links — horizontal scroll if over-full at narrow md widths so
+          labels stay on one line instead of wrapping. */}
+      <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {visibleItems.map((item) => (
           <NavLink
             key={item.title}
             to={item.url}
             end={item.url === "/"}
+            title={item.title}
             className={({ isActive }) =>
               cn(LINK_BASE, isActive && LINK_ACTIVE)
             }
           >
-            <item.icon className="h-4 w-4" />
-            <span>{item.title}</span>
+            <item.icon className="h-4 w-4 shrink-0" />
+            {/* Show text label on lg+ only — at md (768-1023px) we go
+                icon-only with a tooltip so the row never overflows on
+                tablet. Avatar/Theme buttons on the right stay full size. */}
+            <span className="hidden lg:inline">{item.title}</span>
+            <span className="sr-only lg:hidden">{item.title}</span>
           </NavLink>
         ))}
       </div>
 
-      {/* Spacer */}
-      <div className="flex-1" />
-
       {/* Right side */}
-      <div className="flex items-center gap-2">
+      <div className="flex shrink-0 items-center gap-1 md:gap-2">
         <ThemeToggle />
         <button
           type="button"

@@ -860,14 +860,18 @@ export function ProductModuleCourseLayout({
                       type="button"
                       size="sm"
                       variant="default"
-                      className="ml-auto h-9 w-9 shrink-0 touch-manipulation p-0 opacity-90 hover:opacity-100 sm:ml-0 sm:h-8 sm:w-auto sm:gap-1 sm:px-3 sm:py-2"
+                      // Mobile: 44x44 to meet WCAG 2.1 touch-target min — the
+                      // previous 36x36 (h-9 w-9) felt fiddly when tapping
+                      // mid-lecture. Desktop stays slim (h-8 w-auto) since
+                      // mouse precision doesn't need the bigger hit area.
+                      className="ml-auto h-11 w-11 shrink-0 touch-manipulation p-0 opacity-90 hover:opacity-100 sm:ml-0 sm:h-8 sm:w-auto sm:gap-1 sm:px-3 sm:py-2"
                       aria-expanded={outlineOpen}
                       aria-controls={OUTLINE_SHEET_ID}
                       aria-label="Lesson outline"
                       onClick={() => setOutlineOpen(true)}
                       title="Lesson outline"
                     >
-                      <List className="h-4 w-4 shrink-0" aria-hidden />
+                      <List className="h-5 w-5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
                       <span className="hidden sm:inline">Outline</span>
                     </Button>
                   </div>
