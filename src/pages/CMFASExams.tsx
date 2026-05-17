@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { LearningTrackJourneyNav } from "@/components/learning-track/LearningTrackJourneyNav";
 import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdrop";
 import {
   CMFASWorkspaceFloatingNav,
@@ -244,6 +245,7 @@ export default function CMFASExams() {
           cmfasRoom.text,
         )}
       >
+        <LearningTrackJourneyNav activeKey="papers_taker" />
         <div
           className={cn(
             "relative flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden",
