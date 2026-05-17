@@ -9,12 +9,16 @@ const STALE_CHUNK_RELOAD_KEY = "stale-chunk-reload-attempts";
 const STALE_CHUNK_RELOAD_LIMIT = 2;
 const STALE_CHUNK_RELOAD_PARAM = "__app_refresh";
 
+// Match Vite's exact dynamic-import error strings. Earlier versions of this
+// list included bare substrings like "dynamically imported module" and
+// "module script failed" which false-matched arbitrary third-party library
+// rejections containing the word "module" — that would trigger a global
+// `window.location.replace` mid-navigation. The fragments below are exact
+// Vite / browser messages.
 const STALE_CHUNK_PATTERNS = [
   "Failed to fetch dynamically imported module",
   "Importing a module script failed",
   "error loading dynamically imported module",
-  "dynamically imported module",
-  "module script failed",
 ];
 
 function getErrorMessage(error: unknown): string {
