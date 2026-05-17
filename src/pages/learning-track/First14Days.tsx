@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronRight, Compass, Lock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +29,23 @@ export default function First14Days() {
     for (let d = 1; d <= TOTAL_DAYS; d++) if (!isDayComplete(d)) return d;
     return 1;
   })();
+
+  // Pre-compute per-week stats once per progress change instead of running
+  // 7 day-lookups × 2 weeks (~28 isDayComplete/find calls) inside the JSX
+  // map on every render. Same fix as ProductMasteryHub / First60Days.
+  const weekStats = useMemo(
+    () =>
+      weeks.map((week) => {
+        const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
+        const totalDays = week.days.length;
+        const allDone = totalDays > 0 && weekDone === totalDays;
+        const inProgress = weekDone > 0 && !allDone;
+        const firstIncompleteInWeek = week.days.find((d) => !isDayComplete(d.dayNumber));
+        const entryDay = firstIncompleteInWeek ?? week.days[0];
+        return { week, weekDone, totalDays, allDone, inProgress, entryDay };
+      }),
+    [weeks, isDayComplete],
+  );
 
   return (
     <div className="space-y-6 max-w-3xl mx-auto" data-testid="first-14-days-hub">
@@ -67,13 +85,7 @@ export default function First14Days() {
 
       {/* Week cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {weeks.map((week) => {
-          const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
-          const totalDays = week.days.length;
-          const allDone = totalDays > 0 && weekDone === totalDays;
-          const inProgress = weekDone > 0 && !allDone;
-          const firstIncompleteInWeek = week.days.find((d) => !isDayComplete(d.dayNumber));
-          const entryDay = firstIncompleteInWeek ?? week.days[0];
+        {weekStats.map(({ week, weekDone, totalDays, allDone, inProgress, entryDay }) => {
           const href = `/learning-track/first-14-days/day/${entryDay.dayNumber}`;
 
           return (

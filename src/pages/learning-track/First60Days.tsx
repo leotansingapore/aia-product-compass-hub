@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronRight, ClipboardList, Film, GraduationCap, Lock, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,27 @@ export default function First60Days() {
 
   const totalDone = completedCount();
   const totalPct = TOTAL_DAYS === 0 ? 0 : Math.round((totalDone / TOTAL_DAYS) * 100);
+
+  // Pre-compute per-week stats once per progress change instead of running
+  // 6 day-lookups × 10 weeks (60+ isDayComplete/isUnlocked calls) inside the
+  // map on every render. Same fix as ProductMasteryHub.
+  const weekStats = useMemo(
+    () =>
+      weeks.map((week) => {
+        const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
+        const totalDays = week.days.length;
+        const allDone = totalDays > 0 && weekDone === totalDays;
+        const inProgress = weekDone > 0 && !allDone;
+        const anyUnlocked = week.days.some((d) => isUnlocked(d.dayNumber));
+        const isLocked = !anyUnlocked;
+        const firstIncomplete = week.days.find(
+          (d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber),
+        );
+        const entryDay = firstIncomplete ?? week.days[0];
+        return { week, weekDone, totalDays, allDone, inProgress, isLocked, entryDay };
+      }),
+    [weeks, isDayComplete, isUnlocked],
+  );
 
   return (
     <div className="space-y-4 max-w-3xl mx-auto px-1 sm:px-0" data-testid="first-60-days-hub">
@@ -100,16 +122,7 @@ export default function First60Days() {
       <LeaderboardRankCard />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {weeks.map((week) => {
-          const weekDone = week.days.filter((d) => isDayComplete(d.dayNumber)).length;
-          const totalDays = week.days.length;
-          const allDone = totalDays > 0 && weekDone === totalDays;
-          const inProgress = weekDone > 0 && !allDone;
-          // A week is "locked" when none of its days are unlocked yet.
-          const anyUnlocked = week.days.some((d) => isUnlocked(d.dayNumber));
-          const isLocked = !anyUnlocked;
-          const firstIncomplete = week.days.find((d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber));
-          const entryDay = firstIncomplete ?? week.days[0];
+        {weekStats.map(({ week, weekDone, totalDays, allDone, inProgress, isLocked, entryDay }) => {
           const href = `/learning-track/first-60-days/day/${entryDay.dayNumber}`;
 
           return (

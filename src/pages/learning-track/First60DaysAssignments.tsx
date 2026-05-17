@@ -37,6 +37,10 @@ import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
+// Module-level so react-markdown's parse cache stays valid across renders —
+// inline `[remarkGfm]` arrays bust the cache every time.
+const REMARK_PLUGINS = [remarkGfm];
+
 const NUMBER_WORDS = [
   "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
   "Eleven", "Twelve",
@@ -142,9 +146,13 @@ export default function First60DaysAssignments() {
     );
   }
 
-  const completedCount = assignments.filter(
-    (a) => !!latestBySlug[a.frontmatter.status_key],
-  ).length;
+  // Memoized: was re-running this 14-item filter on every render. With
+  // submissions changing via realtime + parent re-renders from other state,
+  // this fired dozens of times during a normal session.
+  const completedCount = useMemo(
+    () => assignments.filter((a) => !!latestBySlug[a.frontmatter.status_key]).length,
+    [assignments, latestBySlug],
+  );
 
   return (
     <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
@@ -333,7 +341,7 @@ function AssignmentDetail({
 
         <div className="p-4 sm:p-8">
           <article className="prose prose-sm sm:prose-base prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={assignmentMarkdownComponents}>
+            <ReactMarkdown remarkPlugins={REMARK_PLUGINS} components={assignmentMarkdownComponents}>
               {assignment.markdown}
             </ReactMarkdown>
           </article>
