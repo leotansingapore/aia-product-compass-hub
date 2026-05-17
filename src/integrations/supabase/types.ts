@@ -1702,6 +1702,33 @@ export type Database = {
         }
         Relationships: []
       }
+      photo_case_tags: {
+        Row: {
+          case_id: string
+          created_at: string
+          created_by: string | null
+          id: string
+          note: string | null
+          photo_url: string
+        }
+        Insert: {
+          case_id: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          note?: string | null
+          photo_url: string
+        }
+        Update: {
+          case_id?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          note?: string | null
+          photo_url?: string
+        }
+        Relationships: []
+      }
       pitch_analyses: {
         Row: {
           closing_technique_score: number | null
