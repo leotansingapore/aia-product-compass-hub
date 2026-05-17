@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { ProtectedSection } from "@/components/ProtectedSection";
@@ -20,7 +20,7 @@ import { supabase } from "@/integrations/supabase/client";
 import {
   invalidateCategoriesCache,
   useCategories,
-  useAllProducts,
+  useProductCategoryCounts,
   getCategoryChildren,
 } from "@/hooks/useProducts";
 import { toast } from "sonner";
@@ -37,6 +37,8 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
+
+const EMPTY_COUNT_MAP: Record<string, number> = {};
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
@@ -122,19 +124,25 @@ export default function ProductCategory() {
   // Nested categories: if the current category is a parent (has children),
   // render the children as a sub-category grid instead of products.
   const { categories: allCategories } = useCategories();
-  const { allProducts } = useAllProducts();
-  const childCategories = categoryId
-    ? getCategoryChildren(categoryId, allCategories)
-    : [];
-  const visibleChildCategories = isViewingAsUser
-    ? childCategories.filter((c) => c.published !== false)
-    : childCategories;
+  const childCategories = useMemo(
+    () => (categoryId ? getCategoryChildren(categoryId, allCategories) : []),
+    [categoryId, allCategories],
+  );
+  const visibleChildCategories = useMemo(
+    () =>
+      isViewingAsUser
+        ? childCategories.filter((c) => c.published !== false)
+        : childCategories,
+    [isViewingAsUser, childCategories],
+  );
   const isParentCategory = visibleChildCategories.length > 0;
-  const productCountByChild: Record<string, number> = {};
-  allProducts.forEach((p) => {
-    productCountByChild[p.category_id] =
-      (productCountByChild[p.category_id] || 0) + 1;
-  });
+  // Only fetch the count map when we'll actually render child cards.
+  // Previously this used `useAllProducts()` which selects `*` (pulling the
+  // entire `training_videos` JSONB blob — rich content + transcripts — for
+  // every product) just to compute counts. The slim hook does a single
+  // `select('category_id')` that's typically <10KB vs. multiple MB.
+  const { countsByCategory } = useProductCategoryCounts();
+  const productCountByChild = isParentCategory ? countsByCategory : EMPTY_COUNT_MAP;
 
   // Resolve parent chain for breadcrumbs when viewing a child category
   const parentCategory = category?.parent_id
@@ -142,20 +150,38 @@ export default function ProductCategory() {
     : undefined;
 
   // Filter out unpublished products when viewing as user
-  const visibleProducts = isViewingAsUser
-    ? filteredProducts.filter((p) => p.published !== false)
-    : filteredProducts;
+  const visibleProducts = useMemo(
+    () =>
+      isViewingAsUser
+        ? filteredProducts.filter((p) => p.published !== false)
+        : filteredProducts,
+    [isViewingAsUser, filteredProducts],
+  );
 
   const [createModuleOpen, setCreateModuleOpen] = useState(false);
 
-  // Batch-fetch video completion progress for all visible products
-  const productIds = visibleProducts.map((p) => p.id);
-  const videoCountsByProduct = Object.fromEntries(
-    visibleProducts.map((p) => [p.id, (p as any).training_videos?.length || 0]),
+  // Batch-fetch video completion progress for all visible products. Skip the
+  // work for parent categories — they show child cards, not the products grid.
+  const productIds = useMemo(
+    () => (isParentCategory ? [] : visibleProducts.map((p) => p.id)),
+    [isParentCategory, visibleProducts],
+  );
+  const videoCountsByProduct = useMemo(
+    () =>
+      isParentCategory
+        ? {}
+        : Object.fromEntries(
+            visibleProducts.map((p) => [p.id, (p as any).training_videos?.length || 0]),
+          ),
+    [isParentCategory, visibleProducts],
   );
   const batchProgress = useBatchVideoProgress(productIds, videoCountsByProduct);
-  const completionMap = Object.fromEntries(
-    Object.entries(batchProgress).map(([id, p]) => [id, p.percentage]),
+  const completionMap = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(batchProgress).map(([id, p]) => [id, p.percentage]),
+      ),
+    [batchProgress],
   );
 
   const handleEditProduct = async (

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -275,6 +275,45 @@ export function useProducts(categoryId?: string) {
 }
 
 const EMPTY_PRODUCTS: any[] = [];
+
+const EMPTY_COUNTS: Record<string, number> = {};
+
+/**
+ * Lightweight: returns a `{ [categoryId]: productCount }` map without
+ * pulling the heavy `training_videos` JSONB blob from every row.
+ *
+ * Use this on the category index / category page to render child-category
+ * count badges. `useAllProducts` is ~1-2 orders of magnitude larger because
+ * it selects `*` (which includes per-video rich content + transcripts).
+ */
+async function fetchCategoryCountsFromServer(): Promise<Record<string, number>> {
+  const { data, error } = await supabase
+    .from('products')
+    .select('category_id');
+  if (error) throw error;
+  const map: Record<string, number> = {};
+  (data || []).forEach((row: { category_id: string }) => {
+    map[row.category_id] = (map[row.category_id] || 0) + 1;
+  });
+  return map;
+}
+
+export function useProductCategoryCounts() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['products', 'category-counts'],
+    queryFn: fetchCategoryCountsFromServer,
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
+
+  return {
+    countsByCategory: data ?? EMPTY_COUNTS,
+    loading: isLoading,
+    error: error ? (error instanceof Error ? error.message : 'Failed to fetch product counts') : null,
+  };
+}
 
 export function useAllProducts() {
   const { data, isLoading, error } = useQuery({
