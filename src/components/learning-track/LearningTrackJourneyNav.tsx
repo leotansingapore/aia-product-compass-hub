@@ -29,6 +29,34 @@ const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
   post_rnf: null,
 };
 
+/** Map the current pathname to the journey step it belongs to. The step's
+ *  `path` (`/learning-track/pre-rnf`, etc.) only covers the canonical entry
+ *  URL — but Papers-taker has many sibling pages (`/first-60-days`,
+ *  `/product-mastery`, `/resources`, `/cmfas-exams`) that should still
+ *  highlight Papers-taker in the rail. Same for Post-RNF + `/next-60-days`.
+ *  Returns `undefined` if the path doesn't belong to any track. */
+function deriveActiveKeyFromPath(pathname: string): JourneyStep["key"] | undefined {
+  if (pathname.startsWith("/learning-track/first-14-days") || pathname.startsWith("/learning-track/explorer")) {
+    return "explorer";
+  }
+  if (
+    pathname.startsWith("/learning-track/pre-rnf") ||
+    pathname.startsWith("/learning-track/first-60-days") ||
+    pathname.startsWith("/learning-track/product-mastery") ||
+    pathname.startsWith("/learning-track/resources") ||
+    pathname.startsWith("/cmfas-exams")
+  ) {
+    return "papers_taker";
+  }
+  if (
+    pathname.startsWith("/learning-track/post-rnf") ||
+    pathname.startsWith("/learning-track/next-60-days")
+  ) {
+    return "post_rnf";
+  }
+  return undefined;
+}
+
 interface Props {
   /** Optional override for which step shows as "active". Defaults to the
    *  step whose `path` is a prefix of the current URL. Pass a key explicitly
@@ -72,9 +100,8 @@ export function LearningTrackJourneyNav({ activeKey }: Props = {}) {
           <div className="flex items-center justify-center gap-0">
             {JOURNEY_STEPS.map((step, idx) => {
               const accessible = can(step.feature);
-              const isActive = activeKey
-                ? step.key === activeKey
-                : location.pathname.startsWith(step.path);
+              const derivedActiveKey = activeKey ?? deriveActiveKeyFromPath(location.pathname);
+              const isActive = derivedActiveKey === step.key;
               const isCurrent = step.key === currentTierKey;
               const isDone = accessible && !isCurrent && JOURNEY_STEPS.findIndex((s) => s.key === currentTierKey) > idx;
               const isLocked = !accessible;

@@ -92,31 +92,12 @@ export default function ProductCategory() {
     handleProductClick,
     clearFilters,
   } = useProductCategory();
-
-  // CMFAS has a dedicated page at /cmfas-exams — redirect to keep both URLs in sync
-  if (
-    categorySlugOrId === "cmfas" ||
-    category?.name?.toLowerCase() === "cmfas"
-  ) {
-    return <Navigate to="/cmfas-exams" replace />;
-  }
-
-  // Supplementary training is gated by its own feature key on top of `products`,
-  // so explorers (and any tier without the feature) can't reach it via URL even
-  // though `/category/*` itself only requires `products`.
+  // Hooks below previously sat AFTER the CMFAS / supplementary-training
+  // early returns — which is a Rules of Hooks violation. If the route param
+  // changed between renders such that the early return only fires on some
+  // renders, React would see a different hook count and crash. Pulled all
+  // hooks up here; the early-return guards now live below the hook block.
   const { can, permissionsLoading } = useFeatureAccess();
-  const isSupplementaryTraining =
-    categorySlugOrId === "supplementary-training" ||
-    category?.name?.toLowerCase() === "supplementary training" ||
-    category?.name?.toLowerCase() === "appointment flows";
-  if (
-    isSupplementaryTraining &&
-    !permissionsLoading &&
-    !can(FEATURES.SUPPLEMENTARY_TRAINING)
-  ) {
-    return <Navigate to="/" replace />;
-  }
-
   const { isAdmin: rawIsAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
   const isAdmin = () => rawIsAdmin() && !isViewingAsUser;
@@ -300,6 +281,30 @@ export default function ProductCategory() {
 
   // Get category info for meta tags
   const categoryInfo = getCategoryInfo(categoryId || "");
+
+  // Guard returns sit BELOW the hooks block (hooks must run in the same
+  // order on every render). CMFAS has a dedicated page at /cmfas-exams.
+  if (
+    categorySlugOrId === "cmfas" ||
+    category?.name?.toLowerCase() === "cmfas"
+  ) {
+    return <Navigate to="/cmfas-exams" replace />;
+  }
+
+  // Supplementary training is gated by its own feature key on top of `products`,
+  // so explorers (and any tier without the feature) can't reach it via URL even
+  // though `/category/*` itself only requires `products`.
+  const isSupplementaryTraining =
+    categorySlugOrId === "supplementary-training" ||
+    category?.name?.toLowerCase() === "supplementary training" ||
+    category?.name?.toLowerCase() === "appointment flows";
+  if (
+    isSupplementaryTraining &&
+    !permissionsLoading &&
+    !can(FEATURES.SUPPLEMENTARY_TRAINING)
+  ) {
+    return <Navigate to="/" replace />;
+  }
 
   if (loading) {
     return <SkeletonLoader type="category" />;
