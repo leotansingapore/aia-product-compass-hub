@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useAllProducts } from "@/hooks/useProducts";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 import { useMemo } from "react";
 import { ArrowRight, BookOpen, Star, Brain } from "lucide-react";
 
@@ -19,6 +21,7 @@ interface QuickLink {
 export function ProductCategories() {
   const navigate = useNavigate();
   const { allProducts, loading } = useAllProducts();
+  const { can } = useFeatureAccess();
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -28,7 +31,7 @@ export function ProductCategories() {
     return counts;
   }, [allProducts]);
 
-  const quickLinks: QuickLink[] = [
+  const allQuickLinks: (QuickLink & { feature?: typeof FEATURES[keyof typeof FEATURES] })[] = [
     {
       id: "core-products",
       name: "Core Products",
@@ -48,6 +51,7 @@ export function ProductCategories() {
       iconColor: "text-teal-600 dark:text-teal-400",
       route: `/category/${getCategorySlugFromId("5ef0b17f-a19f-4859-8349-3e4959620e94")}`,
       count: categoryCounts["5ef0b17f-a19f-4859-8349-3e4959620e94"] || 0,
+      feature: FEATURES.SUPPLEMENTARY_TRAINING,
     },
     {
       id: "question-banks",
@@ -59,6 +63,8 @@ export function ProductCategories() {
       route: "/question-banks",
     },
   ];
+
+  const quickLinks = allQuickLinks.filter((link) => !link.feature || can(link.feature));
 
   return (
     <div className="space-y-3">

@@ -14,6 +14,8 @@ import { ChildCategoriesGrid } from "@/components/category/ChildCategoriesGrid";
 import { ProductMasteryCallout } from "@/components/product-mastery/ProductMasteryCallout";
 import { getCategorySlug } from "@/utils/slugUtils";
 import { useProductCategory } from "@/hooks/useProductCategory";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 import { supabase } from "@/integrations/supabase/client";
 import {
   invalidateCategoriesCache,
@@ -95,6 +97,22 @@ export default function ProductCategory() {
     category?.name?.toLowerCase() === "cmfas"
   ) {
     return <Navigate to="/cmfas-exams" replace />;
+  }
+
+  // Supplementary training is gated by its own feature key on top of `products`,
+  // so explorers (and any tier without the feature) can't reach it via URL even
+  // though `/category/*` itself only requires `products`.
+  const { can, permissionsLoading } = useFeatureAccess();
+  const isSupplementaryTraining =
+    categorySlugOrId === "supplementary-training" ||
+    category?.name?.toLowerCase() === "supplementary training" ||
+    category?.name?.toLowerCase() === "appointment flows";
+  if (
+    isSupplementaryTraining &&
+    !permissionsLoading &&
+    !can(FEATURES.SUPPLEMENTARY_TRAINING)
+  ) {
+    return <Navigate to="/" replace />;
   }
 
   const { isAdmin: rawIsAdmin } = usePermissions();

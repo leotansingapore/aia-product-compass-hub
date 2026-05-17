@@ -16,7 +16,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlug } from "@/utils/slugUtils";
 import { useAllProducts, useCategories, getCategoryChildren } from "@/hooks/useProducts";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 import { cn } from "@/lib/utils";
+
+const SUPPLEMENTARY_TRAINING_CATEGORY_ID = "5ef0b17f-a19f-4859-8349-3e4959620e94";
 
 type CategoryVisual = {
   icon: LucideIcon;
@@ -56,6 +60,8 @@ export function ProductsGrid() {
   const navigate = useNavigate();
   const { categories, loading: categoriesLoading } = useCategories();
   const { allProducts, loading: productsLoading } = useAllProducts();
+  const { can } = useFeatureAccess();
+  const canSupplementaryTraining = can(FEATURES.SUPPLEMENTARY_TRAINING);
 
   const productCountByCategory = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -69,10 +75,14 @@ export function ProductsGrid() {
     () =>
       categories
         .filter((c) => c.parent_id === null && !HIDDEN_FROM_GRID_IDS.has(c.id))
+        .filter(
+          (c) =>
+            c.id !== SUPPLEMENTARY_TRAINING_CATEGORY_ID || canSupplementaryTraining,
+        )
         .sort(
           (a, b) => a.sort_order - b.sort_order || a.name.localeCompare(b.name),
         ),
-    [categories],
+    [categories, canSupplementaryTraining],
   );
 
   const getRolledUpCount = (categoryId: string): number => {

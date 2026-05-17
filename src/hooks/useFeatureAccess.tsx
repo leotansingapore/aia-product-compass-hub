@@ -80,6 +80,7 @@ export function useFeatureAccess() {
       // cannot get roleplay (Post-RNF-only). Mirrors static matrix, applied
       // here so stale DB rows cannot widen access beyond tier intent.
       if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
+      if (tier === 'explorer' && featureKey === FEATURES.SUPPLEMENTARY_TRAINING) return false;
       if (tier === 'papers_taker' && featureKey === FEATURES.ROLEPLAY) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
@@ -93,6 +94,7 @@ export function useFeatureAccess() {
       if (!allowed) return false;
       return featureKeys.some((key) => {
         if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
+        if (tier === 'explorer' && key === FEATURES.SUPPLEMENTARY_TRAINING) return false;
         if (tier === 'papers_taker' && key === FEATURES.ROLEPLAY) return false;
         return allowed.has(key);
       });
