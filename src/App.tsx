@@ -152,7 +152,7 @@ const App = () => (
                     {/* All other routes require authentication */}
                     <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
                     <Route path="/consultant-landing" element={<RequireAuth><RequireTier feature="consultant-landing"><ConsultantLanding /></RequireTier></RequireAuth>} />
-                    <Route path="/bookmarks" element={<RequireAuth><Bookmarks /></RequireAuth>} />
+                    <Route path="/bookmarks" element={<RequireAuth><RequireTier feature="bookmarks"><Bookmarks /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams/manage" element={<RequireAuth><ProtectedAdminPage><CMFASManage /></ProtectedAdminPage></RequireAuth>} />
                     <Route path="/cmfas-exams/:workspaceMode" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
