@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   BookOpen,
   GraduationCap,
@@ -59,6 +59,22 @@ const LINK_BASE =
   "shrink-0 inline-flex items-center gap-1.5 px-2 lg:px-3 py-1.5 rounded-lg text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground whitespace-nowrap";
 const LINK_ACTIVE = "bg-primary/10 text-primary font-semibold";
 
+// Routes that should light up the "Sales Playbooks" TopNav entry. Mirrors
+// the matching logic in AppSidebar.tsx so the desktop top-nav stays in sync
+// with the sidebar — opening /scripts or /case-vault from anywhere highlights
+// the Sales Playbooks parent entry instead of showing no active item.
+const SALES_PLAYBOOK_ROUTES = [
+  "/sales-playbooks",
+  "/scripts",
+  "/servicing",
+  "/objections",
+  "/playbooks",
+  "/flows",
+  "/concept-cards",
+  "/case-vault",
+  "/drawings-playbook",
+];
+
 export const TopNav = memo(function TopNav({
   onProfileClick,
 }: {
@@ -67,6 +83,7 @@ export const TopNav = memo(function TopNav({
   const { user } = useSimplifiedAuth();
   const { canAny, isAdminBypass } = useFeatureAccess();
   const { isAdmin: isAdminUser } = useAdmin();
+  const location = useLocation();
 
   const visibleItems = useMemo(() => {
     return ALL_NAV_ITEMS.filter((item) => {
@@ -76,6 +93,15 @@ export const TopNav = memo(function TopNav({
       return canAny(item.features as any);
     });
   }, [isAdminUser, isAdminBypass, canAny]);
+
+  // Custom active-state for items whose default NavLink prefix-match isn't
+  // enough — Sales Playbooks needs to stay active on every sub-route.
+  const isItemActive = (item: NavItem, defaultActive: boolean) => {
+    if (item.url === "/sales-playbooks") {
+      return SALES_PLAYBOOK_ROUTES.some((r) => location.pathname.startsWith(r));
+    }
+    return defaultActive;
+  };
 
   return (
     <nav className="sticky top-0 z-40 hidden md:flex h-14 items-center border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-2 md:px-3 lg:px-4 gap-1">
@@ -102,7 +128,7 @@ export const TopNav = memo(function TopNav({
             end={item.url === "/"}
             title={item.title}
             className={({ isActive }) =>
-              cn(LINK_BASE, isActive && LINK_ACTIVE)
+              cn(LINK_BASE, isItemActive(item, isActive) && LINK_ACTIVE)
             }
           >
             <item.icon className="h-4 w-4 shrink-0" />
