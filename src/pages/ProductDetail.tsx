@@ -193,6 +193,27 @@ export default function ProductDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageId, isAdminMode, productSlugOrId, navigate, product?.training_videos?.length]);
 
+  // Count product-level resources so the Resources tab can show a badge.
+  // useful_links can be: flat array | { type: 'with_files', links, files } | { type: 'folder_structure', folders: [{ links }] }
+  // Memoized so this isn't recalculated on every parent render (e.g. each
+  // keystroke in the AI chat input would re-walk the folder structure).
+  const resourceCount = useMemo(() => {
+    const raw: any = product?.useful_links;
+    if (!raw) return 0;
+    if (Array.isArray(raw)) return raw.length;
+    if (raw.type === "with_files") {
+      return (Array.isArray(raw.links) ? raw.links.length : 0) +
+        (Array.isArray(raw.files) ? raw.files.length : 0);
+    }
+    if (raw.type === "folder_structure" && Array.isArray(raw.folders)) {
+      return raw.folders.reduce(
+        (sum: number, f: any) => sum + (Array.isArray(f?.links) ? f.links.length : 0),
+        0,
+      );
+    }
+    return 0;
+  }, [product?.useful_links]);
+
   if (loading) {
     return <SkeletonLoader type="product" />;
   }
@@ -217,27 +238,6 @@ export default function ProductDetail() {
   const hasExamProduct = PRODUCTS_WITH_EXAMS.has(product.id);
   const showContinueLearning = hasStudyProduct || hasExamProduct;
   const continueOriginalSlug = getOriginalSlug(product.id);
-
-  // Count product-level resources so the Resources tab can show a badge.
-  // useful_links can be: flat array | { type: 'with_files', links, files } | { type: 'folder_structure', folders: [{ links }] }
-  // Memoized so this isn't recalculated on every parent render (e.g. each
-  // keystroke in the AI chat input would re-walk the folder structure).
-  const resourceCount = useMemo(() => {
-    const raw: any = product.useful_links;
-    if (!raw) return 0;
-    if (Array.isArray(raw)) return raw.length;
-    if (raw.type === "with_files") {
-      return (Array.isArray(raw.links) ? raw.links.length : 0) +
-        (Array.isArray(raw.files) ? raw.files.length : 0);
-    }
-    if (raw.type === "folder_structure" && Array.isArray(raw.folders)) {
-      return raw.folders.reduce(
-        (sum: number, f: any) => sum + (Array.isArray(f?.links) ? f.links.length : 0),
-        0,
-      );
-    }
-    return 0;
-  }, [product.useful_links]);
 
   return (
     <ProtectedPage pageId="product-detail">
