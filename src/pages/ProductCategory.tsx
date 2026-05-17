@@ -38,7 +38,10 @@ import {
 } from "@/components/ui/sheet";
 import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
 
-const EMPTY_COUNT_MAP: Record<string, number> = {};
+// Frozen so a future writer can't accidentally mutate the module-scope
+// singleton (`productCountByChild` reads from it on every leaf-category
+// render — a stray `EMPTY_COUNT_MAP[id] = n` would leak across pages).
+const EMPTY_COUNT_MAP: Record<string, number> = Object.freeze({});
 
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {

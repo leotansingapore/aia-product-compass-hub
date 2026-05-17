@@ -29,6 +29,12 @@ const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
   post_rnf: null,
 };
 
+/** Exact-or-segment prefix match so `/learning-track/pre-rnf` doesn't
+ *  accidentally match a hypothetical `/learning-track/pre-rnf-tournament`
+ *  route in the future. */
+const isPathUnder = (pathname: string, base: string) =>
+  pathname === base || pathname.startsWith(base + "/");
+
 /** Map the current pathname to the journey step it belongs to. The step's
  *  `path` (`/learning-track/pre-rnf`, etc.) only covers the canonical entry
  *  URL — but Papers-taker has many sibling pages (`/first-60-days`,
@@ -36,21 +42,24 @@ const NEXT_TIER: Record<string, { to: TierLevel; label: string } | null> = {
  *  highlight Papers-taker in the rail. Same for Post-RNF + `/next-60-days`.
  *  Returns `undefined` if the path doesn't belong to any track. */
 function deriveActiveKeyFromPath(pathname: string): JourneyStep["key"] | undefined {
-  if (pathname.startsWith("/learning-track/first-14-days") || pathname.startsWith("/learning-track/explorer")) {
+  if (
+    isPathUnder(pathname, "/learning-track/first-14-days") ||
+    isPathUnder(pathname, "/learning-track/explorer")
+  ) {
     return "explorer";
   }
   if (
-    pathname.startsWith("/learning-track/pre-rnf") ||
-    pathname.startsWith("/learning-track/first-60-days") ||
-    pathname.startsWith("/learning-track/product-mastery") ||
-    pathname.startsWith("/learning-track/resources") ||
-    pathname.startsWith("/cmfas-exams")
+    isPathUnder(pathname, "/learning-track/pre-rnf") ||
+    isPathUnder(pathname, "/learning-track/first-60-days") ||
+    isPathUnder(pathname, "/learning-track/product-mastery") ||
+    isPathUnder(pathname, "/learning-track/resources") ||
+    isPathUnder(pathname, "/cmfas-exams")
   ) {
     return "papers_taker";
   }
   if (
-    pathname.startsWith("/learning-track/post-rnf") ||
-    pathname.startsWith("/learning-track/next-60-days")
+    isPathUnder(pathname, "/learning-track/post-rnf") ||
+    isPathUnder(pathname, "/learning-track/next-60-days")
   ) {
     return "post_rnf";
   }

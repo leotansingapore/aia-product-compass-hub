@@ -52,7 +52,12 @@ export function RequireTier({ feature, children, redirectTo = '/' }: RequireTier
   }
 
   if (!allowed) {
-    return <Navigate to={redirectTo} replace state={{ from: location }} />;
+    // Safety net: if the redirect target equals the current path (e.g. the
+    // fallback `/` itself ever gets gated by a tier this user lacks), we'd
+    // ping-pong here forever. Bail out to /auth to escape the loop instead
+    // of stack-overflowing the router.
+    const target = redirectTo === location.pathname ? '/auth' : redirectTo;
+    return <Navigate to={target} replace state={{ from: location }} />;
   }
 
   return <>{children}</>;

@@ -5,11 +5,13 @@ import {
   GraduationCap,
   Brain,
   BookOpen,
+  CalendarDays,
   Grid3X3,
   Bookmark,
   MessageCircle,
   MessageSquarePlus,
   ShieldCheck,
+  Sparkles,
   Trophy,
   TrendingUp,
   Pencil,
@@ -79,6 +81,12 @@ interface QuickLink {
 }
 
 const QUICK_LINKS: QuickLink[] = [
+  // Daily-use learning surfaces — direct deep-links so mobile FCs reach the
+  // current curriculum in 1 tap instead of bouncing through /learning-track →
+  // /pre-rnf/assignments → card click. Desktop has these in the sidebar.
+  { name: "First 60 Days", href: "/learning-track/first-60-days", icon: CalendarDays, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30", features: [FEATURES.PRE_RNF_TRACK] },
+  { name: "Next 60 Days", href: "/learning-track/next-60-days", icon: CalendarDays, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.POST_RNF_TRACK] },
+  { name: "Product Mastery", href: "/learning-track/product-mastery", icon: Sparkles, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-950/30", features: [FEATURES.PRE_RNF_TRACK] },
   // Sales Playbooks sub-tabs surfaced individually so post-RNF consultants can
   // deep-link to the exact tool they need (Concept Cards for drilling drawings,
   // Case Vault for browsing real-prospect receipts).
