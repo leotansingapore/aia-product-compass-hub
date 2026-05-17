@@ -1997,6 +1997,7 @@ export type Database = {
           training_videos: Json | null
           updated_at: string
           useful_links: Json | null
+          visible_tiers: string[] | null
         }
         Insert: {
           assistant_id?: string | null
@@ -2022,6 +2023,7 @@ export type Database = {
           training_videos?: Json | null
           updated_at?: string
           useful_links?: Json | null
+          visible_tiers?: string[] | null
         }
         Update: {
           assistant_id?: string | null
@@ -2047,6 +2049,7 @@ export type Database = {
           training_videos?: Json | null
           updated_at?: string
           useful_links?: Json | null
+          visible_tiers?: string[] | null
         }
         Relationships: [
           {
