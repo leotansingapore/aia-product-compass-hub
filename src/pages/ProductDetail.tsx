@@ -193,6 +193,25 @@ export default function ProductDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageId, isAdminMode, productSlugOrId, navigate, product?.training_videos?.length]);
 
+  // Count product-level resources so the Resources tab can show a badge.
+  // Must be declared before any early returns to keep hook order stable.
+  const resourceCount = useMemo(() => {
+    const raw: any = product?.useful_links;
+    if (!raw) return 0;
+    if (Array.isArray(raw)) return raw.length;
+    if (raw.type === "with_files") {
+      return (Array.isArray(raw.links) ? raw.links.length : 0) +
+        (Array.isArray(raw.files) ? raw.files.length : 0);
+    }
+    if (raw.type === "folder_structure" && Array.isArray(raw.folders)) {
+      return raw.folders.reduce(
+        (sum: number, f: any) => sum + (Array.isArray(f?.links) ? f.links.length : 0),
+        0,
+      );
+    }
+    return 0;
+  }, [product?.useful_links]);
+
   if (loading) {
     return <SkeletonLoader type="product" />;
   }
