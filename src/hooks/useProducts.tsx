@@ -249,7 +249,14 @@ export function useProducts(categoryId?: string) {
   const { data, isLoading, error, refetch: queryRefetch } = useQuery({
     queryKey: ['products', categoryId ?? 'all'],
     queryFn: () => fetchProductsFromServer(categoryId),
-    staleTime: 2 * 60 * 1000, // 2 minutes
+    // Bumped 2min -> 10min: an FC opens a product page, watches a lesson
+    // for 5-10 minutes, then comes back. The old 2min stale window caused
+    // a redundant refetch (which pulls every training_videos blob) on
+    // virtually every nav. 10min covers the typical lesson session.
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
     // Show the previous category's products while the new ones load — prevents
     // a flash of empty state when switching categories.
     placeholderData: keepPreviousData,
@@ -273,7 +280,10 @@ export function useAllProducts() {
   const { data, isLoading, error } = useQuery({
     queryKey: ['products', 'all'],
     queryFn: () => fetchProductsFromServer(),
-    staleTime: 2 * 60 * 1000,
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   return {
@@ -288,7 +298,10 @@ export function useProductById(productId: string) {
     queryKey: ['product', productId],
     queryFn: () => fetchProductByIdFromServer(productId),
     enabled: !!productId,
-    staleTime: 2 * 60 * 1000,
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   return {
@@ -304,7 +317,11 @@ export function useProductBySlugOrId(slugOrId: string) {
     queryKey: ['product', 'slug', slugOrId],
     queryFn: () => fetchProductBySlugOrIdFromServer(slugOrId),
     enabled: !!slugOrId,
-    staleTime: 2 * 60 * 1000,
+    // 10min — see comment in useProducts. Product objects include the full
+    // training_videos array (~50 rows per product), so over-fetching them
+    // dominates the network cost of navigation between lessons.
+    staleTime: 10 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
     // Keep embedded video players stable when users switch browser tabs.
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

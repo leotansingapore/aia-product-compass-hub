@@ -1,5 +1,75 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Components } from 'react-markdown';
 import { detectVideoEmbed } from './video-embed-utils';
+
+// Horizontal-scroll container with edge-fade affordance. The fade only shows
+// when content actually overflows, hides when scrolled to that edge. Used for
+// markdown tables and wide <pre> code blocks so mobile users can see there's
+// more content to the side instead of silently clipping at the viewport.
+function ScrollableX({
+  children,
+  className,
+  fadeColorClass,
+  ariaLabel,
+}: {
+  children: React.ReactNode;
+  className: string;
+  fadeColorClass: string;
+  ariaLabel: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ left: false, right: false });
+
+  const update = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const overflow = el.scrollWidth - el.clientWidth;
+    if (overflow <= 1) {
+      setEdges({ left: false, right: false });
+      return;
+    }
+    setEdges({
+      left: el.scrollLeft > 1,
+      right: el.scrollLeft < overflow - 1,
+    });
+  }, []);
+
+  useEffect(() => {
+    update();
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [update]);
+
+  return (
+    <div className="relative">
+      <div
+        ref={ref}
+        className={className}
+        role="region"
+        aria-label={ariaLabel}
+        tabIndex={0}
+        onScroll={update}
+      >
+        {children}
+      </div>
+      {edges.right && (
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l ${fadeColorClass} to-transparent`}
+        />
+      )}
+      {edges.left && (
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r ${fadeColorClass} to-transparent`}
+        />
+      )}
+    </div>
+  );
+}
 
 // Inline iframe wrapper — duplicates the markup of VideoEmbed on purpose so
 // this module doesn't drag the full VideoEmbed component (and its tree) into
@@ -159,11 +229,18 @@ export const markdownComponents: Components = {
     );
   },
 
-  // Code blocks with enhanced styling
+  // Code blocks with enhanced styling. Wrapped in ScrollableX so wide lines
+  // get a right-edge fade hint on mobile instead of silently clipping.
   pre: ({ children }: any) => (
-    <pre className="bg-muted border border-border p-3 rounded-lg text-sm font-mono overflow-x-auto mb-3 text-foreground shadow-sm">
-      {children}
-    </pre>
+    <ScrollableX
+      ariaLabel="Scrollable code block"
+      fadeColorClass="from-muted"
+      className="bg-muted border border-border p-3 rounded-lg text-sm font-mono overflow-x-auto mb-3 text-foreground shadow-sm"
+    >
+      <pre className="m-0 p-0 bg-transparent border-0 shadow-none">
+        {children}
+      </pre>
+    </ScrollableX>
   ),
 
   // Blockquotes — suppress empty ones (lone `>` spacers produce no visible content)
