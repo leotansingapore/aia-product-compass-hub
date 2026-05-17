@@ -295,8 +295,13 @@ export function ProductModuleCourseLayout({
     };
   }, [videoInfo, iframeSrc, currentVideo?.id, autoFillDuration]);
 
-  /* ── Sidebar content (shared between persistent sidebar & mobile Sheet) ── */
-  const sidebarContent = (
+  /* ── Sidebar content (shared between persistent sidebar & mobile Sheet) ──
+       Memoized: this tree is rendered in TWO places (desktop aside + mobile
+       Sheet drawer). Without the memo, each parent render recreates two
+       copies of the entire VideosByCategory + Study/Exam + Transcript stack.
+       With it, both consumers share the same React element reference and
+       only re-render when the actual dependencies change. */
+  const sidebarContent = useMemo(() => (
     <div className="space-y-3">
       {/* Progress + duration summary */}
       {processedVideos.length > 0 && (
@@ -438,7 +443,22 @@ export function ProductModuleCourseLayout({
         </details>
       )}
     </div>
-  );
+  ), [
+    processedVideos,
+    completedCount,
+    courseProgressPct,
+    totalDuration,
+    isFirstVisit,
+    onSelectVideoFromOutline,
+    getVideoProgress,
+    handleToggleComplete,
+    currentVideo,
+    productId,
+    hasStudy,
+    hasExam,
+    originalSlug,
+    navigate,
+  ]);
 
   /* ── Video player hero (single hero: only when there is a real embed) ── */
   const videoHero = hasVideoEmbed ? (
