@@ -236,7 +236,9 @@ export const ProductCard = memo(function ProductCard({
                         size="sm"
                         onClick={handleBookmarkClick}
                         disabled={loading}
-                        className={cn("h-8 w-8 p-0", bookmarked && "text-primary")}
+                        // 44x44 on mobile (WCAG min), compact 32x32 on sm+
+                        // where pointer precision doesn't need the bigger target.
+                        className={cn("h-11 w-11 sm:h-8 sm:w-8 p-0 touch-manipulation", bookmarked && "text-primary")}
                       >
                         {bookmarked ? (
                           <BookmarkCheck className="h-4 w-4" />
@@ -255,7 +257,7 @@ export const ProductCard = memo(function ProductCard({
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <Button variant="ghost" size="sm" className="h-11 w-11 sm:h-8 sm:w-8 p-0 touch-manipulation">
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>

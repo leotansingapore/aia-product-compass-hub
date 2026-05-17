@@ -276,7 +276,7 @@ function PointsReferenceTable() {
             {POINT_ROWS.length} ways to score
           </Badge>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-x-auto -mx-1 sm:mx-0">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">

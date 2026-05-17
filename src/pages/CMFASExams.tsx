@@ -393,7 +393,8 @@ export default function CMFASExams() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className={cn("h-8 gap-1.5", cmfasRoom.brassBorder, cmfasRoom.text)}
+                          // h-11 on mobile (44px WCAG), compact h-8 on sm+.
+                          className={cn("h-11 sm:h-8 gap-1.5 touch-manipulation", cmfasRoom.brassBorder, cmfasRoom.text)}
                         >
                           <MoreVertical className="h-3.5 w-3.5" />
                           Admin
