@@ -589,7 +589,8 @@ export function ProductModuleCourseLayout({
           disabled={!prevVideo}
           onClick={() => prevVideo && onSelectVideoFromOutline(currentVideoIndex - 1)}
           className={cn(
-            "gap-1.5 text-xs",
+            // h-11 on mobile (44px WCAG min); sm:h-9 keeps desktop compact.
+            "h-11 sm:h-9 gap-1.5 text-xs touch-manipulation",
             tone === "dark" && "hover:bg-zinc-800 hover:text-zinc-50",
           )}
         >
@@ -603,7 +604,7 @@ export function ProductModuleCourseLayout({
             size="sm"
             onClick={() => currentVideo && handleToggleComplete(currentVideo.id, false)}
             className={cn(
-              "gap-1.5 text-xs",
+              "h-11 sm:h-9 gap-1.5 text-xs touch-manipulation",
               tone === "dark" &&
                 "border-zinc-600 bg-zinc-800/50 text-zinc-100 hover:bg-zinc-800 hover:text-zinc-50",
             )}
@@ -628,7 +629,10 @@ export function ProductModuleCourseLayout({
           size="sm"
           disabled={!nextVideo}
           onClick={() => nextVideo && onSelectVideoFromOutline(currentVideoIndex + 1)}
-          className={cn("gap-1.5 text-xs", tone === "dark" && !nextVideo && "hover:bg-zinc-800")}
+          className={cn(
+            "h-11 sm:h-9 gap-1.5 text-xs touch-manipulation",
+            tone === "dark" && !nextVideo && "hover:bg-zinc-800",
+          )}
         >
           <span className="hidden sm:inline truncate max-w-[120px]">{nextVideo?.title ?? "Next"}</span>
           <span className="sm:hidden">Next</span>
