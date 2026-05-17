@@ -11,6 +11,7 @@ import {
   Star,
   Package,
   Layers,
+  GraduationCap,
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +30,7 @@ type CategoryVisual = {
 
 const VISUAL_BY_NAME: Record<string, CategoryVisual> = {
   "core products": { icon: Star, gradient: "from-yellow-500 to-amber-600" },
+  "core training": { icon: GraduationCap, gradient: "from-amber-500 to-orange-600" },
   "investment products": { icon: TrendingUp, gradient: "from-emerald-500 to-green-600" },
   "endowment products": { icon: Shield, gradient: "from-blue-500 to-blue-600" },
   "whole life products": { icon: Heart, gradient: "from-rose-500 to-red-600" },
