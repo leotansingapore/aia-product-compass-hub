@@ -8,6 +8,7 @@ import {
   Bookmark,
   Shield,
   Trophy,
+  TrendingUp,
 } from "lucide-react";
 import { FINTERNSHIP_LOGO_NAVY } from "@/constants/branding";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,15 @@ const ALL_NAV_ITEMS: NavItem[] = [
   },
   { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
   { title: "Library", url: "/library", icon: BookOpen, features: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS] },
+  // Sales Playbooks hub — daily-use surface for both pre-RNF and post-RNF
+  // FCs. Sidebar + mobile nav already linked here; the desktop TopNav was
+  // missing the entry which made it invisible on the laptop view.
+  {
+    title: "Sales Playbooks",
+    url: "/sales-playbooks",
+    icon: TrendingUp,
+    features: [FEATURES.SALES_PLAYBOOKS, FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
+  },
   { title: "Roleplay", url: "/roleplay", icon: MessageCircle, features: [FEATURES.ROLEPLAY] },
   { title: "Exams", url: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
   { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, features: [FEATURES.BOOKMARKS] },
