@@ -65,17 +65,30 @@ function categoryAccentClass(category: string): string {
   return "bg-gradient-to-r from-primary to-primary/80";
 }
 
+export interface ProductCardEditData {
+  title: string;
+  description: string;
+  tags: string[];
+  highlights: string[];
+  /**
+   * Tier visibility list. `null` = visible to all (no per-product restriction).
+   * Populated array restricts to listed `tier_level` values.
+   */
+  visible_tiers: string[] | null;
+}
+
 interface ProductCardProps {
   title: string;
   description: string;
   category: string;
   tags: string[];
   highlights: string[];
+  visibleTiers?: string[] | null;
   onClick: () => void;
   productId?: string;
   published?: boolean;
   completionPct?: number;
-  onEdit?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
+  onEdit?: (productId: string, data: ProductCardEditData) => void;
   onDelete?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
 }
@@ -86,6 +99,7 @@ export const ProductCard = memo(function ProductCard({
   category,
   tags,
   highlights,
+  visibleTiers,
   onClick,
   productId,
   published,
@@ -102,6 +116,8 @@ export const ProductCard = memo(function ProductCard({
   const [editDescription, setEditDescription] = useState(description);
   const [editTags, setEditTags] = useState(tags.join(", "));
   const [editHighlights, setEditHighlights] = useState(highlights.join(", "));
+  const [editPapersTaker, setEditPapersTaker] = useState(true);
+  const [editPostRnf, setEditPostRnf] = useState(true);
 
   const accent = categoryAccentClass(category);
   const bookmarked = productId ? isBookmarked(productId) : false;
@@ -119,6 +135,11 @@ export const ProductCard = memo(function ProductCard({
     setEditDescription(description);
     setEditTags(tags.join(", "));
     setEditHighlights(highlights.join(", "));
+    // No restriction (null/empty) = both tiers can see it. Treat both checkboxes
+    // as checked, matching the runtime filter logic.
+    const hasRestriction = Array.isArray(visibleTiers) && visibleTiers.length > 0;
+    setEditPapersTaker(!hasRestriction || visibleTiers!.includes("papers_taker"));
+    setEditPostRnf(!hasRestriction || visibleTiers!.includes("post_rnf"));
     setShowEditDialog(true);
   };
 
@@ -129,11 +150,20 @@ export const ProductCard = memo(function ProductCard({
 
   const handleEditSave = () => {
     if (productId && onEdit) {
+      // Both selected = NULL (no per-product restriction). Otherwise persist
+      // the explicit list. Empty array would block all non-admins, which is
+      // probably a mistake — coerce to NULL ("visible to all") instead.
+      const selected: string[] = [];
+      if (editPapersTaker) selected.push("papers_taker");
+      if (editPostRnf) selected.push("post_rnf");
+      const visible_tiers =
+        selected.length === 0 || selected.length === 2 ? null : selected;
       onEdit(productId, {
         title: editTitle.trim(),
         description: editDescription.trim(),
         tags: editTags.split(",").map((t) => t.trim()).filter(Boolean),
         highlights: editHighlights.split(",").map((h) => h.trim()).filter(Boolean),
+        visible_tiers,
       });
     }
     setShowEditDialog(false);
@@ -378,6 +408,37 @@ export const ProductCard = memo(function ProductCard({
                 onChange={(e) => setEditHighlights(e.target.value)}
                 placeholder="e.g. High returns, Low risk"
               />
+            </div>
+            <div className="space-y-2 rounded-md border border-border bg-muted/30 p-3">
+              <div className="text-sm font-medium">Visible to tiers</div>
+              <p className="text-xs text-muted-foreground">
+                Uncheck a tier to hide this module from that tier. Admins always see all modules. Both checked = visible to anyone with category access.
+              </p>
+              <div className="flex items-center justify-between pt-1">
+                <Label htmlFor="edit-tier-papers" className="text-sm cursor-pointer">
+                  Papers-taker
+                </Label>
+                <Switch
+                  id="edit-tier-papers"
+                  checked={editPapersTaker}
+                  onCheckedChange={setEditPapersTaker}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="edit-tier-post-rnf" className="text-sm cursor-pointer">
+                  Post-RNF
+                </Label>
+                <Switch
+                  id="edit-tier-post-rnf"
+                  checked={editPostRnf}
+                  onCheckedChange={setEditPostRnf}
+                />
+              </div>
+              {!editPapersTaker && !editPostRnf && (
+                <p className="text-xs text-amber-600 dark:text-amber-400">
+                  Both tiers off — only admins will see this module. Saving will reset to "visible to all".
+                </p>
+              )}
             </div>
           </div>
           <DialogFooter>

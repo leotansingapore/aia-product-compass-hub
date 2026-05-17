@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCard, type ProductCardEditData } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, FolderOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ export interface NestedProduct {
   description?: string;
   tags?: string[];
   highlights?: string[];
+  visible_tiers?: string[] | null;
   published?: boolean;
   parent_product_id?: string | null;
   sort_order?: number;
@@ -49,7 +50,7 @@ interface NestedProductsGridProps {
   categoryName: string;
   onProductClick: (id: string) => void;
   onClearFilters?: () => void;
-  onEditProduct?: (id: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
+  onEditProduct?: (id: string, data: ProductCardEditData) => void;
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
   onNestingChange: () => void;
@@ -175,6 +176,7 @@ export function NestedProductsGrid({
           category={categoryName}
           tags={product.tags || []}
           highlights={product.highlights || []}
+          visibleTiers={product.visible_tiers}
           onClick={() => onProductClick(product.id)}
           productId={product.id}
           published={product.published}

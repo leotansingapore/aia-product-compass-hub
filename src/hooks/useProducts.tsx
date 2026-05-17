@@ -98,6 +98,13 @@ export interface Product {
   published?: boolean;
   parent_product_id?: string | null;
   sort_order?: number;
+  /**
+   * Per-product tier visibility. `null` / `undefined` / `[]` = visible to any
+   * tier that has access to the parent category (current behaviour). When
+   * populated, only the listed tier_level values can see the product (admins
+   * always bypass). Mirrors `tier_permissions.tier_level` values.
+   */
+  visible_tiers?: string[] | null;
   created_at: string;
   updated_at: string;
 }

@@ -1,5 +1,6 @@
 import { NestedProductsGrid, type NestedProduct } from "./NestedProductsGrid";
 import { Button } from "@/components/ui/button";
+import type { ProductCardEditData } from "@/components/ProductCard";
 
 interface Product {
   id: string;
@@ -7,6 +8,7 @@ interface Product {
   description?: string;
   tags?: string[];
   highlights?: string[];
+  visible_tiers?: string[] | null;
   published?: boolean;
   parent_product_id?: string | null;
   sort_order?: number;
@@ -17,7 +19,7 @@ interface ProductsGridProps {
   categoryName: string;
   onProductClick: (productId: string) => void;
   onClearFilters?: () => void;
-  onEditProduct?: (productId: string, data: { title: string; description: string; tags: string[]; highlights: string[] }) => void;
+  onEditProduct?: (productId: string, data: ProductCardEditData) => void;
   onDeleteProduct?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
   onNestingChange?: () => void;

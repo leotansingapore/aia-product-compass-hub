@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts, useCategories } from '@/hooks/useProducts';
 import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
+import { useFeatureAccess } from '@/hooks/useFeatureAccess';
 import { getCategoryIdFromSlug, getCategorySlugFromId, getCategorySlug, isUUID, createSlug } from '@/utils/slugUtils';
 
 export function useProductCategory() {
@@ -25,14 +26,15 @@ export function useProductCategory() {
   }, [categorySlugOrId, categories]);
   
   const { products, loading: productsLoading, refetch } = useProducts(categoryId);
-  
+  const { tier, isAdminBypass } = useFeatureAccess();
+
   // Search and filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  
+
   // Find the category by ID from the database
   const category = categories.find(cat => cat.id === categoryId);
-  
+
   // Overall loading: still loading if categories or products haven't loaded yet
   const loading = categoriesLoading || productsLoading;
   
@@ -53,15 +55,29 @@ export function useProductCategory() {
     }
   }, [categoryId, category?.id, addToRecent]);
 
-  // Filter products based on search and tags
+  // Filter products based on tier visibility, search, and tags.
+  //
+  // Tier visibility: a product with `visible_tiers` populated is only shown
+  // when the current user's tier is listed. NULL / empty means "no per-product
+  // restriction" — visible to anyone who already has access to the category.
+  // Admins (real admin, not impersonating) always bypass via isAdminBypass.
   const filteredProducts = products.filter(product => {
-    const matchesSearch = !searchQuery || 
+    const visibleTiers = product.visible_tiers;
+    const passesTierGate =
+      isAdminBypass ||
+      !visibleTiers ||
+      visibleTiers.length === 0 ||
+      visibleTiers.includes(tier);
+
+    if (!passesTierGate) return false;
+
+    const matchesSearch = !searchQuery ||
       product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product.description?.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesTags = selectedTags.length === 0 || 
+
+    const matchesTags = selectedTags.length === 0 ||
       selectedTags.some(tag => product.tags?.includes(tag));
-    
+
     return matchesSearch && matchesTags;
   });
 

@@ -191,6 +191,7 @@ export default function ProductCategory() {
       description: string;
       tags: string[];
       highlights: string[];
+      visible_tiers: string[] | null;
     },
   ) => {
     const { error } = await supabase
@@ -200,6 +201,7 @@ export default function ProductCategory() {
         description: data.description,
         tags: data.tags,
         highlights: data.highlights,
+        visible_tiers: data.visible_tiers,
       })
       .eq("id", productId);
 
