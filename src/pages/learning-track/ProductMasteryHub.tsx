@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, CheckCircle2, ChevronRight, GraduationCap, Lock } from "lucide-react";
+import { BookOpen, CheckCircle2, ChevronRight, GraduationCap, Lock, PlayCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -106,6 +106,50 @@ export default function ProductMasteryHub() {
                 </div>
               </CardHeader>
               <CardContent className="p-4 pt-3 sm:p-5 sm:pt-4 flex flex-col gap-3">
+                {/* Training course prerequisite — links to the product page's
+                    training videos. Framed as "watch first" so FCs treat the
+                    course as the input to the week's drilling, not as an
+                    afterthought practice asset like Question Bank / Exam. */}
+                {productSlug && (
+                  <div
+                    className={cn(
+                      "rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 flex items-center justify-between gap-3",
+                      isLocked && "opacity-60",
+                    )}
+                  >
+                    <div className="flex items-center gap-2 min-w-0 flex-1">
+                      <PlayCircle className="h-4 w-4 text-primary shrink-0" />
+                      <div className="min-w-0">
+                        <div className="text-[11px] font-semibold uppercase tracking-wider text-primary leading-none mb-0.5">
+                          Watch first
+                        </div>
+                        <div className="text-[12px] text-muted-foreground line-clamp-1">
+                          AIA training course — watch before drilling this week
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      asChild={!isLocked}
+                      variant="outline"
+                      size="sm"
+                      className="gap-1 text-xs h-7 shrink-0"
+                      disabled={isLocked}
+                    >
+                      {isLocked ? (
+                        <span>
+                          Locked
+                          <Lock className="h-3 w-3 ml-1" />
+                        </span>
+                      ) : (
+                        <Link to={`/product/${productSlug}`}>
+                          Watch
+                          <ChevronRight className="h-3 w-3" />
+                        </Link>
+                      )}
+                    </Button>
+                  </div>
+                )}
+
                 <ul className="space-y-1.5">
                   {week.days.map((d) => {
                     const done = isDayComplete(d.dayNumber);
