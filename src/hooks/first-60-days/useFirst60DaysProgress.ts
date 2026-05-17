@@ -163,12 +163,15 @@ export function useFirst60DaysProgress() {
       return data;
     },
     enabled: Boolean(userId),
-    // Short stale window + focus refetch so progress made on another
-    // device shows up when the user returns to this one. Cross-device
-    // mutations can't invalidate this query, so we re-check the server.
+    // 30s stale window keeps progress fresh during an active session.
+    // Focus-refetch was previously enabled so cross-device mutations would
+    // show up on tab return, but it fires on EVERY tab switch (admins
+    // switching between dev tools, Slack, etc.) and triggers a visible
+    // refetch flash. Cross-device sync is a rare edge case; users can
+    // hard-refresh if they hit it.
     staleTime: 30_000,
     gcTime: 30 * 60_000,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     // Paint the hub immediately on revisits using the last-seen progress
     // snapshot, then let the refetch reconcile with Supabase.
     placeholderData: userId ? readCachedProgress(userId) : undefined,

@@ -59,23 +59,35 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (!mounted) return;
-        
+
         console.log('[SimplifiedAuth] Auth state change:', event, 'hasUser:', !!session?.user, 'userEmail:', session?.user?.email);
-        
+
         // Clear permissions cache on sign out
         if (event === 'SIGNED_OUT') {
           clearPermissionsCache();
         }
-        
-        // Update state for all auth events
-        setSession(session);
-        setUser(session?.user ?? null);
-        
+
+        // Token refresh fires roughly hourly and returns a fresh `session`
+        // and `user` object on every event — even when the underlying identity
+        // hasn't changed. Naively calling setUser/setSession with the new
+        // object reference invalidates every React.memo / useEffect / useMemo
+        // that depends on `user` or `session`, which cascades into refetches
+        // and UI flicker app-wide. Functional setState lets React bail out
+        // when nothing material changed (same id, same access_token).
+        setSession((prev) =>
+          prev?.access_token === session?.access_token ? prev : session,
+        );
+        setUser((prev) => {
+          const nextUser = session?.user ?? null;
+          if (prev?.id === nextUser?.id) return prev;
+          return nextUser;
+        });
+
         // Only set loading to false after we've processed the initial session
         if (event !== 'INITIAL_SESSION' || session !== null) {
           setLoading(false);
         }
-        
+
         console.log('[SimplifiedAuth] Updated state - user:', !!session?.user, 'loading: false');
       }
     );

@@ -119,44 +119,39 @@ export function usePermissions() {
     }
   }, [user, authLoading, fetchUserPermissions]);
 
-  // Silent refresh when tab becomes visible - doesn't trigger loading state
+  // Silent role refresh on tab return — but at most once per 5 min. Without a
+  // cooldown, admins switching between dev tools / Slack / browser tabs fire
+  // a Supabase RPC on every visibility flip, which adds latency and (when
+  // the role *does* differ from cached) triggers a context re-render that
+  // cascades through AdminProvider into every downstream consumer.
+  const lastSilentRefreshRef = useRef<number>(0);
+  const SILENT_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
   useEffect(() => {
     const handleVisibilityChange = async () => {
-      if (document.visibilityState === 'visible' && user) {
-        // Avoid focus-time role refresh while watching videos to prevent unnecessary player-side interruptions.
-        const path = window.location.pathname;
-        const isVideoRoute = path.includes('/video/');
-        if (isVideoRoute) return;
+      if (document.visibilityState !== 'visible' || !user) return;
+      // Avoid focus-time role refresh while watching videos to prevent unnecessary player-side interruptions.
+      const path = window.location.pathname;
+      if (path.includes('/video/')) return;
+      const now = Date.now();
+      if (now - lastSilentRefreshRef.current < SILENT_REFRESH_COOLDOWN_MS) return;
+      lastSilentRefreshRef.current = now;
 
-        console.log('[Permissions] Tab became visible, performing silent refresh...');
-        
-        try {
-          const { data: newRole } = await supabase.rpc('get_user_admin_role', { user_id: user.id });
-          const roleValue = newRole || 'user';
-
-          // Only update state if values actually changed
-          if (roleValue !== userAdminRole) {
-            console.log('[Permissions] Silent refresh detected changes:', { 
-              oldRole: userAdminRole, newRole: roleValue 
-            });
-            
-            setUserAdminRole(roleValue);
-
-            // Update cache
-            permissionsCache.set(user.id, {
-              adminRole: roleValue,
-              timestamp: Date.now(),
-              version: PERMISSIONS_VERSION
-            });
-          } else {
-            console.log('[Permissions] Silent refresh - no changes detected');
-          }
-        } catch (error) {
-          console.warn('[Permissions] Silent refresh failed:', error);
+      try {
+        const { data: newRole } = await supabase.rpc('get_user_admin_role', { user_id: user.id });
+        const roleValue = newRole || 'user';
+        if (roleValue !== userAdminRole) {
+          setUserAdminRole(roleValue);
+          permissionsCache.set(user.id, {
+            adminRole: roleValue,
+            timestamp: Date.now(),
+            version: PERMISSIONS_VERSION,
+          });
         }
+      } catch (error) {
+        console.warn('[Permissions] Silent refresh failed:', error);
       }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [user, userAdminRole]);

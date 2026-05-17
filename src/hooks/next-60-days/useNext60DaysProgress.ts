@@ -144,12 +144,13 @@ export function useNext60DaysProgress() {
     queryKey: ["next-60-days-progress", userId],
     queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
     enabled: Boolean(userId),
-    // Short stale window + focus refetch so progress made on another
-    // device shows up when the user returns to this one. Cross-device
-    // mutations can't invalidate this query, so we re-check the server.
+    // 30s stale window keeps progress fresh during an active session.
+    // Focus-refetch was previously enabled for cross-device sync but it
+    // fires on every tab switch and causes a visible refetch flash. Rare
+    // edge case; not worth the perceived flicker.
     staleTime: 30_000,
     gcTime: 30 * 60_000,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     placeholderData: (prev) => prev,
   });
 
