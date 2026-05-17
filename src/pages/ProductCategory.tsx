@@ -512,6 +512,7 @@ export default function ProductCategory() {
             parentName={category.name}
             subCategories={visibleChildCategories}
             productCounts={productCountByChild}
+            onReorderSaved={refetchCategories}
           />
         ) : (
           <ProductsGrid
@@ -523,6 +524,7 @@ export default function ProductCategory() {
             onDeleteProduct={handleDeleteProduct}
             onTogglePublish={handleToggleProductPublish}
             onNestingChange={refetch}
+            onReorderSaved={refetch}
             completionMap={completionMap}
             searchQuery={searchQuery}
           />

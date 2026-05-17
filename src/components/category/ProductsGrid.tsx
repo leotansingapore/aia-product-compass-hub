@@ -23,6 +23,7 @@ interface ProductsGridProps {
   onDeleteProduct?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
   onNestingChange?: () => void;
+  onReorderSaved?: () => void;
   completionMap?: Record<string, number>;
   searchQuery?: string;
 }
@@ -36,6 +37,7 @@ export function ProductsGrid({
   onDeleteProduct,
   onTogglePublish,
   onNestingChange,
+  onReorderSaved,
   completionMap,
   searchQuery,
 }: ProductsGridProps) {
@@ -71,6 +73,7 @@ export function ProductsGrid({
       onDeleteProduct={onDeleteProduct}
       onTogglePublish={onTogglePublish}
       onNestingChange={onNestingChange || (() => {})}
+      onReorderSaved={onReorderSaved}
       completionMap={completionMap}
     />
   );

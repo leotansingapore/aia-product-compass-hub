@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, FolderOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useViewMode } from "@/components/admin/AdminViewSwitcher";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useSortOrderPersister } from "@/hooks/useSortOrderPersister";
+import { SortableGrid, SortableItem } from "@/components/admin/SortableGrid";
 
 export interface NestedProduct {
   id: string;
@@ -54,6 +57,8 @@ interface NestedProductsGridProps {
   onDeleteProduct?: (id: string) => void;
   onTogglePublish?: (id: string, published: boolean) => void;
   onNestingChange: () => void;
+  /** Called after sort_order is persisted so the page can refetch products. */
+  onReorderSaved?: () => void;
   completionMap?: Record<string, number>;
 }
 
@@ -127,9 +132,13 @@ export function NestedProductsGrid({
   onEditProduct,
   onDeleteProduct,
   onTogglePublish,
+  onReorderSaved,
   completionMap,
 }: NestedProductsGridProps) {
   const { isViewingAsUser } = useViewMode();
+  const { isAdmin } = useAdmin();
+  const persistProductOrder = useSortOrderPersister("products");
+  const canReorder = isAdmin;
 
   const tree = buildTree(products);
 
@@ -168,6 +177,31 @@ export function NestedProductsGrid({
       );
     }
 
+    // Sortable only at the top level (depth 0). Nested folder children stay
+    // ordered by their own sort_order; reorder inside a folder by drilling
+    // into that folder's page.
+    if (depth === 0) {
+      return (
+        <SortableItem key={product.id} id={product.id} enabled={canReorder} className="animate-fade-in">
+          <ProductCard
+            title={product.title}
+            description={product.description || ''}
+            category={categoryName}
+            tags={product.tags || []}
+            highlights={product.highlights || []}
+            visibleTiers={product.visible_tiers}
+            onClick={() => onProductClick(product.id)}
+            productId={product.id}
+            published={product.published}
+            completionPct={completionMap?.[product.id]}
+            onEdit={onEditProduct}
+            onDelete={onDeleteProduct}
+            onTogglePublish={onTogglePublish}
+          />
+        </SortableItem>
+      );
+    }
+
     return (
       <div key={product.id} className="animate-fade-in">
         <ProductCard
@@ -190,8 +224,19 @@ export function NestedProductsGrid({
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 animate-fade-in">
-      {tree.map(p => renderNode(p))}
-    </div>
+    <SortableGrid
+      orderedIds={tree.map((p) => p.id)}
+      enabled={canReorder}
+      onReorder={(ids) => persistProductOrder(ids, onReorderSaved)}
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 animate-fade-in">
+        {tree.map(p => renderNode(p))}
+      </div>
+      {canReorder && tree.length > 1 && (
+        <p className="mt-3 text-xs text-muted-foreground">
+          Tip: long-press any module to reorder.
+        </p>
+      )}
+    </SortableGrid>
   );
 }

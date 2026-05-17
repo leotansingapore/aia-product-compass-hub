@@ -13,7 +13,10 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlug } from "@/utils/slugUtils";
-import type { Category } from "@/hooks/useProducts";
+import { invalidateCategoriesCache, type Category } from "@/hooks/useProducts";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useSortOrderPersister } from "@/hooks/useSortOrderPersister";
+import { SortableGrid, SortableItem } from "@/components/admin/SortableGrid";
 import { cn } from "@/lib/utils";
 
 type CategoryVisual = { icon: LucideIcon; gradient: string };
@@ -43,14 +46,20 @@ interface ChildCategoriesGridProps {
   parentName: string;
   subCategories: Category[];
   productCounts: Record<string, number>;
+  /** Called after sort_order is persisted so the page can refetch. */
+  onReorderSaved?: () => void;
 }
 
 export function ChildCategoriesGrid({
   parentName,
   subCategories,
   productCounts,
+  onReorderSaved,
 }: ChildCategoriesGridProps) {
   const navigate = useNavigate();
+  const { isAdmin } = useAdmin();
+  const persistCategoryOrder = useSortOrderPersister("categories");
+  const canReorder = isAdmin;
 
   if (subCategories.length === 0) {
     return (
@@ -64,6 +73,16 @@ export function ChildCategoriesGrid({
   }
 
   return (
+    <SortableGrid
+      orderedIds={subCategories.map((c) => c.id)}
+      enabled={canReorder}
+      onReorder={(ids) =>
+        persistCategoryOrder(ids, () => {
+          invalidateCategoriesCache();
+          onReorderSaved?.();
+        })
+      }
+    >
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 items-stretch animate-fade-in">
       {subCategories.map((child) => {
         const visual = getVisual(child.name);
@@ -71,13 +90,13 @@ export function ChildCategoriesGrid({
         const count = productCounts[child.id] || 0;
 
         return (
+          <SortableItem key={child.id} id={child.id} enabled={canReorder}>
           <button
-            key={child.id}
             type="button"
             onClick={() => navigate(`/category/${getCategorySlug(child.name)}`)}
             aria-label={`Open ${child.name}`}
             className={cn(
-              "group text-left rounded-xl border border-border bg-card",
+              "group w-full text-left rounded-xl border border-border bg-card",
               "hover:border-primary/30 hover:shadow-md transition-all duration-200",
               "p-4 sm:p-5",
               "h-full min-h-[15rem] sm:min-h-[16rem] flex flex-col",
@@ -146,8 +165,15 @@ export function ChildCategoriesGrid({
               />
             </div>
           </button>
+          </SortableItem>
         );
       })}
     </div>
+    {canReorder && subCategories.length > 1 && (
+      <p className="mt-3 text-xs text-muted-foreground">
+        Tip: long-press any sub-category to reorder.
+      </p>
+    )}
+    </SortableGrid>
   );
 }

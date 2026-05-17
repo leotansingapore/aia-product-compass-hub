@@ -16,9 +16,17 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getCategorySlug } from "@/utils/slugUtils";
-import { useAllProducts, useCategories, getCategoryChildren } from "@/hooks/useProducts";
+import {
+  invalidateCategoriesCache,
+  useAllProducts,
+  useCategories,
+  getCategoryChildren,
+} from "@/hooks/useProducts";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { useAdmin } from "@/hooks/useAdmin";
+import { useSortOrderPersister } from "@/hooks/useSortOrderPersister";
 import { FEATURES } from "@/lib/tiers";
+import { SortableGrid, SortableItem } from "@/components/admin/SortableGrid";
 import { cn } from "@/lib/utils";
 
 const SUPPLEMENTARY_TRAINING_CATEGORY_ID = "5ef0b17f-a19f-4859-8349-3e4959620e94";
@@ -60,10 +68,17 @@ function getVisual(name: string): CategoryVisual {
 
 export function ProductsGrid() {
   const navigate = useNavigate();
-  const { categories, loading: categoriesLoading } = useCategories();
+  const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
   const { allProducts, loading: productsLoading } = useAllProducts();
   const { can } = useFeatureAccess();
+  const { isAdmin } = useAdmin();
+  const persistCategoryOrder = useSortOrderPersister("categories");
   const canSupplementaryTraining = can(FEATURES.SUPPLEMENTARY_TRAINING);
+  // Only real admins (not impersonating a tier) can reorder. The library is
+  // shared across every tier — if we let impersonated views reorder we'd be
+  // writing tier-specific opinions into a global sort_order. `useAdmin` already
+  // returns false when impersonating, so this is the right gate.
+  const canReorder = isAdmin;
 
   const productCountByCategory = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -120,6 +135,16 @@ export function ProductsGrid() {
         </div>
       )}
 
+      <SortableGrid
+        orderedIds={topLevel.map((c) => c.id)}
+        enabled={canReorder}
+        onReorder={(ids) =>
+          persistCategoryOrder(ids, () => {
+            invalidateCategoriesCache();
+            void refetchCategories();
+          })
+        }
+      >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 items-stretch">
         {topLevel.map((category) => {
           const visual = getVisual(category.name);
@@ -130,13 +155,13 @@ export function ProductsGrid() {
           const isStartHere = START_HERE_IDS.has(category.id);
 
           return (
+            <SortableItem key={category.id} id={category.id} enabled={canReorder}>
             <button
-              key={category.id}
               type="button"
               onClick={() => navigate(`/category/${getCategorySlug(category.name)}`)}
               aria-label={`Open ${category.name}`}
               className={cn(
-                "group text-left rounded-xl border border-border bg-card",
+                "group w-full text-left rounded-xl border border-border bg-card",
                 "hover:border-primary/30 hover:shadow-md transition-all duration-200",
                 "p-4 sm:p-5",
                 "h-full min-h-[17.5rem] sm:min-h-[18.5rem] flex flex-col",
@@ -211,9 +236,16 @@ export function ProductsGrid() {
                 />
               </div>
             </button>
+            </SortableItem>
           );
         })}
       </div>
+      </SortableGrid>
+      {canReorder && topLevel.length > 1 && (
+        <p className="mt-3 text-xs text-muted-foreground">
+          Tip: long-press any category to reorder.
+        </p>
+      )}
     </div>
   );
 }
