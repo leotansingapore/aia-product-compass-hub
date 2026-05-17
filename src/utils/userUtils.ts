@@ -60,11 +60,15 @@ export const getRoleBadgeVariant = (role: string) => {
   switch (role) {
     case 'master_admin': return 'destructive';
     case 'admin': return 'default';
-    case 'mentor':
     case 'consultant': return 'secondary';
     default: return 'outline';
   }
 };
 
 export const AVAILABLE_STATUSES = ['pending_approval', 'approved', 'active', 'suspended', 'rejected'] as const;
-export const AVAILABLE_ADMIN_ROLES = ['user', 'consultant', 'mentor', 'admin'] as const;
+// `mentor` role removed — the Mentor Dashboard feature was deleted in commit
+// 8405541c and the role was never wired up anywhere else (no permission
+// checks, no UI gates, no edge-function paths). Existing DB rows with role
+// 'mentor' still render as a generic outline badge via the default branch
+// above, so this change is non-destructive at the data layer.
+export const AVAILABLE_ADMIN_ROLES = ['user', 'consultant', 'admin'] as const;

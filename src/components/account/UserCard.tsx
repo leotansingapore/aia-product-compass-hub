@@ -79,7 +79,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
         return 'destructive';
       case 'admin':
         return 'default';
-      case 'mentor':
       case 'consultant':
         return 'secondary';
       default:
@@ -184,7 +183,6 @@ export function UserCard({ user, onRoleUpdate }: UserCardProps) {
               <SelectContent>
                 <SelectItem value="user">User</SelectItem>
                 <SelectItem value="consultant">Consultant</SelectItem>
-                <SelectItem value="mentor">Mentor</SelectItem>
                 <SelectItem value="admin">Admin</SelectItem>
               </SelectContent>
             </Select>

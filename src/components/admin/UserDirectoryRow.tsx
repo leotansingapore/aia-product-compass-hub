@@ -73,7 +73,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     switch (role) {
       case 'master_admin': return 'destructive';
       case 'admin': return 'default';
-      case 'mentor': return 'secondary';
       default: return 'outline';
     }
   };
@@ -86,7 +85,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
     switch (role) {
       case 'master_admin': return Shield;
       case 'admin': return Shield;
-      case 'mentor': return Award;
       default: return User;
     }
   };
@@ -317,7 +315,6 @@ export function UserDirectoryRow({ user, isSelected, onSelect, onUpdate }: UserD
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="user">User</SelectItem>
-                <SelectItem value="mentor">Mentor</SelectItem>
                 <SelectItem value="admin">Admin</SelectItem>
                 <SelectItem value="master_admin">Master Admin</SelectItem>
               </SelectContent>

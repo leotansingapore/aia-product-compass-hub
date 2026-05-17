@@ -111,7 +111,7 @@ export function DayReflection({ dayNumber, prompts, progress: externalProgress }
                 rows={4}
                 placeholder={
                   p.hint ??
-                  "Write your answer — don't just think it. Your mentor and admins can see this."
+                  "Write your answer — don't just think it. Your admin can see this."
                 }
                 value={value}
                 onChange={(e) =>

@@ -40,6 +40,8 @@ export function CreateModuleForm({
     tags: '',
     highlights: '',
     publishImmediately: true,
+    visiblePapersTaker: true,
+    visiblePostRnf: true,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,6 +80,15 @@ export function CreateModuleForm({
         },
       };
 
+      // Both selected (or neither) = NULL (visible to anyone with category
+      // access). Mixed = explicit array — must match `tier_level` values used
+      // by useFeatureAccess (papers_taker, post_rnf).
+      const selectedTiers: string[] = [];
+      if (moduleData.visiblePapersTaker) selectedTiers.push('papers_taker');
+      if (moduleData.visiblePostRnf) selectedTiers.push('post_rnf');
+      const visibleTiers =
+        selectedTiers.length === 0 || selectedTiers.length === 2 ? null : selectedTiers;
+
       const { error } = await supabase.from('products').insert({
         id: finalSlug,
         title: moduleData.title,
@@ -90,6 +101,7 @@ export function CreateModuleForm({
         training_videos: [defaultPage],
         useful_links: [],
         published: moduleData.publishImmediately,
+        visible_tiers: visibleTiers,
       });
 
       if (error) throw error;
@@ -105,6 +117,8 @@ export function CreateModuleForm({
         tags: '',
         highlights: '',
         publishImmediately: true,
+        visiblePapersTaker: true,
+        visiblePostRnf: true,
       });
 
       onModuleCreated?.();
@@ -188,6 +202,44 @@ export function CreateModuleForm({
             setModuleData((prev) => ({ ...prev, publishImmediately: checked }))
           }
         />
+      </div>
+
+      <div className="space-y-2 rounded-md border border-border bg-muted/30 p-3">
+        <div className="text-sm font-medium">Visible to tiers</div>
+        <p className="text-xs text-muted-foreground">
+          Uncheck a tier to hide this module from that tier. Admins always see all modules. Both checked = visible to anyone with category access.
+        </p>
+        <div className="flex items-center justify-between pt-1">
+          <Label htmlFor="create-module-tier-papers" className="text-sm cursor-pointer">
+            Papers-taker
+          </Label>
+          <Switch
+            id="create-module-tier-papers"
+            checked={moduleData.visiblePapersTaker}
+            onCheckedChange={(checked) =>
+              setModuleData((prev) => ({ ...prev, visiblePapersTaker: checked }))
+            }
+            disabled={saving}
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="create-module-tier-post-rnf" className="text-sm cursor-pointer">
+            Post-RNF
+          </Label>
+          <Switch
+            id="create-module-tier-post-rnf"
+            checked={moduleData.visiblePostRnf}
+            onCheckedChange={(checked) =>
+              setModuleData((prev) => ({ ...prev, visiblePostRnf: checked }))
+            }
+            disabled={saving}
+          />
+        </div>
+        {!moduleData.visiblePapersTaker && !moduleData.visiblePostRnf && (
+          <p className="text-xs text-amber-600 dark:text-amber-400">
+            Both tiers off — only admins will see this module. Saving will reset to "visible to all".
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row">
