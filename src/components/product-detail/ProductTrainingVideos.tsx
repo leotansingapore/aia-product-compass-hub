@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,20 +28,38 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
   const navigate = useNavigate();
   const { productSlugOrId } = useParams();
 
-  const handleToggleComplete = async (videoId: string, currentlyCompleted: boolean) => {
-    if (currentlyCompleted) {
-      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
-    } else {
-      await markVideoComplete(videoId);
-    }
-  };
+  // Stable callback identity so the memo'd <VideosByCategory> doesn't bust
+  // its prop-identity check on every parent render.
+  const handleToggleComplete = useCallback(
+    async (videoId: string, currentlyCompleted: boolean) => {
+      if (currentlyCompleted) {
+        await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+      } else {
+        await markVideoComplete(videoId);
+      }
+    },
+    [updateVideoProgress, markVideoComplete],
+  );
 
-  // Ensure videos have IDs and are sorted by order
-  const processedVideos = (videos || []).map((video, index) => ({
-    ...video,
-    id: video.id || `video-${index}`,
-    order: video.order ?? index
-  })).sort((a, b) => a.order - b.order);
+  const handleVideoSelect = useCallback((index: number) => {
+    setSelectedVideoIndex(index);
+    setShowLearningInterface(true);
+  }, []);
+
+  // Ensure videos have IDs and are sorted by order. Memoized so the
+  // `videos` array reference stays stable across renders (otherwise
+  // VideosByCategory's memo re-runs on every parent render).
+  const processedVideos = useMemo(
+    () =>
+      (videos || [])
+        .map((video, index) => ({
+          ...video,
+          id: video.id || `video-${index}`,
+          order: video.order ?? index,
+        }))
+        .sort((a, b) => a.order - b.order),
+    [videos],
+  );
 
   const courseProgress = getCourseProgress(processedVideos.length);
   const completedVideos = processedVideos.filter(video => 
@@ -160,10 +178,7 @@ export function ProductTrainingVideos({ videos, productId, onUpdate }: ProductTr
             ) : (
               <VideosByCategory
                 videos={processedVideos}
-                onVideoSelect={(index) => {
-                  setSelectedVideoIndex(index);
-                  setShowLearningInterface(true);
-                }}
+                onVideoSelect={handleVideoSelect}
                 getVideoProgress={getVideoProgress}
                 onToggleComplete={handleToggleComplete}
                 useIndividualPages={true}
