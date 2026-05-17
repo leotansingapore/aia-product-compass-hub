@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, ClipboardList, GraduationCap, Lock, PlayCircle } from "lucide-react";
+import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, GraduationCap, Library, Lock, PlayCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -112,16 +112,16 @@ export default function ProductMasteryHub() {
         </Link>
 
         <Link
-          to="/learning-track/pre-rnf/assignments"
+          to="/category/core-training"
           className="group relative flex items-center gap-3 sm:gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-3 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
         >
           <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
-            <ClipboardList className="h-5 w-5 sm:h-6 sm:w-6" />
+            <Library className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
-            <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">Assignments</h3>
-            <p className="text-xs text-muted-foreground line-clamp-1">Weekly deliverables that turn the lessons into real reps with real prospects.</p>
+            <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">Core Training</h3>
+            <p className="text-xs text-muted-foreground line-clamp-1">Library of all AIA core-product training modules — deep dives, slides, and product videos.</p>
           </div>
           <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
         </Link>

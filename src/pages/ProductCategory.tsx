@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { ArrowLeft, CalendarDays, ChevronRight, GraduationCap, Sparkles } from "lucide-react";
+import { LearningTrackJourneyNav } from "@/components/learning-track/LearningTrackJourneyNav";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { CreateModuleForm } from "@/components/admin/CreateModuleForm";
 import { usePermissions } from "@/hooks/usePermissions";
@@ -373,6 +374,12 @@ export default function ProductCategory() {
         type: "section",
       }}
     >
+      {/* Core Training is a Papers-taker training surface (sibling of First
+          60 Days / Product Mastery). Show the journey rail so learners see
+          where they are and can hop to the other Pre-RNF phase pages. */}
+      {categorySlugOrId === "core-training" && (
+        <LearningTrackJourneyNav activeKey="papers_taker" />
+      )}
       <BrandedPageHeader
         title={category.name}
         titlePrefix={categoryInfo?.icon ? `${categoryInfo.icon} ` : undefined}
@@ -395,6 +402,58 @@ export default function ProductCategory() {
       />
 
       <div className="mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8">
+        {/* Sibling-page nav for Core Training — mirrors the 3-card pattern
+            used on First 60 Days / Assignments / Product Mastery hubs so the
+            four Pre-RNF surfaces all let learners hop between each other. */}
+        {categorySlugOrId === "core-training" && (
+          <div className="mb-3 sm:mb-6 space-y-2.5">
+            <Link
+              to="/cmfas-exams"
+              className="group relative flex items-center gap-3 sm:gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-3 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
+                <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">CMFAS Exams</h3>
+                <p className="text-xs text-muted-foreground line-clamp-1">Study modules, videos, and the AI tutor that prepare you to clear the papers.</p>
+              </div>
+              <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+            </Link>
+
+            <Link
+              to="/learning-track/first-60-days"
+              className="group relative flex items-center gap-3 sm:gap-4 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-3 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                <CalendarDays className="h-5 w-5 sm:h-6 sm:w-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">Required</p>
+                <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">First 60 Days</h3>
+                <p className="text-xs text-muted-foreground line-clamp-1">The day-by-day curriculum that builds your foundation as a financial consultant.</p>
+              </div>
+              <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+            </Link>
+
+            <Link
+              to="/learning-track/product-mastery"
+              className="group relative flex items-center gap-3 sm:gap-4 rounded-2xl border border-border/60 bg-gradient-to-r from-muted/40 via-muted/20 to-transparent p-3 sm:p-5 transition-all hover:border-primary/40 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-muted text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary">
+                <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Optional</p>
+                <h3 className="text-sm sm:text-base font-bold font-serif leading-snug">Product Mastery Track</h3>
+                <p className="text-xs text-muted-foreground line-clamp-1">7 weeks, one core product per week. Five days per product, 10-question quiz per day.</p>
+              </div>
+              <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+            </Link>
+          </div>
+        )}
+
         {/* Draft Banner */}
         {isAdmin() && category.published === false && (
           <div className="mb-3 sm:mb-6 flex items-center justify-between rounded-lg border border-dashed border-muted-foreground/30 bg-muted/50 px-3 sm:px-4 py-2 sm:py-3">
