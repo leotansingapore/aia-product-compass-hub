@@ -81,16 +81,24 @@ export function useViewMode() {
 }
 
 export function AdminViewSwitcher() {
-  const { isActualAdmin } = useAdmin();
+  const { isActualAdmin, loading } = useAdmin();
   const { viewAsTier, setViewAsTier } = useViewMode();
   const [open, setOpen] = useState(false);
 
   // If the user loses admin, drop impersonation so they don't get stuck.
+  //
+  // WAIT for permissions to finish loading before doing this — otherwise on
+  // every page reload `isActualAdmin` flips false transiently (while the
+  // role-check is in flight), and the impersonation tier persisted in
+  // localStorage gets stomped back to `null`, snapping the admin back to
+  // "Admin (full access)" view. Bug repro before this fix: admin sets
+  // "View as Papers-taker", refreshes the page, immediately reverts to admin.
   useEffect(() => {
+    if (loading) return;
     if (!isActualAdmin && viewAsTier !== null) setViewAsTier(null);
-  }, [isActualAdmin, viewAsTier, setViewAsTier]);
+  }, [isActualAdmin, loading, viewAsTier, setViewAsTier]);
 
-  if (!isActualAdmin) return null;
+  if (loading || !isActualAdmin) return null;
 
   const activeLabel = viewAsTier ? TIER_META[viewAsTier].label : 'Admin';
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
