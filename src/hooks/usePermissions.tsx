@@ -73,7 +73,7 @@ const useSimplifiedAuthSafe = () => {
 };
 
 export function usePermissions() {
-  const { user } = useSimplifiedAuthSafe();
+  const { user, loading: authLoading } = useSimplifiedAuthSafe();
   const [userAdminRole, setUserAdminRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const hasInitialized = useRef(false);
@@ -105,12 +105,19 @@ export function usePermissions() {
     if (user && !hasInitialized.current) {
       fetchUserPermissions();
     } else if (!user) {
-      // Reset state when user logs out
+      // Reset state when user logs out — but ONLY if auth has finished
+      // resolving. Otherwise this fires on the initial null-user state
+      // before Supabase has restored the session, flipping loading=false
+      // mid-bootstrap. Downstream callers (AdminViewSwitcher) then see
+      // "loaded but not admin" and stomp persisted state like
+      // `view-as-tier` in localStorage. Match the gating used by the
+      // sibling effect below.
+      if (authLoading) return;
       setUserAdminRole(null);
       setLoading(false);
       hasInitialized.current = false;
     }
-  }, [user, fetchUserPermissions]);
+  }, [user, authLoading, fetchUserPermissions]);
 
   // Silent refresh when tab becomes visible - doesn't trigger loading state
   useEffect(() => {
@@ -154,12 +161,20 @@ export function usePermissions() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [user, userAdminRole]);
 
-  // If no user, set loading to false immediately
+  // If no user AND auth has finished resolving, set loading to false.
+  // Previously this fired the moment `user === null` regardless of auth
+  // state — so during the initial page-load gap (auth still resolving the
+  // existing Supabase session) callers briefly saw `loading=false` with
+  // `user=null`, which let AdminViewSwitcher decide the user wasn't admin
+  // and wipe a persisted `view-as-tier` from localStorage before the
+  // session ever resolved. Gating on `authLoading=false` collapses that
+  // window: while auth is still loading we keep saying "still checking".
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       setLoading(false);
     }
-  }, [user]);
+  }, [user, authLoading]);
 
   const hasRole = (role: string): boolean => {
     return userAdminRole === role;

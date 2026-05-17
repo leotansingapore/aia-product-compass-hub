@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { Eye, EyeOff, ChevronDown, Shield, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAdmin } from '@/hooks/useAdmin';
+import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -82,23 +83,26 @@ export function useViewMode() {
 
 export function AdminViewSwitcher() {
   const { isActualAdmin, loading } = useAdmin();
+  const { loading: authLoading, user } = useSimplifiedAuth();
   const { viewAsTier, setViewAsTier } = useViewMode();
   const [open, setOpen] = useState(false);
 
   // If the user loses admin, drop impersonation so they don't get stuck.
   //
-  // WAIT for permissions to finish loading before doing this — otherwise on
-  // every page reload `isActualAdmin` flips false transiently (while the
-  // role-check is in flight), and the impersonation tier persisted in
-  // localStorage gets stomped back to `null`, snapping the admin back to
-  // "Admin (full access)" view. Bug repro before this fix: admin sets
-  // "View as Papers-taker", refreshes the page, immediately reverts to admin.
+  // WAIT for BOTH auth AND permissions to finish loading before doing this.
+  // `usePermissions.loading` flips false the moment `user` is null (which is
+  // the initial state before auth resolves on every page load) — so checking
+  // only `loading` from useAdmin let the wipe fire during the auth gap,
+  // stomping `view-as-tier` in localStorage back to null on every refresh.
+  // Bug repro before this fix: admin sets "View as Papers-taker", navigates
+  // to /learning-track/product-mastery (or any reload), immediately reverts
+  // to admin view because the localStorage tier got cleared mid-bootstrap.
   useEffect(() => {
-    if (loading) return;
+    if (loading || authLoading || !user) return;
     if (!isActualAdmin && viewAsTier !== null) setViewAsTier(null);
-  }, [isActualAdmin, loading, viewAsTier, setViewAsTier]);
+  }, [isActualAdmin, loading, authLoading, user, viewAsTier, setViewAsTier]);
 
-  if (loading || !isActualAdmin) return null;
+  if (loading || authLoading || !isActualAdmin) return null;
 
   const activeLabel = viewAsTier ? TIER_META[viewAsTier].label : 'Admin';
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
