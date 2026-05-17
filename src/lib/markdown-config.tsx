@@ -2,22 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Components } from 'react-markdown';
 import { detectVideoEmbed } from './video-embed-utils';
 
-// Horizontal-scroll container with edge-fade affordance. The fade only shows
-// when content actually overflows, hides when scrolled to that edge. Used for
-// markdown tables and wide <pre> code blocks so mobile users can see there's
-// more content to the side instead of silently clipping at the viewport.
-function ScrollableX({
-  children,
-  className,
-  fadeColorClass,
-  ariaLabel,
-}: {
-  children: React.ReactNode;
-  className: string;
-  fadeColorClass: string;
-  ariaLabel: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+// Hook that tracks left/right overflow edges on a horizontally scrollable
+// element. Returns a ref to attach to the scroll element and an `edges`
+// flag set updated on scroll + resize.
+function useScrollEdges<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
   const [edges, setEdges] = useState({ left: false, right: false });
 
   const update = useCallback(() => {
@@ -43,18 +32,19 @@ function ScrollableX({
     return () => ro.disconnect();
   }, [update]);
 
+  return { ref, edges, onScroll: update };
+}
+
+// Edge-fade overlays positioned absolutely against a `relative` parent.
+function EdgeFades({
+  edges,
+  fadeColorClass,
+}: {
+  edges: { left: boolean; right: boolean };
+  fadeColorClass: string;
+}) {
   return (
-    <div className="relative">
-      <div
-        ref={ref}
-        className={className}
-        role="region"
-        aria-label={ariaLabel}
-        tabIndex={0}
-        onScroll={update}
-      >
-        {children}
-      </div>
+    <>
       {edges.right && (
         <div
           aria-hidden
@@ -67,6 +57,61 @@ function ScrollableX({
           className={`pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r ${fadeColorClass} to-transparent`}
         />
       )}
+    </>
+  );
+}
+
+// Wrapper for content that needs its OWN scroll container (e.g. markdown
+// tables, where the table itself does not handle overflow). Renders a
+// scrollable div with the supplied children inside.
+function ScrollableX({
+  children,
+  className,
+  fadeColorClass,
+  ariaLabel,
+}: {
+  children: React.ReactNode;
+  className: string;
+  fadeColorClass: string;
+  ariaLabel: string;
+}) {
+  const { ref, edges, onScroll } = useScrollEdges<HTMLDivElement>();
+  return (
+    <div className="relative">
+      <div
+        ref={ref}
+        className={className}
+        role="region"
+        aria-label={ariaLabel}
+        tabIndex={0}
+        onScroll={onScroll}
+      >
+        {children}
+      </div>
+      <EdgeFades edges={edges} fadeColorClass={fadeColorClass} />
+    </div>
+  );
+}
+
+// <pre> wrapper that keeps the original styling (the pre itself is the
+// scroll element) and adds edge-fade overlays. Required because moving the
+// scroll responsibility to a wrapping div caused the inner <pre> to be
+// constrained to the wrapper width — no horizontal scrolling triggered.
+function PreWithFade({ children }: { children: React.ReactNode }) {
+  const { ref, edges, onScroll } = useScrollEdges<HTMLPreElement>();
+  return (
+    <div className="relative mb-3">
+      <pre
+        ref={ref}
+        onScroll={onScroll}
+        role="region"
+        aria-label="Scrollable code block"
+        tabIndex={0}
+        className="bg-muted border border-border p-3 rounded-lg text-sm font-mono overflow-x-auto text-foreground shadow-sm"
+      >
+        {children}
+      </pre>
+      <EdgeFades edges={edges} fadeColorClass="from-muted" />
     </div>
   );
 }
@@ -229,19 +274,9 @@ export const markdownComponents: Components = {
     );
   },
 
-  // Code blocks with enhanced styling. Wrapped in ScrollableX so wide lines
-  // get a right-edge fade hint on mobile instead of silently clipping.
-  pre: ({ children }: any) => (
-    <ScrollableX
-      ariaLabel="Scrollable code block"
-      fadeColorClass="from-muted"
-      className="bg-muted border border-border p-3 rounded-lg text-sm font-mono overflow-x-auto mb-3 text-foreground shadow-sm"
-    >
-      <pre className="m-0 p-0 bg-transparent border-0 shadow-none">
-        {children}
-      </pre>
-    </ScrollableX>
-  ),
+  // Code blocks with enhanced styling. PreWithFade keeps the original <pre>
+  // overflow-x:auto behaviour and adds a right-edge fade hint on mobile.
+  pre: ({ children }: any) => <PreWithFade>{children}</PreWithFade>,
 
   // Blockquotes — suppress empty ones (lone `>` spacers produce no visible content)
   blockquote: ({ children }: any) => {

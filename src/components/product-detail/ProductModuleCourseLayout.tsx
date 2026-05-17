@@ -184,7 +184,15 @@ export function ProductModuleCourseLayout({
 
   useEffect(() => {
     setVideoError(false);
-    setShouldAutoplay(false);
+    // NOTE: do NOT reset shouldAutoplay here. The previous code reset it
+    // immediately after the user clicked a lesson (which set autoplay=true),
+    // racing with the render that wanted to mount the iframe with
+    // &autoplay=1. The iframe ended up remounting twice — once with
+    // autoplay, once without — and the browser typically destroyed the
+    // first one before it could start. Now: shouldAutoplay flips true on
+    // user-initiated video switch and stays true. Subsequent switches keep
+    // autoplay flowing (which is the intended UX); initial page load
+    // remains false (no auto-play surprise on landing).
   }, [currentVideoIndex]);
 
   useEffect(() => {
@@ -461,7 +469,11 @@ export function ProductModuleCourseLayout({
         ) : (
           <iframe
             ref={iframeRef}
-            key={iframeSrc}
+            // Keyed on currentVideoIndex (the actual "which lesson am I
+            // watching" identity) instead of the full iframeSrc — switching
+            // tabs or any other state-change-that-touches-iframeSrc no
+            // longer remounts the iframe and loses player state.
+            key={currentVideoIndex}
             src={iframeSrc}
             title={currentVideo?.title}
             className="absolute inset-0 h-full w-full"
@@ -470,7 +482,6 @@ export function ProductModuleCourseLayout({
             {...({ webkitallowfullscreen: "true", mozallowfullscreen: "true" } as any)}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             style={{ border: 0 }}
-            onLoad={() => setShouldAutoplay(false)}
           />
         )}
       </div>
