@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
@@ -220,7 +220,9 @@ export default function ProductDetail() {
 
   // Count product-level resources so the Resources tab can show a badge.
   // useful_links can be: flat array | { type: 'with_files', links, files } | { type: 'folder_structure', folders: [{ links }] }
-  const resourceCount = (() => {
+  // Memoized so this isn't recalculated on every parent render (e.g. each
+  // keystroke in the AI chat input would re-walk the folder structure).
+  const resourceCount = useMemo(() => {
     const raw: any = product.useful_links;
     if (!raw) return 0;
     if (Array.isArray(raw)) return raw.length;
@@ -235,7 +237,7 @@ export default function ProductDetail() {
       );
     }
     return 0;
-  })();
+  }, [product.useful_links]);
 
   return (
     <ProtectedPage pageId="product-detail">
