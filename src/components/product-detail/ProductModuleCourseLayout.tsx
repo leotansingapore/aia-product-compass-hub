@@ -18,6 +18,7 @@ import {
   Play,
 } from "lucide-react";
 import { fetchVideoDuration, formatDuration, getVideoEmbedInfo } from "@/components/video-editing/videoUtils";
+import { ensureYouTubeAPI } from "@/lib/youtube-api";
 import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAutoFillVideoDuration } from "@/hooks/useAutoFillVideoDuration";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
@@ -251,46 +252,34 @@ export function ProductModuleCourseLayout({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let player: any = null;
 
-    const init = () => {
-      if (cancelled) return;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const YT = (window as any).YT;
-      if (!YT?.Player) return;
-      try {
-        player = new YT.Player(iframe, {
+    // Single shared promise loads the iframe_api script once per page session
+    // and resolves with the YT namespace. Previously every YouTube lesson
+    // re-checked the script tag + re-wrapped window.onYouTubeIframeAPIReady,
+    // stacking callbacks across mounts.
+    ensureYouTubeAPI()
+      .then((YT) => {
+        if (cancelled || !YT?.Player) return;
+        try {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          events: {
-            onReady: (e: { target: { getDuration?: () => number } }) => {
-              try {
-                const d = e.target.getDuration?.();
-                if (typeof d === "number") autoFillDuration(videoId, d);
-              } catch {
-                // ignore
-              }
+          player = new (YT as any).Player(iframe, {
+            events: {
+              onReady: (e: { target: { getDuration?: () => number } }) => {
+                try {
+                  const d = e.target.getDuration?.();
+                  if (typeof d === "number") autoFillDuration(videoId, d);
+                } catch {
+                  // ignore
+                }
+              },
             },
-          },
-        });
-      } catch {
-        // ignore
-      }
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const w = window as any;
-    if (w.YT?.Player) {
-      init();
-    } else {
-      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-        const tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-      }
-      const prev = w.onYouTubeIframeAPIReady;
-      w.onYouTubeIframeAPIReady = () => {
-        try { prev?.(); } catch { /* ignore */ }
-        init();
-      };
-    }
+          });
+        } catch {
+          // ignore
+        }
+      })
+      .catch(() => {
+        // YouTube API failed to load (network / CSP) — silently degrade.
+      });
 
     return () => {
       cancelled = true;
