@@ -56,7 +56,7 @@ export default function First60Days() {
           (d) => !isDayComplete(d.dayNumber) && isUnlocked(d.dayNumber),
         );
         const entryDay = firstIncomplete ?? week.days[0];
-        return { week, weekDone, totalDays, allDone, inProgress, isLocked, entryDay };
+        return { week, weekDone, totalDays, allDone, inProgress, anyUnlocked, isLocked, entryDay };
       }),
     [weeks, isDayComplete, isUnlocked],
   );
@@ -122,7 +122,7 @@ export default function First60Days() {
       <LeaderboardRankCard />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {weekStats.map(({ week, weekDone, totalDays, allDone, inProgress, isLocked, entryDay }) => {
+        {weekStats.map(({ week, weekDone, totalDays, allDone, inProgress, anyUnlocked, isLocked, entryDay }) => {
           const href = `/learning-track/first-60-days/day/${entryDay.dayNumber}`;
 
           return (
