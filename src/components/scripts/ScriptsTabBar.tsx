@@ -28,17 +28,7 @@ function useScriptsHubCurrentKey() {
 /** Tabs rendered inside `BrandedPageHeader` `headerTabs` (dark header, bottom underline). */
 export const ScriptsHubHeaderTabs = memo(function ScriptsHubHeaderTabs() {
   const navigate = useNavigate();
-  const location = useLocation();
   const currentKey = useScriptsHubCurrentKey();
-
-  const matchedTab = SCRIPTS_HUB_TABS.find((t) => location.pathname.startsWith(t.path));
-  if (matchedTab) {
-    try {
-      localStorage.setItem("sales-playbooks-last-route", matchedTab.path);
-    } catch {
-      /* ignore */
-    }
-  }
 
   return (
     <nav className={SCRIPTS_HUB_TAB_NAV_CLASS} aria-label="Sales playbooks sections">
@@ -65,17 +55,7 @@ export const ScriptsHubHeaderTabs = memo(function ScriptsHubHeaderTabs() {
  */
 export const ScriptsTabBar = memo(function ScriptsTabBar() {
   const navigate = useNavigate();
-  const location = useLocation();
   const currentKey = useScriptsHubCurrentKey();
-
-  const matchedTab = SCRIPTS_HUB_TABS.find((t) => location.pathname.startsWith(t.path));
-  if (matchedTab) {
-    try {
-      localStorage.setItem("sales-playbooks-last-route", matchedTab.path);
-    } catch {
-      /* ignore */
-    }
-  }
 
   return (
     <div className="lg:mb-5 lg:mx-0">
