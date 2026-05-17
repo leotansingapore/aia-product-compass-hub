@@ -34,6 +34,7 @@ const LessonRichMarkdown = lazy(() =>
 );
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 const OUTLINE_SHEET_ID = "product-course-outline";
 
@@ -125,6 +126,11 @@ export function ProductModuleCourseLayout({
   extraTabs,
 }: ProductModuleCourseLayoutProps) {
   const resourcesLabel = resourceCount > 0 ? `Resources (${resourceCount})` : "Resources";
+  // Pick a single layout per viewport so the video iframe only mounts ONCE.
+  // Previously both the desktop and mobile JSX trees rendered (one hidden via
+  // CSS), so two Loom iframes streamed audio in parallel — the "something is
+  // playing in the background" bug.
+  const isTabletOrMobile = useIsTabletOrMobile();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -692,7 +698,8 @@ export function ProductModuleCourseLayout({
           DESKTOP: Persistent left sidebar + right content (lg+)
           Like Skool classroom layout
          ═══════════════════════════════════════════════════════════ */}
-      <div className="hidden lg:flex min-h-[calc(100vh-120px)]">
+      {!isTabletOrMobile && (
+      <div className="flex min-h-[calc(100vh-120px)]">
         {/* ── Left sidebar ── */}
         <aside className="w-72 xl:w-80 shrink-0 border-r bg-muted/30 overflow-y-auto">
           <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur px-4 py-3">
@@ -781,11 +788,13 @@ export function ProductModuleCourseLayout({
           </Tabs>
         </main>
       </div>
+      )}
 
       {/* ═══════════════════════════════════════════════════════════
           MOBILE / TABLET: Original stacked layout with Sheet drawer
          ═══════════════════════════════════════════════════════════ */}
-      <div className="lg:hidden">
+      {isTabletOrMobile && (
+      <div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
           {/* Lesson bar + video + nav + tab strip (stacked under player when embed exists) */}
           <div
@@ -943,6 +952,7 @@ export function ProductModuleCourseLayout({
           </SheetContent>
         </Sheet>
       </div>
+      )}
     </div>
   );
 }

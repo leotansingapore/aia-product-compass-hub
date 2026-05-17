@@ -28,6 +28,7 @@ import { markdownComponents } from "@/lib/markdown-config";
 import { areSameVideoEmbedSource, detectVideoEmbed } from "@/lib/video-embed-utils";
 import { VideoEmbed } from "@/lib/video-embed";
 import { cn } from "@/lib/utils";
+import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 const OUTLINE_SHEET_ID = "cmf-course-outline";
 
@@ -59,6 +60,9 @@ export function CMFASModuleCourseLayout({
   className,
 }: CMFASModuleCourseLayoutProps) {
   const progressProductId = routeModuleId;
+  // Pick a single layout per viewport so the video iframe only mounts ONCE.
+  // Both layout trees rendering caused two iframes to play in parallel.
+  const isTabletOrMobile = useIsTabletOrMobile();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -440,7 +444,8 @@ export function CMFASModuleCourseLayout({
   return (
     <div className={cn("min-w-0 overflow-x-hidden", className)}>
       {/* Desktop: left outline + main (Skool-style) */}
-      <div className="hidden min-h-[calc(100vh-120px)] lg:flex">
+      {!isTabletOrMobile && (
+      <div className="flex min-h-[calc(100vh-120px)]">
         <aside className="w-72 shrink-0 overflow-y-auto border-r bg-muted/30 xl:w-80">
           <div className="sticky top-0 z-10 border-b bg-background/95 px-4 py-3 backdrop-blur">
             <p className="truncate text-xs text-muted-foreground">{moduleName}</p>
@@ -501,9 +506,11 @@ export function CMFASModuleCourseLayout({
           </div>
         </main>
       </div>
+      )}
 
       {/* Mobile / tablet: stacked + outline sheet */}
-      <div className="lg:hidden">
+      {isTabletOrMobile && (
+      <div>
         <div className="relative w-full min-w-0 max-w-full overflow-hidden border-b bg-zinc-950">
           <div className="mx-auto max-w-7xl px-2 pt-2 pb-1.5 sm:px-4 sm:pt-3 sm:pb-2">
             <div className="flex min-w-0 max-w-full flex-col gap-1.5 text-zinc-100 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
@@ -624,6 +631,7 @@ export function CMFASModuleCourseLayout({
           </SheetContent>
         </Sheet>
       </div>
+      )}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Circle, Brain, ClipboardList } from 'lucide-react';
+import { ChevronDown, ChevronRight, Play, Clock, CheckCircle2, Brain, ClipboardList } from 'lucide-react';
 import { formatDuration } from './videoUtils';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
@@ -44,11 +44,16 @@ const VideoItem = memo(function VideoItem({
   onToggleComplete,
   onVideoClick,
 }: VideoItemProps) {
+  const lessonNumber = String(index + 1).padStart(2, '0');
+  const typeIcon =
+    video.type === 'quiz' ? Brain : video.type === 'assignment' ? ClipboardList : Play;
+  const TypeIcon = typeIcon;
+
   return (
     <div
       className={`group flex items-stretch gap-0 border rounded-lg overflow-hidden transition-all ${
         isCurrentVideo
-          ? 'border-primary shadow-sm'
+          ? 'border-primary shadow-sm bg-primary/[0.03]'
           : isCompleted
           ? 'border-primary/20 bg-primary/5'
           : 'border-border hover:border-primary/30 hover:shadow-sm'
@@ -66,46 +71,32 @@ const VideoItem = memo(function VideoItem({
       />
 
       {/* Main content */}
-      <div className="flex items-center gap-3 p-3 flex-1 min-w-0">
-        {/* Completion toggle — prominent & labelled */}
+      <div className="flex items-center gap-2.5 py-2.5 pl-2.5 pr-2 flex-1 min-w-0">
+        {/* Completion toggle — icon-only checkbox (text was eating the title) */}
         {hasToggleComplete && onToggleComplete ? (
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleComplete(video.id, isCompleted);
             }}
-            className={`flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+            className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
               isCompleted
-                ? 'bg-green-600 border-green-600 text-white hover:bg-green-700'
-                : 'bg-background border-border text-muted-foreground hover:bg-primary/5 hover:border-primary/40 hover:text-primary'
+                ? 'bg-primary border-primary text-primary-foreground hover:bg-primary/90'
+                : 'bg-background border-muted-foreground/30 text-transparent hover:border-primary hover:text-primary'
             }`}
-            title={isCompleted ? 'Click to mark incomplete' : 'Click to mark complete'}
+            title={isCompleted ? 'Mark as incomplete' : 'Mark as complete'}
             aria-label={isCompleted ? 'Mark as incomplete' : 'Mark as complete'}
+            aria-pressed={isCompleted}
           >
-            {isCompleted ? (
-              <CheckCircle2 className="h-4 w-4" />
-            ) : (
-              <Circle className="h-4 w-4" />
-            )}
-            <span className="hidden sm:inline whitespace-nowrap">
-              {isCompleted ? 'Completed' : 'Mark complete'}
-            </span>
+            <CheckCircle2 className="h-4 w-4" strokeWidth={2.5} />
           </button>
         ) : (
-          <div className={`flex-shrink-0 ${isCompleted ? 'text-primary' : 'text-muted-foreground'}`}>
-            {isCompleted ? (
-              <CheckCircle2 className="h-5 w-5" />
-            ) : video.type === 'quiz' ? (
-              <Brain className="h-5 w-5" />
-            ) : video.type === 'assignment' ? (
-              <ClipboardList className="h-5 w-5" />
-            ) : (
-              <Play className="h-5 w-5" />
-            )}
+          <div className={`flex-shrink-0 flex items-center justify-center w-7 h-7 ${isCompleted ? 'text-primary' : 'text-muted-foreground'}`}>
+            {isCompleted ? <CheckCircle2 className="h-5 w-5" /> : <TypeIcon className="h-4 w-4" />}
           </div>
         )}
 
-        {/* Video info — clickable */}
+        {/* Video info — clickable. Title gets full width and wraps to 2 lines. */}
         <div
           className="flex-1 min-w-0 cursor-pointer"
           onClick={() => onVideoClick(video, index)}
@@ -113,58 +104,41 @@ const VideoItem = memo(function VideoItem({
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && onVideoClick(video, index)}
         >
-          <div className="flex items-center gap-2 overflow-hidden">
-            <h4
-              className={`font-medium text-sm truncate flex-1 ${
-                isCompleted ? 'text-muted-foreground' : ''
-              }`}
-            >
-              {video.title}
-            </h4>
+          <h4
+            className={`font-medium text-sm leading-snug line-clamp-2 break-words ${
+              isCompleted ? 'text-muted-foreground' : ''
+            }`}
+          >
+            <span className="text-muted-foreground/70 text-[11px] font-normal tabular-nums mr-1.5">
+              {lessonNumber}
+            </span>
+            {video.title}
+          </h4>
+          <div className="mt-1 flex items-center gap-2 text-[11px] text-muted-foreground">
             {video.type === 'quiz' && video.quiz_config ? (
-              <span className="text-xs text-primary flex-shrink-0 flex items-center gap-1 font-medium">
+              <span className="inline-flex items-center gap-1 font-medium text-primary">
                 <Brain className="h-3 w-3" />
-                <span className="hidden sm:inline">Quiz &middot; </span>
-                {video.quiz_config.questions.length}{' '}
-                {video.quiz_config.questions.length === 1 ? 'question' : 'questions'}
+                {video.quiz_config.questions.length} q
               </span>
             ) : video.type === 'assignment' ? (
-              <span className="text-xs text-amber-600 dark:text-amber-400 flex-shrink-0 flex items-center gap-1 font-medium">
+              <span className="inline-flex items-center gap-1 font-medium text-amber-600 dark:text-amber-400">
                 <ClipboardList className="h-3 w-3" />
                 Assignment
               </span>
-            ) : video.duration ? (
-              <span className="text-xs text-muted-foreground flex-shrink-0 flex items-center gap-1">
+            ) : (
+              <span className="inline-flex items-center gap-1">
+                <Play className="h-3 w-3" />
+                Video
+              </span>
+            )}
+            {video.duration ? (
+              <span className="inline-flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 {formatDuration(video.duration)}
               </span>
             ) : null}
           </div>
-          {video.description && (
-            <p className="text-xs text-muted-foreground truncate mt-0.5">{video.description}</p>
-          )}
         </div>
-
-        {/* CTA icon */}
-        <button
-          onClick={() => onVideoClick(video, index)}
-          className="flex-shrink-0 p-1.5 rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-          aria-label={
-            video.type === 'quiz'
-              ? 'Start quiz'
-              : video.type === 'assignment'
-              ? 'View assignment'
-              : 'Watch video'
-          }
-        >
-          {video.type === 'quiz' ? (
-            <Brain className="h-4 w-4" />
-          ) : video.type === 'assignment' ? (
-            <ClipboardList className="h-4 w-4" />
-          ) : (
-            <Play className="h-4 w-4" />
-          )}
-        </button>
       </div>
     </div>
   );
