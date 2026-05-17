@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -22,14 +22,15 @@ import { useVideoProgress } from "@/hooks/useVideoProgress";
 import { useAutoFillVideoDuration } from "@/hooks/useAutoFillVideoDuration";
 import { VideosByCategory } from "@/components/video-editing/VideosByCategory";
 import type { TrainingVideo } from "@/hooks/useProducts";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
-import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
-import { markdownComponents } from "@/lib/markdown-config";
-import { areSameVideoEmbedSource, detectVideoEmbed } from "@/lib/video-embed-utils";
-import { VideoEmbed } from "@/lib/video-embed";
+// `detectVideoEmbed` is used both inside markdown rendering AND outside (URL
+// sanitization), so it stays bundled. The heavy markdown surface
+// (react-markdown + remark/rehype plugins + VideoEmbed) is lazy-loaded behind
+// LessonRichMarkdown — saves ~30KB on the ProductDetail chunk for users
+// whose current lesson has no rich_content to render.
+import { detectVideoEmbed } from "@/lib/video-embed-utils";
+const LessonRichMarkdown = lazy(() =>
+  import("./LessonRichMarkdown").then((m) => ({ default: m.LessonRichMarkdown })),
+);
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 
@@ -528,62 +529,22 @@ export function ProductModuleCourseLayout({
         <Card className="min-w-0">
           <CardContent className="p-4 pt-4 sm:p-6 sm:pt-6 md:pt-6">
             <div className="prose prose-sm dark:prose-invert max-w-none">
-              <ReactMarkdown
-                components={{
-                  ...markdownComponents,
-                  p: ({ children }: { children?: React.ReactNode }) => {
-                    const childArray = Array.isArray(children) ? children : [children];
-                    const hasBlock = childArray.some(
-                      (c: unknown) =>
-                        typeof c === "object" &&
-                        c !== null &&
-                        "type" in (c as { type?: string }) &&
-                        ((c as { type?: string }).type === "div" ||
-                          (typeof c === "object" &&
-                            c !== null &&
-                            "props" in c &&
-                            typeof (c as { props?: { className?: string } }).props?.className === "string" &&
-                            (c as { props: { className?: string } }).props.className?.includes("my-4")))
-                    );
-                    if (hasBlock) return <div className="mb-3 last:mb-0">{children}</div>;
-                    return (
-                      <p className="mb-3 last:mb-0 leading-relaxed text-foreground">{children}</p>
-                    );
-                  },
-                  a: ({ children, href }: { children?: React.ReactNode; href?: string }) => {
-                    const embedInfo = detectVideoEmbed(href ?? "");
-                    if (embedInfo.isVideo && embedInfo.embedUrl) {
-                      const heroDedupSource =
-                        resolvedLessonStreamUrl || currentVideo?.url?.trim() || "";
-                      if (heroDedupSource && areSameVideoEmbedSource(href ?? "", heroDedupSource)) {
-                        return (
-                          <span className="my-2 block rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
-                            Same as the lesson video above — lecture notes continue below.
-                          </span>
-                        );
-                      }
-                      const autoplayUrl = shouldAutoplay
-                        ? `${embedInfo.embedUrl}${embedInfo.embedUrl.includes("?") ? "&" : "?"}autoplay=1`
-                        : embedInfo.embedUrl;
-                      return <VideoEmbed embedUrl={autoplayUrl} platform={embedInfo.platform || "video"} />;
-                    }
-                    return (
-                      <a
-                        href={href}
-                        className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {children}
-                      </a>
-                    );
-                  },
-                }}
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]}
+              <Suspense
+                fallback={
+                  <div className="space-y-3">
+                    <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                    <div className="h-4 w-full animate-pulse rounded bg-muted/70" />
+                    <div className="h-4 w-5/6 animate-pulse rounded bg-muted/70" />
+                  </div>
+                }
               >
-                {currentVideo.rich_content}
-              </ReactMarkdown>
+                <LessonRichMarkdown
+                  content={currentVideo.rich_content}
+                  dedupHeroUrl={resolvedLessonStreamUrl || currentVideo?.url?.trim() || undefined}
+                  shouldAutoplay={shouldAutoplay}
+                  sameVideoHintText="Same as the lesson video above — lecture notes continue below."
+                />
+              </Suspense>
             </div>
           </CardContent>
         </Card>

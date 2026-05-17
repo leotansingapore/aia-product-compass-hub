@@ -12,14 +12,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import type { TrainingVideo } from '@/hooks/useProducts';
 import { getVideoSlug } from '@/utils/slugUtils';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import rehypeSanitize from "rehype-sanitize";
-import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
-import { markdownComponents } from '@/lib/markdown-config';
-import { areSameVideoEmbedSource, detectVideoEmbed } from '@/lib/video-embed-utils';
-import { VideoEmbed } from '@/lib/video-embed';
+// Markdown surface lazy-loaded — see LessonRichMarkdown.tsx for the bundled deps.
+// Each rich-content block on this page suspends until the chunk lands, but the
+// rest of the lesson UI (video player, sidebar, action steps) paints immediately.
 import { useAdmin } from '@/hooks/useAdmin';
 import { useLessonActionStepProgress } from '@/hooks/useLessonActionStepProgress';
 import { LessonActionStepsPanel } from '@/components/cmfas/LessonActionStepsPanel';
@@ -27,6 +22,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 const InlineQuiz = lazy(() => import('@/components/quiz/InlineQuiz').then(m => ({ default: m.InlineQuiz })));
 const InlineAssignment = lazy(() => import('@/components/assignments/InlineAssignment'));
+const LessonRichMarkdown = lazy(() =>
+  import('@/components/product-detail/LessonRichMarkdown').then(m => ({ default: m.LessonRichMarkdown })),
+);
 
 interface VideoLearningInterfaceProps {
   videos: TrainingVideo[];
@@ -507,53 +505,22 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                 <Card>
                   <CardContent className="p-4 sm:p-6">
                     <div className="prose prose-sm dark:prose-invert max-w-none">
-                      <ReactMarkdown
-                        components={{
-                          ...markdownComponents,
-                          // Prevent <div> (VideoEmbed) inside <p> invalid HTML
-                          p: ({ children }: any) => {
-                            const childArray = Array.isArray(children) ? children : [children];
-                            const hasBlock = childArray.some(
-                              (c: any) => c?.type === 'div' || (typeof c === 'object' && c?.props?.className?.includes('my-4'))
-                            );
-                            if (hasBlock) return <div className="mb-3 last:mb-0">{children}</div>;
-                            return <p className="mb-3 last:mb-0 leading-relaxed text-foreground">{children}</p>;
-                          },
-                          a: ({ children, href }: any) => {
-                            const embedInfo = detectVideoEmbed(href ?? '');
-                            if (embedInfo.isVideo && embedInfo.embedUrl) {
-                              if (
-                                currentVideo?.url &&
-                                areSameVideoEmbedSource(href ?? '', currentVideo.url)
-                              ) {
-                                return (
-                                  <span className="my-2 block rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
-                                    Same as the lesson video above — notes continue below.
-                                  </span>
-                                );
-                              }
-                              const autoplayUrl = shouldAutoplay
-                                ? `${embedInfo.embedUrl}${embedInfo.embedUrl.includes('?') ? '&' : '?'}autoplay=1`
-                                : embedInfo.embedUrl;
-                              return <VideoEmbed embedUrl={autoplayUrl} platform={embedInfo.platform || 'video'} />;
-                            }
-                            return (
-                              <a
-                                href={href}
-                                className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {children}
-                              </a>
-                            );
-                          },
-                        }}
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]}
+                      <Suspense
+                        fallback={
+                          <div className="space-y-3">
+                            <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                            <div className="h-4 w-full animate-pulse rounded bg-muted/70" />
+                            <div className="h-4 w-5/6 animate-pulse rounded bg-muted/70" />
+                          </div>
+                        }
                       >
-                        {currentVideo.rich_content}
-                      </ReactMarkdown>
+                        <LessonRichMarkdown
+                          content={currentVideo.rich_content}
+                          dedupHeroUrl={currentVideo?.url || undefined}
+                          shouldAutoplay={shouldAutoplay}
+                          sameVideoHintText="Same as the lesson video above — notes continue below."
+                        />
+                      </Suspense>
                     </div>
                   </CardContent>
                 </Card>
