@@ -38,7 +38,13 @@ interface CMFASExamModuleListProps {
   onProductClick: (productId: string) => void;
   onEditProduct?: (
     productId: string,
-    data: { title: string; description: string; tags: string[]; highlights: string[] },
+    data: {
+      title: string;
+      description: string;
+      tags: string[];
+      highlights: string[];
+      visible_tiers: string[] | null;
+    },
   ) => void;
   onDeleteProduct?: (productId: string) => void;
   onTogglePublish?: (productId: string, published: boolean) => void;
@@ -164,6 +170,8 @@ function ModuleRow({
   const [editDescription, setEditDescription] = useState(module.description || "");
   const [editTags, setEditTags] = useState((module.tags || []).join(", "));
   const [editHighlights, setEditHighlights] = useState((module.highlights || []).join(", "));
+  const [editPapersTaker, setEditPapersTaker] = useState(true);
+  const [editPostRnf, setEditPostRnf] = useState(true);
 
   const published = module.published !== false;
   const isLockedForUser = locked && !isAdmin;
@@ -181,15 +189,25 @@ function ModuleRow({
     setEditDescription(module.description || "");
     setEditTags((module.tags || []).join(", "));
     setEditHighlights((module.highlights || []).join(", "));
+    const vt = module.visible_tiers;
+    const hasRestriction = Array.isArray(vt) && vt.length > 0;
+    setEditPapersTaker(!hasRestriction || vt!.includes("papers_taker"));
+    setEditPostRnf(!hasRestriction || vt!.includes("post_rnf"));
     setEditOpen(true);
   };
 
   const handleEditSave = () => {
+    const selected: string[] = [];
+    if (editPapersTaker) selected.push("papers_taker");
+    if (editPostRnf) selected.push("post_rnf");
+    const visible_tiers =
+      selected.length === 0 || selected.length === 2 ? null : selected;
     onEditProduct?.(module.id, {
       title: editTitle,
       description: editDescription,
       tags: editTags.split(",").map((t) => t.trim()).filter(Boolean),
       highlights: editHighlights.split(",").map((h) => h.trim()).filter(Boolean),
+      visible_tiers,
     });
     setEditOpen(false);
   };
@@ -376,6 +394,43 @@ function ModuleRow({
                   value={editHighlights}
                   onChange={(e) => setEditHighlights(e.target.value)}
                 />
+              </div>
+              <div className="space-y-2 rounded-md border border-border bg-muted/30 p-3">
+                <div className="text-sm font-medium">Visible to tiers</div>
+                <p className="text-xs text-muted-foreground">
+                  Uncheck a tier to hide this module from that tier. Admins always see all modules. Both checked = visible to anyone with category access.
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <Label
+                    htmlFor={`edit-tier-papers-${module.id}`}
+                    className="text-sm cursor-pointer"
+                  >
+                    Papers-taker
+                  </Label>
+                  <Switch
+                    id={`edit-tier-papers-${module.id}`}
+                    checked={editPapersTaker}
+                    onCheckedChange={setEditPapersTaker}
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <Label
+                    htmlFor={`edit-tier-post-rnf-${module.id}`}
+                    className="text-sm cursor-pointer"
+                  >
+                    Post-RNF
+                  </Label>
+                  <Switch
+                    id={`edit-tier-post-rnf-${module.id}`}
+                    checked={editPostRnf}
+                    onCheckedChange={setEditPostRnf}
+                  />
+                </div>
+                {!editPapersTaker && !editPostRnf && (
+                  <p className="text-xs text-amber-600 dark:text-amber-400">
+                    Both tiers off — only admins will see this module. Saving will reset to "visible to all".
+                  </p>
+                )}
               </div>
             </div>
             <DialogFooter>

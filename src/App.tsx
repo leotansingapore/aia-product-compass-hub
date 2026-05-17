@@ -187,7 +187,7 @@ const App = () => (
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
-                    <Route path="/objections" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
+                    <Route path="/objections" element={<RequireAuth><RequireTier feature="objections"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/servicing" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
                     <Route path="/servicing/:scriptId" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
                     <Route path="/playbooks" element={<RequireAuth><RequireTier feature="playbooks"><Playbooks /></RequireTier></RequireAuth>} />
