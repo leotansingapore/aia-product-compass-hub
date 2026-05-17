@@ -194,7 +194,9 @@ export default function ProductDetail() {
   }, [pageId, isAdminMode, productSlugOrId, navigate, product?.training_videos?.length]);
 
   // Count product-level resources so the Resources tab can show a badge.
-  // Must be declared before any early returns to keep hook order stable.
+  // useful_links can be: flat array | { type: 'with_files', links, files } | { type: 'folder_structure', folders: [{ links }] }
+  // Memoized so this isn't recalculated on every parent render (e.g. each
+  // keystroke in the AI chat input would re-walk the folder structure).
   const resourceCount = useMemo(() => {
     const raw: any = product?.useful_links;
     if (!raw) return 0;
@@ -236,9 +238,6 @@ export default function ProductDetail() {
   const hasExamProduct = PRODUCTS_WITH_EXAMS.has(product.id);
   const showContinueLearning = hasStudyProduct || hasExamProduct;
   const continueOriginalSlug = getOriginalSlug(product.id);
-
-
-
 
   return (
     <ProtectedPage pageId="product-detail">
