@@ -140,7 +140,7 @@ The trial close at the end lets the prospect tell you whether the service piece 
 
 You can illustrate this live with the Long-Term Investment Illustrator at **[present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees](https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees)** — flip into the *vs 1% Perpetual* tab. The crossover lands around Year 17 even on a small-premium scenario; on a real APA-sized account it's massively in the client's favour.
 
-![LTII Break-even Analysis, vs 1% Perpetual tab: competitor charges climb past $30,458 over 80 years while AIA's charge net of bonuses sits at $2,988 — a $27,470 swing for the client, with the crossover landing at Year 17](/pro-achiever/day-04/ltii-vs-1pct-perpetual.png)
+![[pro-achiever/day-04/ltii-vs-1pct-perpetual.png|LTII Break-even Analysis, vs 1% Perpetual tab: competitor charges climb past $30,458 over 80 years while AIA's charge net of bonuses sits at $2,988 — a $27,470 swing for the client, with the crossover landing at Year 17]]
 
 And the related "AIA fees vs AIA bonuses" view (already in Day 5's fee-attack section) makes the same point a different way — net AIA charges hit zero around Year 33 once bonuses overtake fees: see **[Day 5 — break-even fees chart](/pro-achiever/day-05/ltii-break-even-fees.png)**.
 

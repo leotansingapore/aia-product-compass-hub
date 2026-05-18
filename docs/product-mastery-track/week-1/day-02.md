@@ -35,41 +35,41 @@ The drawings below are the ones that close cases consistently across hundreds of
 
 1. **The 1/3 Rule circle** — divide a circle into short-term / medium-term / long-term thirds, label monthly amounts in each
 
-   ![Hand-drawn 1/3 Rule circle: monthly cashflow divided into short-term, medium-term, and long-term thirds with dollar amounts in each slice](/pro-achiever/day-02/drawing-01-one-third-rule.png)
+   ![[pro-achiever/day-02/drawing-01-one-third-rule.png|Hand-drawn 1/3 Rule circle: monthly cashflow divided into short-term, medium-term, and long-term thirds with dollar amounts in each slice]]
 
 2. **The diversified portfolio pie chart** — divide a circle into countries (US, China, Global), sectors (tech, healthcare, finance), and asset classes (bonds, equities, REITs, covered calls)
 
-   ![Hand-drawn diversified portfolio pie chart split by country, sector, and asset class](/pro-achiever/day-02/drawing-02-diversified-portfolio.png)
+   ![[pro-achiever/day-02/drawing-02-diversified-portfolio.png|Hand-drawn diversified portfolio pie chart split by country, sector, and asset class]]
 
 3. **The 4-quadrant coverage grid** — Death/TPD top-left, CI/ECI top-right, Hospital bottom-left, Accident bottom-right, with norms / current cover for each
 
-   ![Hand-drawn 4-quadrant coverage grid: Death/TPD, CI/ECI, Hospital, and Accident with norms and current cover in each quadrant](/pro-achiever/day-02/drawing-03-four-quadrant-coverage.png)
+   ![[pro-achiever/day-02/drawing-03-four-quadrant-coverage.png|Hand-drawn 4-quadrant coverage grid: Death/TPD, CI/ECI, Hospital, and Accident with norms and current cover in each quadrant]]
 
 4. **The retirement-gap calculation** — current expenses → inflated future expenses → CPF Life payout → shortfall → monthly save required (split: in bank vs in APA)
 
-   ![Hand-drawn retirement-gap calculation: current expenses inflated forward, minus CPF Life payout, equals the monthly shortfall to fund](/pro-achiever/day-02/drawing-04-retirement-gap.png)
+   ![[pro-achiever/day-02/drawing-04-retirement-gap.png|Hand-drawn retirement-gap calculation: current expenses inflated forward, minus CPF Life payout, equals the monthly shortfall to fund]]
 
 5. **The BTIR comparison** — Whole-life (one box, two jobs done badly) vs Term + APA (two boxes, each job optimised)
 
-   ![Hand-drawn BTIR comparison: one whole-life box doing two jobs badly versus two boxes (Term + APA) each doing one job well](/pro-achiever/day-02/drawing-05-btir-comparison.png)
+   ![[pro-achiever/day-02/drawing-05-btir-comparison.png|Hand-drawn BTIR comparison: one whole-life box doing two jobs badly versus two boxes (Term + APA) each doing one job well]]
 
 6. **The Term vs Life comparison** — Term pays less, savings reinvested grow to a number that exceeds the life plan's cash value
 
-   ![Hand-drawn Term vs Life comparison: lower term premium, the savings reinvested compound to a figure above the life plan's cash value](/pro-achiever/day-02/drawing-06-term-vs-life.png)
+   ![[pro-achiever/day-02/drawing-06-term-vs-life.png|Hand-drawn Term vs Life comparison: lower term premium, the savings reinvested compound to a figure above the life plan's cash value]]
 
 7. **The AIA-vs-S&P-500 / DIY structural list** — no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship
 
-   ![Hand-drawn AIA-vs-S&P-500 structural advantages list: no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship](/pro-achiever/day-02/drawing-07-aia-vs-sp500.png)
+   ![[pro-achiever/day-02/drawing-07-aia-vs-sp500.png|Hand-drawn AIA-vs-S&P-500 structural advantages list: no dividend tax, no estate tax, no FX risk, secondary insured, capital-guaranteed floor, multi-fund stewardship]]
 
 8. **The Welcome + Loyalty bonus stack** — 15% / 18% / 20% over Y1-3, then 5% Y10-20, 8% Y21+ — with the absolute dollar totals ($18K, $23K type receipts) circled at the bottom
 
-   ![Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom](/pro-achiever/day-02/drawing-08-welcome-loyalty-stack.png)
+   ![[pro-achiever/day-02/drawing-08-welcome-loyalty-stack.png|Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom]]
 
 9. **The hospital-income "pit" drawing** + **critical illness pit drawing** — a downward dip representing lost income during hospitalisation or critical illness, with the hospital-income plan or CI plan filling the pit
 
-   ![Hand-drawn hospital-income pit: a downward dip in income during hospitalisation, with the hospital-income plan filling the gap](/pro-achiever/day-02/drawing-09a-hospital-income-pit.png)
+   ![[pro-achiever/day-02/drawing-09a-hospital-income-pit.png|Hand-drawn hospital-income pit: a downward dip in income during hospitalisation, with the hospital-income plan filling the gap]]
 
-   ![Hand-drawn critical illness pit: a downward dip in income during CI recovery, with the CI plan filling the gap](/pro-achiever/day-02/drawing-09b-critical-illness-pit.png)
+   ![[pro-achiever/day-02/drawing-09b-critical-illness-pit.png|Hand-drawn critical illness pit: a downward dip in income during CI recovery, with the CI plan filling the gap]]
 
 10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled
 
@@ -234,7 +234,7 @@ Frame yourself as a **financial doctor**, not a salesperson. Same as a medical c
 
 Run four ratios in order. The point isn't to "audit" them — it's to surface the gap they'll feel emotionally in Phase 3.
 
-![Slide deck: Personal Finance Health Check — Are You Ready? Four ratios shown side by side: Liquidity (3-6 months), Savings Ratio (at least 10-20%), Invested Assets to Net Worth (above 50%), Debt Service Ratio (below 50%)](/pro-achiever/day-02/phase-2-health-check-slide.png)
+![[pro-achiever/day-02/phase-2-health-check-slide.png|Slide deck: Personal Finance Health Check — Are You Ready? Four ratios shown side by side: Liquidity (3-6 months), Savings Ratio (at least 10-20%), Invested Assets to Net Worth (above 50%), Debt Service Ratio (below 50%)]]
 
 ### Ratio 1 — Liquidity Ratio
 
@@ -303,7 +303,7 @@ The default guidance:
 
 Pull up the online calculator at **[present.financeillustrator.com/total-wealth-concept/retirement](https://present.financeillustrator.com/total-wealth-concept/retirement)** — share screen or hand them your laptop. This is the prospect-facing calculator from the same Growing Age Calculator suite you'll use again in Phase 4.
 
-![Retirement Lifestyle Calculator — $3K/mo lifestyle today inflates to $10,037/mo at 65, lump sum needed $2.4M](/pro-achiever/day-02/phase-2-rlc-screenshot.png)
+![[pro-achiever/day-02/phase-2-rlc-screenshot.png|Retirement Lifestyle Calculator — $3K/mo lifestyle today inflates to $10,037/mo at 65, lump sum needed $2.4M]]
 
 *"What's the biggest purchase in your life? It's actually retirement."*
 
@@ -318,7 +318,7 @@ That's the on-screen shock. Now move to paper for the deeper walkthrough — the
 
 ### The retirement reverse-engineering whiteboard
 
-![Hand-drawn whiteboard: $3k/mth lifestyle today, $8k×12×20 = $2.1M at 65, save $4k/mth vs invest <$1k/mth, shortfall vs existing policies](/pro-achiever/day-02/phase-2-whiteboard-2.4m.png)
+![[pro-achiever/day-02/phase-2-whiteboard-2.4m.png|Hand-drawn whiteboard: $3k/mth lifestyle today, $8k×12×20 = $2.1M at 65, save $4k/mth vs invest <$1k/mth, shortfall vs existing policies]]
 
 Pull out a piece of paper. Most prospects have *never* sat down and calculated their actual retirement number. Make them guess first, then reveal. A shocked brain is the only brain that buys.
 
@@ -415,7 +415,7 @@ They'll say "goes up." Confirm:
 
 ### The one-third budgeting rule (anchor where the $1,000 comes from)
 
-![Hand-drawn pie chart: $10k/mth split into three thirds — short-term (food, bills, loans, entertainment), mid-term (house, reno, kids education, holidays), long-term (investments 25%, insurance 5-10%)](/pro-achiever/day-02/phase-2-one-third-pie.png)
+![[pro-achiever/day-02/phase-2-one-third-pie.png|Hand-drawn pie chart: $10k/mth split into three thirds — short-term (food, bills, loans, entertainment), mid-term (house, reno, kids education, holidays), long-term (investments 25%, insurance 5-10%)]]
 
 After the cash-savings shock, the prospect's question is *"where does that $1,000/month come from in my budget?"* Install the one-third rule here.
 
@@ -447,7 +447,7 @@ Acknowledge insurance is its own conversation:
 
 ### The lump-sum trap — why you don't take the $2.4M out
 
-![Hand-drawn diagram: $2.1M peak at age 65, dividend arrows pulling $10k/mth for retirement, three benefits — income / capital / legacy passed to next generation as a policy not cash](/pro-achiever/day-02/phase-2-lump-sum-trap.png)
+![[pro-achiever/day-02/phase-2-lump-sum-trap.png|Hand-drawn diagram: $2.1M peak at age 65, dividend arrows pulling $10k/mth for retirement, three benefits — income / capital / legacy passed to next generation as a policy not cash]]
 
 Now the most important reframe. Most prospects assume the $2.4M is something they "withdraw at 65 and spend." Reverse that.
 
@@ -491,7 +491,7 @@ That's the bridge.
 
 Now that investing is established as a must-have, surface the problems most people run into when they try to invest themselves.
 
-![Slide deck: Obstacles in DIY Investing — SIT Test (Skills, Interest, Time) alongside "Why 90% of People Lose Money in the Stock Market" with the six pitfalls (stock picking, no patience, market timing, hot tips, IPO speculation, leverage)](/pro-achiever/day-02/phase-3-sit-test-obstacles.png)
+![[pro-achiever/day-02/phase-3-sit-test-obstacles.png|Slide deck: Obstacles in DIY Investing — SIT Test (Skills, Interest, Time) alongside "Why 90% of People Lose Money in the Stock Market" with the six pitfalls (stock picking, no patience, market timing, hot tips, IPO speculation, leverage)]]
 
 ### The common investing problems
 
@@ -583,7 +583,7 @@ The conceptual sell is done in Phase 3. Phase 4 is where you show the projected 
 
 ### Open the Long-Term Investment Illustrator
 
-![Long-Term Investment Illustrator: 25-year-old saving $1,000/month, Policy Growth tab showing $2.1M policy value by 65 at 8% IIRR, total cash benefits $7.5M against $468K premiums paid — 16.05× total](/pro-achiever/day-02/phase-4-ltii-policy-growth.png)
+![[pro-achiever/day-02/phase-4-ltii-policy-growth.png|Long-Term Investment Illustrator: 25-year-old saving $1,000/month, Policy Growth tab showing $2.1M policy value by 65 at 8% IIRR, total cash benefits $7.5M against $468K premiums paid — 16.05× total]]
 
 Pull up the illustrator on the agreed monthly amount (from the Phase 2 whiteboard, that was $1,000/mo). Walk the prospect through the projected values year by year, anchoring the 5% dividend yield assumption.
 

@@ -91,6 +91,24 @@ export function convertWikilinks(body: string): string {
   });
 }
 
+// Obsidian image embeds like `![[pro-achiever/day-02/drawing-01.png]]` or
+// `![[drawing-01.png|alt text]]` need to become standard markdown image tags so
+// the web renderer can show them. Source markdowns use this syntax so the same
+// files render natively in Obsidian (which resolves the path through vault-root
+// symlinks into compass-hub/public/).
+const IMAGE_EMBED_RE = /!\[\[([^\]|]+\.(?:png|jpe?g|gif|svg|webp))(?:\|([^\]]+))?\]\]/gi;
+
+export function convertImageEmbeds(body: string): string {
+  return body.replace(IMAGE_EMBED_RE, (_match, rawPath: string, alt?: string) => {
+    const path = rawPath.trim();
+    const url = path.startsWith("/") ? path : `/${path}`;
+    const fileName = path.split("/").pop() ?? path;
+    const baseName = fileName.replace(/\.[^.]+$/, "");
+    const altText = (alt?.trim() || baseName).replace(/[\[\]]/g, "");
+    return `![${altText}](${url})`;
+  });
+}
+
 export function parseReflection(body: string): ReflectionPrompt[] {
   const heading = body.match(REFLECTION_HEADING_RE);
   if (!heading || heading.index === undefined) return [];

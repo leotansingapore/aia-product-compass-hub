@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { convertWikilinks, parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
+import { convertImageEmbeds, convertWikilinks, parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
 import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
 // Lazy per-day raw loaders. Each day becomes its own chunk — only the day being
@@ -104,7 +104,7 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
   if (!loader) return undefined;
   const raw = await loader();
   const { frontmatter, body } = parseFrontmatter(raw);
-  const markdown = convertWikilinks(stripAppendix(body));
+  const markdown = convertImageEmbeds(convertWikilinks(stripAppendix(body)));
   const day: Day = {
     dayNumber: frontmatter.day,
     week: frontmatter.week,

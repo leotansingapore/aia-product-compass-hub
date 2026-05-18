@@ -1,5 +1,5 @@
 import type { Day, Week } from "./types";
-import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "../first-60-days/parse";
+import { convertImageEmbeds, parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "../first-60-days/parse";
 import { DAY_SUMMARIES, TOTAL_DAYS, type DaySummary } from "./summaries";
 
 // Lazy per-day raw loaders — only the day being viewed is downloaded.
@@ -60,7 +60,7 @@ export async function loadDay(dayNumber: number): Promise<Day | undefined> {
   if (!loader) return undefined;
   const raw = await loader();
   const { frontmatter, body } = parseFrontmatter(raw);
-  const markdown = stripAppendix(body);
+  const markdown = convertImageEmbeds(stripAppendix(body));
   const day: Day = {
     dayNumber: frontmatter.day,
     week: frontmatter.week,

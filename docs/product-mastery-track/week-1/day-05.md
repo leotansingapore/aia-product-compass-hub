@@ -46,7 +46,7 @@ When a competitor name surfaces in the appointment, don't argue the competitor d
 
 In fact, you can illustrate the above point using our presenter here: **[present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees](https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees)**
 
-![Long-Term Investment Illustrator — Break-even Fees chart at 0% assumed return over 20yr IIP with $7.2K annual premium: net charges turn negative around Year 33 as bonuses overtake fees, and by Year 66 bonuses exceed total charges by $19,332](/pro-achiever/day-05/ltii-break-even-fees.png)
+![[pro-achiever/day-05/ltii-break-even-fees.png|Long-Term Investment Illustrator — Break-even Fees chart at 0% assumed return over 20yr IIP with $7.2K annual premium: net charges turn negative around Year 33 as bonuses overtake fees, and by Year 66 bonuses exceed total charges by $19,332]]
 
 ### Where APA structurally wins, in one row per battleground
 
@@ -315,7 +315,7 @@ Each case below uses the duration that matches the prospect's current quote / ex
 
 **Profile:** prospect was sold Pru Active Life as the "all-in-one" whole-life bundle. Three policies stacked: base whole-life, supplementary cover rider, accident rider.
 
-![Pru Active Life bundle — the $371.86/mo breakdown the prospect actually has](/case-studies/case-a-pru-bundle.png)
+![[case-studies/case-a-pru-bundle.png|Pru Active Life bundle — the $371.86/mo breakdown the prospect actually has]]
 
 ### What they're paying
 
@@ -334,7 +334,7 @@ Each case below uses the duration that matches the prospect's current quote / ex
 
 ### What the policy illustration actually shows (verified from the deduction table)
 
-![Pru deduction table — 4% and 8% projections side by side](/case-studies/case-a-pru-deductions.png)
+![[case-studies/case-a-pru-deductions.png|Pru deduction table — 4% and 8% projections side by side]]
 
 
 At **8% projection** (the upper bound the illustration is allowed to show):
@@ -410,7 +410,7 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 
 ### The total distribution cost (TDC) table — directly from FWD's own illustration
 
-![FWD Invest First Summit TDC table — verbatim from the policy illustration](/case-studies/case-b-fwd-tdc.png)
+![[case-studies/case-b-fwd-tdc.png|FWD Invest First Summit TDC table — verbatim from the policy illustration]]
 
 
 | Policy year | Age | Total premiums paid | Total distribution cost |
@@ -427,7 +427,7 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 
 ### The total deductions table — at 8% projection
 
-![FWD deductions table at 4% and 8% projections — total lifetime cost erosion](/case-studies/case-b-fwd-deductions.png)
+![[case-studies/case-b-fwd-deductions.png|FWD deductions table at 4% and 8% projections — total lifetime cost erosion]]
 
 
 | Policy year | Age | Value of premiums paid (8%) | Total deductions to-date |
