@@ -1995,6 +1995,7 @@ export type Database = {
           tags: string[] | null
           title: string
           training_videos: Json | null
+          training_videos_count: number | null
           updated_at: string
           useful_links: Json | null
           visible_tiers: string[] | null
@@ -2021,6 +2022,7 @@ export type Database = {
           tags?: string[] | null
           title: string
           training_videos?: Json | null
+          training_videos_count?: number | null
           updated_at?: string
           useful_links?: Json | null
           visible_tiers?: string[] | null
@@ -2047,6 +2049,7 @@ export type Database = {
           tags?: string[] | null
           title?: string
           training_videos?: Json | null
+          training_videos_count?: number | null
           updated_at?: string
           useful_links?: Json | null
           visible_tiers?: string[] | null
