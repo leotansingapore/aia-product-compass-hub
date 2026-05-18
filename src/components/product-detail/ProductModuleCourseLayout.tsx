@@ -14,7 +14,9 @@ import {
   Lightbulb,
   Link2,
   List,
+  NotebookPen,
   Play,
+  X,
 } from "lucide-react";
 import { fetchVideoDuration, formatDuration, getVideoEmbedInfo } from "@/components/video-editing/videoUtils";
 import { ensureYouTubeAPI } from "@/lib/youtube-api";
@@ -193,6 +195,7 @@ export function ProductModuleCourseLayout({
   // playing in the background" bug.
   const isTabletOrMobile = useIsTabletOrMobile();
   const desktopMainRef = useRef<HTMLElement>(null);
+  const [notesPanelOpen, setNotesPanelOpen] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -881,6 +884,50 @@ export function ProductModuleCourseLayout({
               </div>
             </div>
           </Tabs>
+
+          {/* Floating "Notes" pill + slide-in panel — surfaces note-taking
+              without making the user leave the lesson to find the tab. */}
+          <button
+            type="button"
+            onClick={() => setNotesPanelOpen((v) => !v)}
+            className={cn(
+              "fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-full border bg-background px-4 py-2.5 text-sm font-medium shadow-lg transition-all hover:shadow-xl",
+              notesPanelOpen
+                ? "border-primary/40 bg-primary text-primary-foreground"
+                : "border-border text-foreground hover:border-primary/40 hover:text-primary",
+            )}
+            aria-expanded={notesPanelOpen}
+            aria-controls="lesson-notes-panel"
+          >
+            <NotebookPen className="h-4 w-4" />
+            {notesPanelOpen ? "Hide notes" : "Notes"}
+          </button>
+          {notesPanelOpen && (
+            <aside
+              id="lesson-notes-panel"
+              className="fixed bottom-0 right-0 top-12 z-30 flex w-full max-w-md flex-col border-l bg-background shadow-2xl animate-in slide-in-from-right duration-200"
+              aria-label="Lesson notes"
+            >
+              <header className="flex items-center justify-between border-b px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <NotebookPen className="h-4 w-4 text-primary" />
+                  <h3 className="text-sm font-semibold">My notes</h3>
+                  <span className="text-xs text-muted-foreground">— {productTitle}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setNotesPanelOpen(false)}
+                  className="rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground"
+                  aria-label="Close notes"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </header>
+              <div className="min-h-0 flex-1 overflow-y-auto p-4">
+                {tabMyNotes}
+              </div>
+            </aside>
+          )}
         </main>
       </div>
       )}
