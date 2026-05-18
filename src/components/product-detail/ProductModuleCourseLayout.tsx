@@ -299,6 +299,39 @@ export function ProductModuleCourseLayout({
     setOutlineOpen(false);
   }, []);
 
+  /** "Mark complete (if needed) and jump to the next lesson" — shared by the
+   *  Up next button AND the Shift+Enter keyboard shortcut. */
+  const completeAndContinue = useCallback(async () => {
+    const cur = processedVideos[currentVideoIndex];
+    const next = currentVideoIndex < processedVideos.length - 1 ? processedVideos[currentVideoIndex + 1] : null;
+    if (!next) return;
+    const alreadyDone = cur ? !!getVideoProgress(cur.id)?.completed : false;
+    if (cur && !alreadyDone) {
+      await handleToggleComplete(cur.id, false);
+    }
+    onSelectVideoFromOutline(currentVideoIndex + 1);
+  }, [processedVideos, currentVideoIndex, getVideoProgress, handleToggleComplete, onSelectVideoFromOutline]);
+
+  /** Shift+Enter anywhere on the lesson page → complete & continue.
+   *  Ignored while focus is in an input/textarea/contenteditable so the note
+   *  editor's Shift+Enter (soft line break) still works as expected. */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Enter" || !e.shiftKey || e.ctrlKey || e.metaKey || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      const tag = t?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      if (t?.isContentEditable) return;
+      if (notesPanelOpen) return; // notes panel may host an editor
+      const next = currentVideoIndex < processedVideos.length - 1;
+      if (!next) return;
+      e.preventDefault();
+      void completeAndContinue();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [completeAndContinue, currentVideoIndex, processedVideos.length, notesPanelOpen]);
+
   useEffect(() => {
     if (!videoInfo || !resolvedLessonStreamUrl) return;
     if (videoInfo.type !== "vimeo" && videoInfo.type !== "wistia") return;
@@ -730,15 +763,20 @@ export function ProductModuleCourseLayout({
           <p className="mt-1 text-sm font-semibold text-foreground line-clamp-2 leading-snug">
             {nextVideo.title}
           </p>
+          <p className="mt-2 hidden text-[11px] text-muted-foreground sm:block">
+            Shortcut:{" "}
+            <kbd className="rounded border bg-background px-1.5 py-0.5 font-mono text-[10px] font-semibold text-foreground shadow-sm">
+              Shift
+            </kbd>{" "}
+            +{" "}
+            <kbd className="rounded border bg-background px-1.5 py-0.5 font-mono text-[10px] font-semibold text-foreground shadow-sm">
+              Enter
+            </kbd>
+          </p>
         </div>
         <Button
           size="sm"
-          onClick={async () => {
-            if (currentVideo && !isCurrentCompleted) {
-              await handleToggleComplete(currentVideo.id, false);
-            }
-            onSelectVideoFromOutline(currentVideoIndex + 1);
-          }}
+          onClick={() => void completeAndContinue()}
           className="shrink-0 gap-1.5"
         >
           {isCurrentCompleted ? "Continue" : "Complete & continue"}
