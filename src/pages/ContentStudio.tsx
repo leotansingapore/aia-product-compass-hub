@@ -25,6 +25,7 @@ import {
   Facebook,
   MessageSquare,
   HelpCircle,
+  ChevronLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -169,6 +170,13 @@ export default function ContentStudio() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-3 sm:px-0">
+      <Link
+        to="/library/tools"
+        className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
+        Back to Tools
+      </Link>
       <header className="space-y-2">
         <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
           <Sparkles className="h-3.5 w-3.5" />
