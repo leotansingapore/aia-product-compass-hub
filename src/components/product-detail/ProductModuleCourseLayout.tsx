@@ -1,6 +1,5 @@
 import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -548,44 +547,41 @@ export function ProductModuleCourseLayout({
 
   const useZincLessonChrome = hasVideoEmbed || Boolean(fallbackStreamHero);
 
-  /* ── Course content (below video) ── */
+  /* ── Course content (below video) ──
+       Card wrapper removed: bg-card on the white page background was nearly
+       invisible. Letting the prose flow directly on the page reads cleaner;
+       the parent panel handles max-width + padding. */
   const courseContentInner = (
     <>
       {currentVideo?.rich_content?.trim() ? (
-        <Card className="min-w-0">
-          <CardContent className="p-4 pt-4 sm:p-6 sm:pt-6 md:pt-6">
-            <div className="prose prose-sm dark:prose-invert max-w-none">
-              <Suspense
-                fallback={
-                  <div className="space-y-3">
-                    <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
-                    <div className="h-4 w-full animate-pulse rounded bg-muted/70" />
-                    <div className="h-4 w-5/6 animate-pulse rounded bg-muted/70" />
-                  </div>
-                }
-              >
-                <LessonRichMarkdown
-                  content={currentVideo.rich_content}
-                  dedupHeroUrl={resolvedLessonStreamUrl || currentVideo?.url?.trim() || undefined}
-                  shouldAutoplay={shouldAutoplay}
-                  sameVideoHintText="Same as the lesson video above — lecture notes continue below."
-                />
-              </Suspense>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-headings:font-semibold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+          <Suspense
+            fallback={
+              <div className="space-y-3">
+                <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                <div className="h-4 w-full animate-pulse rounded bg-muted/70" />
+                <div className="h-4 w-5/6 animate-pulse rounded bg-muted/70" />
+              </div>
+            }
+          >
+            <LessonRichMarkdown
+              content={currentVideo.rich_content}
+              dedupHeroUrl={resolvedLessonStreamUrl || currentVideo?.url?.trim() || undefined}
+              shouldAutoplay={shouldAutoplay}
+              sameVideoHintText="Same as the lesson video above — lecture notes continue below."
+            />
+          </Suspense>
+        </div>
       ) : !hasVideoEmbed && !currentVideo?.description?.trim() && processedVideos.length > 0 ? (
-        <Card className="min-w-0">
-          <CardContent className="flex flex-col items-center justify-center gap-3 p-6 text-center sm:p-12">
-            <div className="rounded-full bg-muted p-4">
-              <Play className="h-8 w-8 text-muted-foreground" />
-            </div>
-            <h3 className="font-semibold text-foreground">Content coming soon</h3>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              This lesson hasn&apos;t been set up yet. Check back later or contact your training coordinator.
-            </p>
-          </CardContent>
-        </Card>
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed bg-muted/30 p-6 text-center sm:p-12">
+          <div className="rounded-full bg-muted p-4">
+            <Play className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="font-semibold text-foreground">Content coming soon</h3>
+          <p className="text-sm text-muted-foreground max-w-xs">
+            This lesson hasn&apos;t been set up yet. Check back later or contact your training coordinator.
+          </p>
+        </div>
       ) : processedVideos.length === 0 ? (
         <p className="text-sm text-muted-foreground">
           No training lessons yet. When lessons are added, you can learn here and track progress.
