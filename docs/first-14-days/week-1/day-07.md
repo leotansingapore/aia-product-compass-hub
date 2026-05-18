@@ -38,9 +38,9 @@ What's rare is a role that genuinely offers all three. Most jobs that claim to e
 
 The FA career is one of the rare structures where all three show up naturally, as outputs of the business model rather than as marketing claims.
 
-![The Three I's: Income, Independence, Impact](/first-14-days/images/three-is-mindmap.webp)
+![[first-14-days/images/three-is-mindmap.webp|The Three I's: Income, Independence, Impact]]
 
-![The ideal career framing](/first-14-days/images/ideal-career-framing.webp)
+![[first-14-days/images/ideal-career-framing.webp|The ideal career framing]]
 
 ---
 
@@ -66,10 +66,10 @@ See Day 5 for the actual screenshots. That's what the income dimension compounds
 
 The business didn't stop there either. I've since built four other companies on top of the FA practice:
 
-![My digital marketing agency](/first-14-days/images/business-marketing-agency.webp)
-![Cleaning business acquired 2023](/first-14-days/images/business-cleaning.webp)
-![Outsourcing business 2024](/first-14-days/images/business-outsourcing.webp)
-![Consulting firm 2024](/first-14-days/images/business-consulting.webp)
+![[first-14-days/images/business-marketing-agency.webp|My digital marketing agency]]
+![[first-14-days/images/business-cleaning.webp|Cleaning business acquired 2023]]
+![[first-14-days/images/business-outsourcing.webp|Outsourcing business 2024]]
+![[first-14-days/images/business-consulting.webp|Consulting firm 2024]]
 
 Combined seven-figure revenue across all four. The income, skills, and network from the FA career are what made that possible.
 
@@ -94,7 +94,7 @@ What independence actually looks like in practice:
 - You pick your niche. Young professionals, business owners, doctors, engineers, expats. You shape it.
 - You decide the team shape. Solo, small team, or growing manager. All valid paths.
 
-![Independence in practice](/first-14-days/images/independence-practice.webp)
+![[first-14-days/images/independence-practice.webp|Independence in practice]]
 
 The truest version of independence is temporal. You can attend your kid's school concert on a Wednesday afternoon because you moved your morning. That small flexibility is worth more than most candidates realise while they're still inside a 9-to-5 rhythm.
 
@@ -107,9 +107,9 @@ My own independence receipts, company-sponsored overseas trips twice a year duri
 - 2023 Hawaii
 - 2024 Norway
 
-![Los Angeles 2017](/first-14-days/images/travel-la.jpeg)
-![Athens 2018](/first-14-days/images/travel-athens.jpeg)
-![Berlin 2019](/first-14-days/images/travel-berlin.jpeg)
+![[first-14-days/images/travel-la.jpeg|Los Angeles 2017]]
+![[first-14-days/images/travel-athens.jpeg|Athens 2018]]
+![[first-14-days/images/travel-berlin.jpeg|Berlin 2019]]
 
 Not a flex. Just a demonstration of what "built right" looks like: the book keeps running whether I'm in Singapore or Norway.
 

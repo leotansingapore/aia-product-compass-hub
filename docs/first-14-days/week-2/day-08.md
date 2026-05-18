@@ -104,7 +104,7 @@ I call what I built the **Tripod Support System (TSS)**, combined with our **6-T
 
 ## 4. The Tripod Support System (TSS)
 
-![Tripod Support System — three pillars converging on the advisor](/first-14-days/images/tripod-support-system.webp)
+![[first-14-days/images/tripod-support-system.webp|Tripod Support System — three pillars converging on the advisor]]
 
 Three pillars, one outcome: your time goes to clients, not to figuring out infrastructure.
 

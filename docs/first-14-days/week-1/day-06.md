@@ -56,7 +56,7 @@ Even at 200+ retainers with 40 staff, the stickiness problem was brutal:
 - I'm on a treadmill, always replacing what I just lost
 - Typical client LTV: $20K to $30K before churn
 
-![Scaling agency pain](/first-14-days/images/four-businesses.webp)
+![[first-14-days/images/four-businesses.webp|Scaling agency pain]]
 
 Every month I was starting partially from zero. Compare that to the insurance client who:
 
@@ -74,7 +74,7 @@ I still run the agency, but the FA business is the one I keep pointing young ent
 
 ## 3. Why this business has stickiness built in
 
-![Recurring vs non-recurring revenue](/first-14-days/images/recurring-revenue.webp)
+![[first-14-days/images/recurring-revenue.webp|Recurring vs non-recurring revenue]]
 
 Stickiness in FA isn't a marketing technique. It comes from the product itself.
 
@@ -126,7 +126,7 @@ I effectively have a 200-person team. I don't hire, pay, or manage any of them. 
 
 That's why a single advisor with 1,000+ clients can run with just 1 or 2 part-time admin helpers. The infrastructure is already there. It's software-as-a-service economics wearing an insurance label.
 
-![Client base scales while fulfilment team grows for you](/first-14-days/images/scalability-growth.webp)
+![[first-14-days/images/scalability-growth.webp|Client base scales while fulfilment team grows for you]]
 
 Your headcount never grows. Your client base does.
 
@@ -156,15 +156,15 @@ This is why leaving in year 2 or 3 is such a common mistake for people who joine
 
 Here's my own back-end, year by year. Just passive income: renewals, Career Benefit, APF. Not including new-business commission from the current year.
 
-![Passive income by year — year 1 through year 6](/first-14-days/images/passive-income-by-year.png)
+![[first-14-days/images/passive-income-by-year.png|Passive income by year — year 1 through year 6]]
 
 By year 6, even if I did zero new business that year, I'd still be earning more than $100K of passive income.
 
 Travel-wise, that's why I've been able to go to LA (2017), Athens (2018), Berlin (2019), LA again (2022), Hawaii (2023), Norway (2024). Twice a year, company-sponsored trips. The book doesn't stop while I'm away.
 
-![Los Angeles 2017](/first-14-days/images/travel-la.jpeg)
-![Athens 2018](/first-14-days/images/travel-athens.jpeg)
-![Berlin 2019](/first-14-days/images/travel-berlin.jpeg)
+![[first-14-days/images/travel-la.jpeg|Los Angeles 2017]]
+![[first-14-days/images/travel-athens.jpeg|Athens 2018]]
+![[first-14-days/images/travel-berlin.jpeg|Berlin 2019]]
 
 ---
 

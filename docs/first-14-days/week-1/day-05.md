@@ -90,23 +90,23 @@ Here's what the $667/hour math actually produces. These are my real income state
 
 ### Year 1 — $145K (Uni Y1)
 
-![Y1 income: $145K as a Uni Y1 full-time engineering student](/first-14-days/images/income-y1-145k.webp)
+![[first-14-days/images/income-y1-145k.webp|Y1 income: $145K as a Uni Y1 full-time engineering student]]
 
 ### Year 2 — $251K (Uni Y2)
 
-![Y2 income: $251K as a Uni Y2 full-time engineering student](/first-14-days/images/income-y2-251k.webp)
+![[first-14-days/images/income-y2-251k.webp|Y2 income: $251K as a Uni Y2 full-time engineering student]]
 
 ### Year 3 — $297K (Uni Y3)
 
-![Y3 income: $297K as a Uni Y3 full-time engineering student](/first-14-days/images/income-y3-297k.webp)
+![[first-14-days/images/income-y3-297k.webp|Y3 income: $297K as a Uni Y3 full-time engineering student]]
 
 ### Year 4 — $327K (Uni Y4)
 
-![Y4 income: $327K as a Uni Y4 student](/first-14-days/images/income-y4-327k.webp)
+![[first-14-days/images/income-y4-327k.webp|Y4 income: $327K as a Uni Y4 student]]
 
 ### Fresh-grad year — $416K
 
-![Fresh grad: $416K income](/first-14-days/images/income-fresh-grad-416k.webp)
+![[first-14-days/images/income-fresh-grad-416k.webp|Fresh grad: $416K income]]
 
 ### What the progression proves
 

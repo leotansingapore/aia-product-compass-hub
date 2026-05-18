@@ -92,7 +92,7 @@ Even Warren Buffett at 20% returns can't move a $10K portfolio meaningfully. Bui
 
 The three of them compound together.
 
-![The three skills stacked — Sales & Influence, Communication & Trust, and Financial IQ compound into Builder · Operator · Owner](/first-14-days/images/three-skills-stacked.webp)
+![[first-14-days/images/three-skills-stacked.webp|The three skills stacked — Sales & Influence, Communication & Trust, and Financial IQ compound into Builder · Operator · Owner]]
 
 Every successful founder has some version of all three. Many had to learn them slowly and expensively. In this career they get built in parallel, paid, with feedback from day one.
 
@@ -100,7 +100,7 @@ I used exactly these three skills to build four other companies on top of the FA
 
 Combined revenue across all four is seven figures. I didn't learn business in business school. I learned it by sitting across the table from more than a thousand financial-advisory clients first.
 
-![Leo's businesses](/first-14-days/images/four-businesses.webp)
+![[first-14-days/images/four-businesses.webp|Leo's businesses]]
 
 ---
 

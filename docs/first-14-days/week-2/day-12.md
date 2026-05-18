@@ -51,7 +51,7 @@ The split was roughly 80/20. Most of my time went to uni (lectures, tutorials, a
 
 The 20% worked out to around 20 hours a week. Mostly weekday evenings in a 2-hour call window, and weekends for appointments.
 
-![My uni schedule](/first-14-days/images/leo-uni-schedule.webp)
+![[first-14-days/images/leo-uni-schedule.webp|My uni schedule]]
 
 Year 1 income was $145K while I was in full-time engineering school on 20 hours a week. My warm network was thin back then (GEP, small social circle) so most of it came through cold systems. That's actually the point. The model works with or without a rich warm network, because cold is handled for you. If you do have a warm network, you're doubly positioned.
 

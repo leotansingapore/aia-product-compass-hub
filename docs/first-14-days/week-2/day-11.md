@@ -66,7 +66,7 @@ If you have the 6 C's, product knowledge is a few months of study. If you don't 
 
 ## 2. Proof — Gabriel Kow (ORD NSF)
 
-![Gabriel Kow — FINtern, ORD NSF](/first-14-days/images/mentee-gabriel-kow.webp)
+![[first-14-days/images/mentee-gabriel-kow.webp|Gabriel Kow — FINtern, ORD NSF]]
 
 Gabriel joined FINternship right after ORD. He was expecting a full-time job paying $2–3K a month. No finance background, no big network, nothing particularly extroverted about him.
 
@@ -82,7 +82,7 @@ Gabriel didn't have a finance degree. He didn't have rich friends to sell to. Wh
 
 ## 3. Proof — Benjamin Gnoh (NTU Maritime Studies)
 
-![Benjamin Gnoh — FINtern, entering NTU Maritime Studies](/first-14-days/images/mentee-benjamin-gnoh.webp)
+![[first-14-days/images/mentee-benjamin-gnoh.webp|Benjamin Gnoh — FINtern, entering NTU Maritime Studies]]
 
 Benjamin was entering NTU Maritime Studies when he joined. Engineering-adjacent, not finance. Barely any warm market.
 

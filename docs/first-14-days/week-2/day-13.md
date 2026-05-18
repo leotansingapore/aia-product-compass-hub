@@ -34,7 +34,7 @@ Think of it like a football academy. Most academies make you pay to join. I pay 
 
 There are three tiers, based on how many hours a week you can commit:
 
-![FLEXI scheme tiers](/first-14-days/images/flexi-scheme-tiers.webp)
+![[first-14-days/images/flexi-scheme-tiers.webp|FLEXI scheme tiers]]
 
 ### FLEXI 0 HRS — $1,000 (Build a firm foundation)
 
@@ -78,7 +78,7 @@ This is the tier most serious candidates take. 20 hours a week is the same commi
 
 This is the one most candidates can't believe the first time they hear it.
 
-![Income Guarantee — $2,000/$4,000 per month for the first full year](/first-14-days/images/income-guarantee.jpeg)
+![[first-14-days/images/income-guarantee.jpeg|Income Guarantee — $2,000/$4,000 per month for the first full year]]
 
 > **We personally guarantee an average of $2,000 ($4,000 for full-time) in income per month for the first full year** as a student advisor or full-time advisor.
 

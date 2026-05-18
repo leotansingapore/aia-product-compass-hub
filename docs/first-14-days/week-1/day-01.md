@@ -32,7 +32,7 @@ Hi, I'm Leo.
 
 When I finished NS I had no real plan. The advice from everyone around me was the usual: get good grades, get a stable first job, don't do anything stupid. I had the grades. Straight As from RJC, scholarship offers overseas, a place at NUS Engineering. Doors were open.
 
-![Leo post-NS](/first-14-days/images/leo-post-ns.webp)
+![[first-14-days/images/leo-post-ns.webp|Leo post-NS]]
 
 But one thing kept bothering me: why should I wait 8 to 10 years to earn $10K a month? Why not try to build that income while I was still a student, when I had nothing to lose and plenty of time to recover if it didn't work?
 
@@ -42,7 +42,7 @@ I was skeptical. Same questions you're probably carrying right now.
 
 *Is this legit? Can I even do well at it? Isn't there a stigma? Isn't the market full already?*
 
-![The skeptical moment](/first-14-days/images/leo-skeptical.webp)
+![[first-14-days/images/leo-skeptical.webp|The skeptical moment]]
 
 What got me past the skepticism wasn't a pitch or a speech. It was just realising that reading about the career cost me nothing, and if I tried it and hated it, I could walk away. That was enough.
 
@@ -50,7 +50,7 @@ So I started. No systems back then. No scripts. No mentors. No community to lean
 
 The weird thing is the lack of time is what made me good at this. I had maybe 2–3 hours a night, and I couldn't afford to waste any of them. That pressure turned into habits, and the habits earned me **$145K in my first year as a full-time uni student** and over $400K by the time I graduated.
 
-![My uni schedule](/first-14-days/images/leo-uni-schedule.webp)
+![[first-14-days/images/leo-uni-schedule.webp|My uni schedule]]
 
 A decade on, I've closed 1,002 clients, hit MDRT 5×, COT 3×, and built four other companies alongside: Singapore's #1 ranked marketing agency (50 staff), a corporate cleaning business doing $15K/month profit, an outsourcing firm, and a consulting firm. The combined revenue is seven figures.
 

@@ -76,7 +76,7 @@ Here's what most people don't realise. A modern tied-agency financial-advisory c
 | Upfront fee | **No — $0** |
 | Royalty on revenue | **No — you keep your commissions** |
 
-![Franchise vs FA comparison](/first-14-days/images/franchise-comparison.webp)
+![[first-14-days/images/franchise-comparison.webp|Franchise vs FA comparison]]
 
 You get the upside of a franchise. You don't pay the downside.
 

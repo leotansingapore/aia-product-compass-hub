@@ -64,7 +64,7 @@ And there's real impact. You fix financial problems for people who are one hospi
 
 This is the grand prize. It's the life most 9-to-5 professionals quietly want and don't see a path to.
 
-![The skeptical moment becomes the plunge](/first-14-days/images/leo-skeptical.webp)
+![[first-14-days/images/leo-skeptical.webp|The skeptical moment becomes the plunge]]
 
 ---
 
