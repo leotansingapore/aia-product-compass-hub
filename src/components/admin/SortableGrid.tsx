@@ -4,7 +4,6 @@ import {
   closestCenter,
   KeyboardSensor,
   PointerSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   type DragEndEvent,
@@ -22,10 +21,11 @@ import { cn } from "@/lib/utils";
 /**
  * Long-press distance/time before a drag activates. Tuned so:
  * - quick taps on inner buttons (Learn more, ⋮ menu, bookmark) pass through
- * - holding a card for ~500ms grabs it for reorder
- * Mirrors the touch-friendly defaults Apple uses for icon-rearrange mode.
+ * - holding a card for ~250ms grabs it for reorder
+ * Dropped from 500ms → 250ms based on user feedback that 500ms felt
+ * unresponsive — close to the iOS callout threshold without exceeding it.
  */
-const LONG_PRESS_DELAY_MS = 500;
+const LONG_PRESS_DELAY_MS = 250;
 const LONG_PRESS_TOLERANCE_PX = 8;
 
 interface SortableGridProps {
@@ -56,21 +56,16 @@ export function SortableGrid({
   onReorder,
   children,
 }: SortableGridProps) {
-  // Three sensors so the same long-press gesture works across input types:
-  // - PointerSensor: modern desktop + most mobile browsers (Pointer Events API)
-  // - TouchSensor: explicit fallback for older mobile browsers / iOS quirks
-  //   where Pointer Events don't fire as expected on long-press
-  // - KeyboardSensor: a11y — Space/Enter to pick up, arrows to move
-  // Both pointer-based sensors share the same delay+tolerance, so the gesture
-  // (hold still ~500ms) feels identical on desktop and mobile.
+  // PointerSensor handles mouse, touch, and pen via the Pointer Events API
+  // (which all modern browsers support). dnd-kit's docs warn against
+  // registering BOTH PointerSensor and TouchSensor — on touch devices they
+  // both fire and race, sometimes cancelling each other. Stick to
+  // PointerSensor as the single primary sensor.
+  //
+  // KeyboardSensor stays in for a11y: Space/Enter picks up, arrows move,
+  // Space/Enter again drops.
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: {
-        delay: LONG_PRESS_DELAY_MS,
-        tolerance: LONG_PRESS_TOLERANCE_PX,
-      },
-    }),
-    useSensor(TouchSensor, {
       activationConstraint: {
         delay: LONG_PRESS_DELAY_MS,
         tolerance: LONG_PRESS_TOLERANCE_PX,
