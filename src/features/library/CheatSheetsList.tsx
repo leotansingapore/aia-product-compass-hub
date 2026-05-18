@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, FileText, Search, Sparkles } from "lucide-react";
+import { ChevronRight, FileText, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,7 @@ function stripCheatSheetSuffix(title: string): string {
     .trim();
 }
 
-export default function CheatSheets() {
+export function CheatSheetsList() {
   const [allSheets, setAllSheets] = useState<CheatSheetEntry[] | null>(null);
   const [query, setQuery] = useState("");
 
@@ -61,37 +61,30 @@ export default function CheatSheets() {
   const visibleCount = SECTION_ORDER.reduce((n, k) => n + grouped[k].length, 0);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:py-10">
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-3 text-sm text-muted-foreground">
-          <Sparkles className="h-4 w-4" />
-          <span>Reference cards</span>
-        </div>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Cheat Sheets</h1>
-        <p className="mt-3 max-w-2xl text-base text-muted-foreground">
+    <div className="space-y-8">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-2xl text-sm text-muted-foreground">
           {totalCount} one-page reference cards distilled from the full curriculum. Open the cheat
           sheet for what you are about to do, not what you finished learning - frameworks,
           scripts, and numbers worth screenshotting before a call, fact-find, or pitch.
         </p>
-      </div>
-
-      <div className="mb-8 max-w-md">
-        <div className="relative">
+        <div className="relative w-full max-w-xs">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search by topic, framework, or product..."
+            placeholder="Search cheat sheets..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-9"
           />
         </div>
-        {query && (
-          <p className="mt-2 text-xs text-muted-foreground">
-            {visibleCount} of {totalCount} cards match.
-          </p>
-        )}
       </div>
+
+      {query && (
+        <p className="text-xs text-muted-foreground">
+          {visibleCount} of {totalCount} cards match.
+        </p>
+      )}
 
       {!allSheets && (
         <div className="rounded-lg border bg-card p-8 text-center text-sm text-muted-foreground">
@@ -109,8 +102,8 @@ export default function CheatSheets() {
               <section key={section}>
                 <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
                   <div>
-                    <h2 className="text-xl font-semibold tracking-tight">{meta.title}</h2>
-                    <p className="text-sm text-muted-foreground">{meta.tagline}</p>
+                    <h2 className="text-lg font-semibold tracking-tight sm:text-xl">{meta.title}</h2>
+                    <p className="text-xs text-muted-foreground sm:text-sm">{meta.tagline}</p>
                   </div>
                   <Badge variant="secondary" className="font-mono text-xs">
                     {sheets.length} {sheets.length === 1 ? "card" : "cards"}
@@ -132,7 +125,7 @@ export default function CheatSheets() {
                       >
                         <CardHeader className="pb-2">
                           <div className="flex items-start justify-between gap-2">
-                            <CardTitle className="line-clamp-2 text-base leading-tight">
+                            <CardTitle className="line-clamp-2 text-sm leading-tight sm:text-base">
                               {stripCheatSheetSuffix(sheet.title)}
                             </CardTitle>
                             <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
@@ -184,27 +177,6 @@ export default function CheatSheets() {
           )}
         </div>
       )}
-
-      <div className="mt-12 rounded-lg border bg-muted/30 p-6">
-        <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold">
-          <ArrowRight className="h-4 w-4" /> How to use
-        </h3>
-        <ul className="space-y-1.5 text-sm text-muted-foreground">
-          <li>
-            <strong className="text-foreground">About to cold-call?</strong> Open the Appointment
-            Setting card plus Next 60 - Week 4.
-          </li>
-          <li>
-            <strong className="text-foreground">Walking into a pitch?</strong> Next 60 - Week 8
-            (6-phase pitch structure) plus the product card from Product Mastery.
-          </li>
-          <li>
-            <strong className="text-foreground">Stuck on an objection?</strong> First 60 - Week 8
-            (reflex/real diagnostic) plus Next 60 - Week 9 (10 stock objections + verbatim
-            responses).
-          </li>
-        </ul>
-      </div>
     </div>
   );
 }

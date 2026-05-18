@@ -1,15 +1,16 @@
 import { useSearchParams } from "react-router-dom";
-import { BookOpen, Brain } from "lucide-react";
+import { BookOpen, Brain, FileText } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProductsGrid } from "@/features/library/ProductsGrid";
 import { QuestionBanksList } from "@/features/library/QuestionBanksList";
+import { CheatSheetsList } from "@/features/library/CheatSheetsList";
 
-type LibraryTab = "products" | "banks";
+type LibraryTab = "products" | "banks" | "cheat-sheets";
 
 function isLibraryTab(v: string | null): v is LibraryTab {
-  return v === "products" || v === "banks";
+  return v === "products" || v === "banks" || v === "cheat-sheets";
 }
 
 export default function Library() {
@@ -40,7 +41,7 @@ export default function Library() {
 
       <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-4 sm:py-8 pb-20 sm:pb-8">
         <Tabs value={activeTab} onValueChange={(v) => setTab(v as LibraryTab)}>
-          <TabsList className="grid w-full max-w-md grid-cols-2">
+          <TabsList className="grid w-full max-w-2xl grid-cols-3">
             <TabsTrigger value="products" className="gap-1.5">
               <BookOpen className="h-4 w-4" />
               Products
@@ -49,6 +50,10 @@ export default function Library() {
               <Brain className="h-4 w-4" />
               Question Banks
             </TabsTrigger>
+            <TabsTrigger value="cheat-sheets" className="gap-1.5">
+              <FileText className="h-4 w-4" />
+              Cheat Sheets
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="products" className="mt-4 sm:mt-6">
@@ -56,6 +61,9 @@ export default function Library() {
           </TabsContent>
           <TabsContent value="banks" className="mt-4 sm:mt-6">
             <QuestionBanksList />
+          </TabsContent>
+          <TabsContent value="cheat-sheets" className="mt-4 sm:mt-6">
+            <CheatSheetsList />
           </TabsContent>
         </Tabs>
       </div>

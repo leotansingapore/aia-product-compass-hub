@@ -88,7 +88,7 @@ export default function CheatSheetDetail() {
     <div className="mx-auto w-full max-w-4xl px-4 py-6 print:max-w-none print:py-0 sm:py-10">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
         <Link
-          to="/cheat-sheets"
+          to="/library?tab=cheat-sheets"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -107,7 +107,7 @@ export default function CheatSheetDetail() {
       <div className="mb-6">
         <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground print:hidden">
           <Sparkles className="h-3.5 w-3.5" />
-          <Link to="/cheat-sheets" className="hover:text-foreground">
+          <Link to="/library?tab=cheat-sheets" className="hover:text-foreground">
             Cheat Sheets
           </Link>
           <span>/</span>
@@ -143,7 +143,7 @@ export default function CheatSheetDetail() {
 
       <div className="mt-10 border-t pt-6 print:hidden">
         <Link
-          to="/cheat-sheets"
+          to="/library?tab=cheat-sheets"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
