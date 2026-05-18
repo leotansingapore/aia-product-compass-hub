@@ -14,6 +14,8 @@
  */
 import { useMemo } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { Button } from "@/components/ui/button";
@@ -24,13 +26,18 @@ import {
   Pencil,
   ImageIcon,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 import {
   CASES,
   CASE_PRODUCTS,
   type CaseEntry,
 } from "@/data/caseVault";
+import { getCaseNarrative } from "@/data/caseNarratives";
 import { CaseReferencePhotos } from "@/components/case-vault/CaseReferencePhotos";
+import { markdownComponents } from "@/lib/markdown-config";
+
+const NARRATIVE_REMARK_PLUGINS = [remarkGfm];
 
 // Strip the "Play X — " prefix from a play label so it reads naturally in
 // a sentence.
@@ -145,6 +152,7 @@ export default function CaseDetailPage() {
   const titleNoun = prospectFromTitle(entry.title);
   const playPhrase = playInSentence(entry.play);
   const tldr = `A ${entry.prospect.toLowerCase()} — ${titleNoun}. The move: ${playPhrase}, structured as ${entry.anchor}. The numbers landed at ${entry.headline}.`;
+  const narrative = getCaseNarrative(entry.id);
 
   return (
     <PageLayout
@@ -235,6 +243,26 @@ export default function CaseDetailPage() {
               <div className="text-sm text-foreground">{entry.anchor}</div>
             </div>
           </section>
+
+          {/* The case study — long-form narrative for the reader */}
+          {narrative && (
+            <section className="rounded-2xl border bg-card shadow-sm overflow-hidden">
+              <div className="flex items-center gap-2 px-4 md:px-5 py-3 border-b bg-muted/30">
+                <BookOpen className="h-4 w-4 text-primary shrink-0" />
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  The case study — for the FC walking into one like this
+                </div>
+              </div>
+              <article className="px-4 md:px-6 py-5 md:py-6 max-w-none case-narrative">
+                <ReactMarkdown
+                  remarkPlugins={NARRATIVE_REMARK_PLUGINS}
+                  components={markdownComponents}
+                >
+                  {narrative}
+                </ReactMarkdown>
+              </article>
+            </section>
+          )}
 
           {/* Field receipt screenshot */}
           {entry.screenshot && (
