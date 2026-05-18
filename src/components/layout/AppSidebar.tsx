@@ -60,6 +60,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { LIBRARY_TABS } from "@/pages/Library";
 import { useCategories, invalidateCategoriesCache, useProducts } from "@/hooks/useProducts";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -347,22 +349,67 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             <SidebarGroupLabel>Your Journey</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {mainNavItems.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                      <NavLink
-                        to={item.url}
-                        {...prefetchHandlers(item.url)}
-                        className={getNavClassName(item.url)}
-                        {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
+                {mainNavItems.map((item) => {
+                  const navLink = (
+                    <NavLink
+                      to={item.url}
+                      {...prefetchHandlers(item.url)}
+                      className={getNavClassName(item.url)}
+                      {...(item.dataAttr && { 'data-onboarding': item.dataAttr })}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {!isCollapsed && <span>{item.title}</span>}
+                      {!isCollapsed && item.sectionId === "learning-track" && <LtBadge />}
+                    </NavLink>
+                  );
+
+                  // Library shows a hover-card preview listing the four
+                  // sub-tabs (Products / Question Banks / Cheat Sheets /
+                  // Sales Playbooks) so users can jump straight to one tab
+                  // without two clicks.
+                  const wrapped = item.sectionId === "library" ? (
+                    <HoverCard openDelay={120} closeDelay={80}>
+                      <HoverCardTrigger asChild>{navLink}</HoverCardTrigger>
+                      <HoverCardContent
+                        side="right"
+                        align="start"
+                        sideOffset={8}
+                        className="w-64 p-2"
                       >
-                        <item.icon className="h-4 w-4" />
-                        {!isCollapsed && <span>{item.title}</span>}
-                        {!isCollapsed && item.sectionId === "learning-track" && <LtBadge />}
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                        <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          Jump to
+                        </p>
+                        <ul className="space-y-0.5">
+                          {LIBRARY_TABS.map((tab) => {
+                            const TabIcon = tab.icon;
+                            return (
+                              <li key={tab.slug}>
+                                <NavLink
+                                  to={tab.path}
+                                  {...prefetchHandlers(tab.path)}
+                                  className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+                                >
+                                  <TabIcon className="h-4 w-4 text-muted-foreground" />
+                                  <span>{tab.label}</span>
+                                </NavLink>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </HoverCardContent>
+                    </HoverCard>
+                  ) : (
+                    navLink
+                  );
+
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                        {wrapped}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
