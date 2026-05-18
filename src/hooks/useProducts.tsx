@@ -105,6 +105,13 @@ export interface Product {
    * always bypass). Mirrors `tier_permissions.tier_level` values.
    */
   visible_tiers?: string[] | null;
+  /**
+   * Total number of `training_videos` for this product. Generated column on
+   * `products` (jsonb_array_length(training_videos)). Available on rows
+   * fetched via the slim listing select; rows fetched via the full `*` select
+   * also populate it because it's a normal column from PostgREST's perspective.
+   */
+  training_videos_count?: number;
   created_at: string;
   updated_at: string;
 }
@@ -154,6 +161,33 @@ const PRODUCTS_SELECT = `
   )
 `;
 
+/**
+ * Slim column set for category-listing pages. Excludes the `training_videos`
+ * JSONB blob (rich content + transcripts per video) which can be megabytes
+ * per product and is irrelevant to a card grid. The `training_videos_count`
+ * generated column gives us the total number of videos for completion %
+ * computation — same number, but a fraction of the payload.
+ */
+const PRODUCTS_LISTING_SELECT = `
+  id,
+  title,
+  description,
+  category_id,
+  tags,
+  highlights,
+  published,
+  parent_product_id,
+  sort_order,
+  visible_tiers,
+  training_videos_count,
+  created_at,
+  updated_at,
+  categories:category_id (
+    id,
+    name
+  )
+`;
+
 function transformProduct(product: any): Product {
   return {
     ...product,
@@ -161,6 +195,17 @@ function transformProduct(product: any): Product {
     training_videos: Array.isArray(product.training_videos)
       ? (product.training_videos as unknown as TrainingVideo[])
       : []
+  };
+}
+
+// Listing rows don't include `training_videos`; downstream consumers should
+// only read `training_videos_count`. Returning an empty array keeps the type
+// surface compatible without putting "may be missing" everywhere.
+function transformProductListing(product: any): Product {
+  return {
+    ...product,
+    useful_links: product.useful_links ?? [],
+    training_videos: [],
   };
 }
 
@@ -187,6 +232,27 @@ async function fetchProductsFromServer(categoryId?: string): Promise<Product[]> 
   const { data, error } = await query;
   if (error) throw error;
   return (data || []).map(transformProduct);
+}
+
+// Slim sibling of `fetchProductsFromServer` — used by `useProducts(categoryId)`
+// for the category listing UI. Skips the heavy `training_videos` JSONB so the
+// initial paint after navigating to a category isn't waiting on multi-MB of
+// transcript/rich-content data we don't render on a card grid. Consumers that
+// need the full data (search, recommendations, offline cache, product detail
+// page) should keep using `fetchProductsFromServer` / `useAllProducts`.
+async function fetchProductsListingFromServer(categoryId?: string): Promise<Product[]> {
+  let query = supabase
+    .from('products')
+    .select(PRODUCTS_LISTING_SELECT)
+    .order('title');
+
+  if (categoryId) {
+    query = query.eq('category_id', categoryId);
+  }
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data || []).map(transformProductListing);
 }
 
 async function fetchProductByIdFromServer(productId: string): Promise<Product | null> {
@@ -254,8 +320,11 @@ export function invalidateCategoriesCache() {
 
 export function useProducts(categoryId?: string) {
   const { data, isLoading, error, refetch: queryRefetch } = useQuery({
-    queryKey: ['products', categoryId ?? 'all'],
-    queryFn: () => fetchProductsFromServer(categoryId),
+    // Distinct from `useAllProducts` (`['products', 'all']`) which fetches the
+    // full row including `training_videos`. This listing query skips that
+    // blob, so callers that need video content must use `useProductBySlugOrId`.
+    queryKey: ['products', 'listing', categoryId ?? 'all'],
+    queryFn: () => fetchProductsListingFromServer(categoryId),
     // Bumped 2min -> 10min: an FC opens a product page, watches a lesson
     // for 5-10 minutes, then comes back. The old 2min stale window caused
     // a redundant refetch (which pulls every training_videos blob) on

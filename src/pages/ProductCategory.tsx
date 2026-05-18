@@ -157,7 +157,9 @@ export default function ProductCategory() {
       isParentCategory
         ? {}
         : Object.fromEntries(
-            visibleProducts.map((p) => [p.id, (p as any).training_videos?.length || 0]),
+            // Listing query now returns `training_videos_count` (generated
+            // column) instead of the heavy `training_videos` JSONB blob.
+            visibleProducts.map((p) => [p.id, p.training_videos_count ?? 0]),
           ),
     [isParentCategory, visibleProducts],
   );

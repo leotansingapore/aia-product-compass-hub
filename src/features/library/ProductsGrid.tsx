@@ -18,8 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import { getCategorySlug } from "@/utils/slugUtils";
 import {
   invalidateCategoriesCache,
-  useAllProducts,
   useCategories,
+  useProductCategoryCounts,
   getCategoryChildren,
 } from "@/hooks/useProducts";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
@@ -69,7 +69,11 @@ function getVisual(name: string): CategoryVisual {
 export function ProductsGrid() {
   const navigate = useNavigate();
   const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
-  const { allProducts, loading: productsLoading } = useAllProducts();
+  // Previously this called `useAllProducts()` which selects `*` from products —
+  // including the heavy `training_videos` JSONB blob (rich content + transcripts
+  // for every video) just to compute category badge counts. Swapping to
+  // `useProductCategoryCounts` drops the payload from megabytes to <10KB.
+  const { countsByCategory, loading: productsLoading } = useProductCategoryCounts();
   const { can } = useFeatureAccess();
   const { isAdmin } = useAdmin();
   const persistCategoryOrder = useSortOrderPersister("categories");
@@ -80,13 +84,7 @@ export function ProductsGrid() {
   // returns false when impersonating, so this is the right gate.
   const canReorder = isAdmin;
 
-  const productCountByCategory = useMemo(() => {
-    const counts: Record<string, number> = {};
-    allProducts.forEach((product) => {
-      counts[product.category_id] = (counts[product.category_id] || 0) + 1;
-    });
-    return counts;
-  }, [allProducts]);
+  const productCountByCategory = countsByCategory;
 
   const topLevel = useMemo(
     () =>
@@ -111,7 +109,9 @@ export function ProductsGrid() {
     return direct + childSum;
   };
 
-  const totalProducts = allProducts.length;
+  // Sum counts across categories — same number as `allProducts.length` would
+  // have given, but derived from the slim counts map.
+  const totalProducts = Object.values(countsByCategory).reduce((s, n) => s + n, 0);
   const loading = categoriesLoading || productsLoading;
 
   return (

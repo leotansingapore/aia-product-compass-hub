@@ -111,7 +111,7 @@ function FolderCard({
       </div>
       {expanded && visibleChildren.length > 0 && (
         <div className={cn("px-3 sm:px-4 pb-4", depth > 0 && "ml-4 border-l-2 border-border/50")}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {visibleChildren.map(child => (
               <React.Fragment key={child.id}>
                 {renderNode(child, depth + 1)}
