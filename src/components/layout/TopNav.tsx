@@ -41,7 +41,7 @@ const ALL_NAV_ITEMS: NavItem[] = [
   // missing the entry which made it invisible on the laptop view.
   {
     title: "Sales Playbooks",
-    url: "/sales-playbooks",
+    url: "/library/playbooks",
     icon: TrendingUp,
     features: [FEATURES.SALES_PLAYBOOKS, FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
   },
@@ -64,6 +64,7 @@ const LINK_ACTIVE = "bg-primary/10 text-primary font-semibold";
 // with the sidebar — opening /scripts or /case-vault from anywhere highlights
 // the Sales Playbooks parent entry instead of showing no active item.
 const SALES_PLAYBOOK_ROUTES = [
+  "/library/playbooks",
   "/sales-playbooks",
   "/scripts",
   "/servicing",
@@ -97,7 +98,7 @@ export const TopNav = memo(function TopNav({
   // Custom active-state for items whose default NavLink prefix-match isn't
   // enough — Sales Playbooks needs to stay active on every sub-route.
   const isItemActive = (item: NavItem, defaultActive: boolean) => {
-    if (item.url === "/sales-playbooks") {
+    if (item.url === "/library/playbooks") {
       return SALES_PLAYBOOK_ROUTES.some((r) => location.pathname.startsWith(r));
     }
     return defaultActive;

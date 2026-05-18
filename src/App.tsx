@@ -72,13 +72,24 @@ const AIAssistant = lazyWithRetry(() => import("./pages/AIAssistant"));
 const ConceptCards = lazyWithRetry(() => import("./pages/ConceptCards"));
 const CaseVault = lazyWithRetry(() => import("./pages/CaseVault"));
 const CaseDetail = lazyWithRetry(() => import("./pages/CaseDetail"));
-const SalesPlaybooks = lazyWithRetry(() => import("./pages/SalesPlaybooks"));
 const DrawingsPlaybook = lazyWithRetry(() => import("./pages/DrawingsPlaybook"));
 const AssignDrawings = lazyWithRetry(() => import("./pages/AssignDrawings"));
 const ProductExam = lazyWithRetry(() => import("./pages/ProductExam"));
 const QuestionBanks = lazyWithRetry(() => import("./pages/QuestionBanks"));
 const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
 const Library = lazyWithRetry(() => import("./pages/Library"));
+const LibraryProductsTab = lazyWithRetry(() =>
+  import("./features/library/ProductsGrid").then((m) => ({ default: m.ProductsGrid })),
+);
+const LibraryQuestionBanksTab = lazyWithRetry(() =>
+  import("./features/library/QuestionBanksList").then((m) => ({ default: m.QuestionBanksList })),
+);
+const LibraryCheatSheetsTab = lazyWithRetry(() =>
+  import("./features/library/CheatSheetsList").then((m) => ({ default: m.CheatSheetsList })),
+);
+const LibrarySalesPlaybooksTab = lazyWithRetry(() =>
+  import("./features/library/SalesPlaybooksList").then((m) => ({ default: m.SalesPlaybooksList })),
+);
 const LearningTrack = lazyWithRetry(() => import("./pages/LearningTrack"));
 const LearningTrackIndex = lazyWithRetry(() => import("./pages/learning-track/LearningTrackIndex"));
 const LearningTrackPreRnf = lazyWithRetry(() => import("./pages/learning-track/PreRnf"));
@@ -166,7 +177,7 @@ const App = () => (
                     <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/content-studio" element={<RequireAuth><ContentStudio /></RequireAuth>} />
                     <Route path="/tools" element={<RequireAuth><Tools /></RequireAuth>} />
-                    <Route path="/cheat-sheets" element={<Navigate to="/library?tab=cheat-sheets" replace />} />
+                    <Route path="/cheat-sheets" element={<Navigate to="/library/cheat-sheets" replace />} />
                     <Route path="/cheat-sheets/:section/:slug" element={<RequireAuth><CheatSheetDetail /></RequireAuth>} />
                     <Route path="/admin" element={
                       <RequireAuth>
@@ -186,7 +197,12 @@ const App = () => (
                     <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><RequireTier feature="products"><VideoDetail /></RequireTier></RequireAuth>} />
                     <Route path="/question-banks" element={<RequireAuth><RequireTier feature="question-banks"><QuestionBanks /></RequireTier></RequireAuth>} />
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
-                    <Route path="/library" element={<RequireAuth><Library /></RequireAuth>} />
+                    <Route path="/library" element={<RequireAuth><Library /></RequireAuth>}>
+                      <Route path="products" element={<LibraryProductsTab />} />
+                      <Route path="question-banks" element={<LibraryQuestionBanksTab />} />
+                      <Route path="cheat-sheets" element={<LibraryCheatSheetsTab />} />
+                      <Route path="playbooks" element={<RequireTier feature="sales-playbooks"><LibrarySalesPlaybooksTab /></RequireTier>} />
+                    </Route>
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
@@ -197,7 +213,7 @@ const App = () => (
                     <Route path="/playbooks/:playbookId" element={<RequireAuth><RequireTier feature="playbooks"><PlaybookDetail /></RequireTier></RequireAuth>} />
                     <Route path="/flows" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
-                    <Route path="/sales-playbooks" element={<RequireAuth><RequireTier feature="sales-playbooks"><SalesPlaybooks /></RequireTier></RequireAuth>} />
+                    <Route path="/sales-playbooks" element={<Navigate to="/library/playbooks" replace />} />
                     <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
                     <Route path="/case-vault" element={<RequireAuth><RequireTier feature="case-vault"><CaseVault /></RequireTier></RequireAuth>} />
                     <Route path="/case-vault/:caseId" element={<RequireAuth><RequireTier feature="case-vault"><CaseDetail /></RequireTier></RequireAuth>} />

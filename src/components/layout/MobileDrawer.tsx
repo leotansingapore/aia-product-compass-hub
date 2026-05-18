@@ -28,14 +28,14 @@ export function MobileDrawer() {
     { name: "Roleplay Training", href: "/roleplay", icon: MessageCircle, feature: FEATURES.ROLEPLAY },
   ].filter((item) => can(item.feature));
 
-  // Sales Playbooks lands on the hub at /sales-playbooks (available to both
+  // Sales Playbooks lands on the hub at /library/playbooks (available to both
   // pre-RNF papers_taker and post-RNF tiers — drilling scripts/objections is
   // part of pre-RNF prep, not gated behind licensure).
   // Admins bypass via useFeatureAccess.can() so they always see these entries.
   const canSalesPlaybooks =
     can(FEATURES.SALES_PLAYBOOKS) || can(FEATURES.PLAYBOOKS) || can(FEATURES.SCRIPTS);
   const resourceItems = [
-    canSalesPlaybooks && { name: "Sales Playbooks", href: "/sales-playbooks", icon: TrendingUp },
+    canSalesPlaybooks && { name: "Sales Playbooks", href: "/library/playbooks", icon: TrendingUp },
     can(FEATURES.CONCEPT_CARDS) && { name: "Concept Cards", href: "/concept-cards", icon: Pencil, indent: true },
     can(FEATURES.CASE_VAULT) && { name: "Case Vault", href: "/case-vault", icon: Archive, indent: true },
   ].filter(Boolean) as { name: string; href: string; icon: any; indent?: boolean }[];

@@ -157,7 +157,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     { title: "Learning Track", url: "/learning-track", icon: TrendingUp, dataAttr: undefined, sectionId: "learning-track" },
     { title: "Leaderboard", url: "/leaderboard", icon: Trophy, dataAttr: undefined, sectionId: "leaderboard" },
     { title: "Library", url: "/library", icon: BookOpen, dataAttr: undefined, sectionId: "library" },
-    { title: "Cheat Sheets", url: "/library?tab=cheat-sheets", icon: FileText, dataAttr: undefined, sectionId: "cheat-sheets" },
+    { title: "Cheat Sheets", url: "/library/cheat-sheets", icon: FileText, dataAttr: undefined, sectionId: "cheat-sheets" },
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
@@ -183,7 +183,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const isCollapsed = state === "collapsed";
   const currentPath = location.pathname;
 
-  const salesPlaybookRoutes = ['/sales-playbooks', '/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
+  const salesPlaybookRoutes = ['/library/playbooks', '/sales-playbooks', '/scripts', '/servicing', '/objections', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
   const isActive = useMemo(() => (path: string) => {
     if (path === "/") return currentPath === "/";
     // "Sales Playbooks" link should be active on the hub or any sub-route
@@ -391,8 +391,8 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     <SidebarMenuItem>
                       <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
                         <NavLink
-                          to="/sales-playbooks"
-                          {...prefetchHandlers('/sales-playbooks')}
+                          to="/library/playbooks"
+                          {...prefetchHandlers('/library/playbooks')}
                           className={getNavClassName('/sales-playbooks')}
                         >
                           <TrendingUp className="h-4 w-4" />

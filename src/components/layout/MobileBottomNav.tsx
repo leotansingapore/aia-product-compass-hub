@@ -35,10 +35,11 @@ interface MobileNavItem {
   features?: readonly string[];
 }
 
-// Sales Playbooks lands on the hub at /sales-playbooks. The hub shows all
+// Sales Playbooks lands on the hub at /library/playbooks. The hub shows all
 // seven section cards (scripts / servicing / objections / playbooks / flows /
 // concept-cards / case-vault); the FC picks which one to open.
 const SALES_PLAYBOOK_ROUTES = [
+  "/library/playbooks",
   "/sales-playbooks",
   "/scripts",
   "/servicing",
@@ -60,11 +61,11 @@ const PRIMARY_ITEMS: MobileNavItem[] = [
   { name: "Library", href: "/library", icon: BookOpen, features: [FEATURES.PRODUCTS, FEATURES.QUESTION_BANKS] },
   { name: "Exams", href: "/cmfas-exams", icon: GraduationCap, features: [FEATURES.CMFAS] },
   // Sales Playbooks — daily-use for both pre-RNF and post-RNF FCs. Lands on
-  // the hub at /sales-playbooks where the FC picks a section (scripts /
+  // the hub at /library/playbooks where the FC picks a section (scripts /
   // servicing / objections / playbooks / flows / concept-cards / case-vault).
   {
     name: "Sales",
-    href: "/sales-playbooks",
+    href: "/library/playbooks",
     icon: TrendingUp,
     features: [FEATURES.SALES_PLAYBOOKS, FEATURES.PLAYBOOKS, FEATURES.SCRIPTS],
   },
