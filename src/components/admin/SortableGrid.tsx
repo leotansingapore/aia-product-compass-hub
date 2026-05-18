@@ -117,8 +117,8 @@ interface SortableItemProps {
  * a long-press anywhere on the card grabs it. A normal click still passes
  * through to inner buttons (the activation delay is the bouncer).
  *
- * When `enabled` is false, renders a plain wrapper — no hook overhead, no
- * pointer handlers, no chance of interfering with anchor/button click paths.
+ * When `enabled` is false, the sortable hook stays mounted but disabled so the
+ * hook order remains stable if admin reorder state changes after first render.
  */
 export function SortableItem({
   id,
@@ -137,21 +137,6 @@ export function SortableItem({
       {children}
     </SortableItemInner>
   );
-}
-
-function Wrapper({
-  as,
-  className,
-  children,
-}: {
-  as: "div" | "li";
-  className?: string;
-  children: ReactNode;
-}) {
-  if (as === "li") {
-    return <li className={className}>{children}</li>;
-  }
-  return <div className={className}>{children}</div>;
 }
 
 function SortableItemInner({
