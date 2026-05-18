@@ -38,6 +38,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useBatchVideoProgress } from "@/hooks/useBatchVideoProgress";
+import { cn } from "@/lib/utils";
 
 // Frozen so a future writer can't accidentally mutate the module-scope
 // singleton (`productCountByChild` reads from it on every leaf-category
@@ -376,32 +377,41 @@ export default function ProductCategory() {
     >
       {/* Core Training is a Papers-taker training surface (sibling of First
           60 Days / Product Mastery). Show the journey rail so learners see
-          where they are and can hop to the other Pre-RNF phase pages. */}
-      {categorySlugOrId === "core-training" && (
+          where they are and can hop to the other Pre-RNF phase pages.
+          Skip the BrandedPageHeader for parity with the learning-track pages
+          (PreRnf / First60Days) so navigating between siblings doesn't jolt
+          the user with a different shell. */}
+      {categorySlugOrId === "core-training" ? (
         <LearningTrackJourneyNav activeKey="papers_taker" />
+      ) : (
+        <BrandedPageHeader
+          title={category.name}
+          titlePrefix={categoryInfo?.icon ? `${categoryInfo.icon} ` : undefined}
+          subtitle={category.description || categoryInfo?.description}
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "Product Categories", href: "/categories" },
+            ...(parentCategory
+              ? [
+                  {
+                    label: parentCategory.name,
+                    href: `/category/${getCategorySlug(parentCategory.name)}`,
+                  },
+                ]
+              : []),
+            { label: category.name },
+          ]}
+          onTitleEdit={isAdmin() ? handleCategoryTitleEdit : undefined}
+          onSubtitleEdit={isAdmin() ? handleCategoryDescriptionEdit : undefined}
+        />
       )}
-      <BrandedPageHeader
-        title={category.name}
-        titlePrefix={categoryInfo?.icon ? `${categoryInfo.icon} ` : undefined}
-        subtitle={category.description || categoryInfo?.description}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Product Categories", href: "/categories" },
-          ...(parentCategory
-            ? [
-                {
-                  label: parentCategory.name,
-                  href: `/category/${getCategorySlug(parentCategory.name)}`,
-                },
-              ]
-            : []),
-          { label: category.name },
-        ]}
-        onTitleEdit={isAdmin() ? handleCategoryTitleEdit : undefined}
-        onSubtitleEdit={isAdmin() ? handleCategoryDescriptionEdit : undefined}
-      />
 
-      <div className="mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8">
+      <div
+        className={cn(
+          "mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8",
+          categorySlugOrId === "core-training" && "max-w-3xl sm:px-0 md:px-0 pt-4 pb-10",
+        )}
+      >
         {/* Sibling-page nav for Core Training — mirrors the 3-card pattern
             used on First 60 Days / Assignments / Product Mastery hubs so the
             four Pre-RNF surfaces all let learners hop between each other. */}
