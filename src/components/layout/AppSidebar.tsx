@@ -60,7 +60,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { LIBRARY_TABS } from "@/pages/Library";
+import { ChevronRight } from "lucide-react";
 import { useCategories, invalidateCategoriesCache, useProducts } from "@/hooks/useProducts";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -359,49 +361,53 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                     </NavLink>
                   );
 
-                  // Library shows a hover-card preview listing the four
-                  // sub-tabs (Products / Question Banks / Cheat Sheets /
-                  // Sales Playbooks) so users can jump straight to one tab
-                  // without two clicks.
-                  const wrapped = item.sectionId === "library" ? (
-                    <HoverCard openDelay={120} closeDelay={80}>
-                      <HoverCardTrigger asChild>{navLink}</HoverCardTrigger>
-                      <HoverCardContent
-                        side="right"
-                        align="start"
-                        sideOffset={8}
-                        className="w-64 p-2"
-                      >
-                        <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                          Jump to
-                        </p>
-                        <ul className="space-y-0.5">
-                          {LIBRARY_TABS.map((tab) => {
-                            const TabIcon = tab.icon;
-                            return (
-                              <li key={tab.slug}>
-                                <NavLink
-                                  to={tab.path}
-                                  {...prefetchHandlers(tab.path)}
-                                  className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-                                >
-                                  <TabIcon className="h-4 w-4 text-muted-foreground" />
-                                  <span>{tab.label}</span>
-                                </NavLink>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </HoverCardContent>
-                    </HoverCard>
-                  ) : (
-                    navLink
-                  );
+                  // Library nav shows a tab-preview from two triggers:
+                  // (1) HoverCard on hover for desktop mouse users; and
+                  // (2) Popover on a SidebarMenuAction caret for tap, so
+                  //     touch users (iPad / mobile sidebar) also get the
+                  //     preview without losing the click-to-navigate
+                  //     behavior of the main row.
+                  if (item.sectionId === "library") {
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
+                          <HoverCard openDelay={120} closeDelay={80}>
+                            <HoverCardTrigger asChild>{navLink}</HoverCardTrigger>
+                            <HoverCardContent
+                              side="right"
+                              align="start"
+                              sideOffset={8}
+                              className="w-64 p-2"
+                            >
+                              <LibraryTabsPreview />
+                            </HoverCardContent>
+                          </HoverCard>
+                        </SidebarMenuButton>
+                        {!isCollapsed && (
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <SidebarMenuAction aria-label="Show Library sections">
+                                <ChevronRight className="h-4 w-4" />
+                              </SidebarMenuAction>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              side="right"
+                              align="start"
+                              sideOffset={8}
+                              className="w-64 p-2"
+                            >
+                              <LibraryTabsPreview />
+                            </PopoverContent>
+                          </Popover>
+                        )}
+                      </SidebarMenuItem>
+                    );
+                  }
 
                   return (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
-                        {wrapped}
+                        {navLink}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   );
@@ -633,3 +639,30 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
 });
 
 export { AppSidebar };
+
+function LibraryTabsPreview() {
+  return (
+    <>
+      <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        Jump to
+      </p>
+      <ul className="space-y-0.5">
+        {LIBRARY_TABS.map((tab) => {
+          const TabIcon = tab.icon;
+          return (
+            <li key={tab.slug}>
+              <NavLink
+                to={tab.path}
+                {...prefetchHandlers(tab.path)}
+                className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                <TabIcon className="h-4 w-4 text-muted-foreground" />
+                <span>{tab.label}</span>
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+    </>
+  );
+}
