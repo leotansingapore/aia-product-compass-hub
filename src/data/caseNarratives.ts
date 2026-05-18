@@ -2038,10 +2038,99 @@ PLP is the case where the FC has to defend a product against their *own* decoupl
 };
 
 /**
+ * Inline drawing-link map.
+ *
+ * Each entry maps a regex pattern that may appear in narrative prose to the
+ * canonical drawing name on the Concept Cards page. The linkifier replaces
+ * the *first* occurrence of each pattern in the narrative with a markdown
+ * link to /concept-cards?q=<canonical name>, so a reader can pop the drawing
+ * open mid-read without scrolling to the bottom of the page.
+ *
+ * Patterns must be conservative — better to miss a reference than to
+ * over-link. Add a row here when a new drawing is added to the Concept
+ * Cards page.
+ */
+const DRAWING_PATTERNS: Array<{ pattern: RegExp; drawing: string }> = [
+  { pattern: /\bBTIR( comparison)?\b/i, drawing: "The BTIR comparison (decoupling)" },
+  { pattern: /\bbuffet analogy\b/i, drawing: "CI / ECI / Relapse buffet analogy" },
+  { pattern: /\bretirement[\s-]gap (calculation|math)\b/i, drawing: "The retirement-gap calculation" },
+  { pattern: /\bsource[\s-]of[\s-]funds(?:\s+(?:vs|and)\s+needs)?(?:\s+ledger)?\b/i, drawing: "Source-of-funds vs needs (LHS / RHS ledger)" },
+  { pattern: /\bWelcome\s+Bonus\s+stack\b/i, drawing: "The Welcome + Loyalty bonus stack" },
+  { pattern: /\bsupplementary\s+charge\s+curve\b/i, drawing: "The supplementary charge curve" },
+  { pattern: /\bdividend\s+(?:income\s+)?vs\s+lump[\s-]sum\b/i, drawing: "Dividend income vs lump-sum drawdown" },
+  { pattern: /\bdividend\s+mode\b/i, drawing: "Dividend income vs lump-sum drawdown" },
+  { pattern: /\b(?:three|3)\s+birds\b/i, drawing: "Lump sum vs dividend mode ('3 birds' reveal)" },
+  { pattern: /\b4[\s-]quadrant\s+coverage\s+grid\b/i, drawing: "The 4-quadrant coverage grid" },
+  { pattern: /\bcoverage\s+hierarchy\b/i, drawing: "The 4-quadrant coverage grid" },
+  { pattern: /\bterm\s+vs\s+(?:whole[\s-]?)?life\s+comparison\b/i, drawing: "The Term vs Life comparison" },
+  { pattern: /\bbefore\s*\/\s*after\s+restructure\b/i, drawing: "The before / after restructure" },
+  { pattern: /\bdiversified\s+portfolio\s+pie\s+chart\b/i, drawing: "The diversified portfolio pie chart" },
+  { pattern: /\bhospital\s+plan\s+with\s*\/\s*without\s+rider\b/i, drawing: "Hospital plan with / without rider" },
+  { pattern: /\bdeductible\s+math\b/i, drawing: "Hospital plan with / without rider" },
+  { pattern: /\bPlan\s+A\s+vs\s+B\s+vs\s+C\s+ward\b/i, drawing: "Plan A vs B vs C ward comparison" },
+  { pattern: /\baccident\s+vs\s+hospital(?:\s+coverage)?(?:\s+scope)?\b/i, drawing: "Accident vs hospital coverage scope" },
+  { pattern: /\bdecoupl(?:ing|e)\s+(?:into|the)?\s*term\s*\+\s*standalone\s+CI/i, drawing: "Decoupling — term + standalone CI + pure invest" },
+  { pattern: /\bEarly\s+CI\s+vs\s+Major\s+CI\b/i, drawing: "Early CI vs Major CI definitions" },
+  { pattern: /\bGPP\s+vs\s+UCC\b/i, drawing: "GPP vs UCC comparison" },
+  { pattern: /\bwhole[\s-]life\s+cash[\s-]value\s+redirect\b/i, drawing: "Whole-life cash-value redirect (pre-retiree)" },
+  { pattern: /\bretirement\s+healthcare\s+funding(?:\s+angle)?\b/i, drawing: "The retirement healthcare funding angle" },
+  { pattern: /\bnet[\s-]yield(?:\s+calculation|\s+exposure|\s+gap)\b/i, drawing: "Pulsar / Tokio / Manulife net-yield exposure" },
+  { pattern: /\bstartup[\s-]bonus\s+gimmick\b/i, drawing: "168% / 120% startup-bonus gimmick exposure" },
+  { pattern: /\bsavings\s+vs\s+investing(?:\s+comparison)?\b/i, drawing: "Savings vs investing comparison" },
+  { pattern: /\bAPA\s+vs\s+(?:S&P(?:\s+500)?|DIY)\b/i, drawing: "AIA APA vs S&P 500 / DIY — structural list" },
+  { pattern: /\bGoals\s+Mapper\s+(?:visualisation|tool)\b/i, drawing: "The retirement-gap calculation" },
+];
+
+/**
+ * Walks the narrative string and replaces the first occurrence of each known
+ * drawing-trigger phrase with a markdown link to the matching Concept Cards
+ * entry. Skips matches that already sit inside a markdown link or a code
+ * span so we don't corrupt the markdown.
+ */
+function linkifyDrawings(narrative: string): string {
+  const linked = new Set<string>();
+  let result = narrative;
+
+  for (const { pattern, drawing } of DRAWING_PATTERNS) {
+    if (linked.has(drawing)) continue;
+    const oneShot = new RegExp(pattern.source, pattern.flags.replace("g", ""));
+    const match = oneShot.exec(result);
+    if (!match) continue;
+
+    // Bail if the match sits inside an existing markdown link — markdown
+    // doesn't support nested links and we'd corrupt the output. Check
+    // whether the prefix has an unmatched `[`.
+    const before = result.slice(0, match.index);
+    const openBracket = before.lastIndexOf("[");
+    const closeBracket = before.lastIndexOf("]");
+    if (openBracket > closeBracket) continue;
+
+    // Also skip code spans on the same line (between two backticks).
+    const lineStart = before.lastIndexOf("\n") + 1;
+    const linePrefix = result.slice(lineStart, match.index);
+    const tickCount = (linePrefix.match(/`/g) || []).length;
+    if (tickCount % 2 === 1) continue;
+
+    const url = `/concept-cards?q=${encodeURIComponent(drawing)}`;
+    const linkMarkdown = `[${match[0]}](${url})`;
+    result =
+      result.slice(0, match.index) +
+      linkMarkdown +
+      result.slice(match.index + match[0].length);
+    linked.add(drawing);
+  }
+
+  return result;
+}
+
+/**
  * Returns the narrative markdown for a given case id, or null if none exists.
- * Used by CaseDetail.tsx to render the main reading content.
+ * Used by CaseDetail.tsx to render the main reading content. The returned
+ * markdown has drawing references auto-linked to matching Concept Cards
+ * entries so the reader can pop a drawing open mid-read.
  */
 export function getCaseNarrative(caseId: string): string | null {
   const narrative = CASE_NARRATIVES[caseId];
-  return narrative ? narrative.trim() : null;
+  if (!narrative) return null;
+  return linkifyDrawings(narrative.trim());
 }
