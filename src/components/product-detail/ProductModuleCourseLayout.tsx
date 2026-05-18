@@ -1,4 +1,5 @@
-import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef, type RefObject } from "react";
+import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -39,16 +40,12 @@ import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 const OUTLINE_SHEET_ID = "product-course-outline";
 
-/** Thin progress bar that tracks scroll position inside a container (or the
- *  window if no ref is given). Resets to 0 when `resetKey` changes — used to
- *  reset between lessons so the bar isn't stuck at 100% on lesson switch. */
-function LessonReadingProgress({
-  scrollRef,
-  resetKey,
-}: {
-  scrollRef?: RefObject<HTMLElement>;
-  resetKey?: string | number;
-}) {
+/** Thin reading-progress bar fixed to the top of the viewport. Tracks window
+ *  scroll (this app's lesson page scrolls the window, not a nested container).
+ *  Portaled to `document.body` so it escapes the `.page-transition` ancestor —
+ *  that wrapper uses a transform which would otherwise capture `position: fixed`
+ *  descendants. Resets to 0 when `resetKey` changes (between lessons). */
+function LessonReadingProgress({ resetKey }: { resetKey?: string | number }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -56,37 +53,31 @@ function LessonReadingProgress({
   }, [resetKey]);
 
   useEffect(() => {
-    const target: HTMLElement | Window = scrollRef?.current ?? window;
     let raf: number | null = null;
-
     const compute = () => {
       raf = null;
-      if (target === window) {
-        const doc = document.documentElement;
-        const max = doc.scrollHeight - doc.clientHeight;
-        setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
-      } else {
-        const el = target as HTMLElement;
-        const max = el.scrollHeight - el.clientHeight;
-        setProgress(max > 0 ? Math.min(100, Math.max(0, (el.scrollTop / max) * 100)) : 0);
-      }
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
     };
-
     const onScroll = () => {
       if (raf === null) raf = requestAnimationFrame(compute);
     };
-
     compute();
-    target.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
-      target.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       if (raf !== null) cancelAnimationFrame(raf);
     };
-  }, [scrollRef]);
+  }, []);
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div
-      className="pointer-events-none absolute inset-x-0 top-0 z-30 h-0.5 bg-transparent"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[3px] bg-transparent"
       role="progressbar"
       aria-label="Reading progress"
       aria-valuenow={Math.round(progress)}
@@ -97,7 +88,8 @@ function LessonReadingProgress({
         className="h-full bg-primary transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -194,7 +186,6 @@ export function ProductModuleCourseLayout({
   // CSS), so two Loom iframes streamed audio in parallel — the "something is
   // playing in the background" bug.
   const isTabletOrMobile = useIsTabletOrMobile();
-  const desktopMainRef = useRef<HTMLElement>(null);
   const [notesPanelOpen, setNotesPanelOpen] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
@@ -791,6 +782,10 @@ export function ProductModuleCourseLayout({
 
   return (
     <div className={cn("min-w-0 overflow-x-hidden", className)}>
+      {/* Reading-progress bar — portals to <body> so it stays viewport-pinned
+          even though our ancestor uses `transform` for page transitions. */}
+      <LessonReadingProgress resetKey={currentVideoIndex} />
+
       {/* ═══════════════════════════════════════════════════════════
           DESKTOP: Persistent left sidebar + right content (lg+)
           Like Skool classroom layout
@@ -811,8 +806,7 @@ export function ProductModuleCourseLayout({
         </aside>
 
         {/* ── Right main content ── */}
-        <main ref={desktopMainRef} className="relative flex-1 min-w-0 overflow-y-auto">
-          <LessonReadingProgress scrollRef={desktopMainRef} resetKey={currentVideoIndex} />
+        <main className="relative flex-1 min-w-0">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
             {useZincLessonChrome ? (
               <div className="bg-zinc-950">
@@ -884,17 +878,25 @@ export function ProductModuleCourseLayout({
               </div>
             </div>
           </Tabs>
+        </main>
+      </div>
+      )}
 
-          {/* Floating "Notes" pill + slide-in panel — surfaces note-taking
-              without making the user leave the lesson to find the tab. */}
+      {/* Floating "Notes" pill + slide-in panel — surfaces note-taking without
+          making the user leave the lesson to find the tab. Portaled to <body>
+          so they're viewport-pinned (fixed positioning breaks inside the
+          transformed .page-transition ancestor otherwise). Desktop only —
+          mobile already has "My notes" in the tab strip and a smaller viewport. */}
+      {!isTabletOrMobile && typeof document !== "undefined" && createPortal(
+        <>
           <button
             type="button"
             onClick={() => setNotesPanelOpen((v) => !v)}
             className={cn(
-              "fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-full border bg-background px-4 py-2.5 text-sm font-medium shadow-lg transition-all hover:shadow-xl",
+              "fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium shadow-lg transition-all hover:shadow-xl",
               notesPanelOpen
                 ? "border-primary/40 bg-primary text-primary-foreground"
-                : "border-border text-foreground hover:border-primary/40 hover:text-primary",
+                : "border-border bg-background text-foreground hover:border-primary/40 hover:text-primary",
             )}
             aria-expanded={notesPanelOpen}
             aria-controls="lesson-notes-panel"
@@ -905,14 +907,14 @@ export function ProductModuleCourseLayout({
           {notesPanelOpen && (
             <aside
               id="lesson-notes-panel"
-              className="fixed bottom-0 right-0 top-12 z-30 flex w-full max-w-md flex-col border-l bg-background shadow-2xl animate-in slide-in-from-right duration-200"
+              className="fixed bottom-0 right-0 top-12 z-40 flex w-full max-w-md flex-col border-l bg-background shadow-2xl"
               aria-label="Lesson notes"
             >
               <header className="flex items-center justify-between border-b px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <NotebookPen className="h-4 w-4 text-primary" />
+                <div className="flex min-w-0 items-center gap-2">
+                  <NotebookPen className="h-4 w-4 shrink-0 text-primary" />
                   <h3 className="text-sm font-semibold">My notes</h3>
-                  <span className="text-xs text-muted-foreground">— {productTitle}</span>
+                  <span className="truncate text-xs text-muted-foreground">— {productTitle}</span>
                 </div>
                 <button
                   type="button"
@@ -928,19 +930,15 @@ export function ProductModuleCourseLayout({
               </div>
             </aside>
           )}
-        </main>
-      </div>
+        </>,
+        document.body,
       )}
 
       {/* ═══════════════════════════════════════════════════════════
           MOBILE / TABLET: Original stacked layout with Sheet drawer
          ═══════════════════════════════════════════════════════════ */}
       {isTabletOrMobile && (
-      <div className="relative">
-        {/* Window-scroll progress bar fixed under the app header */}
-        <div className="pointer-events-none fixed inset-x-0 top-0 z-40">
-          <LessonReadingProgress resetKey={currentVideoIndex} />
-        </div>
+      <div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
           {/* Lesson bar + video + nav + tab strip (stacked under player when embed exists) */}
           <div
