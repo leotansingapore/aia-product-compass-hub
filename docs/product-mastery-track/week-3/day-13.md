@@ -350,12 +350,6 @@ The verbatim:
 
 ---
 
-## What's coming next
-
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (GPP vs Term, GPP vs Whole Life, "I already have CI", "why pay for cover I won't use", BTID). The conviction-story heart of the GPP track. Part 2 — cross-sell + bundling: GPP + UCC packaging, GPP-on-spouse, the Mum-to-Baby + Payer Benefit play for young families.
-
----
-
 ## Quiz
 1. **What is the structural inversion that Day 3 says most FCs get wrong about GPP?**
 - A) The cash value is the headline; protection is the bonus

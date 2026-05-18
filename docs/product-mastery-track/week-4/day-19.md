@@ -266,12 +266,6 @@ If the prospect's existing plan has:
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the 6 compliance pillars (14-day free-look, 7-day survival, 90-day cardiac/cancer waiting, 2-year Enhancer relapse waiting, pre-existing exclusion, non-guaranteed premium + zero surrender value). Part 2 — term-then-rider close discipline, AIA Vitality, Teladoc/WhiteCoat handoff, post-close service.
-
----
-
 ## Quiz
 1. **What is the underlying objection that all 5 UCC pushbacks route back to?**
 - A) "I don't trust insurance companies"

@@ -234,12 +234,6 @@ For health-conscious prospects, this is a real reason to enrol Vitality at deliv
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the four mandatory MAS disclosures (premiums-not-guaranteed, one-IP-per-MediSave, switching disclosure, value-added-services-not-contractual). Part 2 — the two-option close ("private or public?"), IPOS workflow, breakfast-comparison framing, delivery, post-close service rhythm.
-
----
-
 ## Quiz
 1. **The conviction story for "MediShield Life is enough" is anchored on which concept?**
 - A) Lifetime coverage

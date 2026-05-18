@@ -259,12 +259,6 @@ If you're approaching the 30-minute mark and still in Phase 5, you're losing the
 
 ---
 
-## What's coming next
-
-Day 3: the math and the Q&A. Part 1 — the 4-plan × 8-benefit table, Class 1-2 vs 3-4 premiums, optional benefit groups, Schedule of Injuries (broken bones), Renewal Bonus mechanics. Part 2 — top 5 client questions ("I'm careful, won't have an accident", "have employer cover", "is $5K lifetime?", "how easy to claim?", "why Plan 4?").
-
----
-
 ## Quiz
 1. **According to Day 2, what are the three confirmations the FC must obtain in the 5-minute Solitaire PA fact-find?**
 - A) Income, age, citizenship status

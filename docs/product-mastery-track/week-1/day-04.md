@@ -474,13 +474,6 @@ The general rule: don't walk away from a case just because the prospect surfaces
 
 --
 
-
-## What's coming next
-
-Day 5 shifts to the close and the post-close architecture. With objection-handling consolidated here in Day 4, Day 5 focuses on the engineered close — Phase 6 + Phase 7 paperwork — plus the 90-day post-close rhythm that turns a closed case into a long-term relationship and 2-3 referrals.
-
----
-
 ## Quiz
 
 1. **The Perfect / Imperfect / Partially Perfect frame is used to handle which objection?**

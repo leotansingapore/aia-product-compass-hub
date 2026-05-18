@@ -245,12 +245,6 @@ If the prospect:
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the 3 ILP disclosures (premiums not guaranteed, policy values not guaranteed, past performance not indicative) + 14-day free-look + suicide year-1 + reinstatement window. Part 2 — the budget-choice close, portfolio matching (Pro Adventurous/Balanced/Cautious to risk profile), 30-day check-in discipline, referral chain.
-
----
-
 ## Quiz
 1. **The core defense for PLP earning its premium over GPP is:**
 - A) PLP has a higher death benefit dollar-for-dollar

@@ -216,7 +216,6 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 
 ## The numbers cheat sheet
 
-
 | #   | Item                                                            | Value                                                    |
 | --- | --------------------------------------------------------------- | -------------------------------------------------------- |
 | 1   | Supplementary charge                                            | 3.9% p.a., first 10 yrs only                             |
@@ -235,7 +234,6 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 | 14  | Break-even year where bonuses = supplementary charges ($12k/yr) | ~Year 34                                                 |
 | 15  | FMC of default funds                                            | Conservative ~1.05%, Balanced ~1.25%, Adventurous ~1.45% |
 | 16  | Default funds for most cases                                    | Adventurous Index Fund                                   |
-
 
 ---
 
@@ -385,7 +383,6 @@ The seed-plant line — use this even when the prospect doesn't ask, during the 
 
 > *"Speaking of protection — APA also has 5 optional riders we can layer on. The two that come up most often are the Term Rider — if you want a $1M death / TPD layer it's usually cheaper as a rider on APA than as a standalone term plan — and ECPWP, Enhanced Critical Payor Waiver, which means if you get a major critical illness or become disabled, AIA waives your future premiums but the plan keeps growing. If you already own a whole life or a hybrid ILP, there's also a restructure conversation worth having on the next visit."*
 
-
 ---
 
 ## The "what if AIA goes bankrupt?" question (rare but loaded)
@@ -419,12 +416,6 @@ The five answers above handle *curious* prospects. If a prospect asks:
 - *"I want my dividends now (not later)"*
 
 — those are sitting one rung deeper. They need the conviction stories from Day 4, not the Q&A scripts here. The cleanest way to tell the difference live: a question is the prospect probing for information; an objection is the prospect telling you the recommendation doesn't fit yet. Different responses, different energy.
-
----
-
-## What's coming next
-
-Day 4: defence + expansion. The S&P500 conviction story (Perfect / Imperfect / Partially Perfect), the $1.3M dividend trap, the competitor matrix — then the cross-sell architecture that turns one APA case into a multi-product, multi-generation relationship.
 
 ---
 

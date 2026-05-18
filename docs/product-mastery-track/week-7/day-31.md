@@ -312,12 +312,6 @@ For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the 16-point Discovery Deep Dive (with SingPass in-meeting policy retrieval). Part 2 — the source's explicit 7-phase pitch flow (Rapport → Framework → Discovery → CPF Education → Gap Analysis → Solution → Close) with verbatim phrases for each phase.
-
----
-
 ## Quiz
 1. **According to Day 1, what kind of plan is AIA Platinum Wealth Venture 2.0?**
 - A) A 5-year participating endowment with guaranteed returns

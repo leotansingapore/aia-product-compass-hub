@@ -248,12 +248,6 @@ If you stop at iPOS and never run #4-11, you closed a fraction of a case. PWV re
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete pre-retiree appointment with Mr Lim Wei Cheong (58, $14.5K household income, $185K OA, legacy Pro Achiever yielding 1.4% IRR, $52K matured Prudential payout uninvested). Recorded on Loom, 6-dimension self-review.
-
----
-
 # Case Study Vault — PWV Field Receipts
 
 Anonymised case studies from real PWV closes — pre-retiree restructures, ILP cross-shops, and CPF-redirect plays. Each case has the prospect profile, what they were sold by the competitor, the structural attack, and the verified math.

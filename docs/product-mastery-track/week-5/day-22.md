@@ -212,12 +212,6 @@ If you're approaching the 30-minute mark and you're still in Phase 7, you're los
 
 ---
 
-## What's coming next
-
-Day 3: the math behind HSGM. Part 1 — every number a sharp prospect will probe (premiums, deductibles, co-insurance, the S$6,000 cap, Cancer Care Pro mechanics, MediSave AWL). Part 2 — the 5 client questions that come up in every appointment with crisp scripted answers (A&E vs CI vs employer vs MediSave vs claim-impact-on-premium).
-
----
-
 ## Quiz
 1. **What is the first step of the fact-find before pitching HSGM?**
 - A) Quote the premium immediately

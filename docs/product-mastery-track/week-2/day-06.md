@@ -209,12 +209,6 @@ Pair this with the SFT comparison from Day 4 — extending term coverage from 65
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the fact-find that surfaces estate-planning needs and qualifies for the 10-year horizon. Part 2 — the 5-step pitch flow (Anchor → Juxtapose → Illustrator → Linearise → Choose) with the budget→coverage table and the linearisation math that converts an age-100 figure into a felt monthly profit.
-
----
-
 ## Quiz
 1. **PLP is best described as which type of policy?**
 - A) A traditional whole-life par plan with guaranteed bonus

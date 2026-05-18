@@ -221,12 +221,6 @@ That's the target the entire 5-day track is calibrated to.
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete HSGM appointment — Phases 1 through 8 — recorded on Loom, with a 6-dimension self-review. This is the proof you can sell HSGM. No more theory. Live reps from here.
-
----
-
 # Case Study Vault — HSGM Field Receipts
 
 Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C-only plan, no rider, no idea about the $3,500 deductible or 10% co-insurance, and assumes "I'm covered." On inspection, the gap is significant.

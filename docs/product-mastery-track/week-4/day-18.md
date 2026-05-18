@@ -219,12 +219,6 @@ But if they push:
 
 ---
 
-## What's coming next
-
-Day 4: the conviction stories. Part 1 — the 5 hardest objections (the toughest objections live here). Part 2 — cross-sell + bundling: the canonical GPP + UCC pairing, plus 6 real restructure case studies from Video 8.
-
----
-
 ## Quiz
 1. **What does "unlimited" actually mean on the base UCC plan?**
 - A) Unlimited claims for the same illness

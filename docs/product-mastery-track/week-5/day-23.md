@@ -254,12 +254,6 @@ But if they push back with:
 
 ---
 
-## What's coming next
-
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (this is the conviction-story heart). Part 2 — cross-sell + bundling: HSGM + Cancer Care Pro + Emergency Care Pro architecture, then the HSGM-as-door-opener for APA/PA/CI follow-ups.
-
----
-
 ## Quiz
 1. **The HSGM premium is best described as:**
 - A) Fully MediSave-payable for all components

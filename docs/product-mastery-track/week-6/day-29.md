@@ -229,12 +229,6 @@ The script:
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the disclosures (yearly-renewable not guaranteed, 50%-at-75, age-80 termination, 14-day free-look, exclusions). Part 2 — the direct close ("Plan 1, 2, 3, or 4?"), SQS quotation flow, AIA+ self-claim handoff at delivery.
-
----
-
 ## Quiz
 1. **According to Day 4, Solitaire PA objections cluster into which three categories?**
 - A) Price, age, occupation

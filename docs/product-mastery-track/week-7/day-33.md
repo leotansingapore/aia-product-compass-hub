@@ -293,12 +293,6 @@ But if they push:
 
 ---
 
-## What's coming next
-
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (think-about-it, discuss-with-spouse, market-volatile, prefer-FDs, next-year). Part 2 — the APA → PWV restructure sequence (5-step audit → quantify → compare → document → redeploy) for prospects with legacy ILPs.
-
----
-
 ## Quiz
 1. **According to Day 3, why does the healthcare premium angle work as the most powerful emotional driver for pre-retirees?**
 - A) It is unique to AIA and competitors cannot match it

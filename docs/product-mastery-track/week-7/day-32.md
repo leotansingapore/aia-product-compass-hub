@@ -266,12 +266,6 @@ Meeting 1 should NEVER cross 75 minutes. If you're at 75 and still in Phase 5, c
 
 ---
 
-## What's coming next
-
-Day 3: the math + Q&A. Part 1 — the healthcare cost angle ($412K lifetime premium → asset vs expense reframe), the color-coded policy review (Green/Orange/Red). Part 2 — the top 5 client questions (dividend rate, death benefit, liquidity, payout method, fees).
-
----
-
 ## Quiz
 1. **According to Day 2, what is the bridging language used to convert the discovery from "interrogation" to "professional work"?**
 - A) "Trust me, I need this information"

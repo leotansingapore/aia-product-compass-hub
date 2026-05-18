@@ -235,12 +235,6 @@ The Enhancer adds 5 named relapse conditions at 50% of cover per episode (capped
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the 5 power questions for discovery (does GPP cover Early CI · is it multi-claim · once claimed can you claim again · CI claim affect death/savings · can you buy another plan after claiming). Part 2 — the source's 5-phase pitch flow (Open → Pitch → TVM → Riders → Case Studies).
-
----
-
 ## Quiz
 1. **How many medical conditions does UCC cover, and how are they distributed across the three stages?**
 - A) 100 conditions: 30 Early / 30 Intermediate / 40 Major

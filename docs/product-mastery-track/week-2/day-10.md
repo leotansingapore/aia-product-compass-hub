@@ -246,12 +246,6 @@ That's the target.
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete PLP appointment with Mr Tan Wei Ming (42, SME owner, $320K income, $1M term gap, two kids, legacy floor need). Recorded on Loom, 6-dimension self-review.
-
----
-
 # Case Study Vault — PLP Field Receipts
 
 PLP and whole-life restructure case studies. Pattern: prospects bought from parents' family agent years ago, got a too-small bundled life plan, never reviewed it. Most are perfect candidates for the **decoupling** play — terminate the bundled coverage, separate it into term + standalone CI + pure investment.

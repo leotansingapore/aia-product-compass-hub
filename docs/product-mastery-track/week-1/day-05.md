@@ -1029,12 +1029,6 @@ For the GE Flexi-cash holder mid-term: run the surrender penalty math honestly. 
 
 ---
 
-## What's coming next
-
-End of the 5-day Pro Achiever track. Days 6-10 (later in the curriculum) cover roleplay assignments, restructured-case audits, and the cross-product layering with HSGM (medical), PLP (legacy floor), and PWV (pre-retiree).
-
----
-
 ## Quiz
 
 1. **The structural difference between APA's supplementary charge and FWD Invest Plus's supplementary charge is:**

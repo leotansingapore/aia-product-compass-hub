@@ -337,12 +337,6 @@ This is a 2-product play for clients with $200k+ household income or significant
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the risk disclosures (non-guaranteed bonus, accelerated CI, Premium Pause as loan, exclusions, waiting periods). Part 2 — the four-hoops layered close, the with-Early-CI / without-Early-CI binary, paperwork, delivery, and the next-conversation setup.
-
----
-
 ## Quiz
 1. **What is the central conviction frame for "GPP is too expensive vs Term"?**
 - A) GPP outperforms term on first-year premium

@@ -289,12 +289,6 @@ If you're approaching the 25-minute mark and you're still in Phase 4, you're los
 
 ---
 
-## What's coming next
-
-Day 3: the math behind GPP. Part 1 — every number a sharp prospect will probe (premiums, riders, accelerated CI mechanics, illustration discipline). Part 2 — the 5 client questions that come up in every appointment, with crisp scripted answers (the cash-value question, the post-65 question, the withdrawal question, the accelerated-CI-reduces-death question, the retrenchment question).
-
----
-
 ## Quiz
 1. **What are the three jobs of a GPP fact-find?**
 - A) Surface the gap, anchor the budget, triage with the cash-value question ✓

@@ -43,7 +43,6 @@ The other hot button categories that surface (less common but worth mapping):
 | **Values / beliefs**       | "I believe in compounding." "I believe markets work long-term." "I think being prepared matters."                      |
 | **Bad experiences / fear** | "I lost money in crypto / a single stock." "I'm scared of inflation." "I'm scared of running out of money in old age." |
 
-
 ## The seven APA prospect archetypes
 
 ### 1. The retirement-anxious mid-career professional (30-45 yo)
@@ -382,12 +381,6 @@ The four most common reasons prospects think APA isn't for them — almost alway
 | **"I need liquidity"** | We're not asking you to put everything here — the one-third rule (covered in Day 2 Phase 3) carves out short-term and mid-term liquidity separately. APA is the long-term third. The structural lock is precisely what protects you from emotional decisions in market drops. |
 
 Day 5 covers each of these reframes in full as objection-handling. The point on Day 1 is: don't walk away from these prospects. The vast majority of APA cases close *after* a reframe, not because the prospect's situation perfectly matches an idealised target profile on the first pass.
-
----
-
-## What's coming next
-
-Day 2: the complete appointment flow — Phase 0 (pre-appointment setup) through Phase 5B (value-prop and final close). You'll see Part 1 (pain points) and Part 2 (product knowledge) from this Day 1 deployed inside the seven phases.
 
 ---
 

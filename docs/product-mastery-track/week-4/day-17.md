@@ -227,12 +227,6 @@ If you're approaching the 30-minute mark and still in Phase 4, you're losing the
 
 ---
 
-## What's coming next
-
-Day 3: the math behind UCC. Part 1 — every number a sharp prospect probes (single-claim mechanics, Enhancer 50% relapse cap, Catastrophic CI 100% top-up, $25K Angioplasty cap, 5 named relapse conditions, 5 Catastrophic conditions). Part 2 — the top 5 client questions on "unlimited" with crisp answers.
-
----
-
 ## Quiz
 1. **What is Question 1 of the 5 power questions?**
 - A) "How much can you afford to pay each month?"

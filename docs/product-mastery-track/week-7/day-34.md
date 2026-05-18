@@ -283,12 +283,6 @@ The legacy ILP's surrender schedule will differ — pull it from its policy cont
 
 ---
 
-## What's coming next
-
-Day 5: compliance + close. Part 1 — the 10 critical compliance points (capital not guaranteed, dividends not guaranteed, fees can be revised, free-look 14 days, premium holiday charge, surrender mechanics). Part 2 — the gentle close (Always Two Never Three), in-meeting execution (12-item closing checklist in 89 minutes), post-sale rhythm.
-
----
-
 ## Quiz
 1. **According to Day 4, what is the right frame for objections raised in Meeting 2?**
 - A) The client is rejecting the recommendation; close the case

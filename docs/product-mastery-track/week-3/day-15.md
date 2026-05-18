@@ -317,12 +317,6 @@ That's the target the entire 5-day track is calibrated to.
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 — recorded on Loom, with a self-review against the 6-dimension rubric. This is the proof you can sell GPP. No more theory. Live reps from here.
-
----
-
 # Case Study Vault — GPP Field Receipts
 
 Term protection case studies from real closes. Common patterns: prospect believes a "life plan" gives better coverage than term, prospect bought from MINDEF / IFA / banker without knowing what they actually have, prospect is paying too much for too little cover.

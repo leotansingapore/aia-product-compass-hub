@@ -205,12 +205,6 @@ The signature concept reframes Solitaire PA from "cheap minor cover" into the on
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the 5-minute fact-find (existing-coverage audit, occupation class, lifestyle/risk, income for Plan 4). Part 2 — the 7-phase pitch flow (KK Hospital open → 3 coverage tiers → partial-disability gap → 4×/7× framing → daily cost anchor → AIA+ self-claim demo → "Plan 1, 2, 3, or 4?" close).
-
----
-
 ## Quiz
 1. **According to Day 1, what makes Solitaire PA universally suitable for every prospect?**
 - A) It pays a death benefit larger than any term plan

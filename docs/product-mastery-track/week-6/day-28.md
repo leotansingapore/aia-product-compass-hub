@@ -251,12 +251,6 @@ But if they push:
 
 ---
 
-## What's coming next
-
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (frequency, employer cover, "not worth it", probability, "let me think"). Part 2 — Solitaire PA = Bucket 4 in the Total Wealth four-bucket model + family expansion via AIA Star Protector Plus.
-
----
-
 ## Quiz
 1. **According to Day 3, the Solitaire PA numbers split into two functional groups. What are they?**
 - A) Premium and exclusions

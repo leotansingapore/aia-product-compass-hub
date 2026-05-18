@@ -253,12 +253,6 @@ If you're approaching the 30-minute mark and still in Phase 4 (linearisation), y
 
 ---
 
-## What's coming next
-
-Day 3: the dense math (88 pages of product summary distilled to ~15 numbers). Part 1 — premium charge schedule, Sum-at-Risk math, rider mechanics (TDA / TCA / LCC), surrender schedule. Part 2 — top 5 client questions ("where's my money", "premium goes up?", "pause", "crash", "withdraw").
-
----
-
 ## Quiz
 1. **The 25X rule converts a monthly retirement need into what?**
 - A) The minimum hospital plan sum assured

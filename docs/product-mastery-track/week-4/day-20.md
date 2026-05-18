@@ -239,12 +239,6 @@ That's the target.
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete UCC appointment as a layered upsell to a GPP holder (Marcus, 38, no Early CI, no multi-claim). Recorded on Loom, 6-dimension self-review. The proof you can sell UCC.
-
----
-
 # Case Study Vault — UCC Field Receipts
 
 Anonymised CI case studies from real closes. The pattern: most prospects believe they have CI coverage but on inspection have either nothing, an under-coverage figure (e.g., $30-50K), or a hybrid life-plan that erodes on claim.

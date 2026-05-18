@@ -227,12 +227,6 @@ The diagram is for *uncertain* prospects in *normal-length* appointments. Read t
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the fact-find that surfaces the gap, the 10%-of-income budget, and the cash-value pain point in 5 minutes. Part 2 — the explicit 6-phase pitch flow from the source (Phase 1 Open → Phase 2 Illustrator → Phase 3 Pitch → Phase 4 iPOS+ → Phase 5 Layer Early CI → Phase 6 Package). 25 minutes start to finish, with at least 4 micro-commits before the close.
-
----
-
 ## Quiz
 1. **What two components make up GPP?**
 - A) Accumulator + Booster ✓

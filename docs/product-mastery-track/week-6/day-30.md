@@ -261,12 +261,6 @@ If you stop at SQS and never run #5-7, you closed half a case.
 
 ---
 
-## What's coming next
-
-The **roleplay assignment.** A complete Solitaire PA appointment with Jared (34, two kids, recent KK Hospital denial, employer term only). 6-dimension self-review.
-
----
-
 # Case Study Vault — Solitaire PA Field Receipts
 
 Accident plan case studies. Solitaire PA is the lowest-friction close in the AIA stack — small premium, broad coverage, clear value-add. Most prospects under-buy it because the dollar amounts feel small, but on a per-claim ratio it's often the highest-utility plan in the portfolio.

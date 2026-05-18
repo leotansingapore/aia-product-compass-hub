@@ -314,12 +314,6 @@ But if they push:
 
 ---
 
-## What's coming next
-
-Day 4: defence + expansion. Part 1 — the 5 hardest objections (PLP-vs-GPP is the tightest comparison in the curriculum). Part 2 — cross-sell + bundling: PLP+GPP stack (floor+booster), PLP+UCC stack (estate floor + CI lever), PLP+APA stack (accumulation), and the family stack with Child Critical Cover rider.
-
----
-
 ## Quiz
 1. **What is the Sum-at-Risk formula on PLP?**
 - A) Insured Amount minus all premiums paid

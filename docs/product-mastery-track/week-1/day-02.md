@@ -9,7 +9,6 @@ tags: [product-mastery-track, week-1, pro-achiever]
 ---
 # Day 2 — The Appointment Flow (Phase 0 → Phase 5B)
 
-
 ### Presentation philosophy — draw concepts first, slides are your reference
 
 A sequencing mistake is opening the appointment by sharing your iPOS+ slide deck or product brochure on screen. The prospect sees 50 pages of numbers and shuts down. Their brain gets overwhelmed and they go into passive-listening mode.
@@ -69,8 +68,6 @@ The drawings below are the ones that close cases consistently across hundreds of
 10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled. Mirrors the layout of the [Total Wealth Concept Executive Summary builder](https://growing-age-compass.vercel.app/total-wealth-concept/policy-summary-builder/summaries/executive-summary) — Death/TPD, Early CI, CI, and Annual Premium rows with circled gains showing "same budget, more cover."
 
     ![[pro-achiever/day-02/drawing-10-before-after-restructure.webp|Hand-drawn whiteboard: left column CURRENT with Death/TPD $500k, Early CI $200k, CI $300k, Annual Premium $8,400. Right column NEW STRUCTURE with the upgraded values and red-circled deltas (+$700k Death, +$300k Early CI, +$400k CI multi-claim, -$1,200 premium). Footer reads SAME BUDGET, MORE COVER.]]
-
-
 
 Use [Excalidraw](https://app.excalidraw.com/) on a tablet or laptop for clean digital drawings, or pen-and-paper for in-person appointments. The pen-and-paper version has a side benefit: the prospect can take the drawing home, which reduces buyer's remorse — in the post-meeting summary text, just refer back to each part of the drawing.
 
@@ -670,7 +667,6 @@ Goal of Phase 4: get the option close, get buy-in on a monthly amount, confirm t
 
 Once the prospect picks a tier, sweeten the decision by surfacing the two bonus mechanics. APA layers them ON TOP of the projected fund returns — most prospects don't know this, and most cross-shopped competitors don't have anything equivalent.
 
-
    ![[pro-achiever/day-02/drawing-08-welcome-loyalty-stack.png|Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom]]
 
 #### The Welcome Bonus (first 3 years)
@@ -750,13 +746,11 @@ Get the ending value - total invested = to get profit (get them to visualise the
 "Lineraise" the returns
 ![[Pasted image 20260518165346.png]]
 
-
 Caveat to state honestly: *"This assumes you hold to age 65 and invest long-term. Of course you can withdraw after 10 years, but would you prefer $300k, or $1.2mill?*
 
 ### Fee transparency
 
 ![[Pasted image 20260518171136.png]]
-
 
 ![[Pasted image 20260518165658.png]]
 
@@ -766,7 +760,6 @@ Walk through the actual distribution cost:
 
 - **Total distribution cost over 40 years:** $12,583
 - **Monthly equivalent:** $12,583 ÷ 40 ÷ 12 = **$25+/mth**
-
 
 ### Advisor compensation — be upfront
 
@@ -946,12 +939,6 @@ By this point in the appointment, the prospect has said yes 8-10 times in micro-
 The Phase 5B close isn't asking for the sale — it's collecting these into the formal close. You're confirming a decision they've already made.  Send them the remote authentication if its a zoom closing, or sign on the application
 Done. The case is closed.
 --
----
-
-## What's coming next
-
-Day 3: the math behind APA. The numbers a sharp prospect will probe — supplementary charge, bonus mechanics, surrender schedule, break-even — plus the five client questions that come up in most first appointments, with worked answers.
-
 ---
 
 ## Quiz

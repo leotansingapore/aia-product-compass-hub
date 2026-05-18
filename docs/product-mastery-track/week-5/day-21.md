@@ -199,12 +199,6 @@ The script for cancer-history prospects:
 
 ---
 
-## What's coming next
-
-Day 2: how to actually run the meeting. Part 1 — the fact-find (CPF Healthcare Dashboard check, four-pillar discovery, urgency push, capturing iPOS-quote-ready data). Part 2 — the 8-phase pitch flow (Open → First Line of Defence → Pain → Value-Stack → Price-Anchor → Reveal → Demo Differentiators → Two-Option Close) with checkpoints and live demos.
-
----
-
 ## Quiz
 1. **What is HSGM, in one sentence?**
 - A) A lump-sum payout for critical illness
