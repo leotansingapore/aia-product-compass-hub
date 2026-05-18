@@ -11,6 +11,8 @@ prerequisite: "first-60-days (FINternship)"
 
 # Your Next 60 Days — Final Structure (draft v1)
 
+> **One-page cheat sheets for every week:** [/cheat-sheets/next-60-days/](../cheat-sheets/next-60-days/) — 10 screenshot-worthy reference cards (one per week, with the weekly KPI on every card). Master index of all 33 cheat sheets at [/cheat-sheets/](../cheat-sheets/index.md).
+
 **Audience.** Newly-joined FCs — they finished the FINternship, passed CMFAS,
 signed the contract. They are licensed and their income is $0 until they close
 their first case. **This module is the first 60 days of their real business.**

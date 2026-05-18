@@ -1,5 +1,7 @@
 # Product Mastery Track — DERIVED MIRROR (do not hand-edit)
 
+> **One-page cheat sheets per product:** [/cheat-sheets/product-mastery/](../cheat-sheets/product-mastery/) — 7 screenshot-worthy product cards (Pro Achiever, PLP, GPP, UCC, HSGM, Solitaire PA, PWV) with specs, openers, objection clusters, cross-sell ladders, and numbers worth memorising. Master index at [/cheat-sheets/](../cheat-sheets/index.md).
+
 ## STOP — do not edit any file in this folder by hand.
 
 This entire `docs/product-mastery-track/` folder is **derived content**. The
