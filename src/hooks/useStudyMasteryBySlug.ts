@@ -39,7 +39,8 @@ export function useStudyMasteryBySlug() {
         supabase
           .from('question_bank_questions' as never)
           .select('product_slug')
-          .eq('bank_type', 'study'),
+          .eq('bank_type', 'study')
+          .range(0, 9999),
       ]);
 
       if (progressRes.error) throw progressRes.error;

@@ -45,7 +45,8 @@ function useBankCounts() {
     queryFn: async (): Promise<BankCounts> => {
       const { data, error } = await supabase
         .from("question_bank_questions" as never)
-        .select("product_slug, bank_type");
+        .select("product_slug, bank_type")
+        .range(0, 9999);
       if (error) throw error;
       const counts: BankCounts = {};
       for (const row of (data ?? []) as Array<{ product_slug: string; bank_type: "study" | "exam" }>) {
