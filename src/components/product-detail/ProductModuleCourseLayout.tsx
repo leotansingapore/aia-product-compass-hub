@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { lazy, Suspense, useState, useMemo, useCallback, useEffect, useRef, type RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -36,6 +36,68 @@ import { useNavigate } from "react-router-dom";
 import { useIsTabletOrMobile } from "@/hooks/use-mobile";
 
 const OUTLINE_SHEET_ID = "product-course-outline";
+
+/** Thin progress bar that tracks scroll position inside a container (or the
+ *  window if no ref is given). Resets to 0 when `resetKey` changes — used to
+ *  reset between lessons so the bar isn't stuck at 100% on lesson switch. */
+function LessonReadingProgress({
+  scrollRef,
+  resetKey,
+}: {
+  scrollRef?: RefObject<HTMLElement>;
+  resetKey?: string | number;
+}) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    setProgress(0);
+  }, [resetKey]);
+
+  useEffect(() => {
+    const target: HTMLElement | Window = scrollRef?.current ?? window;
+    let raf: number | null = null;
+
+    const compute = () => {
+      raf = null;
+      if (target === window) {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
+      } else {
+        const el = target as HTMLElement;
+        const max = el.scrollHeight - el.clientHeight;
+        setProgress(max > 0 ? Math.min(100, Math.max(0, (el.scrollTop / max) * 100)) : 0);
+      }
+    };
+
+    const onScroll = () => {
+      if (raf === null) raf = requestAnimationFrame(compute);
+    };
+
+    compute();
+    target.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      target.removeEventListener("scroll", onScroll);
+      if (raf !== null) cancelAnimationFrame(raf);
+    };
+  }, [scrollRef]);
+
+  return (
+    <div
+      className="pointer-events-none absolute inset-x-0 top-0 z-30 h-0.5 bg-transparent"
+      role="progressbar"
+      aria-label="Reading progress"
+      aria-valuenow={Math.round(progress)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
+      <div
+        className="h-full bg-primary transition-[width] duration-150 ease-out"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  );
+}
 
 function sanitizeLessonMediaUrl(raw: string | undefined): string | null {
   if (!raw?.trim()) return null;
@@ -130,6 +192,7 @@ export function ProductModuleCourseLayout({
   // CSS), so two Loom iframes streamed audio in parallel — the "something is
   // playing in the background" bug.
   const isTabletOrMobile = useIsTabletOrMobile();
+  const desktopMainRef = useRef<HTMLElement>(null);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [outlineOpen, setOutlineOpen] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -745,7 +808,8 @@ export function ProductModuleCourseLayout({
         </aside>
 
         {/* ── Right main content ── */}
-        <main className="flex-1 min-w-0 overflow-y-auto">
+        <main ref={desktopMainRef} className="relative flex-1 min-w-0 overflow-y-auto">
+          <LessonReadingProgress scrollRef={desktopMainRef} resetKey={currentVideoIndex} />
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
             {useZincLessonChrome ? (
               <div className="bg-zinc-950">
@@ -825,7 +889,11 @@ export function ProductModuleCourseLayout({
           MOBILE / TABLET: Original stacked layout with Sheet drawer
          ═══════════════════════════════════════════════════════════ */}
       {isTabletOrMobile && (
-      <div>
+      <div className="relative">
+        {/* Window-scroll progress bar fixed under the app header */}
+        <div className="pointer-events-none fixed inset-x-0 top-0 z-40">
+          <LessonReadingProgress resetKey={currentVideoIndex} />
+        </div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full min-w-0">
           {/* Lesson bar + video + nav + tab strip (stacked under player when embed exists) */}
           <div
