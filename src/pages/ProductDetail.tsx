@@ -20,6 +20,7 @@ import { moduleIdToProductId } from "@/data/cmfasModuleData";
 import { useVideoManagement } from "@/hooks/useVideoManagement";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { BookmarkButton } from "@/components/BookmarkButton";
+import { LessonProgressChip } from "@/components/product-detail/LessonProgressChip";
 import { PersonalNotes } from "@/components/PersonalNotes";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -252,6 +253,13 @@ export default function ProductDetail() {
           breadcrumbs={breadcrumbs}
           actions={
             <>
+              {!isAdminMode && (
+                <LessonProgressChip
+                  productId={product.id}
+                  totalLessons={product?.training_videos?.length ?? 0}
+                  onDarkSurface
+                />
+              )}
               {isAdminMode && (
                 <ProductSyncButton
                   productId={product.id}
