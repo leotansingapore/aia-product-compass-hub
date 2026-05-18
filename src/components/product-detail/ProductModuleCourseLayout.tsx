@@ -667,8 +667,42 @@ export function ProductModuleCourseLayout({
       </div>
     ) : null;
 
+  /* Up-next teaser shown under the lesson body so learners don't dead-end
+     after reading. Marks the current lesson complete + advances in one tap. */
+  const upNextCard = nextVideo ? (
+    <div className="rounded-xl border bg-gradient-to-br from-primary/[0.04] to-transparent p-4 sm:p-5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Up next</p>
+          <p className="mt-1 text-sm font-semibold text-foreground line-clamp-2 leading-snug">
+            {nextVideo.title}
+          </p>
+        </div>
+        <Button
+          size="sm"
+          onClick={async () => {
+            if (currentVideo && !isCurrentCompleted) {
+              await handleToggleComplete(currentVideo.id, false);
+            }
+            onSelectVideoFromOutline(currentVideoIndex + 1);
+          }}
+          className="shrink-0 gap-1.5"
+        >
+          {isCurrentCompleted ? "Continue" : "Complete & continue"}
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  ) : processedVideos.length > 0 && isCurrentCompleted && completedCount === processedVideos.length ? (
+    <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 text-center sm:p-5">
+      <CheckCircle2 className="mx-auto h-8 w-8 text-primary" />
+      <p className="mt-2 text-sm font-semibold text-foreground">Module complete</p>
+      <p className="mt-1 text-xs text-muted-foreground">You finished every lesson in {productTitle}.</p>
+    </div>
+  ) : null;
+
   const courseContentPanel = (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-3xl space-y-6">
       {currentVideo?.description?.trim() ? (
         <p className="text-sm leading-relaxed text-muted-foreground">{currentVideo.description}</p>
       ) : null}
@@ -689,6 +723,7 @@ export function ProductModuleCourseLayout({
           <ChevronRight className="h-4 w-4 text-muted-foreground" />
         </button>
       )}
+      {upNextCard}
     </div>
   );
 
@@ -861,12 +896,12 @@ export function ProductModuleCourseLayout({
                       className="ml-auto h-11 w-11 shrink-0 touch-manipulation p-0 opacity-90 hover:opacity-100 sm:ml-0 sm:h-8 sm:w-auto sm:gap-1 sm:px-3 sm:py-2"
                       aria-expanded={outlineOpen}
                       aria-controls={OUTLINE_SHEET_ID}
-                      aria-label="Lesson outline"
+                      aria-label={`All lessons (${processedVideos.length})`}
                       onClick={() => setOutlineOpen(true)}
-                      title="Lesson outline"
+                      title="All lessons"
                     >
                       <List className="h-5 w-5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
-                      <span className="hidden sm:inline">Outline</span>
+                      <span className="hidden sm:inline">Lessons</span>
                     </Button>
                   </div>
                 )}
@@ -943,7 +978,7 @@ export function ProductModuleCourseLayout({
             <SheetHeader>
               <SheetTitle className="flex items-center gap-2">
                 <List className="h-5 w-5" />
-                Lesson outline
+                All lessons
               </SheetTitle>
             </SheetHeader>
             <div className="mt-4">

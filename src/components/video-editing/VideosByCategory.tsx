@@ -202,8 +202,10 @@ export const VideosByCategory = memo(function VideosByCategory({
         const progress = getCategoryProgress(videoItems);
         const duration = getCategoryDuration(videoItems);
         const allDone = progress.completed === progress.total && progress.total > 0;
-        // Default open: always open (collapsed state only persisted when user explicitly toggles)
-        const isOpen = openCategories[category] !== undefined ? openCategories[category] : true;
+        // Categories named "Old …" or "Archive …" are deprecated content — collapse
+        // by default and visually deprioritise so learners hit the current curriculum first.
+        const isLegacy = /^old\b/i.test(category) || /\barchive/i.test(category);
+        const isOpen = openCategories[category] !== undefined ? openCategories[category] : !isLegacy;
         const pct = progress.total > 0 ? Math.round((progress.completed / progress.total) * 100) : 0;
 
         return (
@@ -212,12 +214,21 @@ export const VideosByCategory = memo(function VideosByCategory({
             {!isSingleCategory && (
               <CollapsibleTrigger asChild>
                 <button className={`w-full text-left rounded-lg border px-4 py-3 transition-colors ${
-                  allDone ? 'bg-primary/5 border-primary/20' : 'bg-muted/30 border-border hover:bg-muted/50'
+                  allDone
+                    ? 'bg-primary/5 border-primary/20'
+                    : isLegacy
+                    ? 'bg-muted/20 border-dashed border-muted-foreground/30 hover:bg-muted/30'
+                    : 'bg-muted/30 border-border hover:bg-muted/50'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       {isOpen ? <ChevronDown className="h-4 w-4 text-muted-foreground" /> : <ChevronRight className="h-4 w-4 text-muted-foreground" />}
-                      <span className="font-semibold text-sm sm:text-base">{category}</span>
+                      <span className={`font-semibold text-sm sm:text-base ${isLegacy ? 'text-muted-foreground' : ''}`}>{category}</span>
+                      {isLegacy && (
+                        <Badge variant="outline" className="text-[10px] font-normal text-muted-foreground border-muted-foreground/30">
+                          Archived
+                        </Badge>
+                      )}
                       {allDone && (
                         <Badge className="text-xs bg-primary/20 text-primary border-0">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
