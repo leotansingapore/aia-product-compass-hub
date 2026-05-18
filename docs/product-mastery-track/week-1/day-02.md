@@ -1027,7 +1027,6 @@ Done. The case is closed.
 
 - Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
 - Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
-- Source deck: [`_source-resources/investing-success-track-record-deck.md`](./_source-resources/investing-success-track-record-deck.md) — use slide 4 (10-year fund performance) in Phase 3 and slide 40 (APA-vs-DIY year-17 crossover) in Phase 5
 - Previous: [Day 1](/learning-track/product-mastery/day/1)
 - Next: [Day 3](/learning-track/product-mastery/day/3)
 - Track index: [Product Mastery Track](/learning-track/product-mastery)

@@ -150,8 +150,6 @@ The prospect names the solution. You don't push it.
 
 # Part 2 — The Product Knowledge
 
-Every number in this section is verified against the canonical Product Summary (`_source-resources/product-summary.md`). If a curriculum claim or a question-bank answer contradicts this section, this section wins.
-
 ## What APA structurally is
 
 A SGD-denominated, **regular-premium Investment-Linked Policy (ILP)** issued by AIA Singapore Private Limited (Reg. 201106386R). Key structural facts:
@@ -467,7 +465,6 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 
 ## Related
 
-- **Source PDFs:** [Product Summary](./_source-resources/product-summary.md) · [Brochure](./_source-resources/brochure.md) · [Investing Success Track Record Deck](./_source-resources/investing-success-track-record-deck.md)
 - **Sales psychology:** [Hot Buttons (HOLOS deck)](../../next-60-days/_source-holos-decks/hot-buttons.md) · [SPIN Fact-Finding (FINternship deck)](../../first-60-days/_source-decks/fact-finding-map-4-spin-finternship/deck.md)
 - **Practice:** [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
 - **Next:** [Day 2 — The Appointment Flow](./day-02.md)

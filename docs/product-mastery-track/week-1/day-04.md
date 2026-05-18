@@ -154,8 +154,6 @@ And the related "AIA fees vs AIA bonuses" view (already in Day 5's fee-attack se
 
 The competitor matrix (memorise — this is the structural close for cross-shoppers).
 
-**Source for the verified rows below:** `_source-resources/competitor-analysis/APA-Competitor-Analysis.pdf`. Rows marked *(illustrative)* are scenario-level talking points from the Loom training — keep the structure but flag the assumptions if a client asks for the BI.
-
 ### Perpetual / supplementary charges after the Initial Investment Period (verified)
 
 | Company / Product | Charge after IIP |

@@ -16,8 +16,6 @@ Two parts:
 - **Part 1:** competitor-by-competitor analysis. Where each competitor's wealth product is structurally weaker than APA, the verified numbers, and the cushion-then-attack scripts.
 - **Part 2:** restructure plays. How to convert a prospect from whole-life / hybrid ILP / DIY-platform into APA. The BTIR (Buy Term + Invest the Rest) angle using APA as the investment vehicle.
 
-Source for verified rows: `_source-resources/competitor-analysis/APA-Competitor-Analysis.pdf`. Loom-derived figures are clearly flagged as illustrative.
-
 ---
 
 # Part 1 — Competitor Analysis (attack moves + defend moves)
@@ -1073,7 +1071,6 @@ For the GE Flexi-cash holder mid-term: run the surrender penalty math honestly. 
 
 ## Related
 
-- **Source PDFs:** [APA Competitor Analysis](./_source-resources/competitor-analysis/) · [Product Summary](./_source-resources/product-summary.md) · [Investing Success Track Record Deck](./_source-resources/investing-success-track-record-deck.md)
 - **Compass-hub reference:** [Competitor pricing & spec reference](../../docs/_competitor-pricing-reference.md) — verified competitor specs across PA, UCC, HSGM with source URLs
 - **Cross-shop objections in the appointment:** [Day 4 Part 1](./day-04.md#part-1--top-5-objections--the-conviction-story-heart) — the in-appointment versions of these reframes
 - **Risk disclosure objections:** [Day 4 Part 2](./day-04.md#part-2--risk-disclosures-as-objection-handling)
