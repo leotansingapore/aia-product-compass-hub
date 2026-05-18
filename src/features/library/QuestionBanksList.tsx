@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
@@ -69,6 +70,23 @@ export function QuestionBanksList() {
   const getStudyMastery = (id: string) =>
     studyMasteryBySlug[id] ?? { mastered: 0, progressPercent: 0 };
 
+  // Aggregate totals for the summary strip — same source of truth as the
+  // per-card numbers, computed once so the strip stays in sync.
+  const totals = useMemo(() => {
+    let study = 0;
+    let exam = 0;
+    let mastered = 0;
+    for (const product of products) {
+      const s = getStudyCount(product.id);
+      const e = getExamCount(product.id);
+      study += s;
+      exam += e;
+      mastered += getStudyMastery(product.id).mastered;
+    }
+    return { study, exam, mastered, masteryPct: study > 0 ? Math.round((mastered / study) * 100) : 0 };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [counts, studyMasteryBySlug]);
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -78,88 +96,109 @@ export function QuestionBanksList() {
   }
 
   return (
-    <div className="grid gap-4">
-      {products.map((product) => {
-        const studyCount = getStudyCount(product.id);
-        const examCount = getExamCount(product.id);
-        return (
-          <Card key={product.id} className="transition-all duration-200 hover:shadow-md hover:border-primary/30">
-            <CardHeader className="pb-2 px-4 sm:px-6">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <Brain className="h-5 w-5 text-primary shrink-0" />
-                  <CardTitle className="text-base sm:text-lg truncate">{product.title}</CardTitle>
+    <div className="space-y-5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <SummaryStat label="Products" value={products.length.toString()} />
+        <SummaryStat label="Study questions" value={totals.study.toString()} />
+        <SummaryStat label="Exam questions" value={totals.exam.toString()} />
+        <SummaryStat label="Mastery" value={`${totals.masteryPct}%`} />
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => {
+          const studyCount = getStudyCount(product.id);
+          const examCount = getExamCount(product.id);
+          const total = studyCount + examCount;
+          const mastery = getStudyMastery(product.id);
+          const hasContent = total > 0;
+
+          return (
+            <Card
+              key={product.id}
+              className="flex h-full flex-col transition-all duration-200 hover:shadow-md hover:border-primary/30"
+            >
+              <CardHeader className="space-y-2 pb-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Brain className="h-4 w-4" />
+                  </div>
+                  {hasContent && (
+                    <Badge variant="secondary" className="shrink-0 text-[10px] uppercase tracking-wider">
+                      {total} questions
+                    </Badge>
+                  )}
                 </div>
-                {studyCount + examCount > 0 && (
-                  <Badge variant="secondary" className="shrink-0">{studyCount + examCount} total</Badge>
+                <div className="space-y-1">
+                  <CardTitle className="text-base leading-snug">{product.title}</CardTitle>
+                  <CardDescription className="line-clamp-2 text-xs sm:text-sm">
+                    {product.description}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+
+              <CardContent className="mt-auto flex flex-col gap-3 pt-0">
+                {studyCount > 0 ? (
+                  <MasteryProgressBar
+                    mastered={mastery.mastered}
+                    total={studyCount}
+                    progressPercent={mastery.progressPercent}
+                  />
+                ) : examCount > 0 ? (
+                  <p className="text-xs text-muted-foreground">
+                    No study bank yet — exam available below.
+                  </p>
+                ) : (
+                  <p className="text-xs text-muted-foreground">Questions coming soon.</p>
                 )}
-              </div>
-              <CardDescription className="mt-1 text-xs sm:text-sm">{product.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
-              {studyCount > 0 && (() => {
-                const mastery = getStudyMastery(product.id);
-                return (
-                  <>
-                    <MasteryProgressBar
-                      mastered={mastery.mastered}
-                      total={studyCount}
-                      progressPercent={mastery.progressPercent}
-                    />
-                    <div className="flex flex-wrap gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
-                        onClick={() => navigate(product.studyRoute)}
+
+                {hasContent && (
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="min-h-[40px] gap-1.5 text-xs sm:text-sm"
+                      disabled={studyCount === 0}
+                      onClick={() => navigate(product.studyRoute)}
+                    >
+                      <BookOpen className="h-3.5 w-3.5 text-blue-500" />
+                      <span>Study</span>
+                      <Badge variant="secondary" className="ml-auto px-1.5 py-0 text-[10px]">
+                        {studyCount}
+                      </Badge>
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="min-h-[40px] gap-1.5 text-xs sm:text-sm"
+                      disabled={examCount === 0}
+                      onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
+                    >
+                      <GraduationCap className="h-3.5 w-3.5" />
+                      <span>Exam</span>
+                      <Badge
+                        variant="secondary"
+                        className="ml-auto px-1.5 py-0 text-[10px] bg-primary-foreground/20 text-primary-foreground"
                       >
-                        <BookOpen className="h-3.5 w-3.5 text-blue-500" />
-                        Question Bank
-                        <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
-                          {studyCount}
-                        </Badge>
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="gap-1.5 min-h-[44px] sm:min-h-0 text-xs sm:text-sm"
-                        onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
-                      >
-                        <GraduationCap className="h-3.5 w-3.5" />
-                        Exam
-                        <Badge
-                          variant="secondary"
-                          className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
-                        >
-                          {examCount}
-                        </Badge>
-                      </Button>
-                    </div>
-                  </>
-                );
-              })()}
-              {studyCount === 0 && examCount > 0 && (
-                <Button
-                  size="sm"
-                  className="gap-1.5 min-h-[44px] sm:min-h-0 w-full sm:w-auto"
-                  onClick={() => navigate(product.examRoute, { state: { from: "question-banks" } })}
-                >
-                  <GraduationCap className="h-3.5 w-3.5" />
-                  Product Exam
-                  <Badge
-                    variant="secondary"
-                    className="ml-1 text-[10px] px-1.5 py-0 bg-primary-foreground/20 text-primary-foreground"
-                  >
-                    {examCount}
-                  </Badge>
-                </Button>
-              )}
-              {studyCount === 0 && examCount === 0 && (
-                <p className="text-xs text-muted-foreground">Questions coming soon.</p>
-              )}
-            </CardContent>
-          </Card>
-        );
-      })}
+                        {examCount}
+                      </Badge>
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function SummaryStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border bg-card px-3 py-2.5">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </p>
+      <p className="mt-1 text-lg font-semibold tabular-nums leading-none">{value}</p>
     </div>
   );
 }
