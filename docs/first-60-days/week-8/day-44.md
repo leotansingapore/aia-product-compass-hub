@@ -4,7 +4,8 @@ day: 44
 title: "Handling Resistance & Objections"
 primary_source: internal-reference
 primary_slides: "n/a"
-supporting_sources: []
+supporting_sources:
+  - "[[../_source-supplementary/appointment-setting-product/11-prospecting--loving-rejections|Loving Rejections — abundance vs scarcity stance toward "no"]]"
 duration_minutes: 25
 tags: [first-60-days, week-8, skills]
 ---
@@ -24,6 +25,13 @@ By the end of today you should be able to:
 > **Tools:** [Scripts Database](/scripts) for the canonical objection-handling scripts. [Roleplay](/roleplay) to practise your responses. Full list at [/tools](/tools).
 
 ---
+
+> **Internal stance before any script.** Frameworks land when you've already made peace with the "no" arriving. Industry math runs about **149 rejections per close** at typical Year-1 ratios (150 opening approaches → 3 appointments → 1 close). Treat that as the price tag of the close, not a personal verdict. The two stances that decide whether the scripts below actually work:
+>
+> - **Scarcity stance:** each "no" is a loss; leads are running out; the next call is the one I can't afford to lose. Tightens the voice. Prospect hears the tightness. Outcome gets worse.
+> - **Abundance stance:** each "no" is a step closer to the next yes; the world has more candidates than I can ever meet; this prospect is one data point, not the verdict on my career. Loosens the voice. Prospect hears that too.
+>
+> If the call sounds desperate, run a 20-rejection sprint with the goal of *collecting* 20 nos before the day ends. The script work below assumes the abundance stance is already on.
 
 ## 1. Reflex vs real objections
 

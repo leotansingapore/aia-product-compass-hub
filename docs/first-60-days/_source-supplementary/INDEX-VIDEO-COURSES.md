@@ -91,6 +91,12 @@ The single best video per course (by transcript depth + sales-mechanics density)
 | Warm Market Flow | (see README) | Warm-market-specific approach |
 | GoalsMapper | (see README) | Tool walkthrough |
 
+### Product essay modules (text, not video)
+
+| Module | Sections | Purpose | First 60 Days week(s) |
+|---|---|---|---|
+| [Appointment Setting](appointment-setting-product/README.md) | 28 | Cold-call mindset essays, KPI framework, pipeline diagnostics, referral cycle, social-media branding, touch-points cadence | Week 1 (mindset), Week 4–5 (cold-prospecting awareness), Week 7+ (touch-points), and post-licensing in [Next 60 Days Day 22](../../next-60-days/week-4/day-22.md) |
+
 ## What's NOT in this index
 
 - **Spartans Arche supplementary** (the 22 `2021-spartans-arche-*` folders alongside this) — those are PDF deck rips, not video courses. They have their own pattern.

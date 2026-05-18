@@ -194,9 +194,37 @@ Before you start any cold volume (cold leads, SMA leads, Facebook lead-gen), the
 - **Facebook lead-gen unlocks post-RNF.**
 - **1-1 with Leo on your scripts** after your first 50 dials — debrief what landed, what died.
 
+### DNC screening — non-negotiable before any cold list goes live
+
+Cold lists must be screened against Singapore's **DNC Registry** before you call. Calling a DNC-registered number is a regulatory violation; penalties are real and personal. The screen takes 5–10 minutes; never skip it.
+
+1. Paste your full lead list into a Google Sheet, one column of numbers.
+2. Download as CSV. **Filename must have no spaces or special characters** — `leads.csv`, not `Leo's leads.csv`.
+3. Log into the DNC Registry portal → **Check Registry → Bulk Filtering**.
+4. Upload the CSV, click **Proceed**, wait 5–10 minutes for processing.
+5. Download the results. Numbers come back tagged:
+   - **NR** (Not on Registry) — contactable, dial these.
+   - **DNC** — do not call. Remove from the sheet entirely.
+
+Run the screen the day you receive any new list. Stale screens (>30 days) need to be redone — registration status changes.
+
+### Cold-call structure — the 30-second opener that beats hang-ups
+
+Standard openers (*"Hi, I'm a financial advisor calling to see if you'd be interested…"*) get hung up on inside 3 seconds. The structure that works has 3 beats inside 45 seconds:
+
+1. **Opening (10–15s)** — name yourself, name your company, name *why this person specifically* (their niche / segment). Confidence over apology. *"Hi [name], this is Leo from [company]. I work with young professionals on financial planning. Quick check — do you have 30 seconds?"*
+2. **Relevance (15–30s)** — name a pain point that's specifically theirs. *"Most people I speak with in your stage tell me they know they should be planning but don't know where to start."*
+3. **The ask (30–45s)** — two specific times, not "are you interested." *"Would Saturday 10am or Sunday 2pm work better for a 30-min Zoom — no obligation?"*
+
+What kills cold calls: **speaking too softly, sounding scripted, asking *"would you be interested"*** (gives them the easy no). 80% of the call's outcome is energy and tonality, not the words. Practise the opener out loud, on tape, before the first batch.
+
+For full objection-handling on cold calls, deep-dive: [[../_source-articles/cold-calling-working-adults-all-angles|Cold Calling — Working Adults (All Angles)]] script library.
+
 Watch [the prospecting daily Loom](https://www.loom.com/share/744a0b57822a464dbf6f98301ef1b6fb). Also read the full [appointment-setting module on Skool](https://www.skool.com/finternship/classroom/411f0212) (1–2 hrs).
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §4b.
+
+Source material: [[../../first-60-days/_source-supplementary/appointment-setting-product/20-prospecting--cold-calling-training|Cold Calling Training]] · [[../../first-60-days/_source-supplementary/appointment-setting-product/13-prospecting--45-min-video-overview-of-telemarketing|Telemarketing Overview]] · [[../../first-60-days/_source-supplementary/appointment-setting-product/26-resources--resource-how-to-dnc-check|DNC Check workflow]].
 
 ---
 

@@ -6,8 +6,9 @@ primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
   - internal-reference:9
-duration_minutes: 25
-tags: [first-60-days, week-7, skills]
+  - "[[../_source-supplementary/appointment-setting-product/27-resources--resource-touch-points|Touch Points cadence — NSF + working-adult milestone map]]"
+duration_minutes: 30
+tags: [first-60-days, week-7, skills, touchpoints]
 ---
 
 # Day 39 - Building the Prospect List: Project 100
@@ -286,6 +287,79 @@ That sentence, dropped early, sets the expectation. By the time you close (meeti
 ### Why this is in Day 39 specifically
 
 A great list (Project 100) and a great Marketing Kit are the two halves of being *ready for week 7's calls*. The list answers *who do I call?* The kit answers *what do I show them when they say yes?* Building the list without the kit - or vice versa - leaves the other half of the loop broken.
+
+## 10. After the first conversation - building each prospect's touchpoint timeline
+
+Project 100 is the names. The Marketing Kit is what you show them. **Touchpoints are what you do for the next 4–10 years.**
+
+Most prospects don't buy in the first conversation. They buy when their life shifts — promotion, marriage, kid, parent diagnosis, mortgage approval. Your job is to be the one they already know on the day that shift happens. That only happens if you stayed present, on the right cadence, around milestones that mattered to them.
+
+### The 4 intake questions that unlock the whole timeline
+
+Ask these in the first meeting. From four data points you can extrapolate years of touchpoints:
+
+1. **"How old are you? When's your birthday?"** — annual birthday touch (recurring forever).
+2. **"When's your POP?"** — extrapolates enlistment, ORD, and university entry (for NSF prospects).
+3. **"When's your ORD?"** — anchors the post-NS life shift.
+4. **"When are you entering university?"** — maps semesters and graduation.
+
+(For working adults: substitute "When's your work anniversary?", "When does your current policy come up for review?", "When's your next bonus typically paid?")
+
+### Singapore NSF milestone map — durations worth memorising
+
+| Milestone | Standard duration |
+|---|---|
+| BMT | 2 months (1 month for PES E/F, ~4 months for PTB) |
+| POP (Passing Out Parade) | Usually a **Saturday**, ~2 months after enlistment |
+| Block leave | 1 week after POP — prospect is home every day, ideal window for a meet-up |
+| Posting results | **Friday** of block-leave week |
+| SCS (Specialist Cadet School) | 6 months |
+| OCS (Officer Cadet School) | 9 months |
+| ORD | Poly batch: ~2 years from enlistment. JC batch: 1 year 10 months |
+| University start | Usually **August** after ORD |
+| University duration | 4 years (graduation usually May) |
+
+### Worked NSF touchpoint timeline (poly batch enlisting 13 September)
+
+| # | Touchpoint | Timing | What to send |
+|---|---|---|---|
+| 1 | Enlistment day | 13 Sep | "All the best for your enlistment today." |
+| 2 | First book-out | ~2 Fridays after enlistment | "Congrats on your first book-out — let's catch up next time you're out." |
+| 3 | POP | ~2 months in | "Congrats on finishing BMT." |
+| 4 | Posting results | Friday after POP | "How was the posting — did you get what you wanted?" |
+| 5 | SCS / OCS graduation | +6 or +9 months | "Congrats on SCGP / OCS — proud of you." |
+| 6 | ORD | ~2 years in | "Congrats on ORD — what's the plan from here?" |
+| 7 | University starts | Aug after ORD | "Welcome to uni life — make it count." |
+| 8–11 | Each new semester | 1 Aug, yearly for 4 years | "All the best for the new semester." |
+| 12 | Graduation | ~May, year 4 | "Congrats on graduating — how's the job hunt? Want to catch up?" → arrange meeting |
+
+That's 12 deliberate touches over 4–6 years, every one tied to something meaningful to the prospect — not a generic check-in. **Receptiveness rises roughly 3–4x when the prospect realises you remember the dates that mattered to them.**
+
+### The Google Calendar SOP (do it the day you meet them)
+
+While the meeting is still fresh, open Google Calendar and create the events. Title format:
+
+> `Wish [message] — [Prospect Name] — [Number] — [Your initials]`
+
+- Mark **All Day**.
+- Birthdays → repeat **annually** indefinitely.
+- Semester wishes → custom repeat, **yearly for 4 years**, then end.
+- One-off milestones (POP, ORD) → no repeat.
+- Colour-code all touchpoint events **the same** (Tangerine works) so you can see them at a glance.
+- **Share the calendar event to your manager / mentor** so accountability is built in.
+
+If the prospect doesn't become a client today, the calendar carries them for you. That's the difference between "I lost touch" and "I'm the only advisor they hear from on the day their life shifts."
+
+### Working-adult adaptations
+
+NSFs are the cleanest case because the milestones are scheduled. Working adults need a slightly different cadence — but the principle is identical:
+
+- Annual birthday + work anniversary (every year, recurring).
+- Annual policy-review window (set 11 months after every purchase).
+- Major-life-event radar — when they tell you about an engagement, a kid on the way, a parent's health issue, a promotion, a property purchase: that's a hot touchpoint within 7 days.
+- Quarterly "anything I should know?" check-ins for top-tier (A) clients.
+
+The shape is the same: extract dates in the first meeting, set the calendar that night, never miss a milestone.
 
 ---
 

@@ -4,9 +4,11 @@ day: 40
 title: "Digital Influence - Setting Up Your Presence"
 primary_source: internal-reference
 primary_slides: "n/a"
-supporting_sources: []
-duration_minutes: 20
-tags: [first-60-days, week-7, skills]
+supporting_sources:
+  - "[[../_source-supplementary/appointment-setting-product/24-social-media--5-questions-to-answer-on-social-media|5 silent questions every cold prospect asks]]"
+  - "[[../_source-supplementary/appointment-setting-product/23-social-media--cold-prospecting-on-social-media|Cold prospecting on social media — DM flow]]"
+duration_minutes: 25
+tags: [first-60-days, week-7, skills, social-media]
 ---
 
 # Day 40 - Digital Influence: Setting Up Your Presence
@@ -195,8 +197,29 @@ A 10,000-follower FC with shallow relationships underperforms a 500-follower FC 
 
 **Follower growth is a leading indicator.** But the **quality of conversion** (DM to meeting to close) matters far more than the raw number.
 
+## 9. The 5 silent questions every cold prospect asks before DMing you
 
-## Quick quiz
+Before anyone reaches out, they scroll your profile and your last 10 posts and silently answer 5 questions about you. Whichever question you fail to answer is the reason they didn't DM. Run your bio + last 10 posts against this list this week.
+
+| # | The silent question | What answers it |
+|---|---|---|
+| 1 | **Can I trust that others value your work?** | Testimonials, client screenshots, case studies. Strongest format: **pre / during / after** — *"Before working with me, Ryan felt lost on his finances. During our consult we built a clear plan tailored to him. After implementing, he now has a structured roadmap."* Authentic and structured beats glowing-but-vague. |
+| 2 | **Do you actually know your stuff?** | Real client problems broken down with practical advice. Avoid industry jargon. If you're early in the career, frame insights as *"here's how I'm thinking about this"* rather than authority claims — value without overclaiming expertise. |
+| 3 | **Why are you doing this?** | Your defining moment. The personal reason you chose financial advisory — a family experience, a financial mistake, a mentor's influence. Authenticity is what separates "advisor" from "salesperson" in the prospect's head. |
+| 4 | **Will we get along?** | Personality, hobbies, quirks — the human stuff. An advisor who posts about running, food, parenting, music attracts the right clients (and naturally repels the wrong-fit ones). Personality is a **filter**, not a leak. |
+| 5 | **How can I approach you without feeling awkward?** | A low-friction CTA built into a testimonial post: *"Sarah now feels financially secure. If you want to explore how this approach could work for you, DM me 'plan' to learn more."* Specific keyword. No "book a call." Lower the activation energy. |
+
+### The audit you do this week
+
+Open your profile right now. Open your last 10 posts. Score each of the 5 questions:
+
+- **0** — nothing on the profile answers this question.
+- **1** — one weak signal somewhere.
+- **2** — clear, repeated, easy to find.
+
+Anything scoring 0 is the gap that's costing you DMs. Fix the lowest score this week — one post, one bio update, one pinned testimonial. Re-audit in a month.
+
+The 5-question frame is also the cleanest content brief you'll ever have: *"What does my feed look like to a stranger answering question 3?"* If the answer is *"they can't,"* that's your next post topic.
 
 1. **The 4 stages of the Social Media Journey are:**
  - A) Follower -> Engager -> Customer -> Promoter

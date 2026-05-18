@@ -7,6 +7,8 @@ primary_slides: "n/a"
 supporting_sources:
   - internal-reference:33-44
   - internal-reference:130
+  - "[[../_source-supplementary/appointment-setting-product/05-prospecting--5-essential-daily-activities-in-financialadvisory|5 Essential Daily Activities]]"
+  - "[[../_source-supplementary/appointment-setting-product/09-prospecting--obey-the-30-day-rule|30-Day Rule]]"
 duration_minutes: 20
 tags: [first-60-days, week-4, skills]
 ---
@@ -208,6 +210,8 @@ Common starting points:
 
 Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most - because that's when everyone else stops, and you stop catching up to them.
 
+> **The 30-day rule of pipeline gravity.** Miss a day of prospecting and the absence will tend to bite you sometime in the next 90 days. Miss a week and you'll feel it in next quarter's commission cheque. Miss a month and you tank the pipeline entirely — three months from now you'll be desperate and have no idea how you got there. **Today's missed hour is next quarter's lost month.** That's not motivational language; it's pipeline arithmetic. Plant the seeds anyway, on the worst days too — the harvest is non-negotiable to your future self, even when today doesn't feel like it.
+
 ---
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
@@ -319,6 +323,26 @@ A practical sequencing rule:
 3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The $X you spent in Month 1 produces FYC across Months 1-4.
 
 Cross-link: see [Day 42 - Digital Lead-Gen Playbook](../week-7/day-42.md) for the operational specifics; see [Day 24 - The Time Management Matrix](day-24.md) for follow-up discipline.
+
+## 10. Where prospecting sits in the five-pillar business
+
+Prospecting is only *one* of the five activities a working advisory practice runs. Knowing the other four matters today because it answers the most common new-FC question — *"my warm market is small, am I cooked?"* No. You're cooked only if you confuse **lead generation** with the entire business and ignore the other four pillars.
+
+| # | Pillar | What it is | Daily move |
+|---|---|---|---|
+| 1 | **Lead generation** | Creating new names that don't exist in your pipeline yet | Outreach blocks, content, networking, referral asks |
+| 2 | **Lead nurturing** | Warming up the leads you already have, so they actually take a meeting | Personalised follow-ups, value drops, content engagement, Telegram/IG presence |
+| 3 | **Sales** | The meeting work itself — questions, fact-find, presentation, close | Role-play, script drilling, mock fact-finds with peers |
+| 4 | **Service** | Making the client glad they chose you, *after* the sale | Annual reviews, claim help, birthday touches, "you matter" gestures |
+| 5 | **Retention & resale** | Keeping the client over years; getting referrals and repeat business | Quarterly check-ins, life-event radar, structured re-engagement |
+
+**Three things this frame teaches a new FC immediately:**
+
+1. **Most stuck Year-1 FCs are stuck at Pillar 2, not Pillar 1.** They confuse "I have no leads" with "I have leads that I never nurtured." Re-read your CRM before you assume you need new names.
+2. **Pillars 4 and 5 produce the income you live on after Year 3.** If you only ever work Pillars 1–3, you have to re-prospect everything every year. The compounding only kicks in once the back two pillars run on their own.
+3. **Cross-selling and referrals are not aggressive moves — they are the natural output of Pillars 4 and 5 done well.** Clients who feel cared for refer without being asked. You cannot shortcut that by asking harder.
+
+For now (pre-RNF, no clients yet), your job is Pillars 1 and 2. But know the other three are coming — and build the muscle to think about all five from Day 1, not Year 3.
 
 ---
 

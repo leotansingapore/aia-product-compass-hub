@@ -8,8 +8,11 @@ primary_sources:
   - "[[../_source-holos-transcripts/2024-02-19-prospecting]]"
   - "[[../_source-articles/strategic-target-list-abc-123]]"
   - "[[../_source-articles/social-proof-scripts-and-sales-cycle]]"
-duration_minutes: 20
-tags: [next-60-days, week-4, new-fc, pipeline, target-list, weekly-review, car]
+supporting_sources:
+  - "[[../../first-60-days/_source-supplementary/appointment-setting-product/14-prospecting--kpis-to-hit-for-cold-calling|Cold-call KPI ratios]]"
+  - "[[../../first-60-days/_source-supplementary/appointment-setting-product/07-prospecting--important-levers-in-raising-your-sales-outcomes|QO × ASR × SUR × CR × LTV levers]]"
+duration_minutes: 25
+tags: [next-60-days, week-4, new-fc, pipeline, target-list, weekly-review, car, cold-call-kpi]
 ---
 
 # Day 23 — Your Pipeline Board + Weekly Review
@@ -165,6 +168,35 @@ The Strategic Target List above is the *input* log. The team activity tracker is
 - **If you're on EPS**, the tracker numbers feed the monthly BTS attendance + target reviews.
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §4b.
+
+---
+
+## Cold-call KPI ratios — the numbers behind one closed case
+
+If cold telephony is part of your week, CAR alone isn't enough — cold has its own ratio stack that runs *underneath* the Calls number. Track these as a separate column.
+
+| Lever | Healthy baseline | What good looks like |
+|---|---|---|
+| **Dials per hour** | 40–50 (includes no-pickups) | 50+ for 3 sustained hours |
+| **Pick-up rate** | ~20% of dials | Use two phones simultaneously — picks the first to answer, hangs the other up |
+| **Appointment-set rate** | ~5% of pick-ups agree to meet | Script quality + tonality is the lever |
+| **Show-up rate** | ~1 in 3 (pessimistic) | Confirmation message + value reminder before the slot |
+| **Close rate** | ~1 in 3 of those who show | Conviction + cushion-first objection handling |
+
+### What that math compounds to
+
+> **1 closed case ≈ 3 appointments shown ≈ 9 appointments set ≈ 180 pick-ups ≈ 900 dials**
+
+At 50 dials/hour, **one closed case = ~18 hours of cold telephony**. Three hours of dials a day, five days a week ≈ one closed case per week from cold alone — *before* any inbound, referrals, or warm flow stacks on top.
+
+### What this changes about the week
+
+- **Block 2–3 hours/day for cold dialling**, ideally same time block daily (the brain stops resisting when the slot is fixed).
+- **The "Dials" number on your CAR scorecard is the leading-leading indicator** — it predicts pickups, which predict appointments, which predict closes ~3 weeks downstream.
+- **Two-phone stacking doubles your hourly QO** without doubling your effort — the constraint becomes dial volume, not call duration. When two pick up at once, drop the second and continue with the first; circle back to the dropped number the next round.
+- **Diagnostic move when ratios slip:** if dial volume is on target but set-rate is below 5%, the opener is the problem. If show-rate is below 1-in-3, your confirmation messages are weak. Don't conflate the two — they need different fixes.
+
+Source: [[../../first-60-days/_source-supplementary/appointment-setting-product/14-prospecting--kpis-to-hit-for-cold-calling|KPIs to Hit for Cold Calling]] · [[../../first-60-days/_source-supplementary/appointment-setting-product/07-prospecting--important-levers-in-raising-your-sales-outcomes|Important Levers (QO × ASR × SUR × CR × LTV)]].
 
 ---
 

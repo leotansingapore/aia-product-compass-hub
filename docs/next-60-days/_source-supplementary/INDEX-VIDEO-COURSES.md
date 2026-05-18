@@ -28,6 +28,7 @@ This is the entry point for **all transcribed video courses** that supplement th
 |---|---|---|---|
 | [Warm Market Flow](../../first-60-days/_source-supplementary/warm-market-flow-video-course/README.md) | 7 | Warm-market-specific approach + scripts | Weeks 4-5 (Days 19-30) |
 | [FINternship Online](../../product-sales/finternship-online-video-course/README.md) | 22 | Comprehensive new-FC onboarding programme — chapters on positioning, intent, content | Weeks 1-3 (Days 1-18) |
+| [Appointment Setting Module](../../first-60-days/_source-supplementary/appointment-setting-product/README.md) | 28 essays | Cold-call mindset, KPI math, pipeline diagnostics, telemarketing structure, DNC workflow, touch-points cadence | Week 4 Day 22 (cold mechanics, DNC, KPIs); Week 4 Day 23 (cold KPI ratios); Week 5+ (touch-points) |
 
 ### Product mastery (Week 10 — Days 45-48 sales-angle work, graduation product fluency)
 

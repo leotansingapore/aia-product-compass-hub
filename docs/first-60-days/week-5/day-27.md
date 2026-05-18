@@ -4,8 +4,11 @@ day: 27
 title: "Your Personal Activity Scorecard - Weekly Ratios & FYC x 4"
 primary_source: internal-reference
 primary_slides: "n/a"
-supporting_sources: []
-duration_minutes: 20
+supporting_sources:
+  - "[[../_source-supplementary/appointment-setting-product/07-prospecting--important-levers-in-raising-your-sales-outcomes|QO × ASR × SUR × CR × LTV pipeline math]]"
+  - "[[../_source-supplementary/appointment-setting-product/16-prospecting--identifying-bottlenecks-in-your-pipeline|Skills × Traits × Beliefs bottleneck diagnostic]]"
+  - "[[../_source-supplementary/appointment-setting-product/19-prospecting--remuneration-calculations|Remuneration Calculations (FYC, EPS, commission rates)]]"
+duration_minutes: 25
 tags: [first-60-days, week-5, skills]
 ---
 
@@ -166,6 +169,79 @@ Your ratios will start closer to "acceptable" and improve over months. **That im
 - Is "role-play closing 3x per week with mentor." Record meetings (with permission). Diagnose what's breaking at the close.
 
 Same FC, wrong diagnosis - just doing more calls - keeps the frustration running for another 3 months.
+
+## 7. Where in the funnel are you losing them?
+
+Activities × Skills × Knowledge tells you *what to build in yourself*. It does not tell you *where in the pipeline this week's effort is leaking*. For that, there's a second formula that operates on the funnel itself:
+
+> **Quantity of Outreach × Appointment Set Rate × Show Up Rate × Close Rate × Lifetime Value = Weekly Income**
+
+| Lever | What it measures | Improved by |
+|---|---|---|
+| **Quantity of Outreach (QO)** | How many attempts you make to set an appointment | Time blocks, dial discipline, two-phone stacking, content volume |
+| **Appointment Set Rate (ASR)** | % of outreaches that produce an appointment | Quality of opener, niche fit, nurture warmth before the ask |
+| **Show Up Rate (SUR)** | % of set appointments that actually happen | Confirmation messages, clear meeting purpose, perceived value |
+| **Close Rate (CR)** | % of meetings that produce a sale | Conviction, analogies, clarity, follow-up discipline |
+| **Lifetime Value (LTV)** | Total commission from a single client over the years | Service quality, review cadence, retention, referrals |
+
+**Worked example:**
+
+> 200 outreaches × 5% set × 30% show × 30% close × $5K LTV = $5K/week ≈ **$20K/month**
+
+That's not a stretch number — it's pipeline math working at honest ratios. The point of running this calculation is **diagnostic, not motivational**: when the income disappoints, exactly one of those five numbers is the culprit, and the fix for each is different.
+
+**Pairs with §6:** the worked example in §6 diagnoses you on Activities × Skills × Knowledge. This formula tells you *where to spend the next week's Activities*. Set-rate low? Rewrite the opener. Show-rate low? Tighten reminders. Close-rate low? Role-play the close. LTV low? You're transactional — fix service.
+
+**The most controllable lever is QO.** Set rates and close rates improve maybe 10–20% with good script work. Quantity is the one you can double overnight by adding an hour. So: when in doubt, fix QO first, then climb up the funnel.
+
+## 8. Skills, Traits, Beliefs — the three layers of every bottleneck
+
+Once the funnel diagnostic above tells you *where* the leak is, this is *what kind* of fix it needs:
+
+| Layer | What it is | Symptom | Intervention |
+|---|---|---|---|
+| **Skills** | The technical ability — fact-find questions, objection handling, framing the close | "I know what to do but I fumble it under pressure" | More reps, role-plays, recorded meetings, mentor feedback |
+| **Traits** | Consistency, discipline, resilience, willingness to ask | "I know what to do, and I do it… for a week, then drift" | Systems that force consistency — calendar blocks, scorecards, accountability partners |
+| **Beliefs** | What you secretly think is true about cold-calling, social media, your worth, rejection | "I avoid the activity that would fix this" | Reframe + evidence — find one person whose belief was different and whose results were different |
+
+The reason most FCs spin for months without fixing the bottleneck: **they assume it's a skill problem when it's actually a belief problem.** "I should do more calls" is a skill prescription. But the FC who *avoids* the phone has a belief problem (*"cold calling doesn't work for someone like me"*) that no amount of skill training reaches.
+
+> **The brutal-honesty question:** if you knew the right fix and still didn't do it last week — is it a skill, a trait, or a belief that's stopping you? The honest answer determines whether next week's intervention is reps, systems, or reframing.
+
+## 9. What your scorecard buys you (remuneration math)
+
+A scorecard means nothing without knowing what the activities actually pay. Here's the AIA structure in concrete numbers, so you can model what your week is worth.
+
+### Income components
+
+- **FYC (First Year Commission)** — the headline number. Paid as a % of annualised premium, varies by product (see below).
+- **EPS (Entrepreneur Partnership Scheme)** — an allowance matched 1:1 to your FYC. Choose $3K/mo EPS → you must produce $3K/mo FYC to receive it.
+- **Bonuses** — ~42% of FYC at common production tiers (varies by quarter / persistency).
+- **Persistency / recurring** — small % of original FYC paid for years 2 through retirement of the policy.
+
+### Commission rates (current — sanity-check against the latest AIA schedule before quoting):
+
+| Product | Year 1 | Year 2 | Year 3 | Years 4–5 | Year 6+ |
+|---|---:|---:|---:|---:|---:|
+| **APA (ILP)** | 35% | 15% | 8% | 5% | 1.5% (perpetual) |
+| **GPP (Whole-Life)** | 40% | 20% | 5% | — | 1.5% (perpetual) |
+| **Solitaire PA** | **30% perpetual — every year, never decreases (stacks year-on-year, so Y2 includes Y1 + new business)** | | | | |
+
+### Year-1 conservative model — $3K/month FYC
+
+| Component | Amount |
+|---|---:|
+| FYC ($3K × 12) | $36,000 |
+| EPS (1:1 match) | $36,000 |
+| PA commissions (a small book) | ~$3,000 |
+| Bonus (~42% of FYC) | ~$15,000 |
+| **Year-1 total** | **~$90,000** |
+
+### What your scorecard needs to show
+
+To hit $3K/month FYC at average premium $250/mo per close, the math is: ~$3K ÷ ($250 × 40% YR1 rate × 12 months annualised) ≈ **2–3 closes per month**. At a Year-1 close ratio of ~1 in 5 meetings, that's **10–15 meetings/month** → **~30–60 outreaches/month** (depending on outreach quality).
+
+That's your scorecard's lower bound. Anything below it is below the EPS minimum — meaning you keep your activity but lose the matched allowance. Track to that line, not to a vague "I want to do well" target.
 
 ---
 
