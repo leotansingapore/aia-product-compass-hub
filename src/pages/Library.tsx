@@ -83,36 +83,37 @@ export default function Library() {
 }
 
 function LibraryTabBar() {
-  // Use the path's first segment after /library/ to drive the active tab so
-  // that nested URLs (e.g. /library/playbooks/something) still highlight the
-  // right tab. NavLink's default `end` matching would lose the highlight on
-  // any sub-route.
+  // Underline-style horizontal tab bar that scrolls sideways when the
+  // viewport is narrower than the row of tabs — avoids the uneven 3+2
+  // wrap that a grid produced at ~640-1024px with 5 tabs.
   return (
     <nav
       aria-label="Library sections"
-      className="grid w-full max-w-4xl grid-cols-2 gap-1 rounded-md bg-muted p-1 sm:grid-cols-3 lg:grid-cols-5"
+      className="-mx-2 sm:mx-0 border-b"
     >
-      {LIBRARY_TABS.map((tab) => {
-        const Icon = tab.icon;
-        return (
-          <NavLink
-            key={tab.slug}
-            to={tab.path}
-            className={({ isActive }) =>
-              cn(
-                "inline-flex items-center justify-center gap-1.5 rounded-sm px-3 py-1.5 text-sm font-medium transition-all",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                isActive
-                  ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground",
-              )
-            }
-          >
-            <Icon className="h-4 w-4" aria-hidden />
-            <span className="truncate">{tab.label}</span>
-          </NavLink>
-        );
-      })}
+      <div className="flex w-full flex-nowrap items-center gap-1 overflow-x-auto px-2 sm:gap-2 sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {LIBRARY_TABS.map((tab) => {
+          const Icon = tab.icon;
+          return (
+            <NavLink
+              key={tab.slug}
+              to={tab.path}
+              className={({ isActive }) =>
+                cn(
+                  "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap border-b-2 border-transparent px-3 py-2.5 text-sm font-medium transition-colors",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  isActive
+                    ? "border-primary text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )
+              }
+            >
+              <Icon className="h-4 w-4" aria-hidden />
+              <span>{tab.label}</span>
+            </NavLink>
+          );
+        })}
+      </div>
     </nav>
   );
 }
