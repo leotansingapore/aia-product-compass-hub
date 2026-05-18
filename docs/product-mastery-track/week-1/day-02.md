@@ -71,7 +71,9 @@ The drawings below are the ones that close cases consistently across hundreds of
 
    ![[pro-achiever/day-02/drawing-09b-critical-illness-pit.png|Hand-drawn critical illness pit: a downward dip in income during CI recovery, with the CI plan filling the gap]]
 
-10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled
+10. **The before / after restructure** — left side: current policies and total cover/value, right side: new structure with the deltas circled. Mirrors the layout of the [Total Wealth Concept Executive Summary builder](https://growing-age-compass.vercel.app/total-wealth-concept/policy-summary-builder/summaries/executive-summary) — Death/TPD, Early CI, CI, and Annual Premium rows with circled gains showing "same budget, more cover."
+
+    ![[pro-achiever/day-02/drawing-10-before-after-restructure.webp|Hand-drawn whiteboard: left column CURRENT with Death/TPD $500k, Early CI $200k, CI $300k, Annual Premium $8,400. Right column NEW STRUCTURE with the upgraded values and red-circled deltas (+$700k Death, +$300k Early CI, +$400k CI multi-claim, -$1,200 premium). Footer reads SAME BUDGET, MORE COVER.]]
 
 
 
