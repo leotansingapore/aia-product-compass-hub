@@ -4,16 +4,20 @@ import {
   CalendarCheck,
   CalendarClock,
   CheckCircle2,
+  ChevronRight,
   ClipboardList,
   ExternalLink,
   FileText,
   Lightbulb,
   ListChecks,
+  MessageCircle,
+  ScrollText,
   Sparkles,
   Target,
   Timer,
   Trophy,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from '../cmfasTheme';
 
@@ -24,12 +28,11 @@ const STRATEGY_BULLETS: ReadonlyArray<string> = [
   'Watch the recorded lecture tutorials halfway through the question bank.',
 ];
 
-const RESOURCES: ReadonlyArray<{ label: string; href?: string; hint: string }> = [
-  { label: 'iLearn portal (iRecruit)', href: 'https://joinus.aia.com.sg/app/login', hint: 'The canonical question bank.' },
-  { label: 'CMFAS chatbot · @cmfas_bot', href: 'https://t.me/cmfas_bot', hint: '24/7 explainer for any question.' },
+const RESOURCES: ReadonlyArray<{ label: string; href?: string; to?: string; hint: string }> = [
   { label: 'SCI key concepts + textbooks', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ', hint: 'Reference, not required reading.' },
   { label: 'SCI chapter checkpoint questions', hint: 'Inside the SCI student account.' },
   { label: 'SCI mock exam', hint: 'Run 4–5 times max — questions repeat.' },
+  { label: 'Exam tutorials (videos)', to: '/cmfas-exams/papers', hint: 'Recorded SCI lectures by paper. Optional — most learners pass without watching.' },
 ];
 
 const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.ComponentType<{ className?: string }> }> = [
@@ -176,6 +179,79 @@ export function StudyTipsView() {
         </div>
       </section>
 
+      {/* ─── Daily tools — iRecruit question bank + CMFAS chatbot ──────────
+       *  Surfaced prominently between booking and strategy. These are the
+       *  two pieces of software the learner actually opens every day; they
+       *  used to live behind the Practice sub-tab and got missed.
+       */}
+      <section>
+        <div className="flex items-center gap-2">
+          <Sparkles className={cn('h-4 w-4', cmfasRoom.brassText)} />
+          <h2 className={cn('text-base font-semibold uppercase tracking-[0.15em]', cmfasRoom.text)}>
+            Your two daily tools
+          </h2>
+        </div>
+        <p className={cn('mt-1 max-w-2xl text-xs', cmfasRoom.textMuted)}>
+          Don't read the textbook cover to cover. Drill questions in iRecruit, look up what you got wrong with the chatbot.
+        </p>
+        <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <a
+            href="https://joinus.aia.com.sg/app/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'group rounded-2xl border p-5 transition-colors',
+              cmfasRoom.surface,
+              cmfasRoom.surfaceHover,
+            )}
+          >
+            <div className="flex items-start gap-4">
+              <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+                <ScrollText className={cn('h-6 w-6', cmfasRoom.brassText)} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>iRecruit question bank</h3>
+                  <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
+                </div>
+                <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+                  The canonical CMFAS practice bank. Drill in Learning Mode — fastest way to get exam-ready.
+                </p>
+                <p className={cn('mt-2 text-[11px]', cmfasRoom.textFaint)}>
+                  Path: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Launch
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://t.me/cmfas_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'group rounded-2xl border p-5 transition-colors',
+              cmfasRoom.surface,
+              cmfasRoom.surfaceHover,
+            )}
+          >
+            <div className="flex items-start gap-4">
+              <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+                <MessageCircle className={cn('h-6 w-6', cmfasRoom.brassText)} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>@cmfas_bot on Telegram</h3>
+                  <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
+                </div>
+                <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+                  24/7 AI tutor. Ask anything about the CMFAS exams — syllabus, concepts, past questions.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* ─── Strategy + How long ───────────────────────────────────────── */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <div
@@ -239,23 +315,29 @@ export function StudyTipsView() {
                   <p className={cn('mt-0.5 text-xs', cmfasRoom.textMuted)}>{r.hint}</p>
                 </div>
                 {r.href && <ExternalLink className={cn('h-3.5 w-3.5 shrink-0', cmfasRoom.textFaint)} />}
+                {r.to && <ChevronRight className={cn('h-3.5 w-3.5 shrink-0', cmfasRoom.textFaint)} />}
               </div>
             );
-            return r.href ? (
-              <a
-                key={r.label}
-                href={r.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  'rounded-xl border p-4 transition-colors',
-                  cmfasRoom.surface,
-                  cmfasRoom.surfaceHover,
-                )}
-              >
-                {inner}
-              </a>
-            ) : (
+            const cardClasses = cn(
+              'rounded-xl border p-4 transition-colors',
+              cmfasRoom.surface,
+              cmfasRoom.surfaceHover,
+            );
+            if (r.href) {
+              return (
+                <a key={r.label} href={r.href} target="_blank" rel="noopener noreferrer" className={cardClasses}>
+                  {inner}
+                </a>
+              );
+            }
+            if (r.to) {
+              return (
+                <Link key={r.label} to={r.to} className={cardClasses}>
+                  {inner}
+                </Link>
+              );
+            }
+            return (
               <div key={r.label} className={cn('rounded-xl border p-4', cmfasRoom.surface)}>
                 {inner}
               </div>

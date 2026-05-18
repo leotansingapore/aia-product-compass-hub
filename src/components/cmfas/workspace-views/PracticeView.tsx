@@ -1,4 +1,5 @@
-import { ExternalLink, MessageCircle, ScrollText } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from '../cmfasTheme';
 
@@ -17,65 +18,24 @@ export function PracticeView() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {/* Question bank */}
-        <a
-          href="https://joinus.aia.com.sg/app/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            'group rounded-2xl border p-5 transition-colors',
-            cmfasRoom.surface,
-            cmfasRoom.surfaceHover,
-          )}
-        >
-          <div className="flex items-start gap-4">
-            <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-              <ScrollText className={cn('h-6 w-6', cmfasRoom.brassText)} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>iRecruit question bank</h3>
-                <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
-              </div>
-              <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-                The canonical CMFAS practice bank. Drill in Learning Mode — fastest way to get exam-ready.
-              </p>
-              <p className={cn('mt-2 text-[11px]', cmfasRoom.textFaint)}>
-                Path: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Launch
-              </p>
-            </div>
-          </div>
-        </a>
-
-        {/* AI chatbot */}
-        <a
-          href="https://t.me/cmfas_bot"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            'group rounded-2xl border p-5 transition-colors',
-            cmfasRoom.surface,
-            cmfasRoom.surfaceHover,
-          )}
-        >
-          <div className="flex items-start gap-4">
-            <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-              <MessageCircle className={cn('h-6 w-6', cmfasRoom.brassText)} />
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>@cmfas_bot on Telegram</h3>
-                <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
-              </div>
-              <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-                24/7 AI tutor. Ask anything about the CMFAS exams — syllabus, concepts, past questions.
-              </p>
-            </div>
-          </div>
-        </a>
-
-      </div>
+      <Link
+        to="/cmfas-exams"
+        className={cn(
+          'flex items-center justify-between gap-3 rounded-2xl border p-5 transition-colors',
+          cmfasRoom.surface,
+          cmfasRoom.surfaceHover,
+        )}
+      >
+        <div className="min-w-0">
+          <p className={cn('text-sm font-semibold', cmfasRoom.text)}>
+            iRecruit question bank and @cmfas_bot now live on Study Tips.
+          </p>
+          <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+            Open Study Tips to grab the daily-use links and the 8-step routine in one place.
+          </p>
+        </div>
+        <ChevronRight className={cn('h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+      </Link>
     </div>
   );
 }
