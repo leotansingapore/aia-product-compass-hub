@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** GPP is AIA's participating whole-life plan engineered for the prospect who wants serious CI/death cover but won't pay for pure term that "expires worthless." The product's signature move is the booster mechanism — high temporary cover layered on top of a smaller lifetime base. Get the booster diagram into your hand and 80% of the pitch follows naturally.
 
-
 ---
 
 # Part 1 — GPP in 5 Minutes: What It Is, Who It's For, Why It Exists
@@ -106,15 +105,6 @@ Then permission to draw:
 ### Talk-track when they ask "so how does it actually work?"
 
 > *"Three pieces. Pay for 15, 20, or 25 years, covered to 100. There's a booster for the high-responsibility years that drops off at 65 or 75. If you never claim, you get the premiums back at maturity with bonuses on top. We match the multiplier to your responsibility window."*
-
----
-
-## Drill (Part 1)
-
-1. **Run the discovery question out loud, twice.** Practise the bridge from "family or own income" into "mind if I sketch it on paper."
-2. **Recall the four numbers without notes** (15/20/25 · 65/75 · 2x/3x/5x · $3M aggregate).
-3. **List 3 prospects in your pipeline** for whom GPP is the right product. For each, write one sentence on which trigger applies.
-4. **Pick the toughest objection you've heard recently on GPP** — "term is cheaper", "what if I can't afford 25 years", "5-year horizon", "I don't value cash refund". Write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -234,15 +224,6 @@ End with the question. Micro-commit on the multiplier before you move to Phase 4
 - **Time-boxed appointment <20 min** — diagram is 3 minutes; truncate to "limited pay, lifetime cover, cash back" verbal version
 
 The diagram is for *uncertain* prospects in *normal-length* appointments. Read the room.
-
----
-
-## Drill (Part 2)
-
-1. **Draw the rocket-ship diagram on paper from memory.** Time yourself. Should take under 90 seconds including the multiplier callouts.
-2. **Recite the travel-class analogy** (5x economy / 3x business / 2x first class) without looking. Repeat 3 times.
-3. **Memorise the $300k / 3x / 25-yr / age 25 numbers:** $100k base, $200k booster, ~$2,600/yr premium, ~2% yield. These are the default-pitch reference numbers — they'll come up every appointment.
-4. **Write the dividend ladder** ($300k / 3x reference) on the back of a business card. Carry it for a week.
 
 ---
 

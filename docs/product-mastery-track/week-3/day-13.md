@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** Internalise three pieces of math (multiplier mechanics, accelerated CI, cash-value vs alternatives), and the 5 questions every prospect asks. That's enough to handle 80% of the appointment without slides — and to defend the plan against the sharp prospect who runs their own arithmetic.
 
-
 ---
 
 # Part 1 — The Numbers: Premiums, Riders, Accelerated CI Mechanics, Illustration Discipline
@@ -198,15 +197,6 @@ Print this, laminate it, keep it in your folio.
 
 ---
 
-## Drill (Part 1)
-
-1. **Write down all 15 numbers from the cheat sheet** without looking. Score yourself out of 15. Repeat tomorrow.
-2. **Recite the accelerated CI disclosure** out loud. Time it — should be under 30 seconds.
-3. **Practise the bank/FD vs GPP reframe** ("killing two birds with one stone") in 3 tonalities.
-4. **Memorise the IDF math** ($10k/yr × 10 yrs = $123k income vs $146k surrender for $100k cover / 2x / IDF 100%).
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 > **The one idea for Part 2:** Every GPP prospect asks the same five questions. Memorise the crisp answer to each — fact + analogy + micro-commit. The answers are all in the source. Recognise which Day 4 objection is hiding behind a Day 3 question.
@@ -357,15 +347,6 @@ The verbatim:
 ### "What about Vitality?"
 
 > *"Vitality Platinum optional enrolment maintains the Power-Up Dollar bonus declining schedule — without it, the first-year boost (e.g. +15% on 3x) reduces yearly. With Vitality Platinum, the boost stays. Worth setting up; we'll cover it at delivery."*
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers out loud.** Time each. Target: 30 seconds.
-2. **Practise the closing question on each** — make sure each ends with a *question*, not a statement.
-3. **Pair up with a peer** (or self-record). Have them ask each question in random order. Score whether you delivered the answer in 30 seconds with a closing question.
-4. **Memorise the Premium Pause structure** — eligibility, pause window, repayment terms. Recite without looking.
 
 ---
 

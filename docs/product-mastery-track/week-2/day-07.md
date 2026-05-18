@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** A clean fact-find prevents the wrong sale. Three qualifying conditions, then the 5-step pitch flow that converts the abstract age-100 illustration into a felt monthly profit. The linearisation step is the one most FCs skip — and the one that lands.
 
-
 ---
 
 # Part 1 — The Fact-Find: Qualifying the Prospect Before Pitching PLP
@@ -137,15 +136,6 @@ If any are missing, the close fumbles. Go back and ask.
 
 ---
 
-## Drill (Part 1)
-
-1. **Practise the 3 qualifying conditions** in order. Time it — under 90 seconds.
-2. **Memorise the budget→coverage table** ($200/$300/$400 → $100K/$150K/$200K).
-3. **Practise the 25X rule** with 3 different monthly figures ($2K, $5K, $10K).
-4. **Pull up your last 3 first-meeting prospects.** For each, list which qualifying condition you missed.
-
----
-
 # Part 2 — The 5-Step Pitch Flow
 
 > **The one idea for Part 2:** Anchor → Juxtapose → Illustrator → Linearise → Choose. The linearisation step is the one most FCs skip — and it's the conversion lever. "$7.8 million at age 100" is too distant to feel real. "$1,445 every month for the rest of your life" lands.
@@ -260,16 +250,6 @@ Three reasons to start now, all numerical, no emotional pressure.
 ## The pacing rule
 
 If you're approaching the 30-minute mark and still in Phase 4 (linearisation), you're losing them. Compress to one budget option, lock the principle, book delivery for next session. **Better to close in two visits than to lose in one.**
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 5 phases out loud** with time budgets and micro-commits. 3 times.
-2. **Practise the linearisation math** — pick a hypothetical PLP scenario and run the calculator handover live.
-3. **Memorise the GPP-vs-PLP comparison numbers** (~$48K in PLP gets ~$3.4M; same in GPP gets ~$300-400K).
-4. **Practise the two-budget-option close** in 3 tonalities. Pick the most natural.
-5. **Practise the urgency framing** ("now vs 10 years from now") in your own voice.
 
 ---
 

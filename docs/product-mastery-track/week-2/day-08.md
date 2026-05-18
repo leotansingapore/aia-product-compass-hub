@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** This is the agent-only chapter — the 88-page Product Summary distilled to ~15 numbers an FC must own. The "laptop" analogy explains the front-loaded charges; the Sum-at-Risk formula drives Max's killer feature; the LCC 300% cap + 12-month Power Reset is the multi-claim engine.
 
-
 ---
 
 # Part 1 — The Numbers: Premium Charges, Sum-at-Risk, Riders, Surrender
@@ -216,16 +215,6 @@ Three Mercer-guided portfolios: **Pro Adventurous / Pro Balanced / Pro Cautious*
 
 ---
 
-## Drill (Part 1)
-
-1. **Write down all 15 numbers from the cheat sheet** without looking. Score yourself out of 15. Repeat tomorrow.
-2. **Recite the premium charge schedule** (80/55/50/8/0). 3 times.
-3. **Practise the laptop analogy** in your own voice.
-4. **Write the Sum-at-Risk formula** on paper from memory.
-5. **Recite the LCC mechanics** — 300% cap, 12-month Power Reset, 7-day survival, 90-day waiting.
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 > **The one idea for Part 2:** The five questions clients actually ask are not the same as the technical issues an FC worries about. They are friction points: "where's my money", "will it get more expensive", "what if I can't pay", "what if it crashes", "can I take it out". One-breath sentences, each tied to a specific page in the Product Summary so the FC can show, not just say.
@@ -322,15 +311,6 @@ But if they push:
 - *"Competitor whole-life is cheaper"*
 
 — those are objections. Day 4 Part 1 has the 5 conviction stories.
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers** out loud. Time each. Target: 30 seconds.
-2. **Memorise the page citation for each** (Q1: PS p.3 / Q2: PS p.4 / Q3: PS p.4, p.7 / Q4: PS p.7 / Q5: PS p.6).
-3. **Practise the Q1 "laptop" reframe** in your own voice, 3 times.
-4. **Pair up with a peer** — have them ask the questions in random order, in different phrasings. Score on speed + page citation accuracy.
 
 ---
 

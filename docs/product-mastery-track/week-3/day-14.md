@@ -178,17 +178,6 @@ Then silence. Let it sit.
 
 ---
 
-## Drill (Part 1) — 60 minutes, the longest drill of the track
-
-1. **Recite the buying-vs-renting frame** out loud, 3 times. Time it — should be under 60 seconds.
-2. **Memorise the term-renewal escalation point** (~5%/yr of age delay, premiums explode at 65 renewal).
-3. **Recite the sure-win three outcomes** without looking. Each outcome in one sentence.
-4. **Memorise the diversification reframe** for BTID — say it in your own words.
-5. **Run a roleplay.** Pair with a peer (or simulate). Have them throw all 5 objections at you in random order. Score whether you used the script + the analogy + the closing question.
-6. **Identify the objection you're weakest on.** Write the answer out by hand. Re-read tomorrow.
-
----
-
 # Part 2 — Cross-sell + Bundling: What Pairs With GPP
 
 > **The one idea for Part 2:** GPP is rarely the whole answer. The Phase 6 packaging move is GPP for death + Major CI + savings core, plus UCC bolted on for Early CI / recurring claims. On top of that, the Mum-to-Baby rider for expectant clients and Payer Benefit for child policies are the highest-leverage adjacent sells. Don't rely on GPP for accident — TPD definitions are too restrictive.
@@ -345,15 +334,6 @@ This is a 2-product play for clients with $200k+ household income or significant
 3. **Always check Mum-to-Baby for expectant or planning-kids prospects.** Highest-leverage rider in the stack.
 4. **Always tee up the spouse close.** Single most reliable adjacent sell.
 5. **Don't rely on GPP for accident or hospitalisation.** Refer to PA plan and HSGM.
-
----
-
-## Drill (Part 2)
-
-1. **Memorise the GPP + UCC packaging line** word-for-word. It's the most-quoted source line in this track.
-2. **Practise the Mum-to-Baby pitch** — say it 3 times in your own voice. Imagine an expectant client across the table.
-3. **Pick 3 prospects from your pipeline.** For each, decide which adjacent sell (UCC, Mum-to-Baby, spouse, accident, hospitalisation) you'd queue up after the GPP close.
-4. **Practise the 4-bucket recommendation map** — name all 4 buckets and the primary product for each, in under 60 seconds.
 
 ---
 

@@ -21,8 +21,6 @@ Four items — premiums-not-guaranteed, one-IP-per-MediSave, the MAS switching d
 
 By the end of Part 1 you should be able to reframe each of the four items as objection-handling, and use the MAS switching disclosure verbatim where required.
 
-
-
 ---
 
 ## The four mandatory disclosures
@@ -107,15 +105,6 @@ The four items above are real and need to be in the prospect's awareness. But do
 - **"Only one MediSave-approved IP per person"** → reframe: that's MediSave policy, not an AIA constraint. Take a moment to verify their existing IP — usually they're switching from a less comprehensive plan, in which case the auto-termination is the right move, not a loss.
 - **"MAS switching disclosure"** → MAS does require this language, so deliver the verbatim. Then immediately reframe: this is the standard MAS warning attached to ANY IP switch. The reason we're moving them is the specific cover gap we've already discussed.
 - **"Value-added services aren't contractual"** → reframe: Teladoc, Vitality, WhiteCoat are bonus features on top of the core contractual IP cover. The cover that pays your hospital bills is contractual. The value-adds are extras AIA layers in; if any one of them changes, the core IP cover is unaffected.
-
----
-
-## Drill (Part 1)
-
-1. **Run the 4 reframes out loud** — premium escalation, one-IP-per-person, MAS switching disclosure, value-add nature. Time each at 30-45 seconds.
-2. **Practise the MAS switching disclosure verbatim** — this is the one item where the wording is regulated, so deliver word-for-word, then reframe.
-3. **Memorise the pre-existing waiting periods** (10/10/24 months).
-4. **Pick the toughest objection you've heard recently** for HSGM — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -232,16 +221,6 @@ That's the target the entire 5-day track is calibrated to.
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the two-option close** in 3 tonalities — neutral, slightly playful, slightly serious. Pick the one that sounds most natural.
-2. **Practise the kopi-vs-cover frame** in your own voice. Time it — under 60 seconds.
-3. **Memorise the IPOS path** — recite without looking.
-4. **Practise the Cancer Care Pro opt-out framing** ("I always include it by default — let me know if you want to remove it").
-5. **Pick your last 3 closed HSGM cases.** Audit: did you do all the post-close service rhythm steps? If no, what stopped you?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete HSGM appointment — Phases 1 through 8 — recorded on Loom, with a 6-dimension self-review. This is the proof you can sell HSGM. No more theory. Live reps from here.
@@ -267,7 +246,6 @@ Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C
 ## Case H1 — The HSG B-Lite + no rider upgrade
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h1) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Prospect has **AIA HSG B-Lite, no rider** — basic hospital cover at lowest tier
@@ -314,7 +292,6 @@ Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the ri
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h2) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Prospect's mother quoted **GE P-Optimum private hospital rider at $300+/yr** vs AIA Vitalcare A rider at $800+/yr
 > - GE's headline price is cheaper, **but the cover scope is significantly narrower** with hard limitations
@@ -347,7 +324,6 @@ Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the ri
 ## Case H3 — The parents' plan upgrade for multi-generational coverage
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=hsgm-h3) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Prospect (working adult) wants to upgrade parents' hospital coverage — currently on **MediShield Life only** or basic Plan C

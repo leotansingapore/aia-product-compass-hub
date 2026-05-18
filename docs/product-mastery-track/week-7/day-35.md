@@ -104,15 +104,6 @@ Reframe it: fees can be revised with 1 month's notice — that's standard ILP in
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the 4 reframes out loud** — liquidity / guaranteed-return / dividend-not-guaranteed / fee-revisability. Time each at 30-45 seconds.
-2. **Practise the state-reframe-move pattern** with three examples from the table above.
-3. **Memorise the suicide clause + misrepresentation clause windows** (1 year / 2 years).
-4. **Pick the toughest objection you've heard recently** for PWV — write your reframe for that specific prospect. Run it out loud once.
-
----
-
 # Part 2 — Gentle Close + In-Meeting Execution (12-Item Checklist)
 
 > **The one idea for Part 2:** High-pressure closes don't work with pre-retirees. Gentle closes outperform. Always Two Never Three converts decisions into preferences. Build micro-yeses throughout — by the closing question, the client has already said yes 15 times. Complete EVERYTHING in the closing meeting (89 minutes); every follow-up needed for "later paperwork" is a future cancellation in disguise.
@@ -257,16 +248,6 @@ If you stop at iPOS and never run #4-11, you closed a fraction of a case. PWV re
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the Always Two Never Three principle** with 5 example phrasings.
-2. **Memorise the 12-item checklist** by category (paperwork / payment / setup / scheduling).
-3. **Practise the SingPass + PayNow + beneficiary scripts** in a mock-execution roleplay.
-4. **Practise the dividend preference setup** ("Reinvest or payout? You can switch later.")
-5. **Audit your last 3 closed PWV cases.** Did you complete all 12 items in one session? If not, what stopped you?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete pre-retiree appointment with Mr Lim Wei Cheong (58, $14.5K household income, $185K OA, legacy Pro Achiever yielding 1.4% IRR, $52K matured Prudential payout uninvested). Recorded on Loom, 6-dimension self-review.
@@ -293,7 +274,6 @@ Anonymised case studies from real PWV closes — pre-retiree restructures, ILP c
 ## Case L — The Citibank PIW SGD-redirect
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-l) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 50-yo prospect proposed a $300K PIW (Premier Income Wealth) by a Citibank private banker
@@ -330,7 +310,6 @@ Anonymised case studies from real PWV closes — pre-retiree restructures, ILP c
 ## Case M — The pre-retiree OA-redirect (retirement healthcare funding)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-m) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 58-yo prospect with **$185K in CPF OA** doing nothing (0% interest after 65, illiquid in RA after top-up)
@@ -374,7 +353,6 @@ This is Leo's canonical "retirement healthcare funding angle" — see the [Drawi
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-n) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 56-yo IT manager with **5 Manulife plans** placed by **4 different DBS bankers** over 5 years
 > - Plans: 1 Manulife ILP + 4 Manulife savings plans, no one servicing them currently
@@ -416,7 +394,6 @@ This is Leo's canonical "retirement healthcare funding angle" — see the [Drawi
 ## Case O — The pre-retiree $7.2K/mo retirement target
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=pwv-o) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 50-yo, currently FRS-on-track via SA alone

@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-2, pro-lifetime-protector]
 
 > **Today's frame:** Three sentences verbatim every meeting (the ILP disclosures). Then close on two budget options. Match the portfolio to the prospect's risk profile (never above). Defend retention at delivery — a competing FC six months later can show the prospect the Year-1 charges still visible and convince them they bought a bad plan. The defense begins at delivery, not at the next review.
 
-
 ---
 
 # Part 1 — ILP Compliance + Risk Disclosures
@@ -115,15 +114,6 @@ For PLP specifically:
 > *"AIA Vitality PowerUp Dollar is also non-guaranteed. The 10% PowerUp Dollar of your Insured Amount adjusts annually based on Vitality status, but AIA reserves the right to vary fees with 1 month's notice."* [PS p.12, p.15-16]
 
 For Vitality-enrolled prospects, this is a separate disclosure to deliver.
-
----
-
-## Drill (Part 1)
-
-1. **Run the 3 ILP reframes out loud** — non-guaranteed returns, surrender charges, fees subject to change. Time each at 30-45 seconds.
-2. **Practise the free-look close** for "I want to think about it" — get the line natural.
-3. **Memorise the surrender schedule** (75/50/0%) and the reinstatement window (5 years).
-4. **Pick the toughest objection you've heard recently** for PLP — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -256,16 +246,6 @@ That's the target.
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the budget-choice close** in 3 tonalities. Pick the most natural.
-2. **Memorise the portfolio-matching rule** — never above risk profile.
-3. **Practise the AIA Vitality enrolment script** in your own voice.
-4. **Practise the 30-day check-in calendar move** — book it BEFORE the prospect leaves.
-5. **Audit your last 3 closed PLP cases.** Did you do all 8 of the "case is closed" steps?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete PLP appointment with Mr Tan Wei Ming (42, SME owner, $320K income, $1M term gap, two kids, legacy floor need). Recorded on Loom, 6-dimension self-review.
@@ -293,7 +273,6 @@ PLP and whole-life restructure case studies. Pattern: prospects bought from pare
 ## Case P1 — The young adult $200/mo bundled whole-life restructure
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p1) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Young working adult, paying **$200/mo whole-life** for $200K death/TPD/CI + $100K Early CI
@@ -338,7 +317,6 @@ Same approximate monthly outflow. Multi-claim CI. Death cover doesn't erode. Cas
 ## Case P2 — The pre-retiree NTUC Living Policy cash unlock
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p2) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Pre-retiree with **NTUC Living Policy** — $93/mo premium, $96K accumulated cash value, modest death + CI coverage bundled
@@ -385,7 +363,6 @@ Always run the surrender penalty math before recommending this move. Most life p
 ## Case P3 — When PLP is genuinely the right answer (legacy floor)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=plp-p3) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - **Not every case is a decoupling case.** PLP genuinely serves a real structural need for specific prospect profiles.

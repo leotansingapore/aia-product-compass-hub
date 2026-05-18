@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 > **Today's frame:** Internalise three pieces of math (single-claim base mechanics, Enhancer 50% relapse + 100% Catastrophic top-up, per-episode caps). Then memorise the 5 questions every prospect asks on "unlimited" — and the exact mechanic for each answer. The FC's fluency is the trust test.
 
-
 ---
 
 # Part 1 — The Numbers: Single-Claim Mechanics, Caps, Enhancer Economics
@@ -142,16 +141,6 @@ Asymmetric risk-reward.
 
 ---
 
-## Drill (Part 1)
-
-1. **Write down all 15 numbers from the cheat sheet** without looking. Score yourself out of 15.
-2. **Recite the Enhancer's two mechanics** (50% relapse capped 100% total + 100% one-time Catastrophic).
-3. **Memorise the ECPWP ROI math** (best case ~679x, worst case ~S$8,400).
-4. **Recite the 5 named Relapse conditions** without looking.
-5. **Recite the 5 named Catastrophic conditions** without looking.
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 > **The one idea for Part 2:** Five questions cover ~80% of what comes up in a real meeting. Each hinges on the small print of "unlimited." Memorise the exact mechanic — the prospect's fluency test is asking the same question 3 different ways.
@@ -227,15 +216,6 @@ But if they push:
 - *"Competitor X looks similar"*
 
 — those are objections. Day 4 Part 1 has the 5 conviction stories.
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers** out loud. Time each. Target: 30 seconds.
-2. **Memorise the 3 waiting periods** (7 days / 90 days / 2 years). Recite without looking.
-3. **Practise quoting PS p.7 verbatim** for Q2.
-4. **Pair up with a peer** — have them ask each question in random order, then in different phrasings. Score whether you delivered the exact mechanic.
 
 ---
 

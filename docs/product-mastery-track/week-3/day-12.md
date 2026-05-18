@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-3, guaranteed-protect-plus]
 
 > **Today's frame:** Before you draw the rocket-ship, you need three pieces of intelligence — the coverage gap, the budget reality, and the cash-value pain point. Then run the source's explicit 6-phase flow (Open → Illustrator → Pitch → iPOS+ → Layer Early CI → Package) for the close. Skip the fact-find and you'll argue against term later instead of qualifying for whole life upfront.
 
-
 ---
 
 # Part 1 — The Fact-Find: What to Ask Before Pitching GPP
@@ -86,15 +85,6 @@ If instead they say *"I don't care, I just want maximum cover for the lowest pre
 - ✅ Pay-term preference indicated (15 / 20 / 25 yr — usually 25)
 
 If any of these is missing, the close at Phase 6 will fumble. Go back and ask.
-
----
-
-## Drill (Part 1)
-
-1. **Practise the cash-value question** in your own voice, 3 different ways. Pick the one that sounds most like you.
-2. **Run the 5x-income gap math** out loud for 3 hypothetical incomes ($48k / $84k / $120k). Recite the gap each time.
-3. **Pull up your last 3 first-meeting prospects.** For each, write whether you surfaced (a) the gap, (b) the budget, (c) the cash-value pain. The missing ones are why you didn't close (or had to come back).
-4. **Pre-write your "10%-of-income" anchor sentence** — what you'd say verbatim. Save it as a snippet.
 
 ---
 
@@ -296,16 +286,6 @@ If you're approaching the 25-minute mark and you're still in Phase 4, you're los
 | Total cash value at 100 (no claim) | ~$285k |
 | Yield (Major CI only) | ~2.11% |
 | Now-vs-10-yrs delta (age 25 → 35) | ~$32k more / less coverage |
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 6 phases out loud** — name, time budget, micro-commit. Do it 3 times.
-2. **Pick a real prospect** (or simulate). Run Phase 1–4 in front of a mirror. Time it. Target: 18 minutes total. Most FCs run 23+ on the first try.
-3. **Memorise the standard close numbers** ($300k / 3x / 25-yr / drop-off 65 / ~$2,800/yr / ~$285k cash at 100). Recite without looking.
-4. **Practise the Apple Store layering script** in 3 different tonalities. Pick the one that sounds most like you.
-5. **Walk through one full quotation in iPOS+** — practise the surrender-value-column read live. If your iPOS+ access isn't familiar, fix that first; it's the Phase 4 weapon.
 
 ---
 

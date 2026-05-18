@@ -317,16 +317,6 @@ That's the target the entire 5-day track is calibrated to.
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the four-hoops sequence** (CI cover · buy now · 3x · with Early CI). Time it. Target: 30 seconds.
-2. **Practise the binary close** ("with or without Early CI?") in three tonalities — neutral, slightly playful, slightly serious. Pick the one that sounds most like you.
-3. **Memorise the standard close numbers** ($3,200 vs $3,995, ~$60/mo differential, $285k cash at 100). Recite without looking.
-4. **Write your Day 30 GIRO check-in template** — exact message you'd send. Save it as a snippet.
-5. **Pick your last 3 closed cases.** For each, audit: did you do all 6 of the "case is closed" steps? If no, what stopped you?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete GPP appointment — Phases 1 through 7 — recorded on Loom, with a self-review against the 6-dimension rubric. This is the proof you can sell GPP. No more theory. Live reps from here.
@@ -352,7 +342,6 @@ Term protection case studies from real closes. Common patterns: prospect believe
 ## Case G1 — The 25-yo first-time $1M term buyer
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=gpp-g1) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 25-yo working adult, new income, needs to lock in cover while young and healthy
@@ -388,7 +377,6 @@ For a 25-yo, the structural argument:
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=gpp-g2) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Prospect has / is being quoted **Singlife Elite Term** at $2,550/yr for Death + TPD + CI/ECI multi-claim
 > - AIA equivalent (decoupled): **GPP $713/yr for Death/TPD + UCC $1,837/yr for CI/ECI Multi-claim = $2,550/yr same price**
@@ -421,7 +409,6 @@ For a 25-yo, the structural argument:
 ## Case G3 — The MINDEF Singlife enlistee
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=gpp-g3) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - NSF / NSman client, currently subscribed to **3 MINDEF Singlife plans** (Term / Accident / CI) because premiums are heavily subsidised during NS

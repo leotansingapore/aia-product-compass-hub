@@ -138,18 +138,6 @@ Then silence. Let it sit.
 
 ---
 
-## Drill (Part 1) — 60 minutes
-
-1. **Recite all 5 conviction stories** out loud, in order. Time each — should be under 90 seconds.
-2. **Memorise the pro-ration story** (B2/C-sized, private bill = wipeout). Recite from memory.
-3. **Memorise the S$1M math** (S$3,500 + S$99,650 = S$103,150 without rider). Drill until automatic.
-4. **Memorise the optionality story** (A→B free, B→A re-underwrite). Recite without notes.
-5. **Memorise the SMA #1 ranking citation** (Brochure p.1).
-6. **Run a roleplay.** Pair with a peer or simulate. Have them throw all 5 objections in random order. Score whether you used the script + the conviction + the closing line.
-7. **Identify the objection you're weakest on.** Write the answer out by hand. Re-read tomorrow.
-
----
-
 # Part 2 — Cross-sell + Bundling: What Pairs With HSGM
 
 HSGM closes the protection floor — everything else builds on top. The natural progression in a single relationship is HSGM → PA (outpatient gap) → CI/Term (income replacement) → APA accumulation (the asset that pays future premiums). The pivot from HSGM to APA via the lifetime-healthcare-cost frame (Video 30) is one of the highest-leverage cross-sells in the AIA stack.
@@ -243,16 +231,6 @@ For health-conscious prospects, this is a real reason to enrol Vitality at deliv
 3. **Always check for spouse / kids / ageing parents** during fact-find — multi-policy quotes are the highest-conversion cross-sell.
 4. **Don't switch a competitor IP unless the prospect is healthy + no claims.** Discipline > short-term commission.
 5. **Use Video 30's healthcare-cost framing** to bridge HSGM → APA — this is the highest-leverage long-term cross-sell.
-
----
-
-## Drill (Part 2)
-
-1. **Memorise the natural HSGM bundle** (Plan A + Pro A + Cancer Care Pro). Recite without looking.
-2. **Practise the Cancer Care Pro pitch** for a hypothetical cancer-family-history prospect. Time it — under 60 seconds.
-3. **Memorise the HSGM-to-APA pivot script** (lifetime healthcare cost ~S$300K).
-4. **Practise the switching decision tree.** Pick 3 hypothetical prospect profiles — for each, decide switch or layer.
-5. **Memorise the AIA Vitality coin boosters** (3% engagement / up to 10% renewal).
 
 ---
 

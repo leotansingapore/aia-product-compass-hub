@@ -11,7 +11,6 @@ tags: [product-mastery-track, week-4, ultimate-critical-cover]
 
 > **Today's frame:** State the 6 compliance pillars in your own voice, in plain English, before the prospect signs. Then close on the prospect's choice of term, sequence the Enhancer (default) and ECPWP (after term), and hand off Teladoc/WhiteCoat/Vitality at delivery. The prospect who signs is also the prospect who refers.
 
-
 ---
 
 # Part 1 — Compliance + Risk Disclosures (6 Pillars)
@@ -109,14 +108,6 @@ Important disclosure for cross-shopping prospects.
 |---|---|
 | SDIC protection | Up to specified limits [Brochure p.14, PS p.12] |
 | Underwriter | AIA Singapore Private Limited |
-
----
-
-## Drill (Part 1)
-
-1. **Run the 6 reframes out loud** — no cash value, 90-day waiting, 7-day survival, 2-year Enhancer interval, pre-existing exclusion, premium-not-guaranteed. Time each at 30-45 seconds.
-2. **Memorise the LIA 2019 vs AIA-determined distinction.** This is a frequent cross-shopping question.
-3. **Pick the toughest objection you've heard recently** for UCC — "no cash value" / "death cover too low" / "what if I get diagnosed in the waiting period" — write your reframe for that specific prospect. Run it out loud once.
 
 ---
 
@@ -248,16 +239,6 @@ That's the target.
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the term-then-rider sequence** out loud. 3 times. Lock the order.
-2. **Practise the ECPWP asymmetric framing** ("S$168 paid → S$114,000 waived"). 3 tonalities.
-3. **Memorise the Vitality discount mechanics** (10% upfront, up to 15%, Bronze/Silver/Gold/Platinum adjustment).
-4. **Practise the Teladoc handoff** in your own voice.
-5. **Audit your last 3 closed UCC cases.** Did you do all the post-close service rhythm steps? If no, what stopped you?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete UCC appointment as a layered upsell to a GPP holder (Marcus, 38, no Early CI, no multi-claim). Recorded on Loom, 6-dimension self-review. The proof you can sell UCC.
@@ -284,7 +265,6 @@ Anonymised CI case studies from real closes. The pattern: most prospects believe
 ## Case U1 — The "company insurance" exposure (Full Suite close)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u1) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Working professional, "company insurance" gave him **$60K Death / $30K CI** = ~5-10 months of expenses in event of death or CI
@@ -345,7 +325,6 @@ Outcome added to the prospect:
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u2) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Young working adult, paying **$200/mo whole-life plan** placed by parents' family agent years ago
 > - Coverage: **$200K death + $200K TPD + $200K CI + $100K Early CI** — all bundled in one life plan
@@ -396,7 +375,6 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u3) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 38-yo client with existing GPP term plan, **no Early CI rider**, no multi-claim feature
 > - Has good Major CI cover, but Early CI (carcinoma in situ, mild stroke, Stage 0 cancer) not covered
@@ -433,7 +411,6 @@ If just the $800/yr savings is redirected (the lower-commitment version): $800/y
 ## Case U4 — The pre-retiree CI restructure to standalone multi-claim
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=ucc-u4) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Pre-retiree (~55), has **CI bundled inside a $100K whole-life plan** — single-claim only, cover erodes on claim

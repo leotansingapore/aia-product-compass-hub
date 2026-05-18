@@ -9,15 +9,10 @@ tags: [product-mastery-track, week-1, pro-achiever]
 ---
 # Day 2 — The Appointment Flow (Phase 0 → Phase 5B)
 
-A complete APA appointment runs in seven phases — Phase 0 (pre-appointment) through Phase 5B (value-prop and final close). Each phase has a hard time budget and a target micro-commitment. The job is to engineer the close across the phases, not improvise it.
-
-**Realistic total runtime: 40-50 minutes**.
-
-If you're trying to compress this to 20 minutes, you'll skip the problem build-up and lose the close. The two ways FCs lose APA cases: skipping the problem build-up (leaping to "$200/month buys you this plan" before the prospect feels the gap), and running over 60 minutes (energy and attention die past minute 50-55).
 
 ### Presentation philosophy — draw concepts first, slides are your reference
 
-The single biggest sequencing mistake is opening the appointment by sharing your iPOS+ slide deck or product brochure on screen. The prospect sees 50 pages of numbers and shuts down. Their brain gets overwhelmed and they go into passive-listening mode.
+A sequencing mistake is opening the appointment by sharing your iPOS+ slide deck or product brochure on screen. The prospect sees 50 pages of numbers and shuts down. Their brain gets overwhelmed and they go into passive-listening mode.
 
 The right move: **draw the concept on a single piece of paper or whiteboard FIRST**, then pull up the slides as a reference *for yourself* — not for the prospect to study.
 
@@ -512,18 +507,12 @@ The patterns most people fall into:
 
 > *"We have a 9-hour investment course — a 7-step process, we can give you access. But… you still have to execute yourself. Some people don't have time, others find it too technical."*
 
-This sets up the next move.
+![[Pasted image 20260518161814.png]]
 
 ### The single-stock question
 
-The most common client request:
-
-> Client: *"Why don't you just tell me ONE stock I can put my money into?"*
->
-> FC: *"What do you think is the problem if you put everything into one stock?"*
-
-Wait for the answer. Let them feel it. They'll usually arrive at: *"Too risky — if it crashes, I lose everything."*
-
+Hence, clients sometimes even ask us "what is the best stock to invest in"?
+However, whats the risk if you invest all into one stock?
 ### The relationship analogy
 
 > *"How would you feel if you put all your effort, time, and money into one girl or one boy — and then they break up with you every day?"*
@@ -533,8 +522,6 @@ Same emotional impact as concentration risk. The pain lands without an Excel she
 ### Lead to diversification (and crack a joke)
 
 > *"So what do you think is the solution?"*
-
-Wait for them to say "diversification".
 
 > *"Oh — diversification! Maybe you mean having multiple girlfriends or boyfriends?"*
 
@@ -561,19 +548,10 @@ Surface the layered cost:
 
 ### AIA's proven track record (cite verifiable sources)
 
-Bring up the Investing Success & Track Record deck — slide 4 shows 10-year fund performance:
+Bring up the Investing [Success & Track Record deck ](https://docs.google.com/presentation/d/1-sPSsB7zH_-e3PnagGKjwr2toHfkrAkWWO7w2-NiBH4/edit?slide=id.g3e2f672db71_0_0#slide=id.g3e2f672db71_0_0)
+Explain how AIA has been showing superior performance compared to other companies, show some good track record and how the funds have even been beating the market.
 
-- AIA Global Technology Fund: **447%**
-- AIA India Equity Fund: 223%
-- AIA International Health Care Fund: 202%
-- SPDR S&P 500: 191% (benchmark)
-- AIA Regional Equity Fund: 65%
-
-Position it honestly: AIA's funds, on average across the lineup, have a verified long-term track record that competes with or beats the standard ETF benchmarks. Don't claim "#1 on every metric" — point at the deck.
-
-### Transition into Phase 4
-
-> *"Now let me show you the actual quotation, how the dividend mechanics work, and what makes AIA different from doing this DIY."*
+![[Pasted image 20260518162033.png]]
 
 ---
 
@@ -581,7 +559,7 @@ Position it honestly: AIA's funds, on average across the lineup, have a verified
 
 The conceptual sell is done in Phase 3. Phase 4 is where you show the projected numbers visually and pre-empt the "why AIA instead of DIY" objections before the prospect surfaces them.
 
-> **Tool note:** at this phase you don't pull up the iPOS+ illustration yet. Use the **Long-Term Investment Illustrator** at **[present.financeillustrator.com/long-term-investment-illustrator](https://present.financeillustrator.com/long-term-investment-illustrator)** (part of the Growing Age Calculator). The official iPOS+ quote comes at a later phase when you're closing on the actual contract — using it too early gets the prospect anchored on a specific premium number before they've bought the *concept*.
+> **Tool note:** at this phase you don't pull up the iPOS+ illustration yet. Use the **Long-Term Investment Illustrator** at **[present.financeillustrator.com/long-term-investment-illustrator](https://present.financeillustrator.com/long-term-investment-illustrator)** . The official iPOS+ quote comes at a later phase when you're closing on the actual contract — using it too early gets the prospect anchored on a specific premium number before they've bought the *concept*.
 
 ### Open the Long-Term Investment Illustrator
 
@@ -593,102 +571,48 @@ Pull up the illustrator on the agreed monthly amount (from the Phase 2 whiteboar
 
 ### Cost-of-delay shock (anchor the urgency on illustrator numbers)
 
-> *"The math at $1,000/month works because you're starting now. What do you think happens if you wait 5 years?"*
+> *"The math at $1,000/month works because you're starting now. What do you think happens if you wait 5 or 10 years? How many percent do you think it will reduce by?" (let them guess a little bit here)
 
-Let them guess (most say "a bit higher"). Then reveal:
+The real answer: the returns actually drop by around 50% 
 
-| When you start | Monthly investment needed for same $2.4M target |
-|---|---|
-| Now (age 25) | $1,000/mo |
-| Wait 5 years (age 30) | ~$1,400/mo |
-| Wait 10 years (age 35) | ~$2,000/mo |
-| Wait 20 years (age 45) | ~$4,200/mo |
+If $1,000/mo is too high right now, you can change it to be a more reasonable number, based on the client's budget. 
 
-> *"A 5-year delay roughly doubles the monthly cost by the time you're 45. The single biggest lever on this whole calculation is **when you start.**"*
+However, it will be ideally to increase the budget slightly (try to give them a few variations of budget). Show them how increasing the monthly premium just slightly will raise the returns at retirement dramatically (try it yourself). "Morale of the story" is that just by increasing slightly, perhaps just a few dollars per day, you get a few hundred more thousand for retirement. 
 
-(Figures above are ballpark, based on a 25-year-old prospect, 8% IIRR projection on Self-Select Adventurous Index Fund, $2.4M target at 65. **Verify in iPOS at quote time** for the specific prospect's age and risk profile — the cost-of-delay curve steepens further for older starts.)
-
-Real-client anchor:
-
-> *"I have clients who only started at 45 — guess how much they have to save? $4,000-$6,000/month. You only need $1,000 now."*
-
-### Budget adjustment ladder
-
-If $1,000/mo is too high right now:
-
-> *"What if we start with a more comfortable budget? Even $500/month builds meaningfully — it just means a lower retirement income, or you'll need to top up later as income grows."*
-
-Then "every dollar counts":
-
-| Add per month | Adds at retirement (40-yr horizon) |
-|---|---|
-| +$50/mo (MRT-fare worth) | ~$120,000 |
-| +$100/mo | ~$250,000 |
-| +$200/mo | ~$491,000 |
-
-> *"Looking at your expenses, is there anything you can reduce to put more towards this?"*
+Then, ask them how much do they prefer for retirement.
 
 ### Plan flexibility — handle the lock-in worry
 
-Address the four reassurances before the prospect asks:
+You can demonstrate how flexible the plan is by playing around with the illustrator:
 
 - **Premium holidays** — *"Pay for 10 years only ($60K in), let it compound inside the plan, value at 65 is around $654,000. Even if life happens and you stop paying after 10 years, you still get a 10x return."*
 - **Regular withdrawals at retirement** — *"You don't have to take it as a lump sum. You can draw $7,500/month till you're 80+, or $10,000/month till 75. So $500/mo of savings now turns into $10K/mo of retirement income later."*
 - **Ad-hoc withdrawals** — *"Life happens. Age 35 — $50K for house downpayment. Age 45 — $50K for car. Age 55 — $100K for kids' education. Returns are slightly lower but still substantial."*
-- **Payment pauses** — *"If you have a hard year, pause 1-2 years, resume when ready. The plan adapts."*
+- **Payment pauses** — *"If you have a hard year, pause 1-2 years, resume when ready. The plan allows you to activate premium holidays, for 1 year after the 5th year, or you can pause indefinitely after the 10th year"* - you can close bigger cases if you just frame it as a plan that you can stop paying after the 10th year.
 
 ### Dividend mode — the year-10+ mechanic
 
-The reason the APA route works at $1,000/mo while the bank route demands $5,400/mo: at **year 10 onwards** you can switch the plan into **dividend mode** by moving from the Adventurous Index Fund (the accumulation default) into **GDIF — the Global Dynamic Income Fund**. The mechanics:
+At **year 10 onwards** you can switch the plan into **dividend mode** by moving from the Adventurous Index Fund (the accumulation default) into **GDIF — the Global Dynamic Income Fund**. 
 
-- Dividends pay out monthly
+- Dividends pay out quarterly
 - Capital stays invested
 - The plan keeps paying for the rest of the client's life
 - The death benefit transfers to the next generation
 
-### The withdrawal-age tradeoff (delay-gratification ladder)
-
-Same plan, same premium — the only thing that changes is when the client flips the dividend switch:
-
-| Start dividends at | Monthly dividend |
-|---|---|
-| Age 55 | ~$3,800/mo |
-| Age 60 | ~$5,840/mo |
-| Age 65 | ~$8,500/mo |
-
-The line that lands:
+However, it would be more fruitful for the client to only withdraw the dividends eventually at retirement, once the policy value has accumulated to a sizeable amount.  The more they delay dividends, the higher the monthly dividends become. 
 
 > *"You don't have to decide right now whether you want to start drawing at 55, 60, or 65. The longer you delay, the better the dividends. We can flip the switch when the time comes."*
-
-This is what handles *"what if I need it earlier?"* — you don't lock the answer at sign-up.
-
-### The dividend question flip — handling "can I take dividends out now?"
-
-If a prospect probes *"can I take dividends out now?"*, cushion before you reframe — don't argue:
-
-> *"Totally fair question — most people ask this. Honestly, you can — but let me ask it back to you: would you rather have dividends landing in your account NOW while you're earning $6K/month and don't really need them, or have them landing in 25 years when that monthly income is the difference between working and not working?"*
-
-Most prospects answer "future" without thinking hard. Then:
-
-> *"Right — so we let it compound. The money's still yours, you just give it a runway."*
-
-The flip works because you cushioned first ("totally fair", "most people ask"). Drop the cushion and the same question reads as a gotcha — and trust takes a hit even if they say yes.
-
-### The limited-pay variant (for higher earners)
-
-For a prospect who can pay more upfront for fewer years:
-
-> *"Pay $12,000/year for 10 years — that's $120,000 total — then stop. Let it compound to age 65. You'll have about $4,300/month in dividends and roughly $700,000 of capital still preserved."*
-
-This is the *"I want to be done paying by 40"* variant. Many tech professionals, doctors, and dentists prefer this. Bring it up if the prospect surfaces a strong income but a finite-runway commitment preference.
+ 
 
 ### AIA vs DIY — the five reframes that pre-empt the cross-shopping objection
 
-Most prospects who self-invest are already doing some mix of S&P 500, individual stocks, crypto, robo-advisors (StashAway, Endowus, FSMOne), broker accounts (Moomoo, IBKR). Surface why APA's structural setup beats DIY *for the 40-year retirement-income job* — not for short-term trading. The frame:
+Most prospects who self-invest are already doing some mix of S&P 500, individual stocks, crypto, robo-advisors, broker accounts. Surface why APA's structural setup beats DIY *for the 40-year retirement-income job* — not for short-term trading. The frame:
 
 > *"Right now you're savvy at managing $10K, $20K in your trading accounts. But we're not talking about that game. We're talking about $2.4 million — $3 million — in your portfolio at 65, in your 60s and 70s, with inheritance flowing to your kids. Different game. Five things you'd struggle to replicate DIY..."*
 
 Then walk through the five reframes. Have the prospect's actual DIY setup in your head (capture it during Phase 1) so each reframe lands on something specific.
+
+![[Pasted image 20260518163344.png]]
 
 #### 1. No currency risk (SGD-denominated, fund-level hedging)
 
@@ -728,27 +652,9 @@ Close the comparison:
 
 > *"None of this means DIY is wrong for the $10K-$50K of trading capital you're managing today. It just means for the 40-year retirement-portfolio job — different game, different tool."*
 
-### The option close — lead with the leverage math, then offer three tiers
+After this, if you've not done so, you can then move on to set the next meeting or attempt to close on the spot with the option close, by varying a few budgets and letting them pick the amount that they prefer.
 
-The point of the option close isn't just "pick a number" — it's to show the prospect that a small bump in monthly premium translates into a big difference in retirement cash value. Once they see the leverage, the three-tier choice frames itself.
-
-Run the math on screen or on paper, anchored against the $600/month baseline you've been working with:
-
-| Monthly premium | Approx. value at age 65 | Vs $600/mo baseline |
-|---|---|---|
-| **$500/mo** | ~$1,100,000 | -$316K |
-| **$600/mo** | ~$1,416,700 | baseline |
-| **$700/mo** | ~$1,650,000 | +$233K |
-
-> *"Look at the difference. Going from $500 to $700 — that's $200 a month, basically one less restaurant dinner a week — adds over half a million dollars to your retirement pot. The leverage of an extra $100 to $200 per month is enormous because of how long it compounds."*
-
-Then offer the three tiers:
-
-| Option | Premium | Position |
-|---|---|---|
-| Option 1 | **$500/mo** | "Still effective — but you'll likely need to top up later" |
-| Option 2 | **$600/mo** | "Sweet spot. Balanced. Can always increase as income grows." |
-| Option 3 | **$700/mo** | "Start here, never have to increase again. Set-and-forget retirement planning." |
+The point of the option close isn't just "pick a number" — it's to show the prospect that a small bump in monthly premium translates into a big difference in retirement cash value.  Usually, just a small difference ads up in a few hundred thousands in retirement savings. Give them three numbers, around $50-$100/mth apart.
 
 Then ask:
 
@@ -763,6 +669,9 @@ Goal of Phase 4: get the option close, get buy-in on a monthly amount, confirm t
 ### Reinforce with the long-term loyalty bonuses (Welcome + Special)
 
 Once the prospect picks a tier, sweeten the decision by surfacing the two bonus mechanics. APA layers them ON TOP of the projected fund returns — most prospects don't know this, and most cross-shopped competitors don't have anything equivalent.
+
+
+   ![[pro-achiever/day-02/drawing-08-welcome-loyalty-stack.png|Hand-drawn Welcome + Loyalty bonus stack: 15%/18%/20% Y1–3 then 5% Y10–20, 8% Y21+, with the dollar receipts circled at the bottom]]
 
 #### The Welcome Bonus (first 3 years)
 
@@ -784,14 +693,6 @@ For a $12,000/year premium (illustrative — verify exact tier in iPOS):
 After the Welcome Bonus, the loyalty bonuses kick in:
 
 > *"Then from Year 10 onwards, every single year, AIA gives you a 5% Special Bonus on your annualised premium. And from Year 21 onwards, that steps up to 8% per year — for the rest of the policy."*
-
-Run the per-tier math on their chosen premium:
-
-| If they picked | Annualised premium | Special Bonus from Y10 (per year) | Special Bonus from Y21 (per year) |
-|---|---|---|---|
-| $500/mo | $6,000/yr | $300/yr | $480/yr |
-| $600/mo | $7,200/yr | $360/yr | $576/yr |
-| $700/mo | $8,400/yr | $420/yr | $672/yr |
 
 #### The "make a guess" close
 
@@ -826,101 +727,67 @@ Don't bring this up unless they probe it — leading with charges shifts the con
 
 ## Phase 5 — Quotation + Application (8-10 min)
 
-Open iPOS+, configure the policy on screen, and walk them through the quotation.
-
-### Policy configuration (Pro Achiever 3.0)
-
-- **Fund selection:** 100% Elite Adventurous Index Fund — lowest management fee, best long-term track record, index-based diversification
-- **Investment Period:** 10 years (most common choice in practice)
-- **Payment frequency:** monthly or annually — prospect's preference
-- **Optional riders:** add if needed
-- Click Next → Add to Quotation
-
-> *"I'm putting 100% into the Elite Adventurous Index Fund because it has the lowest fees of all the available funds."*
-
+Open iPOS+, configure the policy on screen, and walk them through the quotation.  We normally pick the 100% [Adventurous Index Fund](https://www.aia.com.sg/en/our-products/save-and-invest/aia-funds-information/aia-fund-price/aia-adventurous-index-fund) -
+1. lowest management fee of around 1% p.a (improves returns in the long term)
+2. Contains a globally diversified mix of various ETFs 
 ### Walk the quotation
 
-Worked example for a 25-yo at $600/mo:
+![[Pasted image 20260518165219.png]]
+Don't compute the return multiple for them — ask them to take out their calculator and walk them through.
 
-| Field | Value |
-|---|---|
-| Monthly investment | $600/mo |
-| Investment period | 40 years (to age 65) |
-| Total amount invested | $600 × 12 × 40 = **$288,000** |
-| Projected value at age 65 | **$1,416,700** |
-
-> *"This $1.4 million will supplement your retirement savings."*
-
-### The Interactive Calculation Technique — make the CLIENT calculate
-
-This is the most important Phase 5 move. Don't compute the return multiple for them — hand them the calculator and walk them through.
-
-The impact is roughly **10x stronger** when they do the math themselves.
-
-> *"Can you take out your calculator? Let me show you something interesting."*
-
-Three steps:
+Get the ending value - total invested = to get profit (get them to visualise the profit)
+"What do you think $1million can do for you? (get them to visualise buy house, buy car, etc)
 
 **Step 1 — calculate profit**
-*"Take $1,416,700 minus $288,000. What do you get?"* → **$1,128,700 profit**
+*"Take $1,250,100 minus $211,200. What do you get?"* 
 
 **Step 2 — annualise**
-*"Now divide that by 40 years. What's that number?"* → **$28,218 per year**
+*"Now divide that by 40 years. What's that number?"* 
 
 **Step 3 — monthly**
-*"Divide that by 12 months. How much is that per month?"* → **$2,351 per month**
+*"Divide that by 12 months. How much is that per month?"* → **$2k++ per month**
 
-### The reveal
+"Lineraise" the returns
+![[Pasted image 20260518165346.png]]
 
-> *"So every month you invest $600 — you're actually earning $2,351."*
 
-The multiple: $2,351 ÷ $600 = **~3.9x monthly return** at the projected IIRR.
-
-Caveat to state honestly: *"This assumes you hold to age 65 and invest long-term."*
-
-### Short-term vs long-term
-
-| Hold horizon | Total paid | Approx. value | Multiple |
-|---|---|---|---|
-| Stop at year 10 | $72,000 | ~$300,000 | ~4x |
-| Hold to 65 | $288,000 | $1,416,700 | ~5x |
-
-> *"Mr Client — would you prefer $300K or $1.4 million? Cancel early and you don't get as much. Hold long-term and you've supplemented your retirement."*
+Caveat to state honestly: *"This assumes you hold to age 65 and invest long-term. Of course you can withdraw after 10 years, but would you prefer $300k, or $1.2mill?*
 
 ### Fee transparency
 
-> *"The $1,416,700 number is AFTER all fees and charges. No hidden fees. No hidden charges. What you see is what you get."*
+![[Pasted image 20260518171136.png]]
+
+
+![[Pasted image 20260518165658.png]]
+
+> *"The surrender value number is AFTER all fees and charges. No hidden fees. No hidden charges. What you see is what you get."*
 
 Walk through the actual distribution cost:
 
-- **Total distribution cost over 40 years:** $18,583
-- **Monthly equivalent:** $18,583 ÷ 40 ÷ 12 = **$38.75/month**
+- **Total distribution cost over 40 years:** $12,583
+- **Monthly equivalent:** $12,583 ÷ 40 ÷ 12 = **$25+/mth**
 
-Comparison anchor:
-
-| Service | Monthly cost |
-|---|---|
-| Private investment advisor | $200-500/month |
-| Fund manager fee | 2-3% annually |
-| **APA distribution cost (all-in)** | **$38.75/month** |
 
 ### Advisor compensation — be upfront
 
-> *"I do earn a fraction of that $38.75 on a monthly basis. That covers my ongoing service and support to you throughout the policy term."*
+> *"I do earn a fraction of that monthly fee on a monthly basis. That covers my ongoing service and support to you throughout the policy term. But the one who earns more ultimately is you (compare it to the previously calculated linearised return)"*
 
 Transparency builds the trust that handles the close. Show value vs alternatives (investment advisors charging hundreds), emphasise the ongoing service, don't dodge the question if they ask "how do you get paid?".
 
 ### Closing the quotation walkthrough
 
-> *"So based on these numbers — you invest $600/mo, you get $1.4M at retirement, all fees included at only $38.75/mo, long-term growth structurally engineered. Are you ready to proceed with the application?"*
+> *"So based on these numbers — you invest $400/mo, you get $1.2M at retirement, after all the fees and charges"*
 
 ---
 
 ## Phase 5B — Value Proposition + Final Close (5-8 min)
 
-Phase 5B is the value-stack — the part that converts a hesitant prospect into a same-day signature. Run it when the prospect is at "interested but not committed".
+Phase 5B is the value-stack — the part that converts a hesitant prospect into a same-day signature. 
+Use the slides [here](https://docs.google.com/presentation/d/1i9Gves7TCONvLmuD4jC-g2i31pcggsEa/edit?slide=id.p34#slide=id.p34)
 
-### The Three Cost Circles (quantify what they're getting)
+### The Four Cost Circles (quantify what they're getting)
+
+![[Pasted image 20260518171419.png]]
 
 #### Circle 1 — Cost of professional management
 
@@ -983,7 +850,7 @@ Personal-life callback (use their actual hobby from Phase 1):
 
 > *"You're outsourcing to us so you don't have to spend that time, effort, and emotion yourself."*
 
-### "And you get me — for free"
+#### Circle 4 — Cost of Hiring a Personal Financial Planner
 
 > *"If you hired your own investment consultant, you'd pay a lot. Over here, it's FREE."*
 
@@ -998,6 +865,7 @@ What the FC actually delivers, included:
 > *"My philosophy is — I treat my clients first, and we do regular reviews throughout your life stages."*
 
 ### The Option A vs Option B close
+![[Pasted image 20260518171638.png]]
 
 Frame the decision as a binary, not a yes/no on a product:
 
@@ -1014,6 +882,7 @@ Frame the decision as a binary, not a yes/no on a product:
 > *"Most people choose B. There's nothing wrong with A — it's just that B is a good starting point. If you become very confident at investing later, you can always do A on the side. But for now, B is the cleanest way to get started."*
 
 ### The Zero-Fees structure (anchor the affordability)
+![[Pasted image 20260518171708.png]]
 
 APA has none of the friction items most ILPs charge:
 
@@ -1032,9 +901,17 @@ The context that makes this land:
 
 No bid-offer spread frame: *"If you change SGD to MYR, then back to SGD — can you get the exact same amount? Probably not, because there are FX fees. With APA, you can switch from US → China → Japan → India → high-risk → low-risk → ZERO fees."*
 
-### The Three Wealth Principles (Growing Your Wealth Machine)
+On top of that, they get other bonuses:
+1. Access to our custom financial planning tools (goalsmapper)
+2. Access to themoneybees.co investing academy
+3. Lifetime access to what themoneybees.co has to offer in https://themoneybees.co/learn
+4. Medical concierge team
 
-Anchor the close on principles, not features.
+### The Three Wealth Principles (Growing Your Wealth Machine)
+![[Pasted image 20260518173210.png]]
+This reinforce the close even further 
+
+![[Pasted image 20260518173545.png]]
 
 **1 — Start early**
 
@@ -1046,28 +923,13 @@ Anchor the close on principles, not features.
 
 **3 — Automate everything**
 
-> *"What's the opposite of automation? Manual. If you do it manually and forget, you'll be impulsive. Market high? You'll buy. Market low? You'll panic-sell. Automation removes the emotion."*
+> *"What's the opposite of automation? Manual. If you do it manually and forget, you'll be impulsive. Market high? You'll buy. Market low? You'll panic-sell. Automation removes the emotion. "*
 
-### Realistic expectations (preempts the "too good to be true" objection)
+*"This is NOT a magic pill. Even with this plan, you still need to earn more, spend less, and have your insurance in place. And watch the spending trap — when you earn more, the temptation is to spend more. Try to spend less even though you earn more."*
 
-> *"This is NOT a magic pill. Even with this plan, you still need to earn more, spend less, and have your insurance in place. And watch the spending trap — when you earn more, the temptation is to spend more. Try to spend less even though you earn more."*
+So, how it works is that, the premiums will be deducted automatically from your bank every month. "which bank do you use?". When the customer replies their bank account, that's also a closing statement.
 
-### Bonus client resources (what they get beyond the policy)
-
-| Resource | What it is |
-|---|---|
-| Recorded webinars | Educational content library |
-| Investment courses | Full courses, included |
-| Investment community access | Peer + FC group |
-| Excel sheets & charts | Tools |
-| Financial planning software | Goal planning, cash-flow projections, network overview, insurance + investment tracking |
-| E-books library | Background reading |
-| **Medical concierge team** | Medical queries, claims help, doctor connections, treatment recommendations. *"Just text me — I'll create a group chat with my medical team to help you."* |
-
-### One-stop financial solution framing
-
-> *"Rather than managing multiple policies across different agents and companies, I can manage everything for you under one roof. This is what we do for clients long-term — but for now, it's about helping you get started today."*
-
+ *"Once the first payment is made, it'll be automatically debited from your bank monthly. Which bank are you using — DBS or OCBC? Credit card or direct debit?
 ### The close is the formal acknowledgement of decisions already made
 
 By this point in the appointment, the prospect has said yes 8-10 times in micro-commits across Phases 1-5:
@@ -1081,100 +943,9 @@ By this point in the appointment, the prospect has said yes 8-10 times in micro-
 - *"DBS is my bank"* (Phase 1, used at Phase 7)
 - *"$600 a month works"* (Phase 4 option close)
 
-The Phase 5B close isn't asking for the sale — it's collecting these into the formal close. You're confirming a decision they've already made.
-
-### The four-rule wrap (recap to close the loop)
-
-Before authentication, bring the conversation full circle to the four-rule wrap they heard in Phase 1 / Phase 2:
-
-> *"Quick recap. There are four things that get someone to financial freedom.*
->
-> *Earn more — that's on you.*
-> *Spend less — that's on you.*
-> *Get insured — separate conversation, we'll book that.*
-> *Automate investing — that's what we set up today.*
->
-> *I can't help you earn more or spend less. But what I can do today is help you automate step 4 — every month, before you spend anything, $600 goes to work for you first."*
-
-The frame lands because it explicitly names what the FC *can* and *can't* help with — keeps it honest, keeps the trust intact.
-
-### The bridge into Phase 7 (paperwork)
-
-> *"Save first, then spend what's left — that's really the whole game. Let me show you what setting that up looks like."*
-
-That single sentence is the bridge into authentication.
-
-### Phase 7 — Implementation (3 minutes, no more talking, only doing)
-
-**Step 1: Visual confirm on screen.** Open the application screen. Verify the on-screen details with the client:
-
-> *"Just help me to verify your name, your NRIC, contact number, email address — make sure it's correct."*
-
-Eyeball every field together. They're more likely to catch a typo than you are.
-
-**Step 2: Bank + cadence (already captured at Phase 1).**
-
-> *"Every month once the pay comes in, you'll just be debited on a monthly basis into the bank account. DBS, right?"*
-
-The question is rhetorical — they already told you DBS at Phase 1. You're confirming, not asking.
-
-**Step 3: SMS auth.**
-
-> *"After this, I'm just gonna send you this SMS for you to authenticate."*
-
-Send. Wait. They click. Done.
-
-**Step 4: Calendar the next review.** This is the step most FCs skip when they're tired at the end of an appointment — and it's the one that sets up the relationship for everything that follows. Anchor it to a specific upcoming milestone, not a vague "let's catch up later":
-
-> *"We can review next time when you graduate from your university, in a few years' time. I'll wish you on your birthday before that."*
-
-Other anchor moments to pick from:
-
-| Trigger | Approx age | What to discuss |
-|---|---|---|
-| University graduation | 22 | First job income → top-up APA |
-| First job (~6 months in) | 22-23 | Salary stability check, top-up |
-| Marriage | ~28 | Joint planning, riders, HSGM |
-| House purchase | ~30 | Mortgage budgeting, top-up cap |
-| First child | ~32 | Payor benefit, child policy |
-| 35th birthday | 35 | Mid-career review, ramp premium |
-| 40th birthday | 40 | Career-peak top-up, second policy |
-| 50th birthday | 50 | Pre-retiree review, PWV conversation |
-
-**Set the calendar entry in front of the client.** They see you do it. The trust signal compounds.
-
-### Payment setup
-
-> *"Once the first payment is made, it'll be automatically debited from your bank monthly. Which bank are you using — DBS or OCBC? Credit card or direct debit?"*
-
-Then run the SMS approval flow, link the card / bank, set the auto-debit on payday.
-
-> *"Once your salary comes in every month, it'll automatically debit to save first — before you spend."*
-
-### The 6-step application close
-
-1. Open iPOS+ quotation on screen
-2. Walk through the quotation with them on screen
-3. Get customer signature
-4. Collect payment details
-5. Set up automatic deduction
-6. Submit application
-
+The Phase 5B close isn't asking for the sale — it's collecting these into the formal close. You're confirming a decision they've already made.  Send them the remote authentication if its a zoom closing, or sign on the application
 Done. The case is closed.
-
----
-
-## Drill
-
-1. **Recite the 7 phases in order** — Phase 0 → 1 → 2 → 3 → 4 → 5 → 5B. Name each phase, its time budget, and its target micro-commitment. Do it 3 times without looking until it falls out of your mouth.
-2. **Practise the Phase 1 birthday capture** — the age-laddered script ("How old are you this year?" → "When did you turn 21?" → "Oh my friend's birthday is also in July, which day?"). Run it twice out loud.
-3. **Memorise the Phase 2 retirement-shock math** — $4K today → $10,740/mo at 65 with 2.5% inflation → $3.29M over 20 years → $6,858/mo bank savings needed.
-4. **Memorise the Phase 4 contrast** — $6,854/mo bank vs $1,246/mo APA route. Cost-of-5-year-delay: $1M loss = $16,667/mo of future wealth forfeited.
-5. **Practise the Phase 5 Interactive Calculation Technique** — hand them the calculator, walk through three steps ($1,416,700 − $288,000 → ÷ 40 → ÷ 12 = $2,351/mo). Don't compute it for them — the impact is 10x weaker if you do.
-6. **Practise the Phase 5B Three Cost Circles** — hiring ($3-4K vs $38), DIY trading ($200-300 vs $0), time/emotions (4-6 hrs/day vs automated). Use the prospect's actual hobby for Circle 3.
-7. **Run the Option A vs Option B close** in three tonalities — neutral, slightly playful, slightly serious. Pick the one that sounds most like you.
-8. **Pick the toughest objection you've heard recently on APA** — "I'll just DIY", "what if it doesn't hit 8%", "what if I need liquidity". Write your reframe for that specific prospect. Run it out loud once.
-
+--
 ---
 
 ## What's coming next

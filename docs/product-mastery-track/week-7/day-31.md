@@ -109,15 +109,6 @@ Then the permission close into the Drawing Concept:
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the discovery question + permission close out loud** with a colleague. Practise the reflect-and-bridge until it feels natural and not scripted.
-2. **Memorise the 3 moats** (interest after 65, bequest after 81, liquidity).
-3. **Memorise the 4 bonus mechanisms** with their triggers (Welcome max 12% / Investment 10% / Performance 0.40% p.a. / Supplementary 7-year drop-off).
-4. **List 5 prospects in your pipeline aged 50+.** For each, identify their accumulated wealth source (CPF excess, maturing endowment, legacy ILP, fixed deposit, etc.).
-
----
-
 # Part 2 — THE PWV Drawing Concept (7-Panel Signature Whiteboard)
 
 The PWV Drawing Concept is a 7-panel sequential whiteboard built live in front of the client using their own CPF balances and existing policies. The client watches a story being constructed using their numbers — by Panel 7, they've invested 25 minutes of attention, and the conclusion feels like theirs.
@@ -318,16 +309,6 @@ These appear across multiple panels — drill them cold:
 - **Prospect already understands CPF Life mechanics** — skip Panels 1-4, jump to Panel 5
 
 For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
-
----
-
-## Drill (Part 2)
-
-1. **Draw all 7 panels from memory** on a sheet of paper. Time yourself — under 25 minutes.
-2. **Memorise the canonical Cynthia numbers** (52F, $140K OA, $235K SA, $75K MA, $236K FRS, $144K excess, $350K RA at 65, $1,760/month CPF Life).
-3. **Recite the three limitations** (no interest after 65, no bequest after 81, no liquidity).
-4. **Memorise the Capital Requirement Spectrum** ($400K at 6% / $800K at 3% / $2.4M at 1%).
-5. **Practise with a colleague FIVE times** before drawing it once with a real client. Use their colleague's actual CPF numbers.
 
 ---
 

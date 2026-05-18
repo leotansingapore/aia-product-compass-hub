@@ -101,15 +101,6 @@ If any data point is missing, the gap analysis fumbles. Go back and ask.
 
 ---
 
-## Drill (Part 1)
-
-1. **Memorise the 16 data points** in your own grouping. Recite without looking.
-2. **Practise the SingPass-in-meeting script** — ask 3 different ways. Pick the most natural.
-3. **Practise the bridging language** ("Quality financial advice depends on quality of information provided") in your own voice.
-4. **Pull up your last 3 pre-retiree meetings.** For each, list which data points you missed.
-
----
-
 # Part 2 — The 7-Phase Pitch Flow (Phases 1-7)
 
 The 7 phases run in non-negotiable order. Phase 5 (Gap Analysis) is the emotional fulcrum — the moment the client feels the cost of doing nothing. Phase 6 must not collapse into a product pitch — restraint at Phase 6 is what separates closers from pitchers. Phase 7 closes with a same-day summary PDF.
@@ -272,17 +263,6 @@ This positions PWV as ONE of four methods, which makes the eventual recommendati
 ## The pacing rule
 
 Meeting 1 should NEVER cross 75 minutes. If you're at 75 and still in Phase 5, compress Phase 6 to 2 minutes and book Meeting 2. Don't trade fatigue for content.
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 7 phases by name** with time budgets. 3 times.
-2. **Memorise FORM** (Family, Occupation, Recreation, Money).
-3. **Practise the Phase 6 restraint** — say "Let me prepare a detailed proposal for our next meeting" 3 times in different tonalities.
-4. **Memorise the Capital Requirement Spectrum** ($400K at 6% / $800K at 3% / $2.4M at 1%).
-5. **Practise the Phase 7 same-day-summary commitment** — book Meeting 2 + WhatsApp group + send PDF.
-6. **Run a roleplay.** Pair with a peer. Run all 7 phases in 60 minutes. Time yourself.
 
 ---
 

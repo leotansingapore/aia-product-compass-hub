@@ -114,16 +114,6 @@ If any are missing, the close fumbles. Go back and ask.
 
 ---
 
-## Drill (Part 1)
-
-1. **Recite the 3 confirmations** in order.
-2. **Memorise the occupation class examples** — be ready to classify any prospect quickly.
-3. **Memorise the Plan 4 income threshold rule** (Plans 1-3 no FHR; Plan 4 with insufficient income → FHR).
-4. **Practise the KK Hospital opener** — but be ready to drop it if the prospect has their own story.
-5. **Pull up your last 3 first-meeting prospects.** For each, list which confirmation you missed.
-
----
-
 # Part 2 — The 7-Phase Pitch Flow
 
 Open with the loophole story (theirs or KK), define accident, run the 3 coverage tiers (relatable → serious → extreme), draw the partial-disability gap, frame 4×/7× price-vs-coverage, anchor on daily cost, demo the AIA+ app, close on "Plan 1, 2, 3, or 4?". About 30 minutes total when bundled with HSGM.
@@ -266,17 +256,6 @@ If a prospect is comparing on $1 differences with a competitor, refer them to th
 ## The pacing rule
 
 If you're approaching the 30-minute mark and still in Phase 5, you're losing them. Compress to the "Plan 1, 2, 3, or 4?" close and set up SQS for the next session.
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 7 phases** with time budgets and micro-commits. 3 times.
-2. **Practise the 3 coverage tiers** in your own voice.
-3. **Memorise the 4×/7× math** — Plan 1 vs Plan 4 numbers cold.
-4. **Practise the daily-cost anchor** in 3 tonalities.
-5. **Demo the AIA+ self-claim app** live — record yourself doing it. Time it (target: under 5 minutes).
-6. **Practise the four-option close** without elaborating.
 
 ---
 

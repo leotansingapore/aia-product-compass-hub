@@ -136,16 +136,6 @@ This narrows the conversation to the real concern. Ask. Wait.
 
 ---
 
-## Drill (Part 1) — 60 minutes
-
-1. **Recite all 5 conviction stories** out loud. Time each — should be under 90 seconds.
-2. **Memorise the FD-vs-PWV math** ($7K/year differential, $300K over 20 years).
-3. **Memorise the delay cost number** ($60K on 1-year delay, 5-year staggered plan).
-4. **Practise the narrowing technique** for "think about it" — three options (amount/timing/product).
-5. **Run a roleplay.** Have a peer throw all 5 objections in random order. Score script + specific number + closing question.
-
----
-
 # Part 2 — Cross-Sell: APA→PWV Legacy ILP Restructuring Sequence
 
 A pre-retiree with three under-performing legacy policies represents $150K-$300K of redeployable capital sitting in the wrong vehicle. The capital is invisible to the client until the FC pulls it together via SingPass and quantifies true yield. The discipline: never recommend surrender without writing the comparison both ways. The FC who handles this cleanly earns trust that compounds — the client refers spouse, sibling, colleague.
@@ -290,16 +280,6 @@ The legacy ILP's surrender schedule will differ — pull it from its policy cont
 3. **Respect the math** — sometimes hold is the right answer.
 4. **Frame as "redeployment" not "cancellation"** — the client's mental frame matters.
 5. **Use freed cashflow as the funding mechanism** — Day 1 Part 2 Panel 7 carries through.
-
----
-
-## Drill (Part 2)
-
-1. **Memorise the 5-step restructure sequence** (Audit → Quantify → Compare → Document → Redeploy).
-2. **Recite the real-meeting yield findings** (Pro Achiever 1.4%, NTUC 1.07%, GE protection gone).
-3. **Practise the surrender-vs-hold comparison** with a hypothetical Pro Achiever case.
-4. **Memorise the "I'm not going to recommend surrender unless..." discipline script.**
-5. **Pick 3 prospects in your pipeline.** For each: identify legacy policies for restructure consideration. Run the audit math.
 
 ---
 

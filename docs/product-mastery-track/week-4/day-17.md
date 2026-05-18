@@ -96,15 +96,6 @@ If any is missing, the close fumbles. Go back and ask.
 
 ---
 
-## Drill (Part 1)
-
-1. **Recite the 5 power questions** in order, without looking. Time it — should be under 90 seconds.
-2. **Practise the 5-year recovery frame** in your own voice, 3 times.
-3. **Memorise the LIA stat** (74% CI protection gap, 1 in 4 cancer).
-4. **Pull up your last 3 first-meeting prospects.** For each, list which power questions you missed.
-
----
-
 # Part 2 — The 5-Phase Pitch Flow
 
 > **The one idea for Part 2:** Phase 1 Opening → Phase 2 The Pitch (one picture) → Phase 3 Time Value of Money (optional, for restructure) → Phase 4 Riders → Phase 5 Case Studies / Close. Always make the prospect calculate total premium themselves on their own calculator. Hand them the choice; no matter which one they choose is still a purchase.
@@ -233,16 +224,6 @@ Video 8 has 6 real restructure cases. Use whichever matches the prospect's curre
 ## The pacing rule
 
 If you're approaching the 30-minute mark and still in Phase 4, you're losing them. Compress Phase 5 to one case study, close on the term, book delivery for next session.
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 5 phases out loud** with time budgets and micro-commits. 3 times.
-2. **Practise the 3-option term close** ("safer at S$3,320 vs riskier at S$1,400"). 3 tonalities.
-3. **Memorise the rider sequencing rule** — Enhancer default, ECPWP after term. Recite without looking.
-4. **Memorise one full restructure case study** from Video 8. Be ready to deploy live.
-5. **Practise the calculator-handover** ("Can you take out your calculator and calculate with me?").
 
 ---
 

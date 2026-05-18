@@ -305,7 +305,6 @@ Each case below uses the duration that matches the prospect's current quote / ex
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-a) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Prospect pays **$371.86/mo** for Pru Active Life bundle (3 policies stacked)
 > - At 8% projection, surrender value at 70: **$124,038** on ~$134K premium paid
@@ -331,11 +330,9 @@ Each case below uses the duration that matches the prospect's current quote / ex
 - Base: $100K Death/TPD, $10K ECI, $10K LCI
 - Rider (till 80): scales Death/TPD to $500K, $100K Late CI, $100K Early CI (claim up to 5x), $100K severe infection cover (includes dengue)
 
-
 ### What the policy illustration actually shows (verified from the deduction table)
 
 ![[case-studies/case-a-pru-deductions.png|Pru deduction table — 4% and 8% projections side by side]]
-
 
 At **8% projection** (the upper bound the illustration is allowed to show):
 
@@ -392,7 +389,6 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-b) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 25-yo prospect quoted FWD Invest First Summit at **$600/mo for 25 years = $180,000 total**
 > - FWD's own illustration shows TDC reaching **11.2% at age 65** and total deductions at 8% = **$434,343 (24.9% lifetime erosion)**
@@ -412,7 +408,6 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 
 ![[case-studies/case-b-fwd-tdc.png|FWD Invest First Summit TDC table — verbatim from the policy illustration]]
 
-
 | Policy year | Age | Total premiums paid | Total distribution cost |
 |---|---|---|---|
 | 10 | 35 | $72,000 | **$9,026 (12.5%)** |
@@ -428,7 +423,6 @@ Both shapes work. The matched-duration shape gives a bigger raw APA value at 65 
 ### The total deductions table — at 8% projection
 
 ![[case-studies/case-b-fwd-deductions.png|FWD deductions table at 4% and 8% projections — total lifetime cost erosion]]
-
 
 | Policy year | Age | Value of premiums paid (8%) | Total deductions to-date |
 |---|---|---|---|
@@ -489,7 +483,6 @@ For an FWD prospect already locked in: the math has to be run case-by-case (surr
 ## Case C — The fragmented-coverage young adult (consolidation receipt)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-c) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 24-yo with **5 plans across 2 insurers = $807.80/mo** total outflow
@@ -572,7 +565,6 @@ Premium paid: $234,000 (40 × $500 × 12, ending at age 64). Continuous-pay keep
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-d) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 50-yo holding paid-up whole-life with **~$50K cash value** sitting at 3-4% par-fund projection
 > - Dependants are out, mortgage paid down — the original cover need has expired
@@ -636,7 +628,6 @@ If all four answer in favour of the move, the restructure is a clear win. If any
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-e) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 45-yo peak earner with $1,500-2,000/mo of surplus cash flow to allocate
 > - At **$1,200/mo APA** ($14,400/yr) the prospect hits **Welcome Bonus tier 1: 15% / 18% / 20% across Y1-Y3 = $7,632 bonus stack**
@@ -686,7 +677,6 @@ A DIY portfolio at 45 has none of these structural guarantees. APA's edge over D
 ## Case F — The DIY platform investor (supplement receipt)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-f) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 30-yo with $50K-$100K already in Endowus/StashAway/iFAST/Tiger — knows what FMC means
@@ -742,7 +732,6 @@ The DIY-savvy prospect is the future of every advisor's book. They aren't going 
 ## Case G — The same-money FWD comparison (receipt for the cross-shop close)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-g) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 25-yo cross-shopping FWD vs APA before signing. **This is the front-load shape alternative to Case B's matched-duration comparison.**
@@ -806,7 +795,6 @@ The "10-year IIP" structure isn't just a math advantage — it's a **time / cash
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-h) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Prospect sold HSBC Pulsar at $1,000/mo, lured by the **168% startup bonus** gimmick
 > - Stated projection rates of 4% / 8% — but actual **net yield after all fees**: **0.83% at 4%**, **4.7% at 8%**
@@ -862,7 +850,6 @@ For a Pulsar prospect already locked in: run the math case-by-case (surrender pe
 ## Case I — The Tokio Marine IFA ILP attack
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-i) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - 30-yo sold $2,000/mo Tokio Marine ILP through an "IFA" (Independent Financial Adviser) — branded as objective but only sold one company's product
@@ -928,7 +915,6 @@ The structural reason for the gap is consistent across both views: APA's supplem
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-j) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - DBS banker sold the prospect Manulife Ready Income at **$4,200/yr × 10 yrs = $42,000 total**
 > - At 65, Manulife delivers **only $42K of cash value** and a **$1.2K/yr ($100/mo) retirement income** stream
@@ -987,7 +973,6 @@ That's **15× the Manulife income stream from the same $42K of premium**. Same m
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=apa-k) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - 30-yo sold GE Flexi-cash endowment: **$6,000/yr × 25 years = $150,000 total premium**
 > - GE delivers **only $200K at 55 (maturity)** — break-even at year 20, effective return **<3% p.a.**
@@ -1041,15 +1026,6 @@ Total premium paid: $150,000 (matching GE's outlay exactly).
 ### The restructure recommendation
 
 For the GE Flexi-cash holder mid-term: run the surrender penalty math honestly. Most endowment plans have heavy surrender penalties in the early years that ease off after Y15-20. If the prospect is already 8+ years in, the surrender penalty may be modest. Cash value redirected as APA top-up is then the cleaner move. If they're earlier than that, paid-up status + redirect the freed monthly premium is usually better than full surrender.
-
----
-
-## Drill
-
-1. **Walk the FWD Invest Plus reframe** out loud — the 1.2% lifelong supplementary vs APA's 3.9% Y1-10 then 0% from Y11. Time it at 60 seconds.
-2. **Memorise the verified rows** in the cheat sheet table — APA vs FWD vs Manulife vs GE vs robo. Source: `APA-Competitor-Analysis.pdf`. Verify against current brochures before quoting in an appointment.
-3. **Pick one existing-policy prospect** in your pipeline and draft the restructure proposal. Term + APA premium split, projected outcomes at 65, surrender-cost honesty.
-4. **Practise the BTIR pitch** for a prospect who's mentioned the term-vs-whole-life decision. Get the line *"BTIR done properly — APA fills the 'invest the rest' slot"* sounding natural.
 
 ---
 

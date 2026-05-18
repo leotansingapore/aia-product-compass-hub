@@ -114,15 +114,6 @@ Starting at S$0.62 a day, no medical check-up. Four plan tiers, Plan 1 to 4. Onc
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the discovery question with a colleague** playing a prospect who has both an IP and term life. Practise the reflect-and-bridge until the move feels natural.
-2. **Memorise the 4 plan-tier daily costs** (S$0.62 / S$1.02 / S$1.63 / S$2.34).
-3. **Recite the definition of accident** ("unexpected and unintentional, not self-inflicted, not minor illnesses").
-4. **List 5 prospects in your pipeline.** For each, write which Class (1-2 or 3-4) and which plan you'd recommend.
-
----
-
 # Part 2 — The Signature Pitch Concept: The Partial-Disability Coverage Gap
 
 Life and TPD plans only pay on lose-TWO. Solitaire PA's Schedule of Indemnity pays on lose-ONE — a single finger phalanx is 5%, a single eye is 100%, a single ear is 25%. At Plan 4 Benefit 4 of S$750,000, a single finger phalanx loss pays S$37,500. Draw the diagram for the prospect; when they see the gap on paper, the case mostly makes itself.
@@ -211,16 +202,6 @@ The signature concept reframes Solitaire PA from "cheap minor cover" into the on
 - **Time-boxed appointment <15 min** — diagram needs 90 seconds; truncate to verbal version
 - **Prospect is hardcore quant** — diagram feels qualitative; switch to claim-frequency stats
 - **Prospect already convinced on PA** — skip the diagram, jump to plan tier comparison
-
----
-
-## Drill (Part 2)
-
-1. **Draw the partial-disability gap diagram** from memory. Time yourself — under 90 seconds.
-2. **Recite the Schedule of Indemnity highlights** (5%/10%/30% finger, 100% eye, 25% ear).
-3. **Memorise the Plan 4 Benefit 4 insured amount** (S$750,000) and compute 5 partial-payout examples without looking.
-4. **Practise the reframe** ("the only place partial losses are paid at meaningful sums") in your own voice.
-5. **List 3 specific real-world partial events** (a finger jam at the gym, a car accident causing leg fracture, a kitchen burn covering 5% of arm) and compute payouts for each at Plan 4.
 
 ---
 

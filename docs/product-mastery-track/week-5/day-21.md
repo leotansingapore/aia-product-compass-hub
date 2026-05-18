@@ -107,15 +107,6 @@ Three plan tiers — A for private, B for A-class public, B Lite for B1-class pu
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the discovery question out loud** with a colleague playing a prospect who hasn't thought about wards. Practise the reflect-and-bridge until the move feels natural, not scripted.
-2. **Write down the four key numbers** (S$2M / 13 months / age 75 / 55.8% inflation) without looking. Repeat tomorrow morning.
-3. **Recite the HSGM-vs-CI distinction** in two sentences. Then in one sentence.
-4. **List 3 prospects in your pipeline** for whom HSGM is the right product. For each, write one sentence on which trigger applies (no IP yet, employer-cover-only, ageing parent, family with young kids, etc.)
-
----
-
 # Part 2 — The Signature Pitch Concept: First Line of Defence + Travel Package + Value-Stack Before Price
 
 The HSGM pitch is a sequence, not a single hook: ask the prospect to rank hospitalisation against the other protection pillars, draw the travel-package picture for the 13-month pre/post window, stack the values without revealing price, then let the prospect anchor themselves around S$200/month before you reveal the real cost. In this order, the prospect convinces themselves on the concept before any number gets debated.
@@ -205,16 +196,6 @@ The script for cancer-history prospects:
 - **Don't reveal price first.** The anchor matters. If you say "S$80/month" before they guess, they have nothing to compare it against.
 - **Don't list features without naming the problem.** Pre-authorisation only matters after the prospect feels the pain of paying S$50K upfront and waiting two weeks for reimbursement.
 - **Don't lecture for 10 minutes straight.** Use checkpoints every 2–3 minutes. Ask a question. Wait. Long pauses are part of the technique.
-
----
-
-## Drill (Part 2)
-
-1. **Recite the four-pillar discovery question** out loud, 3 times. Time it — should be under 30 seconds delivered conversationally.
-2. **Practise the travel-package analogy** in your own voice. Time it — should be under 60 seconds.
-3. **Memorise the value-stack** (S$2M / 13 months / unlimited / no premium change / Cancer Care Pro ceilings). Recite without looking.
-4. **Practise the price-anchor reveal** in 3 tonalities — neutral, slightly playful, slightly serious. Pick the one that sounds most natural.
-5. **Memorise the Cancer Care Pro headline numbers** (16× CDL, S$200K non-CDL). Drop into a script for a hypothetical cancer-family-history prospect.
 
 ---
 

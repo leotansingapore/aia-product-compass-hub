@@ -181,16 +181,6 @@ Sample Benefit Charges (per S$1,000 SAR, annual):
 
 ---
 
-## Drill (Part 1)
-
-1. **Recite the healthcare premium escalation numbers** ($412K HSGM A lifetime, $565 → $3,006/year escalation).
-2. **Practise the asset-vs-expense reframe** in your own voice.
-3. **Memorise the Color-Coded Policy Review framework** (Green/Orange/Red with examples).
-4. **Memorise the PWV fee architecture** — Top-up 3%, Supplementary 3.60% (first 7 years), Full Surrender 70/50/30/0%.
-5. **Memorise the 4 bonus mechanisms** with triggers (Welcome max 12% / Investment 10% across Y8-Y11 / Performance 0.40% from Y8 / Supplementary drop-off after Y7).
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 Pre-retirees ask the same five questions in 80% of meetings. Memorise scripted answers with specific numbers from the Product Summary — the FC who quotes "3.60% supplementary charge for the first 7 policy years" (not "around 3.5%") is read as a technician, not a salesperson. That perception shift is what turns a hesitant client into a buyer.
@@ -300,16 +290,6 @@ But if they push:
 - *"I'll do it next year"*
 
 — those are objections. Day 4 has the conviction stories.
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers** out loud. Time each. Target: 60 seconds.
-2. **Memorise the source citations** (Q1: Brochure p.5 / Q2: PS Section 3.1 / Q3: PS Sections 5.5 + 6.4 / Q4: PS Section 8.4 / Q5: PS v1.0 042025 Section 5.2 + Appendix A).
-3. **Practise the "not guaranteed" language** in 3 different framings.
-4. **Memorise the 4 bonus offsets to the fees** (Welcome max 12% / Investment 10% across Y8-Y11 / Performance 0.40% from Y8 / Supplementary drop-off after Y7).
-5. **Pair up with a peer** — have them ask the questions in random order. Score on accuracy and source citation.
 
 ---
 

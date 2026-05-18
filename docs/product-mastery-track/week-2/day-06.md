@@ -124,15 +124,6 @@ Then permission:
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the discovery question out loud, twice.** Practise the bridge from "which side matters more" into "let me sketch it for you." If you feature-dump before they answer, restart.
-2. **Write down the 4 key numbers** (age 100 / 18-70 / S$100 min / 2% bonus year 10+).
-3. **Recite the Plus-vs-Max distinction** in two sentences.
-4. **List 3 prospects in your pipeline** for whom PLP is the right product. For each, write whether you'd recommend Plus or Max.
-
----
-
 # Part 2 — The Signature Pitch Concept: Limited-Pay Permanent Asset (Lifeboat-on-the-Ship)
 
 > **The one idea for Part 2:** A ship needs a lifeboat. Investment alone is the ship; PLP welds the lifeboat in. This is the only AIA plan that lets you pay 10 years, then walk away — the policy keeps compounding and keeps protecting to age 100.
@@ -215,16 +206,6 @@ Pair this with the SFT comparison from Day 4 — extending term coverage from 65
 - **Prospect is a hardcore quant / DIY investor** — the analogy will feel slick; switch to spreadsheet math
 - **Prospect already understands whole-life mechanics** — skip the analogy, jump to numbers
 - **Time-boxed appointment <15 min** — analogy needs 90 seconds; truncate to verbal limited-pay framing
-
----
-
-## Drill (Part 2)
-
-1. **Recite the lifeboat-on-the-ship analogy** out loud, in your own voice. 3 times.
-2. **Draw the limited-pay permanent-asset structure** on paper from memory — 10 years of premium payments, then a flat zero-payment line, with policy value rising and cover constant to age 100.
-3. **Memorise the premium charge schedule** (80/55/50/8/0%). Recite without looking.
-4. **Memorise the No-Lapse Privilege duration** (10 years) and the conditions (regular premiums paid + no withdrawals).
-5. **Practise the Year-10 stop-paying script** in your own voice.
 
 ---
 

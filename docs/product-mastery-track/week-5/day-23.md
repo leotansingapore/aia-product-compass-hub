@@ -177,16 +177,6 @@ Optional add-on to AIA Max VitalHealth Pro A:
 
 ---
 
-## Drill (Part 1)
-
-1. **Write down all 15 numbers from the cheat sheet** without looking. Score yourself out of 15. Repeat tomorrow until 15/15.
-2. **Recite the 90-cent cheque story** out loud, twice. Time — should be under 30 seconds.
-3. **Walk through the Tom S$200K worked example** from memory. Both scenarios.
-4. **Practise the MediSave AWL disclosure** ("not fully MediSave-payable") in your own voice.
-5. **Memorise the cap conditions** — preferred provider OR pre-auth OR A&E referral. Recite without looking.
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 Five questions cover roughly 80% of what comes up in a real meeting. Memorise the answer in two clean sentences each — looking like an expert means not flipping through the brochure.
@@ -261,15 +251,6 @@ But if they push back with:
 - *"What if I switch jobs / want to leave AIA later?"*
 
 — those are **objections**, not questions. Day 4 Part 1 has the conviction stories.
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers out loud.** Time each. Target: 30 seconds.
-2. **Practise the closing question on each** — make sure each ends with a question.
-3. **Pair up with a peer** (or self-record). Have them ask each question in random order. Score whether you delivered the answer in 30 seconds.
-4. **Memorise the pre-existing waiting periods** (10/10/24 months). Recite without looking.
 
 ---
 

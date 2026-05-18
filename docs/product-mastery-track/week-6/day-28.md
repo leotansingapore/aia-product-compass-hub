@@ -172,16 +172,6 @@ Mention only if asked. The cost is justified by the per-accident reimbursement w
 
 ---
 
-## Drill (Part 1)
-
-1. **Write down the 8 basic benefits insured amounts for Plans 1 and 4** without looking. Score yourself.
-2. **Memorise the Plan 4 fully-loaded daily cost** (~S$3.79/day with all optional groups).
-3. **Recite the Renewal Bonus mechanics** (5%/year up to 30%, forfeit on Benefit 4 claim).
-4. **Memorise the Broken Bones schedule highlights** (Hip 60%, Thigh 30%, Spine dislocation 48%).
-5. **Write down all 15 numbers from the cheat sheet** without looking.
-
----
-
 # Part 2 — Top 5 Client Questions: Crisp, Scripted Answers
 
 Five questions cover roughly 80% of every Solitaire PA conversation. The KK Hospital story answers Q1 and Q2 simultaneously. Memorise the answers as one-paragraph deliveries with supporting numbers.
@@ -258,16 +248,6 @@ But if they push:
 - *"Let me think about it"*
 
 — those are objections. Day 4 has the conviction stories.
-
----
-
-## Drill (Part 2)
-
-1. **Recite each of the 5 answers** out loud. Time each. Target: 30 seconds.
-2. **Memorise the per-accident reset distinction** (NOT lifetime cap).
-3. **Practise the AIA+ self-claim demo verbally** for Q4.
-4. **Memorise the 4×/7× math** for Q5.
-5. **Pair up with a peer** — have them ask the questions in random order. Score on accuracy + closing question.
 
 ---
 

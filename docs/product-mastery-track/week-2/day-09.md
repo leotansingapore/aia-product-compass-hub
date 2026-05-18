@@ -129,16 +129,6 @@ When a prospect drifts back to "let me just stick with cheaper":
 
 ---
 
-## Drill (Part 1) — 60 minutes
-
-1. **Recite all 5 conviction stories** out loud, in order. Time each — should be under 90 seconds.
-2. **Memorise the GPP-vs-PLP comparison numbers** (~$48K in PLP gets ~$3.4M; same in GPP gets ~$300-400K).
-3. **Memorise the SFT renewal cost** ($21K/year for $500K cover, age 65→95).
-4. **Memorise the Mercer credentials** ($12.9T AUM, 40+ years).
-5. **Run a roleplay.** Pair with a peer. Have them throw all 5 objections in random order. Score script + conviction + closing line.
-
----
-
 # Part 2 — Cross-sell + Bundling: 4 Stacks
 
 > **The one idea for Part 2:** PLP rarely sells alone. Its highest-leverage placement is as the permanent floor underneath a GPP + UCC stack — covering booster years with GPP, lifelong CI tail with UCC, and permanent death/legacy floor with PLP. For families: PLP + Child Critical Cover rider with conversion privilege. For HNW: PLP + Payor Benefit + Milestone Option.
@@ -252,16 +242,6 @@ If the prospect:
 3. **Always plant the Child Critical Cover seed at delivery** for parents — the conversion privilege is the multi-generational cross-sell.
 4. **Use Milestone Option** for any prospect under 60 — built-in inflation hedge.
 5. **Don't try to bundle Stack 1 and Stack 3 in one appointment.** Two appointments minimum for a multi-product portfolio.
-
----
-
-## Drill (Part 2)
-
-1. **Memorise the 4 stacks** by name + best-fit prospect type.
-2. **Practise the LCC-strip script** ("I will just sell them a UCC rider…").
-3. **Memorise the Child Critical Cover mechanics** (25 conditions, age 21 conversion no underwriting, S$150K policy size).
-4. **Pick 3 prospects in your pipeline.** For each, decide: which stack? Why?
-5. **Book one PLP follow-up appointment** with a prospect who has GPP but no permanent floor.
 
 ---
 

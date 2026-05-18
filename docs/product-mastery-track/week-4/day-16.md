@@ -111,15 +111,6 @@ Permission to walk them through:
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the discovery question out loud, twice.** Practise the bridge from "single big claim vs other cover surviving" into "mind if I sketch the staircase."
-2. **Recall the key numbers without notes** (150 / 42 / 35 / 73 / 12 months / S$350K / 500% / S$3M).
-3. **Say the UCC-vs-single-claim-CI distinction out loud** in two sentences.
-4. **List 3 prospects in your pipeline** for whom UCC fits. For each, write which trigger applies.
-
----
-
 # Part 2 — The Signature Pitch Concept: The Multi-Claim Staircase
 
 The staircase is the visual that does the heavy lifting for UCC. The heart-condition progression — claim → 12-month wait → reset → claim again — is the whole conviction in one diagram. Walking the prospect up the staircase also surfaces where single-claim competitors fall short (Prudential's "related illness" block, Great Eastern's three-claim cap).
@@ -241,16 +232,6 @@ The Enhancer adds 5 named relapse conditions at 50% of cover per episode (capped
 - **Prospect already understands multi-claim mechanics** — skip to numbers
 - **Time-boxed appointment <15 min** — staircase needs 3 minutes; truncate to verbal version
 - **Prospect's primary need is death cover, not CI** — wrong product, pivot to GPP or term
-
----
-
-## Drill (Part 2)
-
-1. **Draw the staircase from memory on paper.** Aim for under 90 seconds.
-2. **Run the heart-condition progression script** without looking, three times.
-3. **Hold the per-episode caps in your head** (S$350K Early/Intermediate, 500% combined, S$25K Angioplasty, 7-day survival).
-4. **Hold the Robert case study** (S$100K base → 4 claims = S$500K).
-5. **Practise the competitor reframes** (Prudential related-illness rule, GE three-claim cap) so they slot in mid-walk without breaking the staircase rhythm.
 
 ---
 

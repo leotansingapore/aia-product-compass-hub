@@ -111,16 +111,6 @@ Direct close. Don't elaborate.
 
 ---
 
-## Drill (Part 1)
-
-1. **Recite all 5 conviction stories** out loud. Time each — under 90 seconds.
-2. **Practise the FC's-claim-book frequency argument** in your own voice. "I'm processing 1-2 claims a week — here are screenshots."
-3. **Memorise the daily-cost reframe** for Objection 5.
-4. **Memorise the bundling math** (HSGM B2 ~S$20-25/mo + Solitaire PA Plan 1 ~S$19/mo = ~S$45/mo total).
-5. **Run a roleplay.** Have a peer throw all 5 objections in random order.
-
----
-
 # Part 2 — Total Wealth Four-Bucket + Family Expansion
 
 Solitaire PA sits as Bucket 4 in the Total Wealth four-bucket model — always sold paired with HSGM (Bucket 3). For prospects already covered on Buckets 2-3 with thin life cover, Solitaire PA's partial-disability cover is the only place lose-ONE events get paid. The Plan 2+ family hook (10% off Star Protector Plus for kids until 21) turns PA into a multi-generational entry point.
@@ -236,16 +226,6 @@ The script:
 3. **Layer with GPP/PLP for partial-disability cover** — the Monthly Disability Care rider is the unique selling point.
 4. **Don't replace existing employer GPA** — layer Solitaire PA UNDER it.
 5. **Cite frequency, not probability** — your own claim book is the strongest evidence.
-
----
-
-## Drill (Part 2)
-
-1. **Draw the Total Wealth four-bucket diagram** from memory.
-2. **Memorise the bundle math** — HSGM B + Solitaire PA Plan 1 = ~S$45/month for young adult.
-3. **Practise the Star Protector Plus pitch** for parent prospects.
-4. **Memorise the Monthly Disability Care Benefit mechanics** (S$2,000/mo, 120 months, 90-day deferment, 2-of-6 ADLs).
-5. **Pick 3 prospects from your pipeline.** For each, recommend the right bundle.
 
 ---
 

@@ -111,16 +111,6 @@ Use these to honestly answer "is it worth waiting?" — the answer is no, costs 
 
 ---
 
-## Drill (Part 1)
-
-1. **Practise the CPF Healthcare Dashboard ask** — say it 3 ways. Pick the most natural.
-2. **Memorise the four-pillar discovery question.** Recite without looking.
-3. **Memorise 3 real-claim numbers** ($213K, $145K, $44K). Be ready to deploy whichever fits the prospect's life stage.
-4. **Practise the pre-existing-condition urgency push** in your own voice.
-5. **Pull up your last 3 first-meeting prospects.** For each, list which fact-find blocks you missed. That's why you didn't close (or had to come back).
-
----
-
 # Part 2 — The 1-1 Pitch Flow: 8 Phases with Checkpoints
 
 Pain comes before solution every single time. Never name a feature before naming the problem it solves. Pre-authorisation only makes sense after the prospect feels the pain of paying S$50K upfront and waiting two weeks for reimbursement. Use checkpoints — never lecture for more than 2–3 minutes without asking a question.
@@ -219,16 +209,6 @@ The April 2026 brochure (p.5) cites **over 600 AQHP specialists**. The full AIA 
 ## Pacing rule
 
 If you're approaching the 30-minute mark and you're still in Phase 7, you're losing them. Compress the demo, jump to the two-option close, set up iPOS while reinforcing value, and book delivery for next session. **Better to close in two visits than to lose in one.**
-
----
-
-## Drill (Part 2)
-
-1. **Recite the 8 phases out loud** — name, time budget, micro-commit. Do it 3 times until the names come without thinking.
-2. **Pick a real prospect** (or simulate). Run Phases 1–6 in front of a mirror. Time it. Target: 17 minutes total.
-3. **Practise the problem-feature-benefit on all 4 differentiators** (pre-auth, preferred providers, Teladoc, AIA+ app). Each delivered in under 60 seconds.
-4. **Open the AIA+ app on your phone** and walk through the preferred-provider directory. Practise the live-demo move.
-5. **Practise the two-option close** in 3 tonalities. Pick the one that sounds most natural.
 
 ---
 

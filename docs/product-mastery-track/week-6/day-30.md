@@ -131,15 +131,6 @@ The four items above (yearly-renewable / not-guaranteed renewable, age-75 step-d
 
 ---
 
-## Drill (Part 1)
-
-1. **Run the 4 reframes out loud** — yearly-renewable, age 75/80 step-down, pre-existing exclusion, free-look as a closing tool. Time each at 30-45 seconds.
-2. **Recite the major exclusion list** (war, illegal, intentional, alcohol, professional sport, pre-existing).
-3. **Memorise the policy extensions list** (food poisoning, dengue, motorcycling, etc.).
-4. **Pick the toughest objection you've heard recently** for Solitaire PA — write your reframe for that specific prospect. Run it out loud once.
-
----
-
 # Part 2 — Direct Close, SQS Workflow, AIA+ Self-Claim Handoff
 
 Close is one sentence — *"Plan 1, 2, 3, or 4?"*. SQS paperwork is the lightest in the AIA stack: SingPass, no medical, no FHR for Plans 1-3. Post-sale, every PA claim processed within days via PayNow becomes a referral-quality moment. PA is a service-relationship product, not a one-off.
@@ -270,16 +261,6 @@ If you stop at SQS and never run #5-7, you closed half a case.
 
 ---
 
-## Drill (Part 2)
-
-1. **Recite the four-option close** in 3 tonalities.
-2. **Memorise the SQS quotation flow** — recite without looking.
-3. **Practise the AIA+ self-claim demo** — record yourself doing it. Time it (under 5 min).
-4. **Memorise the post-sale rhythm** — what to do at Day 7-14, Day 30, annual, life event, age 70, age 75.
-5. **Audit your last 3 closed PA cases.** Did you do all 7 of the "case is closed" steps?
-
----
-
 ## What's coming next
 
 The **roleplay assignment.** A complete Solitaire PA appointment with Jared (34, two kids, recent KK Hospital denial, employer term only). 6-dimension self-review.
@@ -305,7 +286,6 @@ Accident plan case studies. Solitaire PA is the lowest-friction close in the AIA
 ## Case S1 — The young Singlife client redirect
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s1) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Young working adult, **<$1K in savings, no dependants, no accident or hospital plan**
@@ -346,7 +326,6 @@ The trust this builds long-term is significant. The prospect saves money now, ge
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s2) · 🎨 [Drill the drawings used](/concept-cards)
 
-
 > **TLDR**
 > - Prospect quoted **Solitaire PA Plan 1** at base pricing
 > - Plan 2 costs **~$10/mo more** but delivers **2.5× the coverage** on death / disability / dismemberment + more medical reimbursement
@@ -374,7 +353,6 @@ The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospe
 ## Case S3 — Parents accident coverage (multi-generational)
 
 > <!-- case-vault-crosslink --> 📂 [Open in Case Vault](/case-vault?case=spa-s3) · 🎨 [Drill the drawings used](/concept-cards)
-
 
 > **TLDR**
 > - Working-adult prospect (35-45-yo) considering coverage for elderly parents

@@ -165,16 +165,6 @@ When a prospect drifts back to "let me just stick with what I have":
 
 ---
 
-## Drill (Part 1) — 60 minutes
-
-1. **Recite all 5 conviction stories** out loud, in order. Time each — should be under 90 seconds.
-2. **Memorise the bundled-collapse story** (Video 4 verbatim).
-3. **Memorise the Robert case study** numbers (S$100K base → S$500K+ across 8 years).
-4. **Memorise the competitor restrictions** (Prudential related-CI, GE three-claim cap).
-5. **Run a roleplay.** Pair with a peer. Have them throw all 5 objections in random order. Score script + conviction + closing line.
-
----
-
 # Part 2 — Cross-sell + Bundling: GPP + UCC Canonical Pair
 
 > **The one idea for Part 2:** GPP and UCC are not alternatives — they are halves of the same protection design. GPP carries Major CI + death + savings + Premium Waiver of life cover. UCC carries Early CI + recurring claims + special conditions. Two appointments, never one. Then 6 real restructure cases close the cross-sell.
@@ -273,16 +263,6 @@ If the prospect's existing plan has:
 3. **Use the canonical packaging line verbatim.** It's the most-quoted source line — landing it word-for-word builds conviction.
 4. **Don't restructure without due diligence.** Health history, claim history, legacy rates all matter.
 5. **Pair with APA for the floor-then-accumulation sequence** when the prospect has cashflow to redirect after restructure.
-
----
-
-## Drill (Part 2)
-
-1. **Memorise the canonical packaging line** word-for-word. This is the single most-quoted source line.
-2. **Memorise one full restructure case** — pick the one that matches your most common prospect profile.
-3. **Practise the decoupling reframe** in your own voice, 3 times.
-4. **Pick 3 prospects from your pipeline.** For each: layer or restructure? Why?
-5. **Book one UCC follow-up appointment** with an existing GPP-holder client this week.
 
 ---
 
