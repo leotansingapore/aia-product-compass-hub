@@ -18,6 +18,13 @@ const CACHE_DURATION = 30 * 1000; // 30 seconds
 // `usePermissions()` callers each fire `get_user_admin_role` before the cache populates.
 const inflightAdminRole = new Map<string, Promise<string>>();
 
+// Tab-focus refresh cooldown shared across every `usePermissions()` instance.
+// Previously this was a per-instance `useRef`, so N mounted components fired N
+// RPCs on every visibility flip and raced N `setUserAdminRole` calls — exactly
+// the cascade that made admin pages "weirdly refresh" on tab focus.
+const SILENT_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
+const lastSilentRefreshByUser = new Map<string, number>();
+
 async function fetchAdminRoleDeduped(userId: string): Promise<string> {
   const cached = permissionsCache.get(userId);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION && cached.version === PERMISSIONS_VERSION) {
@@ -119,34 +126,34 @@ export function usePermissions() {
     }
   }, [user, authLoading, fetchUserPermissions]);
 
-  // Silent role refresh on tab return — but at most once per 5 min. Without a
-  // cooldown, admins switching between dev tools / Slack / browser tabs fire
-  // a Supabase RPC on every visibility flip, which adds latency and (when
-  // the role *does* differ from cached) triggers a context re-render that
-  // cascades through AdminProvider into every downstream consumer.
-  const lastSilentRefreshRef = useRef<number>(0);
-  const SILENT_REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
+  // Silent role refresh on tab return — at most once per 5 min ACROSS ALL
+  // `usePermissions()` instances. Without the module-level cooldown, every
+  // mounted component fired its own RPC on every visibility flip, then each
+  // raced its own `setUserAdminRole`. Going through `fetchAdminRoleDeduped`
+  // shares the cache so all instances agree, and functional setState bails
+  // out cleanly when the role is unchanged — preventing the AdminProvider
+  // cascade that made admin pages flicker on tab focus.
   useEffect(() => {
+    if (!user) return;
+    const userId = user.id;
+
     const handleVisibilityChange = async () => {
-      if (document.visibilityState !== 'visible' || !user) return;
-      // Avoid focus-time role refresh while watching videos to prevent unnecessary player-side interruptions.
-      const path = window.location.pathname;
-      if (path.includes('/video/')) return;
+      if (document.visibilityState !== 'visible') return;
+      // Avoid focus-time role refresh while watching videos to prevent
+      // unnecessary player-side interruptions.
+      if (window.location.pathname.includes('/video/')) return;
       const now = Date.now();
-      if (now - lastSilentRefreshRef.current < SILENT_REFRESH_COOLDOWN_MS) return;
-      lastSilentRefreshRef.current = now;
+      const last = lastSilentRefreshByUser.get(userId) ?? 0;
+      if (now - last < SILENT_REFRESH_COOLDOWN_MS) return;
+      lastSilentRefreshByUser.set(userId, now);
 
       try {
-        const { data: newRole } = await supabase.rpc('get_user_admin_role', { user_id: user.id });
-        const roleValue = newRole || 'user';
-        if (roleValue !== userAdminRole) {
-          setUserAdminRole(roleValue);
-          permissionsCache.set(user.id, {
-            adminRole: roleValue,
-            timestamp: Date.now(),
-            version: PERMISSIONS_VERSION,
-          });
-        }
+        // Force-bypass the 30s cache so we actually re-check on focus, but
+        // still go through the in-flight dedupe so simultaneous instances
+        // share one RPC.
+        permissionsCache.delete(userId);
+        const roleValue = await fetchAdminRoleDeduped(userId);
+        setUserAdminRole((prev) => (prev === roleValue ? prev : roleValue));
       } catch (error) {
         console.warn('[Permissions] Silent refresh failed:', error);
       }
@@ -154,7 +161,7 @@ export function usePermissions() {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [user, userAdminRole]);
+  }, [user]);
 
   // If no user AND auth has finished resolving, set loading to false.
   // Previously this fired the moment `user === null` regardless of auth
