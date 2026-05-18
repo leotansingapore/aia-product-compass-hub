@@ -33,8 +33,13 @@ import {
   CASE_PRODUCTS,
   type CaseEntry,
 } from "@/data/caseVault";
-import { getCaseNarrative } from "@/data/caseNarratives";
+import {
+  getCaseNarrative,
+  normaliseDrawingTitle,
+  type DrawingImageLookup,
+} from "@/data/caseNarratives";
 import { CaseReferencePhotos } from "@/components/case-vault/CaseReferencePhotos";
+import { useConceptCards } from "@/hooks/useConceptCards";
 import { markdownComponents } from "@/lib/markdown-config";
 
 const NARRATIVE_REMARK_PLUGINS = [remarkGfm];
@@ -149,10 +154,36 @@ export default function CaseDetailPage() {
     );
   }
 
+  // Live Concept Cards (Supabase) — used to embed the actual drawing image
+  // inline in the narrative wherever the prose references that drawing.
+  // Without the lookup the narrative still renders correctly, just without
+  // images (linkified text only).
+  const { cards: conceptCards } = useConceptCards();
+
+  const drawingImageLookup: DrawingImageLookup = useMemo(() => {
+    const map = new Map<string, { imageUrls: string[]; cardId: string }>();
+    for (const card of conceptCards) {
+      const images: string[] = (card.image_urls && card.image_urls.length > 0)
+        ? card.image_urls
+        : card.image_url ? [card.image_url] : [];
+      if (images.length === 0) continue;
+      map.set(normaliseDrawingTitle(card.title), {
+        imageUrls: images,
+        cardId: card.id,
+      });
+    }
+    return {
+      get: (key: string) => map.get(key),
+    };
+  }, [conceptCards]);
+
   const titleNoun = prospectFromTitle(entry.title);
   const playPhrase = playInSentence(entry.play);
   const tldr = `A ${entry.prospect.toLowerCase()} — ${titleNoun}. The move: ${playPhrase}, structured as ${entry.anchor}. The numbers landed at ${entry.headline}.`;
-  const narrative = getCaseNarrative(entry.id);
+  const narrative = useMemo(
+    () => getCaseNarrative(entry.id, drawingImageLookup),
+    [entry.id, drawingImageLookup],
+  );
 
   return (
     <PageLayout

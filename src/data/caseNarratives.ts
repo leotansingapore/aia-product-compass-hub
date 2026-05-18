@@ -2082,12 +2082,45 @@ const DRAWING_PATTERNS: Array<{ pattern: RegExp; drawing: string }> = [
 ];
 
 /**
+ * Lookup contract used by the linkifier when embedding inline drawing
+ * images. CaseDetail builds this from the live Concept Cards table — keys
+ * are the normalised drawing names (see `normaliseDrawingTitle` below).
+ */
+export interface DrawingImageLookup {
+  get(normalisedTitle: string): { imageUrls: string[]; cardId?: string } | undefined;
+}
+
+/**
+ * Normalise a drawing title for matching — lowercase, strip punctuation /
+ * smart-quotes / dashes, collapse whitespace. Both the canonical names in
+ * `DRAWING_PATTERNS` and the live Concept Cards titles go through this
+ * before lookup so we tolerate the small wording drift between the two
+ * sources.
+ */
+export function normaliseDrawingTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[—–\-]/g, " ")
+    .replace(/['']/g, "")
+    .replace(/[^\p{Letter}\p{Number}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
  * Walks the narrative string and replaces the first occurrence of each known
  * drawing-trigger phrase with a markdown link to the matching Concept Cards
- * entry. Skips matches that already sit inside a markdown link or a code
- * span so we don't corrupt the markdown.
+ * entry. If `imageLookup` is supplied AND a matching card with images is
+ * found, also appends the first image as a markdown image block so the
+ * reader sees the drawing inline.
+ *
+ * Skips matches that already sit inside a markdown link or a code span so
+ * we don't corrupt the markdown.
  */
-function linkifyDrawings(narrative: string): string {
+function linkifyDrawings(
+  narrative: string,
+  imageLookup?: DrawingImageLookup,
+): string {
   const linked = new Set<string>();
   let result = narrative;
 
@@ -2098,14 +2131,13 @@ function linkifyDrawings(narrative: string): string {
     if (!match) continue;
 
     // Bail if the match sits inside an existing markdown link — markdown
-    // doesn't support nested links and we'd corrupt the output. Check
-    // whether the prefix has an unmatched `[`.
+    // doesn't support nested links and we'd corrupt the output.
     const before = result.slice(0, match.index);
     const openBracket = before.lastIndexOf("[");
     const closeBracket = before.lastIndexOf("]");
     if (openBracket > closeBracket) continue;
 
-    // Also skip code spans on the same line (between two backticks).
+    // Skip code spans on the same line (between two backticks).
     const lineStart = before.lastIndexOf("\n") + 1;
     const linePrefix = result.slice(lineStart, match.index);
     const tickCount = (linePrefix.match(/`/g) || []).length;
@@ -2113,10 +2145,37 @@ function linkifyDrawings(narrative: string): string {
 
     const url = `/concept-cards?q=${encodeURIComponent(drawing)}`;
     const linkMarkdown = `[${match[0]}](${url})`;
+
+    // Look up the drawing's image(s) if a lookup is provided. We embed the
+    // first image as a markdown image block on the next line — the markdown
+    // `img` renderer in markdown-config.tsx handles layout (centred, rounded,
+    // lazy-loaded). The `alt|width=...` meta syntax supported by that
+    // renderer is used to constrain width on desktop while keeping the
+    // image full-width on mobile via max-width:100%.
+    const card = imageLookup?.get(normaliseDrawingTitle(drawing));
+    const imageUrl = card?.imageUrls?.[0];
+    const imageMarkdown = imageUrl
+      ? `\n\n![${drawing}|width=720](${imageUrl})\n`
+      : "";
+
+    // Find the end of the paragraph that contains the match so we insert
+    // the image AFTER the paragraph, not mid-sentence. A "paragraph end"
+    // here means the next blank line (\n\n) or end of string.
+    const afterMatchIndex = match.index + match[0].length;
+    const remainder = result.slice(afterMatchIndex);
+    const paragraphEndOffset = remainder.search(/\n\n|$/);
+    const paragraphEnd =
+      paragraphEndOffset === -1
+        ? result.length
+        : afterMatchIndex + paragraphEndOffset;
+
     result =
       result.slice(0, match.index) +
       linkMarkdown +
-      result.slice(match.index + match[0].length);
+      result.slice(afterMatchIndex, paragraphEnd) +
+      imageMarkdown +
+      result.slice(paragraphEnd);
+
     linked.add(drawing);
   }
 
@@ -2124,13 +2183,20 @@ function linkifyDrawings(narrative: string): string {
 }
 
 /**
- * Returns the narrative markdown for a given case id, or null if none exists.
- * Used by CaseDetail.tsx to render the main reading content. The returned
- * markdown has drawing references auto-linked to matching Concept Cards
- * entries so the reader can pop a drawing open mid-read.
+ * Returns the narrative markdown for a given case id, or null if none
+ * exists. Used by CaseDetail.tsx to render the main reading content.
+ *
+ * The returned markdown has drawing references auto-linked to matching
+ * Concept Cards entries so the reader can pop a drawing open mid-read.
+ * If `imageLookup` is supplied AND a referenced drawing has a matching
+ * Concept Card with an image, the image is embedded inline right after
+ * the paragraph that references it.
  */
-export function getCaseNarrative(caseId: string): string | null {
+export function getCaseNarrative(
+  caseId: string,
+  imageLookup?: DrawingImageLookup,
+): string | null {
   const narrative = CASE_NARRATIVES[caseId];
   if (!narrative) return null;
-  return linkifyDrawings(narrative.trim());
+  return linkifyDrawings(narrative.trim(), imageLookup);
 }
