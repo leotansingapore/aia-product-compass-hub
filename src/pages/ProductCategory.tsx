@@ -45,6 +45,17 @@ import { cn } from "@/lib/utils";
 // render — a stray `EMPTY_COUNT_MAP[id] = n` would leak across pages).
 const EMPTY_COUNT_MAP: Record<string, number> = Object.freeze({});
 
+// Category slugs that should share the learning-track page shell — no
+// BrandedPageHeader, JourneyNav rail at top, content constrained to
+// max-w-3xl — so hopping between these and /learning-track/* doesn't
+// jolt the user with a different layout.
+const LEARNING_TRACK_LAYOUT_SLUGS = new Set([
+  "core-training",
+  "core-products",
+  "supplementary-products",
+  "supplementary-training",
+]);
+
 // Helper function to get category info for backward compatibility
 function getCategoryInfo(categoryId: string) {
   const categoryInfo = {
@@ -106,6 +117,9 @@ export default function ProductCategory() {
   const { isAdmin: rawIsAdmin } = usePermissions();
   const { isViewingAsUser } = useViewMode();
   const isAdmin = () => rawIsAdmin() && !isViewingAsUser;
+  const useLearningTrackShell = LEARNING_TRACK_LAYOUT_SLUGS.has(
+    categorySlugOrId ?? "",
+  );
 
   // Nested categories: if the current category is a parent (has children),
   // render the children as a sub-category grid instead of products.
@@ -377,13 +391,14 @@ export default function ProductCategory() {
         type: "section",
       }}
     >
-      {/* Core Training is a Papers-taker training surface (sibling of First
-          60 Days / Product Mastery). Show the journey rail so learners see
-          where they are and can hop to the other Pre-RNF phase pages.
-          Skip the BrandedPageHeader for parity with the learning-track pages
-          (PreRnf / First60Days) so navigating between siblings doesn't jolt
-          the user with a different shell. */}
-      {categorySlugOrId === "core-training" ? (
+      {/* Categories in LEARNING_TRACK_LAYOUT_SLUGS are Papers-taker training
+          surfaces (siblings of First 60 Days / Product Mastery). Show the
+          journey rail so learners see where they are and can hop to the
+          other Pre-RNF phase pages, and skip the BrandedPageHeader for
+          parity with the learning-track pages (PreRnf / First60Days) so
+          navigating between siblings doesn't jolt the user with a different
+          shell. */}
+      {useLearningTrackShell ? (
         <LearningTrackJourneyNav activeKey="papers_taker" />
       ) : (
         <BrandedPageHeader
@@ -411,7 +426,7 @@ export default function ProductCategory() {
       <div
         className={cn(
           "mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-8",
-          categorySlugOrId === "core-training" && "max-w-3xl sm:px-0 md:px-0 pt-4 pb-10",
+          useLearningTrackShell && "max-w-3xl sm:px-0 md:px-0 pt-4 pb-10",
         )}
       >
         {/* Sibling-page nav for Core Training — mirrors the 3-card pattern
