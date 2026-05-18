@@ -367,45 +367,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
             </SidebarGroupContent>
           </SidebarGroup>
 
-          {/* Reference — products and sales tools */}
-          {(sectionVisibleForTier('categories') || sectionVisibleForTier('sales-playbooks')) && (
-            <SidebarGroup>
-              <SidebarGroupLabel>Library</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {sectionVisibleForTier('categories') && (
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild tooltip={isCollapsed ? "Product Categories" : undefined}>
-                        <NavLink
-                          to="/categories"
-                          {...prefetchHandlers("/categories")}
-                          className={getNavClassName('/categories')}
-                        >
-                          <Archive className="h-4 w-4" />
-                          {!isCollapsed && <span>Product Categories</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  )}
-                  {sectionVisibleForTier('sales-playbooks') && (
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild tooltip={isCollapsed ? "Sales Playbooks" : undefined}>
-                        <NavLink
-                          to="/library/playbooks"
-                          {...prefetchHandlers('/library/playbooks')}
-                          className={getNavClassName('/sales-playbooks')}
-                        >
-                          <TrendingUp className="h-4 w-4" />
-                          {!isCollapsed && <span>Sales Playbooks</span>}
-                        </NavLink>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  )}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          )}
-
           <SidebarGroup>
             <SidebarGroupLabel>More</SidebarGroupLabel>
             <SidebarGroupContent>
