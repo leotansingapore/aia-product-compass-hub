@@ -429,10 +429,12 @@ export default function ProductCategory() {
           useLearningTrackShell && "max-w-3xl sm:px-0 md:px-0 pt-4 pb-10",
         )}
       >
-        {/* Sibling-page nav for Core Training — mirrors the 3-card pattern
-            used on First 60 Days / Assignments / Product Mastery hubs so the
-            four Pre-RNF surfaces all let learners hop between each other. */}
-        {categorySlugOrId === "core-training" && (
+        {/* Sibling-page nav — mirrors the 3-card pattern used on First 60
+            Days / Assignments / Product Mastery hubs so every Pre-RNF
+            training surface (Core Training, Core Products, Supplementary
+            Products / Training) lets learners hop between CMFAS, First 60
+            Days, and Product Mastery. */}
+        {useLearningTrackShell && (
           <div className="mb-3 sm:mb-6 space-y-2.5">
             <Link
               to="/cmfas-exams"
