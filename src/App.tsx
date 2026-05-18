@@ -53,6 +53,8 @@ const Roleplay = lazyWithRetry(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazyWithRetry(() => import("./pages/RoleplayFeedback"));
 const ContentStudio = lazyWithRetry(() => import("./pages/ContentStudio"));
 const Tools = lazyWithRetry(() => import("./pages/Tools"));
+const CheatSheets = lazyWithRetry(() => import("./pages/CheatSheets"));
+const CheatSheetDetail = lazyWithRetry(() => import("./pages/CheatSheetDetail"));
 
 const Categories = lazyWithRetry(() => import("./pages/Categories"));
 const AdminDashboard = lazyWithRetry(() => import("./pages/AdminDashboard"));
@@ -165,6 +167,8 @@ const App = () => (
                     <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
                     <Route path="/content-studio" element={<RequireAuth><ContentStudio /></RequireAuth>} />
                     <Route path="/tools" element={<RequireAuth><Tools /></RequireAuth>} />
+                    <Route path="/cheat-sheets" element={<RequireAuth><CheatSheets /></RequireAuth>} />
+                    <Route path="/cheat-sheets/:section/:slug" element={<RequireAuth><CheatSheetDetail /></RequireAuth>} />
                     <Route path="/admin" element={
                       <RequireAuth>
                         <ProtectedAdminPage>
