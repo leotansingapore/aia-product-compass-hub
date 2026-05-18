@@ -149,6 +149,53 @@ Three moments in every meeting where silence is your best move:
 
 New FCs talk when they're nervous. Top producers know silence is productive.
 
+## 6. Delivery mistakes that kill the close
+
+Four anti-patterns that sink appointments — separate from the 5-phase structure, these are about how you behave inside the structure. New FCs lose deals here even when their phases are correctly sequenced.
+
+### The "knowledge trap" - why over-explaining kills the close
+
+A common new-FC failure pattern: the FC has just learned a lot of product detail (welcome bonus tiers, fund options, supplementary charge mechanics, secondary insured rules) and tries to teach all of it during the appointment. The unconscious belief: *"If I give the prospect enough information, they'll be convinced enough to buy."*
+
+The reality:
+
+> *"It's called a 'knowledge trap.' You know too much and you expect that because you gave so much value and info to the client, he needs to buy. But that's actually your downfall."* — your mentor
+
+The prospect's brain has limited capacity. When you overload it, two things happen:
+
+1. They go into passive-listening mode and stop engaging with the structure you're building.
+2. They develop "decision fatigue" - every additional detail makes saying yes feel harder, not easier, because each detail introduces another question they could ask.
+
+**The rule: give just enough information for the prospect to feel the structural gap, then close.** Resist the urge to explain every detail. Save the deep product mechanics for the post-sale education conversation.
+
+### The "TMI mode" anti-pattern - sequencing matters
+
+A specific failure pattern documented from a senior FC's own appointment:
+
+> *"Mistake: went through his policy summary (15 policies), then went through the retirement healthcare funding angle, then went back to policy summary to get his source of funding mechanism. Effect: overloaded his brain and he was 'TMI mode' for the 1.5 hours."*
+
+The corrected sequence:
+
+1. **First:** open with the retirement-healthcare-funding angle (or whichever angle the prospect's situation calls for). Build the structural gap conceptually.
+2. **Then:** pull up the policy summary as **ammunition** - "here's what you have, here's how we can use these existing resources to fund the gap."
+3. **Never:** lead with the policy summary as a list. It overwhelms the prospect before they understand why any of it matters.
+
+Same content, different sequence. The first version closes. The second version overloads.
+
+### Avoid filler words during the call
+
+> *"Minimise words like 'right, right' or 'okay, okay' just to fill silence - they can distract from professionalism."*
+
+Silence is fine. Let the prospect think. Let them say something. Don't feel you have to fill every pause. This is the same discipline as "When to shut up" in Section 5 - applied to micro-pauses inside your own sentences, not just after questions.
+
+### Pre-frame your questions instead of asking literally
+
+**Bad:** *"Do you know how CPF LIFE works?"* - feels like a test; the prospect feels uncomfortable.
+
+**Good:** *"Many pre-retirees aren't clear on their CPF LIFE payouts, which affects retirement planning. Can I have your OA / SA balances so I can give you an accurate calculation?"* - provides context for why the question matters.
+
+The pattern: explain *why* you need the information *before* you ask for it. The prospect now feels collaborated with, not interrogated.
+
 ---
 
 ```mermaid
