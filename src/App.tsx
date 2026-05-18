@@ -52,7 +52,9 @@ const CMFASChat = lazyWithRetry(() => import("./pages/cmfas/CMFASChat"));
 const Roleplay = lazyWithRetry(() => import("./pages/Roleplay"));
 const RoleplayFeedback = lazyWithRetry(() => import("./pages/RoleplayFeedback"));
 const ContentStudio = lazyWithRetry(() => import("./pages/ContentStudio"));
-const Tools = lazyWithRetry(() => import("./pages/Tools"));
+const LibraryToolsHub = lazyWithRetry(() =>
+  import("./features/library/ToolsHub").then((m) => ({ default: m.ToolsHub })),
+);
 const CheatSheetDetail = lazyWithRetry(() => import("./pages/CheatSheetDetail"));
 
 const Categories = lazyWithRetry(() => import("./pages/Categories"));
@@ -175,8 +177,8 @@ const App = () => (
                     <Route path="/roleplay" element={<RequireAuth><RequireTier feature="roleplay"><Roleplay /></RequireTier></RequireAuth>} />
                     <Route path="/roleplay/feedback/:sessionId" element={<RequireAuth><RequireTier feature="roleplay"><RoleplayFeedback /></RequireTier></RequireAuth>} />
                     <Route path="/roleplay/pitch-analysis" element={<Navigate to="/roleplay?tab=pitch-analysis" replace />} />
-                    <Route path="/content-studio" element={<RequireAuth><ContentStudio /></RequireAuth>} />
-                    <Route path="/tools" element={<RequireAuth><Tools /></RequireAuth>} />
+                    <Route path="/content-studio" element={<Navigate to="/library/tools/content-studio" replace />} />
+                    <Route path="/tools" element={<Navigate to="/library/tools" replace />} />
                     <Route path="/cheat-sheets" element={<Navigate to="/library/cheat-sheets" replace />} />
                     <Route path="/cheat-sheets/:section/:slug" element={<RequireAuth><CheatSheetDetail /></RequireAuth>} />
                     <Route path="/admin" element={
@@ -202,6 +204,8 @@ const App = () => (
                       <Route path="question-banks" element={<LibraryQuestionBanksTab />} />
                       <Route path="cheat-sheets" element={<LibraryCheatSheetsTab />} />
                       <Route path="playbooks" element={<RequireTier feature="sales-playbooks"><LibrarySalesPlaybooksTab /></RequireTier>} />
+                      <Route path="tools" element={<LibraryToolsHub />} />
+                      <Route path="tools/content-studio" element={<ContentStudio />} />
                     </Route>
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />

@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import { Navigate, NavLink, Outlet, useLocation, useMatch } from "react-router-dom";
-import { BookOpen, Brain, FileText, TrendingUp } from "lucide-react";
+import { BookOpen, Brain, FileText, TrendingUp, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { cn } from "@/lib/utils";
 
 type LibraryTab = {
-  slug: "products" | "question-banks" | "cheat-sheets" | "playbooks";
+  slug: "products" | "question-banks" | "cheat-sheets" | "playbooks" | "tools";
   label: string;
   icon: LucideIcon;
   path: string;
@@ -18,6 +18,7 @@ export const LIBRARY_TABS: ReadonlyArray<LibraryTab> = [
   { slug: "question-banks", label: "Question Banks", icon: Brain, path: "/library/question-banks" },
   { slug: "cheat-sheets", label: "Cheat Sheets", icon: FileText, path: "/library/cheat-sheets" },
   { slug: "playbooks", label: "Sales Playbooks", icon: TrendingUp, path: "/library/playbooks" },
+  { slug: "tools", label: "Tools", icon: Wrench, path: "/library/tools" },
 ] as const;
 
 // Legacy query-param URLs that the rest of the app may still link to.
@@ -29,6 +30,7 @@ const LEGACY_QUERY_TAB_TO_SLUG: Record<string, LibraryTab["slug"]> = {
   "question-banks": "question-banks",
   "cheat-sheets": "cheat-sheets",
   playbooks: "playbooks",
+  tools: "tools",
 };
 
 export default function Library() {
@@ -63,7 +65,7 @@ export default function Library() {
       <BrandedPageHeader
         title="Library"
         titlePrefix="📚 "
-        subtitle="Product categories, training content, practice question banks, and the sales playbooks hub — all in one place."
+        subtitle="Product categories, question banks, cheat sheets, sales playbooks, and the tools hub — all in one place."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Library" },
@@ -88,7 +90,7 @@ function LibraryTabBar() {
   return (
     <nav
       aria-label="Library sections"
-      className="grid w-full max-w-3xl grid-cols-2 gap-1 rounded-md bg-muted p-1 sm:grid-cols-4"
+      className="grid w-full max-w-4xl grid-cols-2 gap-1 rounded-md bg-muted p-1 sm:grid-cols-3 lg:grid-cols-5"
     >
       {LIBRARY_TABS.map((tab) => {
         const Icon = tab.icon;
