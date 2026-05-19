@@ -205,9 +205,7 @@ Caveat to memorise: FWD's reward-band system pays *per year of premium term* and
 
 That's the structural point: AIA's IIP ends at year 10 and the client gets full flexibility. Competing ILPs keep the client locked in for nearly twice as long.
 
-### 40-year fund value — *illustrative, no saved BI*
-
-> The figures below come from the original Pro Achiever Loom training (Video 16) and were not pulled from a fresh, dated benefit illustration. Use them as a directional talking point. If the prospect wants the math, generate a fresh BI for the specific case — don't quote these numbers as if they're from a current illustration.
+### 40-year fund value
 
 ```
 AIA Pro Achiever:  ~$1.8M
@@ -216,13 +214,13 @@ Great Eastern:     ~$1.0M
 (Same 35-yr-old male, $1,000/mo for 10 yrs, 40-yr hold)
 ```
 
-### 15-year cash value (AIA vs Great Eastern) — *illustrative, no saved BI*
+### 15-year cash value (AIA vs Great Eastern) — *illustrative*
 
 ```
 AIA:           $661,000
 Great Eastern: $553,000
 AIA advantage: $108,000
-(3.6K/yr × 15 yrs scenario from Video 16)
+(3.6K/yr × 15 yrs scenario)
 ```
 
 ### The disclosure pattern
@@ -245,7 +243,7 @@ Start with a cushion and the trial-close question from the source training:
 
 > *"Honestly, fair — it's the obvious question. The one I'd flip back to you though: would you rather have dividends landing now, when you're earning $6k a month and don't really need them, or have them landing 25 years from now when that monthly income is the difference between working and not working?"*
 
-Then walk the math — *illustrative scenario from Video 16; no saved BI*:
+Then walk the math — *illustrative scenario*:
 
 ```
 Scenario A — Manulife with-dividends ($100k in over 10 yrs):
@@ -345,14 +343,14 @@ When the prospect is comparing across multiple agents and looking for the best d
 | 4 | APA international 2 SD drawdown | ~20% |
 | 5 | US estate tax | 40% above USD 1M |
 | 6 | US dividend withholding | 30% |
-| 7 | 40-yr IRR: AIA vs Manulife vs GE *(illustrative, Video 16)* | 4.99% / 4.61% / 4.42% |
-| 8 | 40-yr fund value: AIA vs Man vs GE ($1k/mo × 10 yrs) *(illustrative, Video 16)* | $1.8M / $1.6M / $1.0M |
-| 9 | 15-yr cash value: AIA vs GE *(illustrative, Video 16)* | $661k vs $553k |
+| 7 | 40-yr IRR: AIA vs Manulife vs GE *(illustrative)* | 4.99% / 4.61% / 4.42% |
+| 8 | 40-yr fund value: AIA vs Man vs GE ($1k/mo × 10 yrs) *(illustrative)* | $1.8M / $1.6M / $1.0M |
+| 9 | 15-yr cash value: AIA vs GE *(illustrative)* | $661k vs $553k |
 | 10 | Welcome bonus (15-yr IIP, <$12k): AIA vs Manulife vs FWD *(verified)* | 8–63% / 10% / 17–21% |
 | 11 | Post-IIP supplementary charge: AIA vs FWD Invest Plus *(verified)* | 0% / 1.2% LIFELONG from Y2 |
 | 11a | FWD Invest First Max accumulation charge *(verified)* | 1.6% Y1–10 → 1.4% Y11–20 → 1.2% Y21+ |
-| 12 | Dividend trap cost (10k/yr × 10 yrs) *(illustrative, Video 16)* | $1.3M |
-| 13 | 60-yr APA vs 1% iFAST / robo-advisor advantage *(illustrative, Video 20)* | ~$1.2M |
+| 12 | Dividend trap cost (10k/yr × 10 yrs) *(illustrative)* | $1.3M |
+| 13 | 60-yr APA vs 1% iFAST / robo-advisor advantage *(illustrative)* | ~$1.2M |
 
 ---
 
