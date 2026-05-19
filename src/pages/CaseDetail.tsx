@@ -275,6 +275,22 @@ export default function CaseDetailPage() {
             </div>
           </section>
 
+          {/* Whiteboard summary — the whole case in one drawing */}
+          <section>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+              The whole case in one drawing
+            </div>
+            <img
+              src={`/case-vault/concepts/${entry.id}.webp`}
+              alt={`${entry.title} — before / after concept whiteboard`}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.parentElement?.style.setProperty("display", "none");
+              }}
+              className="w-full rounded-xl border bg-muted/20"
+            />
+          </section>
+
           {/* The case study — long-form narrative for the reader */}
           {narrative && (
             <section className="rounded-2xl border bg-card shadow-sm overflow-hidden">
