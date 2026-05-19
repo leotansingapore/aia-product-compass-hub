@@ -2192,11 +2192,15 @@ function linkifyDrawings(
  * Concept Card with an image, the image is embedded inline right after
  * the paragraph that references it.
  */
+import { REAL_NARRATIVES } from "./caseNarrativesReal";
+
 export function getCaseNarrative(
   caseId: string,
   imageLookup?: DrawingImageLookup,
 ): string | null {
-  const narrative = CASE_NARRATIVES[caseId];
+  // Curated CASE_NARRATIVES first, then auto-generated REAL_NARRATIVES
+  // (Fireflies-derived real appointments).
+  const narrative = CASE_NARRATIVES[caseId] ?? REAL_NARRATIVES[caseId];
   if (!narrative) return null;
   return linkifyDrawings(narrative.trim(), imageLookup);
 }

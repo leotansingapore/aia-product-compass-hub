@@ -33,6 +33,7 @@ import {
   CASE_PRODUCTS,
   type CaseEntry,
 } from "@/data/caseVault";
+import { REAL_CASES } from "@/data/caseVaultReal";
 import {
   getCaseNarrative,
   normaliseDrawingTitle,
@@ -41,6 +42,8 @@ import {
 import { CaseReferencePhotos } from "@/components/case-vault/CaseReferencePhotos";
 import { useConceptCards } from "@/hooks/useConceptCards";
 import { markdownComponents } from "@/lib/markdown-config";
+
+const ALL_CASES: CaseEntry[] = [...CASES, ...REAL_CASES];
 
 const NARRATIVE_REMARK_PLUGINS = [remarkGfm];
 
@@ -95,7 +98,7 @@ export default function CaseDetailPage() {
   const navigate = useNavigate();
 
   const entry = useMemo(
-    () => CASES.find((c) => c.id === caseId) ?? null,
+    () => ALL_CASES.find((c) => c.id === caseId) ?? null,
     [caseId]
   );
 
@@ -103,10 +106,10 @@ export default function CaseDetailPage() {
   // same play if needed. Used as a "you might also want to drill" footer.
   const related = useMemo(() => {
     if (!entry) return [];
-    const sameProduct = CASES.filter(
+    const sameProduct = ALL_CASES.filter(
       (c) => c.id !== entry.id && c.product === entry.product
     );
-    const samePlay = CASES.filter(
+    const samePlay = ALL_CASES.filter(
       (c) =>
         c.id !== entry.id &&
         c.product !== entry.product &&

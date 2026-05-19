@@ -22,6 +22,10 @@ import {
   type CaseEntry,
   type CaseProduct,
 } from "@/data/caseVault";
+import { REAL_CASES } from "@/data/caseVaultReal";
+
+// Curated training cases + real-appointment cases derived from Fireflies notes.
+const ALL_CASES: CaseEntry[] = [...CASES, ...REAL_CASES];
 
 const PRODUCT_FILTER_OPTIONS: ("All" | CaseProduct)[] = [
   "All",
@@ -115,7 +119,7 @@ export default function CaseVaultPage() {
   useEffect(() => {
     const caseId = searchParams.get("case");
     if (!caseId) return;
-    const entry = CASES.find((c) => c.id === caseId);
+    const entry = ALL_CASES.find((c) => c.id === caseId);
     if (entry) {
       navigate(`/case-vault/${entry.id}`, { replace: true });
     }
@@ -123,7 +127,7 @@ export default function CaseVaultPage() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return CASES.filter((c) => {
+    return ALL_CASES.filter((c) => {
       if (filterProduct !== "All" && c.product !== filterProduct) return false;
       if (filterPlay !== "All" && c.play !== filterPlay) return false;
       if (!q) return true;
@@ -133,8 +137,8 @@ export default function CaseVaultPage() {
   }, [search, filterProduct, filterPlay]);
 
   const productCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: CASES.length };
-    for (const c of CASES) {
+    const counts: Record<string, number> = { All: ALL_CASES.length };
+    for (const c of ALL_CASES) {
       counts[c.product] = (counts[c.product] || 0) + 1;
     }
     return counts;
@@ -212,7 +216,7 @@ export default function CaseVaultPage() {
           </div>
 
           <div className="text-xs text-muted-foreground">
-            Showing {filtered.length} of {CASES.length} cases
+            Showing {filtered.length} of {ALL_CASES.length} cases
           </div>
         </div>
 
