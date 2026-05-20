@@ -100,21 +100,30 @@ function applyTheme(mermaid: MermaidApi, dark: boolean) {
 }
 
 function esc(s: string): string {
-  return s.replace(/"/g, "'").replace(/\n+/g, " ").trim();
+  // Mermaid is picky about labels — strip quotes, newlines, dollar signs (used
+  // in mermaid for interpolation), and normalise en/em-dashes to hyphens.
+  return s
+    .replace(/"/g, "'")
+    .replace(/\n+/g, " ")
+    .replace(/\$/g, "")
+    .replace(/[–—]/g, "-")
+    .replace(/…/g, "...")
+    .trim();
 }
 
 function flowToMermaid(flow: AppointmentFlow): string {
   const lines: string[] = ["flowchart TD"];
-  lines.push(`  ANCHOR["${esc(flow.anchorFrame)}"]:::anchorNode`);
-  lines.push(`  DISC[/"Discovery (${flow.discoveryQuestions.length} questions)"/]:::discNode`);
-  lines.push(`  DECIDE{{"Decide branch"}}:::decideNode`);
+  lines.push(`  ANCHOR["Open: ${esc(flow.anchorFrame).slice(0, 60)}"]:::anchorNode`);
+  lines.push(`  DISC[/"Discovery - ${flow.discoveryQuestions.length} questions"/]:::discNode`);
+  lines.push(`  DECIDE{{"Pick branch"}}:::decideNode`);
   lines.push(`  ANCHOR --> DISC`);
   lines.push(`  DISC --> DECIDE`);
   for (const b of flow.branches) {
     const nodeId = b.id.replace(/[^a-zA-Z0-9_]/g, "_");
-    const summary = b.receiptPattern.slice(0, 90);
-    lines.push(`  ${nodeId}["<b>${esc(b.label)}</b><br/>${esc(summary)}…"]:::branchNode`);
-    lines.push(`  DECIDE -- "${esc(b.condition)}" --> ${nodeId}`);
+    // Keep node text short and ASCII-safe — receipt details live in the detail
+    // sheet that opens on click.
+    lines.push(`  ${nodeId}["${esc(b.label)}"]:::branchNode`);
+    lines.push(`  DECIDE -- "${esc(b.condition).slice(0, 50)}" --> ${nodeId}`);
   }
   lines.push(`  classDef anchorNode fill:#fef3c7,stroke:#d97706,color:#78350f,stroke-width:2px`);
   lines.push(`  classDef discNode fill:#dbeafe,stroke:#2563eb,color:#1e3a8a,stroke-width:2px`);
