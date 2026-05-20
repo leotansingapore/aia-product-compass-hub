@@ -57,7 +57,7 @@ The cleanest analogy in the deck. **Term = renting**: cheaper per month but you 
 Three things prospects routinely confuse:
 - **TPD** (from whole life/term) triggers only on losing two arms, two legs, *or* two eyes - one finger doesn't count.
 - **Accident plan dismemberment** fills the partial-loss gap with a lump-sum menu (eyes worth more than a hand, hand more than a finger).
-- **CareShield Life Supplement** tops up the national CareShield Life scheme with a higher *monthly* payout for as long as the client can't perform 3 of 6 ADLs (bathing, dressing, eating, toileting, transferring, continence). Funded by MediSave for eligible clients, so out-of-pocket is often zero. For a 25-year-old male the supplement payout is ~**$1,008/month**. Most prospects 30+ qualify and don't know it exists - which is the pitch.
+- **CareShield Life Supplement** tops up the national CareShield Life scheme with a higher *monthly* payout for as long as the client can't perform 3 of 6 ADLs (bathing, dressing, eating, toileting, transferring, continence). Funded by MediSave for eligible clients, so out-of-pocket is often zero. For a 25-year-old male the supplement payout is ~**$1,800/month**. Most prospects 30+ qualify and don't know it exists - which is the pitch.
 
 ### [`32:51`](#t=1971) - [Day 14](/learning-track/first-60-days/day/14) . The pricing playbook - 10% frame, three-quote anchor, the urgency math
 Three moves stacked, in this order:
