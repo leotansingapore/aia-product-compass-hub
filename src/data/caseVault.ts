@@ -61,6 +61,10 @@ export interface CaseEntry {
   screenshot?: string;
   /** Optional stage label (e.g. discovery, presentation, close, other). */
   stage?: string;
+  /** Optional appointment date (ISO). */
+  date?: string;
+  /** Optional confidence rating for derived/real cases. */
+  confidence?: string;
 }
 
 export const CASE_PRODUCTS: Record<
