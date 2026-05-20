@@ -28,8 +28,15 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
     'module-1758266631016-n7jff6ewh',
     'module-1759490805756-i6duglldb',
   ];
-  const isTermProduct = productId === 'secure-flexi-term' || productId === 'ultimate-critical-cover';
-  const isResourcesModule = resourceModuleIds.includes(productId || '') || isTermProduct;
+  const folderStructureProductIds = new Set([
+    'secure-flexi-term',
+    'core-secure-flexi-term',
+    'ultimate-critical-cover',
+    'core-ultimate-critical-cover',
+  ]);
+  const isTermProduct = folderStructureProductIds.has(productId || '');
+  const hasFolderStructureData = (links as any)?.type === 'folder_structure';
+  const isResourcesModule = resourceModuleIds.includes(productId || '') || isTermProduct || hasFolderStructureData;
 
   // --- Data extraction helpers ---
   // The useful_links field can be:
