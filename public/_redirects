@@ -1,5 +1,16 @@
-# Netlify redirects for SPA routing
-# This ensures all routes are served by the React app
-# The 200 status code means it's a rewrite, not a redirect
+# Netlify redirects + cache headers for SPA hosting
+# Long-cache hashed asset chunks (filenames change per build, so this is safe).
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
 
+# Never cache the HTML shell — it points at the current chunk hashes, so a
+# stale copy is what causes "undefined is not an object" blank screens after
+# deploys.
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# SPA fallback
 /* /index.html 200
