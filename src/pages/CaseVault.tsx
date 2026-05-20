@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, ImageIcon, ChevronRight } from "lucide-react";
+import { Search, ImageIcon, ChevronRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASES,
@@ -24,7 +24,8 @@ import {
 } from "@/data/caseVault";
 import { REAL_CASES } from "@/data/caseVaultReal";
 
-// Curated training cases + real-appointment cases derived from Fireflies notes.
+// Curated training cases shown by default; real-appointment cases derived from
+// Fireflies notes are hidden behind an opt-in toggle so the page stays focused.
 const ALL_CASES: CaseEntry[] = [...CASES, ...REAL_CASES];
 
 const PRODUCT_FILTER_OPTIONS: ("All" | CaseProduct)[] = [
@@ -43,13 +44,29 @@ function CaseCard({ entry }: { entry: CaseEntry }) {
     >
       {/* Header strip */}
       <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b bg-muted/30">
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex items-center gap-2 min-w-0 flex-wrap">
           <Badge className="bg-primary/10 text-primary border-primary/20 text-[10px] px-1.5 py-0 font-mono shrink-0">
             Case {entry.code}
           </Badge>
           <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide truncate">
             {CASE_PRODUCTS[entry.product].label}
           </span>
+          {entry.id.startsWith("real-") && (
+            <Badge
+              variant="outline"
+              className="text-[9px] px-1.5 py-0 border-amber-400/60 text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 shrink-0"
+            >
+              Real appointment
+            </Badge>
+          )}
+          {entry.stage && entry.stage !== "other" && (
+            <Badge
+              variant="outline"
+              className="text-[9px] px-1.5 py-0 shrink-0"
+            >
+              {entry.stage}
+            </Badge>
+          )}
         </div>
         <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary transition-colors shrink-0" />
       </div>
@@ -110,6 +127,7 @@ export default function CaseVaultPage() {
   const [search, setSearch] = useState("");
   const [filterProduct, setFilterProduct] = useState<string>("All");
   const [filterPlay, setFilterPlay] = useState<string>("All");
+  const [showReal, setShowReal] = useState(false);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -125,24 +143,32 @@ export default function CaseVaultPage() {
     }
   }, [searchParams, navigate]);
 
+  // Pool excludes real-appointment cases unless the user opts in.
+  const pool = useMemo(
+    () => (showReal ? ALL_CASES : ALL_CASES.filter((c) => !c.id.startsWith("real-"))),
+    [showReal],
+  );
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return ALL_CASES.filter((c) => {
+    return pool.filter((c) => {
       if (filterProduct !== "All" && c.product !== filterProduct) return false;
       if (filterPlay !== "All" && c.play !== filterPlay) return false;
       if (!q) return true;
       const hay = `${c.code} ${c.title} ${c.prospect} ${c.anchor} ${c.headline} ${c.tags.join(" ")} ${c.drawings.join(" ")}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [search, filterProduct, filterPlay]);
+  }, [pool, search, filterProduct, filterPlay]);
 
   const productCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: ALL_CASES.length };
-    for (const c of ALL_CASES) {
+    const counts: Record<string, number> = { All: pool.length };
+    for (const c of pool) {
       counts[c.product] = (counts[c.product] || 0) + 1;
     }
     return counts;
-  }, []);
+  }, [pool]);
+
+  const realCount = REAL_CASES.length;
 
   return (
     <PageLayout
@@ -215,8 +241,26 @@ export default function CaseVaultPage() {
             )}
           </div>
 
-          <div className="text-xs text-muted-foreground">
-            Showing {filtered.length} of {ALL_CASES.length} cases
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <div className="text-xs text-muted-foreground">
+              Showing {filtered.length} of {pool.length} cases
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8 text-xs"
+              onClick={() => setShowReal((v) => !v)}
+            >
+              <ChevronDown
+                className={cn(
+                  "h-3.5 w-3.5 mr-1 transition-transform",
+                  showReal && "rotate-180",
+                )}
+              />
+              {showReal
+                ? `Hide ${realCount} real-appointment cases`
+                : `Show ${realCount} more real-appointment cases`}
+            </Button>
           </div>
         </div>
 
