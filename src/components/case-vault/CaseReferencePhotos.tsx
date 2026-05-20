@@ -15,6 +15,13 @@ import { useState, useEffect } from "react";
 import { X, RotateCcw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import caseReferencePhotosRaw from "@/data/case-reference-photos.json";
+import { usePermissions } from "@/hooks/usePermissions";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 export interface CaseReferencePhoto {
   url: string;
@@ -30,6 +37,11 @@ const CASE_REFERENCE_PHOTOS = caseReferencePhotosRaw as Record<
 
 export function CaseReferencePhotos({ caseId }: { caseId: string }) {
   const HIDDEN_KEY = `case-vault.hidden-ref-photos.${caseId}`;
+  const { isAdmin } = usePermissions();
+  const admin = isAdmin();
+  const [lightboxPhoto, setLightboxPhoto] = useState<CaseReferencePhoto | null>(
+    null,
+  );
 
   const [adminTagged, setAdminTagged] = useState<CaseReferencePhoto[]>([]);
   useEffect(() => {
@@ -90,17 +102,19 @@ export function CaseReferencePhotos({ caseId }: { caseId: string }) {
     }
   };
 
-  const visible = photos.filter((p) => !hiddenUrls.has(p.url));
+  const visible = admin
+    ? photos.filter((p) => !hiddenUrls.has(p.url))
+    : photos;
   if (photos.length === 0) return null;
 
-  const allHidden = visible.length === 0 && hiddenUrls.size > 0;
+  const allHidden = admin && visible.length === 0 && hiddenUrls.size > 0;
 
   return (
     <div>
       <div className="flex items-baseline justify-between mb-2 gap-2 flex-wrap">
         <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
           Reference photos from the case-study chat ({visible.length}
-          {hiddenUrls.size > 0 ? (
+          {admin && hiddenUrls.size > 0 ? (
             <span className="text-amber-600 dark:text-amber-400">
               {" "}
               · {hiddenUrls.size} hidden
@@ -110,9 +124,10 @@ export function CaseReferencePhotos({ caseId }: { caseId: string }) {
         </div>
         <div className="flex items-center gap-2 text-[10px]">
           <span className="text-muted-foreground/60 italic">
-            auto-matched · hover for description · ✕ to hide
+            auto-matched · hover for description
+            {admin ? " · ✕ to hide" : ""}
           </span>
-          {hiddenUrls.size > 0 && (
+          {admin && hiddenUrls.size > 0 && (
             <button
               type="button"
               onClick={() => persist(new Set())}
@@ -137,12 +152,11 @@ export function CaseReferencePhotos({ caseId }: { caseId: string }) {
               key={p.url}
               className="group/refimg relative rounded-lg overflow-hidden border bg-white aspect-[4/3] hover:border-primary/60 transition-colors"
             >
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`${p.summary}\n\nEvidence: ${p.evidence.join(", ")}\n(Click thumbnail to open full-size; click ✕ to mark Not relevant)`}
-                className="block w-full h-full"
+              <button
+                type="button"
+                onClick={() => setLightboxPhoto(p)}
+                title={`${p.summary}\n\nEvidence: ${p.evidence.join(", ")}\n(Click to expand${admin ? "; click ✕ to mark Not relevant" : ""})`}
+                className="block w-full h-full text-left"
               >
                 <img
                   src={p.url}
@@ -153,26 +167,58 @@ export function CaseReferencePhotos({ caseId }: { caseId: string }) {
                 <div className="absolute inset-x-0 bottom-0 z-10 translate-y-full group-hover/refimg:translate-y-0 transition-transform bg-black/85 text-white text-[10px] leading-snug px-2 py-1.5 pointer-events-none">
                   <div className="line-clamp-3">{p.summary}</div>
                 </div>
-              </a>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  const next = new Set(hiddenUrls);
-                  next.add(p.url);
-                  persist(next);
-                }}
-                className="absolute top-1 right-1 z-20 inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm opacity-0 group-hover/refimg:opacity-100 transition-opacity"
-                title="Hide this photo from this case (you can unhide via Reset)"
-              >
-                <X className="h-3 w-3" />
-                Not relevant
               </button>
+              {admin && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const next = new Set(hiddenUrls);
+                    next.add(p.url);
+                    persist(next);
+                  }}
+                  className="absolute top-1 right-1 z-20 inline-flex items-center gap-1 rounded-md bg-destructive/90 hover:bg-destructive text-white text-[10px] font-medium px-1.5 py-0.5 shadow-sm opacity-0 group-hover/refimg:opacity-100 transition-opacity"
+                  title="Hide this photo from this case (you can unhide via Reset)"
+                >
+                  <X className="h-3 w-3" />
+                  Not relevant
+                </button>
+              )}
             </div>
           ))}
         </div>
       )}
+
+      <Dialog
+        open={lightboxPhoto !== null}
+        onOpenChange={(open) => {
+          if (!open) setLightboxPhoto(null);
+        }}
+      >
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl p-0 overflow-hidden bg-black/95 border-0">
+          <DialogTitle className="sr-only">Reference photo</DialogTitle>
+          <DialogDescription className="sr-only">
+            {lightboxPhoto?.summary ?? "Reference photo from the case-study chat"}
+          </DialogDescription>
+          {lightboxPhoto && (
+            <div className="flex flex-col">
+              <div className="flex items-center justify-center max-h-[80vh] overflow-auto">
+                <img
+                  src={lightboxPhoto.url}
+                  alt={lightboxPhoto.summary}
+                  className="max-h-[80vh] w-auto object-contain"
+                />
+              </div>
+              {lightboxPhoto.summary && (
+                <div className="px-4 py-3 text-xs text-white/90 bg-black/70 leading-snug">
+                  {lightboxPhoto.summary}
+                </div>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
