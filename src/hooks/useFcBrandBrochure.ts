@@ -77,7 +77,7 @@ export function useFcBrandBrochure() {
   const enqueueMutation = useMutation({
     mutationFn: async (args: { sourcePaths: string[]; brandBrief: unknown; styleVibe?: string }) => {
       if (!userId) throw new Error("not signed in");
-      if (args.sourcePaths.length < 3) throw new Error("need at least 3 source photos");
+      if (args.sourcePaths.length < 5) throw new Error("need at least 5 source photos");
       const { data, error } = await supabase
         .from("fc_brand_brochures")
         .insert({

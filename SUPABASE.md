@@ -542,8 +542,10 @@ What's live:
 
 Local worker (does the actual image generation):
 
-- `tools/process_fc_headshot_jobs.py` polls queued rows, downloads source photos, trains a Higgsfield Soul-2 reference, generates 4 styled variants (`professional`, `lifestyle`, `environmental`, `hero`), uploads results, and flips status to `ready`. Runs via service-role key fetched from Keychain.
-- Run modes: `python3 tools/process_fc_headshot_jobs.py --once` (manual) or `--watch` (loop). A launchd plist can be added later for full automation.
+- `tools/process_fc_headshot_jobs.py` polls queued rows, downloads source photos, uploads them to Higgsfield, trains a Soul-2 reference, generates 4 styled variants (`professional`, `lifestyle`, `environmental`, `hero`) using `text2image_soul_v2 --custom_reference_id <soul_id>`, uploads results back to Supabase storage, and flips status to `ready`. Runs via service-role key fetched from Keychain.
+- Higgsfield Soul-2 training requires **5–20** reference photos. The UI enforces 5–8 (a sweet spot for variety without overwhelming the FC).
+- Run modes: `python3 tools/process_fc_headshot_jobs.py --once` (manual) or `--watch` (loop).
+- Automated: `~/Library/LaunchAgents/com.leo.fc-headshot-worker.plist` runs `--once` every 60s under launchd. Loaded with `launchctl load`, logs to `/tmp/fc-headshot-worker.{out,err}`.
 
 Client work still pending (next session):
 

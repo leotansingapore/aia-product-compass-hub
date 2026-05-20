@@ -1,11 +1,16 @@
-import { forwardRef, useCallback, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Image as ImageIcon, Upload, Loader2, CheckCircle2, Download, Sparkles, RefreshCw, X, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import { useFcBrandBrochure } from "@/hooks/useFcBrandBrochure";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
   brandBrief: any;
@@ -13,8 +18,9 @@ type Props = {
   framework: { name: string; description: string; steps: string[] } | null;
 };
 
-const MIN_PHOTOS = 3;
-const MAX_PHOTOS = 5;
+// Higgsfield Soul-2 training requires 5–20 reference images.
+const MIN_PHOTOS = 5;
+const MAX_PHOTOS = 8;
 
 const STYLE_LABELS: Record<string, string> = {
   professional: "Professional",
@@ -23,11 +29,73 @@ const STYLE_LABELS: Record<string, string> = {
   hero: "Hero",
 };
 
+const CONTACT_STORAGE_KEY = "fads-brochure-contact-v1";
+
+type ContactInfo = { name: string; phone: string; email: string };
+
 export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) {
   const brochure = useFcBrandBrochure();
+  const { user } = useSimplifiedAuth();
   const [stagedPaths, setStagedPaths] = useState<string[]>([]);
   const [stagedPreviews, setStagedPreviews] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [contact, setContact] = useState<ContactInfo>({ name: "", phone: "", email: "" });
+  const contactHydrated = useRef(false);
+
+  // Fetch FC's profile for default display name
+  const profileQuery = useQuery({
+    queryKey: ["fc-profile-for-brochure", user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      const { data } = await supabase
+        .from("profiles")
+        .select("display_name, first_name, last_name, email")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      return data;
+    },
+    enabled: !!user?.id,
+    staleTime: Infinity,
+  });
+
+  // Hydrate contact from localStorage first, then fill from profile if empty
+  useEffect(() => {
+    if (typeof window === "undefined" || contactHydrated.current) return;
+    try {
+      const raw = localStorage.getItem(CONTACT_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          setContact({ name: parsed.name || "", phone: parsed.phone || "", email: parsed.email || "" });
+        }
+      }
+    } catch {/* ignore */}
+    contactHydrated.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!contactHydrated.current) return;
+    if (!profileQuery.data && !user) return;
+    setContact(prev => {
+      const next = { ...prev };
+      if (!next.name) {
+        const p = profileQuery.data;
+        next.name = p?.display_name
+          || [p?.first_name, p?.last_name].filter(Boolean).join(" ")
+          || (user?.email ? user.email.split("@")[0] : "");
+      }
+      if (!next.email) next.email = profileQuery.data?.email || user?.email || "";
+      return next;
+    });
+  }, [profileQuery.data, user]);
+
+  // Persist contact whenever it changes
+  useEffect(() => {
+    if (!contactHydrated.current) return;
+    try {
+      localStorage.setItem(CONTACT_STORAGE_KEY, JSON.stringify(contact));
+    } catch {/* ignore */}
+  }, [contact]);
   const [generatingPdf, setGeneratingPdf] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const brochureRef = useRef<HTMLDivElement>(null);
@@ -289,12 +357,32 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
 
             {selectedVariant?.url && (
               <>
+                {/* Contact override — name/phone/email shown on the brochure */}
+                <div className="rounded-lg border bg-muted/20 p-4 space-y-3">
+                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Brochure contact details</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div>
+                      <Label htmlFor="brochure-name" className="text-xs">Display name</Label>
+                      <Input id="brochure-name" value={contact.name} onChange={e => setContact(c => ({ ...c, name: e.target.value }))} placeholder="Your name" />
+                    </div>
+                    <div>
+                      <Label htmlFor="brochure-phone" className="text-xs">Phone / WhatsApp</Label>
+                      <Input id="brochure-phone" value={contact.phone} onChange={e => setContact(c => ({ ...c, phone: e.target.value }))} placeholder="+65 9123 4567" />
+                    </div>
+                    <div>
+                      <Label htmlFor="brochure-email" className="text-xs">Email</Label>
+                      <Input id="brochure-email" value={contact.email} onChange={e => setContact(c => ({ ...c, email: e.target.value }))} placeholder="you@example.com" />
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground italic">Saved locally — only edit once unless you change them.</p>
+                </div>
+
                 <div className="border rounded-lg p-4 bg-muted/30">
                   <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">Brochure preview</p>
                   <div className="bg-white rounded shadow-sm overflow-hidden mx-auto" style={{ maxWidth: "100%" }}>
                     {/* Off-screen scale wrapper so the preview fits while the source renders at full A4 dimensions */}
                     <div style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "auto" }}>
-                      <BrochurePage ref={brochureRef} brandBrief={brandBrief} formData={formData} framework={framework} headshotUrl={selectedVariant.url} />
+                      <BrochurePage ref={brochureRef} brandBrief={brandBrief} formData={formData} framework={framework} headshotUrl={selectedVariant.url} contact={contact} />
                     </div>
                   </div>
                 </div>
@@ -337,10 +425,11 @@ type BrochurePageProps = {
   formData: any;
   framework: { name: string; description: string; steps: string[] } | null;
   headshotUrl: string;
+  contact: ContactInfo;
 };
 
-const BrochurePage = forwardRef<HTMLDivElement, BrochurePageProps>(({ brandBrief, formData, framework, headshotUrl }, ref) => {
-  const fcName = formData.fcName || "[Your Name]";
+const BrochurePage = forwardRef<HTMLDivElement, BrochurePageProps>(({ brandBrief, formData, framework, headshotUrl, contact }, ref) => {
+  const fcName = contact.name || "[Your Name]";
   const tagline = formData.endResultStatement || `I help ${formData.audience1Occupation || "[your audience]"} achieve their financial goals.`;
   const mission = formData.mission || formData.purpose || "";
   const audience = formData.audience1Occupation || "";
@@ -420,7 +509,7 @@ const BrochurePage = forwardRef<HTMLDivElement, BrochurePageProps>(({ brandBrief
       <div style={{ background: "#f8fafc", borderTop: "1px solid #e2e8f0", padding: "16px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "11px", color: "#64748b" }}>
         <div>
           <p style={{ margin: 0, fontWeight: 600, color: "#334155" }}>Let's talk.</p>
-          <p style={{ margin: "2px 0 0" }}>+65 [your number] · [your.email]</p>
+          <p style={{ margin: "2px 0 0" }}>{[contact.phone, contact.email].filter(Boolean).join(" · ") || "+65 [your number] · [your.email]"}</p>
         </div>
         <div style={{ textAlign: "right", maxWidth: "55%" }}>
           <p style={{ margin: 0, fontStyle: "italic" }}>
