@@ -24,6 +24,7 @@ export type CaseProduct =
 export type CasePlay =
   | "Play A — Whole-life / endowment restructure"
   | "Play B — ILP fee + structure attack"
+  | "Play B — Hybrid ILP restructure"
   | "Play C — BTIR fresh start"
   | "Consolidation"
   | "Net-yield attack"
