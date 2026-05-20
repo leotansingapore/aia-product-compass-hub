@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, MessageSquare, Lightbulb, BookOpen, Loader2, Sparkles, Copy, CheckCircle2, Trophy, Flame, Heart, Star, Shield, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, MessageSquare, Lightbulb, BookOpen, Loader2, Sparkles, Copy, CheckCircle2, Trophy, Flame, Heart, Star, Shield, Zap, FileText, Mail, Layout, Mic, MessageCircle, Presentation, Quote, ListChecks, GraduationCap, Share2, Image as ImageIcon, AlertCircle, ChevronRight, CircleDot, Code2, Megaphone } from "lucide-react";
 import { toast } from "sonner";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -645,6 +645,354 @@ export default function FinancialAdvisorDifferentiation() {
     };
   };
 
+  // ============ MARKETING KIT BUILDERS ============
+  // Each asset returns: { id, name, channel, icon, description, requiredFields, body, missing }
+  // The `body` is a deterministic draft built from formData with [fallbacks]
+  // for missing fields, so an FC always gets something usable to copy/edit.
+
+  const truncate = (s: string, max: number) => s.length <= max ? s : s.slice(0, max - 1).trimEnd() + "…";
+  const splitList = (s: string) => (s || "").split(/[,\n;]/).map(x => x.trim()).filter(Boolean);
+  const fb = (v: string | undefined, fallback: string) => (v && v.trim()) ? v.trim() : fallback;
+
+  type MarketingAsset = {
+    id: string;
+    name: string;
+    channel: string;
+    icon: React.ElementType;
+    description: string;
+    requiredFields: (keyof FormData)[];
+    body: string;
+    missing: (keyof FormData)[];
+  };
+
+  const buildMarketingAssets = (): MarketingAsset[] => {
+    const style = PERSONALITY_STYLES.find(s => s.value === formData.personalityStyle);
+    const fw = formData.selectedFramework ? FRAMEWORKS[formData.selectedFramework as keyof typeof FRAMEWORKS] : null;
+    const aud1 = fb(formData.audience1Occupation, "[your audience]");
+    const aud1Want = fb(formData.audience1DesiredState, "[their desired outcome]").toLowerCase().replace(/\.$/, "");
+    const aud1Pain = fb(formData.audience1Problems || formData.audience1Challenges, "[their core problem]");
+    const aud1IntPain = fb(formData.audience1IntangibleProblems || formData.audience1Fears, "[the emotional weight they carry]");
+    const aud1Sol = fb(formData.audience1TangibleSolutions, "[what you concretely solve]");
+    const aud1Diff = fb(formData.audience1Differentiators, "[your specific edge]");
+    const endResult = fb(formData.endResultStatement, `I help ${aud1} achieve ${aud1Want}${fw ? ` through my ${fw.name}` : ""}`);
+    const mission = fb(formData.mission, "[your mission]");
+    const purpose = fb(formData.purpose, "[your purpose]");
+    const beliefs = fb(formData.beliefs || formData.moneyPhilosophy, "financial planning should be simple, honest, and personal");
+    const originFirst = formData.originStory ? (formData.originStory.split(".")[0] + ".") : "[one-sentence version of your origin story]";
+    const moments = [formData.moment1, formData.moment2, formData.moment3].filter(Boolean);
+    const objections = splitList(formData.audience1Objections);
+    const advisorFears = [formData.audience1AdvisorFear1, formData.audience1AdvisorFear2, formData.audience1AdvisorFear3].filter(Boolean);
+    const certs = fb(formData.certifications, "Licensed financial consultant");
+    const years = fb(formData.yearsInIndustry, "");
+
+    const fieldsMissing = (req: (keyof FormData)[]) => req.filter(f => !formData[f]?.trim());
+
+    const assets: MarketingAsset[] = [];
+
+    // 1. Social bios — 3 lengths
+    assets.push({
+      id: "social-bio",
+      name: "Social Media Bios (3 lengths)",
+      channel: "LinkedIn • Instagram • X",
+      icon: User,
+      description: "Drop-in bios sized for each platform's character limit.",
+      requiredFields: ["endResultStatement", "audience1Occupation", "personalityStyle"],
+      missing: fieldsMissing(["endResultStatement", "audience1Occupation", "personalityStyle"]),
+      body: [
+        `--- 160 chars (X / Twitter / IG headline) ---`,
+        truncate(`${certs}. Helping ${aud1} ${aud1Want}${fw ? ` via ${fw.name}` : ""}.`, 160),
+        ``,
+        `--- 220 chars (Instagram bio) ---`,
+        truncate(`${endResult}.\n${style?.label ? style.label + ". " : ""}DM "${fw ? fw.name.split(".")[0].toLowerCase() : "start"}" to begin.`, 220),
+        ``,
+        `--- ~500 chars (LinkedIn About hook) ---`,
+        `${originFirst} I believed ${beliefs}.\n\nToday I work with ${aud1}. ${aud1Pain}. ${fw ? `Through my ${fw.name} — ${fw.description} — ` : ""}I help them ${aud1Want}.\n\nIf this is you, message me. No pitch, just a conversation.`,
+      ].join("\n"),
+    });
+
+    // 2. WhatsApp tagline / display name
+    assets.push({
+      id: "wa-tagline",
+      name: "WhatsApp Display Tagline",
+      channel: "WhatsApp profile",
+      icon: MessageCircle,
+      description: "One-line tag for your WhatsApp About / display name.",
+      requiredFields: ["endResultStatement"],
+      missing: fieldsMissing(["endResultStatement"]),
+      body: truncate(`${certs} • ${aud1Want} for ${aud1}`, 139),
+    });
+
+    // 3. Origin story post (long-form)
+    assets.push({
+      id: "origin-story-post",
+      name: "Origin Story Post (long-form)",
+      channel: "LinkedIn • Facebook",
+      icon: FileText,
+      description: "Your 'why I'm in this industry' story, ready to post.",
+      requiredFields: ["originStory", "momentsImpact", "purpose"],
+      missing: fieldsMissing(["originStory", "momentsImpact", "purpose"]),
+      body: [
+        `${fb(formData.originStory.split(".")[0] + ".", "I didn't start out in financial planning.")}`,
+        ``,
+        `${fb(formData.originStory, "[paragraph: what you did before, what shifted, the moment that changed your trajectory]")}`,
+        ``,
+        `What that taught me: ${fb(formData.momentsImpact, "[the lesson from those defining moments]")}`,
+        ``,
+        `So now I do this work because ${fb(purpose, "[your purpose in one line]").toLowerCase().replace(/\.$/, "")}.`,
+        ``,
+        `If you're a ${aud1.toLowerCase()} and any of this resonates — comment or DM. I'm not selling anything in the inbox.`,
+      ].join("\n"),
+    });
+
+    // 4. 5-slide "Who I help" carousel
+    assets.push({
+      id: "who-i-help-carousel",
+      name: "5-Slide 'Who I Help' Carousel",
+      channel: "Instagram • LinkedIn",
+      icon: Layout,
+      description: "Slide-by-slide script for an audience-recognition carousel.",
+      requiredFields: ["audience1Occupation", "audience1Problems", "audience1TangibleSolutions"],
+      missing: fieldsMissing(["audience1Occupation", "audience1Problems", "audience1TangibleSolutions"]),
+      body: [
+        `[SLIDE 1 — HOOK]`,
+        `If you're a ${aud1.toLowerCase()}, this is for you.`,
+        ``,
+        `[SLIDE 2 — THE PROBLEM YOU SEE]`,
+        `Most ${aud1.toLowerCase()}s I meet: ${aud1Pain}.`,
+        ``,
+        `[SLIDE 3 — THE DEEPER PROBLEM]`,
+        `But the bigger weight underneath is — ${aud1IntPain}.`,
+        ``,
+        `[SLIDE 4 — WHAT'S POSSIBLE]`,
+        `Imagine instead: ${aud1Want}.`,
+        ``,
+        `[SLIDE 5 — HOW]`,
+        `${fw ? `My ${fw.name}: ${fw.steps.map((s, i) => `(${i + 1}) ${s.split(":")[0]}`).join("  ")}` : "My approach: 3 steps from where you are to where you want to be."}`,
+        ``,
+        `[SLIDE 6 — CTA]`,
+        `Comment "${(fw?.name || "start").toLowerCase().replace(/\./g, "")}" and I'll send you the breakdown.`,
+      ].join("\n"),
+    });
+
+    // 5. Lead magnet outline
+    assets.push({
+      id: "lead-magnet",
+      name: "Lead Magnet Outline",
+      channel: "PDF / email opt-in",
+      icon: GraduationCap,
+      description: "A free download you can offer to attract your audience.",
+      requiredFields: ["audience1Occupation", "audience1Problems"],
+      missing: fieldsMissing(["audience1Occupation", "audience1Problems"]),
+      body: [
+        `TITLE: The ${aud1}'s 5-Step ${fw ? fw.name.split(".")[0] : "Foundation"} Plan`,
+        `SUBTITLE: A one-page roadmap to ${aud1Want} — no jargon, no sales call required.`,
+        ``,
+        `OUTLINE (5 sections, ~1 page each):`,
+        `1. Where you are now — quick self-audit (the gaps most ${aud1.toLowerCase()}s miss)`,
+        `2. The cashflow / protection floor (the non-negotiable base)`,
+        `3. The growth engine (how to make money work without micro-managing it)`,
+        `4. The blind spots — top 3 mistakes ${aud1.toLowerCase()}s make: ${fb(formData.audience1Mistakes, "[their top 3 mistakes]")}`,
+        `5. Your 30-day starter plan — 3 actions to take this week`,
+        ``,
+        `CTA inside: "Want a 30-min walkthrough of your own version? Reply to this email."`,
+      ].join("\n"),
+    });
+
+    // 6. 60s intro reel script
+    assets.push({
+      id: "intro-reel",
+      name: "60-Second Intro Reel Script",
+      channel: "TikTok • IG Reels • LinkedIn video",
+      icon: Mic,
+      description: "Beat-by-beat script for a short intro video.",
+      requiredFields: ["personalityStyle", "mission", "audience1Occupation"],
+      missing: fieldsMissing(["personalityStyle", "mission", "audience1Occupation"]),
+      body: [
+        `[0–3s — HOOK]`,
+        `"If you're a ${aud1.toLowerCase()} and you've been told to 'just invest more', this is for you."`,
+        ``,
+        `[3–15s — WHO I AM + WHY]`,
+        `"I'm [your name]. ${certs}${years ? `, ${years} years` : ""}. ${fb(originFirst, "I joined this industry because of something specific I saw growing up.")}"`,
+        ``,
+        `[15–40s — WHAT I'VE SEEN]`,
+        `"Most ${aud1.toLowerCase()}s I meet — they're working hard, but underneath: ${aud1IntPain}. The standard advice doesn't fit their reality."`,
+        ``,
+        `[40–55s — WHAT I DO DIFFERENTLY]`,
+        `"${fw ? `My ${fw.name} works in ${fw.steps.length} steps. ${fw.steps[0].split(":")[0]} first, before anything else.` : "My approach starts with what's actually true for you — not a generic plan."}"`,
+        ``,
+        `[55–60s — CTA]`,
+        `"If that sounds like you, DM me '${(fw?.name || "start").toLowerCase().replace(/\./g, "")}'. No pitch."`,
+      ].join("\n"),
+    });
+
+    // 7. Story bank
+    assets.push({
+      id: "story-bank",
+      name: "Story Bank (3 retell-ready stories)",
+      channel: "All channels • appointments",
+      icon: Quote,
+      description: "Your most-tellable client / defining moment stories.",
+      requiredFields: ["moment1", "moment2", "moment3"],
+      missing: fieldsMissing(["moment1", "moment2", "moment3"]),
+      body: (moments.length ? moments : ["[Moment 1]", "[Moment 2]", "[Moment 3]"]).map((m, i) => [
+        `--- STORY ${i + 1} ---`,
+        `SITUATION: ${m}`,
+        `WHAT I DID / SAW: [1–2 lines]`,
+        `LESSON / PUNCHLINE: [the one thing this story teaches your audience]`,
+        `USE WHEN: ${i === 0 ? "opening an appointment" : i === 1 ? "addressing trust / 'why you'" : "closing — what's possible"}`,
+        ``,
+      ].join("\n")).join("\n"),
+    });
+
+    // 8. Objection responses
+    const objSource = objections.length ? objections : (advisorFears.length ? advisorFears : ["[their top objection]", "[their second objection]", "[their third objection]"]);
+    assets.push({
+      id: "objection-bank",
+      name: "Top Objection Responses",
+      channel: "Appointments • DMs",
+      icon: AlertCircle,
+      description: "Pre-written responses to the objections your audience actually raises.",
+      requiredFields: ["audience1Objections"],
+      missing: fieldsMissing(["audience1Objections"]),
+      body: objSource.slice(0, 5).map((o, i) => [
+        `${i + 1}. "${o}"`,
+        `   → ACKNOWLEDGE: That's a fair concern, and most ${aud1.toLowerCase()}s I meet say the same.`,
+        `   → REFRAME: Here's what I usually find under that — [reframe in their terms]`,
+        `   → OFFER: What if we [smallest next step that doesn't require commitment]?`,
+        ``,
+      ].join("\n")).join("\n"),
+    });
+
+    // 9. Referral ask
+    assets.push({
+      id: "referral-ask",
+      name: "Referral Ask Script",
+      channel: "WhatsApp + face-to-face",
+      icon: Share2,
+      description: "Two versions of the referral ask — text and spoken.",
+      requiredFields: ["mission", "endResultStatement"],
+      missing: fieldsMissing(["mission", "endResultStatement"]),
+      body: [
+        `--- WHATSAPP VERSION ---`,
+        `"Hey [name], one quick thing — I'm currently growing my practice in a specific direction: ${aud1.toLowerCase()}s who want ${aud1Want}. If anyone in your circle comes to mind, would you mind making a quick intro? No pressure if no one fits — I'll always handle it the same way I've handled yours."`,
+        ``,
+        `--- FACE-TO-FACE VERSION ---`,
+        `"Before we wrap up — can I share who I'm really trying to help right now? ${aud1.toLowerCase()}s dealing with ${aud1Pain.toLowerCase()}. If anyone you know fits that description, I'd love an intro. And I want you to know: I'd handle them the same way I've handled you."`,
+      ].join("\n"),
+    });
+
+    // 10. Email signature
+    assets.push({
+      id: "email-signature",
+      name: "Email Signature (HTML)",
+      channel: "Email",
+      icon: Mail,
+      description: "Drop-in HTML signature block with your tagline + cert.",
+      requiredFields: ["endResultStatement", "certifications"],
+      missing: fieldsMissing(["endResultStatement", "certifications"]),
+      body: [
+        `<table style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size: 13px; color: #333;">`,
+        `  <tr><td style="padding-bottom: 4px;"><strong>[Your Name]</strong></td></tr>`,
+        `  <tr><td style="padding-bottom: 4px; color: #666;">${certs}</td></tr>`,
+        `  <tr><td style="padding-bottom: 8px; font-style: italic;">${truncate(endResult, 140)}</td></tr>`,
+        `  <tr><td style="padding-bottom: 4px;">+65 [your number] • [your.email]</td></tr>`,
+        `  <tr><td style="font-size: 11px; color: #999; padding-top: 6px;">This message and any attachments are confidential. Information is for general guidance only — not financial advice; suitability depends on your circumstances.</td></tr>`,
+        `</table>`,
+      ].join("\n"),
+    });
+
+    return assets;
+  };
+
+  // ============ FIRST-APPOINTMENT DECK BUILDER ============
+
+  type ApptSlide = {
+    id: string;
+    number: number;
+    title: string;
+    icon: React.ElementType;
+    purpose: string;
+    body: string;
+    speakerNote?: string;
+  };
+
+  const buildFirstApptDeck = (): ApptSlide[] => {
+    const style = PERSONALITY_STYLES.find(s => s.value === formData.personalityStyle);
+    const fw = formData.selectedFramework ? FRAMEWORKS[formData.selectedFramework as keyof typeof FRAMEWORKS] : null;
+    const aud1 = fb(formData.audience1Occupation, "[your audience]");
+    const aud1Want = fb(formData.audience1DesiredState, "[the desired outcome]");
+    const aud1Pain = fb(formData.audience1Problems || formData.audience1Challenges, "[their core problem]");
+    const aud1IntPain = fb(formData.audience1IntangibleProblems || formData.audience1Fears, "[the emotional weight]");
+
+    return [
+      {
+        id: "why-im-here",
+        number: 1,
+        title: "Why I'm here",
+        icon: Heart,
+        purpose: "Open with your origin — shift the room from 'sales meeting' to 'real conversation'.",
+        body: `${fb(formData.originStory, "[your origin in 2–3 lines]")}\n\nThat shaped me into someone who: ${fb(formData.momentsImpact, "[the way those moments changed your approach]")}`,
+        speakerNote: "Tell, don't read. 60-90 seconds. Look up after.",
+      },
+      {
+        id: "who-i-serve",
+        number: 2,
+        title: "Who I serve",
+        icon: Users,
+        purpose: "Let the prospect self-identify. If they're not your audience, this surfaces it now.",
+        body: `I work primarily with ${aud1.toLowerCase()}s.\n\nTypical profile: ${fb(formData.audience1Demographics, "[age, family stage, income range]")}.\n\nWhat they care about: ${aud1Want}.`,
+        speakerNote: "Pause. Ask: 'Does any of that sound like where you're at?'",
+      },
+      {
+        id: "what-ive-seen",
+        number: 3,
+        title: "What I've seen people struggle with",
+        icon: AlertCircle,
+        purpose: "Show you understand their world — name the problem before they have to.",
+        body: `On the surface: ${aud1Pain}.\n\nBut underneath, almost always: ${aud1IntPain}.\n\nMost ${aud1.toLowerCase()}s have been told to 'just save more' or 'invest in this product' — that doesn't address either layer.`,
+        speakerNote: "Eye contact. Slow down. They should feel seen here.",
+      },
+      {
+        id: "how-we-work",
+        number: 4,
+        title: "How we'll work together",
+        icon: ListChecks,
+        purpose: "Show the framework — not as a sales pitch, as a how-this-will-go.",
+        body: fw
+          ? `My ${fw.name} — ${fw.description}\n\n${fw.steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}`
+          : "[Walk through your 3–5 step process here]",
+        speakerNote: `Style cue: ${fb(style?.desc, "warm + clear")}. Don't speed through this — it's the spine of your value.`,
+      },
+      {
+        id: "what-done-looks-like",
+        number: 5,
+        title: "What 'done' looks like for you",
+        icon: Target,
+        purpose: "Paint the destination in their words. Future-pace.",
+        body: `${aud1Want}.\n\nMore specifically: ${fb(formData.audience1SecretDesires, "[their secret wants — the unspoken version]")}.\n\nThat's what success looks like 12–24 months from now.`,
+        speakerNote: "Ask: 'When you picture that, what's the first thing that changes day-to-day?'",
+      },
+      {
+        id: "how-i-work",
+        number: 6,
+        title: "How I work — cadence + expectations",
+        icon: Briefcase,
+        purpose: "Pre-empt 'will this advisor disappear after the sale?' fears.",
+        body: `${fb(formData.processStatement, "[your process statement — your service cadence, review frequency, what they can expect from you]")}\n\nMy differentiator: ${fb(formData.audience1Differentiators, "[what you uniquely do that other advisors don't]")}`,
+        speakerNote: `Address the fear directly if relevant: "${fb(formData.audience1AdvisorFear1, "[their advisor fear]")}" — name it, then explain how you handle it.`,
+      },
+      {
+        id: "next-step",
+        number: 7,
+        title: "Today's next step",
+        icon: ChevronRight,
+        purpose: "Soft close into the next action — no pressure, clear path.",
+        body: `Two options from here:\n\n1. Full fact-find — we go deeper on your numbers, goals, and gaps. ~45 min. You walk away with a one-page summary either way.\n\n2. Take a week. Sit with what we covered. Message me with any questions, and we book the fact-find when you're ready.\n\nEither is fine with me — what feels right?`,
+        speakerNote: "Genuinely give them the choice. Don't push option 1. Trust the framework.",
+      },
+    ];
+  };
+
   // Generate brand template via the `generate-brand-template` edge function
   // (calls OpenAI server-side using the project's API key). Falls back to a
   // local structured JSON brief if the edge function is unavailable so the
@@ -1214,22 +1562,23 @@ export default function FinancialAdvisorDifferentiation() {
             </Card>
           </TabsContent>
 
-          {/* ===== BRAND OUTPUT TAB ===== */}
-          <TabsContent value="output" className="space-y-6">
-            <div className="text-center mb-4">
-              <h3 className="text-2xl font-semibold mb-2">Your Brand Output</h3>
-              <p className="text-muted-foreground text-sm">
-                Export your brand brief for content strategists, AI agents, or your own reference.
-                {overallProgress < 50 && " Complete more sections above to get a richer output."}
+          {/* ===== BRAND OUTPUT TAB — MARKETING KIT ===== */}
+          <TabsContent value="output" className="space-y-8">
+            <div className="text-center mb-2">
+              <h3 className="text-2xl font-semibold mb-2">Your Marketing Kit</h3>
+              <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
+                Everything you've answered above gets turned into the actual assets you'll use:
+                social bios, story posts, your first-appointment deck, and your 1-page leave-behind brochure.
+                {overallProgress < 50 && " The more you fill in, the more specific each asset gets."}
               </p>
             </div>
 
             {/* Progress gate */}
-            {overallProgress < 30 ? (
+            {overallProgress < 20 ? (
               <Card className="border-amber-500/20">
                 <CardContent className="pt-6 text-center">
                   <Trophy className="h-12 w-12 text-amber-500 mx-auto mb-3" />
-                  <h4 className="font-semibold text-lg mb-2">Complete at least 30% to unlock your brand output</h4>
+                  <h4 className="font-semibold text-lg mb-2">Complete at least 20% to unlock your marketing kit</h4>
                   <p className="text-muted-foreground text-sm mb-4">Current progress: {overallProgress}%</p>
                   <Button onClick={() => { setActiveTab("personality"); navigate(`${BASE_PATH}/personality`); }}>
                     Start with Personality
@@ -1238,43 +1587,13 @@ export default function FinancialAdvisorDifferentiation() {
               </Card>
             ) : (
               <>
-                {/* Brand Brief Preview */}
+                {/* ----- BRAND AT A GLANCE ----- */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Sparkles className="h-5 w-5" /> Brand Brief (for Content Strategists & AI Agents)
+                      <Sparkles className="h-5 w-5 text-primary" /> Brand at a Glance
                     </CardTitle>
-                    <CardDescription>Copy this JSON to feed into any content AI or share with your content team</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="bg-muted p-4 rounded-lg max-h-96 overflow-y-auto">
-                      <pre className="text-xs whitespace-pre-wrap font-mono">
-                        {JSON.stringify(buildBrandBrief(), null, 2)}
-                      </pre>
-                    </div>
-                    <div className="flex gap-2 mt-4">
-                      <Button variant="outline" onClick={() => copyToClipboard(JSON.stringify(buildBrandBrief(), null, 2))} className="gap-2">
-                        {copied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                        {copied ? "Copied" : "Copy JSON"}
-                      </Button>
-                      <Button variant="outline" onClick={() => {
-                        const blob = new Blob([JSON.stringify(buildBrandBrief(), null, 2)], { type: "application/json" });
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement("a");
-                        a.href = url; a.download = "brand-brief.json"; a.click();
-                        URL.revokeObjectURL(url);
-                        toast.success("Downloaded brand-brief.json");
-                      }} className="gap-2">
-                        <Download className="h-4 w-4" /> Download JSON
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Human-readable summary */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Your Brand at a Glance</CardTitle>
+                    <CardDescription>The five things every asset below pulls from</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {formData.mission && (
@@ -1315,40 +1634,261 @@ export default function FinancialAdvisorDifferentiation() {
                         </div>
                       )}
                     </div>
-
-                    {/* Content pillars from the brief */}
-                    {formData.mission && (
-                      <div>
-                        <p className="text-xs font-medium text-muted-foreground mb-2">SUGGESTED CONTENT PILLARS</p>
-                        <div className="space-y-2">
-                          {buildBrandBrief().contentDirections.pillars.map((p, i) => (
-                            <div key={i} className="flex items-start gap-2 text-sm">
-                              <span className="bg-primary/10 text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs shrink-0">{i + 1}</span>
-                              <span>{p}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </CardContent>
                 </Card>
 
-                {/* AI Generate */}
+                {/* ----- LAYER 1 — PERSONAL BRANDING ASSET KIT ----- */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h4 className="text-xl font-semibold flex items-center gap-2">
+                        <Megaphone className="h-5 w-5 text-primary" /> Personal Branding Asset Kit
+                      </h4>
+                      <p className="text-sm text-muted-foreground">10 ready-to-customise assets pulled from your answers above.</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {buildMarketingAssets().map((a) => {
+                      const Icon = a.icon;
+                      const ready = a.missing.length === 0;
+                      return (
+                        <Card key={a.id} className={ready ? "border-primary/20" : "border-amber-500/20"}>
+                          <CardHeader className="pb-3">
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-start gap-3">
+                                <div className={`p-2 rounded-lg ${ready ? "bg-primary/10 text-primary" : "bg-amber-500/10 text-amber-600"} shrink-0`}>
+                                  <Icon className="h-4 w-4" />
+                                </div>
+                                <div>
+                                  <CardTitle className="text-base">{a.name}</CardTitle>
+                                  <CardDescription className="text-xs mt-0.5">{a.channel}</CardDescription>
+                                </div>
+                              </div>
+                              {ready ? (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 font-medium shrink-0">Ready</span>
+                              ) : (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-medium shrink-0">{a.missing.length} gap{a.missing.length > 1 ? "s" : ""}</span>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-2">{a.description}</p>
+                          </CardHeader>
+                          <CardContent className="pt-0">
+                            {!ready && (
+                              <div className="mb-3 p-2 rounded bg-amber-500/5 border border-amber-500/20 text-xs">
+                                <p className="font-medium text-amber-700 dark:text-amber-300 mb-1">For a sharper draft, fill in:</p>
+                                <ul className="text-amber-600 dark:text-amber-400 list-disc pl-4 space-y-0.5">
+                                  {a.missing.map(m => <li key={m}>{String(m).replace(/([A-Z])/g, " $1").replace(/^./, c => c.toUpperCase())}</li>)}
+                                </ul>
+                              </div>
+                            )}
+                            <details className="group">
+                              <summary className="cursor-pointer text-xs font-medium text-primary hover:underline list-none flex items-center gap-1">
+                                <ChevronRight className="h-3 w-3 transition-transform group-open:rotate-90" />
+                                Preview draft
+                              </summary>
+                              <div className="mt-3 bg-muted/50 p-3 rounded text-xs whitespace-pre-wrap font-mono max-h-64 overflow-y-auto border">
+                                {a.body}
+                              </div>
+                              <div className="flex gap-2 mt-2">
+                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(a.body)} className="gap-1 h-7 text-xs">
+                                  <Copy className="h-3 w-3" /> Copy
+                                </Button>
+                                <Button size="sm" variant="outline" onClick={() => {
+                                  const blob = new Blob([a.body], { type: "text/plain" });
+                                  const url = URL.createObjectURL(blob);
+                                  const el = document.createElement("a");
+                                  el.href = url; el.download = `${a.id}.txt`; el.click();
+                                  URL.revokeObjectURL(url);
+                                  toast.success(`Downloaded ${a.id}.txt`);
+                                }} className="gap-1 h-7 text-xs">
+                                  <Download className="h-3 w-3" /> Download
+                                </Button>
+                              </div>
+                            </details>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* ----- LAYER 2 — FIRST-APPOINTMENT DECK ----- */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h4 className="text-xl font-semibold flex items-center gap-2">
+                        <Presentation className="h-5 w-5 text-primary" /> First-Appointment Deck
+                      </h4>
+                      <p className="text-sm text-muted-foreground">7 slides to walk a prospect through in your first sit-down. Each slide auto-fills from your answers.</p>
+                    </div>
+                    <Button size="sm" variant="outline" onClick={() => {
+                      const md = buildFirstApptDeck().map(s => [
+                        `# Slide ${s.number} — ${s.title}`,
+                        `> ${s.purpose}`,
+                        ``,
+                        s.body,
+                        ``,
+                        s.speakerNote ? `**Speaker note:** ${s.speakerNote}` : "",
+                        ``,
+                        `---`,
+                        ``,
+                      ].filter(Boolean).join("\n")).join("\n");
+                      const blob = new Blob([md], { type: "text/markdown" });
+                      const url = URL.createObjectURL(blob);
+                      const el = document.createElement("a");
+                      el.href = url; el.download = "first-appointment-deck.md"; el.click();
+                      URL.revokeObjectURL(url);
+                      toast.success("Downloaded first-appointment-deck.md");
+                    }} className="gap-2 shrink-0">
+                      <Download className="h-4 w-4" /> Download all slides (.md)
+                    </Button>
+                  </div>
+                  <div className="space-y-3">
+                    {buildFirstApptDeck().map((s) => {
+                      const Icon = s.icon;
+                      return (
+                        <Card key={s.id} className="overflow-hidden">
+                          <details className="group">
+                            <summary className="cursor-pointer list-none">
+                              <div className="flex items-center gap-4 p-4 hover:bg-muted/30 transition-colors">
+                                <div className="flex items-center gap-3 shrink-0">
+                                  <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold text-sm">{s.number}</span>
+                                  <Icon className="h-5 w-5 text-muted-foreground" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-semibold text-sm">{s.title}</p>
+                                  <p className="text-xs text-muted-foreground truncate">{s.purpose}</p>
+                                </div>
+                                <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-90 shrink-0" />
+                              </div>
+                            </summary>
+                            <div className="px-4 pb-4 border-t bg-muted/20">
+                              <div className="pt-3 space-y-3">
+                                <div>
+                                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Slide content</p>
+                                  <div className="bg-background p-3 rounded border whitespace-pre-wrap text-sm">{s.body}</div>
+                                </div>
+                                {s.speakerNote && (
+                                  <div>
+                                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Speaker note</p>
+                                    <p className="text-xs italic text-muted-foreground bg-amber-500/5 border border-amber-500/20 p-2 rounded">{s.speakerNote}</p>
+                                  </div>
+                                )}
+                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(`${s.title}\n\n${s.body}${s.speakerNote ? `\n\nSpeaker note: ${s.speakerNote}` : ""}`)} className="gap-2 h-8 text-xs">
+                                  <Copy className="h-3 w-3" /> Copy slide content
+                                </Button>
+                              </div>
+                            </div>
+                          </details>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* ----- LAYER 3 — 1-PAGE BROCHURE (PLACEHOLDER) ----- */}
+                <Card className="border-dashed border-primary/30">
+                  <CardHeader>
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                        <ImageIcon className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                          1-Page Leave-Behind Brochure
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">Coming next</span>
+                        </CardTitle>
+                        <CardDescription className="mt-1">
+                          A printable A4 PDF you hand to prospects after the first appointment. Pulls from your answers and includes an AI-generated styled headshot.
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <div className="p-3 rounded border bg-muted/30">
+                        <p className="font-medium text-xs uppercase tracking-wide text-muted-foreground mb-2">What it will include</p>
+                        <ul className="space-y-1 text-xs">
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> AI-styled header (tuned to your personality + audience)</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Your professional headshot (see below)</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Name + your end-result tagline</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Mission statement + who you serve</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Your selected framework as a 3–5 step visual</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> 1–2 short story snippets from your story bank</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Contact block + WhatsApp QR code</li>
+                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> SG compliance footer</li>
+                        </ul>
+                      </div>
+                      <div className="p-3 rounded border bg-muted/30">
+                        <p className="font-medium text-xs uppercase tracking-wide text-muted-foreground mb-2">Headshot flow (AI-generated)</p>
+                        <ol className="space-y-1 text-xs list-decimal pl-4">
+                          <li>Upload 3–5 photos of yourself (selfies + casual + any professional shot)</li>
+                          <li>Pick a visual vibe (auto-suggested from your personality + audience pairing)</li>
+                          <li>AI generates 4 styled headshot options: <em>professional</em>, <em>lifestyle</em>, <em>environmental</em>, <em>hero-shot</em></li>
+                          <li>Pick your favourite → it goes into the brochure header</li>
+                        </ol>
+                        <p className="text-xs italic text-muted-foreground mt-2">Image generation runs server-side via Higgsfield. Generated images are cached so you don't burn credits on re-renders.</p>
+                      </div>
+                    </div>
+                    <Button disabled className="w-full mt-4 gap-2" size="lg" variant="outline">
+                      <ImageIcon className="h-4 w-4" /> Generate Brochure (awaiting headshot table + edge function)
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* ----- AI POLISH (existing) ----- */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Generate Full Brand Template with AI</CardTitle>
-                    <CardDescription>Create a comprehensive brand narrative, content calendar prompts, and social media strategy</CardDescription>
+                    <CardTitle className="flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-primary" /> Polish Everything with AI
+                    </CardTitle>
+                    <CardDescription>Send your whole brand brief to an AI assistant for a polished narrative + content calendar.</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Button onClick={generateBrandTemplate} disabled={isGenerating} className="w-full" size="lg">
                       {isGenerating ? (
                         <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Generating...</>
                       ) : (
-                        <><Sparkles className="h-4 w-4 mr-2" /> Generate Brand Template</>
+                        <><Sparkles className="h-4 w-4 mr-2" /> Generate Full Brand Template</>
                       )}
                     </Button>
                   </CardContent>
                 </Card>
+
+                {/* ----- ADVANCED — JSON for AI agents / strategists ----- */}
+                <details className="group">
+                  <summary className="cursor-pointer list-none">
+                    <div className="flex items-center gap-2 p-3 rounded border border-dashed text-sm text-muted-foreground hover:bg-muted/30 transition-colors">
+                      <Code2 className="h-4 w-4" />
+                      <span className="font-medium">Advanced: raw brand brief JSON</span>
+                      <span className="text-xs">— for feeding into AI agents or your own content team</span>
+                      <ChevronRight className="h-4 w-4 ml-auto transition-transform group-open:rotate-90" />
+                    </div>
+                  </summary>
+                  <div className="mt-3">
+                    <div className="bg-muted p-4 rounded-lg max-h-96 overflow-y-auto border">
+                      <pre className="text-xs whitespace-pre-wrap font-mono">
+                        {JSON.stringify(buildBrandBrief(), null, 2)}
+                      </pre>
+                    </div>
+                    <div className="flex gap-2 mt-3">
+                      <Button variant="outline" size="sm" onClick={() => copyToClipboard(JSON.stringify(buildBrandBrief(), null, 2))} className="gap-2">
+                        {copied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copied ? "Copied" : "Copy JSON"}
+                      </Button>
+                      <Button variant="outline" size="sm" onClick={() => {
+                        const blob = new Blob([JSON.stringify(buildBrandBrief(), null, 2)], { type: "application/json" });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url; a.download = "brand-brief.json"; a.click();
+                        URL.revokeObjectURL(url);
+                        toast.success("Downloaded brand-brief.json");
+                      }} className="gap-2">
+                        <Download className="h-4 w-4" /> Download JSON
+                      </Button>
+                    </div>
+                  </div>
+                </details>
               </>
             )}
           </TabsContent>
