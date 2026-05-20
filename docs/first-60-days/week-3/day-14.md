@@ -188,26 +188,6 @@ When you're surfacing the *need* (especially for CI), use this exact line:
 
 That sentence converts more CI plans than any product feature. It separates what the client *can* control (the financial side) from what they can't (the emotional side), and positions the plan as the part that's actually solvable.
 
-## 8. Why this works
-
-1. **Outcomes-first, products-last.** The client never feels pitched - they feel oriented. Every product you eventually recommend already maps to a pillar they agreed they need.
-2. **Their picture, not yours.** They watched you draw it. They cannot un-see the equation or the arrow.
-3. **It scales by income.** A $4,000/month earner and a $40,000/month earner get the same conversation - only the numbers in the boxes change.
-4. **Protection becomes obvious.** Once Human Capital is named as the engine, "you should insure it" stops being a sales line and becomes the only logical conclusion.
-5. **The modular close respects the brain.** No single meeting drowns the client in choices. Each yes is small enough to feel safe.
-
-## 9. Compliance and the limits of the concept
-
-Total Wealth is a teaching frame, not a product illustration. When you do recommend products to fund it:
-
-- Use **actual product illustrations** from iResource, not back-of-envelope numbers.
-- **Never describe non-guaranteed returns as guaranteed.**
-- Show **both guaranteed and non-guaranteed** scenarios.
-- Note that **past performance does not guarantee future results.**
-- Be honest about **inflation** - the coverage benchmarks above are in today's dollars and need adjusting for the years between now and the client's target horizon.
-
-The concept opens the door. The actual recommendation has to walk through it honestly.
-
 ---
 
 ## Quick quiz
