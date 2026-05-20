@@ -27,17 +27,17 @@ By the end of today you should be able to:
 
 Most clients think "wealth = the number in their bank account." That is the least efficient form of wealth they can hold.
 
-Real wealth is a **portfolio of income sources** that includes:
+Real wealth is a **portfolio of income sources**. If one stream is cut off, a wealthy client's lifestyle isn't affected. If a single-stream client loses their income, everything collapses.
 
-1. **CPF** - mandatory, compounding, tax-advantaged. Your default stream.
-2. **Property** - if it genuinely generates rental income (primary home usually doesn't).
-3. **Investments** - stocks, bonds, unit trusts, ETFs. Liquid, growth-oriented.
-4. **Insurance-based accumulation** - endowment plans, ILPs, retirement plans. Forced savings with guarantees.
-5. **Business / self-employment income** - your own ventures, renewal incomes, royalties.
+| # | Stream | Role |
+|---|---|---|
+| i | **CPF** | Mandatory, compounding, tax-advantaged. The default stream. |
+| ii | **Property** | Counts only if it genuinely generates rental income (primary home usually doesn't). |
+| iii | **Investments** | Stocks, bonds, unit trusts, ETFs. Liquid, growth-oriented. |
+| iv | **Insurance-based accumulation** | Endowment plans, ILPs, retirement plans. Forced savings with guarantees. |
+| v | **Business / self-employment income** | Own ventures, renewal incomes, royalties. |
 
-If **one stream is cut off**, a wealthy client's lifestyle isn't affected. If a single-stream client loses their income, everything collapses.
-
-**Your job with clients:** build at least three streams. Most start with one (salary) and never add a second.
+> **Your job with clients:** build at least three streams. Most start with one (salary) and never add a second.
 
 <div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
   <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- wealth = diversified income streams -</div>
@@ -55,7 +55,7 @@ If **one stream is cut off**, a wealthy client's lifestyle isn't affected. If a 
 Two very different phases of financial life. The mindset flips somewhere between age 50-60 for most clients.
 
 | | **Wealth Accumulation** | **Wealth Preservation** |
-|---|---|---|
+|---|:---|:---|
 | **Client age** | 20s-40s mostly | 50s onwards |
 | **Goal** | Grow capital | Protect capital |
 | **Time horizon** | Decades | Years |
@@ -66,7 +66,7 @@ Two very different phases of financial life. The mindset flips somewhere between
 
 The **transition** is not a hard switch - it's a gradual rebalancing. A 55-year-old shouldn't be 100% in equities, but shouldn't be 100% in bonds either.
 
-**The costly mistake:** clients who stay in accumulation mode too long. A 50% drop 2 years before retirement can push retirement back 5-10 years. Preservation exists to prevent that.
+> **The costly mistake:** clients who stay in accumulation mode too long. A 50% drop 2 years before retirement can push retirement back 5-10 years. Preservation exists to prevent that.
 
 ## 3. The 25-year-old example - why starting early matters
 
@@ -84,62 +84,81 @@ flowchart LR
     L1 --> L2
 ```
 
-
-
 Here's the concrete arithmetic that every new FC should have memorised.
 
 **Client:** 25-year-old, target retirement age 65, wants $4,000/month in retirement (today's dollars), for 20 years of retirement.
 
-**Step 1 - Adjust for inflation.**
-At 2% p.a. over 40 years, $4,000 today ~ **$8,830/month at age 65.**
+| Step | Calculation | Result |
+|---|:---|---:|
+| **1** - Adjust for inflation | $4,000 today at 2% p.a. over 40 years | **~$8,830/month at 65** |
+| **2** - Total capital needed | $8,830 x 12 x 20 years (ignoring returns during withdrawal) | **~$2.12M** |
+| **3a** - Save in a bank (0% real return) | $2.12M / 480 months | **$4,420/month** (impossible) |
+| **3b** - Invest at 6% p.a. | Compounding to reach ~$1M retirement capital | **~$500/month** |
 
-**Step 2 - Calculate total retirement capital needed.**
-$8,830 x 12 x 20 years = **~$2.12M** (ignoring returns during withdrawal).
+Most clients stop at Step 2 and panic. "$2 million?! Impossible." Step 3 is where compounding rescues the plan.
 
-Most clients stop here and panic. "$2 million?! Impossible."
-
-**Step 3 - Introduce returns.**
-If the client **saves in a bank** (~0% real return after inflation):
-- Needs to save **$2.12M / 480 months = $4,420/month** for 40 years. Impossible.
-
-If the client **invests at a modest 6% p.a. return** over 40 years:
-- Compounding means they only need to set aside **~$500/month** to reach ~$1M in retirement capital.
-- Total personal outlay over 40 years: **$500 x 480 = $240,000.**
-- The other $760,000 is **compounding doing the work.**
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
+    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">personal outlay</div>
+    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">$240,000</div>
+    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">$500/month x 480 months</div>
+  </div>
+  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
+    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">compounding does</div>
+    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">$760,000</div>
+    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">the work, not the client</div>
+  </div>
+  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;background:hsl(var(--background));">
+    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">retirement capital</div>
+    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$1,000,000</div>
+    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">at age 65</div>
+  </div>
+</div>
 
 ### The lesson
 
 **Time does the heavy lifting.** A 25-year-old needs $500/month. A 45-year-old starting from zero needs $2,500+/month - five times more - to hit the same retirement target.
 
-**The phrase that changes client behaviour:**
-> "The best time to plant a tree was 20 years ago. The second best time is now."
+> **The phrase that changes client behaviour:**
+> *"The best time to plant a tree was 20 years ago. The second best time is now."*
 
 ## 4. Applying this with real clients
 
 When a 35-year-old client says "I'll start investing later, I need to pay off my car first" - the cost of "later" is measurable, not abstract.
 
-Every additional year they delay starting:
-- Costs them years of compounding on every future dollar.
-- Means future monthly contributions have to be higher to catch up.
-- Often means they *never* catch up.
+| Each year of delay | Cost to the client |
+|---|:---|
+| Years of compounding lost | Compounding on every future dollar evaporates |
+| Higher catch-up cost | Future monthly contributions must rise to catch up |
+| Often never recovered | Many clients never close the gap |
 
-Use a retirement calculator (iResource has one) to show them the gap between "start now" and "start in 3 years." It's often 20-30% of their final retirement capital.
+Use a retirement calculator (iResource has one) to show them the gap between "start now" and "start in 3 years." It's often **20-30% of their final retirement capital.**
 
-**The respectful framing:**
-> "I'm not asking you to save more than you can. I'm showing you what each year of delay costs, so you can make an informed decision. Then whatever you decide, we'll build a plan around it."
+> **The respectful framing:**
+> *"I'm not asking you to save more than you can. I'm showing you what each year of delay costs, so you can make an informed decision. Then whatever you decide, we'll build a plan around it."*
 
 ## 5. SMART goals for retirement
 
 Vague goals produce vague outcomes. A good retirement goal is:
 
-- **S** pecific - "$6,000/month, in today's dollars."
-- **M** easurable - "I'll know because the plan will project that income."
-- **A** chievable - "Based on my income, starting today."
-- **R** elevant - "It matches the lifestyle I actually want, not my neighbour's."
-- **T** ime-bound - "By age 62 so I can travel before 70."
+| Letter | Criterion | Example phrasing |
+|---|---|---|
+| **S** | Specific | "$6,000/month, in today's dollars." |
+| **M** | Measurable | "I'll know because the plan will project that income." |
+| **A** | Achievable | "Based on my income, starting today." |
+| **R** | Relevant | "It matches the lifestyle I actually want, not my neighbour's." |
+| **T** | Time-bound | "By age 62 so I can travel before 70." |
 
-**Vague goal:** "I want to be comfortable in retirement."
-**SMART goal:** "$6,000/month passive income, in today's dollars, starting at age 62, adjusted for 2% inflation."
+<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:16px;">
+    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vague goal</div>
+    <div style="font-size:14px;color:hsl(var(--foreground));line-height:1.5;">"I want to be comfortable in retirement."</div>
+  </div>
+  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:16px;">
+    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">SMART goal</div>
+    <div style="font-size:14px;color:hsl(var(--foreground));line-height:1.5;">"$6,000/month passive income, in today's dollars, starting at age 62, adjusted for 2% inflation."</div>
+  </div>
+</div>
 
 Clients who can state their goal in SMART form are 10x more likely to follow the plan. Your job in early meetings is to help them articulate this.
 
