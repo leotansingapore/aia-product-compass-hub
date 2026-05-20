@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -12,6 +12,11 @@ import {
   type AppointmentFlow,
   type FlowBranch,
 } from "@/data/appointmentFlows";
+
+// Mermaid + DOMPurify add ~150KB. Lazy-load only when a user opens the visual tab.
+const FlowDiagram = lazy(() =>
+  import("@/components/flows/FlowDiagram").then((m) => ({ default: m.FlowDiagram })),
+);
 
 function BranchCard({ branch }: { branch: FlowBranch }) {
   return (
@@ -114,58 +119,82 @@ function FlowCard({ flow, defaultOpen }: { flow: AppointmentFlow; defaultOpen: b
       </button>
 
       {open && (
-        <div className="border-t bg-muted/10 p-4 md:p-5 space-y-4">
-          {/* Anchor frame */}
-          <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 px-4 py-3">
-            <div className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">
-              Anchor frame
-            </div>
-            <p className="text-sm italic text-amber-900 dark:text-amber-200">
-              "{flow.anchorFrame}"
-            </p>
-          </div>
+        <div className="border-t bg-muted/10 p-4 md:p-5">
+          <Tabs defaultValue="text" className="w-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="text" className="text-xs">Text</TabsTrigger>
+              <TabsTrigger value="visual" className="text-xs">Visual map</TabsTrigger>
+            </TabsList>
 
-          {/* Discovery */}
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-              Discovery questions
-            </div>
-            <ul className="text-sm space-y-1 list-disc pl-5">
-              {flow.discoveryQuestions.map((q, i) => (
-                <li key={i}>{q}</li>
-              ))}
-            </ul>
-          </div>
+            <TabsContent value="text" className="space-y-4 mt-0">
+              {/* Anchor frame */}
+              <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 px-4 py-3">
+                <div className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide mb-1">
+                  Anchor frame
+                </div>
+                <p className="text-sm italic text-amber-900 dark:text-amber-200">
+                  "{flow.anchorFrame}"
+                </p>
+              </div>
 
-          {/* Branches */}
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-              Decision branches ({flow.branches.length})
-            </div>
-            <div className={cn("grid gap-3", "grid-cols-1 md:grid-cols-2")}>
-              {flow.branches.map((b) => (
-                <BranchCard key={b.id} branch={b} />
-              ))}
-            </div>
-          </div>
+              {/* Discovery */}
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
+                  Discovery questions
+                </div>
+                <ul className="text-sm space-y-1 list-disc pl-5">
+                  {flow.discoveryQuestions.map((q, i) => (
+                    <li key={i}>{q}</li>
+                  ))}
+                </ul>
+              </div>
 
-          {/* Add-ons */}
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-              Add-ons across branches
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {flow.addOns.map((a, i) => (
-                <Badge
-                  key={i}
-                  variant="outline"
-                  className="text-[11px] px-2 py-0.5"
-                >
-                  {a}
-                </Badge>
-              ))}
-            </div>
-          </div>
+              {/* Branches */}
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
+                  Decision branches ({flow.branches.length})
+                </div>
+                <div className={cn("grid gap-3", "grid-cols-1 md:grid-cols-2")}>
+                  {flow.branches.map((b) => (
+                    <BranchCard key={b.id} branch={b} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Add-ons */}
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-2">
+                  Add-ons across branches
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {flow.addOns.map((a, i) => (
+                    <Badge
+                      key={i}
+                      variant="outline"
+                      className="text-[11px] px-2 py-0.5"
+                    >
+                      {a}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="visual" className="mt-0">
+              <Suspense
+                fallback={
+                  <div className="flex items-center justify-center rounded-xl border border-border/60 bg-muted/20 py-12 text-xs text-muted-foreground">
+                    Loading diagram…
+                  </div>
+                }
+              >
+                <FlowDiagram flow={flow} />
+              </Suspense>
+              <p className="text-[11px] text-muted-foreground text-center mt-2">
+                Click any green branch node to see its detail. Click the diagram to enlarge with pinch / scroll zoom.
+              </p>
+            </TabsContent>
+          </Tabs>
         </div>
       )}
     </section>
