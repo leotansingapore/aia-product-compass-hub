@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAllProducts } from './useProducts';
+import { countUsefulLinks } from '@/lib/useful-links';
 
 interface OfflineContent {
   productId: string;
@@ -188,9 +189,9 @@ export function useOfflineLearning() {
 
     // Add some products with more content (videos, links)
     const contentRichProducts = allProducts
-      .filter(p => 
+      .filter(p =>
         (p.training_videos && Array.isArray(p.training_videos) && p.training_videos.length > 0) ||
-        (p.useful_links && Array.isArray(p.useful_links) && p.useful_links.length > 0)
+        countUsefulLinks(p.useful_links) > 0
       )
       .slice(0, 3)
       .map(p => p.id);

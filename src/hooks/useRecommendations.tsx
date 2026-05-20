@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useAllProducts } from './useProducts';
 import { useRecentlyViewed } from './useRecentlyViewed';
 import { useBookmarks } from './useBookmarks';
+import { countUsefulLinks } from '@/lib/useful-links';
 
 export interface Recommendation {
   id: string;
@@ -243,9 +244,7 @@ export function useRecommendations() {
         if (product.training_videos && Array.isArray(product.training_videos)) {
           popularity += product.training_videos.length * 10;
         }
-        if (product.useful_links && Array.isArray(product.useful_links)) {
-          popularity += product.useful_links.length * 5;
-        }
+        popularity += countUsefulLinks(product.useful_links) * 5;
         if (product.highlights && Array.isArray(product.highlights)) {
           popularity += product.highlights.length * 3;
         }

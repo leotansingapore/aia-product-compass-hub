@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAllProducts } from './useProducts';
 import { useSemanticSearch } from './useSemanticSearch';
+import { countUsefulLinks } from '@/lib/useful-links';
 
 export interface SearchResult {
   id: string;
@@ -64,9 +65,7 @@ export function useSearch() {
       }
 
       if (filters.hasLinks) {
-        filtered = filtered.filter(product => 
-          product.useful_links && Array.isArray(product.useful_links) && product.useful_links.length > 0
-        );
+        filtered = filtered.filter(product => countUsefulLinks(product.useful_links) > 0);
       }
 
       searchResults = filtered.map(product => ({
@@ -106,8 +105,7 @@ export function useSearch() {
           }
           
           if (filters.hasLinks) {
-            hasRequiredContent = hasRequiredContent && 
-              product.useful_links && Array.isArray(product.useful_links) && product.useful_links.length > 0;
+            hasRequiredContent = hasRequiredContent && countUsefulLinks(product.useful_links) > 0;
           }
           
           return hasRequiredContent;
