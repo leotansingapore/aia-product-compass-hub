@@ -16,6 +16,7 @@ export const SCRIPTS_HUB_TABS = [
   { key: "objections", label: "Objections", path: "/objections" },
   { key: "playbooks", label: "Playbooks", path: "/playbooks" },
   { key: "flows", label: "Flows", path: "/flows" },
+  { key: "appointment-flows", label: "Appointment Flows", path: "/appointment-flows" },
   { key: "concept-cards", label: "Concept Cards", path: "/concept-cards" },
   { key: "case-vault", label: "Case Vault", path: "/case-vault" },
 ] as const;

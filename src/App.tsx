@@ -73,6 +73,7 @@ const PublicPlaybookView = lazyWithRetry(() => import("./pages/PublicPlaybookVie
 const AIAssistant = lazyWithRetry(() => import("./pages/AIAssistant"));
 const ConceptCards = lazyWithRetry(() => import("./pages/ConceptCards"));
 const CaseVault = lazyWithRetry(() => import("./pages/CaseVault"));
+const AppointmentFlows = lazyWithRetry(() => import("./pages/Flows"));
 const CaseDetail = lazyWithRetry(() => import("./pages/CaseDetail"));
 const DrawingsPlaybook = lazyWithRetry(() => import("./pages/DrawingsPlaybook"));
 const AssignDrawings = lazyWithRetry(() => import("./pages/AssignDrawings"));
@@ -219,6 +220,7 @@ const App = () => (
                     <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/sales-playbooks" element={<Navigate to="/library/playbooks" replace />} />
                     <Route path="/concept-cards" element={<RequireAuth><RequireTier feature="concept-cards"><ConceptCards /></RequireTier></RequireAuth>} />
+                    <Route path="/appointment-flows" element={<RequireAuth><RequireTier feature="flows"><AppointmentFlows /></RequireTier></RequireAuth>} />
                     <Route path="/case-vault" element={<RequireAuth><RequireTier feature="case-vault"><CaseVault /></RequireTier></RequireAuth>} />
                     <Route path="/case-vault/:caseId" element={<RequireAuth><RequireTier feature="case-vault"><CaseDetail /></RequireTier></RequireAuth>} />
                     <Route path="/drawings-playbook" element={<RequireAuth><RequireTier feature="concept-cards"><DrawingsPlaybook /></RequireTier></RequireAuth>} />
