@@ -53,11 +53,11 @@ The two are not interchangeable. **Hospital plan pays the hospital. CI plan pays
 ### [`26:11`](#t=1571) - [Day 14](/learning-track/first-60-days/day/14) . Whole life vs term - buying vs renting
 The cleanest analogy in the deck. **Term = renting**: cheaper per month but you pay forever (until 65). **Whole life = owning**: more expensive monthly, but you stop paying at year 20 and the premiums refund at age 65. Same as a mortgage vs rent - mortgage is more painful early but ends with a paid-off asset. Use this when the client objects on price - it isn't about cheaper vs more expensive, it's about *how long* they're paying.
 
-### [`28:04`](#t=1684) - [Day 14](/learning-track/first-60-days/day/14) . TPD, dismemberment, and CashLife
+### [`28:04`](#t=1684) - [Day 14](/learning-track/first-60-days/day/14) . TPD, dismemberment, and CareShield Life Supplement
 Three things prospects routinely confuse:
 - **TPD** (from whole life/term) triggers only on losing two arms, two legs, *or* two eyes - one finger doesn't count.
 - **Accident plan dismemberment** fills the partial-loss gap with a lump-sum menu (eyes worth more than a hand, hand more than a finger).
-- **CashLife disability income** pays a *monthly* income for as long as the client can't perform 3 of 6 ADLs (bathing, dressing, eating, toileting, transferring, continence). For a 25-year-old male the payout is ~**$1,008/month**. It's cashless - so the only reason a client doesn't have it is that nobody offered it.
+- **CareShield Life Supplement** tops up the national CareShield Life scheme with a higher *monthly* payout for as long as the client can't perform 3 of 6 ADLs (bathing, dressing, eating, toileting, transferring, continence). Funded by MediSave for eligible clients, so out-of-pocket is often zero. For a 25-year-old male the supplement payout is ~**$1,008/month**. Most prospects 30+ qualify and don't know it exists - which is the pitch.
 
 ### [`32:51`](#t=1971) - [Day 14](/learning-track/first-60-days/day/14) . The pricing playbook - 10% frame, three-quote anchor, the urgency math
 Three moves stacked, in this order:

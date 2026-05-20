@@ -19,47 +19,72 @@ tags: [first-60-days, week-1, recap]
 
 Click any timestamp to jump the player to that moment.
 
-### [`00:06`](#t=6) - Why we recap before moving on
-Leo opens by setting the frame: this next 60 days is structured deliberately, week by week. The recap call exists so you don't drift through Week 1 - you walk into Week 2 having actually internalised the inner game first. Skip the recap and you carry blind spots forward.
+### [`00:06`](#t=6) - Why this recap exists
+Leo opens with the structure: weeks 1-5 are the **inner game** (mindset, why, identity), weeks 6-10 are the **outer game** (pitching, consultation, products). The reason for the recap calls is simple - most people who quit do it inside the first two months, before the inner game has actually sunk in. The recap is the moment where the lecture content stops being a slide deck and starts being something you can carry into a meeting.
 
 ### [`01:02`](#t=62) - [Day 1](/learning-track/first-60-days/day/1) . The four high-income skills
-What this career actually compounds - human nature, negotiation, money, sales - is exactly what most jobs in Singapore *don't* teach. Leo's frame: in the age of AI, knowledge is cheaper, but these four skills get rarer and more valuable. Treat the next 60 days as skill acquisition, not a job hunt.
+The frame for why this career is worth the discomfort: it compounds **four skills schools never teach** - human nature, negotiation, money, and sales. Most jobs in Singapore train memorisation, which AI is making cheaper every month. These four get rarer and more valuable. Six to twelve months in, you'll be more mature mentally and emotionally than peers in linear corporate roles - not because the job is harder, but because it forces those four skills daily.
 
 ### [`04:41`](#t=281) - [Day 1](/learning-track/first-60-days/day/1) . Team values, in plain words
-Leo walks the four values: **Own the outcome** (no blaming the market or the leads), **Truth before comfort** (receive feedback without taking it personally), **Better than yesterday** (1% daily growth mindset, not heroics), **Lift the team** (encourage each other, no internal competition). The values are tested every time something goes wrong - they're load-bearing, not decoration.
+Four values, tested every time something goes wrong:
+- **Own the outcome** - no blaming the market, the leads, the economy, the team.
+- **Truth before comfort** - if someone tells you "this can be improved," take it as data, not as an attack.
+- **Better than yesterday** - 1% improvements compound; heroics don't.
+- **Lift the team** - we're not in internal competition. We celebrate each other's wins because the journey is long and the bad weeks are easier with people who know your story.
 
 ### [`06:32`](#t=392) - [Day 1](/learning-track/first-60-days/day/1) . The Reconnecting Exercise
-Pick three warm contacts this week, share you've started in financial advisory, and just have coffee. Not a pitch - a reconnection. The point is to rebuild warm contact and let your circle see you in your new role. Everything later gets easier when this groundwork is in.
+Pick three warm contacts this week. Send a simple message - "hey, I've started learning about financial planning, can we grab coffee?" Not a pitch. Just be a friend first, consultant second. The point isn't to close anything. It's to make sure your circle knows you're in the industry, so that one year, three years, ten years from now - when they're getting married, buying a house, having a kid - your name surfaces before a stranger from a roadshow does. Leo's line: "the best gift you can do for your friends is to make sure they don't buy from people who don't deserve their business."
 
 ### [`08:02`](#t=482) - [Day 2](/learning-track/first-60-days/day/2) . Why financial planning matters
-Leo reframes the meeting: most clients walk in thinking short-term - bills, holidays, the bubble tea today. Real planning is **delayed gratification at scale.** The advisor's job is to flip that switch - long-term first, short-term with what's left, not the other way round.
+Most clients walk into the meeting thinking short-term - bills today, holiday next month, bubble tea this afternoon. Real planning is **delayed gratification at scale**. The advisor's job is to flip the order: long-term first (insurance + investments, around 1/3 of income), short-term with what's left. Most people do the reverse - pay all the daily expenses, then "if anything is left, then I plan." There's never anything left. That's the switch every prospect needs to feel before they hear any product names.
 
-### [`13:00`](#t=780) - [Day 2](/learning-track/first-60-days/day/2) . The three risk strategies (avoid . retain . transfer)
-You can't avoid most permanent risks (death, disability, CI, accidents). You can't retain them either - almost no one has $1-2M lying around. The only honest answer is **transfer:** pay an insurer 5% of income to protect the other 95%. That's the framing every prospect needs to hear before they hear product names.
+### [`13:00`](#t=780) - [Day 2](/learning-track/first-60-days/day/2) . The three risk strategies - avoid, retain, transfer
+There are only three ways to deal with risk. **Avoid** - change your behaviour to avoid the risk entirely. Possible for some things (don't drive, don't smoke), impossible for cancer, accidents, sudden death. **Retain** - hold the risk yourself. Almost no one has $1-2M sitting around to self-insure against a serious diagnosis. **Transfer** - pay an insurer a small percentage to take the risk off your balance sheet. The framing every prospect needs: "you set aside 5-10% so that the remaining 90-95% is protected. Without transfer, it's all-or-nothing - 100% income or 0%."
 
 ### [`15:40`](#t=940) - [Day 2](/learning-track/first-60-days/day/2) . How much coverage is enough
-Rule-of-thumb refresher: 10x annual income for death/TPD, 5x for major CI, 2-3x for early CI, max private/government for hospitalisation. Numbers exist so you can sanity-check a proposal in 10 seconds - not so you can recite them at the prospect.
+The rule-of-thumb refresher - know these cold so you can sanity-check a proposal in 10 seconds without checking notes:
+- **Death / TPD**: 10 years of income minimum. On a $40k salary, that's $400k - which Leo will tell clients is honestly still too low; aim for at least $1M.
+- **Major CI**: 5 years of income, because you usually can't work for 5+ years through major treatment. And it's not just for the patient - it's so the spouse, parents, kids can also stop working to be present.
+- **Early CI**: 2-3 years of income.
+- **Hospitalisation**: private or public Integrated Shield + ~$3-4K PA reimbursement layer.
+
+If income is $50k and CI cover is $200k, ask the question: "if you can't work for 5 years, will $200k be enough for you, your wife, and the kids to also pay the bills?"
 
 ### [`18:02`](#t=1082) - [Day 2](/learning-track/first-60-days/day/2) . When to buy - the cost of waiting
-The "I'll buy later" trap. Premiums get 50-100% more expensive after the mid-30s, *and* insurability becomes a coin flip after one diagnosis. Leo's reframe for clients: insurance is the only product where buying when you don't need it is the only time you can buy it.
+The "I'll buy later" trap, two ways: **(1)** Every birthday you wait is roughly 50-100% more expensive across the lifetime of the policy. **(2)** Insurability is a coin flip after one diagnosis - the insurer can load the premium, exclude the condition, or decline the application entirely. Leo's reframe: "insurance is the only product where the time you don't need it is the only time you can buy it." The job isn't telling clients it's important - they usually agree. The job is telling them it's important **to buy now**, before procrastination becomes denial.
 
 ### [`21:02`](#t=1262) - [Day 2](/learning-track/first-60-days/day/2) . The three-layer pyramid
-Layer 1 = Risk Management (foundation), Layer 2 = Wealth Accumulation, Layer 3 = Wealth Preservation. Built bottom-up, not skipped. A client who jumps straight to investments without protection is building a house on sand.
+Built bottom-up, not skipped:
+- **Layer 1** - Risk Management (insurance, emergency fund).
+- **Layer 2** - Wealth Accumulation (investments, savings).
+- **Layer 3** - Wealth Preservation (estate planning, legacy).
+
+A client who jumps to layer 2 without layer 1 is investing on a foundation that hasn't been built. The most common selling mistake is fitting layer 2 or 3 on someone with a layer 1 gap - and the gap turns into a relationship-ending claim moment a few years later.
 
 ### [`21:33`](#t=1293) - [Day 3](/learning-track/first-60-days/day/3) . The four assurances of this career
-Autonomy (with the responsibility that comes with it), Development (skills + maturity, not just income), Security (renewal income compounds), Fulfillment (the work matters). Leo emphasises the catch on autonomy - flexibility without discipline turns into drift.
+Why FCs stay despite the hard first year:
+- **Autonomy** - your hours, your appointments, your pace. The caveat: autonomy without responsibility turns into drift. Most people who burn out aren't overworked, they're under-disciplined.
+- **Development** - intrinsically self-transforming. Communication, sales, money, mindset - the four skills compound everywhere else in life too.
+- **Security** - your renewals are paid for the lifetime of the policy. Leo's PA-policy math: $50/month premium × 30% commission × 100 clients = ~$1,500/month recurring. By Year 3, ~50% of income is passive. By Year 10, ~75%.
+- **Fulfillment** - you're the financial GP for 50-100 families. Not a transactional pitch and disappear; a 10-year relationship that compounds with every life event (wedding, kids, BTO, retirement).
 
-### [`33:32`](#t=2012) - [Day 4](/learning-track/first-60-days/day/4) . Growth vs fixed mindset
-Fixed mindset on rejection: "I'm not cut out for this." Growth mindset: "What can I learn from that 'no'?" The second one is the only mindset that survives Year 1. Leo's daily test: when a meeting goes badly, what was the *one* thing you can adjust for the next rep?
+### [`33:32`](#t=2012) - [Day 4](/learning-track/first-60-days/day/4) . Growth vs fixed mindset - add "yet"
+Fixed mindset on rejection: "I'm not cut out for this." Growth mindset: "I'm not good at this **yet**." The word "yet" does most of the heavy lifting - it converts a permanent identity statement into a temporary skill statement. Same rule applies in reverse: don't say "I'm smart" or "I'm naturally good" - say "I'm getting better." It keeps you humble enough to keep training. This is a marathon, not a sprint. Make big decisions like quitting on a calm day, not the Tuesday morning after a bad call - bad weeks are statistically guaranteed, not signal.
 
 ### [`42:55`](#t=2575) - [Day 5](/learning-track/first-60-days/day/5) . Purpose-driven life
-Why are you here, beyond the income? Leo's bar: **moral compass first.** If your friends and family wouldn't recommend you to their family, you've drifted. Reconnect with people, share what you're doing, and let your conviction (not a script) do the pre-framing.
+The advisor stereotype - "the random caller from a roadshow" - exists because most of the industry behaves that way. The antidote isn't a better script. It's a **moral compass first.** If your closest friends and family wouldn't introduce you to *their* family, you've drifted. The forcing question: "why am I here, beyond the income?" Leo's strongest student answers tend to be specific - "I want to retire my parents" beats "I want financial freedom" because the first one survives bad weeks. Write your own list of 100 reasons, then redo it 5 weeks in and again at 10 weeks. The list at the start will look different from the list at the end - that's normal, and how you know it's real.
 
-### [`51:32`](#t=3092) - [Day 6](/learning-track/first-60-days/day/6) . 1%, systems, and habit loops
-1% better daily for a year = 37x better. 1% worse = basically zero. Pair that arithmetic with the 4-law habit loop and identity-based habits, and you build the operator before the operator has to perform.
+### [`51:32`](#t=3092) - [Day 6](/learning-track/first-60-days/day/6) . Systems, habits, and identity
+1% better daily for a year ≈ 37x better. 1% worse daily ≈ 0. The arithmetic is brutal but only visible after the first month, which is exactly when most new FCs quit - just before the curve starts to bend. The structure to install:
+1. **Make the cue obvious** - your prospecting goes on the calendar at a fixed time, not "when you feel like it."
+2. **Make it attractive** - pair it with something you enjoy (music, view, coffee).
+3. **Make it easy** - script open, Excel of contacts open, headphones in. Friction = excuses.
+4. **Make the reward immediate** - track the activity, gamify it, treat yourself afterwards.
+
+The deeper layer is **identity**: "I'm a consultant who prospects daily" produces different behaviour than "I need to call 10 prospects." Decide what you are, then reverse-engineer what that person does each day.
 
 ### [`60:46`](#t=3646) - Wrap-up . How Week 1 fits together
-Leo closes by tying the week into one shape: vision and mission -> why financial planning matters -> the four assurances -> mindset -> purpose -> habits. Each day was a layer. Week 2 builds on this - industry context and the freedom-business frame.
+One arc: this career as **skill acquisition** -> protect the human capital that produces all income -> four assurances of the work -> growth mindset to survive the rejection cycle -> moral compass to stay long-term -> habit loops + identity to build the operator before the operator has to perform. Two assignments to ship from this week - the 100 whys, and the vision board. Week 2 turns the inner-game work into industry context and the freedom-business case.
 
 </details>
 
