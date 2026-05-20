@@ -15,7 +15,7 @@ tags: [first-60-days, week-3, skills]
 
 > **Watch the live training:** **[Module 1 - New FC Training (David)](https://youtu.be/EtAo1of4h8U)**. The first half of Module 1 is the live walk-through of the CST structure (Why / What / How Much) with the rules-of-thumb table for coverage levels - this lesson is the slower, written version of what David delivers. The video is also available in the **Video** tab of this day. Companion videos: **[Warm Market Flow](https://www.loom.com/share/defd2115fa4a46bb98c9a75113b12343)** and **[Canned Sales Track](https://youtu.be/TAsMoWdXLyg)**.
 >
-> **The hand-drawn delivery script:** the Total Wealth concept on this page is the *teaching* version. The 2-page hand-drawn artefact you actually deliver in front of a prospect is the **[Canned Sales Track - Full Reference](/learning-track/first-60-days/reference/ost-script-full)**. Read both - Day 14 gives you the *why*, the CST gives you the *exact words and pace*.
+> **The delivery script:** the Total Wealth concept on this page is the *teaching* version. The 2-page slide artefact you actually deliver in front of a prospect is the **[Canned Sales Track - Full Reference](/learning-track/first-60-days/reference/ost-script-full)**. Read both - Day 14 gives you the *why*, the CST gives you the *exact words and pace*.
 
 ## What you'll walk away with
 
@@ -23,7 +23,7 @@ By the end of today you should be able to:
 
 1. **Define** Total Wealth as Financial Capital + Human Capital, and explain why most people only see one half.
 2. **Name** the four pillars of the Total Wealth Financial Planning System (TWFPS) and the coverage benchmark each one targets.
-3. **Open** the conversation by drawing the Total Wealth equation on paper in under 5 minutes - without pitching a product.
+3. **Open** the conversation by walking the prospect through the Total Wealth slide in under 5 minutes - without pitching a product.
 4. **Run** the budget conversation (20% investments + 10-15% insurance) and the modular close (one pillar per meeting, with bridges).
 
 ---
@@ -95,10 +95,10 @@ The first three pillars defend the Human-Capital -> Financial-Capital conversion
 
 ## 5. The 5-minute introduction
 
-Use this in a first meeting once rapport is established. Goal: install the *concept*, not close a sale.
+Use this in a first meeting once rapport is established. Goal: install the *concept*, not close a sale. Walk the prospect through the Total Wealth slide as you go.
 
-### Step 1 - Draw the two boxes (30 sec)
-On a piece of paper, draw two boxes side by side. Label them **Financial Capital** and **Human Capital**.
+### Step 1 - Show the two boxes (30 sec)
+Open the Total Wealth slide showing the two boxes side by side: **Financial Capital** and **Human Capital**.
 
 ### Step 2 - Ask which one they have more of (30 sec)
 > "When we're young - which one do you think we have more of: Financial Capital or Human Capital?"
@@ -110,13 +110,13 @@ Almost everyone answers **Human Capital** correctly. That's the opening - they'v
 
 Pause. Let it land.
 
-### Step 4 - Draw the arrow (1 min)
-Draw an arrow from Human Capital -> Financial Capital. Write four words on it: **earn, spend less, save, invest**.
+### Step 4 - Point at the arrow (1 min)
+Point at the arrow on the slide running from Human Capital -> Financial Capital, labelled **earn, spend less, save, invest**.
 
 > "Building wealth is just this loop, repeated for 30 years. Earn more, spend less than you earn, save the difference, invest it. The arrow is the engine."
 
 ### Step 5 - Ask the protection question (1 min)
-Underline Human Capital. Ask:
+Point at Human Capital. Ask:
 > "If this stopped tomorrow - accident, illness, anything - how long does what's in the Financial box last your family?"
 
 Most clients can't answer. That silence is the assignment for the next meeting.
