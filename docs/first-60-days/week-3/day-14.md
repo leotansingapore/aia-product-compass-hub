@@ -24,7 +24,7 @@ By the end of today you should be able to:
 1. **Define** Total Wealth as Financial Capital + Human Capital, and explain why most people only see one half.
 2. **Name** the four pillars of the Total Wealth Financial Planning System (TWFPS) and the coverage benchmark each one targets.
 3. **Open** the conversation by walking the prospect through the Total Wealth slide in under 5 minutes - without pitching a product.
-4. **Run** the budget conversation (20% investments + 10-15% insurance) and the modular close (one pillar per meeting, with bridges).
+4. **Run** the budget conversation (10% of income for insurance protecting the other 90%) and the modular close (one pillar per meeting, with bridges), in the live sales sequence: Hospital -> Accident -> CI -> Life.
 
 ---
 
@@ -64,7 +64,10 @@ Here's the part most people miss: the entire conversion engine assumes you can k
 
 This is why protection isn't an upsell or an add-on. It's the **foundation** that makes everything else possible. If Human Capital collapses without coverage, every other plan fails - the savings get spent, the investments get liquidated, the property gets sold.
 
-> **Insurance is the most cost-efficient way to manage risk.** It transfers a catastrophic-but-rare loss to an insurer for a small predictable premium - far cheaper than retaining the risk and self-funding a $400K medical bill out of your asset base.
+Two analogies you'll lean on for the next 30 years:
+
+- **Ship vs lifeboat.** Your wealth is the ship. Your health is the lifeboat. You don't need both on calm days - the lifeboat exists for the day the ship can't carry you.
+- **Seatbelt.** Coverage is like a seatbelt - you don't wear it because you think you'll crash, you wear it because it can't be bought after. Insurance only exists *before* the event. After the event, it's not for sale, and if it is, it's at a much higher price with exclusions for whatever just happened.
 
 ### The "health or wealth" question
 
@@ -84,14 +87,18 @@ The TWFPS organises every client plan around four pillars - three to protect Hum
 
 ![Total Wealth Financial Planning System - four boxes under Human Capital (Death/Disability, Critical Illness, Hospital, Accident) plus Investment & Savings under Financial Capital with a Global Balanced Strategy](/first-60-days/images/total-wealth-twfps.webp)
 
-| Pillar | What it protects against | Benchmark coverage |
-|---|---|---|
-| **Death / Disability** | Family loses the income engine | Dependents' income needs . **10-20x annual income** |
-| **Critical Illness** *(the weakest link - often ignored)* | Major medical event + 12-24 months recovery | **$100K (cancer drug treatments not covered by hospital plan)** + **3-5x annual income** (recovery period) - equivalent to the slide's "$200-400K or 5x income" benchmark, but broken down so the client sees what each dollar funds |
-| **Hospital & Accident** | Hospitalisation, injury, illness, sprains, dengue, food poisoning, permanent dismemberment | Hospital cover + Medishield upgrade + Personal Accident plan |
-| **Investment & Savings** | Inflation slowly eroding Financial Capital | Global balanced strategy |
+| Pillar | What it protects against | Benchmark coverage | Rough monthly cost |
+|---|---|---|---|
+| **Hospital** *(the foundation - every major event starts here)* | Inpatient bills. Singapore hospital bills run $10K+ for a few weeks in a private ward. CI, accident, and death events typically begin with a hospitalisation. | Up to **$2M/year** reimbursement (resets annually), covering 13 months pre and post hospitalisation | **$30-50/month cash** (Medisave covers the bulk; small cash rider reduces deductible and co-pay) |
+| **Personal Accident** *(daily life)* | Outpatient injuries, sprains, dengue, food poisoning, dismemberment - things the hospital plan won't pay for. Most-claimed plan in a typical FC's book. | Plans 1-4: roughly $200K-$1M+ accidental death payout; per-accident outpatient limits (TCM, chiropractor, physio included) | **$0.60-$2.50/day** ($18-$70/month) |
+| **Critical Illness** *(the weakest link - most under-bought)* | Income replacement when a major CI stops you working for 12-24+ months. A CI plan pays *you*, not the hospital. | **5x annual income** (treatment + recovery period). Some FCs add a **$100K buffer** for cancer drug treatments the hospital plan typically doesn't cover. | Quoted via iResource; usually a whole-life base + CI multiplier rider, often on 20/25-year limited pay |
+| **Death / TPD** | Family loses the income engine permanently. Covers all causes of death (illness, natural, accident). | **10x annual income** (10-20x where there are young dependants or a large mortgage) | Term option or whole-life; whole-life unlocks the "premiums refunded at 65" framing |
+| **Disability Income** *(optional add-on)* | Long-term inability to work that doesn't meet the TPD bar (losing one limb, partial disability) | Pays roughly **70% of monthly income** during the disability period | Quoted via iResource |
+| **Investment & Savings** | Inflation eroding the converted Financial Capital | Global balanced strategy (not Singapore-only, not all equities, not all bonds) | Separate budget - see Section 7 |
 
-The first three pillars defend the Human-Capital -> Financial-Capital conversion. The fourth (Investment & Savings) makes sure the converted capital actually grows faster than inflation. Together they make sure the engine never has to restart from zero.
+The first five pillars defend the Human-Capital -> Financial-Capital conversion. Investment & Savings is what makes the converted capital actually grow faster than inflation.
+
+**Sequence matters.** When you walk a prospect through this in a real meeting, start at **Hospital**, not Death. Hospital is the cheapest, the most claimable, and the foundation every other event passes through. Once they nod at Hospital, Accident is the easy next yes, then CI, then Life. Leading with Death/TPD frontloads the heaviest premium and the most uncomfortable conversation - both kill momentum.
 
 ## 5. The 5-minute introduction
 
@@ -128,43 +135,106 @@ That last sentence is the entire sale. You've earned the fact-find.
 
 ## 6. The four risks, in their language
 
-For each pillar, the language to use over the next 30 years:
+The order below is the order you walk a prospect through in a real meeting: Hospital → Accident → CI → Life. Each pillar has the script line, the why, and the real claim story that lands.
 
-**Death / Disability**
-> "If you stopped earning today, how many years would your family need to keep going? The standard floor is **10-20x your annual income** - roughly 10-20 years of replacement income for the people who depend on you."
+### Hospital - the first line of defence
 
-**Critical Illness** *(the weakest link)*
-> "Treatment for a major illness in Singapore typically costs **$200-400K**. On top of that, most people lose 12-24 months of income recovering."
+> "Out of all the coverage you can have, which one do you think is the first line of defence? It's the hospital plan. If you have an accident serious enough, you'll be hospitalised. If it's a critical illness, you'll be hospitalised. If something causes death or TPD, you'll be hospitalised first. Hospital bills in Singapore are expensive - so this is where every plan starts."
 >
-> "We plan toward **$100K plus 3-5x your annual income**. The $100K specifically covers things your hospital plan doesn't - like cancer drug treatments. One vial of certain cancer drugs is around $10K per dose, and many of those drug treatments aren't covered by hospitalisation plans. The 3-5x income is for the recovery period when you can't work."
->
-> "There's also a clean way to remember the difference between the two CI-related plans: **the hospital plan pays the hospital. The CI plan pays *you* - when you can't work for a few years.** They do different jobs."
+> "A good hospital plan reimburses up to **$2 million a year**, resets every year, and covers you 13 months *before and after* the hospitalisation event - that's called pre and post hospitalisation. And it costs roughly **$70-80 a month** total, mostly funded by Medisave with a small cash rider of $30-50/month to reduce the deductibles and co-payment."
 
-**Hospital & Accident**
-> "Sprains, dengue, food poisoning, an accident at the gym - small stuff happens often. The hospital plan covers what happens inside hospital walls; the accident plan covers everything outside."
->
-> "One thing to know about hospital plans: they don't cover **outpatient** stuff. So even if you're hospitalised and discharged, the follow-up consultations, scans, and many drug treatments fall outside. That's why CI plus accident plus hospital is the full set - each plugs a different gap."
+This pillar usually closes first because the price is small relative to the coverage. Once they say yes here, you've earned permission to walk through the other three.
 
-**Investment & Savings**
+### Personal Accident - the most-claimed plan in your book
+
+> "Out of all the policies I sell, the accident plan is the one I claim for the most often - genuinely about once a week across my book. You can claim for TCM, chiropractor, physiotherapy, sprains, dengue, food poisoning - the everyday stuff."
+
+The two differences that surface here are the ones most clients haven't thought about:
+
+**Hospital vs accident:** *"Hospital is inpatient, accident is outpatient. Hospital coverage requires you to be admitted for at least 6 hours or have day surgery. I had one client who only bought a hospital plan, then his daughter went to KK A&E to get stitches - bill wasn't covered, because A&E with no admission is outpatient. That's exactly what an accident plan covers."*
+
+**Accident vs life:** *"Accident is far easier to claim. For a life payout, you typically need to die or lose two limbs / two eyes. For an accident plan, you can claim for an everyday injury. I had a client on a motorbike who hit a pothole, his arm scraped along the road, hospital bills, dressing, and the doctor consultations afterwards were all covered."*
+
+The closing frame on pricing uses comparison anchoring:
+
+> "Plan 4 covers you worldwide, 24/7, at about $1 a day. Think about what you already spend - around $500/month on food, $200/month on transport, $100/month on shopping, $3,000/year on holiday. A dollar a day to cover everything outside the hospital is cheap in comparison."
+
+Then you ask the assume-close question: *"Which plan would you prefer - plan 1, 2, 3, or 4?"* Plan 1 is around $0.60/day ($18/month), plan 2 is $1/day ($30/month), plan 3 is $1.50/day ($50/month), plan 4 is $2.50/day ($70/month).
+
+### Critical Illness - the income-replacement pillar
+
+> "A hospital plan pays the **hospital**. A CI plan pays **you** - so you can keep eating, paying the mortgage, and supporting your family during the years you can't work. It's an income-replacement plan, not a medical-bill plan. They do different jobs."
+
+The setup before quoting the number:
+
+> "Upon getting CI, you don't want to be a *burden* on your family. The benchmark is **5x your annual income** - that's roughly 5 years of replacement income, because it's hard to expect you'll be back to work inside 5 years after a major illness. Some FCs split it as 3-5x income plus a $100K buffer specifically for cancer drug treatments that the hospital plan doesn't cover - one vial can be $10K and many aren't on the hospital plan formulary."
+
+The emotional-financial split is what closes this one:
+
+> "Imagine you can't work for a few years. Who's going to give you that money? Your parents - can they afford to support you for years? The **emotional** burden of getting cancer is something no one can take away from you. But the **financial** burden - that one we can cover."
+
+### Life / TPD - the legacy pillar
+
+> "A life plan covers death or TPD from **any cause** - illness, natural causes, accident. An accident plan only pays out for accidental death. The benchmark is **10x your annual income** - enough to pay off loans and give your family a decade of support if you're gone prematurely."
+
+The "wasting money" objection answer:
+
+> "How would you feel if you paid 10% of your income for years and didn't get anything back? With a **whole life** policy, that's actually built in - you get a *refund* of your premiums at age 65, and the policy is **limited pay**: you only pay for 20 or 25 years, then the coverage runs free until age 100."
+
+### TPD vs Dismemberment - the FAQ that comes up
+
+Worth knowing before a fact-find:
+
+- **TPD** requires complete incapacitation - losing two limbs, eyesight, or being entirely unable to work.
+- **Dismemberment / partial disability** covers single-limb losses and partial impairment.
+- Losing one limb does NOT qualify for TPD - which is why an accident plan (or a disability-income plan) covers a gap that life-only clients miss entirely.
+
+### Investment & Savings - the conversion engine
+
 > "While the protection layer holds the floor, your money still needs to grow faster than inflation. The strategy is **global balanced** - not Singapore-only, not all equities, not all bonds - so the asset base survives any single market shock or currency move."
+
+This is the only pillar where "more is better" is the rule. Every other pillar has a benchmark you don't blow past; this one rewards every extra dollar that makes it through the conversion.
 
 ## 7. The budget conversation and the modular close
 
 Once the client has nodded along to the four pillars, the meeting tends to bend in one of two unhelpful directions: either they ask *"so how much will all this cost?"* (and you over-quote and lose them), or you try to close everything in one meeting (too much information, they freeze). Two micro-frames keep the meeting on the rails.
 
-### Frame A - The budget rule of thumb
+### Frame A - The 10% rule
 
-When they ask about cost, don't quote products yet. Quote percentages of income:
+When they ask about cost, don't quote products yet. Quote a percentage of income.
 
-> "As a guideline, we usually plan for around **20% of your income going to investments**, and another **10-15% to insurance** - so call it roughly 30% of income going toward future-you. That covers the protection layer plus the wealth-building layer."
+> "As a rule of thumb, we set aside around **10% of your income every month for insurance**. That 10% is what protects the other 90%."
+
+The frame that closes the budget objection:
+
+> "Think about it this way - you can either set aside 0% for insurance and keep all 100% of your income, or set aside 10% and have 90% protected. In good times, both look the same - you're enjoying about 90% of your income. The difference shows up in bad times. With 0% set aside, one bad event wipes out the full 100%. With 10% set aside, the protection layer covers the other 90% so the income engine doesn't collapse."
+
+Then the closing question:
 
 > "If I built a comprehensive package across all four pillars, what's the maximum you could realistically set aside each month?"
 
 Two things this does:
-1. Anchors the conversation in **your** income (not a fixed-dollar number that scares them).
-2. Asks for the **ceiling**, not the floor. People generally answer truthfully when asked for max - they don't feel cornered into committing.
+1. Anchors the conversation in **your** income, not a fixed-dollar number.
+2. Asks for the **ceiling**, not the floor - people answer truthfully when asked for max because it doesn't feel like a commitment.
 
-It also cross-references **Day 2's 1/3 income rule** - short-term needs (1/3), mid-term commitments (1/3), savings + investment + insurance (1/3). Most clients have never explicitly allocated the third slice to long-term - surfacing it is half the close.
+This sits inside **Day 2's 1/3 income rule** - short-term needs (1/3), mid-term commitments (1/3), long-term savings + investment + insurance (1/3). The 10% for insurance lives inside the last third, alongside the ~20% they should be putting into investments. Most clients have never explicitly allocated the third slice - surfacing it is half the close.
+
+### Frame A.5 - Setting the price anchor before quoting
+
+Coverage isn't like investing. Nobody walks in knowing how much coverage they need, so you have to set the anchor:
+
+> "Nobody really *knows* how much coverage they need every month. With investing, more is better. With coverage, the goal is to get the most coverage for the lowest price. So we set a benchmark first - then work out the cheapest way to hit it."
+
+You then do a **compare-close** with iResource: quote three coverage levels (e.g. $200K vs $300K vs $400K of CI), then ask which one fits the budget. They're choosing *between coverage levels*, not deciding *whether* to take coverage.
+
+### Frame A.6 - Urgency without pressure
+
+If they want to "think about it", surface the two facts that make waiting expensive:
+
+1. **Premiums are cheaper now.** Each year you wait, the premium goes up because you're a year older. Buying at 35 instead of 25 means a shorter coverage period and a higher monthly premium for the same payout.
+2. **You're healthy now.** No pre-existing conditions, no exclusions, no medical loadings. Wait until something shows up on a health screen, and the same policy gets exclusions or a higher rate - or you get declined entirely.
+
+> "You can only buy this when you don't need it. The moment you need it, it's too late."
 
 ### Frame B - The modular close
 
