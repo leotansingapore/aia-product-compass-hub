@@ -59,6 +59,8 @@ export interface CaseEntry {
   sourcePath: string;
   /** Optional screenshot image (public/case-studies/...). */
   screenshot?: string;
+  /** Optional stage label (e.g. discovery, presentation, close, other). */
+  stage?: string;
 }
 
 export const CASE_PRODUCTS: Record<
