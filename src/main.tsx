@@ -28,4 +28,8 @@ if (typeof window !== 'undefined') {
   })
 }
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <RuntimeErrorOverlay>
+    <App />
+  </RuntimeErrorOverlay>
+);
