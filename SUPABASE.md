@@ -523,3 +523,29 @@ Submission files table (`learning_track_submission_files`):
 ## Completed
 
 <!-- Move completed items here after Lovable runs migrations -->
+
+### 2026-05-20 — `fc_brand_brochures` table + headshot storage buckets
+
+Shipped by Claude Code via Supabase Management API (not Lovable). Migration file lives at `supabase/migrations/20260520085800_fc_brand_brochures.sql`.
+
+Backs the "1-Page Leave-Behind Brochure" card inside the F.A.D.S. tool at [/learning-track/pre-rnf/assignments/audience-differentiation/tool/output](src/pages/learning-track/FinancialAdvisorDifferentiation.tsx).
+
+What's live:
+
+- Table `fc_brand_brochures` — one row per brochure generation job (jsonb brand-brief snapshot, source/generated/selected headshot paths, PDF path, lifecycle status).
+- Storage buckets (all private, owner-scoped folders by `user_id`):
+  - `fc-headshots-source` — FC's uploaded reference photos
+  - `fc-headshots-generated` — Higgsfield-generated styled headshots (written by service-role worker)
+  - `fc-brochures` — final brochure PDFs
+- RLS: owner-only CRUD on the table + matching folder-level policies on each bucket. Admin/master_admin SELECT policy on the table for support.
+- Trigger: `trg_fc_brand_brochures_updated_at` reuses `public.handle_updated_at()`.
+
+Local worker (does the actual image generation):
+
+- `tools/process_fc_headshot_jobs.py` polls queued rows, downloads source photos, trains a Higgsfield Soul-2 reference, generates 4 styled variants (`professional`, `lifestyle`, `environmental`, `hero`), uploads results, and flips status to `ready`. Runs via service-role key fetched from Keychain.
+- Run modes: `python3 tools/process_fc_headshot_jobs.py --once` (manual) or `--watch` (loop). A launchd plist can be added later for full automation.
+
+Client work still pending (next session):
+
+1. `useFcBrandBrochure` hook (TanStack Query) — list/create/poll status.
+2. Replace the disabled placeholder in the Output tab with: upload UI (3–5 photos to `fc-headshots-source`), "Generate headshots" button (inserts queued row), polling for status, 4-variant picker, and finally a client-side PDF render of the 1-page brochure using `@react-pdf/renderer`.

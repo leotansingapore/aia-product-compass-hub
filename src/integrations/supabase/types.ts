@@ -592,6 +592,57 @@ export type Database = {
           },
         ]
       }
+      fc_brand_brochures: {
+        Row: {
+          brand_brief_snapshot: Json
+          brochure_pdf_path: string | null
+          created_at: string
+          generated_at: string | null
+          headshot_error: string | null
+          headshot_generated_paths: string[]
+          headshot_selected_path: string | null
+          headshot_source_paths: string[]
+          id: string
+          rendered_at: string | null
+          status: string
+          style_vibe: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          brand_brief_snapshot: Json
+          brochure_pdf_path?: string | null
+          created_at?: string
+          generated_at?: string | null
+          headshot_error?: string | null
+          headshot_generated_paths?: string[]
+          headshot_selected_path?: string | null
+          headshot_source_paths?: string[]
+          id?: string
+          rendered_at?: string | null
+          status?: string
+          style_vibe?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          brand_brief_snapshot?: Json
+          brochure_pdf_path?: string | null
+          created_at?: string
+          generated_at?: string | null
+          headshot_error?: string | null
+          headshot_generated_paths?: string[]
+          headshot_selected_path?: string | null
+          headshot_source_paths?: string[]
+          id?: string
+          rendered_at?: string | null
+          status?: string
+          style_vibe?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       feedback_submissions: {
         Row: {
           admin_notes: string | null
@@ -3488,3 +3539,5 @@ export const Constants = {
     Enums: {},
   },
 } as const
+A new version of Supabase CLI is available: v2.100.1 (currently installed v2.75.0)
+We recommend updating regularly for new features and bug fixes: https://supabase.com/docs/guides/cli/getting-started#updating-the-supabase-cli
