@@ -24,6 +24,7 @@ export type CaseProduct =
 export type CasePlay =
   | "Play A — Whole-life / endowment restructure"
   | "Play B — ILP fee + structure attack"
+  | "Play B — Hybrid ILP restructure"
   | "Play C — BTIR fresh start"
   | "Consolidation"
   | "Net-yield attack"
@@ -58,6 +59,12 @@ export interface CaseEntry {
   sourcePath: string;
   /** Optional screenshot image (public/case-studies/...). */
   screenshot?: string;
+  /** Optional stage label (e.g. discovery, presentation, close, other). */
+  stage?: string;
+  /** Optional appointment date (ISO). */
+  date?: string;
+  /** Optional confidence rating for derived/real cases. */
+  confidence?: string;
 }
 
 export const CASE_PRODUCTS: Record<
