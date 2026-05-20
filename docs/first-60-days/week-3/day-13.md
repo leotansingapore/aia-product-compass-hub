@@ -107,41 +107,6 @@ Use this checklist in any fact-finding meeting. Map the client's actual coverage
 
 A Job A client with gaps in 4+ rows is one bad week away from a catastrophe they can't fix retroactively.
 
-## 5. How to use this in a meeting
-
-```mermaid
-flowchart LR
-    S1["1 . Draw<br/>the table"] --> S2["2 . Fill<br/>real data"] --> S3["3 . Leave<br/>blanks blank"] --> S4["4 . Pause"] --> S5["5 . Ask<br/>the question"] --> S6["6 . Listen"]
-```
-
-
-
-The Job A / Job B table is a great visual tool. You can draw it on a piece of paper in 30 seconds.
-
-1. Draw the two-row table.
-2. Fill in columns using what the client told you in fact-finding.
-3. Leave the blank columns **blank** - don't fill them in with estimates.
-4. Pause. Let the client look at their own situation on paper.
-5. Ask one question: **"Which column worries you most?"**
-
-Then listen. That answer is your needs analysis - in 90 seconds, from the client's own mouth.
-
-**Why this works:**
-- They're not arguing against a pitch. They're staring at their own gaps.
-- They choose the starting point, which means they've already pre-committed to doing something about it.
-- You don't have to talk about products yet. This is diagnosis, not prescription.
-
-## 6. The honest limit of this story
-
-Job A vs Job B is a powerful story but it's a **simplification**. Real clients have:
-- Partial employer benefits (some CI, capped payout).
-- Spouses with their own coverage (reduces need).
-- Kids at different ages (changes urgency).
-- Existing policies from 10 years ago (may or may not still fit).
-
-Never recommend based on the story alone. Use it to open a conversation, then do the proper fact-finding (Weeks 8-9) before making any recommendation.
-
-
 ## Quick quiz
 
 1. **What's the core insight of the Job A vs Job B comparison?**
@@ -160,15 +125,7 @@ Never recommend based on the story alone. Use it to open a conversation, then do
 
  **Why:** C surfaces the real gap - portability - without attacking the employer plan, which keeps the client open rather than defensive. A and B make blanket criticisms that feel pushy and are not always true. D jumps straight to a product comparison before any needs have been uncovered, skipping the trust-building step entirely.
 
-3. **In a meeting, after filling in the Job A/B table with client data, you should:**
- - A) Start presenting products
- - B) Ask "which column worries you most?" and listen (correct)
- - C) Fill in the blanks with estimates
- - D) Close the meeting and send a proposal
-
- **Why:** Asking the client which column worries them most turns their own gaps into their own needs analysis - in their words, not yours. A and D skip diagnosis entirely and pitch before understanding, which breaks trust. C is explicitly discouraged; leaving blank columns blank is what prompts the client to confront reality themselves.
-
-4. **A client says "I earn $120K and have great company benefits." What's the most important follow-up question?**
+3. **A client says "I earn $120K and have great company benefits." What's the most important follow-up question?**
  - A) "How much does your company plan cost?"
  - B) "What happens to those benefits if you leave or get retrenched?" (correct)
  - C) "How long have you been at the company?"
@@ -176,7 +133,7 @@ Never recommend based on the story alone. Use it to open a conversation, then do
 
  **Why:** The core vulnerability of employer-linked benefits is that they disappear when the employment ends - B surfaces exactly that gap without being combative. A focuses on cost rather than coverage gap, which misses the point. C is irrelevant to the portability issue. D is useful for life-insurance sizing but doesn't address the key flaw in relying on employer benefits.
 
-5. **According to the life-stage test, a client with gaps in 4+ columns is:**
+4. **According to the life-stage test, a client with gaps in 4+ columns is:**
  - A) Unlikely to be interested in financial planning
  - B) Already well-covered by CPF
  - C) One bad week away from a catastrophe they can't fix retroactively (correct)
@@ -184,15 +141,7 @@ Never recommend based on the story alone. Use it to open a conversation, then do
 
  **Why:** The day's content states this directly - four or more uncovered columns means a single bad event (CI, hospitalisation, death, forced retirement) could wipe out the family without any safety net to fall back on. A gets this backwards; widespread gaps are precisely what motivates clients to act. B is wrong - CPF does not cover critical illness income, education fees, or adequate retirement for most Singaporeans. D ignores the most urgent gaps (protection) in favour of investment.
 
-6. **A new FC finds the Job A/B story works beautifully - clients consistently identify their own gaps. They start using it as a closing tool, recommending products in the same meeting based on the columns the client flagged. According to Day 13, what's the issue?**
- - A) Nothing - if the story works, ride the momentum and close
- - B) The story is a diagnostic for *opening* a conversation, not a basis for product recommendations - proper fact-finding still has to happen before suggesting anything (correct)
- - C) Switch to the Total Wealth concept before closing - Job A/B can't carry a close
- - D) Use the Job A/B story only on first-meeting prospects, never on existing clients
-
- **Why:** Day 13's Section 6 is explicit: Job A/B is a *simplification*. Real clients have partial employer benefits, a spouse's coverage, kids at different ages, and existing policies that may or may not still fit. The story is for surfacing the gap conversation; the actual fact-finding (Weeks 8-9) must happen before any product is recommended. Closing on the story alone risks placing products that don't actually fit. A treats a powerful diagnostic as a closing tool. C swaps frameworks without addressing the missing fact-finding step. D invents a meeting-stage rule the lesson never makes.
-
-7. **A client is 45, has a $2M mortgage, two kids in secondary school, and no critical illness cover. Using the Job A/B frame, which column is most urgent to address first?**
+5. **A client is 45, has a $2M mortgage, two kids in secondary school, and no critical illness cover. Using the Job A/B frame, which column is most urgent to address first?**
  - A) Retirement income
  - B) Kids' education fund
  - C) Critical illness coverage - it's underfunded and the financial impact would be immediate (correct)
