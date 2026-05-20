@@ -13,6 +13,7 @@ import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, Messag
 import { toast } from "sonner";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { BrochureBuilderCard } from "@/components/learning-track/BrochureBuilderCard";
 
 // Base path inside the Pre-RNF assignment shell. Tab segment is appended.
 const BASE_PATH = "/learning-track/pre-rnf/assignments/audience-differentiation/tool";
@@ -1786,55 +1787,12 @@ export default function FinancialAdvisorDifferentiation() {
                   </div>
                 </div>
 
-                {/* ----- LAYER 3 — 1-PAGE BROCHURE (PLACEHOLDER) ----- */}
-                <Card className="border-dashed border-primary/30">
-                  <CardHeader>
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                        <ImageIcon className="h-5 w-5" />
-                      </div>
-                      <div className="flex-1">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          1-Page Leave-Behind Brochure
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">Coming next</span>
-                        </CardTitle>
-                        <CardDescription className="mt-1">
-                          A printable A4 PDF you hand to prospects after the first appointment. Pulls from your answers and includes an AI-generated styled headshot.
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                      <div className="p-3 rounded border bg-muted/30">
-                        <p className="font-medium text-xs uppercase tracking-wide text-muted-foreground mb-2">What it will include</p>
-                        <ul className="space-y-1 text-xs">
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> AI-styled header (tuned to your personality + audience)</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Your professional headshot (see below)</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Name + your end-result tagline</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Mission statement + who you serve</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Your selected framework as a 3–5 step visual</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> 1–2 short story snippets from your story bank</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> Contact block + WhatsApp QR code</li>
-                          <li className="flex gap-2"><CircleDot className="h-3 w-3 mt-0.5 shrink-0 text-primary" /> SG compliance footer</li>
-                        </ul>
-                      </div>
-                      <div className="p-3 rounded border bg-muted/30">
-                        <p className="font-medium text-xs uppercase tracking-wide text-muted-foreground mb-2">Headshot flow (AI-generated)</p>
-                        <ol className="space-y-1 text-xs list-decimal pl-4">
-                          <li>Upload 3–5 photos of yourself (selfies + casual + any professional shot)</li>
-                          <li>Pick a visual vibe (auto-suggested from your personality + audience pairing)</li>
-                          <li>AI generates 4 styled headshot options: <em>professional</em>, <em>lifestyle</em>, <em>environmental</em>, <em>hero-shot</em></li>
-                          <li>Pick your favourite → it goes into the brochure header</li>
-                        </ol>
-                        <p className="text-xs italic text-muted-foreground mt-2">Image generation runs server-side via Higgsfield. Generated images are cached so you don't burn credits on re-renders.</p>
-                      </div>
-                    </div>
-                    <Button disabled className="w-full mt-4 gap-2" size="lg" variant="outline">
-                      <ImageIcon className="h-4 w-4" /> Generate Brochure (awaiting headshot table + edge function)
-                    </Button>
-                  </CardContent>
-                </Card>
+                {/* ----- LAYER 3 — 1-PAGE BROCHURE ----- */}
+                <BrochureBuilderCard
+                  brandBrief={buildBrandBrief()}
+                  formData={formData}
+                  framework={formData.selectedFramework ? FRAMEWORKS[formData.selectedFramework as keyof typeof FRAMEWORKS] : null}
+                />
 
                 {/* ----- AI POLISH (existing) ----- */}
                 <Card>
