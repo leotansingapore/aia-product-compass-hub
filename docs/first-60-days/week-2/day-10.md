@@ -32,14 +32,13 @@ Financial freedom has one definition, and it's simple enough to write on a napki
 
 That's it. The day your passive income (rent, dividends, annuities, renewal commissions, CPF payouts, interest) exceeds what you spend each month - **you're free.**
 
-Not rich. Not famous. Not retired. **Free.**
+Not rich, not famous, not retired — **free**. At that point you can:
 
-You can:
 - Quit any job without financial consequence.
 - Take a year off without touching your savings.
-- Say no to toxic clients, bosses, or family dynamics - without fear.
+- Say no to toxic clients, bosses, or family dynamics without flinching.
 
-Most people never experience this. They don't know it's possible. Your job - in every client meeting - is to make this formula the finish line they're aiming at.
+Most people never experience that. They don't know it's possible. Your job, in every client meeting, is to make that formula the finish line they're aiming at — not the lump-sum number that scares them off in the first conversation.
 
 ## 2. Why freedom beats "more money"
 

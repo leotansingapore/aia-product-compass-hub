@@ -32,7 +32,7 @@ Day 9 showed *what happens* to a dollar once it lands in someone's hands. Three 
 
 ## 1. The four quadrants
 
-Robert Kiyosaki's framework, stripped to its bones:
+Every dollar of income on earth comes from one of these four boxes. Stripped to the bones:
 
 <div style="margin:1.5rem 0;font-family:system-ui,sans-serif;">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">

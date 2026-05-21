@@ -36,10 +36,10 @@ Forget income brackets. The three classes are behavioural.
 
 ### The Middle Class
 - **Income:** covers expenses comfortably. Sometimes very comfortably.
-- **Savings:** some. Often sitting in a bank account earning less than inflation.
-- **Between pay cheques:** lifestyle expands to match income. Cars, condos, phones, holidays.
-- **Trap:** "Rich people acquire assets. The poor and middle class acquire liabilities they think are assets." - Robert Kiyosaki.
-- **Primary need right now:** learn the **asset vs liability distinction** and start redirecting lifestyle growth into asset acquisition.
+- **Savings:** some. Usually sitting in a bank account earning less than inflation, quietly losing purchasing power every year.
+- **Between pay cheques:** lifestyle expands to match income — bigger car, condo upgrade, the new phone every 18 months, the holiday once a quarter. Income up, free cash flow flat.
+- **The trap to name out loud:** the things the middle class buys *feel like* assets — the car, the watch, the condo — but they take money out of the pocket every month. Real assets put money *in*. Most middle-class clients have never had anyone draw that line for them.
+- **Primary need right now:** the asset-vs-liability distinction, then redirecting one slice of lifestyle growth into asset acquisition every year.
 
 ### The Wealthy
 - **Income:** may be high, but that's not the point.
@@ -165,11 +165,7 @@ This isn't a 30-day project. It's a 5-10 year rebuild. Your job is to walk along
 
 Most FCs describe their job as "selling insurance." That's the wrong description.
 
-A better one: **helping middle-class and poor people begin the quiet, systematic move toward wealth.**
-
-That's a sentence worth writing on your bathroom mirror for the next 8 weeks.
-
-It sounds big. It starts small:
+A better one: **helping middle-class and poor people begin the quiet, systematic move toward wealth.** It sounds big. It starts small:
 - Helping someone cover a risk they hadn't considered.
 - Setting up a $200/month investment plan that compounds for 30 years.
 - Explaining CPF in a way their HR never did.
@@ -194,7 +190,7 @@ None of these moments feel heroic on the day. Stack enough of them across a care
  - C) Paying too much tax
  - D) Living in expensive cities
 
- **Why:** The Kiyosaki quote at the core of today's lesson states this directly: "the poor and middle class acquire liabilities they think are assets." The trap is not income level (A) - the middle class often earns comfortably - it is the misclassification of cars, condos, and watches as wealth-building. Tax (C) and city costs (D) are real pressures but not the structural behavioural trap.
+ **Why:** Day 9's core point is exactly this — the middle-class trap is acquiring things that *look* like assets (car, condo, watch) but take money out of the pocket every month. The trap is not income level (A) — the middle class often earns comfortably — it's the misclassification. Tax (C) and city costs (D) are real pressures but not the structural behavioural trap.
 
 3. **The defining feature of being wealthy, by this framework:**
  - A) Earning above $500K/year

@@ -74,16 +74,12 @@ AIA's systems are genuinely ahead of most of the industry. Learn where each tool
 
 
 ### AIA iSmart (mobile app)
-- **What it is:** mobile app with real-time client information and campaign updates.
-- **Use when:** you're out of the office, need to share a campaign update, or want to push product collateral directly through WhatsApp/Telegram to a prospect.
-- **Workflow:** client mentions interest -> you send them the campaign link from iSmart within 30 seconds.
+Your *phone* tool. Push collateral and campaign links to a prospect in 30 seconds without opening a laptop. Use it when you're out and the conversation suddenly turns serious — *"hey, can you send me more on that?"* — and you don't want the moment to die while you fumble for a PDF.
 
 ### AIA iPos (iPad point-of-sale)
-- **What it is:** one-stop iPad platform for product details, application forms, and POS forms.
-- **Use when:** you're at the client's home/office, running the actual sales appointment and submitting the application on the spot.
-- **Workflow:** complete financial review -> illustrate plan -> client signs -> straight-through submission.
+Your *iPad* tool for the actual appointment. Think of it like the iPad menu at a modern restaurant — product details, illustrations, application forms, e-signature, all in one place — instead of the pen-and-paper days when the client would sign, you'd go back to the office, key it in later, and lose two days. Straight-through submission means the application goes in before you stand up.
 
-**Rule:** never walk into a client meeting without iPos ready. Never leave home without iSmart on your phone. Everything else - memos, campaign updates, product collateral - pushes to you through these two.
+**Field rule:** iPos open and ready *before* you sit down at every appointment. iSmart on your phone every time you leave home. Every memo, campaign and product update reaches you through these two.
 
 ```mermaid
 flowchart TD
