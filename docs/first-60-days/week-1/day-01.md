@@ -28,18 +28,18 @@ We're glad you're here.
 
 ## What you're really signing up for
 
-Most people see a financial advisor and think "salesperson." They're wrong. The people who stay in this career build four high-income skills - the same four that make every CEO, negotiator, and founder valuable:
+Most people hear "financial advisor" and picture the random caller from a roadshow. That stereotype exists because parts of the industry behave that way — not your problem to defend, your problem to outgrow.
 
-| Skill | Why it compounds for life |
+The people who actually stay in this career build **four high-income skills** schools never teach:
+
+| Skill | Where it shows up for life |
 |---|---|
 | **Human nature** | Every relationship - professional, personal, commercial |
 | **Negotiation** | Deals, boundaries, salary, marriage |
 | **Money** | Every financial decision you'll make for 60+ years |
 | **Sales** | Any time you need someone to say yes to anything |
 
-Over the next 60 days, you'll practise all four on real people with real stakes. Very few jobs in Singapore offer that. Most will still be typing emails to an inbox. You'll be sitting across from people whose lives will actually change because of you.
-
-**This is the quiet advantage.** While others build experience narrowly, you build it broadly - and the broad version compounds far harder over 10 years.
+In an age where AI is making memorised knowledge cheaper every month, those four get rarer and more valuable. Six months in you'll feel it — the people skills you build sitting across from real strangers about real money compound much harder than the same six months at a corporate inbox.
 
 ---
 
@@ -62,7 +62,7 @@ flowchart LR
 
 You won't meet a real prospect until Week 8. That's intentional. We fix the operator before we hand over the machine.
 
-You won't take this journey alone. Mentors, peers, and people who've walked the same road are already beside you. The sequence is engineered. Trust it.
+You won't take this journey alone — mentors, peers, and people who've already walked the same 60 days are beside you. The sequence is deliberate. Stay with it.
 
 ---
 
@@ -161,20 +161,18 @@ Before you pitch anyone on anything, you reconnect. Four steps. Zero selling.
 
 ---
 
-## One last thing - the quiet advantage
+## One last thing
 
-You didn't pick the easy path. You picked the one with compound returns - on your skills, your income, your relationships, and the lives of the people you'll be in the room for.
+You picked the path that compounds — on your skills, your income, your relationships, and the lives of the people you'll be sitting across from. It isn't the easy path. It's the one where Year 5 looks nothing like Year 1, in a direction worth showing up for.
 
-The people who graduated from this program before you are now:
+The people who graduated from this same 60-day program before you are now:
 
 - Running practices that hit MDRT and beyond
-- Handling Year-5, Year-10 clients they first closed as rookies
-- Paying off HDBs, buying homes, raising families - because the career delivered
+- Handling Year-5 and Year-10 clients they first closed as rookies
+- Paying off HDBs, buying homes, raising families — because the career delivered
 - Teaching the cohort coming up behind them
 
-You're not starting from zero. You're starting with 60 days of structure, a team that's already done it, and the quiet advantage of having said yes when most people found an excuse.
-
-Welcome to the career. Welcome to the team.
+You're not starting from zero. You're starting with 60 days of structure, a team that's already done it, and the people who said yes when most found an excuse — already in the room with you.
 
 
 ## Quick quiz

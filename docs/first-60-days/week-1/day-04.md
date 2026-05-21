@@ -26,7 +26,7 @@ By the end of today you should be able to:
 
 ## 1. The two mindsets, in practice
 
-Stanford psychologist Carol Dweck's research separates people into two response patterns under challenge:
+Same week, same rejection, two FCs respond differently — and the difference compounds for the rest of their year:
 
 | Situation | Fixed mindset says | Growth mindset says |
 |---|---|---|
@@ -36,7 +36,7 @@ Stanford psychologist Carol Dweck's research separates people into two response 
 | Peer closes more than you | "She has better connections" | "What's she doing differently?" |
 | You fail a CMFAS mock | "Maybe this isn't for me" | "Which 3 topics cost me the marks?" |
 
-**The tell:** fixed-mindset responses usually contain the word "I'm" (an identity claim). Growth-mindset responses usually contain a specific, concrete next action.
+**The tell:** fixed-mindset responses contain **"I'm…"** — an identity claim disguised as feedback. Growth-mindset responses contain **a specific next action** — a problem to solve. The reframe to install over both: add the word **"yet"** to anything fixed. "I can't close" becomes "I can't close *yet*." Tiny edit. Totally different planning consequence.
 
 ## 2. Reject the "now" - embrace the "not yet"
 
@@ -64,9 +64,7 @@ The truth: in a marathon, your Week 3 mood is not data about Week 52.
 
 ## 4. The obstacle is the way
 
-Ryan Holiday's translation of the Stoic idea: *"The obstacle in the path becomes the path."*
-
-Every obstacle you face in the next 8 weeks - rejections, slow days, complex products, awkward family-and-friend conversations, late-night study - is simultaneously:
+The discomfort itself is the path, not a roadblock on it. Every obstacle you face in the next 8 weeks — rejections, slow days, complex products, awkward family-and-friend conversations, late-night study — is simultaneously:
 
 - The thing slowing you down, **and**
 - The thing building the skill.
@@ -92,9 +90,7 @@ flowchart LR
 
 ## 5. The ironic logic of doing what's hard
 
-There's an old observation about success worth memorising: **the only thing successful people have in common is that they form the habit of doing what unsuccessful people don't like to do.**
-
-Read that twice. It does not say successful people *enjoy* the hard things. It says they do them anyway - because the reason behind the action is stronger than the dislike of it.
+One observation about success worth memorising: **the common thread among people who succeed in this work is the habit of doing what most people don't want to do.** Not because they enjoy it — because the reason behind the action is stronger than the dislike of it.
 
 This applies brutally in this career:
 

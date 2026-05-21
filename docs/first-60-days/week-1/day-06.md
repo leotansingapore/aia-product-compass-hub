@@ -26,12 +26,12 @@ By the end of today you should be able to:
 
 ## 1. Why 1% a day beats heroics
 
-Thirty minutes of daily calling is worth more than one weekend seminar. Daily reading of one chapter is worth more than a binge-watched course. This isn't motivational. It's arithmetic.
+Thirty minutes of calling, every day, beats one Saturday-morning seminar. One chapter, every day, beats a binged course you forget by Friday. Not because daily is more inspiring — because of the arithmetic:
 
-- 1% better every day, for 1 year = 37x better.
-- 1% worse every day, for 1 year = basically zero.
+- 1% better every day for a year ≈ **37x better**.
+- 1% worse every day for a year ≈ **basically zero**.
 
-The compounding is invisible in the first 30 days. That's the dangerous part - the new FCs who quit in Month 1 quit just before the curve starts bending.
+The trap is that the curve is **invisible for the first 30 days** — and 30 days is exactly when most new FCs quit. They quit one or two weeks before the curve actually starts to bend. The discipline isn't "try harder." It's "stay in the chair long enough for the math to show up."
 
 **What compounding looks like in practice:**
 
@@ -73,7 +73,7 @@ Goals are binary (you hit it or you don't). Systems are durable (they keep produ
 
 ## 3. The habit loop - the 4 laws
 
-James Clear's framework gives you a mechanical way to install any habit or kill any bad one.
+A mechanical way to install any habit or kill any bad one. Four laws, in order:
 
 ```mermaid
 flowchart LR
@@ -103,7 +103,7 @@ Invert the same 4 laws.
 | **3. Response** | Make it difficult | App timer lockout after 15 min |
 | **4. Reward** | Make it unsatisfying | Keep a tally of time lost vs reading done |
 
-**The insight:** willpower is not a strategy. Environment design is.
+**The insight:** willpower runs out by Wednesday. Environment design doesn't — once it's set up, the cues do the work whether you feel like it or not.
 
 ## 4. Identity-based habits
 
@@ -162,7 +162,7 @@ Leo walks through Days 1 to 6 with the team in a recap call. The full recording 
  - C) Craving, Cue, Reward, Response
  - D) Reward, Cue, Craving, Response
 
- **Why:** James Clear's framework as presented in Day 6 runs in strict sequence: the cue triggers a craving, which motivates a response, which produces a reward that reinforces the cue. A skips the craving step, jumping straight to action. C and D both start in the wrong place - a habit loop must begin with a cue (the observable trigger), not a craving or reward.
+ **Why:** The 4-law habit loop in Day 6 runs in strict sequence: the cue triggers a craving, which motivates a response, which produces a reward that reinforces the cue. A skips the craving step, jumping straight to action. C and D both start in the wrong place — a habit loop must begin with a cue (the observable trigger), not a craving or reward.
 
 3. **What does the 10-70-20 rule say about who makes it in this career?**
  - A) 10% make MDRT, 70% make COT, 20% make TOT

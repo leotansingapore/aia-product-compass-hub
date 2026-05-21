@@ -144,9 +144,9 @@ Two things change against the client every year they wait:
 | 10 years later, still healthy | 40-80% more | Still likely standard | None |
 | After a diagnosis | Loaded or declined | Not guaranteed | Likely on the diagnosed condition |
 
-**The reframe to give the client:** "Buying insurance now isn't a cost - it's the act of locking in today's price and today's health. Wait, and you're betting that nothing in your body will change before you finally decide. The insurer takes that bet every day, and the house wins more often than people think."
+**The reframe to give the client:** "Insurance is the only product where the time you don't need it is the only time you can buy it. Buy it now while you're healthy and the premium is locked in. Wait, and you're betting that nothing in your body will change between today and the day you decide — and every birthday is around 5% more expensive even if nothing does change."
 
-This is also why the textbook objection - *"I'll save the premium and invest it instead"* - fails on its own terms. The premium gap from waiting often exceeds whatever investment return the savings would have earned, and no investment return brings back lost insurability.
+The textbook objection — *"I'll save the premium and invest it instead"* — fails on its own terms too. The premium gap from waiting usually exceeds whatever investment return the savings would have earned, and no investment return brings back lost insurability.
 
 ## 6. The frame to use with every prospect
 
@@ -157,7 +157,7 @@ flowchart LR
     L1["Layer 1<br/>Risk Management"] --> L2["Layer 2<br/>Wealth Accumulation"] --> L3["Layer 3<br/>Wealth Preservation"]
 ```
 
-A client who tries to jump to Layer 2 without Layer 1 is building a house on sand. Your job is to explain why - without shaming them and without selling.
+A client who jumps to Layer 2 without Layer 1 is investing on a foundation that hasn't been built. One uncovered event — a CI diagnosis, a serious accident — forces them to liquidate the investments at exactly the worst time. Your job is to explain the order without shaming them and without selling.
 
 
 ## Quick quiz

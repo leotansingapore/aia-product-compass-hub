@@ -81,13 +81,11 @@ A purpose-driven FC keeps showing up because the work answers a question bigger 
   </div>
 </div>
 
-Steve Jobs put the same idea this way: *"If you're working on something you really care about, you don't have to be pushed. The vision pushes you."* When the vision is clear, the dials make themselves and the late-night study feels like investment, not punishment. When the vision is foggy, every small task feels heavy.
+When the vision is clear, the dials make themselves and the late-night study feels like an investment, not a punishment. When the vision is foggy, every small task feels heavy — and you start negotiating with yourself before lunch.
 
-> Nietzsche compressed it into seven words: **"He who has a why can endure any how."** When the why is real, Tuesday's rejection and Wednesday's no-show lose their power to derail you.
+The compressed version: **a real why outlasts any rough week.** Tuesday's rejection and Wednesday's no-show lose their power to derail you once the work is connected to something bigger than this month's number.
 
-**The reframe:** You are not selling insurance. You are building a life around meaningful work that value-adds to the people around you - especially those who matter to you most.
-
-If that sentence still feels like marketing, you haven't yet decided it's true.
+**The reframe:** You are not selling insurance. You are building a life around work that compounds for the people closest to you — and if that sentence still reads as marketing, that's the work of Week 1 to actually decide it's true.
 
 ## 3. Defining your "why" - past the surface reasons
 
@@ -167,7 +165,7 @@ A prospect who hears this understands:
 - You have a direction.
 - You're investing in yourself before asking them to invest in you.
 
-**Everyone loves rooting for an underdog. Everyone loves discovering the next big thing before it blows up.** Pre-framing is how you give them that role.
+Most people quietly enjoy rooting for someone who's clearly serious early. Pre-framing is how you give them the chance to do that for you — before you've had time to prove anything.
 
 > **What this matures into:** the elevator pitch is the personal layer. The next layer is *audience-specific* - being clear about which two or three groups you serve, and the exact transformation each one buys when they work with you. That's the work of [Day 54 - Concept Selling](../week-9/day-54.md), and it's run as a structured exercise in [Assignment 8 - Audience & Differentiation Worksheet](../assignments/assignment-08.md). For now, lock in the personal pitch - the audience layer comes once you've had your first 5-10 conversations.
 

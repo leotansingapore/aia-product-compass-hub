@@ -200,7 +200,7 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 - Your peers are maybe 10-20% up on their starting salary.
 - A consistent FC is often 2-4x their starting year, with significant passive income on top.
 
-**The lesson:** evaluate this career on a 5-year horizon, not a 1-year horizon. If you're making a 1-year decision, you're probably going to make the wrong one.
+**The lesson:** evaluate this career on a 5-year horizon, not a 1-year one. Most FCs who quit in Year 1 didn't fail at the work — they failed at picking the right window to judge it by.
 
 <div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
   <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
