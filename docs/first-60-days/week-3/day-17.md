@@ -28,18 +28,16 @@ By the end of today you should be able to:
 
 ## 1. Mindset is the asset nobody puts on their balance sheet
 
-Day 9's framework worked. Two FCs with identical incomes ended up with $300K and $1.3M of real net worth - a 4x gap. The mechanics were the same for both. The difference was almost entirely between their ears.
+Day 9 was the mechanical model — assets, liabilities, cash flow, cleanly demonstrated. Two FCs in the same team, same starting income, same mechanics — one ends Year 5 with $300K of real net worth, the other with $1.3M. The mechanics were identical. The 4x gap sat between the ears.
 
-There's an asset class that doesn't appear on any balance sheet but explains more variance in outcomes than any other:
+Some asset classes don't show up on any balance sheet but explain more of the outcome than anything that does:
 
-- The decision to save before spending - repeated 200 times a year.
-- The decision to pick up the phone instead of the takeaway menu - repeated weekly.
-- The decision to stay 30 minutes past comfort - repeated daily.
-- The refusal to blame the market, the upline, the prospect, or the weather.
+- The decision to save before spending — made ~200 times a year.
+- The decision to pick up the phone instead of the takeaway menu — made every week.
+- The decision to stay 30 minutes past comfort on a call session — made daily.
+- The refusal to blame the market, the upline, the prospect, or the weather — made every time a meeting goes badly.
 
-That class of decisions is **mindset capital.** It compounds the same way money does. Most people never notice it because it doesn't show up in a number.
-
-This day teaches the four pieces of mindset capital that move FCs from average to top-decile faster than any product knowledge ever will.
+Call it **mindset capital.** It compounds the same way money does, except most people never notice it because it doesn't show up in a number. The four sections below are the four pieces — and they predict more of where you end up than any product knowledge.
 
 ## 2. The definite aim - a goal with edges
 

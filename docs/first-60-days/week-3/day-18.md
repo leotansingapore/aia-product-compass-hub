@@ -26,11 +26,11 @@ By the end of today you should be able to:
 
 ## 1. The rule
 
-From Grant Cardone's book of the same name, stripped to mechanics:
+Stripped to mechanics:
 
-> **Set targets 10 times greater than what you believe you can achieve, and take actions 10 times greater than what you believe are necessary to achieve your goals.**
+> **Set targets 10x bigger than what you believe you can achieve. Then take actions 10x bigger than what you believe are necessary.**
 
-This is not a motivational slogan. It's a planning discipline with specific rules.
+Not a motivational slogan — a planning discipline. Aim for 5 calls and you'll find a reason to make zero. Aim for 50 and you might land at 30 — and 30 still beats whatever 5 would have produced. The 10x number isn't a forecast. It's the **forcing function** that makes you change *how* you work, not just how hard. The better question becomes "what would I have to do differently to hit 10x this?" rather than "what's a realistic number?"
 
 <div style="margin:1.5rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
   <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));text-align:center;margin-bottom:1.5rem;letter-spacing:.05em;text-transform:uppercase;">The five principles, in sequence</div>

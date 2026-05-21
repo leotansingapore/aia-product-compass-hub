@@ -62,12 +62,12 @@ The clients who finish well do this rhythm for decades without breaking it. The 
 
 Here's the part most people miss: the entire conversion engine assumes you can keep working. The day Human Capital stops - accident, critical illness, premature death - the engine stops. Whatever Financial Capital is already in the box has to carry the family for the rest of their lives.
 
-This is why protection isn't an upsell or an add-on. It's the **foundation** that makes everything else possible. If Human Capital collapses without coverage, every other plan fails - the savings get spent, the investments get liquidated, the property gets sold.
+That's why protection isn't an upsell — it's the **floor**. The day Human Capital stops (accident, CI, premature death) the engine stops. Whatever is in Financial Capital today is now the entire balance sheet for the family for the rest of their lives. The savings get spent. The investments get liquidated. The property gets sold to pay bills. One uncovered week can undo ten years of conversion.
 
-Two analogies you'll lean on for the next 30 years:
+Two analogies that land instantly with clients:
 
-- **Ship vs lifeboat.** Your wealth is the ship. Your health is the lifeboat. You don't need both on calm days - the lifeboat exists for the day the ship can't carry you.
-- **Seatbelt.** Coverage is like a seatbelt - you don't wear it because you think you'll crash, you wear it because it can't be bought after. Insurance only exists *before* the event. After the event, it's not for sale, and if it is, it's at a much higher price with exclusions for whatever just happened.
+- **Ship and lifeboat.** Wealth is the ship. Health is the lifeboat. You don't need both on calm days — the lifeboat is there for the day the ship can't carry you.
+- **Seatbelt.** You don't wear it because you expect a crash. You wear it because you can't buy one *after* the crash. Insurance is the only product where the moment you need it, it's no longer for sale — or it's repriced beyond reach with exclusions for whatever just happened.
 
 ### The "health or wealth" question
 
@@ -100,9 +100,9 @@ The first five pillars defend the Human-Capital -> Financial-Capital conversion.
 
 **Sequence matters.** When you walk a prospect through this in a real meeting, start at **Hospital**, not Death. Hospital is the cheapest, the most claimable, and the foundation every other event passes through. Once they nod at Hospital, Accident is the easy next yes, then CI, then Life. Leading with Death/TPD frontloads the heaviest premium and the most uncomfortable conversation - both kill momentum.
 
-## 5. The 5-minute introduction
+## 5. The discovery-led introduction
 
-Use this in a first meeting once rapport is established. Goal: install the *concept*, not close a sale. Walk the prospect through the Total Wealth slide as you go.
+Use this in a first meeting once rapport is established. Goal: install the *concept*, not close a sale. You're walking the prospect through the Total Wealth slide and letting *their own answers* surface the gap — not pitching.
 
 ### Step 1 - Show the two boxes (30 sec)
 Open the Total Wealth slide showing the two boxes side by side: **Financial Capital** and **Human Capital**.
