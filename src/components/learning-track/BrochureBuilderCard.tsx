@@ -39,6 +39,10 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
   const [stagedPaths, setStagedPaths] = useState<string[]>([]);
   const [stagedPreviews, setStagedPreviews] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  // When true, force the upload UI even if a previous row exists.
+  // Cleared automatically once a *new* row appears (different id).
+  const [newAttemptMode, setNewAttemptMode] = useState(false);
+  const newAttemptBaselineRowId = useRef<string | null>(null);
   const [contact, setContact] = useState<ContactInfo>({ name: "", phone: "", email: "" });
   const contactHydrated = useRef(false);
 
@@ -155,11 +159,31 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
       });
       setStagedPaths([]);
       setStagedPreviews([]);
+      // New row will become the "latest" — leaving newAttemptMode wins automatically
+      // once the polling query refetches. Belt-and-braces clear here too.
+      setNewAttemptMode(false);
+      newAttemptBaselineRowId.current = null;
       toast.success("Headshot generation queued. This usually takes 2–5 minutes.");
     } catch (e: any) {
       toast.error(e?.message || "Failed to queue generation");
     }
   };
+
+  const handleStartOver = () => {
+    newAttemptBaselineRowId.current = brochure.row?.id ?? null;
+    setStagedPaths([]);
+    setStagedPreviews([]);
+    setNewAttemptMode(true);
+  };
+
+  // Auto-exit newAttemptMode once a new row (different id from baseline) appears.
+  useEffect(() => {
+    if (!newAttemptMode) return;
+    if (brochure.row && brochure.row.id !== newAttemptBaselineRowId.current) {
+      setNewAttemptMode(false);
+      newAttemptBaselineRowId.current = null;
+    }
+  }, [newAttemptMode, brochure.row]);
 
   const handleSelectVariant = async (path: string) => {
     if (!brochure.row) return;
@@ -200,6 +224,7 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
 
   // --- Render states ---
   const stage = (() => {
+    if (newAttemptMode) return "upload";
     if (!brochure.row) return "upload";
     if (brochure.row.status === "queued" || brochure.row.status === "generating") return "polling";
     if (brochure.row.status === "failed") return "failed";
@@ -313,8 +338,8 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
                 <p className="text-xs text-muted-foreground mt-1">{brochure.row?.headshot_error || "Unknown error"}</p>
               </div>
             </div>
-            <Button size="sm" variant="outline" onClick={() => window.location.reload()} className="gap-2">
-              <RefreshCw className="h-3 w-3" /> Try again
+            <Button size="sm" variant="outline" onClick={handleStartOver} className="gap-2">
+              <RefreshCw className="h-3 w-3" /> Try again with different photos
             </Button>
           </div>
         )}
@@ -403,7 +428,7 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
               <summary className="cursor-pointer text-muted-foreground hover:underline">Not happy with these? Start over.</summary>
               <div className="mt-2 pt-2 border-t">
                 <p className="text-muted-foreground mb-2">Uploading a new set will create a new brochure job — the existing one stays in your history.</p>
-                <Button size="sm" variant="outline" onClick={() => window.location.reload()} className="gap-2">
+                <Button size="sm" variant="outline" onClick={handleStartOver} className="gap-2">
                   <RefreshCw className="h-3 w-3" /> Upload different photos
                 </Button>
               </div>
