@@ -3,7 +3,7 @@ title: "Competitor Product Inventory - Singapore Retail Life & Health"
 audience: AIA FCs (Pre-RNF and beyond)
 status: living-reference
 last_verified: 2026-01-26
-scope: AIA, Great Eastern, Prudential, Singlife (with Aviva legacy), Income Insurance (formerly NTUC Income), Manulife
+scope: AIA, Great Eastern, Prudential, Singlife (with Aviva legacy), Income Insurance (formerly NTUC Income), Manulife, HSBC Life (with AXA legacy), Raffles Health Insurance
 excluded: corporate/group insurance, general insurance (motor, travel, home, fire), Direct Purchase Insurance (DPI) for non-AIA products is listed but flagged, MediShield Life and CareShield Life national schemes
 ---
 
@@ -28,6 +28,8 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 | `Aviva My...` | Singlife (legacy Aviva, closed to new business) | Aviva MyShield, Aviva MyLifeIncome |
 | `Star ...` / `Gro ...` / `Complete ...` / `IncomeShield` / `VivoLife` | Income Insurance (formerly NTUC Income) | Star Secure Pro, Gro Retire Flex Pro |
 | `Manu...` / `Ready...` / `LifeReady` / `Signature ...` | Manulife Singapore | ManuProtect Term, ReadyBuilder, LifeReady Plus |
+| `HSBC Life ...` / `AXA ...` (legacy) | HSBC Life Singapore (merged AXA in 2023) | HSBC Life Shield, HSBC Life Wealth Voyage, HSBC Life Life Treasure |
+| `Raffles ...` | Raffles Health Insurance | Raffles Shield, Raffles Critical Illness Plan |
 
 **Integrated Shield Plan carriers in Singapore (7 total):** AIA, Great Eastern, HSBC Life, Income Insurance, Prudential, Singlife, Raffles Health Insurance. *Manulife does NOT sell an IP.* If a client says "I have Manulife Shield", they are misremembering — clarify what they actually hold.
 
@@ -450,6 +452,117 @@ ManuProtect Term (I) · ReadyBuilder (I) · Manulife Ready CompleteCare · Manul
 
 ---
 
+## HSBC Life
+
+**Brand note:** HSBC Life (Singapore) Pte. Ltd. is the merged entity formed when HSBC Insurance absorbed AXA Singapore (legal integration completed 1 Feb 2023). 7th IP carrier on MediShield Life. Distribution skews toward HSBC's retail bank channel and Premier / Jade / Private Banking segments. Legacy AXA portfolios (AXA Shield, AXA Pulsar, AXA Inspire, Smart Health Optimum) are in run-off — serviced for existing policyholders but closed to new business.
+
+### LIFE
+**Term**
+- **HSBC Life Term Protector / Term Protector Prime** — standard term life; death + TI; flexible policy terms.
+- **HSBC Life Term Protect Advantage** — term plan with surrender value (rare for term); convertible to whole life / endowment without underwriting.
+- **DIRECT - HSBC Life Term Lite** — DPI term; no commission; sold online.
+
+**Whole life**
+- **HSBC Life Life Treasure III** — par whole life with multiplier coverage to age 65/75 and optional CI riders.
+- **HSBC Life ValueLife** — whole life cover to age 99 with flexible sum assured.
+- **DIRECT - HSBC Life Protector II** — DPI whole life.
+
+**Standalone CI / cancer**
+- **HSBC Life Super CritiCare** — multi-pay CI; multiple claims across early, intermediate, advanced stages.
+- **HSBC Life CritiCare for Her** — female-specific CI; gynae cancers, pregnancy complications.
+- **HSBC Life CritiCare for Him** — male-specific CI; male cancers, prostate, heart.
+- **HSBC Life Cancer ReCover** — standalone cancer plan covering recurrence and new cancers post-survival.
+
+**Maternity**
+- **HSBC Life HappyMummy** — prenatal plan covering expectant mother + newborn congenital conditions.
+- **HSBC Life HappyFamily** — bundled prenatal cover paired with a basic / investment plan.
+
+**HNW / legacy** (typically USD, single or limited-pay, distributed via HSBC Private Bank / Jade)
+- **HSBC Life Jade Legacy Universal Life** — universal life for legacy planning; HNW-only, USD.
+- **HSBC Life Diamond Prestige IUL II** — indexed universal life linked to equity index crediting; HNW-only, USD.
+- **HSBC Life Emerald Legacy Life III** — par whole life designed for legacy; HNW-tier.
+- **HSBC Life Private Wealth VUL** — Variable Universal Life (separate-account investment + life cover); HNW / Private Bank only, USD.
+
+### ENDOWMENT
+- **HSBC Life Wealth Builder** — flexible long-term par savings plan with policy continuity (life-of-policy compounding).
+- **HSBC Life Savings Protector II** — endowment with guaranteed + non-guaranteed payout at maturity.
+- **HSBC Life Indexed Flexi Income** — retirement / income endowment paying indexed flexible cashflows.
+- **HSBC Life Sapphire Prestige Income II** — HNW par income / legacy endowment; typically USD; private bank channel.
+
+### MEDICAL
+**Integrated Shield Plan — HSBC Life Shield**
+- **Plan A** — private hospital, standard room and below; annual limit S$2.5M.
+- **Plan B** — restructured hospital Ward A and below; annual limit S$1M.
+- **Standard Plan** — MOH-standard IP; Ward B1 and below; annual limit S$200k.
+
+**Rider**
+- **HSBC Life Enhanced Care II** — rider for HSBC Life Shield; up to 95% co-pay absorption; outpatient cancer drugs; dementia outpatient; includes SavvyClaim Reward (10-20% premium discount tiers).
+
+**Other**
+- **HSBC Life SmartCare Executive** — customisable IP-style health plan with inpatient + outpatient cover up to S$20k/yr; six sub-plans; co-pay/deductible options.
+- **HSBC Life SmartCare Optimum Enhanced** — higher-tier comprehensive medical plan; stable portfolio pricing (no individual claim loadings); optional dental and travel inconvenience riders.
+- **HSBC Life Prime Care** — hospital cash / lump-sum medical top-up to complement existing IP; includes no-claim discount.
+- **HSBC Life Band Aid** — Personal Accident plan.
+- **HSBC Life International Exclusive** — worldwide medical cover with direct billing; expat / globally mobile clients.
+
+HSBC Life is NOT an approved CareShield Life or ElderShield supplement provider. No HSBC dengue or standalone disability-income retail plan.
+
+### INVESTMENT-LINKED
+**Regular-premium**
+- **HSBC Life Wealth Accelerate** — regular-premium ILP; three bonus types (Start-up, Power-up, Loyalty); MIPs of 10-30 yrs.
+- **HSBC Life Wealth Voyage** — regular-premium ILP; MIP options of 15, 20, 25 yrs; long-term wealth focus.
+- **HSBC Life Wealth Harvest** — regular-premium ILP; 100% premium allocation to units from year 1; plus bonuses.
+- **HSBC Life Wealth Abundance** — regular-premium ILP; whole-of-life cover; access to ~60 funds.
+- **HSBC Life Wealth Focus** — regular-premium ILP with dividend-paying sub-funds for income payout.
+- **HSBC Life Goal Builder II** — regular-premium ILP positioned for goal-based saving (education, retirement).
+
+**Single-premium**
+- **HSBC Life Wealth Invest** — single-premium ILP; guaranteed issuance (no medical); cash / CPF / SRS funding; 101% of premiums death benefit floor.
+
+### Closed / superseded (still in-force on existing clients)
+AXA Shield · AXA Pulsar ILP · AXA Inspire · Smart Health Optimum · AXA motor and commercial general lines (formally discontinued post-merger)
+
+---
+
+## Raffles Health Insurance
+
+**Brand note:** Raffles Health Insurance (RHI) is Singapore's 7th and newest IP carrier (Raffles Shield launched 2018 after Raffles Medical Group took over Aviva's hospital franchise). RHI is a medical-only specialist — it does not underwrite life, endowment, or ILP business. The structural moat is the Raffles Medical Group ecosystem: Raffles Shield holders get cashless / preferred-provider access at Raffles Hospital and Raffles Medical clinics islandwide.
+
+### LIFE
+No current retail life products. RHI does not underwrite term life, whole life, standalone CI as a life-insurance product, or TPD. The Raffles Critical Illness Plan exists but is a short-term renewable health rider, classified under MEDICAL below. A legacy product (Raffles Preferred Life Protector, 2020 brochure) appears discontinued.
+
+### ENDOWMENT
+No products. RHI does not sell savings, education, retirement endowment, or par-savings plans.
+
+### MEDICAL
+**Integrated Shield Plan — Raffles Shield**
+- **Raffles Shield Private** — single-bed private hospital; policy year limit S$1.5M (panel) / S$600k (non-panel); pre-hosp 180 days / post-hosp 365 days as charged.
+- **Raffles Shield A** — A-class wards in public hospitals; 100% reimbursement; policy year limit S$600k.
+- **Raffles Shield B** — up to B1 ward in public hospitals; 100% reimbursement; policy year limit S$300k.
+- **Raffles Shield Standard** — MOH Standard IP; B1 public ward 100%; 50% at Raffles private hospitals; S$200k limit; no riders allowed.
+
+**Riders**
+- **Raffles Premier Rider** — top-tier rider for B/A/Private; adds family accommodation, TCM, home care, accident coverage.
+- **Raffles Choice Rider** — new MOH-compliant rider launching 1 Apr 2026 (replaces Raffles Key Rider); 5% co-pay capped at S$6k/yr; excludes IP deductible.
+- **Raffles Cancer Guard Rider** — standalone cancer top-up; covers Non-CDL cancer drug treatment up to S$250k/yr, plus TCM and psychological counselling.
+- **Raffles Hospital Option** — add-on for Shield A holders giving cashless access to Raffles Hospital (the RMG preferred-provider hook for the A tier).
+- **High Deductible Option** — S$10k deductible variant on B / A / Private to lower premium.
+
+**Standalone CI (classified medical, not life)**
+- **Raffles Critical Illness Plan** — yearly or 5-year renewable term covering 37 CIs with 100% lump sum; optional Early CI Rider (9 early/intermediate conditions, 50-100% payout); simplified 3-question underwriting.
+
+**Other**
+- **Raffles Elite Care** — regional (ASEAN + China ex-HK, India, South Korea) medical plan; up to S$1M annual limit; no deductible/co-pay; covers GP, specialist, teleconsult, TCM. Three tiers.
+- **Lifeline (Bupa Global, distributed by RHI)** — worldwide international medical; three tiers (Essential, Classic, Gold); deductible and international assistance options; underwritten via Bupa Global partnership.
+
+### INVESTMENT-LINKED
+No products. RHI does not offer ILPs.
+
+### Closed / superseded
+Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred Life Protector (appears discontinued)
+
+---
+
 ## Cross-insurer quick-compare cheatsheet
 
 ### "What's their flagship par whole life?"
@@ -498,7 +611,7 @@ ManuProtect Term (I) · ReadyBuilder (I) · Manulife Ready CompleteCare · Manul
 
 1. Ask the client what year they bought it. Pre-2015 plans are usually closed-to-new-business — recognise the brand prefix, look up the modern successor.
 2. Ask for the policy schedule or annual statement PDF. The product name is on page 1.
-3. If the brand prefix doesn't match any of the six above, it's likely **Tokio Marine Life**, **HSBC Life**, **China Life Singapore**, or a foreign-domiciled offshore policy. Those aren't in scope of this doc — flag to your senior FC.
+3. If the brand prefix doesn't match any of the eight above, it's likely **Tokio Marine Life**, **China Life Singapore**, or a foreign-domiciled offshore policy. Those aren't in scope of this doc — flag to your senior FC.
 4. The Total Wealth Concept Policy Summary tool at present.financeillustrator.com lets you input any policy by hand even if the product name isn't in a dropdown.
 
 ---
