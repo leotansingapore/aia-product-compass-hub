@@ -45,6 +45,10 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
   const newAttemptBaselineRowId = useRef<string | null>(null);
   const [contact, setContact] = useState<ContactInfo>({ name: "", phone: "", email: "" });
   const contactHydrated = useRef(false);
+  // AI-polished overrides for the headline copy on the brochure. Empty until
+  // the learner clicks "Polish copy with AI"; rendered in BrochurePage when set.
+  const [polishedCopy, setPolishedCopy] = useState<{ tagline?: string; mission?: string }>({});
+  const [polishingCopy, setPolishingCopy] = useState(false);
 
   // Fetch FC's profile for default display name
   const profileQuery = useQuery({
@@ -192,6 +196,68 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
       toast.success("Headshot selected");
     } catch (e: any) {
       toast.error(e?.message || "Failed to select variant");
+    }
+  };
+
+  const polishBrochureCopy = async () => {
+    setPolishingCopy(true);
+    try {
+      const taglineDraft =
+        formData.endResultStatement ||
+        `I help ${formData.audience1Occupation || "[your audience]"} achieve their financial goals.`;
+      const missionDraft = formData.mission || formData.purpose || "";
+
+      const calls: Array<Promise<void>> = [];
+      const next: { tagline?: string; mission?: string } = {};
+
+      const polish = async (
+        key: "tagline" | "mission",
+        name: string,
+        purpose: string,
+        draft: string,
+      ) => {
+        if (!draft.trim()) return;
+        const { data, error } = await supabase.functions.invoke("generate-collateral", {
+          body: {
+            brandBrief,
+            target: { kind: "brochure-blurb", id: key, name, channelOrPurpose: purpose, draft },
+          },
+        });
+        if (error) throw error;
+        const polished = (data as { polished?: string } | null)?.polished?.trim();
+        if (polished) next[key] = polished;
+      };
+
+      calls.push(
+        polish(
+          "tagline",
+          "Brochure tagline (hero one-liner)",
+          "Headline copy printed under the FC name on the brochure cover — one sentence, plain English, no marketing fluff.",
+          taglineDraft,
+        ),
+      );
+      calls.push(
+        polish(
+          "mission",
+          "Brochure mission paragraph",
+          "Mission paragraph on the brochure body — two to three sentences, professional warm, anchored on the audience the FC is here to serve.",
+          missionDraft,
+        ),
+      );
+
+      await Promise.all(calls);
+
+      if (!next.tagline && !next.mission) {
+        toast.error("AI polish returned nothing — try again.");
+        return;
+      }
+      setPolishedCopy((prev) => ({ ...prev, ...next }));
+      toast.success("AI-polished brochure copy ready.");
+    } catch (err) {
+      console.warn("polishBrochureCopy failed", err);
+      toast.error("AI polish failed — the original copy is still in the brochure.");
+    } finally {
+      setPolishingCopy(false);
     }
   };
 
@@ -402,12 +468,52 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
                   <p className="text-xs text-muted-foreground italic">Saved locally — only edit once unless you change them.</p>
                 </div>
 
-                <div className="border rounded-lg p-4 bg-muted/30">
-                  <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-3">Brochure preview</p>
+                <div className="border rounded-lg p-4 bg-muted/30 space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Brochure preview</p>
+                    <div className="flex items-center gap-2">
+                      {(polishedCopy.tagline || polishedCopy.mission) && (
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">AI-polished</span>
+                      )}
+                      <Button
+                        size="sm"
+                        variant={polishedCopy.tagline || polishedCopy.mission ? "outline" : "default"}
+                        onClick={polishBrochureCopy}
+                        disabled={polishingCopy}
+                        className="gap-1 h-7 text-xs"
+                      >
+                        {polishingCopy ? (
+                          <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
+                        ) : polishedCopy.tagline || polishedCopy.mission ? (
+                          <><Sparkles className="h-3 w-3" /> Re-polish copy</>
+                        ) : (
+                          <><Sparkles className="h-3 w-3" /> AI polish copy</>
+                        )}
+                      </Button>
+                      {(polishedCopy.tagline || polishedCopy.mission) && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => setPolishedCopy({})}
+                          className="h-7 text-xs"
+                        >
+                          Revert to template
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                   <div className="bg-white rounded shadow-sm overflow-hidden mx-auto" style={{ maxWidth: "100%" }}>
                     {/* Off-screen scale wrapper so the preview fits while the source renders at full A4 dimensions */}
                     <div style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "auto" }}>
-                      <BrochurePage ref={brochureRef} brandBrief={brandBrief} formData={formData} framework={framework} headshotUrl={selectedVariant.url} contact={contact} />
+                      <BrochurePage
+                        ref={brochureRef}
+                        brandBrief={brandBrief}
+                        formData={formData}
+                        framework={framework}
+                        headshotUrl={selectedVariant.url}
+                        contact={contact}
+                        overrides={polishedCopy}
+                      />
                     </div>
                   </div>
                 </div>
@@ -451,12 +557,16 @@ type BrochurePageProps = {
   framework: { name: string; description: string; steps: string[] } | null;
   headshotUrl: string;
   contact: ContactInfo;
+  overrides?: { tagline?: string; mission?: string };
 };
 
-const BrochurePage = forwardRef<HTMLDivElement, BrochurePageProps>(({ brandBrief, formData, framework, headshotUrl, contact }, ref) => {
+const BrochurePage = forwardRef<HTMLDivElement, BrochurePageProps>(({ brandBrief, formData, framework, headshotUrl, contact, overrides }, ref) => {
   const fcName = contact.name || "[Your Name]";
-  const tagline = formData.endResultStatement || `I help ${formData.audience1Occupation || "[your audience]"} achieve their financial goals.`;
-  const mission = formData.mission || formData.purpose || "";
+  const tagline =
+    overrides?.tagline ||
+    formData.endResultStatement ||
+    `I help ${formData.audience1Occupation || "[your audience]"} achieve their financial goals.`;
+  const mission = overrides?.mission || formData.mission || formData.purpose || "";
   const audience = formData.audience1Occupation || "";
   const audienceDesc = formData.audience1DesiredState || "";
   const certs = formData.certifications || "Licensed Financial Consultant";
