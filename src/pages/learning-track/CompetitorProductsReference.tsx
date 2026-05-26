@@ -49,6 +49,20 @@ const CATEGORY_LABELS: Record<CategoryId, string> = {
   closed: "Closed / superseded",
 };
 
+// Brand-prefix lookup pinned to the top of the page — the fastest tool in the
+// doc, so always-visible (instead of buried in the collapsed preface).
+const BRAND_PREFIX_LOOKUP: Array<{ prefix: string; insurer: string; example: string }> = [
+  { prefix: "AIA ...", insurer: "AIA Singapore", example: "AIA Pro Achiever 3.0, HealthShield Gold Max" },
+  { prefix: "GREAT ... / Prestige ...", insurer: "Great Eastern", example: "GREAT Life Multiplier, Prestige Life Rewards" },
+  { prefix: "PRU...", insurer: "Prudential", example: "PRUShield, PRUActive Life, PRUVantage Wealth" },
+  { prefix: "Singlife ...", insurer: "Singlife", example: "Singlife Shield, Whole Life Choice" },
+  { prefix: "Aviva My...", insurer: "Singlife (legacy Aviva, closed)", example: "Aviva MyShield, Aviva MyLifeIncome" },
+  { prefix: "Star ... / Gro ... / Complete ... / IncomeShield / VivoLife", insurer: "Income Insurance", example: "Star Secure Pro, Gro Retire Flex Pro" },
+  { prefix: "Manu... / Ready... / LifeReady / Signature ...", insurer: "Manulife", example: "ManuProtect Term, ReadyBuilder, LifeReady Plus" },
+  { prefix: "HSBC Life ... / AXA ... (legacy)", insurer: "HSBC Life (merged AXA 2023)", example: "HSBC Life Shield, Wealth Voyage, Life Treasure" },
+  { prefix: "Raffles ...", insurer: "Raffles Health Insurance", example: "Raffles Shield, Raffles Critical Illness Plan" },
+];
+
 const CATEGORY_COLOURS: Record<CategoryId, string> = {
   life: "bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/30",
   endowment: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30",
@@ -283,15 +297,27 @@ interface FlashcardsViewProps {
 }
 
 function FlashcardsView({ insurers }: FlashcardsViewProps) {
-  const deck = useMemo(() => buildFlashcardDeck(insurers), [insurers]);
+  const fullDeck = useMemo(() => buildFlashcardDeck(insurers), [insurers]);
+  const [mode, setMode] = useState<QuizMode>("category");
+  const [categoryFilter, setCategoryFilter] = useState<Set<CategoryId>>(new Set());
+  const [insurerFilter, setInsurerFilter] = useState<Set<string>>(new Set());
+
+  // Filtered deck — empty filter sets mean "all".
+  const deck = useMemo(() => {
+    return fullDeck.filter(
+      (entry) =>
+        (categoryFilter.size === 0 || categoryFilter.has(entry.category)) &&
+        (insurerFilter.size === 0 || insurerFilter.has(entry.insurer.id)),
+    );
+  }, [fullDeck, categoryFilter, insurerFilter]);
+
   const [order, setOrder] = useState<number[]>(() => shuffle(deck.map((_, i) => i)));
   const [position, setPosition] = useState(0);
-  const [mode, setMode] = useState<QuizMode>("category");
   const [revealed, setRevealed] = useState(false);
   const [picked, setPicked] = useState<string | null>(null);
   const [stats, setStats] = useState({ correct: 0, total: 0 });
 
-  // Reset position + stats when mode changes or deck size changes.
+  // Reset position + stats whenever the deck size, mode, or filters change.
   useEffect(() => {
     setOrder(shuffle(deck.map((_, i) => i)));
     setPosition(0);
@@ -299,6 +325,22 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
     setPicked(null);
     setStats({ correct: 0, total: 0 });
   }, [mode, deck.length]);
+
+  const toggleSet = <T,>(setter: React.Dispatch<React.SetStateAction<Set<T>>>, value: T) => {
+    setter((prev) => {
+      const next = new Set(prev);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
+      return next;
+    });
+  };
+
+  const clearFilters = () => {
+    setCategoryFilter(new Set());
+    setInsurerFilter(new Set());
+  };
+
+  const anyFilter = categoryFilter.size > 0 || insurerFilter.size > 0;
 
   const card = deck[order[position]];
 
@@ -334,10 +376,73 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
     setStats({ correct: 0, total: 0 });
   }, [deck]);
 
+  const filterChips = (
+    <div className="rounded-lg border bg-card p-3 space-y-2">
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Drill scope</p>
+        {anyFilter ? (
+          <button onClick={clearFilters} className="text-xs text-muted-foreground hover:text-foreground">
+            Reset to all ({fullDeck.length})
+          </button>
+        ) : (
+          <p className="text-xs text-muted-foreground">All {fullDeck.length} active products</p>
+        )}
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        <span className="text-xs text-muted-foreground self-center mr-1">Category:</span>
+        {(["life", "endowment", "medical", "investment-linked"] as CategoryId[]).map((cid) => {
+          const active = categoryFilter.has(cid);
+          return (
+            <button
+              key={cid}
+              onClick={() => toggleSet(setCategoryFilter, cid)}
+              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                active ? CATEGORY_COLOURS[cid] + " font-medium" : "border-border hover:bg-muted text-muted-foreground"
+              }`}
+            >
+              {CATEGORY_LABELS[cid]}
+            </button>
+          );
+        })}
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        <span className="text-xs text-muted-foreground self-center mr-1">Insurer:</span>
+        {insurers.map((ins) => {
+          const active = insurerFilter.has(ins.id);
+          return (
+            <button
+              key={ins.id}
+              onClick={() => toggleSet(setInsurerFilter, ins.id)}
+              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                active
+                  ? (INSURER_COLOURS[ins.id] ?? "bg-primary/10 text-primary border-primary/30") + " font-medium"
+                  : "border-border hover:bg-muted text-muted-foreground"
+              }`}
+            >
+              {ins.name}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+
   if (!card || deck.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
-        No products available to quiz on.
+      <div className="space-y-4">
+        {filterChips}
+        <div className="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
+          {anyFilter
+            ? "No products match the current drill filters."
+            : "No products available to quiz on."}
+          {anyFilter && (
+            <div className="mt-2">
+              <button onClick={clearFilters} className="text-xs text-primary hover:underline">
+                Clear filters
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -350,6 +455,8 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
 
   return (
     <div className="space-y-4">
+      {filterChips}
+
       {/* Mode + stats bar */}
       <div className="rounded-lg border bg-card p-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-sm">
@@ -666,10 +773,45 @@ export default function CompetitorProductsReference() {
 
       {view === "browse" && (
       <>
-      {/* Preface (intro, brand-prefix lookup, IP carrier list, etc.) */}
+      {/* Always-visible brand-prefix lookup — the fastest tool in the doc. */}
+      <div className="rounded-lg border bg-card overflow-hidden">
+        <div className="px-4 py-2.5 border-b bg-muted/40 flex items-center justify-between gap-2">
+          <p className="text-xs font-semibold uppercase tracking-wide">Brand-prefix lookup</p>
+          <p className="text-[11px] text-muted-foreground italic hidden sm:block">Hearing a prefix? Find the insurer in one glance.</p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="text-xs text-muted-foreground bg-muted/20">
+              <tr>
+                <th className="text-left font-medium px-3 py-2">Prefix</th>
+                <th className="text-left font-medium px-3 py-2">Insurer</th>
+                <th className="text-left font-medium px-3 py-2 hidden md:table-cell">Example products</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {BRAND_PREFIX_LOOKUP.map((row) => {
+                const colour = INSURER_COLOURS[slugify(row.insurer.replace(/\s*\(.*\)$/, ""))] ?? "bg-muted text-foreground border-muted-foreground/30";
+                return (
+                  <tr key={row.prefix} className="hover:bg-muted/30">
+                    <td className="px-3 py-2 font-mono text-xs whitespace-nowrap">{row.prefix}</td>
+                    <td className="px-3 py-2">
+                      <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${colour}`}>
+                        {row.insurer}
+                      </span>
+                    </td>
+                    <td className="px-3 py-2 text-xs text-muted-foreground hidden md:table-cell">{row.example}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Long-form preface (intro, IP/CareShield carrier lists, DPI note) */}
       <details className="rounded-lg border bg-muted/30">
         <summary className="cursor-pointer list-none p-4 flex items-center justify-between gap-2 hover:bg-muted/50 transition-colors">
-          <span className="font-semibold text-sm">How to use this document · brand-prefix lookup · IP and CareShield carrier lists</span>
+          <span className="font-semibold text-sm">How to use this document · IP and CareShield carrier lists · DPI note</span>
           <ChevronDown className="h-4 w-4 transition-transform [details[open]_&]:rotate-180" />
         </summary>
         <div className="px-4 pb-4 prose prose-sm max-w-none dark:prose-invert prose-headings:mt-4 prose-table:text-xs">
