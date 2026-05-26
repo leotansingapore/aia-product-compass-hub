@@ -1881,7 +1881,7 @@ export default function FinancialAdvisorDifferentiation() {
                                     })
                                   }
                                   disabled={isThisPolishing}
-                                  className="gap-1 h-7 text-xs"
+                                  className="gap-1 min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3"
                                 >
                                   {isThisPolishing ? (
                                     <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
@@ -1896,12 +1896,12 @@ export default function FinancialAdvisorDifferentiation() {
                                     size="sm"
                                     variant="ghost"
                                     onClick={() => setAiPolish((prev) => { const n = { ...prev }; delete n[polishKey]; return n; })}
-                                    className="gap-1 h-7 text-xs"
+                                    className="gap-1 min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3"
                                   >
                                     Revert to template
                                   </Button>
                                 )}
-                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(displayBody)} className="gap-1 h-7 text-xs">
+                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(displayBody)} className="gap-1 min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3">
                                   <Copy className="h-3 w-3" /> Copy
                                 </Button>
                                 <Button size="sm" variant="outline" onClick={() => {
@@ -1911,7 +1911,7 @@ export default function FinancialAdvisorDifferentiation() {
                                   el.href = url; el.download = `${a.id}.txt`; el.click();
                                   URL.revokeObjectURL(url);
                                   toast.success(`Downloaded ${a.id}.txt`);
-                                }} className="gap-1 h-7 text-xs">
+                                }} className="gap-1 min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3">
                                   <Download className="h-3 w-3" /> Download
                                 </Button>
                               </div>
@@ -2003,7 +2003,7 @@ export default function FinancialAdvisorDifferentiation() {
                                       })
                                     }
                                     disabled={isThisPolishing}
-                                    className="gap-1 h-8 text-xs"
+                                    className="gap-1 min-h-[36px] sm:h-8 sm:min-h-0 text-xs px-3"
                                   >
                                     {isThisPolishing ? (
                                       <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
@@ -2018,7 +2018,7 @@ export default function FinancialAdvisorDifferentiation() {
                                       size="sm"
                                       variant="ghost"
                                       onClick={() => setAiPolish((prev) => { const n = { ...prev }; delete n[polishKey]; return n; })}
-                                      className="gap-1 h-8 text-xs"
+                                      className="gap-1 min-h-[36px] sm:h-8 sm:min-h-0 text-xs px-3"
                                     >
                                       Revert to template
                                     </Button>

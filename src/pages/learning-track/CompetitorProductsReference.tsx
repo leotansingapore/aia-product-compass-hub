@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, Download, ExternalLink, FileText, Globe, Loader2, Printer, RotateCcw, Search, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, Download, ExternalLink, FileText, Filter, Globe, Loader2, Printer, RotateCcw, Search, X } from "lucide-react";
 import { getProductLinks, type ProductLinks } from "@/data/competitorProductLinks";
 
 // Load competitor-products markdown via Vite glob ?raw (same pattern as assignments.ts).
@@ -506,7 +506,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
               ? "What category is this policy?"
               : "Which insurer sells this policy?"}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold leading-tight">
+          <h2 className="text-xl sm:text-3xl font-semibold leading-tight break-words">
             {card.product.name}
           </h2>
           {mode === "category" && (
@@ -583,19 +583,19 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
         )}
 
         {/* Reveal / Next */}
-        <div className="flex items-center justify-between gap-2 pt-2">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-2">
           {!revealed ? (
             <button
               onClick={() => {
                 setRevealed(true);
                 setStats((s) => ({ ...s, total: s.total + 1 }));
               }}
-              className="text-xs text-muted-foreground hover:text-foreground"
+              className="text-xs text-muted-foreground hover:text-foreground py-1 text-left"
             >
               Reveal answer (skip without scoring)
             </button>
           ) : (
-            <div className="text-xs">
+            <div className="text-xs break-words">
               {picked && (picked === (mode === "category" ? card.category : card.insurer.id)) ? (
                 <span className="text-green-700 dark:text-green-300 font-medium">Correct.</span>
               ) : picked ? (
@@ -611,7 +611,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
           )}
           <button
             onClick={next}
-            className="ml-auto inline-flex items-center gap-1 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            className="inline-flex items-center justify-center gap-1 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 min-h-[44px] w-full sm:w-auto"
           >
             Next card <ChevronRight className="h-4 w-4" />
           </button>
@@ -641,6 +641,10 @@ export default function CompetitorProductsReference() {
   const [collapsedInsurers, setCollapsedInsurers] = useState<Set<string>>(new Set());
   // Per-card expanded state, keyed by `${insurerId}::${productName}`.
   const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+  // On phones the category + insurer chip rows take ~150px of vertical space
+  // before the user sees any product. Behind a Filters toggle by default on
+  // mobile; always visible on ≥sm via CSS.
+  const [filtersOpenMobile, setFiltersOpenMobile] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -779,7 +783,7 @@ export default function CompetitorProductsReference() {
   };
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto px-1 sm:px-0" data-testid="competitor-products-reference">
+    <div className="space-y-4 sm:space-y-6 max-w-6xl mx-auto px-3 sm:px-0" data-testid="competitor-products-reference">
       <style>{`
         @media print {
           body * { visibility: hidden; }
@@ -801,12 +805,12 @@ export default function CompetitorProductsReference() {
         </Link>
       </div>
 
-      <header className="space-y-3">
+      <header className="space-y-2 sm:space-y-3">
         <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
           <BookOpen className="h-3 w-3" /> Reference
         </div>
-        <h1 className="text-2xl font-semibold">Singapore Competitor Product Inventory</h1>
-        <p className="text-sm text-muted-foreground max-w-3xl">
+        <h1 className="text-xl sm:text-2xl font-semibold leading-tight">Singapore Competitor Product Inventory</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl">
           Current retail life and health policies sold by the major insurers in Singapore.
           Browse to look up a name, or switch to flashcards to drill yourself on which insurer
           sells what.
@@ -926,52 +930,71 @@ export default function CompetitorProductsReference() {
               </button>
             )}
           </div>
-          {anyFilter && (
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
-              onClick={clearFilters}
-              className="text-xs text-muted-foreground hover:text-foreground self-start sm:self-center px-2 py-1"
+              type="button"
+              onClick={() => setFiltersOpenMobile((v) => !v)}
+              aria-expanded={filtersOpenMobile}
+              className="sm:hidden inline-flex items-center gap-1.5 rounded border px-3 py-2 text-xs text-muted-foreground hover:bg-muted hover:text-foreground transition-colors shrink-0"
             >
-              Clear filters ({totalVisibleProducts} shown)
+              <Filter className="h-3.5 w-3.5" />
+              Filters
+              {(selectedCategories.size + selectedInsurers.size) > 0 && (
+                <span className="ml-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-primary text-primary-foreground text-[10px] font-medium px-1">
+                  {selectedCategories.size + selectedInsurers.size}
+                </span>
+              )}
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${filtersOpenMobile ? "rotate-180" : ""}`} />
             </button>
-          )}
+            {anyFilter && (
+              <button
+                onClick={clearFilters}
+                className="text-xs text-muted-foreground hover:text-foreground px-2 py-1 shrink-0"
+              >
+                Clear <span className="hidden sm:inline">filters ({totalVisibleProducts} shown)</span>
+              </button>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 items-center">
-          <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Category:</span>
-          {(["life", "endowment", "medical", "investment-linked"] as CategoryId[]).map((cid) => {
-            const active = selectedCategories.has(cid);
-            return (
-              <button
-                key={cid}
-                onClick={() => toggleSet(setSelectedCategories, cid)}
-                className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
-                  active ? CATEGORY_COLOURS[cid] + " font-medium" : "border-border hover:bg-muted text-muted-foreground"
-                }`}
-              >
-                {CATEGORY_LABELS[cid]}
-              </button>
-            );
-          })}
-        </div>
+        <div className={`${filtersOpenMobile ? "" : "hidden"} sm:block space-y-2`}>
+          <div className="flex flex-wrap gap-1.5 items-center">
+            <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Category:</span>
+            {(["life", "endowment", "medical", "investment-linked"] as CategoryId[]).map((cid) => {
+              const active = selectedCategories.has(cid);
+              return (
+                <button
+                  key={cid}
+                  onClick={() => toggleSet(setSelectedCategories, cid)}
+                  className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
+                    active ? CATEGORY_COLOURS[cid] + " font-medium" : "border-border hover:bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {CATEGORY_LABELS[cid]}
+                </button>
+              );
+            })}
+          </div>
 
-        <div className="flex flex-wrap gap-1.5 items-center">
-          <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Insurer:</span>
-          {parsed.insurers.map((ins) => {
-            const active = selectedInsurers.has(ins.id);
-            return (
-              <button
-                key={ins.id}
-                onClick={() => toggleSet(setSelectedInsurers, ins.id)}
-                className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
-                  active
-                    ? (INSURER_COLOURS[ins.id] ?? "bg-primary/10 text-primary border-primary/30") + " font-medium"
-                    : "border-border hover:bg-muted text-muted-foreground"
-                }`}
-              >
-                {ins.name}
-              </button>
-            );
-          })}
+          <div className="flex flex-wrap gap-1.5 items-center">
+            <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Insurer:</span>
+            {parsed.insurers.map((ins) => {
+              const active = selectedInsurers.has(ins.id);
+              return (
+                <button
+                  key={ins.id}
+                  onClick={() => toggleSet(setSelectedInsurers, ins.id)}
+                  className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
+                    active
+                      ? (INSURER_COLOURS[ins.id] ?? "bg-primary/10 text-primary border-primary/30") + " font-medium"
+                      : "border-border hover:bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {ins.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

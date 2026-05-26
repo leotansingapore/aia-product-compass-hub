@@ -480,7 +480,7 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
                         variant={polishedCopy.tagline || polishedCopy.mission ? "outline" : "default"}
                         onClick={polishBrochureCopy}
                         disabled={polishingCopy}
-                        className="gap-1 h-7 text-xs"
+                        className="gap-1 min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3"
                       >
                         {polishingCopy ? (
                           <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
@@ -495,7 +495,7 @@ export function BrochureBuilderCard({ brandBrief, formData, framework }: Props) 
                           size="sm"
                           variant="ghost"
                           onClick={() => setPolishedCopy({})}
-                          className="h-7 text-xs"
+                          className="min-h-[36px] sm:h-7 sm:min-h-0 text-xs px-3"
                         >
                           Revert to template
                         </Button>
