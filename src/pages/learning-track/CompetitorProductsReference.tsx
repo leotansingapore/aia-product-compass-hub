@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, ExternalLink, FileText, Globe, Loader2, RotateCcw, Search, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, Download, ExternalLink, FileText, Globe, Loader2, Printer, RotateCcw, Search, X } from "lucide-react";
 import { getProductLinks, type ProductLinks } from "@/data/competitorProductLinks";
 
 // Load competitor-products markdown via Vite glob ?raw (same pattern as assignments.ts).
@@ -459,14 +459,14 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
       {filterChips}
 
       {/* Mode + stats bar */}
-      <div className="rounded-lg border bg-card p-3 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2 text-sm">
-          <Brain className="h-4 w-4 text-primary" />
+      <div className="rounded-lg border bg-card p-3 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3">
+        <div className="flex items-center gap-2 text-sm flex-wrap">
+          <Brain className="h-4 w-4 text-primary shrink-0" />
           <span className="font-medium">Quiz mode</span>
-          <div className="ml-2 flex rounded border overflow-hidden text-xs">
+          <div className="flex rounded border overflow-hidden text-xs">
             <button
               onClick={() => setMode("category")}
-              className={`px-3 py-1 ${
+              className={`px-3 py-1.5 min-h-[32px] ${
                 mode === "category" ? "bg-primary text-primary-foreground" : "bg-background text-muted-foreground hover:bg-muted"
               }`}
             >
@@ -474,7 +474,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
             </button>
             <button
               onClick={() => setMode("insurer")}
-              className={`px-3 py-1 border-l ${
+              className={`px-3 py-1.5 min-h-[32px] border-l ${
                 mode === "insurer" ? "bg-primary text-primary-foreground" : "bg-background text-muted-foreground hover:bg-muted"
               }`}
             >
@@ -482,9 +482,9 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 sm:gap-4 text-xs text-muted-foreground flex-wrap">
           <span>
-            Card {position + 1} of {order.length}
+            Card {position + 1} / {order.length}
           </span>
           <span>
             Score: <span className="font-semibold text-foreground">{stats.correct}</span>
@@ -492,14 +492,14 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
             {stats.total}
             {stats.total > 0 && <span className="ml-1">({accuracy}%)</span>}
           </span>
-          <button onClick={resetDeck} className="inline-flex items-center gap-1 hover:text-foreground">
+          <button onClick={resetDeck} className="inline-flex items-center gap-1 hover:text-foreground py-1">
             <RotateCcw className="h-3 w-3" /> Reset
           </button>
         </div>
       </div>
 
       {/* Card */}
-      <div className="rounded-xl border-2 bg-card p-6 sm:p-8 shadow-sm space-y-5 min-h-[280px]">
+      <div className="rounded-xl border-2 bg-card p-4 sm:p-8 shadow-sm space-y-5 min-h-[280px]">
         <div className="space-y-2">
           <div className="text-xs uppercase tracking-wide text-muted-foreground">
             {mode === "category"
@@ -535,7 +535,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
 
         {/* Choices */}
         {mode === "category" ? (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {categoryChoices.map((cid) => {
               const isPicked = picked === cid;
               const isCorrect = cid === card.category;
@@ -550,7 +550,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
                   key={cid}
                   onClick={() => handlePick(cid)}
                   disabled={revealed}
-                  className={`rounded-lg border-2 px-4 py-3 text-sm font-medium transition-colors text-left ${cls}`}
+                  className={`rounded-lg border-2 px-4 py-3 text-sm font-medium transition-colors text-left min-h-[44px] ${cls}`}
                 >
                   {CATEGORY_LABELS[cid]}
                 </button>
@@ -558,7 +558,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
             })}
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
             {insurerChoices.map((ins) => {
               const isPicked = picked === ins.id;
               const isCorrect = ins.id === card.insurer.id;
@@ -573,7 +573,7 @@ function FlashcardsView({ insurers }: FlashcardsViewProps) {
                   key={ins.id}
                   onClick={() => handlePick(ins.id)}
                   disabled={revealed}
-                  className={`rounded-lg border-2 px-3 py-2 text-xs font-medium transition-colors text-left ${cls}`}
+                  className={`rounded-lg border-2 px-3 py-2.5 text-xs sm:text-sm font-medium transition-colors text-left min-h-[44px] ${cls}`}
                 >
                   {ins.name}
                 </button>
@@ -727,9 +727,72 @@ export default function CompetitorProductsReference() {
 
   const anyFilter = search.length > 0 || selectedCategories.size > 0 || selectedInsurers.size > 0;
 
+  // Flatten the entire inventory (ignoring filters — export is always full) into a CSV
+  // suitable for opening in Excel / Numbers / Google Sheets. RFC4180-style quoting.
+  const downloadCsv = () => {
+    if (!parsed) return;
+    const escape = (v: string) => `"${v.replace(/"/g, '""')}"`;
+    const rows: string[] = [
+      ["Insurer", "Category", "Subgroup", "Product", "Description", "Website", "Brochure", "Summary"]
+        .map(escape)
+        .join(","),
+    ];
+    for (const ins of parsed.insurers) {
+      for (const cat of ins.categories) {
+        if (cat.id === "closed") continue;
+        for (const p of cat.products) {
+          const links = getProductLinks(ins.id, p.name);
+          rows.push(
+            [
+              ins.name,
+              cat.label,
+              p.subgroup ?? "",
+              p.name,
+              p.description ?? "",
+              links.website ?? "",
+              links.brochure ?? "",
+              links.summary ?? "",
+            ]
+              .map(escape)
+              .join(","),
+          );
+        }
+      }
+    }
+    const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `competitor-products-singapore-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  // Expand every insurer section, then trigger the print dialog. The print stylesheet
+  // injected below hides the page chrome so what prints is the inventory itself.
+  const handlePrint = () => {
+    setCollapsedInsurers(new Set());
+    setExpandedCards(new Set()); // closed expansion blocks save vertical space when printing
+    setTimeout(() => window.print(), 50);
+  };
+
   return (
-    <div className="space-y-6 max-w-6xl mx-auto" data-testid="competitor-products-reference">
-      <div>
+    <div className="space-y-6 max-w-6xl mx-auto px-1 sm:px-0" data-testid="competitor-products-reference">
+      <style>{`
+        @media print {
+          body * { visibility: hidden; }
+          [data-testid="competitor-products-reference"], [data-testid="competitor-products-reference"] * { visibility: visible; }
+          [data-testid="competitor-products-reference"] { position: absolute; left: 0; top: 0; width: 100%; max-width: none; padding: 1rem; }
+          .print\\:hidden { display: none !important; }
+          [data-testid="competitor-products-reference"] details summary { display: list-item; }
+          [data-testid="competitor-products-reference"] section { break-inside: avoid; page-break-inside: avoid; }
+          [data-testid="competitor-products-reference"] .grid { display: block !important; }
+          [data-testid="competitor-products-reference"] .grid > * { margin-bottom: 0.25rem; break-inside: avoid; }
+        }
+      `}</style>
+      <div className="print:hidden">
         <Link
           to="/learning-track/resources"
           className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
@@ -748,27 +811,47 @@ export default function CompetitorProductsReference() {
           Browse to look up a name, or switch to flashcards to drill yourself on which insurer
           sells what.
         </p>
-        <div className="flex rounded-lg border overflow-hidden w-fit text-sm">
-          <button
-            onClick={() => setView("browse")}
-            className={`px-4 py-1.5 inline-flex items-center gap-1.5 ${
-              view === "browse"
-                ? "bg-primary text-primary-foreground"
-                : "bg-background text-muted-foreground hover:bg-muted"
-            }`}
-          >
-            <BookOpen className="h-3.5 w-3.5" /> Browse
-          </button>
-          <button
-            onClick={() => setView("flashcards")}
-            className={`px-4 py-1.5 inline-flex items-center gap-1.5 border-l ${
-              view === "flashcards"
-                ? "bg-primary text-primary-foreground"
-                : "bg-background text-muted-foreground hover:bg-muted"
-            }`}
-          >
-            <Brain className="h-3.5 w-3.5" /> Flashcards
-          </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex rounded-lg border overflow-hidden text-sm">
+            <button
+              onClick={() => setView("browse")}
+              className={`px-3 sm:px-4 py-1.5 inline-flex items-center gap-1.5 ${
+                view === "browse"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-muted-foreground hover:bg-muted"
+              }`}
+            >
+              <BookOpen className="h-3.5 w-3.5" /> Browse
+            </button>
+            <button
+              onClick={() => setView("flashcards")}
+              className={`px-3 sm:px-4 py-1.5 inline-flex items-center gap-1.5 border-l ${
+                view === "flashcards"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-background text-muted-foreground hover:bg-muted"
+              }`}
+            >
+              <Brain className="h-3.5 w-3.5" /> Flashcards
+            </button>
+          </div>
+          {view === "browse" && (
+            <div className="flex gap-2 print:hidden">
+              <button
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                aria-label="Print inventory"
+              >
+                <Printer className="h-3.5 w-3.5" /> <span className="hidden sm:inline">Print</span>
+              </button>
+              <button
+                onClick={downloadCsv}
+                className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                aria-label="Download CSV"
+              >
+                <Download className="h-3.5 w-3.5" /> <span className="hidden sm:inline">CSV</span>
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
@@ -778,37 +861,35 @@ export default function CompetitorProductsReference() {
       <>
       {/* Always-visible brand-prefix lookup — the fastest tool in the doc. */}
       <div className="rounded-lg border bg-card overflow-hidden">
-        <div className="px-4 py-2.5 border-b bg-muted/40 flex items-center justify-between gap-2">
+        <div className="px-3 sm:px-4 py-2.5 border-b bg-muted/40 flex items-center justify-between gap-2">
           <p className="text-xs font-semibold uppercase tracking-wide">Brand-prefix lookup</p>
           <p className="text-[11px] text-muted-foreground italic hidden sm:block">Hearing a prefix? Find the insurer in one glance.</p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="text-xs text-muted-foreground bg-muted/20">
-              <tr>
-                <th className="text-left font-medium px-3 py-2">Prefix</th>
-                <th className="text-left font-medium px-3 py-2">Insurer</th>
-                <th className="text-left font-medium px-3 py-2 hidden md:table-cell">Example products</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {BRAND_PREFIX_LOOKUP.map((row) => {
-                const colour = INSURER_COLOURS[slugify(row.insurer.replace(/\s*\(.*\)$/, ""))] ?? "bg-muted text-foreground border-muted-foreground/30";
-                return (
-                  <tr key={row.prefix} className="hover:bg-muted/30">
-                    <td className="px-3 py-2 font-mono text-xs whitespace-nowrap">{row.prefix}</td>
-                    <td className="px-3 py-2">
-                      <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${colour}`}>
-                        {row.insurer}
-                      </span>
-                    </td>
-                    <td className="px-3 py-2 text-xs text-muted-foreground hidden md:table-cell">{row.example}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <table className="w-full text-sm">
+          <thead className="text-xs text-muted-foreground bg-muted/20">
+            <tr>
+              <th className="text-left font-medium px-2 sm:px-3 py-2">Prefix</th>
+              <th className="text-left font-medium px-2 sm:px-3 py-2">Insurer</th>
+              <th className="text-left font-medium px-3 py-2 hidden md:table-cell">Example products</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y">
+            {BRAND_PREFIX_LOOKUP.map((row) => {
+              const colour = INSURER_COLOURS[slugify(row.insurer.replace(/\s*\(.*\)$/, ""))] ?? "bg-muted text-foreground border-muted-foreground/30";
+              return (
+                <tr key={row.prefix} className="hover:bg-muted/30">
+                  <td className="px-2 sm:px-3 py-2 font-mono text-[11px] sm:text-xs leading-snug">{row.prefix}</td>
+                  <td className="px-2 sm:px-3 py-2">
+                    <span className={`inline-block text-[11px] sm:text-xs px-2 py-0.5 rounded-full border font-medium ${colour}`}>
+                      {row.insurer}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground hidden md:table-cell">{row.example}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
 
       {/* Long-form preface (intro, IP/CareShield carrier lists, DPI note) */}
@@ -823,7 +904,7 @@ export default function CompetitorProductsReference() {
       </details>
 
       {/* Sticky filter bar */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border rounded-lg p-3 shadow-sm space-y-3">
+      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border rounded-lg p-2.5 sm:p-3 shadow-sm space-y-2 sm:space-y-3 print:hidden">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -831,14 +912,14 @@ export default function CompetitorProductsReference() {
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search product name or description... (e.g. 'PRUShield', 'multipay', 'mortgage')"
+              placeholder="Search product or description..."
               className="w-full rounded border bg-background py-2 pl-9 pr-9 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
               aria-label="Search competitor products"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 -m-1 text-muted-foreground hover:text-foreground"
                 aria-label="Clear search"
               >
                 <X className="h-4 w-4" />
@@ -848,22 +929,22 @@ export default function CompetitorProductsReference() {
           {anyFilter && (
             <button
               onClick={clearFilters}
-              className="text-xs text-muted-foreground hover:text-foreground self-center px-2"
+              className="text-xs text-muted-foreground hover:text-foreground self-start sm:self-center px-2 py-1"
             >
               Clear filters ({totalVisibleProducts} shown)
             </button>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
-          <span className="text-xs text-muted-foreground self-center mr-1">Category:</span>
+        <div className="flex flex-wrap gap-1.5 items-center">
+          <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Category:</span>
           {(["life", "endowment", "medical", "investment-linked"] as CategoryId[]).map((cid) => {
             const active = selectedCategories.has(cid);
             return (
               <button
                 key={cid}
                 onClick={() => toggleSet(setSelectedCategories, cid)}
-                className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
                   active ? CATEGORY_COLOURS[cid] + " font-medium" : "border-border hover:bg-muted text-muted-foreground"
                 }`}
               >
@@ -873,15 +954,15 @@ export default function CompetitorProductsReference() {
           })}
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
-          <span className="text-xs text-muted-foreground self-center mr-1">Insurer:</span>
+        <div className="flex flex-wrap gap-1.5 items-center">
+          <span className="text-[11px] sm:text-xs text-muted-foreground mr-1 shrink-0">Insurer:</span>
           {parsed.insurers.map((ins) => {
             const active = selectedInsurers.has(ins.id);
             return (
               <button
                 key={ins.id}
                 onClick={() => toggleSet(setSelectedInsurers, ins.id)}
-                className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                className={`text-[11px] sm:text-xs px-2.5 py-1 rounded-full border transition-colors min-h-[28px] ${
                   active
                     ? (INSURER_COLOURS[ins.id] ?? "bg-primary/10 text-primary border-primary/30") + " font-medium"
                     : "border-border hover:bg-muted text-muted-foreground"
@@ -919,15 +1000,15 @@ export default function CompetitorProductsReference() {
             >
               <button
                 onClick={() => toggleSet(setCollapsedInsurers, ins.id)}
-                className="w-full flex items-center justify-between gap-2 p-4 hover:bg-muted/30 transition-colors text-left"
+                className="w-full flex items-center justify-between gap-2 p-3 sm:p-4 hover:bg-muted/30 transition-colors text-left min-h-[44px]"
                 aria-expanded={!collapsed}
               >
-                <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                   <span className={`text-xs px-2 py-0.5 rounded-full border font-medium shrink-0 ${insurerColour}`}>
                     {ins.name}
                   </span>
                   {ins.brandNote && (
-                    <p className="text-xs text-muted-foreground line-clamp-1 italic">
+                    <p className="text-xs text-muted-foreground line-clamp-1 italic hidden sm:block">
                       {ins.brandNote}
                     </p>
                   )}
@@ -942,17 +1023,17 @@ export default function CompetitorProductsReference() {
               {!collapsed && (
                 <div className="border-t bg-background">
                   {ins.brandNote && (
-                    <div className="p-4 border-b bg-amber-500/5 text-xs text-muted-foreground italic">
+                    <div className="p-3 sm:p-4 border-b bg-amber-500/5 text-xs text-muted-foreground italic">
                       <span className="font-semibold text-amber-700 dark:text-amber-300 not-italic">Brand note: </span>
                       {ins.brandNote}
                     </div>
                   )}
                   <div className="divide-y">
                     {ins.categories.length === 0 && (
-                      <div className="p-4 text-sm text-muted-foreground">No products match filters in this insurer.</div>
+                      <div className="p-3 sm:p-4 text-sm text-muted-foreground">No products match filters in this insurer.</div>
                     )}
                     {ins.categories.map((cat) => (
-                      <div key={cat.id} className="p-4 space-y-3">
+                      <div key={cat.id} className="p-3 sm:p-4 space-y-3">
                         <div className="flex items-center gap-2">
                           <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${CATEGORY_COLOURS[cat.id]}`}>
                             {cat.label}
@@ -1085,7 +1166,7 @@ export default function CompetitorProductsReference() {
 
       {/* Appendix: cross-insurer cheatsheet, troubleshooting, FC notes */}
       {parsed.appendix && (
-        <div className="rounded-lg border bg-muted/20 p-4 prose prose-sm md:prose-base max-w-none dark:prose-invert prose-headings:scroll-mt-32">
+        <div className="rounded-lg border bg-muted/20 p-3 sm:p-4 prose prose-sm md:prose-base max-w-none dark:prose-invert prose-headings:scroll-mt-32 break-words">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{parsed.appendix}</ReactMarkdown>
         </div>
       )}

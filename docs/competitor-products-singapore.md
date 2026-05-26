@@ -573,6 +573,8 @@ Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred 
 - Singlife: Singlife Whole Life Choice
 - Income: Star Secure Pro / Complete Life Secure
 - Manulife: LifeReady Plus (II)
+- HSBC Life: HSBC Life Life Treasure III
+- Raffles Health: *does not offer*
 
 ### "What's their mass-market regular-premium ILP?"
 - AIA: AIA Pro Achiever 3.0
@@ -581,6 +583,8 @@ Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred 
 - Singlife: Singlife Savvy Invest II
 - Income: AstraLink / Invest Flex
 - Manulife: InvestReady (III)
+- HSBC Life: HSBC Life Wealth Voyage / Wealth Accelerate
+- Raffles Health: *does not offer*
 
 ### "What's their top-tier private hospital IP?"
 - AIA: HealthShield Gold Max Plan A
@@ -589,6 +593,8 @@ Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred 
 - Singlife: Singlife Shield Plan 1
 - Income: Enhanced IncomeShield Preferred
 - Manulife: *does not offer*
+- HSBC Life: HSBC Life Shield Plan A
+- Raffles Health: Raffles Shield Private
 
 ### "What's their multi-pay CI plan?"
 - AIA: AIA Absolute Critical Cover / AIA Ultimate Critical Cover
@@ -597,6 +603,8 @@ Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred 
 - Singlife: Singlife Multipay Critical Illness II
 - Income: Complete Critical Protect
 - Manulife: CI FlexiCare Deluxe
+- HSBC Life: HSBC Life Super CritiCare
+- Raffles Health: Raffles Critical Illness Plan (single-pay, not multi-pay — closest available)
 
 ### "What's their HNW / legacy USD universal life?"
 - AIA: AIA Platinum Wealth Legacy / AIA Platinum Wealth Elite 2.0
@@ -605,6 +613,8 @@ Raffles Key Rider (replaced by Choice Rider on 1 Apr 2026) · Raffles Preferred 
 - Singlife: Singlife Legacy IUL / Singlife Pinnacle
 - Income: Provenance Solitaire / Legacy Flex Solitaire (par whole life route)
 - Manulife: Signature IUL Select III / Signature Legacy Harvest
+- HSBC Life: HSBC Life Diamond Prestige IUL II / Jade Legacy Universal Life
+- Raffles Health: *does not offer*
 
 ---
 
