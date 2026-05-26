@@ -386,6 +386,12 @@ export default function FinancialAdvisorDifferentiation() {
   const [generatedTemplate, setGeneratedTemplate] = useState("");
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [copied, setCopied] = useState(false);
+  // Per-collateral AI polish state. Keyed by `${kind}:${id}` (e.g. "asset:wa-tagline", "slide:why-im-here").
+  const [aiPolish, setAiPolish] = useState<Record<string, string>>({});
+  const [polishingId, setPolishingId] = useState<string | null>(null);
+  // Submission state for "Submit to mentor".
+  const [isSubmittingToMentor, setIsSubmittingToMentor] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const hasHydrated = useRef(false);
 
   // Hydrate from localStorage once we know the user.
@@ -416,6 +422,34 @@ export default function FinancialAdvisorDifferentiation() {
       console.warn("FADS tool: failed to persist", e);
     }
   }, [formData, storageKey]);
+
+  // Check if learner has already submitted this assignment so the submit
+  // button reflects that state across refreshes.
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data, error } = await (supabase.from as any)("assignment_submissions")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("product_id", "first-60-days-assignments")
+          .eq("item_id", "assignment-08")
+          .limit(1);
+        if (cancelled) return;
+        if (error) {
+          console.warn("FADS tool: failed to check submission state", error);
+          return;
+        }
+        if (Array.isArray(data) && data.length > 0) setHasSubmitted(true);
+      } catch (e) {
+        console.warn("FADS tool: submission state check threw", e);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   useEffect(() => {
     if (!tab) {
@@ -1032,6 +1066,83 @@ export default function FinancialAdvisorDifferentiation() {
     }
   };
 
+  // Polish a single asset / slide / brochure blurb via the generate-collateral edge function.
+  // Stores the result in `aiPolish` keyed by `${kind}:${id}` so the UI can swap drafts.
+  const polishCollateral = async (
+    kind: "asset" | "slide" | "brochure-blurb",
+    target: { id: string; name: string; channelOrPurpose?: string; draft: string },
+  ) => {
+    const key = `${kind}:${target.id}`;
+    setPolishingId(key);
+    try {
+      const brief = buildBrandBrief();
+      const { data, error } = await supabase.functions.invoke("generate-collateral", {
+        body: {
+          brandBrief: brief,
+          target: {
+            kind,
+            id: target.id,
+            name: target.name,
+            channelOrPurpose: target.channelOrPurpose ?? "",
+            draft: target.draft,
+          },
+        },
+      });
+      if (error) throw error;
+      const polished = (data as { polished?: string } | null)?.polished?.trim();
+      if (!polished) throw new Error("Empty response");
+      setAiPolish((prev) => ({ ...prev, [key]: polished }));
+      toast.success("AI-polished version ready.");
+    } catch (err) {
+      console.warn("polishCollateral failed", err);
+      toast.error("AI polish failed — the template draft is still available.");
+    } finally {
+      setPolishingId(null);
+    }
+  };
+
+  // Submit the brand brief to the assignment_submissions table so admin can review.
+  const submitToMentor = async () => {
+    if (!user) {
+      toast.error("You need to be signed in to submit.");
+      return;
+    }
+    setIsSubmittingToMentor(true);
+    try {
+      const brief = buildBrandBrief();
+      const summary = [
+        `Audience & Differentiation Worksheet submission`,
+        ``,
+        `MISSION: ${formData.mission || "(not provided)"}`,
+        `END RESULT: ${formData.endResultStatement || "(not provided)"}`,
+        `PERSONALITY: ${formData.personalityStyle || "(not provided)"}`,
+        `FRAMEWORK: ${formData.selectedFramework || "(not provided)"}`,
+        `AUDIENCE #1: ${formData.audience1Occupation || "(not provided)"}`,
+        `AUDIENCE #2: ${formData.audience2Occupation || "(not provided)"}`,
+        ``,
+        `--- FULL BRAND BRIEF (JSON) ---`,
+        JSON.stringify(brief, null, 2),
+      ].join("\n");
+
+      const { error } = await (supabase.from as any)("assignment_submissions").insert({
+        user_id: user.id,
+        product_id: "first-60-days-assignments",
+        item_id: "assignment-08",
+        submission_text: summary,
+        file_url: null,
+        file_name: null,
+      });
+      if (error) throw error;
+      setHasSubmitted(true);
+      toast.success("Submitted to your mentor.");
+    } catch (err: any) {
+      console.warn("submitToMentor failed", err);
+      toast.error(err?.message ?? "Submission failed.");
+    } finally {
+      setIsSubmittingToMentor(false);
+    }
+  };
+
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -1638,6 +1749,42 @@ export default function FinancialAdvisorDifferentiation() {
                   </CardContent>
                 </Card>
 
+                {/* ----- SUBMIT TO MENTOR ----- */}
+                <Card className={hasSubmitted ? "border-green-500/30 bg-green-500/5" : "border-primary/30"}>
+                  <CardContent className="pt-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm flex items-center gap-2">
+                          {hasSubmitted ? (
+                            <><CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" /> Submitted to your mentor</>
+                          ) : (
+                            <><FileText className="h-4 w-4 text-primary" /> Submit this worksheet to your mentor</>
+                          )}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {hasSubmitted
+                            ? "Your mentor can see this in the admin panel. You can re-submit anytime — every save creates a new version."
+                            : "Sends your full brand brief to your mentor so they can review and give feedback."}
+                        </p>
+                      </div>
+                      <Button
+                        onClick={submitToMentor}
+                        disabled={isSubmittingToMentor}
+                        variant={hasSubmitted ? "outline" : "default"}
+                        className="shrink-0"
+                      >
+                        {isSubmittingToMentor ? (
+                          <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Submitting...</>
+                        ) : hasSubmitted ? (
+                          "Re-submit"
+                        ) : (
+                          "Submit to mentor"
+                        )}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 {/* ----- LAYER 1 — PERSONAL BRANDING ASSET KIT ----- */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -1652,6 +1799,10 @@ export default function FinancialAdvisorDifferentiation() {
                     {buildMarketingAssets().map((a) => {
                       const Icon = a.icon;
                       const ready = a.missing.length === 0;
+                      const polishKey = `asset:${a.id}`;
+                      const polished = aiPolish[polishKey];
+                      const isThisPolishing = polishingId === polishKey;
+                      const displayBody = polished ?? a.body;
                       return (
                         <Card key={a.id} className={ready ? "border-primary/20" : "border-amber-500/20"}>
                           <CardHeader className="pb-3">
@@ -1665,7 +1816,9 @@ export default function FinancialAdvisorDifferentiation() {
                                   <CardDescription className="text-xs mt-0.5">{a.channel}</CardDescription>
                                 </div>
                               </div>
-                              {ready ? (
+                              {polished ? (
+                                <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium shrink-0">AI</span>
+                              ) : ready ? (
                                 <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 font-medium shrink-0">Ready</span>
                               ) : (
                                 <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-medium shrink-0">{a.missing.length} gap{a.missing.length > 1 ? "s" : ""}</span>
@@ -1685,17 +1838,49 @@ export default function FinancialAdvisorDifferentiation() {
                             <details className="group">
                               <summary className="cursor-pointer text-xs font-medium text-primary hover:underline list-none flex items-center gap-1">
                                 <ChevronRight className="h-3 w-3 transition-transform group-open:rotate-90" />
-                                Preview draft
+                                {polished ? "Preview AI-polished draft" : "Preview draft"}
                               </summary>
                               <div className="mt-3 bg-muted/50 p-3 rounded text-xs whitespace-pre-wrap font-mono max-h-64 overflow-y-auto border">
-                                {a.body}
+                                {displayBody}
                               </div>
-                              <div className="flex gap-2 mt-2">
-                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(a.body)} className="gap-1 h-7 text-xs">
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                <Button
+                                  size="sm"
+                                  variant={polished ? "outline" : "default"}
+                                  onClick={() =>
+                                    polishCollateral("asset", {
+                                      id: a.id,
+                                      name: a.name,
+                                      channelOrPurpose: a.channel,
+                                      draft: a.body,
+                                    })
+                                  }
+                                  disabled={isThisPolishing}
+                                  className="gap-1 h-7 text-xs"
+                                >
+                                  {isThisPolishing ? (
+                                    <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
+                                  ) : polished ? (
+                                    <><Sparkles className="h-3 w-3" /> Re-polish</>
+                                  ) : (
+                                    <><Sparkles className="h-3 w-3" /> AI polish</>
+                                  )}
+                                </Button>
+                                {polished && (
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => setAiPolish((prev) => { const n = { ...prev }; delete n[polishKey]; return n; })}
+                                    className="gap-1 h-7 text-xs"
+                                  >
+                                    Revert to template
+                                  </Button>
+                                )}
+                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(displayBody)} className="gap-1 h-7 text-xs">
                                   <Copy className="h-3 w-3" /> Copy
                                 </Button>
                                 <Button size="sm" variant="outline" onClick={() => {
-                                  const blob = new Blob([a.body], { type: "text/plain" });
+                                  const blob = new Blob([displayBody], { type: "text/plain" });
                                   const url = URL.createObjectURL(blob);
                                   const el = document.createElement("a");
                                   el.href = url; el.download = `${a.id}.txt`; el.click();
@@ -1727,7 +1912,7 @@ export default function FinancialAdvisorDifferentiation() {
                         `# Slide ${s.number} — ${s.title}`,
                         `> ${s.purpose}`,
                         ``,
-                        s.body,
+                        aiPolish[`slide:${s.id}`] ?? s.body,
                         ``,
                         s.speakerNote ? `**Speaker note:** ${s.speakerNote}` : "",
                         ``,
@@ -1747,6 +1932,10 @@ export default function FinancialAdvisorDifferentiation() {
                   <div className="space-y-3">
                     {buildFirstApptDeck().map((s) => {
                       const Icon = s.icon;
+                      const polishKey = `slide:${s.id}`;
+                      const polished = aiPolish[polishKey];
+                      const isThisPolishing = polishingId === polishKey;
+                      const displayBody = polished ?? s.body;
                       return (
                         <Card key={s.id} className="overflow-hidden">
                           <details className="group">
@@ -1760,14 +1949,15 @@ export default function FinancialAdvisorDifferentiation() {
                                   <p className="font-semibold text-sm">{s.title}</p>
                                   <p className="text-xs text-muted-foreground truncate">{s.purpose}</p>
                                 </div>
+                                {polished && <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium shrink-0">AI</span>}
                                 <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-90 shrink-0" />
                               </div>
                             </summary>
                             <div className="px-4 pb-4 border-t bg-muted/20">
                               <div className="pt-3 space-y-3">
                                 <div>
-                                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Slide content</p>
-                                  <div className="bg-background p-3 rounded border whitespace-pre-wrap text-sm">{s.body}</div>
+                                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">{polished ? "AI-polished slide content" : "Slide content"}</p>
+                                  <div className="bg-background p-3 rounded border whitespace-pre-wrap text-sm">{displayBody}</div>
                                 </div>
                                 {s.speakerNote && (
                                   <div>
@@ -1775,9 +1965,43 @@ export default function FinancialAdvisorDifferentiation() {
                                     <p className="text-xs italic text-muted-foreground bg-amber-500/5 border border-amber-500/20 p-2 rounded">{s.speakerNote}</p>
                                   </div>
                                 )}
-                                <Button size="sm" variant="outline" onClick={() => copyToClipboard(`${s.title}\n\n${s.body}${s.speakerNote ? `\n\nSpeaker note: ${s.speakerNote}` : ""}`)} className="gap-2 h-8 text-xs">
-                                  <Copy className="h-3 w-3" /> Copy slide content
-                                </Button>
+                                <div className="flex flex-wrap gap-2">
+                                  <Button
+                                    size="sm"
+                                    variant={polished ? "outline" : "default"}
+                                    onClick={() =>
+                                      polishCollateral("slide", {
+                                        id: s.id,
+                                        name: s.title,
+                                        channelOrPurpose: s.purpose,
+                                        draft: s.body,
+                                      })
+                                    }
+                                    disabled={isThisPolishing}
+                                    className="gap-1 h-8 text-xs"
+                                  >
+                                    {isThisPolishing ? (
+                                      <><Loader2 className="h-3 w-3 animate-spin" /> Polishing...</>
+                                    ) : polished ? (
+                                      <><Sparkles className="h-3 w-3" /> Re-polish</>
+                                    ) : (
+                                      <><Sparkles className="h-3 w-3" /> AI polish</>
+                                    )}
+                                  </Button>
+                                  {polished && (
+                                    <Button
+                                      size="sm"
+                                      variant="ghost"
+                                      onClick={() => setAiPolish((prev) => { const n = { ...prev }; delete n[polishKey]; return n; })}
+                                      className="gap-1 h-8 text-xs"
+                                    >
+                                      Revert to template
+                                    </Button>
+                                  )}
+                                  <Button size="sm" variant="outline" onClick={() => copyToClipboard(`${s.title}\n\n${displayBody}${s.speakerNote ? `\n\nSpeaker note: ${s.speakerNote}` : ""}`)} className="gap-2 h-8 text-xs">
+                                    <Copy className="h-3 w-3" /> Copy slide content
+                                  </Button>
+                                </div>
                               </div>
                             </div>
                           </details>
