@@ -16,7 +16,7 @@ export interface ProductLinks {
 }
 
 export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLinks>> = {
-  "aia-singapore": {
+  "aia": {
     "AIA Guaranteed Protect Plus (IV)": {
       website: "https://www.aia.com.sg/en/our-products/life-insurance/whole-life-insurance/aia-guaranteed-protect-plus-iv",
       brochure: "https://www.aia.com.sg/content/dam/sg-wise/en/docs/our-products/en/aia-guaranteed-protect-plus-iv.pdf",
@@ -334,7 +334,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
   },
 
-  "prudential-singapore": {
+  "prudential": {
     "PRUActive Term": {
       website: "https://www.prudential.com.sg/products/life-insurance/term-life-insurance/pruactive-term",
       brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruactive-term/pruactive_term_ebrochure_english.pdf",
@@ -803,6 +803,8 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       brochure: "https://www.income.com.sg/getContentAsset/68644221-6584-49bb-b76f-7af9146f416d/05c6012c-3879-4f1c-b994-00e61e65c363/Health_Enhanced-IncomeShield_Brochure_ENG.pdf?language=en",
       summary: "https://www.income.com.sg/kcassets/be120933-8480-4b14-86b3-1a002cca0282/POS_Enhanced%20IncomeShield_ProductSummary_V1125_Cover%20Page-editable.pdf",
     },
+    // Closed to new business but still on existing client books — keep visible so FCs recognise the name.
+    "IncomeShield (legacy Plan A/B/C)": {},
     "PA Secure": {
       website: "https://www.income.com.sg/personal-accident-insurance/pa-secure",
       brochure: "https://www.income.com.sg/kcassets/0e382dec-9432-4d75-913b-70e53196774a/PA%20Secure%20Brochure%2022032024.pdf",
@@ -849,7 +851,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
   },
 
-  "manulife-singapore": {
+  "manulife": {
     "ManuProtect Term (II)": {
       website: "https://www.manulife.com.sg/en/solutions/life/term-life-insurance/manuprotect-term.html",
       brochure: "https://www.manulife.com.sg/content/dam/insurance/sg/solutions/our-solutions/life/term-life/manuprotect-term/ManuProtect%20Term%20Brochure%20(English).pdf",
@@ -870,7 +872,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       website: "https://www.manulife.com.sg/en/solutions/health/critical-illness/CI-flexicare.html",
       brochure: "https://www.manulife.com.sg/content/dam/insurance/sg/solutions/our-solutions/health/critical-illness/ci-flexicare/CI_flexicare_ENG.pdf",
     },
-    "Signature Indexed Universal Life Select (III) - SIULS III": {
+    "Signature Indexed Universal Life Select (III) — SIULS III": {
       website: "https://www.manulife.com.sg/en/solutions/signature/signature/Signature-Indexed-Universal-Life-Select.html",
       brochure: "https://www.manulife.com.sg/content/dam/insurance/sg/solutions/our-solutions/signature/signature-indexed-universal-life-select/Signature%20Indexed%20Universal%20Life%20Select_Brochure%20(English).pdf",
     },
@@ -1027,6 +1029,10 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       brochure: "https://www.insurance.hsbc.com.sg/content/dam/hsbc/insn/documents/health/hsbc-life-shield-brochure.pdf",
     },
     "Plan B": {
+      website: "https://www.insurance.hsbc.com.sg/health/products/shield/",
+      brochure: "https://www.insurance.hsbc.com.sg/content/dam/hsbc/insn/documents/health/hsbc-life-shield-brochure.pdf",
+    },
+    "Standard Plan": {
       website: "https://www.insurance.hsbc.com.sg/health/products/shield/",
       brochure: "https://www.insurance.hsbc.com.sg/content/dam/hsbc/insn/documents/health/hsbc-life-shield-brochure.pdf",
     },

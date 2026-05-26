@@ -39,7 +39,7 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 
 ---
 
-## AIA Singapore
+## AIA
 
 ### LIFE
 **Whole life**
@@ -78,7 +78,8 @@ Product names get renamed and rebranded faster than the brochures get updated, s
 
 Oct 2025 revision added CTGTP cover at S$250k per indication per lifetime for Plan A/B/B Lite.
 
-**Riders:** AIA Max VitalHealth / AIA Max VitalCare — stacked on HealthShield Gold Max for co-pay caps and deductible reimbursement.
+**Riders**
+- **AIA Max VitalHealth / AIA Max VitalCare** — stacked on HealthShield Gold Max for co-pay caps and deductible reimbursement.
 
 **Personal Accident**
 - **AIA Solitaire PA (II)** — flagship PA; 4 plan levels × 3 benefit groups = 12 variants; dengue, TCM, food poisoning.
@@ -178,7 +179,7 @@ GREAT Term v1 · Flexi Term · GREAT Wealth Multiplier 1-2 · GREAT Lifetime Pay
 
 ---
 
-## Prudential Singapore
+## Prudential
 
 ### LIFE
 **Term**
@@ -256,7 +257,7 @@ Pre-Apr-2026 PRUExtra (Premier / Plus / CoPay) · earlier PRUActive Life iterati
 
 ---
 
-## Singlife (with Aviva legacy)
+## Singlife
 
 **Brand note:** Singlife is the merged entity of Singapore Life and Aviva Singapore. Legacy Aviva products were renamed under the Singlife brand; some closed to new business. Where a client says "Aviva My...", treat it as a Singlife legacy policy.
 
@@ -287,8 +288,8 @@ Pre-Apr-2026 PRUExtra (Premier / Plus / CoPay) · earlier PRUActive Life iterati
 - **Singlife Legacy Income** — whole life par-savings; multi-generational wealth transfer.
 - **Singlife Flexi Retirement II** — retirement income endowment with chosen payout age and term. *(Successor to Aviva MyRetirement.)*
 
-### Hybrid call-out
-- **Singlife Account** — cash-management product with a thin insurance wrapper. 3.0% p.a. base on first S$10k (1.0% on next tier up to S$100k); no lock-in; FAST withdrawals; death/TI benefit of 105% of account value. Not a participating savings plan — do not compare it to endowments line-for-line.
+**Hybrid (cash + insurance, not a participating savings plan)**
+- **Singlife Account** — cash-management product with a thin insurance wrapper. 3.0% p.a. base on first S$10k (1.0% on next tier up to S$100k); no lock-in; FAST withdrawals; death/TI benefit of 105% of account value. Do not compare to endowments line-for-line.
 
 ### MEDICAL
 **Integrated Shield Plan — Singlife Shield** (was Aviva MyShield):
@@ -323,7 +324,7 @@ Aviva MyShield (→ Singlife Shield) · Aviva MyWholeLifePlan IV (→ Singlife W
 
 ---
 
-## Income Insurance (formerly NTUC Income)
+## Income Insurance
 
 **Brand note:** NTUC Income corporatised to **Income Insurance Limited** in Sept 2022. Some clients still say "NTUC Income". Legacy plans (VivoLife, VivoCare, VivaLink, VivoSave, RevoSave, FamilyAssure) are closed to new business but still on books — recognise the name, don't quote it as current.
 
@@ -402,7 +403,7 @@ Legacy in-force only: VivaLink (158) · Ideal Plans · Income@Work.
 
 ---
 
-## Manulife Singapore
+## Manulife
 
 **Important flag — no IP.** Manulife does NOT sell an Integrated Shield Plan in Singapore. The seven IP carriers are AIA, GE, HSBC Life, Income, Prudential, Singlife, Raffles Health. If a client says "I have Manulife Shield", clarify what they actually hold. Manulife is also NOT an approved CareShield Life supplement provider.
 

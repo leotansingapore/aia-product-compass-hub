@@ -107,12 +107,12 @@ function categoryIdFromHeading(heading: string): CategoryId | null {
 // Insurer headings to extract. Anything not in this list at "## " level stays in
 // preface/appendix prose.
 const INSURER_NAMES = [
-  "AIA Singapore",
+  "AIA",
   "Great Eastern",
-  "Prudential Singapore",
+  "Prudential",
   "Singlife",
   "Income Insurance",
-  "Manulife Singapore",
+  "Manulife",
   "HSBC Life",
   "Raffles Health Insurance",
 ];
