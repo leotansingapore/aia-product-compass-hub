@@ -100,6 +100,7 @@ const FinancialAdvisorDifferentiation = lazyWithRetry(() => import("./pages/lear
 const OutreachBuilder = lazyWithRetry(() => import("./pages/learning-track/OutreachBuilder"));
 const LearningTrackPostRnf = lazyWithRetry(() => import("./pages/learning-track/PostRnf"));
 const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-track/Resources"));
+const LearningTrackCompetitorProducts = lazyWithRetry(() => import("./pages/learning-track/CompetitorProductsReference"));
 const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackFirst60DaysWeekRecap = lazyWithRetry(() => import("./pages/learning-track/First60DaysWeekRecap"));
@@ -251,6 +252,7 @@ const App = () => (
                       <Route path="post-rnf/assignments/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/:itemId" element={<Navigate to="/learning-track/post-rnf/next-60-days" replace />} />
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
+                      <Route path="resources/competitor-products" element={<RequireTier feature="pre-rnf-track"><LearningTrackCompetitorProducts /></RequireTier>} />
                       <Route path="first-60-days" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60Days /></RequireTier>} />
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
                       <Route path="first-60-days/recap/:weekNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysWeekRecap /></RequireTier>} />

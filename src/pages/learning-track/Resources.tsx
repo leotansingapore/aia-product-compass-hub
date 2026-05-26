@@ -1,7 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loader2, Search } from "lucide-react";
+import { BookOpen, Loader2, Search } from "lucide-react";
 import { buildResourceIndex, type IndexedResource, type ResourceKind } from "@/lib/learning-track/resourceIndex";
+
+// Static reference pages shipped with the app — surfaced as featured cards
+// above the indexed grid so FCs find them without needing to search.
+const FEATURED_REFERENCES: Array<{ href: string; title: string; description: string }> = [
+  {
+    href: "/learning-track/resources/competitor-products",
+    title: "Singapore Competitor Product Inventory",
+    description:
+      "Current retail life and health policies sold by AIA, Great Eastern, Prudential, Singlife, Income, and Manulife — classified into Life, Endowment, Medical, and Investment-linked. Use this when a client mentions a policy from another insurer.",
+  },
+];
 
 const KIND_LABELS: Record<ResourceKind | "all", string> = {
   all: "All",
@@ -48,6 +59,29 @@ export default function Resources() {
 
   return (
     <div className="space-y-4" data-testid="resources-page">
+      {FEATURED_REFERENCES.length > 0 && (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Featured references</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {FEATURED_REFERENCES.map((r) => (
+              <Link
+                key={r.href}
+                to={r.href}
+                className="rounded-lg border bg-primary/5 p-4 hover:bg-primary/10 transition-colors"
+              >
+                <div className="flex items-start gap-2">
+                  <BookOpen className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <div className="font-semibold text-sm">{r.title}</div>
+                    <p className="text-xs text-muted-foreground mt-1">{r.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-col sm:flex-row gap-2">
         <div className="relative flex-1">
           <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

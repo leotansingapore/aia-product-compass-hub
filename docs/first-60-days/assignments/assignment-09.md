@@ -42,10 +42,11 @@ A family member is the right starting point for three reasons:
 ## How you complete this assignment
 
 1. **Ask one family member** for their existing policy documents. Frame it honestly: *"I'm learning how to read these properly - would you let me practise on yours and give you a one-page summary at the end?"* Almost everyone says yes.
-2. **Open the tool**: [present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2)
-3. **Enter each policy** as a row. Skip nothing - even the policies they think are dormant.
-4. **Walk through the summary with them** once it's done. Read it together. The conversation that happens at this step is the whole reason for the exercise.
-5. **Save the share link or export a PDF**, then submit it in the form below alongside the gaps you surfaced.
+2. **Skim the [Singapore Competitor Product Inventory](/learning-track/resources/competitor-products) before you sit down with their documents** so you can recognise the policy by name in seconds — brand prefixes (PRU... = Prudential, GREAT... = Great Eastern, Star Secure / Gro... = Income, etc.), current vs. closed-to-new-business plans, and which insurers do not sell certain product lines (e.g. Manulife does not underwrite an Integrated Shield Plan).
+3. **Open the tool**: [present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2)
+4. **Enter each policy** as a row. Skip nothing - even the policies they think are dormant.
+5. **Walk through the summary with them** once it's done. Read it together. The conversation that happens at this step is the whole reason for the exercise.
+6. **Save the share link or export a PDF**, then submit it in the form below alongside the gaps you surfaced.
 
 ## What good looks like
 
