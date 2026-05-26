@@ -379,6 +379,9 @@ export default function FinancialAdvisorDifferentiation() {
   const { user } = useSimplifiedAuth();
   const userId = user?.id ?? null;
   const storageKey = userId ? `${STORAGE_PREFIX}-${userId}` : `${STORAGE_PREFIX}-anon`;
+  const polishStorageKey = userId
+    ? `${STORAGE_PREFIX}-ai-${userId}`
+    : `${STORAGE_PREFIX}-ai-anon`;
 
   const [activeTab, setActiveTab] = useState(tab || "personality");
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
@@ -405,12 +408,19 @@ export default function FinancialAdvisorDifferentiation() {
           setFormData((prev) => ({ ...prev, ...parsed }));
         }
       }
+      const rawPolish = localStorage.getItem(polishStorageKey);
+      if (rawPolish) {
+        const parsedPolish = JSON.parse(rawPolish);
+        if (parsedPolish && typeof parsedPolish === "object") {
+          setAiPolish(parsedPolish);
+        }
+      }
     } catch (e) {
       console.warn("FADS tool: failed to hydrate from localStorage", e);
     } finally {
       hasHydrated.current = true;
     }
-  }, [storageKey]);
+  }, [storageKey, polishStorageKey]);
 
   // Persist on every change (after hydration).
   useEffect(() => {
@@ -422,6 +432,21 @@ export default function FinancialAdvisorDifferentiation() {
       console.warn("FADS tool: failed to persist", e);
     }
   }, [formData, storageKey]);
+
+  // Persist AI-polished collateral separately so refresh doesn't wipe it.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!hasHydrated.current) return;
+    try {
+      if (Object.keys(aiPolish).length === 0) {
+        localStorage.removeItem(polishStorageKey);
+      } else {
+        localStorage.setItem(polishStorageKey, JSON.stringify(aiPolish));
+      }
+    } catch (e) {
+      console.warn("FADS tool: failed to persist AI polish", e);
+    }
+  }, [aiPolish, polishStorageKey]);
 
   // Check if learner has already submitted this assignment so the submit
   // button reflects that state across refreshes.
