@@ -2,7 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, Loader2, RotateCcw, Search, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, ExternalLink, FileText, Globe, Loader2, RotateCcw, Search, X } from "lucide-react";
+import { getProductLinks, type ProductLinks } from "@/data/competitorProductLinks";
 
 // Load competitor-products markdown via Vite glob ?raw (same pattern as assignments.ts).
 const rawLoaders = import.meta.glob<string>(
@@ -638,6 +639,8 @@ export default function CompetitorProductsReference() {
   );
   const [selectedInsurers, setSelectedInsurers] = useState<Set<string>>(new Set());
   const [collapsedInsurers, setCollapsedInsurers] = useState<Set<string>>(new Set());
+  // Per-card expanded state, keyed by `${insurerId}::${productName}`.
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let cancelled = false;
@@ -966,24 +969,109 @@ export default function CompetitorProductsReference() {
                           </div>
                         )}
                         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                          {cat.products.map((p, i) => (
-                            <div
-                              key={`${ins.id}-${cat.id}-${i}-${p.name}`}
-                              className="rounded border bg-card p-3 hover:shadow-sm transition-shadow"
-                            >
-                              <div className="font-medium text-sm">{p.name}</div>
-                              {p.subgroup && (
-                                <div className="text-[10px] uppercase tracking-wide text-muted-foreground/70 mt-0.5">
-                                  {p.subgroup}
-                                </div>
-                              )}
-                              {p.description && (
-                                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                                  {p.description}
-                                </p>
-                              )}
-                            </div>
-                          ))}
+                          {cat.products.map((p, i) => {
+                            const cardKey = `${ins.id}::${p.name}`;
+                            const isExpanded = expandedCards.has(cardKey);
+                            const links: ProductLinks = getProductLinks(ins.id, p.name);
+                            const hasLinks = Boolean(links.website || links.brochure || links.summary);
+                            return (
+                              <div
+                                key={`${ins.id}-${cat.id}-${i}-${p.name}`}
+                                className={`rounded border bg-card transition-shadow ${
+                                  isExpanded ? "shadow-md ring-1 ring-primary/30" : "hover:shadow-sm"
+                                }`}
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() => toggleSet(setExpandedCards, cardKey)}
+                                  aria-expanded={isExpanded}
+                                  className="w-full text-left p-3 flex flex-col gap-1.5"
+                                >
+                                  <div className="flex items-start justify-between gap-2">
+                                    <div className="font-medium text-sm flex-1 min-w-0">{p.name}</div>
+                                    <div className="flex items-center gap-1 shrink-0">
+                                      {hasLinks ? (
+                                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+                                          {[links.website, links.brochure, links.summary].filter(Boolean).length} link{[links.website, links.brochure, links.summary].filter(Boolean).length === 1 ? "" : "s"}
+                                        </span>
+                                      ) : (
+                                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                                          no links yet
+                                        </span>
+                                      )}
+                                      <ChevronDown
+                                        className={`h-3.5 w-3.5 text-muted-foreground transition-transform ${
+                                          isExpanded ? "rotate-180" : ""
+                                        }`}
+                                      />
+                                    </div>
+                                  </div>
+                                  {p.subgroup && (
+                                    <div className="text-[10px] uppercase tracking-wide text-muted-foreground/70">
+                                      {p.subgroup}
+                                    </div>
+                                  )}
+                                  {p.description && (
+                                    <p className="text-xs text-muted-foreground leading-relaxed">
+                                      {p.description}
+                                    </p>
+                                  )}
+                                </button>
+
+                                {isExpanded && (
+                                  <div className="border-t bg-muted/20 p-3 space-y-1.5">
+                                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                                      Official references
+                                    </p>
+                                    {!hasLinks && (
+                                      <p className="text-xs text-muted-foreground italic">
+                                        No official links recorded yet. Search the insurer's site at the brand-prefix link above.
+                                      </p>
+                                    )}
+                                    {links.website && (
+                                      <a
+                                        href={links.website}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="flex items-center gap-2 text-xs text-primary hover:underline"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
+                                        <Globe className="h-3 w-3 shrink-0" />
+                                        <span className="flex-1 min-w-0 truncate">Product website</span>
+                                        <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />
+                                      </a>
+                                    )}
+                                    {links.brochure && (
+                                      <a
+                                        href={links.brochure}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="flex items-center gap-2 text-xs text-primary hover:underline"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
+                                        <FileText className="h-3 w-3 shrink-0" />
+                                        <span className="flex-1 min-w-0 truncate">Product brochure (PDF)</span>
+                                        <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />
+                                      </a>
+                                    )}
+                                    {links.summary && (
+                                      <a
+                                        href={links.summary}
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="flex items-center gap-2 text-xs text-primary hover:underline"
+                                        onClick={(e) => e.stopPropagation()}
+                                      >
+                                        <FileText className="h-3 w-3 shrink-0" />
+                                        <span className="flex-1 min-w-0 truncate">Product summary / policy conditions</span>
+                                        <ExternalLink className="h-3 w-3 shrink-0 opacity-60" />
+                                      </a>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}
