@@ -188,7 +188,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "GREAT Flexi Protect Series": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/life-insurance/great-flexi-protect-series.html",
-      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/life-insurance-/life-insurance/great-flexi-protect-series/great-flexi-protect-brochure-english.pdf",
+      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/homepage/personal-insurance/our-products/life-insurance/great-flexi-protect-series/great-flexi-protect-brochure-english.pdf",
     },
     "GREAT Critical Cover: Top 3 CIs": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/health-insurance/great-critical-cover.html",
@@ -257,11 +257,10 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "Prestige Harvest": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/life-insurance/prestige-harvest-universal-life-insurance-plan.html",
-      brochure: "https://www.greateasternlife.com/content/dam/great-eastern/sg/homepage/personal-insurance/our-products/life-insurance/prestige-harvest/prestige-harvest-brochure.pdf",
     },
     "Prestige Legacy Index": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/life-insurance/prestige-legacy-index.html",
-      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/prestige-/prestige-/prestige-legacy-index/prestige-legacy-index-eng-brochure.pdf",
+      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/prestige-/prestige-legacy-index/prestige-legacy-index-eng-brochure.pdf",
     },
     "GREAT SupremeHealth P Plus": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/health-insurance/great-supremehealth-main.html",
@@ -285,11 +284,11 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "GREAT TotalCare (Elite)": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/health-insurance/great-totalcare.html",
-      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/health-insurance-/great-supremehealth/october-2025/gels-pdt-pd-gsh-gtc-eng-brochure.pdf",
+      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/health-insurance-/great-supremehealth/april-2026/gels-pdt-pd-gsh-gtc-tob-eng.pdf",
     },
     "GREAT TotalCare (Classic)": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/health-insurance/great-totalcare.html",
-      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/health-insurance-/great-supremehealth/october-2025/gels-pdt-pd-gsh-gtc-eng-brochure.pdf",
+      brochure: "https://www.greateasternlife.com/content/dam/corp-site/great-eastern/sg/gels-ftrp-imc-cm/health-insurance-/great-supremehealth/april-2026/gels-pdt-pd-gsh-gtc-tob-eng.pdf",
     },
     "GREAT Hospital Cash": {
       website: "https://www.greateasternlife.com/sg/en/personal-insurance/our-products/health-insurance/great-hospital-cash.html",
@@ -414,11 +413,6 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "PRUFlexicash": {
       website: "https://www.prudential.com.sg/products/savings/other-savings-goals-regular-payout/pruflexicash",
-      brochure: "https://www.prudential.com.sg/~/media/prudential/PDF/ebrochures/pruflexicash_eBrochure.pdf",
-    },
-    "PRUAssure Growth": {
-      website: "https://www.prudential.com.sg/products/wealth-accumulation/savings/pruassure-growth",
-      brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruassure-growth/pruassure_growth_brochure_en.pdf",
     },
     "PRUAssure IndexRewards": {
       website: "https://www.prudential.com.sg/products/wealth-accumulation/savings/pruassure-indexrewards",
@@ -467,7 +461,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       website: "https://www.prudential.com.sg/products/health-insurance/medical/prushield",
     },
     "PRUExtra Preferred Care": {
-      website: "https://www.prudential.com.sg/products/health-insurance/medical/pruextra-preferred-copay",
+      website: "https://www.prudential.com.sg/products/health-insurance/medical/prushield",
       brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruextra-preferred-copay/ebrochure-eng.pdf",
     },
     "PRUExtra Plus Care": {
@@ -481,10 +475,6 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
       website: "https://www.prudential.com.sg/products/health-insurance/accident/prupersonal-accident",
       brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/prupersonal-accident/prupersonal-accident-ebrochure-english.pdf",
     },
-    "PRUPersonal Accident Lite (PRUPal)": {
-      website: "https://www.prudential.com.sg/others/prupal",
-      summary: "https://www.prudential.com.sg/-/media/project/prudential/images/others/prupal/pdf/product-summary-accident-lite.pdf",
-    },
     "Care Secure": {
       website: "https://www.prudential.com.sg/products/health-insurance/medical/care-secure",
       brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/caresecure/prudential_income_care_secure_-product_brochure-eng.pdf",
@@ -495,7 +485,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "PRUVantage Wealth II": {
       website: "https://www.prudential.com.sg/products/wealth-accumulation/investments/pruvantage-wealth-ii",
-      brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruvantage-wealth-ii/ebrochure-en.pdf",
+      brochure: "https://www.prudential.com.sg/-/media/project/prudential/pdf/ebrochures/pruvantage-wealth-ii/pruvantage-wealth-ii-brochure-en.pdf",
     },
     "PRUVantage Wealth": {
       website: "https://www.prudential.com.sg/products/wealth-accumulation/investments/pruvantage-wealth-xsell-scb",
@@ -665,7 +655,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
   "income-insurance": {
     "Star Term Protect": {
       website: "https://www.income.com.sg/life-insurance/star-term-protect",
-      brochure: "https://www.income.com.sg/kcassets/dc8adb8d-2acf-436e-a02d-7495baeab2bc/Term_Star%20Term%20Protect_Brochure_ENG_Web%20(1).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/5880ac15-d464-470f-aa39-aff13c996c22/Star%20Term%20Protect%20Brochure_ENG_Web.pdf",
     },
     "TermLife Solitaire": {
       website: "https://www.income.com.sg/solitaire/termlifesolitaire",
@@ -681,7 +671,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "Family Protect": {
       website: "https://www.income.com.sg/life-insurance/family-protect",
-      brochure: "https://www.income.com.sg/kcassets/b8063807-7c8e-489d-9db3-ba5d38d6a09f/Term_Family%20Protect_Brochure_ENG_Web%20(1).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/b8063807-7c8e-489d-9db3-ba5d38d6a09f/Term_Family%20Protect_Brochure_ENG_Web%20%281%29.pdf",
     },
     "Lady 360": {
       website: "https://www.income.com.sg/life-insurance/lady-360",
@@ -690,66 +680,62 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "Maternity 360": {
       website: "https://www.income.com.sg/life-insurance/maternity-360",
-      brochure: "https://www.income.com.sg/kcassets/369a4726-45c7-4ae7-9110-1cc9de493859/Term_Maternity%20360_Brochure_ENG_Web%20(1).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/369a4726-45c7-4ae7-9110-1cc9de493859/Term_Maternity%20360_Brochure_ENG_Web%20%281%29.pdf",
     },
     "LUV (Living with Universal Value)": {
       website: "https://www.income.com.sg/life-insurance/luv",
-      brochure: "https://www.income.com.sg/kcassets/6cb988b6-075e-4491-961e-a2c71d34965c/LUV_EN_2024%20web.pdf",
-      summary: "https://www.income.com.sg/kcassets/617ec563-5224-4e06-a6e6-d1389ea19597/LUV%20Product%20Summary%20(Jul%202024).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/1b381fe6-6ecf-4e93-a775-1d92592abf47/LUV_EN_2024%20web.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/b4379630-fdd8-4d94-9f67-433d687e089e/Product%20summary%20for%20LUV%20%28policy%20start%20date%20after%2001%20June%202025%29.pdf",
     },
     "SAFRA Essential Term / SAFRA Living Care": {
       website: "https://www.income.com.sg/life-insurance/safra-essential-term-and-safra-living-care",
-      brochure: "https://www.income.com.sg/kcassets/af4c958a-1634-4555-b514-2cd377081a23/SAFRA%20Term%20Life%20Insurance%20ENG_2024web.pdf",
-      summary: "https://www.income.com.sg/kcassets/dd11bdcd-902d-4eb4-8e17-43e8cd9f70c1/SAFRA%20Essential%20Term%20Key%20Features%20and%20Benefits%20of%20Insurance%20Coverage%20(Clean).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/af4c958a-1634-4555-b514-2cd377081a23/SAFRA%20Term%20Life%20Insurance%20ENG_2024web.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/53ddf91a-8420-4170-b186-b154be30973d/SAFRA%20Essential%20Term%20Key%20Features%20and%20Benefits%20of%20Insurance%20Coverage%20%28Sep%202022%29.pdf",
     },
     "HomeTeamNS Insurance Scheme / Living Policy": {
       website: "https://www.income.com.sg/life-insurance/hometeamns-insurance-scheme-and-living-policy",
-      brochure: "https://www.income.com.sg/kcassets/329a8b5a-1730-488c-842e-ab0d42c2f9d3/HomeTeamNS%20A4.pdf",
-      summary: "https://www.income.com.sg/kcassets/1772cff1-29dc-41a7-99c4-2c650ee20540/Product%20summary%20for%20HomeTeamNS%20Living%20Policy%20(policy%20start%20date%20after%2001%20June%202025).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/288af80e-0d6e-4e0d-9161-2ee6793c5796/HomeTeamNS_EN_2024%20web.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/1772cff1-29dc-41a7-99c4-2c650ee20540/Product%20summary%20for%20HomeTeamNS%20Living%20Policy%20%28policy%20start%20date%20after%2001%20June%202025%29.pdf",
     },
     "OCBC Protect": {
       website: "https://www.income.com.sg/life-insurance/ocbc-protect",
-      brochure: "https://www.income.com.sg/kcassets/f6a79b1b-eaa4-4b59-80bd-feb170a8a563/OCBC%20Protect_EN_2024%20web.pdf",
-      summary: "https://www.income.com.sg/kcassets/f3ecf5a1-4c23-4f9e-aede-ad187adfe590/Product%20summary%20for%20OCBC%20Protect%20Prime%20(policy%20start%20date%20after%2001%20June%202025).pdf",
-    },
-    "SNACK Life / SNACK Critical Illness / SNACK Accident": {
-      website: "https://www.income.com.sg/snack",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/a0522c8e-b2b1-468f-ba30-c34d1e1db2f2/OCBC%20Protect_EN_2024%20web.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/f3ecf5a1-4c23-4f9e-aede-ad187adfe590/Product%20summary%20for%20OCBC%20Protect%20Prime%20%28policy%20start%20date%20after%2001%20June%202025%29.pdf",
     },
     "Star Secure Pro": {
       website: "https://www.income.com.sg/life-insurance/star-secure-pro",
     },
     "Complete Life Secure": {
       website: "https://www.income.com.sg/life-insurance/complete-life-secure",
-      brochure: "https://www.income.com.sg/kcassets/f578b1df-bba3-4745-9182-4b249beb434f/Whole%20Life_Complete%20Life%20Secure_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/f578b1df-bba3-4745-9182-4b249beb434f/Whole%20Life_Complete%20Life%20Secure_Brochure_ENG_Web.pdf",
       summary: "https://www.income.com.sg/complete-life-secure-policy-conditions.pdf",
     },
     "DIRECT Star Protect Pro": {
       website: "https://www.income.com.sg/life-insurance/direct-star-protect-pro",
-      brochure: "https://www.income.com.sg/kcassets/98c17b0e-d56f-49f3-83c6-c4b7a58cb5c9/Whole_Life_Direct%20Star%20Protect%20Pro_Brochure_ENG_web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/98c17b0e-d56f-49f3-83c6-c4b7a58cb5c9/Whole_Life_Direct%20Star%20Protect%20Pro_Brochure_ENG_web.pdf",
     },
     "Provenance Solitaire": {
       website: "https://www.income.com.sg/solitaire/provenance-solitaire",
-      brochure: "https://www.income.com.sg/kcassets/73bf7016-e1cb-4943-945e-184a49a73fd6/Solitaire_Provenance%20Solitaire_Brochure_ENG_Web%20(1).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/73bf7016-e1cb-4943-945e-184a49a73fd6/Solitaire_Provenance%20Solitaire_Brochure_ENG_Web%20%281%29.pdf",
     },
     "Complete Critical Protect": {
       website: "https://www.income.com.sg/life-insurance/complete-critical-protect",
-      brochure: "https://www.income.com.sg/kcassets/b3b75292-7e95-4d93-8eb3-cb1db54a1d7b/Term_Complete%20Critical%20Protect_Brochure_ENG_web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/b3b75292-7e95-4d93-8eb3-cb1db54a1d7b/Term_Complete%20Critical%20Protect_Brochure_ENG_web.pdf",
     },
     "Complete Cancer Care": {
       website: "https://www.income.com.sg/life-insurance/complete-cancer-care",
-      brochure: "https://www.income.com.sg/kcassets/2d153ea8-3ac8-4d4d-83e9-24adc6197480/Term_Complete%20Cancer%20Care_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/2d153ea8-3ac8-4d4d-83e9-24adc6197480/Term_Complete%20Cancer%20Care_Brochure_ENG_Web.pdf",
       summary: "https://www.income.com.sg/complete-cancer-care-policy-conditions.pdf",
     },
     "Star Assure": {
-      brochure: "https://www.income.com.sg/kcassets/52e5e7ea-68cc-4f56-8e48-9ac79acebb24/Star%20Assure%20(VMXW)_20200121.pdf",
     },
     "Gro Saver Flex Pro": {
       website: "https://www.income.com.sg/savings-and-investments/gro-saver-flex-pro",
-      brochure: "https://www.income.com.sg/kcassets/314397d7-6112-46e4-ac8e-a83800ac4d92/Savings_Gro%20Saver%20Flex%20Pro_Brochure_ENG_Website.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/88eec486-422e-4f14-969f-1f2351cec2d5/Savings_Gro%20Saver%20Flex%20Pro_Brochure_ENG_Website.pdf",
     },
     "Gro Cash Plus": {
       website: "https://www.income.com.sg/savings-and-investments/gro-cash-plus",
-      brochure: "https://www.income.com.sg/kcassets/f9e883ac-72ba-488b-9be3-b324804b2bcb/Gro%20Cash%20Plus_Brochure_ENG_web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/b2d037a7-84ae-435c-828a-444d0757225e/Savings_Gro%20Cash%20Plus_Brochure_ENG_Website.pdf",
       summary: "https://www.income.com.sg/gro-cash-plus-policy-conditions.pdf",
     },
     "Gro Cash Sure": {
@@ -759,11 +745,11 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "Gro Cash Flex Pro": {
       website: "https://www.income.com.sg/savings-and-investments/gro-cash-flex-pro",
-      brochure: "https://www.income.com.sg/kcassets/ae0a6dd1-23ca-4ca2-92a8-305969e43d34/Savings_Gro%20Cash%20Flex%20Pro_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/1549ae5c-be15-407b-b993-1591facedfc9/Savings_Gro%20Cash%20Flex%20Pro_Brochure_ENG_Website.pdf",
     },
     "Gro Retire Flex Pro II": {
       website: "https://www.income.com.sg/savings-and-investments/gro-retire-flex-pro-ii",
-      brochure: "https://www.income.com.sg/kcassets/6b68d9bc-ea49-4046-ad28-d6e9e3074e2e/Savings_Gro%20Retire%20Flex%20Pro%20II_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/a35485ee-78c1-4448-aca9-073a19a8d813/Savings_Gro%20Retire%20Flex%20Pro%20II_Brochure_ENG_Web.pdf",
       summary: "https://www.income.com.sg/gro-retire-flex-pro-ii-policy-conditions.pdf",
     },
     "Gro Annuity Pro": {
@@ -775,11 +761,11 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "Wealth Plus Solitaire": {
       website: "https://www.income.com.sg/solitaire/wealth-plus-solitaire",
-      brochure: "https://www.income.com.sg/kcassets/f01e81db-52dd-4772-840c-a2fe905b5dd4/Solitaire_Wealth%20Plus%20Solitaire%20Brochure%20ENG_Web%20(1).pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/f01e81db-52dd-4772-840c-a2fe905b5dd4/Solitaire_Wealth%20Plus%20Solitaire%20Brochure%20ENG_Web%20%281%29.pdf",
     },
     "Luxe Plus Solitaire II": {
       website: "https://www.income.com.sg/solitaire/luxe-plus-solitaire-ii",
-      brochure: "https://www.income.com.sg/kcassets/babd75cb-d122-493e-b834-9b15d419f17a/Solitaire_Luxe%20Plus%20Solitaire%20II_Brochure_ENG_web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/babd75cb-d122-493e-b834-9b15d419f17a/Solitaire_Luxe%20Plus%20Solitaire%20II_Brochure_ENG_web.pdf",
     },
     "Legacy Flex Solitaire": {
       website: "https://www.income.com.sg/solitaire/legacy-flex-solitaire",
@@ -791,23 +777,23 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     "Enhanced IncomeShield Basic": {
       website: "https://www.income.com.sg/health-insurance/enhanced-incomeshield",
       brochure: "https://www.income.com.sg/getContentAsset/68644221-6584-49bb-b76f-7af9146f416d/05c6012c-3879-4f1c-b994-00e61e65c363/Health_Enhanced-IncomeShield_Brochure_ENG.pdf?language=en",
-      summary: "https://www.income.com.sg/kcassets/be120933-8480-4b14-86b3-1a002cca0282/POS_Enhanced%20IncomeShield_ProductSummary_V1125_Cover%20Page-editable.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/ac259146-8a98-47d1-82cf-4be010701828/POS_Enhanced%20IncomeShield_ProductSummary_V0426_Cover%20Page-editable.pdf",
     },
     "Enhanced IncomeShield Advantage": {
       website: "https://www.income.com.sg/health-insurance/enhanced-incomeshield",
       brochure: "https://www.income.com.sg/getContentAsset/68644221-6584-49bb-b76f-7af9146f416d/05c6012c-3879-4f1c-b994-00e61e65c363/Health_Enhanced-IncomeShield_Brochure_ENG.pdf?language=en",
-      summary: "https://www.income.com.sg/kcassets/be120933-8480-4b14-86b3-1a002cca0282/POS_Enhanced%20IncomeShield_ProductSummary_V1125_Cover%20Page-editable.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/ac259146-8a98-47d1-82cf-4be010701828/POS_Enhanced%20IncomeShield_ProductSummary_V0426_Cover%20Page-editable.pdf",
     },
     "Enhanced IncomeShield Preferred": {
       website: "https://www.income.com.sg/health-insurance/enhanced-incomeshield",
       brochure: "https://www.income.com.sg/getContentAsset/68644221-6584-49bb-b76f-7af9146f416d/05c6012c-3879-4f1c-b994-00e61e65c363/Health_Enhanced-IncomeShield_Brochure_ENG.pdf?language=en",
-      summary: "https://www.income.com.sg/kcassets/be120933-8480-4b14-86b3-1a002cca0282/POS_Enhanced%20IncomeShield_ProductSummary_V1125_Cover%20Page-editable.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/ac259146-8a98-47d1-82cf-4be010701828/POS_Enhanced%20IncomeShield_ProductSummary_V0426_Cover%20Page-editable.pdf",
     },
     // Closed to new business but still on existing client books — keep visible so FCs recognise the name.
     "IncomeShield (legacy Plan A/B/C)": {},
     "PA Secure": {
       website: "https://www.income.com.sg/personal-accident-insurance/pa-secure",
-      brochure: "https://www.income.com.sg/kcassets/0e382dec-9432-4d75-913b-70e53196774a/PA%20Secure%20Brochure%2022032024.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/0e382dec-9432-4d75-913b-70e53196774a/PA%20Secure%20Brochure%2022032024.pdf",
       summary: "https://www.income.com.sg/getContentAsset/56d2cc39-acfb-497f-bc0a-3674a01c187b/05c6012c-3879-4f1c-b994-00e61e65c363/GPS-PA-Secure-Product-Summary-(D)-20240322A.pdf?language=en",
     },
     "PA Assurance": {
@@ -817,17 +803,17 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "SilverCare": {
       website: "https://www.income.com.sg/personal-accident-insurance/silvercare-insurance",
-      brochure: "https://www.income.com.sg/kcassets/11d99b4f-6033-4ee4-b6b9-efc230935144/SilverCare%20Brochure%20ENG%20Web%202025.pdf",
-      summary: "https://www.income.com.sg/kcassets/ee90b8b8-d070-4854-b2e3-47c72f7f1ad7/GSD%20SilverCare%20Product%20Summary%20202501.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/a6f7e820-5293-4ff6-bf99-698271a40c0a/SilverCare%20ENG_2026_web.pdf",
+      summary: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/ee90b8b8-d070-4854-b2e3-47c72f7f1ad7/GSD%20SilverCare%20Product%20Summary%20202501.pdf",
     },
     "Care Secure": {
       website: "https://www.income.com.sg/health-insurance/care-secure",
-      brochure: "https://www.income.com.sg/kcassets/bd4f95df-bbd8-40ab-8497-a908714fc4b9/Care%20Secure%20Brochure_Website.pdf",
+      brochure: "https://www.income.com.sg/getContentAsset/cf662c06-efe9-48c5-ade1-3ff9f370e2d6/05c6012c-3879-4f1c-b994-00e61e65c363/Care-Secure-Brochure_Website.pdf?language=en",
       summary: "https://www.income.com.sg/care-secure-policy-conditions.pdf",
     },
     "Care Secure Pro": {
       website: "https://www.income.com.sg/health-insurance/care-secure-pro",
-      brochure: "https://www.income.com.sg/kcassets/08e7ae89-b34f-4a51-976c-4233ee70db19/Health_Care%20Secure%20Pro_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/4abaf1fc-44ed-4a7a-becd-568819354d74/Health_Care%20Secure%20Pro_Brochure_ENG_Web.pdf",
     },
     "AstraLink": {
       website: "https://www.income.com.sg/savings-and-investments/astralink",
@@ -847,7 +833,7 @@ export const COMPETITOR_PRODUCT_LINKS: Record<string, Record<string, ProductLink
     },
     "WealthLink": {
       website: "https://www.income.com.sg/savings-and-investments/wealthlink",
-      brochure: "https://www.income.com.sg/kcassets/d82472df-83a9-4ec5-9662-70b5361db049/ILP_WealthLink_Brochure_ENG_Web.pdf",
+      brochure: "https://assets-au-01.kc-usercontent.com/8acbd32f-b7e0-0294-6b7d-a2bc72d6b30c/9b66e3ea-a695-4f8e-b16b-9d1fd9acb25a/ILP_WealthLink_Brochure_ENG_Web.pdf",
     },
   },
 
