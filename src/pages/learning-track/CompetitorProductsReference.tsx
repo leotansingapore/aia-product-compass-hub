@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, Download, ExternalLink, FileText, Filter, Globe, Loader2, Printer, RotateCcw, ScanSearch, Search, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Brain, ChevronDown, ChevronRight, ClipboardCheck, Download, ExternalLink, FileText, Filter, Globe, LayoutGrid, Loader2, Printer, RotateCcw, ScanSearch, Search, X } from "lucide-react";
 import { getProductLinks, type ProductLinks } from "@/data/competitorProductLinks";
 
 // Load competitor-products markdown via Vite glob ?raw (same pattern as assignments.ts).
@@ -859,24 +859,55 @@ export default function CompetitorProductsReference() {
         </div>
       </header>
 
-      {/* Companion tool: decode an actual competitor PDF with PolicyLens. */}
-      <a
-        href="https://policy-lens-two.vercel.app"
-        target="_blank"
-        rel="noreferrer noopener"
-        className="print:hidden flex items-start sm:items-center gap-3 rounded-lg border bg-primary/5 hover:bg-primary/10 transition-colors p-3 sm:p-4 group"
-      >
-        <ScanSearch className="h-5 w-5 text-primary shrink-0 mt-0.5 sm:mt-0" />
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium">
-            Holding a competitor policy PDF? Decode it with PolicyLens.
-          </p>
-          <p className="text-xs text-muted-foreground mt-0.5">
-            AI second-opinion for Life, CI, or Health policies — fine print, coverage gaps, and risk projection.
-          </p>
-        </div>
-        <ExternalLink className="h-4 w-4 text-muted-foreground shrink-0 group-hover:text-foreground transition-colors" />
-      </a>
+      {/* Companion tools — what to do once you've identified a competitor's plan. */}
+      <div className="print:hidden grid gap-2 sm:grid-cols-3">
+        <a
+          href="https://policy-lens-two.vercel.app"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="flex items-start gap-3 rounded-lg border bg-primary/5 hover:bg-primary/10 transition-colors p-3 group"
+        >
+          <ScanSearch className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium flex items-center gap-1.5">
+              PolicyLens
+              <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
+              AI second-opinion on a competitor's policy PDF — fine print, coverage gaps, risk projection.
+            </p>
+          </div>
+        </a>
+        <a
+          href="https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v1"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="flex items-start gap-3 rounded-lg border bg-primary/5 hover:bg-primary/10 transition-colors p-3 group"
+        >
+          <LayoutGrid className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium flex items-center gap-1.5">
+              Policy Summary Builder
+              <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-foreground transition-colors" />
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
+              Map a household's existing competitor and AIA policies onto one client-ready summary page.
+            </p>
+          </div>
+        </a>
+        <Link
+          to="/learning-track/pre-rnf/assignments/policy-summary"
+          className="flex items-start gap-3 rounded-lg border bg-primary/5 hover:bg-primary/10 transition-colors p-3 group"
+        >
+          <ClipboardCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium">Assignment: Family Policy Summary</p>
+            <p className="text-xs text-muted-foreground mt-0.5 leading-snug">
+              Practise the workflow — use this inventory + the Builder to map a family member's portfolio.
+            </p>
+          </div>
+        </Link>
+      </div>
 
       {view === "flashcards" && <FlashcardsView insurers={parsed.insurers} />}
 
