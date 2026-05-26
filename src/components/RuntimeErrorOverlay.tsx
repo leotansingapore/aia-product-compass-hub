@@ -1,6 +1,29 @@
 import { Component, ReactNode, useEffect, useState } from "react";
 import { recoverFromStaleChunk, isStaleChunkError } from "@/utils/staleChunkRecovery";
 
+// Browser wallet extensions (MetaMask, Phantom, Coinbase, etc.) inject
+// window.ethereum / window.solana and frequently reject their own internal
+// "connect" calls into the global unhandledrejection stream. These are not
+// app errors — surfacing them as a full-screen overlay panics learners.
+const EXTENSION_NOISE_PATTERNS: RegExp[] = [
+  /Failed to connect to MetaMask/i,
+  /MetaMask extension not found/i,
+  /Could not establish connection.*Receiving end does not exist/i,
+  /chrome-extension:\/\//i,
+  /moz-extension:\/\//i,
+  /safari-web-extension:\/\//i,
+  /window\.(ethereum|solana|phantom)/i,
+  /Phantom.*not (found|installed)/i,
+  /Coinbase Wallet.*not/i,
+  /ResizeObserver loop (limit exceeded|completed)/i,
+];
+
+function isExtensionNoise(reason: unknown): boolean {
+  const msg = reason instanceof Error ? `${reason.name}: ${reason.message}` : typeof reason === "string" ? reason : "";
+  if (!msg) return false;
+  return EXTENSION_NOISE_PATTERNS.some((re) => re.test(msg));
+}
+
 /**
  * Build identifier shown in the overlay. We try (in order):
  *   1. /version.json — written by scripts/generate-version.mjs after vite build
@@ -174,12 +197,25 @@ export class RuntimeErrorOverlay extends Component<BoundaryProps, BoundaryState>
       recoverFromStaleChunk();
       return;
     }
+    if (isExtensionNoise(reason)) {
+      // Wallet/extension noise — log once and swallow.
+      // eslint-disable-next-line no-console
+      console.debug("[RuntimeErrorOverlay] ignored extension noise:", reason);
+      event.preventDefault?.();
+      return;
+    }
     this.setState({ globalError: event.message || String(reason) });
   };
 
   private onRejection = (event: PromiseRejectionEvent) => {
     if (isStaleChunkError(event.reason)) {
       recoverFromStaleChunk();
+      return;
+    }
+    if (isExtensionNoise(event.reason)) {
+      // eslint-disable-next-line no-console
+      console.debug("[RuntimeErrorOverlay] ignored extension rejection:", event.reason);
+      event.preventDefault?.();
       return;
     }
     const msg =
