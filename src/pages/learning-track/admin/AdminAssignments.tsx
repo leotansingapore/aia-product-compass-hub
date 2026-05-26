@@ -120,6 +120,51 @@ function parseFormValues(text: string | null | undefined): Record<string, string
   return null;
 }
 
+// The F.A.D.S. brand-builder writes submissions as a plain-text header followed
+// by KEY: value lines and a `--- FULL BRAND BRIEF (JSON) ---` block. Detect
+// that shape so we can render the brief as structured cards instead of a wall
+// of text.
+interface BrandBriefSubmission {
+  fields: Array<{ label: string; value: string }>;
+  briefJson: unknown | null;
+}
+
+function parseBrandBriefSubmission(text: string | null | undefined): BrandBriefSubmission | null {
+  if (!text) return null;
+  if (!text.includes("FULL BRAND BRIEF (JSON)") && !text.includes("Audience & Differentiation Worksheet")) {
+    return null;
+  }
+
+  const jsonMarker = text.indexOf("--- FULL BRAND BRIEF (JSON) ---");
+  const headerText = jsonMarker >= 0 ? text.slice(0, jsonMarker) : text;
+  const jsonText = jsonMarker >= 0 ? text.slice(jsonMarker).replace(/^.*\n/, "").trim() : "";
+
+  const lines = headerText.split("\n").map((l) => l.trim()).filter(Boolean);
+  const fields: Array<{ label: string; value: string }> = [];
+  // Skip the first title line.
+  const titleIdx = lines.findIndex((l) => /worksheet submission/i.test(l));
+  const startIdx = titleIdx >= 0 ? titleIdx + 1 : 0;
+  for (let i = startIdx; i < lines.length; i++) {
+    const m = lines[i].match(/^([A-Z][A-Z0-9 #&'-]+):\s*(.+)$/);
+    if (!m) continue;
+    const label = m[1].trim();
+    const value = m[2].trim();
+    if (value && value !== "(not provided)") fields.push({ label, value });
+  }
+
+  let briefJson: unknown | null = null;
+  if (jsonText) {
+    try {
+      briefJson = JSON.parse(jsonText);
+    } catch {
+      briefJson = null;
+    }
+  }
+
+  if (fields.length === 0 && !briefJson) return null;
+  return { fields, briefJson };
+}
+
 export default function AdminAssignments() {
   const query = useQuery({
     queryKey: ["admin-first-60-assignments"],
@@ -293,7 +338,37 @@ export default function AdminAssignments() {
                           </div>
                         )}
 
-                        {sub && !formValues && sub.submission_text && (
+                        {sub && !formValues && (() => {
+                          const brandBrief = parseBrandBriefSubmission(sub.submission_text);
+                          if (!brandBrief) return null;
+                          return (
+                            <div className="space-y-2">
+                              <div className="grid gap-2 sm:grid-cols-2">
+                                {brandBrief.fields.map((f) => (
+                                  <div key={f.label} className="rounded-md border bg-background p-3">
+                                    <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                                      {f.label}
+                                    </div>
+                                    <div className="text-sm whitespace-pre-wrap break-words">{f.value}</div>
+                                  </div>
+                                ))}
+                              </div>
+                              {brandBrief.briefJson != null && (
+                                <details className="rounded-md border bg-muted/30">
+                                  <summary className="cursor-pointer list-none p-3 text-xs font-medium hover:bg-muted/50 transition-colors flex items-center gap-1">
+                                    <ChevronRight className="h-3 w-3 transition-transform [details[open]_&]:rotate-90" />
+                                    View full brand brief JSON
+                                  </summary>
+                                  <pre className="px-3 pb-3 text-[11px] whitespace-pre-wrap font-mono overflow-x-auto max-h-96">
+                                    {JSON.stringify(brandBrief.briefJson, null, 2)}
+                                  </pre>
+                                </details>
+                              )}
+                            </div>
+                          );
+                        })()}
+
+                        {sub && !formValues && !parseBrandBriefSubmission(sub.submission_text) && sub.submission_text && (
                           <div className="rounded-md border bg-background p-3 text-sm whitespace-pre-wrap">
                             {sub.submission_text}
                           </div>
