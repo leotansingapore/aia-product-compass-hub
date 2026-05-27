@@ -524,6 +524,27 @@ Submission files table (`learning_track_submission_files`):
 
 <!-- Move completed items here after Lovable runs migrations -->
 
+### 2026-05-28 — `plans_catalog` table (shared SG plan inventory)
+
+Shipped by Claude Code via Supabase Management API (not Lovable). Migration file lives at `supabase/migrations/20260527161256_create_plans_catalog.sql`. Seed/refill scripts in `scripts/seed-plans-catalog.ts` and `scripts/fill-plan-summaries.ts`.
+
+Backs the policy-name autocomplete in [growing-age-calculator](https://github.com/leotansingapore/growing-age-calculator)'s Portfolio Summary V2. Source of truth for "what plans exist in the SG retail life/health market", read cross-project from growing-age via a second Supabase client targeting compass-hub.
+
+What's live:
+
+- Table `plans_catalog` — 271 seeded rows across 8 insurers (AIA 35, Great Eastern 42, Prudential 45, Singlife 34, Income 43, Manulife 24, HSBC Life 36, Raffles 12). Each row: `company_name`, `plan_name`, `plan_type`, `brochure_url`, `official_url`, `ai_summary`, `aliases text[]`, `is_aia bool`, `created_by_user_id text`, `created_by_email text`.
+- Unique constraint on `(company_name, plan_name)`.
+- Indexes: `lower(company_name)`, trigram on `plan_name`, GIN on `aliases` — supports fast ILIKE and alias-contains lookups.
+- RLS: anon SELECT/INSERT/UPDATE (Wikipedia-style — any logged-in FC across any AIA app can add new plans). Identity captured as text fields, not FK to auth.users, because the writing app (growing-age) authenticates against a different Supabase project.
+- Trigger: `plans_catalog_set_updated_at`.
+- Extension: `pg_trgm` enabled (was not previously on the project).
+
+Seed source: `src/data/competitorProductLinks.ts` — the static SG retail plan inventory researched in January 2026 by 8 parallel agents. Insurer slugs mapped to display names via `INSURER_DISPLAY` in `scripts/seed-plans-catalog.ts`.
+
+AI summary fill: `scripts/fill-plan-summaries.ts` calls `claude -p --model sonnet` per row to write 2-3 sentence factual descriptions. Run-once on first import; FCs can also edit summaries via the catalog directly (anon UPDATE policy).
+
+---
+
 ### 2026-05-20 — `fc_brand_brochures` table + headshot storage buckets
 
 Shipped by Claude Code via Supabase Management API (not Lovable). Migration file lives at `supabase/migrations/20260520085800_fc_brand_brochures.sql`.
