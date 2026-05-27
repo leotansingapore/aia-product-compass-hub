@@ -35,6 +35,9 @@ export function useLearningTrackProgress(userId: string | undefined) {
   });
 
   const setStatus = useMutation({
+    // One retry covers the common Supabase token-rotation 401 window without
+    // hammering on a real RLS/network failure.
+    retry: 1,
     mutationFn: async (params: { itemId: string; status: ItemStatus }) => {
       if (!userId) throw new Error("Not signed in");
       const completedAt = params.status === "completed" ? new Date().toISOString() : null;
@@ -63,8 +66,16 @@ export function useLearningTrackProgress(userId: string | undefined) {
       }));
       return { previous };
     },
-    onError: (_err, _vars, ctx) => {
+    onError: (err, _vars, ctx) => {
       if (ctx?.previous) qc.setQueryData(["learning-track-progress", userId], ctx.previous);
+      // Asymmetric handling was the bug: success toasted "Lesson complete!"
+      // but failure rolled back silently. Surface failures too.
+      const message = err instanceof Error ? err.message : "Couldn't save your progress";
+      toast({
+        variant: "destructive",
+        title: "Progress didn't save",
+        description: `${message}. Check your connection and try again.`,
+      });
     },
     onSuccess: (_data, params) => {
       if (params.status === "completed") {

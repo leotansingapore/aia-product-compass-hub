@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -12,6 +13,33 @@ import type { DayProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 const QUERY_KEY_PREFIX = "product-mastery-progress";
 const LEGACY_LOCALSTORAGE_PREFIX = "product-mastery-track-progress-";
 const MIGRATION_FLAG = "product-mastery-track-migration-done";
+const PROGRESS_CACHE_PREFIX = "product-mastery-progress-cache-";
+
+// Hydrating from localStorage lets the hub render lock/completion state on the
+// first paint, before the Supabase round-trip resolves. Without this the day
+// page momentarily believes the user has no progress and renders the lock
+// screen pointing them back to the previous day.
+function readCachedProgress(userId: string): Record<number, DayProgress> | undefined {
+  if (typeof window === "undefined") return undefined;
+  try {
+    const raw = localStorage.getItem(PROGRESS_CACHE_PREFIX + userId);
+    if (!raw) return undefined;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return undefined;
+    return parsed as Record<number, DayProgress>;
+  } catch {
+    return undefined;
+  }
+}
+
+function writeCachedProgress(userId: string, data: Record<number, DayProgress>) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PROGRESS_CACHE_PREFIX + userId, JSON.stringify(data));
+  } catch {
+    // Quota / private-mode failures are non-fatal — server state is the truth.
+  }
+}
 
 type Row = {
   user_id: string;
@@ -94,14 +122,18 @@ export function useProductMasteryProgress() {
     queryKey: [QUERY_KEY_PREFIX, userId],
     queryFn: async () => {
       if (!userId) return {} as Record<number, DayProgress>;
-      return await fetchProgress(userId);
+      const data = await fetchProgress(userId);
+      writeCachedProgress(userId, data);
+      return data;
     },
     enabled: Boolean(userId),
     staleTime: 5 * 60_000,
     gcTime: 30 * 60_000,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    placeholderData: (prev) => prev,
+    // Paint the hub immediately on revisits using the last-seen progress
+    // snapshot, then let the refetch reconcile with Supabase.
+    placeholderData: userId ? readCachedProgress(userId) : undefined,
   });
 
   useEffect(() => {
@@ -114,6 +146,9 @@ export function useProductMasteryProgress() {
   const daysMap = progressQuery.data ?? {};
 
   const upsertMutation = useMutation({
+    // One retry covers the common Supabase token-rotation 401 window without
+    // hammering on a real RLS/network failure.
+    retry: 1,
     mutationFn: async (input: {
       dayNumber: number;
       patch: Partial<{
@@ -169,13 +204,28 @@ export function useProductMasteryProgress() {
       });
       return { previous };
     },
-    onError: (_err, _input, ctx) => {
+    onError: (err, _input, ctx) => {
       if (ctx?.previous) qc.setQueryData([QUERY_KEY_PREFIX, userId], ctx.previous);
+      // Silent rollback would make the user think they'd passed, then the next
+      // day shows locked. Surface it.
+      const message = err instanceof Error ? err.message : "Couldn't save your progress";
+      toast.error("Progress didn't save", {
+        description: `${message}. Check your connection and try the quiz again — your last answer wasn't recorded.`,
+      });
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: [QUERY_KEY_PREFIX, userId] });
       // Leaderboard pulls from the same RPC so re-fetch when progress changes.
       qc.invalidateQueries({ queryKey: ["learner-leaderboard"] });
+      // Keep the localStorage snapshot in sync with the optimistic state so
+      // the next cold load paints the right icons.
+      if (userId) {
+        const latest = qc.getQueryData<Record<number, DayProgress>>([
+          QUERY_KEY_PREFIX,
+          userId,
+        ]);
+        if (latest) writeCachedProgress(userId, latest);
+      }
     },
   });
 
@@ -238,5 +288,6 @@ export function useProductMasteryProgress() {
     isDayComplete,
     isUnlocked,
     isAdminUser,
+    isLoading: progressQuery.isLoading,
   };
 }

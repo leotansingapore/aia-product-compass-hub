@@ -104,7 +104,7 @@ export default function ProductMasteryDay() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("read");
   const progress = useProductMasteryProgress();
-  const { markRead, isQuizPassed, isDayComplete, isUnlocked } = progress;
+  const { markRead, isQuizPassed, isDayComplete, isUnlocked, isLoading: progressLoading } = progress;
   const { isActualAdmin } = useAdmin();
   const unlocked = isActualAdmin || isUnlocked(dayNumber);
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
@@ -200,8 +200,13 @@ export default function ProductMasteryDay() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading || !day) {
-    if (loading) {
+  // Gate on BOTH the markdown chunk AND the progress query. If we render the
+  // lock screen on a stale-empty progress map, the user sees a phantom "Day
+  // locked" pointing them back to the previous day — which the previous day's
+  // quiz then reads as unattempted (progress still empty) so they get forced
+  // to redo a quiz they already passed.
+  if (loading || progressLoading || !day) {
+    if (loading || progressLoading) {
       return (
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="h-4 w-40 animate-pulse rounded bg-muted" />
