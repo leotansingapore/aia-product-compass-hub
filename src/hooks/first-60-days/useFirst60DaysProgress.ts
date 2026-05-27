@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -187,6 +188,9 @@ export function useFirst60DaysProgress() {
   const daysMap = progressQuery.data ?? {};
 
   const upsertMutation = useMutation({
+    // One retry covers the common Supabase token-rotation 401 window without
+    // hammering on a real RLS/network failure.
+    retry: 1,
     mutationFn: async (input: {
       dayNumber: number;
       patch: Partial<{
@@ -282,8 +286,14 @@ export function useFirst60DaysProgress() {
       });
       return { prev };
     },
-    onError: (_err, _input, ctx) => {
+    onError: (err, _input, ctx) => {
       if (ctx?.prev) qc.setQueryData(["first-60-days-progress", userId], ctx.prev);
+      // Silent rollback is what made the original bug invisible — the user
+      // thought they'd passed, then the next day showed locked. Surface it.
+      const message = err instanceof Error ? err.message : "Couldn't save your progress";
+      toast.error("Progress didn't save", {
+        description: `${message}. Check your connection and try the quiz again — your last answer wasn't recorded.`,
+      });
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["first-60-days-progress", userId] });

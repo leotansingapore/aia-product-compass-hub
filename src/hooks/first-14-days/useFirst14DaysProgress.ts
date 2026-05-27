@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -7,6 +8,33 @@ import { TOTAL_DAYS } from "@/features/first-14-days/summaries";
 
 const LEGACY_KEY = "first-14-days-progress-v1";
 const MIGRATION_FLAG = "first-14-days-migration-done";
+const PROGRESS_CACHE_PREFIX = "first-14-days-progress-cache-";
+
+// Hydrating from localStorage lets the hub render lock/completion state on the
+// first paint, before the Supabase round-trip resolves. Without this the page
+// momentarily believes the user has no progress and renders the lock screen
+// pointing them back to the previous day.
+function readCachedProgress(userId: string): Record<number, DayProgress> | undefined {
+  if (typeof window === "undefined") return undefined;
+  try {
+    const raw = localStorage.getItem(PROGRESS_CACHE_PREFIX + userId);
+    if (!raw) return undefined;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return undefined;
+    return parsed as Record<number, DayProgress>;
+  } catch {
+    return undefined;
+  }
+}
+
+function writeCachedProgress(userId: string, data: Record<number, DayProgress>) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PROGRESS_CACHE_PREFIX + userId, JSON.stringify(data));
+  } catch {
+    // Quota / private-mode failures are non-fatal — server state is the truth.
+  }
+}
 
 export type ReflectionAnswers = Record<string, string>;
 
@@ -118,9 +146,17 @@ export function useFirst14DaysProgress() {
 
   const progressQuery = useQuery({
     queryKey: ["first-14-days-progress", userId],
-    queryFn: () => (userId ? fetchProgress(userId) : Promise.resolve({} as Record<number, DayProgress>)),
+    queryFn: async () => {
+      if (!userId) return {} as Record<number, DayProgress>;
+      const data = await fetchProgress(userId);
+      writeCachedProgress(userId, data);
+      return data;
+    },
     enabled: Boolean(userId),
     staleTime: 30_000,
+    // Paint the hub immediately on revisits using the last-seen progress
+    // snapshot, then let the refetch reconcile with Supabase.
+    placeholderData: userId ? readCachedProgress(userId) : undefined,
   });
 
   useEffect(() => {
@@ -133,6 +169,9 @@ export function useFirst14DaysProgress() {
   const daysMap = progressQuery.data ?? {};
 
   const upsertMutation = useMutation({
+    // One retry covers the common Supabase token-rotation 401 window without
+    // hammering on a real RLS/network failure.
+    retry: 1,
     mutationFn: async (input: {
       dayNumber: number;
       patch: Partial<{
@@ -210,11 +249,26 @@ export function useFirst14DaysProgress() {
       });
       return { prev };
     },
-    onError: (_err, _input, ctx) => {
+    onError: (err, _input, ctx) => {
       if (ctx?.prev) qc.setQueryData(["first-14-days-progress", userId], ctx.prev);
+      // Silent rollback is what made the original bug invisible — the user
+      // thought they'd passed, then the next day showed locked. Surface it.
+      const message = err instanceof Error ? err.message : "Couldn't save your progress";
+      toast.error("Progress didn't save", {
+        description: `${message}. Check your connection and try the quiz again — your last answer wasn't recorded.`,
+      });
     },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
+      // Keep the localStorage snapshot in sync with the optimistic state so
+      // the next cold load paints the right icons.
+      if (userId) {
+        const latest = qc.getQueryData<Record<number, DayProgress>>([
+          "first-14-days-progress",
+          userId,
+        ]);
+        if (latest) writeCachedProgress(userId, latest);
+      }
     },
   });
 

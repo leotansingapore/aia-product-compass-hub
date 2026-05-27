@@ -120,6 +120,7 @@ export default function First14DaysDay() {
     isActualAdmin: isProgressAdmin,
     markDayCompleteAsAdmin,
     unmarkDayCompleteAsAdmin,
+    isLoading: progressLoading,
   } = useFirst14DaysProgress();
   const { isActualAdmin } = useAdmin();
   const { tier } = useUserTier();
@@ -188,8 +189,13 @@ export default function First14DaysDay() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading || !day) {
-    if (loading) {
+  // Gate on BOTH the markdown chunk AND the progress query. If we render the
+  // lock screen on a stale-empty progress map, the user sees a phantom "Day
+  // locked" pointing them back to the previous day — which the previous day's
+  // quiz then reads as unattempted (progress still empty) so they get forced
+  // to redo a quiz they already passed.
+  if (loading || progressLoading || !day) {
+    if (loading || progressLoading) {
       return (
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="h-4 w-40 animate-pulse rounded bg-muted" />

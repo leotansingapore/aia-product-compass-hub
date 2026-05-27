@@ -78,7 +78,7 @@ export default function Next60DaysDay() {
   const [activeTab, setActiveTab] = useState<string>("read");
   const [showStickyQuiz, setShowStickyQuiz] = useState(false);
   const progress = useNext60DaysProgress();
-  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead } = progress;
+  const { isUnlocked, isDayComplete, isQuizPassed, isReflectionSubmitted, markRead, isLoading: progressLoading } = progress;
 
   // Adapters for DayQuiz/DayReflection (which default to First 60 Days progress)
   const quizProgress = { recordQuiz: progress.recordQuiz, isQuizPassed: progress.isQuizPassed, getDay: progress.getDay };
@@ -113,7 +113,12 @@ export default function Next60DaysDay() {
 
   const goToQuiz = () => { setActiveTab("quiz"); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
-  if (loading) {
+  // Gate on BOTH the markdown chunk AND the progress query. If we render the
+  // lock screen on a stale-empty progress map, the user sees a phantom "Day
+  // locked" pointing them back to the previous day — which the previous day's
+  // quiz then reads as unattempted (progress still empty) so they get forced
+  // to redo a quiz they already passed.
+  if (loading || progressLoading) {
     return (
       <div className="mx-auto max-w-5xl space-y-6">
         <div className="h-4 w-40 animate-pulse rounded bg-muted" />
