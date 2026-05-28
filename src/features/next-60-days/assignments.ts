@@ -153,11 +153,10 @@ export async function loadAllAssignments(): Promise<Assignment[]> {
   return cache;
 }
 
-/** The 6 First-60-Days assignment status_keys that must all be submitted before Next 60 Days assignments unlock. */
+/** The 5 First-60-Days assignment status_keys that must all be submitted before Next 60 Days assignments unlock. */
 export const FIRST_60_DAYS_REQUIRED_KEYS: string[] = [
   "assignment-01-roleplay",
   "assignment-02-outreach",
-  "assignment-03-field-observation",
   "assignment-04-book-review",
   "assignment-05-cold-calling-shadow",
   "assignment-06-vision-board",

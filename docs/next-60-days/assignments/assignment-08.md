@@ -1,16 +1,15 @@
 ---
-id: assignment-03
-url_slug: field-observation
-order: 6
+id: n60-assignment-08
+order: 8
 title: "Joint Field Observation - Reflection"
 short: "Shadow a senior FC on a real meeting, then reflect on what you saw."
 icon: eye
 deliverable: "Completed reflection form (submitted in Academy)"
 submission_type: "form"
 estimated_time: "90 min meeting + 30 min write-up"
-weeks_covered: [4, 8, 9, 10]
-related_days: [21, 43, 47, 54, 59]
-status_key: "assignment-03-field-observation"
+weeks_covered: [4, 5, 6, 7, 8]
+related_days: []
+status_key: "n60-assignment-08-field-observation"
 form_fields:
   - "Senior FC observed|text|Their name"
   - "Meeting type & date|text|First meeting / follow-up / close / service review, plus date"
@@ -24,7 +23,7 @@ form_fields:
   - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
 ---
 
-# Assignment 6 - Joint Field Observation
+# Joint Field Observation
 
 > **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe - you don't pitch.
 

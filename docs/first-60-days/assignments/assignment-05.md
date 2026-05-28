@@ -1,7 +1,7 @@
 ---
 id: assignment-05
 url_slug: cold-calling
-order: 8
+order: 7
 title: "Cold Calling Sessions + Senior Shadow"
 short: "Conduct 2 cold-calling sessions and set 2 appointments for a senior FC to shadow."
 icon: users
