@@ -73,6 +73,22 @@ export const markdownSanitizeSchema: Schema = {
       'rel',
     ],
     mark: ['className', 'class'],
+    video: [
+      'src',
+      'controls',
+      'playsinline',
+      'preload',
+      'crossorigin',
+      'poster',
+      'muted',
+      'loop',
+      'autoplay',
+      'width',
+      'height',
+      'style',
+    ],
+    source: ['src', 'type', 'media', 'srcset', 'sizes'],
+    track: ['kind', 'src', 'srclang', 'label', 'default'],
   },
   tagNames: [
     ...(defaultSchema.tagNames || []),
@@ -84,6 +100,7 @@ export const markdownSanitizeSchema: Schema = {
     'summary',
     'video',
     'source',
+    'track',
   ],
   // Strict iframe src allow-list. Anything else gets the `src` attribute
   // stripped by hast-util-sanitize and the iframe collapses to nothing
