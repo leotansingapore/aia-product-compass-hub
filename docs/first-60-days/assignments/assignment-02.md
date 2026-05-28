@@ -1,9 +1,9 @@
 ---
 id: assignment-02
-url_slug: outreach-playbook
+url_slug: project-200
 order: 5
-title: "Contact List + Personal Outreach Playbook"
-short: "Build a 100-name list and write your own customised outreach, objection, and follow-up scripts."
+title: "Project 200"
+short: "Build a 200-name list and craft warm-market outreach that invests in relationships first - not a pitch."
 icon: users
 deliverable: "Sheet link + playbook sections (submitted inline)"
 submission_type: "form"
@@ -12,8 +12,8 @@ weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
 form_fields:
-  - "Your Project 100 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
-  - "Sheet filled-in count|text|How many names have you loaded so far? e.g. 42 named, 18 Priority A, 25 Semi-Warm"
+  - "Your Project 200 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
+  - "Sheet filled-in count|text|How many names have you loaded so far? e.g. 84 named, 36 Priority A, 50 Semi-Warm"
   - "Outreach 1: 'What I'm doing now' (close friends)|textarea|2 to 4 sentences. No ask, just an update. In your voice.|4"
   - "Outreach 2: 'By the way' (lunch / coffee)|textarea|How you naturally raise the career when you're already meeting someone for another reason.|4"
   - "Outreach 3: Market survey script (warm-but-not-close)|textarea|The phone call or WhatsApp asking 5 minutes for research. Low-pressure framing.|4"
@@ -27,9 +27,9 @@ form_fields:
   - "The script you're least confident about|textarea|Name one and say why. This is the one you want feedback on.|3"
 ---
 
-# Assignment 5 - Contact List + Personal Outreach Playbook
+# Project 200
 
-> **What you're producing:** Two files. (a) A Project 100 contact list with 100 real people segmented by priority. (b) A personal playbook - your own words - covering outreach messages, objection responses, and follow-up cadences.
+> **What you're producing:** Two files. (a) A Project 200 contact list with 200 real people segmented by priority. (b) A personal playbook - your own words - covering outreach messages, objection responses, and follow-up cadences.
 
 ## Why this matters
 
@@ -42,7 +42,7 @@ The playbook is yours. Don't use anyone else's exact words. Use their frameworks
 - [Day 19 - Prospecting Fundamentals](../../first-60-days/week-4/day-19.md) - the 3-bucket structure for prospect activity
 - [Day 37 - The Approach: 6-Step Process](../../first-60-days/week-7/day-37.md) - CLV math and what warm-market is really worth
 - [Day 38 - ABCD Framework](../../first-60-days/week-7/day-38.md) - the 4 promises that open every first meeting
-- [Day 39 - Project 100](../../first-60-days/week-7/day-39.md) - why 100 is the Goldilocks number and how to score A/B/C priority
+- [Day 39 - Project 100](../../first-60-days/week-7/day-39.md) - the original 100-name framing, A/B/C priority scoring (we extend to 200 here)
 - [Day 40 - Digital Presence](../../first-60-days/week-7/day-40.md) - the 4-stage prospect journey
 - [Day 41 - Content & Engagement](../../first-60-days/week-7/day-41.md) - the weekly content + DM system
 - [Day 42 - Digital Lead-Gen Playbook](../../first-60-days/week-7/day-42.md) - Posts -> Stories -> DMs funnel
@@ -51,9 +51,34 @@ The playbook is yours. Don't use anyone else's exact words. Use their frameworks
 
 ## Part A - Contact list
 
-> **Start here:** **[Duplicate this Project 100 Sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** - open the link, click **File -> Make a copy**, save it into your own Drive, and fill it in. The template already has the columns, priority scoring, and temperature fields set up.
+> **Start here:** **[Duplicate this Project 200 Sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** - open the link, click **File -> Make a copy**, save it into your own Drive, and fill it in. The template already has the columns, priority scoring, and temperature fields set up.
 
-> **Then generate your first messages:** **[Open the Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool)**. Paste your sheet rows in (any order - only Name is required), and the tool drafts a starter WhatsApp / Telegram / IG message per prospect based on temperature. Edit before sending, one-tap copy, and track who you've actually contacted. Saved per device.
+### How to craft your warm-market outreach
+
+Outreach in your first 60 days is relationship-first. You are pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Use the five angles below as your starting menu. **All five live in the [Sales Scripts library, filtered to Warm Market](/scripts?audience=warm-market)** - open the closest match, rewrite it in your own voice, save your edit. Your saved versions become the four scripts you'll paste into Section 1 of the playbook.
+
+**1. The policy review / summary offer.** For friends who already have insurance and quietly aren't sure what they own. You are not selling - you're offering to lay it out for them on one page so they actually understand what they're paying for.
+> *"I'm building one-page policy summaries as part of my training. Want me to do yours? Takes me about 30 min, you'll know exactly what you own and what's missing."*
+
+**2. The casual catch-up.** For people you genuinely miss talking to. No agenda, no ask. *"Been a while - coffee this month?"* That's it. A big share of your 200 names should sit here at some point. The relationship is the work.
+
+**3. The relationship investment.** For acquaintances and semi-warm contacts who've gone quiet. Add value first - congratulate a milestone, share something they'd find useful, react to their post like a human. Three to four touches with zero career mention before any ask.
+
+**4. The honest "ask for help".** For close friends and family. The career change is the news; the ask is for their feedback, not their money.
+> *"I just started training as a Financial Consultant. Can I borrow 15 minutes to walk you through what I'm learning? I'm not asking you to buy anything - I'm not even licensed yet. I just need real feedback on how I explain things."*
+
+**5. The "ask for practice + future support".** For semi-warm contacts you respect. The window where this opener is most honest is right now, pre-license.
+> *"I'm starting out in financial advisory. Once my license is through, my plan is to focus on people I actually know. Would you be open to a 30-min session then so I can practise on someone honest? No expectation either way."*
+
+#### Rules of thumb when you write your own
+
+- **Lead with them, not you.** Reference the last thing you spoke about, their kid's age, the job change they posted. Generic openers get ignored.
+- **Name the ask honestly.** "Help" / "practice" / "feedback" - not "chat" or "catch up" when you actually want practice reps. The honesty disarms.
+- **One ask per message.** Don't bundle "let's catch up" with "and review your policy". Pick one angle, send one message.
+- **No pitch language pre-license.** No "great policies", no "I can help you save money". You can't sell yet - saying so out loud is what unlocks the conversation.
+- **Door-open on every "no".** Never *"ok no worries"* - always *"if anything ever changes, my door's open"*. A Year 3 inbound starts with a Year 1 open door.
+
+> **Where the scripts live:** **[Sales Scripts library - Warm Market filter](/scripts?audience=warm-market)**. Open the closest match, edit until it sounds like you wrote it, save your version. If a script you need doesn't exist yet, write it from scratch in the library and tag the audience as Warm Market - it'll be there for the next FC behind you.
 
 ### Understand the market temperature first
 
@@ -91,9 +116,9 @@ flowchart TD
 | **Status** | Not contacted / messaged / meeting booked / met / closed / not pursuing |
 | **Next step + date** | "Call Tuesday", "lunch 15 Jan", "re-check July", etc. |
 
-**Rule 1: at least 30 names must be Priority A.** If you cannot find 30 A's, you haven't dug deep enough - school alumni, past colleagues, gym, church, sports clubs, wedding guest list, wife/husband's circle.
+**Rule 1: at least 60 names must be Priority A.** If you cannot find 60 A's, you haven't dug deep enough - school alumni, past colleagues, gym, church, sports clubs, wedding guest list, wife/husband's circle.
 
-**Rule 2: at least 40 of your 100 must be Semi-Warm.** This is where your long-term pipeline lives.
+**Rule 2: at least 80 of your 200 must be Semi-Warm.** This is where your long-term pipeline lives.
 
 ## Part B - The playbook
 
@@ -153,7 +178,7 @@ Both should specify **exactly who** you're asking about - "two colleagues at you
 - **The first 5 feel awkward.** You over-apologise, over-explain, freeze on the binary close. That's expected.
 - **Surveys 6 to 15 are when the script settles.** Tonality matures. You stop reading. The rapport intro shrinks from 90 seconds to 30.
 - **Surveys 16 to 30 are when you actually become good.** The binary close lands, the appointment ask doesn't trigger reflex objections, the social-add at the end happens by reflex.
-- **By Survey 30, the script is yours.** When your RNF drops, you call the next 70 names on your Project 100 list with no friction.
+- **By Survey 30, the script is yours.** When your RNF drops, you call the next 170 names on your Project 200 list with no friction.
 
 If you do fewer than 30, you carry the awkwardness into your real warm market - and burn the contacts that should have been your easiest closes.
 
@@ -208,7 +233,7 @@ Don't dial cold into your real semi-warm market on Day 1. Climb the ladder. Each
 | **1. Solo rehearsal** | 5 to 10 read-throughs | Yourself - mirror, voice memo | Words flow without freezing. Tonality varies. Pace settles. |
 | **2. Cohort roleplay** | 3 to 5 paired reps | Another pre-RNF FC | Take feedback. Swap roles. Throw reflex objections at each other. |
 | **3. Hot reps (warm-up)** | 3 to 5 calls | Family, partner, best friends | Gentle live audience. They will say yes. Settle nerves before stage 4. |
-| **4. Real semi-warm reps** | The remaining ~20 | Project 100 Priority A and B | This is where the actual practice happens. The yes/no is real. |
+| **4. Real semi-warm reps** | The remaining ~20 | Project 200 Priority A and B | This is where the actual practice happens. The yes/no is real. |
 
 **Cluster the calls.** 5 to 7 surveys in a focused 90-minute block produces better tonality than 1 a day. Your voice warms up around call 2 and peaks around call 5. Schedule survey blocks across 2 to 3 weeks of your study window.
 
@@ -249,7 +274,7 @@ A passing Part C shows you've hit at least 25 of 30 (with a credible plan to cle
 
 ## What a passing playbook looks like
 
-- 100 contacts with at least 30 priority-A, >=40 Semi-Warm, context filled in for all A's
+- 200 contacts with at least 60 priority-A, >=80 Semi-Warm, context filled in for all A's
 - Each outreach script is clearly in your own voice - not a trainer template
 - Objection responses use the 3-beat structure visibly
 - Follow-up cadence gives specific day markers, not "follow up later"
@@ -257,4 +282,4 @@ A passing Part C shows you've hit at least 25 of 30 (with a credible plan to cle
 
 ## Submission
 
-Fill in the form below. You only need to paste your Project 100 Sheet link - the playbook sections go straight into the fields on this page. No uploads required.
+Fill in the form below. You only need to paste your Project 200 Sheet link - the playbook sections go straight into the fields on this page. No uploads required.

@@ -531,10 +531,10 @@ export default function OutreachBuilder() {
     <div className="mx-auto max-w-5xl space-y-6 p-4 sm:p-6" data-testid="outreach-builder">
       <div className="flex items-center justify-between gap-3">
         <Link
-          to="/learning-track/pre-rnf/assignments/outreach-playbook"
+          to="/learning-track/pre-rnf/assignments/project-200"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to Assignment 2
+          <ArrowLeft className="h-4 w-4" /> Back to Project 200
         </Link>
         {prospects.length > 0 && (
           <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground hover:text-destructive">
