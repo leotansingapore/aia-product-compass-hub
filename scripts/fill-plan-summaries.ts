@@ -68,6 +68,22 @@ Constraints:
 - If you genuinely don't recognise the plan, respond with exactly: UNKNOWN
 - 2-3 sentences max, total under 350 characters`;
 
+const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+async function callClaude(prompt: string): Promise<string | null> {
+  try {
+    const { stdout } = await execFileAsync("claude", ["-p", "--model", "sonnet", prompt], {
+      timeout: 90_000,
+      maxBuffer: 1024 * 1024,
+    });
+    const text = stdout.trim();
+    return text || null;
+  } catch (e) {
+    console.error(`  claude CLI error: ${e instanceof Error ? e.message : e}`);
+    return null;
+  }
+}
+
 async function generateSummary(row: PlanRow): Promise<string | null> {
   const prompt = PROMPT_TEMPLATE
     .replace("{{PLAN_NAME}}", row.plan_name)
@@ -75,18 +91,19 @@ async function generateSummary(row: PlanRow): Promise<string | null> {
     .replace("{{BROCHURE_URL}}", row.brochure_url ?? "(none)")
     .replace("{{OFFICIAL_URL}}", row.official_url ?? "(none)");
 
-  try {
-    const { stdout } = await execFileAsync("claude", ["-p", "--model", "sonnet", prompt], {
-      timeout: 60_000,
-      maxBuffer: 1024 * 1024,
-    });
-    const text = stdout.trim();
-    if (!text || text === "UNKNOWN") return null;
-    return text;
-  } catch (e) {
-    console.error(`  claude CLI failed for "${row.plan_name}":`, e instanceof Error ? e.message : e);
-    return null;
+  // First attempt
+  let text = await callClaude(prompt);
+
+  // On UNKNOWN or empty, wait and retry once — the first batch run showed
+  // that whole consecutive insurers came back UNKNOWN, suggesting transient
+  // rate limit / session degradation rather than genuine no-knowledge.
+  if (!text || text === "UNKNOWN") {
+    await sleep(8000);
+    text = await callClaude(prompt);
   }
+
+  if (!text || text === "UNKNOWN") return null;
+  return text;
 }
 
 async function main() {
@@ -143,6 +160,9 @@ async function main() {
       console.log(`OK (${summary.length} chars)`);
       filled++;
     }
+
+    // Inter-call breather to dodge rate limits.
+    await sleep(1500);
   }
 
   console.log(`\nDone. Filled: ${filled}, Unknown/skipped: ${unknown}, Failed: ${failed}`);
