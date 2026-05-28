@@ -32,7 +32,7 @@ const RESOURCES: ReadonlyArray<{ label: string; href?: string; to?: string; hint
   { label: 'SCI key concepts + textbooks', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ', hint: 'Reference, not required reading.' },
   { label: 'SCI chapter checkpoint questions', hint: 'Inside the SCI student account.' },
   { label: 'SCI mock exam', hint: 'Run 4–5 times max — questions repeat.' },
-  { label: 'Exam tutorials (videos)', to: '/cmfas-exams/papers', hint: 'Recorded SCI lectures by paper. Optional — most learners pass without watching.' },
+  { label: 'Lecture videos', to: '/cmfas-exams/lecture-videos', hint: 'Recorded SCI lectures by paper. Optional — most learners pass without watching.' },
 ];
 
 const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.ComponentType<{ className?: string }> }> = [

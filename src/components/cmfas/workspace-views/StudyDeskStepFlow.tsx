@@ -583,7 +583,7 @@ export function StudyDeskStepFlow({
       setSubmitting(false);
     }
     if (isLast) {
-      onSelectWorkspaceMode('papers');
+      onSelectWorkspaceMode('lecture-videos');
       return;
     }
     navigate(slideUrlForIndex(slideIndex + 1), { replace: true });
@@ -1239,9 +1239,9 @@ export function StudyDeskStepFlow({
                       'h-9 min-w-0 flex-1 border border-primary/35',
                       'bg-background/60 text-foreground hover:bg-primary/15',
                     )}
-                    onClick={() => onSelectWorkspaceMode('papers')}
+                    onClick={() => onSelectWorkspaceMode('lecture-videos')}
                   >
-                    <span className="min-w-0 truncate">Exam tutorials</span>
+                    <span className="min-w-0 truncate">Lecture videos</span>
                   </Button>
                 </div>
               )}

@@ -10,10 +10,10 @@ import { cmfasRoom } from './cmfasTheme';
  *  bookmarks, slide deep-links (`/cmfas-exams/today/:slideSlug`), and
  *  in-app hrefs in CourseOutlineView / getReadySlideContent. The nav rail
  *  groups them into 4 buckets via {@link NavMode}. */
-export type WorkspaceMode = 'today' | 'papers' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
+export type WorkspaceMode = 'today' | 'lecture-videos' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
 
 /** What the nav rail surfaces. Six URL modes collapse into four buckets:
- *  - `practice` contains [Questions (practice), Videos (papers)] as sub-tabs
+ *  - `practice` contains [Questions (practice), Lecture videos (lecture-videos)] as sub-tabs
  *  - `setup` contains [Checklist (today), Syllabus (syllabus)] as sub-tabs
  *  - `study-tips` and `rewards` are 1:1 with their URL modes */
 export type NavMode = 'study-tips' | 'practice' | 'rewards' | 'setup';
@@ -22,7 +22,7 @@ export type NavMode = 'study-tips' | 'practice' | 'rewards' | 'setup';
 export const URL_TO_NAV_MODE: Record<WorkspaceMode, NavMode> = {
   'study-tips': 'study-tips',
   practice: 'practice',
-  papers: 'practice',
+  'lecture-videos': 'practice',
   rewards: 'rewards',
   today: 'setup',
   syllabus: 'setup',

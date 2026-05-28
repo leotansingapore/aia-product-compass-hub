@@ -53,16 +53,22 @@ import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
-const WORKSPACE_MODES: WorkspaceMode[] = ["today", "papers", "practice", "rewards", "study-tips", "syllabus"];
+const WORKSPACE_MODES: WorkspaceMode[] = ["today", "lecture-videos", "practice", "rewards", "study-tips", "syllabus"];
 /** Modes that get their own URL segment under `/cmfas-exams/`. The default
  *  `today` (study desk) lives at the bare `/cmfas-exams` path. */
 const PATH_WORKSPACE_MODES: ReadonlyArray<Exclude<WorkspaceMode, "today">> = [
   "syllabus",
-  "papers",
+  "lecture-videos",
   "study-tips",
   "practice",
   "rewards",
 ];
+
+/** Legacy slug aliases — bookmarks of the old `/cmfas-exams/papers` URL should
+ *  still resolve. Looked up before the `isWorkspaceMode` check. */
+const LEGACY_PATH_ALIASES: Record<string, WorkspaceMode> = {
+  papers: "lecture-videos",
+};
 
 function isWorkspaceMode(value: string | null | undefined): value is WorkspaceMode {
   return value != null && (WORKSPACE_MODES as string[]).includes(value);
@@ -118,14 +124,17 @@ export default function CMFASExams() {
       setSearchParams(next, { replace: true });
       return;
     }
-    if (isWorkspaceMode(legacyMode)) {
+    const resolved: WorkspaceMode | null = isWorkspaceMode(legacyMode)
+      ? legacyMode
+      : (LEGACY_PATH_ALIASES[legacyMode] ?? null);
+    if (resolved) {
       const next = new URLSearchParams(searchParams);
       next.delete("mode");
       const qs = next.toString();
       const target =
-        legacyMode === defaultWorkspaceMode
+        resolved === defaultWorkspaceMode
           ? `/cmfas-exams${qs ? `?${qs}` : ""}`
-          : `/cmfas-exams/${legacyMode}${qs ? `?${qs}` : ""}`;
+          : `/cmfas-exams/${resolved}${qs ? `?${qs}` : ""}`;
       navigate(target, { replace: true });
     }
   }, [searchParams, setSearchParams, navigate, defaultWorkspaceMode]);
@@ -187,15 +196,22 @@ export default function CMFASExams() {
   // If the URL tries to land on a locked mode (Practice — both questions and
   // videos are gated until Get Ready is complete), bounce to Setup.
   useEffect(() => {
-    if (!readyComplete && (activeMode === "papers" || activeMode === "practice")) {
+    if (!readyComplete && (activeMode === "lecture-videos" || activeMode === "practice")) {
       setMode("today");
     }
   }, [readyComplete, activeMode, setMode]);
 
-  // Unknown path segment (e.g. `/cmfas-exams/bogus`) — silently rewrite to the
-  // study desk so the URL bar stops showing a non-existent page.
+  // Legacy aliases (`/cmfas-exams/papers` -> `/cmfas-exams/lecture-videos`) and
+  // unknown path segments. Aliases redirect to the canonical URL; unknown
+  // segments silently rewrite to the study desk.
   useEffect(() => {
-    if (pathMode != null && !isWorkspaceMode(pathMode)) {
+    if (pathMode == null) return;
+    const alias = LEGACY_PATH_ALIASES[pathMode];
+    if (alias) {
+      navigate(`/cmfas-exams/${alias}`, { replace: true });
+      return;
+    }
+    if (!isWorkspaceMode(pathMode)) {
       navigate("/cmfas-exams", { replace: true });
     }
   }, [pathMode, navigate]);
@@ -268,12 +284,12 @@ export default function CMFASExams() {
     if (activeMode === "study-tips") return <StudyTipsView />;
 
     // Practice bucket — Questions + Videos behind sub-tabs.
-    if (activeMode === "practice" || activeMode === "papers") {
+    if (activeMode === "practice" || activeMode === "lecture-videos") {
       return (
         <>
           {renderSubTabs([
             { value: "practice", label: "Question bank" },
-            { value: "papers", label: "Exam tutorials" },
+            { value: "lecture-videos", label: "Lecture videos" },
           ])}
           {activeMode === "practice" ? <PracticeView /> : <PapersView />}
         </>
