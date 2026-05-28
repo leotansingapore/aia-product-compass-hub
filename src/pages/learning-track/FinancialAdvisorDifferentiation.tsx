@@ -458,8 +458,8 @@ export default function FinancialAdvisorDifferentiation() {
         const { data, error } = await (supabase.from as any)("assignment_submissions")
           .select("id")
           .eq("user_id", userId)
-          .eq("product_id", "first-60-days-assignments")
-          .eq("item_id", "assignment-08")
+          .eq("product_id", "next-60-days-assignments")
+          .eq("item_id", "n60-assignment-08-differentiation")
           .limit(1);
         if (cancelled) return;
         if (error) {
@@ -1151,8 +1151,8 @@ export default function FinancialAdvisorDifferentiation() {
 
       const { error } = await (supabase.from as any)("assignment_submissions").insert({
         user_id: user.id,
-        product_id: "first-60-days-assignments",
-        item_id: "assignment-08",
+        product_id: "next-60-days-assignments",
+        item_id: "n60-assignment-08-differentiation",
         submission_text: summary,
         file_url: null,
         file_name: null,

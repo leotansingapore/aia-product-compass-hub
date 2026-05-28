@@ -1,7 +1,7 @@
 ---
 id: assignment-02
 url_slug: project-200
-order: 5
+order: 4
 title: "Project 200"
 short: "Build a 200-name list and craft warm-market outreach that invests in relationships first - not a pitch."
 icon: users

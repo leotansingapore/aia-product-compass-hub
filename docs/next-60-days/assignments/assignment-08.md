@@ -1,57 +1,75 @@
 ---
 id: n60-assignment-08
 order: 8
-title: "Joint Field Observation - Reflection"
-short: "Shadow a senior FC on a real meeting, then reflect on what you saw."
-icon: eye
-deliverable: "Completed reflection form (submitted in Academy)"
+title: "Audience & Differentiation Worksheet"
+short: "Pick two audiences and map their tangible problems, intangible problems, and what makes YOUR approach different."
+icon: users
+deliverable: "Complete the F.A.D.S. tool inside Academy"
 submission_type: "form"
-estimated_time: "90 min meeting + 30 min write-up"
-weeks_covered: [4, 5, 6, 7, 8]
+estimated_time: "60 to 90 minutes"
+weeks_covered: [1, 9]
 related_days: []
-status_key: "n60-assignment-08-field-observation"
+status_key: "n60-assignment-08-differentiation"
 form_fields:
-  - "Senior FC observed|text|Their name"
-  - "Meeting type & date|text|First meeting / follow-up / close / service review, plus date"
-  - "Prospect profile|textarea|Age range, occupation, life stage, your read on their DISC style|3"
-  - "Opening: what did the senior FC do in the first 5 minutes?|textarea|Rapport, mission statement, agenda - what specifically did they say?|4"
-  - "The best question you heard|textarea|Write it word-for-word if you can. Then say why it worked.|4"
-  - "The concept they led with|textarea|Which concept - Total Wealth, Total Wealth, Protection ladder, CST Risk, etc. - and why do you think they picked it?|4"
-  - "First objection + how it was handled|textarea|The prospect's exact words, then the senior FC's 3-beat response|4"
-  - "The close|textarea|How did they move to the close? Was there silence? Who broke it? Closed on product or on appointment?|4"
-  - "The one thing you're stealing|textarea|Name one move, phrase, or technique you're using in your next 3 meetings.|3"
-  - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
+  - "Your one-sentence positioning|text|From the Delivery tab of the F.A.D.S. tool - paste your final positioning sentence here as proof you finished. Format: who you serve + what makes you different."
 ---
 
-# Joint Field Observation
+# Audience & Differentiation Worksheet
 
-> **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe - you don't pitch.
+> **What you're producing:** A side-by-side map of the two audiences you intend to serve in your first 12 months - what their visible problems are, what their hidden emotional weight is, what you actually do for them, and what makes your version of the work different from every other advisor's.
 
 ## Why this matters
 
-Reading about SPIN and watching SPIN happen are different skills. Most new FCs know every framework on paper but freeze in the first live meeting because they've never seen the frameworks *as they actually look in the room*.
+A new FC who can only describe themselves as *"I do financial planning for everyone"* sounds like every other agent in Singapore. A new FC who can say *"I work with two specific groups - late-30s professionals with no time, and young adults in their first three years of work - and here's exactly how I work with each"* sounds like a different category of person.
 
-This assignment collapses that gap. The reflection isn't a summary - it's a diagnosis. You're looking for the moves the senior FC made that you would have missed.
+That clarity is what gets the second meeting, the introduction, and the long-term client.
+
+This assignment forces three things most new FCs avoid:
+
+1. **Choosing two audiences and writing them down.** Most FCs stay vague because vagueness feels safer. It isn't - it's the exact reason they sound generic.
+2. **Naming the *intangible* problem.** Tangible problems (a $300k coverage gap, $40k of idle cash) are easy. The intangible ones - the anxiety about not being there for the kids, the social comparison pressure of being the only one without a plan - are harder to write but are usually the ones that close the case.
+3. **Articulating your differentiator.** The honest differentiator isn't your product (every advisor sells similar plans). It's *the way you work* - your process, cadence, point of view, the small things you do that nobody else does.
+
+## Why this sits in Next 60 Days, not First 60
+
+The first version of this worksheet is just guesses. Now that you've actually had real conversations with warm market - the surveys, the policy reviews, the awkward "by the way" calls - you have *evidence*. You know which prospects energised you and which drained you. You know which problems came up word-for-word twice. You know which of your moves felt natural and which felt borrowed. That's the raw material this worksheet is built from. Doing it before then is theory; doing it now is data.
 
 ## Prepare from these days
 
-Skim these *before* the observation so your pattern-recognition is active in the meeting.
+- [Day 5 - Purpose-Driven Life: Your Real Why](../../first-60-days/week-1/day-05.md) - the personal *why* that sits underneath the audience layer
+- [Day 54 - Concept Selling](../../first-60-days/week-9/day-54.md) - the concept-selling framework and the audience-mapping section it closes with
 
-- [Day 21 - The 5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) - watch for each phase transition
-- [Day 43 - Scripting the Approach](../../first-60-days/week-8/day-43.md) - the meeting open
-- [Day 47 - SPIN Framework](../../first-60-days/week-8/day-47.md) - the Situation -> Problem -> Implication -> Need-Payoff sequence
-- [Day 54 - Concept Selling](../../first-60-days/week-9/day-54.md) - which concept they lead with and why
-- [Day 59 - The Close](../../first-60-days/week-10/day-59.md) - the silent close
+## How you complete this assignment
 
-## How to set it up
+The whole assignment lives inside the **F.A.D.S. tool** - open it, work through the seven tabs, then come back here and paste your final one-sentence positioning into the form below.
 
-1. Ask your mentor or any senior FC in the team. Most will say yes.
-2. Confirm prospect consent - you're introduced as "a colleague observing".
-3. Sit, take notes on phone/notebook discreetly. Say nothing unless directly addressed.
-4. Debrief the senior FC for 5-10 minutes after the meeting.
+**[Open the F.A.D.S. tool ->](/learning-track/pre-rnf/assignments/audience-differentiation/tool)**
 
-## Fill in the reflection form below
+The seven tabs walk you through:
 
-The form below has 10 short fields. Aim for specific, concrete answers over long general ones. *"Senior FC was confident"* is not an answer. *"When prospect said they already had insurance, senior FC asked 'when was the last time you looked at what's actually covered?' - I'm using this"* is.
+1. **Personality** - style, values, beliefs, money philosophy
+2. **Purpose** - origin story, mission, vision
+3. **Experience** - years, claims, certifications, defining moments
+4. **Audience** - full demographic + psychographic map for two audiences (pre-built profiles you can clone: Busy Father, Young Adult, Single Mother, Parent)
+5. **Solutions** - tangible / intangible problems and solutions per audience
+6. **Delivery** - mission statement, process, framework, end-result statement
+7. **Brand Output** - assembles the whole brief, exportable for any LLM polish
 
-Submit directly on the Academy - no file upload needed.
+Your answers save locally as you go, so you can come back across multiple sittings.
+
+## What good looks like
+
+By the time you get to the **Delivery** tab and write your one-sentence positioning, the rest of the tool should look like this:
+
+- Two audiences specific enough that you could name three real people in your life who fit each.
+- The intangible problems read like things a friend would tell you over coffee, not like marketing copy.
+- The tangible solutions are concrete (specific products, specific dollar ranges) - not generic.
+- The intangible solutions are about *how you work* - process, cadence, presence - not about product features.
+- The differentiator is something you could prove with an artefact. If you couldn't prove it, it isn't real yet.
+- The one-sentence positioning includes both who you serve and what you do that's different.
+
+## A note on revision
+
+You'll want to redo this at month 6 and again at year 1. The version you write now - after Next 60 Days - is grounded in early evidence. The month-6 version, after 30+ real conversations, is the one that sharpens. The year-1 version is the one that goes on your LinkedIn bio and your business card.
+
+The only bad worksheet is the one that doesn't get filled in at all.

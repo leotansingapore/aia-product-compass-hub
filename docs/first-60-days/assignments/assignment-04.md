@@ -1,7 +1,7 @@
 ---
 id: assignment-04
 url_slug: book-review
-order: 4
+order: 3
 title: "Book Review - 1 Book of Your Choice"
 short: "Read one career-relevant book and apply its frameworks to your practice."
 icon: book-open
