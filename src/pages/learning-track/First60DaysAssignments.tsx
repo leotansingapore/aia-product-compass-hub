@@ -34,6 +34,7 @@ import {
   type AssignmentFormField,
 } from "@/features/first-60-days/assignments";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
+import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
@@ -529,6 +530,14 @@ function SubmissionPanel({
         file_name: fileName,
       });
       if (insErr) throw insErr;
+      notifyAssignmentSubmitted({
+        userId,
+        productId: PRODUCT_ID,
+        itemId: assignment.frontmatter.status_key,
+        assignmentTitle: assignment.frontmatter.title,
+        submissionExcerpt: payloadText,
+        fileName,
+      });
       toast.success("Assignment submitted");
       onSubmitted();
       setEditing(false);

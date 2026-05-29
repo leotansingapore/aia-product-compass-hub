@@ -13,6 +13,7 @@ import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, Messag
 import { toast } from "sonner";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
 import { BrochureBuilderCard } from "@/components/learning-track/BrochureBuilderCard";
 
 // Base path inside the Pre-RNF assignment shell. Tab segment is appended.
@@ -1158,6 +1159,13 @@ export default function FinancialAdvisorDifferentiation() {
         file_name: null,
       });
       if (error) throw error;
+      notifyAssignmentSubmitted({
+        userId: user.id,
+        productId: "next-60-days-assignments",
+        itemId: "n60-assignment-08-differentiation",
+        assignmentTitle: "Audience & Differentiation Worksheet (F.A.D.S.)",
+        submissionExcerpt: summary,
+      });
       setHasSubmitted(true);
       toast.success("Submitted to your mentor.");
     } catch (err: any) {

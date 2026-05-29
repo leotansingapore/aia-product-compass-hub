@@ -6,6 +6,7 @@ import { ClipboardList, Upload, CheckCircle2, FileText, Loader2 } from 'lucide-r
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
+import { notifyAssignmentSubmitted } from '@/lib/notifyAssignmentSubmitted';
 import type { AssignmentConfig } from '@/hooks/useProducts';
 
 interface InlineAssignmentProps {
@@ -100,6 +101,15 @@ export default function InlineAssignment({
       });
 
       if (insertError) throw insertError;
+
+      notifyAssignmentSubmitted({
+        userId: user.id,
+        productId,
+        itemId,
+        assignmentTitle: title,
+        submissionExcerpt: submissionText.trim() || null,
+        fileName,
+      });
 
       setIsSubmitted(true);
       toast.success('Assignment submitted successfully');

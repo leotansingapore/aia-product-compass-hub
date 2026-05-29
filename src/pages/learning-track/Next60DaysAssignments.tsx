@@ -33,6 +33,7 @@ import {
   type Assignment,
   type AssignmentFormField,
 } from "@/features/next-60-days/assignments";
+import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
 
 const PRODUCT_ID = "next-60-days-assignments";
 
@@ -489,6 +490,14 @@ function SubmissionPanel({
         file_name: fileName,
       });
       if (insErr) throw insErr;
+      notifyAssignmentSubmitted({
+        userId,
+        productId: PRODUCT_ID,
+        itemId: assignment.frontmatter.status_key,
+        assignmentTitle: assignment.frontmatter.title,
+        submissionExcerpt: payloadText,
+        fileName,
+      });
       toast.success("Assignment submitted");
       onSubmitted();
       setEditing(false);
