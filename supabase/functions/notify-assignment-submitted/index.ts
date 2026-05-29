@@ -4,6 +4,7 @@ import { Resend } from 'npm:resend@4.0.0';
 import { renderAsync } from 'npm:@react-email/components@0.0.22';
 import React from 'npm:react@18.3.1';
 import { AssignmentNotificationEmail } from './_templates/assignment-notification.tsx';
+import { StudentConfirmationEmail } from './_templates/student-confirmation.tsx';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -16,6 +17,11 @@ const ADMIN_URL = 'https://aia-product-compass-hub.lovable.app/learning-track/ad
 const TRACK_LABELS: Record<string, string> = {
   'first-60-days-assignments': 'First 60 Days',
   'next-60-days-assignments': 'Next 60 Days',
+};
+
+const TRACK_LEARNER_URLS: Record<string, string> = {
+  'first-60-days-assignments': 'https://aia-product-compass-hub.lovable.app/learning-track/pre-rnf/assignments',
+  'next-60-days-assignments': 'https://aia-product-compass-hub.lovable.app/learning-track/post-rnf/next-60-days',
 };
 
 serve(async (req) => {
@@ -73,7 +79,7 @@ serve(async (req) => {
 
     const resend = new Resend(resendApiKey);
 
-    const html = await renderAsync(
+    const adminHtml = await renderAsync(
       React.createElement(AssignmentNotificationEmail, {
         trackLabel,
         assignmentTitle: assignment_title || item_id,
@@ -85,17 +91,17 @@ serve(async (req) => {
       })
     );
 
-    const { data, error: emailError } = await resend.emails.send({
+    const { data: adminData, error: adminError } = await resend.emails.send({
       from: 'FINternship <noreply@mail.themoneybees.co>',
       to: [ADMIN_EMAIL],
       subject: `📥 ${trackLabel} submission: ${assignment_title || item_id}`,
-      html,
+      html: adminHtml,
     });
 
-    if (emailError) {
-      console.error('Resend error:', emailError);
+    if (adminError) {
+      console.error('Resend (admin) error:', adminError);
       return new Response(
-        JSON.stringify({ error: 'Failed to send email', details: emailError }),
+        JSON.stringify({ error: 'Failed to send admin email', details: adminError }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -104,8 +110,54 @@ serve(async (req) => {
       `Assignment notification sent to ${ADMIN_EMAIL} for ${product_id}/${item_id} from ${userEmail}`
     );
 
+    // Best-effort confirmation email back to the student. Fall through silently
+    // if the user lookup couldn't resolve a real email — the admin notification
+    // already succeeded and we don't want to fail the whole request because
+    // the learner email is missing.
+    let studentMessageId: string | null = null;
+    const hasRealStudentEmail = userEmail && userEmail !== 'unknown@example.com';
+    if (hasRealStudentEmail) {
+      try {
+        const firstName = (userName || userEmail.split('@')[0] || 'there').split(/\s+/)[0];
+        const studentHtml = await renderAsync(
+          React.createElement(StudentConfirmationEmail, {
+            firstName,
+            trackLabel,
+            assignmentTitle: assignment_title || item_id,
+            submissionExcerpt: excerpt,
+            fileName: file_name ?? null,
+            dashboardUrl: TRACK_LEARNER_URLS[product_id] ?? ADMIN_URL,
+          })
+        );
+
+        const { data: studentData, error: studentError } = await resend.emails.send({
+          from: 'FINternship <noreply@mail.themoneybees.co>',
+          to: [userEmail],
+          subject: `✓ Submission received: ${assignment_title || item_id}`,
+          html: studentHtml,
+        });
+
+        if (studentError) {
+          console.warn('Resend (student) error:', studentError);
+        } else {
+          studentMessageId = studentData?.id ?? null;
+          console.log(`Student confirmation sent to ${userEmail}`);
+        }
+      } catch (studentErr) {
+        console.warn('Student confirmation send threw:', studentErr);
+      }
+    } else {
+      console.warn(
+        `Skipping student confirmation: no real email resolved for user_id=${user_id}`
+      );
+    }
+
     return new Response(
-      JSON.stringify({ success: true, messageId: data?.id }),
+      JSON.stringify({
+        success: true,
+        adminMessageId: adminData?.id,
+        studentMessageId,
+      }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   } catch (error: any) {
