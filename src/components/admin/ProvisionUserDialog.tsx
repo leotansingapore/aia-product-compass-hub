@@ -78,10 +78,11 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
       if (error) throw error;
 
       // If a tier is selected (not default 'user'), assign the tier role
-      if (selectedTier !== 'user' && data?.user_id) {
+      const newUserId = data?.user?.id;
+      if (selectedTier !== 'user' && newUserId) {
         await supabase
           .from('user_roles')
-          .insert({ user_id: data.user_id, role: selectedTier });
+          .insert({ user_id: newUserId, role: selectedTier });
       }
 
       // Mark approval request as approved
