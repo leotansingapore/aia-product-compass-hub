@@ -374,6 +374,49 @@ function parseFormValues(submissionText: string | null | undefined): Record<stri
   return {};
 }
 
+// --- Local draft autosave -------------------------------------------------
+// Heavy form assignments (Project 200 has 13 fields, some 10 rows tall) used to
+// lose everything on an accidental refresh or back-navigation. We mirror the
+// in-progress answers to localStorage so a student never retypes a playbook.
+type Draft = { t?: string; f?: Record<string, string> };
+
+const DRAFT_KEY = (userId: string, statusKey: string) =>
+  `assignment-draft-${userId}-${statusKey}`;
+
+function readDraft(userId: string | undefined, statusKey: string): Draft | null {
+  if (!userId || typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY(userId, statusKey));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? (parsed as Draft) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeDraft(userId: string | undefined, statusKey: string, draft: Draft) {
+  if (!userId || typeof window === "undefined") return;
+  try {
+    const hasContent =
+      (draft.t && draft.t.trim().length > 0) ||
+      Object.values(draft.f ?? {}).some((v) => v.trim().length > 0);
+    if (hasContent) localStorage.setItem(DRAFT_KEY(userId, statusKey), JSON.stringify(draft));
+    else localStorage.removeItem(DRAFT_KEY(userId, statusKey));
+  } catch {
+    // Quota / private-mode failures are non-fatal — the form still works.
+  }
+}
+
+function clearDraft(userId: string | undefined, statusKey: string) {
+  if (!userId || typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(DRAFT_KEY(userId, statusKey));
+  } catch {
+    // Non-fatal.
+  }
+}
+
 function SubmissionPanel({
   assignment,
   submission,
@@ -390,24 +433,41 @@ function SubmissionPanel({
     !!assignment.frontmatter.form_fields?.length;
   const formFields = assignment.frontmatter.form_fields ?? [];
 
-  const [text, setText] = useState(submission?.submission_text ?? "");
+  const statusKey = assignment.frontmatter.status_key;
+  const initialDraft = submission ? null : readDraft(userId, statusKey);
+  const [text, setText] = useState(submission?.submission_text ?? initialDraft?.t ?? "");
   const [formValues, setFormValues] = useState<Record<string, string>>(() =>
-    parseFormValues(submission?.submission_text),
+    submission ? parseFormValues(submission?.submission_text) : initialDraft?.f ?? {},
   );
   const [file, setFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [editing, setEditing] = useState(!submission);
-  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const parsed = parseFormValues(submission?.submission_text);
     const staleNonFormSubmission =
       isFormMode && submission && Object.keys(parsed).length === 0;
     setEditing(!submission || !!staleNonFormSubmission);
-    setText(submission?.submission_text ?? "");
-    setFormValues(parsed);
+    // No server submission yet → restore any local draft so a refresh or
+    // back-navigation never wipes in-progress answers.
+    if (!submission) {
+      const draft = readDraft(userId, statusKey);
+      setText(draft?.t ?? "");
+      setFormValues(draft?.f ?? {});
+    } else {
+      setText(submission.submission_text ?? "");
+      setFormValues(parsed);
+    }
     setFile(null);
-  }, [submission?.id, assignment.slug, isFormMode]);
+  }, [submission?.id, assignment.slug, isFormMode, userId, statusKey]);
+
+  // Mirror in-progress answers to localStorage. Once a submission exists the
+  // draft has served its purpose, so we stop writing (and editing a submission
+  // again is backed by the server row, not the draft).
+  useEffect(() => {
+    if (submission) return;
+    writeDraft(userId, statusKey, { t: text, f: formValues });
+  }, [text, formValues, submission, userId, statusKey]);
 
   const MAX_MB = 500;
 
@@ -485,15 +545,17 @@ function SubmissionPanel({
     let payloadText: string | null = null;
     if (isFormMode) {
       const filled = formFields.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
-      if (filled.length === 0) {
-        toast.error("Fill in at least one field before submitting.");
+      if (filled.length === 0 && !file) {
+        toast.error("Fill in at least one field or attach a file before submitting.");
         return;
       }
-      payloadText = JSON.stringify(
-        Object.fromEntries(
-          formFields.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
-        ),
-      );
+      payloadText = filled.length
+        ? JSON.stringify(
+            Object.fromEntries(
+              formFields.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
+            ),
+          )
+        : null;
     } else {
       if (!file && !text.trim()) {
         toast.error("Upload a file or paste a link / notes.");
@@ -507,7 +569,7 @@ function SubmissionPanel({
     try {
       let fileUrl: string | null = null;
       let fileName: string | null = null;
-      if (!isFormMode && file) {
+      if (file) {
         const ext = file.name.split(".").pop() ?? "bin";
         const path = `${userId}/${PRODUCT_ID}/${assignment.frontmatter.status_key}/${Date.now()}.${ext}`;
         const { error: upErr } = await supabase.storage
@@ -539,6 +601,7 @@ function SubmissionPanel({
         fileName,
       });
       toast.success("Assignment submitted");
+      clearDraft(userId, statusKey);
       onSubmitted();
       setEditing(false);
       setFile(null);
@@ -588,40 +651,23 @@ function SubmissionPanel({
               disabled={submitting}
             />
           ))}
+          <AssignmentFileUpload
+            file={file}
+            onFile={handleFile}
+            disabled={submitting}
+            label="Attach a screenshot or file"
+            sublabel={`(optional, max ${MAX_MB}MB)`}
+          />
         </div>
       ) : (
         <>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">
-              Upload file <span className="text-muted-foreground font-normal">(optional, max {MAX_MB}MB)</span>
-            </label>
-            <input
-              ref={fileRef}
-              type="file"
-              className="hidden"
-              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.mp4,.mov,.zip"
-              onChange={handleFile}
-            />
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => fileRef.current?.click()}
-              disabled={submitting}
-              className="w-full border-dashed border-2 h-20 flex flex-col items-center justify-center gap-1"
-            >
-              {file ? (
-                <span className="flex items-center gap-2 text-sm">
-                  <FileText className="h-4 w-4" />
-                  {file.name}
-                </span>
-              ) : (
-                <>
-                  <Upload className="h-5 w-5 text-muted-foreground" />
-                  <span className="text-xs text-muted-foreground">Click to upload</span>
-                </>
-              )}
-            </Button>
-          </div>
+          <AssignmentFileUpload
+            file={file}
+            onFile={handleFile}
+            disabled={submitting}
+            label="Upload file"
+            sublabel={`(optional, max ${MAX_MB}MB)`}
+          />
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">
@@ -636,6 +682,13 @@ function SubmissionPanel({
             />
           </div>
         </>
+      )}
+
+      {!submission && (
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <CheckCircle2 className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+          Your answers save automatically on this device — leave and come back any time.
+        </p>
       )}
 
       <div className="flex flex-col-reverse sm:flex-row gap-3">
@@ -658,6 +711,55 @@ function SubmissionPanel({
           )}
         </Button>
       </div>
+    </div>
+  );
+}
+
+function AssignmentFileUpload({
+  file,
+  onFile,
+  disabled,
+  label,
+  sublabel,
+}: {
+  file: File | null;
+  onFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled: boolean;
+  label: string;
+  sublabel: string;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+  return (
+    <div className="space-y-2">
+      <label className="text-sm font-medium text-foreground">
+        {label} <span className="text-muted-foreground font-normal">{sublabel}</span>
+      </label>
+      <input
+        ref={ref}
+        type="file"
+        className="hidden"
+        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.mp4,.mov,.zip"
+        onChange={onFile}
+      />
+      <Button
+        type="button"
+        variant="outline"
+        onClick={() => ref.current?.click()}
+        disabled={disabled}
+        className="w-full border-dashed border-2 h-20 flex flex-col items-center justify-center gap-1"
+      >
+        {file ? (
+          <span className="flex items-center gap-2 text-sm">
+            <FileText className="h-4 w-4" />
+            {file.name}
+          </span>
+        ) : (
+          <>
+            <Upload className="h-5 w-5 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">Click to upload</span>
+          </>
+        )}
+      </Button>
     </div>
   );
 }
