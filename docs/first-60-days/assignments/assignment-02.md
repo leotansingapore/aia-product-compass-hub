@@ -5,36 +5,29 @@ order: 4
 title: "Project 200"
 short: "Build a 200-name list and craft warm-market outreach that invests in relationships first - not a pitch."
 icon: users
-deliverable: "Sheet link + playbook sections (submitted inline)"
+deliverable: "200-name sheet + survey progress (updated over time)"
 submission_type: "form"
-estimated_time: "4 to 6 hours"
+estimated_time: "2 to 3 hours for the list, then surveys over your study weeks"
 weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
-submit_heading: "Build your Project 200 playbook"
-submit_intro: "This is the big one - it holds your whole playbook, so it runs long on purpose. Work through it across a few sittings; everything autosaves on this device as you type."
+submit_heading: "Submit your Project 200"
+submit_intro: "The list is the main deliverable - build it first and submit. Then run your market surveys over the coming weeks and come back to update your numbers as they grow. Resubmit any time; everything autosaves on this device."
 form_fields:
-  - "Part A - Your list|section|The 200-name sheet you built."
+  - "Your list (the main deliverable)|section|Your 200-name sheet. You don't need all 200 to submit - submit once it's started, then keep adding."
   - "Your Project 200 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
-  - "Sheet filled-in count|text|How many names have you loaded so far? e.g. 84 named, 36 Priority A, 50 Semi-Warm"
-  - "Part B - Your playbook (your own words)|section|Use the frameworks from the assignment above, not the sample sentences."
-  - "Outreach 1: 'What I'm doing now' (close friends)|textarea|2 to 4 sentences. No ask, just an update. In your voice.|4"
-  - "Outreach 2: 'By the way' (lunch / coffee)|textarea|How you naturally raise the career when you're already meeting someone for another reason.|4"
-  - "Outreach 3: Market survey script (warm-but-not-close)|textarea|The phone call or WhatsApp asking 5 minutes for research. Low-pressure framing.|4"
-  - "Outreach 4: Reconnect message (2+ years quiet)|textarea|What you write to someone you haven't spoken to in a long time. Don't lead with insurance.|4"
-  - "Objection responses (6)|textarea|Your 3-beat reply (Acknowledge, Reframe, Redirect) in your own words to each: not interested right now; already have an FC; send info first; can't afford now; check with spouse; let me think about it. Plus 2 you expect from your own market.|10"
-  - "Follow-up cadence|textarea|The actual messages, with timing, for each stage: no-response (Day 3 / 10 / 30); after meeting, needs time (Day 2 / 7 / 21 / 60); after policy issued (Day 3 / 30 / 90 / annual); after a NO (Day 90 / annual).|8"
-  - "Referral ask scripts (2 versions)|textarea|1. End of a good meeting (closed). 2. End of a meeting where they said 'not right now'. Both must name a SPECIFIC type of person, not 'anyone who needs insurance'.|6"
-  - "Part C - Market survey practice|section|Your reps toward the 30-survey pre-RNF floor."
-  - "Market surveys completed (out of 30)|text|How many warm-market surveys have you actually run by the time you submit? Format: completed/30 (e.g. 18/30). Required to clear the pre-RNF floor."
-  - "Survey -> appointment conversion|text|Of the surveys you completed, how many booked a 30-min practice appointment? e.g. 6 of 18 = 33%. Track this honestly - it shows where the script is leaking."
-  - "Best survey learning|textarea|One line: the moment something clicked - tonality, the binary close, an objection you handled. The inflection point, not the polished version.|3"
-  - "The script you're least confident about|textarea|Name one and say why. This is the one to bring to your review with Leo.|3"
+  - "Names loaded so far|text|e.g. 84 named, 36 Priority A, 50 Semi-Warm. Update this as the list grows."
+  - "Your go-to opener|textarea|Pick one of the ready openers in the assignment above and make it sound like you. Just one - the line you'll actually send most. (Optional, but worth having ready.)|4"
+  - "Your surveys (update this over time)|section|Run these across your study weeks, then come back and update the numbers."
+  - "Market surveys completed (out of 30)|text|How many warm-market surveys you've run so far. Format: completed/30 (e.g. 18/30). Update each time you come back."
+  - "Survey -> appointment conversion|text|Of those, how many booked a 30-min practice appointment? e.g. 6 of 18. Track it honestly - it shows where the script is leaking."
+  - "Best survey learning|textarea|One line: the moment something clicked - tonality, the binary close, an objection you handled.|3"
+  - "The script you're least confident about|textarea|Name one and say why. Bring it to your review with Leo.|3"
 ---
 
-> **The gist.** Build the engine that keeps you in business past Month 3. Three parts: **(A)** a 200-name contact list segmented by priority, **(B)** a personal playbook in your own words - outreach messages, objection responses, follow-up cadences, referral asks - and **(C)** 30 warm-market survey reps before your license drops, while the "I can't sell you anything yet" framing is still honestly true.
+> **The gist.** The list is the deliverable. Build a 200-name contact sheet, then run 30 warm-market surveys across your study weeks - while the "I can't sell you anything yet" framing is still honestly true. You're armed with ready openers and the full survey script below, so you don't have to write a playbook from scratch.
 
-**Where it goes:** the playbook sections type straight into the form on this page - you only paste one link (your Project 200 Sheet). Nothing here needs to be a separate document.
+**This one fills up over time.** Build the list first and submit; then come back and update your survey numbers as they grow. You only paste one link (your Project 200 Sheet) - everything else is a couple of quick fields, and it all autosaves on this device.
 
 ## Why this matters
 
@@ -60,7 +53,7 @@ The playbook is yours. Don't use anyone else's exact words. Use their frameworks
 
 ### How to craft your warm-market outreach
 
-Outreach in your first 60 days is relationship-first. You are pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Use the five angles below as your starting menu. **All five live in the [Sales Scripts library, filtered to Warm Market](/scripts?audience=warm-market)** - open the closest match, rewrite it in your own voice, save your edit. Your saved versions become the four scripts you'll paste into Section 1 of the playbook.
+Outreach in your first 60 days is relationship-first. You are pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. The five ready openers below are your starting menu - copy the ones that fit your contacts and tweak them so they sound like you. **All five also live in the [Sales Scripts library, filtered to Warm Market](/scripts?audience=warm-market).** You don't need to use all five, and you don't write them from scratch - that's what these are for.
 
 **1. The policy review / summary offer.** For friends who already have insurance and quietly aren't sure what they own. You are not selling - you're offering to lay it out for them on one page so they actually understand what they're paying for.
 > *"I'm building one-page policy summaries as part of my training. Want me to do yours? Takes me about 30 min, you'll know exactly what you own and what's missing."*
@@ -81,7 +74,7 @@ Outreach in your first 60 days is relationship-first. You are pre-licensed, so t
 - **Name the ask honestly.** "Help" / "practice" / "feedback" - not "chat" or "catch up" when you actually want practice reps. The honesty disarms.
 - **One ask per message.** Don't bundle "let's catch up" with "and review your policy". Pick one angle, send one message.
 - **No pitch language pre-license.** No "great policies", no "I can help you save money". You can't sell yet - saying so out loud is what unlocks the conversation.
-- **Door-open on every "no".** Never *"ok no worries"* - always *"if anything ever changes, my door's open"*. A Year 3 inbound starts with a Year 1 open door.
+- **Leave the door open on every "no".** Never *"ok no worries"* - always something like *"if anything ever changes, just message me anytime"*. A Year 3 inbound starts with a Year 1 open door.
 
 > **Where the scripts live:** **[Sales Scripts library - Warm Market filter](/scripts?audience=warm-market)**. Open the closest match, edit until it sounds like you wrote it, save your version. If a script you need doesn't exist yet, write it from scratch in the library and tag the audience as Warm Market - it'll be there for the next FC behind you.
 
@@ -125,53 +118,19 @@ flowchart TD
 
 **Rule 2: at least 80 of your 200 must be Semi-Warm.** This is where your long-term pipeline lives.
 
-## Part B - The playbook
+## Part B - Your ready-to-use scripts
 
-A single document (PDF or Google Doc) structured like this. **Write it in your own voice** - use the frameworks but not the sample sentences.
+You don't write a playbook for this. The openers you need are already above (the five angles in *"How to craft your warm-market outreach"*), and the full market survey script is in Part C below. Pick the openers that fit your contacts, tweak them so they sound like you, and you're armed.
 
-### Section 1 - Opening outreach (4 customised versions)
+For everything else - objection replies, follow-up timing, referral asks - use what's already built rather than writing your own:
 
-Write one of each, tailored to yourself. Do not copy templates verbatim.
+- **Objections** (not interested, already have an FC, send info first, can't afford, check with spouse, let me think) - the 3-beat reply (Acknowledge -> Reframe -> Redirect) is taught in [Day 44 - Handling Resistance & Objections](../../first-60-days/week-8/day-44.md).
+- **Follow-up timing** - the cadence (Day 3 / 10 / 30 after no reply; Day 2 / 7 / 21 / 60 after a meeting; a light touch at Day 90 and annually after a no) is in [Day 43 - Scripting Your Approach](../../first-60-days/week-8/day-43.md). One rule worth burning in: never end a no with *"ok, no worries"* or go silent - always leave the door open with a low-pressure line and a future scenario named.
+- **Referral asks** - name a specific type of person (*"two colleagues around your age"*), never *"anyone who needs insurance"*. The scripts live in the [Sales Scripts library](/scripts?audience=warm-market).
 
-1. **The "what I'm doing now" message** to close friends - you just started. No ask, just an update.
-2. **The "by the way" script** - used when you're already meeting someone for lunch/coffee.
-3. **The market survey script** - the phone call to a warm-but-not-close contact asking 5 minutes for research.
-4. **The reconnect message** - for someone you haven't spoken to in 2+ years.
+> **Pre-licensed?** Lean into the *"I can't sell you anything anyway - I'm just doing market surveys to learn"* framing. It's true, it disarms guards in a way licensed FCs can never replicate, and by the time your licence drops you'll have 10-20 conversations queued. Once you're licensed the same opener reads as a pitch - so use the window while you have it. See [Day 19's pre-licensing window note](../../first-60-days/week-4/day-19.md) and [Day 39 Section 1a](../../first-60-days/week-7/day-39.md).
 
-Each should be 2 to 4 sentences, not a pitch, not salesy.
-
-> **Pre-licensed?** While you're still pre-RNF, lean into the *"I can't sell you anything anyway - I'm just doing market surveys to learn"* framing. It's true, it disarms guards in a way licensed FCs can never replicate, and by the time your license drops you'll have 10-20 conversations queued. Once you're licensed the same opener reads as a pitch - so use the window while you have it. See [Day 19's pre-licensing window note](../../first-60-days/week-4/day-19.md) and [Day 39 Section 1a](../../first-60-days/week-7/day-39.md) for the full reasoning. **Part C of this assignment formalises the 30-survey floor + the practice ladder - the work itself happens during your CMFAS / RES5 study window.**
-
-### Section 2 - Objection responses (minimum 6)
-
-For each objection below, write your 3-beat response: **Acknowledge -> Reframe -> Redirect.** Written in your words, not the trainer's.
-
-1. *"I'm not interested right now."*
-2. *"I already have an FC / insurance."*
-3. *"Send me the info first, I'll review."*
-4. *"I can't afford anything now."*
-5. *"I need to check with my wife/husband."*
-6. *"Let me think about it."*
-
-Add 2 more objections you anticipate from your specific market (e.g., if you target techies: *"I'd rather just DIY invest in ETFs"*).
-
-### Section 3 - Follow-up cadence
-
-For each prospect stage, write the exact messages you will send. Include timing.
-
-- **After initial outreach, no response.** Message 1 at Day 3. Message 2 at Day 10. Message 3 at Day 30. What does each say?
-- **After meeting, need time to think.** Message at Day 2. Day 7. Day 21. Day 60 if still quiet.
-- **After policy issued.** Day 3 thank-you. Day 30 check-in. Day 90 review. Annual review scheduling.
-- **After a NO.** Day 90 light touch. Annual re-check. What's the subject line / opener that doesn't feel stalky?
-
-> **The door-leaving rule (read before writing the "After a NO" section):** never end a no with *"ok, no worries"* and never go silent. Both close the door silently - the prospect reads them as "future contact would be awkward." Instead, every no must end with the door visibly propped open and a future scenario named. Something like: *"totally fair - if anything ever changes, or there's ever a financial question you'd like a second opinion on, please don't hesitate to drop me a note. No expectations from your side."* That single line is what turns "not now" into a Year 3 inbound message when life shifts. See [Day 37's closed-door vs open-door section](../../first-60-days/week-7/day-37.md) for the full reasoning. Your three "After a NO" follow-up messages should each leave the door more open than the last, not chase harder.
-
-### Section 4 - Referral ask scripts (2 versions)
-
-1. **End of a good meeting with a close.**
-2. **End of a meeting where they said "not right now".**
-
-Both should specify **exactly who** you're asking about - "two colleagues at your office who are around your age", not "anyone who might need insurance".
+**When you submit, you only need one opener** - the line you'll actually send most. The rest is reference you draw on as you go.
 
 ## Part C - Market Survey Practice (the pre-RNF 30-survey floor)
 
@@ -270,23 +229,21 @@ Review the log every 5 surveys. The conversion rate on Surveys 16 to 30 should b
 
 ### What you submit for Part C
 
-Three new fields in the form below:
-- **Market surveys completed (count out of 30)** - what you've actually done by the time you submit.
-- **Survey -> appointment conversion** - of the surveys completed, how many booked a 30-min appointment. Honest number, not aspirational.
-- **Best survey learning** - one line capturing the inflection moment, not a polished summary.
+This is the part that fills up over time. Each time you run a batch of surveys, come back and update three fields in the form:
+- **Market surveys completed (out of 30)** - your running count.
+- **Survey -> appointment conversion** - of those, how many booked a 30-min appointment. Honest number, not aspirational.
+- **Best survey learning** - one line capturing the inflection moment.
 
-A passing Part C shows you've hit at least 25 of 30 (with a credible plan to clear the last 5 before RNF), and the conversion rate visibly improved between the first and second halves of the log.
+A passing Part C shows you've hit at least 25 of 30 (with a credible plan to clear the last 5 before RNF), and a conversion rate that visibly improved between the first and second halves of your log.
 
-## What a passing playbook looks like
+## What a passing submission looks like
 
-- 200 contacts with at least 60 priority-A, >=80 Semi-Warm, context filled in for all A's
-- Each outreach script is clearly in your own voice - not a trainer template
-- Objection responses use the 3-beat structure visibly
-- Follow-up cadence gives specific day markers, not "follow up later"
-- Referral asks name a specific type of person, not "anyone"
+- **The list:** 200 contacts, at least 60 Priority A and 80 Semi-Warm, with context filled in for your A's.
+- **One opener** you've made your own and will actually send.
+- **The surveys:** at least 25 of 30 done (with a plan to clear the last few before RNF), and a conversion rate that visibly improved between your first and second halves.
 
 ## Submission
 
-Fill in the form below - the playbook sections go straight into the fields on this page. Paste your Project 200 Sheet link (or, if you'd rather not share a link, attach the sheet as a file at the bottom of the form).
+The main thing is the list - paste your Project 200 Sheet link (or attach the sheet as a file at the bottom of the form), add your go-to opener, and submit. Then run your surveys over the coming weeks and come back to update your numbers - you can resubmit any time as the count grows.
 
-> **Want feedback on the scripts?** After you submit, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) - bring the one script you're least sure about and we'll tighten it together.
+> **Want feedback on your survey calls or your opener?** [Book a review slot with Leo](https://www.pick-a-time.app/book/withleo) - bring the script you're least sure about and we'll tighten it together.
