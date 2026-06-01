@@ -26,13 +26,13 @@ The bar: a friend reading the message should think *"that sounds genuine and use
 If you're short on time, the canon collapses to these six. Anything else is detail.
 
 1. **Default register is professional warm.** Sentence-cased, full grammar, sincere. Not lowercase Singlish, not LinkedIn polish. (§1, §2)
-2. **Cushion before you reframe.** Any objection response over 2 sentences must open with *"that's totally fair"*, *"honestly, fair — and..."*, or equivalent. (§3 cushioning, §5)
+2. **Cushion before you reframe.** Any response over 2 sentences — especially objection handling, follow-ups, and disagreement — must open with *"that's totally fair"*, *"honestly, fair — and..."*, or equivalent. (§3 cushioning, §5)
 3. **End on a low-bar invitation, never on a door-closer.** *"Would love to grab a coffee sometime"* / *"Drop me a note anytime"* — not *"no need to reply"*, *"that's it"*, *"take care!"*. (§2 rule 4-5, §3 kill list)
 4. **Cut US business jargon.** *"Sounding board"*, *"reach out"*, *"circle back"*, *"touch base"*, *"moving forward"*, *"plant a flag"*, *"opening the door"*, *"be your first call"* — strip them. (§3 kill list)
 5. **Sincere phrases are allowed when sincere.** *"It would be my privilege"*, *"my pleasure to help"*, *"to service your financial needs"* — once per message, when meant. (§2 rule 6)
 6. **No competitor brand names, ever.** *IBCT*, *SAPT*, *ARQ*, *Lusi Group*, *Coach Mac*, *the bootcamp* — never appear in curriculum notes. The principles can stay; the brand identifiers must not. (§10)
 
-If your draft passes all six, ship it. If it fails on more than one, rewrite from scratch using §4 patterns.
+If your draft passes all six, ship it. If it fails on more than one of these six, rewrite from scratch using §4 patterns.
 
 ---
 
@@ -48,7 +48,7 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 | **Professional email** | Follow-up after a meeting, proposal cover, claim update | Clear, polite, full sentences, no Singlish | *"Hi [name], here's the FHC report we discussed. Take a look when you get a moment - happy to walk through anything that's unclear."* |
 | **Training body copy** | The teaching prose around scripts in day-XX.md files | Direct, second-person, no hype, no jargon, short paragraphs | *"You don't have to pitch this. You just have to ask honestly."* |
 
-**Default to professional warm** for any opener to a friend or warm contact unless the relationship is genuinely so close that casual SG would not feel out of place. When in doubt, professional warm.
+**Default to professional warm** for any opener to a friend or warm contact unless the relationship is genuinely so close that casual SG would not feel out of place. When in doubt, professional warm. For contacts who aren't English-speaking peers — older relatives, senior contacts, or anyone you'd naturally text in Mandarin or Malay — see §11 (vernacular and code-switching) and §12 (generational and seniority register).
 
 ---
 
@@ -109,6 +109,7 @@ Pick the register that matches the channel. A WhatsApp message and a cold call d
 | "Reach out" (between people who know each other) | Overused | *"text"* / *"message"* / *"send me a note"* |
 | "Touch base" | Corporate | *"catch up"* / *"check in"* |
 | "Circle back" | Corporate | *"come back to you"* / *"follow up"* |
+| "Please don't hesitate (to reach out / contact me)" | Stiff customer-service / formal-email register | *"just message me"* / *"just ping me"* / *"drop me a note anytime"* |
 | "Going forward" / "moving forward" | Filler | drop entirely |
 | "At the end of the day" | Cliché | drop |
 | "I would love to [verb]" (as substitute for "I'd like to" in formal asks) | Try-hard polite | *"I'd be happy to"* / *"happy to"* |
@@ -211,13 +212,15 @@ What also bad looks like:
 
 Goals: drop the pressure, name a future scenario explicitly, leave the relationship lighter than you found it.
 
-> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, just message me. No expectations from your side - and either way, would love to stay in touch."
 
 ### Cold call opener
 
 Use the canonical pattern from the Academy scripts. Don't reinvent it.
 
-> "Hi, is this [Name]? I'm [X] from [team]. I'll keep this short, less than a minute. We're currently running a [campaign / financial literacy session] and you opted in recently - is now a quick moment to chat?"
+> "Hi, is this [Name]? I'm [X] from [team]. I'll keep this short, less than a minute. We're following up on the [actual campaign / form] you filled in recently - is now a quick moment to chat?"
+
+**Only claim a prior opt-in if you can point to a real sign-up record for this person.** A fabricated *"you opted in recently"* on a cold or purchased list is a misrepresentation under the Financial Advisers Act, and a PDPA consent problem if the list wasn't collected with consent. No opt-in record? Drop the opt-in line entirely and open straight: *"Hi, is this [Name]? I'm [X] from [team] - the reason for my call today is..."* then go to your pinpoint question.
 
 Then: short value prop → soft close (*"the worst case is X, best case is Y"*) → tentative time slot.
 
@@ -240,7 +243,7 @@ After a meeting where the prospect was engaged. Specific, number-based, low-pres
 
 Never let a no end the relationship. Name the future scenario explicitly so the prospect feels permission to come back.
 
-> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate. No expectations from your side. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me. Only if it comes naturally though, no need to dig on my behalf."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, just message me. No expectations from your side. And if anyone you know happens to come up in conversation - new baby, job change, parent's health, anything - it would mean a lot if you remembered me. Only if it comes naturally though, no need to dig on my behalf. Either way, would love to stay in touch."
 
 ---
 
@@ -296,7 +299,7 @@ Real edits made to Day 37 in this round, calibrated to professional warm.
 > "Totally fair - appreciate you being straight with me. If anything changes, or you ever just want a sounding board on something money-related, my door's open. No expectations, no follow-up needed from your side."
 
 **After (professional warm — drop "sounding board" + "door's open"):**
-> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, please don't hesitate to drop me a note. Either way, would love to stay in touch."
+> "Totally fair - appreciate you being straight with me. If anything changes down the road, or there's ever a financial question you'd like a second opinion on, just drop me a note. Either way, would love to stay in touch."
 
 ### Touch #7 final follow-up
 
@@ -322,7 +325,7 @@ Before committing any FC-facing script, run through this:
 - [ ] If you used *"privilege"* / *"pleasure"* / *"honour"*, is it sincere? (Once per message is fine. Three times reads as performance.)
 - [ ] If you're an AI editor, did you preserve canonical AIA scripts (Market Survey verbatim, ABCD, official objection table)? **Don't humanize curriculum-quoted material.**
 
-If a script passes the checklist, it's ready. If it fails on more than 2 items, rewrite from scratch using the Section 4 patterns.
+If a script passes the checklist, it's ready. If it fails on more than 2 of these eight items, rewrite from scratch using the Section 4 patterns.
 
 ---
 
@@ -353,6 +356,7 @@ If you are a subagent (creative-strategist, copy-writer, brand-post-writer, or s
 6. Sincere phrases like *"It would be my privilege"*, *"my pleasure"*, *"to service your financial needs"* are allowed and often correct — once per message.
 7. Do not silently humanize canonical AIA scripts (Section 8). If you're unsure whether a script is canonical, ask before editing.
 8. **Never use competitor brand names.** See §10 below — this is a hard line.
+9. **Match the contact, not just the channel.** For anyone who isn't an English-speaking peer — older or senior contacts, or contacts you'd naturally text in Mandarin / Malay / dialect — apply §11 (vernacular) and §12 (generational register). The doctrine is the same; the language and the deference change.
 
 The single test for any output: would a working professional in their late 20s send this message to a friend without thinking it sounded scripted? If no, rewrite. If it sounds like text-speak from a teenager, rewrite the other way.
 
@@ -391,3 +395,61 @@ grep -rn --include="*.md" -E "\b(IBCT|SAPT|ARQ|Lusi Group|Coach Mac)\b" \
 ```
 
 Should return zero hits. If you see hits in your draft, scrub before committing.
+
+---
+
+## 11. Vernacular and code-switching (Malay / Mandarin / dialect)
+
+This canon is written in English, but a real Singapore warm list is not. A new FC's 200 names include older relatives, parents' friends, heartland contacts, and ex-colleagues you would never actually text in English. Writing to them in clean English because it feels "professional" is the mistake - it reads as distant, and distance is the opposite of warm.
+
+**The rule: write in the language you actually use with that person.** If you speak to your aunty in Mandarin, text her in Mandarin - characters or romanised, whatever you two normally type. If you and an old schoolmate talk in Malay or in mixed English-Malay, write that way. The relationship sets the language, not the fact that it's now "work".
+
+**The doctrine translates; the word-list does not.** The kill-list in §3 is English-specific - it targets US-corporate tics, which don't exist in Mandarin or Malay. But the four things underneath the kill-list are about intent, and they hold in any language:
+
+- Cushion before you reframe (acknowledge before you push back).
+- Lower the *sales* temperature, not the relationship ("just sharing", "no agenda" - say it in their language).
+- End on a low-bar invitation, never a door-closer.
+- Don't sound like a marketer.
+
+So you don't re-apply the English kill-list to Mandarin; you re-apply the *spirit*. The test is the same as §2 rule 1: would this person think it sounds like a genuine message from you, or like a script?
+
+**Code-switching is fine - when it's real.** Mixing English with Mandarin or Malay mid-message is normal in Singapore. Keep it if that's how you actually talk to that person; don't force it in for flavour, and don't sanitise it out to look polished. Same rule as Singlish particles in §3: only where it's already your voice with that contact.
+
+**Two things stay precise in every language:**
+
+1. **Disclaimers and any compliance wording.** "No pitch, just sharing" is fine; do not let a translation drift into an implied promise or a guarantee. If you're unsure a phrase carries the same careful meaning, keep that part in English.
+2. **Product and plan names.** Don't translate or nickname them into something that could be misread.
+
+Example shapes (these are patterns, not scripts - write it the way *you* actually type to that person):
+
+> (Romanised Mandarin, to an aunty) "Auntie, just share with you - I recently joined AIA as a financial consultant. Bu shi yao mai ni dong xi, just let you know. Yi hou you money de wen ti, wen wo jiu hao. You kong he kopi?"
+
+> (Malay-English mix, to an old schoolmate) "Eh, lama tak jumpa! Sharing je - I baru start as a financial consultant. Tak jual apa-apa, just nak update you. Nanti kalau ada pasal duit, just message me. Lepak kopi soon?"
+
+Both still do the canon's job: a non-sales disclaimer, no door-closer, and a low-bar invitation at the end. They just do it in the language the friendship actually runs on.
+
+---
+
+## 12. Generational and seniority register (older and senior contacts)
+
+The default voice in §1 is a late-20s FC writing to a peer. But a large share of a new FC's warm list is *not* a peer - parents' friends, older relatives, ex-bosses, mentors, former teachers. Sending an older contact the same "Hey [name]" peer message reads as too casual, and casual from a young person to a senior reads as not-yet-credible.
+
+**Shift the register up for older and senior contacts.** Same doctrine, different dial:
+
+| | Peer (the §1 default) | Older / senior contact |
+|---|---|---|
+| Greeting | "Hey [name]" | "Hi Auntie [name]", "Hi Mr [name]", "Uncle, ..." - the name and honorific you actually use |
+| Particles / "haha" | one, if it's your voice | none |
+| Grammar | clean, sentence-cased | clean, sentence-cased, a touch more complete |
+| Channel | text is fine | many prefer a short call or a voice note - a brief text to *set up* a call often beats a long text |
+| Pace | casual immediacy is fine | more respect for their time; don't expect an instant reply |
+
+**Use the "young person starting out" angle - it's an asset here, not a weakness.** With a senior contact, leaning into the honest version ("I've just started, I'm still learning, I'd value your perspective") plays *better* than projecting polish. Most older contacts like helping a young person who asks sincerely. This is the one audience where "I'm new at this" is a door-opener, not a confession to hide.
+
+**Everything else in the canon still holds.** You still cushion before you reframe, you still end on a low-bar invitation, you still never use a door-closer, and you still don't sound like a marketer. The honorifics and the slower pace are the only things that change.
+
+What good looks like (to an older relative):
+
+> "Hi Uncle Robert - hope you and Auntie are keeping well. Sharing only: I've recently joined AIA as a financial consultant. I'm still early and learning the ropes, so no pitch at all - I'd genuinely value your perspective some time. Could I buy you kopi one of these weekends and hear how you think about this stuff? Would mean a lot."
+
+That message is warmer *because* it's deferential, names a low-bar invitation (kopi), and leads with learning rather than selling. The same content in peer register ("Hey Robert, quick one...") would read as too familiar coming from someone much younger.
