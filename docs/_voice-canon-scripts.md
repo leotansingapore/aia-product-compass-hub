@@ -220,7 +220,7 @@ Use the canonical pattern from the Academy scripts. Don't reinvent it.
 
 > "Hi, is this [Name]? I'm [X] from [team]. I'll keep this short, less than a minute. We're following up on the [actual campaign / form] you filled in recently - is now a quick moment to chat?"
 
-**Only claim a prior opt-in if you can point to a real sign-up record for this person.** A fabricated *"you opted in recently"* on a cold or purchased list is a misrepresentation under the Financial Advisers Act, and a PDPA consent problem if the list wasn't collected with consent. No opt-in record? Drop the opt-in line entirely and open straight: *"Hi, is this [Name]? I'm [X] from [team] - the reason for my call today is..."* then go to your pinpoint question.
+**Only claim a prior opt-in if you can point to a real sign-up record for this person.** A fabricated *"you opted in recently"* on a cold or purchased list is a misrepresentation under the Financial Advisers Act, and a PDPA consent problem if the list wasn't collected with consent. No opt-in record? Drop the opt-in line entirely and open straight: *"Hi, is this [Name]? I'm [X] from [team] - the reason for my call today is..."* then go to your pinpoint question. Separately, an unsolicited marketing call or text to a Singapore number must respect the PDPA Do Not Call (DNC) Registry - check the DNC, or have valid consent, before you dial, opt-in line or not.
 
 Then: short value prop → soft close (*"the worst case is X, best case is Y"*) → tentative time slot.
 
@@ -324,8 +324,9 @@ Before committing any FC-facing script, run through this:
 - [ ] Did you pre-send filter? (*"If this person says no, will I still want to grab a beer with them next month?"*)
 - [ ] If you used *"privilege"* / *"pleasure"* / *"honour"*, is it sincere? (Once per message is fine. Three times reads as performance.)
 - [ ] If you're an AI editor, did you preserve canonical AIA scripts (Market Survey verbatim, ABCD, official objection table)? **Don't humanize curriculum-quoted material.**
+- [ ] **Content check (§15):** does the message claim a return, a "best / cheapest", a specific product, or urgency you couldn't defend to compliance? If yes, cut it.
 
-If a script passes the checklist, it's ready. If it fails on more than 2 of these eight items, rewrite from scratch using the Section 4 patterns.
+If a script passes the checklist, it's ready. If it fails on more than 2 of these ten items, rewrite from scratch using the Section 4 patterns.
 
 ---
 
@@ -453,3 +454,102 @@ What good looks like (to an older relative):
 > "Hi Uncle Robert - hope you and Auntie are keeping well. Sharing only: I've recently joined AIA as a financial consultant. I'm still early and learning the ropes, so no pitch at all - I'd genuinely value your perspective some time. Could I buy you kopi one of these weekends and hear how you think about this stuff? Would mean a lot."
 
 That message is warmer *because* it's deferential, names a low-bar invitation (kopi), and leads with learning rather than selling. The same content in peer register ("Hey Robert, quick one...") would read as too familiar coming from someone much younger.
+
+---
+
+## 13. Holding the conversation: the replies you actually get
+
+The canon so far covers how to *open*, and how to handle a soft no or a final no. But most warm outreach gets a reply before it gets a no - and the reply is where new FCs lose the relationship. Three replies cover the large majority of what you'll get. Each has a trap, and each is handled the same canonical way: cushion, reframe, end on a low-bar invitation.
+
+### The warm-positive reply
+
+*"Oh nice! Good for you."* / *"Wah, all the best!"* / *"Let's catch up soon."*
+
+**The trap:** reading warmth as a buying signal and pivoting straight into business. They were being kind, not asking for a pitch. Pitch now and you spend the goodwill you just earned.
+
+**The move:** stay in relationship mode. Thank them, match their energy, book the low-pressure meet without selling in the thread.
+
+> *"Thanks [name], really appreciate that. No agenda from my side - genuinely just want to catch up properly. Free for kopi sometime in the next couple of weeks?"*
+
+The business conversation happens at the meeting, inside a proper fact-find - not in the chat.
+
+### "I already have an agent" / "my relative is in insurance"
+
+The single most common reply to warm outreach in Singapore. **The trap:** competing - badmouthing the other agent, or arguing why you're better. That reads as insecure and puts them on the defensive.
+
+**The move:** cushion, take replacement off the table, offer optionality - a second pair of eyes, no conflict, no pressure.
+
+> *"Totally fair - honestly most people I message already have someone, which is great. No intention to replace anyone. If you ever just want a second pair of eyes on something, I'm around. Either way, would love to catch up sometime."*
+
+You're not trying to win them today. You're becoming the person they think of when their current agent goes quiet - which, for a lot of people, eventually happens.
+
+### "Send me the details / send me some info first"
+
+**The trap:** the info-dump. You send a brochure or a wall of text, they read none of it, the thread dies. "Send me info" is usually a polite deflection, not interest in a PDF.
+
+**The move:** cushion, then redirect - the useful version depends on their situation, so a short conversation beats a generic brochure.
+
+> *"Can - though to be honest the standard brochure won't tell you much, it really depends on your situation. Easier if I ask you a few quick questions first, then send you something that actually fits. 15 minutes over a call or kopi - which is easier for you?"*
+
+If they still just want a document, send something short and specific, and keep the door open for the conversation.
+
+### "How much? / I don't have money for this"
+
+*"How much ah?"* / *"I no money one"* / *"Not working now, no budget."*
+
+**The trap:** quoting a number or a premium in the chat. A figure with no fact-find behind it sounds expensive out of context, kills the conversation, and risks a §15 content slip.
+
+**The move:** cushion, don't quote, reframe to "it depends, and there are options at every budget", redirect to the conversation.
+
+> *"Totally fair - and no number from me yet, because honestly it depends on your situation and there are options at every budget. That's exactly what the chat is for. Free for a quick kopi and I'll walk you through it - no pressure to do anything."*
+
+### The ghost, and the flat no
+
+Already covered: for no reply, use the **follow-up cadence** (§4 / your playbook); for a flat no, use the **open-door close** (§4). Don't improvise new behaviour for these - the canonical patterns exist for a reason.
+
+The thread under all four: you are never closing in the chat. The chat earns the meeting; the meeting does the work.
+
+---
+
+## 14. Group chats and broadcasts (1:1 vs public)
+
+New FCs love to announce the career move in a family group, a school cohort chat, or a CCA group. It feels efficient - one message, fifty people. It's the weakest version of every opener in this canon, because the thing that makes warm outreach work - personalisation - is exactly what a group blast strips out.
+
+**Default to 1:1 for anyone who matters.** Your Priority A and B names get a personal message that references them specifically (§4). A group blast is for ambient awareness, not your real pipeline. And never copy-paste the same "personal" message to people one by one either - they compare notes, and they can tell.
+
+**If you do post in a group, make it a genuine update, not a pitch.** A real announcement to a close-friends or family group is fine: you've started something new, you're proud of it, you're sharing. One message. No follow-up spam in the group. The moment it reads as soliciting the group, you've made fifty people slightly uncomfortable at once.
+
+**The rule-4 inversion.** In a 1:1 message, "no need to reply" is a door-closer and is banned (§2 rule 4). In a *group broadcast* it's the opposite: you do **not** want forty people replying in the thread, so steering them to a private channel is the correct, considerate move.
+
+> *"Hey all - small personal update: I've recently joined AIA as a financial consultant. Not posting to sell anyone anything here. If it's ever useful to chat, just PM me - otherwise, hope everyone's doing well!"*
+
+Here *"just PM me"* moves the real conversation to 1:1 where it belongs, and the warm sign-off keeps it light. This is the one context where directing someone away from a public reply is right.
+
+**Pre-licence note:** if you're still pre-RNF when you post this, keep it strictly an announcement - don't imply you can advise or sell yet (§15). *"I've joined and I'm training"* is true; *"I can help you with your plans"* is not, until your licence is through.
+
+**Stories and statuses** (WhatsApp status, IG story) are softer than a group blast - ambient, low pressure, no one singled out. Useful as a background signal, never a substitute for a 1:1 message to your priority names.
+
+**One hard line:** never post anything in a group that reads as a product solicitation to people who didn't ask for it - see §15.
+
+---
+
+## 15. Content red-lines (what the message says, not how it sounds)
+
+Everything before this section governs *tone*. This one governs *content* - the claims a message makes - which can create conduct exposure no matter how warm and well-cushioned it is. A perfectly friendly message can still cross a compliance line. These red lines apply to every FC-facing message - text, DM, call, email - pre- or post-licence.
+
+| Red line | Why | Instead |
+|---|---|---|
+| **No guaranteed or implied returns** | *"guaranteed 5%"*, *"risk-free"*, *"you'll definitely get back double"* - a misrepresentation, even said casually | Talk in ranges and "it depends", never promises. Let the illustration and the fact-find carry the numbers. (The guaranteed portion of a par plan can be stated as guaranteed; projected bonuses cannot.) |
+| **No unsubstantiated superlatives or comparisons** | *"best plan"*, *"cheapest"*, *"better than [competitor]"*, *"highest returns"* - misleading-claim and comparative-advertising risk | Describe what it does for *them*, not where it ranks. |
+| **No product recommendation in an opener** | Naming a plan before any fact-find is advice with no basis - and pre-licence (before your RNF goes through) you are not a registered representative, so you cannot recommend or sell products at all | Open with a conversation, never a product. The recommendation comes after the fact-find. |
+| **No false urgency / pressure** | *"price going up tomorrow"*, *"last chance"*, manufactured scarcity | If a real deadline exists, state it plainly and let them decide. |
+| **No disparaging other insurers or agents** | Conduct and reputational risk - and it makes you look small (§13) | Stay neutral. Offer optionality, not a takedown. |
+| **No casual "just switch / surrender and move it over"** | Replacing a life policy is a regulated recommendation with a mandatory switching disclosure and suitability documentation - never floated in a chat | If replacement comes up, it happens inside a proper fact-find with the switching form, not over WhatsApp. |
+| **No coaching the CKA / CAR, no assuming accredited-investor status** | Telling a client what to answer so a product "passes", or treating them as an accredited investor without a valid opt-in, defeats the suitability safeguard | The assessment is the client's own; AI status needs the formal opt-in. Don't pre-empt either in a message. |
+| **No client testimonials or "past results" as a selling line** | Testimonials and past-performance figures in promotional messaging are restricted, and imply a result you can't guarantee | Talk about process and fit, not other clients' outcomes. Past performance is not future returns. |
+| **Pre-licence: stay literally true** | While pre-RNF, implying you can advise or sell is false - and the same applies post-RNF to any product line you're not yet certified for (e.g. ILPs without M9 / M9A) | Keep the "market survey / still learning / can't sell yet" framing honest - it's also your sharpest advantage (see the Project 200 assignment). |
+| **No claimed consent you don't have** | The cold-call opt-in problem (§4); PDPA | Only reference a sign-up if a real record exists for that person. |
+
+**The test:** could you defend every claim in this message to your compliance officer? Tone makes the message land; content is what gets an FC in trouble - and the two are independent. A message can pass every rule in §1-§14 and still fail here. The §7 checklist now closes with a content check for exactly this.
+
+*(This is a practical red-line list for everyday messaging, not a substitute for your firm's compliance guidance or the MAS / FAA rules. When in doubt, ask compliance before you send.)*
