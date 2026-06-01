@@ -19,9 +19,9 @@ form_fields:
   - "Combined reflection|textarea|Which of the two CSTs felt more natural to you, and why? Which one will you actually open with in a real meeting? Be honest - preference reveals strengths.|3"
 ---
 
-# Assignment 7 - Roleplay: Two CSTs (Wealth Angle + Risk Management Angle)
+> **The gist.** Record two short roleplay videos - two different Client Strategy Talks (CSTs), each with a different opening angle. Both stop at the door-opener; neither closes a product. The point is to internalise both flows so you can pick whichever fits the prospect in front of you.
 
-> **What you're producing:** **Two** recorded roleplay videos. Each is a separate Client Strategy Talk (CST) with a different opening angle. Both end at the door-opener - neither attempts to close on a product. The point is to internalise both flows so you can pick whichever fits the prospect in front of you.
+**The shape of it:** Part A - record the Wealth Angle CST · Part B - record the Risk Management Angle CST · then write a 2-3 sentence self-review per video and one combined reflection. Submit your best take of each, not your first.
 
 ## Why two CSTs and not one
 
@@ -262,9 +262,9 @@ Most prospects can't answer. That silence is the assignment for the next meeting
 
 ## Submission
 
-For each video, paste a shareable link (Google Drive / Dropbox / Loom / YouTube unlisted) into the form below. Make sure access is set to *anyone with the link*. Add a 2-3 sentence self-review per video and one combined reflection.
+For each video, paste a shareable link (Google Drive / Dropbox / Loom / YouTube unlisted) into its field below - set access to *anyone with the link*. Prefer to upload instead? You can attach one of the videos directly in the file field at the bottom of the form. Add a 2-3 sentence self-review per video and one combined reflection.
 
-The two videos and three text fields are all required to mark the assignment complete.
+You need both videos (linked or uploaded) and the three text fields to mark the assignment complete.
 
 ## A note on revising
 

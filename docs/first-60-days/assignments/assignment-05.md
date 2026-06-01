@@ -25,9 +25,9 @@ form_fields:
   - "Self-diagnosis going into the shadowed meetings|textarea|What do you expect to fumble? What should your senior FC watch closest?|3"
 ---
 
-# Assignment 8 - Cold Calling Sessions + Senior Shadow
+> **The gist.** Run two logged cold-calling sessions, then set two real first-meeting appointments with a senior FC sitting in as a silent shadow. The goal isn't a clean close - it's an honest baseline, and the fastest coaching loop you'll get in your first 30 days.
 
-> **What you're producing:** Two logged cold-calling sessions plus two confirmed first-meeting appointments - with a senior FC attending each as a silent shadow. This is the first time a senior hears you in front of a real prospect. The goal isn't a clean close; it's an honest baseline.
+**The shape of it:** set up your dialling infrastructure → run Session 1 (log every dial) → debrief and change one thing → run Session 2 → book 2 shadowed appointments → write your self-diagnosis.
 
 ## Why this matters
 
@@ -97,8 +97,8 @@ Run the full [5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) struc
 
 ## Submission
 
-Fill in the form below. If you want to attach call-log screenshots or the senior FC's written debrief, paste a Google Drive / Lark link into any textarea field.
+Fill in the form below. To attach call-log screenshots or the senior FC's written debrief, use the file field at the bottom of the form - or paste a Google Drive / Lark link into any field.
 
-## The point
+## One more thing
 
-You won't get this volume of shadowing again once onboarding ends. Use it. Ask the senior FC for the one thing they'd steal from you AND the one thing that would have made you worse if they'd said it out loud during the meeting. Both are gold.
+You won't get this volume of shadowing again once onboarding ends, so make these two meetings count. Ask the senior FC for two things: the one move they'd steal from you, and the one thing that would have made you worse if they'd said it out loud mid-meeting. Both are gold.

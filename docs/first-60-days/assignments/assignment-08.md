@@ -15,9 +15,9 @@ form_fields:
   - "Your one-sentence positioning|text|From the Delivery tab of the F.A.D.S. tool - paste your final positioning sentence here as proof you finished. Format: who you serve + what makes you different."
 ---
 
-# Assignment 3 - Audience & Differentiation Worksheet
+> **The gist.** Pick the two audiences you'll serve in your first 12 months. For each, map their visible problems, their hidden emotional weight, what you actually do for them, and what makes your version different from every other advisor's. It all happens inside the F.A.D.S. tool - you just paste your final one-sentence positioning back here as proof.
 
-> **What you're producing:** A side-by-side map of the two audiences you intend to serve in your first 12 months - what their visible problems are, what their hidden emotional weight is, what you actually do for them, and what makes your version of the work different from every other advisor's.
+**The shape of it:** open the F.A.D.S. tool → work through the seven tabs (it saves as you go) → paste your positioning sentence into the form.
 
 ## Why this matters
 

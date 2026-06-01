@@ -13,9 +13,9 @@ related_days: [1, 6, 18, 22, 23, 24]
 status_key: "assignment-04-book-review"
 ---
 
-# Assignment 4 - Book Review: 1 Book of Your Choice
+> **The gist.** Read one career-relevant book, then prove you read it by applying three specific ideas to your own practice - not by summarising chapters. You pick the book from the list below; the template walks you through the write-up.
 
-> **What you're producing:** A completed book-review template. You pick the book. You prove you read it by applying three specific ideas to your own practice - not by summarising chapters.
+**The shape of it:** pick a book → read it → copy the template → fill every section (3 ideas you're stealing is the heart of it) → submit the PDF or Doc link.
 
 ## Why this matters
 

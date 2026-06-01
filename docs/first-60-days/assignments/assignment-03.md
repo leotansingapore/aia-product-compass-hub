@@ -17,16 +17,16 @@ form_fields:
   - "Prospect profile|textarea|Age range, occupation, life stage, your read on their DISC style|3"
   - "Opening: what did the senior FC do in the first 5 minutes?|textarea|Rapport, mission statement, agenda - what specifically did they say?|4"
   - "The best question you heard|textarea|Write it word-for-word if you can. Then say why it worked.|4"
-  - "The concept they led with|textarea|Which concept - Total Wealth, Total Wealth, Protection ladder, CST Risk, etc. - and why do you think they picked it?|4"
+  - "The concept they led with|textarea|Which concept - Total Wealth, Protection Ladder, CST Risk, etc. - and why do you think they picked it?|4"
   - "First objection + how it was handled|textarea|The prospect's exact words, then the senior FC's 3-beat response|4"
   - "The close|textarea|How did they move to the close? Was there silence? Who broke it? Closed on product or on appointment?|4"
   - "The one thing you're stealing|textarea|Name one move, phrase, or technique you're using in your next 3 meetings.|3"
   - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
 ---
 
-# Assignment 6 - Joint Field Observation
+> **The gist.** Sit in on one real meeting run by a senior FC, watch for the moves you'd have missed, then fill in a short reflection. You observe - you don't pitch. The reflection isn't a summary; it's a diagnosis of what made the meeting work.
 
-> **What you're producing:** A short reflection form after sitting in on one real meeting run by a senior FC or your mentor. You observe - you don't pitch.
+**The shape of it:** line up a meeting to shadow → skim the prep days so your pattern-recognition is on → take quiet notes → debrief the senior FC for 5-10 min → fill in the form.
 
 ## Why this matters
 

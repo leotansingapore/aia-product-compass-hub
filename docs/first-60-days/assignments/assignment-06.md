@@ -13,9 +13,9 @@ related_days: [1, 3, 5, 6]
 status_key: "assignment-06-vision-board"
 ---
 
-# Assignment 2 - Create Your Vision Board
+> **The gist.** Build a one-page picture of the life this career is for - dense with images, light on text - then put it somewhere you'll see it daily. Not decoration: a decision-making anchor for the hard weeks.
 
-> **What you're producing:** A one-page vision board - a visual artefact of what your life looks like if this career works the way you want it to. Not decoration; a decision-making anchor for the hard weeks.
+**The shape of it:** watch the walkthrough → pick a template → fill 4 of the 6 categories with specific images → set it as your wallpaper → share it to the group chat.
 
 ## Why this matters
 

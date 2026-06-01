@@ -18,9 +18,9 @@ form_fields:
   - "Link or screenshot of your finished summary|text|Paste the share link from the tool, or upload a screenshot in the file field below."
 ---
 
-# Assignment - Policy Summary for a Family Member
+> **The gist.** Get one family member's real policy documents, then build a clean one-page Policy Summary in the [Total Wealth Concept tool](https://present.financeillustrator.com). You hand them something genuinely useful - and you practise the skill every client conversation eventually needs: turning messy documents into one page a normal person can read.
 
-> **What you're producing:** A one-page Policy Summary built in the Total Wealth Concept tool at [present.financeillustrator.com](https://present.financeillustrator.com), using the real policy documents of a family member who agreed to share them with you.
+**The shape of it:** ask a family member for their policies → recognise each plan using the competitor inventory → enter every policy in the tool → walk through the summary together → submit the link or a screenshot plus the gaps you found.
 
 ## Why this matters
 

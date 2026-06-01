@@ -27,9 +27,9 @@ form_fields:
   - "The script you're least confident about|textarea|Name one and say why. This is the one you want feedback on.|3"
 ---
 
-# Project 200
+> **The gist.** Build the engine that keeps you in business past Month 3. Three parts: **(A)** a 200-name contact list segmented by priority, **(B)** a personal playbook in your own words - outreach messages, objection responses, follow-up cadences, referral asks - and **(C)** 30 warm-market survey reps before your license drops, while the "I can't sell you anything yet" framing is still honestly true.
 
-> **What you're producing:** Two files. (a) A Project 200 contact list with 200 real people segmented by priority. (b) A personal playbook - your own words - covering outreach messages, objection responses, and follow-up cadences.
+**Where it goes:** the playbook sections type straight into the form on this page - you only paste one link (your Project 200 Sheet). Nothing here needs to be a separate document.
 
 ## Why this matters
 
@@ -135,7 +135,7 @@ Write one of each, tailored to yourself. Do not copy templates verbatim.
 
 Each should be 2 to 4 sentences, not a pitch, not salesy.
 
-> **Pre-licensed?** While you're still pre-RNF, lean into the *"I can't sell you anything anyway - I'm just doing market surveys to learn"* framing. It's true, it disarms guards in a way licensed FCs can never replicate, and by the time your license drops you'll have 10-20 conversations queued. Once you're licensed the same opener reads as a pitch - so use the window while you have it. See [Day 19's pre-licensing window note](../week-4/day-19.md) and [Day 39 Section 1a](../week-7/day-39.md) for the full reasoning. **Part C of this assignment formalises the 30-survey floor + the practice ladder - the work itself happens during your CMFAS / RES5 study window.**
+> **Pre-licensed?** While you're still pre-RNF, lean into the *"I can't sell you anything anyway - I'm just doing market surveys to learn"* framing. It's true, it disarms guards in a way licensed FCs can never replicate, and by the time your license drops you'll have 10-20 conversations queued. Once you're licensed the same opener reads as a pitch - so use the window while you have it. See [Day 19's pre-licensing window note](../../first-60-days/week-4/day-19.md) and [Day 39 Section 1a](../../first-60-days/week-7/day-39.md) for the full reasoning. **Part C of this assignment formalises the 30-survey floor + the practice ladder - the work itself happens during your CMFAS / RES5 study window.**
 
 ### Section 2 - Objection responses (minimum 6)
 
@@ -159,7 +159,7 @@ For each prospect stage, write the exact messages you will send. Include timing.
 - **After policy issued.** Day 3 thank-you. Day 30 check-in. Day 90 review. Annual review scheduling.
 - **After a NO.** Day 90 light touch. Annual re-check. What's the subject line / opener that doesn't feel stalky?
 
-> **The door-leaving rule (read before writing the "After a NO" section):** never end a no with *"ok, no worries"* and never go silent. Both close the door silently - the prospect reads them as "future contact would be awkward." Instead, every no must end with the door visibly propped open and a future scenario named. Something like: *"totally fair - if anything ever changes, or you want a sounding board on something money-related, my door's open. No expectations from your side."* That single line is what turns "not now" into a Year 3 inbound message when life shifts. See [Day 37's closed-door vs open-door section](../week-7/day-37.md) for the full reasoning. Your three "After a NO" follow-up messages should each leave the door more open than the last, not chase harder.
+> **The door-leaving rule (read before writing the "After a NO" section):** never end a no with *"ok, no worries"* and never go silent. Both close the door silently - the prospect reads them as "future contact would be awkward." Instead, every no must end with the door visibly propped open and a future scenario named. Something like: *"totally fair - if anything ever changes, or there's ever a financial question you'd like a second opinion on, please don't hesitate to drop me a note. No expectations from your side."* That single line is what turns "not now" into a Year 3 inbound message when life shifts. See [Day 37's closed-door vs open-door section](../../first-60-days/week-7/day-37.md) for the full reasoning. Your three "After a NO" follow-up messages should each leave the door more open than the last, not chase harder.
 
 ### Section 4 - Referral ask scripts (2 versions)
 
@@ -222,7 +222,7 @@ Q1 to Q3 are the *survey*. They take 2 to 3 minutes. Don't react, don't sell, do
 >
 > *(Optional)* May I have your permission to add you on Instagram or Facebook so we can keep each other updated?
 
-The full version with the 10 reflex-objection responses lives in [Day 43 - Scripting Your Approach](../week-8/day-43.md).
+The full version with the 10 reflex-objection responses lives in [Day 43 - Scripting Your Approach](../../first-60-days/week-8/day-43.md).
 
 ### How to train (the 4-stage practice ladder)
 
@@ -261,7 +261,7 @@ Review the log every 5 surveys. The conversion rate on Surveys 16 to 30 should b
 - **Skipping the social-add at the end.** That's how 30 surveys becomes 100+ social touchpoints over the next 12 months. Don't drop it because you're rushing.
 - **Doing all 30 with hot market only.** Hot market exhausts. The point of practice is to walk into your semi-warm market with confidence - so most of the 30 must be semi-warm.
 - **Stopping at 10 to 15 because "it's working".** Below 30, the muscle isn't built. The script feels okay because the calls are easy - they're family. Semi-warm is where the script is actually tested.
-- **Treating the appointment as a sale.** You can't sell. The appointment is rehearsal of the canned CST (Insurance or Investing) - see [Day 43 - pre-licensed practice framing](../week-8/day-43.md).
+- **Treating the appointment as a sale.** You can't sell. The appointment is rehearsal of the canned CST (Insurance or Investing) - see [Day 43 - pre-licensed practice framing](../../first-60-days/week-8/day-43.md).
 
 ### What you submit for Part C
 
@@ -282,4 +282,4 @@ A passing Part C shows you've hit at least 25 of 30 (with a credible plan to cle
 
 ## Submission
 
-Fill in the form below. You only need to paste your Project 200 Sheet link - the playbook sections go straight into the fields on this page. No uploads required.
+Fill in the form below - the playbook sections go straight into the fields on this page. Paste your Project 200 Sheet link (or, if you'd rather not share a link, attach the sheet as a file at the bottom of the form).
