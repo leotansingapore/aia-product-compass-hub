@@ -11,20 +11,25 @@ estimated_time: "4 to 6 hours"
 weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
+submit_heading: "Build your Project 200 playbook"
+submit_intro: "This is the big one - it holds your whole playbook, so it runs long on purpose. Work through it across a few sittings; everything autosaves on this device as you type."
 form_fields:
+  - "Part A - Your list|section|The 200-name sheet you built."
   - "Your Project 200 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
   - "Sheet filled-in count|text|How many names have you loaded so far? e.g. 84 named, 36 Priority A, 50 Semi-Warm"
+  - "Part B - Your playbook (your own words)|section|Use the frameworks from the assignment above, not the sample sentences."
   - "Outreach 1: 'What I'm doing now' (close friends)|textarea|2 to 4 sentences. No ask, just an update. In your voice.|4"
   - "Outreach 2: 'By the way' (lunch / coffee)|textarea|How you naturally raise the career when you're already meeting someone for another reason.|4"
   - "Outreach 3: Market survey script (warm-but-not-close)|textarea|The phone call or WhatsApp asking 5 minutes for research. Low-pressure framing.|4"
   - "Outreach 4: Reconnect message (2+ years quiet)|textarea|What you write to someone you haven't spoken to in a long time. Don't lead with insurance.|4"
-  - "Objection responses (minimum 6)|textarea|For each objection below, write your 3-beat response (Acknowledge, Reframe, Redirect) in your own words:\n1. Not interested right now\n2. I already have an FC\n3. Send me info first\n4. Can't afford anything now\n5. Need to check with spouse\n6. Let me think about it|10"
-  - "Follow-up cadence|textarea|Write the actual messages you'll send, with timing.\n- After no-response outreach: Day 3, Day 10, Day 30\n- After meeting, need time: Day 2, Day 7, Day 21, Day 60\n- After policy issued: Day 3, Day 30, Day 90, annual\n- After a NO: Day 90, annual|10"
-  - "Referral ask scripts (2 versions)|textarea|1. End of a good meeting (closed)\n2. End of a meeting where they said 'not right now'\nBoth must name a SPECIFIC type of person (not 'anyone who needs insurance').|6"
+  - "Objection responses (6)|textarea|Your 3-beat reply (Acknowledge, Reframe, Redirect) in your own words to each: not interested right now; already have an FC; send info first; can't afford now; check with spouse; let me think about it. Plus 2 you expect from your own market.|10"
+  - "Follow-up cadence|textarea|The actual messages, with timing, for each stage: no-response (Day 3 / 10 / 30); after meeting, needs time (Day 2 / 7 / 21 / 60); after policy issued (Day 3 / 30 / 90 / annual); after a NO (Day 90 / annual).|8"
+  - "Referral ask scripts (2 versions)|textarea|1. End of a good meeting (closed). 2. End of a meeting where they said 'not right now'. Both must name a SPECIFIC type of person, not 'anyone who needs insurance'.|6"
+  - "Part C - Market survey practice|section|Your reps toward the 30-survey pre-RNF floor."
   - "Market surveys completed (out of 30)|text|How many warm-market surveys have you actually run by the time you submit? Format: completed/30 (e.g. 18/30). Required to clear the pre-RNF floor."
   - "Survey -> appointment conversion|text|Of the surveys you completed, how many booked a 30-min practice appointment? e.g. 6 of 18 = 33%. Track this honestly - it shows where the script is leaking."
-  - "Best survey learning|textarea|One line: the moment in the calls where something clicked - tonality, the binary close, an objection you handled. The point is the inflection point, not the polished version.|3"
-  - "The script you're least confident about|textarea|Name one and say why. This is the one you want feedback on.|3"
+  - "Best survey learning|textarea|One line: the moment something clicked - tonality, the binary close, an objection you handled. The inflection point, not the polished version.|3"
+  - "The script you're least confident about|textarea|Name one and say why. This is the one to bring to your review with Leo.|3"
 ---
 
 > **The gist.** Build the engine that keeps you in business past Month 3. Three parts: **(A)** a 200-name contact list segmented by priority, **(B)** a personal playbook in your own words - outreach messages, objection responses, follow-up cadences, referral asks - and **(C)** 30 warm-market survey reps before your license drops, while the "I can't sell you anything yet" framing is still honestly true.
@@ -283,3 +288,5 @@ A passing Part C shows you've hit at least 25 of 30 (with a credible plan to cle
 ## Submission
 
 Fill in the form below - the playbook sections go straight into the fields on this page. Paste your Project 200 Sheet link (or, if you'd rather not share a link, attach the sheet as a file at the bottom of the form).
+
+> **Want feedback on the scripts?** After you submit, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) - bring the one script you're least sure about and we'll tighten it together.

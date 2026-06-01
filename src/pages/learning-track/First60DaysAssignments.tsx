@@ -544,7 +544,8 @@ function SubmissionPanel({
 
     let payloadText: string | null = null;
     if (isFormMode) {
-      const filled = formFields.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
+      const answerable = formFields.filter((f) => f.kind !== "section");
+      const filled = answerable.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
       if (filled.length === 0 && !file) {
         toast.error("Fill in at least one field or attach a file before submitting.");
         return;
@@ -552,7 +553,7 @@ function SubmissionPanel({
       payloadText = filled.length
         ? JSON.stringify(
             Object.fromEntries(
-              formFields.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
+              answerable.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
             ),
           )
         : null;
@@ -628,11 +629,14 @@ function SubmissionPanel({
         </div>
         <div>
           <h3 className="font-serif text-lg font-bold">
-            {isFormMode ? "Fill in your reflection" : "Submit your work"}
+            {isFormMode
+              ? assignment.frontmatter.submit_heading ?? "Fill in your reflection"
+              : "Submit your work"}
           </h3>
           <p className="text-xs text-muted-foreground">
             {isFormMode
-              ? "Short, specific answers beat long general ones. Submit directly here."
+              ? assignment.frontmatter.submit_intro ??
+                "Short, specific answers beat long general ones. Submit directly here."
               : "Upload a file or paste a shareable link (Google Drive, Dropbox, Loom, etc.) in the notes."}
           </p>
         </div>
@@ -775,6 +779,22 @@ function FormFieldRenderer({
   onChange: (v: string) => void;
   disabled: boolean;
 }) {
+  // A "section" field is a non-input divider that breaks a long form into
+  // labelled chunks (Part A / Part B / Part C) so it reads as steps, not a wall.
+  if (field.kind === "section") {
+    return (
+      <div className="pt-4 first:pt-0">
+        <div className="flex items-center gap-3">
+          <h4 className="font-serif text-base font-bold text-foreground shrink-0">{field.label}</h4>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+        {field.hint && (
+          <p className="mt-1 text-xs text-muted-foreground whitespace-pre-wrap">{field.hint}</p>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-1.5">
       <label className="text-sm font-semibold text-foreground">{field.label}</label>

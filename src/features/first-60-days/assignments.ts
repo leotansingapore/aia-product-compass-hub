@@ -1,4 +1,4 @@
-export type AssignmentFormFieldKind = "text" | "textarea";
+export type AssignmentFormFieldKind = "text" | "textarea" | "section";
 
 export interface AssignmentFormField {
   label: string;
@@ -20,6 +20,11 @@ export interface AssignmentFrontmatter {
   related_days: number[];
   status_key: string;
   form_fields?: AssignmentFormField[];
+  /** Optional override for the form panel's heading/intro. Defaults to the
+   *  "Fill in your reflection" copy — set these for long playbook-style forms
+   *  where "reflection / short answers" would be misleading. */
+  submit_heading?: string;
+  submit_intro?: string;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
 }
@@ -109,7 +114,8 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
     const parts = entry.split("|").map((p) => p.trim());
     const [label, kindStr = "textarea", hintRaw = "", rowsStr = ""] = parts;
     if (!label) continue;
-    const kind: AssignmentFormFieldKind = kindStr === "text" ? "text" : "textarea";
+    const kind: AssignmentFormFieldKind =
+      kindStr === "text" ? "text" : kindStr === "section" ? "section" : "textarea";
     const rows = rowsStr ? Math.max(2, Math.min(12, Number(rowsStr) || 0)) : undefined;
     const hint = hintRaw ? hintRaw.replace(/\\n/g, "\n") : undefined;
     fields.push({ label, kind, hint, rows });
@@ -138,6 +144,8 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       related_days: coerceList(fm.related_days),
       status_key: coerceString(fm.status_key, slug),
       form_fields: coerceFormFields(fm.form_fields),
+      submit_heading: coerceString(fm.submit_heading) || undefined,
+      submit_intro: coerceString(fm.submit_intro) || undefined,
       url_slug: coerceString(fm.url_slug) || undefined,
     },
     markdown: body.trim(),
