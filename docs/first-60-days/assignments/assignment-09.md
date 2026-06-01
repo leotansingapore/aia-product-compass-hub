@@ -55,6 +55,10 @@ A family member is the right starting point for three reasons:
 - The gaps paragraph names something specific - *"father has only S$50k hospitalisation, ward B1, and no rider past age 75"* - not generic - *"could be better protected"*.
 - The family member, after seeing the summary, says something like *"I didn't realise that"* or *"I should fix that"*. If they don't, the summary is probably too generic.
 
+## Book a review
+
+After you've built the summary, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) to walk through it together - whether you read the gaps right, and how you'd turn this into a real review conversation with the family member.
+
 ## A note on confidentiality
 
 These are real documents from real people who trust you. Treat them that way: don't share the file with anyone, don't paste real names or NRIC numbers into the form, and delete the source PDFs from your laptop once the summary is saved in the tool. If your family member changes their mind later, delete the share link too.

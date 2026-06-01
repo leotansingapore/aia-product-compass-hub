@@ -99,6 +99,8 @@ Run the full [5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) struc
 
 Fill in the form below. To attach call-log screenshots or the senior FC's written debrief, use the file field at the bottom of the form - or paste a Google Drive / Lark link into any field.
 
+> **Want a second set of eyes?** Once your sessions are logged, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) to go through the calls and your shadowed-meeting debrief together.
+
 ## One more thing
 
 You won't get this volume of shadowing again once onboarding ends, so make these two meetings count. Ask the senior FC for two things: the one move they'd steal from you, and the one thing that would have made you worse if they'd said it out loud mid-meeting. Both are gold.

@@ -65,6 +65,10 @@ By the time you get to the **Delivery** tab and write your one-sentence position
 - The differentiator is something you could prove with an artefact. If you couldn't prove it, it isn't real yet.
 - The one-sentence positioning includes both who you serve and what you do that's different.
 
+## Book a review
+
+Positioning is hard to judge on your own. Once you've filled in the F.A.D.S. tool, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) to pressure-test your two audiences and your one-sentence positioning before it goes anywhere public.
+
 ## A note on revision
 
 You'll want to redo this at month 6 and again at year 1. The first version is a draft based on assumptions. The version you write at month 6 - after 30+ real conversations - is the one that's grounded in evidence. The year-1 version is the one that goes on your LinkedIn bio and your business card.

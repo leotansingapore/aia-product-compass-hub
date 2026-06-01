@@ -266,6 +266,8 @@ For each video, paste a shareable link (Google Drive / Dropbox / Loom / YouTube 
 
 You need both videos (linked or uploaded) and the three text fields to mark the assignment complete.
 
+> **Want feedback on your delivery?** After you submit, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) to watch back your two CSTs together and tighten the parts that matter most.
+
 ## A note on revising
 
 You'll re-record both CSTs at least once during your first year - usually after Month 3 (when you've delivered them in real meetings) and again at Month 12 (when your delivery has matured). The first version is a draft. The version you record at Month 12 is the one you'd actually be proud of. Both have to exist.
