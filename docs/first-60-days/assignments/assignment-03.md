@@ -1,7 +1,7 @@
 ---
 id: assignment-03
 url_slug: field-observation
-order: 6
+order: 7
 title: "Joint Field Observation - Reflection"
 short: "Shadow a senior FC on a real meeting, then reflect on what you saw."
 icon: eye
