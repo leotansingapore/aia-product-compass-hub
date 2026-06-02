@@ -128,10 +128,10 @@ function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" })
 
 /**
  * Shows other students' submissions for an assignment, once the current student
- * has submitted their own. Reads are owner-only by default — the cohort-visible
- * rows depend on the `assignment_submissions_cohort_select` RLS policy (see
- * SUPABASE.md); until that lands this renders the "first to share" empty state
- * for non-admins.
+ * has submitted their own. Cross-user reads are allowed by the
+ * `assignment_submissions_cohort_select` RLS policy (applied 2026-06-02, see
+ * SUPABASE.md), scoped to the vision-board + cst-roleplay item_ids. When a
+ * cohort has no other submissions yet, this renders the "first to share" state.
  */
 export default function PeerSubmissionsGallery({
   statusKey,
