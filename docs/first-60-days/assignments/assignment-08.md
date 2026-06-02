@@ -1,7 +1,7 @@
 ---
 id: assignment-08
 url_slug: audience-differentiation
-order: 3
+order: 4
 title: "Audience & Differentiation Worksheet"
 short: "Pick two audiences and map their tangible problems, intangible problems, and what makes YOUR approach different."
 icon: users
