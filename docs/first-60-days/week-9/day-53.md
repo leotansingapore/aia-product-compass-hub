@@ -17,7 +17,7 @@ tags: [first-60-days, week-9, skills]
 >
 > **Companion video - the full Canned Sales Track in action:** **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)**. Watch the entire CST delivered end-to-end with all of the structure below in one continuous flow. Reference for Assignment 1 Part B.
 >
-> **Source script - the full CST (Canned Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full CST script reference](/learning-track/first-60-days/reference/ost-script-full)** - every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 CST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
+> **Source script - the full CST (Canned Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full CST script reference](/learning-track/first-60-days/reference/cst-risks-script-full)** - every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 CST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
 
 ## 0. Live training reference - the income-loss spine
 
@@ -345,7 +345,7 @@ This is **the textbook CST-aware relationship arc** for a new client. By 3 meeti
 
 > **CST = Canned Sales Track.** The canonical 2-page hand-drawn script delivered live at the prospect's first appointment. The pages are the actual artefact you draw in front of the client and hand to them at the end.
 >
-> Full source: **[CST Script - Full Reference](/learning-track/first-60-days/reference/ost-script-full)** (every line, every pause). The condensed version below is what you carry into the meeting.
+> Full source: **[CST Script - Full Reference](/learning-track/first-60-days/reference/cst-risks-script-full)** (every line, every pause). The condensed version below is what you carry into the meeting.
 
 ### Page 1 - Risk Management & The Pyramid
 

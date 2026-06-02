@@ -43,7 +43,7 @@ The most underused trigger for new FCs is **Commitment / Consistency**: when a c
 
 Ziglar's premise is moral first, technical second: the close is not a thing you do *to* a prospect, it's a thing you do *for* them — *if* you genuinely believe the recommendation serves their interest. The book then catalogues hundreds of concrete closing techniques (the Alternative Close, the Assumption Close, the Summary Close, the 1902 Close, etc.), but the meta-message is: closing is a *service*, because indecision costs the client more than a wrong decision usually does. A prospect who needed CI cover and didn't buy it lost more than a prospect who bought a slightly-suboptimal CI plan.
 
-The most transferable Ziglar pattern for new FCs is the **Alternative Close**: never present a binary "buy or don't buy" choice — always offer **two paths to yes**. ("Would you prefer the comprehensive package or the budget-friendly version?") This pre-supposes the buying decision and reframes the conversation around *which way*, not *whether*. The CST's three-options close ([Canned Sales Track](ost-script-full.md) Page 2) is a direct application — comprehensive / best-bang-for-buck / budget-friendly.
+The most transferable Ziglar pattern for new FCs is the **Alternative Close**: never present a binary "buy or don't buy" choice — always offer **two paths to yes**. ("Would you prefer the comprehensive package or the budget-friendly version?") This pre-supposes the buying decision and reframes the conversation around *which way*, not *whether*. The CST's three-options close ([Canned Sales Track](cst-risks-script-full.md) Page 2) is a direct application — comprehensive / best-bang-for-buck / budget-friendly.
 
 ### 5 principles to internalise
 

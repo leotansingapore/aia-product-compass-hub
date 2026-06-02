@@ -101,7 +101,7 @@ The single best video per course (by transcript depth + sales-mechanics density)
 
 - **Spartans Arche supplementary** (the 22 `2021-spartans-arche-*` folders alongside this) — those are PDF deck rips, not video courses. They have their own pattern.
 - **Real appointments** ([real-appointments/](real-appointments/)) — Fireflies meeting transcripts, separate source.
-- **Standalone references** ([ost-script-full.md](ost-script-full.md), [sales-books-canon.md](sales-books-canon.md), [sp500-vs-ilp-conviction.md](sp500-vs-ilp-conviction.md)) — these are committed standalone docs, not course folders.
+- **Standalone references** ([cst-risks-script-full.md](cst-risks-script-full.md), [sales-books-canon.md](sales-books-canon.md), [sp500-vs-ilp-conviction.md](sp500-vs-ilp-conviction.md)) — these are committed standalone docs, not course folders.
 
 ## Provenance
 

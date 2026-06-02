@@ -24,7 +24,6 @@ export type CaseProduct =
 export type CasePlay =
   | "Play A — Whole-life / endowment restructure"
   | "Play B — ILP fee + structure attack"
-  | "Play B — Hybrid ILP restructure"
   | "Play C — BTIR fresh start"
   | "Consolidation"
   | "Net-yield attack"
@@ -59,12 +58,12 @@ export interface CaseEntry {
   sourcePath: string;
   /** Optional screenshot image (public/case-studies/...). */
   screenshot?: string;
-  /** Optional stage label (e.g. discovery, presentation, close, other). */
+  /** Optional stage of the appointment (opening / 2nd / closing / review / other). */
   stage?: string;
-  /** Optional appointment date (ISO). */
-  date?: string;
-  /** Optional confidence rating for derived/real cases. */
+  /** Optional confidence (high / medium / low) — present on auto-extracted real cases. */
   confidence?: string;
+  /** Optional ISO date — present on auto-extracted real cases. */
+  date?: string;
 }
 
 export const CASE_PRODUCTS: Record<
@@ -288,6 +287,27 @@ export const CASES: CaseEntry[] = [
     tags: ["ge", "flexi-cash", "endowment", "break-even"],
     drawings: ["Savings vs investing comparison", "The before / after restructure"],
     sourcePath: sourcePath("APA", "case-k--the-ge-flexi-cash-endowment-attack"),
+  },
+  {
+    id: "apa-l",
+    code: "L",
+    product: "APA",
+    title: "The PRUVantage Wealth II prospect (Play B / fee attack receipt)",
+    prospect: "25-yo offered PRUVantage Wealth II, 100% PRULink US Dividend Wealth Fund",
+    play: "Play B — ILP fee + structure attack",
+    anchor: "$50K/yr × 10 yrs (10-pay) APA vs PRUVantage Wealth II — same $500K total",
+    headline:
+      "PRU $4.76M @65 / 8% vs APA $5.19M @65 — APA +$423K (+9%). At 4%: PRU $1.23M vs APA $1.42M (+15%). Gap widens to +$1.67M by 85.",
+    tags: ["restructure", "ilp", "play-b", "prudential", "pruvantage-wealth", "fee-attack", "10-pay", "duration-matched"],
+    drawings: [
+      "The supplementary charge curve",
+      "AIA APA vs S&P 500 / DIY — structural list",
+      "The Welcome + Loyalty bonus stack",
+    ],
+    sourcePath: sourcePath(
+      "APA",
+      "case-l--the-pruvantage-wealth-ii-prospect-play-b--fee-attack-receipt"
+    ),
   },
   {
     id: "apa-gm",

@@ -115,7 +115,7 @@ The single best video per course (by transcript depth + sales-mechanics density)
 
 - **Spartans Arche supplementary** (the 22 `2021-spartans-arche-*` folders under [first-60-days/_source-supplementary/](../../first-60-days/_source-supplementary/)) — those are PDF deck rips, not video courses. They have their own pattern.
 - **Real appointments** ([first-60-days real-appointments/](../../first-60-days/_source-supplementary/real-appointments/)) — Fireflies meeting transcripts, separate source. The Next 60 Days curriculum cross-links to relevant ones from Days 14, 21, 37, 43, 44, 52, 54, 59 (in first-60-days), and the same library is exposed as Assignment 7 in the Post-RNF Academy track.
-- **Standalone references** ([ost-script-full.md](../../first-60-days/_source-supplementary/ost-script-full.md), [sales-books-canon.md](../../first-60-days/_source-supplementary/sales-books-canon.md), [sp500-vs-ilp-conviction.md](../../first-60-days/_source-supplementary/sp500-vs-ilp-conviction.md)) — these are committed standalone docs, not course folders.
+- **Standalone references** ([cst-risks-script-full.md](../../first-60-days/_source-supplementary/cst-risks-script-full.md), [sales-books-canon.md](../../first-60-days/_source-supplementary/sales-books-canon.md), [sp500-vs-ilp-conviction.md](../../first-60-days/_source-supplementary/sp500-vs-ilp-conviction.md)) — these are committed standalone docs, not course folders.
 
 ## Provenance
 
