@@ -1,6 +1,16 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2, ChevronDown, ChevronRight, FileText, ExternalLink } from "lucide-react";
+import {
+  Loader2,
+  ChevronDown,
+  ChevronRight,
+  FileText,
+  ExternalLink,
+  CheckCircle2,
+  Eye,
+  EyeOff,
+} from "lucide-react";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,6 +21,15 @@ import { loadAllAssignments, type Assignment } from "@/features/first-60-days/as
 
 const PRODUCT_ID = "first-60-days-assignments";
 
+// Assignments whose submissions feed the student-facing cohort gallery — these
+// get a "Hide from gallery" moderation toggle. Keep in sync with PEER_GALLERY
+// in First60DaysAssignments.tsx and the cohort RLS policy.
+const GALLERY_KEYS = new Set([
+  "assignment-06-vision-board",
+  "assignment-01-roleplay",
+  "assignment-07-100-whys",
+]);
+
 type SubmissionRow = {
   id: string;
   user_id: string;
@@ -19,6 +38,7 @@ type SubmissionRow = {
   file_url: string | null;
   file_name: string | null;
   submitted_at: string | null;
+  hidden_from_gallery: boolean | null;
 };
 
 type ProfileRow = {
@@ -54,7 +74,7 @@ async function fetchAll(): Promise<{
 }> {
   const [subRes, assignments] = await Promise.all([
     (supabase.from as any)("assignment_submissions")
-      .select("id, user_id, item_id, submission_text, file_url, file_name, submitted_at")
+      .select("id, user_id, item_id, submission_text, file_url, file_name, submitted_at, hidden_from_gallery")
       .eq("product_id", PRODUCT_ID)
       .order("submitted_at", { ascending: false })
       .range(0, 9999),
@@ -173,6 +193,22 @@ export default function AdminAssignments() {
   });
   const [filter, setFilter] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [busyId, setBusyId] = useState<string | null>(null);
+
+  const toggleHidden = async (sub: SubmissionRow) => {
+    const next = !sub.hidden_from_gallery;
+    setBusyId(sub.id);
+    const { error } = await (supabase.from as any)("assignment_submissions")
+      .update({ hidden_from_gallery: next })
+      .eq("id", sub.id);
+    setBusyId(null);
+    if (error) {
+      toast.error(`Couldn't update: ${error.message}`);
+      return;
+    }
+    toast.success(next ? "Hidden from cohort gallery" : "Shown in cohort gallery");
+    query.refetch();
+  };
 
   const learners = useMemo(() => {
     if (!query.data) return [] as LearnerRow[];
@@ -322,8 +358,25 @@ export default function AdminAssignments() {
 
                         {formValues && (
                           <div className="space-y-2">
-                            {Object.entries(formValues).map(([label, value]) =>
-                              value ? (
+                            {Object.entries(formValues).map(([label, value]) => {
+                              if (!value) return null;
+                              const kind = a.frontmatter.form_fields?.find(
+                                (f) => f.label === label,
+                              )?.kind;
+                              // Confirmation checkboxes store "yes" — render as a
+                              // tick so the admin sees "booked / approved", not raw text.
+                              if (kind === "check") {
+                                return (
+                                  <div
+                                    key={label}
+                                    className="flex items-center gap-2 rounded-md border bg-background px-3 py-2"
+                                  >
+                                    <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
+                                    <span className="text-sm font-medium">{label}</span>
+                                  </div>
+                                );
+                              }
+                              return (
                                 <div
                                   key={label}
                                   className="rounded-md border bg-background p-3"
@@ -333,7 +386,33 @@ export default function AdminAssignments() {
                                   </div>
                                   <div className="text-sm whitespace-pre-wrap">{value}</div>
                                 </div>
-                              ) : null,
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {sub && GALLERY_KEYS.has(a.frontmatter.status_key) && (
+                          <div className="flex items-center gap-2 pt-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              disabled={busyId === sub.id}
+                              onClick={() => toggleHidden(sub)}
+                              className="gap-1.5"
+                            >
+                              {busyId === sub.id ? (
+                                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                              ) : sub.hidden_from_gallery ? (
+                                <Eye className="h-3.5 w-3.5" />
+                              ) : (
+                                <EyeOff className="h-3.5 w-3.5" />
+                              )}
+                              {sub.hidden_from_gallery ? "Show in gallery" : "Hide from gallery"}
+                            </Button>
+                            {sub.hidden_from_gallery && (
+                              <Badge variant="outline" className="text-[10px] font-semibold uppercase">
+                                Hidden from cohort
+                              </Badge>
                             )}
                           </div>
                         )}

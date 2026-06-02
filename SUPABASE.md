@@ -175,22 +175,45 @@ Notes:
 
 ## Completed (recent)
 
-#### Cohort peer galleries — `assignment_submissions_cohort_select` read policy — DONE 2026-06-02
+#### Cohort peer galleries — gallery RLS, moderation flag, names RPC — DONE 2026-06-02
 
-Three pre-RNF assignments now show a "What your cohort shared" gallery (directly under the "Submission received" panel) once a student submits their own: **Vision Board** (`assignment-06-vision-board`, image grid), **CST Roleplay** (`assignment-01-roleplay`, written answers), and **100 Whys** (`assignment-07-100-whys`, written answers). Frontend: [`PeerSubmissionsGallery.tsx`](src/components/learning-track/PeerSubmissionsGallery.tsx), gallery list `PEER_GALLERY` in [`First60DaysAssignments.tsx`](src/pages/learning-track/First60DaysAssignments.tsx). Applied directly via the Management API SQL endpoint (not a Lovable migration), so there is no file in `supabase/migrations/` for it — if you later formalise it, keep it idempotent (`DROP POLICY IF EXISTS` first). **The frontend `PEER_GALLERY` list and this policy's `item_id` IN (...) must stay in sync** — adding an assignment to the gallery means adding its `item_id` here too:
+Three pre-RNF assignments show a "What your cohort shared" gallery (directly under the "Submission received" panel) once a student submits their own: **Vision Board** (`assignment-06-vision-board`, image grid), **CST Roleplay** (`assignment-01-roleplay`, written answers), and **100 Whys** (`assignment-07-100-whys`, written answers). Frontend: [`PeerSubmissionsGallery.tsx`](src/components/learning-track/PeerSubmissionsGallery.tsx), gallery list `PEER_GALLERY` in [`First60DaysAssignments.tsx`](src/pages/learning-track/First60DaysAssignments.tsx); admin moderation toggle in [`AdminAssignments.tsx`](src/pages/learning-track/admin/AdminAssignments.tsx). All applied directly via the Management API SQL endpoint (no `supabase/migrations/` file) — keep idempotent if you formalise. **Three places must stay in sync when adding/removing a gallery assignment: the frontend `PEER_GALLERY` map, `GALLERY_KEYS` in AdminAssignments, and the `item_id IN (...)` list in the cohort policy below.**
 
 ```sql
+-- Moderation: admins can hide a single submission from the cohort gallery.
+ALTER TABLE public.assignment_submissions
+  ADD COLUMN IF NOT EXISTS hidden_from_gallery boolean NOT NULL DEFAULT false;
+
+-- Cohort read: any signed-in student reads non-hidden rows for the gallery
+-- assignments only. Owner + admin policies untouched; all other assignments stay private.
 CREATE POLICY "assignment_submissions_cohort_select"
-  ON public.assignment_submissions
-  FOR SELECT
-  TO authenticated
+  ON public.assignment_submissions FOR SELECT TO authenticated
   USING (
     product_id = 'first-60-days-assignments'
     AND item_id IN ('assignment-06-vision-board', 'assignment-01-roleplay', 'assignment-07-100-whys')
+    AND COALESCE(hidden_from_gallery, false) = false
   );
+
+-- Admins can flip the moderation flag.
+CREATE POLICY "assignment_submissions_admin_update"
+  ON public.assignment_submissions FOR UPDATE TO authenticated
+  USING (has_role(auth.uid(),'admin') OR has_role(auth.uid(),'master_admin'))
+  WITH CHECK (has_role(auth.uid(),'admin') OR has_role(auth.uid(),'master_admin'));
+
+-- Names: the gallery shows submitter display names (not "A teammate"). This
+-- SECURITY DEFINER fn exposes ONLY display_name/avatar — never email/address —
+-- so it's safe to expose to all authenticated users (names are already public
+-- via the leaderboard). profiles itself stays owner/admin-read only.
+CREATE OR REPLACE FUNCTION public.get_cohort_display_names(p_user_ids text[])
+RETURNS TABLE (user_id text, display_name text, avatar_url text)
+LANGUAGE sql SECURITY DEFINER STABLE SET search_path = public AS $$
+  SELECT p.user_id, p.display_name, p.avatar_url
+  FROM public.profiles p WHERE p.user_id = ANY(p_user_ids);
+$$;
+GRANT EXECUTE ON FUNCTION public.get_cohort_display_names(text[]) TO authenticated;
 ```
 
-Verified live: a non-admin user (`role = authenticated`) reads the existing 100-whys (6) and vision-board (5) rows; non-gallery assignments (`assignment-04-book-review`, `assignment-09-policy-summary`) return 0 for that user. RLS is permissive, so the owner + admin policies are untouched and every other assignment stays private. Vision-board images render because the `assignment-files` bucket is already public-read. The gallery is anonymous ("A teammate") — no `profiles` read needed. To switch to opt-in later, add `shared boolean DEFAULT false` and append `AND shared = true`.
+Verified live (non-admin `user@demo.com`): reads the gallery rows for the 3 assignments, resolves display names via the RPC (returns only `user_id`/`display_name`/`avatar_url`), and gets 0 for non-gallery assignments (`book-review`, `policy-summary`). Admin hide toggle verified: a master_admin PATCH of `hidden_from_gallery=true` (HTTP 204) makes that row drop out of the non-admin gallery query (5 → 4). Vision-board images render off the already-public `assignment-files` bucket. To switch names back to anonymous, render a constant in `PeerSubmissionsGallery`; to make galleries opt-in, add `shared boolean DEFAULT false` and `AND shared = true` to the cohort policy.
 
 #### Product Mastery Track DB-backed progress + leaderboard scoring — landed 2026-04-28
 
