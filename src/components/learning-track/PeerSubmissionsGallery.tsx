@@ -39,7 +39,15 @@ function parseFormAnswers(text: string | null): { label: string; value: string }
   return null;
 }
 
-function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" }) {
+function PeerCard({
+  row,
+  variant,
+  name,
+}: {
+  row: PeerRow;
+  variant: "image" | "text";
+  name: string;
+}) {
   const when = row.submitted_at ? new Date(row.submitted_at).toLocaleDateString() : null;
   const answers = parseFormAnswers(row.submission_text);
 
@@ -62,8 +70,8 @@ function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" })
             />
           </div>
           <div className="flex items-center justify-between px-3 py-2 text-xs text-muted-foreground">
-            <span>A teammate</span>
-            {when && <span>{when}</span>}
+            <span className="truncate font-medium text-foreground/80">{name}</span>
+            {when && <span className="shrink-0 pl-2">{when}</span>}
           </div>
         </a>
       );
@@ -78,7 +86,7 @@ function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" })
           className="flex aspect-[4/5] flex-col items-center justify-center gap-2 rounded-xl border bg-card p-4 text-center transition-colors hover:border-primary/40"
         >
           <ExternalLink className="h-6 w-6 text-primary" />
-          <span className="text-sm font-medium">A teammate's board</span>
+          <span className="text-sm font-medium">{name}'s board</span>
           <span className="text-xs text-muted-foreground">Open the shared link</span>
         </a>
       );
@@ -89,10 +97,11 @@ function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" })
   return (
     <div className="flex flex-col gap-3 rounded-xl border bg-card p-4">
       <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1.5">
-          <FileText className="h-3.5 w-3.5" />A teammate
+        <span className="inline-flex items-center gap-1.5 truncate font-medium text-foreground/80">
+          <FileText className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate">{name}</span>
         </span>
-        {when && <span>{when}</span>}
+        {when && <span className="shrink-0 pl-2">{when}</span>}
       </div>
       {answers && answers.length ? (
         <div className="space-y-2.5">
@@ -132,6 +141,8 @@ function PeerCard({ row, variant }: { row: PeerRow; variant: "image" | "text" })
  * `assignment_submissions_cohort_select` RLS policy (applied 2026-06-02, see
  * SUPABASE.md), scoped to the vision-board + cst-roleplay item_ids. When a
  * cohort has no other submissions yet, this renders the "first to share" state.
+ * Submitter names come from the `get_cohort_display_names` RPC (display_name
+ * only — no email/address); admins can hide a row via `hidden_from_gallery`.
  */
 export default function PeerSubmissionsGallery({
   statusKey,
@@ -154,12 +165,31 @@ export default function PeerSubmissionsGallery({
         .order("submitted_at", { ascending: false })
         .limit(48);
       if (error) throw error;
-      return (data ?? []) as PeerRow[];
+      const rows = (data ?? []) as PeerRow[];
+
+      // Resolve display names via a SECURITY DEFINER RPC that returns only
+      // display_name/avatar (never email/address). Names are non-fatal — a
+      // missing one just falls back to "A teammate".
+      const names: Record<string, string> = {};
+      const ids = Array.from(new Set(rows.map((r) => r.user_id)));
+      if (ids.length) {
+        const { data: nameRows } = await (supabase.rpc as any)("get_cohort_display_names", {
+          p_user_ids: ids,
+        });
+        if (Array.isArray(nameRows)) {
+          for (const n of nameRows) {
+            const nm = (n?.display_name ?? "").trim();
+            if (nm) names[n.user_id] = nm;
+          }
+        }
+      }
+      return { rows, names };
     },
   });
 
   if (isLoading) return null;
-  const rows = data ?? [];
+  const rows = data?.rows ?? [];
+  const names = data?.names ?? {};
 
   return (
     <div className="rounded-2xl border bg-card p-4 sm:p-8 space-y-5">
@@ -190,7 +220,12 @@ export default function PeerSubmissionsGallery({
           }
         >
           {rows.map((row) => (
-            <PeerCard key={row.id} row={row} variant={variant} />
+            <PeerCard
+              key={row.id}
+              row={row}
+              variant={variant}
+              name={names[row.user_id] ?? "A teammate"}
+            />
           ))}
         </div>
       )}
