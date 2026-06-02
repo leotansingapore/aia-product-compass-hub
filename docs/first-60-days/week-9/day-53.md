@@ -4,7 +4,9 @@ day: 53
 title: "CST - The Risks Angle"
 primary_source: internal-reference
 primary_slides: "n/a"
-supporting_sources: []
+supporting_sources:
+  - "Canned Sales Track - full script (cst-risks-script-full reference)"
+  - "Canned Sales Track 2019 - MAP framework: Why Plan / What to Plan / How Much to Plan"
 duration_minutes: 20
 tags: [first-60-days, week-9, skills]
 ---
@@ -19,25 +21,54 @@ tags: [first-60-days, week-9, skills]
 >
 > **Source script - the full CST (Canned Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full CST script reference](/learning-track/first-60-days/reference/cst-risks-script-full)** - every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 CST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
 
-## 0. Live training reference - the income-loss spine
+## 0. The risks-angle CST - the canonical spine
 
-Two ways your client can lose income, and the only honest response:
+The Risks Angle CST is built on three questions, asked in order. Everything below is a way of answering them at the prospect's first appointment:
 
-| Loss type | Examples | Solution |
+1. **Why** plan? - because your income carries every risk in your life.
+2. **What** to plan for? - risk management first, then accumulation, then preservation (the MAP triangle: **M**anagement, **A**ccumulation, **P**reservation).
+3. **How much** to plan? - a rule-of-thumb coverage table, prioritised.
+
+> **Source script:** this lesson follows the canonical Canned Sales Track captured in the full reference linked above. Read it line-by-line before Assignment 1 Part B.
+
+### Why plan - start with the income, not the products
+
+Open by drawing how an income is already spent, before a single risk is mentioned. On a $4,000/month gross income:
+
+| Slice | Goes to |
+|---|---|
+| **20%** | CPF (compulsory) |
+| **40%** | Lifestyle - food, transport, parents, everything else |
+| **20%** | Contingency cash, until 3-6 months of expenses is saved |
+| **10%** | Risk management (protection) |
+| **10%** | Wealth accumulation |
+
+> "Has it ever crossed your mind that anyone - including me and you - faces the risk of losing this income?"
+
+The whole circle depends on the income continuing. That one question turns a budgeting picture into the opening of the risks conversation.
+
+### The two kinds of income loss
+
+| Loss type | Examples | The honest response |
 |---|---|---|
-| **Temporary** | Sacked, resigned, retrenched | Contingency cash - 3-6 months of expenses sitting in the bank |
-| **Permanent** | Death, disability, critical illness, accident, old age / retirement | **Irreversible** - savings won't catch up. Insurance transfer is the only honest answer |
+| **Temporary** | Sacked, resigned, retrenched | Contingency cash - 3-6 months of expenses in the bank. Recoverable; you find another job. |
+| **Permanent** | Death, disability, critical illness, accident, old age / retirement | **Irreversible** - savings won't catch up. Insurance transfer is the only honest answer. |
+
+The detail that lands here: most employers grant a maximum of about **60 days hospitalisation leave (including 14 days MC)**. After that, they can let an employee go, with no obligation to keep paying salary. So even a "stable job" stops paying income surprisingly fast when a permanent risk hits. That gap is exactly what protection fills.
 
 **The $1 million question (use this verbatim):**
-> "If you're 25 and need $25K/year of expenses for 40 years, that's $1,000,000 - just to keep yourself alive in retirement. Can your family lend you $1,000? Probably. $10,000? Maybe. $1,000,000? No. *We don't want clients to beg, borrow, or steal.*"
+> "If you're 25 and need $25K/year of expenses for 40 years, that's $1,000,000 - just to keep yourself going if you couldn't work. Can your family lend you $1,000? Probably. $10,000? Maybe. $1,000,000? No."
 
 **Three risk-management methods - the elimination logic:**
 
-1. **Avoid** - unrealistic. Can't avoid getting sick. Can't avoid getting old.
+1. **Avoid** - unrealistic. You can't avoid getting sick, and you can't avoid getting old.
 2. **Retain (self-insure)** - needs $1M sitting in cash already. Almost no one has it.
-3. **Transfer** - use **10% of income** to protect the **other 90%**. (yes)
+3. **Transfer** - set aside about **10% of income** to protect the **other 90%**. The only realistic answer.
 
-That elimination is the close. By the time the client agrees with you on points 1 and 2, point 3 is the only remaining option.
+That elimination is the close. By the time the client agrees with you on points 1 and 2, point 3 is the only option left.
+
+**The line that handles "but what if nothing ever happens to me?"**
+> "Retrenchment may or may not happen. Death is certain - it's only a question of early or late. And all of us grow old. So the real question is whether you'll reach retirement with the option to stop working, or no option at all."
 
 ## What you'll walk away with
 
@@ -466,11 +497,22 @@ The anti-clockwise progression: bank -> savings/endowment -> passive investing -
 
 | Risk | Benchmark | Worked example |
 |---|---|---|
-| **Premature death** | 10x annual income (full lifetime value: 40 yrs x income) | $450K (target) - full lifetime value $1.8M (the ideal). 100K is too little. |
-| **Critical Illness** | **$100K + 3-5 years income** | $100K + ($45K x 3) = **$235K**. 200-250K OK. 100K too low. 500K excessive. |
-| **Hospitalisation** | Based on hospital/ward preference | Lock in early - can't upgrade later if a medical condition emerges |
+| **Premature death / TPD** | 10-20x annual income (full lifetime value: 40 yrs x income) | $450K (target) - full lifetime value $1.8M (the ideal). 100K is too little. |
+| **Critical Illness** | **$100K + 3-5 years income** (early-stage CI: 1-3x) | $100K + ($45K x 3) = **$235K**. 200-250K OK. 100K too low. 500K excessive. |
+| **Hospitalisation** | As charged - based on hospital/ward preference | Lock in early - can't upgrade later if a medical condition emerges |
+| **Accident / dismemberment** | 5-10x annual income | ~$250K. Covers outpatient and limb-loss the other two miss. |
 
 The $100K CI buffer specifically funds: home care, nursing, taxi/grab (can't take MRT), and the lost income of a family member who quits to care for the patient.
+
+**The priority order - which to secure first.** When budget is tight, the canonical script ranks the protection buys by what's most likely to be claimed and cheapest to hold, not by headline sum assured:
+
+1. **Hospitalisation** - everyone gets warded eventually; an Integrated Shield Plan is the most protection per dollar.
+2. **Critical Illness** - the income-replacement gap, the one that quietly bankrupts families.
+3. **Death / Total & Permanent Disability** - 10-20x income for the people who depend on you.
+4. **Personal Accident / dismemberment** - fills the outpatient and limb-loss gaps the first three miss.
+5. **Optional / women's coverage** - budget-dependent, layered last.
+
+Lead with #1 and #2 in the proposal. They are the buys a client almost never regrets.
 
 #### The 1/3 Rule - the budget framework
 
@@ -531,9 +573,13 @@ The $100K CI buffer specifically funds: home care, nursing, taxi/grab (can't tak
 
 > *"Oh yes - can you write down your full name as in NRIC and your date of birth in this blank space? (Top of the last section.)"*
 
-#### The decision-roadblock check
+#### The decision-roadblock check (the "Colombo close")
 
-> *"Let's say if I come back with a proposal that meets all your needs and within the budget we've set aside, would there be any potential roadblocks with you going ahead? You're able to decide everything on your own, right? Okay great - that's what I needed to understand."*
+Name it for yourself - this is the one-more-thing close. Before you leave, you lower the temperature and surface any hidden objection while you're still in the room:
+
+> *"Financial planning isn't about taking away your money. It's about setting your life on a disciplined mode, so you're always prepared for the hazards of life: living too long, dying too soon, and the hazards along the way."*
+
+> *"Let's say I come back with a proposal that meets all your needs and sits within the budget we've set aside - is there any reason you wouldn't go ahead? And you're able to decide on your own, right? Okay great - that's what I needed to understand."*
 
 ---
 
