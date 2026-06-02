@@ -29,6 +29,7 @@ import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
 import PeerSubmissionsGallery from "@/components/learning-track/PeerSubmissionsGallery";
@@ -283,6 +284,10 @@ function AssignmentDetail({
   totalCount: number;
 }) {
   const Icon = ICON_MAP[assignment.frontmatter.icon] ?? ClipboardList;
+  const { isAdmin, isMasterAdmin } = usePermissions();
+  // True role, independent of "view as student" mode — so an admin always sees
+  // the all-submissions panel and their own submissions are auto-hidden.
+  const admin = isAdmin() || isMasterAdmin();
   return (
     <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
       <Link
@@ -368,14 +373,27 @@ function AssignmentDetail({
         submission={submission}
         userId={userId}
         onSubmitted={onSubmitted}
+        isAdmin={admin}
       />
 
-      {PEER_GALLERY[assignment.frontmatter.status_key] && submission && (
+      {admin ? (
+        // Admins see every submission for the assignment, on every assignment
+        // page, even while "viewing as" a student.
         <PeerSubmissionsGallery
           statusKey={assignment.frontmatter.status_key}
           userId={userId}
-          variant={PEER_GALLERY[assignment.frontmatter.status_key]}
+          variant={PEER_GALLERY[assignment.frontmatter.status_key] ?? "text"}
+          admin
         />
+      ) : (
+        PEER_GALLERY[assignment.frontmatter.status_key] &&
+        submission && (
+          <PeerSubmissionsGallery
+            statusKey={assignment.frontmatter.status_key}
+            userId={userId}
+            variant={PEER_GALLERY[assignment.frontmatter.status_key]}
+          />
+        )
       )}
     </div>
   );
@@ -444,11 +462,13 @@ function SubmissionPanel({
   submission,
   userId,
   onSubmitted,
+  isAdmin = false,
 }: {
   assignment: Assignment;
   submission: Submission | undefined;
   userId: string | undefined;
   onSubmitted: () => void;
+  isAdmin?: boolean;
 }) {
   const isFormMode =
     assignment.frontmatter.submission_type === "form" &&
@@ -634,6 +654,8 @@ function SubmissionPanel({
         submission_text: payloadText,
         file_url: fileUrl,
         file_name: fileName,
+        // Admin/test submissions never surface in the student cohort gallery.
+        hidden_from_gallery: isAdmin,
       });
       if (insErr) throw insErr;
       notifyAssignmentSubmitted({
