@@ -2,7 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   BookOpen,
+  CalendarClock,
   Check,
   CheckCircle2,
   ClipboardList,
@@ -682,6 +684,26 @@ function SubmissionPanel({
           </p>
         </div>
       </div>
+
+      {assignment.frontmatter.booking_url && (
+        <a
+          href={assignment.frontmatter.booking_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4 transition-colors hover:bg-primary/10"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary shrink-0">
+            <CalendarClock className="h-5 w-5" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-foreground">Book your session with Leo</p>
+            <p className="text-xs text-muted-foreground">
+              Part of this assignment — pick a time, then tick the booking box below.
+            </p>
+          </div>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-primary" />
+        </a>
+      )}
 
       {isFormMode ? (
         <div className="space-y-5">

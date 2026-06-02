@@ -14,6 +14,7 @@ status_key: "assignment-02-outreach"
 submit_heading: "Your Project 200 checklist"
 submit_intro: "Two confirmations, then your running count. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
 file_upload: false
+booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Submit your Project 200|section|Two quick confirmations, then your numbers. Your list stays on your own device or Drive - nothing gets uploaded here."
   - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your opener together."

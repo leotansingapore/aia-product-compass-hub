@@ -14,6 +14,7 @@ status_key: "assignment-09-policy-summary"
 submit_heading: "Your Policy Summary reflection"
 submit_intro: "No documents to upload - your family member's policies stay private. Reflect on what building the summary surfaced, then confirm you've booked a session with Leo to go through it. Autosaves on this device."
 file_upload: false
+booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Reflect on the exercise|section|No names, no documents, no screenshots - your family member's policies stay private. Just what you took away from building the summary."
   - "Whose policies did you summarise|text|Relationship only (e.g. mother, sister, spouse) - never a real name."

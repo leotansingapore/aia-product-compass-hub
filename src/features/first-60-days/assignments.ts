@@ -29,6 +29,10 @@ export interface AssignmentFrontmatter {
    *  checklist-style assignments where uploading a screenshot/sheet would
    *  create privacy friction (Project 200, CST roleplay). Defaults to true. */
   file_upload?: boolean;
+  /** Optional booking link surfaced as a prominent button in the submission
+   *  panel — used by assignments whose checklist includes "I've booked a call
+   *  with Leo" so the booking is one obvious tap away from the checkbox. */
+  booking_url?: string;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
 }
@@ -158,6 +162,7 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       submit_intro: coerceString(fm.submit_intro) || undefined,
       url_slug: coerceString(fm.url_slug) || undefined,
       file_upload: fm.file_upload === false || fm.file_upload === "false" ? false : true,
+      booking_url: coerceString(fm.booking_url) || undefined,
     },
     markdown: body.trim(),
   };

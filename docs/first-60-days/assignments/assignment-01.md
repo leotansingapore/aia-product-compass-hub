@@ -14,6 +14,7 @@ status_key: "assignment-01-roleplay"
 submit_heading: "Your CST checklist"
 submit_intro: "Confirm your trainer sign-off, then summarise the flow you've built for each CST in your own words. No video upload - your trainer reviews your delivery live. Autosaves on this device."
 file_upload: false
+booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Trainer sign-off|section|Two confirmations - your CSTs are reviewed and approved live, nothing gets uploaded here."
   - "I've run both CSTs past my trainer on a call|check|Book the session, deliver both flows as if your trainer were the prospect, and take their feedback live."
