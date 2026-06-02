@@ -47,6 +47,7 @@ const PRODUCT_ID = "first-60-days-assignments";
 const PEER_GALLERY: Record<string, "image" | "text"> = {
   "assignment-06-vision-board": "image",
   "assignment-01-roleplay": "text",
+  "assignment-07-100-whys": "text",
 };
 
 // Module-level so react-markdown's parse cache stays valid across renders —

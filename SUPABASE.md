@@ -177,7 +177,7 @@ Notes:
 
 #### Cohort peer galleries — `assignment_submissions_cohort_select` read policy — DONE 2026-06-02
 
-Two pre-RNF assignments now show a "What your cohort shared" gallery once a student submits their own: **Vision Board** (`assignment-06-vision-board`, image grid) and **CST Roleplay** (`assignment-01-roleplay`, written answers). Frontend: [`PeerSubmissionsGallery.tsx`](src/components/learning-track/PeerSubmissionsGallery.tsx), wired in [`First60DaysAssignments.tsx`](src/pages/learning-track/First60DaysAssignments.tsx). Applied directly via the Management API SQL endpoint (not a Lovable migration), so there is no file in `supabase/migrations/` for it — if you later formalise it, keep it idempotent (`DROP POLICY IF EXISTS` first):
+Three pre-RNF assignments now show a "What your cohort shared" gallery (directly under the "Submission received" panel) once a student submits their own: **Vision Board** (`assignment-06-vision-board`, image grid), **CST Roleplay** (`assignment-01-roleplay`, written answers), and **100 Whys** (`assignment-07-100-whys`, written answers). Frontend: [`PeerSubmissionsGallery.tsx`](src/components/learning-track/PeerSubmissionsGallery.tsx), gallery list `PEER_GALLERY` in [`First60DaysAssignments.tsx`](src/pages/learning-track/First60DaysAssignments.tsx). Applied directly via the Management API SQL endpoint (not a Lovable migration), so there is no file in `supabase/migrations/` for it — if you later formalise it, keep it idempotent (`DROP POLICY IF EXISTS` first). **The frontend `PEER_GALLERY` list and this policy's `item_id` IN (...) must stay in sync** — adding an assignment to the gallery means adding its `item_id` here too:
 
 ```sql
 CREATE POLICY "assignment_submissions_cohort_select"
@@ -186,11 +186,11 @@ CREATE POLICY "assignment_submissions_cohort_select"
   TO authenticated
   USING (
     product_id = 'first-60-days-assignments'
-    AND item_id IN ('assignment-06-vision-board', 'assignment-01-roleplay')
+    AND item_id IN ('assignment-06-vision-board', 'assignment-01-roleplay', 'assignment-07-100-whys')
   );
 ```
 
-Verified live: a non-admin user (`role = authenticated`) reads the 5 existing vision-board rows; a non-gallery assignment (`assignment-04-book-review`) returns 0 for that user. RLS is permissive, so the owner + admin policies are untouched and every other assignment stays private. Vision-board images render because the `assignment-files` bucket is already public-read. The gallery is anonymous ("A teammate") — no `profiles` read needed. To switch to opt-in later, add `shared boolean DEFAULT false` and append `AND shared = true`.
+Verified live: a non-admin user (`role = authenticated`) reads the existing 100-whys (6) and vision-board (5) rows; non-gallery assignments (`assignment-04-book-review`, `assignment-09-policy-summary`) return 0 for that user. RLS is permissive, so the owner + admin policies are untouched and every other assignment stays private. Vision-board images render because the `assignment-files` bucket is already public-read. The gallery is anonymous ("A teammate") — no `profiles` read needed. To switch to opt-in later, add `shared boolean DEFAULT false` and append `AND shared = true`.
 
 #### Product Mastery Track DB-backed progress + leaderboard scoring — landed 2026-04-28
 
