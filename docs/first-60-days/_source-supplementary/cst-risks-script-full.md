@@ -12,6 +12,8 @@ captured: 2026-04-24
 > **CST = Canned Sales Track.** The complete two-page hand-drawn presentation script used in the field for the first prospect appointment. Every line, every pause, every example, in the order they're delivered.
 >
 > Source: 13-page internal script (internal circulation only).
+>
+> **Visual one-pager:** the diagram version of this script - the pyramid, the major risks, how much to cover, and the 1/3-rule budget on a single sheet. **[Open the Financial Planning Overview](https://present.financeillustrator.com/total-wealth-concept/concept/overview-pdf)** (opens in the Total Wealth Concept app - scroll the full sheet or expand any page).
 
 ---
 

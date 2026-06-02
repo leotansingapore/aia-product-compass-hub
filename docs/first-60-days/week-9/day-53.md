@@ -20,6 +20,8 @@ tags: [first-60-days, week-9, skills]
 > **Companion video - the full Canned Sales Track in action:** **[Canned Sales Track (David)](https://youtu.be/TAsMoWdXLyg)**. Watch the entire CST delivered end-to-end with all of the structure below in one continuous flow. Reference for Assignment 1 Part B.
 >
 > **Source script - the full CST (Canned Sales Track):** the canonical 2-page hand-drawn script this lesson is built on. **[Read the full CST script reference](/learning-track/first-60-days/reference/cst-risks-script-full)** - every line, every pause, every example, in the order they're delivered. The Page 1 / Page 2 CST appendix at the bottom of this lesson is the consolidated version of that document, restructured around the actual delivery flow.
+>
+> **Visual one-pager - the Financial Planning Overview:** the single-sheet diagram version of this whole CST - the pyramid, the major risks, how much to cover, and the 1/3-rule budget on one page. **[Open the Financial Planning Overview](https://present.financeillustrator.com/total-wealth-concept/concept/overview-pdf)** - scroll the full sheet or expand any page to draw from it live during an appointment.
 
 ## 0. The risks-angle CST - the canonical spine
 
