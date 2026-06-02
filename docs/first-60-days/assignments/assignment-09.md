@@ -5,22 +5,27 @@ order: 9
 title: "Policy Summary - Build One for a Family Member"
 short: "Get a family member's existing policy documents, then build a clean one-page Policy Summary in the Total Wealth Concept tool."
 icon: file-text
-deliverable: "A completed Policy Summary built in the present.financeillustrator.com Total Wealth Concept tool, exported as a PDF or screenshot"
+deliverable: "A reflection on building the summary + a booked review session with Leo"
 submission_type: "form"
 estimated_time: "60 to 90 minutes"
 weeks_covered: [2, 3]
 related_days: [10, 18]
 status_key: "assignment-09-policy-summary"
+submit_heading: "Your Policy Summary reflection"
+submit_intro: "No documents to upload - your family member's policies stay private. Reflect on what building the summary surfaced, then confirm you've booked a session with Leo to go through it. Autosaves on this device."
+file_upload: false
 form_fields:
-  - "Whose policies did you summarise|text|Family member's relationship (e.g. mother, sister, spouse) - no need to use real names."
+  - "Reflect on the exercise|section|No names, no documents, no screenshots - your family member's policies stay private. Just what you took away from building the summary."
+  - "Whose policies did you summarise|text|Relationship only (e.g. mother, sister, spouse) - never a real name."
   - "Number of policies you mapped|text|Total policies on the summary (life, hospitalisation, accident, savings, investment-linked, etc.)."
-  - "What gaps or overlaps surfaced|textarea|In one paragraph - what did the summary make obvious that wasn't obvious before? Coverage gaps, premium overlaps, expired riders, no claim path. This is the whole point of the exercise.|4"
-  - "Link or screenshot of your finished summary|text|Paste the share link from the tool, or upload a screenshot in the file field below."
+  - "What gaps or overlaps surfaced|textarea|In one paragraph - what did the summary make obvious that wasn't before? Coverage gaps, premium overlaps, expired riders, no claim path. This is the whole point of the exercise.|4"
+  - "What surprised you, and what you'd do differently|textarea|Your experience building it: what was harder than expected, what clicked, what you'd ask a real client next time.|4"
+  - "I've booked a session with Leo to go through this Policy Summary|check|We run through the policies together, analyse the gaps, and shape the recommendations you'd actually make. Booking link further down this page."
 ---
 
 > **The gist.** Get one family member's real policy documents, then build a clean one-page Policy Summary in the [Total Wealth Concept tool](https://present.financeillustrator.com). You hand them something genuinely useful - and you practise the skill every client conversation eventually needs: turning messy documents into one page a normal person can read.
 
-**The shape of it:** ask a family member for their policies → recognise each plan using the competitor inventory → enter every policy in the tool → walk through the summary together → submit the link or a screenshot plus the gaps you found.
+**The shape of it:** ask a family member for their policies → recognise each plan using the competitor inventory → enter every policy in the tool → walk through the summary together → reflect here on what surfaced and book a session with Leo to shape the recommendations. Nothing about their policies gets uploaded.
 
 ## Why this matters
 
@@ -46,7 +51,7 @@ A family member is the right starting point for three reasons:
 3. **Open the tool**: [present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2)
 4. **Enter each policy** as a row. Skip nothing - even the policies they think are dormant.
 5. **Walk through the summary with them** once it's done. Read it together. The conversation that happens at this step is the whole reason for the exercise.
-6. **Save the share link or export a PDF**, then submit it in the form below alongside the gaps you surfaced.
+6. **Reflect in the form below** on what the summary surfaced - then book your session with Leo to go through it. You keep the summary in the tool; nothing about it gets uploaded here.
 
 ## What good looks like
 
@@ -55,9 +60,9 @@ A family member is the right starting point for three reasons:
 - The gaps paragraph names something specific - *"father has only S$50k hospitalisation, ward B1, and no rider past age 75"* - not generic - *"could be better protected"*.
 - The family member, after seeing the summary, says something like *"I didn't realise that"* or *"I should fix that"*. If they don't, the summary is probably too generic.
 
-## Book a review
+## Book your review session
 
-After you've built the summary, [book a review slot with Leo](https://www.pick-a-time.app/book/withleo) to walk through it together - whether you read the gaps right, and how you'd turn this into a real review conversation with the family member.
+Booking this session is part of the assignment - it's the checklist box in the form. After you've built the summary, [pick a time with Leo](https://www.pick-a-time.app/book/withleo) to go through the policies together: whether you read the gaps right, how you'd analyse them, and the recommendations you'd actually make. Then tick it off in the form.
 
 ## A note on confidentiality
 
