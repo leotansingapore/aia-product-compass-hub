@@ -29,6 +29,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
+import PeerSubmissionsGallery from "@/components/learning-track/PeerSubmissionsGallery";
 import {
   loadAllAssignments,
   type Assignment,
@@ -38,6 +39,15 @@ import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
 
 const PRODUCT_ID = "first-60-days-assignments";
+
+// Assignments that show a cohort gallery of other students' submissions once
+// the current student has submitted their own. "image" boards render as a photo
+// grid; "text" submissions render their written answers. Cross-user reads depend
+// on the cohort RLS policy documented in SUPABASE.md.
+const PEER_GALLERY: Record<string, "image" | "text"> = {
+  "assignment-06-vision-board": "image",
+  "assignment-01-roleplay": "text",
+};
 
 // Module-level so react-markdown's parse cache stays valid across renders —
 // inline `[remarkGfm]` arrays bust the cache every time.
@@ -356,6 +366,14 @@ function AssignmentDetail({
         userId={userId}
         onSubmitted={onSubmitted}
       />
+
+      {PEER_GALLERY[assignment.frontmatter.status_key] && submission && (
+        <PeerSubmissionsGallery
+          statusKey={assignment.frontmatter.status_key}
+          userId={userId}
+          variant={PEER_GALLERY[assignment.frontmatter.status_key]}
+        />
+      )}
     </div>
   );
 }

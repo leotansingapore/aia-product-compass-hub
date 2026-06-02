@@ -6,6 +6,32 @@
 
 ## Pending
 
+### Cohort peer galleries — read policy on `assignment_submissions`
+
+Two pre-RNF assignments now show a "What your cohort shared" gallery once a student has submitted their own: **Vision Board** (`assignment-06-vision-board`, an image grid) and **CST Roleplay** (`assignment-01-roleplay`, written answers). The frontend ([`PeerSubmissionsGallery.tsx`](src/components/learning-track/PeerSubmissionsGallery.tsx), wired in [`First60DaysAssignments.tsx`](src/pages/learning-track/First60DaysAssignments.tsx)) queries other students' rows for those two `item_id`s.
+
+Right now `assignment_submissions` is owner-only (`assignment_submissions_owner` = `auth.uid() = user_id`) plus an admin-read policy, so the gallery shows the "first to share" empty state for everyone except admins. The product decision (confirmed) is **automatic cohort visibility** for these two assignments — no opt-in. Please add this read policy:
+
+```sql
+-- Any signed-in student can read every submission for the two gallery
+-- assignments (Vision Board + CST roleplay). All other assignments stay
+-- owner-only. The UI only reveals the gallery after the viewer submits their own.
+CREATE POLICY "assignment_submissions_cohort_select"
+  ON public.assignment_submissions
+  FOR SELECT
+  TO authenticated
+  USING (
+    product_id = 'first-60-days-assignments'
+    AND item_id IN ('assignment-06-vision-board', 'assignment-01-roleplay')
+  );
+```
+
+Notes:
+- RLS is permissive (OR), so this only *adds* cohort read for those two `item_id`s — the owner and admin policies are untouched, and every other assignment remains private to its author.
+- Vision-board images already render: the `assignment-files` storage bucket is public-read, so `file_url` works once the row is listable.
+- No new columns. If you later want opt-in instead, add a `shared boolean DEFAULT false` column and append `AND shared = true` to the policy — but the current decision is automatic.
+- The gallery shows submissions anonymously ("A teammate"); it does not read from `profiles`, so no profile-read policy is needed.
+
 ### Content Studio draft persistence — `social_content_drafts` table
 
 The new Content Studio at [`/content-studio`](src/pages/ContentStudio.tsx) (powered by edge function `generate-social-content`) currently keeps drafts only in component state — refreshing the page wipes everything. We want each generation to persist server-side so consultants can return to drafts, see a "my drafts" history, and (in v3) plug it into a weekly Sun/Tue/Thu cadence tracker.
