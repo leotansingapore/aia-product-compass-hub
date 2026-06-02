@@ -11,15 +11,20 @@ estimated_time: "90 min meeting + 30 min write-up"
 weeks_covered: [4, 8, 9, 10]
 related_days: [21, 43, 47, 54, 59]
 status_key: "assignment-03-field-observation"
+submit_heading: "Your field-observation reflection"
+submit_intro: "Short, specific answers beat long general ones - quote what you actually heard where you can. Autosaves on this device."
 form_fields:
+  - "The setup|section|Who you watched, and who the prospect was."
   - "Senior FC observed|text|Their name"
   - "Meeting type & date|text|First meeting / follow-up / close / service review, plus date"
   - "Prospect profile|textarea|Age range, occupation, life stage, your read on their DISC style|3"
+  - "What you saw|section|The moves the senior FC made - be specific, quote where you can."
   - "Opening: what did the senior FC do in the first 5 minutes?|textarea|Rapport, mission statement, agenda - what specifically did they say?|4"
   - "The best question you heard|textarea|Write it word-for-word if you can. Then say why it worked.|4"
   - "The concept they led with|textarea|Which concept - Total Wealth, Protection Ladder, CST Risk, etc. - and why do you think they picked it?|4"
   - "First objection + how it was handled|textarea|The prospect's exact words, then the senior FC's 3-beat response|4"
   - "The close|textarea|How did they move to the close? Was there silence? Who broke it? Closed on product or on appointment?|4"
+  - "What you're taking away|section|The point of the whole exercise."
   - "The one thing you're stealing|textarea|Name one move, phrase, or technique you're using in your next 3 meetings.|3"
   - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
 ---

@@ -11,13 +11,18 @@ estimated_time: "3 to 5 hours"
 weeks_covered: [4, 7]
 related_days: [19, 21, 37, 38, 39]
 status_key: "assignment-05-cold-calling-shadow"
+submit_heading: "Log your sessions and shadows"
+submit_intro: "Two cold-call sessions and two shadowed appointments. Log the numbers honestly - even the ugly ones - then your self-diagnosis. Autosaves on this device."
 form_fields:
+  - "Session 1|section|Your first 90-minute calling block."
   - "Session 1 - date & duration|text|e.g. 22 Apr . 90-min block, 7pm-8:30pm"
   - "Session 1 - dials, pickups, agreements|text|e.g. 40 dials . 12 picked up . 3 agreed to next step"
   - "Session 1 - what worked + what died|textarea|Which opener line landed? Which failed fast? Quote the phrases word-for-word - that's where the learning is.|4"
+  - "Session 2|section|Change one thing from Session 1, then run it again."
   - "Session 2 - date & duration|text|"
   - "Session 2 - dials, pickups, agreements|text|"
   - "Session 2 - what changed vs Session 1|textarea|Between the two sessions, what did you adjust? Did the numbers move?|4"
+  - "Your 2 shadowed appointments|section|Two real first-meetings with a senior FC sitting in."
   - "Appointment 1 - prospect profile|text|First name . age . slot, e.g. Ken, 34, Tue 7pm"
   - "Appointment 1 - senior FC shadowing|text|Their name . their confirmation"
   - "Appointment 2 - prospect profile|text|"
