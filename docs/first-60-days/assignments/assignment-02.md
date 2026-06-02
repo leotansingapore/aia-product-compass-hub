@@ -1,7 +1,7 @@
 ---
 id: assignment-02
 url_slug: project-200
-order: 5
+order: 4
 title: "Project 200 - Build Your List"
 short: "Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with."
 icon: users

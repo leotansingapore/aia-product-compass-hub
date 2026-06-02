@@ -1,7 +1,7 @@
 ---
 id: assignment-10
 url_slug: market-survey-practice
-order: 6
+order: 5
 title: "Market Survey Practice"
 short: "Run 30 warm-market surveys off your Project 200 list - the reps that make the script yours before your licence drops."
 icon: clipboard
