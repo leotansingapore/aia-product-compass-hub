@@ -5,24 +5,26 @@ order: 4
 title: "Project 200 - Build Your List"
 short: "Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with."
 icon: users
-deliverable: "200-name sheet + your go-to opener"
+deliverable: "Your 200-name list (kept private) + a booked review call"
 submission_type: "form"
 estimated_time: "2 to 3 hours"
 weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
-submit_heading: "Submit your Project 200 list"
-submit_intro: "The list is the deliverable - build it first and submit. You don't need all 200 in before you submit; come back and update as it grows. Autosaves on this device."
+submit_heading: "Your Project 200 checklist"
+submit_intro: "Two confirmations, then your running count. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
+file_upload: false
 form_fields:
-  - "Your list (the main deliverable)|section|Your 200-name sheet. You don't need all 200 to submit - submit once it's started, then keep adding."
-  - "Your Project 200 Sheet link|text|Paste the shareable link to your filled-in copy. Make sure view access is open or set to anyone-with-link."
-  - "Names loaded so far|text|e.g. 84 named, 36 Priority A, 50 Semi-Warm. Update this as the list grows."
-  - "Your go-to opener|textarea|Pick one of the ready openers in the assignment above and make it sound like you. Just one - the line you'll actually send most.|4"
+  - "Submit your Project 200|section|Two quick confirmations, then your numbers. Your list stays on your own device or Drive - nothing gets uploaded here."
+  - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your opener together."
+  - "I've written my own opening message(s), in my own words|check|Adapted from the ready openers above so they sound like you - not copied word-for-word."
+  - "Names loaded so far|text|e.g. 84 named, 36 Priority A, 50 Semi-Warm. Update this each time you come back - you don't need all 200 to submit."
+  - "Your go-to opener (optional)|textarea|Worth pasting: the one line you'll actually send most, so we can tighten it together on the call.|4"
 ---
 
 > **The gist.** Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with. The list is the deliverable; you're armed with ready openers below, so you don't write a playbook. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you put it to work.
 
-**You don't need all 200 before you submit.** Drop the sheet link in once it's started and keep adding - it's fine to come back and update the count later.
+**You don't need all 200 before you submit.** This is a checklist, not an upload - confirm the two boxes once your list is started, log your running count, and keep adding. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
 
 ## Why this matters
 
@@ -129,9 +131,12 @@ The list is only half the engine. The next assignment, **[Market Survey Practice
 
 - 200 contacts, at least 60 Priority A and 80 Semi-Warm, with context filled in for your A's.
 - One opener you've made your own and will actually send.
+- A review call booked with Leo to walk through the list together.
+
+## Book your Project 200 review
+
+Booking the review is part of this assignment - it's one of the two checklist boxes. [Pick a time with Leo](https://www.pick-a-time.app/book/withleo) to walk through your list and tighten your opener together, then tick it off above.
 
 ## Submission
 
-Paste your Project 200 Sheet link (or attach the sheet as a file at the bottom of the form), add the one opener you'll lead with, and submit. You can resubmit any time as the list grows.
-
-> **Want feedback on your opener?** [Book a review slot with Leo](https://www.pick-a-time.app/book/withleo) - bring the line you're least sure about and we'll tighten it together.
+This is a checklist, not an upload. Tick the two confirmations, log how many names you've loaded so far, optionally paste your go-to opener, and submit. Your list stays private - you keep it in your own Drive or notebook; nothing gets uploaded here. Resubmit any time as the list grows.

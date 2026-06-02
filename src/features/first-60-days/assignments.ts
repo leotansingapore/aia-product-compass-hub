@@ -1,4 +1,4 @@
-export type AssignmentFormFieldKind = "text" | "textarea" | "section";
+export type AssignmentFormFieldKind = "text" | "textarea" | "section" | "check";
 
 export interface AssignmentFormField {
   label: string;
@@ -25,6 +25,10 @@ export interface AssignmentFrontmatter {
    *  where "reflection / short answers" would be misleading. */
   submit_heading?: string;
   submit_intro?: string;
+  /** When false, the optional "attach a file" control is hidden — used by
+   *  checklist-style assignments where uploading a screenshot/sheet would
+   *  create privacy friction (Project 200, CST roleplay). Defaults to true. */
+  file_upload?: boolean;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
 }
@@ -115,7 +119,13 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
     const [label, kindStr = "textarea", hintRaw = "", rowsStr = ""] = parts;
     if (!label) continue;
     const kind: AssignmentFormFieldKind =
-      kindStr === "text" ? "text" : kindStr === "section" ? "section" : "textarea";
+      kindStr === "text"
+        ? "text"
+        : kindStr === "section"
+          ? "section"
+          : kindStr === "check"
+            ? "check"
+            : "textarea";
     const rows = rowsStr ? Math.max(2, Math.min(12, Number(rowsStr) || 0)) : undefined;
     const hint = hintRaw ? hintRaw.replace(/\\n/g, "\n") : undefined;
     fields.push({ label, kind, hint, rows });
@@ -147,6 +157,7 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       submit_heading: coerceString(fm.submit_heading) || undefined,
       submit_intro: coerceString(fm.submit_intro) || undefined,
       url_slug: coerceString(fm.url_slug) || undefined,
+      file_upload: fm.file_upload === false || fm.file_upload === "false" ? false : true,
     },
     markdown: body.trim(),
   };

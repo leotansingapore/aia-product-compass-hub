@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
+  Check,
   CheckCircle2,
   ClipboardList,
   Clock,
@@ -501,8 +502,20 @@ function SubmissionPanel({
         {isFormMode && hasFormValues ? (
           <div className="space-y-3">
             {formFields.map((field) => {
+              if (field.kind === "section") return null;
               const value = formValuesSnapshot[field.label];
               if (!value) return null;
+              if (field.kind === "check") {
+                return (
+                  <div
+                    key={field.label}
+                    className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3"
+                  >
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
+                    <p className="text-sm font-medium">{field.label}</p>
+                  </div>
+                );
+              }
               return (
                 <div key={field.label} className="rounded-lg border bg-background p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
@@ -544,6 +557,15 @@ function SubmissionPanel({
 
     let payloadText: string | null = null;
     if (isFormMode) {
+      // Confirmation checkboxes are gates: a checklist assignment isn't done
+      // until every box is ticked (e.g. "I've booked a call to review this").
+      const missingCheck = formFields.find(
+        (f) => f.kind === "check" && (formValues[f.label] ?? "") !== "yes",
+      );
+      if (missingCheck) {
+        toast.error(`Tick to confirm: "${missingCheck.label}"`);
+        return;
+      }
       const answerable = formFields.filter((f) => f.kind !== "section");
       const filled = answerable.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
       if (filled.length === 0 && !file) {
@@ -655,13 +677,15 @@ function SubmissionPanel({
               disabled={submitting}
             />
           ))}
-          <AssignmentFileUpload
-            file={file}
-            onFile={handleFile}
-            disabled={submitting}
-            label="Attach a screenshot or file"
-            sublabel={`(optional, max ${MAX_MB}MB)`}
-          />
+          {assignment.frontmatter.file_upload !== false && (
+            <AssignmentFileUpload
+              file={file}
+              onFile={handleFile}
+              disabled={submitting}
+              label="Attach a screenshot or file"
+              sublabel={`(optional, max ${MAX_MB}MB)`}
+            />
+          )}
         </div>
       ) : (
         <>
@@ -792,6 +816,43 @@ function FormFieldRenderer({
           <p className="mt-1 text-xs text-muted-foreground whitespace-pre-wrap">{field.hint}</p>
         )}
       </div>
+    );
+  }
+
+  // A "check" field is a required confirmation the student ticks (e.g. "I've
+  // booked a review call"). Tap toggles the stored value between "yes" and "".
+  if (field.kind === "check") {
+    const checked = value === "yes";
+    return (
+      <button
+        type="button"
+        onClick={() => onChange(checked ? "" : "yes")}
+        disabled={disabled}
+        aria-pressed={checked}
+        className={cn(
+          "flex w-full items-start gap-3 rounded-xl border p-3.5 text-left transition-colors",
+          checked
+            ? "border-green-500/40 bg-green-500/5"
+            : "border-input bg-background hover:bg-muted/50",
+        )}
+      >
+        <span
+          className={cn(
+            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-colors",
+            checked ? "border-green-600 bg-green-600 text-white" : "border-muted-foreground/40",
+          )}
+        >
+          {checked && <Check className="h-3.5 w-3.5" />}
+        </span>
+        <span className="min-w-0">
+          <span className="text-sm font-medium text-foreground">{field.label}</span>
+          {field.hint && (
+            <span className="mt-0.5 block text-xs text-muted-foreground whitespace-pre-wrap">
+              {field.hint}
+            </span>
+          )}
+        </span>
+      </button>
     );
   }
 
