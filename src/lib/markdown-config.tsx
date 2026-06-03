@@ -379,10 +379,11 @@ export const markdownComponents: Components = {
     <hr className="my-4 border-t border-border" />
   ),
 
-  // Tables — wrap in ScrollableX so wide tables horizontally scroll with a
-  // right-edge fade affordance, and narrow tables (2-3 cols) shrink to fit.
-  // Previously hardcoded min-w-[640px] forced even 2-col tables to overflow
-  // a 390px viewport by ~300px with no visible scroll hint.
+  // Tables — `w-full` (no min-w-max) so cells WRAP to fit the viewport instead
+  // of forcing the table to its max-content width, which clipped the rightmost
+  // columns of prose-heavy tables off a 390px phone. The ScrollableX wrapper
+  // with its right-edge fade stays as a safety net for the rare table whose
+  // min-content still exceeds the container.
   table: ({ children }: any) => (
     <div className="-mx-3 sm:mx-0 mb-3">
       <ScrollableX
@@ -390,7 +391,7 @@ export const markdownComponents: Components = {
         fadeColorClass="from-card"
         className="overflow-x-auto rounded-lg border border-border [-webkit-overflow-scrolling:touch]"
       >
-        <table className="w-full min-w-max divide-y divide-border text-sm">
+        <table className="w-full divide-y divide-border text-sm">
           {children}
         </table>
       </ScrollableX>
