@@ -101,7 +101,7 @@ If the Strategic Target List hits 20 names every month from day 1, and each mont
 One sitting. 30 minutes. Non-negotiable.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · CAR numbers<br/>(5 min)"] --> B["2 · Diagnose<br/>weakest link<br/>(5 min)"]
     B --> C["3 · Target list<br/>update<br/>(10 min)"]
     C --> D["4 · Next week's<br/>3 big moves<br/>(10 min)"]

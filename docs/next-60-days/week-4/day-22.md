@@ -49,7 +49,7 @@ Most new FCs fail both channels because they mix the registers. Warm them up the
 ## The 5 pillars of cold prospecting
 
 ```mermaid
-flowchart LR
+flowchart TD
     P1["1 · Niche"] --> P2["2 · Framework"]
     P2 --> P3["3 · Profile"]
     P3 --> P4["4 · Sharp DM"]

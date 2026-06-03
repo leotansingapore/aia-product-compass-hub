@@ -26,7 +26,7 @@ If you interviewed 100 new FCs and asked *"do you know what to say when asking f
 Yet most of them barely get referrals. The bottleneck isn't the words. It's **context quality** — the three factors that decide whether the words even land.
 
 ```mermaid
-flowchart LR
+flowchart TD
     M["Moment<br/>(when you ask)"] --> Q["Quality<br/>of the ask"]
     T["Tone<br/>(how you ask)"] --> Q
     S["Specificity<br/>(who you ask about)"] --> Q

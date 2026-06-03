@@ -39,7 +39,7 @@ Silence isn't neutral. It's an active choice that taxes both sides. The move isn
 Every good warm-market text hits six beats in this order:
 
 ```mermaid
-flowchart LR
+flowchart TD
     C["1 · Real<br/>connection"] --> H["2 · Honest<br/>about why"]
     H --> E["3 · Say the<br/>awkward thing"]
     E --> O["4 · Offer help,<br/>not pressure"]

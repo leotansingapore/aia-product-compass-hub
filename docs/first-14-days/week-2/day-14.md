@@ -66,7 +66,7 @@ Model yes. Agency yes. You're a fit and you're ready to take the next concrete s
 I'm not looking for mass hires. The 100-earner mission means actually picking the right 100, so here's the structured process you'd go through:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · Initial Briefing<br/>30 min — two-way overview"] --> B["2 · Character Test<br/>6 C's alignment"]
     B --> C["3 · 1-1 Round<br/>4Rs framework"]
     C --> D["4 · HR Round<br/>FLEXI tier + CMFAS plan"]

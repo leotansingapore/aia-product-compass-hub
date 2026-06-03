@@ -37,7 +37,7 @@ The reason it's a hinge: most Year-1 advisors who fail don't fail at closing. Th
 Every prospect sits in one of four concentric rings:
 
 ```mermaid
-flowchart LR
+flowchart TD
     H["HOT<br/>(parents, siblings,<br/>best friends)"] --> W
     W["WARM<br/>(friends, ex-colleagues,<br/>relatives)"] --> SW
     SW["SEMI-WARM<br/>(secondary-school friends,<br/>old contacts, referrals)"] --> C
@@ -181,7 +181,7 @@ The most common Week-4 quit moment is dial #3 or #4 — three no's in a row and 
 To hit 5–7 appointments a week at a 1-in-20 book rate, you need roughly:
 
 ```mermaid
-flowchart LR
+flowchart TD
     W["Weekly target<br/>5–7 appointments"] --> C["100–140 calls<br/>a week"]
     C --> D["20–28 calls<br/>per day × 5 days"]
     D --> B["Protected<br/>calling block<br/>(2–3 hrs/day)"]

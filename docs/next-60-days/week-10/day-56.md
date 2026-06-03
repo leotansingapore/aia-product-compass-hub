@@ -70,7 +70,7 @@ One-page checklist. Runs automatically for every new client. Build it once, use 
 Within the checklist, 3 specific touchpoints do the heaviest lifting:
 
 ```mermaid
-flowchart LR
+flowchart TD
     D7["Day 7<br/>(reassurance)"] --> D30["Day 30<br/>(reinforcement)"]
     D30 --> D90["Day 90<br/>(integration)"]
 ```

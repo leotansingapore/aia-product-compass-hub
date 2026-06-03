@@ -36,7 +36,7 @@ But — and this is the rest of the lesson — **restructuring can also be used 
 Good restructuring aims at one or more of these 5 goals:
 
 ```mermaid
-flowchart LR
+flowchart TD
     EC["Enhance<br/>coverage"]
     RC["Reduce<br/>costs"]
     UB["Update<br/>benefits"]

@@ -97,7 +97,7 @@ Imagine a line from **1 to 10**. A 10 = they'd buy today, unprompted. A 1 = they
 Your pitch only works if it lifts all three to 9+ **before you ask for the order**. If any one is stuck at a 5 or below, the close generates the smoke-screen objections from Day 40, and looping becomes the only way back.
 
 ```mermaid
-flowchart LR
+flowchart TD
     S["Prospect at 3-4<br/>on all three 10s"] --> P1["Raise Product<br/>certainty"]
     P1 --> P2["Raise You<br/>certainty"]
     P2 --> P3["Raise Firm<br/>certainty"]

@@ -101,7 +101,7 @@ The cushion lexicon stays the same; the *length* and *register* flex by profile.
 A 3-beat framework for brush-offs and reflex objections. Under 15 seconds, start to finish.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · Anchor<br/>acknowledge"] --> D["2 · Disrupt<br/>shift the pattern"]
     D --> Q["3 · Ask<br/>request the action"]
 ```
@@ -132,7 +132,7 @@ flowchart LR
 When an objection is **commonly heard, stated explicitly, and has specific reasoning**, use **ART**:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["A · Acknowledge<br/>the concern"] --> R["R · Relate<br/>similar experience"]
     R --> T["T · Turn around<br/>with logical reasoning"]
 ```
@@ -165,7 +165,7 @@ Other clear-objection examples where ART fits:
 When an objection is **ambiguous** and could mean multiple things (classic: *"let me think about it"*), use the **Iceberg Theory**:
 
 ```mermaid
-flowchart LR
+flowchart TD
     S1["Step 1 · Clarify<br/>with right questions"] --> S2["Step 2 · Acknowledge<br/>and help resolve"]
     S2 --> S3["Step 3 · Redirect<br/>to hot buttons"]
 ```
@@ -205,7 +205,7 @@ If even one of these sits at a 5 or below, you can rebut every objection perfect
 When rebuttals aren't moving the sale, stop rebutting and **loop** back into presentation mode. Rebuild certainty on all three before asking for the order again.
 
 ```mermaid
-flowchart LR
+flowchart TD
     O["Objection lands"] --> A["Acknowledge<br/>(don't rebut yet)"]
     A --> L["Loop back into<br/>mini-presentation"]
     L --> C["Rebuild certainty<br/>on Product + You + Firm"]

@@ -103,7 +103,7 @@ Not universal, but directionally correct. Patterns that hold:
 After you've identified the primary, the secondary is usually the closest compatible angle. Compatibility pattern:
 
 ```mermaid
-flowchart LR
+flowchart TD
     W["Wealth"] <--> LS["Lifestyle"]
     R["Risk"] <--> L["Legacy"]
     W <--> L

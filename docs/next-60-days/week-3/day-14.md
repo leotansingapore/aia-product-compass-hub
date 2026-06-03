@@ -36,7 +36,7 @@ A testimonial converts when it shows *movement*. The client was in one state, so
 Three beats. Every good testimonial hits all three.
 
 ```mermaid
-flowchart LR
+flowchart TD
     B["BEFORE<br/>(the situation)"] --> D["DURING<br/>(the work)"]
     D --> A["AFTER<br/>(the new state)"]
 ```

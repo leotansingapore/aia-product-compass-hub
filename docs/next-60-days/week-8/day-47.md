@@ -30,7 +30,7 @@ They don't, most of the time.
 The framework: 4 steps, in order.
 
 ```mermaid
-flowchart LR
+flowchart TD
     U["1 · Understanding<br/>(how does it work?)"] --> B["2 · Benchmarking<br/>(vs alternatives?)"]
     B --> M["3 · Meeting needs<br/>(why does client need this?)"]
     M --> C["4 · Crafting pitch<br/>(how to communicate?)"]

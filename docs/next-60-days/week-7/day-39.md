@@ -34,7 +34,7 @@ Applied to financial planning: a pitch that frames *"here's what you gain"* acti
 ## The 3-part framework for every hot-button pitch
 
 ```mermaid
-flowchart LR
+flowchart TD
     I["Part 1<br/>Gather Intel"] --> P["Part 2<br/>Preparation"]
     P --> E["Part 3<br/>Presentation"]
 ```
@@ -64,7 +64,7 @@ Deliver the pitch with hot-button activation built in. The next section is the 4
 ## The 4-step execution (inside Part 3)
 
 ```mermaid
-flowchart LR
+flowchart TD
     S1["1 · Framing"] --> S2["2 · More<br/>framing"]
     S2 --> S3["3 · Apply<br/>technique"]
     S3 --> S4["4 · Motivate<br/>action"]

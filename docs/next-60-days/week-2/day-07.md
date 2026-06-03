@@ -38,7 +38,7 @@ Pick one. Commit. The intent statement is the tool that plants it.
 Every good intent statement has four parts:
 
 ```mermaid
-flowchart LR
+flowchart TD
     H["1 · Strong hook"] --> I["2 · Clear impression"]
     I --> P["3 · Pattern interrupt"]
     P --> B["4 · Buy-in"]

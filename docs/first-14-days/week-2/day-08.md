@@ -188,44 +188,10 @@ If an agency can't name something concrete at each tier, that tier is missing, a
 
 Here's the framing of why agency choice matters so much.
 
-<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:14px;padding:20px;">
-  <div style="font-size:11px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;text-align:center;margin-bottom:14px;">Right People × Right Systems</div>
-  <div style="display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:6px;">
-    <div></div>
-    <div style="text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Wrong Systems</div>
-    <div style="text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Right Systems</div>
-    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Right People</div>
-    <div style="background:linear-gradient(135deg,hsl(38,92%,94%),hsl(38,92%,88%));border:2px solid hsl(38,92%,50%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsla(38,92%,50%,0.12);">
-      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(38,92%,38%);text-transform:uppercase;">Capable Burn-Out</div></div>
-      <div style="display:flex;flex-direction:column;gap:5px;">
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(38,92%,42%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Year-1 dropouts at broken agencies</div>
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(38,92%,42%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Stuck on warm-market only</div>
-      </div>
-    </div>
-    <div style="background:linear-gradient(135deg,hsl(160,84%,94%),hsl(160,84%,88%));border:2px solid hsl(160,84%,39%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 14px hsla(160,84%,39%,0.18);">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(160,84%,25%);text-transform:uppercase;">Compound Growth</div><span style="font-size:9px;background:hsl(160,84%,32%);color:white;padding:2px 7px;border-radius:8px;font-weight:700;letter-spacing:0.05em;">TARGET</span></div>
-      <div style="display:flex;flex-direction:column;gap:5px;">
-        <div style="font-size:12px;color:hsl(var(--foreground));font-weight:600;"><span style="display:inline-block;width:8px;height:8px;background:hsl(160,84%,32%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Top producers we build</div>
-        <div style="font-size:12px;color:hsl(var(--foreground));font-weight:600;"><span style="display:inline-block;width:8px;height:8px;background:hsl(160,84%,32%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Small-by-design team</div>
-      </div>
-    </div>
-    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:10px;letter-spacing:0.12em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Wrong People</div>
-    <div style="background:linear-gradient(135deg,hsl(0,72%,95%),hsl(0,72%,89%));border:2px solid hsl(0,72%,55%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsla(0,72%,55%,0.12);">
-      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(0,72%,40%);text-transform:uppercase;">Total Failure</div></div>
-      <div style="display:flex;flex-direction:column;gap:5px;">
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(0,72%,45%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Quit before licensing</div>
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(0,72%,45%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Fast wash-outs</div>
-      </div>
-    </div>
-    <div style="background:linear-gradient(135deg,hsl(217,91%,95%),hsl(217,91%,89%));border:2px solid hsl(217,91%,55%);border-radius:12px;padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 10px hsla(217,91%,55%,0.12);">
-      <div><div style="font-size:10px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">No Discipline</div></div>
-      <div style="display:flex;flex-direction:column;gap:5px;">
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(217,91%,48%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Coasting hires at good agencies</div>
-        <div style="font-size:12px;color:hsl(var(--foreground));"><span style="display:inline-block;width:8px;height:8px;background:hsl(217,91%,48%);border-radius:50%;margin-right:6px;vertical-align:middle;"></span>Systems sit unused</div>
-      </div>
-    </div>
-  </div>
-</div>
+| | Wrong systems | Right systems |
+|---|---|---|
+| **Right people** | **Capable burn-out** — year-1 dropouts at broken agencies; stuck on warm-market only | **Compound growth (TARGET)** — top producers we build; small-by-design team |
+| **Wrong people** | **Total failure** — quit before licensing; fast wash-outs | **No discipline** — coasting hires at good agencies; systems sit unused |
 
 - Wrong people, wrong systems: total fail, fast.
 - Wrong people, right systems: no discipline, not proactive, still fail even with good infrastructure.

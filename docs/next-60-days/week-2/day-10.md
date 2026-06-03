@@ -38,7 +38,7 @@ That's compound math. One hour of fix → 200+ trust wins. Fastest ROI in your w
 Every strong personal brand in financial services builds three signals simultaneously:
 
 ```mermaid
-flowchart LR
+flowchart TD
     K["Known<br/>(people know what you do)"] --> L["Loved<br/>(people like you as a person)"]
     L --> R["Respected<br/>(people respect you as a professional)"]
 ```

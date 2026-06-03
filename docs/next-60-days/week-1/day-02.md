@@ -45,7 +45,7 @@ If your FYC isn't where you want it, one of those three is the problem. There is
 The three levers are not equal. Here's what actually moves each one:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Appointments<br/>controllable TODAY"]
     B["Close rate<br/>reps over weeks"]
     C["Case size<br/>experience over months"]

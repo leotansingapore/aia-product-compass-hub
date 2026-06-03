@@ -23,7 +23,7 @@ By the time you close today you'll deploy the 3 mid-tier closes — Assumptive, 
 Day 49 covered the Trial Close (early, repeated) and the main close (the asking-for-commitment moment). Today covers the three close *structures* you use for the main close itself:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Assumptive<br/>(assume the yes)"]
     C["Choice<br/>(A or B?)"]
     U["Urgency<br/>(now vs later)"]

@@ -32,7 +32,7 @@ Prospects don't DM strangers on the strength of one useful post. They DM strange
 ## The 5 silent questions
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q1["Q1 · Can I trust<br/>others value your work?"] --> Q2
     Q2["Q2 · Do you<br/>actually know your stuff?"] --> Q3
     Q3["Q3 · Why are<br/>you doing this?"] --> Q4

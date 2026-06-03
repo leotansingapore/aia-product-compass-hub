@@ -39,7 +39,7 @@ The specific hours vary person to person. The structural pattern is remarkably c
 A typical top-producer week runs about **45–50 productive hours** split across 3 categories:
 
 ```mermaid
-flowchart LR
+flowchart TD
     NB["New business<br/>(prospecting + appts + close)<br/>~50%"]
     RR["Relationship / referral<br/>(client touchpoints + reviews)<br/>~35%"]
     S["Systems<br/>(admin + review + CE)<br/>~15%"]

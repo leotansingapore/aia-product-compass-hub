@@ -38,7 +38,7 @@ Different tools for different moments. FACT is the *quality* ask — small numbe
 **F**avour → **A**ngle → **C**onnect → **T**imeline
 
 ```mermaid
-flowchart LR
+flowchart TD
     F["F · Favour<br/>(the framing)"] --> A["A · Angle<br/>(who)"]
     A --> C["C · Connect<br/>(the ask)"]
     C --> T["T · Timeline<br/>(locked)"]

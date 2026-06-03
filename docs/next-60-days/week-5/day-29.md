@@ -38,7 +38,7 @@ The flip isn't a lightning moment. It's a gradient. Your pipeline moves from *"1
 ## The CAR framework — revisited with referrals integrated
 
 ```mermaid
-flowchart LR
+flowchart TD
     C["Calls"] --> A["Appointments"]
     A --> R["Referrals"]
     R --> C

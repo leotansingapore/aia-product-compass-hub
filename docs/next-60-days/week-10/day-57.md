@@ -40,7 +40,7 @@ Year-1 FCs often treat moments as *nice to have* — side-quests to the main wor
 Touchpoints split into 4 categories. A good yearly cadence uses all 4.
 
 ```mermaid
-flowchart LR
+flowchart TD
     R["Review<br/>(scheduled)"]
     V["Value<br/>(useful content)"]
     C["Celebration<br/>(birthdays, milestones)"]

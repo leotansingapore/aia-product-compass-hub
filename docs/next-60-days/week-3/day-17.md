@@ -38,7 +38,7 @@ A blue tick is not disinterest 80% of the time. It's a person who read your mess
 ## The CRAB structure
 
 ```mermaid
-flowchart LR
+flowchart TD
     C["C · Care<br/>(about them)"] --> R["R · Reason<br/>(for them)"]
     R --> A["A · Alleviate<br/>(friction)"]
     A --> B["B · Book<br/>(specific slots)"]

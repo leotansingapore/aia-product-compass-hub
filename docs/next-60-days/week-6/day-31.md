@@ -80,7 +80,7 @@ Most new FCs skip step 5 — they hear, nod, and move to the next question. **Ac
 The 4 profiles aren't random — they come from 2 underlying dimensions:
 
 ```mermaid
-flowchart LR
+flowchart TD
     D["D · Dominance<br/>(Thinker + Fast)"]
     I["I · Influence<br/>(Feeler + Fast)"]
     S["S · Steadiness<br/>(Feeler + Slow)"]
@@ -137,7 +137,7 @@ Every meeting has a pacing window. You and the prospect are both, mostly unconsc
 In those first 5 minutes, actively notice:
 
 ```mermaid
-flowchart LR
+flowchart TD
     B["Body language"] --> P["Pace"]
     P --> Q["Questions<br/>they ask"]
     Q --> W["Word choice"]

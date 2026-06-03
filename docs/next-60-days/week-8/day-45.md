@@ -38,7 +38,7 @@ All four are true. Only *one* activates the specific prospect in front of you. M
 ## The 4 angles side by side
 
 ```mermaid
-flowchart LR
+flowchart TD
     W["Wealth<br/>(grow the pile)"]
     R["Risk<br/>(protect the pile)"]
     L["Legacy<br/>(pass the pile on)"]

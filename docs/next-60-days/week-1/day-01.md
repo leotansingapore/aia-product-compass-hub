@@ -66,7 +66,7 @@ Not your product. Not your company. Not your certifications. From the outside, t
 Every good origin story — superhero movie or 90-second warm-market pitch — hits the same four beats.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · Life today<br/>where you are now"]
     B["2 · The villain<br/>what was hard"]
     C["3 · The guide<br/>what changed you"]

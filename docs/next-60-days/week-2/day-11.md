@@ -25,7 +25,7 @@ By the time you close today you'll turn one insight into three posts using the R
 Every good IG strategy runs the same loop. The surfaces do different jobs:
 
 ```mermaid
-flowchart LR
+flowchart TD
     F["Feed<br/>(posts, reels)"] -->|earns discovery| L["Leads"]
     S["Stories<br/>(daily)"] -->|earns trust| T["Trust"]
     I["Inbox<br/>(DMs)"] -->|earns sales| SA["Sales"]

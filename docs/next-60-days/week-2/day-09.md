@@ -38,7 +38,7 @@ Week 2's Days 10–11 are about branding. Today is about positioning — the beh
 Seven moves that work across any prospect, any product, any stage:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · Always frame"] --> B["2 · Verbal + nonverbal"]
     B --> C["3 · Curiosity + concern"]
     C --> D["4 · Refrain from solutions"]

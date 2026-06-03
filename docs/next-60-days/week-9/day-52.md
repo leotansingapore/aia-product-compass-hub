@@ -37,7 +37,7 @@ If the real objection is *"I don't see the need,"* value-justifying the premium 
 ## The 3 Magic Questions
 
 ```mermaid
-flowchart LR
+flowchart TD
     Q1["Q1 · Is there<br/>anything else?"] --> Q2["Q2 · Suppose<br/>that wasn't a concern…"]
     Q2 --> Q3["Q3 · What would<br/>need to be true?"]
 ```

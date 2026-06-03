@@ -33,7 +33,7 @@ The hygiene work is turning that invisible surface into something you can *see*,
 ## The 4 digital lead surfaces
 
 ```mermaid
-flowchart LR
+flowchart TD
     F["1 · Followers<br/>(people who opted in)"]
     S["2 · Story viewers<br/>(active attention)"]
     P["3 · Post engagers<br/>(likes, saves, comments)"]

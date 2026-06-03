@@ -124,7 +124,7 @@ The compound math in §1 explains *why* to ask. This section explains why *refer
 New FCs face a hidden trap: every appointment *burns* a lead from the list. More appointments = more leads burned = more time needed to generate replacement leads = *less* time for appointments. The harder you push one side, the more the other side collapses.
 
 ```mermaid
-flowchart LR
+flowchart TD
     L["Getting<br/>leads"] --> C["Calling"] --> A["Appointments"]
     A --> L
 ```
@@ -136,7 +136,7 @@ flowchart LR
 Referrals break the see-saw. When every appointment produces ≥1 warm referral, the list *refills* at the moment it gets drawn down.
 
 ```mermaid
-flowchart LR
+flowchart TD
     R["Referrals"] --> C["Calling"] --> A["Appointments"]
     A --> R
 ```

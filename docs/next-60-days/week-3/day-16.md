@@ -73,7 +73,7 @@ Most new FCs respond with *"no worries, thanks anyway!"* and disappear. That's t
 ## The 6-step objection response
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["1 · Acknowledge<br/>casually"] --> B["2 · Common<br/>ground"]
     B --> C["3 · Different<br/>perspective"]
     C --> D["4 · Make them<br/>feel safe"]
