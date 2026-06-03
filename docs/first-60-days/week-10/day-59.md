@@ -138,7 +138,7 @@ Clear, specific.
 Before the specific techniques, the mental model. Every close is the same underlying task: you are a safe-cracker, and the safe is the prospect's mind. There are **5 numbers** in the combination. Pull the handle (ask for the order) - if all five numbers are right, the safe opens. If one is off, it doesn't.
 
 ```mermaid
-flowchart LR
+flowchart TD
     N1["1 . Product<br/>They love it"] --> N2["2 . You<br/>They trust you"]
     N2 --> N3["3 . Firm<br/>They trust the firm"]
     N3 --> N4["4 . Action threshold<br/>The downside feels small"]
@@ -166,8 +166,8 @@ A professional safe-cracker doesn't say *"this safe is uncrackable"* - they go b
 4. Re-ask.
 
 **Most common misses for new FCs:**
-- **#4 (Action threshold)** too high -> add free-look framing + small-start option.
-- **#5 (Pain threshold)** too low -> re-ask: *"What happens in 5 years if nothing changes?"* Let them name the pain themselves.
+- **#4 (Action threshold)** too high, then add free-look framing + small-start option.
+- **#5 (Pain threshold)** too low, then re-ask: *"What happens in 5 years if nothing changes?"* Let them name the pain themselves.
 
 Each of the techniques in the next section is a tool for turning one specific number in the combination. Columbo = builds #2 (trust) via the low-pressure reframe. Silent Close = builds #5 (pain) via the prospect's own reasoning. Option Close = lowers #4 (action threshold) by reducing commitment. Knowing which technique turns which number is what separates a practiced closer from a scripted one.
 

@@ -60,8 +60,8 @@ The clearest way to see the three classes is to draw what happens to a single do
 
 Don't memorise categories. Memorise the test:
 
-> **Does it put money INTO your pocket? -> Asset.**
-> **Does it take money OUT of your pocket? -> Liability.**
+> **Does it put money INTO your pocket? Then it's an asset.**
+> **Does it take money OUT of your pocket? Then it's a liability.**
 
 That's it. Apply it to anything.
 
@@ -106,39 +106,17 @@ Subtract honestly. The result is **true net worth.** Most people's is much small
 
 ## 4. Looking rich vs being rich
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;letter-spacing:0.05em;text-transform:uppercase;">Both earning $180K/year in Singapore</div>
-  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:stretch;">
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Person A - looks wealthier</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.7;color:hsl(var(--foreground));">
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">$1.1M condo - $900K mortgage <span style="color:hsl(var(--muted-foreground));">= $200K equity</span></div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Tesla on car loan <span style="color:hsl(var(--muted-foreground));">~ $0 net</span></div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Watch collection <span style="color:hsl(var(--muted-foreground));">~ $15-20K resale</span></div>
-        <div style="padding:0.5rem 0;">CPF $150K + ILP $30K</div>
-      </div>
-      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));">
-        <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;text-transform:uppercase;">Real net worth</div>
-        <div style="font-family:ui-serif,Georgia,serif;font-size:32px;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$300-350K</div>
-      </div>
-    </div>
-    <div style="background:hsl(var(--border));width:1px;"></div>
-    <div>
-      <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:14px;color:hsl(var(--muted-foreground));margin-bottom:0.4rem;">Person B - <em>is</em> wealthier</div>
-      <div style="font-family:ui-serif,Georgia,serif;font-size:15px;line-height:1.7;color:hsl(var(--foreground));">
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">$800K HDB paid off <span style="color:hsl(var(--muted-foreground));">= $800K</span></div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">Used car, no loan</div>
-        <div style="padding:0.5rem 0;border-bottom:1px solid hsl(var(--border));">CPF $200K + investments $250K</div>
-        <div style="padding:0.5rem 0;">Retirement plan $80K</div>
-      </div>
-      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));">
-        <div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));letter-spacing:0.05em;text-transform:uppercase;">Real net worth</div>
-        <div style="font-family:ui-serif,Georgia,serif;font-size:32px;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$1.3M</div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:1.5rem;text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));">Person A looks richer. Person B is roughly 4x wealthier.</div>
-</div>
+_Both earning $180K/year in Singapore._
+
+| | Person A - looks wealthier | Person B - *is* wealthier |
+|---|---|---|
+| Property | $1.1M condo - $900K mortgage (= $200K equity) | $800K HDB paid off (= $800K) |
+| Car | Tesla on car loan (~ $0 net) | Used car, no loan |
+| Other holdings | Watch collection (~ $15-20K resale) | CPF $200K + investments $250K |
+| | CPF $150K + ILP $30K | Retirement plan $80K |
+| **Real net worth** | **~$300-350K** | **~$1.3M** |
+
+Person A looks richer. Person B is roughly 4x wealthier.
 
 Singapore is a high-signalling society. A $180K income with a Tesla, a condo, an expensive watch, and annual European holidays *looks* wealthy. On the inside, that profile often sits on 2 months of emergency savings and a real net worth a quarter of what it appears.
 

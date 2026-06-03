@@ -46,10 +46,10 @@ Most new FCs struggle with content for one reason: **they try to write posts on 
 **60-75 minutes per week for 1 quality post.** That's all. Don't try to do more until this is reliable.
 
 ```mermaid
-flowchart LR
-    A["Sunday . 30 min<br/>Ideation - pick 1 topic"]
-    B["Tuesday . 30 min<br/>Draft - write, don't edit"]
-    C["Thursday . 15 min<br/>Edit, add CTA, publish"]
+flowchart TD
+    A["Sunday 30 min<br/>Ideation: pick 1 topic"]
+    B["Tuesday 30 min<br/>Draft: write, don't edit"]
+    C["Thursday 15 min<br/>Edit, add CTA, publish"]
     A --> B --> C --> A
 ```
 
@@ -62,27 +62,27 @@ If you're out of ideas, you're not looking in the right places.
 ### Idea sources (always available)
 
 1. **Questions from real conversations this week.**
- - A client asked about CPF SA top-ups -> post about it.
- - A prospect didn't grasp the Total Wealth Concept -> write the explainer.
+   - A client asked about CPF SA top-ups, so post about it.
+   - A prospect didn't grasp the Total Wealth Concept, so write the explainer.
 
 2. **Mistakes you see people making.**
- - "Most people think their company insurance is enough. Here's why it isn't."
+   - "Most people think their company insurance is enough. Here's why it isn't."
 
 3. **News hooks - tied to finance.**
- - A Budget announcement -> explain the CPF changes.
- - A market drop -> explain DCA.
+   - A Budget announcement, so explain the CPF changes.
+   - A market drop, so explain DCA.
 
 4. **Personal stories (social content).**
- - Your first rejection. What you learned. Human.
+   - Your first rejection. What you learned. Human.
 
 5. **Before-and-after.**
- - A client moved from Plan X to Plan Y; show the difference (anonymised).
+   - A client moved from one plan to another; show the difference (anonymised).
 
 6. **The "3 things you didn't know about ___" format.**
- - Always works: CPF, ILPs, critical illness, retirement.
+   - Always works: CPF, ILPs, critical illness, retirement.
 
 7. **Myth-busting.**
- - "5 common myths about life insurance."
+   - "5 common myths about life insurance."
 
 **Rule:** always post from a real experience or real question. **Never** recycle a generic template with zero personal input. Your audience can tell.
 
@@ -138,10 +138,10 @@ Posting is only half of digital influence. The other half is **engaging with oth
 ### The daily engagement block (15 min)
 
 - Spend 15 minutes daily commenting on posts from:
- - Potential prospects (people in your ICP).
- - Referral sources (existing clients, professional connections).
- - Other advisors (build relationships, not competition).
-- Leave **substantive comments** (1-3 sentences), not "great post ".
+  - Potential prospects (people in your ICP).
+  - Referral sources (existing clients, professional connections).
+  - Other advisors (build relationships, not competition).
+- Leave **substantive comments** (1-3 sentences), not "great post".
 - Tag people where it adds genuine value.
 
 **Why this works:**

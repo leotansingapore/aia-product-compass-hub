@@ -48,7 +48,7 @@ In an age where AI is making memorised knowledge cheaper every month, those four
 The 60 days break into three phases. Each one earns the next.
 
 ```mermaid
-flowchart LR
+flowchart TD
     P1["Phase 1 . Weeks 1 to 5<br/>Inner game"]
     P2["Phase 2 . Weeks 6 to 7<br/>Fundamentals"]
     P3["Phase 3 . Weeks 8 to 10<br/>Client game"]
@@ -123,8 +123,10 @@ The team is the product. The team is the career. When the team is strong, every 
 Four values. Easy to memorise. Hard to live. Every day of the next 60 will bring you back to one of them.
 
 ```mermaid
-flowchart LR
-    V1["1 . Own<br/>the outcome"] --> V2["2 . Truth<br/>before comfort"] --> V3["3 . Better<br/>than yesterday"] --> V4["4 . Lift<br/>the team"]
+flowchart TD
+    V1["1 . Own<br/>the outcome"] --> V2["2 . Truth<br/>before comfort"]
+    V2 --> V3["3 . Better<br/>than yesterday"]
+    V3 --> V4["4 . Lift<br/>the team"]
 ```
 
 ### 1 . Own the outcome

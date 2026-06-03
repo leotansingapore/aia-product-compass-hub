@@ -37,24 +37,15 @@ When a client says "I need insurance," your first job is clarification. Which ki
 
 **The pattern:** the first four are **protection** (bad things happening). The fifth is **accumulation** (good things taking time).
 
-**Hospitalisation vs Personal Accident - don't conflate them.** Hospitalisation (e.g. an Integrated Shield Plan) pays inpatient bills when the client is admitted. Personal Accident reimburses outpatient medical expenses that follow an accident - the GP visit, X-ray, physio sessions, dental work after a chipped tooth. A client who trips and sprains an ankle doesn't get admitted, so the shield plan doesn't pay - but the PA plan reimburses the clinic bill.
+| Segment | Type |
+|---|---|
+| Death / TPD | Protection (bad events) |
+| Critical Illness | Protection (bad events) |
+| Hospitalisation | Protection (bad events) |
+| Personal Accident | Protection (bad events) |
+| Savings / Investments | Accumulation (good things take time) |
 
-```mermaid
-flowchart LR
-    subgraph SEG[" "]
-        direction TB
-        D["Death / TPD"]
-        CI["Critical Illness"]
-        H["Hospitalisation"]
-        AC["Personal Accident"]
-        S["Savings / Investments"]
-    end
-    D --> P["Protection<br/>(bad events)"]
-    CI --> P
-    H --> P
-    AC --> P
-    S --> A["Accumulation<br/>(good things take time)"]
-```
+**Hospitalisation vs Personal Accident - don't conflate them.** Hospitalisation (e.g. an Integrated Shield Plan) pays inpatient bills when the client is admitted. Personal Accident reimburses outpatient medical expenses that follow an accident - the GP visit, X-ray, physio sessions, dental work after a chipped tooth. A client who trips and sprains an ankle doesn't get admitted, so the shield plan doesn't pay - but the PA plan reimburses the clinic bill.
 
 A financially prepared person has all five. Most clients walk in with **one or two at best** - usually hospitalisation (because their employer offers it) and some savings. Your job is to map out what's missing without turning the meeting into a pitch.
 

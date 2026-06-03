@@ -58,43 +58,15 @@ Most clients only think about (1). The best advisors teach (2) without moralisin
 
 Every financial plan should be built bottom-up, not top-down. This is the order.
 
-<div style="margin:2rem auto; max-width:560px; border:1px solid hsl(var(--border)); border-radius:2px;">
-  <div style="display:grid; grid-template-columns:80px 1fr; align-items:stretch; border-bottom:1px solid hsl(var(--border));">
-    <div style="padding:0.85rem 1rem; border-right:1px solid hsl(var(--border)); font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); display:flex; align-items:center;">v.</div>
-    <div style="padding:0.85rem 1.25rem;">
-      <div style="font-size:14px; font-weight:600;">Wealth Legacy</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); margin-top:2px;">Give, inherit, distribute.</div>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:80px 1fr; align-items:stretch; border-bottom:1px solid hsl(var(--border));">
-    <div style="padding:0.85rem 1rem; border-right:1px solid hsl(var(--border)); font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); display:flex; align-items:center;">iv.</div>
-    <div style="padding:0.85rem 1.25rem;">
-      <div style="font-size:14px; font-weight:600;">Wealth Preservation</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); margin-top:2px;">Keep what you have built.</div>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:80px 1fr; align-items:stretch; border-bottom:1px solid hsl(var(--border));">
-    <div style="padding:0.85rem 1rem; border-right:1px solid hsl(var(--border)); font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); display:flex; align-items:center;">iii.</div>
-    <div style="padding:0.85rem 1.25rem;">
-      <div style="font-size:14px; font-weight:600;">Wealth Accumulation</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); margin-top:2px;">Grow through investing.</div>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:80px 1fr; align-items:stretch; border-bottom:1px solid hsl(var(--border));">
-    <div style="padding:0.85rem 1rem; border-right:1px solid hsl(var(--border)); font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); display:flex; align-items:center;">ii.</div>
-    <div style="padding:0.85rem 1.25rem;">
-      <div style="font-size:14px; font-weight:600;">Short-term Savings</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); margin-top:2px;">3 to 6 months of expenses.</div>
-    </div>
-  </div>
-  <div style="display:grid; grid-template-columns:80px 1fr; align-items:stretch; background:hsl(var(--muted) / 0.4);">
-    <div style="padding:0.85rem 1rem; border-right:1px solid hsl(var(--border)); font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); display:flex; align-items:center;">i.</div>
-    <div style="padding:0.85rem 1.25rem;">
-      <div style="font-size:14px; font-weight:700;">Risk Management <span style="font-family:ui-serif,Georgia,serif; font-style:italic; font-weight:400; font-size:12px; color:hsl(var(--muted-foreground)); margin-left:4px;">- foundation</span></div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); margin-top:2px;">Protection first. Everything above rests on this.</div>
-    </div>
-  </div>
-</div>
+Read it top to bottom, but build it bottom to top - Level 1 is the foundation.
+
+| Level | Stage | What it means |
+|---|---|---|
+| 5 | **Wealth Legacy** | Give, inherit, distribute. |
+| 4 | **Wealth Preservation** | Keep what you have built. |
+| 3 | **Wealth Accumulation** | Grow through investing. |
+| 2 | **Short-term Savings** | 3 to 6 months of expenses. |
+| 1 | **Risk Management** (foundation) | Protection first. Everything above rests on this. |
 
 ### The rules of the pyramid
 
@@ -131,7 +103,7 @@ A concrete example. Meet a hypothetical client - Mr Tan, 35 years old.
 This framing - "you don't need $2.7M, you need an income stream of ~$9K/month" - is often more motivating for clients than a scary lump sum number.
 
 ```mermaid
-flowchart LR
+flowchart TD
     CPF["CPF LIFE"] --> EXP["Monthly need<br/>at 65"]
     REN["Rental /<br/>dividends"] --> EXP
     INS["Insurance<br/>accumulation"] --> EXP
@@ -139,7 +111,7 @@ flowchart LR
 
 ### The rule
 
-**Don't sell products. Sell an income stream.** A _1 million saving plan means nothing to a client. "$4,500 a month, for life, starting at 65" means everything.
+**Don't sell products. Sell an income stream.** A $1 million saving plan means nothing to a client. "$4,500 a month, for life, starting at 65" means everything.
 
 ## 5. The client conversation frame
 

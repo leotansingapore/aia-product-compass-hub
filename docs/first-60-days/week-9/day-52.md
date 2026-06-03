@@ -13,7 +13,7 @@ tags: [first-60-days, week-9, skills]
 
 > **The one idea for today:** Most clients can't *feel* their retirement gap. They've heard the abstract version a hundred times. Today you'll learn a paper-and-pen walkthrough that lets the client *watch* their own gap appear, then *watch* the gap close - without you ever pitching a product.
 
-> **Use the live tool with your prospect:** **[Total Wealth Concept . Retirement Step-by-Step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step)**. Same diagrams as the screenshots below, but interactive - set the five inputs in front of the client (current age / retirement age / life expectancy / inflation / target monthly lifestyle) and click *Draw All* on each tab to walk through the Problem -> Solution sequence live. Use this when you have a screen between you and the prospect; use the paper-and-pen version below when you don't.
+> **Use the live tool with your prospect:** **[Total Wealth Concept . Retirement Step-by-Step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step)**. Same diagrams as the screenshots below, but interactive - set the five inputs in front of the client (current age / retirement age / life expectancy / inflation / target monthly lifestyle) and click *Draw All* on each tab to walk through the Problem then Solution sequence live. Use this when you have a screen between you and the prospect; use the paper-and-pen version below when you don't.
 
 > **Companion view - Lifestyle only:** **[Total Wealth Concept . Retirement - Lifestyle](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle)**. A stripped-down version of the same idea - just the inflation curve from today's desired monthly lifestyle to its future-dollar equivalent at retirement age. Run this as a 2-minute warm-up before the full step-by-step, or use it with clients who only want the headline. Base URL: [present.financeillustrator.com](https://present.financeillustrator.com/).
 
@@ -47,12 +47,10 @@ Yesterday's CST (Day 51) and the wealth-angle CST you'll see again later both wo
 The structure is two diagrams, drawn in sequence:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Capture the<br/>5 inputs"] --> B["Diagram 1<br/>The Problem<br/>5 steps"]
     B --> C["Diagram 2<br/>The Solution<br/>4 steps"]
     C --> D["Open the door<br/>to fact-find"]
-    style B fill:#7a1f3d,color:#fff
-    style C fill:#1a5c3a,color:#fff
 ```
 
 Total time in the meeting: 10-12 minutes once you've practised it. Most new FCs run it too fast on the first attempt. The pauses between steps are the conversion - don't rush.
@@ -168,7 +166,7 @@ On the same page (or a fresh one - your call), redraw the timeline. This time yo
 **Say:**
 > "Same target - $2.85 million by 65. But this time we're not just saving - we're investing in a diversified global portfolio. Historical long-term return is around 6.6% per year. With that growth working for you, you don't need $6,800 a month. You need about **$1,700**."
 
-**Let the contrast land.** $6,800 -> $1,700 is an 80%+ reduction.
+**Let the contrast land.** $6,800 to $1,700 is an 80%+ reduction.
 
 ### Step 2 - Hit the target
 
@@ -225,7 +223,7 @@ After the two diagrams land, the natural follow-up question from the client is *
 |---|---|---|---|
 | **Short term** | ~1/3 | ~$1,000 | Food, transport, daily bills |
 | **Mid term** | ~1/3 | ~$1,000 | Rent, house, kids |
-| **Long term** | ~1/3 | ~$1,000 | **Investments + Insurance** <- future you |
+| **Long term** | ~1/3 | ~$1,000 | **Investments + Insurance** (future you) |
 
 **Say:**
 > "Most people's mistake is they spend the first third on lifestyle, the second third on commitments, and then nothing's left for the long term. They take care of today and ignore future-you. The future-you in 30 years is the one who's going to thank you - or curse you - for what you do with this third right now."
@@ -246,7 +244,7 @@ The Solution diagram showed a horizontal green line + dividend arrows. Reinforce
 
 Once they're sold on the *concept*, they'll ask the real question: *"Why this and not just DIY into S&P 500 through a robo-advisor?"* You have **eight specific answers**, not four. The headline four from earlier versions of this lesson are here plus four more that most FCs leave on the table. Any one of them, landed cleanly, is enough to shift the conversation.
 
-> **Full FC-only reference:** deep dive with all the numbers, country tables, and source citations -> **[SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction)**. Read it once end-to-end; then pull individual arguments as the prospect's objections emerge. Don't spray all eight - pick the one that matches *their* concern.
+> **Full FC-only reference:** deep dive with all the numbers, country tables, and source citations at **[SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction)**. Read it once end-to-end; then pull individual arguments as the prospect's objections emerge. Don't spray all eight - pick the one that matches *their* concern.
 
 ### The conviction table
 
@@ -254,7 +252,7 @@ Once they're sold on the *concept*, they'll ask the real question: *"Why this an
 |---|---|---|---|
 | 1 | **Dividend withholding tax** - US-domiciled ETFs lose **30%** of every dividend at source. Irish-domiciled funds lose 15%. Singapore-resident direct equities: 0%. | No client-level DWT on fund distributions inside the policy. | 30% -> 0% |
 | 2 | **Currency risk (USD/SGD)** - retirement is in SGD; USD-denominated ETFs expose you to FX swings. USD/SGD fell ~4% over 5 years (2020-2025). DBS forecasts **SGD parity with USD by 2040** - roughly a 35% headwind on USD assets. | Plan is SGD-denominated with currency hedging baked in. No FX lottery on retirement income. | Parity by 2040 |
-| 3 | **US estate tax** - US-situs assets held by non-US persons -> **40% estate tax** above the $60K exemption. On $2.8M that's ~$1M gone before the family sees a cent. | Nominated beneficiaries, non-US-situs policy structure -> no US estate tax. Flows by nomination, not probate. | 40% -> 0% |
+| 3 | **US estate tax** - US-situs assets held by non-US persons face **40% estate tax** above the $60K exemption. On $2.8M that's ~$1M gone before the family sees a cent. | Nominated beneficiaries, non-US-situs policy structure means no US estate tax. Flows by nomination, not probate. | 40% -> 0% |
 | 4 | **Concentration risk** - the S&P 500 is one country, 500 companies. Every prior decade had a different winner. | Global fund architecture across BlackRock, Wellington, Baillie Gifford, Capital Group. **S&P 500 is only ~18%** of the AIA Elite Adventurous Index Fund. | S&P 500 = 18% |
 | 5 | **Lost-decade risk** - between **2000 and 2010, the S&P 500 returned -9%** while International Small Cap Value made **+191%** and Emerging Markets made **+148%**. | Multi-region, multi-asset exposure means whichever cycle wins next, the portfolio owns it by default. | -9% vs +191% |
 | 6 | **Execution risk on death** - money locked in a robo-advisor app your family has never logged into. Who decides when to sell? Who files the US estate tax forms? Who handles the FX? | Named beneficiaries + an advisor of record who already knows the plan + estate/will coordination. The handover is rehearsed, not improvised. | - |
@@ -346,15 +344,15 @@ This one is for *your own* understanding, not for the client whiteboard. A clien
 
 | Platform | Fee load | What's happening |
 |---|---|---|
-| **AIA** | ######.. | Fees in - offset partly by welcome bonus |
-| **Endowus / DIY** | #....... | Small recurring management fee |
+| **AIA** | High | Fees in - offset partly by welcome bonus |
+| **Endowus / DIY** | Low | Small recurring management fee |
 
 **After 10 years**
 
 | Platform | Fee load | What's happening |
 |---|---|---|
-| **AIA** | #....... | Bonus inflows now > fees -> **effectively negative cost** |
-| **Endowus / DIY** | #######. | Same % fee on a much bigger pot -> real $ explodes<br/>*(1% of $1M = $10K/yr; over 30 retirement years that's $300K+ to the platform)* |
+| **AIA** | Low | Bonus inflows now exceed fees, so **effectively negative cost** |
+| **Endowus / DIY** | High | Same % fee on a much bigger pot, so real $ explodes<br/>*(1% of $1M = $10K/yr; over 30 retirement years that's $300K+ to the platform)* |
 
 **The one-liner you can say out loud:**
 > "Other platforms charge a small percentage every year. That sounds great when your pot is $50K. When your pot is $2.8M and you're 30 years into retirement, that same 1% becomes ten thousand dollars a year leaving the portfolio - every year. Our structure flips that: front-loaded fees in the first 10 years that get more than offset by bonuses for the rest of the lifetime."

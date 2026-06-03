@@ -99,16 +99,21 @@ The first part of the CFR is **very general questions.** Deliberately so. The pu
 ### Example - the follow-up matters
 
 **You:** "How many kids do you have?"
+
 **Client:** "Two. 6 and 4."
 
 *Don't stop here.* Probe:
 
 **You:** "That's a fun age. Any thoughts yet on what you want for their future - education, overseas?"
+
 **Client:** "Hmm, honestly we haven't really planned. My wife wants them to study in Australia maybe."
+
 **[Implied need surfaced: education funding.]**
 
 **You:** "Nice dream. Have you started putting money aside for that specifically, or is it mixed in with general savings?"
+
 **Client:** "It's in our savings account. I know I should be doing more."
+
 **[Implied need developed: the gap is acknowledged.]**
 
 You've just planted the seed for the education-funding Problem + Implication questions later.
@@ -138,7 +143,7 @@ After open conversation, you'll have 3-6 goals mentioned. Now you **rank them.**
 **Rule:** always start Problem Questions with their **#1 priority.** That's where the emotional engagement is highest.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Goals mentioned<br/>in passing (3-6)"] --> B["Summarise list<br/>aloud to client"]
     B --> C["Client ranks #1"]
     C --> D["Client ranks #2"]
@@ -207,10 +212,10 @@ Some clients actually **want** to see you writing - it signals seriousness. Test
 ## 7. Common Section 1/2 mistakes
 
 ### Mistake 1: Asking Situation Questions already answerable online
-"Where do you work?" when LinkedIn tells you -> wastes time + signals you didn't prep.
+"Where do you work?" when LinkedIn tells you wastes time and signals you didn't prep.
 
 ### Mistake 2: Skipping prioritisation
-Jumping to Problem Questions without ranking goals -> you present solutions in the wrong order.
+Jumping to Problem Questions without ranking goals means you present solutions in the wrong order.
 
 ### Mistake 3: Only one Problem Question per topic
 A single question doesn't surface real gaps. Probe 3-5 times per priority goal.

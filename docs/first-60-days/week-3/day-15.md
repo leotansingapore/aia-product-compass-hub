@@ -39,17 +39,6 @@ Real wealth is a **portfolio of income sources**. If one stream is cut off, a we
 
 > **Your job with clients:** build at least three streams. Most start with one (salary) and never add a second.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- wealth = diversified income streams -</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">CPF</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Mandatory, compounding</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Property</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Rental income generating</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Investments</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Stocks, bonds, ETFs</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Insurance accumulation</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Endowment, ILP, retirement</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Business / self-employment</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Renewals, ventures</div></div>
-  </div>
-</div>
-
 ## 2. Wealth Accumulation vs Wealth Preservation
 
 Two very different phases of financial life. The mindset flips somewhere between age 50-60 for most clients.
@@ -71,17 +60,9 @@ The **transition** is not a hard switch - it's a gradual rebalancing. A 55-year-
 ## 3. The 25-year-old example - why starting early matters
 
 ```mermaid
-flowchart LR
-    subgraph E["Start at 25 . 40-yr runway"]
-        E1["$500/month<br/>personal outlay $240K"]
-        E2["~$760K from compounding<br/>Total: ~$1M"]
-    end
-    subgraph L["Start at 45 . 20-yr runway"]
-        L1["$2,500+/month<br/>5x the monthly cost"]
-        L2["Less compounding runway<br/>Harder to catch up"]
-    end
-    E1 --> E2
-    L1 --> L2
+flowchart TD
+    E1["Start at 25 . 40-yr runway<br/>$500/month, outlay $240K"] --> E2["~$760K from compounding<br/>Total: ~$1M"]
+    L1["Start at 45 . 20-yr runway<br/>$2,500+/month, 5x the cost"] --> L2["Less compounding runway<br/>Harder to catch up"]
 ```
 
 Here's the concrete arithmetic that every new FC should have memorised.
@@ -97,23 +78,11 @@ Here's the concrete arithmetic that every new FC should have memorised.
 
 Most clients stop at Step 2 and panic. "$2 million?! Impossible." Step 3 is where compounding rescues the plan.
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
-  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
-    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">personal outlay</div>
-    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">$240,000</div>
-    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">$500/month x 480 months</div>
-  </div>
-  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
-    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">compounding does</div>
-    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">$760,000</div>
-    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">the work, not the client</div>
-  </div>
-  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:18px;background:hsl(var(--background));">
-    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">retirement capital</div>
-    <div style="font-size:24px;font-weight:700;color:hsl(var(--foreground));letter-spacing:-0.02em;">~$1,000,000</div>
-    <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;margin-top:4px;">at age 65</div>
-  </div>
-</div>
+| Amount | What it is | Detail |
+|---|---|---|
+| **$240,000** | Personal outlay | $500/month x 480 months |
+| **$760,000** | What compounding does | The work, not the client |
+| **~$1,000,000** | Retirement capital | At age 65 |
 
 ### The lesson
 
@@ -149,16 +118,10 @@ Vague goals produce vague outcomes. A good retirement goal is:
 | **R** | Relevant | "It matches the lifestyle I actually want, not my neighbour's." |
 | **T** | Time-bound | "By age 62 so I can travel before 70." |
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:16px;">
-    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vague goal</div>
-    <div style="font-size:14px;color:hsl(var(--foreground));line-height:1.5;">"I want to be comfortable in retirement."</div>
-  </div>
-  <div style="border:1px solid hsl(var(--border));border-radius:12px;padding:16px;">
-    <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">SMART goal</div>
-    <div style="font-size:14px;color:hsl(var(--foreground));line-height:1.5;">"$6,000/month passive income, in today's dollars, starting at age 62, adjusted for 2% inflation."</div>
-  </div>
-</div>
+| | Statement |
+|---|---|
+| **Vague goal** | "I want to be comfortable in retirement." |
+| **SMART goal** | "$6,000/month passive income, in today's dollars, starting at age 62, adjusted for 2% inflation." |
 
 Clients who can state their goal in SMART form are 10x more likely to follow the plan. Your job in early meetings is to help them articulate this.
 

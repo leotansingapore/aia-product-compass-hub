@@ -27,37 +27,12 @@ By the end of today you should be able to:
 
 Stephen Covey's time management framework, applied to a new FC's actual work.
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto auto auto;gap:8px;align-items:stretch;">
-  <div></div>
-  <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Urgent</div>
-  <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;">Not Urgent</div>
-  <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Important</div>
-  <div style="background:hsl(0,72%,97%);border:2px solid hsl(0,72%,55%);border-radius:10px;padding:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-weight:700;color:hsl(0,72%,40%);">Q1 . Crisis</span><span style="font-size:10px;background:hsl(0,72%,55%);color:white;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:0.05em;">MINIMISE</span></div>
-    <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:hsl(var(--foreground));">
-      <li>Case submission deadlines</li><li>Client's urgent requests</li><li>Lapsed case recovery</li><li>Complaints . claim follow-ups</li><li>MCG / persistency breaches</li>
-    </ul>
-  </div>
-  <div style="background:hsl(160,84%,96%);border:2px solid hsl(160,84%,39%);border-radius:10px;padding:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-weight:700;color:hsl(160,84%,28%);">Q2 . Focus zone</span><span style="font-size:10px;background:hsl(160,84%,35%);color:white;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:0.05em;">FOCUS HERE</span></div>
-    <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:hsl(var(--foreground));">
-      <li>Prospecting . rapport building</li><li>Fact finding . presentations</li><li>Closing . objection handling</li><li>Skills training . coaching</li><li>Exercise . relationships</li>
-    </ul>
-  </div>
-  <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;padding:4px;display:flex;align-items:center;justify-content:center;">Not Important</div>
-  <div style="background:hsl(38,92%,96%);border:2px solid hsl(38,92%,50%);border-radius:10px;padding:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-weight:700;color:hsl(38,92%,38%);">Q3 . Distraction</span><span style="font-size:10px;background:hsl(38,92%,50%);color:white;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:0.05em;">DELEGATE</span></div>
-    <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:hsl(var(--foreground));">
-      <li>Claim paperwork . form filling</li><li>Delivering gifts . client admin</li><li>Agent care queries</li><li>Non-strategic enquiries</li>
-    </ul>
-  </div>
-  <div style="background:hsl(220,15%,95%);border:2px solid hsl(220,15%,60%);border-radius:10px;padding:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-weight:700;color:hsl(220,15%,40%);">Q4 . Waste</span><span style="font-size:10px;background:hsl(220,15%,40%);color:white;padding:2px 8px;border-radius:10px;font-weight:600;letter-spacing:0.05em;">AVOID</span></div>
-    <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:hsl(var(--foreground));">
-      <li>Trivia . busywork</li><li>Gossip . excessive messaging</li><li>Doom-scrolling</li><li>Binge TV . gaming</li>
-    </ul>
-  </div>
-</div>
+| Quadrant | What lives here | Handling |
+|---|---|---|
+| **Q1 - Crisis** (Urgent + Important) | Case submission deadlines; client's urgent requests; lapsed case recovery; complaints and claim follow-ups; MCG / persistency breaches | MINIMISE |
+| **Q2 - Focus zone** (Not Urgent + Important) | Prospecting and rapport building; fact finding and presentations; closing and objection handling; skills training and coaching; exercise and relationships | FOCUS HERE |
+| **Q3 - Distraction** (Urgent + Not Important) | Claim paperwork and form filling; delivering gifts and client admin; agent care queries; non-strategic enquiries | DELEGATE |
+| **Q4 - Waste** (Not Urgent + Not Important) | Trivia and busywork; gossip and excessive messaging; doom-scrolling; binge TV and gaming | AVOID |
 
 ## 2. The four quadrants - in practice
 
@@ -128,13 +103,13 @@ Examples:
 
 For most new FCs, the current state is:
 - **Q1 (urgent + important):** 30%
-- **Q2 (not urgent + important):** 15% <- too low
+- **Q2 (not urgent + important):** 15% (too low)
 - **Q3 (urgent + not important):** 25%
 - **Q4 (time-wasters):** 30%
 
 The target:
 - **Q1:** 15% (smaller because Q2 prevents crises)
-- **Q2:** 60% <- this is the move
+- **Q2:** 60% (this is the move)
 - **Q3:** 15% (batched/delegated)
 - **Q4:** 10% (short breaks, true downtime)
 
@@ -180,26 +155,12 @@ Most weeks will go off-script in some way. That's fine. You still moved 3-5 big 
 
 ---
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:18px;">
-  <div style="background:hsl(var(--muted));border:1px solid hsl(var(--border));border-radius:12px;padding:16px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:12px;">Typical new FC</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q1 Crisis</span><span style="font-weight:700;">30%</span></div><div style="height:8px;background:hsl(var(--background));border-radius:4px;overflow:hidden;"><div style="width:30%;height:100%;background:hsl(0,72%,55%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q2 Focus</span><span style="font-weight:700;color:hsl(0,72%,45%);">15%</span></div><div style="height:8px;background:hsl(var(--background));border-radius:4px;overflow:hidden;"><div style="width:15%;height:100%;background:hsl(160,84%,40%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q3 Distraction</span><span style="font-weight:700;">25%</span></div><div style="height:8px;background:hsl(var(--background));border-radius:4px;overflow:hidden;"><div style="width:25%;height:100%;background:hsl(38,92%,55%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q4 Waste</span><span style="font-weight:700;">30%</span></div><div style="height:8px;background:hsl(var(--background));border-radius:4px;overflow:hidden;"><div style="width:30%;height:100%;background:hsl(220,15%,50%);"></div></div></div>
-    </div>
-  </div>
-  <div style="background:hsl(160,84%,96%);border:1px solid hsl(160,84%,39%);border-radius:12px;padding:16px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:hsl(160,84%,28%);text-transform:uppercase;margin-bottom:12px;">Target allocation</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q1 Crisis</span><span style="font-weight:700;">15%</span></div><div style="height:8px;background:white;border-radius:4px;overflow:hidden;"><div style="width:15%;height:100%;background:hsl(0,72%,55%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q2 Focus</span><span style="font-weight:700;color:hsl(160,84%,28%);">60%</span></div><div style="height:8px;background:white;border-radius:4px;overflow:hidden;"><div style="width:60%;height:100%;background:hsl(160,84%,40%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q3 Distraction</span><span style="font-weight:700;">15%</span></div><div style="height:8px;background:white;border-radius:4px;overflow:hidden;"><div style="width:15%;height:100%;background:hsl(38,92%,55%);"></div></div></div>
-      <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px;"><span>Q4 Waste</span><span style="font-weight:700;">10%</span></div><div style="height:8px;background:white;border-radius:4px;overflow:hidden;"><div style="width:10%;height:100%;background:hsl(220,15%,50%);"></div></div></div>
-    </div>
-  </div>
-</div>
+| Quadrant | Typical new FC | Target allocation |
+|---|---|---|
+| Q1 Crisis | 30% | 15% |
+| Q2 Focus | 15% | 60% |
+| Q3 Distraction | 25% | 15% |
+| Q4 Waste | 30% | 10% |
 
 *The entire career shift is moving Q2 from 15% to 60%.*
 
@@ -217,12 +178,16 @@ Once you're running a real pipeline - 30, 50, 100 active prospects - your memory
 
 A prospect first met in **March**. He was flaky - repeatedly cancelled, rescheduled, ghosted for entire months. The producer following up didn't try to hold the relationship in his head. He used **calendar events** as the system of record:
 
-- March -> first meeting, prospect not enlisted yet, no commitment
-- July -> calendar prompt fires, send a *"how's it going?"* message
-- August / September -> almost weekly calendar nudges
-- October -> scheduled meeting, cancelled night-of
-- November -> near-zero replies. Calendar prompt fires anyway. Send anyway.
-- December -> finally meets. **Closes a $900/month bundle (~ $4K FYC, ~$12K lifetime if held).**
+```mermaid
+flowchart TD
+    A["March: first meeting<br/>not enlisted, no commitment"] --> B["July: calendar prompt fires<br/>send a 'how's it going?' message"]
+    B --> C["Aug / Sep: almost weekly<br/>calendar nudges"]
+    C --> D["October: scheduled meeting<br/>cancelled night-of"]
+    D --> E["November: near-zero replies<br/>calendar prompt fires anyway, send anyway"]
+    E --> F["December: finally meets<br/>closes the case"]
+```
+
+The December meeting closed a **$900/month bundle (~$4K FYC, ~$12K lifetime if held).**
 
 Total in-meeting time: ~6 hours. Earnings if you amortise the closed FYC: **~$2K/hour of meeting time.** That happens *because* the producer didn't drop the prospect when momentum dropped. The calendar held the relationship while the human attention couldn't.
 

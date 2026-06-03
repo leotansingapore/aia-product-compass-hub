@@ -32,36 +32,15 @@ Stripped to mechanics:
 
 Not a motivational slogan — a planning discipline. Aim for 5 calls and you'll find a reason to make zero. Aim for 50 and you might land at 30 — and 30 still beats whatever 5 would have produced. The 10x number isn't a forecast. It's the **forcing function** that makes you change *how* you work, not just how hard. The better question becomes "what would I have to do differently to hit 10x this?" rather than "what's a realistic number?"
 
-<div style="margin:1.5rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));text-align:center;margin-bottom:1.5rem;letter-spacing:.05em;text-transform:uppercase;">The five principles, in sequence</div>
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;">
-    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
-      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Set massive goals</div>
-      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">10x your target</div>
-    </div>
-    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
-      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Take massive action</div>
-      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">10x your activity</div>
-    </div>
-    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
-      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Never reduce the target</div>
-      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Increase action instead</div>
-    </div>
-    <div style="padding:0 1rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
-      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Expect failures</div>
-      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Feedback, not a stop sign</div>
-    </div>
-    <div style="padding:0 1rem;">
-      <div style="font-family:ui-serif,serif;font-size:42px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
-      <div style="margin-top:.75rem;font-family:ui-serif,serif;font-size:18px;line-height:1.3;">Overcome fear with action</div>
-      <div style="margin-top:.5rem;font-size:13px;color:hsl(var(--muted-foreground));line-height:1.5;">Move out, don't think out</div>
-    </div>
-  </div>
-</div>
+### The five principles, in sequence
+
+| # | Principle | In short |
+|---|---|---|
+| 1 | Set massive goals | 10x your target |
+| 2 | Take massive action | 10x your activity |
+| 3 | Never reduce the target | Increase action instead |
+| 4 | Expect failures | Feedback, not a stop sign |
+| 5 | Overcome fear with action | Move out, don't think out |
 
 ## 2. The 5 principles
 
@@ -118,59 +97,13 @@ A quiet but important sub-principle:
 Most people need to know *how* they'll do something before they commit to doing it. That's backwards. The commitment is what generates the learning needed to figure it out.
 
 **Examples for a new FC:**
-- "I'll run an Instagram content series." -> Start before you know what Week 3's post will be.
-- "I'll call 100 people this month." -> Start calling before you know who 100 are.
-- "I'll get 3 appointments by Friday." -> Start outreach on Monday without a pre-built plan for 3 confirmations.
+- "I'll run an Instagram content series." Start before you know what Week 3's post will be.
+- "I'll call 100 people this month." Start calling before you know who 100 are.
+- "I'll get 3 appointments by Friday." Start outreach on Monday without a pre-built plan for 3 confirmations.
 
 The learning happens in the doing. The plan refines itself as you move.
 
 ## 4. Where 10X thinking actually fails
-
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1px 1fr;gap:2rem;align-items:stretch;">
-  <div>
-    <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));letter-spacing:.05em;text-transform:uppercase;">Where it works</div>
-    <div style="margin-top:.5rem;font-family:ui-serif,serif;font-size:22px;line-height:1.3;">Inputs you control</div>
-    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));display:grid;gap:1rem;">
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Activity volume</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">calls, outreach, content</div>
-      </div>
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Study volume</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">products, objections, skills</div>
-      </div>
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Preparation intensity</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">role-plays, scripts</div>
-      </div>
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Fear thresholds</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">difficult conversations</div>
-      </div>
-    </div>
-  </div>
-  <div style="background:hsl(var(--border));width:1px;height:100%;"></div>
-  <div>
-    <div style="font-family:ui-serif,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));letter-spacing:.05em;text-transform:uppercase;">Where it fails</div>
-    <div style="margin-top:.5rem;font-family:ui-serif,serif;font-size:22px;line-height:1.3;">Outcomes you don't</div>
-    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid hsl(var(--border));display:grid;gap:1rem;">
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Client buying decisions</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">not yours to 10x</div>
-      </div>
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Skill acquisition speed</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">some skills need reps over time</div>
-      </div>
-      <div>
-        <div style="font-family:ui-serif,serif;font-size:16px;">Relationships</div>
-        <div style="font-size:13px;color:hsl(var(--muted-foreground));margin-top:.15rem;">need time, not 10x effort</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 The 10X Rule works for **behaviour**, not for **results you don't control.** It falls apart when misapplied.
 
@@ -205,7 +138,7 @@ Realistic landing: maybe you get **12 meetings and 4 closes.** That's:
 - **2x your original close target.**
 - A much bigger skill base to build on next month.
 
-10X targets -> 3x results is a normal outcome. 1x targets -> 1x results (if you're lucky).
+10X targets then 3x results is a normal outcome. 1x targets then 1x results (if you're lucky).
 
 ## 6. The shadow side
 

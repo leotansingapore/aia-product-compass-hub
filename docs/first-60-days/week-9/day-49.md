@@ -30,33 +30,15 @@ Day 48 covered the **first half of SPIN** - Situation + Problem questions. Those
 Today is the **second half.** Two things happen here:
 
 1. **Implication questions** turn an implied need into an **explicit, felt** need.
-2. **Need-Payoff questions** flip the emotional tone from problem -> solution.
+2. **Need-Payoff questions** flip the emotional tone from problem to solution.
 
 **The emotional arc of a full SPIN meeting:**
 
-<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:12px;padding:18px;overflow-x:auto;">
-  <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:14px;text-align:center;">Emotional arc . full SPIN meeting</div>
-  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;min-width:560px;">
-    <div style="background:hsl(220,15%,92%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(220,15%,35%);">Neutral</div></div>
-    <div style="background:hsl(217,91%,93%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(217,91%,38%);">Slight unease</div></div>
-    <div style="background:hsl(38,92%,90%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(38,92%,35%);">Real concern</div></div>
-    <div style="background:hsl(0,72%,92%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(0,72%,38%);">Explicit need</div></div>
-    <div style="background:hsl(160,84%,90%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(160,84%,25%);">Hopeful</div></div>
-    <div style="background:hsl(262,83%,93%);border-radius:8px;padding:10px 6px;text-align:center;"><div style="font-size:13px;font-weight:700;color:hsl(262,83%,42%);">Decisive</div></div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Situation</div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Problem</div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Implication</div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Implication</div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Need-Payoff</div>
-    <div style="text-align:center;font-size:11px;color:hsl(var(--muted-foreground));font-weight:600;letter-spacing:0.05em;text-transform:uppercase;padding-top:4px;">Close</div>
-  </div>
-</div>
-
 ```mermaid
-flowchart LR
+flowchart TD
     A["Situation<br/>Neutral"] --> B["Problem<br/>Slight unease"]
     B --> C["Implication<br/>Real concern"]
-    C --> D["Implication<br/>Felt need"]
+    C --> D["Implication<br/>Explicit, felt need"]
     D --> E["Need-Payoff<br/>Hopeful"]
     E --> F["Close<br/>Decisive"]
 ```
@@ -69,7 +51,7 @@ Done well, the client does most of the emotional work. You're not pushing - you'
 
 The client has named a gap. Now they need to feel its weight. Implication questions ask about the **downstream effects** of the problem if it goes unaddressed.
 
-**Rule:** never ask an Implication question before the client has acknowledged the problem. You'd be scare-selling. Always follow this sequence: Problem -> client acknowledges -> then Implication.
+**Rule:** never ask an Implication question before the client has acknowledged the problem. You'd be scare-selling. Always follow this sequence: ask the Problem question, the client acknowledges it, then ask the Implication.
 
 ## 3. Implication Questions - 8 to memorise
 
@@ -302,9 +284,9 @@ At the end of a SPIN conversation, use this classic close to bridge into recomme
 
 Most clients answer: "No, no reason - let's do it."
 
-Some answer: "Well, I'd need to check with my spouse." -> that's real information. Handle it.
+Some answer: "Well, I'd need to check with my spouse." That's real information. Handle it.
 
-Some answer: "Actually, I'm concerned about X." -> gold. That's the real objection. Handle that before you walk out.
+Some answer: "Actually, I'm concerned about that." That's gold - the real objection. Handle that before you walk out.
 
 
 ## Quick quiz

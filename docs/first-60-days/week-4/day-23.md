@@ -81,7 +81,7 @@ When energy is good but work still isn't happening, one of three blockers is pre
 **The root cause:** too many options or unclear next step.
 
 **Unblock by:**
-- Write down the exact next physical action. Not "write proposal." -> "Open Pages. Type 'Mr. Tan - Financial Review - 19 April.' Save."
+- Write down the exact next physical action. Not "write proposal," but "Open Pages. Type 'Mr. Tan - Financial Review - 19 April.' Save."
 - Decide, even poorly. A bad decision now often beats the best decision never.
 - Ask a mentor for a 2-minute sanity check.
 
@@ -139,7 +139,7 @@ When alignment is low:
 - You drift to distractions constantly.
 - You start questioning if this is "worth it."
 
-**If alignment is low for more than 2 weeks -> revisit your Day 5 purpose statement.** Either re-commit to it, or update it. Don't ignore the signal.
+**If alignment is low for more than 2 weeks, revisit your Day 5 purpose statement.** Either re-commit to it, or update it. Don't ignore the signal.
 
 ## 5. The daily self-check
 
@@ -162,26 +162,10 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
 ---
 
 ```mermaid
-flowchart LR
-    subgraph ENERGISERS[" ENERGISERS - generate energy while working"]
-        direction TB
-        PL["<b>Play</b><br/>make it a game"]
-        PW["<b>Power</b><br/>build competence daily"]
-        PE["<b>People</b><br/>work alongside others"]
-    end
-    subgraph UNBLOCKERS[" UNBLOCKERS - when work still isn't happening"]
-        direction TB
-        PR["<b>Procrastination</b><br/>name the emotion, start tiny"]
-        PA["<b>Paralysis</b><br/>write the exact next action"]
-        PF["<b>Perfectionism</b><br/>ship at 80%, revise on feedback"]
-    end
-    subgraph SUSTAINERS[" SUSTAINERS - prevent burnout over 12+ months"]
-        direction TB
-        CO["<b>Conserve</b><br/>A/B/C every task"]
-        RE["<b>Recharge</b><br/>real rest - sleep + walks"]
-        AL["<b>Align</b><br/>daily work to deeper purpose"]
-    end
-    ENERGISERS --> UNBLOCKERS --> SUSTAINERS
+flowchart TD
+    EN["ENERGISERS<br/>generate energy while working"] -->|"Play, Power, People"| UN["UNBLOCKERS<br/>when work still isn't happening"]
+    UN -->|"Procrastination, Paralysis, Perfectionism"| SU["SUSTAINERS<br/>prevent burnout over 12+ months"]
+    SU -->|"Conserve, Recharge, Align"| OUT["Productivity that lasts"]
 ```
 
 ---

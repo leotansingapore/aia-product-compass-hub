@@ -41,7 +41,7 @@ By the end of today you should be able to:
 ## 2. Investing vs Speculation - the critical distinction
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Client's money"] --> B{"Intent + horizon?"}
     B -->|"Long, fundamentals<br/>5+ years"| C["Investing<br/>compounding, ownership"]
     B -->|"Short, timing<br/>days to months"| D["Speculation<br/>exciting, volatile"]
@@ -149,7 +149,9 @@ flowchart TD
     A["Pick any 2 of 3"] --> B["Safety + Liquidity<br/>Fixed deposits, CPF OA"]
     A --> C["Safety + Return<br/>Gov bonds, CPF SA"]
     A --> D["Return + Liquidity<br/>ETFs, equities"]
-    B & C & D --> E["All 3 = scam or<br/>misrepresentation"]
+    B --> E["All 3 = scam or<br/>misrepresentation"]
+    C --> E
+    D --> E
 ```
 
 | Safety | Return | Liquidity | Example |

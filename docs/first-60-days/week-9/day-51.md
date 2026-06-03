@@ -29,11 +29,11 @@ By the end of today you should be able to:
 
 The financial data collected in Section 3 **drives every downstream decision:**
 
-- Budget capacity -> which premium range fits.
-- Existing coverage -> what gaps to prioritise.
-- Current assets -> what to protect vs accumulate.
-- Income stability -> appropriate risk profile.
-- Life-stage numbers -> ratios for coverage amounts.
+- Budget capacity, which premium range fits.
+- Existing coverage, what gaps to prioritise.
+- Current assets, what to protect vs accumulate.
+- Income stability, appropriate risk profile.
+- Life-stage numbers, ratios for coverage amounts.
 
 **Without this data**, you're either guessing or recommending templates. Neither builds trust or lasts.
 
@@ -48,7 +48,7 @@ By the time you reach Section 3, you've already:
 - Developed problems on their top 2-3 goals.
 - Asked permission to dig deeper.
 
-The numbers now feel like the **natural next step** - because they are. You've earned the right.
+The numbers now feel like the **natural next step**, because they are. You've earned the right.
 
 **If the client is still defensive when you reach Section 3**, it means Sections 1 and 2 weren't done well. Back off. Spend 10 more minutes in conversation. Return to numbers later.
 
@@ -69,17 +69,16 @@ Deliver this calmly. Not apologetic. Not aggressive. Matter-of-fact.
 
 ## 4. The 6 categories of financial data
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- Section 3 . the six categories of financial data -</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Income</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Salary + bonus + stability</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Expenses</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Essential + lifestyle + annual</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Assets</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Cash, CPF, property, investments</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Liabilities</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Mortgage, loans, credit cards</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Existing cover</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Life, CI, hospital, disability</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vi.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Budget capacity</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Offer ranges, not open question</div></div>
-  </div>
-</div>
+_Section 3 - the six categories of financial data:_
+
+| # | Category | What to capture |
+|---|----------|-----------------|
+| i | Income | Salary + bonus + stability |
+| ii | Expenses | Essential + lifestyle + annual |
+| iii | Assets | Cash, CPF, property, investments |
+| iv | Liabilities | Mortgage, loans, credit cards |
+| v | Existing cover | Life, CI, hospital, disability |
+| vi | Budget capacity | Offer ranges, not open question |
 
 ### 1. Income
 - Gross monthly income.
@@ -187,8 +186,9 @@ Then - the Colombo close (Day 49):
 
 *Pause. Listen.*
 
-If the answer is "no, no reason" -> you're 90% closed before the next meeting.
-If the answer raises an objection -> **gold.** You now have 5 days to address it in the proposal.
+If the answer is "no, no reason", you're 90% closed before the next meeting.
+
+If the answer raises an objection, that's **gold.** You now have 5 days to address it in the proposal.
 
 ## 8. Post-meeting discipline
 

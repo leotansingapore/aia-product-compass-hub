@@ -27,7 +27,14 @@ By the end of today you should be able to:
 
 The most common new-FC mistake:
 
-> Spends 30 min building rapport -> 20 min on budgeting/goals -> talks about "some policies" -> runs out of time -> "let's continue next session" -> never closes.
+```mermaid
+flowchart TD
+    A["Spends 30 min<br/>building rapport"] --> B["20 min on<br/>budgeting/goals"]
+    B --> C["Talks about<br/>'some policies'"]
+    C --> D["Runs out of time"]
+    D --> E["'Let's continue<br/>next session'"]
+    E --> F["Never closes"]
+```
 
 **Result:** the client ghosts. Nothing sold. Hours of effort down the drain.
 
@@ -199,8 +206,11 @@ The pattern: explain *why* you need the information *before* you ask for it. The
 ---
 
 ```mermaid
-flowchart LR
-    P1["1 . Rapport<br/>5 min"] --> P2["2 . Agenda<br/>1 min"] --> P3["3 . Problem<br/>20 min"] --> P4["4 . Desire<br/>20 min"] --> P5["5 . Close<br/>10 min"]
+flowchart TD
+    P1["1. Rapport<br/>5 min"] --> P2["2. Agenda<br/>1 min"]
+    P2 --> P3["3. Problem<br/>20 min"]
+    P3 --> P4["4. Desire<br/>20 min"]
+    P4 --> P5["5. Close<br/>10 min"]
 ```
 
 ---

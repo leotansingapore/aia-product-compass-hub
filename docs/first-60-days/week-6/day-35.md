@@ -40,8 +40,8 @@ Nothing has "disappeared" from your statement. You've just lost **purchasing pow
 ## 2. The 20-year impact
 
 Using Rule of 72 (Day 32):
-- 2% inflation -> prices double every 36 years.
-- 3% inflation -> prices double every 24 years.
+- 2% inflation, then prices double every 36 years.
+- 3% inflation, then prices double every 24 years.
 - Over 20 years at 2%, prices rise about **1.5x**.
 - Over 20 years at 3%, prices rise about **1.8x**.
 
@@ -66,7 +66,16 @@ The sharpest way to land this isn't another table - it's the **monthly passive i
 Two interactive views you should run on yourself first, then with a prospect:
 
 - **Lifestyle view** - [present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle). Type in the monthly lifestyle you want today. Watch the curve bend upward year by year to its future-dollar equivalent. One input, one picture - ideal for the first 2 minutes of a retirement conversation.
-- **Step-by-step view** - [present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step). The full five-step Problem diagram: desired lifestyle -> inflated cost at 65 -> lump sum required -> capital depletion line -> the no-investing monthly savings number.
+- **Step-by-step view** - [present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step). The full five-step Problem diagram:
+
+```mermaid
+flowchart TD
+    A["Desired lifestyle"] --> B["Inflated cost<br/>at 65"]
+    B --> C["Lump sum<br/>required"]
+    C --> D["Capital depletion<br/>line"]
+    D --> E["No-investing monthly<br/>savings number"]
+```
+
 - Base URL: [present.financeillustrator.com](https://present.financeillustrator.com/) - bookmark it.
 
 **The reframe to keep in your head:** the monthly passive income a client *desires today* is not their retirement target. The **future-dollar version of that same desire** is. This is the arithmetic spine of the Retirement Step-by-Step CST - see [[day-52|Day 52 - Retirement Step-by-Step CST]] for the paper-and-pen walkthrough built on top of this inflation math.
@@ -79,9 +88,9 @@ This is the single most important distinction in investment education.
 **Real return:** the growth *after* subtracting inflation. This is what actually matters for your purchasing power.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Nominal return<br/>e.g. 6%"] --> B["Minus inflation<br/>e.g. 2%"]
-    B --> C["Real return<br/>~4% (simplified)<br/>3.92% (actual)"]
+    B --> C["Real return<br/>approx 4% simplified<br/>3.92% actual"]
     D["Bank account<br/>0.5% nominal"] --> E["Minus inflation<br/>2%"]
     E --> F["Real return<br/>-1.5% per year<br/>purchasing power lost"]
 ```
@@ -120,19 +129,11 @@ No statement ever shows this. But it's real.
 - Schools don't teach inflation.
 - Most people have never calculated the real impact on their own finances.
 
-**Your job:** make inflation **visible** with concrete numbers. $5 kopi today -> $9 kopi in 30 years isn't abstract - it's a number they can feel.
+**Your job:** make inflation **visible** with concrete numbers. A $5 kopi today becoming a $9 kopi in 30 years isn't abstract - it's a number they can feel.
 
 ## 5. The hierarchy of "inflation beaters"
 
-Different assets beat inflation at different rates:
-
-```mermaid
-flowchart BT
-    A["Cash . Savings<br/>Real: negative"] --> B["Fixed deposits . CPF OA<br/>Real: 0 to 1.5%"]
-    B --> C["Gov bonds . CPF SA<br/>Real: 0 to 2%"]
-    C --> D["Corporate bonds . real estate<br/>Real: 2 to 5%"]
-    D --> E["Diversified equity (long-term)<br/>Real: 4 to 6%"]
-```
+Different assets beat inflation at different rates, from cash (a real loss) up the ladder to diversified equity:
 
 | Asset | Typical long-term return | Real return (vs 2% inflation) |
 |---|---|---|

@@ -59,7 +59,7 @@ The truth: in a marathon, your Week 3 mood is not data about Week 52.
 **Three consequences of this truth:**
 
 1. **Don't make big decisions on bad weeks.** "Should I quit?" is a question for review at the 6-month mark, not a Tuesday morning after two rejected calls.
-2. **Don't make big promises on good weeks.** "I'm going to hit $X this month" rarely survives the reality of Week 2.
+2. **Don't make big promises on good weeks.** "I'm going to hit a huge number this month" rarely survives the reality of Week 2.
 3. **Track reps, not mood.** Dials made, appointments booked, meetings run. These are honest. Feelings lie.
 
 ## 4. The obstacle is the way
@@ -80,12 +80,12 @@ You can't get the skill without the obstacle. So the obstacle isn't something to
 The cold-call rep **is** the skill acquisition. If it were easy, it wouldn't pay.
 
 ```mermaid
-flowchart LR
-    A[Cold call / meeting] --> B[Rejection or objection]
-    B --> C[Analyze<br/>tone, opener, objection handled]
-    C --> D[Adjust ONE thing]
+flowchart TD
+    A["Cold call / meeting"] --> B["Rejection or objection"]
+    B --> C["Analyze<br/>tone, opener, objection handled"]
+    C --> D["Adjust ONE thing"]
     D --> A
-    C -.->|compound over 100 reps| E([Skill])
+    C -->|"compound over 100 reps"| E["Skill"]
 ```
 
 ## 5. The ironic logic of doing what's hard

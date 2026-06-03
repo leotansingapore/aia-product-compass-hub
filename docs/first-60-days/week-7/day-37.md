@@ -32,8 +32,13 @@ By the end of today you should be able to:
 ## 1. The 6-step Financial Planning Process - where the Approach sits
 
 ```mermaid
-flowchart LR
-    A["1 . Establish<br/>The Approach"] --> B["2 . Gather<br/>Fact Find"] --> C["3 . Analyse<br/>Identify gaps"] --> D["4 . Present<br/>Proposal"] --> E["5 . Implement<br/>Submit"] --> F["6 . Review<br/>Annually"] --> A
+flowchart TD
+    A["1. Establish<br/>The Approach"] --> B["2. Gather<br/>Fact Find"]
+    B --> C["3. Analyse<br/>Identify gaps"]
+    C --> D["4. Present<br/>Proposal"]
+    D --> E["5. Implement<br/>Submit"]
+    E --> F["6. Review<br/>Annually"]
+    F --> A
 ```
 
 **The trap:** treating the Approach as "selling." It's relationship-building - the permission and trust that unlock Steps 2-6. Rush Step 1 and everything downstream breaks.
@@ -52,9 +57,9 @@ flowchart LR
 ## 3. Two prospect types you have today - two different approaches
 
 ```mermaid
-flowchart LR
-    A["Type A . Warm<br/>Family + friends + people you've<br/>drifted from for years"]
-    C["Type B . Cold<br/>Digital, events, outreach"]
+flowchart TD
+    A["Type A. Warm<br/>Family, friends, people<br/>you've drifted from"]
+    C["Type B. Cold<br/>Digital, events, outreach"]
     A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
     C -->|"Slowest route<br/>but scalable"| M
 ```
@@ -364,7 +369,7 @@ After touch #7, every prospect who didn't convert goes into a **nurture list**. 
 
 - **Monthly**: one piece of non-sales value (article, chart, CPF update, market snapshot).
 - **Quarterly**: one personal check-in message ("How are the kids? How's the new job?").
-- **Per life event**: birthday, promotion, baby, house move -> a short personal note.
+- **Per life event**: birthday, promotion, baby, house move, then a short personal note.
 - **Annually**: offer a free review - "It's been a year since we spoke, want a quick refresh?"
 
 ### A nurture-list tracker you can set up today
@@ -430,15 +435,12 @@ Write that somewhere you'll see it on days when prospecting feels slow. It is th
 The pipeline only works if prospecting is a **habit**, not a mood. The weekly rhythm for a Month 1-6 FC:
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Mon-Fri<br/>20 new touches/day"]
-    B["Daily<br/>1-2 first meetings"]
-    C["Sunday evening<br/>Nurture list review"]
-    D["Weekly<br/>3-5 new first meetings booked"]
-    A --> B
-    A --> C
+    A --> B["Daily<br/>1-2 first meetings"]
+    A --> C["Sunday evening<br/>Nurture list review"]
+    B --> D["Weekly<br/>3-5 new first<br/>meetings booked"]
     C --> D
-    B --> D
 ```
 
 **The baseline numbers (from the Next 60 Days block):**
@@ -478,6 +480,56 @@ If they think that, you've won - regardless of whether anything was sold.
 4. **List 20 warm contacts** you will open a conversation with this week.
 
 Do all four before Day 38.
+
+---
+
+## 2-Liner Hook (Warm Prospecting Flow)
+
+A low-pressure, text-first warm opener that uses a useful resource as the bridge to a business appointment. Sits to the left of the cold-call script - lighter, slower, and built for contacts where a phone call would feel heavy but a text feels honest.
+
+**Use this when** you've identified a warm contact (someone from your Project 100 list or a friend you haven't spoken business with yet) and want a soft opener that doesn't feel like the first move toward a sale.
+
+### The flow
+
+```mermaid
+flowchart TD
+    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
+    B -- "Yes" --> C["Send the resource"]
+    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
+    C --> D["Wait 1-2 weeks"]
+    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
+    E --> F(["Business Appointment"])
+```
+
+### The script
+
+> **Line 1.** Recently I have been helping my friends/clients with [common problem]. Can I help you with this also?
+>
+> **Line 2.** I have a [resource] that I/my team created, to help [common group] solve [common problems] to [measurable outcome]. You want it? I send you.
+
+What goes in the blanks:
+
+- **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, first investment plan).
+- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together.
+- **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples).
+- **[common problems]** - the headline pains that group recognises in themselves.
+- **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on).
+
+### The follow-up that earns the appointment
+
+1-2 weeks after they receive the resource, send one short message:
+
+> Hey [name], been a couple of weeks since I sent you the [resource]. Did you manage to figure out [the specific problem]? Happy to help fill in any gaps if not.
+
+The phrasing matters - "did you figure it out" is binary. If the answer is "sort of, but I have questions" or "no, didn't get round to it", that's the appointment:
+
+> Easiest way is a 30-minute Zoom - I can answer the specific questions and show you what most people in your situation actually do. Tuesday 7pm or Thursday lunch?
+
+The agenda is *their* question. The product comes downstream of the conversation, not upstream.
+
+### Where this fits in today's lesson
+
+This is the lightest entry point in the warm-market half of the Approach. If a Market Survey phone call is too heavy for the contact, the 2-Liner is what you reach for first. Both flows end at the same place - a 30-minute meeting built around the prospect's question.
 
 ---
 
@@ -546,56 +598,6 @@ Do all four before Day 38.
  - D) Obligated because of the relationship
 
  **Why:** the first meeting is a relationship opener, not a close. If the prospect walks away feeling listened to and unpressured, the door stays open for Steps 2-6 of the financial planning process - where the real value (and CLV) is built.
-
----
-
-## 2-Liner Hook (Warm Prospecting Flow)
-
-A low-pressure, text-first warm opener that uses a useful resource as the bridge to a business appointment. Sits to the left of the cold-call script - lighter, slower, and built for contacts where a phone call would feel heavy but a text feels honest.
-
-**Use this when** you've identified a warm contact (someone from your Project 100 list or a friend you haven't spoken business with yet) and want a soft opener that doesn't feel like the first move toward a sale.
-
-### The flow
-
-```mermaid
-flowchart TD
-    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
-    B -- "Yes" --> C["Send the resource"]
-    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
-    C --> D["Wait 1-2 weeks"]
-    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
-    E --> F(["Business Appointment"])
-```
-
-### The script
-
-> **Line 1.** Recently I have been helping my friends/clients with [common problem]. Can I help you with this also?
->
-> **Line 2.** I have a [resource] that I/my team created, to help [common group] solve [common problems] to [measurable outcome]. You want it? I send you.
-
-What goes in the blanks:
-
-- **[common problem]** - what you've actually been helping clients with this week (CPF allocation review, hospital plan gap, first investment plan).
-- **[resource]** - a guide, checklist, calculator, comparison table, or short Loom you (or your team) put together.
-- **[common group]** - the segment your contact obviously belongs to (young parents, fresh grads, dual-income couples).
-- **[common problems]** - the headline pains that group recognises in themselves.
-- **[measurable outcome]** - what they get if they actually use the resource (clarity in 15 minutes, a number they can act on).
-
-### The follow-up that earns the appointment
-
-1-2 weeks after they receive the resource, send one short message:
-
-> Hey [name], been a couple of weeks since I sent you the [resource]. Did you manage to figure out [the specific problem]? Happy to help fill in any gaps if not.
-
-The phrasing matters - "did you figure it out" is binary. If the answer is "sort of, but I have questions" or "no, didn't get round to it", that's the appointment:
-
-> Easiest way is a 30-minute Zoom - I can answer the specific questions and show you what most people in your situation actually do. Tuesday 7pm or Thursday lunch?
-
-The agenda is *their* question. The product comes downstream of the conversation, not upstream.
-
-### Where this fits in today's lesson
-
-This is the lightest entry point in the warm-market half of the Approach. If a Market Survey phone call is too heavy for the contact, the 2-Liner is what you reach for first. Both flows end at the same place - a 30-minute meeting built around the prospect's question.
 
 ---
 

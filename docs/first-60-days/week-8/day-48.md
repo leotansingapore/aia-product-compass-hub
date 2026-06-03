@@ -19,42 +19,22 @@ By the end of today you should be able to:
 
 1. **Ask** 10 Situation questions that build context without boring the client.
 2. **Ask** 10 Problem questions that uncover real gaps without sounding accusatory.
-3. **Pace** the transition from Situation -> Problem naturally, not mechanically.
+3. **Pace** the transition from Situation to Problem naturally, not mechanically.
 
 ---
 
 ## 1. The two halves of SPIN
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-  <div style="background:linear-gradient(135deg,hsl(217,91%,96%),hsl(217,91%,92%));border:2px solid hsl(217,91%,55%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(217,91%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">FIRST HALF . Exploration</div>
-    <div style="padding:14px;">
-      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(217,91%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">1</span><span style="font-weight:600;color:hsl(var(--foreground));">Situation</span></div>
-      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(217,91%,42%);">2</span><span style="font-weight:600;color:hsl(var(--foreground));">Problem</span></div>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px dashed hsl(217,91%,75%);font-size:12.5px;color:hsl(217,91%,38%);"><strong>Purpose:</strong> understand <span style="opacity:0.8;">(facts + gaps)</span></div>
-    </div>
-  </div>
-  <div style="background:linear-gradient(135deg,hsl(0,72%,96%),hsl(0,72%,92%));border:2px solid hsl(0,72%,55%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(0,72%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">SECOND HALF . Intensification</div>
-    <div style="padding:14px;">
-      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid hsl(0,72%,85%);"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">3</span><span style="font-weight:600;color:hsl(var(--foreground));">Implication</span></div>
-      <div style="display:flex;gap:10px;align-items:center;padding:8px 0;"><span style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);">4</span><span style="font-weight:600;color:hsl(var(--foreground));">Need-Payoff</span></div>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px dashed hsl(0,72%,75%);font-size:12.5px;color:hsl(0,72%,42%);"><strong>Purpose:</strong> help client feel the weight of the gap</div>
-    </div>
-  </div>
-</div>
+| Half | Questions | Purpose |
+|---|---|---|
+| **First half - Exploration** | 1. Situation<br/>2. Problem | Understand the client (facts + gaps) |
+| **Second half - Intensification** | 3. Implication<br/>4. Need-Payoff | Help the client feel the weight of the gap |
 
 ```mermaid
-flowchart LR
-    subgraph Exploration["First Half - Exploration"]
-        S["Situation<br/>What is"]
-        P["Problem<br/>What is not quite right"]
-    end
-    subgraph Intensification["Second Half - Intensification"]
-        I["Implication<br/>Why it matters"]
-        N["Need-Payoff<br/>What life looks like solved"]
-    end
-    S --> P --> I --> N
+flowchart TD
+    S["Situation<br/>What is"] --> P["Problem<br/>What is not quite right"]
+    P --> I["Implication<br/>Why it matters"]
+    I --> N["Need-Payoff<br/>What life looks like solved"]
 ```
 
 **Today:** the first half. Get this right and the second half (tomorrow's Day 49) does the heavy lifting.
@@ -104,12 +84,10 @@ Good Situation questions are **open-ended** and **specific to planning categorie
 ### The FORM mnemonic - the 4-letter shortcut
 
 ```mermaid
-flowchart LR
-    F["F - Family<br/>Who are you planning for?"]
-    O["O - Occupation<br/>Income, coverage, career stage"]
-    R["R - Recreation<br/>Lifestyle, retirement dreams"]
-    M["M - Money<br/>Current savings approach"]
-    F --> O --> R --> M
+flowchart TD
+    F["F - Family<br/>Who are you planning for?"] --> O["O - Occupation<br/>Income, coverage, career stage"]
+    O --> R["R - Recreation<br/>Lifestyle, retirement dreams"]
+    R --> M["M - Money<br/>Current savings approach"]
 ```
 
 When nerves spike and the 10 questions feel like too much, fall back to **FORM**. It covers 80% of what you need in any first meeting:

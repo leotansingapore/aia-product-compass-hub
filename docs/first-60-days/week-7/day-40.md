@@ -69,7 +69,7 @@ Every person who will ever hire you goes through these 4 stages.
 **Most new FCs try to jump from Stage 1 to Stage 4** - via a direct pitch. It doesn't work. The journey has to be walked, not skipped.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Skeptical Stranger<br/>Is this person real?"]
     B["Curious Follower<br/>Do they know their stuff?"]
     C["Trusted Choice<br/>Should I go to them?"]
@@ -77,7 +77,6 @@ flowchart LR
     A -->|"Clean profile<br/>show up as human"| B
     B -->|"Consistent content<br/>authority + personality"| C
     C -->|"Respond to DMs<br/>convert to meetings"| D
-    D -->|"Refers before<br/>you ask"| D
 ```
 
 ## 3. Platform positioning - which lives where

@@ -192,7 +192,7 @@ A clean two-line model for retirement income that any client can grasp:
 
 > *"CPF LIFE pays your bills. The investment plan pays for the life you actually want to live."*
 
-Desired income - CPF LIFE = Gap -> fill with investment plans. **This is the closing math** for every retirement-angle case.
+Desired income - CPF LIFE = Gap, then fill the gap with investment plans. **This is the closing math** for every retirement-angle case.
 
 ## 0e. The AIA-vs-DIY positioning (the ProAchiever differentiator)
 
@@ -294,7 +294,7 @@ ILP-based life insurance plan that sits **between** term insurance (no cash valu
 
 ### The sum-at-risk concept (what makes PWE efficient over time)
 
-As investment value grows, the *insurance component* shrinks -> mortality cost decreases:
+As investment value grows, the *insurance component* shrinks, then mortality cost decreases:
 
 | Year | Investment value | Sum assured | Sum at risk (drives mortality cost) |
 |---|---|---|---|
@@ -514,16 +514,11 @@ A typical ILP premium breakdown (illustrative):
 - **Early surrender is punishing.** The structure assumes 15-30 years of holding.
 
 ```mermaid
-flowchart LR
-    Y1["Year 1<br/>15-50% to funds"]
-    Y2["Year 2<br/>50-70% to funds"]
-    Y3["Year 3<br/>80-95% to funds"]
-    Y5["Year 5+<br/>~100% to funds"]
-    WARN["Surrender here<br/>= likely loss"]
-    GOOD["Compound growth<br/>phase begins"]
-    Y1 --> Y2 --> Y3 --> Y5
-    Y1 -.-> WARN
-    Y5 -.-> GOOD
+flowchart TD
+    Y1["Year 1<br/>15-50% to funds"] -->|"surrender = likely loss"| Y2["Year 2<br/>50-70% to funds"]
+    Y2 --> Y3["Year 3<br/>80-95% to funds"]
+    Y3 --> Y5["Year 5+<br/>~100% to funds"]
+    Y5 -->|"compound growth begins"| GOOD["Long-term hold"]
 ```
 
 ### The disclosure discipline

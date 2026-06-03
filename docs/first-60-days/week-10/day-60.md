@@ -164,18 +164,16 @@ If you're hitting the targets, you're on track. If not, review what's blocking a
 
 From Day 61 onward, your week is no longer a series of lessons - it's a repeating loop. Every client relationship moves through the same stages, in the same order. Your job is to run the loop cleanly, over and over, for every name on your list.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;">
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Reconnect</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Warm circle, referrals</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Introduce</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Approach, elevator pitch</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Review</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Gather policy summary</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Needs analysis</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">CST / fact-find</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Solution</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Proposal + close</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vi.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Service</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Claims, annual reviews</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Referral</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Feedback, names</div></div>
-  </div>
-  <div style="margin-top:18px;text-align:center;font-family:ui-serif,Georgia,serif;font-size:12.5px;font-style:italic;color:hsl(var(--muted-foreground));">- and back to <span style="color:hsl(var(--foreground));">Reconnect</span> -</div>
-</div>
+```mermaid
+flowchart TD
+    A["i. Reconnect<br/>Warm circle, referrals"] --> B["ii. Introduce<br/>Approach, elevator pitch"]
+    B --> C["iii. Review<br/>Gather policy summary"]
+    C --> D["iv. Needs analysis<br/>CST / fact-find"]
+    D --> E["v. Solution<br/>Proposal + close"]
+    E --> F["vi. Service<br/>Claims, annual reviews"]
+    F --> G["vii. Referral<br/>Feedback, names"]
+    G -->|"and back to Reconnect"| A
+```
 
 The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your client base is just the sum of how many people are moving through this loop at any given time.
 
@@ -239,15 +237,14 @@ Client's life keeps moving. You show up when it matters.
 
 Your service calendar isn't optional. These touchpoints should be recurring in your calendar for every client - scheduled once, fired yearly.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;">
-    <div style="padding:0 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;letter-spacing:0.02em;">Q1 . Dec - Jan</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">CNY, year-end, renewals</div></div>
-    <div style="padding:0 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;letter-spacing:0.02em;">Q2 . Mar - May</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Birthdays, policy refresh</div></div>
-    <div style="padding:0 20px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;letter-spacing:0.02em;">Q3 . Jun - Aug</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Mid-year review, referrals</div></div>
-    <div style="padding:0 20px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;letter-spacing:0.02em;">Q4 . Sep - Nov</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));line-height:1.45;letter-spacing:-0.01em;">Mooncake, hampers, renewals</div></div>
-  </div>
-  <div style="margin-top:18px;text-align:center;font-family:ui-serif,Georgia,serif;font-size:12.5px;font-style:italic;color:hsl(var(--muted-foreground));">- repeats every year -</div>
-</div>
+| Quarter | Months | Touchpoints |
+|---|---|---|
+| **Q1** | Dec - Jan | CNY, year-end, renewals |
+| **Q2** | Mar - May | Birthdays, policy refresh |
+| **Q3** | Jun - Aug | Mid-year review, referrals |
+| **Q4** | Sep - Nov | Mooncake, hampers, renewals |
+
+*This calendar repeats every year.*
 
 Every client should touch at least one bucket per quarter. Most will touch two. The ones who go a full year without a real touchpoint are the ones who leave for another FC at renewal.
 
@@ -304,7 +301,7 @@ What does the Year-3 version of you look like?
 
 **This is achievable.** It's the 1% compounding daily over 1,095 days.
 
-**The math:** Day 60 you -> Day 1,095 you is roughly 18x more capable. Not 2x. Not 5x. Eighteen times.
+**The math:** Day 60 you to Day 1,095 you is roughly 18x more capable. Not 2x. Not 5x. Eighteen times.
 
 ## 11. The final frame
 

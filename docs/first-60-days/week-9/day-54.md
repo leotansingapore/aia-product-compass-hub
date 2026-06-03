@@ -27,37 +27,10 @@ By the end of today you should be able to:
 
 There's a foundational reason concept selling isn't optional for financial advisory - it's structural to what a financial product *is*:
 
-<div style="margin:1.5rem 0;border:2px solid hsl(var(--foreground));border-radius:6px;overflow:hidden;font-family:ui-serif,Georgia,serif;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;">
-    <!-- Top-left: Property -->
-    <div style="padding:1.25rem 1.5rem;border-right:2px solid hsl(var(--foreground));border-bottom:2px solid hsl(var(--foreground));">
-      <div style="font-size:1.5rem;font-weight:600;letter-spacing:-0.01em;">Property</div>
-    </div>
-    <!-- Top-right: Financial Products -->
-    <div style="padding:1.25rem 1.5rem;border-bottom:2px solid hsl(var(--foreground));">
-      <div style="font-size:1.5rem;font-weight:600;letter-spacing:-0.01em;">Financial Products</div>
-    </div>
-    <!-- Bottom-left: Physical -->
-    <div style="padding:1.25rem 1.5rem;border-right:2px solid hsl(var(--foreground));">
-      <div style="font-size:1.15rem;font-weight:600;margin-bottom:0.65rem;">Physical</div>
-      <div style="font-size:0.95rem;color:hsl(var(--muted-foreground));line-height:1.6;">
-        Can see<br/>
-        Can touch<br/>
-        Can feel
-      </div>
-    </div>
-    <!-- Bottom-right: Conceptual -->
-    <div style="padding:1.25rem 1.5rem;">
-      <div style="font-size:1.15rem;font-weight:600;margin-bottom:0.65rem;">Conceptual</div>
-      <div style="font-size:0.95rem;color:hsl(var(--muted-foreground));line-height:1.6;">
-        Can't listen<br/>
-        Can't hear<br/>
-        Can't see<br/>
-        <span style="font-weight:600;color:hsl(var(--foreground));">Can understand</span>
-      </div>
-    </div>
-  </div>
-</div>
+| | Property | Financial Products |
+|---|---|---|
+| **Nature** | Physical | Conceptual |
+| **How it's grasped** | Can see, can touch, can feel | Can't listen, can't hear, can't see - **but can understand** |
 
 **Read the quadrant carefully.** A house is *physical*. A prospect can walk into it, touch the walls, smell the air, sit in the living room and imagine their own life there. The product sells itself through the senses - see it, touch it, feel it.
 
@@ -84,7 +57,7 @@ Every other technique in this lesson - the three concept frames, the 5-minute st
 **The shift:** you're not selling a product. You're selling a **way of thinking about money** that the product happens to solve.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Product selling<br/>Here is a plan"] --> B["Client evaluates features<br/>Premium, return, payout"]
     B --> C["Feature comparer<br/>Shops competitors"]
     C --> D["Close rate ~15-25%"]
@@ -207,20 +180,7 @@ The three concepts above are the most common. But your real toolkit is broader. 
 
 Keep this table open when you're preparing for a meeting. The right concept is usually the one that matches their current life moment.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- client life moment -> the right concept -</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;">
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Basic Financial Planning</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Any first meeting</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Wedding Budgeting</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Engaged / married</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Home Budgeting . BTO</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Buying first property</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Baby Planning</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Pregnant / new parent</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Wealth Building . CPF</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Working adult</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vi.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Tax Savings</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Taxable income</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Investments</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Savings earning nothing</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">viii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">One Retirement</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Mid-career check-in</div></div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ix.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">GoalsMapper</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Wants full picture</div></div>
-  </div>
-</div>
+_Client life moment, then the right concept._
 
 | # | Solution | Client trigger | What you cover |
 |---|---|---|---|
@@ -264,7 +224,7 @@ Not every meeting needs concept selling.
 - The client is comparison-shopping (concepts beat feature-comparison).
 - You want a referral-quality client (someone who can explain their plan to others).
 
-## 9. The concept -> product handoff
+## 9. The concept-to-product handoff
 
 A clean concept close transitions into product specifics:
 
@@ -285,7 +245,7 @@ There are three mindset shifts under this layer. Most FCs miss at least one.
 
 ### Three shifts
 
-1. **Don't sell products. Sell the transformation.** A product brochure is "here are the features." A transformation pitch is "here's where you are now -> here's where you'll be -> here's how the plan gets you there." Same product, very different conversation.
+1. **Don't sell products. Sell the transformation.** A product brochure is "here are the features." A transformation pitch is "here's where you are now, then here's where you'll be, then here's how the plan gets you there." Same product, very different conversation.
 2. **Tangible problems take tangible solutions. Intangible problems take *you.*** A protection gap is tangible - a product solves it. The anxiety about not being there for the kids is intangible - only the *advisor relationship* solves that. Most FCs only sell to the tangible side and wonder why the close rate stalls.
 3. **Your differentiator is not your product.** Every advisor in Singapore can sell the same plans at similar premiums. What makes a client choose you, refer you, and stay with you for twenty years is **the specific way you work with them** - your process, your reliability, your point of view.
 

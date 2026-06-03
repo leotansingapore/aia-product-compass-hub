@@ -54,14 +54,14 @@ A specific concern that, if addressed, would open a meeting. A real objection co
 - "I already have [specific product] through [other advisor]."
 
 **The distinction matters:**
-- Reflex -> respond with a reframe + ask again.
-- Real -> slow down, ask more, then offer a meeting.
+- Reflex: respond with a reframe, then ask again.
+- Real: slow down, ask more, then offer a meeting.
 
-**The rookie mistake:** treating every objection as a real one -> over-justifying -> losing the prospect.
+**The rookie mistake:** treating every objection as a real one, then over-justifying, then losing the prospect.
 
 ### A finer cut: Type 1 vs Type 2 paradigm-shift
 
-Within reflex objections. Right-question distinguishes two further patterns that need different responses. Day 38 introduced this — read it again here because it's the single biggest determinant of whether the response lands:
+Within reflex objections, the right-question distinguishes two further patterns that need different responses. Day 38 introduced this — read it again here because it's the single biggest determinant of whether the response lands:
 
 - **Type 1 — concept dismissal.** *"I don't believe in insurance"*, *"not in the market"*, *"insurance companies just want my money"*. The prospect is rejecting the *idea*, not your specific ask. **Counter-arguing here deepens the dismissal.** Lead with a curious-question instead — *"Fair, quick one before I respond — what shaped that view for you?"* — and let them tell you what they're actually rejecting before you reframe to the part they raised.
 - **Type 2 — specific concern.** *"Too busy"*, *"no money"*, *"post it out"*, *"already have policies"*. The prospect accepts the concept; they're objecting to *this conversation right now*. The three frameworks below (skip-Q, Feel-Felt-Found, Boomerang) all assume Type 2.
@@ -86,7 +86,7 @@ If you're about to say *"however"*, *"but"*, *"actually"*, or any reframe word �
 
 ### A third pattern you'll meet later - uncertainty-driven objections
 
-Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection - *"too expensive"* -> you rebut cleanly -> *"need to speak to my wife"* -> you rebut -> *"let me compare a bit more"* -> you rebut -> *"bad timing"* -> and so on.
+Once you're past prospecting and into actual pitching (post-fact-find, post-recommendation), a third pattern appears. The prospect raises objection after objection: *"too expensive"*, you rebut cleanly, then *"need to speak to my wife"*, you rebut, then *"let me compare a bit more"*, you rebut, then *"bad timing"*, and so on.
 
 Every rebuttal lands. Nothing closes.
 
@@ -250,11 +250,15 @@ For these, use a **6-touch follow-up sequence** over 12 weeks:
 - **Week 4:** Brief check-in. "Hey [name], saw [trigger event - their promotion, new kid, etc.]. Just wanted to check in - genuinely no agenda."
 - **Week 6:** Another value-add. Maybe a quick question they'd find interesting.
 - **Week 8:** Light ask - "Would it be useful to grab 15 minutes this month?"
-- **Week 12:** Final soft ask. If still no -> move to quarterly touch or archive.
+- **Week 12:** Final soft ask. If still no, move to quarterly touch or archive.
 
 ```mermaid
-flowchart LR
-    W0["Week 0<br/>reflex no"] --> W2["Week 2<br/>value-add"] --> W4["Week 4<br/>check-in"] --> W6["Week 6<br/>value-add"] --> W8["Week 8<br/>light ask"] --> W12["Week 12<br/>soft ask"]
+flowchart TD
+    W0["Week 0<br/>reflex no"] --> W2["Week 2<br/>value-add"]
+    W2 --> W4["Week 4<br/>check-in"]
+    W4 --> W6["Week 6<br/>value-add"]
+    W6 --> W8["Week 8<br/>light ask"]
+    W8 --> W12["Week 12<br/>soft ask"]
 ```
 
 **Why this works:**
@@ -290,6 +294,197 @@ Rejection is cumulative. 50 no's in a week will feel heavier than 5 no's a day -
 - **End the day on a win,** not a rejection. Finish with a warm follow-up, a content task, or a study block - something with a guaranteed completion. The last thing your brain logs is what it carries into tomorrow morning's first dial.
 
 FCs who ignore this get burned out by Month 4 and quit. The ones who last build rejection into their emotional planning - and they hit volume, because volume is the only metric that actually compounds.
+
+---
+
+## Objection-Handling Library
+
+Here are the canonical objection scripts for the situations that come up most. Practise them out loud, then make them yours - the words matter less than the rhythm of acknowledge -> reframe -> ask again.
+
+### Objection taxonomy at a glance
+
+The Academy library covers six objection families. Pick the family first; the script second.
+
+| Family | When you hear it | Default framework | Scripts in this family |
+|---|---|---|---|
+| **Push-away / "not interested"** | First 30 seconds, reflex defence | Framework A (skip-Q or the full right-question diagnostic) | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| **"I already have policies"** | Coverage already in place - basic cover, parent-bought, "comprehensive" | Framework C (Boomerang) | "Already have policies" - free second opinion script (below) |
+| **"I already have someone"** | Existing advisor, family advisor, employer cover | Framework B (Feel-Felt-Found) | "Already have an advisor" objection script |
+| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Framework A (the full right-question diagnostic) | Video-Off objection (Zoom), texting-EQ 4-step framework |
+| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Framework A (the full right-question diagnostic) | Cost of Delay (Pre-Retirees) - paying with time vs money |
+| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Framework A (the full right-question diagnostic) | Recruitment objection handling (telemarketer angle) |
+
+Use the family to pick the right framework, then the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
+
+### "Not interested in insurance"
+
+**Use this when** a prospect throws this in the first 60 seconds of a call - it is almost always a reflex, not a real position.
+
+**Version 1 - redirect to planning**
+
+> Q: "I'm not interested in insurance."
+>
+> A: "I understand where you're coming from. Most people I speak to feel exactly the same and don't want to dig into this until much later. But most people also agree that financial planning is important and worth doing regularly. That's why I'd love to grab a quick 30-minute Zoom call - just to look at your situation and see if there's anything worth planning for. Is [date, time] or [date, time] better for you?"
+
+**Version 2 - pivot to investing**
+
+> Q: "Not interested in insurance."
+>
+> A: "I see - do you do your own investing?"
+>
+> If yes: "What do you invest in? What are some of the struggles or challenges you're facing right now?"
+>
+> If no: "Are you keen to learn more about investments?"
+
+If they're still not interested after both pivots: "I see - can I ask why? No pressure, I just want to understand." Then move them into nurture - send useful resources, keep the relationship warm.
+
+_Source: Academy scripts library._
+
+### "I already have policies"
+
+**Use this when** the prospect says they're already covered - "I have something from when I was younger," "my parents bought one for me," or "I'm fully covered already." Framework C (Boomerang) is the default. Right-question surfaces which sub-flavour you're dealing with.
+
+**Step 1 - Acknowledge + right-question to surface the sub-flavour:**
+
+> "Smart - most people I respect already have something in place. Quick one before I assume - when you say 'already have,' is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
+
+The Right-question buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
+
+**Step 2 - Reframe by sub-flavour:**
+
+| Sub-flavour | The reframe |
+|---|---|
+| **(a) Old plan, never reviewed** | "Quick one - if you had to draw your current cover from memory right now, could you? Most people can't, and that's not carelessness, it's just that policies pile up over time. The 30 minutes I'm asking for is exactly that - you walk me through what you've got, I tell you what I'd flag if it were my own family. **No products on the table that day. Just a free second opinion.** Worth doing?" |
+| **(b) Parent or employer-bought** | "Got it - and you'd be surprised how often the cover that made sense at 25 isn't the cover that makes sense at 32. Parents tend to buy the plan they would've wanted at *your* age, which is usually conservative. Employer cover dies the day you change jobs. Both are good starting points; neither is the finish line. 30 minutes to map yours - Tuesday 7pm or Saturday 10am?" |
+| **(c) Comprehensive, recently reviewed** | "Honestly - then you're already ahead of 80% of the people I speak to. Just one ask: a same-life-stage second opinion never costs you anything, and even on solid plans I usually find one tweak worth $3-5k of value over the lifetime. If I find nothing, you've validated your own work. If I find something, you've made $4k off a coffee. 30 minutes - worth it?" |
+
+**The principle:** never tell the prospect their existing policy is bad. Tell them they own a *policy* and you'd help them turn it into a *plan*. The 30 minutes is positioned as a free second opinion, not a sales conversation.
+
+**The deliverable for the free second opinion** is the canonical Policy Summary deck - the [template](https://docs.google.com/presentation/d/1jSd8ItG4iYoqG15vNucdznF6ui7NbsQj/edit) + a [sample completed summary](https://docs.google.com/presentation/d/1CHEgyoSgNfo7TSARzF75UnlPjHoyUtcy/edit) live in Google Slides. [Day 58](../week-10/day-58.md) covers how to read any insurer's policy docs and build the summary; pre-licence FCs should be running this on 3-5 friends' policies as the highest-leverage practice rep.
+
+_Source: Academy script bank + right-question adaptation._
+
+### "Already have an advisor"
+
+**Use this when** the prospect mentions an existing advisor - family member, long-time agent, employer-tied advisor. Framework B (Feel-Felt-Found) is the default; **never attack the existing advisor.**
+
+**The principle:** complement, don't replace. You're not asking the prospect to fire their aunt; you're offering a same-life-stage second opinion that the existing advisor can't give.
+
+**Script - the family/loyalty version:**
+
+When the prospect says: "My advisor is my aunt so I usually go to her" / "I've been with my advisor for 10 years, all good."
+
+> "Honestly - totally respect that, especially if it's family or someone you've trusted for years. **(Feel)** I get it - swapping advisors can feel like a loyalty thing, and I'd never ask you to do that. **(Felt)** A lot of my clients felt exactly the same when we first met. **(Found)** What they found was that keeping their existing advisor *and* adding me as a same-life-stage second pair of eyes was the actual win - your aunt has the long view of your family, which is irreplaceable. What I bring is a different angle: I'm in your life stage, watching the same products and CPF changes coming out for our generation, and that perspective fades a bit once an advisor is 20 years ahead of you. So no replacement, just a coffee where I share what I'm seeing - and you take what's useful back to your aunt for action. Sound reasonable?"
+
+**Shorter version when rapport is good:**
+
+> "Totally fair. My honest take: most of my clients in your situation kept their existing advisor and added me as a same-life-stage second pair of eyes. They stay the long-view person; I'm the 'what's the new product this year' person. 30-min coffee, no pressure, you walk away with one or two takeaways for whoever you work with. Open to it?"
+
+**The reframe in one line:** you can have *two* advisors. Position yourself as the relatable, same-life-stage one. Position the existing advisor as the long-view mentor. Don't try to replace - complement.
+
+**Watch out:** if the prospect says "my advisor is my best friend's father and we're really close," **drop the ask**. Use the obstinate-objector exit ("if I'm in your neighbourhood I'd love to drop in for a coffee") and walk away with the relationship intact. Forcing this one burns the door.
+
+_Source: Academy scripts library. Reworked from the Academy original to use Feel-Felt-Found explicitly and drop the awkward "I want to advise my own friends better" framing - that line made the FC sound like they were using the prospect for practice rather than helping them._
+
+### Texting EQ 4-Step Framework (for DM/text objections)
+
+**Use this when** the objection arrives via text or DM - phone scripts feel too heavy in writing.
+
+90% of warm outreaches get an objection on the first text. An objection is not a rejection.
+
+**The 4 steps:**
+
+> **Step 1 - Casually acknowledge.** "Hahaha YES I expected you to be not interested - if you were, you would have already texted me first."
+>
+> **Step 2 - Common ground.** "Actually most of my clients also met me without feeling interested, because they didn't know how I plan prior to meeting me."
+>
+> **Step 3 - Different perspective.** "So I want to show you how I improve my clients' returns to complement what you already have."
+>
+> **Step 4 - Make them feel safe (safety valve).** "Then from there you can decide for yourself if it's relevant to you. Sometimes the conclusion is to keep your portfolio unchanged - which is also a valid outcome."
+
+Then add an easy question ("Which days are you usually in the office?") and a personal element ("I haven't seen you in so long anyway, would be fun to catch up").
+
+_Source: Academy scripts library._
+
+### Cost of Delay (Pre-Retirees / Working Adults)
+
+**Use this when** a prospect is delaying a decision, especially in their 40s-50s and the conversation is about retirement or savings. This is a longer, conversational walk - use it when you have the time and rapport.
+
+> "Mr. Prospect, would you agree that retirement in Singapore isn't exactly cheap?" (Yes)
+>
+> "That said, if we're aiming for a comfortable lifestyle in our retirement years, would you say it makes sense that we'll probably need to set aside quite a bit to get there?" (Yes)
+>
+> "Over the years, working with many clients, I've noticed something quite consistent when it comes to building wealth. It really boils down to just two main ingredients - would you like to guess what they might be?" (Let them reply.)
+>
+> "They're time and money. Let me explain - we've seen and built many retirement portfolios over the years. For clients who started saving or investing early, say in their 20s or 30s, they didn't need to set aside a lot each year. A few thousand dollars annually added up over time into six-figure portfolios.
+>
+> "But for those who only started planning later, they had to contribute much more - sometimes tens of thousands - just to catch up.
+>
+> "So in a way, to reach our goals, we're always 'paying' - either with time or with money. The real question is: how much of each are we willing or able to commit today?
+>
+> "And I completely understand if you're still exploring your options - that's perfectly normal. But could it also be that, perhaps without realising, we've already been paying with time by waiting or postponing this? And if that continues, do you think it's possible we might end up needing to contribute even more down the road - or potentially compromise on the lifestyle we're working towards?"
+
+The genius of this one is the binary: time or money, you're paying either way. Most prospects who "want to think" haven't realised they're already paying.
+
+_Source: Academy scripts library._
+
+### Young Adults / NSF - All Objections Bundle
+
+**Use this when** prospecting young-adult or NSF leads (typically Facebook ad opt-ins or telemarketer-set appointments). Each row is a stock objection with the right reply.
+
+**"Not interested"**
+
+> "I understand you may have some concerns. My main intention here is just to help you get a financial headstart. Don't worry - it's a short Zoom session to help you understand more about financial literacy concepts, just 20 mins out of your 24 hours a day. So would [date and time] work?"
+
+**"Is this compulsory?"**
+
+> "No, however most ORD personnel and students who attended this session found it really beneficial right after. It would be useful for you to attend now that you've finished NS. We can set a tentative date - say [date and time]. Which is more convenient for you? Time slots are specially allocated for you so do try to make it."
+
+**"What is the session about?"**
+
+> "It's a session to learn ways you can grow your money faster, so you can gain a headstart in your career compared to your peers. Would [date and time] work better for you?"
+
+**"How did you get my number?"**
+
+> "You actually signed up for an interest form about 2 years back, either during your enlistment or nearing your ORD. Do you still recall? (If they say no:) Oh, many of the other guys do remember signing up for this - but no worries haha." Then go back to setting the time.
+
+**"Which organisation are you calling from?"**
+
+> "I'm calling from AIA - one of the largest financial institutions in Singapore and Asia. We've been in financial services for almost 100 years."
+
+**"Can you send me more details first?"**
+
+> "No worries. I'll send you some info through WhatsApp after this call - just help me reply to the WhatsApp to confirm the timing, okay? Alright, so one last thing - this session is just for you to learn more, and I'm just doing my job..." (Continue with the rest of your script.)
+
+_Source: Academy scripts library._
+
+### Handling ghosting and non-replies
+
+**Use this when** a warm-market contact has gone silent after agreeing to meet, or hasn't replied to your follow-up.
+
+**Playful bump (when they ghost you):**
+
+> "Eh bro... don't ignore me leh HAHA don't like FA just say..."
+
+Usually they reply: "Paiseh bro HAHA damn busy with work."
+
+You: "Me too" - then schedule for a few weeks/months later when both are more free.
+
+**Taking the ball back (when they say "not now"):**
+
+> Prospect: "Not at the moment bro. Maybe when I am on long leave."
+>
+> You: "Okay no worries! Check in with you around November!"
+
+**The principle:** always take the ball back. The right to reschedule stays with you, not the prospect. Set a specific follow-up month so the next move is on your calendar, not their goodwill.
+
+**Gentle re-engage (when they forgot to reply):**
+
+> "Hehe let's catch up and review soon! Next sat/sun we go for a meal?"
+>
+> Then later: "OH YA - actually I just spent an hour studying your case just now. And I wanna show you something my clients were sharing with me. Catch you before the month ends?"
+
+_Source: Academy scripts library._
 
 
 ## Quick quiz
@@ -373,197 +568,6 @@ FCs who ignore this get burned out by Month 4 and quit. The ones who last build 
  - D) Asking who the existing advisor is so you can call them later
 
  **Why:** "Already have an advisor" carries emotional and relationship weight - especially when the existing advisor is family. Feel-Felt-Found is the framework built for that exact load - it acknowledges the loyalty (Feel), names a peer group of clients who shared the same instinct (Felt), and reframes around adding a same-life-stage second pair of eyes rather than replacing anyone (Found). Direct comparison (A) attacks the existing advisor and burns the relationship; product listing (C) does the same; asking for the existing advisor's name (D) is unprofessional and risks being read as predatory.
-
----
-
-## Objection-Handling Library
-
-Here are the canonical objection scripts for the situations that come up most. Practise them out loud, then make them yours - the words matter less than the rhythm of acknowledge -> reframe -> ask again.
-
-### Objection taxonomy at a glance
-
-The Academy library covers six objection families. Pick the family first; the script second.
-
-| Family | When you hear it | Default framework | Scripts in this family |
-|---|---|---|---|
-| **Push-away / "not interested"** | First 30 seconds, reflex defence | Framework A (skip-Q or the full right-question diagnostic) | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
-| **"I already have policies"** | Coverage already in place - basic cover, parent-bought, "comprehensive" | Framework C (Boomerang) | "Already have policies" - free second opinion script (below) |
-| **"I already have someone"** | Existing advisor, family advisor, employer cover | Framework B (Feel-Felt-Found) | "Already have an advisor" objection script |
-| **Format / channel pushback** | "Send me an email", "video off please", "don't want a call" | Framework A (the full right-question diagnostic) | Video-Off objection (Zoom), texting-EQ 4-step framework |
-| **Cost-of-delay / time vs money** | "Let me think", "not the right time", pre-retirees especially | Framework A (the full right-question diagnostic) | Cost of Delay (Pre-Retirees) - paying with time vs money |
-| **Format-specific (recruitment)** | Used when prospecting recruits, not clients | Framework A (the full right-question diagnostic) | Recruitment objection handling (telemarketer angle) |
-
-Use the family to pick the right framework, then the right script. A "send me an email" objection answered with a cost-of-delay frame will miss; a cost-of-delay objection answered with a 4-step text framework will land short.
-
-### "Not interested in insurance"
-
-**Use this when** a prospect throws this in the first 60 seconds of a call - it is almost always a reflex, not a real position.
-
-**Version 1 - redirect to planning**
-
-> Q: "I'm not interested in insurance."
->
-> A: "I understand where you're coming from. Most people I speak to feel exactly the same and don't want to dig into this until much later. But most people also agree that financial planning is important and worth doing regularly. That's why I'd love to grab a quick 30-minute Zoom call - just to look at your situation and see if there's anything worth planning for. Is [date, time] or [date, time] better for you?"
-
-**Version 2 - pivot to investing**
-
-> Q: "Not interested in insurance."
->
-> A: "I see - do you do your own investing?"
->
-> If yes: "What do you invest in? What are some of the struggles or challenges you're facing right now?"
->
-> If no: "Are you keen to learn more about investments?"
-
-If they're still not interested after both pivots: "I see - can I ask why? No pressure, I just want to understand." Then move them into nurture - send useful resources, keep the relationship warm.
-
-_Source: Academy scripts library, audience=general, category=objection-handling._
-
-### "I already have policies"
-
-**Use this when** the prospect says they're already covered - "I have something from when I was younger," "my parents bought one for me," or "I'm fully covered already." Framework C (Boomerang) is the default. Right-question surfaces which sub-flavour you're dealing with.
-
-**Step 1 - Acknowledge + right-question to surface the sub-flavour:**
-
-> "Smart - most people I respect already have something in place. Quick one before I assume - when you say 'already have,' is it: (a) something from when you were younger and you haven't checked it in a while, (b) a plan a parent or employer set up for you, or (c) something you reviewed recently and feel solid about? Just so I don't talk over what you've got."
-
-The Right-question buys you 5 seconds to pick the right reframe. Each sub-flavour gets a different one.
-
-**Step 2 - Reframe by sub-flavour:**
-
-| Sub-flavour | The reframe |
-|---|---|
-| **(a) Old plan, never reviewed** | "Quick one - if you had to draw your current cover from memory right now, could you? Most people can't, and that's not carelessness, it's just that policies pile up over time. The 30 minutes I'm asking for is exactly that - you walk me through what you've got, I tell you what I'd flag if it were my own family. **No products on the table that day. Just a free second opinion.** Worth doing?" |
-| **(b) Parent or employer-bought** | "Got it - and you'd be surprised how often the cover that made sense at 25 isn't the cover that makes sense at 32. Parents tend to buy the plan they would've wanted at *your* age, which is usually conservative. Employer cover dies the day you change jobs. Both are good starting points; neither is the finish line. 30 minutes to map yours - Tuesday 7pm or Saturday 10am?" |
-| **(c) Comprehensive, recently reviewed** | "Honestly - then you're already ahead of 80% of the people I speak to. Just one ask: a same-life-stage second opinion never costs you anything, and even on solid plans I usually find one tweak worth $3-5k of value over the lifetime. If I find nothing, you've validated your own work. If I find something, you've made $4k off a coffee. 30 minutes - worth it?" |
-
-**The principle:** never tell the prospect their existing policy is bad. Tell them they own a *policy* and you'd help them turn it into a *plan*. The 30 minutes is positioned as a free second opinion, not a sales conversation.
-
-**The deliverable for the free second opinion** is the canonical Policy Summary deck - the [template](https://docs.google.com/presentation/d/1jSd8ItG4iYoqG15vNucdznF6ui7NbsQj/edit) + a [sample completed summary](https://docs.google.com/presentation/d/1CHEgyoSgNfo7TSARzF75UnlPjHoyUtcy/edit) live in Google Slides. [Day 58](../week-10/day-58.md) covers how to read any insurer's policy docs and build the summary; pre-licence FCs should be running this on 3-5 friends' policies as the highest-leverage practice rep.
-
-_Source: Academy script bank + right-question adaptation. Audience=warm-market or cold; category=objection-handling._
-
-### "Already have an advisor"
-
-**Use this when** the prospect mentions an existing advisor - family member, long-time agent, employer-tied advisor. Framework B (Feel-Felt-Found) is the default; **never attack the existing advisor.**
-
-**The principle:** complement, don't replace. You're not asking the prospect to fire their aunt; you're offering a same-life-stage second opinion that the existing advisor can't give.
-
-**Script - the family/loyalty version:**
-
-When the prospect says: "My advisor is my aunt so I usually go to her" / "I've been with my advisor for 10 years, all good."
-
-> "Honestly - totally respect that, especially if it's family or someone you've trusted for years. **(Feel)** I get it - swapping advisors can feel like a loyalty thing, and I'd never ask you to do that. **(Felt)** A lot of my clients felt exactly the same when we first met. **(Found)** What they found was that keeping their existing advisor *and* adding me as a same-life-stage second pair of eyes was the actual win - your aunt has the long view of your family, which is irreplaceable. What I bring is a different angle: I'm in your life stage, watching the same products and CPF changes coming out for our generation, and that perspective fades a bit once an advisor is 20 years ahead of you. So no replacement, just a coffee where I share what I'm seeing - and you take what's useful back to your aunt for action. Sound reasonable?"
-
-**Shorter version when rapport is good:**
-
-> "Totally fair. My honest take: most of my clients in your situation kept their existing advisor and added me as a same-life-stage second pair of eyes. They stay the long-view person; I'm the 'what's the new product this year' person. 30-min coffee, no pressure, you walk away with one or two takeaways for whoever you work with. Open to it?"
-
-**The reframe in one line:** you can have *two* advisors. Position yourself as the relatable, same-life-stage one. Position the existing advisor as the long-view mentor. Don't try to replace - complement.
-
-**Watch out:** if the prospect says "my advisor is my best friend's father and we're really close," **drop the ask**. Use the obstinate-objector exit ("if I'm in your neighbourhood I'd love to drop in for a coffee") and walk away with the relationship intact. Forcing this one burns the door.
-
-_Source: Academy scripts library, audience=warm-market, category=objection-handling. Reworked from the Academy original to use Feel-Felt-Found explicitly and drop the awkward "I want to advise my own friends better" framing - that line made the FC sound like they were using the prospect for practice rather than helping them._
-
-### Texting EQ 4-Step Framework (for DM/text objections)
-
-**Use this when** the objection arrives via text or DM - phone scripts feel too heavy in writing.
-
-90% of warm outreaches get an objection on the first text. An objection is not a rejection.
-
-**The 4 steps:**
-
-> **Step 1 - Casually acknowledge.** "Hahaha YES I expected you to be not interested - if you were, you would have already texted me first."
->
-> **Step 2 - Common ground.** "Actually most of my clients also met me without feeling interested, because they didn't know how I plan prior to meeting me."
->
-> **Step 3 - Different perspective.** "So I want to show you how I improve my clients' returns to complement what you already have."
->
-> **Step 4 - Make them feel safe (safety valve).** "Then from there you can decide for yourself if it's relevant to you. Sometimes the conclusion is to keep your portfolio unchanged - which is also a valid outcome."
-
-Then add an easy question ("Which days are you usually in the office?") and a personal element ("I haven't seen you in so long anyway, would be fun to catch up").
-
-_Source: Academy scripts library, audience=warm-market, category=objection-handling._
-
-### Cost of Delay (Pre-Retirees / Working Adults)
-
-**Use this when** a prospect is delaying a decision, especially in their 40s-50s and the conversation is about retirement or savings. This is a longer, conversational walk - use it when you have the time and rapport.
-
-> "Mr. Prospect, would you agree that retirement in Singapore isn't exactly cheap?" (Yes)
->
-> "That said, if we're aiming for a comfortable lifestyle in our retirement years, would you say it makes sense that we'll probably need to set aside quite a bit to get there?" (Yes)
->
-> "Over the years, working with many clients, I've noticed something quite consistent when it comes to building wealth. It really boils down to just two main ingredients - would you like to guess what they might be?" (Let them reply.)
->
-> "They're time and money. Let me explain - we've seen and built many retirement portfolios over the years. For clients who started saving or investing early, say in their 20s or 30s, they didn't need to set aside a lot each year. A few thousand dollars annually added up over time into six-figure portfolios.
->
-> "But for those who only started planning later, they had to contribute much more - sometimes tens of thousands - just to catch up.
->
-> "So in a way, to reach our goals, we're always 'paying' - either with time or with money. The real question is: how much of each are we willing or able to commit today?
->
-> "And I completely understand if you're still exploring your options - that's perfectly normal. But could it also be that, perhaps without realising, we've already been paying with time by waiting or postponing this? And if that continues, do you think it's possible we might end up needing to contribute even more down the road - or potentially compromise on the lifestyle we're working towards?"
-
-The genius of this one is the binary: time or money, you're paying either way. Most prospects who "want to think" haven't realised they're already paying.
-
-_Source: Academy scripts library, audience=working-adult, category=objection-handling._
-
-### Young Adults / NSF - All Objections Bundle
-
-**Use this when** prospecting young-adult or NSF leads (typically Facebook ad opt-ins or telemarketer-set appointments). Each row is a stock objection with the right reply.
-
-**"Not interested"**
-
-> "I understand you may have some concerns. My main intention here is just to help you get a financial headstart. Don't worry - it's a short Zoom session to help you understand more about financial literacy concepts, just 20 mins out of your 24 hours a day. So would [date and time] work?"
-
-**"Is this compulsory?"**
-
-> "No, however most ORD personnel and students who attended this session found it really beneficial right after. It would be useful for you to attend now that you've finished NS. We can set a tentative date - say [date and time]. Which is more convenient for you? Time slots are specially allocated for you so do try to make it."
-
-**"What is the session about?"**
-
-> "It's a session to learn ways you can grow your money faster, so you can gain a headstart in your career compared to your peers. Would [date and time] work better for you?"
-
-**"How did you get my number?"**
-
-> "You actually signed up for an interest form about 2 years back, either during your enlistment or nearing your ORD. Do you still recall? (If they say no:) Oh, many of the other guys do remember signing up for this - but no worries haha." Then go back to setting the time.
-
-**"Which organisation are you calling from?"**
-
-> "I'm calling from AIA - one of the largest financial institutions in Singapore and Asia. We've been in financial services for almost 100 years."
-
-**"Can you send me more details first?"**
-
-> "No worries. I'll send you some info through WhatsApp after this call - just help me reply to the WhatsApp to confirm the timing, okay? Alright, so one last thing - this session is just for you to learn more, and I'm just doing my job..." (Continue with the rest of your script.)
-
-_Source: Academy scripts library, audience=young-adult, category=objection-handling._
-
-### Handling ghosting and non-replies
-
-**Use this when** a warm-market contact has gone silent after agreeing to meet, or hasn't replied to your follow-up.
-
-**Playful bump (when they ghost you):**
-
-> "Eh bro... don't ignore me leh HAHA don't like FA just say..."
-
-Usually they reply: "Paiseh bro HAHA damn busy with work."
-
-You: "Me too" - then schedule for a few weeks/months later when both are more free.
-
-**Taking the ball back (when they say "not now"):**
-
-> Prospect: "Not at the moment bro. Maybe when I am on long leave."
->
-> You: "Okay no worries! Check in with you around November!"
-
-**The principle:** always take the ball back. The right to reschedule stays with you, not the prospect. Set a specific follow-up month so the next move is on your calendar, not their goodwill.
-
-**Gentle re-engage (when they forgot to reply):**
-
-> "Hehe let's catch up and review soon! Next sat/sun we go for a meal?"
->
-> Then later: "OH YA - actually I just spent an hour studying your case just now. And I wanna show you something my clients were sharing with me. Catch you before the month ends?"
-
-_Source: Academy scripts library, audience=warm-market, category=follow-up._
 
 ---
 

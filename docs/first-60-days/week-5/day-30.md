@@ -37,10 +37,10 @@ Examples:
 ## 2. The worked example - DCA in a volatile market
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Fixed amount<br/>$1,000/yr"] --> B{"Price high<br/>or low?"}
-    B -- "Price high" --> C["Buy fewer units<br/>less exposure at peak"]
-    B -- "Price low" --> D["Buy more units<br/>cheap accumulation"]
+    B -->|"Price high"| C["Buy fewer units<br/>less exposure at peak"]
+    B -->|"Price low"| D["Buy more units<br/>cheap accumulation"]
     C --> E["Average cost per unit<br/>lower than average price"]
     D --> E
     E --> F["Portfolio outperforms<br/>emotional investor"]
@@ -91,18 +91,18 @@ Same market, but instead of DCA, you invest $5,000 **in a single lump sum**. Let
 ```mermaid
 flowchart TD
     A["Client has capital to invest"] --> B{"Can reliably time<br/>market bottoms?"}
-    B -- Yes --> C["Lump sum<br/>max upside potential"]
-    B -- No --> D{"Regular income<br/>no market edge?"}
-    D -- Yes --> E["DCA<br/>99% of retail clients"]
-    D -- No --> C
+    B -->|"Yes"| C["Lump sum<br/>max upside potential"]
+    B -->|"No"| D{"Regular income<br/>no market edge?"}
+    D -->|"Yes"| E["DCA<br/>99% of retail clients"]
+    D -->|"No"| C
     E --> F["Predictable positive outcome<br/>removes emotion"]
     C --> G["Best or worst outcome<br/>depends on entry timing"]
 ```
 
 DCA is not free of trade-offs:
 
-**You give up:** the maximum possible return if you happen to lump-sum at the bottom.
-**You get:** protection from lump-summing at the top.
+- **You give up:** the maximum possible return if you happen to lump-sum at the bottom.
+- **You get:** protection from lump-summing at the top.
 
 For most clients who **can't reliably predict market bottoms** (which is most humans, most of the time), DCA's insurance is worth the lost upside.
 
@@ -172,15 +172,12 @@ DCA gets the client *into* the market. **Rebalancing** is what keeps the portfol
 
 Imagine a $100K portfolio set up as **60% equities / 40% bonds**.
 
-```
-Year 0           After 3 strong equity years           After rebalancing
----------        ----------------------------          ------------------
-Equities  $60K   Equities  $96K  (75%)                 Equities  $84K  (60%)
-Bonds     $40K   Bonds     $32K  (25%)                 Bonds     $56K  (40%)
----------        ----------------------------          ------------------
-Total    $100K   Total    $128K                        Total    $140K
-                 Risk profile has DRIFTED              Risk profile is BACK ON SPEC
-```
+| Sleeve | Year 0 | After 3 strong equity years | After rebalancing |
+|---|---|---|---|
+| Equities | $60K | $96K (75%) | $84K (60%) |
+| Bonds | $40K | $32K (25%) | $56K (40%) |
+| Total | $100K | $128K | $140K |
+| Risk profile | On spec | DRIFTED | BACK ON SPEC |
 
 After three strong equity years, the portfolio is now **75% equities** without the client doing anything. Their risk exposure quietly increased. **Rebalancing** sells some of the over-performer (equities) and buys more of the under-performer (bonds), restoring the agreed 60/40 split. Two effects:
 

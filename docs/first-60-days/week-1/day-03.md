@@ -24,33 +24,14 @@ By the end of today you should be able to:
 
 ---
 
-<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
-  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
-    - the four assurances -
-  </div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0;">
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">i.</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Autonomy &amp; Work-Life Balance</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">You set your hours, income, and clients.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">ii.</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Personal Development</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Six capabilities most jobs never build.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">iii.</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Job Security</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Passive income through renewal commissions.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">iv.</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Job Fulfillment</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">The reason people stay 20+ years.</div>
-    </div>
-  </div>
-</div>
+### The four assurances
+
+| Assurance | What it means |
+|---|---|
+| Autonomy & Work-Life Balance | You set your hours, income, and clients. |
+| Personal Development | Six capabilities most jobs never build. |
+| Job Security | Passive income through renewal commissions. |
+| Job Fulfillment | The reason people stay 20+ years. |
 
 ## 1. Autonomy & Work-Life Balance
 
@@ -65,9 +46,9 @@ The trade-off: **autonomy comes bundled with responsibility**. No one will drag 
 
 **What this looks like in practice**
 
-Year 1: Mostly structured (training, shadowing, coaching). You're building the skills.
-Year 2-3: You start deciding your own schedule. Some weeks are brutal; others are genuinely relaxed.
-Year 4+: If the clients you've served are taken care of, you control your calendar. You can block out a month for travel without losing income.
+- **Year 1:** Mostly structured (training, shadowing, coaching). You're building the skills.
+- **Year 2-3:** You start deciding your own schedule. Some weeks are brutal; others are genuinely relaxed.
+- **Year 4+:** If the clients you've served are taken care of, you control your calendar. You can block out a month for travel without losing income.
 
 Contrast this with law, medicine, and audit - careers that structurally demand 50+ hour weeks *for decades.*
 
@@ -104,33 +85,14 @@ Over time, your renewal income gets large enough that it can cover:
 
 **You are financially free when your passive income exceeds your expenses.**
 
-<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
-  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
-    - the path from active income to financial freedom -
-  </div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:0; position:relative;">
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 1-3</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Active sales only</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Income tracks effort. No cushion yet.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 4-6</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Renewals build</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals cover a portion of expenses.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Threshold</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Financially independent</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals cover all expenses.</div>
-    </div>
-    <div style="padding:0.5rem 1.25rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Beyond</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">Financially free</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Renewals exceed expenses. Selling becomes optional.</div>
-    </div>
-  </div>
-</div>
+### The path from active income to financial freedom
+
+```mermaid
+flowchart TD
+    A["Year 1-3: Active sales only<br/>Income tracks effort. No cushion yet."] -->|"renewals start"| B["Year 4-6: Renewals build<br/>Renewals cover a portion of expenses."]
+    B -->|"renewals cover all expenses"| C["Financially independent<br/>Renewals cover all expenses."]
+    C -->|"renewals exceed expenses"| D["Financially free<br/>Selling becomes optional."]
+```
 
 ### Real numbers: what a renewal income actually pays
 
@@ -202,23 +164,12 @@ That comparison is the trap. The honest comparison is Year 5 vs Year 5. By then:
 
 **The lesson:** evaluate this career on a 5-year horizon, not a 1-year one. Most FCs who quit in Year 1 didn't fail at the work — they failed at picking the right window to judge it by.
 
-<div style="margin:2rem 0; border-top:1px solid hsl(var(--border)); border-bottom:1px solid hsl(var(--border)); padding:1.75rem 0;">
-  <div style="text-align:center; font-family:ui-serif,Georgia,serif; font-style:italic; font-size:13px; color:hsl(var(--muted-foreground)); margin-bottom:1.5rem; letter-spacing:0.02em;">
-    - the honest comparison: not Year 1, but Year 5 -
-  </div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0;">
-    <div style="padding:0.5rem 1.5rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 1 - the trap</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">FC income below peer fixed salary</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Commission-based, inconsistent. Easy to misread as failure.</div>
-    </div>
-    <div style="padding:0.5rem 1.5rem; border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif; font-style:italic; font-size:12px; color:hsl(var(--muted-foreground)); margin-bottom:0.35rem;">Year 5 - the truth</div>
-      <div style="font-size:14px; font-weight:600; color:hsl(var(--foreground)); margin-bottom:0.35rem;">FC 2-4x starting income + passive renewals</div>
-      <div style="font-size:12.5px; color:hsl(var(--muted-foreground)); line-height:1.5;">Peers up 10-20% on starting salary. Compounding has begun.</div>
-    </div>
-  </div>
-</div>
+### The honest comparison: not Year 1, but Year 5
+
+| | The FC | The picture |
+|---|---|---|
+| **Year 1 - the trap** | FC income below peer fixed salary | Commission-based, inconsistent. Easy to misread as failure. |
+| **Year 5 - the truth** | FC 2-4x starting income + passive renewals | Peers up 10-20% on starting salary. Compounding has begun. |
 
 
 ## Quick quiz

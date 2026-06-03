@@ -28,28 +28,14 @@ By the end of today you should be able to:
 
 You already saw this on Day 10. Today you lock it in.
 
-<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:6px;">
-  <div style="width:46%;min-width:260px;background:linear-gradient(135deg,hsl(262,83%,55%),hsl(262,83%,68%));color:white;padding:14px 18px;border-radius:10px 10px 4px 4px;box-shadow:0 4px 12px hsl(262,83%,55%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 4</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Legacy</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Estate planning . generational transfer</div>
-  </div>
-  <div style="width:64%;min-width:300px;background:linear-gradient(135deg,hsl(160,84%,35%),hsl(160,84%,45%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(160,84%,35%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.85;font-weight:600;">LEVEL 3</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Wealth Accumulation</div>
-    <div style="font-size:12px;opacity:0.9;margin-top:2px;">Investments . CPF . ILPs . endowments</div>
-  </div>
-  <div style="width:82%;min-width:340px;background:linear-gradient(135deg,hsl(38,92%,45%),hsl(38,92%,55%));color:white;padding:14px 18px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,45%,0.25);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 2</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Short-Term Savings</div>
-    <div style="font-size:12px;opacity:0.95;margin-top:2px;">Emergency fund: 3-6 months expenses</div>
-  </div>
-  <div style="width:100%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:18px 18px;border-radius:4px 4px 12px 12px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.12em;opacity:0.9;font-weight:600;">LEVEL 1 . FOUNDATION</div>
-    <div style="font-weight:700;font-size:16px;margin-top:2px;">Risk Management</div>
-    <div style="font-size:12.5px;opacity:0.95;margin-top:2px;">Insurance: Death/TPD . CI . Hospital</div>
-  </div>
-</div>
+The pyramid is built from the bottom up - Level 1 is the widest foundation, Level 4 the narrow top:
+
+| Level | Name | What sits here |
+|---|---|---|
+| Level 4 | Wealth Legacy | Estate planning, generational transfer |
+| Level 3 | Wealth Accumulation | Investments, CPF, ILPs, endowments |
+| Level 2 | Short-Term Savings | Emergency fund: 3-6 months expenses |
+| Level 1 (foundation) | Risk Management | Insurance: Death/TPD, CI, Hospital |
 
 **The non-negotiable rule:** you cannot permanently build a level above without the level below. Any plan that does so is a tower on sand.
 

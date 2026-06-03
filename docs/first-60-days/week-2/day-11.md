@@ -34,31 +34,6 @@ Day 9 showed *what happens* to a dollar once it lands in someone's hands. Three 
 
 Every dollar of income on earth comes from one of these four boxes. Stripped to the bones:
 
-<div style="margin:1.5rem 0;font-family:system-ui,sans-serif;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
-    <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(217,30%,40%);">Active Income<div style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;margin-top:2px;">trade time for money</div></div>
-    <div style="text-align:center;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:hsl(160,40%,35%);">Passive Income<div style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;margin-top:2px;">money works for you</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-    <div style="background:hsl(217,91%,97%);border:1px solid hsl(217,91%,85%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:14px 16px;">
-      <div style="font-weight:700;font-size:15px;color:hsl(217,91%,35%);margin-bottom:6px;">E - Employee</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(217,20%,25%);">Works for someone else.<br/>Income = hours x rate.<br/><span style="opacity:0.75;">Tax: highest.</span></div>
-    </div>
-    <div style="background:hsl(160,84%,96%);border:1px solid hsl(160,60%,80%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:14px 16px;">
-      <div style="font-weight:700;font-size:15px;color:hsl(160,84%,25%);margin-bottom:6px;">B - Business owner</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(160,20%,20%);">Owns a system that others operate.<br/><span style="opacity:0.75;">Tax: best structures.</span></div>
-    </div>
-    <div style="background:hsl(38,95%,96%);border:1px solid hsl(38,90%,80%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:14px 16px;">
-      <div style="font-weight:700;font-size:15px;color:hsl(28,80%,35%);margin-bottom:6px;">S - Self-employed</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(28,25%,22%);">Works for themselves.<br/>Income = hours x rate (usually higher).<br/><span style="opacity:0.75;">Tax: high.</span></div>
-    </div>
-    <div style="background:hsl(262,83%,97%);border:1px solid hsl(262,70%,85%);border-left:4px solid hsl(262,83%,58%);border-radius:8px;padding:14px 16px;">
-      <div style="font-weight:700;font-size:15px;color:hsl(262,70%,40%);margin-bottom:6px;">I - Investor</div>
-      <div style="font-size:13px;line-height:1.55;color:hsl(262,20%,22%);">Money generates money.<br/>Dividends, rent, capital gains.<br/><span style="opacity:0.75;">Tax: favoured.</span></div>
-    </div>
-  </div>
-</div>
-
 **E (Employee):** 90% of the world's workforce. Predictable. Low autonomy. Capped income. Taxed the hardest.
 
 **S (Self-employed):** Freelancers, doctors in own practice, solo consultants. Higher income per hour, but **you are still the product.** If you stop, income stops.
@@ -69,37 +44,12 @@ Every dollar of income on earth comes from one of these four boxes. Stripped to 
 
 **The compounding truth:** most wealth is built in the right-hand column. Most paycheques come from the left.
 
-<div style="margin:1.5rem 0;font-family:system-ui,sans-serif;max-width:560px;">
-  <div style="display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto;gap:8px;align-items:stretch;">
-    <div></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:hsl(220,15%,45%);">
-      <div style="text-align:center;">Active income<div style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;">trade time</div></div>
-      <div style="text-align:center;">Passive income<div style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;">money works</div></div>
-    </div>
-    <div style="writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:hsl(220,15%,45%);display:flex;flex-direction:column;justify-content:space-around;padding:8px 0;">
-      <span>Owns system</span>
-      <span>Works for others</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;border:2px solid hsl(220,15%,85%);border-radius:10px;overflow:hidden;background:white;">
-      <div style="padding:18px;border-right:1px solid hsl(220,15%,90%);border-bottom:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(38,95%,97%),hsl(38,95%,93%));">
-        <div style="font-weight:700;font-size:14px;color:hsl(28,80%,35%);">S - Self-employed</div>
-        <div style="font-size:11px;color:hsl(28,25%,40%);margin-top:4px;line-height:1.4;">Owns a job. You are the product.</div>
-      </div>
-      <div style="padding:18px;border-bottom:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(160,70%,96%),hsl(160,70%,90%));">
-        <div style="font-weight:700;font-size:14px;color:hsl(160,84%,25%);">B - Business owner</div>
-        <div style="font-size:11px;color:hsl(160,30%,30%);margin-top:4px;line-height:1.4;">System runs without you.</div>
-      </div>
-      <div style="padding:18px;border-right:1px solid hsl(220,15%,90%);background:linear-gradient(135deg,hsl(217,91%,97%),hsl(217,91%,92%));">
-        <div style="font-weight:700;font-size:14px;color:hsl(217,91%,35%);">E - Employee</div>
-        <div style="font-size:11px;color:hsl(217,30%,35%);margin-top:4px;line-height:1.4;">Trades hours for a paycheque.</div>
-      </div>
-      <div style="padding:18px;background:linear-gradient(135deg,hsl(262,83%,97%),hsl(262,83%,92%));">
-        <div style="font-weight:700;font-size:14px;color:hsl(262,70%,40%);">I - Investor</div>
-        <div style="font-size:11px;color:hsl(262,25%,35%);margin-top:4px;line-height:1.4;">Capital does the work.</div>
-      </div>
-    </div>
-  </div>
-</div>
+The same four quadrants, laid out on the two axes that define them - active vs. passive income (the columns), and working for others vs. owning a system (the rows):
+
+| | Active income (trade time) | Passive income (money works) |
+|---|---|---|
+| **Works for others** | **E - Employee** — trades hours for a paycheque | **I - Investor** — capital does the work |
+| **Owns a system** | **S - Self-employed** — owns a job; you are the product | **B - Business owner** — system runs without you |
 
 ## 2. Where this career lives
 
@@ -171,34 +121,16 @@ Three things make recruitment a Day-1 mindset, not a Year-3 decision:
 2. **The warm-market window is widest right now.** Your friends, ex-colleagues, cousins, and university contacts haven't yet heard a recruitment pitch from another advisor. In Year 3 they'll have heard several. Today they're hearing it from someone whose career they're curious about.
 3. **It's more fun to build a team with people you already like.** Working alongside friends compounds in a way working alongside strangers never quite does. Late-night joint preparations, shared wins, group chat banter - these only happen when the team includes people whose company you'd choose anyway.
 
-Re-framed sequence:
+Re-framed sequence - recruitment as a long-horizon foundation:
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;letter-spacing:0.02em;">- recruitment as a long-horizon foundation -</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;">
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 1+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Refer warm-market early</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Source candidates. Upline + system carry the deeper conversations and training.</div>
-    </div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 3+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Run the recruit conversation yourself</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Personal rhythm stable. You can now coach the early weeks of someone else's journey.</div>
-    </div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 5+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Small-team mentoring</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">3-6 productive associates. Overrides carry the slow personal months.</div>
-    </div>
-    <div style="padding:0 16px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">Year 10+</div>
-      <div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Full agency leadership</div>
-      <div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.5;">Mentoring is the primary work. Overrides are a major part of income.</div>
-    </div>
-  </div>
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:1.25rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.6;">Recruitment isn't a switch you flip later. It's a foundation you start laying on Week 1 - by simply <em>referring</em>, while the system carries what you can't yet carry yourself.</div>
-</div>
+| Stage | What you do | What it looks like |
+|---|---|---|
+| **Year 1+** | Refer warm-market early | Source candidates. Upline and system carry the deeper conversations and training. |
+| **Year 3+** | Run the recruit conversation yourself | Personal rhythm stable. You can now coach the early weeks of someone else's journey. |
+| **Year 5+** | Small-team mentoring | 3-6 productive associates. Overrides carry the slow personal months. |
+| **Year 10+** | Full agency leadership | Mentoring is the primary work. Overrides are a major part of income. |
+
+> Recruitment isn't a switch you flip later. It's a foundation you start laying on Week 1 - by simply *referring*, while the system carries what you can't yet carry yourself.
 
 You're not committing to becoming an agency leader on Day 1. You're just acknowledging that **the team layer takes years to compound - and the earliest action is the lightest one: introducing people you'd genuinely want to work with, and letting the system do the rest.**
 
@@ -232,8 +164,9 @@ Every policy you sell well is a vote for your future B. Every dollar invested fr
 You don't need to quit anything. You just need to start shifting the mix.
 
 ```mermaid
-flowchart LR
-    NOW["Today<br/>100% E/S"] -->|"Build renewal"| Y5["Year 5<br/>S/B/I mix"] -->|"Scale + invest"| Y20["Year 20<br/>balanced mix"]
+flowchart TD
+    NOW["Today<br/>100% E/S"] -->|"Build renewal"| Y5["Year 5<br/>S/B/I mix"]
+    Y5 -->|"Scale + invest"| Y20["Year 20<br/>balanced mix"]
 ```
 
 

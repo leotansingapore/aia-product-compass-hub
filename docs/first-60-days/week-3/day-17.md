@@ -43,9 +43,9 @@ Call it **mindset capital.** It compounds the same way money does, except most p
 
 The most common reason new FCs underperform their potential isn't laziness. It's a **vague target.**
 
-*"I want to do well this year."*
-*"I'd like to hit MDRT eventually."*
-*"I'm aiming to grow my income."*
+- *"I want to do well this year."*
+- *"I'd like to hit MDRT eventually."*
+- *"I'm aiming to grow my income."*
 
 These aren't goals. They are **wishes pretending to be goals.** Wishes don't move you out of bed at 6am or off the sofa at 9pm.
 

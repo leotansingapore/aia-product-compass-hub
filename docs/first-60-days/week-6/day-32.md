@@ -51,7 +51,7 @@ The last column shows how many **doublings** fit in 40 years, which roughly maps
 
 **Without touching this money, how much will it be at age 65?**
 
-- 4% -> doubles every 18 years.
+- 4%, doubles every 18 years.
 - 65 - 35 = 30 years.
 - 30 / 18 ~ **1.67 doublings.**
 - $50,000 x 2^1.67 ~ $50,000 x 3.18 ~ **$159,000.**
@@ -59,8 +59,8 @@ The last column shows how many **doublings** fit in 40 years, which roughly maps
 **Quick cross-check with the calculator:** $50,000 x (1.04)^30 ~ **$162,170.** Close enough for a conversation.
 
 ```mermaid
-flowchart LR
-    A["Age 35<br/>$50,000"] -->|"18 yrs . 4%"| B["Age 53<br/>~$100,000<br/>(1 doubling)"]
+flowchart TD
+    A["Age 35<br/>$50,000"] -->|"18 yrs at 4%"| B["Age 53<br/>~$100,000<br/>(1 doubling)"]
     B -->|"12 more yrs<br/>(partial)"| C["Age 65<br/>~$162,000<br/>(1.67 doublings)"]
 ```
 
@@ -72,11 +72,11 @@ You can make this calculation in your head during a meeting. Most clients have n
 
 **Your client worries about inflation.** "If inflation is 2%, what will things cost in 30 years?"
 
-- 2% -> doubles every 36 years.
+- 2%, doubles every 36 years.
 - 30 / 36 ~ **0.83 doublings.**
 - Prices ~1.8x today's.
-- **$5 kopi today -> ~$9 kopi in 30 years.**
-- **$5,000/month expenses today -> $9,000/month in 30 years.**
+- **$5 kopi today becomes ~$9 kopi in 30 years.**
+- **$5,000/month expenses today becomes $9,000/month in 30 years.**
 
 ### The insight for the client
 
@@ -88,7 +88,7 @@ Inflation isn't abstract. It's a doubling mechanism. Every 36 years at 2% inflat
 
 **Client, kid age 8, target university at age 21.** Cost today for a 4-year Australian business degree: **$100,000.** Education inflation runs higher than general inflation - assume **8% p.a.**
 
-- 8% -> doubles every 9 years.
+- 8%, doubles every 9 years.
 - 21 - 8 = 13 years away.
 - 13 / 9 ~ **1.44 doublings.**
 - $100,000 x 2^1.44 ~ $100,000 x 2.72 ~ **$272,000.**
@@ -107,10 +107,10 @@ Education inflation is the silent killer of mid-career parents. Most parents und
 
 **In real terms, what will $500K be worth to their family 30 years from now?**
 
-- 3% inflation -> doubles prices every 24 years.
+- 3% inflation, doubles prices every 24 years.
 - 30 / 24 ~ **1.25 doublings.**
 - Prices x 2.38.
-- **$500K today -> ~$210,000 in today's-purchasing-power in 30 years.**
+- **$500K today is worth ~$210,000 in today's purchasing power in 30 years.**
 
 ### The insight for the client
 
@@ -124,9 +124,9 @@ The Rule of 72 is the single most powerful tool for showing a client the cost of
 
 ```mermaid
 flowchart TD
-    A["Start now at 30<br/>6% . 35 yrs to 65"] --> B["Full retirement pot<br/>100%"]
-    C["Wait until 35<br/>6% . 30 yrs to 65"] --> D["~75% of full pot<br/>25% permanently lost"]
-    B & D --> E["Same monthly contribution<br/>same rate . different start"]
+    A["Start now at 30<br/>6% over 35 yrs to 65"] --> B["Full retirement pot<br/>100%"]
+    C["Wait until 35<br/>6% over 30 yrs to 65"] --> D["~75% of full pot<br/>25% permanently lost"]
+    B & D --> E["Same monthly contribution<br/>same rate, different start"]
 ```
 
 **Client, 30, says: "I'll start investing in 5 years when I'm more settled."**
@@ -155,19 +155,18 @@ After 60 days, this becomes reflex. You'll find yourself doing it during client 
 
 Post this table next to your monitor:
 
-<div style="margin:1.5rem 0;background:hsl(var(--muted)/0.4);border:1px solid hsl(var(--border));border-radius:12px;padding:18px;">
-  <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(var(--muted-foreground));text-transform:uppercase;margin-bottom:12px;text-align:center;">Rule of 72 . Years to double</div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-    <div style="background:hsl(0,72%,96%);border:1px solid hsl(0,72%,80%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(0,72%,40%);letter-spacing:0.05em;">2%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">36y</div></div>
-    <div style="background:hsl(0,72%,96%);border:1px solid hsl(0,72%,80%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(0,72%,40%);letter-spacing:0.05em;">3%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">24y</div></div>
-    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(38,92%,38%);letter-spacing:0.05em;">4%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">18y</div></div>
-    <div style="background:hsl(38,92%,96%);border:1px solid hsl(38,92%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(38,92%,38%);letter-spacing:0.05em;">5%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">14y</div></div>
-    <div style="background:hsl(160,84%,94%);border:2px solid hsl(160,84%,40%);border-radius:8px;padding:10px;text-align:center;position:relative;"><div style="font-size:11px;font-weight:700;color:hsl(160,84%,28%);letter-spacing:0.05em;">6% . CPF OA</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">12y</div></div>
-    <div style="background:hsl(160,84%,94%);border:1px solid hsl(160,84%,60%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(160,84%,28%);letter-spacing:0.05em;">7%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">10y</div></div>
-    <div style="background:hsl(217,91%,95%);border:1px solid hsl(217,91%,70%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(217,91%,42%);letter-spacing:0.05em;">8%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">9y</div></div>
-    <div style="background:hsl(262,83%,96%);border:1px solid hsl(262,83%,75%);border-radius:8px;padding:10px;text-align:center;"><div style="font-size:11px;font-weight:700;color:hsl(262,83%,48%);letter-spacing:0.05em;">9%</div><div style="font-size:20px;font-weight:800;color:hsl(var(--foreground));">8y</div></div>
-  </div>
-</div>
+**Rule of 72 - years to double**
+
+| Rate | Years to double |
+|---|---|
+| 2% | 36y |
+| 3% | 24y |
+| 4% | 18y |
+| 5% | 14y |
+| 6% (CPF OA) | 12y |
+| 7% | 10y |
+| 8% | 9y |
+| 9% | 8y |
 
 See it daily for 10 days. It becomes permanent.
 

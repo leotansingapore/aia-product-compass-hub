@@ -144,42 +144,18 @@ Start stupid small. Momentum handles the rest.
 
 ---
 
-<div style="border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.25rem 0;margin:1.5rem 0;">
-  <div style="font-family:ui-serif,serif;font-style:italic;text-transform:uppercase;letter-spacing:0.12em;font-size:11px;color:hsl(var(--muted-foreground));margin-bottom:1rem;">The Sunday ritual . 30 minutes</div>
-  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;align-items:stretch;">
-    <div style="padding:0 0.85rem 0 0;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">01</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Sit down</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">SUN . 30 MIN</div>
-    </div>
-    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">02</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Review last week</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">ACTIVITY . PIPELINE</div>
-    </div>
-    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">03</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Pick 3 priorities</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">SPECIFIC . MEASURABLE</div>
-    </div>
-    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">04</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Block calendar first</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">PEAK HOURS DEFENDED</div>
-    </div>
-    <div style="padding:0 0.85rem;border-right:1px solid hsl(var(--border));">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--muted-foreground));">05</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Protect one evening</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">NON-NEGOTIABLE</div>
-    </div>
-    <div style="padding:0 0 0 0.85rem;">
-      <div style="font-family:ui-serif,serif;font-size:32px;line-height:1;color:hsl(var(--foreground));">06</div>
-      <div style="margin-top:0.6rem;font-family:ui-serif,serif;font-size:15px;line-height:1.3;">Monday - start</div>
-      <div style="margin-top:0.4rem;font-size:11px;color:hsl(var(--muted-foreground));">FIRST PEAK BLOCK</div>
-    </div>
-  </div>
-  <div style="margin-top:1rem;font-size:12px;color:hsl(var(--muted-foreground));font-style:italic;">30 minutes on Sunday protects 168 hours of the coming week.</div>
-</div>
+### The Sunday ritual (30 minutes)
+
+```mermaid
+flowchart TD
+    A["Sit down<br/>Sun, 30 min"] --> B["Review last week<br/>Activity, pipeline"]
+    B --> C["Pick 3 priorities<br/>Specific, measurable"]
+    C --> D["Block calendar first<br/>Peak hours defended"]
+    D --> E["Protect one evening<br/>Non-negotiable"]
+    E --> F["Monday: start<br/>First peak block"]
+```
+
+_30 minutes on Sunday protects 168 hours of the coming week._
 
 ---
 

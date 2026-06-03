@@ -434,8 +434,8 @@ flowchart TD
     A --> B["Death<br/>Family loses income"]
     A --> C["Living disability / illness<br/>Can't earn, still alive"]
     A --> D["Medical expense<br/>Bills to pay"]
-    B --> B1["Term . Whole Life"]
-    C --> C1["CI rider . Disability Income"]
+    B --> B1["Term, Whole Life"]
+    C --> C1["CI rider, Disability Income"]
     D --> D1["Integrated Shield<br/>+ Rider"]
 ```
 
@@ -525,7 +525,7 @@ Many clients assume **company hospital benefits** are enough. They're not:
 
 - Company plans end when employment ends.
 - Coverage levels are often inadequate for private treatment.
-- Once left, reapplying for personal coverage at an older age -> higher premiums, possible exclusions.
+- Once left, reapplying for personal coverage at an older age means higher premiums, possible exclusions.
 
 **Rule:** recommend personal hospital coverage that's portable and independent of employment. Always.
 
@@ -587,22 +587,18 @@ Traditional protection paid out mainly at death. Modern plans emphasise **living
 
 No single product covers everything. A well-structured client has **layered** protection:
 
-```
-Layer 1: Term (high coverage, time-bound)     - massive coverage at low cost during high-need years
-Layer 2: Whole Life (permanent baseline)        - lifelong protection + cash value + CI rider
-Layer 3: Integrated Shield + Rider              - hospital bills covered
-Layer 4: Disability Income                      - income continues if you can't work
-Layer 5: Specific riders (accident, multi-pay CI) - for specific exposures
-```
+- **Layer 1: Term** (high coverage, time-bound) - massive coverage at low cost during high-need years
+- **Layer 2: Whole Life** (permanent baseline) - lifelong protection + cash value + CI rider
+- **Layer 3: Integrated Shield + Rider** - hospital bills covered
+- **Layer 4: Disability Income** - income continues if you can't work
+- **Layer 5: Specific riders** (accident, multi-pay CI) - for specific exposures
 
 ```mermaid
-flowchart BT
-    L5["Layer 5 . Specific riders<br/>Accident . Multi-pay CI"]
-    L4["Layer 4 . Disability Income<br/>Income if unable to work"]
-    L3["Layer 3 . Shield + Rider<br/>Hospital bills covered"]
-    L2["Layer 2 . Whole Life + CI<br/>Permanent cover + cash value"]
-    L1["Layer 1 . Term<br/>Max cover . low cost . time-bound"]
-    L1 --> L2 --> L3 --> L4 --> L5
+flowchart TD
+    L1["Layer 1: Term<br/>Max cover, low cost, time-bound"] --> L2["Layer 2: Whole Life + CI<br/>Permanent cover + cash value"]
+    L2 --> L3["Layer 3: Shield + Rider<br/>Hospital bills covered"]
+    L3 --> L4["Layer 4: Disability Income<br/>Income if unable to work"]
+    L4 --> L5["Layer 5: Specific riders<br/>Accident, Multi-pay CI"]
 ```
 
 **Total coverage can reach 20-30x annual income, with CI + hospital + disability all covered.** Client cost: typically $500-$1,500/month for a family breadwinner.

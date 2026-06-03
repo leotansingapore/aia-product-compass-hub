@@ -73,18 +73,6 @@ Read that last row carefully. **$10,000 compounded at 9% over 40 years = $314,00
 
 ## 3. The Rule of 72 - the advisor's shortcut
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:0.35rem;">years to double =</div>
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-size:22px;color:hsl(var(--foreground));margin-bottom:1.25rem;letter-spacing:-0.01em;">72 / <span style="font-style:italic;">rate</span></div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:0;">
-    <div style="padding:6px 14px;border-left:1px solid hsl(var(--border));text-align:center;"><div style="font-family:ui-serif,Georgia,serif;font-size:24px;color:hsl(var(--foreground));line-height:1;letter-spacing:-0.02em;">2<span style="font-size:14px;color:hsl(var(--muted-foreground));">%</span></div><div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:6px;">36 yrs</div></div>
-    <div style="padding:6px 14px;border-left:1px solid hsl(var(--border));text-align:center;"><div style="font-family:ui-serif,Georgia,serif;font-size:24px;color:hsl(var(--foreground));line-height:1;letter-spacing:-0.02em;">4<span style="font-size:14px;color:hsl(var(--muted-foreground));">%</span></div><div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:6px;">18 yrs</div></div>
-    <div style="padding:6px 14px;border-left:1px solid hsl(var(--border));text-align:center;"><div style="font-family:ui-serif,Georgia,serif;font-size:24px;color:hsl(var(--foreground));line-height:1;letter-spacing:-0.02em;">6<span style="font-size:14px;color:hsl(var(--muted-foreground));">%</span></div><div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:6px;">12 yrs</div></div>
-    <div style="padding:6px 14px;border-left:1px solid hsl(var(--border));text-align:center;"><div style="font-family:ui-serif,Georgia,serif;font-size:24px;color:hsl(var(--foreground));line-height:1;letter-spacing:-0.02em;">8<span style="font-size:14px;color:hsl(var(--muted-foreground));">%</span></div><div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:6px;">9 yrs</div></div>
-    <div style="padding:6px 14px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));text-align:center;"><div style="font-family:ui-serif,Georgia,serif;font-size:24px;color:hsl(var(--foreground));line-height:1;letter-spacing:-0.02em;">12<span style="font-size:14px;color:hsl(var(--muted-foreground));">%</span></div><div style="font-family:ui-serif,Georgia,serif;font-style:italic;font-size:12px;color:hsl(var(--muted-foreground));margin-top:6px;">6 yrs</div></div>
-  </div>
-</div>
-
 You'll need to project compound growth in client meetings *without* a calculator. Use the Rule of 72:
 
 > **Years to double = 72 / interest rate**
@@ -108,13 +96,10 @@ You'll need to project compound growth in client meetings *without* a calculator
 ## 4. The early-start premium
 
 ```mermaid
-flowchart LR
-    subgraph Alice ["Alice - starts age 25"]
-        A1["Age 25-35<br/>$500/mo, $60K in"] --> A2["Age 35-65<br/>just compounds"] --> A3["Age 65<br/>~$500K"]
-    end
-    subgraph Bob ["Bob - starts age 35"]
-        B1["Age 35-65<br/>$500/mo, $180K in"] --> B2["Age 65<br/>~$470K"]
-    end
+flowchart TD
+    A1["Alice: age 25-35<br/>$500/mo, $60K in"] --> A2["Age 35-65<br/>just compounds"]
+    A2 --> A3["Age 65<br/>~$500K"]
+    B1["Bob: age 35-65<br/>$500/mo, $180K in"] --> B2["Age 65<br/>~$470K"]
 ```
 
 Compounding rewards time more than anything else.

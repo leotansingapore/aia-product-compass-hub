@@ -42,22 +42,6 @@ By the end of today you should be able to:
 
 **Why this matters:** non-recurring income is inherently unstable. You have to re-sell every month. Recurring income is inherently stable. You sell once and the same customer pays again and again, if the service is kept up.
 
-```mermaid
-flowchart LR
-    subgraph NR["Non-Recurring"]
-        NR1["One transaction<br/>one payment"]
-        NR2["Must re-sell<br/>every month"]
-        NR3["Business value<br/>1-2x revenue"]
-    end
-    subgraph R["Recurring"]
-        R1["One decision<br/>many payments over time"]
-        R2["Sell once<br/>customer pays again and again"]
-        R3["Business value<br/>5-10x revenue"]
-    end
-    NR1 --> NR2 --> NR3
-    R1 --> R2 --> R3
-```
-
 ## 2. The subscription economy is everywhere
 
 Think about the businesses you already pay:
@@ -144,40 +128,16 @@ This is why **being scared off by a small first-year case is one of the most exp
 
 ## 5. The flip side - what kills a renewal income
 
-```mermaid
-flowchart TD
-    subgraph Kill["What kills renewals"]
-        K1["Over-sold clients<br/>premiums unsustainable"]
-        K2["Poor product fit<br/>client surrenders later"]
-        K3["No service touchpoints<br/>client moves advisor"]
-    end
-    subgraph Keep["What keeps renewals"]
-        P1["Honest fit<br/>premiums client can sustain"]
-        P2["Annual touchpoints<br/>birthday call, review, claims"]
-        P3["Life-stage updates<br/>new baby, new job"]
-    end
-    K1 -->|"lapse + clawback"| Loss["Lost renewal income"]
-    K2 --> Loss
-    K3 --> Loss
-    P1 --> Gain["Compounding renewal income"]
-    P2 --> Gain
-    P3 --> Gain
-    style Loss fill:#7f1d1d,color:#fca5a5
-    style Gain fill:#14532d,color:#86efac
-```
-
-
-
 Renewal income isn't guaranteed. A policy cancelled early, lapsed, or surrendered produces:
 - Zero future renewal commission.
 - Clawback of first-year commission (often).
 - Reputation damage if multiple policies drop.
 
 **What kills renewals:**
-1. **Over-sold clients** - premiums they can't sustain -> lapsed policy.
-2. **Poor fit products** - client realises later it's wrong -> surrenders.
-3. **No service** - client doesn't feel the relationship -> moves advisor.
-4. **Advisor disappears** - leaves the industry -> clients orphaned.
+1. **Over-sold clients** - premiums they can't sustain, then a lapsed policy.
+2. **Poor fit products** - client realises later it's wrong, then surrenders.
+3. **No service** - client doesn't feel the relationship, then moves advisor.
+4. **Advisor disappears** - leaves the industry, then clients orphaned.
 
 **What keeps renewals:**
 1. **Honest fit** - premiums the client can sustain even in bad years.

@@ -41,8 +41,10 @@ People who make it in a skill-based career are almost always people with strong 
 These three are non-negotiable. Install them now, so they're already running by the time you're licensed and in front of prospects.
 
 ```mermaid
-flowchart LR
-    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>15-min opening"] --> C["Friday<br/>10-min wrap"] --> A
+flowchart TD
+    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>15-min opening"]
+    B --> C["Friday<br/>10-min wrap"]
+    C --> A
 ```
 
 ### Sunday - the 30-minute review

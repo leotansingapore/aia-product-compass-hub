@@ -234,8 +234,8 @@ The "we help a lot of people with insurance planning, do you think you'd be inte
 
 | Script type | What the prospect hears |
 |---|---|
-| Generic | "Random person wants to sell me something I haven't asked about." -> No |
-| Pinpoint | "Someone wants to help me with the exact thing I've been worrying about." -> Maybe |
+| Generic | "Random person wants to sell me something I haven't asked about." then No |
+| Pinpoint | "Someone wants to help me with the exact thing I've been worrying about." then Maybe |
 
 #### The 4-step pinpoint script
 
@@ -243,7 +243,7 @@ The "we help a lot of people with insurance planning, do you think you'd be inte
 
 Don't open with "I'm an insurance / financial advisor." Open with *who you specifically help and what they typically struggle with.*
 
-> Hey [name], I work with a lot of [your-target-group - e.g. fresh grads, young parents, SME owners] on [the problem they typically have - e.g. growing their first $X, structuring retirement, getting their kids' education funded].
+> Hey [name], I work with a lot of [your-target-group - e.g. fresh grads, young parents, SME owners] on [the problem they typically have - e.g. growing their first savings, structuring retirement, getting their kids' education funded].
 
 For a fresh-grad audience, the typical pinpoint isn't "do you have insurance?" - it's "how do I grow my money" / "how do I retire well" / "I want a side hustle." Lead with that.
 
@@ -262,9 +262,9 @@ The same logic works for retirement ("done any retirement planning?"), kids ("st
 
 **Step 3 - Drill one level deeper to make the pinpoint specific.**
 
-If they say "I'm investing already, but only $300/month - I'm scared to lose it" -> the pinpoint is **fear of loss**, not lack of capital.
+If they say "I'm investing already, but only $300/month - I'm scared to lose it", then the pinpoint is **fear of loss**, not lack of capital.
 
-If they say "I haven't started - don't know where to begin" -> the pinpoint is **starting friction**, not affordability.
+If they say "I haven't started - don't know where to begin", then the pinpoint is **starting friction**, not affordability.
 
 **Whatever they tell you is the agenda for the Zoom.** Not what you wish were the agenda. Not what your product solves best. *Their* answer.
 
@@ -571,6 +571,46 @@ Both end at the same 30-minute appointment. The choice is about the contact's pr
 
 ---
 
+## Scripts Library
+
+The warm-market survey, cold-call flow, and objection handling are already inlined above. Here are two extra scripts from the Academy library that round out the day - the post-call text after a survey-led appointment, and the meeting confirmation sequence.
+
+### Post-Call Text - Working Adult Consultation Confirmed
+
+**Use this when** you've finished a market-survey call and the prospect agreed to a follow-up meeting. Send within 30 minutes of hanging up.
+
+> "Hey [name] - really enjoyed our chat just now. As we discussed, we'll meet on [day, date, time] over [Zoom / your office / coffee shop].
+>
+> Two things to bring along: (1) any existing policy docs you've got - either a screenshot or PDF is fine, doesn't have to be neat; (2) a rough mental note of what your monthly cash inflows / outflows look like. We don't need exact numbers, just ballpark.
+>
+> Anything you want me to prep on my end before we meet, just text me. See you on [day]!"
+
+The two-things-to-bring framing primes them for the fact-find without making it sound like homework.
+
+_Source: Academy scripts library._
+
+### Pre-Zoom Confirmation Text (Fact-Finding, All Audiences)
+
+**Use this when** the meeting is on Zoom and you want it to actually happen. Three touches: D-1 evening, morning of, 30 minutes before.
+
+**D-1 evening:**
+
+> "Hey [name] - looking forward to our chat tomorrow at [time]. Here's the Zoom link: [link]. See you then!"
+
+**Morning of:**
+
+> "Morning [name]! Just confirming we're still on for [time] today. Same Zoom link from yesterday's message."
+
+**30 minutes before:**
+
+> "Hi [name] - jumping into the Zoom in a bit. See you at [time]!"
+
+No-show rate drops by roughly half when all three confirmations land. Worth the 90 seconds it takes to send them.
+
+_Source: Academy scripts library._
+
+---
+
 ## Quick quiz
 
 1. **The warm-market survey approach is positioned to the prospect as:**
@@ -647,46 +687,6 @@ Both end at the same 30-minute appointment. The choice is about the contact's pr
  - D) Leave it to the prospect to suggest a time
 
  **Why:** Two specific options create a binary decision - the prospect chooses between Tuesday and Thursday, not between "yes" and "no." Open-ended asks (A) create decision fatigue and invite delay. A single option (B) feels like a demand and removes their sense of control. Leaving it to them (D) gives them an easy way to defer indefinitely.
-
----
-
-## Scripts Library
-
-The warm-market survey, cold-call flow, and objection handling are already inlined above. Here are two extra scripts from the Academy library that round out the day - the post-call text after a survey-led appointment, and the meeting confirmation sequence.
-
-### Post-Call Text - Working Adult Consultation Confirmed
-
-**Use this when** you've finished a market-survey call and the prospect agreed to a follow-up meeting. Send within 30 minutes of hanging up.
-
-> "Hey [name] - really enjoyed our chat just now. As we discussed, we'll meet on [day, date, time] over [Zoom / your office / coffee shop].
->
-> Two things to bring along: (1) any existing policy docs you've got - either a screenshot or PDF is fine, doesn't have to be neat; (2) a rough mental note of what your monthly cash inflows / outflows look like. We don't need exact numbers, just ballpark.
->
-> Anything you want me to prep on my end before we meet, just text me. See you on [day]!"
-
-The two-things-to-bring framing primes them for the fact-find without making it sound like homework.
-
-_Source: Academy scripts library, audience=working-adult, category=confirmation._
-
-### Pre-Zoom Confirmation Text (Fact-Finding, All Audiences)
-
-**Use this when** the meeting is on Zoom and you want it to actually happen. Three touches: D-1 evening, morning of, 30 minutes before.
-
-**D-1 evening:**
-
-> "Hey [name] - looking forward to our chat tomorrow at [time]. Here's the Zoom link: [link]. See you then!"
-
-**Morning of:**
-
-> "Morning [name]! Just confirming we're still on for [time] today. Same Zoom link from yesterday's message."
-
-**30 minutes before:**
-
-> "Hi [name] - jumping into the Zoom in a bit. See you at [time]!"
-
-No-show rate drops by roughly half when all three confirmations land. Worth the 90 seconds it takes to send them.
-
-_Source: Academy scripts library, audience=general, category=confirmation._
 
 ---
 

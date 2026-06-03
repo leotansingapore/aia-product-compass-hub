@@ -76,11 +76,11 @@ Goals are binary (you hit it or you don't). Systems are durable (they keep produ
 A mechanical way to install any habit or kill any bad one. Four laws, in order:
 
 ```mermaid
-flowchart LR
-    A["1 . Cue<br/>Make it obvious"] --> B["2 . Craving<br/>Make it attractive"]
-    B --> C["3 . Response<br/>Make it easy"]
-    C --> D["4 . Reward<br/>Make it satisfying"]
-    D -->|reinforces the cue| A
+flowchart TD
+    A["1. Cue<br/>Make it obvious"] --> B["2. Craving<br/>Make it attractive"]
+    B --> C["3. Response<br/>Make it easy"]
+    C --> D["4. Reward<br/>Make it satisfying"]
+    D -->|"reinforces the cue"| A
 ```
 
 ### To create a good habit

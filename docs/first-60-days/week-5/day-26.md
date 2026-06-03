@@ -129,7 +129,7 @@ This is the counterbalance to 10X. You can't 10X junk activity and expect result
 Volume x important = compounding results.
 Volume x unimportant = churn.
 
-**The weekly filter question:** "If I did 10X volume of ___ for 60 days, would my business be visibly different?" If yes -> 10X it. If no -> rethink the activity before scaling it.
+**The weekly filter question:** "If I did 10X volume of ___ for 60 days, would my business be visibly different?" If yes, 10X it. If no, rethink the activity before scaling it.
 
 ## 6. Recovery - what to do when you miss a day
 

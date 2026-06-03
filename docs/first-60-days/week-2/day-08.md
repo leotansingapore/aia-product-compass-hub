@@ -39,32 +39,26 @@ Few careers score well on all 5. This one has the architecture to, **if you buil
 
 ## 2. The earning pattern - why Year 3 matters
 
-Here is the single most important chart a new FC must internalise.
+Here is the single most important chart a new FC must internalise: FC income versus a corporate peer over time. The corporate peer's income stays roughly flat. The FC's income starts below the peer, crosses over, then compounds year after year.
 
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.75rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.5rem;">- FC vs corporate peer . income over time -</div>
-  <div style="position:relative;height:220px;display:flex;align-items:flex-end;gap:10px;padding:0 8px 28px 32px;border-left:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));">
-    <div style="position:absolute;left:-18px;top:-2px;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11px;color:hsl(var(--muted-foreground));">$</div>
-    <div style="position:absolute;right:0;bottom:-22px;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11px;color:hsl(var(--muted-foreground));">time -></div>
-    <div style="position:absolute;left:32px;right:8px;top:65%;border-top:1px dashed hsl(var(--muted-foreground)/0.5);"><span style="position:absolute;right:0;top:-18px;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11px;color:hsl(var(--muted-foreground));background:hsl(var(--background));padding:0 6px;">corporate peer (flat)</span></div>
-    <div style="flex:1;height:18%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y1</span></div>
-    <div style="flex:1;height:32%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y2</span></div>
-    <div style="flex:1;height:48%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:11px;color:hsl(var(--foreground));white-space:nowrap;">^ compounding</span><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y3</span></div>
-    <div style="flex:1;height:62%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y4</span></div>
-    <div style="flex:1;height:74%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y5</span></div>
-    <div style="flex:1;height:84%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y6</span></div>
-    <div style="flex:1;height:92%;background:hsl(var(--foreground)/0.85);position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y7</span></div>
-    <div style="flex:1;height:100%;background:hsl(var(--foreground));position:relative;"><span style="position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-family:ui-serif,Georgia,serif;font-style:italic;font-size:10.5px;color:hsl(var(--muted-foreground));">y8</span></div>
-  </div>
-</div>
+| Year | FC income trajectory |
+|---|---|
+| Y1 | Below the corporate peer (the slow ramp) |
+| Y2 | Closing the gap |
+| Y3 | Crossover, and compounding begins |
+| Y4 | Pulling ahead |
+| Y5 | Gap widening |
+| Y6 | Gap widening further |
+| Y7 | Compounding accelerates |
+| Y8 | Well above the (flat) corporate peer |
 
 **What this chart shows:**
 
 - Year 1: You earn less than your corporate peer. This is the trap - most people quit here.
 - Year 2: You catch up. Many careers cross over around here.
 - Year 3+: The curve bends. You pull ahead, and the gap widens every year because of two compounding forces:
- 1. **Skill compounding** - better prospecting + sales = more income per hour worked.
- 2. **Passive income** - renewal commissions from prior clients show up regardless of what you do this month.
+  1. **Skill compounding** - better prospecting + sales = more income per hour worked.
+  2. **Passive income** - renewal commissions from prior clients show up regardless of what you do this month.
 
 **The honest framing:** if you evaluate this career on Year 1 income, you will quit. If you evaluate it on Year 5+, you will stay.
 
@@ -84,8 +78,10 @@ By Year 3 half your income is already passive. By Year 10 roughly **two-thirds**
 > Run the live numbers for your own assumed production at the **Income Layers - Detailed** view in the Engage Point Play tool.
 
 ```mermaid
-flowchart LR
-    Y1["Year 1<br/>below peer"] --> Y2["Year 2-3<br/>crossover"] --> Y3["Year 3+<br/>compounding"] --> Y5["Year 5+<br/>renewal income"]
+flowchart TD
+    Y1["Year 1<br/>below peer"] --> Y2["Year 2-3<br/>crossover"]
+    Y2 --> Y3["Year 3+<br/>compounding"]
+    Y3 --> Y5["Year 5+<br/>renewal income"]
 ```
 
 ## 3. Why income guarantees exist - and what they really are
@@ -117,18 +113,6 @@ Most new FCs obsess about **effort** (hours worked, calls made). The ones who br
 | **Review cadence** | Sunday 30-min review of the week's reps + next week's plan |
 
 You can work 60 hours a week with poor infrastructure and stay broke. You can work 35 hours a week with good infrastructure and outperform them.
-
-<div style="margin:2rem 0;border-top:1px solid hsl(var(--border));border-bottom:1px solid hsl(var(--border));padding:1.5rem 0;">
-  <div style="text-align:center;font-family:ui-serif,Georgia,serif;font-style:italic;font-size:13px;color:hsl(var(--muted-foreground));margin-bottom:1.25rem;">- infrastructure, the quiet multiplier -</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;">
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">i.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">CRM discipline</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Note every meeting within 24h</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">ii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Content system</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">One post per week, repeatable</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iii.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Referral workflow</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Ask within 60 days of close</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">iv.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Study rhythm</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Fixed weekly product + SPIN time</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">v.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Mentor access</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Weekly 1-1 with agenda</div></div>
-    <div style="padding:0 18px;border-left:1px solid hsl(var(--border));border-right:1px solid hsl(var(--border));"><div style="font-family:ui-serif,Georgia,serif;font-size:11px;font-style:italic;color:hsl(var(--muted-foreground));margin-bottom:6px;">vi.</div><div style="font-size:14px;font-weight:600;color:hsl(var(--foreground));margin-bottom:3px;letter-spacing:-0.01em;">Review cadence</div><div style="font-size:12.5px;color:hsl(var(--muted-foreground));line-height:1.45;">Sunday 30-min week review</div></div>
-  </div>
-</div>
 
 ## 5. Impact is the part no one talks about
 

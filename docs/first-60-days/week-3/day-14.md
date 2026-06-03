@@ -45,8 +45,9 @@ For a 30-year-old earning $100K/year with 30 working years left, Human Capital i
 Building wealth is one repeated motion: convert Human Capital into Financial Capital, and protect both halves while you do it.
 
 ```mermaid
-flowchart LR
-    HC["Human Capital<br/>earning power"] -->|"earn, save,<br/>invest"| FC["Financial Capital<br/>working for you"] -->|"compounds"| HC2["More options<br/>over time"]
+flowchart TD
+    HC["Human Capital<br/>earning power"] -->|"earn, save,<br/>invest"| FC["Financial Capital<br/>working for you"]
+    FC -->|"compounds"| HC2["More options<br/>over time"]
 ```
 
 Four steps, on loop, for 30+ years:
@@ -96,7 +97,7 @@ The TWFPS organises every client plan around four pillars - three to protect Hum
 | **Disability Income** *(optional add-on)* | Long-term inability to work that doesn't meet the TPD bar (losing one limb, partial disability) | Pays roughly **70% of monthly income** during the disability period | Quoted via iResource |
 | **Investment & Savings** | Inflation eroding the converted Financial Capital | Global balanced strategy (not Singapore-only, not all equities, not all bonds) | Separate budget - see Section 7 |
 
-The first five pillars defend the Human-Capital -> Financial-Capital conversion. Investment & Savings is what makes the converted capital actually grow faster than inflation.
+The first five pillars defend the Human-Capital to Financial-Capital conversion. Investment & Savings is what makes the converted capital actually grow faster than inflation.
 
 **Sequence matters.** When you walk a prospect through this in a real meeting, start at **Hospital**, not Death. Hospital is the cheapest, the most claimable, and the foundation every other event passes through. Once they nod at Hospital, Accident is the easy next yes, then CI, then Life. Leading with Death/TPD frontloads the heaviest premium and the most uncomfortable conversation - both kill momentum.
 
@@ -118,7 +119,7 @@ Almost everyone answers **Human Capital** correctly. That's the opening - they'v
 Pause. Let it land.
 
 ### Step 4 - Point at the arrow (1 min)
-Point at the arrow on the slide running from Human Capital -> Financial Capital, labelled **earn, spend less, save, invest**.
+Point at the arrow on the slide running from Human Capital to Financial Capital, labelled **earn, spend less, save, invest**.
 
 > "Building wealth is just this loop, repeated for 30 years. Earn more, spend less than you earn, save the difference, invest it. The arrow is the engine."
 

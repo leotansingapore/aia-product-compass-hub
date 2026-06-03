@@ -140,23 +140,23 @@ Each question forces the prospect to map the story onto their own life. The stor
 
 ## 4. The 6P story structure - visual map
 
-<div style="margin:1.5rem 0;display:flex;flex-direction:column;gap:6px;">
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(217,91%,96%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(217,91%,45%);min-width:28px;">1</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(217,91%,38%);">PROSPECT</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus, 34, tech, two kids..." <span style="opacity:0.65;font-size:12px;">[who we're talking about]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(38,92%,96%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(38,92%,40%);min-width:28px;">2</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(38,92%,38%);">PROBLEM</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Never bothered to review CI..." <span style="opacity:0.65;font-size:12px;">[the mistake]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(0,72%,96%);border-left:4px solid hsl(0,72%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(0,72%,45%);min-width:28px;">3</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(0,72%,42%);">PAIN</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Wife diagnosed. Gap in coverage..." <span style="opacity:0.65;font-size:12px;">[the emotional hit]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,94%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,28%);min-width:28px;">4</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,25%);">PROMISE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"A 2-hour review fixed it..." <span style="opacity:0.65;font-size:12px;">[your solution exists]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(160,84%,92%);border-left:4px solid hsl(160,84%,32%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(160,84%,22%);min-width:28px;">5</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(160,84%,22%);">PROOF</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Marcus told me later..." <span style="opacity:0.65;font-size:12px;">[testimonial-style]</span></div></div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="display:flex;align-items:stretch;gap:10px;background:hsl(262,83%,96%);border-left:4px solid hsl(262,83%,55%);border-radius:8px;padding:12px 14px;"><div style="font-size:18px;font-weight:800;color:hsl(262,83%,48%);min-width:28px;">6</div><div style="flex:1;"><div style="font-weight:700;font-size:13px;letter-spacing:0.05em;color:hsl(262,83%,42%);">PURPOSE</div><div style="font-size:13.5px;color:hsl(var(--foreground));margin-top:2px;">"Don't wait until you need it..." <span style="opacity:0.65;font-size:12px;">[the universal lesson]</span></div></div></div>
-</div>
+| Step | Example line | What it does |
+|---|---|---|
+| **1. Prospect** | "Marcus, 34, tech, two kids..." | Who we're talking about |
+| **2. Problem** | "Never bothered to review CI..." | The mistake |
+| **3. Pain** | "Wife diagnosed. Gap in coverage..." | The emotional hit |
+| **4. Promise** | "A 2-hour review fixed it..." | Your solution exists |
+| **5. Proof** | "Marcus told me later..." | Testimonial-style |
+| **6. Purpose** | "Don't wait until you need it..." | The universal lesson |
 
 ```mermaid
-flowchart LR
-    P1["1 . Prospect"] --> P2["2 . Problem"] --> P3["3 . Pain"] --> P4["4 . Promise"] --> P5["5 . Proof"] --> P6["6 . Purpose"] --> CTA["Client asks:<br/>what about me?"]
+flowchart TD
+    P1["1. Prospect"] --> P2["2. Problem"]
+    P2 --> P3["3. Pain"]
+    P3 --> P4["4. Promise"]
+    P4 --> P5["5. Proof"]
+    P5 --> P6["6. Purpose"]
+    P6 --> CTA["Client asks:<br/>what about me?"]
 ```
 
 **The payoff:** after the story, the client is primed to ask "so what would that look like for me?" - which is precisely the transition you want.
@@ -208,10 +208,10 @@ Every FC should have a rotating library of 10-15 personal stories. Build yours o
 
 Most new FCs tell stories that are too long. The compression drill:
 
-**Step 1:** Write a full version of a 6P story (300-400 words).
-**Step 2:** Compress to 200 words without losing the emotional arc.
-**Step 3:** Compress to 100 words.
-**Step 4:** Compress to 60 seconds of spoken word.
+1. **Step 1:** Write a full version of a 6P story (300-400 words).
+2. **Step 2:** Compress to 200 words without losing the emotional arc.
+3. **Step 3:** Compress to 100 words.
+4. **Step 4:** Compress to 60 seconds of spoken word.
 
 Each compression forces clarity. By version 4, you have a story tight enough to use in a live meeting without losing the prospect.
 

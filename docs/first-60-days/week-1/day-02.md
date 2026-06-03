@@ -77,26 +77,26 @@ Every risk can be handled one of three ways. Most people default to the wrong on
 
 ### 1. Avoid risk
 You change your behaviour to not face the risk at all.
-- Don't smoke -> reduces lung cancer risk.
-- Cross at the overhead bridge -> reduces road accident risk.
-- Don't go into debt -> reduces bankruptcy risk.
+- Don't smoke, then lung cancer risk drops.
+- Cross at the overhead bridge, then road accident risk drops.
+- Don't go into debt, then bankruptcy risk drops.
 
 Good for **small, avoidable** risks.
 
 ### 2. Retain risk
 You accept the risk and set money aside to handle it yourself.
-- Temporary loss of income -> 3-6 months emergency fund.
-- Minor car repair -> build it into your monthly budget.
-- Phone replacement -> sinking fund.
+- Temporary loss of income, handled by a 3-6 month emergency fund.
+- Minor car repair, built into your monthly budget.
+- Phone replacement, covered by a sinking fund.
 
 Good for **small-to-medium risks you can self-insure** without going broke.
 
 ### 3. Transfer risk
 You pay someone else (an insurer) to take the risk off your balance sheet.
-- Death -> life insurance.
-- Critical illness -> critical illness insurance.
-- Hospitalisation -> health insurance.
-- Accident -> accident insurance.
+- Death, covered by life insurance.
+- Critical illness, covered by critical illness insurance.
+- Hospitalisation, covered by health insurance.
+- Accident, covered by accident insurance.
 
 Good for **catastrophic risks** that would destroy your financial life if they occurred.
 
@@ -153,8 +153,9 @@ The textbook objection — *"I'll save the premium and invest it instead"* — f
 You'll use this three-layer model in every client conversation for the rest of your career:
 
 ```mermaid
-flowchart LR
-    L1["Layer 1<br/>Risk Management"] --> L2["Layer 2<br/>Wealth Accumulation"] --> L3["Layer 3<br/>Wealth Preservation"]
+flowchart TD
+    L1["Layer 1<br/>Risk Management"] --> L2["Layer 2<br/>Wealth Accumulation"]
+    L2 --> L3["Layer 3<br/>Wealth Preservation"]
 ```
 
 A client who jumps to Layer 2 without Layer 1 is investing on a foundation that hasn't been built. One uncovered event — a CI diagnosis, a serious accident — forces them to liquidate the investments at exactly the worst time. Your job is to explain the order without shaming them and without selling.

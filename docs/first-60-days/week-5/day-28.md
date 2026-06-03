@@ -88,13 +88,13 @@ Getting signs wrong is the #1 cause of TVM errors. Treat it strictly.
 ## 4. Financial calculators - the tool
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Know 4 variables"] --> B{"Which to solve?"}
-    B -- "What rate am I getting?" --> C["Solve for i"]
-    B -- "How much to save monthly?" --> D["Solve for PMT"]
-    B -- "What lump sum do I need now?" --> E["Solve for PV"]
-    B -- "What will this grow to?" --> F["Solve for FV"]
-    B -- "How many years to goal?" --> G["Solve for n"]
+    B -->|"What rate am I getting?"| C["Solve for i"]
+    B -->|"How much to save monthly?"| D["Solve for PMT"]
+    B -->|"What lump sum do I need now?"| E["Solve for PV"]
+    B -->|"What will this grow to?"| F["Solve for FV"]
+    B -->|"How many years to goal?"| G["Solve for n"]
     C --> H["BGN or END mode?"]
     D --> H
     E --> H
@@ -127,19 +127,19 @@ Plus two modes:
 TVM problems run in two directions. You'll use both daily.
 
 **Forward (Future Value):**
-> "I invest $X today for Y years at Z% - what do I end up with?"
+> "I invest a sum today for a set number of years at a given rate - what do I end up with?"
 - Input: PV, n, i (and PMT if you're contributing periodically)
 - Output: FV
 
 **Backward (Present Value):**
-> "I want $X in Y years at Z% - how much do I need today?"
+> "I want a target sum in a set number of years at a given rate - how much do I need today?"
 - Input: FV, n, i
 - Output: PV
 
 Most retirement and education planning runs **backward.** Clients know the target (retirement income, college tuition), and need to know **what to do today.**
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["PV (today)"] -->|"x (1+i)^n<br/>Forward"| B["FV (future)"]
     B -->|"/ (1+i)^n<br/>Discounting"| A
 ```
@@ -237,8 +237,8 @@ Most clients have a choice: pay a large lump sum once, or pay smaller regular pr
 
 ### When discounting matters for clients
 
-1. **Goal planning:** "$500K for my kid's education in 18 years" -> discount back to know the required contribution today.
-2. **Comparing options:** "Take $500K lump sum at retirement, or $30K/year for 20 years?" -> discount both to today's dollars and compare.
+1. **Goal planning:** "$500K for my kid's education in 18 years", then discount back to know the required contribution today.
+2. **Comparing options:** "Take $500K lump sum at retirement, or $30K/year for 20 years?", then discount both to today's dollars and compare.
 3. **Business valuation:** the reason most businesses are valued using DCF (discounted cash flow).
 4. **Insurance payouts:** a $500K death benefit in 30 years has a PV of only ~$175K today at 4%. Important when comparing term vs permanent insurance.
 
@@ -287,7 +287,7 @@ For most client conversations, the simplified version is fine. For technical wor
 
 **The rule of thumb for Singapore clients:** assume 2% inflation on living expenses. Anything returning less than 2% real is losing purchasing power.
 
-## 11. Time horizon -> reasonable rate assumption
+## 11. Time horizon to reasonable rate assumption
 
 New FCs sometimes quote aggressive rates (e.g., 8% for all scenarios). This creates two problems:
 
@@ -530,7 +530,7 @@ flowchart TD
 
 1. **12 years** (72 / 6).
 2. **$40K** - at 4%, doubles every 18 years; 36 years = 2 doublings = 4x = $40K.
-3. **No** - at 2% inflation, prices double every 36 years. In 72 years, prices have doubled twice -> 4x higher. $100 will buy what **$25 buys today.**
+3. **No** - at 2% inflation, prices double every 36 years. In 72 years, prices have doubled twice, so 4x higher. $100 will buy what **$25 buys today.**
 
 </details>
 

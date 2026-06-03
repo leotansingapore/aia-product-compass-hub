@@ -37,10 +37,10 @@ When you open the Product Selection page on your iPad (via iPos), you'll see pro
 | **Disability** | Monthly income if unable to work | Varies |
 | **Accident & Health** | Medical treatment coverage, hospital plans, accident plans | Usually no |
 
-**Rule:** don't memorise plan names first. Learn the category -> use case mapping. Plan names follow.
+**Rule:** don't memorise plan names first. Learn the category-to-use-case mapping. Plan names follow.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["AIA<br/>Catalogue"] --> B["Investment-Linked"]
     A --> C["Whole Life"]
     A --> D["Endowment"]
@@ -167,7 +167,7 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 
 ## 5. Universal Life - the high-leverage option
 
-**Purpose:** life insurance with an investment component, offering high **leverage** (small premium -> large death benefit).
+**Purpose:** life insurance with an investment component, offering high **leverage** (small premium, large death benefit).
 
 ### How it works
 
@@ -217,10 +217,10 @@ Your daily product workflow:
 4. **Prepare your proposal** (Day 59) with both options.
 5. **Present** using concept selling (Day 54) - concept first, then product.
 
-**The pattern:** category -> concept -> specific plan -> illustration -> client decision.
+**The pattern:** category, then concept, then specific plan, then illustration, then client decision.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Client need<br/>(from CFR)"] --> B["Category"]
     B --> C["Concept deck<br/>(iResource)"]
     C --> D["Specific plan<br/>(iPos)"]

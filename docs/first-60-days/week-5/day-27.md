@@ -31,14 +31,14 @@ By the end of today you should be able to:
 **Activities x Skills x Knowledge = FYC (First-Year Commission)**
 
 ```mermaid
-flowchart LR
-    A["Activities<br/>outreach . meetings<br/>content . referrals"] --> FYC["FYC"]
-    B["Skills<br/>close rate . apt ratio<br/>avg premium"] --> FYC
-    C["Knowledge<br/>products . CPF . tax<br/>case studies"] --> FYC
+flowchart TD
+    A["Activities<br/>outreach, meetings<br/>content, referrals"] --> FYC["FYC"]
+    B["Skills<br/>close rate, apt ratio<br/>avg premium"] --> FYC
+    C["Knowledge<br/>products, CPF, tax<br/>case studies"] --> FYC
     FYC --> D{"Weakest link?"}
-    D -- "Low activity" --> E["Do more - see Day 26"]
-    D -- "Low skill" --> F["More reps + mentor feedback"]
-    D -- "Low knowledge" --> G["30-60 min/day study block"]
+    D -->|"Low activity"| E["Do more, see Day 26"]
+    D -->|"Low skill"| F["More reps + mentor feedback"]
+    D -->|"Low knowledge"| G["30-60 min/day study block"]
 ```
 
 This is the most important formula in the career.
@@ -92,11 +92,11 @@ Tracked as:
 ## 3. The "FYC x 4 in first 90 days" benchmark
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["First 90 days<br/>e.g. $30K FYC"] --> B["Year 1<br/>foundation"]
     B --> C["Year 2-3<br/>skills compound"]
     C --> D["Year 4<br/>~4x = $120K"]
-    A -- "sets the trajectory" --> D
+    A -->|"sets the trajectory"| D
 ```
 
 A specific target worth internalising:
@@ -142,9 +142,9 @@ Rough industry benchmarks for a Year 1 FC (varies by market):
 
 | Ratio | Acceptable | Good | Great |
 |---|---:|---:|---:|
-| Outreach -> Appointment | 1 in 25 | 1 in 15 | 1 in 10 |
-| Appointment -> Meeting held | 1 in 2 | 2 in 3 | 3 in 4 |
-| Meeting -> Close | 1 in 5 | 1 in 3 | 1 in 2 |
+| Outreach to appointment | 1 in 25 | 1 in 15 | 1 in 10 |
+| Appointment to meeting held | 1 in 2 | 2 in 3 | 3 in 4 |
+| Meeting to close | 1 in 5 | 1 in 3 | 1 in 2 |
 | Average premium per close | $150/mo | $250/mo | $400+/mo |
 
 Your ratios will start closer to "acceptable" and improve over months. **That improvement is the career.**
@@ -158,7 +158,7 @@ Your ratios will start closer to "acceptable" and improve over months. **That im
 | Factor | Metric | Score |
 |---|---|---|
 | Activity | 80 outreaches/week | 8/10 |
-| Skill | Meeting -> close ratio 1 in 10 | 3/10 |
+| Skill | Meeting-to-close ratio 1 in 10 | 3/10 |
 | Knowledge | CMFAS pass, limited product depth | 5/10 |
 
 **Diagnosis:** skill is the weakest link. Activity is strong; knowledge is adequate; but the close rate is dragging.

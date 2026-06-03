@@ -153,7 +153,7 @@ Most people have life insurance (often from a parent's time). Few have CI. Even 
 
 ### Gap 2: Inadequate hospital coverage
 - Company plan only, ends with employment.
-- Standard coverage without rider -> $5K+ out-of-pocket per claim.
+- Standard coverage without rider, then $5K+ out-of-pocket per claim.
 - No private-tier coverage.
 
 ### Gap 3: Zero disability income
@@ -194,7 +194,7 @@ Some gaps you fix by *adding* a product. Others are signals that the entire port
 
 **What you'll see:** One large whole-life plan from 8-15 years ago, with CI rider attached. Looks comprehensive at first glance.
 
-**The hidden problem:** **the CI rider is *accelerated***. When CI is claimed, the death/TPD coverage is reduced or eliminated by the same amount. Claim $300K CI on a $500K whole-life → death cover drops to $200K. If the policy terminates, the cash value also drops to zero.
+**The hidden problem:** **the CI rider is *accelerated***. When CI is claimed, the death/TPD coverage is reduced or eliminated by the same amount. Claim $300K CI on a $500K whole-life, then death cover drops to $200K. If the policy terminates, the cash value also drops to zero.
 
 **The restructure:** the cleaner architecture is **decoupled** - SFT for pure death/TPD (cheap, high sum), UCC for pure CI (multi-claim, doesn't cannibalise life cover), and a pure ILP (PLP or PWV) for accumulation. Three jobs, three products. Each does its job without compromising the others. Whether to keep or surrender the existing whole-life depends on cash-value math (see [Day 55 next-60-days](/learning-track/next-60-days/day/55) - the cash-value trap).
 
@@ -278,7 +278,7 @@ You'll see 5 gaps. Pick the top 1-2 for Year 1. The others can be addressed in f
 
 Instead: "There's a CI gap. Given your age and family history, it's worth addressing - here's how we'd do it, within your budget."
 
-## 8. Policy review -> long-term relationship
+## 8. Policy review to long-term relationship
 
 A well-done policy review often produces:
 

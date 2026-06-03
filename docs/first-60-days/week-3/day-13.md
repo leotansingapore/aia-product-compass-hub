@@ -38,29 +38,6 @@ Job B pays less when well - but pays *in every scenario that matters.*
 
 Which one do you take?
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-  <div style="background:hsl(0,72%,97%);border:2px solid hsl(0,72%,55%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(0,72%,50%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">JOB A</div>
-    <div style="padding:6px 0;">
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(0,72%,90%);"><span style="font-weight:500;">Well</span><span style="font-weight:700;color:hsl(0,72%,40%);">$100,000</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(0,72%,90%);"><span style="font-weight:500;">Sick / Injured</span><span style="font-weight:700;color:hsl(0,72%,40%);">$0</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(0,72%,90%);"><span style="font-weight:500;">Dead</span><span style="font-weight:700;color:hsl(0,72%,40%);">$0</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(0,72%,90%);"><span style="font-weight:500;">Hospitalised</span><span style="font-weight:700;color:hsl(0,72%,40%);">$0</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;"><span style="font-weight:500;">Retirement</span><span style="font-weight:700;color:hsl(0,72%,40%);">$0</span></div>
-    </div>
-  </div>
-  <div style="background:hsl(160,84%,96%);border:2px solid hsl(160,84%,39%);border-radius:12px;overflow:hidden;">
-    <div style="background:hsl(160,84%,35%);color:white;padding:10px 14px;font-weight:700;text-align:center;letter-spacing:0.05em;">JOB B</div>
-    <div style="padding:6px 0;">
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(160,84%,88%);"><span style="font-weight:500;">Well</span><span style="font-weight:700;color:hsl(160,84%,28%);">$85,000</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(160,84%,88%);"><span style="font-weight:500;">Sick / Injured</span><span style="font-weight:700;color:hsl(160,84%,28%);">$66,000</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(160,84%,88%);"><span style="font-weight:500;">Dead</span><span style="font-weight:700;color:hsl(160,84%,28%);">$500,000</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid hsl(160,84%,88%);"><span style="font-weight:500;">Hospitalised</span><span style="font-weight:700;color:hsl(160,84%,28%);">Full coverage</span></div>
-      <div style="display:flex;justify-content:space-between;padding:10px 16px;"><span style="font-weight:500;">Retirement</span><span style="font-weight:700;color:hsl(160,84%,28%);">$50,000/yr</span></div>
-    </div>
-  </div>
-</div>
-
 ## 2. Why this matters - what you're really selling
 
 Most people - including most of your future clients - evaluate a job offer using only the first column. Annual salary. Maybe bonus.

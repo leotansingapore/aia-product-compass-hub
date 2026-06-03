@@ -119,12 +119,13 @@ Singapore property downpayment rules of thumb:
 ## 5. The CPF timeline - key ages
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["Working years<br/>OA, SA, MA build up"] --> B["Age 55<br/>RA created"]
     B --> C{"Hit FRS?"}
     C -->|"Yes"| D["Withdraw excess<br/>above FRS"]
     C -->|"No"| E["Most funds locked<br/>min $5K withdrawal"]
-    D & E --> F["Age 65<br/>CPF LIFE begins"]
+    D --> F["Age 65<br/>CPF LIFE begins"]
+    E --> F
 ```
 
 ### Age 55 - the first decision point

@@ -93,7 +93,7 @@ Your job is to **convert a need into a want** - by helping the client feel the w
 
 This is not manipulation. It's honest education. The need already exists. Your questions make it visible and felt. The client then decides whether to act.
 
-## 3. The journey: Implied -> Explicit Need
+## 3. The journey: Implied to Explicit Need
 
 This is the core concept behind SPIN. A client's needs go through stages:
 
@@ -109,8 +109,8 @@ They've named the problem. They feel its weight but haven't committed to solving
 ### Stage 4 - "I want to fix things NOW"
 They've decided to act. They'll buy **from someone** - question is who.
 
-**Implied Need** = Stages 1-2 (vague dissatisfaction).
-**Explicit Need** = Stages 3-4 (named, weighted problem + readiness to act).
+- **Implied Need** = Stages 1-2 (vague dissatisfaction).
+- **Explicit Need** = Stages 3-4 (named, weighted problem + readiness to act).
 
 **The advisor's job:** move the client from Implied to Explicit - through questions. Not through pitching.
 
@@ -118,20 +118,13 @@ They've decided to act. They'll buy **from someone** - question is who.
 
 Every purchase decision is a scale weighing two things:
 
-<div style="margin:1.5rem 0;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;">
-  <div style="background:linear-gradient(135deg,hsl(0,72%,96%),hsl(0,72%,92%));border:2px solid hsl(0,72%,55%);border-radius:12px;padding:18px;text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(0,72%,42%);text-transform:uppercase;">Seriousness of problem</div>
-    <div style="font-size:13px;color:hsl(var(--foreground));margin-top:6px;font-style:italic;">emotional weight</div>
-  </div>
-  <div style="font-size:28px;font-weight:800;color:hsl(var(--muted-foreground));">vs</div>
-  <div style="background:linear-gradient(135deg,hsl(217,91%,96%),hsl(217,91%,92%));border:2px solid hsl(217,91%,55%);border-radius:12px;padding:18px;text-align:center;">
-    <div style="font-size:11px;letter-spacing:0.1em;font-weight:700;color:hsl(217,91%,42%);text-transform:uppercase;">Cost of solution</div>
-    <div style="font-size:13px;color:hsl(var(--foreground));margin-top:6px;font-style:italic;">financial + effort</div>
-  </div>
-</div>
+| Side of the scale | What it carries |
+|---|---|
+| **Seriousness of problem** | emotional weight |
+| **Cost of solution** | financial + effort |
 
-**BUY** when: seriousness of problem > cost of solution.
-**DON'T BUY** when: cost of solution > seriousness of problem.
+- **BUY** when: seriousness of problem > cost of solution.
+- **DON'T BUY** when: cost of solution > seriousness of problem.
 
 **The implications:**
 
@@ -143,29 +136,13 @@ Every purchase decision is a scale weighing two things:
 
 Here's the flow - from discovery to decision. All 4 question types, in order.
 
-<div style="margin:1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:0;">
-  <div style="width:100%;background:linear-gradient(135deg,hsl(217,91%,55%),hsl(217,91%,65%));color:white;padding:14px 20px;border-radius:12px 12px 4px 4px;box-shadow:0 4px 12px hsl(217,91%,55%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,92% 100%,8% 100%);">
-    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.85;font-weight:700;">S . SITUATION</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Uncover facts and background</div>
-  </div>
-  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">v</div>
-  <div style="width:88%;background:linear-gradient(135deg,hsl(38,92%,50%),hsl(38,92%,60%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 4px 12px hsl(38,92%,50%,0.25);text-align:center;clip-path:polygon(0 0,100% 0,91% 100%,9% 100%);">
-    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">P . PROBLEM</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Surface difficulties and gaps</div>
-  </div>
-  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">v</div>
-  <div style="width:76%;background:linear-gradient(135deg,hsl(0,72%,45%),hsl(0,72%,55%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 6px 16px hsl(0,72%,45%,0.3);text-align:center;clip-path:polygon(0 0,100% 0,90% 100%,10% 100%);">
-    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">I . IMPLICATION</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Make the client feel the weight</div>
-  </div>
-  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">v</div>
-  <div style="width:64%;background:linear-gradient(135deg,hsl(160,84%,32%),hsl(160,84%,42%));color:white;padding:14px 20px;border-radius:4px;box-shadow:0 6px 16px hsl(160,84%,32%,0.3);text-align:center;clip-path:polygon(0 0,100% 0,89% 100%,11% 100%);">
-    <div style="font-size:11px;letter-spacing:0.15em;opacity:0.9;font-weight:700;">N . NEED-PAYOFF</div>
-    <div style="font-weight:700;font-size:15px;margin-top:2px;">Client articulates the benefit themselves</div>
-  </div>
-  <div style="font-size:18px;color:hsl(var(--muted-foreground));margin:-2px 0;">v</div>
-  <div style="width:48%;background:hsl(var(--foreground));color:hsl(var(--background));padding:12px 20px;border-radius:4px 4px 12px 12px;text-align:center;font-weight:700;font-size:14px;letter-spacing:0.05em;">CLIENT DECIDES TO BUY</div>
-</div>
+```mermaid
+flowchart TD
+    S["S - Situation<br/>Uncover facts and background"] --> P["P - Problem<br/>Surface difficulties and gaps"]
+    P --> I["I - Implication<br/>Make the client feel the weight"]
+    I --> N["N - Need-Payoff<br/>Client articulates the benefit themselves"]
+    N --> B["Client decides to buy"]
+```
 
 ### 1. Situation Questions
 **Purpose:** Uncover facts and background about the buyer's situation and lifestyle.
@@ -178,7 +155,7 @@ Here's the flow - from discovery to decision. All 4 question types, in order.
 - "What's your current health coverage situation?"
 - "What does your typical month look like financially?"
 
-**Rule:** ask **just enough** situation questions. Too many -> the client feels interrogated. Too few -> you can't personalise.
+**Rule:** ask **just enough** situation questions. Too many, and the client feels interrogated. Too few, and you can't personalise.
 
 ### 2. Problem Questions
 **Purpose:** Uncover the buyer's difficulties, dissatisfactions, or gaps in their current situation.
@@ -223,21 +200,15 @@ Here's the flow - from discovery to decision. All 4 question types, in order.
 
 A typical fact-finding meeting using SPIN:
 
-<div style="margin:1.5rem 0;display:flex;flex-direction:column;gap:4px;">
-  <div style="background:hsl(var(--muted));border-radius:8px;padding:10px 14px;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;text-align:center;">[ Opening ]</div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(var(--muted));border-radius:8px;padding:10px 14px;font-size:13px;color:hsl(var(--muted-foreground));font-style:italic;text-align:center;">[ 5 min rapport ]</div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(217,91%,96%);border-left:4px solid hsl(217,91%,55%);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:600;color:hsl(var(--foreground));">Situation questions</span><span style="font-size:12px;color:hsl(217,91%,40%);font-weight:600;">5-10 min</span></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(38,92%,96%);border-left:4px solid hsl(38,92%,50%);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:600;color:hsl(var(--foreground));">Problem questions</span><span style="font-size:12px;color:hsl(38,92%,38%);font-weight:600;">10-15 min</span></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(0,72%,96%);border-left:4px solid hsl(0,72%,55%);border-radius:8px;padding:10px 14px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;color:hsl(0,72%,42%);">Implication questions</span><span style="font-size:12px;color:hsl(0,72%,42%);font-weight:600;">10-15 min</span></div><div style="font-size:12px;color:hsl(0,72%,38%);margin-top:3px;font-style:italic;"><- emotional shift happens here</div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(160,84%,94%);border-left:4px solid hsl(160,84%,39%);border-radius:8px;padding:10px 14px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;color:hsl(160,84%,25%);">Need-Payoff questions</span><span style="font-size:12px;color:hsl(160,84%,28%);font-weight:600;">5 min</span></div><div style="font-size:12px;color:hsl(160,84%,25%);margin-top:3px;font-style:italic;"><- client now wants a solution</div></div>
-  <div style="text-align:center;color:hsl(var(--muted-foreground));font-size:14px;line-height:0.5;">v</div>
-  <div style="background:hsl(var(--foreground));color:hsl(var(--background));border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;text-align:center;letter-spacing:0.03em;">Transition to present your recommendation</div>
-</div>
+```mermaid
+flowchart TD
+    O["Opening"] --> R["5 min rapport"]
+    R --> S["Situation questions<br/>5-10 min"]
+    S --> P["Problem questions<br/>10-15 min"]
+    P --> I["Implication questions<br/>10-15 min<br/>(emotional shift happens here)"]
+    I --> N["Need-Payoff questions<br/>5 min<br/>(client now wants a solution)"]
+    N --> T["Transition to present your recommendation"]
+```
 
 Total: 45-60 min of questions before you ever show a product.
 
@@ -254,7 +225,7 @@ SPIN tells you **which phase** you're in (Situation, Problem, Implication, Need-
 | **1** | **Keyword echo** - repeat the prospect's own word back in your next question | Signals you heard them, forces elaboration, softens strong positions | They push back, raise an objection, use a loaded word |
 | **2** | **Offer logical possibilities** - give a menu of possible answers when they hedge | Replaces vague hedging with a specific pick you can then address | They say *"let me think about it"* / *"I'm not sure"* |
 | **3** | **Contrast + impactful words** - two versions of the same question, one with teeth | Produces emotional engagement instead of polite agreement | Implication questions where weight needs to land |
-| **4** | **Two distinct contrasting options** - frame the choice as binary with one obviously better | Prospect picks the better option themselves -> they own the conclusion | Need-Payoff, trial closes, reframing objections |
+| **4** | **Two distinct contrasting options** - frame the choice as binary with one obviously better | Prospect picks the better option themselves, so they own the conclusion | Need-Payoff, trial closes, reframing objections |
 | **5** | **Non-committal words** - *may / might / possibility / could* instead of *must / will / should* | Lowers pressure so *yes* feels explorable rather than binding | Trial closes, Need-Payoff, rapport-fragile moments |
 | **6** | **Quote respected third parties** - introduce a contradicting expert position as a question | Prospect has to rethink without losing face - they're contradicting their prior view, not you | Deep objections where the prospect has a hardened position |
 
@@ -270,7 +241,7 @@ When a prospect throws an objection, **don't defend, don't argue**. Run this seq
 | 4 | **Respected-expert reframe** (Rule 6) - introduce a contradicting position as a question, not a statement | *"Would you agree professional fund managers are experts at investing? Do you think it's possible they hold plans like these in their own portfolios for a reason?"* |
 | 5 | **Binary reframe** (Rule 4) - the choice with one obviously better option | *"If you had to choose - would you rather be financially wiped out by a $200K hospital bill, or transfer that risk to an insurer for a small fraction of the cost?"* |
 
-**Common objections -> primary right-question move:**
+**Common objections and their primary right-question move:**
 
 | Objection | First move | Why |
 |---|---|---|
@@ -291,7 +262,7 @@ When you want the prospect to move forward without feeling pushed, run this sequ
 | 2 | **Binary with obvious better option** (Rule 4) - let them pick the direction | *"Would you rather plan for retirement knowing exactly what you'll have, or get there and hope it works out?"* |
 | 3 | **Self-reflection** (job #9) - get them to say the benefit in their own words | *"If we had a plan that did exactly that - locked in a specific monthly retirement income - what would that mean for you and your spouse?"* |
 | 4 | **Non-committal trial close** (Rule 5) - test readiness without demanding commitment | *"Is there a possibility we could explore what that plan looks like in the next meeting?"* |
-| 5 | **Colombo-style test close** (job #10) - surface any remaining objections before you leave | *"If I came back with a plan that gets you to [goal] within $X a month - can you see any reason why we couldn't go ahead?"* |
+| 5 | **Colombo-style test close** (job #10) - surface any remaining objections before you leave | *"If I came back with a plan that gets you to your goal within a comfortable monthly budget - can you see any reason why we couldn't go ahead?"* |
 
 **The sequence compounds:** each step builds on the last. A prospect who said yes three times in a row is structurally more likely to say yes on the fourth.
 
@@ -311,14 +282,18 @@ If you remember only this:
 The principle of asking the right questions is what you've been learning. The **6-step combat sequence** is the operational route map — the order to run the moves in when you're sitting across from a real prospect. SPIN is one slice of this; the wider sequence is:
 
 ```mermaid
-flowchart LR
-    A["1 . Read DISC<br/>(profile layer)"]
-    B["2 . Surface hidden concerns<br/>(curious questions)"]
-    C["3 . Mind closed or open?<br/>(Type 1 vs Type 2)"]
-    D["4 . No-need vs create-need<br/>(SPIN: Situation -> Problem)"]
-    E["5 . Right questions to hot buttons<br/>(SPIN: Implication -> Need-Payoff)"]
-    F["6 . Hit & close<br/>(trial close + ask)"]
-    A --> B --> C --> D --> E --> F
+flowchart TD
+    A["1 - Read DISC<br/>(profile layer)"]
+    B["2 - Surface hidden concerns<br/>(curious questions)"]
+    C["3 - Mind closed or open?<br/>(Type 1 vs Type 2)"]
+    D["4 - No-need vs create-need<br/>(SPIN: Situation, Problem)"]
+    E["5 - Right questions to hot buttons<br/>(SPIN: Implication, Need-Payoff)"]
+    F["6 - Hit and close<br/>(trial close + ask)"]
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
 ```
 
 **Step 1 — Read DISC.** First 60 seconds. Are they D (decisive, fast, results-led), I (warm, story-led, sociable), S (steady, harmony-led, slow to commit), or C (cautious, detail-led, evidence-driven)? Every move below adapts by profile.
@@ -327,9 +302,9 @@ flowchart LR
 
 **Step 3 — Mind closed or open? (Type 1 vs Type 2 paradigm-shift).** Are they dismissing the concept (*"don't believe in insurance"*) or open to the concept but unsure on the specifics? Type 1 needs curious-question *before* any reframe; Type 2 takes SPIN cleanly. (Day 44 covers this in full.)
 
-**Step 4 — No-need vs create-need.** SPIN's Situation -> Problem move. If the prospect doesn't yet feel a gap, you have to surface one with Problem questions before any Implication question can land. Skipping ahead is what makes new FCs sound like they're pitching.
+**Step 4 — No-need vs create-need.** SPIN's Situation to Problem move. If the prospect doesn't yet feel a gap, you have to surface one with Problem questions before any Implication question can land. Skipping ahead is what makes new FCs sound like they're pitching.
 
-**Step 5 — Right questions to hot buttons.** SPIN's Implication -> Need-Payoff move. Once a problem is on the table, the Implication question quantifies the cost (*"if that happened tomorrow, what would it mean for the family?"*). Need-Payoff confirms the fix is wanted (*"if I could show you a way to handle that for $X a month, would you want to look at it?"*).
+**Step 5 — Right questions to hot buttons.** SPIN's Implication to Need-Payoff move. Once a problem is on the table, the Implication question quantifies the cost (*"if that happened tomorrow, what would it mean for the family?"*). Need-Payoff confirms the fix is wanted (*"if I could show you a way to handle that for a manageable monthly amount, would you want to look at it?"*).
 
 **Step 6 — Hit & close.** Trial close (*"may / might / possibility"*) → real close (binary with the better option pre-framed). The Hit is the close question; the prep above is everything that earns the right to ask it.
 
