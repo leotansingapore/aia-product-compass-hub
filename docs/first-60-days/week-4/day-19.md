@@ -43,17 +43,17 @@ That's it. It's not selling. It's not closing. It's *creating the possibility* o
 
 ## 2. Why your income is set 30-60 days in advance
 
-Your sales cycle has stages, and each stage takes time:
+Your sales cycle has stages, and each stage takes time. The label on each arrow is how long the gap to the next stage usually runs:
 
-| # | Stage | When it happens |
-|---|---|---|
-| 1 | Prospecting touch - you reach out | Day 0 |
-| 2 | First conversation / discovery | +1-2 weeks |
-| 3 | Fact-finding meeting | +1-2 weeks |
-| 4 | Proposal / presentation meeting | +1-2 weeks |
-| 5 | Close | same meeting or follow-up |
-| 6 | Submission, underwriting, approval | +2-6 weeks |
-| 7 | Commission paid | month after approval |
+```mermaid
+flowchart TD
+    A["1 . Prospecting touch"] -->|"+1-2 wk"| B["2 . First conversation"]
+    B -->|"+1-2 wk"| C["3 . Fact-find meeting"]
+    C -->|"+1-2 wk"| D["4 . Proposal"]
+    D -->|"same / follow-up"| E["5 . Close"]
+    E -->|"+2-6 wk"| F["6 . Underwriting & approval"]
+    F -->|"next month"| G["7 . Commission paid"]
+```
 
 **Total: roughly 30-90 days** from first prospecting touch to commission arriving in your account.
 
@@ -122,12 +122,14 @@ Prospecting is fundamentally a numbers game. Not a mindset game.
 
 ### The standard ratios (roughly, for a new FC)
 
-| Stage | You get | Conversion to next stage |
-|---|---|---|
-| Opening approaches (calls / messages) | **100** | ~3% |
-| Appointments set | **3** | ~50% |
-| Meetings that actually happen | **1-2** | 20-40% |
-| Closes | **under 1** per 100 approaches | - |
+The arrow labels are the conversion rate from one stage to the next. Watch how fast 100 collapses to under 1:
+
+```mermaid
+flowchart TD
+    A["100 opening approaches<br/>(calls / messages)"] -->|"~3%"| B["3 appointments set"]
+    B -->|"~50%"| C["1-2 meetings<br/>actually happen"]
+    C -->|"20-40%"| D["under 1 close<br/>per 100 approaches"]
+```
 
 Read it top to bottom: 100 approaches becomes 3 appointments, becomes 1-2 real meetings, becomes well under 1 close. That is normal. The number that fixes everything downstream is the one at the top.
 
@@ -201,12 +203,12 @@ Doesn't matter which one. What matters: **it happens even on terrible days**. Th
 
 Top producers in this district consistently name the same four activities as **the only ones that move the income needle**. Every other task in your day - admin, training, learning a product feature, organising your CRM - is **support work**, not business work. Necessary, but not generative.
 
-| # | Activity | Why it's the engine |
-|---|---|---|
-| 1 | **Cold-calling / outreach** | Creates new appointments out of nothing. The leading indicator of all future income. |
-| 2 | **Opening (1st appointment)** | Converts an appointment into a budget commitment. The point where intent becomes pipeline. |
-| 3 | **Closing (2nd appointment)** | Converts pipeline into FYC. Without it, the first two activities are theatre. |
-| 4 | **Following up** | Recovers the 70%+ of cases that don't close on the first attempt. Cheapest income per hour you'll ever generate. |
+| Activity | Why it's the engine |
+|---|---|
+| **1. Cold-calling / outreach** | Creates new appointments out of nothing. The leading indicator of all future income. |
+| **2. Opening (1st appointment)** | Converts an appointment into a budget commitment. The point where intent becomes pipeline. |
+| **3. Closing (2nd appointment)** | Converts pipeline into FYC. Without it, the first two activities are theatre. |
+| **4. Following up** | Recovers the 70%+ of cases that don't close on the first attempt. Cheapest income per hour you'll ever generate. |
 
 > **The audit question to ask yourself today:** *"What did I spend the last 7 days doing? How many hours went into the four activities above? How many hours went into everything else?"*
 >
@@ -242,13 +244,13 @@ Cross-link: see [Day 42 - Digital Lead-Gen Playbook](../week-7/day-42.md) for th
 
 Prospecting is only *one* of the five activities a working advisory practice runs. Knowing the other four matters today because it answers the most common new-FC question - *"my warm market is small, am I cooked?"* No. You're cooked only if you confuse **lead generation** with the entire business and ignore the other four pillars.
 
-| # | Pillar | What it is | Daily move |
-|---|---|---|---|
-| 1 | **Lead generation** | Creating new names that don't exist in your pipeline yet | Outreach blocks, content, networking, referral asks |
-| 2 | **Lead nurturing** | Warming up the leads you already have, so they actually take a meeting | Personalised follow-ups, value drops, content engagement, Telegram/IG presence |
-| 3 | **Sales** | The meeting work itself - questions, fact-find, presentation, close | Role-play, script drilling, mock fact-finds with peers |
-| 4 | **Service** | Making the client glad they chose you, *after* the sale | Annual reviews, claim help, birthday touches, "you matter" gestures |
-| 5 | **Retention & resale** | Keeping the client over years; getting referrals and repeat business | Quarterly check-ins, life-event radar, structured re-engagement |
+| Pillar | What it is | Daily move |
+|---|---|---|
+| **1. Lead generation** | Creating new names that don't exist in your pipeline yet | Outreach blocks, content, networking, referral asks |
+| **2. Lead nurturing** | Warming up the leads you already have, so they actually take a meeting | Personalised follow-ups, value drops, content engagement, Telegram/IG presence |
+| **3. Sales** | The meeting work itself - questions, fact-find, presentation, close | Role-play, script drilling, mock fact-finds with peers |
+| **4. Service** | Making the client glad they chose you, *after* the sale | Annual reviews, claim help, birthday touches, "you matter" gestures |
+| **5. Retention & resale** | Keeping the client over years; getting referrals and repeat business | Quarterly check-ins, life-event radar, structured re-engagement |
 
 **Three things this frame teaches a new FC immediately:**
 
