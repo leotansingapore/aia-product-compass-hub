@@ -31,9 +31,11 @@ By the end of today you should be able to:
 
 ## 1. What prospecting actually is
 
-Not: "telling people about insurance."
-Not: "asking friends for referrals."
-Not: "posting on social media."
+It is **not**:
+
+- "telling people about insurance."
+- "asking friends for referrals."
+- "posting on social media."
 
 Prospecting is **the systematic process of creating first conversations** with people who might one day have a financial planning need.
 
@@ -65,7 +67,15 @@ This is why the FCs who quit in Month 2 rarely see the compounding. They look at
 
 The 30-90 day window above is a *single* buying decision. The actual prospecting cycle - the time from first contact to a person being a paying client - is more like **1 to 10 years.**
 
-That sounds slow until you reframe it: *most* of your career income comes from people who you talked to before they bought from anyone. Insurance, savings, retirement plans - these aren't impulse buys. They get bought when life shifts: marriage, baby, parent diagnosed, bonus landed, mortgage approved. Your job is to be the person they already know on the day life shifts. That's the whole game. The seed you plant this month may bear fruit in Year 3, Year 5, even Year 10 - when the prospect needs something, or when they're asked who to refer.
+That sounds slow until you reframe it: *most* of your career income comes from people who you talked to before they bought from anyone. Insurance, savings, retirement plans - these aren't impulse buys. They get bought when life shifts:
+
+- Marriage
+- A baby
+- A parent diagnosed
+- A bonus landed
+- A mortgage approved
+
+Your job is to be the person they already know on the day life shifts. That's the whole game. The seed you plant this month may bear fruit in Year 3, Year 5, even Year 10 - when the prospect needs something, or when they're asked who to refer.
 
 But that future fruit only happens if **the prospect knew you wanted their business** and **you left the door open** instead of going quiet after a "not now."
 
@@ -178,9 +188,9 @@ The translated version isn't more comfortable. It's just the only one that point
 
 "To sell is to serve, and to serve is to sell."
 
-If you treat prospecting as "I need to make a sale" -> the prospect senses it, recoils, and you lose.
+If you treat prospecting as "I need to make a sale," the prospect senses it, recoils, and you lose.
 
-If you treat prospecting as "I might be able to help this person - let me find out" -> the prospect senses *that*, relaxes, and opens up.
+If you treat prospecting as "I might be able to help this person - let me find out," the prospect senses *that*, relaxes, and opens up.
 
 **The mental shift:** every call is a service attempt. Not every call ends in a sale. Some end in "thanks but no thanks" (fine). Some end in "actually, can you help my sister?" (referral - even better). Some end in a meeting that becomes a client for 20 years.
 
@@ -197,7 +207,13 @@ Common starting points:
 
 Doesn't matter which one. What matters: **it happens even on terrible days**. The days you don't feel like it are precisely when it matters most - because that's when everyone else stops, and you stop catching up to them.
 
-> **The 30-day rule of pipeline gravity.** Miss a day of prospecting and the absence will tend to bite you sometime in the next 90 days. Miss a week and you'll feel it in next quarter's commission cheque. Miss a month and you tank the pipeline entirely - three months from now you'll be desperate and have no idea how you got there. **Today's missed hour is next quarter's lost month.** That's not motivational language; it's pipeline arithmetic. Plant the seeds anyway, on the worst days too - the harvest is non-negotiable to your future self, even when today doesn't feel like it.
+> **The 30-day rule of pipeline gravity.**
+>
+> - **Miss a day** of prospecting and the absence will tend to bite you sometime in the next 90 days.
+> - **Miss a week** and you'll feel it in next quarter's commission cheque.
+> - **Miss a month** and you tank the pipeline entirely - three months from now you'll be desperate and have no idea how you got there.
+>
+> **Today's missed hour is next quarter's lost month.** That's not motivational language; it's pipeline arithmetic. Plant the seeds anyway, on the worst days too - the harvest is non-negotiable to your future self, even when today doesn't feel like it.
 
 ## 8. The four business-generating activities
 
@@ -236,7 +252,7 @@ A practical sequencing rule:
 
 1. **Don't scale until you can handle the volume.** A 25-Zoom weekend with no follow-up bandwidth is worse than a 5-Zoom weekend you fully service.
 2. **Call leads while they're fresh.** A lead two weeks old is a different animal from a lead three days old.
-3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The $X you spent in Month 1 produces FYC across Months 1-4.
+3. **Don't measure ROI on a single campaign.** Measure it across 90 days. The money you spent in Month 1 produces FYC across Months 1-4.
 
 Cross-link: see [Day 42 - Digital Lead-Gen Playbook](../week-7/day-42.md) for the operational specifics; see [Day 24 - The Time Management Matrix](day-24.md) for follow-up discipline.
 
@@ -288,7 +304,7 @@ The numbers - and they are stable across many FCs in your seat:
 
 **The two-phone strategy** (worth setting up now): one phone for outbound work calls, one for personal use. Stops you draining your personal battery and makes it easy to focus during a calling block.
 
-_Source: Academy scripts library, audience=general, category=tips._
+_Source: Academy scripts library._
 
 ### FYC formula - the math that makes prospecting non-negotiable
 
@@ -296,13 +312,13 @@ _Source: Academy scripts library, audience=general, category=tips._
 
 Roughly:
 
-- 100 dials -> 10-20 connects -> 1-3 appointments -> 1 close on average across a session.
+- 100 dials become 10-20 connects, which become 1-3 appointments, which become roughly 1 close on average across a session.
 - Closing rate on warm-survey-led appointments: typically 30-50% in Year 1.
 - Each closed client = ~$1,000 FYC + the lifetime-value tail (cross-sells, referrals, reviews).
 
 **The implication:** every dial is worth $5-10 in expected FYC even before lifetime value compounds. A dial you didn't make is money you didn't earn 60 days from now.
 
-_Source: Academy scripts library, audience=general, category=tips._
+_Source: Academy scripts library._
 
 ### Warm market mindset - what to remember before every call
 
@@ -319,7 +335,7 @@ _Source: Academy scripts library, audience=general, category=tips._
 
 > Don't lead with "we have an ILP that can help you to invest." This puts the guard up instantly - you sound like every agent they've been avoiding. Lead with curiosity and help. Let them discover the value through the conversation. Your goal in the first message is the meetup, not the sale.
 
-_Source: Academy scripts library, audience=general, category=tips._
+_Source: Academy scripts library._
 
 ---
 
