@@ -220,6 +220,10 @@ Anything scoring 0 is the gap that's costing you DMs. Fix the lowest score this 
 
 The 5-question frame is also the cleanest content brief you'll ever have: *"What does my feed look like to a stranger answering question 3?"* If the answer is *"they can't,"* that's your next post topic.
 
+---
+
+## Quick quiz
+
 1. **The 4 stages of the Social Media Journey are:**
  - A) Follower -> Engager -> Customer -> Promoter
  - B) Skeptical Stranger -> Curious Follower -> Trusted Choice -> Only Choice (correct)
