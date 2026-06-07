@@ -5,7 +5,7 @@ title: "Handling Resistance & Objections"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
-  - "[[../_source-supplementary/appointment-setting-product/11-prospecting--loving-rejections|Loving Rejections — abundance vs scarcity stance toward "no"]]"
+  - "[[../_source-supplementary/appointment-setting-product/11-prospecting--loving-rejections|Loving Rejections — abundance vs scarcity stance toward 'no']]"
 duration_minutes: 25
 tags: [first-60-days, week-8, skills]
 ---
