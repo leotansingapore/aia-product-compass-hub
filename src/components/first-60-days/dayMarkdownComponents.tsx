@@ -3,6 +3,37 @@ import { Link } from "react-router-dom";
 import { markdownComponents } from "@/lib/markdown-config";
 import { MermaidDiagram } from "./MermaidDiagram";
 
+// Targets that have no web route — other learning tracks and Obsidian-only
+// source folders. Relative links to these render as plain text, not dead links.
+const NON_SHIPPED_DOC =
+  /(?:next-60-days|first-14-days|first-30-days|product-mastery|pre-retiree|_source-|product-sales|appointment-setting|warm-market-flow|basic-cpf|behavioural-competency|-ingest|weekly-recaps)/i;
+
+/**
+ * Resolves a relative markdown link authored for Obsidian (e.g.
+ * `../week-9/day-52.md`, `../assignments/assignment-02.md`, `day-37.md`) into a
+ * SPA route. Returns `{ to }` for a routable target, `{ plain: true }` for a doc
+ * that ships nowhere on the web (so it renders as plain text instead of a dead
+ * relative URL), or `null` when the href is not a relative doc link at all
+ * (absolute, external, anchor) and should fall through to the normal handlers.
+ */
+function resolveRelativeDocLink(url: string): { to?: string; plain?: boolean } | null {
+  // Only relative hrefs are our concern — absolute routes, externals, anchors,
+  // and protocols fall through to the normal handlers.
+  if (!url || /^(https?:|mailto:|tel:|#|\/)/i.test(url)) return null;
+  const path = url.split("#")[0].split("?")[0];
+  if (!NON_SHIPPED_DOC.test(path)) {
+    let m: RegExpMatchArray | null;
+    if ((m = path.match(/(?:^|\/)(?:week-\d+\/)?day-0*(\d+)(?:\.md)?$/)))
+      return { to: `/learning-track/first-60-days/day/${Number(m[1])}` };
+    if ((m = path.match(/(?:^|\/)assignment-0*(\d+)(?:\.md)?$/)))
+      return { to: `/learning-track/pre-rnf/assignments/assignment-${String(m[1]).padStart(2, "0")}` };
+  }
+  // Any other relative link (other tracks, source folders, sibling docs,
+  // directory links like `../week-1/`) has no SPA route and would render as a
+  // dead relative URL — keep the text, drop the link.
+  return { plain: true };
+}
+
 export const dayMarkdownComponents: Components = {
   ...markdownComponents,
   a: ({ children, href, ...rest }: any) => {
@@ -34,6 +65,22 @@ export const dayMarkdownComponents: Components = {
     }
     const isInternal = url.startsWith("/") && !url.startsWith("//");
     if (isInternal) {
+      // Absolute links to a static file in /public (e.g. /slides/x.html, a PDF)
+      // must be a real anchor — a React Router <Link> navigates client-side and
+      // 404s instead of serving the file.
+      if (/\.(html?|pdf|zip|csv|xlsx?|pptx?|docx?|txt|mp4|mov|webp|png|jpe?g|svg)(\?|#|$)/i.test(url)) {
+        return (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+            {...rest}
+          >
+            {children}
+          </a>
+        );
+      }
       return (
         <Link
           to={url}
@@ -43,6 +90,23 @@ export const dayMarkdownComponents: Components = {
           {children}
         </Link>
       );
+    }
+    // Obsidian-style relative doc links (`../week-9/day-52.md`, `assignment-02.md`).
+    const rel = resolveRelativeDocLink(url);
+    if (rel?.to) {
+      return (
+        <Link
+          to={rel.to}
+          className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+          {...rest}
+        >
+          {children}
+        </Link>
+      );
+    }
+    if (rel?.plain) {
+      // Target ships nowhere on the web — keep the text, drop the dead link.
+      return <span {...rest}>{children}</span>;
     }
     const Fallback = markdownComponents.a as any;
     return <Fallback href={url} {...rest}>{children}</Fallback>;

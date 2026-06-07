@@ -1,5 +1,50 @@
 import { describe, it, expect } from "vitest";
-import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix } from "./parse";
+import { parseFrontmatter, parseQuiz, parseReflection, stripAppendix, convertWikilinks } from "./parse";
+
+describe("convertWikilinks", () => {
+  it("converts a bare day wikilink", () => {
+    expect(convertWikilinks("[[day-12|The Pyramid]]")).toBe(
+      "[The Pyramid](/learning-track/first-60-days/day/12)",
+    );
+  });
+  it("converts a table-escaped pipe", () => {
+    expect(convertWikilinks("[[day-07\\|Industry]]")).toBe(
+      "[Industry](/learning-track/first-60-days/day/7)",
+    );
+  });
+  it("converts a path-prefixed cross-week day wikilink", () => {
+    expect(convertWikilinks("Prev: [[../week-9/day-52|Day 52 - CST]]")).toBe(
+      "Prev: [Day 52 - CST](/learning-track/first-60-days/day/52)",
+    );
+  });
+  it("converts an assignment wikilink", () => {
+    expect(convertWikilinks("[[../assignments/assignment-02|Outreach]]")).toBe(
+      "[Outreach](/learning-track/pre-rnf/assignments/assignment-02)",
+    );
+  });
+  it("maps README and INDEX wikilinks to the hub", () => {
+    expect(convertWikilinks("[[README|Week 10]]")).toBe(
+      "[Week 10](/learning-track/first-60-days)",
+    );
+    expect(convertWikilinks("[[../INDEX|The First 60 Days]]")).toBe(
+      "[The First 60 Days](/learning-track/first-60-days)",
+    );
+  });
+  it("renders non-shipped targets as plain label text (no raw [[ ]] , no dead link)", () => {
+    const out = convertWikilinks(
+      "[[../_source-supplementary/appointment-setting-product/09-prospecting--obey-the-30-day-rule|30-Day Rule]]",
+    );
+    expect(out).toBe("30-Day Rule");
+    expect(out).not.toContain("[[");
+  });
+  it("leaves image embeds untouched for convertImageEmbeds", () => {
+    expect(convertWikilinks("![[drawing-01.png]]")).toBe("![[drawing-01.png]]");
+  });
+  it("leaves no raw wikilinks in a typical Related footer", () => {
+    const footer = "- Previous: [[../week-9/day-54|Day 54]]\n- Next: [[day-56|Day 56]]\n- Index: [[../INDEX|Index]]";
+    expect(convertWikilinks(footer)).not.toContain("[[");
+  });
+});
 
 const SAMPLE = `---
 week: 1

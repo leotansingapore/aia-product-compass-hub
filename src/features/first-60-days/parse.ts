@@ -78,16 +78,61 @@ export function stripAppendix(body: string): string {
   return out.trimEnd();
 }
 
-// Obsidian wikilinks like `[[day-07|Title]]` or table-escaped `[[day-07\|Title]]`
-// must be rewritten to standard markdown links so ReactMarkdown can render them
-// as React Router <Link>s.
-const WIKILINK_RE = /\[\[day-(\d+)(?:\\?\|([^\]]+))?\]\]/g;
+// Obsidian wikilinks must be rewritten to standard markdown links so
+// ReactMarkdown can render them as React Router <Link>s. The curriculum is
+// authored in Obsidian, so links take several shapes that all have to resolve
+// on the web:
+//   [[day-07|Title]]                  same-week day reference
+//   [[day-07\|Title]]                 table-escaped pipe
+//   [[../week-9/day-52|Title]]        cross-week day reference (path-prefixed)
+//   [[../assignments/assignment-02|]] assignment reference
+//   [[README|Week 3 - ...]]           this week's overview
+//   [[../INDEX|The First 60 Days]]    track index
+//   [[../_source-supplementary/...]]  source material NOT shipped to the web
+// Anything that can't be routed (other tracks, ingest folders, source decks)
+// is rendered as plain label text rather than a raw `[[...]]` or a dead link.
+const WIKILINK_RE = /(!?)\[\[([^\]]+?)\]\]/g;
+
+// Targets that point outside the shipped first-60-days day/assignment/reference
+// set — other learning tracks and Obsidian-only source folders. These have no
+// web route, so the wikilink becomes plain text (its label).
+const NON_SHIPPED_TARGET =
+  /(?:next-60-days|first-14-days|first-30-days|product-mastery|pre-retiree|_source-|product-sales|appointment-setting|warm-market-flow|basic-cpf|behavioural-competency|right-questions-ingest|sales-training-ingest|weekly-recaps)/i;
 
 export function convertWikilinks(body: string): string {
-  return body.replace(WIKILINK_RE, (_match, num: string, label?: string) => {
-    const dayNumber = Number(num);
-    const text = (label ?? `Day ${dayNumber}`).trim();
-    return `[${text}](/learning-track/first-60-days/day/${dayNumber})`;
+  return body.replace(WIKILINK_RE, (match: string, bang: string, inner: string) => {
+    // Image embeds (`![[...]]`) are handled by convertImageEmbeds — leave alone.
+    if (bang === "!") return match;
+
+    const pipe = inner.search(/\\?\|/);
+    const target = (pipe >= 0 ? inner.slice(0, pipe) : inner).trim();
+    const label = (pipe >= 0 ? inner.slice(pipe).replace(/^\\?\|/, "") : "").trim();
+    const plain = () => label || target.split("/").pop() || target;
+
+    // Source material / other tracks — no web route, keep the readable label.
+    if (NON_SHIPPED_TARGET.test(target)) return plain();
+
+    // Day reference, with or without a `../week-N/` path prefix.
+    const dayM = target.match(/(?:^|\/)day-0*(\d+)$/);
+    if (dayM) {
+      const n = Number(dayM[1]);
+      return `[${label || `Day ${n}`}](/learning-track/first-60-days/day/${n})`;
+    }
+
+    // Assignment reference.
+    const asgM = target.match(/(?:^|\/)assignment-0*(\d+)$/);
+    if (asgM) {
+      const padded = String(asgM[1]).padStart(2, "0");
+      return `[${label || `Assignment ${Number(asgM[1])}`}](/learning-track/pre-rnf/assignments/assignment-${padded})`;
+    }
+
+    // This week's README overview, or the track INDEX — both resolve to the hub.
+    if (/(?:^|\/)README$/i.test(target)) return `[${label || "Week overview"}](/learning-track/first-60-days)`;
+    if (/(?:^|\/)INDEX$/i.test(target)) return `[${label || "The First 60 Days"}](/learning-track/first-60-days)`;
+
+    // Top-level reference doc (e.g. `../_source-supplementary/cst-risks-script-full`)
+    // is caught by NON_SHIPPED_TARGET above; anything else left here is unroutable.
+    return plain();
   });
 }
 
