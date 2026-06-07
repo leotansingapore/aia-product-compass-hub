@@ -11,11 +11,11 @@ tags: [first-60-days, week-8, skills]
 
 # Day 47 - Right Questions: Asking the Right Questions (SPIN as the Grammar)
 
-> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy.** That happens through **Asking the Right Questions** - and SPIN is the four-phase grammar that give. Right-question its structure inside a fact-find. right-question moves a client from "implied need" to "explicit need" - the threshold where they decide to buy.
+> **The one idea for today:** The salesperson's job is not to sell - it's to **help the client buy.** That happens through **Asking the Right Questions** - and SPIN is the four-phase grammar that gives Right-Questioning its structure inside a fact-find. Right-Questioning moves a client from "implied need" to "explicit need" - the threshold where they decide to buy.
 
-> **Where you've already met Right Questions:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that wa. Right-question applied to objection handling. Today. Right-question goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also Right-question.
+> **Where you've already met Right Questions:** Day 44 used the Q step in the Acknowledge -> Question -> Reframe pattern to handle objections - that was Right-Questioning applied to objection handling. Today, Right-Questioning goes from a single move to a full conversation grammar (SPIN). Day 45's storytelling closes with the question "so what would that look like for me?" - that is also Right-Questioning.
 
-> **Wher. Right-question goes deeper:** **Next 60 Days Day 43-44** is the post-license, post-pitch deep-dive o. Right-question - Day 43 covers the 6 Golden Rules, Day 44 covers Silence as a Tool (the 5-10 seconds after a loaded question that most new FCs ruin by talking). Today's content is the foundation; the deep-dive is the next layer once you're licensed and running real fact-finds.
+> **Where Right-Questioning goes deeper:** **Next 60 Days Day 43-44** is the post-license, post-pitch deep-dive on Right-Questioning - Day 43 covers the 6 Golden Rules, Day 44 covers Silence as a Tool (the 5-10 seconds after a loaded question that most new FCs ruin by talking). Today's content is the foundation; the deep-dive is the next layer once you're licensed and running real fact-finds.
 
 ## What you'll walk away with
 
@@ -23,7 +23,7 @@ By the end of today you should be able to:
 
 1. **State** the right-question principle (questions over statements) and the 3-point checklist for what makes a question "right."
 2. **Name** the 4 SPIN question types and what each does.
-3. **Understand** wh. Right-question + SPIN works - the journey from implied to explicit need.
+3. **Understand** why Right-Questioning + SPIN works - the journey from implied to explicit need.
 4. **Map** the consultative selling philosophy onto your own meeting process.
 
 ---
@@ -51,7 +51,7 @@ A statement like *"Insurance is important because it protects your family"* land
 
 The same content as a question - *"If something were to happen to you tomorrow - bluntly - who would be financially affected, and by how much?"* - forces the prospect to picture a specific scenario and land on their own answer. You didn't tell them anything; they told themselves.
 
-**That'. Right-question in one line.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of applying right questions consistently across a 60-minute fact-find. Day 44's Q step in objection handling is the same engine, applied in 5 seconds instead of 60 minutes.
+**That's Right-Questioning in one line.** People defend statements other people make; they *own* conclusions they reach themselves. Questions route prospects to their own conclusions. SPIN is simply the four-phase grammar of applying right questions consistently across a 60-minute fact-find. Day 44's Q step in objection handling is the same engine, applied in 5 seconds instead of 60 minutes.
 
 ### The 10 jobs a right question  can do
 
