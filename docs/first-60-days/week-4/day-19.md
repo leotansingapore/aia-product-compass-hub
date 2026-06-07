@@ -379,7 +379,7 @@ _Source: Academy scripts library._
  - C) 10 per day (correct)
  - D) 20 per day
 
- **Why:** The lesson states that $50K FYC may require 3,000+ opening approaches across the year, which works out to roughly 60 per week or 10 per day on a 5-day week. Three or five touches per day (A, B) are the typical new-FC output - well short of what the numbers require. Twenty per day (D) would be above the stated baseline minimum and is not cited as the target figure.
+ **Why:** The lesson states that $50K FYC may require 3,000+ opening approaches across the year, which works out to roughly 60 per week or 10 per day on a 6-day week. Three or five touches per day (A, B) are the typical new-FC output - well short of what the numbers require. Twenty per day (D) would be above the stated baseline minimum and is not cited as the target figure.
 
 6. **Maria frames her cold-call sessions as "how many no's can I collect today?" rather than "how many appointments will I set?" What is the primary benefit of this mindset?**
  - A) It lowers the quality bar so she makes more calls

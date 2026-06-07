@@ -169,7 +169,7 @@ You'll fail at some of these. That's the point.
  - A) Ask their mentor which part of the approach to adjust
  - B) Re-listen to the last rejected call and identify what to change
  - C) Conclude the market is bad this month and scale back activity (correct)
- - D) Track the objection patterns across the five rejections
+ - D) Track the objection patterns across the three rejections
 
  **Why:** Attributing results to external market conditions instead of examining specific execution is the textbook fixed-mindset move - it removes agency and creates permission to reduce effort. A, B, and D are all growth-mindset responses: each involves analysing what happened and generating a specific next action, which is exactly what Day 4's comparison table shows growth mindset doing.
 

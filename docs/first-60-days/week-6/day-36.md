@@ -66,7 +66,7 @@ Sit a friend, spouse, sibling, or fellow Pre-RNF cohort member down. Tell them y
 For each of the 3 picked:
 
 - [ ] You opened the calculator and started entering values within **10 seconds**.
-- [ ] You spoke the variables out loud as you entered them ("FV is one million, n is 25 years, i is 6, PV is zero, mode BGN, solving for PMT...").
+- [ ] You spoke the variables out loud as you entered them ("FV is one million, n is 30 years, i is 6, PV is zero, mode BGN, solving for PMT...").
 - [ ] You produced a **client-friendly answer** (not a raw calculator number) within **90 seconds total** of the question being asked.
 - [ ] If they pushed back ("what if I save $1,000 instead?"), you re-ran the calculation in under 30 seconds.
 
