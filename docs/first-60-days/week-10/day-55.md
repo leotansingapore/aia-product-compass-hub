@@ -100,7 +100,7 @@ When a prospect says *"why not just DIY into S&P 500 / Endowus / a robo-advisor?
 | Execution on death | Family inherits an app they've never logged into | Advisor of record + coordinated estate plan |
 | Generational continuity | Liquidated at death, paid as cash | **Secondary insured** - policy continues on next life assured |
 
-**Full FC reference** (numbers, country DWT tables, full US estate schedule, lost-decade data): [SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md). See also [[../week-9/day-52|Day 52 - Retirement Step-by-Step CST]] and [[day-57|Day 57 - Investment-Linked Plans: Core Mechanics]] for the delivery-ready versions of this stack.
+**Full FC reference** (numbers, country DWT tables, full US estate schedule, lost-decade data): [SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction). See also [[../week-9/day-52|Day 52 - Retirement Step-by-Step CST]] and [[day-57|Day 57 - Investment-Linked Plans: Core Mechanics]] for the delivery-ready versions of this stack.
 
 ## 3. Whole Life - lifelong coverage
 

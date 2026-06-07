@@ -198,7 +198,7 @@ Desired income - CPF LIFE = Gap, then fill the gap with investment plans. **This
 
 When the prospect says *"I'd rather DIY into S&P 500 / Endowus / Phillip / a robo-advisor,"* you need **eight specific responses** ready, not four. This is an upgrade from older versions of this lesson - the additional four (estate-tax receipts, lost-decade receipts, execution-on-death, secondary-insured continuity) are the ones that turn sophisticated DIY prospects.
 
-> **Full FC-only conviction reference:** **[SP500-vs-ILP conviction reference](../_source-supplementary/sp500-vs-ilp-conviction.md)**. Country DWT tables, full US estate tax schedule, lost-decade asset-class data, 2013-present returns, and every one-liner in one doc. Internalise the numbers once, then pull individual arguments as they come up in conversation. Don't spray all eight - pick the one that matches the prospect's actual concern.
+> **Full FC-only conviction reference:** **[SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction)**. Country DWT tables, full US estate tax schedule, lost-decade asset-class data, 2013-present returns, and every one-liner in one doc. Internalise the numbers once, then pull individual arguments as they come up in conversation. Don't spray all eight - pick the one that matches the prospect's actual concern.
 
 ### The eight conviction points
 
