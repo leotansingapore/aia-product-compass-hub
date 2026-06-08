@@ -216,7 +216,7 @@ Real case: the calculator said $2,317/month. The client almost walked. What clos
 - APA $200-300/month, 10-year minimum
 - Term life floor: $100K at age 25 is about $15/month
 
-At this age, $300/month for 40 years at 6% net compounds to about $570,000. Show the achievable number, not the dream number.
+At this age, $300/month at 6% net compounds to about $600,000 over 40 years. Show the achievable number, not the dream number.
 
 **Receipt to leave with**
 - APA $200-300/month started, 10-year minimum
@@ -224,7 +224,7 @@ At this age, $300/month for 40 years at 6% net compounds to about $570,000. Show
 - 12-month review in the calendar
 
 **If they hesitate - "it feels too small to matter"**
-"That's totally fair - $200 a month does feel small. But the first ten years of compounding carry most of the result. Starting at 25 with $300 a month gets you to $1.5 million by 65; waiting until 35 gets you $611,000. That decade is worth $900,000. Worth locking the habit now and scaling later?"`,
+"That's totally fair - it does feel too small to matter. But starting early is what makes the difference: $300 a month from age 25 gets you to about $600,000 by 65, while starting at 35 gets you about $300,000. That ten-year head start is worth $300,000. Worth locking the habit now and scaling later?"`,
         exampleCaseIds: [
           "real-2025-04-14-t9tc4bm4",
           "real-2025-05-06-183yqevb",
