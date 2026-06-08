@@ -117,7 +117,7 @@ Bring up the 10% first-year discount only once the bundle is agreed. If they alr
         condition: "Has employer cover only (no personal)",
         productStack: ["HSGM", "CI", "Accident", "TermLife"],
         receiptPattern:
-          "Locked in ~$80-150/mo portable HSGM rider top-up + standalone early-CI $100-200K so cover doesn't disappear when job changes.",
+          "Locked in ~$120-150/mo portable HSGM rider top-up + standalone early-CI $100-200K so cover doesn't disappear when job changes.",
         body: `**The frame**
 Employer cover is rented, not owned. The day they leave the job, it leaves with them - and by then their health may have changed enough that the next medical comes back loaded or excluded.
 
@@ -127,7 +127,7 @@ Open with: "Tell me about your group cover - what ward, what CI lump sum, any ri
 - Portable HSGM - lifelong private hospital cover that stays whichever job they're in. About $80-100/month in their 20s.
 - Standalone early-CI, $100-200K. Employer CI is almost always single-payout late-stage; layer early-stage recurring on top.
 
-Total lands around $80-150/month at this age.
+Together they land around $120-150/month at this age.
 
 **Real case**
 A 26-year-old on a corporate hospital plan, no personal cover. Surrendered a 2% underperforming policy from another insurer ($80/month, $100,000 death cover) and put the same $80/month into a portable HSGM with double the death cover.
@@ -283,7 +283,7 @@ Two engines run in parallel: a monthly compounding engine (APA) and a lump-sum e
 - The lump sum: PWV single-premium if they want a retirement income angle, or CPF-OA into CPFIS global equity if the lump is in CPF
 
 **Real case - the CPF-OA angle**
-A client had $40K in CPF-OA earning 2.5%. We reframed his "conservative" 70/30 bond-heavy mix as its own risk, then deployed the $40K into global equity via CPFIS, keeping a $16,500 buffer rebalanced.
+A client had $40K in CPF-OA earning 2.5%. We reframed his "conservative" 70/30 bond-heavy mix as its own risk, then moved the bulk into global equity via CPFIS, keeping a $16,500 buffer rebalanced.
 
 **Real case - the side-by-side**
 A client on a $500/month plan from another insurer at higher fees. Side by side, AIA Pro Achiever projected $200,000 more at retirement on the same contribution.
@@ -337,7 +337,7 @@ An old whole-life or endowment plan from 10-20 years ago, projecting 2-3%, with 
 Pull every policy through Singpass / the MAS app and map each one: monthly premium, sum assured (death and CI), surrender value today, projected maturity value, maturity year. You're looking for the gap between what the legacy plan projects and what the same monthly could do in a modern structure.
 
 **Real case**
-A client had $80/month going into a Link Guard from another insurer - $100,000 death cover, 2% projected. Surrendered it, put the same $80/month into AIA cover that doubled the sum assured, and still freed $50/month for an investment plan on top.
+A client had $80/month going into a Link Guard from another insurer - $100,000 death cover, 2% projected. Surrendered it, kept the same $80/month - $30 into AIA cover that doubled the sum assured, and $50 freed for an investment plan on top.
 
 **Draw the comparison in three columns**
 1. Keep - what the legacy plan delivers at maturity
@@ -593,7 +593,7 @@ PWV single-premium for most cases. SPA at the conservative end (capital-guarante
 A $58,000-$60,000 lump into an income portfolio at 6% annual dividends, structured to offset projected parental hospitalisation premiums. The capital stayed intact and the dividend covered the parents' hospital plan effectively for free.
 
 **Real case - the larger lump**
-A CPF-OA-eligible client put $60,000+/year into a 5-year structured PWV commitment producing 6-7% dividend income, bridging a $3,600-$4,600/month retirement gap toward a $12,000/month dream lifestyle.
+A CPF-OA-eligible client put $60,000+/year into a 5-year structured PWV commitment producing 6-7% dividend income - one piece of closing a $3,600-$4,600/month retirement gap on the way to a $12,000/month dream lifestyle.
 
 **Draw it in three lines**
 1. Lump today: $X
