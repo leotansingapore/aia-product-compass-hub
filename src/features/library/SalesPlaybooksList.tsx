@@ -11,8 +11,6 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import {
   MessageSquare,
-  Wrench,
-  ShieldQuestion,
   BookOpen,
   Workflow,
   Pencil,
@@ -45,44 +43,16 @@ export function SalesPlaybooksList() {
     () => [
       {
         key: "scripts",
-        title: "Sales Scripts",
+        title: "Scripts & Objection Handling",
         path: "/scripts",
         icon: MessageSquare,
         description:
-          "Cold-call openers, WhatsApp warm-ups, referral asks, follow-up sequences, email templates. Curated voice canon — copy, tweak, send.",
-        useFor: "When you need the exact words to use",
+          "Sales scripts (cold-call openers, WhatsApp warm-ups, referral asks, follow-ups), in-force servicing touchpoints (claim follow-ups, anniversary check-ins, lapse rescues, COSA conversions), and a verified rebuttal for every objection. Copy, tweak, send.",
+        useFor: "When you need the exact words — opening, servicing, or under pushback",
         accent: {
           iconBg: "bg-blue-100 dark:bg-blue-950/40",
           iconColor: "text-blue-600 dark:text-blue-400",
           accent: "from-blue-500/10 to-transparent",
-        },
-      },
-      {
-        key: "servicing",
-        title: "Servicing Scripts",
-        path: "/servicing",
-        icon: Wrench,
-        description:
-          "Post-sale and in-force touchpoints — claim follow-ups, anniversary check-ins, lapse rescues, policy-review openers, COSA conversion scripts.",
-        useFor: "When the policy is already in force",
-        accent: {
-          iconBg: "bg-amber-100 dark:bg-amber-950/40",
-          iconColor: "text-amber-600 dark:text-amber-400",
-          accent: "from-amber-500/10 to-transparent",
-        },
-      },
-      {
-        key: "objections",
-        title: "Objections",
-        path: "/objections",
-        icon: ShieldQuestion,
-        description:
-          "Every \"I need to think about it\" pattern, every spouse objection, every \"let me check with my agent\" — with a verified rebuttal for each.",
-        useFor: "When the prospect pushes back",
-        accent: {
-          iconBg: "bg-rose-100 dark:bg-rose-950/40",
-          iconColor: "text-rose-600 dark:text-rose-400",
-          accent: "from-rose-500/10 to-transparent",
         },
       },
       {
@@ -158,9 +128,9 @@ export function SalesPlaybooksList() {
               Pick the asset that matches your moment
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Heading into a cold call? Open <strong>Sales Scripts</strong>.
-              Got pushback last meeting? <strong>Objections</strong>. Need to
-              draw the decoupling math on paper? <strong>Concept Cards</strong>.
+              Heading into a cold call or got pushback last meeting? Open{" "}
+              <strong>Scripts &amp; Objection Handling</strong>. Need to draw
+              the decoupling math on paper? <strong>Concept Cards</strong>.
               Want a real receipt to show the prospect what's possible?{" "}
               <strong>Case Vault</strong>. Every tab below is a full standalone
               page — click in, find what you need, copy it, ship it.
