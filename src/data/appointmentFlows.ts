@@ -224,7 +224,7 @@ At this age, $300/month at 6% net compounds to about $600,000 over 40 years. Sho
 - 12-month review in the calendar
 
 **If they hesitate - "it feels too small to matter"**
-"That's totally fair - it does feel too small to matter. But starting early is what makes the difference: $300 a month from age 25 gets you to about $600,000 by 65, while starting at 35 gets you about $300,000. That ten-year head start is worth $300,000. Worth locking the habit now and scaling later?"`,
+"That's totally fair - it does feel too small to matter. But starting early is what makes the difference: on a 6% illustration, $300 a month from age 25 works out to roughly $600,000 by 65, where starting at 35 lands around $300,000. That ten-year head start is worth about $300,000 on those numbers - your actual illustration will be the real guide. Worth locking the habit now and scaling later?"`,
         exampleCaseIds: [
           "real-2025-04-14-t9tc4bm4",
           "real-2025-05-06-183yqevb",
@@ -385,7 +385,7 @@ Draw two lines on the same horizon: the existing fund at 1.45% and the same mont
 - Net projected uplift written on paper
 
 **If they push back - "the fee difference looks small"**
-"Honestly, fair - 0.45% sounds tiny out loud. What makes it land is the timeline: on a $600/month plan compounding for 38 years, 0.45% a year becomes about $200,000 by retirement. That's a quarter of a million for the same fund family. The fix is the fund switch - same plan, same monthly, different sleeve."`,
+"Honestly, fair - 0.45% sounds tiny out loud. What makes it land is the timeline: on the illustration, a $600/month plan compounding for 38 years gives up roughly $200,000 to that 0.45% by retirement - close to a quarter of a million for the same fund family. The fix is the fund switch - same plan, same monthly, different sleeve."`,
         exampleCaseIds: [
           "real-2025-05-20-5qrkrp6k",
         ],
