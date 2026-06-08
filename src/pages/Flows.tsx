@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BranchBody } from "@/components/flows/BranchBody";
 import {
   APPOINTMENT_FLOWS,
   type AppointmentFlow,
@@ -57,8 +58,8 @@ function BranchCard({ branch }: { branch: FlowBranch }) {
       </div>
 
       {branch.body && (
-        <div className="text-xs text-muted-foreground whitespace-pre-line border-t pt-3 mb-3">
-          {branch.body}
+        <div className="border-t pt-3 mb-3">
+          <BranchBody body={branch.body} />
         </div>
       )}
 

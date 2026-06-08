@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { BranchBody } from "@/components/flows/BranchBody";
 import type { AppointmentFlow, FlowBranch } from "@/data/appointmentFlows";
 
 type MermaidApi = {
@@ -376,7 +377,7 @@ export function FlowDiagram({ flow }: Props) {
                     <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
                       Canonical script
                     </div>
-                    <div className="text-sm whitespace-pre-line">{openBranch.body}</div>
+                    <BranchBody body={openBranch.body} />
                   </div>
                 )}
 
