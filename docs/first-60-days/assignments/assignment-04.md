@@ -15,28 +15,17 @@ status_key: "assignment-04-book-review"
 
 > **The gist.** Read one career-relevant book, then prove you read it by applying three specific ideas to your own practice - not by summarising chapters. You pick the book from the list below; the template walks you through the write-up.
 
-**The shape of it:** pick a book → read it → copy the template → fill every section (3 ideas you're stealing is the heart of it) → submit the PDF or Doc link.
+**The shape of it:** pick a book → read it → copy the template → fill every section (the three ideas you're stealing is the heart of it) → submit the PDF or Doc link.
 
 ## Why this matters
 
-The top 10% of FCs are readers. Not because books contain magic - because the act of reading forces slow thinking, and slow thinking is how you notice your own blind spots. An FC who reads 1 career-relevant book per quarter over 10 years has absorbed 40 books of advantage over one who reads none. Compounding applies to minds as well as money.
+The top 10% of FCs are readers. Not because books contain magic - because the act of reading forces slow thinking, and slow thinking is how you notice your own blind spots. An FC who reads one career-relevant book per quarter over 10 years has absorbed 40 books of advantage over one who reads none. Compounding applies to minds as well as money.
 
 This is also the first training deliverable you own completely. No script, no senior shadow - just you, a book, and your practice.
 
-## Prepare from these days
-
-These map your existing frameworks onto what books typically teach. Pick a book that stretches one of these, not one that restates it.
-
-- [Day 1 - Welcome & The Advisor Journey](../../first-60-days/week-1/day-01.md) - what you signed up for, and the skills you're building
-- [Day 6 - Habits That Compound](../../first-60-days/week-1/day-06.md) - the Atomic Habits loop
-- [Day 18 - The 10X Rule in Daily Action](../../first-60-days/week-3/day-18.md) - goal-setting and activity escalation
-- [Day 22 - Productivity Principles](../../first-60-days/week-4/day-22.md) - schedule your priorities, not your time
-- [Day 23 - Feel-Good Productivity](../../first-60-days/week-4/day-23.md) - Energisers, Unblockers, Sustainers
-- [Day 24 - Time Management Matrix](../../first-60-days/week-4/day-24.md) - Covey's quadrants
-
 ## The reading list - pick one
 
-Choose one book from this list. PDF / archive links are provided where available - most are free to borrow on the Internet Archive (sign in with a free account, read in-browser or download for 14 days).
+Choose one book. PDF / archive links are provided where available - most are free to borrow on the Internet Archive (sign in with a free account, read in-browser or download for 14 days). Pick one that stretches a framework you've met in training, not one that restates it.
 
 ### Sales, prospecting & influence
 
@@ -59,54 +48,18 @@ Choose one book from this list. PDF / archive links are provided where available
 - **W1nning: The Unforgiving Race to Greatness** - Tim Grover - Michael Jordan's trainer on what separates winners from everyone else. *No free PDF - buy at Amazon / borrow from library.*
 - **[The 4-Hour Workweek](https://archive.org/details/b-The-4-Hour-Workweek)** - Tim Ferriss - pairs with Days 22, 24. Elimination, automation, and the 80/20 rule applied to work.
 
-## The template
+## The write-up
 
-**[Open the book-review template in Google Docs](https://docs.google.com/document/d/1EVlAEKaCywb56UaMIPOKiwS6CwhLjcwFC0nhNpOOrL0/edit?usp=sharing)** - File -> Make a copy, then fill every section. Word counts are targets - quality of specificity matters more.
+**[Open the book-review template in Google Docs](https://docs.google.com/document/d/1EVlAEKaCywb56UaMIPOKiwS6CwhLjcwFC0nhNpOOrL0/edit?usp=sharing)** - File -> Make a copy, then fill every section. The template walks you through the book details, a short summary, the three ideas, one idea you pushed back on, a client conversation the book reshapes, the day it pairs with, and a rating.
 
-(The same template structure is reproduced below for reference; use the Google Doc to actually write your review.)
+The heart of it is **the three ideas you're taking into your practice**. For each one: the idea in your own words, why it matters for a new FC, the concrete move you'll make ("I'll add a Monday 7am 20-minute review block", not "I'll be more proactive"), and one observable signal you'll watch for after two weeks. Word counts in the template are targets - specificity matters more.
 
----
+## What passing looks like
 
-### Book details
-- **Title:** _________________
-- **Author:** _________________
-- **Pages / audiobook length:** _________________
-- **Why you chose this book:** 2 to 3 sentences
-- **Date started / finished:** _________________
-
-### 1 . Book summary *(~150 words)*
-What is the central argument of the book? If you had to explain it to a friend in an elevator, what is it actually about? Resist the temptation to list chapters. State the *thesis*.
-
-### 2 . The three ideas you're taking into your practice
-
-This is the heart of the assignment. For each of three ideas:
-
-#### Idea A
-- **The idea (1 to 2 sentences):** in your own words, what is it?
-- **Why it matters for a new FC specifically:** what problem in your practice does it solve?
-- **The concrete move you'll make:** what are you doing differently tomorrow, Monday, or next client meeting? Be specific. *"I'll be more proactive"* is not an answer. *"I'll add a Monday 7am 20-minute review block before any meetings start"* is.
-- **How you'll know it's working:** one observable signal after 2 weeks.
-
-#### Idea B
-Same structure.
-
-#### Idea C
-Same structure.
-
-### 3 . The idea you pushed back on *(~100 words)*
-At least one idea in any good book will not fit your context, your values, or your market. Which one? Why didn't it land for you? This is not hating the book - it's evidence you read critically.
-
-### 4 . A client conversation this book reshapes *(~150 words)*
-Describe one specific type of prospect conversation that will go differently because you read this. Concrete profile: age, life stage, what they'd say, what you'd now respond. This proves the ideas cross from page to field.
-
-### 5 . Pair with your training *(~100 words)*
-Pick one day from the First 60 Days where this book adds depth. Name the day, explain the intersection, and say which framework in that day becomes sharper because of this book.
-
-### 6 . Rating
-- **Would you recommend this to another FC at your stage?** Yes / No / Only for specific profiles
-- **One-sentence recommendation line** - the kind of thing you'd text to a teammate who asked what they should read next.
-
----
+- One book read, not skimmed - the summary states the actual thesis, not a chapter list.
+- Three ideas, each with a specific next move and a two-week signal. Vague intentions ("be more disciplined") fail this section.
+- At least one idea you pushed back on, with a real reason - evidence you read critically.
+- One concrete prospect conversation that goes differently because you read this.
 
 ## Submission
 
