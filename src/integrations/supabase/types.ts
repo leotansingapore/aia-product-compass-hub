@@ -525,6 +525,72 @@ export type Database = {
         }
         Relationships: []
       }
+      content_studio_drafts: {
+        Row: {
+          audience: string | null
+          created_at: string
+          cta_type: string | null
+          draft: string
+          format: string | null
+          hook: string | null
+          id: string
+          pillar: string | null
+          pillar_detail: string | null
+          platform: string | null
+          user_id: string
+          vibe_source_id: string | null
+        }
+        Insert: {
+          audience?: string | null
+          created_at?: string
+          cta_type?: string | null
+          draft: string
+          format?: string | null
+          hook?: string | null
+          id?: string
+          pillar?: string | null
+          pillar_detail?: string | null
+          platform?: string | null
+          user_id: string
+          vibe_source_id?: string | null
+        }
+        Update: {
+          audience?: string | null
+          created_at?: string
+          cta_type?: string | null
+          draft?: string
+          format?: string | null
+          hook?: string | null
+          id?: string
+          pillar?: string | null
+          pillar_detail?: string | null
+          platform?: string | null
+          user_id?: string
+          vibe_source_id?: string | null
+        }
+        Relationships: []
+      }
+      content_studio_voice_profiles: {
+        Row: {
+          past_posts: Json
+          updated_at: string
+          user_id: string
+          voice_summary: string | null
+        }
+        Insert: {
+          past_posts?: Json
+          updated_at?: string
+          user_id: string
+          voice_summary?: string | null
+        }
+        Update: {
+          past_posts?: Json
+          updated_at?: string
+          user_id?: string
+          voice_summary?: string | null
+        }
+        Relationships: []
+      }
       contribution_kudos: {
         Row: {
           contribution_id: string
@@ -2822,6 +2888,57 @@ export type Database = {
           },
         ]
       }
+      social_content_drafts: {
+        Row: {
+          created_at: string
+          cta_type: string
+          draft_text: string
+          format: string
+          id: string
+          idea_context: string | null
+          idea_source: string
+          pillar: string
+          pillar_detail: string
+          platform: string
+          published_at: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          cta_type: string
+          draft_text: string
+          format: string
+          id?: string
+          idea_context?: string | null
+          idea_source: string
+          pillar: string
+          pillar_detail: string
+          platform: string
+          published_at?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          cta_type?: string
+          draft_text?: string
+          format?: string
+          id?: string
+          idea_context?: string | null
+          idea_source?: string
+          pillar?: string
+          pillar_detail?: string
+          platform?: string
+          published_at?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       speech_metrics: {
         Row: {
           created_at: string
@@ -3269,6 +3386,7 @@ export type Database = {
       video_progress: {
         Row: {
           completed: boolean
+          completed_action_step_ids: string[]
           completed_at: string | null
           completion_percentage: number | null
           created_at: string
@@ -3281,6 +3399,7 @@ export type Database = {
         }
         Insert: {
           completed?: boolean
+          completed_action_step_ids?: string[]
           completed_at?: string | null
           completion_percentage?: number | null
           created_at?: string
@@ -3293,6 +3412,7 @@ export type Database = {
         }
         Update: {
           completed?: boolean
+          completed_action_step_ids?: string[]
           completed_at?: string | null
           completion_percentage?: number | null
           created_at?: string
