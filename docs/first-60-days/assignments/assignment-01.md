@@ -25,50 +25,40 @@ form_fields:
   - "Reflection|textarea|Which CST felt more natural, which you'll open with in a real meeting, and the one beat that's still shaky.|4"
 ---
 
-> **The gist.** Build and rehearse two Client Strategy Talks (CSTs) - the Wealth Angle and the Risk Management Angle. Each one stops at the door-opener and never names a product. When both run clean, deliver them live to your trainer for sign-off, then submit a short checklist plus the flow you've compiled for each in your own words. There's no video to upload - your trainer reviews your delivery on the call.
+> **The gist.** Build and rehearse two Client Strategy Talks (CSTs): the Wealth Angle and the Risk Management Angle. Each one stops at the door-opener and never names a product. When both run clean, deliver them live to your trainer for sign-off, then submit a short checklist plus the flow you've built for each in your own words. There's no video to upload - your trainer reviews your delivery on the call.
 
-**The shape of it:** learn each CST from its source page → rehearse until it runs clean → deliver both to your trainer on a call and get them approved → tick the checklist, write out each flow in bullets, add a short reflection.
+**The shape of it:** learn each CST from its source page → build your own version → rehearse until it runs clean → deliver both to your trainer and get them approved → tick the checklist, write each flow out in bullets, add a short reflection.
 
-## Why two CSTs and not one
+## The two CSTs
 
-A CST is the 5-15-minute structured concept talk you deliver between rapport-building and the recommendation meeting. It isn't a sale. It's the frame that earns the next meeting.
+A CST is the 5-15-minute concept talk you deliver between rapport-building and the recommendation meeting. It isn't a sale. It's the frame that earns the next meeting. You build two because most prospects respond to one angle far more than the other, and you want the right one ready in the first five minutes of a meeting.
 
-Every FC needs both anchor angles, because most prospects respond to one far more than the other:
-
-| Angle | Learn it from | Lead with this when the prospect... |
+| CST | Build it from | Lead with this one when the prospect... |
 |---|---|---|
-| **Wealth Angle** (Retirement Step-by-Step) | [Day 52](../../first-60-days/week-9/day-52.md) | wants to grow money, retire well, or invest - or has said they want to plan for the future |
-| **Risk Management Angle** (Total Wealth Concept / TWFPS) | [Day 14](../../first-60-days/week-3/day-14.md) + [Day 53](../../first-60-days/week-9/day-53.md) | wants protection, has a young family, or is worried about losing their income |
+| **Wealth Angle** (Retirement Step-by-Step) | [Day 52](../../first-60-days/week-9/day-52.md) | wants to grow money, retire well, or invest |
+| **Risk Management Angle** (Total Wealth Concept) | [Day 14](../../first-60-days/week-3/day-14.md) | wants protection, has a young family, or worries about losing their income |
 
-The producer who can deliver both, and pick the right one in the first five minutes of rapport, converts more meetings than the one who only knows one angle.
-
-## Where to learn each CST
-
-The full delivery scripts live on their own pages. This assignment doesn't repeat them - read the source for the angle you're building, make your own version, then come back here to rehearse and submit. Memorising the words without the *why* produces a flat delivery.
-
-- **Wealth Angle:** [Day 52 - Retirement Step-by-Step CST](../../first-60-days/week-9/day-52.md) is the complete script - the five inputs, both diagrams, the door-opener, and the optional extensions. For the DIY / S&P objection, the deeper numbers are in the [SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction).
-- **Risk Management Angle:** [Day 14 - The Total Wealth Concept](../../first-60-days/week-3/day-14.md) gives you the why. [Day 53 - CST: The Risks Angle](../../first-60-days/week-9/day-53.md) and the [Canned Sales Track - full reference](/learning-track/first-60-days/reference/cst-risks-script-full) give you the exact words and pace.
-- **Both sit inside the same frame:** the 5-phase appointment structure ([Day 21](../../first-60-days/week-4/day-21.md)) and why concept-selling beats product-selling ([Day 54](../../first-60-days/week-9/day-54.md)).
+Each source page is the complete script - the inputs, the diagram, the lines, the door-opener. This assignment doesn't repeat them. Read the page for the angle you're building, make your own version, then come back here to rehearse and submit. Each page also links on to its own deeper references if you want them - you don't need those to pass.
 
 ## What passing looks like
 
 Each CST is signed off separately. Your trainer is checking that:
 
-- Both diagrams are drawn live in front of them - paper, whiteboard, iPad, or the live interactive tool. Never pre-drawn.
-- The numbers are worked in front of the prospect, the lump-sum figure written large, no calculator panic.
-- The flow follows its source structure (Day 52 for Wealth, Day 14 / 53 for Risk) with no skipped steps.
+- You draw the diagrams live in front of them - paper, whiteboard, iPad, or the live tool. Never pre-drawn.
+- You work the numbers in front of the prospect, the lump-sum figure written large, no calculator panic.
+- The flow follows its source structure (Day 52 for Wealth, Day 14 for Risk) with no skipped steps.
 - You hold at least one 3-second pause after a big-number reveal or a closing question.
-- You end at the door-opener and ask permission for the next meeting. You do not name a product or quote a premium.
-- You handle at least one objection. Brief your trainer to throw one (e.g. "that's too big a number" or "I need to ask my parents").
+- You end at the door-opener and ask for the next meeting. You don't name a product or quote a premium.
+- You handle one objection. Ask your trainer to throw one (e.g. "that's too big a number" or "I need to ask my parents").
 
-Two things send you straight back to rehearse, every time: pre-drawing the diagrams, and naming a product at the end.
+Two things send you back to rehearse, every time: pre-drawing the diagrams, and naming a product at the end.
 
 ## How to get signed off
 
-1. Rehearse each CST end-to-end in one go, drawing live as you talk. If you stumble, start that CST over - you're building the muscle to run it uninterrupted.
-2. Optional but worth it: practise on a friend, spouse, or fellow Pre-RNF cohort member playing the prospect, and ask them to throw one objection.
-3. [Book a call with Leo](https://www.pick-a-time.app/book/withleo) and deliver both CSTs as if your trainer were the prospect. They give feedback live and approve each one when it's ready for a real meeting. Tighten and re-run any that aren't there yet.
+1. Rehearse each CST end-to-end in one go, drawing live as you talk. If you stumble, restart that CST - you're building the muscle to run it uninterrupted.
+2. Worth doing first: practise on a friend, partner, or another Pre-RNF cohort member playing the prospect, and have them throw one objection.
+3. [Book a call with Leo](https://www.pick-a-time.app/book/withleo) and deliver both CSTs as if your trainer were the prospect. They give feedback live and approve each one when it's ready for a real meeting. Tighten and re-run anything that isn't there yet.
 
 ## Submission
 
-This is a checklist, not an upload. Confirm you've run both CSTs past your trainer and they've approved them, write out the flow you've built for each as bullet points (your wording), and add a short reflection. There's no video to attach - your trainer reviews your delivery live.
+This is a checklist, not an upload. Confirm you've run both CSTs past your trainer and they've approved them, write out the flow you built for each as bullet points (your wording), and add a short reflection. There's no video to attach - your trainer reviews your delivery live.
