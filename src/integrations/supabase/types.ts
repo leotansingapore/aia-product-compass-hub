@@ -153,6 +153,7 @@ export type Database = {
           created_at: string | null
           file_name: string | null
           file_url: string | null
+          hidden_from_gallery: boolean
           id: string
           item_id: string
           product_id: string
@@ -164,6 +165,7 @@ export type Database = {
           created_at?: string | null
           file_name?: string | null
           file_url?: string | null
+          hidden_from_gallery?: boolean
           id?: string
           item_id: string
           product_id: string
@@ -175,6 +177,7 @@ export type Database = {
           created_at?: string | null
           file_name?: string | null
           file_url?: string | null
+          hidden_from_gallery?: boolean
           id?: string
           item_id?: string
           product_id?: string
@@ -1861,6 +1864,54 @@ export type Database = {
         }
         Relationships: []
       }
+      plans_catalog: {
+        Row: {
+          ai_summary: string | null
+          aliases: string[]
+          brochure_url: string | null
+          company_name: string
+          created_at: string
+          created_by_email: string | null
+          created_by_user_id: string | null
+          id: string
+          is_aia: boolean
+          official_url: string | null
+          plan_name: string
+          plan_type: string | null
+          updated_at: string
+        }
+        Insert: {
+          ai_summary?: string | null
+          aliases?: string[]
+          brochure_url?: string | null
+          company_name: string
+          created_at?: string
+          created_by_email?: string | null
+          created_by_user_id?: string | null
+          id?: string
+          is_aia?: boolean
+          official_url?: string | null
+          plan_name: string
+          plan_type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ai_summary?: string | null
+          aliases?: string[]
+          brochure_url?: string | null
+          company_name?: string
+          created_at?: string
+          created_by_email?: string | null
+          created_by_user_id?: string | null
+          id?: string
+          is_aia?: boolean
+          official_url?: string | null
+          plan_name?: string
+          plan_type?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       platform_settings: {
         Row: {
           key: string
@@ -3288,6 +3339,14 @@ export type Database = {
         }
         Returns: string
       }
+      get_cohort_display_names: {
+        Args: { p_user_ids: string[] }
+        Returns: {
+          avatar_url: string
+          display_name: string
+          user_id: string
+        }[]
+      }
       get_learner_leaderboard: {
         Args: { p_tier: string }
         Returns: {
@@ -3393,6 +3452,8 @@ export type Database = {
       }
       reset_approval_request: { Args: { _email: string }; Returns: Json }
       seed_learning_track: { Args: never; Returns: undefined }
+      show_limit: { Args: never; Returns: number }
+      show_trgm: { Args: { "": string }; Returns: string[] }
       store_signup_password: {
         Args: { user_email: string; user_password: string }
         Returns: undefined
