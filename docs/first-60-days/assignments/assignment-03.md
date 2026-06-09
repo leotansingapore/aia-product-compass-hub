@@ -17,47 +17,35 @@ form_fields:
   - "The setup|section|Who you watched, and who the prospect was."
   - "Senior FC observed|text|Their name"
   - "Meeting type & date|text|First meeting / follow-up / close / service review, plus date"
-  - "Prospect profile|textarea|Age range, occupation, life stage, your read on their DISC style|3"
+  - "Prospect profile|textarea|Age range, occupation, life stage, and your read on their DISC style.|3"
   - "What you saw|section|The moves the senior FC made - be specific, quote where you can."
-  - "Opening: what did the senior FC do in the first 5 minutes?|textarea|Rapport, mission statement, agenda - what specifically did they say?|4"
-  - "The best question you heard|textarea|Write it word-for-word if you can. Then say why it worked.|4"
-  - "The concept they led with|textarea|Which concept - Total Wealth, Protection Ladder, CST Risk, etc. - and why do you think they picked it?|4"
-  - "First objection + how it was handled|textarea|The prospect's exact words, then the senior FC's 3-beat response|4"
-  - "The close|textarea|How did they move to the close? Was there silence? Who broke it? Closed on product or on appointment?|4"
+  - "Opening: what did the senior FC do in the first 5 minutes?|textarea|What they actually said, as close to word-for-word as you can get.|4"
+  - "The best question you heard|textarea|Write it word-for-word, then say why it worked.|4"
+  - "The concept they led with|textarea|Which concept, and why you think they picked it.|4"
+  - "First objection + how it was handled|textarea|The prospect's words, then how the senior FC responded.|4"
+  - "The close|textarea|How they moved to the close. Was there a pause, and who broke it? Closed on a product or on the next appointment?|4"
   - "What you're taking away|section|The point of the whole exercise."
-  - "The one thing you're stealing|textarea|Name one move, phrase, or technique you're using in your next 3 meetings.|3"
-  - "The gap you still feel|textarea|What part of running a meeting like this still feels hardest for you to do?|3"
+  - "The one thing you're stealing|textarea|One move, phrase, or technique you'll use in your next 3 meetings.|3"
+  - "The gap you still feel|textarea|The part of running a meeting like this that still feels hardest for you.|3"
 ---
 
 > **The gist.** Sit in on one real meeting run by a senior FC, watch for the moves you'd have missed, then fill in a short reflection. You observe - you don't pitch. The reflection isn't a summary; it's a diagnosis of what made the meeting work.
 
-**The shape of it:** line up a meeting to shadow → skim the prep days so your pattern-recognition is on → take quiet notes → debrief the senior FC for 5-10 min → fill in the form.
-
-## Why this matters
-
-Reading about SPIN and watching SPIN happen are different skills. Most new FCs know every framework on paper but freeze in the first live meeting because they've never seen the frameworks *as they actually look in the room*.
-
-This assignment collapses that gap. The reflection isn't a summary - it's a diagnosis. You're looking for the moves the senior FC made that you would have missed.
-
-## Prepare from these days
-
-Skim these *before* the observation so your pattern-recognition is active in the meeting.
-
-- [Day 21 - The 5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) - watch for each phase transition
-- [Day 43 - Scripting the Approach](../../first-60-days/week-8/day-43.md) - the meeting open
-- [Day 47 - SPIN Framework](../../first-60-days/week-8/day-47.md) - the Situation -> Problem -> Implication -> Need-Payoff sequence
-- [Day 54 - Concept Selling](../../first-60-days/week-9/day-54.md) - which concept they lead with and why
-- [Day 59 - The Close](../../first-60-days/week-10/day-59.md) - the silent close
+**The shape of it:** line up a meeting to shadow → skim the prep so your pattern-recognition is on → take quiet notes → debrief the senior FC for 5-10 min → fill in the form.
 
 ## How to set it up
 
-1. Ask your mentor or any senior FC in the team. Most will say yes.
-2. Confirm prospect consent - you're introduced as "a colleague observing".
-3. Sit, take notes on phone/notebook discreetly. Say nothing unless directly addressed.
-4. Debrief the senior FC for 5-10 minutes after the meeting.
+1. Ask your mentor or any senior FC. Most will say yes.
+2. Get prospect consent - you're introduced as "a colleague observing".
+3. Sit, take notes discreetly, say nothing unless directly addressed.
+4. Debrief the senior FC for 5-10 minutes afterwards.
 
-## Fill in the reflection form below
+## What to look for
 
-The form below has 10 short fields. Aim for specific, concrete answers over long general ones. *"Senior FC was confident"* is not an answer. *"When prospect said they already had insurance, senior FC asked 'when was the last time you looked at what's actually covered?' - I'm using this"* is.
+Skim two pages before you go so you can name the moves as they happen: the [5-phase meeting structure](../../first-60-days/week-4/day-21.md) (watch the phase transitions) and [SPIN](../../first-60-days/week-8/day-47.md) (the Situation -> Problem -> Implication -> Need-Payoff sequence). The prep-day chips above link the rest - the open, concept selling, the close - if you want to brush up on any one.
+
+## What a passing reflection looks like
+
+Specific and quoted beats long and general. *"Senior FC was confident"* is not an answer. *"When the prospect said they already had insurance, the senior FC asked 'when was the last time you looked at what's actually covered?' - I'm using this"* is. Quote what you actually heard wherever you can.
 
 Submit directly on the Academy - no file upload needed.
