@@ -17,36 +17,26 @@ form_fields:
   - "Session 1|section|Your first 90-minute calling block."
   - "Session 1 - date & duration|text|e.g. 22 Apr . 90-min block, 7pm-8:30pm"
   - "Session 1 - dials, pickups, agreements|text|e.g. 40 dials . 12 picked up . 3 agreed to next step"
-  - "Session 1 - what worked + what died|textarea|Which opener line landed? Which failed fast? Quote the phrases word-for-word - that's where the learning is.|4"
+  - "Session 1 - what worked + what died|textarea|Quote the opener lines that landed and the ones that failed fast, word-for-word.|4"
   - "Session 2|section|Change one thing from Session 1, then run it again."
   - "Session 2 - date & duration|text|"
   - "Session 2 - dials, pickups, agreements|text|"
-  - "Session 2 - what changed vs Session 1|textarea|Between the two sessions, what did you adjust? Did the numbers move?|4"
+  - "Session 2 - what changed vs Session 1|textarea|What you adjusted between sessions, and whether the numbers moved.|4"
   - "Your 2 shadowed appointments|section|Two real first-meetings with a senior FC sitting in."
   - "Appointment 1 - prospect profile|text|First name . age . slot, e.g. Ken, 34, Tue 7pm"
   - "Appointment 1 - senior FC shadowing|text|Their name . their confirmation"
   - "Appointment 2 - prospect profile|text|"
   - "Appointment 2 - senior FC shadowing|text|"
-  - "Self-diagnosis going into the shadowed meetings|textarea|What do you expect to fumble? What should your senior FC watch closest?|3"
+  - "Self-diagnosis going into the shadowed meetings|textarea|What you expect to fumble, and what your senior FC should watch closest.|3"
 ---
 
 > **The gist.** Run two logged cold-calling sessions, then set two real first-meeting appointments with a senior FC sitting in as a silent shadow. The goal isn't a clean close - it's an honest baseline, and the fastest coaching loop you'll get in your first 30 days.
 
-**The shape of it:** set up your dialling infrastructure → run Session 1 (log every dial) → debrief and change one thing → run Session 2 → book 2 shadowed appointments → write your self-diagnosis.
+**The shape of it:** set up your dialling kit → run Session 1 (log every dial) → debrief and change one thing → run Session 2 → book 2 shadowed appointments → write your self-diagnosis.
 
 ## Why this matters
 
-Most new FCs don't fail at *meetings* - they fail at *getting meetings*. Cold calling is the fastest unblocker once warm market runs dry, and it's the skill most avoidable by accident. You'll dial, stumble, land a few, and feel the volume math in your body.
-
-The senior shadow is the other half. You only get better at running a meeting when someone who's run hundreds watches you run one. Two shadowed appointments this week = the single biggest coaching loop you'll get in the first 30 days.
-
-## Prepare from these days
-
-- [Day 19 - Prospecting: The Lifeblood of Your Business](../../first-60-days/week-4/day-19.md) - why activity volume beats technique at this stage
-- [Day 21 - The 5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) - the structure your senior FC will grade you against
-- [Day 37 - The Approach: Why It Matters](../../first-60-days/week-7/day-37.md) - the opener mindset
-- [Day 38 - Natural Market vs Referred Leads](../../first-60-days/week-7/day-38.md) - where cold sits in the full funnel
-- [Day 39 - Building the Prospect List - Project 100](../../first-60-days/week-7/day-39.md) - the list cold supplements, not replaces
+Most new FCs don't fail at meetings - they fail at getting meetings. Cold calling is the fastest unblocker once warm market runs dry. The senior shadow is the other half: you only get better at running a meeting when someone who's run hundreds watches you run one. Two shadowed appointments this week is the single biggest coaching loop you'll get in the first 30 days. The volume math behind all of this is in [Day 19](../../first-60-days/week-4/day-19.md).
 
 ## Before you dial - infrastructure
 
@@ -61,44 +51,24 @@ Full setup walkthrough: [Leo's prospecting daily Loom](https://www.loom.com/shar
 
 ## The two cold-calling sessions
 
-Each session is a **90-minute block**, calendared, phone-down-except-to-dial.
+Each session is a 90-minute block, calendared, phone-down-except-to-dial. Aim for 30-50 dials. Run one opener consistently in Session 1, then debrief (15 min with Leo or your mentor, log in hand), change one thing - the opener, the question order, the tone - and run Session 2 to see what the numbers do.
 
-### Session structure
-- **0-5 min** - Warm up: stand, breathe, 3 practice dials to easy numbers.
-- **5-80 min** - Dial through the list. Target: 30-50 dials per session. Use one opener consistently in Session 1; iterate in Session 2.
-- **80-90 min** - Log every dial: number, pickup Y/N, outcome (hung up / polite pass / scheduled callback / agreed to meet).
-
-### What counts as a dial that "landed"
-- Prospect stayed on for 2+ min AND
-- Agreed to a next step (callback, meeting, sending info) OR
-- Gave you a clean "no" that tells you they're permanently out
-
-Polite passes without next step = failed dial. Log them anyway - the conversion ratio is the data.
-
-### Between Session 1 and Session 2
-Debrief with Leo (or your mentor) for 15 minutes. Bring your log. Change **one thing** for Session 2 - the opener, the question order, the tone - and see what the numbers do.
+Log every dial: number, pickup Y/N, outcome. A dial "landed" only if the prospect stayed on for 2+ minutes AND agreed a next step (callback, meeting, sending info), OR gave you a clean "no" that says they're permanently out. Polite passes with no next step are failed dials - log them anyway, the conversion ratio is the data.
 
 ## The two shadowed appointments
 
-From the cold-call pipeline (or from warm/semi-warm if cold didn't produce enough in time), set **2 first-meeting appointments** with real prospects. Brief the senior FC beforehand:
+From the cold-call pipeline (or warm/semi-warm if cold didn't produce enough in time), set 2 first-meeting appointments with real prospects. Brief the senior FC beforehand: who the prospect is, how they came in, your read on their hot buttons, and where you expect to fumble.
 
-- Who's the prospect (name, age, life stage)
-- How they came in (cold call, warm referral)
-- Your read on their hot buttons from the initial chat
-- Where in the meeting you expect to fumble
+Run the full [5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) - that's the structure your senior FC grades you against. Don't try to close product in a first meeting.
 
-### The senior FC's job
-Silent observation. No interjection unless you explicitly pass to them. 10-min debrief immediately after the meeting, in the car or coffee shop - not 3 days later when memory has faded.
-
-### Your job
-Run the full [5-Phase Sales Meeting](../../first-60-days/week-4/day-21.md) structure - rapport, mission + agenda, fact-find, concept delivery, appointment close. Don't try to close product in a first meeting.
+The senior FC's job is silent observation - no interjection unless you explicitly pass to them, then a 10-minute debrief immediately after the meeting, in the car or coffee shop, not 3 days later when memory has faded.
 
 ## What a passing submission looks like
 
 - Session 1 + 2 numbers logged honestly - even if they're ugly
 - Prospect names + times for both shadow appointments
 - Senior FC confirmed attendance for both
-- Your self-diagnosis is specific (*"I talk too much in phase 3"*, not *"I need to improve"*)
+- A specific self-diagnosis (*"I talk too much in phase 3"*, not *"I need to improve"*)
 
 ## Submission
 
