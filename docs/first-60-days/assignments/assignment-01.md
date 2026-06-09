@@ -27,7 +27,7 @@ form_fields:
 
 > **The gist.** Build and rehearse two Client Strategy Talks (CSTs): the Wealth Angle and the Risk Management Angle. Each one stops at the door-opener and never names a product. When both run clean, deliver them live to your trainer for sign-off, then submit a short checklist plus the flow you've built for each in your own words. There's no video to upload - your trainer reviews your delivery on the call.
 
-**The shape of it:** learn each CST from its source page → build your own version → rehearse until it runs clean → deliver both to your trainer and get them approved → tick the checklist, write each flow out in bullets, add a short reflection.
+**The shape of it:** learn each CST from its source page -> build your own version -> rehearse until it runs clean -> deliver both to your trainer and get them approved -> tick the checklist, write each flow out in bullets, add a short reflection.
 
 ## The two CSTs
 

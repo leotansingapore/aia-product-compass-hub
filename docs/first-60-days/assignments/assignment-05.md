@@ -32,7 +32,7 @@ form_fields:
 
 > **The gist.** Run two logged cold-calling sessions, then set two real first-meeting appointments with a senior FC sitting in as a silent shadow. The goal isn't a clean close - it's an honest baseline, and the fastest coaching loop you'll get in your first 30 days.
 
-**The shape of it:** set up your dialling kit → run Session 1 (log every dial) → debrief and change one thing → run Session 2 → book 2 shadowed appointments → write your self-diagnosis.
+**The shape of it:** set up your dialling kit -> run Session 1 (log every dial) -> debrief and change one thing -> run Session 2 -> book 2 shadowed appointments -> write your self-diagnosis.
 
 ## Why this matters
 

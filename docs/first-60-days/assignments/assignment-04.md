@@ -15,7 +15,7 @@ status_key: "assignment-04-book-review"
 
 > **The gist.** Read one career-relevant book, then prove you read it by applying three specific ideas to your own practice - not by summarising chapters. You pick the book from the list below; the template walks you through the write-up.
 
-**The shape of it:** pick a book → read it → copy the template → fill every section (the three ideas you're stealing is the heart of it) → submit the PDF or Doc link.
+**The shape of it:** pick a book -> read it -> copy the template -> fill every section (the three ideas you're stealing is the heart of it) -> submit the PDF or Doc link.
 
 ## Why this matters
 

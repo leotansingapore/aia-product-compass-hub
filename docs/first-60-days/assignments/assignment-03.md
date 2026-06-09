@@ -31,7 +31,7 @@ form_fields:
 
 > **The gist.** Sit in on one real meeting run by a senior FC, watch for the moves you'd have missed, then fill in a short reflection. You observe - you don't pitch. The reflection isn't a summary; it's a diagnosis of what made the meeting work.
 
-**The shape of it:** line up a meeting to shadow → skim the prep so your pattern-recognition is on → take quiet notes → debrief the senior FC for 5-10 min → fill in the form.
+**The shape of it:** line up a meeting to shadow -> skim the prep so your pattern-recognition is on -> take quiet notes -> debrief the senior FC for 5-10 min -> fill in the form.
 
 ## How to set it up
 

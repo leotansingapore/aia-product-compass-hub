@@ -15,7 +15,7 @@ status_key: "assignment-06-vision-board"
 
 > **The gist.** Build a one-page picture of the life this career is for - dense with images, light on text - then put it somewhere you'll see it daily. Not decoration: a decision-making anchor for the hard weeks. It's what you look at when you don't feel like making the last three dials, and the image reminds you why the dials exist.
 
-**The shape of it:** watch the walkthrough → pick a template → fill 4 of the 6 categories with specific images → set it as your wallpaper → share it to the group chat.
+**The shape of it:** watch the walkthrough -> pick a template -> fill 4 of the 6 categories with specific images -> set it as your wallpaper -> share it to the group chat.
 
 ## Build it
 
