@@ -6,6 +6,73 @@
 
 ## Pending
 
+### Seed the 5 Project 200 warm-market openers into the `scripts` table
+
+The Project 200 assignment ([`docs/first-60-days/assignments/assignment-02.md`](docs/first-60-days/assignments/assignment-02.md), url_slug `project-200`) points interns to the Sales Scripts library at `/scripts?audience=warm-market`, saying the openers "also live in the Sales Scripts library (Warm Market)". That link filters `public.scripts` to rows where `target_audience = 'warm-market'`, but the assignment's 5 canonical openers are **not** in the table — the only warm-market rows today are Jana's 3 prospecting scripts (Soft / Curiosity / Event-Follow-Up), which are different content. So the link currently shows a library that's missing the exact openers it promises. Please insert these 5 openers so the link resolves to them (and so Claude Code can later drop the inline copy from the assignment and rely on the link).
+
+Notes before you run it:
+- Target table is `public.scripts` (the table the Sales Scripts page reads via `useScripts` -> `supabase.from('scripts')`). NOT NULL columns: `stage` (the title), `category`, `versions`, `sort_order`. The message text lives **inside** `versions` (a jsonb array of `{author, content}`) — there is no `title`/`body`/`status`/`slug`/`created_by` column.
+- `category` must be `'prospecting'`, **not** `'servicing'` — the Scripts tab hides `servicing` rows.
+- `target_audience` must be exactly the literal string `'warm-market'` (the UI filters by exact string equality).
+- **Idempotency / no duplicates:** this table has no unique constraint and has already needed two duplicate-cleanup migrations (`20260315120000`, `20260315154328`). Do **not** blind-`INSERT`. Guard each row on its `stage` title with `WHERE NOT EXISTS (...)` so a re-run is a no-op. `ON CONFLICT` won't work (no unique index to conflict on).
+- These openers are AIA-curriculum scripts — seed them **verbatim**, do not copy-edit (see `docs/_voice-canon-scripts.md`). Opener 3 (Relationship investment) has no single quotable line in the source; its content is a short description of the cadence, by design.
+
+```sql
+-- 1. Policy review / summary offer
+INSERT INTO public.scripts (stage, category, target_audience, script_role, sort_order, tags, versions)
+SELECT 'Warm Market Opener - Policy Review / Summary Offer', 'prospecting', 'warm-market', 'consultant', 950,
+  ARRAY['warm-market','policy-review','pre-license','project-200'],
+  jsonb_build_array(jsonb_build_object('author','Project 200','content',
+'For friends who already have insurance and aren''t sure what they own.
+
+"I''m building one-page policy summaries as part of my training. Want me to do yours? Takes me about 30 min, you''ll know exactly what you own and what''s missing."'))
+WHERE NOT EXISTS (SELECT 1 FROM public.scripts WHERE stage = 'Warm Market Opener - Policy Review / Summary Offer');
+
+-- 2. Casual catch-up
+INSERT INTO public.scripts (stage, category, target_audience, script_role, sort_order, tags, versions)
+SELECT 'Warm Market Opener - Casual Catch-Up', 'prospecting', 'warm-market', 'consultant', 955,
+  ARRAY['warm-market','catch-up','no-ask','project-200'],
+  jsonb_build_array(jsonb_build_object('author','Project 200','content',
+'For people you genuinely miss. No agenda, no ask.
+
+"Been a while - coffee this month?"'))
+WHERE NOT EXISTS (SELECT 1 FROM public.scripts WHERE stage = 'Warm Market Opener - Casual Catch-Up');
+
+-- 3. Relationship investment (no single quotable line - it is a cadence)
+INSERT INTO public.scripts (stage, category, target_audience, script_role, sort_order, tags, versions)
+SELECT 'Warm Market Opener - Relationship Investment', 'prospecting', 'warm-market', 'consultant', 960,
+  ARRAY['warm-market','nurture','semi-warm','project-200'],
+  jsonb_build_array(jsonb_build_object('author','Project 200','content',
+'For semi-warm contacts who''ve gone quiet. Add value first - three or four human touches with zero career mention before any ask. This opener is a cadence of genuine, non-career touches, not a single line.'))
+WHERE NOT EXISTS (SELECT 1 FROM public.scripts WHERE stage = 'Warm Market Opener - Relationship Investment');
+
+-- 4. Honest ask for help
+INSERT INTO public.scripts (stage, category, target_audience, script_role, sort_order, tags, versions)
+SELECT 'Warm Market Opener - Honest Ask for Help', 'prospecting', 'warm-market', 'consultant', 965,
+  ARRAY['warm-market','ask-for-help','close-friends','pre-license','project-200'],
+  jsonb_build_array(jsonb_build_object('author','Project 200','content',
+'For close friends and family.
+
+"I just started training as a Financial Consultant. Can I borrow 15 minutes to walk you through what I''m learning? I''m not asking you to buy anything - I''m not even licensed yet. I just need real feedback on how I explain things."'))
+WHERE NOT EXISTS (SELECT 1 FROM public.scripts WHERE stage = 'Warm Market Opener - Honest Ask for Help');
+
+-- 5. Ask for practice + future support
+INSERT INTO public.scripts (stage, category, target_audience, script_role, sort_order, tags, versions)
+SELECT 'Warm Market Opener - Ask for Practice + Future Support', 'prospecting', 'warm-market', 'consultant', 970,
+  ARRAY['warm-market','practice','future-support','semi-warm','project-200'],
+  jsonb_build_array(jsonb_build_object('author','Project 200','content',
+'For semi-warm contacts you respect.
+
+"I''m starting out in financial advisory. Once my license is through, my plan is to focus on people I actually know. Would you be open to a 30-min session then so I can practise on someone honest? No expectation either way."'))
+WHERE NOT EXISTS (SELECT 1 FROM public.scripts WHERE stage = 'Warm Market Opener - Ask for Practice + Future Support');
+```
+
+After it runs: load `/scripts?audience=warm-market` and confirm the 5 "Warm Market Opener -" rows render alongside Jana's existing 3, and that the warm-market audience chip appears.
+
+Client follow-up (Claude Code, after this lands): the inline openers in `assignment-02.md` can then be replaced with a single link to `/scripts?audience=warm-market`, finishing the original "link out instead of embed" intent.
+
+---
+
 ### Content Studio draft persistence — `social_content_drafts` table
 
 The new Content Studio at [`/content-studio`](src/pages/ContentStudio.tsx) (powered by edge function `generate-social-content`) currently keeps drafts only in component state — refreshing the page wipes everything. We want each generation to persist server-side so consultants can return to drafts, see a "my drafts" history, and (in v3) plug it into a weekly Sun/Tue/Thu cadence tracker.
