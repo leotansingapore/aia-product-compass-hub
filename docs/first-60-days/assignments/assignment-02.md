@@ -12,20 +12,20 @@ weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
 submit_heading: "Your Project 200 checklist"
-submit_intro: "Two confirmations, then your running count. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
+submit_intro: "Two confirmations, then your count and how you'll reach out. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
 file_upload: false
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
-  - "Submit your Project 200|section|Two quick confirmations, then your numbers. Your list stays on your own device or Drive - nothing gets uploaded here."
+  - "Submit your Project 200|section|Two quick confirmations, then your count and your outreach plan. Your list stays on your own device or Drive - nothing gets uploaded here."
+  - "I've finished building my Project 200 list|check|Names entered in your own sheet, sorted by temperature and priority. Tick this once it's built out - keep adding names over time."
   - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your opener together."
-  - "I've written my own opening message(s), in my own words|check|Adapted from the ready openers above so they sound like you - not copied word-for-word."
-  - "Names loaded so far|text|e.g. 84 named, 36 Priority A, 50 Semi-Warm. Update this each time you come back - you don't need all 200 to submit."
-  - "Your go-to opener (optional)|textarea|Worth pasting: the one line you'll actually send most, so we can tighten it together on the call.|4"
+  - "How many names on your list|text|Just the number, e.g. 200. You don't need all 200 to submit - log what you have and keep adding."
+  - "How you'll reach out to them|textarea|Your plan in your own words: which opener you'll lead with, who you'll contact first, and how you'll work through the list.|5"
 ---
 
 > **The gist.** Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with. The list is the deliverable - you're handed ready openers below, so you don't write anything from scratch. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you put it to work.
 
-**You don't need all 200 before you submit.** This is a checklist, not an upload - confirm the two boxes once your list is started, log your running count, and keep adding. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
+**You don't need all 200 before you submit.** This is a checklist, not an upload - log how many names you have, note how you'll reach out, and book your review. Keep adding to the list and resubmit as it grows. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
 
 ## Why this matters
 
@@ -79,4 +79,4 @@ When you tweak one: lead with them not you, name the ask honestly ("help" / "pra
 
 ## Submission
 
-This is a checklist, not an upload. Book your review with Leo (it's one of the two boxes), tick the two confirmations, log how many names you've loaded so far, optionally paste your go-to opener, and submit. [Pick a time with Leo](https://www.pick-a-time.app/book/withleo) to walk through your list and tighten your opener together. Your list stays private - you keep it in your own Drive or notebook. Resubmit any time as the list grows.
+This is a checklist, not an upload. Tick the two boxes (list built, review booked), enter how many names you have, and write a line on how you'll reach out to them. [Pick a time with Leo](https://www.pick-a-time.app/book/withleo) to walk through your list and tighten your opener together. Your list stays private - you keep it in your own Drive or notebook. Resubmit any time as the list grows.
