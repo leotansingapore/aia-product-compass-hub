@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
+  Check,
   CheckCircle2,
   ClipboardList,
   Clock,
@@ -401,8 +402,20 @@ function SubmissionPanel({
         {isFormMode && hasFormValues ? (
           <div className="space-y-3">
             {formFields.map((field) => {
+              if (field.kind === "section") return null;
               const value = formValuesSnapshot[field.label];
               if (!value) return null;
+              if (field.kind === "check") {
+                return (
+                  <div
+                    key={field.label}
+                    className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3"
+                  >
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
+                    <p className="text-sm font-medium">{field.label}</p>
+                  </div>
+                );
+              }
               return (
                 <div key={field.label} className="rounded-lg border bg-background p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
@@ -444,14 +457,17 @@ function SubmissionPanel({
 
     let payloadText: string | null = null;
     if (isFormMode) {
-      const filled = formFields.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
+      // Exclude section dividers; a ticked check ("yes") counts as filled, so a
+      // checklist can be submitted partially and resubmitted as more is ticked.
+      const answerable = formFields.filter((f) => f.kind !== "section");
+      const filled = answerable.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
       if (filled.length === 0) {
-        toast.error("Fill in at least one field before submitting.");
+        toast.error("Tick at least one item or fill a field before submitting.");
         return;
       }
       payloadText = JSON.stringify(
         Object.fromEntries(
-          formFields.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
+          answerable.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
         ),
       );
     } else {
@@ -631,6 +647,59 @@ function FormFieldRenderer({
   onChange: (v: string) => void;
   disabled: boolean;
 }) {
+  // A "section" field is a non-input divider that breaks a long form into
+  // labelled chunks so it reads as steps, not a wall.
+  if (field.kind === "section") {
+    return (
+      <div className="pt-4 first:pt-0">
+        <div className="flex items-center gap-3">
+          <h4 className="font-serif text-base font-bold text-foreground shrink-0">{field.label}</h4>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+        {field.hint && (
+          <p className="mt-1 text-xs text-muted-foreground whitespace-pre-wrap">{field.hint}</p>
+        )}
+      </div>
+    );
+  }
+
+  // A "check" field is a confirmation the student ticks. Tap toggles the stored
+  // value between "yes" and "".
+  if (field.kind === "check") {
+    const checked = value === "yes";
+    return (
+      <button
+        type="button"
+        onClick={() => onChange(checked ? "" : "yes")}
+        disabled={disabled}
+        aria-pressed={checked}
+        className={cn(
+          "flex w-full items-start gap-3 rounded-xl border p-3.5 text-left transition-colors",
+          checked
+            ? "border-green-500/40 bg-green-500/5"
+            : "border-input bg-background hover:bg-muted/50",
+        )}
+      >
+        <span
+          className={cn(
+            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 transition-colors",
+            checked ? "border-green-600 bg-green-600 text-white" : "border-muted-foreground/40",
+          )}
+        >
+          {checked && <Check className="h-3.5 w-3.5" />}
+        </span>
+        <span className="min-w-0">
+          <span className="text-sm font-medium text-foreground">{field.label}</span>
+          {field.hint && (
+            <span className="mt-0.5 block text-xs text-muted-foreground whitespace-pre-wrap">
+              {field.hint}
+            </span>
+          )}
+        </span>
+      </button>
+    );
+  }
+
   return (
     <div className="space-y-1.5">
       <label className="text-sm font-semibold text-foreground">{field.label}</label>
