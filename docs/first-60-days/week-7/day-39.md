@@ -83,11 +83,7 @@ Compare that to the FC who waits until their license drops before reaching out:
 
 Before you start listing names, understand the three rings your contacts sit in. Most new FCs exhaust the **hot** ring in 6 weeks and conclude "I've run out of people" - when in reality they've never touched the largest ring.
 
-```mermaid
-flowchart TD
-    COLD["Cold<br/>strangers"] --> SEMIWARM["Semi-Warm<br/>the real market"]
-    SEMIWARM --> HOT["Hot<br/>closest 5-15"]
-```
+![Market temperature as concentric rings: cold strangers on the outside, the semi-warm real market in the middle, and your hot closest circle at the centre.](/first-60-days/images/warm-market-rings.webp)
 
 | Ring | Who | Why it matters |
 |---|---|---|
@@ -163,15 +159,7 @@ Not everyone on your list of 100 will become a prospect. That's expected.
 
 **Don't be discouraged by the drop-off.** It's the normal shape. The point of the 100 is to get *enough at the top* so the 8-15 at the bottom actually materialise.
 
-```mermaid
-flowchart TD
-    A["100 names<br/>Project 100 list"]
-    B["60-70 reached<br/>phone or message back"]
-    C["30-40 market surveys<br/>agree to conversation"]
-    D["20 fact-finds<br/>real meeting booked"]
-    E["8-15 closes<br/>become clients"]
-    A --> B --> C --> D --> E
-```
+![The Project 100 prospecting funnel narrowing from 100 names, to 60-70 reached, 30-40 market surveys, 20 fact-finds, and 8-15 closes.](/first-60-days/images/day39-project-100-funnel.webp)
 
 ## 5. The natural market profile check
 

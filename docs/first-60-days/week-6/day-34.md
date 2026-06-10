@@ -144,15 +144,7 @@ flowchart TD
 
 There is always a trade-off between **safety, return, and liquidity.** You can get two out of three - never all three.
 
-```mermaid
-flowchart TD
-    A["Pick any 2 of 3"] --> B["Safety + Liquidity<br/>Fixed deposits, CPF OA"]
-    A --> C["Safety + Return<br/>Gov bonds, CPF SA"]
-    A --> D["Return + Liquidity<br/>ETFs, equities"]
-    B --> E["All 3 = scam or<br/>misrepresentation"]
-    C --> E
-    D --> E
-```
+![The safety-liquidity-return trade-off triangle - pick any two, never all three. Safety + Liquidity: fixed deposits, CPF OA. Safety + Return: government bonds, CPF SA. Return + Liquidity: ETFs, equities.](/first-60-days/images/day34-safety-liquidity-return.webp)
 
 | Safety | Return | Liquidity | Example |
 |---|---|---|---|

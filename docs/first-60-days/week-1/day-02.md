@@ -152,11 +152,7 @@ The textbook objection — *"I'll save the premium and invest it instead"* — f
 
 You'll use this three-layer model in every client conversation for the rest of your career:
 
-```mermaid
-flowchart TD
-    L1["Layer 1<br/>Risk Management"] --> L2["Layer 2<br/>Wealth Accumulation"]
-    L2 --> L3["Layer 3<br/>Wealth Preservation"]
-```
+![The financial planning frame as a pyramid, built base-up: Layer 1 Risk Management (the foundation), Layer 2 Wealth Accumulation, Layer 3 Wealth Preservation (the apex).](/first-60-days/images/day02-three-layer-frame.webp)
 
 A client who jumps to Layer 2 without Layer 1 is investing on a foundation that hasn't been built. One uncovered event — a CI diagnosis, a serious accident — forces them to liquidate the investments at exactly the worst time. Your job is to explain the order without shaming them and without selling.
 

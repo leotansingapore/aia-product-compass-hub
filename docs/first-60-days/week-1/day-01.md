@@ -47,13 +47,7 @@ In an age where AI is making memorised knowledge cheaper every month, those four
 
 The 60 days break into three phases. Each one earns the next.
 
-```mermaid
-flowchart TD
-    P1["Phase 1 . Weeks 1 to 5<br/>Inner game"]
-    P2["Phase 2 . Weeks 6 to 7<br/>Fundamentals"]
-    P3["Phase 3 . Weeks 8 to 10<br/>Client game"]
-    P1 --> P2 --> P3
-```
+![Your 60-day journey as a three-phase roadmap. Phase 1 (weeks 1 to 5): inner game. Phase 2 (weeks 6 to 7): fundamentals. Phase 3 (weeks 8 to 10): client game.](/first-60-days/images/day01-60-day-journey.webp)
 
 **What each phase means:**
 - **Inner game** - how you think, how you spend time, the standards you hold yourself to.
