@@ -39,19 +39,11 @@ Build it now, before you need it. A name you add today is a conversation you can
 
 Most new FCs only mine their inner ring - parents, siblings, best friends - and run out of names by Month 3. Your real market is the bigger ring around it: the people you haven't spoken to in years. Sort every name by temperature as you add it.
 
-```mermaid
-flowchart TD
-    HOT["Inner ring - HOT<br/>Parents, siblings, best friends<br/>Easiest to meet, but exhausts the fastest"]
-    SEMI["Middle ring - SEMI-WARM - the real market<br/>People you have not spoken to in years<br/>School friends, ex-colleagues, old interest groups, referrals<br/>Most names, least competition - nobody reconnects with them first"]
-    COLD["Outer ring - COLD<br/>Total strangers - ads, roadshows, cold calls<br/>A volume game, not where you start"]
-    HOT --> SEMI --> COLD
-    classDef hot fill:#991b1b,stroke:#991b1b,color:#fff
-    classDef semi fill:#fca5a5,stroke:#fca5a5,color:#1f2937
-    classDef cold fill:#1e3a8a,stroke:#1e3a8a,color:#fff
-    class HOT hot
-    class SEMI semi
-    class COLD cold
-```
+![Concentric rings of your warm market, drawn as a bullseye: the red centre is you and your hot inner circle, the salmon middle ring is the semi-warm market, and the navy outer ring is cold strangers.](/first-60-days/images/warm-market-rings.webp)
+
+- **Hot - your inner circle.** Parents, siblings, best friends. Easiest to meet, but exhausts the fastest.
+- **Semi-warm - the real market.** People you haven't spoken to in years: school friends, ex-colleagues, old interest groups, referrals. The most names and the least competition, because nobody reconnects with them first.
+- **Cold.** Total strangers - ads, roadshows, cold calls. A volume game, not where you start.
 
 Two targets make a list pass:
 
