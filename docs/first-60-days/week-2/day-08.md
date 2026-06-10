@@ -77,12 +77,7 @@ By Year 3 half your income is already passive. By Year 10 roughly **two-thirds**
 
 > Run the live numbers for your own assumed production at the **Income Layers - Detailed** view in the Engage Point Play tool.
 
-```mermaid
-flowchart TD
-    Y1["Year 1<br/>below peer"] --> Y2["Year 2-3<br/>crossover"]
-    Y2 --> Y3["Year 3+<br/>compounding"]
-    Y3 --> Y5["Year 5+<br/>renewal income"]
-```
+![Active vs passive income over the first years as a rising curve: Year 1 below peer, Year 2-3 crossover, Year 3+ compounding, Year 5+ renewal income.](/first-60-days/images/day08-active-vs-passive.webp)
 
 ## 3. Why income guarantees exist - and what they really are
 

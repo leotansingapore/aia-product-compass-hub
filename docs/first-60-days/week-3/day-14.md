@@ -44,11 +44,7 @@ For a 30-year-old earning $100K/year with 30 working years left, Human Capital i
 
 Building wealth is one repeated motion: convert Human Capital into Financial Capital, and protect both halves while you do it.
 
-```mermaid
-flowchart TD
-    HC["Human Capital<br/>earning power"] -->|"earn, save,<br/>invest"| FC["Financial Capital<br/>working for you"]
-    FC -->|"compounds"| HC2["More options<br/>over time"]
-```
+![The conversion engine: Human Capital (your earning power) converts through earn-save-invest into Financial Capital (money working for you), which compounds into more options over time.](/first-60-days/images/day14-conversion-engine.webp)
 
 Four steps, on loop, for 30+ years:
 

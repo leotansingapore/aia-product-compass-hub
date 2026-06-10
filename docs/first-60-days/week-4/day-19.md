@@ -134,12 +134,7 @@ Prospecting is fundamentally a numbers game. Not a mindset game.
 
 The arrow labels are the conversion rate from one stage to the next. Watch how fast 100 collapses to under 1:
 
-```mermaid
-flowchart TD
-    A["100 opening approaches<br/>(calls / messages)"] -->|"~3%"| B["3 appointments set"]
-    B -->|"~50%"| C["1-2 meetings<br/>actually happen"]
-    C -->|"20-40%"| D["under 1 close<br/>per 100 approaches"]
-```
+![The activity funnel: 100 opening approaches convert at ~3% to 3 appointments, ~50% to 1-2 meetings, and 20-40% to under 1 close per 100 approaches.](/first-60-days/images/day19-activity-funnel.webp)
 
 Read it top to bottom: 100 approaches becomes 3 appointments, becomes 1-2 real meetings, becomes well under 1 close. That is normal. The number that fixes everything downstream is the one at the top.
 
