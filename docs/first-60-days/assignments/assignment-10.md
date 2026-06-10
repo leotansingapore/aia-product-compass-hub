@@ -3,13 +3,13 @@ id: assignment-10
 url_slug: market-survey-practice
 order: 5
 title: "Market Survey Practice"
-short: "Run 30 warm-market surveys off your Project 200 list - the reps that make the script yours before your licence drops."
+short: "Reach out to your Project 200 list and run 30 warm-market surveys - the reps that make the scripts yours before your licence drops."
 icon: clipboard
 deliverable: "30 warm-market surveys, logged with name, relationship, and outcome"
 submission_type: "form"
 estimated_time: "Surveys across your study weeks"
 weeks_covered: [7, 8]
-related_days: [19, 37, 38, 39, 43]
+related_days: [19, 37, 38, 39, 43, 44]
 status_key: "assignment-10-market-survey"
 submit_heading: "Log your survey progress"
 submit_intro: "This one fills up over time. Run your surveys across your study weeks, then log who you spoke to and how it went. Resubmit any time; autosaves on this device."
@@ -21,7 +21,7 @@ form_fields:
   - "The script you're least confident about|textarea|Name one and say why. Bring it to your review with Leo.|3"
 ---
 
-> **The gist.** Run **30 warm-market surveys** off your [Project 200 list](/learning-track/pre-rnf/assignments/project-200), across your study weeks, while the "I can't sell you anything yet" framing is still honestly true. It's the reps - not the reading - that make the script yours.
+> **The gist.** This is where you reach out. Run **30 warm-market surveys** off your [Project 200 list](/learning-track/pre-rnf/assignments/project-200), across your study weeks, while the "I can't sell you anything yet" framing is still honestly true. The openers and scripts are below - it's the reps, not the reading, that make them yours.
 
 **This one fills up over time.** Run your surveys in blocks across your CMFAS / RES5 study window, then come back and log them as they grow. Build your [Project 200 list](/learning-track/pre-rnf/assignments/project-200) first - the surveys come off those names.
 
@@ -30,6 +30,18 @@ form_fields:
 Complete **30 surveys before your RNF goes through.** Pre-RNF you literally cannot sell, which makes "I'm just doing a survey" honest in a way it never will be again - once licensed, the same line reads as a soft pitch.
 
 The first five feel awkward; you over-explain and freeze on the close. Around survey 6 to 15 the script settles and the rapport intro shrinks from 90 seconds to 30. By survey 30 it's yours - so when your RNF drops, you call the next 170 names with no friction. Do fewer than 30 and you carry the awkwardness into your real warm market and burn your easiest closes.
+
+## Reaching out - your openers
+
+The survey starts with a message. You're pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Five ready warm-market openers live in the Sales Scripts library - copy the one that fits each contact and make it sound like you.
+
+**[Open the 5 warm-market openers](/scripts?audience=warm-market&category=prospecting&role=all&tag=project-200)** - policy review, casual catch-up, relationship investment, honest ask-for-help, and ask-for-practice. The full [warm-market library](/scripts?audience=warm-market&category=all&role=all&tag=all) has more: conversation openers by life stage, handling ghosting, and the objection scripts.
+
+How you text matters as much as what you send. Read the **[Texting EQ tips for warm outreach](/scripts?audience=warm-market&category=tips&role=all&tag=all)** - the 11 rules plus the step-by-step outreach flow: lead with them not you, name the ask honestly, one ask per message, no pitch language while you're pre-license, and leave the door open on every "no".
+
+**Objections, follow-up timing, and referral asks** are already built - don't write your own. The 3-beat objection reply is in [Day 44](../../first-60-days/week-8/day-44.md), and the follow-up cadence is in [Day 43](../../first-60-days/week-8/day-43.md).
+
+> **Use the pre-license window.** "I can't sell you anything anyway - I'm just doing market surveys to learn" disarms guards in a way a licensed FC never can. By the time your licence drops you'll have 10-20 conversations queued. The same opener reads as a pitch once you're licensed, so use it while you have it.
 
 ## The survey form
 
