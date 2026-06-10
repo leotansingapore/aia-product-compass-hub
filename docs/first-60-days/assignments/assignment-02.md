@@ -23,7 +23,7 @@ form_fields:
   - "How you'll reach out to them|textarea|Your plan in your own words: which opener you'll lead with, who you'll contact first, and how you'll work through the list.|5"
 ---
 
-> **The gist.** Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with. The list is the deliverable - you're handed ready openers below, so you don't write anything from scratch. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you put it to work.
+> **The gist.** Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with. The list is the deliverable - you're handed ready openers in the script library, so you don't write anything from scratch. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you put it to work.
 
 **You don't need all 200 before you submit.** This is a checklist, not an upload - log how many names you have, note how you'll reach out, and book your review. Keep adding to the list and resubmit as it grows. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
 
@@ -48,26 +48,15 @@ Two targets make a list pass:
 
 Day 39 (Project 100) has the full A/B/C priority scoring if you want the method behind it.
 
-## Your openers (copy one and make it yours)
+## Your openers (in the script library)
 
-You're pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Copy the opener that fits each contact and tweak it so it sounds like you. You don't need all five. They also live in the [Sales Scripts library (Warm Market)](/scripts?audience=warm-market).
+You're pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Five ready warm-market openers live in the Sales Scripts library. Copy the one that fits each contact and make it sound like you - you don't need all five.
 
-**1. Policy review / summary offer** - for friends who already have insurance and aren't sure what they own.
-> *"I'm building one-page policy summaries as part of my training. Want me to do yours? Takes me about 30 min, you'll know exactly what you own and what's missing."*
+**[Open the 5 warm-market openers](/scripts?audience=warm-market&category=prospecting&role=all&tag=project-200)** - policy review, casual catch-up, relationship investment, honest ask-for-help, and ask-for-practice. The full [warm-market library](/scripts?audience=warm-market&category=all&role=all&tag=all) has more: conversation openers by life stage, handling ghosting, and the objection scripts.
 
-**2. Casual catch-up** - for people you genuinely miss. No agenda, no ask: *"Been a while - coffee this month?"*
+How you text matters as much as what you send. Before you start, read the **[Texting EQ tips for warm outreach](/scripts?audience=warm-market&category=tips&role=all&tag=all)** - the 11 rules plus the step-by-step outreach flow: lead with them not you, name the ask honestly, one ask per message, no pitch language while you're pre-license, and leave the door open on every "no".
 
-**3. Relationship investment** - for semi-warm contacts who've gone quiet. Add value first - three or four human touches with zero career mention before any ask.
-
-**4. Honest "ask for help"** - for close friends and family.
-> *"I just started training as a Financial Consultant. Can I borrow 15 minutes to walk you through what I'm learning? I'm not asking you to buy anything - I'm not even licensed yet. I just need real feedback on how I explain things."*
-
-**5. Ask for practice + future support** - for semi-warm contacts you respect.
-> *"I'm starting out in financial advisory. Once my license is through, my plan is to focus on people I actually know. Would you be open to a 30-min session then so I can practise on someone honest? No expectation either way."*
-
-When you tweak one: lead with them not you, name the ask honestly ("help" / "practice" / "feedback"), one ask per message, no pitch language while you're pre-license, and leave the door open on every "no".
-
-**Objections, follow-up timing, and referral asks** are already built - don't write your own. The 3-beat objection reply is in [Day 44](../../first-60-days/week-8/day-44.md), the follow-up cadence is in [Day 43](../../first-60-days/week-8/day-43.md), and the scripts live in the [Sales Scripts library](/scripts?audience=warm-market).
+**Objections, follow-up timing, and referral asks** are already built - don't write your own. The 3-beat objection reply is in [Day 44](../../first-60-days/week-8/day-44.md), the follow-up cadence is in [Day 43](../../first-60-days/week-8/day-43.md), and the scripts live in the [warm-market library](/scripts?audience=warm-market&category=all&role=all&tag=all).
 
 > **Use the pre-license window.** "I can't sell you anything anyway - I'm just doing market surveys to learn" disarms guards in a way a licensed FC never can. By the time your licence drops you'll have 10-20 conversations queued. The same opener reads as a pitch once you're licensed, so use it while you have it.
 
