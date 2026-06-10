@@ -164,16 +164,7 @@ If you're hitting the targets, you're on track. If not, review what's blocking a
 
 From Day 61 onward, your week is no longer a series of lessons - it's a repeating loop. Every client relationship moves through the same stages, in the same order. Your job is to run the loop cleanly, over and over, for every name on your list.
 
-```mermaid
-flowchart TD
-    A["i. Reconnect<br/>Warm circle, referrals"] --> B["ii. Introduce<br/>Approach, elevator pitch"]
-    B --> C["iii. Review<br/>Gather policy summary"]
-    C --> D["iv. Needs analysis<br/>CST / fact-find"]
-    D --> E["v. Solution<br/>Proposal + close"]
-    E --> F["vi. Service<br/>Claims, annual reviews"]
-    F --> G["vii. Referral<br/>Feedback, names"]
-    G -->|"and back to Reconnect"| A
-```
+![The seven-step operating cycle: i. Reconnect, ii. Introduce, iii. Review, iv. Needs analysis, v. Solution, vi. Service, vii. Referral, looping back to reconnect.](/first-60-days/images/day60-operating-cycle.webp)
 
 The loop never stops. A client you closed in Month 2 re-enters the cycle at "Service" in Month 14. A referral from that client starts again at "Reconnect." Your client base is just the sum of how many people are moving through this loop at any given time.
 

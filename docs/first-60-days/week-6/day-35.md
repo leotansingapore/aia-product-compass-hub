@@ -87,13 +87,7 @@ This is the single most important distinction in investment education.
 **Nominal return:** the actual % growth of your money.
 **Real return:** the growth *after* subtracting inflation. This is what actually matters for your purchasing power.
 
-```mermaid
-flowchart TD
-    A["Nominal return<br/>e.g. 6%"] --> B["Minus inflation<br/>e.g. 2%"]
-    B --> C["Real return<br/>approx 4% simplified<br/>3.92% actual"]
-    D["Bank account<br/>0.5% nominal"] --> E["Minus inflation<br/>2%"]
-    E --> F["Real return<br/>-1.5% per year<br/>purchasing power lost"]
-```
+![Nominal vs real return: 6% nominal minus 2% inflation equals about 4% real (positive); a 0.5% bank account minus 2% inflation equals -1.5% real, losing purchasing power.](/first-60-days/images/day35-nominal-vs-real.webp)
 
 ### Simplified formula
 

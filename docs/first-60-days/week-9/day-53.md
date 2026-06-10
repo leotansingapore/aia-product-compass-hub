@@ -144,13 +144,7 @@ Separate the risks that matter.
 >
 > You're already handling temporary risks with your savings. The question is whether permanent risks - the ones that really matter - are handled."
 
-```mermaid
-flowchart TD
-    A["Risks you face"] --> B["Temporary<br/>Job loss, short illness"]
-    A --> C["Permanent<br/>Death, CI, disability, accident"]
-    B --> D["Handle with<br/>3-6 months emergency savings"]
-    C --> E["Requires<br/>Structural insurance protection"]
-```
+![Permanent vs temporary risk: risks split into temporary (job loss, short illness) handled by 3-6 months of emergency savings, and permanent (death, critical illness, disability, accident) requiring structural insurance protection.](/first-60-days/images/day53-permanent-vs-temporary.webp)
 
 ### 4. The gap reveal (1.5 min)
 Using the data you collected in the CFR, show their actual exposure.

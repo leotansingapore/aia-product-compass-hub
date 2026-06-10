@@ -136,13 +136,7 @@ Every purchase decision is a scale weighing two things:
 
 Here's the flow - from discovery to decision. All 4 question types, in order.
 
-```mermaid
-flowchart TD
-    S["S - Situation<br/>Uncover facts and background"] --> P["P - Problem<br/>Surface difficulties and gaps"]
-    P --> I["I - Implication<br/>Make the client feel the weight"]
-    I --> N["N - Need-Payoff<br/>Client articulates the benefit themselves"]
-    N --> B["Client decides to buy"]
-```
+![The SPIN arc escalating through four question types: S Situation (uncover facts), P Problem (surface gaps), I Implication (feel the weight), N Need-Payoff (client articulates the benefit), leading to a decision to buy.](/first-60-days/images/day47-spin-arc.webp)
 
 ### 1. Situation Questions
 **Purpose:** Uncover facts and background about the buyer's situation and lifestyle.

@@ -31,15 +31,7 @@ By the end of today you should be able to:
 
 ## 1. The 6-step Financial Planning Process - where the Approach sits
 
-```mermaid
-flowchart TD
-    A["1. Establish<br/>The Approach"] --> B["2. Gather<br/>Fact Find"]
-    B --> C["3. Analyse<br/>Identify gaps"]
-    C --> D["4. Present<br/>Proposal"]
-    D --> E["5. Implement<br/>Submit"]
-    E --> F["6. Review<br/>Annually"]
-    F --> A
-```
+![The 6-step financial planning process as a cycle: 1. Establish the approach, 2. Gather (fact find), 3. Analyse (identify gaps), 4. Present (proposal), 5. Implement (submit), 6. Review (annually), looping back to step 1.](/first-60-days/images/day37-six-step-process.webp)
 
 **The trap:** treating the Approach as "selling." It's relationship-building - the permission and trust that unlock Steps 2-6. Rush Step 1 and everything downstream breaks.
 

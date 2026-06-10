@@ -124,14 +124,7 @@ Most objections are not rejections — they're **reflexes**. Don't take them per
 
 Before starting the Financial Health Review (first real meeting), open with these four statements. They set the emotional tone and protect the relationship.
 
-```mermaid
-flowchart TD
-    A["A . Assurance<br/>Not here to sell"]
-    B["B . Best Interest<br/>Plan as if it were mine"]
-    C["C . Confidentiality<br/>Strictest confidence"]
-    D["D . Full Disclosure<br/>Share freely for best advice"]
-    A --> B --> C --> D --> E["Honest fact-find<br/>begins"]
-```
+![The ABCD four promises: A Assurance (not here to sell), B Best Interest (plan as if it were mine), C Confidentiality (strictest confidence), D Full Disclosure (share freely for best advice), leading to an honest fact-find.](/first-60-days/images/day38-abcd-promises.webp)
 
 ### A - Assurance / Promise
 > "This meeting is not to sell you anything. I'm here to find out more about you and your goals. If we should proceed with proposing any solution, it's because I had shared something that was of value to you and that you felt comfortable with me."

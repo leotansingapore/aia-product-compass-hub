@@ -67,16 +67,7 @@ A standard CFR has three sections. Today covers the first two; Day 51 covers the
 
 **Total time:** 60-90 min for a good CFR. Don't rush.
 
-```mermaid
-flowchart TD
-    A["Section 1 . Situation<br/>+ Priorities"] --> B["Rank goals<br/>in client's voice"]
-    B --> C["Section 2 . Problem<br/>Development"]
-    C --> D["3-5 problem Qs<br/>per goal"]
-    D --> E{"Real gap?"}
-    E -- No --> D
-    E -- Yes --> F["Implication Qs<br/>deepen need"]
-    F --> G["Section 3 . Numbers"] --> H["Colombo close<br/>schedule next mtg"]
-```
+![The three-section client review: Section 1 Situation + Priorities (rank goals in the client's voice), Section 2 Problem Development (problem and implication questions deepen the need), Section 3 Numbers, ending with the Colombo close.](/first-60-days/images/day50-cfr-sections.webp)
 
 ## 3. Section 1 - Situation Questions (the easy start)
 

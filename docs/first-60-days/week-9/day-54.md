@@ -56,16 +56,7 @@ Every other technique in this lesson - the three concept frames, the 5-minute st
 
 **The shift:** you're not selling a product. You're selling a **way of thinking about money** that the product happens to solve.
 
-```mermaid
-flowchart TD
-    A["Product selling<br/>Here is a plan"] --> B["Client evaluates features<br/>Premium, return, payout"]
-    B --> C["Feature comparer<br/>Shops competitors"]
-    C --> D["Close rate ~15-25%"]
-
-    E["Concept selling<br/>Here is an idea"] --> F["Client evaluates the concept<br/>Does this make sense?"]
-    F --> G["Concept owner<br/>Explains it to spouse"]
-    G --> H["Close rate ~35-50%"]
-```
+![Product selling vs concept selling: product selling ('here is a plan') leads to feature-shopping and a ~15-25% close rate; concept selling ('here is an idea') gets the client to own and explain the concept, with a ~35-50% close rate.](/first-60-days/images/day54-concept-vs-product.webp)
 
 ## 2. Why concept selling works
 

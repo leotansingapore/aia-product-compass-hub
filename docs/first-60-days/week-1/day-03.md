@@ -87,12 +87,7 @@ Over time, your renewal income gets large enough that it can cover:
 
 ### The path from active income to financial freedom
 
-```mermaid
-flowchart TD
-    A["Year 1-3: Active sales only<br/>Income tracks effort. No cushion yet."] -->|"renewals start"| B["Year 4-6: Renewals build<br/>Renewals cover a portion of expenses."]
-    B -->|"renewals cover all expenses"| C["Financially independent<br/>Renewals cover all expenses."]
-    C -->|"renewals exceed expenses"| D["Financially free<br/>Selling becomes optional."]
-```
+![The path from active income to financial freedom in four stages: Year 1-3 active sales only (income tracks effort); Year 4-6 renewals build (cover part of expenses); financially independent (renewals cover all expenses); financially free (selling becomes optional).](/first-60-days/images/day03-income-to-freedom.webp)
 
 ### Real numbers: what a renewal income actually pays
 

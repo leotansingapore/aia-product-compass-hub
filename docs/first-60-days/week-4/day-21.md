@@ -205,13 +205,7 @@ The pattern: explain *why* you need the information *before* you ask for it. The
 
 ---
 
-```mermaid
-flowchart TD
-    P1["1. Rapport<br/>5 min"] --> P2["2. Agenda<br/>1 min"]
-    P2 --> P3["3. Problem<br/>20 min"]
-    P3 --> P4["4. Desire<br/>20 min"]
-    P4 --> P5["5. Close<br/>10 min"]
-```
+![The 5-phase sales meeting with time allocation: 1. Rapport 5 min, 2. Agenda 1 min, 3. Problem 20 min, 4. Desire 20 min, 5. Close 10 min.](/first-60-days/images/day21-five-phase-meeting.webp)
 
 ---
 

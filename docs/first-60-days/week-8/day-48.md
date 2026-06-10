@@ -83,12 +83,7 @@ Good Situation questions are **open-ended** and **specific to planning categorie
 
 ### The FORM mnemonic - the 4-letter shortcut
 
-```mermaid
-flowchart TD
-    F["F - Family<br/>Who are you planning for?"] --> O["O - Occupation<br/>Income, coverage, career stage"]
-    O --> R["R - Recreation<br/>Lifestyle, retirement dreams"]
-    R --> M["M - Money<br/>Current savings approach"]
-```
+![The FORM fact-find mnemonic: F Family (who are you planning for?), O Occupation (income, coverage, career stage), R Recreation (lifestyle, retirement dreams), M Money (current savings approach).](/first-60-days/images/day48-form-mnemonic.webp)
 
 When nerves spike and the 10 questions feel like too much, fall back to **FORM**. It covers 80% of what you need in any first meeting:
 

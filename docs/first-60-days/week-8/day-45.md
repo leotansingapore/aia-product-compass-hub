@@ -149,15 +149,7 @@ Each question forces the prospect to map the story onto their own life. The stor
 | **5. Proof** | "Marcus told me later..." | Testimonial-style |
 | **6. Purpose** | "Don't wait until you need it..." | The universal lesson |
 
-```mermaid
-flowchart TD
-    P1["1. Prospect"] --> P2["2. Problem"]
-    P2 --> P3["3. Pain"]
-    P3 --> P4["4. Promise"]
-    P4 --> P5["5. Proof"]
-    P5 --> P6["6. Purpose"]
-    P6 --> CTA["Client asks:<br/>what about me?"]
-```
+![The 6P story structure in sequence: 1. Prospect, 2. Problem, 3. Pain, 4. Promise, 5. Proof, 6. Purpose, ending with the client asking 'what about me?'.](/first-60-days/images/day45-6p-story.webp)
 
 **The payoff:** after the story, the client is primed to ask "so what would that look like for me?" - which is precisely the transition you want.
 

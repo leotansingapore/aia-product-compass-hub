@@ -593,13 +593,7 @@ No single product covers everything. A well-structured client has **layered** pr
 - **Layer 4: Disability Income** - income continues if you can't work
 - **Layer 5: Specific riders** (accident, multi-pay CI) - for specific exposures
 
-```mermaid
-flowchart TD
-    L1["Layer 1: Term<br/>Max cover, low cost, time-bound"] --> L2["Layer 2: Whole Life + CI<br/>Permanent cover + cash value"]
-    L2 --> L3["Layer 3: Shield + Rider<br/>Hospital bills covered"]
-    L3 --> L4["Layer 4: Disability Income<br/>Income if unable to work"]
-    L4 --> L5["Layer 5: Specific riders<br/>Accident, Multi-pay CI"]
-```
+![The layered protection pyramid built base-up: Layer 1 Term (max cover, low cost), Layer 2 Whole Life + CI (permanent cover + cash value), Layer 3 Shield + Rider (hospital bills), Layer 4 Disability Income, Layer 5 specific riders (accident, multi-pay CI).](/first-60-days/images/day56-layered-protection.webp)
 
 **Total coverage can reach 20-30x annual income, with CI + hospital + disability all covered.** Client cost: typically $500-$1,500/month for a family breadwinner.
 

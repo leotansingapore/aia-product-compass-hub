@@ -68,16 +68,7 @@ Every person who will ever hire you goes through these 4 stages.
 
 **Most new FCs try to jump from Stage 1 to Stage 4** - via a direct pitch. It doesn't work. The journey has to be walked, not skipped.
 
-```mermaid
-flowchart TD
-    A["Skeptical Stranger<br/>Is this person real?"]
-    B["Curious Follower<br/>Do they know their stuff?"]
-    C["Trusted Choice<br/>Should I go to them?"]
-    D["Only Choice<br/>Default. No question."]
-    A -->|"Clean profile<br/>show up as human"| B
-    B -->|"Consistent content<br/>authority + personality"| C
-    C -->|"Respond to DMs<br/>convert to meetings"| D
-```
+![The awareness ladder climbing through four stages: Skeptical Stranger (Is this person real?), Curious Follower (Do they know their stuff?), Trusted Choice (Should I go to them?), Only Choice (default, no question).](/first-60-days/images/day40-awareness-ladder.webp)
 
 ## 3. Platform positioning - which lives where
 

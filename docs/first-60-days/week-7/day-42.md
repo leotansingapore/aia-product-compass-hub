@@ -48,15 +48,7 @@ Every social platform (especially Instagram) has three content layers. Each has 
 
 **The trap:** most new FCs post (Layer 1) and ignore stories and DMs. Layer 1 alone produces low returns. The three layers **multiply** each other.
 
-```mermaid
-flowchart TD
-    P["Posts<br/>Top of funnel . 1-2/week"]
-    S["Stories<br/>Middle of funnel . 1-5/day"]
-    D["DMs . Inbox<br/>Bottom of funnel . daily"]
-    P -->|"Reach, saves, follows<br/>new people discover you"| S
-    S -->|"Trust builds<br/>replies + story views"| D
-    D -->|"Meetings booked<br/>closes from DM-origin"| CLOSE["Sale"]
-```
+![The content funnel: Posts at the top (1-2 per week), Stories in the middle (1-5 per day), DMs and inbox at the bottom (daily), narrowing to a sale.](/first-60-days/images/day42-content-funnel.webp)
 
 ## 2. Content centred around - the 4 pillars
 

@@ -161,12 +161,7 @@ Feel-Good Productivity isn't about being happy at work all the time. It's about 
 
 ---
 
-```mermaid
-flowchart TD
-    EN["ENERGISERS<br/>generate energy while working"] -->|"Play, Power, People"| UN["UNBLOCKERS<br/>when work still isn't happening"]
-    UN -->|"Procrastination, Paralysis, Perfectionism"| SU["SUSTAINERS<br/>prevent burnout over 12+ months"]
-    SU -->|"Conserve, Recharge, Align"| OUT["Productivity that lasts"]
-```
+![The energy lifecycle in three stages: Energisers generate energy (Play, Power, People); Unblockers handle stuck work (Procrastination, Paralysis, Perfectionism); Sustainers prevent burnout (Conserve, Recharge, Align), leading to productivity that lasts.](/first-60-days/images/day23-energy-lifecycle.webp)
 
 ---
 
