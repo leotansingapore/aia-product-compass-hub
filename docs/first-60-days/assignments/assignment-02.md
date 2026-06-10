@@ -39,11 +39,7 @@ Build it now, before you need it. A name you add today is a conversation you can
 
 Most new FCs only mine their inner ring - parents, siblings, best friends - and run out of names by Month 3. Your real market is the bigger ring around it: the people you haven't spoken to in years. Sort every name by temperature as you add it.
 
-![Concentric rings of your warm market, drawn as a bullseye: the red centre is you and your hot inner circle, the salmon middle ring is the semi-warm market, and the navy outer ring is cold strangers.](/first-60-days/images/warm-market-rings.webp)
-
-- **Hot - your inner circle.** Parents, siblings, best friends. Easiest to meet, but exhausts the fastest.
-- **Semi-warm - the real market.** People you haven't spoken to in years: school friends, ex-colleagues, old interest groups, referrals. The most names and the least competition, because nobody reconnects with them first.
-- **Cold.** Total strangers - ads, roadshows, cold calls. A volume game, not where you start.
+![Your warm market as a bullseye of three rings. Centre: YOU. Inner red ring - HOT, your inner circle: parents, siblings, best friends; easiest to meet but exhausts the fastest. Middle salmon ring - SEMI-WARM, the real market: school friends, ex-colleagues, old groups, referrals; the most names and the least competition. Outer navy ring - COLD: strangers, ads, roadshows, cold calls; a volume game.](/first-60-days/images/warm-market-rings.webp)
 
 Two targets make a list pass:
 
