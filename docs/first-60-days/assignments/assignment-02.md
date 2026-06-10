@@ -3,7 +3,7 @@ id: assignment-02
 url_slug: project-200
 order: 4
 title: "Project 200 - Build Your List"
-short: "Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with."
+short: "Build a 200-name warm-market list sorted by relationship temperature - and look past your inner circle to the semi-warm names that are the real market."
 icon: users
 deliverable: "Your 200-name list (kept private) + a booked review call"
 submission_type: "form"
@@ -12,34 +12,46 @@ weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
 submit_heading: "Your Project 200 checklist"
-submit_intro: "Two confirmations, then your count and how you'll reach out. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
+submit_intro: "Two confirmations, then your count and your plan for working the list. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
 file_upload: false
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
-  - "Submit your Project 200|section|Two quick confirmations, then your count and your outreach plan. Your list stays on your own device or Drive - nothing gets uploaded here."
+  - "Submit your Project 200|section|Two quick confirmations, then your count and your plan. Your list stays on your own device or Drive - nothing gets uploaded here."
   - "I've finished building my Project 200 list|check|Names entered in your own sheet, sorted by temperature and priority. Tick this once it's built out - keep adding names over time."
-  - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your opener together."
+  - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your plan together."
   - "How many names on your list|text|Just the number, e.g. 200. You don't need all 200 to submit - log what you have and keep adding."
-  - "How you'll reach out to them|textarea|Your plan in your own words: which opener you'll lead with, who you'll contact first, and how you'll work through the list.|5"
+  - "Your plan for working the list|textarea|In your own words: who you'll contact first, in what order, and how you'll get through the names over the coming weeks.|5"
 ---
 
-> **The gist.** Build a 200-name warm-market list, segmented by priority, and pick the one opener you'll lead with. The list is the deliverable - you're handed ready openers in the script library, so you don't write anything from scratch. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you put it to work.
+> **The gist.** Build a 200-name warm-market list, sorted by how warm each relationship is. The real work here is mindset: your market isn't just your close friends - it's the much bigger ring of people you've lost touch with. The list is the deliverable. Once it's built, **[Market Survey Practice](/learning-track/pre-rnf/assignments/market-survey-practice)** is where you get the scripts and reach out to it.
 
-**You don't need all 200 before you submit.** This is a checklist, not an upload - log how many names you have, note how you'll reach out, and book your review. Keep adding to the list and resubmit as it grows. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
+**You don't need all 200 before you submit.** This is a checklist, not an upload - log how many names you have, jot your plan for working it, and book your review. Keep adding to the list and resubmit as it grows. Your list stays private to you (your own Drive or notebook); nothing gets uploaded here.
 
 ## Why this matters
 
 Most FCs who quit in their first two years quit at the same point: they run out of people to talk to by Month 3. Not because they don't know anyone - because they never built the list. Every conversation, survey, and appointment for the next year comes off this one sheet.
 
+Build it now, before you need it. A name you add today is a conversation you can have the week your licence drops. The FCs who start fast are the ones who already had the list.
+
 ## Build the list
 
 > **Start here:** **[Duplicate the Project 200 Sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** - open it, click **File -> Make a copy** into your own Drive, and fill it in. The columns, priority scoring, and temperature fields are already set up for you.
 
-Sort every name by temperature as you add it:
+Most new FCs only mine their inner ring - parents, siblings, best friends - and run out of names by Month 3. Your real market is the bigger ring around it: the people you haven't spoken to in years. Sort every name by temperature as you add it.
 
-- **Hot** - parents, siblings, best friends. Easiest to meet, but exhausts the fastest.
-- **Semi-warm** - people you haven't spoken to in a while: secondary-school friends, ex-colleagues, old interest groups. The real goldmine - the most names and the least competition, because nobody reconnects with them first.
-- **Cold** - strangers. A volume game, and not where you start.
+```mermaid
+flowchart TD
+    HOT["Inner ring - HOT<br/>Parents, siblings, best friends<br/>Easiest to meet, but exhausts the fastest"]
+    SEMI["Middle ring - SEMI-WARM - the real market<br/>People you have not spoken to in years<br/>School friends, ex-colleagues, old interest groups, referrals<br/>Most names, least competition - nobody reconnects with them first"]
+    COLD["Outer ring - COLD<br/>Total strangers - ads, roadshows, cold calls<br/>A volume game, not where you start"]
+    HOT --> SEMI --> COLD
+    classDef hot fill:#991b1b,stroke:#991b1b,color:#fff
+    classDef semi fill:#fca5a5,stroke:#fca5a5,color:#1f2937
+    classDef cold fill:#1e3a8a,stroke:#1e3a8a,color:#fff
+    class HOT hot
+    class SEMI semi
+    class COLD cold
+```
 
 Two targets make a list pass:
 
@@ -48,24 +60,12 @@ Two targets make a list pass:
 
 Day 39 (Project 100) has the full A/B/C priority scoring if you want the method behind it.
 
-## Your openers (in the script library)
-
-You're pre-licensed, so the work is honest: reconnect, listen, help, and ask for practice - not pitch. Five ready warm-market openers live in the Sales Scripts library. Copy the one that fits each contact and make it sound like you - you don't need all five.
-
-**[Open the 5 warm-market openers](/scripts?audience=warm-market&category=prospecting&role=all&tag=project-200)** - policy review, casual catch-up, relationship investment, honest ask-for-help, and ask-for-practice. The full [warm-market library](/scripts?audience=warm-market&category=all&role=all&tag=all) has more: conversation openers by life stage, handling ghosting, and the objection scripts.
-
-How you text matters as much as what you send. Before you start, read the **[Texting EQ tips for warm outreach](/scripts?audience=warm-market&category=tips&role=all&tag=all)** - the 11 rules plus the step-by-step outreach flow: lead with them not you, name the ask honestly, one ask per message, no pitch language while you're pre-license, and leave the door open on every "no".
-
-**Objections, follow-up timing, and referral asks** are already built - don't write your own. The 3-beat objection reply is in [Day 44](../../first-60-days/week-8/day-44.md), the follow-up cadence is in [Day 43](../../first-60-days/week-8/day-43.md), and the scripts live in the [warm-market library](/scripts?audience=warm-market&category=all&role=all&tag=all).
-
-> **Use the pre-license window.** "I can't sell you anything anyway - I'm just doing market surveys to learn" disarms guards in a way a licensed FC never can. By the time your licence drops you'll have 10-20 conversations queued. The same opener reads as a pitch once you're licensed, so use it while you have it.
-
 ## What a passing list looks like
 
 - 200 contacts, at least 60 Priority A and 80 Semi-warm, with context filled in for your A's.
-- One opener you've made your own and will actually send.
+- The semi-warm ring is genuinely worked - not just your closest 30 friends padded out with acquaintances you'd never call.
 - A review call booked with Leo to walk through the list together.
 
 ## Submission
 
-This is a checklist, not an upload. Tick the two boxes (list built, review booked), enter how many names you have, and write a line on how you'll reach out to them. [Pick a time with Leo](https://www.pick-a-time.app/book/withleo) to walk through your list and tighten your opener together. Your list stays private - you keep it in your own Drive or notebook. Resubmit any time as the list grows.
+This is a checklist, not an upload. Tick the two boxes (list built, review booked), enter how many names you have, and jot your plan for working the list. [Pick a time with Leo](https://www.pick-a-time.app/book/withleo) to walk through your list and sharpen which names to prioritise. Your list stays private - you keep it in your own Drive or notebook. Resubmit any time as the list grows.
