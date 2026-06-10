@@ -11,11 +11,12 @@ weeks_covered: [1]
 related_days: []
 status_key: "n60-assignment-09-lead-gen-setup"
 form_fields:
-  - "Your business line|text|Your dedicated business number with WhatsApp Business set up - or note 'using a second phone to dial two lines'."
-  - "Cold leads requested from Leo|text|Yes + the date you asked (unlimited for your first 3 months), or 'not yet'."
-  - "SMA checklist + prospecting doc|text|SMA checklist done before any ads, and the prospecting doc pinned to your Lark sidebar - done / outstanding."
-  - "Daily tracking set up|text|track.themoneybees.co/dashboard bookmarked and you know how to log a day - yes / no."
-  - "Anything still blocking you from dialling?|textarea|One line - what's left to set up, or 'all set, ready to start'.|3"
+  - "Your setup|section|Tick each one as you complete it - no writing. You can submit as you go and come back to tick the rest; it resubmits."
+  - "Business line + WhatsApp Business set up|check|A dedicated business number with WhatsApp Business on the same phone - ideally a second phone to dial two lines at once."
+  - "Cold leads requested from Leo|check|Unlimited for your first 3 months - just ask. Don't ration them."
+  - "SMA checklist done + prospecting doc pinned|check|SMA checklist complete before you run any ads, and the prospecting doc pinned to your Lark sidebar."
+  - "Daily tracking set up|check|track.themoneybees.co/dashboard bookmarked, and you know how to log a day."
+  - "Anything still blocking you? (optional)|textarea|Only if something's stuck - what's left, or who you need to chase. Leave blank if you're all set.|3"
 ---
 
 > **The gist.** Before you start cold lead-gen, get your infrastructure in place once: a business line, your leads, the prospecting docs, and daily tracking. An hour of setup now saves you stalling on day one - you don't want to be hunting for a lead list or setting up WhatsApp Business mid-session. Work through the five items, then confirm each in the form.
@@ -38,4 +39,4 @@ Full walkthrough: [Leo's prospecting daily Loom](https://www.loom.com/share/744a
 
 ## Submission
 
-Work through the five items, then confirm each in the form below. Nothing to upload - just note what's done and flag anything blocking you. Once it's all set, you're ready to start dialling at volume.
+Work through the items, then tick each one in the form below as you complete it. You can submit as you go and come back to tick the rest - it resubmits. Once they're all ticked, you're ready to start dialling at volume.
