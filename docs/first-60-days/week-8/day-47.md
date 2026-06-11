@@ -194,15 +194,7 @@ Here's the flow - from discovery to decision. All 4 question types, in order.
 
 A typical fact-finding meeting using SPIN:
 
-```mermaid
-flowchart TD
-    O["Opening"] --> R["5 min rapport"]
-    R --> S["Situation questions<br/>5-10 min"]
-    S --> P["Problem questions<br/>10-15 min"]
-    P --> I["Implication questions<br/>10-15 min<br/>(emotional shift happens here)"]
-    I --> N["Need-Payoff questions<br/>5 min<br/>(client now wants a solution)"]
-    N --> T["Transition to present your recommendation"]
-```
+![The SPIN arc in a meeting: Opening; 5 min rapport; Situation questions, 5-10 min; Problem questions, 10-15 min; Implication questions, 10-15 min, (emotional shift happens here); Need-Payoff questions, 5 min, (client now wants a solution); Transition to present your recommendation.](/first-60-days/images/day-47-m0.webp)
 
 Total: 45-60 min of questions before you ever show a product.
 
@@ -275,20 +267,7 @@ If you remember only this:
 
 The principle of asking the right questions is what you've been learning. The **6-step combat sequence** is the operational route map — the order to run the moves in when you're sitting across from a real prospect. SPIN is one slice of this; the wider sequence is:
 
-```mermaid
-flowchart TD
-    A["1 - Read DISC<br/>(profile layer)"]
-    B["2 - Surface hidden concerns<br/>(curious questions)"]
-    C["3 - Mind closed or open?<br/>(Type 1 vs Type 2)"]
-    D["4 - No-need vs create-need<br/>(SPIN: Situation, Problem)"]
-    E["5 - Right questions to hot buttons<br/>(SPIN: Implication, Need-Payoff)"]
-    F["6 - Hit and close<br/>(trial close + ask)"]
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-```
+![The 6-step combat sequence — Right Questions in production: 1 - Read DISC, (profile layer); 2 - Surface hidden concerns, (curious questions); 3 - Mind closed or open?, (Type 1 vs Type 2); 4 - No-need vs create-need, (SPIN: Situation, Problem); 5 - Right questions to hot buttons, (SPIN: Implication, ](/first-60-days/images/day-47-m1.webp)
 
 **Step 1 — Read DISC.** First 60 seconds. Are they D (decisive, fast, results-led), I (warm, story-led, sociable), S (steady, harmony-led, slow to commit), or C (cautious, detail-led, evidence-driven)? Every move below adapts by profile.
 

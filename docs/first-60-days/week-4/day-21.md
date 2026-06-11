@@ -27,14 +27,7 @@ By the end of today you should be able to:
 
 The most common new-FC mistake:
 
-```mermaid
-flowchart TD
-    A["Spends 30 min<br/>building rapport"] --> B["20 min on<br/>budgeting/goals"]
-    B --> C["Talks about<br/>'some policies'"]
-    C --> D["Runs out of time"]
-    D --> E["'Let's continue<br/>next session'"]
-    E --> F["Never closes"]
-```
+![The front-load principle: Spends 30 min, building rapport; 20 min on, budgeting/goals; Talks about, 'some policies'; Runs out of time; 'Let's continue, next session'; Never closes.](/first-60-days/images/day-21-m0.webp)
 
 **Result:** the client ghosts. Nothing sold. Hours of effort down the drain.
 

@@ -102,14 +102,7 @@ Good for **catastrophic risks** that would destroy your financial life if they o
 
 **The rule:** transfer what you can't afford to retain.
 
-```mermaid
-flowchart TD
-    R["New risk identified"] --> Q1{"Can I change behaviour<br/>to avoid it at low cost?"}
-    Q1 -->|Yes| AV["Avoid<br/>no smoking, seatbelt, etc."]
-    Q1 -->|No| Q2{"Can I afford to<br/>cover the full cost myself?"}
-    Q2 -->|Yes, small cost| RE["Retain<br/>self-insure via savings"]
-    Q2 -->|No, catastrophic| TR["Transfer<br/>pay insurer to take the risk"]
-```
+![Transfer risk: New risk identified; Can I change behaviour, to avoid it at low cost?; Avoid, no smoking, seatbelt, etc.; Can I afford to, cover the full cost myself?; Retain, self-insure via savings; Transfer, pay insurer to take the risk.](/first-60-days/images/day-02-m0.webp)
 
 ## 4. How much coverage is enough?
 

@@ -46,12 +46,7 @@ Yesterday's CST (Day 51) and the wealth-angle CST you'll see again later both wo
 
 The structure is two diagrams, drawn in sequence:
 
-```mermaid
-flowchart TD
-    A["Capture the<br/>5 inputs"] --> B["Diagram 1<br/>The Problem<br/>5 steps"]
-    B --> C["Diagram 2<br/>The Solution<br/>4 steps"]
-    C --> D["Open the door<br/>to fact-find"]
-```
+![Why this CST is different: Capture the, 5 inputs; Diagram 1, The Problem, 5 steps; Diagram 2, The Solution, 4 steps; Open the door, to fact-find.](/first-60-days/images/day-52-m0.webp)
 
 Total time in the meeting: 10-12 minutes once you've practised it. Most new FCs run it too fast on the first attempt. The pauses between steps are the conversion - don't rush.
 

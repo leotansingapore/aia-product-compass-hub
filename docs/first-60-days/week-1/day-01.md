@@ -116,12 +116,7 @@ The team is the product. The team is the career. When the team is strong, every 
 
 Four values. Easy to memorise. Hard to live. Every day of the next 60 will bring you back to one of them.
 
-```mermaid
-flowchart TD
-    V1["1 . Own<br/>the outcome"] --> V2["2 . Truth<br/>before comfort"]
-    V2 --> V3["3 . Better<br/>than yesterday"]
-    V3 --> V4["4 . Lift<br/>the team"]
-```
+![Our values: 1 . Own, the outcome; 2 . Truth, before comfort; 3 . Better, than yesterday; 4 . Lift, the team.](/first-60-days/images/day-01-m0.webp)
 
 ### 1 . Own the outcome
 The work on your plate is yours - the close, the follow-up, the mistake, the recovery. You don't wait to be told. You don't blame the process. If something's broken, you're the one who names it and fixes it.

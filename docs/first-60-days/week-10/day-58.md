@@ -61,16 +61,7 @@ Every policy comes with a summary document. Whether printed or digital, the sect
 
 ## 3. The 5 things to check on every policy
 
-```mermaid
-flowchart TD
-    A["Policy in hand"]
-    A --> B["1 . Sum Assured<br/>Still = 10x income?"]
-    B --> C["2 . Riders<br/>CI . WOP . Multi-pay?"]
-    C --> D["3 . Exclusions<br/>Pre-existing . activities?"]
-    D --> E["4 . Beneficiary<br/>Still correct person?"]
-    E --> F["5 . Payout structure<br/>Fits current life stage?"]
-    F --> G["Gap report<br/>+ recommendations"]
-```
+![The 5 things to check on every policy: Policy in hand; 1 . Sum Assured, Still = 10x income?; 2 . Riders, CI . WOP . Multi-pay?; 3 . Exclusions, Pre-existing . activities?; 4 . Beneficiary, Still correct person?; 5 . Payout structure, Fits current life stage?; Gap report, + recommendations.](/first-60-days/images/day-58-m0.webp)
 
 ### 1. Is the Sum Assured still appropriate?
 Policies bought 10+ years ago often have sum assureds sized for **then**, not **now**. A $200K life policy bought when the client was single is woefully inadequate once they have 2 kids and a mortgage.

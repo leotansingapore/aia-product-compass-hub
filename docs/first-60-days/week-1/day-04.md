@@ -79,14 +79,7 @@ You can't get the skill without the obstacle. So the obstacle isn't something to
 
 The cold-call rep **is** the skill acquisition. If it were easy, it wouldn't pay.
 
-```mermaid
-flowchart TD
-    A["Cold call / meeting"] --> B["Rejection or objection"]
-    B --> C["Analyze<br/>tone, opener, objection handled"]
-    C --> D["Adjust ONE thing"]
-    D --> A
-    C -->|"compound over 100 reps"| E["Skill"]
-```
+![Worked example - the cold call: Cold call / meeting; Rejection or objection; Analyze, tone, opener, objection handled; Adjust ONE thing; Skill.](/first-60-days/images/day-04-m0.webp)
 
 ## 5. The ironic logic of doing what's hard
 

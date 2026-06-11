@@ -45,13 +45,7 @@ Most new FCs struggle with content for one reason: **they try to write posts on 
 
 **60-75 minutes per week for 1 quality post.** That's all. Don't try to do more until this is reliable.
 
-```mermaid
-flowchart TD
-    A["Sunday 30 min<br/>Ideation: pick 1 topic"]
-    B["Tuesday 30 min<br/>Draft: write, don't edit"]
-    C["Thursday 15 min<br/>Edit, add CTA, publish"]
-    A --> B --> C --> A
-```
+![The 3-part weekly system: Sunday 30 min, Ideation: pick 1 topic; Tuesday 30 min, Draft: write, don't edit; Thursday 15 min, Edit, add CTA, publish.](/first-60-days/images/day-41-m0.webp)
 
 > **Tools:** [Content Studio](https://aia-content-studio.vercel.app) breaks the Tuesday blank page - topic + audience + platform in, Authority / Social / CTA draft out. Still your job to add the voice. Full list of tools at [/tools](/tools).
 
@@ -173,16 +167,7 @@ Content produces DMs. DMs should produce first meetings. Here's the bridge.
 
 The first invites a conversation. The second demands a meeting on information asymmetry. Conversion rate: **first wins 5x.**
 
-```mermaid
-flowchart TD
-    A["DM arrives<br/>reply within 24 hrs"]
-    B["Answer briefly<br/>show value"]
-    C["Ask genuine<br/>follow-up question"]
-    D["2-4 messages<br/>back and forth"]
-    E["Transition to<br/>15-min call"]
-    F["First meeting<br/>booked"]
-    A --> B --> C --> D --> E --> F
-```
+![Example: DM arrives, reply within 24 hrs; Answer briefly, show value; Ask genuine, follow-up question; 2-4 messages, back and forth; Transition to, 15-min call; First meeting, booked.](/first-60-days/images/day-41-m1.webp)
 
 ### The transition to a call
 

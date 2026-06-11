@@ -133,14 +133,7 @@ After open conversation, you'll have 3-6 goals mentioned. Now you **rank them.**
 
 **Rule:** always start Problem Questions with their **#1 priority.** That's where the emotional engagement is highest.
 
-```mermaid
-flowchart TD
-    A["Goals mentioned<br/>in passing (3-6)"] --> B["Summarise list<br/>aloud to client"]
-    B --> C["Client ranks #1"]
-    C --> D["Client ranks #2"]
-    D --> E["Client ranks #3+"]
-    E --> F["Lead Problem Qs<br/>from #1 downward"]
-```
+![Prioritising goals - Section 2a: Goals mentioned, in passing (3-6); Summarise list, aloud to client; Client ranks #1; Client ranks #2; Client ranks #3+; Lead Problem Qs, from #1 downward.](/first-60-days/images/day-50-m0.webp)
 
 ## 5. Section 2 - Problem Development
 

@@ -513,13 +513,7 @@ A typical ILP premium breakdown (illustrative):
 - **Long-term ILPs compound.** After Year 3, most of the premium goes directly into funds.
 - **Early surrender is punishing.** The structure assumes 15-30 years of holding.
 
-```mermaid
-flowchart TD
-    Y1["Year 1<br/>15-50% to funds"] -->|"surrender = likely loss"| Y2["Year 2<br/>50-70% to funds"]
-    Y2 --> Y3["Year 3<br/>80-95% to funds"]
-    Y3 --> Y5["Year 5+<br/>~100% to funds"]
-    Y5 -->|"compound growth begins"| GOOD["Long-term hold"]
-```
+![What this means: Year 1, 15-50% to funds; Year 2, 50-70% to funds; Year 3, 80-95% to funds; Year 5+, ~100% to funds; Long-term hold.](/first-60-days/images/day-57-m0.webp)
 
 ### The disclosure discipline
 

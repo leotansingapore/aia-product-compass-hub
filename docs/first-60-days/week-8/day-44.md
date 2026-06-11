@@ -159,14 +159,7 @@ Turn the objection into the **reason** to meet. Works when the prospect names a 
 
 ### Picking the right framework
 
-```mermaid
-flowchart TD
-    A["Objection heard"] --> B{"Does it have<br/>emotional or relationship<br/>weight?<br/>(family, loyalty, hurt)"}
-    B -- "Yes" --> C["Framework B<br/>Feel-Felt-Found"]
-    B -- "No" --> D{"Is the prospect naming<br/>a state they think<br/>disqualifies them?"}
-    D -- "Yes" --> E["Framework C<br/>Boomerang<br/>(that's exactly why)"]
-    D -- "No" --> F["Framework A<br/>Acknowledge -> Question <br/>-> Reframe"]
-```
+![Picking the right framework: Objection heard; Does it have, emotional or relationship, weight?, (family, loyalty, hurt); Framework B, Feel-Felt-Found; Is the prospect naming, a state they think, disqualifies them?; Framework C, Boomerang, (that's exactly why); Framework A, Acknowledge -> Question , ](/first-60-days/images/day-44-m0.webp)
 
 **Default to Framework A.** Most prospecting objections fall here. Use B for emotional weight; use C when the prospect's objection literally describes why they think they're not a fit. **A fourth pattern - looping for uncertainty - lives at the post-pitch stage and is covered in Next 60 Days Day 40, not here.**
 
@@ -252,14 +245,7 @@ For these, use a **6-touch follow-up sequence** over 12 weeks:
 - **Week 8:** Light ask - "Would it be useful to grab 15 minutes this month?"
 - **Week 12:** Final soft ask. If still no, move to quarterly touch or archive.
 
-```mermaid
-flowchart TD
-    W0["Week 0<br/>reflex no"] --> W2["Week 2<br/>value-add"]
-    W2 --> W4["Week 4<br/>check-in"]
-    W4 --> W6["Week 6<br/>value-add"]
-    W6 --> W8["Week 8<br/>light ask"]
-    W8 --> W12["Week 12<br/>soft ask"]
-```
+![The follow-up strategy for soft no: Week 0, reflex no; Week 2, value-add; Week 4, check-in; Week 6, value-add; Week 8, light ask; Week 12, soft ask.](/first-60-days/images/day-44-m1.webp)
 
 **Why this works:**
 - You stay memorable without being pushy.

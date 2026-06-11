@@ -39,16 +39,7 @@ When you open the Product Selection page on your iPad (via iPos), you'll see pro
 
 **Rule:** don't memorise plan names first. Learn the category-to-use-case mapping. Plan names follow.
 
-```mermaid
-flowchart TD
-    A["AIA<br/>Catalogue"] --> B["Investment-Linked"]
-    A --> C["Whole Life"]
-    A --> D["Endowment"]
-    A --> E["Term"]
-    A --> F["Universal Life"]
-    A --> G["Disability Income"]
-    A --> H["Accident & Health"]
-```
+![The 7 product categories: AIA, Catalogue; Investment-Linked; Whole Life; Endowment; Term; Universal Life; Disability Income; Accident & Health.](/first-60-days/images/day-55-m0.webp)
 
 ## 2. Investment-Linked - the wealth-building workhorse
 
@@ -219,14 +210,7 @@ Your daily product workflow:
 
 **The pattern:** category, then concept, then specific plan, then illustration, then client decision.
 
-```mermaid
-flowchart TD
-    A["Client need<br/>(from CFR)"] --> B["Category"]
-    B --> C["Concept deck<br/>(iResource)"]
-    C --> D["Specific plan<br/>(iPos)"]
-    D --> E["Illustration"]
-    E --> F["Client decision"]
-```
+![Using iResource - the FC's workflow: Client need, (from CFR); Category; Concept deck, (iResource); Specific plan, (iPos); Illustration; Client decision.](/first-60-days/images/day-55-m1.webp)
 
 Never reverse this order. Starting with a specific plan without a concept creates product-comparison clients.
 

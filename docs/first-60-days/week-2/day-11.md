@@ -163,11 +163,7 @@ Every policy you sell well is a vote for your future B. Every dollar invested fr
 
 You don't need to quit anything. You just need to start shifting the mix.
 
-```mermaid
-flowchart TD
-    NOW["Today<br/>100% E/S"] -->|"Build renewal"| Y5["Year 5<br/>S/B/I mix"]
-    Y5 -->|"Scale + invest"| Y20["Year 20<br/>balanced mix"]
-```
+![The honest starting point: Today, 100% E/S; Year 5, S/B/I mix; Year 20, balanced mix.](/first-60-days/images/day-11-m0.webp)
 
 
 ## Quick quiz

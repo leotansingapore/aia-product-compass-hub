@@ -102,12 +102,7 @@ A concrete example. Meet a hypothetical client - Mr Tan, 35 years old.
 
 This framing - "you don't need $2.7M, you need an income stream of ~$9K/month" - is often more motivating for clients than a scary lump sum number.
 
-```mermaid
-flowchart TD
-    CPF["CPF LIFE"] --> EXP["Monthly need<br/>at 65"]
-    REN["Rental /<br/>dividends"] --> EXP
-    INS["Insurance<br/>accumulation"] --> EXP
-```
+![Two paths to the same endpoint: CPF LIFE; Monthly need, at 65; Rental /, dividends; Insurance, accumulation.](/first-60-days/images/day-10-m0.webp)
 
 ### The rule
 

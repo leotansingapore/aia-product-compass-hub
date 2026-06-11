@@ -161,18 +161,7 @@ Using the data you collected in the CFR, show their actual exposure.
 
 **The 4 emotional triggers behind every gap.** When you're surfacing the gap, pick the one trigger that matches the client's actual fear - the reframe lands harder when you name the right emotion:
 
-```mermaid
-flowchart TD
-    A["Gap revealed<br/>from CFR numbers"] --> B{"Client's<br/>primary fear"}
-    B --> C["Security<br/>Breadwinners, new parents"]
-    B --> D["Love<br/>Parents, caregivers"]
-    B --> E["Freedom<br/>High-income, pre-retirees"]
-    B --> F["Regret<br/>Seen it happen to someone"]
-    C --> G["Pick one trigger only<br/>Stacking = scare-selling"]
-    D --> G
-    E --> G
-    F --> G
-```
+![The gap reveal (1.5 min): Gap revealed, from CFR numbers; Client's, primary fear; Security, Breadwinners, new parents; Love, Parents, caregivers; Freedom, High-income, pre-retirees; Regret, Seen it happen to someone; Pick one trigger only, Stacking = scare-selling.](/first-60-days/images/day-53-m0.webp)
 
 | Trigger | Who it hits hardest | Sample follow-up |
 |---|---|---|

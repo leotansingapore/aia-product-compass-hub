@@ -30,12 +30,7 @@ By the end of today you should be able to:
 | **First half - Exploration** | 1. Situation<br/>2. Problem | Understand the client (facts + gaps) |
 | **Second half - Intensification** | 3. Implication<br/>4. Need-Payoff | Help the client feel the weight of the gap |
 
-```mermaid
-flowchart TD
-    S["Situation<br/>What is"] --> P["Problem<br/>What is not quite right"]
-    P --> I["Implication<br/>Why it matters"]
-    I --> N["Need-Payoff<br/>What life looks like solved"]
-```
+![The two halves of SPIN: Situation, What is; Problem, What is not quite right; Implication, Why it matters; Need-Payoff, What life looks like solved.](/first-60-days/images/day-48-m0.webp)
 
 **Today:** the first half. Get this right and the second half (tomorrow's Day 49) does the heavy lifting.
 

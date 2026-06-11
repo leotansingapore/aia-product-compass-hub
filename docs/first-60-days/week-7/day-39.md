@@ -192,15 +192,7 @@ You build the list in Week 1. By Week 10, you've contacted everyone. What now?
 
 **After Year 1**, your Project 100 evolves into a continuous prospect pipeline of 200-500+ names across warm, referred, and cold tiers.
 
-```mermaid
-flowchart TD
-    A["Add 5 names<br/>weekly"]
-    B["Re-sort priorities<br/>monthly"]
-    C["Reactivate 'not now'<br/>contacts quarterly"]
-    D["Archive closed<br/>to Active Clients"]
-    A --> B --> C --> A
-    B --> D
-```
+![Keeping the list alive: Add 5 names, weekly; Re-sort priorities, monthly; Reactivate 'not now', contacts quarterly; Archive closed, to Active Clients.](/first-60-days/images/day-39-m0.webp)
 
 ## 7. A note on digital-first prospect lists
 
@@ -372,15 +364,7 @@ Once your Project 100 list is built, the 2-Liner Hook is the lightest opener for
 
 ### The flow
 
-```mermaid
-flowchart TD
-    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
-    B -- "Yes" --> C["Send the resource"]
-    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
-    C --> D["Wait 1-2 weeks"]
-    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
-    E --> F(["Business Appointment"])
-```
+![The flow: Send 2-Liner Hook, via text / WhatsApp / DM; Replied yes?; Send the resource; Park - retry in 4-6 weeks, with a different resource; Wait 1-2 weeks; Follow up:, did you manage to figure out, how to solve the problem?.](/first-60-days/images/day-39-m1.webp)
 
 ### The script
 

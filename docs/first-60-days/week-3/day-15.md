@@ -59,11 +59,7 @@ The **transition** is not a hard switch - it's a gradual rebalancing. A 55-year-
 
 ## 3. The 25-year-old example - why starting early matters
 
-```mermaid
-flowchart TD
-    E1["Start at 25 . 40-yr runway<br/>$500/month, outlay $240K"] --> E2["~$760K from compounding<br/>Total: ~$1M"]
-    L1["Start at 45 . 20-yr runway<br/>$2,500+/month, 5x the cost"] --> L2["Less compounding runway<br/>Harder to catch up"]
-```
+![The 25-year-old example - why starting early matters: Start at 25 . 40-yr runway, $500/month, outlay $240K; ~$760K from compounding, Total: ~$1M; Start at 45 . 20-yr runway, $2,500+/month, 5x the cost; Less compounding runway, Harder to catch up.](/first-60-days/images/day-15-m0.webp)
 
 Here's the concrete arithmetic that every new FC should have memorised.
 

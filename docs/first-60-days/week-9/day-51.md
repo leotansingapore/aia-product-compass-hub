@@ -192,15 +192,7 @@ If the answer raises an objection, that's **gold.** You now have 5 days to addre
 
 ## 8. Post-meeting discipline
 
-```mermaid
-flowchart TD
-    A["Meeting ends"] --> B["Within 30 min<br/>Expand CFR notes from keywords"]
-    B --> C["Log in CRM<br/>Date, concerns, priorities, next meeting"]
-    C --> D["Draft 3 recommendation ideas<br/>from top priorities"]
-    D --> E["Schedule follow-up<br/>Don't let momentum fade"]
-    E --> F["Prepare proposal materials<br/>Illustrations, concept decks"]
-    F --> G["24-hour rule<br/>90% fresh - act now"]
-```
+![Post-meeting discipline: Meeting ends; Within 30 min, Expand CFR notes from keywords; Log in CRM, Date, concerns, priorities, next meeting; Draft 3 recommendation ideas, from top priorities; Schedule follow-up, Don't let momentum fade; Prepare proposal materials, Illustrations, concept decks; 24-hou](/first-60-days/images/day-51-m0.webp)
 
 Within 30 min of the meeting ending:
 

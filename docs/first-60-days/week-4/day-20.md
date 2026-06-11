@@ -159,13 +159,7 @@ Start before you feel ready. Publish before it's polished. Send before you've re
 
 ### A day, batched
 
-```mermaid
-flowchart TD
-    A["Revenue Block<br/>8:30 - 10:00"] --> B["Meeting Block<br/>10:00 - 12:30"]
-    B --> C["Lunch / Break<br/>12:30 - 13:30"]
-    C --> D["Admin Block<br/>13:30 - 15:30"]
-    D --> E["Learning Block<br/>15:30 - 17:00"]
-```
+![A day, batched: Revenue Block, 8:30 - 10:00; Meeting Block, 10:00 - 12:30; Lunch / Break, 12:30 - 13:30; Admin Block, 13:30 - 15:30; Learning Block, 15:30 - 17:00.](/first-60-days/images/day-20-m0.webp)
 
 Each block = one task type. The context-switch tax (~20 min) is paid once, not four times.
 

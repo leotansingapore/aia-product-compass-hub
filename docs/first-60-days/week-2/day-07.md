@@ -72,12 +72,7 @@ Your *iPad* tool for the actual appointment. Think of it like the iPad menu at a
 
 **Field rule:** iPos open and ready *before* you sit down at every appointment. iSmart on your phone every time you leave home. Every memo, campaign and product update reaches you through these two.
 
-```mermaid
-flowchart TD
-    Q["Need to reach a client<br/>or share info?"]
-    Q -->|"Out of office<br/>share collateral"| IS["iSmart<br/>(phone)"]
-    Q -->|"At client home<br/>run appointment"| IP["iPos / iMO<br/>(iPad)"]
-```
+![AIA iPos (iPad point-of-sale): Need to reach a client, or share info?; iSmart, (phone); iPos / iMO, (iPad).](/first-60-days/images/day-07-m0.webp)
 
 ## 4. Where AIA sits in the Singapore market
 

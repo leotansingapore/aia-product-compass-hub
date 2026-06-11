@@ -77,12 +77,7 @@ flowchart TD
 
 ## 3. The learning rhythm - for the next 55 days
 
-```mermaid
-flowchart TD
-    A["Every day<br/>15 min . current lesson"] --> B["Sunday<br/>Re-skim week's 6 lessons"]
-    B --> C["Weekly<br/>1 practice rep in real life"]
-    C --> D["8 weeks = 56 lessons<br/>8 integrations . 8 reps"]
-```
+![The learning rhythm - for the next 55 days: Every day, 15 min . current lesson; Sunday, Re-skim week's 6 lessons; Weekly, 1 practice rep in real life; 8 weeks = 56 lessons, 8 integrations . 8 reps.](/first-60-days/images/day-25-m1.webp)
 
 On top of the three rituals above, during this 60-day program your week also has a **learning rhythm**. Don't skip this part - the advisors who finish strong are the ones who studied consistently, not those who crammed.
 

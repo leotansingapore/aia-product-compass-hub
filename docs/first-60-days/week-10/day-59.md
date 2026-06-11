@@ -38,15 +38,7 @@ The proposal **translates all of that into a plan.** If you've done the work, wr
 
 ## 2. The 5-part proposal template
 
-```mermaid
-flowchart TD
-    P1["1 . Goals<br/>Their words . their numbers"]
-    P2["2 . Current situation<br/>Coverage snapshot . gaps named"]
-    P3["3 . The plan<br/>Category first . then product"]
-    P4["4 . Illustrations<br/>Guaranteed + non-guaranteed"]
-    P5["5 . Next steps<br/>Full plan or phased option"]
-    P1 --> P2 --> P3 --> P4 --> P5
-```
+![The 5-part proposal template: 1 . Goals, Their words . their numbers; 2 . Current situation, Coverage snapshot . gaps named; 3 . The plan, Category first . then product; 4 . Illustrations, Guaranteed + non-guaranteed; 5 . Next steps, Full plan or phased option.](/first-60-days/images/day-59-m0.webp)
 
 ### 1. Your goals (1 page)
 Restate, in their language, what they told you they want.
@@ -137,14 +129,7 @@ Clear, specific.
 
 Before the specific techniques, the mental model. Every close is the same underlying task: you are a safe-cracker, and the safe is the prospect's mind. There are **5 numbers** in the combination. Pull the handle (ask for the order) - if all five numbers are right, the safe opens. If one is off, it doesn't.
 
-```mermaid
-flowchart TD
-    N1["1 . Product<br/>They love it"] --> N2["2 . You<br/>They trust you"]
-    N2 --> N3["3 . Firm<br/>They trust the firm"]
-    N3 --> N4["4 . Action threshold<br/>The downside feels small"]
-    N4 --> N5["5 . Pain threshold<br/>The pain of not acting is vivid"]
-    N5 --> H["Pull the handle<br/>(ask for the order)"]
-```
+![The close as safe-cracking - the 5 numbers in the combination: 1 . Product, They love it; 2 . You, They trust you; 3 . Firm, They trust the firm; 4 . Action threshold, The downside feels small; 5 . Pain threshold, The pain of not acting is vivid; Pull the handle, (ask for the order).](/first-60-days/images/day-59-m1.webp)
 
 ### The 5 numbers
 
@@ -211,16 +196,7 @@ Most new FCs break silence by volunteering more information, discounts, or fallb
 
 **"He who breaks silence first is the most eager to make a deal."** Let the client speak first. Their first word tells you what you actually think.
 
-```mermaid
-flowchart TD
-    A["Ask for the close<br/>Shall we proceed?"]
-    A --> B["Client is silent"]
-    B --> C{"FC breaks silence?"}
-    C -->|"Yes - adds options"| D["Rewards hesitation<br/>More confusion . likely no"]
-    C -->|"No - counts to 30"| E["Client speaks first"]
-    E --> F["Yes . specific objection<br/>or real no"]
-    F --> G["Handle what you hear<br/>not what you fear"]
-```
+![Technique 4: Silent Close: Ask for the close, Shall we proceed?; Client is silent; FC breaks silence?; Rewards hesitation, More confusion . likely no; Client speaks first; Yes . specific objection, or real no; Handle what you hear, not what you fear.](/first-60-days/images/day-59-m2.webp)
 
 ### Technique 5: Summary Close
 **When:** multi-benefit plan, client needs to see everything tied together.

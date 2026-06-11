@@ -85,18 +85,7 @@ Each platform has a "personality." Using the wrong one for the wrong message pro
 
 **Rule:** your ideal client profile dictates your platform. If your prospects are 25-40 Singaporean professionals, **LinkedIn + Instagram** is the core combo. Don't try to be everywhere.
 
-```mermaid
-flowchart TD
-    ICP["ICP: 25-40 SG professionals"]
-    LI["LinkedIn<br/>Business conference . 25-55"]
-    IG["Instagram<br/>Magazine . 20-40"]
-    FB["Facebook<br/>Family room . 35-60"]
-    TT["TikTok<br/>Dance party . 15-30"]
-    ICP -->|"Primary"| LI
-    ICP -->|"Primary"| IG
-    ICP -->|"Secondary"| FB
-    ICP -->|"Skip for now"| TT
-```
+![Platform positioning - which lives where: ICP: 25-40 SG professionals; LinkedIn, Business conference . 25-55; Instagram, Magazine . 20-40; Facebook, Family room . 35-60; TikTok, Dance party . 15-30.](/first-60-days/images/day-40-m0.webp)
 
 ## 4. The two-prong content strategy - Social + Authority
 

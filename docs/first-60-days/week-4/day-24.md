@@ -178,14 +178,7 @@ Once you're running a real pipeline - 30, 50, 100 active prospects - your memory
 
 A prospect first met in **March**. He was flaky - repeatedly cancelled, rescheduled, ghosted for entire months. The producer following up didn't try to hold the relationship in his head. He used **calendar events** as the system of record:
 
-```mermaid
-flowchart TD
-    A["March: first meeting<br/>not enlisted, no commitment"] --> B["July: calendar prompt fires<br/>send a 'how's it going?' message"]
-    B --> C["Aug / Sep: almost weekly<br/>calendar nudges"]
-    C --> D["October: scheduled meeting<br/>cancelled night-of"]
-    D --> E["November: near-zero replies<br/>calendar prompt fires anyway, send anyway"]
-    E --> F["December: finally meets<br/>closes the case"]
-```
+![The 9-month case (a real one): March: first meeting, not enlisted, no commitment; July: calendar prompt fires, send a 'how's it going?' message; Aug / Sep: almost weekly, calendar nudges; October: scheduled meeting, cancelled night-of; November: near-zero replies, calendar prompt fires anyway, send ](/first-60-days/images/day-24-m0.webp)
 
 The December meeting closed a **$900/month bundle (~$4K FYC, ~$12K lifetime if held).**
 

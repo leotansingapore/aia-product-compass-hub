@@ -47,15 +47,7 @@ That's it. It's not selling. It's not closing. It's *creating the possibility* o
 
 Your sales cycle has stages, and each stage takes time. The label on each arrow is how long the gap to the next stage usually runs:
 
-```mermaid
-flowchart TD
-    A["1 . Prospecting touch"] -->|"+1-2 wk"| B["2 . First conversation"]
-    B -->|"+1-2 wk"| C["3 . Fact-find meeting"]
-    C -->|"+1-2 wk"| D["4 . Proposal"]
-    D -->|"same / follow-up"| E["5 . Close"]
-    E -->|"+2-6 wk"| F["6 . Underwriting & approval"]
-    F -->|"next month"| G["7 . Commission paid"]
-```
+![Why your income is set 30-60 days in advance: 1 . Prospecting touch; 2 . First conversation; 3 . Fact-find meeting; 4 . Proposal; 5 . Close; 6 . Underwriting & approval; 7 . Commission paid.](/first-60-days/images/day-19-m0.webp)
 
 **Total: roughly 30-90 days** from first prospecting touch to commission arriving in your account.
 

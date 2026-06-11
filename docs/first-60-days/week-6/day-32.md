@@ -58,11 +58,7 @@ The last column shows how many **doublings** fit in 40 years, which roughly maps
 
 **Quick cross-check with the calculator:** $50,000 x (1.04)^30 ~ **$162,170.** Close enough for a conversation.
 
-```mermaid
-flowchart TD
-    A["Age 35<br/>$50,000"] -->|"18 yrs at 4%"| B["Age 53<br/>~$100,000<br/>(1 doubling)"]
-    B -->|"12 more yrs<br/>(partial)"| C["Age 65<br/>~$162,000<br/>(1.67 doublings)"]
-```
+![Scenario 1 - Retirement: Age 35, $50,000; Age 53, ~$100,000, (1 doubling); Age 65, ~$162,000, (1.67 doublings).](/first-60-days/images/day-32-m0.webp)
 
 ### The insight for the client
 
@@ -122,12 +118,7 @@ A $500K sum assured feels massive today. In 30 years, with inflation, it's buyin
 
 The Rule of 72 is the single most powerful tool for showing a client the cost of delaying an investment decision - without guilt-tripping them.
 
-```mermaid
-flowchart TD
-    A["Start now at 30<br/>6% over 35 yrs to 65"] --> B["Full retirement pot<br/>100%"]
-    C["Wait until 35<br/>6% over 30 yrs to 65"] --> D["~75% of full pot<br/>25% permanently lost"]
-    B & D --> E["Same monthly contribution<br/>same rate, different start"]
-```
+![The cost of waiting - gently: Start now at 30, 6% over 35 yrs to 65; Full retirement pot, 100%; Wait until 35, 6% over 30 yrs to 65; ~75% of full pot, 25% permanently lost; Same monthly contribution, same rate, different start.](/first-60-days/images/day-32-m1.webp)
 
 **Client, 30, says: "I'll start investing in 5 years when I'm more settled."**
 

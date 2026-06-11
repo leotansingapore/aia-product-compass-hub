@@ -428,16 +428,7 @@ Every client faces three categories of risk that require insurance:
 
 Each category maps to specific AIA product types.
 
-```mermaid
-flowchart TD
-    A["3 Types of Risk"]
-    A --> B["Death<br/>Family loses income"]
-    A --> C["Living disability / illness<br/>Can't earn, still alive"]
-    A --> D["Medical expense<br/>Bills to pay"]
-    B --> B1["Term, Whole Life"]
-    C --> C1["CI rider, Disability Income"]
-    D --> D1["Integrated Shield<br/>+ Rider"]
-```
+![The 3 types of bad thing happens protection: 3 Types of Risk; Death, Family loses income; Living disability / illness, Can't earn, still alive; Medical expense, Bills to pay; Term, Whole Life; CI rider, Disability Income; Integrated Shield, + Rider.](/first-60-days/images/day-56-m0.webp)
 
 ## 2. Term Insurance - the affordability workhorse
 

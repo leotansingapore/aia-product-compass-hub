@@ -146,14 +146,7 @@ Start stupid small. Momentum handles the rest.
 
 ### The Sunday ritual (30 minutes)
 
-```mermaid
-flowchart TD
-    A["Sit down<br/>Sun, 30 min"] --> B["Review last week<br/>Activity, pipeline"]
-    B --> C["Pick 3 priorities<br/>Specific, measurable"]
-    C --> D["Block calendar first<br/>Peak hours defended"]
-    D --> E["Protect one evening<br/>Non-negotiable"]
-    E --> F["Monday: start<br/>First peak block"]
-```
+![The Sunday ritual (30 minutes): Sit down, Sun, 30 min; Review last week, Activity, pipeline; Pick 3 priorities, Specific, measurable; Block calendar first, Peak hours defended; Protect one evening, Non-negotiable; Monday: start, First peak block.](/first-60-days/images/day-22-m0.webp)
 
 _30 minutes on Sunday protects 168 hours of the coming week._
 

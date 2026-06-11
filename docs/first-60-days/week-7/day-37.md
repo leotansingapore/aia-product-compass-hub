@@ -483,15 +483,7 @@ A low-pressure, text-first warm opener that uses a useful resource as the bridge
 
 ### The flow
 
-```mermaid
-flowchart TD
-    A["Send 2-Liner Hook<br/>via text / WhatsApp / DM"] --> B{"Replied yes?"}
-    B -- "Yes" --> C["Send the resource"]
-    B -- "No reply<br/>or soft no" --> X["Park - retry in 4-6 weeks<br/>with a different resource"]
-    C --> D["Wait 1-2 weeks"]
-    D --> E["Follow up:<br/>did you manage to figure out<br/>how to solve the problem?"]
-    E --> F(["Business Appointment"])
-```
+![The flow: Send 2-Liner Hook, via text / WhatsApp / DM; Replied yes?; Send the resource; Park - retry in 4-6 weeks, with a different resource; Wait 1-2 weeks; Follow up:, did you manage to figure out, how to solve the problem?.](/first-60-days/images/day-37-m2.webp)
 
 ### The script
 
