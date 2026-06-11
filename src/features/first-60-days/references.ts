@@ -62,3 +62,36 @@ export async function loadReference(slug: string): Promise<ReferenceDoc | undefi
   cache.set(slug, doc);
   return doc;
 }
+
+export interface ReferenceListItem {
+  slug: string;
+  title: string;
+  subtitle?: string;
+}
+
+// Docs that are internal indexes rather than learner-facing references.
+const HIDDEN_FROM_INDEX = /^INDEX-/i;
+
+function humanizeType(type?: string): string | undefined {
+  if (!type) return undefined;
+  return type.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/**
+ * Loads metadata for every shipped reference so the index page can list them,
+ * skipping internal index docs (e.g. the video-course master index). Sorted by
+ * title. Used by the First 60 Days references index.
+ */
+export async function listReferences(): Promise<ReferenceListItem[]> {
+  const slugs = listReferenceSlugs().filter((slug) => !HIDDEN_FROM_INDEX.test(slug));
+  const docs = await Promise.all(slugs.map((slug) => loadReference(slug)));
+  return docs
+    .filter((d): d is ReferenceDoc => Boolean(d))
+    .filter((d) => d.frontmatter.type !== "master-index")
+    .map((d) => ({
+      slug: d.slug,
+      title: d.title,
+      subtitle: d.frontmatter.purpose || humanizeType(d.frontmatter.type),
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+}

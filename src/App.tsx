@@ -105,6 +105,7 @@ const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-tr
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackFirst60DaysWeekRecap = lazyWithRetry(() => import("./pages/learning-track/First60DaysWeekRecap"));
 const LearningTrackFirst60DaysReference = lazyWithRetry(() => import("./pages/learning-track/First60DaysReference"));
+const LearningTrackFirst60DaysReferences = lazyWithRetry(() => import("./pages/learning-track/First60DaysReferences"));
 const LearningTrackProductMastery = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryHub"));
 const LearningTrackProductMasteryDay = lazyWithRetry(() => import("./pages/learning-track/ProductMasteryDay"));
 const LearningTrackNext60Days = lazyWithRetry(() => import("./pages/learning-track/Next60Days"));
