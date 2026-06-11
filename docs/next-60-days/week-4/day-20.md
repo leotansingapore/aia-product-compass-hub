@@ -38,14 +38,7 @@ Silence isn't neutral. It's an active choice that taxes both sides. The move isn
 
 Every good warm-market text hits six beats in this order:
 
-```mermaid
-flowchart TD
-    C["1 · Real<br/>connection"] --> H["2 · Honest<br/>about why"]
-    H --> E["3 · Say the<br/>awkward thing"]
-    E --> O["4 · Offer help,<br/>not pressure"]
-    O --> EO["5 · Give an<br/>easy out"]
-    EO --> R["6 · Relationship<br/>close"]
-```
+![The 6-step honest message: 1 · Real connection; 2 · Honest about why; 3 · Say the awkward thing; 4 · Offer help, not pressure; 5 · Give an easy out; 6 · Relationship close](/next-60-days/images/n60-day-20-m0.webp)
 
 **1 · Real connection.** Reference *them* first. Their recent trip, their new role, their life stage. Don't jump straight to business.
 

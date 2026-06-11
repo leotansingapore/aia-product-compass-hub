@@ -100,11 +100,7 @@ The cushion lexicon stays the same; the *length* and *register* flex by profile.
 
 A 3-beat framework for brush-offs and reflex objections. Under 15 seconds, start to finish.
 
-```mermaid
-flowchart TD
-    A["1 · Anchor<br/>acknowledge"] --> D["2 · Disrupt<br/>shift the pattern"]
-    D --> Q["3 · Ask<br/>request the action"]
-```
+![Anchor-Disrupt-Ask — the fast turnaround: 1 · Anchor acknowledge; 2 · Disrupt shift the pattern; 3 · Ask request the action](/next-60-days/images/n60-day-40-m0.webp)
 
 | Beat | What it does | How it sounds |
 |---|---|---|
@@ -131,11 +127,7 @@ flowchart TD
 
 When an objection is **commonly heard, stated explicitly, and has specific reasoning**, use **ART**:
 
-```mermaid
-flowchart TD
-    A["A · Acknowledge<br/>the concern"] --> R["R · Relate<br/>similar experience"]
-    R --> T["T · Turn around<br/>with logical reasoning"]
-```
+![ART — for clear objections: A · Acknowledge the concern; R · Relate similar experience; T · Turn around with logical reasoning](/next-60-days/images/n60-day-40-m1.webp)
 
 **Worked example:**
 

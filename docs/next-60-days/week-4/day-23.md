@@ -100,12 +100,7 @@ If the Strategic Target List hits 20 names every month from day 1, and each mont
 
 One sitting. 30 minutes. Non-negotiable.
 
-```mermaid
-flowchart TD
-    A["1 · CAR numbers<br/>(5 min)"] --> B["2 · Diagnose<br/>weakest link<br/>(5 min)"]
-    B --> C["3 · Target list<br/>update<br/>(10 min)"]
-    C --> D["4 · Next week's<br/>3 big moves<br/>(10 min)"]
-```
+![The Friday 30-minute weekly review: 1 · CAR numbers (5 min); 2 · Diagnose weakest link (5 min); 3 · Target list update (10 min); 4 · Next week's 3 big moves (10 min)](/next-60-days/images/n60-day-23-m0.webp)
 
 ### Block 1 — CAR numbers (5 min)
 
@@ -204,16 +199,7 @@ Source: [[../../first-60-days/_source-supplementary/appointment-setting-product/
 
 The Strategic Target List (§2) tags prospects as A/B/C or 1/2/3. The Pyramid adds *depth* — where each name sits on the journey from unknown to buying-window.
 
-```mermaid
-flowchart TD
-    L6["Level 6 — Highly qualified + buying window<br/>Daily focus"]
-    L5["Level 5 — Hot inbound leads + referrals<br/>Same-day response"]
-    L4["Level 4 — Conquest prospects (biggest opportunities)<br/>Regular touches + stakeholder mapping"]
-    L3["Level 3 — Buying window identified<br/>Nurture campaigns running"]
-    L2["Level 2 — Contact verified + budget known<br/>Identify buying windows"]
-    L1["Level 1 — Unknown prospects<br/>Gather info, qualify, enter pipeline"]
-    L6 --> L5 --> L4 --> L3 --> L2 --> L1
-```
+![The Prospecting Pyramid — 6 levels: Level 6 — Highly qualified + buying window Daily focus; Level 5 — Hot inbound leads + referrals Same-day response; Level 4 — Conquest prospects (biggest opportunities) Regular touches + stakeholder mapping; Level 3 — Buying window identified Nurture campaigns runn](/next-60-days/images/n60-day-23-m1.webp)
 
 | Level | Who they are | Daily action |
 |---|---|---|

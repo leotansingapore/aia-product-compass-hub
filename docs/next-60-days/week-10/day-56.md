@@ -69,11 +69,7 @@ One-page checklist. Runs automatically for every new client. Build it once, use 
 
 Within the checklist, 3 specific touchpoints do the heaviest lifting:
 
-```mermaid
-flowchart TD
-    D7["Day 7<br/>(reassurance)"] --> D30["Day 30<br/>(reinforcement)"]
-    D30 --> D90["Day 90<br/>(integration)"]
-```
+![The 3-touchpoint rhythm: Day 7 (reassurance); Day 30 (reinforcement); Day 90 (integration)](/next-60-days/images/n60-day-56-m0.webp)
 
 ### Day 7 — reassurance
 Purpose: confirm they made a good decision.

@@ -33,11 +33,7 @@ Applied to financial planning: a pitch that frames *"here's what you gain"* acti
 
 ## The 3-part framework for every hot-button pitch
 
-```mermaid
-flowchart TD
-    I["Part 1<br/>Gather Intel"] --> P["Part 2<br/>Preparation"]
-    P --> E["Part 3<br/>Presentation"]
-```
+![The 3-part framework for every hot-button pitch: Part 1 Gather Intel; Part 2 Preparation; Part 3 Presentation](/next-60-days/images/n60-day-39-m0.webp)
 
 ### Part 1 — Gather Intel
 The Fact-Find + Day-38 questioning work. Goal: surface 2–3 hot buttons, identify which is hottest, capture everything.
@@ -63,12 +59,7 @@ Deliver the pitch with hot-button activation built in. The next section is the 4
 
 ## The 4-step execution (inside Part 3)
 
-```mermaid
-flowchart TD
-    S1["1 · Framing"] --> S2["2 · More<br/>framing"]
-    S2 --> S3["3 · Apply<br/>technique"]
-    S3 --> S4["4 · Motivate<br/>action"]
-```
+![The 4-step execution (inside Part 3): 1 · Framing; 2 · More framing; 3 · Apply technique; 4 · Motivate action](/next-60-days/images/n60-day-39-m1.webp)
 
 ### Step 1 — Framing
 Set the frame for what the presentation is going to do. *"Today I'll walk you through what I've put together based on what you shared. I'll start with your biggest gap, then the recommendation, then we'll look at alternatives."*

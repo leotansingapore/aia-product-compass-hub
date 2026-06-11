@@ -123,11 +123,7 @@ The compound math in §1 explains *why* to ask. This section explains why *refer
 
 New FCs face a hidden trap: every appointment *burns* a lead from the list. More appointments = more leads burned = more time needed to generate replacement leads = *less* time for appointments. The harder you push one side, the more the other side collapses.
 
-```mermaid
-flowchart TD
-    L["Getting<br/>leads"] --> C["Calling"] --> A["Appointments"]
-    A --> L
-```
+![The see-saw effect (self-destructive cycle): Getting leads; Calling; Appointments](/next-60-days/images/n60-day-25-m0.webp)
 
 **Left unchecked:** pipeline math goes negative. Month 6–9 the calendar empties. The FC doesn't realise the root cause — they assume they lost their touch or the market turned. Neither. They just never built the replacement engine.
 
@@ -135,11 +131,7 @@ flowchart TD
 
 Referrals break the see-saw. When every appointment produces ≥1 warm referral, the list *refills* at the moment it gets drawn down.
 
-```mermaid
-flowchart TD
-    R["Referrals"] --> C["Calling"] --> A["Appointments"]
-    A --> R
-```
+![The self-reinforcing cycle: Referrals; Calling; Appointments](/next-60-days/images/n60-day-25-m1.webp)
 
 Now the math inverts: more appointments → more referrals → more calls → more appointments. Each cycle grows. Year-2 FCs who run this engine barely need cold outreach. Year-5 FCs barely need active prospecting at all.
 

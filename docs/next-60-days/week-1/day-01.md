@@ -65,14 +65,7 @@ Not your product. Not your company. Not your certifications. From the outside, t
 
 Every good origin story — superhero movie or 90-second warm-market pitch — hits the same four beats.
 
-```mermaid
-flowchart TD
-    A["1 · Life today<br/>where you are now"]
-    B["2 · The villain<br/>what was hard"]
-    C["3 · The guide<br/>what changed you"]
-    D["4 · Growth<br/>who you became"]
-    A --> B --> C --> D
-```
+![The 4-part story frame: 1 · Life today where you are now; 2 · The villain what was hard; 3 · The guide what changed you; 4 · Growth who you became](/next-60-days/images/n60-day-01-m0.webp)
 
 **1 · Life today.** A short setup of where you are now — so the contrast lands. *"You see me today and I can travel, buy a home, take care of my parents. It wasn't always like this."*
 

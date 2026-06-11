@@ -44,15 +44,7 @@ If your FYC isn't where you want it, one of those three is the problem. There is
 
 The three levers are not equal. Here's what actually moves each one:
 
-```mermaid
-flowchart TD
-    A["Appointments<br/>controllable TODAY"]
-    B["Close rate<br/>reps over weeks"]
-    C["Case size<br/>experience over months"]
-    A --> FYC["FYC"]
-    B --> FYC
-    C --> FYC
-```
+![Why appointments is the only lever you control today: Appointments controllable TODAY; Close rate reps over weeks; Case size experience over months; FYC](/next-60-days/images/n60-day-02-m0.webp)
 
 **Close rate** is a function of skill — asking the right questions, reading DISC, handling objections, closing with conviction. You will get better at all of those, but you cannot get dramatically better this week. A new FC typically closes somewhere between 20–40% of qualified meetings. Month 3 it might be 30–50%. That's a real move, and it takes time.
 

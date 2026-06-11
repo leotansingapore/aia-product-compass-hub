@@ -35,14 +35,7 @@ But — and this is the rest of the lesson — **restructuring can also be used 
 
 Good restructuring aims at one or more of these 5 goals:
 
-```mermaid
-flowchart TD
-    EC["Enhance<br/>coverage"]
-    RC["Reduce<br/>costs"]
-    UB["Update<br/>benefits"]
-    IS["Improve<br/>suitability"]
-    MV["Maximise<br/>value"]
-```
+![The 5 objectives of legitimate restructuring: Enhance coverage; Reduce costs; Update benefits; Improve suitability; Maximise value](/next-60-days/images/n60-day-55-m0.webp)
 
 ### 1. Enhance coverage
 Upgrade to plans that fill gaps in the existing ones. Example: client has $200K CI coverage bought at age 28; now 42 with 2 kids, exposure is higher — gap is real.

@@ -38,12 +38,7 @@ The specific hours vary person to person. The structural pattern is remarkably c
 
 A typical top-producer week runs about **45–50 productive hours** split across 3 categories:
 
-```mermaid
-flowchart TD
-    NB["New business<br/>(prospecting + appts + close)<br/>~50%"]
-    RR["Relationship / referral<br/>(client touchpoints + reviews)<br/>~35%"]
-    S["Systems<br/>(admin + review + CE)<br/>~15%"]
-```
+![A representative week — the 3-category split: New business (prospecting + appts + close) ~50%; Relationship / referral (client touchpoints + reviews) ~35%; Systems (admin + review + CE) ~15%](/next-60-days/images/n60-day-58-m0.webp)
 
 Rough breakdown:
 - **New business (22–25 hrs)** — prospecting calls, Fact-Finds, pitches, closes

@@ -50,12 +50,7 @@ These four are called the **CAR + FYC scorecard.** CAR tells you whether the inp
 
 Each of C / A / R is a bottleneck for the others.
 
-```mermaid
-flowchart TD
-    C["Calls"] --> A["Appointments"]
-    A --> R["Referrals"]
-    R --> C
-```
+![The CAR diagnostic: Calls; Appointments; Referrals](/next-60-days/images/n60-day-03-m0.webp)
 
 | Broken link | Downstream effect |
 |---|---|

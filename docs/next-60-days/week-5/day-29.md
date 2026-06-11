@@ -37,12 +37,7 @@ The flip isn't a lightning moment. It's a gradient. Your pipeline moves from *"1
 
 ## The CAR framework — revisited with referrals integrated
 
-```mermaid
-flowchart TD
-    C["Calls"] --> A["Appointments"]
-    A --> R["Referrals"]
-    R --> C
-```
+![The CAR framework — revisited with referrals integrated: Calls; Appointments; Referrals](/next-60-days/images/n60-day-29-m0.webp)
 
 Three metrics. Circular. Self-regenerating when all three are healthy.
 

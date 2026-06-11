@@ -36,13 +36,7 @@ The reason it's a hinge: most Year-1 advisors who fail don't fail at closing. Th
 
 Every prospect sits in one of four concentric rings:
 
-```mermaid
-flowchart TD
-    H["HOT<br/>(parents, siblings,<br/>best friends)"] --> W
-    W["WARM<br/>(friends, ex-colleagues,<br/>relatives)"] --> SW
-    SW["SEMI-WARM<br/>(secondary-school friends,<br/>old contacts, referrals)"] --> C
-    C["COLD<br/>(strangers — calls, ads,<br/>roadshows, cold DMs)"]
-```
+![Market Temperature — the 4-ring model: HOT (parents, siblings, best friends); WARM (friends, ex-colleagues, relatives); SEMI-WARM (secondary-school friends, old contacts, referrals); COLD (strangers — calls, ads, roadshows, cold DMs)](/next-60-days/images/n60-day-19-m0.webp)
 
 | Ring | Who | Key characteristic |
 |---|---|---|
@@ -180,12 +174,7 @@ The most common Week-4 quit moment is dial #3 or #4 — three no's in a row and 
 
 To hit 5–7 appointments a week at a 1-in-20 book rate, you need roughly:
 
-```mermaid
-flowchart TD
-    W["Weekly target<br/>5–7 appointments"] --> C["100–140 calls<br/>a week"]
-    C --> D["20–28 calls<br/>per day × 5 days"]
-    D --> B["Protected<br/>calling block<br/>(2–3 hrs/day)"]
-```
+![The weekly math — no softer floor exists: Weekly target 5–7 appointments; 100–140 calls a week; 20–28 calls per day × 5 days; Protected calling block (2–3 hrs/day)](/next-60-days/images/n60-day-19-m1.webp)
 
 | Appointments / week | Calls / week | Calls / day (5-day) |
 |---:|---:|---:|

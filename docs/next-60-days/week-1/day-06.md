@@ -39,16 +39,7 @@ Today you combine them, record 3 takes, submit the best one, and log your Week 1
 
 Four beats. Roughly:
 
-```mermaid
-flowchart TD
-    A["1 · Who you are<br/>~15 sec"]
-    B["2 · Story teaser<br/>~20 sec"]
-    C["3 · What you do<br/>~30 sec"]
-    D["4 · Easy next step<br/>~25 sec"]
-    A -->|"orient"| B
-    B -->|"hook"| C
-    C -->|"frame"| D
-```
+![The 90-second structure: 1 · Who you are ~15 sec; 2 · Story teaser ~20 sec; 3 · What you do ~30 sec; 4 · Easy next step ~25 sec](/next-60-days/images/n60-day-06-m0.webp)
 
 **1 · Who you are + new role (~15 sec).** Name, your new role as an FC, and one-sentence context for why this is a real career change rather than a side-hustle. Not a pitch — just orientation.
 

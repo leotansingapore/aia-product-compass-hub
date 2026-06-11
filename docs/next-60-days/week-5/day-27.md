@@ -25,12 +25,7 @@ If you interviewed 100 new FCs and asked *"do you know what to say when asking f
 
 Yet most of them barely get referrals. The bottleneck isn't the words. It's **context quality** — the three factors that decide whether the words even land.
 
-```mermaid
-flowchart TD
-    M["Moment<br/>(when you ask)"] --> Q["Quality<br/>of the ask"]
-    T["Tone<br/>(how you ask)"] --> Q
-    S["Specificity<br/>(who you ask about)"] --> Q
-```
+![Why what to say isn't the bottleneck: Moment (when you ask); Quality of the ask; Tone (how you ask); Specificity (who you ask about)](/next-60-days/images/n60-day-27-m0.webp)
 
 Three levers. Get all three right and a 5-sentence ask produces 3 warm names. Miss any one and a 50-sentence ask produces zero.
 

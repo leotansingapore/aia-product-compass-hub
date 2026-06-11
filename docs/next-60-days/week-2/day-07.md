@@ -37,12 +37,7 @@ Pick one. Commit. The intent statement is the tool that plants it.
 
 Every good intent statement has four parts:
 
-```mermaid
-flowchart TD
-    H["1 · Strong hook"] --> I["2 · Clear impression"]
-    I --> P["3 · Pattern interrupt"]
-    P --> B["4 · Buy-in"]
-```
+![The 4 ingredients: 1 · Strong hook; 2 · Clear impression; 3 · Pattern interrupt; 4 · Buy-in](/next-60-days/images/n60-day-07-m0.webp)
 
 **1 · Strong opening hook.** The first sentence is an introduction, not a product line. Like the first paragraph of an essay — if it doesn't pull the listener in, the next nine sentences don't matter.
 

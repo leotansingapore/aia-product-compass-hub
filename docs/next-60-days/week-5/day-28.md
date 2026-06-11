@@ -37,12 +37,7 @@ Different tools for different moments. FACT is the *quality* ask — small numbe
 
 **F**avour → **A**ngle → **C**onnect → **T**imeline
 
-```mermaid
-flowchart TD
-    F["F · Favour<br/>(the framing)"] --> A["A · Angle<br/>(who)"]
-    A --> C["C · Connect<br/>(the ask)"]
-    C --> T["T · Timeline<br/>(locked)"]
-```
+![The FACT Method: F · Favour (the framing); A · Angle (who); C · Connect (the ask); T · Timeline (locked)](/next-60-days/images/n60-day-28-m0.webp)
 
 Four beats. The order matters. Angle comes before Connect because a specific angle triggers specific memory; swapping the order makes the ask generic again.
 

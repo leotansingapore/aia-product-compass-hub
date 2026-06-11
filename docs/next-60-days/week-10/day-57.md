@@ -39,13 +39,7 @@ Year-1 FCs often treat moments as *nice to have* — side-quests to the main wor
 
 Touchpoints split into 4 categories. A good yearly cadence uses all 4.
 
-```mermaid
-flowchart TD
-    R["Review<br/>(scheduled)"]
-    V["Value<br/>(useful content)"]
-    C["Celebration<br/>(birthdays, milestones)"]
-    RO["Reach-out<br/>(responsive to life events)"]
-```
+![The 4 types of touchpoints: Review (scheduled); Value (useful content); Celebration (birthdays, milestones); Reach-out (responsive to life events)](/next-60-days/images/n60-day-57-m0.webp)
 
 ### Review touchpoints — scheduled
 Portfolio reviews. Annual check-ins. Formal business meetings where you look at the client's plan and discuss changes.

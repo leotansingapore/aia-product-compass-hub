@@ -152,11 +152,7 @@ You are not agreeing or evaluating. You are **signalling that you heard them and
 
 Three tonalities strung together for a signature close:
 
-```mermaid
-flowchart TD
-    C["Certainty<br/>(the plan)"] --> S["Sincerity<br/>(empathy)"]
-    S --> R["Reason<br/>(the 'fair?')"]
-```
+![The Tritonal Closing Pattern: Certainty (the plan); Sincerity (empathy); Reason (the 'fair?')](/next-60-days/images/n60-day-05-m0.webp)
 
 **Example delivery:**
 

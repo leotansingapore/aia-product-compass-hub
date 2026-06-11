@@ -80,12 +80,7 @@ Yours will sound different. It has to. But the structure is the same.
 
 This is the writing-heavy day of Week 1. Read time is short; worksheet time is ~30 minutes.
 
-```mermaid
-flowchart TD
-    W["Write v1<br/>20 min"] -->|"draft"| R["Read aloud<br/>5 min"]
-    R -->|"hear it"| L["Listen back<br/>5 min"]
-    L -->|"review"| M["Mark flat spots<br/>5 min"]
-```
+![The drill: Write v1 20 min; Read aloud 5 min; Listen back 5 min; Mark flat spots 5 min](/next-60-days/images/n60-day-04-m0.webp)
 
 **Write, then read aloud before you judge it.** Your ear catches what your eye doesn't. The lines that sound fine on paper but flatten when spoken are the ones to rewrite first.
 

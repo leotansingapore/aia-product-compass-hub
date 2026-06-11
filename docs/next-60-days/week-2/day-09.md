@@ -37,15 +37,7 @@ Week 2's Days 10–11 are about branding. Today is about positioning — the beh
 
 Seven moves that work across any prospect, any product, any stage:
 
-```mermaid
-flowchart TD
-    A["1 · Always frame"] --> B["2 · Verbal + nonverbal"]
-    B --> C["3 · Curiosity + concern"]
-    C --> D["4 · Refrain from solutions"]
-    D --> E["5 · Sharp questions"]
-    E --> F["6 · Call the elephant"]
-    F --> G["7 · Detach from outcome"]
-```
+![The 7 commandments of positioning: 1 · Always frame; 2 · Verbal + nonverbal; 3 · Curiosity + concern; 4 · Refrain from solutions; 5 · Sharp questions; 6 · Call the elephant; 7 · Detach from outcome](/next-60-days/images/n60-day-09-m0.webp)
 
 All seven matter. Three of them (1, 6, 7) do disproportionate work in your first 60 days. Those are the ones today covers. The rest live in Week 8 — by then you'll have the reps to use them.
 

@@ -79,13 +79,7 @@ Most new FCs skip step 5 — they hear, nod, and move to the next question. **Ac
 
 The 4 profiles aren't random — they come from 2 underlying dimensions:
 
-```mermaid
-flowchart TD
-    D["D · Dominance<br/>(Thinker + Fast)"]
-    I["I · Influence<br/>(Feeler + Fast)"]
-    S["S · Steadiness<br/>(Feeler + Slow)"]
-    C["C · Conscientiousness<br/>(Thinker + Slow)"]
-```
+![The 2 axes behind DISC: D · Dominance (Thinker + Fast); I · Influence (Feeler + Fast); S · Steadiness (Feeler + Slow); C · Conscientiousness (Thinker + Slow)](/next-60-days/images/n60-day-31-m0.webp)
 
 | | **Thinker (facts, logic)** | **Feeler (emotion, people)** |
 |---|---|---|
@@ -136,14 +130,7 @@ Every meeting has a pacing window. You and the prospect are both, mostly unconsc
 
 In those first 5 minutes, actively notice:
 
-```mermaid
-flowchart TD
-    B["Body language"] --> P["Pace"]
-    P --> Q["Questions<br/>they ask"]
-    Q --> W["Word choice"]
-    W --> D["Dressing"]
-    D --> RQ["Right questions<br/>you ask"]
-```
+![The 6-signal rapid scan: Body language; Pace; Questions they ask; Word choice; Dressing; Right questions you ask](/next-60-days/images/n60-day-31-m1.webp)
 
 1. **Body language and facial expressions** — D stands up straight, walks fast; I gestures a lot; C frowns when thinking; S slouches and takes up little space.
 2. **Tonality and pace** — D is fast and direct; I is animated; C is measured; S is quiet and soft.
