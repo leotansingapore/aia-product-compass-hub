@@ -95,12 +95,7 @@ You'll need to project compound growth in client meetings *without* a calculator
 
 ## 4. The early-start premium
 
-```mermaid
-flowchart TD
-    A1["Alice: age 25-35<br/>$500/mo, $60K in"] --> A2["Age 35-65<br/>just compounds"]
-    A2 --> A3["Age 65<br/>~$500K"]
-    B1["Bob: age 35-65<br/>$500/mo, $180K in"] --> B2["Age 65<br/>~$470K"]
-```
+![The early-start premium: Alice: age 25-35, $500/mo, $60K in; Age 35-65, just compounds; Age 65, ~$500K; Bob: age 35-65, $500/mo, $180K in; Age 65, ~$470K.](/first-60-days/images/day-29-m0.webp)
 
 Compounding rewards time more than anything else.
 

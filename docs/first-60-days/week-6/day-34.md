@@ -40,14 +40,7 @@ By the end of today you should be able to:
 
 ## 2. Investing vs Speculation - the critical distinction
 
-```mermaid
-flowchart TD
-    A["Client's money"] --> B{"Intent + horizon?"}
-    B -->|"Long, fundamentals<br/>5+ years"| C["Investing<br/>compounding, ownership"]
-    B -->|"Short, timing<br/>days to months"| D["Speculation<br/>exciting, volatile"]
-    C --> E["Expected positive return<br/>over decades"]
-    D --> F["Most speculators<br/>lose money"]
-```
+![Investing vs Speculation - the critical distinction: Client's money; Intent + horizon?; Investing, compounding, ownership; Speculation, exciting, volatile; Expected positive return, over decades; Most speculators, lose money.](/first-60-days/images/day-34-m0.webp)
 
 | | **Investing** | **Speculation** |
 |---|---|---|

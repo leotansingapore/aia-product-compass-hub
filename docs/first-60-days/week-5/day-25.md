@@ -40,12 +40,7 @@ People who make it in a skill-based career are almost always people with strong 
 
 These three are non-negotiable. Install them now, so they're already running by the time you're licensed and in front of prospects.
 
-```mermaid
-flowchart TD
-    A["Sunday<br/>30-min review"] --> B["Mon-Fri<br/>15-min opening"]
-    B --> C["Friday<br/>10-min wrap"]
-    C --> A
-```
+![The three personal rituals: Sunday, 30-min review; Mon-Fri, 15-min opening; Friday, 10-min wrap.](/first-60-days/images/day-25-m0.webp)
 
 ### Sunday - the 30-minute review
 **When:** any 30-minute window on Sunday evening.

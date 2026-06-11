@@ -36,15 +36,7 @@ Examples:
 
 ## 2. The worked example - DCA in a volatile market
 
-```mermaid
-flowchart TD
-    A["Fixed amount<br/>$1,000/yr"] --> B{"Price high<br/>or low?"}
-    B -->|"Price high"| C["Buy fewer units<br/>less exposure at peak"]
-    B -->|"Price low"| D["Buy more units<br/>cheap accumulation"]
-    C --> E["Average cost per unit<br/>lower than average price"]
-    D --> E
-    E --> F["Portfolio outperforms<br/>emotional investor"]
-```
+![The worked example - DCA in a volatile market: Fixed amount, $1,000/yr; Price high, or low?; Buy fewer units, less exposure at peak; Buy more units, cheap accumulation; Average cost per unit, lower than average price; Portfolio outperforms, emotional investor.](/first-60-days/images/day-30-m0.webp)
 
 Scenario: You DCA $1,000/year for 5 years. Unit prices swing.
 
@@ -88,16 +80,7 @@ Same market, but instead of DCA, you invest $5,000 **in a single lump sum**. Let
 
 ## 4. The trade-off - DCA's cost
 
-```mermaid
-flowchart TD
-    A["Client has capital to invest"] --> B{"Can reliably time<br/>market bottoms?"}
-    B -->|"Yes"| C["Lump sum<br/>max upside potential"]
-    B -->|"No"| D{"Regular income<br/>no market edge?"}
-    D -->|"Yes"| E["DCA<br/>99% of retail clients"]
-    D -->|"No"| C
-    E --> F["Predictable positive outcome<br/>removes emotion"]
-    C --> G["Best or worst outcome<br/>depends on entry timing"]
-```
+![The trade-off - DCA's cost: Client has capital to invest; Can reliably time, market bottoms?; Lump sum, max upside potential; Regular income, no market edge?; DCA, 99% of retail clients; Predictable positive outcome, removes emotion; Best or worst outcome, depends on entry timing.](/first-60-days/images/day-30-m1.webp)
 
 DCA is not free of trade-offs:
 

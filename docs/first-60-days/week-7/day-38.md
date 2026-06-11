@@ -191,16 +191,7 @@ Most new FCs follow this arc:
 - **Months 7-12:** ~30% natural, 50% referred, 20% cold/digital.
 - **Year 2+:** ~10% natural (exhausted), 70%+ referred, 20% cold/digital.
 
-```mermaid
-flowchart TD
-    A["Warm market contact"]
-    B["Market survey<br/>30+ completed"]
-    C["Meeting booked<br/>ABCD promises open"]
-    D["Client closes"]
-    E["Referral ask<br/>end of every meeting"]
-    F["Referred prospect<br/>3-5x higher close rate"]
-    A --> B --> C --> D --> E --> F --> C
-```
+![The natural to referred transition: Warm market contact; Market survey, 30+ completed; Meeting booked, ABCD promises open; Client closes; Referral ask, end of every meeting; Referred prospect, 3-5x higher close rate.](/first-60-days/images/day-38-m0.webp)
 
 If you're in Month 8 and still 90% natural market, **something is wrong.** Either your referral asks aren't happening, or your service quality isn't producing referrals.
 

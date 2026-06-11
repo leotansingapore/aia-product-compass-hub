@@ -68,13 +68,7 @@ Two interactive views you should run on yourself first, then with a prospect:
 - **Lifestyle view** - [present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=lifestyle). Type in the monthly lifestyle you want today. Watch the curve bend upward year by year to its future-dollar equivalent. One input, one picture - ideal for the first 2 minutes of a retirement conversation.
 - **Step-by-step view** - [present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step](https://present.financeillustrator.com/total-wealth-concept/retirement?subtab=step-by-step). The full five-step Problem diagram:
 
-```mermaid
-flowchart TD
-    A["Desired lifestyle"] --> B["Inflated cost<br/>at 65"]
-    B --> C["Lump sum<br/>required"]
-    C --> D["Capital depletion<br/>line"]
-    D --> E["No-investing monthly<br/>savings number"]
-```
+![See it on the client's own numbers: Desired lifestyle; Inflated cost, at 65; Lump sum, required; Capital depletion, line; No-investing monthly, savings number.](/first-60-days/images/day-35-m0.webp)
 
 - Base URL: [present.financeillustrator.com](https://present.financeillustrator.com/) - bookmark it.
 

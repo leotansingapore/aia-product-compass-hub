@@ -48,13 +48,7 @@ By the end of today you should be able to:
 
 ## 3. Two prospect types you have today - two different approaches
 
-```mermaid
-flowchart TD
-    A["Type A. Warm<br/>Family, friends, people<br/>you've drifted from"]
-    C["Type B. Cold<br/>Digital, events, outreach"]
-    A -->|"Easy to meet<br/>harder to close"| M["First Meeting"]
-    C -->|"Slowest route<br/>but scalable"| M
-```
+![Two prospect types you have today - two different approaches: Type A. Warm, Family, friends, people, you've drifted from; Type B. Cold, Digital, events, outreach; First Meeting.](/first-60-days/images/day-37-m0.webp)
 
 > **Referred leads come later.** Once you have closed clients (post-RNF), referrals become the highest-converting channel - borrowed trust closes 3x more than cold. That whole playbook is in [[../../next-60-days/week-5/README|Next 60 Days - Week 5]]. For now, your two real channels are warm and cold, and you cannot use the same opener on both. The rest of today is the playbook for each.
 
@@ -426,14 +420,7 @@ Write that somewhere you'll see it on days when prospecting feels slow. It is th
 
 The pipeline only works if prospecting is a **habit**, not a mood. The weekly rhythm for a Month 1-6 FC:
 
-```mermaid
-flowchart TD
-    A["Mon-Fri<br/>20 new touches/day"]
-    A --> B["Daily<br/>1-2 first meetings"]
-    A --> C["Sunday evening<br/>Nurture list review"]
-    B --> D["Weekly<br/>3-5 new first<br/>meetings booked"]
-    C --> D
-```
+![Weekly prospecting rhythm: Mon-Fri, 20 new touches/day; Daily, 1-2 first meetings; Sunday evening, Nurture list review; Weekly, 3-5 new first, meetings booked.](/first-60-days/images/day-37-m1.webp)
 
 **The baseline numbers (from the Next 60 Days block):**
 - 20 dials/day -> 1 appointment booked.

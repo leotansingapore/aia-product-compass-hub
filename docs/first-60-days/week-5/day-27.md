@@ -30,16 +30,7 @@ By the end of today you should be able to:
 
 **Activities x Skills x Knowledge = FYC (First-Year Commission)**
 
-```mermaid
-flowchart TD
-    A["Activities<br/>outreach, meetings<br/>content, referrals"] --> FYC["FYC"]
-    B["Skills<br/>close rate, apt ratio<br/>avg premium"] --> FYC
-    C["Knowledge<br/>products, CPF, tax<br/>case studies"] --> FYC
-    FYC --> D{"Weakest link?"}
-    D -->|"Low activity"| E["Do more, see Day 26"]
-    D -->|"Low skill"| F["More reps + mentor feedback"]
-    D -->|"Low knowledge"| G["30-60 min/day study block"]
-```
+![The production formula: Activities, outreach, meetings, content, referrals; FYC; Skills, close rate, apt ratio, avg premium; Knowledge, products, CPF, tax, case studies; Weakest link?; Do more, see Day 26; More reps + mentor feedback; 30-60 min/day study block.](/first-60-days/images/day-27-m0.webp)
 
 This is the most important formula in the career.
 
@@ -91,13 +82,7 @@ Tracked as:
 
 ## 3. The "FYC x 4 in first 90 days" benchmark
 
-```mermaid
-flowchart TD
-    A["First 90 days<br/>e.g. $30K FYC"] --> B["Year 1<br/>foundation"]
-    B --> C["Year 2-3<br/>skills compound"]
-    C --> D["Year 4<br/>~4x = $120K"]
-    A -->|"sets the trajectory"| D
-```
+![The FYC x 4 in first 90 days benchmark: First 90 days, e.g. $30K FYC; Year 1, foundation; Year 2-3, skills compound; Year 4, ~4x = $120K.](/first-60-days/images/day-27-m1.webp)
 
 A specific target worth internalising:
 

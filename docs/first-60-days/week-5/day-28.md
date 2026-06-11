@@ -61,15 +61,7 @@ If you can't run these calculations, you can't have meaningful client conversati
 
 Every TVM problem has 5 variables. You solve for 1 when you know the other 4.
 
-```mermaid
-flowchart TD
-    N["n . periods"] --> SOLVE["Solve for<br/>the unknown 1"]
-    I["i . rate/period"] --> SOLVE
-    PV["PV . value today"] --> SOLVE
-    PMT["PMT . regular payment<br/>negative = money out"] --> SOLVE
-    FV["FV . future value<br/>positive = money in"] --> SOLVE
-    SOLVE --> R["Answer"]
-```
+![The 5 variables: n . periods; Solve for, the unknown 1; i . rate/period; PV . value today; PMT . regular payment, negative = money out; FV . future value, positive = money in; Answer.](/first-60-days/images/day-28-m0.webp)
 
 | Variable | What it means | Typical unit |
 |---|---|---|
@@ -87,20 +79,7 @@ Getting signs wrong is the #1 cause of TVM errors. Treat it strictly.
 
 ## 4. Financial calculators - the tool
 
-```mermaid
-flowchart TD
-    A["Know 4 variables"] --> B{"Which to solve?"}
-    B -->|"What rate am I getting?"| C["Solve for i"]
-    B -->|"How much to save monthly?"| D["Solve for PMT"]
-    B -->|"What lump sum do I need now?"| E["Solve for PV"]
-    B -->|"What will this grow to?"| F["Solve for FV"]
-    B -->|"How many years to goal?"| G["Solve for n"]
-    C --> H["BGN or END mode?"]
-    D --> H
-    E --> H
-    F --> H
-    G --> H
-```
+![Financial calculators - the tool: Know 4 variables; Which to solve?; Solve for i; Solve for PMT; Solve for PV; Solve for FV; Solve for n; BGN or END mode?.](/first-60-days/images/day-28-m1.webp)
 
 You need one. The standard options for Singapore FCs:
 
@@ -138,11 +117,7 @@ TVM problems run in two directions. You'll use both daily.
 
 Most retirement and education planning runs **backward.** Clients know the target (retirement income, college tuition), and need to know **what to do today.**
 
-```mermaid
-flowchart TD
-    A["PV (today)"] -->|"x (1+i)^n<br/>Forward"| B["FV (future)"]
-    B -->|"/ (1+i)^n<br/>Discounting"| A
-```
+![The two directions of TVM: PV (today); FV (future).](/first-60-days/images/day-28-m2.webp)
 
 ## 6. Worked examples - the four solve-for patterns
 
@@ -246,14 +221,7 @@ Most clients have a choice: pay a large lump sum once, or pay smaller regular pr
 
 Real clients don't have one goal. They have three or four:
 
-```mermaid
-flowchart TD
-    A["Client's monthly capacity<br/>$3,000 / month"] --> B["Retirement $1M<br/>$1,518 / mo"]
-    A --> C["Education $200K<br/>$1,150 / mo"]
-    A --> D["House downpayment $150K<br/>$2,322 / mo"]
-    A --> E["Medical fund $80K<br/>$550 / mo"]
-    B & C & D & E --> F["Total needed: $5,540 / mo<br/>Gap = $2,540 / mo"]
-```
+![The multiple-goal client: Client's monthly capacity, $3,000 / month; Retirement $1M, $1,518 / mo; Education $200K, $1,150 / mo; House downpayment $150K, $2,322 / mo; Medical fund $80K, $550 / mo; Total needed: $5,540 / mo, Gap = $2,540 / mo.](/first-60-days/images/day-28-m3.webp)
 
 | Goal | FV | Years away | Discount rate | Monthly PMT |
 |---|---:|---:|---:|---|
@@ -490,14 +458,7 @@ This is **instant credibility.** You're not guessing. You're showing him the mat
 
 ### Problem 9 - Closing the Gap (two-step)
 
-```mermaid
-flowchart TD
-    A["Step 1: Project existing CPF<br/>PV=$100K . n=25 . i=4%"] --> B["CPF at 65<br/>~$267K"]
-    C["Target at 65<br/>$800K"] --> D["Gap = $800K - $267K<br/>= $533K"]
-    B --> D
-    D --> E["Step 2: Solve for PMT<br/>FV=$533K . n=25 . i=5% . BGN"]
-    E --> F["Additional savings needed<br/>~$1,050 / month outside CPF"]
-```
+![Problem 9 - Closing the Gap (two-step): Step 1: Project existing CPF, PV=$100K . n=25 . i=4%; CPF at 65, ~$267K; Target at 65, $800K; Gap = $800K - $267K, = $533K; Step 2: Solve for PMT, FV=$533K . n=25 . i=5% . BGN; Additional savings needed, ~$1,050 / month outside CPF.](/first-60-days/images/day-28-m4.webp)
 
 **Client has $100K in CPF at 40. Target at 65: $800K total. Assume 4% growth on CPF alone. What additional monthly savings (at 5%) are needed to close the gap?**
 
@@ -551,18 +512,7 @@ flowchart TD
 
 These five errors account for roughly 80% of mistakes. Memorise them.
 
-```mermaid
-flowchart TD
-    A["Before pressing Compute"] --> B{"PMT sign correct?<br/>outflow = negative"}
-    B -->|"No"| C["Fix sign . retry"]
-    B -->|"Yes"| D{"PMT monthly?"}
-    D -->|"Yes"| E["Set n = months<br/>i = annual / 12"]
-    D -->|"No (annual)"| F["n = years . i = annual"]
-    E & F --> G{"Insurance payment?"}
-    G -->|"Yes"| H["BGN mode"]
-    G -->|"No (loan)"| I["END mode"]
-    H & I --> J["Compute"]
-```
+![Common error patterns - the 80% trap: Before pressing Compute; PMT sign correct?, outflow = negative; Fix sign . retry; PMT monthly?; Set n = months, i = annual / 12; n = years . i = annual; Insurance payment?; BGN mode; END mode; Compute.](/first-60-days/images/day-28-m5.webp)
 
 | Error | How to catch it |
 |---|---|
