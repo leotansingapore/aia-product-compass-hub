@@ -16,23 +16,7 @@ This doc is the canonical reference. The full social-to-appointment flow lives h
 
 ## The funnel at a glance
 
-```mermaid
-flowchart TD
-    A["Step 1 - Instastory Engagement<br/>Day 0<br/>(reply their stories /<br/>they reply yours)"] --> B["Step 2 - Situational Conversation<br/>+1 day<br/>(travel, ticket prices,<br/>where's this from?)"]
-    B --> C["Step 3 - Personal Conversation<br/>+1 day<br/>(how have you been?<br/>haven't seen you since 2017)"]
-    C --> D["Step 4 - Ask to meet at the<br/>casual activity<br/>+1-2 days"]
-    D -- "Yes - let's go" --> F["Step 6 - Casual Meet-Up<br/>(no agenda, no pitch)"]
-    D -- "Not free" --> E["Step 5 - Proximity loop<br/>+4-5 days<br/>(I'm working near ___ /<br/>I'll come find you next time<br/>I'm nearby)"]
-    E -- "Yes - let's go" --> F
-    E -- "Still not free" --> E
-    F --> G["Step 7 - FORM discovery<br/>(family, occupation,<br/>recreation, money)<br/>during the meet"]
-    G --> H["Step 8 - Identify a problem<br/>you can help with<br/>(does NOT have to be financial)"]
-    H --> I["Step 9 - 2-Liner Hook<br/>+1-2 weeks after meet<br/>(via text / WhatsApp / DM)"]
-    I -- "Yes please send" --> J["Step 10a - Send the resource<br/>(guide / checklist / Loom)"]
-    I -- "Yes - direct ask" --> K(["Step 10b - Direct<br/>Business Appointment"])
-    J --> L["Wait 1-2 weeks<br/>then follow up:<br/>did you figure it out?"]
-    L --> K
-```
+![The funnel at a glance.](/first-60-days/images/warm-market-funnel-0.webp)
 
 End-to-end: **3-4 weeks** from passive story tap to booked business appointment. No business mention until step 9.
 

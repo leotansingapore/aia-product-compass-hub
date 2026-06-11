@@ -29,12 +29,7 @@ They don't, most of the time.
 
 The framework: 4 steps, in order.
 
-```mermaid
-flowchart TD
-    U["1 · Understanding<br/>(how does it work?)"] --> B["2 · Benchmarking<br/>(vs alternatives?)"]
-    B --> M["3 · Meeting needs<br/>(why does client need this?)"]
-    M --> C["4 · Crafting pitch<br/>(how to communicate?)"]
-```
+![Why product analysis matters: 1 · Understanding (how does it work?); 2 · Benchmarking (vs alternatives?); 3 · Meeting needs (why does client need this?); 4 · Crafting pitch (how to communicate?)](/next-60-days/images/n60-day-47-m0.webp)
 
 ---
 

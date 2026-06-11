@@ -32,17 +32,7 @@ The hygiene work is turning that invisible surface into something you can *see*,
 
 ## The 4 digital lead surfaces
 
-```mermaid
-flowchart TD
-    F["1 · Followers<br/>(people who opted in)"]
-    S["2 · Story viewers<br/>(active attention)"]
-    P["3 · Post engagers<br/>(likes, saves, comments)"]
-    D["4 · DM history<br/>(every warm touch)"]
-    F --> Pipeline
-    S --> Pipeline
-    P --> Pipeline
-    D --> Pipeline
-```
+![The 4 digital lead surfaces: 1 · Followers (people who opted in); 2 · Story viewers (active attention); 3 · Post engagers (likes, saves, comments); 4 · DM history (every warm touch)](/next-60-days/images/n60-day-15-m0.webp)
 
 Each surface tells you something different:
 

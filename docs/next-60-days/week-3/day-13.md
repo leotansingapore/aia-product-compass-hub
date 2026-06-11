@@ -31,14 +31,7 @@ Prospects don't DM strangers on the strength of one useful post. They DM strange
 
 ## The 5 silent questions
 
-```mermaid
-flowchart TD
-    Q1["Q1 · Can I trust<br/>others value your work?"] --> Q2
-    Q2["Q2 · Do you<br/>actually know your stuff?"] --> Q3
-    Q3["Q3 · Why are<br/>you doing this?"] --> Q4
-    Q4["Q4 · Will<br/>we get along?"] --> Q5
-    Q5["Q5 · How do I<br/>approach you without<br/>feeling awkward?"]
-```
+![The 5 silent questions: Q1 · Can I trust others value your work?; Q2 · Do you actually know your stuff?; Q3 · Why are you doing this?; Q4 · Will we get along?; Q5 · How do I approach you without feeling awkward?](/next-60-days/images/n60-day-13-m0.webp)
 
 Each question needs a *content type* that answers it. One post per question is enough — but all five have to exist somewhere on your feed or stories.
 

@@ -156,11 +156,7 @@ Other clear-objection examples where ART fits:
 
 When an objection is **ambiguous** and could mean multiple things (classic: *"let me think about it"*), use the **Iceberg Theory**:
 
-```mermaid
-flowchart TD
-    S1["Step 1 · Clarify<br/>with right questions"] --> S2["Step 2 · Acknowledge<br/>and help resolve"]
-    S2 --> S3["Step 3 · Redirect<br/>to hot buttons"]
-```
+![Iceberg — for ambiguous objections: Step 1 · Clarify with right questions; Step 2 · Acknowledge and help resolve; Step 3 · Redirect to hot buttons](/next-60-days/images/n60-day-40-m2.webp)
 
 **Step 1 — Clarify with right questions .** *Is it the premium? Is it the commitment? Is it needing to talk to someone? Is it a hidden concern?* Surface the real issue before trying to solve it. Run each clarifying question through the [3-point right-question checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) before you ask it - the precision step matters most here, since vague clarifying questions invite vague answers.
 
@@ -196,14 +192,7 @@ If even one of these sits at a 5 or below, you can rebut every objection perfect
 
 When rebuttals aren't moving the sale, stop rebutting and **loop** back into presentation mode. Rebuild certainty on all three before asking for the order again.
 
-```mermaid
-flowchart TD
-    O["Objection lands"] --> A["Acknowledge<br/>(don't rebut yet)"]
-    A --> L["Loop back into<br/>mini-presentation"]
-    L --> C["Rebuild certainty<br/>on Product + You + Firm"]
-    C --> R["Re-ask for the order"]
-    R --> O
-```
+![Looping — the uncertainty-rebuilder: Objection lands; Acknowledge (don't rebut yet); Loop back into mini-presentation; Rebuild certainty on Product + You + Firm; Re-ask for the order](/next-60-days/images/n60-day-40-m3.webp)
 
 **A looping script template:**
 

@@ -102,13 +102,7 @@ Not universal, but directionally correct. Patterns that hold:
 
 After you've identified the primary, the secondary is usually the closest compatible angle. Compatibility pattern:
 
-```mermaid
-flowchart TD
-    W["Wealth"] <--> LS["Lifestyle"]
-    R["Risk"] <--> L["Legacy"]
-    W <--> L
-    R <--> LS
-```
+![Secondary angle — what to tail with: Wealth; Lifestyle; Risk; Legacy](/next-60-days/images/n60-day-46-m0.webp)
 
 - **Wealth ↔ Lifestyle** — accumulation that funds specific experiences
 - **Risk ↔ Legacy** — protection today that passes on tomorrow

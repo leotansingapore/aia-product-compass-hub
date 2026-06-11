@@ -24,14 +24,7 @@ By the time you close today you'll turn one insight into three posts using the R
 
 Every good IG strategy runs the same loop. The surfaces do different jobs:
 
-```mermaid
-flowchart TD
-    F["Feed<br/>(posts, reels)"] -->|earns discovery| L["Leads"]
-    S["Stories<br/>(daily)"] -->|earns trust| T["Trust"]
-    I["Inbox<br/>(DMs)"] -->|earns sales| SA["Sales"]
-    L --> S
-    T --> I
-```
+![The three-surface model: Feed (posts, reels); Leads; Stories (daily); Trust; Inbox (DMs); Sales](/next-60-days/images/n60-day-11-m0.webp)
 
 - **Feed** is your portfolio. Permanent posts that a cold viewer scrolls to decide if you're worth following. Fewer, heavier pieces.
 - **Stories** is your reality TV. Daily, disposable, personal. This is where 80% of your actual follower attention lives — and where trust builds.

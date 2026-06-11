@@ -35,11 +35,7 @@ A testimonial converts when it shows *movement*. The client was in one state, so
 
 Three beats. Every good testimonial hits all three.
 
-```mermaid
-flowchart TD
-    B["BEFORE<br/>(the situation)"] --> D["DURING<br/>(the work)"]
-    D --> A["AFTER<br/>(the new state)"]
-```
+![The pre-during-post structure: BEFORE (the situation); DURING (the work); AFTER (the new state)](/next-60-days/images/n60-day-14-m0.webp)
 
 **BEFORE** — what the client's life / portfolio / anxiety looked like before you met. Specific. *"Ryan had three old ILPs he didn't understand and was paying $780/month without knowing why."* Not *"Ryan needed help."*
 

@@ -37,11 +37,7 @@ That's compound math. One hour of fix → 200+ trust wins. Fastest ROI in your w
 
 Every strong personal brand in financial services builds three signals simultaneously:
 
-```mermaid
-flowchart TD
-    K["Known<br/>(people know what you do)"] --> L["Loved<br/>(people like you as a person)"]
-    L --> R["Respected<br/>(people respect you as a professional)"]
-```
+![The KLR framework — what your profile is trying to do: Known (people know what you do); Loved (people like you as a person); Respected (people respect you as a professional)](/next-60-days/images/n60-day-10-m0.webp)
 
 | Signal | What it looks like | Channel |
 |---|---|---|

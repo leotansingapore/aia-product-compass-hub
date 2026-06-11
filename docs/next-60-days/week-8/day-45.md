@@ -37,13 +37,7 @@ All four are true. Only *one* activates the specific prospect in front of you. M
 
 ## The 4 angles side by side
 
-```mermaid
-flowchart TD
-    W["Wealth<br/>(grow the pile)"]
-    R["Risk<br/>(protect the pile)"]
-    L["Legacy<br/>(pass the pile on)"]
-    LS["Lifestyle<br/>(use the pile)"]
-```
+![The 4 angles side by side: Wealth (grow the pile); Risk (protect the pile); Legacy (pass the pile on); Lifestyle (use the pile)](/next-60-days/images/n60-day-45-m0.webp)
 
 | Angle | Core motivator | Prospect archetype |
 |---|---|---|

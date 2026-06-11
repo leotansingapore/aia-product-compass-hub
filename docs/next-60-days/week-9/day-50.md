@@ -22,12 +22,7 @@ By the time you close today you'll deploy the 3 mid-tier closes — Assumptive, 
 
 Day 49 covered the Trial Close (early, repeated) and the main close (the asking-for-commitment moment). Today covers the three close *structures* you use for the main close itself:
 
-```mermaid
-flowchart TD
-    A["Assumptive<br/>(assume the yes)"]
-    C["Choice<br/>(A or B?)"]
-    U["Urgency<br/>(now vs later)"]
-```
+![The 3 mid-tier closes: Assumptive (assume the yes); Choice (A or B?); Urgency (now vs later)](/next-60-days/images/n60-day-50-m0.webp)
 
 Each creates a different psychological dynamic. Use the right one for the right moment.
 

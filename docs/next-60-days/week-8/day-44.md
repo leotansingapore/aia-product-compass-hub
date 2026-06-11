@@ -44,12 +44,7 @@ The skill isn't asking good questions. It's *asking them and then shutting up lo
 
 When a prospect sits with a well-asked question for 10 full seconds, their brain goes through a sequence:
 
-```mermaid
-flowchart TD
-    S1["0-2 sec<br/>register the question"] --> S2["2-5 sec<br/>mental search"]
-    S2 --> S3["5-8 sec<br/>specific image forms"]
-    S3 --> S4["8-10 sec<br/>emotion activates"]
-```
+![What happens in 10 seconds of silence: 0-2 sec register the question; 2-5 sec mental search; 5-8 sec specific image forms; 8-10 sec emotion activates](/next-60-days/images/n60-day-44-m0.webp)
 
 - **0–2 seconds:** they register what you asked
 - **2–5 seconds:** their brain searches for a specific answer

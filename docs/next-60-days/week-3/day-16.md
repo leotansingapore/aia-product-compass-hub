@@ -72,14 +72,7 @@ Most new FCs respond with *"no worries, thanks anyway!"* and disappear. That's t
 
 ## The 6-step objection response
 
-```mermaid
-flowchart TD
-    A["1 · Acknowledge<br/>casually"] --> B["2 · Common<br/>ground"]
-    B --> C["3 · Different<br/>perspective"]
-    C --> D["4 · Make them<br/>feel safe"]
-    D --> E["5 · Easy<br/>question"]
-    E --> F["6 · Personal<br/>warmth"]
-```
+![The 6-step objection response: 1 · Acknowledge casually; 2 · Common ground; 3 · Different perspective; 4 · Make them feel safe; 5 · Easy question; 6 · Personal warmth](/next-60-days/images/n60-day-16-m0.webp)
 
 Walk through an objection using the 6 steps:
 
