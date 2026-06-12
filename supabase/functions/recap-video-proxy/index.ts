@@ -40,6 +40,12 @@ const ASSET_MAP: Record<string, Asset> = {
     vtt:
       "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-3/fastrack-training-3-preview.en.vtt",
   },
+  "week-4": {
+    video:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-4/fastrack-training-4-preview.mp4",
+    vtt:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-4/fastrack-training-4-preview.en.vtt",
+  },
 };
 
 Deno.serve(async (req) => {
