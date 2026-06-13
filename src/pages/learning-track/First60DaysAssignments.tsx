@@ -123,6 +123,17 @@ export default function First60DaysAssignments() {
     return m;
   }, [submissions]);
 
+  // Full submission history per assignment, newest-first (the query already
+  // orders by submitted_at desc). Only multi-submission assignments render it;
+  // everything else still shows the single latest via latestBySlug.
+  const allBySlug = useMemo(() => {
+    const m: Record<string, (Submission & { item_id: string })[]> = {};
+    for (const s of submissions ?? []) {
+      (m[s.item_id] ??= []).push(s);
+    }
+    return m;
+  }, [submissions]);
+
   // Memoized: was re-running this 14-item filter on every render. With
   // submissions changing via realtime + parent re-renders from other state,
   // this fired dozens of times during a normal session.
@@ -163,6 +174,7 @@ export default function First60DaysAssignments() {
       <AssignmentDetail
         assignment={active}
         submission={latestBySlug[active.frontmatter.status_key]}
+        history={allBySlug[active.frontmatter.status_key] ?? []}
         onSubmitted={() => refetchSubmissions()}
         userId={user?.id}
         totalCount={assignments.length}
@@ -273,12 +285,14 @@ export default function First60DaysAssignments() {
 function AssignmentDetail({
   assignment,
   submission,
+  history,
   onSubmitted,
   userId,
   totalCount,
 }: {
   assignment: Assignment;
   submission: Submission | undefined;
+  history: (Submission & { item_id: string })[];
   onSubmitted: () => void;
   userId: string | undefined;
   totalCount: number;
@@ -368,13 +382,44 @@ function AssignmentDetail({
         </div>
       </div>
 
-      <SubmissionPanel
-        assignment={assignment}
-        submission={submission}
-        userId={userId}
-        onSubmitted={onSubmitted}
-        isAdmin={admin}
-      />
+      {assignment.frontmatter.multiple_submissions ? (
+        <div className="space-y-4 sm:space-y-5">
+          {history.length > 0 && (
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="font-serif text-lg font-bold">Your observations</h3>
+                <span className="text-xs text-muted-foreground">
+                  {history.length} logged
+                </span>
+              </div>
+              {history.map((s, i) => (
+                <SubmittedSummary
+                  key={s.id}
+                  submission={s}
+                  assignment={assignment}
+                  label={`Observation ${history.length - i}`}
+                />
+              ))}
+            </div>
+          )}
+          <SubmissionPanel
+            assignment={assignment}
+            submission={undefined}
+            userId={userId}
+            onSubmitted={onSubmitted}
+            isAdmin={admin}
+            appendMode
+          />
+        </div>
+      ) : (
+        <SubmissionPanel
+          assignment={assignment}
+          submission={submission}
+          userId={userId}
+          onSubmitted={onSubmitted}
+          isAdmin={admin}
+        />
+      )}
 
       {admin ? (
         // Admins see every submission for the assignment, on every assignment
@@ -457,18 +502,110 @@ function clearDraft(userId: string | undefined, statusKey: string) {
   }
 }
 
+// Read-only render of one submitted assignment. Used for the single-submission
+// "Submission received" state and, for multi-submission assignments, for each
+// row in the history list (pass `label` to title it, omit `onEdit` to make it
+// read-only).
+function SubmittedSummary({
+  submission,
+  assignment,
+  label,
+  onEdit,
+}: {
+  submission: Submission;
+  assignment: Assignment;
+  label?: string;
+  onEdit?: () => void;
+}) {
+  const isFormMode =
+    assignment.frontmatter.submission_type === "form" &&
+    !!assignment.frontmatter.form_fields?.length;
+  const formFields = assignment.frontmatter.form_fields ?? [];
+  const formValuesSnapshot = parseFormValues(submission.submission_text);
+  const hasFormValues = Object.keys(formValuesSnapshot).length > 0;
+  return (
+    <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-4 sm:p-8 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white shrink-0">
+          <CheckCircle2 className="h-5 w-5" />
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold">{label ?? "Submission received"}</h3>
+          <p className="text-xs text-muted-foreground">
+            Submitted {submission.submitted_at ? new Date(submission.submitted_at).toLocaleString() : "recently"}
+          </p>
+        </div>
+      </div>
+      {submission.file_name && (
+        <a
+          href={submission.file_url ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60 transition-colors"
+        >
+          <FileText className="h-4 w-4 text-muted-foreground shrink-0" />
+          <span className="truncate flex-1">{submission.file_name}</span>
+        </a>
+      )}
+      {isFormMode && hasFormValues ? (
+        <div className="space-y-3">
+          {formFields.map((field) => {
+            if (field.kind === "section") return null;
+            const value = formValuesSnapshot[field.label];
+            if (!value) return null;
+            if (field.kind === "check") {
+              return (
+                <div
+                  key={field.label}
+                  className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3"
+                >
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
+                  <p className="text-sm font-medium">{field.label}</p>
+                </div>
+              );
+            }
+            return (
+              <div key={field.label} className="rounded-lg border bg-background p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+                  {field.label}
+                </p>
+                <p className="text-sm whitespace-pre-wrap leading-relaxed">{value}</p>
+              </div>
+            );
+          })}
+        </div>
+      ) : submission.submission_text ? (
+        <div className="rounded-lg border bg-background p-4 text-sm whitespace-pre-wrap">
+          {submission.submission_text}
+        </div>
+      ) : null}
+      {onEdit && (
+        <Button variant="outline" size="sm" onClick={onEdit}>
+          Edit & resubmit
+        </Button>
+      )}
+    </div>
+  );
+}
+
 function SubmissionPanel({
   assignment,
   submission,
   userId,
   onSubmitted,
   isAdmin = false,
+  appendMode = false,
 }: {
   assignment: Assignment;
   submission: Submission | undefined;
   userId: string | undefined;
   onSubmitted: () => void;
   isAdmin?: boolean;
+  /** When true, the panel always shows a blank form (the prior submissions are
+   *  rendered above it as history) and a successful submit resets the form so
+   *  the learner can immediately log another. Used by multi-submission
+   *  assignments — `submission` is passed undefined in this mode. */
+  appendMode?: boolean;
 }) {
   const isFormMode =
     assignment.frontmatter.submission_type === "form" &&
@@ -513,69 +650,13 @@ function SubmissionPanel({
 
   const MAX_MB = 500;
 
-  if (submission && !editing) {
-    const formValuesSnapshot = parseFormValues(submission.submission_text);
-    const hasFormValues = Object.keys(formValuesSnapshot).length > 0;
+  if (submission && !editing && !appendMode) {
     return (
-      <div className="rounded-2xl border border-green-500/40 bg-green-500/5 p-4 sm:p-8 space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-white shrink-0">
-            <CheckCircle2 className="h-5 w-5" />
-          </div>
-          <div>
-            <h3 className="font-serif text-lg font-bold">Submission received</h3>
-            <p className="text-xs text-muted-foreground">
-              Submitted {submission.submitted_at ? new Date(submission.submitted_at).toLocaleString() : "recently"}
-            </p>
-          </div>
-        </div>
-        {submission.file_name && (
-          <a
-            href={submission.file_url ?? "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60 transition-colors"
-          >
-            <FileText className="h-4 w-4 text-muted-foreground shrink-0" />
-            <span className="truncate flex-1">{submission.file_name}</span>
-          </a>
-        )}
-        {isFormMode && hasFormValues ? (
-          <div className="space-y-3">
-            {formFields.map((field) => {
-              if (field.kind === "section") return null;
-              const value = formValuesSnapshot[field.label];
-              if (!value) return null;
-              if (field.kind === "check") {
-                return (
-                  <div
-                    key={field.label}
-                    className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3"
-                  >
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
-                    <p className="text-sm font-medium">{field.label}</p>
-                  </div>
-                );
-              }
-              return (
-                <div key={field.label} className="rounded-lg border bg-background p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
-                    {field.label}
-                  </p>
-                  <p className="text-sm whitespace-pre-wrap leading-relaxed">{value}</p>
-                </div>
-              );
-            })}
-          </div>
-        ) : submission.submission_text ? (
-          <div className="rounded-lg border bg-background p-4 text-sm whitespace-pre-wrap">
-            {submission.submission_text}
-          </div>
-        ) : null}
-        <Button variant="outline" size="sm" onClick={() => setEditing(true)}>
-          Edit & resubmit
-        </Button>
-      </div>
+      <SubmittedSummary
+        submission={submission}
+        assignment={assignment}
+        onEdit={() => setEditing(true)}
+      />
     );
   }
 
@@ -666,10 +747,18 @@ function SubmissionPanel({
         submissionExcerpt: payloadText,
         fileName,
       });
-      toast.success("Assignment submitted");
+      toast.success(appendMode ? "Observation logged" : "Assignment submitted");
       clearDraft(userId, statusKey);
       onSubmitted();
-      setEditing(false);
+      if (appendMode) {
+        // Multi-submission: clear the form so the learner can log the next
+        // observation right away. The just-saved entry appears in the history
+        // list above once the refetch lands.
+        setText("");
+        setFormValues({});
+      } else {
+        setEditing(false);
+      }
       setFile(null);
       uploadedPath = null; // committed — leave the file in place
     } catch (err: any) {
@@ -694,9 +783,11 @@ function SubmissionPanel({
         </div>
         <div>
           <h3 className="font-serif text-lg font-bold">
-            {isFormMode
-              ? assignment.frontmatter.submit_heading ?? "Fill in your reflection"
-              : "Submit your work"}
+            {appendMode
+              ? "Log an observation"
+              : isFormMode
+                ? assignment.frontmatter.submit_heading ?? "Fill in your reflection"
+                : "Submit your work"}
           </h3>
           <p className="text-xs text-muted-foreground">
             {isFormMode
@@ -797,7 +888,7 @@ function SubmissionPanel({
           ) : (
             <>
               <Upload className="h-4 w-4" />
-              {submission ? "Resubmit" : "Submit assignment"}
+              {appendMode ? "Log this observation" : submission ? "Resubmit" : "Submit assignment"}
             </>
           )}
         </Button>

@@ -11,6 +11,7 @@ estimated_time: "90 min meeting + 30 min write-up"
 weeks_covered: [4, 8, 9, 10]
 related_days: [21, 43, 47, 54, 59]
 status_key: "assignment-03-field-observation"
+multiple_submissions: true
 submit_heading: "Your field-observation reflection"
 submit_intro: "Short, specific answers beat long general ones - quote what you actually heard where you can. Autosaves on this device."
 form_fields:

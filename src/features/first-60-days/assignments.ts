@@ -33,6 +33,12 @@ export interface AssignmentFrontmatter {
    *  panel — used by assignments whose checklist includes "I've booked a call
    *  with Leo" so the booking is one obvious tap away from the checkbox. */
   booking_url?: string;
+  /** When true, the assignment accepts many submissions instead of one. Each
+   *  submit appends a new row (the table already inserts rather than upserts),
+   *  and the panel shows the full history plus a blank "log another" form —
+   *  used by the Joint Field Observation, where a learner shadows and reflects
+   *  on several appointments. Defaults to false (single latest submission). */
+  multiple_submissions?: boolean;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
 }
@@ -163,6 +169,8 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       url_slug: coerceString(fm.url_slug) || undefined,
       file_upload: fm.file_upload === false || fm.file_upload === "false" ? false : true,
       booking_url: coerceString(fm.booking_url) || undefined,
+      multiple_submissions:
+        fm.multiple_submissions === true || fm.multiple_submissions === "true",
     },
     markdown: body.trim(),
   };
