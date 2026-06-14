@@ -39,6 +39,11 @@ export interface AssignmentFrontmatter {
    *  used by the Joint Field Observation, where a learner shadows and reflects
    *  on several appointments. Defaults to false (single latest submission). */
   multiple_submissions?: boolean;
+  /** Singular noun for the multi-submission append/history UI (e.g. "policy
+   *  summary"). Defaults to "observation". */
+  append_noun?: string;
+  /** Plural form for that UI. Defaults to append_noun + "s". */
+  append_noun_plural?: string;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
 }
@@ -171,6 +176,8 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
       booking_url: coerceString(fm.booking_url) || undefined,
       multiple_submissions:
         fm.multiple_submissions === true || fm.multiple_submissions === "true",
+      append_noun: coerceString(fm.append_noun) || undefined,
+      append_noun_plural: coerceString(fm.append_noun_plural) || undefined,
     },
     markdown: body.trim(),
   };

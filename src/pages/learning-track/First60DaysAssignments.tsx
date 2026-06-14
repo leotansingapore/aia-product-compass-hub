@@ -66,6 +66,17 @@ function countLabel(n: number): string {
   return NUMBER_WORDS[n] ?? String(n);
 }
 
+// Wording for the multi-submission append/history UI. Defaults preserve the
+// original "observation" copy (Joint Field Observation); other assignments can
+// override via the append_noun / append_noun_plural frontmatter fields.
+function appendLabels(fm: Assignment["frontmatter"]) {
+  const noun = fm.append_noun ?? "observation";
+  const plural = fm.append_noun_plural ?? `${noun}s`;
+  const article = /^[aeiou]/i.test(noun) ? "an" : "a";
+  const cap = noun.charAt(0).toUpperCase() + noun.slice(1);
+  return { noun, plural, article, cap };
+}
+
 const ICON_MAP: Record<string, typeof Video> = {
   video: Video,
   users: Users,
@@ -302,6 +313,7 @@ function AssignmentDetail({
   // True role, independent of "view as student" mode — so an admin always sees
   // the all-submissions panel and their own submissions are auto-hidden.
   const admin = isAdmin() || isMasterAdmin();
+  const labels = appendLabels(assignment.frontmatter);
   return (
     <div className="max-w-4xl mx-auto space-y-5 px-3 sm:space-y-6 sm:px-0">
       <Link
@@ -387,7 +399,7 @@ function AssignmentDetail({
           {history.length > 0 && (
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-serif text-lg font-bold">Your observations</h3>
+                <h3 className="font-serif text-lg font-bold">Your {labels.plural}</h3>
                 <span className="text-xs text-muted-foreground">
                   {history.length} logged
                 </span>
@@ -397,7 +409,7 @@ function AssignmentDetail({
                   key={s.id}
                   submission={s}
                   assignment={assignment}
-                  label={`Observation ${history.length - i}`}
+                  label={`${labels.cap} ${history.length - i}`}
                 />
               ))}
             </div>
@@ -611,6 +623,7 @@ function SubmissionPanel({
     assignment.frontmatter.submission_type === "form" &&
     !!assignment.frontmatter.form_fields?.length;
   const formFields = assignment.frontmatter.form_fields ?? [];
+  const labels = appendLabels(assignment.frontmatter);
 
   const statusKey = assignment.frontmatter.status_key;
   const initialDraft = submission ? null : readDraft(userId, statusKey);
@@ -747,7 +760,7 @@ function SubmissionPanel({
         submissionExcerpt: payloadText,
         fileName,
       });
-      toast.success(appendMode ? "Observation logged" : "Assignment submitted");
+      toast.success(appendMode ? `${labels.cap} logged` : "Assignment submitted");
       clearDraft(userId, statusKey);
       onSubmitted();
       if (appendMode) {
@@ -784,7 +797,7 @@ function SubmissionPanel({
         <div>
           <h3 className="font-serif text-lg font-bold">
             {appendMode
-              ? "Log an observation"
+              ? `Log ${labels.article} ${labels.noun}`
               : isFormMode
                 ? assignment.frontmatter.submit_heading ?? "Fill in your reflection"
                 : "Submit your work"}
@@ -888,7 +901,7 @@ function SubmissionPanel({
           ) : (
             <>
               <Upload className="h-4 w-4" />
-              {appendMode ? "Log this observation" : submission ? "Resubmit" : "Submit assignment"}
+              {appendMode ? `Log this ${labels.noun}` : submission ? "Resubmit" : "Submit assignment"}
             </>
           )}
         </Button>
