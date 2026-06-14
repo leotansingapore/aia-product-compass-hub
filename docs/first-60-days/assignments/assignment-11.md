@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to F and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to E and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -38,7 +38,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the six below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
+1. **Draw a case.** Pick one of the five below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [proposal generator](https://present.financeillustrator.com/proposal-generator). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -55,9 +55,8 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | A | Marcus, 23 | "Grow my money, and save for the BTO" |
 | B | Priya, 29 | "Protect the household now that we're married" |
 | C | Daniel, 35 | "If something happens to me, my family is the question" |
-| D | Mr & Mrs Tan, 52 & 49 | "Retire at 65 and leave something for the kids" |
+| D | Mr & Mrs Tan, 57 & 55 | "A S$3k-a-month retirement income, and something for the kids" |
 | E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" |
-| F | Rachel, 31 | "My daughter is fine no matter what happens to me" |
 
 ### Case A - Marcus, 23
 
@@ -65,9 +64,9 @@ Final-year undergrad, tutors part-time (around S$1,400 a month plus a parental a
 
 Existing policies:
 
-- Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month, matures in about eight years
-- NTUC Income - Enhanced IncomeShield Preferred with a rider, premiums still paid by his parents - about S$250 a year all-in, the base from MediSave and roughly S$45 of it cash for the rider
-- Prudential - PRUPersonal Accident, a small plan from his polytechnic days, about S$10/month
+- Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month - about S$28,800 paid in by the time it matures in eight years, projected to come back around S$35,000 (the guaranteed part is about S$30,000)
+- NTUC Income - Enhanced IncomeShield Preferred, no rider, premiums still paid by his parents - about S$295 a year, mostly from MediSave with roughly S$45 of it cash
+- Prudential - PRUPersonal Accident, a mid-tier plan from his polytechnic days (around S$80,000 of accidental-death cover), S$17/month
 
 ### Case B - Priya, 29
 
@@ -75,9 +74,9 @@ Marketing executive, S$4,800/month. Married last year, collected their BTO, mort
 
 Existing policies:
 
-- AIA - HealthShield Gold Max with a rider (private hospital), around S$900 a year all-in - the base from MediSave, about S$220 of it cash for the rider
-- Prudential - PRUActive Term, S$200k over 20 years, bought through a friend who's an agent, S$12/month
-- Manulife - Manulife InvestReady, a small investment-linked plan (ILP) she started at her first job, S$200/month
+- AIA - HealthShield Gold Max (Plan A, private hospital), no rider - about S$173 a year, fully from MediSave; with no rider she still pays the deductible and 5% co-insurance in cash on any claim
+- Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her - S$100k base with a 4x multiplier (about S$400k cover to age 65), S$300/month, projected cash value around S$150,000 by 65
+- Manulife - Manulife InvestReady, a regular-premium ILP she started at her first job, S$300/month - about S$29,000 paid in over eight years and worth roughly the same today (early fees and the surrender charge leave her near break-even)
 
 ### Case C - Daniel, 35
 
@@ -86,19 +85,20 @@ Self-employed renovation contractor, income swings between S$4,000 and S$10,000 
 Existing policies:
 
 - NTUC Income - IncomeShield Standard Plan, B1 ward, no rider, around S$690 a year, all from MediSave
-- Great Eastern - GREAT Term 2, S$150k, bought years ago and never reviewed, S$15/month
-- Singlife - Singlife Accident Care, around S$320 a year
 
-### Case D - Mr & Mrs Tan, 52 & 49
+### Case D - Mr & Mrs Tan, 57 & 55
 
-Empty-nesters, combined income S$13,000/month, HDB fully paid, both kids working. They want a retirement income from 65, something left for the children, and cover for long-term care. They've "bought a lot of things over the years" but have never seen it all in one place.
+Empty-nesters - Mr Tan is 57, Mrs Tan is 55. Combined income S$13,000/month, HDB fully paid, both kids working. They want a combined S$3,000 a month in passive retirement income, and something left for the children. They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
 
 Existing policies:
 
-- AIA - a whole life policy from the 1990s, sum assured around S$50k, now paid-up and sitting on a healthy cash value (the premiums, around S$90/month, finished years ago)
-- Prudential - PRUVantage Wealth, a S$100,000 single-premium par plan they put in three years ago
-- Great Eastern - GREAT CareShield (CareShield Life supplement), on Mr Tan only, about S$1,000 a year - up to S$600 from MediSave, the rest in cash
-- NTUC Income - Enhanced IncomeShield Advantage, both spouses - around S$1,450 a year for him and S$1,250 for her, mostly from MediSave with the riders in cash
+- CPF - Mr Tan has about S$28,000 in his Ordinary Account, S$210,000 in his Retirement Account (just past the Full Retirement Sum), and S$79,000 in MediSave; Mrs Tan has about S$22,000 in OA, S$220,400 in her RA (at the Full Retirement Sum), and S$79,000 in MediSave. On CPF LIFE Standard that works out to roughly S$1,670/month for him and S$1,710 for her from age 65 - about S$3,380 a month combined
+- NTUC Income - Gro Retire Flex Pro (Mrs Tan), a S$100,000 single premium that pays out from age 60 to 79, about S$675/month (only around S$520 of it guaranteed)
+- AIA - a paid-up whole life from the 1990s (Mr Tan), sum assured around S$50k, cash value now around S$50,000, kept as a legacy
+- Great Eastern - GREAT CareShield (CareShield Life supplement, Mr Tan only), about S$580 a year, largely from MediSave - pays a monthly benefit for life if he can't manage daily activities (half the benefit on the first one)
+- NTUC Income - Enhanced IncomeShield Advantage, both spouses - base roughly S$1,200 each a year (mostly from MediSave), riders about S$300 to S$600 each in cash
+
+The catch: from 65 they already land near target on paper, so the real work is the eight-to-ten-year bridge before then (only the S$675 annuity starts at 60), the annuity stopping at 79, and what inflation does to S$3,000 over fifteen years.
 
 ### Case E - Wei Ling, 41
 
@@ -106,20 +106,9 @@ Senior engineer, S$9,500/month, single, no children. Gives her parents S$1,500/m
 
 Existing policies:
 
-- Manulife - Manulife InvestReady, an ILP she's paid S$500/month into for eight years and suspects the fees are eating the returns
-- HSBC Life - HSBC Life Term Lite, a direct-bought S$300k term, around S$1,100 a year
-- AIA - HealthShield Gold Max, around S$640 a year all-in, mostly from MediSave with the rider in cash
-
-### Case F - Rachel, 31
-
-Staff nurse, S$5,500/month, divorced, raising a four-year-old daughter on her own with some child support. Her whole worry is her daughter: "if anything happens to me, who looks after her, and with what money?" Money is tight and she's wary of being sold to.
-
-Existing policies:
-
-- Great Eastern - GREAT SupremeHealth P Plus with a rider, around S$570 a year all-in - the base from MediSave, about S$250 of it cash for the rider
-- Prudential - PRUFirst Gift II, a single-premium child plan her ex-husband put a S$20,000 lump sum into for their daughter
-- AIA - a term policy she let lapse during the divorce, so nothing's being paid now - it was about S$35/month, with a critical-illness rider
-
+- Manulife - Manulife InvestReady, a whole-life ILP she's paid S$500/month into for eight years - about S$48,000 in, now worth around S$45,000 (less if surrendered), so the fees have kept it at best break-even
+- Great Eastern - GREAT Life Advantage 4, a whole-life investment-linked plan (protection plus an invested account), S$550/month, about S$180,000 of life cover - the cash value is the fund value and isn't guaranteed
+- AIA - HealthShield Gold Max (Plan A), no rider - about S$467 a year, fully from MediSave; with no rider, claims carry the deductible and 5% co-insurance in cash
 ## What you build for your case
 
 **Portfolio summary.** Map every existing policy into one page in the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2): sum assured, premium, mode, payment term, coverage term, riders, nominees. The summary's job is to make the gaps and overlaps obvious - name them specifically.
@@ -153,7 +142,7 @@ Each case is scored on six things. The room marks them; the trainer breaks ties.
 
 ## What good looks like
 
-- The gaps are named, not vibed. "Daniel has S$150k of life cover and two kids on one income, with no CI and only B1-ward hospitalisation" beats "Daniel is underinsured".
+- The gaps are named, not vibed. "Daniel has no life cover at all, two kids on one income, and only a B1-ward hospital plan" beats "Daniel is underinsured".
 - The recommendation fits the budget on the table. You can propose less and sequence the rest; you can't propose a premium the client clearly can't carry.
 - You draw the CST live and end at the door-opener. You don't quote a premium at the close or name a product before the gap is felt - the same discipline as the [CST sign-off](/learning-track/pre-rnf/assignments/cst-roleplay).
 - The before-and-after holds the same or similar budget on both sides. Reshaping what they already pay lands harder than asking for more.
