@@ -55,7 +55,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | A | Marcus, 23 | "Grow my money, and save for the BTO" |
 | B | Priya, 29 | "Protect the household now that we're married" |
 | C | Daniel, 35 | "If something happens to me, my family is the question" |
-| D | Mr & Mrs Tan, 57 & 55 | "A S$3k-a-month retirement income, and something for the kids" |
+| D | Mr & Mrs Tan, 57 & 55 | "A S$10k-a-month retirement income, and something for the kids" |
 | E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" |
 
 ### Case A - Marcus, 23
@@ -88,7 +88,7 @@ Existing policies:
 
 ### Case D - Mr & Mrs Tan, 57 & 55
 
-Empty-nesters - Mr Tan is 57, Mrs Tan is 55. Combined income S$13,000/month, HDB fully paid, both kids working. They want a combined S$3,000 a month in passive retirement income, and something left for the children. They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
+Empty-nesters - Mr Tan is 57, Mrs Tan is 55. Combined income S$13,000/month, HDB fully paid, both kids working. They want a combined S$10,000 a month in passive retirement income, and something left for the children. They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
 
 Existing policies:
 
@@ -98,7 +98,7 @@ Existing policies:
 - Great Eastern - GREAT CareShield (CareShield Life supplement, Mr Tan only), about S$580 a year, largely from MediSave - pays a monthly benefit for life if he can't manage daily activities (half the benefit on the first one)
 - NTUC Income - Enhanced IncomeShield Advantage, both spouses - base roughly S$1,200 each a year (mostly from MediSave), riders about S$300 to S$600 each in cash
 
-The catch: from 65 they already land near target on paper, so the real work is the eight-to-ten-year bridge before then (only the S$675 annuity starts at 60), the annuity stopping at 79, and what inflation does to S$3,000 over fifteen years.
+The catch: S$10,000 a month is steep for them. From 65 they're on track for only about S$4,000 (CPF LIFE plus the annuity), so they're roughly S$6,000 a month short - on top of the eight-to-ten-year bridge to 65, the annuity stopping at 79, and inflation. Size what their OA and remaining working years can realistically add, and be honest about whether S$10,000 is the right target or needs reshaping.
 
 ### Case E - Wei Ling, 41
 
