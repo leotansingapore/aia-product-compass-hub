@@ -50,14 +50,14 @@ Each profile gives you a life stage, a rough income, and a set of existing polic
 
 Recognise the plans before you start. Skim the [Singapore Competitor Product Inventory](/learning-track/resources/competitor-products) so you can tell a current plan from a closed one and know what each policy actually does.
 
-| Case | Client | Goal in their words | Policies |
-|---|---|---|---|
-| A | Marcus, 23 | "Grow my money, and save for the BTO" | 3, from 3 insurers |
-| B | Priya, 29 | "Protect the household now that we're married" | 3, from 3 insurers |
-| C | Daniel, 35 | "If something happens to me, my family is the question" | 3, from 3 insurers |
-| D | Mr & Mrs Tan, 52 & 49 | "Retire at 65 and leave something for the kids" | 4, across both |
-| E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" | 3, from 3 insurers |
-| F | Rachel, 31 | "My daughter is fine no matter what happens to me" | 3, from 3 insurers |
+| Case | Client | Goal in their words |
+|---|---|---|
+| A | Marcus, 23 | "Grow my money, and save for the BTO" |
+| B | Priya, 29 | "Protect the household now that we're married" |
+| C | Daniel, 35 | "If something happens to me, my family is the question" |
+| D | Mr & Mrs Tan, 52 & 49 | "Retire at 65 and leave something for the kids" |
+| E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" |
+| F | Rachel, 31 | "My daughter is fine no matter what happens to me" |
 
 ### Case A - Marcus, 23
 
@@ -65,9 +65,9 @@ Final-year undergrad, tutors part-time (around S$1,400 a month plus a parental a
 
 Existing policies:
 
-- Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month, matures in six years
-- NTUC Income - Enhanced IncomeShield Preferred with a rider, premiums still paid by his parents
-- Prudential - PRUPersonal Accident, a small plan from his polytechnic days
+- Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month, matures in about eight years
+- NTUC Income - Enhanced IncomeShield Preferred with a rider, premiums still paid by his parents - about S$250 a year all-in, the base from MediSave and roughly S$45 of it cash for the rider
+- Prudential - PRUPersonal Accident, a small plan from his polytechnic days, about S$10/month
 
 ### Case B - Priya, 29
 
@@ -75,9 +75,9 @@ Marketing executive, S$4,800/month. Married last year, collected their BTO, mort
 
 Existing policies:
 
-- AIA - HealthShield Gold Max with a rider (private hospital)
-- Prudential - PRUActive Term, S$200k over 20 years, bought through a friend who's an agent
-- Manulife - ManuWealth Secure, a small savings plan she started at her first job
+- AIA - HealthShield Gold Max with a rider (private hospital), around S$900 a year all-in - the base from MediSave, about S$220 of it cash for the rider
+- Prudential - PRUActive Term, S$200k over 20 years, bought through a friend who's an agent, S$12/month
+- Manulife - Manulife InvestReady, a small investment-linked plan (ILP) she started at her first job, S$200/month
 
 ### Case C - Daniel, 35
 
@@ -85,9 +85,9 @@ Self-employed renovation contractor, income swings between S$4,000 and S$10,000 
 
 Existing policies:
 
-- NTUC Income - IncomeShield Standard Plan, B1 ward, no rider
-- Great Eastern - GREAT Term 2, S$150k, bought years ago and never reviewed
-- Singlife - Singlife Accident Care
+- NTUC Income - IncomeShield Standard Plan, B1 ward, no rider, around S$690 a year, all from MediSave
+- Great Eastern - GREAT Term 2, S$150k, bought years ago and never reviewed, S$15/month
+- Singlife - Singlife Accident Care, around S$320 a year
 
 ### Case D - Mr & Mrs Tan, 52 & 49
 
@@ -95,10 +95,10 @@ Empty-nesters, combined income S$13,000/month, HDB fully paid, both kids working
 
 Existing policies:
 
-- AIA - a whole life policy from the 1990s, sum assured around S$50k, sitting on a healthy cash value
-- Prudential - PRUVantage Wealth, a single-premium par plan bought three years ago
-- Great Eastern - GREAT CareShield (CareShield Life supplement), on Mr Tan only
-- NTUC Income - Enhanced IncomeShield Advantage, both spouses
+- AIA - a whole life policy from the 1990s, sum assured around S$50k, now paid-up and sitting on a healthy cash value (the premiums, around S$90/month, finished years ago)
+- Prudential - PRUVantage Wealth, a S$100,000 single-premium par plan they put in three years ago
+- Great Eastern - GREAT CareShield (CareShield Life supplement), on Mr Tan only, about S$1,000 a year - up to S$600 from MediSave, the rest in cash
+- NTUC Income - Enhanced IncomeShield Advantage, both spouses - around S$1,450 a year for him and S$1,250 for her, mostly from MediSave with the riders in cash
 
 ### Case E - Wei Ling, 41
 
@@ -106,9 +106,9 @@ Senior engineer, S$9,500/month, single, no children. Gives her parents S$1,500/m
 
 Existing policies:
 
-- Manulife - Manulife InvestReady, an ILP she's paid into for eight years and suspects the fees are eating the returns
-- HSBC Life - HSBC Life Term Lite, a direct-bought S$300k term
-- AIA - HealthShield Gold Max
+- Manulife - Manulife InvestReady, an ILP she's paid S$500/month into for eight years and suspects the fees are eating the returns
+- HSBC Life - HSBC Life Term Lite, a direct-bought S$300k term, around S$1,100 a year
+- AIA - HealthShield Gold Max, around S$640 a year all-in, mostly from MediSave with the rider in cash
 
 ### Case F - Rachel, 31
 
@@ -116,9 +116,9 @@ Staff nurse, S$5,500/month, divorced, raising a four-year-old daughter on her ow
 
 Existing policies:
 
-- Great Eastern - GREAT SupremeHealth P Plus with a rider
-- Prudential - PRUFirst Gift II, a child plan her ex-husband started for their daughter
-- AIA - a term policy she let lapse during the divorce
+- Great Eastern - GREAT SupremeHealth P Plus with a rider, around S$570 a year all-in - the base from MediSave, about S$250 of it cash for the rider
+- Prudential - PRUFirst Gift II, a single-premium child plan her ex-husband put a S$20,000 lump sum into for their daughter
+- AIA - a term policy she let lapse during the divorce, so nothing's being paid now - it was about S$35/month, with a critical-illness rider
 
 ## What you build for your case
 
