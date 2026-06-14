@@ -39,7 +39,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 ## How the competition runs
 
 1. **Draw a case.** Pick one of the five below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
-2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [proposal generator](https://present.financeillustrator.com/proposal-generator). Use a made-up name for the client in the tool.
+2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
 5. **Get scored.** The trainer and your peers score each case on the rubric below. Best case takes the round.
@@ -119,7 +119,7 @@ Existing policies:
 
 **How you'd present it - the CST.** Pick the angle. Lead with the [Wealth Angle](../../first-60-days/week-9/day-52.md) for the clients who want to grow money and retire well; lead with the [Risk Management Angle](../../first-60-days/week-3/day-14.md) for the ones whose real exposure is a lost income or a young family. Draw it live in the room.
 
-**Before and after, with quotes.** A one-page contrast a non-FC can read: coverage before, coverage after, on a similar budget. The [proposal generator](https://present.financeillustrator.com/proposal-generator) and the [retirement income calculator](https://present.financeillustrator.com/total-wealth-concept/retirement/income) build the numbers. Then put it in the client's voice - one quote for how they felt before, one for after. Write the words they'd actually say, not marketing copy. For Marcus that might run:
+**Before and after, with quotes.** A one-page contrast a non-FC can read: coverage before, coverage after, on a similar budget. The [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary) and the [retirement income calculator](https://present.financeillustrator.com/total-wealth-concept/retirement/income) build the numbers. Then put it in the client's voice - one quote for how they felt before, one for after. Write the words they'd actually say, not marketing copy. For Marcus that might run:
 
 > Before: "I just have whatever my parents bought me. I don't even know what's inside."
 >
