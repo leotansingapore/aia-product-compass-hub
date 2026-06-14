@@ -92,7 +92,7 @@ Empty-nesters - Mr Tan is 57, Mrs Tan is 55. Combined income S$13,000/month, HDB
 
 Existing policies:
 
-- CPF - Mr Tan has about S$28,000 in his Ordinary Account, S$210,000 in his Retirement Account (just past the Full Retirement Sum), and S$79,000 in MediSave; Mrs Tan has about S$22,000 in OA, S$220,400 in her RA (at the Full Retirement Sum), and S$79,000 in MediSave. On CPF LIFE Standard that works out to roughly S$1,670/month for him and S$1,710 for her from age 65 - about S$3,380 a month combined
+- CPF - Mr Tan has about S$180,000 in his Ordinary Account, S$210,000 in his Retirement Account (just past the Full Retirement Sum), and S$79,000 in MediSave; Mrs Tan has about S$150,000 in OA, S$220,400 in her RA (at the Full Retirement Sum), and S$79,000 in MediSave. On CPF LIFE Standard that works out to roughly S$1,670/month for him and S$1,710 for her from age 65 - about S$3,380 a month combined
 - NTUC Income - Gro Retire Flex Pro (Mrs Tan), a S$100,000 single premium that pays out from age 60 to 79, about S$675/month (only around S$520 of it guaranteed)
 - AIA - a paid-up whole life from the 1990s (Mr Tan), sum assured around S$50k, cash value now around S$50,000, kept as a legacy
 - Great Eastern - GREAT CareShield (CareShield Life supplement, Mr Tan only), about S$580 a year, largely from MediSave - pays a monthly benefit for life if he can't manage daily activities (half the benefit on the first one)
