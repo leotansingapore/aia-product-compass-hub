@@ -2,53 +2,58 @@
 id: assignment-09
 url_slug: policy-summary
 order: 9
-title: "Policy Summary - Build One for a Family Member"
-short: "Get a family member's existing policy documents, then build a clean one-page Policy Summary in the Total Wealth Concept tool."
+title: "Policy Summary - Build One for Yourself and One for a Family Member"
+short: "Build two clean one-page Policy Summaries in the Total Wealth Concept tool - one for yourself, one for a family member - and submit a screenshot of each."
 icon: file-text
-deliverable: "A reflection on building the summary + a booked review session with Leo"
+deliverable: "Two Policy Summaries (yourself + a family member), a screenshot of each, and a booked review session with Leo"
 submission_type: "form"
-estimated_time: "60 to 90 minutes"
+estimated_time: "About 90 minutes for both"
 weeks_covered: [2, 3]
 related_days: [10, 18]
 status_key: "assignment-09-policy-summary"
-submit_heading: "Your Policy Summary reflection"
-submit_intro: "No documents to upload - your family member's policies stay private. Reflect on what building the summary surfaced, then confirm you've booked a session with Leo to go through it. Autosaves on this device."
-file_upload: false
+submit_heading: "Log a Policy Summary"
+submit_intro: "Two to log here - one for yourself, one for a family member. For each, attach a screenshot of the completed one-page summary (blur or leave out names and NRIC) and note what it surfaced. Submit one now and come back to log the other. Autosaves on this device."
+file_upload: true
+multiple_submissions: true
+append_noun: "policy summary"
+append_noun_plural: "policy summaries"
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
-  - "Reflect on the exercise|section|No names, no documents, no screenshots - your family member's policies stay private. Just what you took away from building the summary."
-  - "Whose policies did you summarise|text|Relationship only (e.g. mother, sister, spouse) - never a real name."
+  - "Log one Policy Summary|section|Do this twice - once for yourself, once for a family member - as separate entries. Attach a screenshot of the completed one-page summary below, with names and NRIC blurred or left out."
+  - "Whose summary is this|text|Yourself, or your relationship to the person (e.g. mother, sister, spouse) - never a real name."
   - "Number of policies you mapped|text|Total policies on the summary (life, hospitalisation, accident, savings, investment-linked, etc.)."
   - "What gaps or overlaps surfaced|textarea|In one paragraph, name what the summary made obvious that wasn't before. Be specific.|4"
   - "What surprised you, and what you'd do differently|textarea|What was harder than expected, what clicked, and what you'd do differently next time.|4"
-  - "I've booked a session with Leo to go through this Policy Summary|check|We run through the policies together, analyse the gaps, and shape the recommendations you'd actually make. Booking link further down this page."
+  - "I've booked a session with Leo to go through these Policy Summaries|check|We run through the policies together, analyse the gaps, and shape the recommendations you'd actually make. Tick this on either entry. Booking link further down this page."
 ---
 
-> **The gist.** Get one family member's real policy documents, then build a clean one-page Policy Summary in the [Total Wealth Concept tool](https://present.financeillustrator.com). You hand them something genuinely useful - and you practise the skill every client conversation eventually needs: turning messy documents into one page a normal person can read.
+> **The gist.** Build two clean one-page Policy Summaries in the [Total Wealth Concept tool](https://present.financeillustrator.com) - one for yourself, one for a family member - and submit a screenshot of each. You practise the skill every client conversation eventually needs: turning a pile of policy documents into one page a normal person can read. Starting with your own coverage means you know it cold before you sit across from anyone else.
 
-**The shape of it:** ask a family member for their policies -> recognise each plan -> enter every policy in the tool -> walk through the summary together -> reflect here and book a session with Leo to shape the recommendations. Nothing about their policies gets uploaded.
+**The shape of it:** map your own policies first -> ask a family member for theirs -> enter each policy in the tool -> walk through each summary -> screenshot each, upload it, and reflect here -> book a session with Leo to shape the recommendations. Log your own summary and your family member's as two separate entries below.
 
-A family member is the right place to start: they already trust you, their portfolio is real and messy (lapsed riders, missing nominations, two life policies from two different agents), and most of them have never seen their own coverage laid out on one page. Reading one policy is easy. Building a *summary* across five or six is the thing every real meeting eventually asks of you - sit with the documents, pull the few numbers that matter, present them so a non-FC can follow without a glossary.
+Why these two. Your own portfolio is the one you can never be vague about - a client will ask "what would you do?", and you should be able to answer from your own page. A family member is the next step up: real, messy, and they trust you enough to hand over the documents. Reading one policy is easy; building a summary across five or six - lapsed riders, missing nominations, two life policies from two different agents - is the thing every real meeting eventually asks of you.
 
 ## What to do
 
-1. **Ask one family member** for their policy documents. Frame it honestly: *"I'm learning how to read these properly - would you let me practise on yours and give you a one-page summary at the end?"* Almost everyone says yes.
-2. **Recognise each plan before you sit down.** Skim the [Singapore Competitor Product Inventory](/learning-track/resources/competitor-products) so you can name a policy from its brand prefix in seconds, tell current plans from closed ones, and know which insurers don't sell certain lines.
-3. **Open the builder** and enter every policy as a row: [present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2). Each row needs the seven numbers that matter - sum assured, premium, mode, premium payment term, coverage term, riders, nominees. Skip nothing, even the policies they think are dormant.
-4. **Walk through the finished summary with them.** Read it together. That conversation is the whole reason for the exercise.
-5. **Reflect in the form below** on what the summary surfaced, then book your session with Leo. You keep the summary in the tool; nothing about it gets uploaded here.
+1. **Start with your own policies.** Pull everything you hold - hospitalisation, life, accident, savings, anything your parents bought you. Map it in the tool first.
+2. **Then ask one family member** for their documents. Frame it honestly: *"I'm learning how to read these properly - would you let me practise on yours and give you a one-page summary at the end?"* Almost everyone says yes.
+3. **Recognise each plan before you sit down.** Skim the [Singapore Competitor Product Inventory](/learning-track/resources/competitor-products) so you can name a policy from its brand prefix in seconds, tell current plans from closed ones, and know which insurers don't sell certain lines.
+4. **Open the builder** and enter every policy as a row: [present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2). Each row needs the seven numbers that matter - sum assured, premium, mode, premium payment term, coverage term, riders, nominees. Skip nothing, even the policies they think are dormant.
+5. **Screenshot each finished summary and log it below** - one entry for yourself, one for your family member. Blur or crop out names and NRIC before you upload.
+6. **Walk through the family member's summary with them.** Read it together. That conversation is the whole reason for the exercise. Then book your session with Leo.
 
 ## What good looks like
 
-- At least three policies on the summary. If one family member has only one, ask another - you need a few rows to see overlaps.
+- Two summaries logged - your own and a family member's - each with a screenshot of the completed one page.
+- At least three policies on the family member's summary. If they only have one, ask another relative - you need a few rows to see overlaps.
 - Every row filled in completely. No empty "premium term" or "nominee" cells.
 - The gaps paragraph names something specific - *"father has only S$50k hospitalisation, ward B1, and no rider past age 75"* - not generic - *"could be better protected"*.
-- After seeing the summary, the family member says something like *"I didn't realise that"* or *"I should fix that"*. If they don't, the summary is probably too generic.
+- After seeing their summary, the family member says something like *"I didn't realise that"* or *"I should fix that"*. If they don't, the summary is probably too generic.
 
 ## Book your review session
 
-Booking is part of the assignment - it's the checklist box in the form. Once the summary is built, [pick a time with Leo](https://www.pick-a-time.app/book/withleo) to go through the policies together: whether you read the gaps right, how you'd analyse them, and the recommendations you'd actually make. Then tick it off.
+Booking is part of the assignment - it's the checklist box in the form. Once both summaries are built, [pick a time with Leo](https://www.pick-a-time.app/book/withleo) to go through the policies together: whether you read the gaps right, how you'd analyse them, and the recommendations you'd actually make. Then tick it off.
 
 ## A note on confidentiality
 
-These are real documents from real people who trust you. Don't share the file, don't paste real names or NRIC numbers into the form, and delete the source PDFs from your laptop once the summary is saved in the tool. If your family member changes their mind later, delete the share link too.
+These are real documents from real people who trust you - yourself included. Before you upload a screenshot, blur or crop out names and NRIC numbers; the screenshot shows the summary was built, it isn't there to store anyone's identity. Don't share the source files, delete the source PDFs from your laptop once the summary is saved in the tool, and if your family member changes their mind later, delete the share link too.
