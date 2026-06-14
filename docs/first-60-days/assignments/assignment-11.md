@@ -98,7 +98,7 @@ Existing policies:
 - Great Eastern - GREAT CareShield (CareShield Life supplement, Mr Tan only), about S$580 a year, largely from MediSave - pays a monthly benefit for life if he can't manage daily activities (half the benefit on the first one)
 - NTUC Income - Enhanced IncomeShield Advantage, both spouses - base roughly S$1,200 each a year (mostly from MediSave), riders about S$300 to S$600 each in cash
 
-The catch: S$10,000 a month is steep for them. From 65 they're on track for only about S$4,000 (CPF LIFE plus the annuity), so they're roughly S$6,000 a month short - on top of the eight-to-ten-year bridge to 65, the annuity stopping at 79, and inflation. Size what their OA and remaining working years can realistically add, and be honest about whether S$10,000 is the right target or needs reshaping.
+One lever they're already weighing: topping up their Retirement Accounts towards the Enhanced Retirement Sum to lift their CPF LIFE payouts for life. They have the OA to fund it - work out how much extra monthly income that buys, and how far it moves them toward S$10,000.
 
 ### Case E - Wei Ling, 41
 
