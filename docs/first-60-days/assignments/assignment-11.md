@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 1. **Draw a case.** Pick one of the five below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
-3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect.
+3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
 5. **Get scored.** The trainer and your peers score each case on the rubric below. Best case takes the round.
 
