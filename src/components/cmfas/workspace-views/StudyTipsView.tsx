@@ -1,5 +1,7 @@
 import {
   BookOpen,
+  BookX,
+  Bot,
   Brain,
   CalendarCheck,
   CalendarClock,
@@ -8,9 +10,11 @@ import {
   ClipboardList,
   ExternalLink,
   FileText,
+  GraduationCap,
   Lightbulb,
   ListChecks,
   MessageCircle,
+  Repeat,
   ScrollText,
   Sparkles,
   Target,
@@ -22,16 +26,17 @@ import { cn } from '@/lib/utils';
 import { cmfasRoom } from '../cmfasTheme';
 
 const STRATEGY_BULLETS: ReadonlyArray<string> = [
-  'Do all 1,261 iLearn questions, plus another 200 from repeated topics.',
+  'Spam the iRecruit bank: all 1,261 iLearn questions, plus another 200 from repeated topics.',
+  'Skip the textbooks. Read an explanation only when a question stumps you.',
   'Do every SCI chapter checkpoint question.',
-  'Do 4–5 SCI mock papers.',
+  'Do 4–5 SCI mock papers, but only after you book the exam.',
   'Watch the recorded lecture tutorials halfway through the question bank.',
 ];
 
 const RESOURCES: ReadonlyArray<{ label: string; href?: string; to?: string; hint: string }> = [
   { label: 'SCI key concepts + textbooks', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ', hint: 'Reference, not required reading.' },
   { label: 'SCI chapter checkpoint questions', hint: 'Inside the SCI student account.' },
-  { label: 'SCI mock exam', hint: 'Run 4–5 times max — questions repeat.' },
+  { label: 'SCI mock exam', hint: 'Only after you book the exam. Run 4–5 times max; questions repeat.' },
   { label: 'Lecture videos', to: '/cmfas-exams/lecture-videos', hint: 'Recorded SCI lectures by paper. Optional — most learners pass without watching.' },
 ];
 
@@ -46,7 +51,7 @@ const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.Comp
     title: 'Step 2 · Gain understanding',
     icon: BookOpen,
     body:
-      "Practising alone isn't enough. Use the speed reference (the magnifying-glass icon inside iLearn) and the post-question explanations to understand why each answer is right. For deeper context, ask the chatbot or check the key-concepts PDF.",
+      "Practising alone isn't enough. Use the speed reference (the magnifying-glass icon inside iLearn) and the post-question explanations to understand why each answer is right. Anything that won't click, paste into your AI coach (ChatGPT, NotebookLM, or @cmfas_bot) and have it explain and re-drill you, instead of re-reading the chapter.",
   },
   {
     title: 'Step 3 · Build memory retention',
@@ -116,6 +121,58 @@ export function StudyTipsView() {
         </p>
       </header>
 
+      {/* ─── The whole method, in three rules ─────────────────────────────
+       *  Pinned directly under the hero so the core message is unmissable:
+       *  drill questions, don't read textbooks, mock only after booking.
+       */}
+      <section
+        className={cn(
+          'rounded-2xl border-2 p-5 sm:p-6',
+          cmfasRoom.brassBorder,
+          'bg-primary/5',
+        )}
+      >
+        <p className={cn('text-[10px] font-bold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
+          Read this first
+        </p>
+        <h2 className={cn('mt-1 font-serif text-2xl font-bold leading-tight', cmfasRoom.text)}>
+          Three rules. That's the whole exam.
+        </h2>
+        <p className={cn('mt-1.5 max-w-2xl text-sm', cmfasRoom.textMuted)}>
+          Reading the textbook is the slow way to fail. You pass by drilling questions and getting an
+          AI to explain the ones you miss.
+        </p>
+        <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
+          <div className={cn('rounded-xl border p-4', cmfasRoom.surface)}>
+            <div className="flex items-center gap-2">
+              <Repeat className={cn('h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+              <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>1 · Spam the questions</h3>
+            </div>
+            <p className={cn('mt-1.5 text-xs leading-relaxed', cmfasRoom.textMuted)}>
+              Drill iRecruit every day, 100–200 questions. The question bank is the real syllabus.
+            </p>
+          </div>
+          <div className={cn('rounded-xl border p-4', cmfasRoom.surface)}>
+            <div className="flex items-center gap-2">
+              <BookX className={cn('h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+              <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>2 · Skip the textbooks</h3>
+            </div>
+            <p className={cn('mt-1.5 text-xs leading-relaxed', cmfasRoom.textMuted)}>
+              Don't read cover to cover. Open a textbook only when an explanation won't make a concept click.
+            </p>
+          </div>
+          <div className={cn('rounded-xl border p-4', cmfasRoom.surface)}>
+            <div className="flex items-center gap-2">
+              <CalendarClock className={cn('h-4 w-4 shrink-0', cmfasRoom.brassText)} />
+              <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>3 · Book, then mock</h3>
+            </div>
+            <p className={cn('mt-1.5 text-xs leading-relaxed', cmfasRoom.textMuted)}>
+              Book the exam after ~800 questions. Save the SCI mock papers for the final week before the date.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Book your next paper ─────────────────────────────────────────
        *  Surfaced at the top so the booking step is one click from the
        *  most-referenced page in the workspace. Sticking to a paper-every-
@@ -179,51 +236,69 @@ export function StudyTipsView() {
         </div>
       </section>
 
-      {/* ─── Daily tools — iRecruit question bank + CMFAS chatbot ──────────
-       *  Surfaced prominently between booking and strategy. These are the
-       *  two pieces of software the learner actually opens every day; they
-       *  used to live behind the Practice sub-tab and got missed.
+      {/* ─── The one daily habit — spam iRecruit ───────────────────────────
+       *  iRecruit is where the learner actually spends their hours. Pulled
+       *  out into its own full-width card so the "spam the questions" message
+       *  is the loudest thing on the page after the three rules.
        */}
       <section>
         <div className="flex items-center gap-2">
-          <Sparkles className={cn('h-4 w-4', cmfasRoom.brassText)} />
+          <Repeat className={cn('h-4 w-4', cmfasRoom.brassText)} />
           <h2 className={cn('text-base font-semibold uppercase tracking-[0.15em]', cmfasRoom.text)}>
-            Your two daily tools
+            Spam iRecruit. Every single day.
           </h2>
         </div>
         <p className={cn('mt-1 max-w-2xl text-xs', cmfasRoom.textMuted)}>
-          Don't read the textbook cover to cover. Drill questions in iRecruit, look up what you got wrong with the chatbot.
+          This is the whole job. Drill 100–200 questions a day in Learning Mode. Clear the bank and you clear the paper.
         </p>
-        <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <a
-            href="https://joinus.aia.com.sg/app/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              'group rounded-2xl border p-5 transition-colors',
-              cmfasRoom.surface,
-              cmfasRoom.surfaceHover,
-            )}
-          >
-            <div className="flex items-start gap-4">
-              <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-                <ScrollText className={cn('h-6 w-6', cmfasRoom.brassText)} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>iRecruit question bank</h3>
-                  <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
-                </div>
-                <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-                  The canonical CMFAS practice bank. Drill in Learning Mode — fastest way to get exam-ready.
-                </p>
-                <p className={cn('mt-2 text-[11px]', cmfasRoom.textFaint)}>
-                  Path: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Launch
-                </p>
-              </div>
+        <a
+          href="https://joinus.aia.com.sg/app/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            'group mt-3 block rounded-2xl border-2 p-5 transition-colors',
+            cmfasRoom.brassBorder,
+            cmfasRoom.surfaceHover,
+          )}
+        >
+          <div className="flex items-start gap-4">
+            <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+              <ScrollText className={cn('h-6 w-6', cmfasRoom.brassText)} />
             </div>
-          </a>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>iRecruit question bank</h3>
+                <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
+              </div>
+              <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+                The canonical CMFAS practice bank. This is where the real studying happens, not in the textbook.
+              </p>
+              <p className={cn('mt-2 text-[11px]', cmfasRoom.textFaint)}>
+                Path: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Launch
+              </p>
+            </div>
+          </div>
+        </a>
+      </section>
 
+      {/* ─── Your pocket coach — spar with AI, don't read at it ─────────────
+       *  Reframes the AI tools as a sparring partner. Every wrong question
+       *  goes to an AI to be explained and re-drilled, instead of the learner
+       *  passively re-reading the chapter.
+       */}
+      <section>
+        <div className="flex items-center gap-2">
+          <GraduationCap className={cn('h-4 w-4', cmfasRoom.brassText)} />
+          <h2 className={cn('text-base font-semibold uppercase tracking-[0.15em]', cmfasRoom.text)}>
+            Your pocket coach
+          </h2>
+        </div>
+        <p className={cn('mt-1 max-w-2xl text-xs', cmfasRoom.textMuted)}>
+          Don't read blindly. Every question you get wrong, paste it into an AI and make it work for you:
+          explain why the right answer is right, then quiz you back until it sticks. Treat it like a sparring
+          partner in your pocket, on call at 2am the night before the paper.
+        </p>
+        <div className="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
           <a
             href="https://t.me/cmfas_bot"
             target="_blank"
@@ -234,17 +309,69 @@ export function StudyTipsView() {
               cmfasRoom.surfaceHover,
             )}
           >
-            <div className="flex items-start gap-4">
-              <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
-                <MessageCircle className={cn('h-6 w-6', cmfasRoom.brassText)} />
+            <div className="flex items-start gap-3">
+              <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+                <MessageCircle className={cn('h-5 w-5', cmfasRoom.brassText)} />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>@cmfas_bot on Telegram</h3>
+                  <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>@cmfas_bot</h3>
                   <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
                 </div>
                 <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
-                  24/7 AI tutor. Ask anything about the CMFAS exams — syllabus, concepts, past questions.
+                  Trained on the CMFAS syllabus. Ask about concepts, past questions, anything you're stuck on.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://notebooklm.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'group rounded-2xl border p-5 transition-colors',
+              cmfasRoom.surface,
+              cmfasRoom.surfaceHover,
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+                <BookOpen className={cn('h-5 w-5', cmfasRoom.brassText)} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>NotebookLM</h3>
+                  <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
+                </div>
+                <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+                  Drop in the key-concept PDFs and ask questions grounded in your own notes. It cites the source, so you can trust the answer.
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://chatgpt.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'group rounded-2xl border p-5 transition-colors',
+              cmfasRoom.surface,
+              cmfasRoom.surfaceHover,
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <div className={cn('flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2', cmfasRoom.brassBorder)}>
+                <Bot className={cn('h-5 w-5', cmfasRoom.brassText)} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>ChatGPT</h3>
+                  <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
+                </div>
+                <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
+                  Paste a question you got wrong and tell it to coach you: explain the logic, then keep quizzing you on the topic until it clicks.
                 </p>
               </div>
             </div>
@@ -450,13 +577,10 @@ export function StudyTipsView() {
             <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
             <span>Scoring consistently above the pass mark on Premium Papers under timed conditions.</span>
           </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
-            <span>Done at least one full SCI mock paper end-to-end.</span>
-          </li>
         </ul>
         <p className={cn('mt-3 text-xs', cmfasRoom.textMuted)}>
-          Don't wait for a perfect score — book once those three land. Fear of booking is what stretches a 4-week paper into 8.
+          Don't wait for a perfect score, and don't wait on the SCI mock papers either. Book once those two land,
+          then save the mock papers for the final week before the date. Fear of booking is what stretches a 4-week paper into 8.
         </p>
       </section>
 
