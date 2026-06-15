@@ -36,6 +36,8 @@ form_fields:
 
 Everything you've done so far was one piece in isolation. A real client meeting asks for all of it at once: you read the messy portfolio, you work out what actually matters for this person, you propose something that fits their budget, you present it so a non-FC follows along, and you hold your ground when they push back. This is the dry run, with a fictional client and a friendly room.
 
+![Capstone Showdown overview: build, present, defend - one client, one case, one chance to win. The seven-step game plan runs draw a case, map policies, rank needs, decide and propose, build before-and-after, prepare objections, then present and defend in a 20-minute live session worth scoring across portfolio summary, needs analysis, recommendation, CST delivery, before-and-after, and objection handling. The five case files are Marcus 23 (wealth accumulation and BTO planning), Priya 29 (family protection and mortgage), Daniel 35 (income protection for a sole breadwinner), Mr and Mrs Tan 57 and 55 (retirement income and legacy), and Wei Ling 41 (parent dependency and long-term protection). Best case takes the round.](/first-60-days/images/case-study-competition.webp)
+
 ## How the competition runs
 
 1. **Draw a case.** Pick one of the five below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
