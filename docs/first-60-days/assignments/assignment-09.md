@@ -33,6 +33,8 @@ form_fields:
 
 Why these two. Your own portfolio is the one you can never be vague about - a client will ask "what would you do?", and you should be able to answer from your own page. A family member is the next step up: real, messy, and they trust you enough to hand over the documents. Reading one policy is easy; building a summary across five or six - lapsed riders, missing nominations, two life policies from two different agents - is the thing every real meeting eventually asks of you.
 
+![What is a Policy Summary overview: one page that holds everything that matters, turning a pile of insurance and investment policies into a clear snapshot of coverage, premiums and gaps. It moves from complex - many policies across many pages, hard to see the big picture - to simple - a single summary you can read in 60 seconds - and at a glance tells you how much coverage you have, how much you should have, what you're paying, what's missing, and whether you're on track. What's inside is four parts: 1. needs and coverage compares current cover against recommended and flags the gap, 2. premium summary breaks down total cost and payment mode, 3. policy list puts every policy in one place, 4. wealth outlook shows the retirement funding required versus projected and the shortfall. It is built in a five-step process - gather every policy document, enter each policy accurately, generate the summary, review and understand the gaps, then take action and protect better.](/first-60-days/images/policy-summary.webp)
+
 ## What to do
 
 1. **Start with your own policies.** Pull everything you hold - hospitalisation, life, accident, savings, anything your parents bought you. Map it in the tool first.
