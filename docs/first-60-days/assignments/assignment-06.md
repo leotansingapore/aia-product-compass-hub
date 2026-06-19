@@ -15,6 +15,8 @@ status_key: "assignment-06-vision-board"
 
 > **The gist.** Build a one-page picture of the life this career is for - dense with images, light on text - then put it somewhere you'll see it daily. Not decoration: a decision-making anchor for the hard weeks. It's what you look at when you don't feel like making the last three dials, and the image reminds you why the dials exist.
 
+![Example of a finished one-page vision board, dense with images and light on text, built around a central panel that reads "I help people protect what matters most - financial freedom, time freedom, impact - I choose this life." Six labelled sections surround it: Lifestyle (a Marina Bay view, a calm home, a gym, working from anywhere), People (family and a like-minded team, with notes like "my why, I build this for them"), Career (an MDRT stage and Court of the Table, leading and mentoring a top team), Growth (Atomic Habits and other books, "keep learning, never stop", "1% better every day"), Money / Financial Freedom (a watch, an overwater villa, a DBS card "use credit, not debt", an investment portfolio at $1,250,000, "debt-free home by Dec 2027"), and Give-back (volunteering with children, "I give because I've been given", "use my success to uplift others"). A footer banner reads "Discipline today. Freedom tomorrow. Impact forever."](/first-60-days/images/vision-board.webp)
+
 **The shape of it:** watch the walkthrough -> pick a template -> fill 4 of the 6 categories with specific images -> set it as your wallpaper -> share it to the group chat.
 
 ## Build it
