@@ -22,7 +22,7 @@ const READY_STEPS: Array<{ id: string; title: string; hint: string }> = [
   },
   {
     id: 'access-question-bank',
-    title: 'Unlock the question bank (iRecruit)',
+    title: 'Unlock the question bank (CMFAS Prep)',
     hint: 'The #1 step learners skip. Do it today.',
   },
   {

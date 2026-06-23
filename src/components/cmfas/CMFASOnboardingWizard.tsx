@@ -145,28 +145,19 @@ You don't need to book an exam yet — but once you feel roughly ready, [registe
         media: [] as MediaItem[],
         content: `# Step 3: Get Access to Question Bank 🎯
 
-**Essential 5-minute setup** to access our comprehensive practice questions.
+**Essential 1-minute setup** to access our comprehensive practice questions on **CMFAS Prep**.
 
-## 🔐 Initial Setup:
-**[Click here to submit your details](https://nsgukkz32942.sg.larksuite.com/share/base/form/shrlgzgwycA7f2m2JVxP5T2qhyd)** and I'll create your iRecruit login credentials:
-- 📝 **Full Name**
-- 📧 **Email Address** 
-- 📱 **Phone Number**
+## 🔐 Log in:
+Go to **[app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login)** and sign in with your **FINternship email and password**. No separate account, shared login, or OTP needed.
 
-You'll receive **iRecruit login credentials** within 24 hours.
-
-## 📚 Accessing Questions:
-**Navigation Path:**
-iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Chapter Revision and Premium Papers → **Launch**
-
-## ⚙️ Optimal Study Settings:
-**Configure:** Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → **Learning Mode** → Start Session
+## 📚 Start practising:
+Pick your paper (M9, M9A, HI, RES 5, M8, M8A, BCP, ComGI, PGI), then choose **Simulation** (a full, timed mock under exam conditions) or **Study** mode (instant feedback and an explanation after every question). You can also drill a single chapter.
 
 ## 💡 Study Strategy:
-Use the **speed reference** to answer questions and **learn by doing** instead of reading textbook first.
+**Learn by doing** — answer a question, read the explanation, and repeat. Skip the lecture videos and reading the textbook cover to cover.
 
 ## 📱 Mobile Access:
-Download the **iLearn mobile app** for studying on-the-go!`
+CMFAS Prep works in your phone browser too — open **app.cmfas-exams-prep.com** and practise anywhere.`
       },
       {
         id: 'understand-costs-timeline',
@@ -217,7 +208,7 @@ Register for M9 at [tinyurl.com/CMFASregistration2025](https://tinyurl.com/CMFAS
 
 - Each paper is about **20–30 hours** of study.
 - Aim for **1–2 papers per month**, starting with M9.
-- Book **before** you start studying so you have a real deadline — or, if you'd rather warm up first, book once you've done **500 questions** on iRecruit. Either works; just pick one and commit.
+- Book **before** you start studying so you have a real deadline — or, if you'd rather warm up first, book once you've done **500 questions** on CMFAS Prep. Either works; just pick one and commit.
 
 ## Exam costs (first attempt — we cover it)
 

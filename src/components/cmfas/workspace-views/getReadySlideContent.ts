@@ -203,69 +203,26 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       },
       {
         kind: 'intro',
-        text: 'You need this to start studying and to eventually book the exams. It is a 5-minute task.',
+        text: 'Your question bank is CMFAS Prep — an unlimited bank of real exam-style questions with an instant explanation after every answer. Your FINternship account already works there, so this takes about a minute.',
       },
-      { kind: 'heading', text: 'Step 1 · Ask Leo to create your account' },
+      { kind: 'heading', text: 'Step 1 · Log in to CMFAS Prep' },
       {
         kind: 'paragraph',
-        text: 'On your FINternship support chat, send Leo your **name, email, and mobile number** so he can create your personal account. While you wait, start Step 2.',
+        text: 'Go to **[app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login)** and sign in with your FINternship email and password. No separate account, shared login, or OTP needed.',
       },
-      { kind: 'heading', text: 'Step 2 · Log in to iRecruit' },
+      { kind: 'heading', text: 'Step 2 · Pick your exam and start practising' },
       {
         kind: 'paragraph',
-        text: 'Log in to [iRecruit](https://joinus.aia.com.sg/app/login) using the shared credentials below. You need to log in to Google first so the iRecruit OTP can reach you.',
-      },
-      {
-        kind: 'list',
-        items: [
-          'Google — email: `cmfasexamssg@gmail.com`, password: `cmfasexamssg!123`. Please [call Leo at 91395749](tel:+6591395749) for the OTP access.',
-          'iRecruit — email: `cmfasexamssg@gmail.com`, password: `AIAirecruit!123`. The OTP will land in the Google inbox you just signed into.',
-        ],
-      },
-      { kind: 'heading', text: 'Step 3 · Open the exam bank' },
-      {
-        kind: 'paragraph',
-        text: 'Inside iRecruit, go to **iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions (Chapter Revision and Premium Papers) → Launch**.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/7a51b6c60d594d16a68b94dbc88510c51aff1bcf47124f6eb7665a0947be0864',
-        alt: 'iLearn navigation path to CMFAS M9 Practice Questions',
-      },
-      { kind: 'heading', text: 'Step 4 · Start a practice session' },
-      {
-        kind: 'paragraph',
-        text: 'Use these settings: **Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → Learning Mode → Start Session**.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/67573e3a83704af4bc7347053267f43bb88a20b2576d4a12b787727f1989ffa2',
-        alt: 'Practice-session setup screen with the recommended settings',
-      },
-      { kind: 'heading', text: 'Step 5 · Learn by doing' },
-      {
-        kind: 'paragraph',
-        text: 'Use the speed reference to answer questions as you go — learn by doing rather than reading the textbook cover to cover. Attempt a question, then flip to the matching textbook section to understand why.',
+        text: 'Choose your paper (M9, M9A, HI, RES 5, M8, M8A, BCP, ComGI, PGI), then start a **Simulation** — a full, timed mock under real exam conditions — or a **Study** session with instant feedback and an explanation after every question. You can also drill a single chapter.',
       },
       { kind: 'heading', text: 'The #1 rule: drill questions, skip the videos and textbook' },
       {
         kind: 'paragraph',
-        text: 'Passing CMFAS comes down to one thing: **do as many practice questions as you can**. Do not spend your time watching lecture videos or reading the textbook cover to cover — spam the questions, read the explanation after each one, and repeat until the answers are second nature. For an unlimited question bank with instant explanations, **[log in to CMFAS Prep](https://app.cmfas-exams-prep.com/login)** (your FINternship account works there too), or use the iRecruit bank above.',
+        text: 'Passing CMFAS comes down to one thing: **do as many practice questions as you can**. Do not spend your time watching lecture videos or reading the textbook cover to cover — spam the questions on CMFAS Prep, read the explanation after each one, and repeat until the answers are second nature.',
       },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/72f9183cb0fc4393ba053d915db4199ac8efcd10ab6c430699d7098a19800f28',
-        alt: 'Speed-reference panel inside a practice session',
-      },
-      { kind: 'heading', text: 'Also: log in to iLearn on mobile' },
       {
         kind: 'paragraph',
-        text: 'Strongly recommended. Follow the steps above on your phone and iLearn will prompt you to install its mobile app.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/bbd7b6da8be04f3d8c9be169b6d21595d789075e502b44df8916c8b029adf1a3-md.png',
-        alt: 'iLearn mobile-app download prompt',
+        text: 'CMFAS Prep works on your phone too — just open **[app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login)** in your mobile browser and practise anywhere.',
       },
 
       // ───── Part 2 / 4 — Exam study tips & resources ────────────────
@@ -325,7 +282,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
     ],
     linkResources: [
       { label: 'Practise on CMFAS Prep (unlimited question bank)', href: 'https://app.cmfas-exams-prep.com/login' },
-      { label: 'Log in to iRecruit', href: 'https://joinus.aia.com.sg/app/login' },
+      { label: 'Log in to CMFAS Prep', href: 'https://app.cmfas-exams-prep.com/login' },
       { label: 'Exam resources (Google Drive)', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ?usp=sharing' },
       { label: 'Exam resources (Lark wiki)', href: 'https://xsgmrpwnwfee.sg.larksuite.com/wiki/HXsywc2UFijeSaktJ8dlbIKNgXf' },
       { label: 'Chat with @cmfas_bot on Telegram', href: 'https://t.me/cmfas_bot' },
@@ -417,7 +374,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         items: [
           'Each paper is about 20-30 hours of study.',
           'Aim for 1-2 papers per month, starting with M9.',
-          "Book before you start studying so you have a real deadline, or — if you'd rather warm up first — book once you've done 500 questions on iRecruit. Either way, lock in a date.",
+          "Book before you start studying so you have a real deadline, or — if you'd rather warm up first — book once you've done 500 questions on CMFAS Prep. Either way, lock in a date.",
         ],
       },
       { kind: 'heading', text: 'Exam costs (first attempt — we cover it)' },
@@ -622,28 +579,21 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
 
   // ── Section 3 · Exam Resources ───────────────────────────────────────────
   {
-    slideId: 'section-3.step-2-login-irecruit',
+    slideId: 'section-3.step-2-login-cmfasprep',
     sectionId: 'access-question-bank',
     indexWithinSection: 1,
     totalInSection: 6,
     section: 'Section 3 · Exam Resources',
-    slideHeading: 'Log in to iRecruit',
+    slideHeading: 'Log in to CMFAS Prep',
     eyebrow: 'Part 1 · Step 1 of 4',
     blocks: [
       {
         kind: 'paragraph',
-        text: 'Log in to [iRecruit](https://joinus.aia.com.sg/app/login) using the shared credentials below. Sign into Google first so the iRecruit OTP can reach you.',
-      },
-      {
-        kind: 'list',
-        items: [
-          'Google — email: `cmfasexamssg@gmail.com`, password: `cmfasexamssg!123`. [Call Leo at 91395749](tel:+6591395749) for the OTP.',
-          'iRecruit — email: `cmfasexamssg@gmail.com`, password: `AIAirecruit!123`. The OTP lands in the Google inbox above.',
-        ],
+        text: 'Go to [app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login) and sign in with your FINternship email and password. No separate account, shared login, or OTP needed.',
       },
     ],
     linkResources: [
-      { label: 'Log in to iRecruit', href: 'https://joinus.aia.com.sg/app/login' },
+      { label: 'Log in to CMFAS Prep', href: 'https://app.cmfas-exams-prep.com/login' },
     ],
     verification: [],
   },
@@ -653,25 +603,20 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     indexWithinSection: 2,
     totalInSection: 6,
     section: 'Section 3 · Exam Resources',
-    slideHeading: 'Navigate to the M9 exam bank',
+    slideHeading: 'Choose your exam',
     eyebrow: 'Part 1 · Step 2 of 4',
     blocks: [
       {
         kind: 'paragraph',
-        text: 'Inside iRecruit, go to **iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions (Chapter Revision and Premium Papers) → Launch**.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/7a51b6c60d594d16a68b94dbc88510c51aff1bcf47124f6eb7665a0947be0864',
-        alt: 'iLearn navigation path to CMFAS M9 Practice Questions',
+        text: 'On the CMFAS Prep dashboard, pick the paper you are sitting (M9, M9A, HI, RES 5, M8, M8A, BCP, ComGI, PGI) and open it.',
       },
     ],
     verification: [
       {
         id: 'screenshot',
         kind: 'screenshot',
-        label: 'Upload a screenshot of the Practice Questions launch screen',
-        hint: 'Prove you reached the launch button.',
+        label: 'Upload a screenshot of your exam open in CMFAS Prep',
+        hint: 'Prove you reached the practice screen.',
       },
     ],
   },
@@ -686,21 +631,11 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     blocks: [
       {
         kind: 'paragraph',
-        text: 'Use these settings: **Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → Learning Mode → Start Session**.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/67573e3a83704af4bc7347053267f43bb88a20b2576d4a12b787727f1989ffa2',
-        alt: 'Practice-session setup screen with the recommended settings',
+        text: 'Start a **Simulation** (a full, timed mock under real exam conditions) or a **Study** session with instant feedback and an explanation after every question. You can also drill a single chapter.',
       },
       {
         kind: 'paragraph',
-        text: 'Use the speed reference to answer questions as you go — learn by doing rather than reading the textbook cover to cover.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/72f9183cb0fc4393ba053d915db4199ac8efcd10ab6c430699d7098a19800f28',
-        alt: 'Speed-reference panel inside a practice session',
+        text: 'Learn by doing — answer a question, read the explanation, and repeat. Skip the lecture videos and reading the textbook cover to cover.',
       },
     ],
     verification: [
@@ -717,17 +652,12 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     indexWithinSection: 4,
     totalInSection: 6,
     section: 'Section 3 · Exam Resources',
-    slideHeading: 'Log in to iLearn on mobile',
+    slideHeading: 'Practise on mobile',
     eyebrow: 'Part 1 · Step 4 of 4',
     blocks: [
       {
         kind: 'paragraph',
-        text: 'Strongly recommended. Follow the steps above on your phone and iLearn will prompt you to install its mobile app.',
-      },
-      {
-        kind: 'image',
-        src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/bbd7b6da8be04f3d8c9be169b6d21595d789075e502b44df8916c8b029adf1a3-md.png',
-        alt: 'iLearn mobile-app download prompt',
+        text: 'CMFAS Prep works on your phone too — open [app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login) in your mobile browser and practise anywhere, no app install needed.',
       },
     ],
     verification: [],
@@ -839,7 +769,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
         items: [
           'Each paper is about 20–30 hours of study.',
           'Aim for 1–2 papers per month, starting with M9.',
-          "Book before you start studying so you have a real deadline, or — if you'd rather warm up first — book once you've done 500 questions on iRecruit. Either way, lock in a date.",
+          "Book before you start studying so you have a real deadline, or — if you'd rather warm up first — book once you've done 500 questions on CMFAS Prep. Either way, lock in a date.",
         ],
       },
     ],

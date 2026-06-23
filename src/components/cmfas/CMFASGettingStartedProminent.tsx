@@ -13,7 +13,7 @@ export interface CMFASGettingStartedProminentProps {
 }
 
 /**
- * iRecruit-style “pending task” callout: Getting Started is mandatory before exam modules.
+ * A “pending task” callout: Getting Started is mandatory before exam modules.
  * Full playbooks, registration steps, and tutorials stay inside the Onboarding module.
  */
 export const CMFASGettingStartedProminent = memo(function CMFASGettingStartedProminent({
@@ -57,12 +57,12 @@ export const CMFASGettingStartedProminent = memo(function CMFASGettingStartedPro
           </h2>
           <p className="max-w-prose text-sm text-amber-200/90">
             Finish this module before the four exam papers (M9, M9A, HI, RES5) unlock. Everything
-            else—rules, SCI account, ILEARN, question bank, and chatbot access—is walked through
+            else—rules, SCI account, the CMFAS Prep question bank, and chatbot access—is walked through
             there, in order.
           </p>
           <ul className="list-inside list-disc space-y-1.5 text-sm text-amber-100/90 marker:text-amber-400/80">
             <li>Program expectations, study pace, and what unlocks as you pass exams.</li>
-            <li>Register a SCI student account, iRecruit, and get into the ILEARN question bank.</li>
+            <li>Register a SCI student account and log in to the CMFAS Prep question bank.</li>
             <li>Book your papers (M9 first) and use the same tutorial track as the exam prep videos.</li>
           </ul>
           {progressPercent > 0 && progressPercent < 100 && (

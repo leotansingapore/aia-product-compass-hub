@@ -66,26 +66,22 @@ export function CMFASOnboardingChecklist({ onUpdate }: CMFASOnboardingChecklistP
       {
         id: 'access-question-bank',
         title: 'Get Access to Question Bank',
-        description: 'Essential 5-minute setup to access practice questions through iRecruit platform.',
+        description: 'Quick setup to access practice questions on CMFAS Prep.',
         icon: Database,
         points: 25,
         category: 'essential' as const,
         detailsTitle: 'Step 3: Get Access to Exam Question Bank',
-        detailsContent: `This is essential for exam preparation - a quick 5-minute setup to access practice questions.
+        detailsContent: `This is essential for exam preparation - a quick 1-minute setup to access practice questions on **CMFAS Prep**.
 
-**🔐 Initial Setup:**
-1. Send Leo your **name**, **email**, and **handphone number**
-2. Login to **iRecruit** using the credentials provided
+**🔐 Log in:**
+Go to **[app.cmfas-exams-prep.com](https://app.cmfas-exams-prep.com/login)** and sign in with your **FINternship email and password**. No separate account, shared login, or OTP needed.
 
-**📚 Accessing the Question Bank:**
-Navigate: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Chapter Revision and Premium Papers → Launch
+**📚 Start practising:**
+Pick your paper (M9, M9A, HI, RES 5, M8, M8A, BCP, ComGI, PGI), then choose **Simulation** (a full, timed mock) or **Study** mode (instant feedback and an explanation after every question). You can also drill a single chapter.
 
-**⚙️ Optimal Study Settings:**
-Configure: Launch → Restart → OK → Select Module 9 → All Questions → 50 Questions → Redo Cleared Questions → Learning Mode → Start Session
+💡 **Study Strategy:** Learn by doing — answer a question, read the explanation, and repeat, instead of reading the textbook first.
 
-💡 **Study Strategy:** Use the speed reference to answer questions and learn by doing instead of reading the textbook first.
-
-📱 **Mobile Access:** Login to iLearn on mobile and download the iLearn mobile app for studying on-the-go.`
+📱 **Mobile Access:** CMFAS Prep works in your phone browser too — open app.cmfas-exams-prep.com and practise anywhere.`
       },
       {
         id: 'understand-costs-timeline',

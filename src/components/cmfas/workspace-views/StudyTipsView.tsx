@@ -26,7 +26,7 @@ import { cn } from '@/lib/utils';
 import { cmfasRoom } from '../cmfasTheme';
 
 const STRATEGY_BULLETS: ReadonlyArray<string> = [
-  'Spam the iRecruit bank: all 1,261 iLearn questions, plus another 200 from repeated topics.',
+  'Spam the CMFAS Prep bank: thousands of real exam-style questions across every chapter, with an explanation after each one.',
   'Skip the textbooks. Read an explanation only when a question stumps you.',
   'Do every SCI chapter checkpoint question.',
   'Do 4–5 SCI mock papers, but only after you book the exam.',
@@ -45,13 +45,13 @@ const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.Comp
     title: 'Step 1 · Start a daily routine',
     icon: ClipboardList,
     body:
-      'No need to read the textbook cover to cover. Drill the iLearn questions in batches of 25, aiming for 100–150 a day — about 2–3 hours of studying. Cap each question at 2 minutes. Log your daily count in your phone notes so progress is visible.',
+      'No need to read the textbook cover to cover. Drill the CMFAS Prep questions in batches of 25, aiming for 100–150 a day — about 2–3 hours of studying. Cap each question at 2 minutes. Log your daily count in your phone notes so progress is visible.',
   },
   {
     title: 'Step 2 · Gain understanding',
     icon: BookOpen,
     body:
-      "Practising alone isn't enough. Use the speed reference (the magnifying-glass icon inside iLearn) and the post-question explanations to understand why each answer is right. Anything that won't click, paste into your AI coach (ChatGPT, NotebookLM, or @cmfas_bot) and have it explain and re-drill you, instead of re-reading the chapter.",
+      "Practising alone isn't enough. Read the instant explanation CMFAS Prep shows after each question to understand why the answer is right. Anything that won't click, paste into your AI coach (ChatGPT, NotebookLM, or @cmfas_bot) and have it explain and re-drill you, instead of re-reading the chapter.",
   },
   {
     title: 'Step 3 · Build memory retention',
@@ -75,7 +75,7 @@ const DAILY_STEPS: ReadonlyArray<{ title: string; body: string; icon: React.Comp
     title: 'Step 6 · Book the exam',
     icon: CalendarCheck,
     body:
-      'After ~800 questions, book a date roughly one week out. Use the remaining runway for the last 500 questions, repeats, and the SCI mock papers (max 5 attempts — questions cycle). Move into the SCI chapter checkpoints once the iLearn bank is done. Log every score so progress is visible.',
+      'After ~800 questions, book a date roughly one week out. Use the remaining runway for the last 500 questions, repeats, and the SCI mock papers (max 5 attempts — questions cycle). Move into the SCI chapter checkpoints once you have worked through the CMFAS Prep bank. Log every score so progress is visible.',
   },
   {
     title: 'Step 7 · Day before the exam',
@@ -149,7 +149,7 @@ export function StudyTipsView() {
               <h3 className={cn('text-sm font-semibold', cmfasRoom.text)}>1 · Spam the questions</h3>
             </div>
             <p className={cn('mt-1.5 text-xs leading-relaxed', cmfasRoom.textMuted)}>
-              Drill iRecruit every day, 100–200 questions. The question bank is the real syllabus.
+              Drill CMFAS Prep every day, 100–200 questions. The question bank is the real syllabus.
             </p>
           </div>
           <div className={cn('rounded-xl border p-4', cmfasRoom.surface)}>
@@ -236,8 +236,8 @@ export function StudyTipsView() {
         </div>
       </section>
 
-      {/* ─── The one daily habit — spam iRecruit ───────────────────────────
-       *  iRecruit is where the learner actually spends their hours. Pulled
+      {/* ─── The one daily habit — spam CMFAS Prep ─────────────────────────
+       *  CMFAS Prep is where the learner actually spends their hours. Pulled
        *  out into its own full-width card so the "spam the questions" message
        *  is the loudest thing on the page after the three rules.
        */}
@@ -245,14 +245,14 @@ export function StudyTipsView() {
         <div className="flex items-center gap-2">
           <Repeat className={cn('h-4 w-4', cmfasRoom.brassText)} />
           <h2 className={cn('text-base font-semibold uppercase tracking-[0.15em]', cmfasRoom.text)}>
-            Spam iRecruit. Every single day.
+            Spam CMFAS Prep. Every single day.
           </h2>
         </div>
         <p className={cn('mt-1 max-w-2xl text-xs', cmfasRoom.textMuted)}>
-          This is the whole job. Drill 100–200 questions a day in Learning Mode. Clear the bank and you clear the paper.
+          This is the whole job. Drill 100–200 questions a day in Study mode. Clear the bank and you clear the paper.
         </p>
         <a
-          href="https://joinus.aia.com.sg/app/login"
+          href="https://app.cmfas-exams-prep.com/login"
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
@@ -267,14 +267,14 @@ export function StudyTipsView() {
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>iRecruit question bank</h3>
+                <h3 className={cn('text-base font-semibold', cmfasRoom.text)}>CMFAS Prep question bank</h3>
                 <ExternalLink className={cn('h-3 w-3', cmfasRoom.textFaint)} />
               </div>
               <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
                 The canonical CMFAS practice bank. This is where the real studying happens, not in the textbook.
               </p>
               <p className={cn('mt-2 text-[11px]', cmfasRoom.textFaint)}>
-                Path: iLearn → Pre-Contract → Pre-Contract (Online) → CMFAS M9 → Practice Questions → Launch
+                Sign in with your FINternship account, pick your paper, and start a Simulation or Study session.
               </p>
             </div>
           </div>
@@ -571,7 +571,7 @@ export function StudyTipsView() {
         <ul className={cn('mt-3 space-y-1.5 text-sm leading-relaxed', cmfasRoom.text)}>
           <li className="flex items-start gap-2">
             <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />
-            <span>Cleared the full iLearn bank for the paper (~1,000 questions).</span>
+            <span>Cleared the full CMFAS Prep bank for the paper.</span>
           </li>
           <li className="flex items-start gap-2">
             <CheckCircle2 className={cn('mt-0.5 h-4 w-4 shrink-0', cmfasRoom.brassText)} />

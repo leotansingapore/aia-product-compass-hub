@@ -28,7 +28,7 @@ export function PracticeView() {
       >
         <div className="min-w-0">
           <p className={cn('text-sm font-semibold', cmfasRoom.text)}>
-            iRecruit question bank and @cmfas_bot now live on Study Tips.
+            CMFAS Prep question bank and @cmfas_bot now live on Study Tips.
           </p>
           <p className={cn('mt-1 text-xs', cmfasRoom.textMuted)}>
             Open Study Tips to grab the daily-use links and the 8-step routine in one place.
