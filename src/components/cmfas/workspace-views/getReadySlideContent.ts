@@ -247,6 +247,11 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
         kind: 'paragraph',
         text: 'Use the speed reference to answer questions as you go — learn by doing rather than reading the textbook cover to cover. Attempt a question, then flip to the matching textbook section to understand why.',
       },
+      { kind: 'heading', text: 'The #1 rule: drill questions, skip the videos and textbook' },
+      {
+        kind: 'paragraph',
+        text: 'Passing CMFAS comes down to one thing: **do as many practice questions as you can**. Do not spend your time watching lecture videos or reading the textbook cover to cover — spam the questions, read the explanation after each one, and repeat until the answers are second nature. For an unlimited question bank with instant explanations, **[log in to CMFAS Prep](https://app.cmfas-exams-prep.com/login)** (your FINternship account works there too), or use the iRecruit bank above.',
+      },
       {
         kind: 'image',
         src: 'https://assets.skool.com/f/8fc2f6045ea549398401f3cdbcc90878/72f9183cb0fc4393ba053d915db4199ac8efcd10ab6c430699d7098a19800f28',
@@ -319,6 +324,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       },
     ],
     linkResources: [
+      { label: 'Practise on CMFAS Prep (unlimited question bank)', href: 'https://app.cmfas-exams-prep.com/login' },
       { label: 'Log in to iRecruit', href: 'https://joinus.aia.com.sg/app/login' },
       { label: 'Exam resources (Google Drive)', href: 'https://drive.google.com/drive/folders/1zPgxvcCkB7WKaIhDYPi1PYKLamUca2CQ?usp=sharing' },
       { label: 'Exam resources (Lark wiki)', href: 'https://xsgmrpwnwfee.sg.larksuite.com/wiki/HXsywc2UFijeSaktJ8dlbIKNgXf' },
