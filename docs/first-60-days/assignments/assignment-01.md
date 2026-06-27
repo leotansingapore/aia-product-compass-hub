@@ -5,7 +5,7 @@ order: 7
 title: "Roleplay - Two CSTs: Wealth Angle + Risk Management Angle"
 short: "Build, rehearse, and get trainer sign-off on two CSTs - the Wealth Angle (retirement step-by-step) and the Risk Management Angle (Total Wealth Concept)."
 icon: video
-deliverable: "Both CSTs trainer-approved + your compiled flow for each"
+deliverable: "A script and slides for each CST, both trainer-approved + your compiled flow for each"
 submission_type: "form"
 estimated_time: "4 to 6 hours"
 weeks_covered: [3, 9, 10]
@@ -16,6 +16,9 @@ submit_intro: "Confirm your trainer sign-off, then write out the flow you've bui
 file_upload: false
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
+  - "Build your script and slides first|section|Before you rehearse, write a script and build a slide deck for each CST - the Wealth Angle and the Risk Management Angle."
+  - "I've written a script for each CST|check|A full script for both the Wealth Angle and the Risk Management Angle - your wording, beat by beat, ending at the door-opener."
+  - "I've built slides for each CST|check|A short deck per CST that carries your structure - the headings and prompts you talk to. Diagrams and numbers still get drawn live, never pre-drawn on a slide."
   - "Trainer sign-off|section|Two confirmations - your CSTs are reviewed and approved live, nothing gets uploaded here."
   - "I've run both CSTs past my trainer on a call|check|Book the session, deliver both flows as if your trainer were the prospect, and take their feedback live."
   - "My trainer has approved both CSTs|check|Both the Wealth Angle and the Risk Management Angle - signed off as ready to use in a real meeting."
@@ -27,7 +30,7 @@ form_fields:
 
 > **The gist.** Build and rehearse two Client Strategy Talks (CSTs): the Wealth Angle and the Risk Management Angle. Each one stops at the door-opener and never names a product. When both run clean, deliver them live to your trainer for sign-off, then submit a short checklist plus the flow you've built for each in your own words. There's no video to upload - your trainer reviews your delivery on the call.
 
-**The shape of it:** learn each CST from its source page -> build your own version -> rehearse until it runs clean -> deliver both to your trainer and get them approved -> tick the checklist, write each flow out in bullets, add a short reflection.
+**The shape of it:** learn each CST from its source page -> write a script and build slides for each -> rehearse until it runs clean -> deliver both to your trainer and get them approved -> tick the checklist, write each flow out in bullets, add a short reflection.
 
 ## The two CSTs
 
@@ -39,6 +42,15 @@ A CST is the 5-15-minute concept talk you deliver between rapport-building and t
 | **Risk Management Angle** (Total Wealth Concept) | [Day 14](../../first-60-days/week-3/day-14.md) | wants protection, has a young family, or worries about losing their income |
 
 Each source page is the complete script - the inputs, the diagram, the lines, the door-opener. This assignment doesn't repeat them. Read the page for the angle you're building, make your own version, then come back here to rehearse and submit. Each page also links on to its own deeper references if you want them - you don't need those to pass.
+
+## Start here: script and slides for each CST
+
+Before you rehearse, write it down. For each CST - the Wealth Angle and the Risk Management Angle - do two things first:
+
+- **Write the script.** The full talk in your own words, beat by beat, in the order you run it. Open with the frame, work through the structure of its source page (Day 52 for Wealth, Day 14 for Risk), end at the door-opener. Don't name a product or quote a premium.
+- **Build the slides.** A short deck per CST that carries your structure - the headings and prompts you talk to, so you never lose the thread. Keep the diagrams and the numbers off the slides: those get drawn and worked live in front of the prospect, never pre-drawn.
+
+You rehearse off the script and slides until each CST runs clean, then deliver it live for sign-off.
 
 ## What passing looks like
 
@@ -55,7 +67,7 @@ Two things send you back to rehearse, every time: pre-drawing the diagrams, and 
 
 ## How to get signed off
 
-1. Rehearse each CST end-to-end in one go, drawing live as you talk. If you stumble, restart that CST - you're building the muscle to run it uninterrupted.
+1. Write the script and build the slides for each CST first (see above), then rehearse each one end-to-end in one go, drawing live as you talk. If you stumble, restart that CST - you're building the muscle to run it uninterrupted.
 2. Worth doing first: practise on a friend, partner, or another Pre-RNF cohort member playing the prospect, and have them throw one objection.
 3. [Book a call with Leo](https://www.pick-a-time.app/book/withleo) and deliver both CSTs as if your trainer were the prospect. They give feedback live and approve each one when it's ready for a real meeting. Tighten and re-run anything that isn't there yet.
 
