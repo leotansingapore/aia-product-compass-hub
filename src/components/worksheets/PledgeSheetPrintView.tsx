@@ -92,37 +92,37 @@ export default function PledgeSheetPrintView({ values }: { values: WorksheetValu
   return (
     <div className="psv">
       <style>{`
-        .psv { font-family: "Helvetica Neue", Arial, sans-serif; color: ${INK}; font-size: 10.5px; line-height: 1.4; }
+        .psv { font-family: "Helvetica Neue", Arial, sans-serif; color: ${INK}; font-size: 14px; line-height: 1.45; }
         .psv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
-        .psv-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
-        .psv-title { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
-        .psv-title .out { color: #9a9a9a; -webkit-text-stroke: 1.3px ${INK}; }
+        .psv-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .psv-title { font-size: 36px; font-weight: 800; letter-spacing: 1px; }
+        .psv-title .out { color: #9a9a9a; -webkit-text-stroke: 1.4px ${INK}; }
         .psv-title .red { color: ${RED}; }
-        .psv-name { font-size: 11px; font-weight: 700; color: ${RED}; margin-top: 2px; }
-        .psv-tag { text-align: right; font-weight: 800; font-size: 11px; line-height: 1.15; }
+        .psv-name { font-size: 15px; font-weight: 700; color: ${RED}; margin-top: 3px; }
+        .psv-tag { text-align: right; font-weight: 800; font-size: 13px; line-height: 1.15; }
         .psv-tag .red { color: ${RED}; }
-        .psv table { width: 100%; border-collapse: collapse; margin: 0 0 14px; break-inside: avoid; }
-        .psv td, .psv th { border: 1px solid #222; padding: 5px 8px; vertical-align: middle; }
-        .redlabel { background: ${RED}; color: #fff; font-weight: 800; font-size: 12px; width: 130px; text-align: center; vertical-align: middle; }
-        .colhdr { background: #f0f0f0; font-weight: 800; text-align: center; text-transform: uppercase; font-size: 9.5px; letter-spacing: .5px; }
+        .psv table { width: 100%; border-collapse: collapse; margin: 0 0 16px; break-inside: avoid; }
+        .psv td, .psv th { border: 1px solid #222; padding: 7px 10px; vertical-align: middle; }
+        .redlabel { background: ${RED}; color: #fff; font-weight: 800; font-size: 15px; width: 140px; text-align: center; vertical-align: middle; }
+        .colhdr { background: #f0f0f0; font-weight: 800; text-align: center; text-transform: uppercase; font-size: 12px; letter-spacing: .5px; }
         .rowname { font-weight: 600; width: 38%; }
-        .cell { height: 22px; text-align: center; }
+        .cell { height: 28px; text-align: center; }
         .auto { background: #fafafa; }
-        .blackband { background: ${INK}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 11px; padding: 6px 10px; margin: 14px 0 0; break-inside: avoid; }
+        .blackband { background: ${INK}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 14px; padding: 8px 12px; margin: 16px 0 0; break-inside: avoid; }
         .funnel { margin-top: 0; }
-        .funnel td.ftext { width: 72%; font-size: 10.5px; }
-        .funnel td.ftext .hint { color: #777; font-size: 9px; }
-        .funnel td.fnum { text-align: center; font-size: 22px; font-weight: 800; width: 12%; }
-        .funnel td.flabel { text-align: center; font-weight: 700; font-size: 9.5px; color: #333; }
-        .targets th { background: ${INK}; color: #fff; text-align: center; font-size: 9px; text-transform: uppercase; letter-spacing: .3px; }
-        .targets td.num { text-align: center; font-weight: 800; font-size: 13px; }
-        .targets td.rl { background: #f0f0f0; font-weight: 800; font-size: 10px; }
-        .targets td.tot { text-align: center; font-weight: 800; color: ${RED}; font-size: 13px; background: #fff4f4; }
-        .redband { background: ${RED}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 11px; padding: 6px 10px; margin: 16px 0 8px; break-inside: avoid; }
-        .strat { break-inside: avoid; margin: 7px 0; }
-        .strat .l { font-weight: 800; font-size: 10px; }
-        .strat .v { border-bottom: 1px solid #aaa; min-height: 14px; white-space: pre-wrap; padding: 1px 2px 3px; }
-        .goalrow td { height: 22px; }
+        .funnel td.ftext { width: 70%; font-size: 14px; }
+        .funnel td.ftext .hint { color: #777; font-size: 11px; }
+        .funnel td.fnum { text-align: center; font-size: 28px; font-weight: 800; width: 13%; }
+        .funnel td.flabel { text-align: center; font-weight: 700; font-size: 12px; color: #333; }
+        .targets th { background: ${INK}; color: #fff; text-align: center; font-size: 11.5px; text-transform: uppercase; letter-spacing: .3px; }
+        .targets td.num { text-align: center; font-weight: 800; font-size: 17px; }
+        .targets td.rl { background: #f0f0f0; font-weight: 800; font-size: 13px; }
+        .targets td.tot { text-align: center; font-weight: 800; color: ${RED}; font-size: 17px; background: #fff4f4; }
+        .redband { background: ${RED}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 14px; padding: 8px 12px; margin: 18px 0 9px; break-inside: avoid; }
+        .strat { break-inside: avoid; margin: 9px 0; }
+        .strat .l { font-weight: 800; font-size: 13px; }
+        .strat .v { border-bottom: 1px solid #aaa; min-height: 18px; white-space: pre-wrap; padding: 2px 2px 4px; font-size: 13.5px; }
+        .goalrow td { height: 28px; }
       `}</style>
 
       <div className="psv-head">
