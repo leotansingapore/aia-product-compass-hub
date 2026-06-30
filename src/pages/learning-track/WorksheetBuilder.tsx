@@ -94,7 +94,8 @@ export default function WorksheetBuilder() {
   const [values, setValues] = useState<WorksheetValues>({});
   const [rowId, setRowId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
-  const [printing, setPrinting] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const hydrated = useRef(false);
   const printRef = useRef<HTMLDivElement>(null);
@@ -168,33 +169,34 @@ export default function WorksheetBuilder() {
     }
   };
 
-  const downloadPdf = async () => {
-    // Mount the off-screen template view, let it paint, then render it straight
-    // to a PDF file the browser downloads — no print dialog.
-    setPrinting(true);
-    await new Promise((r) => setTimeout(r, 180));
+  // Render the on-screen preview element to a downloaded PDF. The element is
+  // visible (inside the preview modal), so html2canvas captures it reliably —
+  // off-screen capture produced blank pages.
+  const generatePdf = async () => {
+    const el = printRef.current;
+    if (!el) return;
+    setGenerating(true);
     try {
-      const el = printRef.current;
-      if (el) {
-        const html2pdf = (await import("html2pdf.js")).default;
-        const who = personName(values);
-        const filename = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}.pdf`;
-        await html2pdf()
-          .set({
-            margin: [8, 8, 10, 8],
-            filename,
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
-            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-            pagebreak: { mode: ["css", "legacy"] },
-          })
-          .from(el)
-          .save();
-      }
+      // Let any pending paint settle, then capture.
+      await new Promise((r) => setTimeout(r, 60));
+      const html2pdf = (await import("html2pdf.js")).default;
+      const who = personName(values);
+      const filename = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}.pdf`;
+      await html2pdf()
+        .set({
+          margin: [8, 8, 10, 8],
+          filename,
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff", windowWidth: 900 },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: ["css", "legacy"] },
+        })
+        .from(el)
+        .save();
     } catch {
       toast.error("Couldn't generate the PDF — please try again.");
     } finally {
-      setPrinting(false);
+      setGenerating(false);
     }
   };
 
@@ -261,30 +263,40 @@ export default function WorksheetBuilder() {
         )}
       </div>
 
-      {/* Off-screen template view, rendered straight to PDF on download. */}
-      {printing && (
+      {/* Preview modal: shows the exact PDF layout on-screen and downloads it. */}
+      {previewOpen && (
         <div
-          ref={printRef}
-          style={{
-            position: "fixed",
-            left: "-10000px",
-            top: 0,
-            width: "794px",
-            background: "#fff",
-            padding: "24px",
-            zIndex: -1,
-          }}
+          className="fixed inset-0 z-50 flex flex-col bg-black/60 backdrop-blur-sm"
+          onClick={() => !generating && setPreviewOpen(false)}
         >
-          {isPledge ? (
-            <PledgeSheetPrintView values={values} />
-          ) : (
-            <WorksheetPrintView
-              title={meta.title}
-              subtitle={meta.short}
-              schema={schema}
-              values={values}
-            />
-          )}
+          <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+            <span className="text-sm font-semibold text-white">Preview — {meta.title}</span>
+            <div className="flex items-center gap-2">
+              <Button size="sm" onClick={(e) => { e.stopPropagation(); generatePdf(); }} disabled={generating} className="gap-2">
+                {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+                Download PDF
+              </Button>
+              <Button size="sm" variant="secondary" onClick={(e) => { e.stopPropagation(); setPreviewOpen(false); }} disabled={generating}>
+                Close
+              </Button>
+            </div>
+          </div>
+          <div className="flex-1 overflow-auto p-4 sm:p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="mx-auto" style={{ width: "794px", maxWidth: "100%" }}>
+              <div ref={printRef} style={{ background: "#fff", padding: "24px", borderRadius: "6px" }}>
+                {isPledge ? (
+                  <PledgeSheetPrintView values={values} />
+                ) : (
+                  <WorksheetPrintView
+                    title={meta.title}
+                    subtitle={meta.short}
+                    schema={schema}
+                    values={values}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
@@ -295,9 +307,9 @@ export default function WorksheetBuilder() {
             Save
           </Button>
         )}
-        <Button variant="outline" onClick={downloadPdf} className="flex-1 gap-2">
+        <Button variant="outline" onClick={() => setPreviewOpen(true)} className="flex-1 gap-2">
           <Download className="h-4 w-4" />
-          Download as PDF
+          Preview &amp; download PDF
         </Button>
       </div>
 

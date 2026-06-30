@@ -96,7 +96,7 @@ export default function PledgeSheetPrintView({ values }: { values: WorksheetValu
         .psv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
         .psv-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
         .psv-title { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
-        .psv-title .out { color: #fff; -webkit-text-stroke: 1.3px ${INK}; }
+        .psv-title .out { color: #9a9a9a; -webkit-text-stroke: 1.3px ${INK}; }
         .psv-title .red { color: ${RED}; }
         .psv-name { font-size: 11px; font-weight: 700; color: ${RED}; margin-top: 2px; }
         .psv-tag { text-align: right; font-weight: 800; font-size: 11px; line-height: 1.15; }
