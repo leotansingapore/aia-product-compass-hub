@@ -173,32 +173,59 @@ export default function WorksheetBuilder() {
   // visible (inside the preview modal), so html2canvas captures it reliably —
   // off-screen capture produced blank pages.
   const generatePdf = async () => {
-    const el = printRef.current;
-    if (!el) return;
+    const src = printRef.current;
+    if (!src) return;
     setGenerating(true);
+    // Render the print HTML in a clean, on-screen, body-level container so the
+    // modal's fixed / overflow / backdrop-blur ancestors don't make html2canvas
+    // capture an empty region (the cause of the earlier blank pages).
+    const holder = document.createElement("div");
+    holder.style.cssText =
+      "position:fixed;left:0;top:0;width:794px;background:#ffffff;padding:24px;z-index:2147483647;";
+    // Deep-clone the already-rendered (and escaped) print DOM — no re-parsing of
+    // HTML, so no XSS surface, and the scoped <style> + content come along.
+    holder.appendChild(src.cloneNode(true));
+    document.body.appendChild(holder);
     try {
-      // Let any pending paint settle, then capture.
-      await new Promise((r) => setTimeout(r, 60));
-      const html2pdf = (await import("html2pdf.js")).default;
+      const [{ default: html2canvas }, jspdf] = await Promise.all([
+        import("html2canvas"),
+        import("jspdf"),
+      ]);
+      const JsPDF = jspdf.jsPDF;
+      await new Promise((r) => setTimeout(r, 40));
+      const canvas = await html2canvas(holder, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+        logging: false,
+      });
+      const pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const margin = 8;
+      const imgW = pageW - margin * 2;
+      const imgH = (canvas.height * imgW) / canvas.width;
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+      let heightLeft = imgH;
+      let position = margin;
+      pdf.addImage(imgData, "JPEG", margin, position, imgW, imgH);
+      heightLeft -= pageH - margin * 2;
+      while (heightLeft > 0) {
+        position = margin - (imgH - heightLeft);
+        pdf.addPage();
+        pdf.addImage(imgData, "JPEG", margin, position, imgW, imgH);
+        heightLeft -= pageH - margin * 2;
+      }
       const who = personName(values);
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
-      // Strip characters that are illegal in filenames (/, \, :, *, ?, ", <, >, |)
-      // so a name like "Jane/Tan" can't break or redirect the download.
       const filename = `${rawName.replace(/[\\/:*?"<>|]+/g, "-").trim() || "worksheet"}.pdf`;
-      await html2pdf()
-        .set({
-          margin: [8, 8, 10, 8],
-          filename,
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff", windowWidth: 900 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-          pagebreak: { mode: ["css", "legacy"] },
-        })
-        .from(el)
-        .save();
-    } catch {
-      toast.error("Couldn't generate the PDF — please try again.");
+      pdf.save(filename);
+      toast.success("PDF downloaded.");
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      toast.error("PDF: " + String((err as any)?.message ?? err).slice(0, 120));
     } finally {
+      document.body.removeChild(holder);
       setGenerating(false);
     }
   };
@@ -216,11 +243,11 @@ export default function WorksheetBuilder() {
     <div className="mx-auto max-w-3xl space-y-5 p-4 sm:p-6">
       <div data-no-print className="flex items-center justify-between gap-3">
         <Link
-          to="/learning-track/pre-rnf/worksheets"
+          to="/learning-track/pre-rnf/assignments/business-plan"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          All worksheets
+          Back to assignment
         </Link>
         {lastSavedAt && !isAdminView && (
           <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
