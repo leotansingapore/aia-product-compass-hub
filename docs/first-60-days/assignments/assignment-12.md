@@ -16,7 +16,7 @@ related_days: [1, 3, 5, 6]
 status_key: "assignment-12-business-plan"
 form_fields:
   - "Your two deliverables|section|Attach each part as its own PDF. Both are required."
-  - "1. Pledge sheet (PDF)|file|Your filled Goals & Pledge Worksheet - the income-to-FYC-to-weekly-activity numbers you worked backwards. Export it as a PDF and upload it here."
+  - "1. Pledge sheet (PDF)|file|Your filled My Pledge Sheet - the income-to-FYC-to-weekly-activity numbers you worked backwards. Export it as a PDF and upload it here."
   - "2. Business plan deck (PDF)|file|Your six-section plan, built as a slide deck. Export it as a PDF and upload it here."
   - "Links or notes (optional)|textarea|Built it in Canva or Google Slides? Paste the share links here, plus any 2-3 sentence self-review.|4"
 ---
@@ -25,8 +25,8 @@ form_fields:
 
 ## Your two deliverables
 
-1. **Pledge sheet.** Fill in the [Goals & Pledge Worksheet](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the step-by-step maths from your target income, to FYC, to clubs, to cases and clients, down to the weekly activity you pledge. This is the engine room of the plan and what the two tutorial videos walk you through. Upload it as deliverable 1.
-2. **Business plan deck.** Build the six sections below into a slide deck (the [Business Plan template](/first-60-days/assignments/business-plan-template.pdf) lays them all out). Carry your pledge numbers into section 1, then fill the rest. Upload it as deliverable 2.
+1. **Pledge sheet.** Fill in the [My Pledge Sheet](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the step-by-step maths from your target income, to FYC, to clubs, to cases and clients, down to the weekly and daily activity you pledge. This is the engine room of the plan and what the two tutorial videos walk you through. Upload it as deliverable 1.
+2. **Business plan deck.** Build the six sections below into a slide deck (the [New FC Business Plan deck](/first-60-days/assignments/business-plan-template.pdf) lays them all out, with samples). Carry your pledge numbers into section 1, then fill the rest. Upload it as deliverable 2.
 
 Everything else in the track builds one skill at a time. This pulls them into a single plan you can actually steer by: your [why](/learning-track/pre-rnf/assignments/100-whys) and your [vision board](/learning-track/pre-rnf/assignments/vision-board) set the direction, your [Project 200 list](/learning-track/pre-rnf/assignments/project-200) feeds the markets, and your [market survey practice](/learning-track/pre-rnf/assignments/market-survey-practice) and [CST roleplay](/learning-track/pre-rnf/assignments/cst-roleplay) are how you'll work it. The plan is where it all connects.
 
@@ -46,8 +46,8 @@ https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f
 
 You don't have to start from a blank page. Print these, fill them by hand, or copy each section straight onto a slide in your deck.
 
-- [**Business Plan template (PDF)**](/first-60-days/assignments/business-plan-template.pdf) - all six sections laid out, with the tables ready to fill in.
-- [**Goals & Pledge Worksheet (PDF)**](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the step-by-step reverse-engineering from the income you want down to the appointments you pledge each week. This is what the two videos above walk you through.
+- [**New FC Business Plan deck (PDF)**](/first-60-days/assignments/business-plan-template.pdf) - the official deck with all six sections and worked samples to model yours on.
+- [**My Pledge Sheet (PDF)**](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the one-page sheet where you work the income you want down to the FYC, cases, and the weekly and daily activity you pledge. This is what the two videos above walk you through.
 
 ## The six sections
 
