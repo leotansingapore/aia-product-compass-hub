@@ -204,18 +204,46 @@ export default function WorksheetBuilder() {
       const pageH = pdf.internal.pageSize.getHeight();
       const margin = 8;
       const imgW = pageW - margin * 2;
-      const imgH = (canvas.height * imgW) / canvas.width;
-      const imgData = canvas.toDataURL("image/jpeg", 0.95);
-      let heightLeft = imgH;
-      let position = margin;
-      pdf.addImage(imgData, "JPEG", margin, position, imgW, imgH);
-      heightLeft -= pageH - margin * 2;
-      while (heightLeft > 0) {
-        position = margin - (imgH - heightLeft);
-        pdf.addPage();
-        pdf.addImage(imgData, "JPEG", margin, position, imgW, imgH);
-        heightLeft -= pageH - margin * 2;
+      const pxPerMm = canvas.width / imgW;
+      const pageHpx = (pageH - margin * 2) * pxPerMm;
+
+      // Smart pagination: instead of slicing the tall capture at fixed page
+      // heights (which cuts through table rows / boxes), snap each page break up
+      // to the nearest blank (all-white) row so nothing gets split.
+      const cctx = canvas.getContext("2d");
+      const px = cctx ? cctx.getImageData(0, 0, canvas.width, canvas.height).data : null;
+      const rowBlank = (y: number) => {
+        if (!px) return false;
+        for (let x = 0; x < canvas.width; x += 6) {
+          const i = (y * canvas.width + x) * 4;
+          if (px[i] < 244 || px[i + 1] < 244 || px[i + 2] < 244) return false;
+        }
+        return true;
+      };
+
+      let y = 0;
+      let firstPage = true;
+      while (y < canvas.height - 2) {
+        let end = Math.min(y + pageHpx, canvas.height);
+        if (end < canvas.height) {
+          // Search upward from the ideal break for a blank gap (don't go past
+          // half a page, so a dense block still advances rather than stalling).
+          const floor = y + pageHpx * 0.5;
+          for (let yy = Math.floor(end); yy > floor; yy--) {
+            if (rowBlank(yy)) { end = yy; break; }
+          }
+        }
+        const sliceH = Math.max(1, Math.round(end - y));
+        const slice = document.createElement("canvas");
+        slice.width = canvas.width;
+        slice.height = sliceH;
+        slice.getContext("2d")?.drawImage(canvas, 0, y, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (!firstPage) pdf.addPage();
+        pdf.addImage(slice.toDataURL("image/jpeg", 0.95), "JPEG", margin, margin, imgW, sliceH / pxPerMm);
+        firstPage = false;
+        y = end;
       }
+
       const who = personName(values);
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
       const filename = `${rawName.replace(/[\\/:*?"<>|]+/g, "-").trim() || "worksheet"}.pdf`;
