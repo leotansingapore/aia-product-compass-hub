@@ -199,6 +199,7 @@ export default function WorksheetBuilder() {
         useCORS: true,
         logging: false,
       });
+      const scale = 2;
       const pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
@@ -207,42 +208,60 @@ export default function WorksheetBuilder() {
       const pxPerMm = canvas.width / imgW;
       const pageHpx = (pageH - margin * 2) * pxPerMm;
 
-      // Smart pagination: instead of slicing the tall capture at fixed page
-      // heights (which cuts through table rows / boxes), snap each page break up
-      // to the nearest blank (all-white) row so nothing gets split.
-      const cctx = canvas.getContext("2d");
-      const px = cctx ? cctx.getImageData(0, 0, canvas.width, canvas.height).data : null;
-      const rowBlank = (y: number) => {
-        if (!px) return false;
-        for (let x = 0; x < canvas.width; x += 6) {
-          const i = (y * canvas.width + x) * 4;
-          if (px[i] < 244 || px[i + 1] < 244 || px[i + 2] < 244) return false;
-        }
-        return true;
-      };
+      // Element-aware pagination: measure each top-level block (heading, table,
+      // field, note) in the captured layout, then pack whole blocks onto pages so
+      // nothing is ever split mid-block, and a heading is never left stranded at
+      // the foot of a page without the content that follows it.
+      const root = (holder.querySelector(".wpv, .psv") as HTMLElement) ?? holder;
+      const hostTop = holder.getBoundingClientRect().top;
+      type Block = { top: number; bottom: number; heading: boolean };
+      const blocks: Block[] = [];
+      const headingCls = ["wpv-step", "wpv-table-label", "blackband", "redband"];
+      for (const child of Array.from(root.children)) {
+        if (child.tagName === "STYLE") continue;
+        const r = child.getBoundingClientRect();
+        const top = (r.top - hostTop) * scale;
+        const bottom = (r.bottom - hostTop) * scale;
+        if (bottom - top < 1) continue;
+        const heading = headingCls.some((c) => (child as HTMLElement).classList.contains(c));
+        blocks.push({ top, bottom, heading });
+      }
 
-      let y = 0;
-      let firstPage = true;
-      while (y < canvas.height - 2) {
-        let end = Math.min(y + pageHpx, canvas.height);
-        if (end < canvas.height) {
-          // Search upward from the ideal break for a blank gap (don't go past
-          // half a page, so a dense block still advances rather than stalling).
-          const floor = y + pageHpx * 0.5;
-          for (let yy = Math.floor(end); yy > floor; yy--) {
-            if (rowBlank(yy)) { end = yy; break; }
-          }
+      // Group blocks into pages.
+      const pages: Array<{ start: number; end: number }> = [];
+      if (blocks.length === 0) {
+        pages.push({ start: 0, end: canvas.height });
+      } else {
+        let i = 0;
+        let start = 0; // page 1 starts at the very top (keeps title/name margin)
+        while (i < blocks.length) {
+          const limit = start + pageHpx;
+          let last = i;
+          while (last + 1 < blocks.length && blocks[last + 1].bottom <= limit) last++;
+          // Never end a page on a heading — push it (and any heading run) forward.
+          while (last > i && blocks[last].heading) last--;
+          pages.push({ start, end: blocks[last].bottom });
+          i = last + 1;
+          if (i < blocks.length) start = blocks[i].top; // trim inter-block gap
         }
-        const sliceH = Math.max(1, Math.round(end - y));
+      }
+
+      pages.forEach((pg, p) => {
+        const sliceH = Math.max(1, Math.round(pg.end - pg.start));
         const slice = document.createElement("canvas");
         slice.width = canvas.width;
         slice.height = sliceH;
-        slice.getContext("2d")?.drawImage(canvas, 0, y, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
-        if (!firstPage) pdf.addPage();
+        const sctx = slice.getContext("2d");
+        if (sctx) {
+          // Paint white first — a bare canvas is transparent, and JPEG renders
+          // transparency as black (the stray dark bar seen between pages).
+          sctx.fillStyle = "#ffffff";
+          sctx.fillRect(0, 0, slice.width, sliceH);
+          sctx.drawImage(canvas, 0, pg.start, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        }
+        if (p > 0) pdf.addPage();
         pdf.addImage(slice.toDataURL("image/jpeg", 0.95), "JPEG", margin, margin, imgW, sliceH / pxPerMm);
-        firstPage = false;
-        y = end;
-      }
+      });
 
       const who = personName(values);
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
