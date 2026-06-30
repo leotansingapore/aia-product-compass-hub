@@ -22,9 +22,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { usePermissions } from "@/hooks/usePermissions";
 import { useUserTier } from "@/hooks/useUserTier";
+import AssignmentTracker from "@/components/leaderboard/AssignmentTracker";
 import {
   useLearnerLeaderboard,
   type LeaderboardRow,
@@ -322,6 +325,8 @@ function PointsReferenceTable() {
 export default function Leaderboard() {
   const { user } = useSimplifiedAuth();
   const { tier } = useUserTier();
+  const { isAdmin, isMasterAdmin } = usePermissions();
+  const admin = isAdmin() || isMasterAdmin();
   const scopedTier =
     tier === "explorer" || tier === "papers_taker" || tier === "post_rnf"
       ? tier
@@ -329,6 +334,41 @@ export default function Leaderboard() {
   const query = useLearnerLeaderboard(user?.id ?? null, scopedTier);
 
   const rows = query.data ?? [];
+
+  const rankings = query.isLoading ? (
+    <div className="flex items-center justify-center py-20">
+      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+    </div>
+  ) : query.error ? (
+    <Card className="border-destructive/30 bg-destructive/5">
+      <CardContent className="p-4 text-sm text-destructive">
+        Failed to load leaderboard:{" "}
+        {(query.error as { message?: string } | null)?.message ?? "Unknown error"}
+      </CardContent>
+    </Card>
+  ) : scopedTier ? (
+    (() => {
+      const tierRows = rows
+        .filter((r) => r.tier === scopedTier)
+        .map((r, i) => ({ ...r, rank: i + 1 }));
+      return (
+        <div className="space-y-3">
+          <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {TIER_META[scopedTier].label} Leaderboard
+          </div>
+          <HallOfFamePodium rows={tierRows} />
+          <YourRankBanner rows={rows} tier={scopedTier} />
+          <LeaderboardTable rows={rows} tier={scopedTier} filter="" />
+        </div>
+      );
+    })()
+  ) : (
+    <Card>
+      <CardContent className="p-10 text-center text-sm text-muted-foreground">
+        The leaderboard opens once your tier is assigned.
+      </CardContent>
+    </Card>
+  );
 
   return (
     <div className="mx-auto max-w-3xl space-y-5 p-4 sm:p-6">
@@ -347,42 +387,26 @@ export default function Leaderboard() {
         </div>
       </div>
 
-      {query.isLoading ? (
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-        </div>
-      ) : query.error ? (
-        <Card className="border-destructive/30 bg-destructive/5">
-          <CardContent className="p-4 text-sm text-destructive">
-            Failed to load leaderboard:{" "}
-            {(query.error as { message?: string } | null)?.message ?? "Unknown error"}
-          </CardContent>
-        </Card>
-      ) : scopedTier ? (
-        (() => {
-          const tierRows = rows
-            .filter((r) => r.tier === scopedTier)
-            .map((r, i) => ({ ...r, rank: i + 1 }));
-          return (
-            <div className="space-y-3">
-              <div className="inline-flex rounded-md border bg-muted/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                {TIER_META[scopedTier].label} Leaderboard
-              </div>
-              <HallOfFamePodium rows={tierRows} />
-              <YourRankBanner rows={rows} tier={scopedTier} />
-              <LeaderboardTable rows={rows} tier={scopedTier} filter="" />
-            </div>
-          );
-        })()
+      {admin ? (
+        <Tabs defaultValue="rankings" className="space-y-5">
+          <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:inline-grid">
+            <TabsTrigger value="rankings">Rankings</TabsTrigger>
+            <TabsTrigger value="tracker">Assignment Tracker</TabsTrigger>
+          </TabsList>
+          <TabsContent value="rankings" className="space-y-5">
+            {rankings}
+            <PointsReferenceTable />
+          </TabsContent>
+          <TabsContent value="tracker">
+            <AssignmentTracker enabled={admin} />
+          </TabsContent>
+        </Tabs>
       ) : (
-        <Card>
-          <CardContent className="p-10 text-center text-sm text-muted-foreground">
-            The leaderboard opens once your tier is assigned.
-          </CardContent>
-        </Card>
+        <>
+          {rankings}
+          <PointsReferenceTable />
+        </>
       )}
-
-      <PointsReferenceTable />
     </div>
   );
 }
