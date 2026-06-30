@@ -9,9 +9,12 @@ import {
   CheckCircle2,
   ClipboardList,
   Clock,
+  Download,
   Eye,
+  FileSpreadsheet,
   FileText,
   Loader2,
+  PlayCircle,
   Target,
   Upload,
   Users,
@@ -37,6 +40,7 @@ import {
   loadAllAssignments,
   type Assignment,
   type AssignmentFormField,
+  type AssignmentResource,
 } from "@/features/first-60-days/assignments";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
@@ -360,6 +364,10 @@ function AssignmentDetail({
           </div>
         </div>
 
+        {assignment.frontmatter.resources && assignment.frontmatter.resources.length > 0 && (
+          <ResourceBar resources={assignment.frontmatter.resources} />
+        )}
+
         <div className="p-4 sm:p-8 border-b space-y-3 sm:space-y-4">
           <h2 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             Prep days linked in this assignment
@@ -452,6 +460,82 @@ function AssignmentDetail({
           />
         )
       )}
+    </div>
+  );
+}
+
+const RESOURCE_META: Record<
+  AssignmentResource["kind"],
+  { icon: typeof FileText; tag: string }
+> = {
+  worksheet: { icon: FileSpreadsheet, tag: "Fill in online" },
+  pdf: { icon: Download, tag: "Download PDF" },
+  video: { icon: PlayCircle, tag: "Watch" },
+  link: { icon: ArrowUpRight, tag: "Open" },
+};
+
+// Prominent, tappable action cards for an assignment's key templates, tutorials,
+// and tools — so they aren't buried as inline links in the markdown body. Driven
+// by the `resources` frontmatter list. Worksheet links route internally; the
+// rest open in a new tab (downloads / videos / external pages).
+function ResourceBar({ resources }: { resources: AssignmentResource[] }) {
+  return (
+    <div className="border-b bg-muted/20 p-4 sm:p-6">
+      <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        Templates, tutorials &amp; tools
+      </h2>
+      <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        {resources.map((r) => {
+          const meta = RESOURCE_META[r.kind];
+          const Icon = meta.icon;
+          const isInternal = r.url.startsWith("/");
+          const primary = r.kind === "worksheet";
+          const inner = (
+            <>
+              <span
+                className={cn(
+                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
+                  primary
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-primary/10 text-primary",
+                )}
+              >
+                <Icon className="h-4 w-4" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-sm font-semibold text-foreground">
+                  {r.label}
+                </span>
+                <span className="block truncate text-xs text-muted-foreground">
+                  {r.note ?? meta.tag}
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+            </>
+          );
+          const className = cn(
+            "group flex items-center gap-3 rounded-xl border bg-card p-3 transition-all hover:shadow-sm",
+            primary
+              ? "border-primary/40 hover:border-primary/60 hover:bg-primary/5"
+              : "hover:border-primary/40 hover:bg-muted/40",
+          );
+          return isInternal ? (
+            <Link key={r.url} to={r.url} className={className}>
+              {inner}
+            </Link>
+          ) : (
+            <a
+              key={r.url}
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={className}
+            >
+              {inner}
+            </a>
+          );
+        })}
+      </div>
     </div>
   );
 }

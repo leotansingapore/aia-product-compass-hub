@@ -14,6 +14,14 @@ estimated_time: "A few hours to build both"
 weeks_covered: [1, 2]
 related_days: [1, 3, 5, 6]
 status_key: "assignment-12-business-plan"
+resources:
+  - "Fill in My Pledge Sheet|/learning-track/pre-rnf/worksheets/pledge-sheet|worksheet|Calculator - FYC goal to weekly activity"
+  - "Fill in the Business Plan|/learning-track/pre-rnf/worksheets/business-plan|worksheet|Six sections, saved to your profile"
+  - "My Pledge Sheet template|/first-60-days/assignments/goals-pledge-worksheet.pdf|pdf|Print and fill by hand"
+  - "New FC Business Plan deck|/first-60-days/assignments/business-plan-template.pdf|pdf|Official deck with worked samples"
+  - "Tutorial 1 - setting clear goals|https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b|video|Loom walkthrough"
+  - "Tutorial 2 - the pledge numbers|https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f|video|Loom walkthrough"
+  - "Activity & rewards overview board|https://app.excalidraw.com/s/2dHyey2Mayl/3N5uXQljwP9|link|Clubs, MDRT/COT/TOT, EPS, incentives"
 form_fields:
   - "Your two deliverables|section|Attach each part as its own PDF. Both are required."
   - "1. Pledge sheet (PDF)|file|Your filled My Pledge Sheet - the income-to-FYC-to-weekly-activity numbers you worked backwards. Export it as a PDF and upload it here."
@@ -42,17 +50,12 @@ https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b
 
 https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f
 
-## Download the templates
+## Two ways to build it
 
-You don't have to start from a blank page. Print these, fill them by hand, or copy each section straight onto a slide in your deck.
+You don't have to start from a blank page. Use the **Templates, tutorials & tools** buttons at the top of this page:
 
-- [**New FC Business Plan deck (PDF)**](/first-60-days/assignments/business-plan-template.pdf) - the official deck with all six sections and worked samples to model yours on.
-- [**My Pledge Sheet (PDF)**](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the one-page sheet where you work the income you want down to the FYC, cases, and the weekly and daily activity you pledge. This is what the two videos above walk you through.
-
-**Prefer to type instead of print?** Fill in the same two worksheets right here in the app - they save to your account, you can re-open them any time from your profile, and you can export a PDF when you're done.
-
-- [Fill in My Pledge Sheet online](/learning-track/pre-rnf/worksheets/pledge-sheet)
-- [Fill in the Business Plan online](/learning-track/pre-rnf/worksheets/business-plan)
+- **Fill it in online** - the Pledge Sheet (a calculator that works your FYC goal down to weekly activity) and the Business Plan both save to your account, re-open from your profile any time, and export to PDF.
+- **Or download the templates** - the official New FC Business Plan deck and the printable My Pledge Sheet, to fill by hand or drop onto your own slides.
 
 ## The six sections
 

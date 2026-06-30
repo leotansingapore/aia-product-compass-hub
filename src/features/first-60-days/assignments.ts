@@ -7,6 +7,16 @@ export interface AssignmentFormField {
   rows?: number;
 }
 
+export type AssignmentResourceKind = "worksheet" | "pdf" | "video" | "link";
+
+export interface AssignmentResource {
+  label: string;
+  url: string;
+  kind: AssignmentResourceKind;
+  /** Optional one-line caption shown under the label on the action card. */
+  note?: string;
+}
+
 export interface AssignmentFrontmatter {
   id: string;
   order: number;
@@ -46,6 +56,10 @@ export interface AssignmentFrontmatter {
   append_noun_plural?: string;
   /** Semantic URL slug used for the public route (e.g. "cst-roleplay" instead of "assignment-01"). Falls back to file slug. */
   url_slug?: string;
+  /** Prominent action buttons surfaced at the top of the assignment so key
+   *  tools/downloads/videos aren't buried as inline links in the body. Each
+   *  entry is "label|url|kind|note" (kind = worksheet|pdf|video|link). */
+  resources?: AssignmentResource[];
 }
 
 export interface Assignment {
@@ -150,6 +164,22 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
   return fields.length ? fields : undefined;
 }
 
+function coerceResources(raw: unknown): AssignmentResource[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const out: AssignmentResource[] = [];
+  for (const entry of raw) {
+    if (typeof entry !== "string") continue;
+    const [label, url, kindStr = "link", note = ""] = entry.split("|").map((p) => p.trim());
+    if (!label || !url) continue;
+    const kind: AssignmentResourceKind =
+      kindStr === "worksheet" || kindStr === "pdf" || kindStr === "video"
+        ? kindStr
+        : "link";
+    out.push({ label, url, kind, note: note || undefined });
+  }
+  return out.length ? out : undefined;
+}
+
 async function loadSlug(slug: string): Promise<Assignment | undefined> {
   const loader = loaderBySlug[slug];
   if (!loader) return undefined;
@@ -180,6 +210,7 @@ async function loadSlug(slug: string): Promise<Assignment | undefined> {
         fm.multiple_submissions === true || fm.multiple_submissions === "true",
       append_noun: coerceString(fm.append_noun) || undefined,
       append_noun_plural: coerceString(fm.append_noun_plural) || undefined,
+      resources: coerceResources(fm.resources),
     },
     markdown: body.trim(),
   };
