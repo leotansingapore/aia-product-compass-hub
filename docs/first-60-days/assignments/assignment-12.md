@@ -3,17 +3,30 @@ id: assignment-12
 url_slug: business-plan
 order: 11
 title: "Business Plan - Your First Five Years"
-short: "Build your whole plan into one slide deck: your five-year goals, the FYC and client numbers that get you there, your target markets, your weekly calendar, your calling script, and the first three people you'll sit with. Submit it as a PDF."
+short: "Two deliverables: your pledge sheet (the income-to-activity numbers worked backwards) and your six-section business plan deck. Build them from the templates, then upload each as a PDF."
 icon: target
-deliverable: "A slide deck (Canva or Google Slides) covering all six sections, submitted as a PDF"
-submission_type: "file"
-estimated_time: "A few hours to build the deck"
+deliverable: "Two PDFs - your filled pledge sheet and your six-section business plan deck"
+submission_type: "form"
+submit_heading: "Submit your two deliverables"
+submit_intro: "One PDF for your pledge sheet, one for your business plan deck. Built it in Canva or Google Slides? Export to PDF, or paste the share link in the notes."
+file_upload: false
+estimated_time: "A few hours to build both"
 weeks_covered: [1, 2]
 related_days: [1, 3, 5, 6]
 status_key: "assignment-12-business-plan"
+form_fields:
+  - "Your two deliverables|section|Attach each part as its own PDF. Both are required."
+  - "1. Pledge sheet (PDF)|file|Your filled Goals & Pledge Worksheet - the income-to-FYC-to-weekly-activity numbers you worked backwards. Export it as a PDF and upload it here."
+  - "2. Business plan deck (PDF)|file|Your six-section plan, built as a slide deck. Export it as a PDF and upload it here."
+  - "Links or notes (optional)|textarea|Built it in Canva or Google Slides? Paste the share links here, plus any 2-3 sentence self-review.|4"
 ---
 
-> **The gist.** This is your business plan for the next five years, built as a slide deck. You set the income and savings you're aiming at, work backwards to the FYC and client numbers that get you there, decide who you'll sell to and how you'll reach them, lay out your week, write your calling script, and name the first three people you'll sit with. Build it in Canva or Google Slides, then export it as a PDF and submit it here.
+> **The gist.** This assignment has **two deliverables**. First, your **pledge sheet** - the numbers worked backwards from the income you want down to the appointments you'll hold each week. Second, your **business plan deck** - the six sections that turn those numbers into a plan: who you'll sell to, how you'll reach them, your week, your calling script, and the first three people you'll sit with. Build both from the templates below, export each as a PDF, and upload them in the two slots at the bottom.
+
+## Your two deliverables
+
+1. **Pledge sheet.** Fill in the [Goals & Pledge Worksheet](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the step-by-step maths from your target income, to FYC, to clubs, to cases and clients, down to the weekly activity you pledge. This is the engine room of the plan and what the two tutorial videos walk you through. Upload it as deliverable 1.
+2. **Business plan deck.** Build the six sections below into a slide deck (the [Business Plan template](/first-60-days/assignments/business-plan-template.pdf) lays them all out). Carry your pledge numbers into section 1, then fill the rest. Upload it as deliverable 2.
 
 Everything else in the track builds one skill at a time. This pulls them into a single plan you can actually steer by: your [why](/learning-track/pre-rnf/assignments/100-whys) and your [vision board](/learning-track/pre-rnf/assignments/vision-board) set the direction, your [Project 200 list](/learning-track/pre-rnf/assignments/project-200) feeds the markets, and your [market survey practice](/learning-track/pre-rnf/assignments/market-survey-practice) and [CST roleplay](/learning-track/pre-rnf/assignments/cst-roleplay) are how you'll work it. The plan is where it all connects.
 
@@ -38,7 +51,7 @@ You don't have to start from a blank page. Print these, fill them by hand, or co
 
 ## The six sections
 
-Cover all six in your deck. One section per slide is a good rule, but split or combine as the content needs.
+Cover all six in your deck. One section per slide is a good rule, but split or combine as the content needs. Short on design time? Start from a ready-made deck in [Canva's business presentation templates](https://www.canva.com/presentations/templates/business/) and drop your content in.
 
 **1. My goals.** Split it three ways, the way the tutorials do. *Financial:* the income you want a month in five years, and the cash you want saved by then. *Personal:* what you want for your professional development, your family, your home, the things you're really doing this for. *Business:* a breakdown over the next three years - clubs, awards, income, number of clients and cases. Then do the maths backwards with the [Goals & Pledge Worksheet](/first-60-days/assignments/goals-pledge-worksheet.pdf): income, to FYC per year, to Club tier, to clients and cases, down to the appointments you'll hold each week. Put the headline figures in a small table on the slide. The numbers don't have to be perfect on the first pass - the point is to see what your goal actually asks of you each week.
 
@@ -67,4 +80,4 @@ Nobody runs the plan they first write down. The value is in building it - seeing
 
 ## Submission
 
-Build all six sections into a Canva or Google Slides deck, export it as a PDF, and upload it below. You can also paste a shareable link (Canva, Google Drive) in the notes instead of the file.
+Upload **two PDFs** below: your filled pledge sheet in the first slot, and your six-section business plan deck in the second. Built the deck in Canva or Google Slides? Export it to PDF, or paste the share link in the notes.

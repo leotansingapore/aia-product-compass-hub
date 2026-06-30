@@ -576,6 +576,27 @@ function SubmittedSummary({
                 </div>
               );
             }
+            if (field.kind === "file" && /^https?:\/\//.test(value.trim())) {
+              return (
+                <a
+                  key={field.label}
+                  href={value.trim()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3 text-sm hover:bg-muted/60 transition-colors"
+                >
+                  <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      {field.label}
+                    </span>
+                    <span className="text-primary underline-offset-2 hover:underline">
+                      View submitted file
+                    </span>
+                  </span>
+                </a>
+              );
+            }
             return (
               <div key={field.label} className="rounded-lg border bg-background p-4">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
@@ -623,6 +644,10 @@ function SubmissionPanel({
     assignment.frontmatter.submission_type === "form" &&
     !!assignment.frontmatter.form_fields?.length;
   const formFields = assignment.frontmatter.form_fields ?? [];
+  // Labelled upload slots inside a form (e.g. the Business Plan wants one file
+  // for the pledge sheet and one for the plan deck). Each uploads separately and
+  // its public URL is stored in the submission JSON under the field label.
+  const fileFields = formFields.filter((f) => f.kind === "file");
   const labels = appendLabels(assignment.frontmatter);
 
   const statusKey = assignment.frontmatter.status_key;
@@ -632,6 +657,9 @@ function SubmissionPanel({
     submission ? parseFormValues(submission?.submission_text) : initialDraft?.f ?? {},
   );
   const [file, setFile] = useState<File | null>(null);
+  // Pending per-slot files, keyed by field label (not draft-persisted — File
+  // objects can't be serialised to localStorage).
+  const [pendingFiles, setPendingFiles] = useState<Record<string, File>>({});
   const [submitting, setSubmitting] = useState(false);
   const [editing, setEditing] = useState(!submission);
 
@@ -651,6 +679,7 @@ function SubmissionPanel({
       setFormValues(parsed);
     }
     setFile(null);
+    setPendingFiles({});
   }, [submission?.id, assignment.slug, isFormMode, userId, statusKey]);
 
   // Mirror in-progress answers to localStorage. Once a submission exists the
@@ -690,7 +719,6 @@ function SubmissionPanel({
       return;
     }
 
-    let payloadText: string | null = null;
     if (isFormMode) {
       // Confirmation checkboxes are gates: a checklist assignment isn't done
       // until every box is ticked (e.g. "I've booked a call to review this").
@@ -701,46 +729,88 @@ function SubmissionPanel({
         toast.error(`Tick to confirm: "${missingCheck.label}"`);
         return;
       }
+      // Each labelled upload slot is required: no pending file and no file kept
+      // from a previous submission means the deliverable is missing.
+      const missingFile = fileFields.find(
+        (f) => !pendingFiles[f.label] && !(formValues[f.label] ?? "").trim(),
+      );
+      if (missingFile) {
+        toast.error(`Attach your ${missingFile.label}`);
+        return;
+      }
       const answerable = formFields.filter((f) => f.kind !== "section");
-      const filled = answerable.filter((f) => (formValues[f.label] ?? "").trim().length > 0);
-      if (filled.length === 0 && !file) {
+      const hasAny =
+        answerable.some((f) => (formValues[f.label] ?? "").trim().length > 0) ||
+        Object.keys(pendingFiles).length > 0 ||
+        !!file;
+      if (!hasAny) {
         toast.error("Fill in at least one field or attach a file before submitting.");
         return;
       }
-      payloadText = filled.length
-        ? JSON.stringify(
-            Object.fromEntries(
-              answerable.map((f) => [f.label, (formValues[f.label] ?? "").trim()]),
-            ),
-          )
-        : null;
     } else {
       if (!file && !text.trim()) {
         toast.error("Upload a file or paste a link / notes.");
         return;
       }
-      payloadText = text.trim() || null;
     }
 
     setSubmitting(true);
-    let uploadedPath: string | null = null;
+    const uploadedPaths: string[] = [];
     try {
-      let fileUrl: string | null = null;
-      let fileName: string | null = null;
-      if (file) {
-        const ext = file.name.split(".").pop() ?? "bin";
-        const path = `${userId}/${PRODUCT_ID}/${assignment.frontmatter.status_key}/${Date.now()}.${ext}`;
+      const uploadOne = async (f: File, tag: string) => {
+        const ext = f.name.split(".").pop() ?? "bin";
+        const safeTag = tag.replace(/[^a-z0-9]+/gi, "-").toLowerCase() || "file";
+        const path = `${userId}/${PRODUCT_ID}/${assignment.frontmatter.status_key}/${safeTag}-${Date.now()}.${ext}`;
         const { error: upErr } = await supabase.storage
           .from("assignment-files")
-          .upload(path, file);
+          .upload(path, f);
         if (upErr) throw upErr;
-        uploadedPath = path;
-        const { data: pub } = supabase.storage
-          .from("assignment-files")
-          .getPublicUrl(path);
-        fileUrl = pub.publicUrl;
-        fileName = file.name;
+        uploadedPaths.push(path);
+        const { data: pub } = supabase.storage.from("assignment-files").getPublicUrl(path);
+        return { url: pub.publicUrl, name: f.name };
+      };
+
+      let fileUrl: string | null = null;
+      let fileName: string | null = null;
+      // Per-slot uploaded deliverables — their URLs ride in the JSON payload
+      // under each field label so each renders as its own download link.
+      const urlByLabel: Record<string, string> = {};
+      if (isFormMode) {
+        for (const f of fileFields) {
+          const pf = pendingFiles[f.label];
+          if (!pf) continue;
+          const up = await uploadOne(pf, f.label);
+          urlByLabel[f.label] = up.url;
+          // Light up the row's file column with the first deliverable so list /
+          // gallery views that key off file_url still register a submission.
+          if (!fileUrl) {
+            fileUrl = up.url;
+            fileName = up.name;
+          }
+        }
       }
+      if (file) {
+        const up = await uploadOne(file, "attachment");
+        if (!fileUrl) {
+          fileUrl = up.url;
+          fileName = up.name;
+        } else if (isFormMode) {
+          urlByLabel["Attachment"] = up.url;
+        }
+      }
+
+      let payloadText: string | null;
+      if (isFormMode) {
+        const answerable = formFields.filter((f) => f.kind !== "section");
+        const merged: Record<string, string> = { ...formValues, ...urlByLabel };
+        const entries = answerable
+          .map((f) => [f.label, (merged[f.label] ?? "").trim()] as const)
+          .filter(([, v]) => v.length > 0);
+        payloadText = entries.length ? JSON.stringify(Object.fromEntries(entries)) : null;
+      } else {
+        payloadText = text.trim() || null;
+      }
+
       const { error: insErr } = await (supabase.from as any)("assignment_submissions").insert({
         user_id: userId,
         product_id: PRODUCT_ID,
@@ -773,14 +843,14 @@ function SubmissionPanel({
         setEditing(false);
       }
       setFile(null);
-      uploadedPath = null; // committed — leave the file in place
+      setPendingFiles({});
+      uploadedPaths.length = 0; // committed — leave the files in place
     } catch (err: any) {
-      // If we uploaded the file but the DB insert failed, roll back the
-      // upload so we don't leave orphans in the bucket. Best-effort: a
-      // failed cleanup is logged, not surfaced (the submit itself already
-      // toasted the error).
-      if (uploadedPath) {
-        void supabase.storage.from("assignment-files").remove([uploadedPath]).catch(() => {});
+      // If we uploaded files but the DB insert failed, roll them back so we
+      // don't leave orphans in the bucket. Best-effort: a failed cleanup is
+      // logged, not surfaced (the submit itself already toasted the error).
+      if (uploadedPaths.length) {
+        void supabase.storage.from("assignment-files").remove(uploadedPaths).catch(() => {});
       }
       toast.error(err?.message ?? "Submission failed");
     } finally {
@@ -842,6 +912,16 @@ function SubmissionPanel({
                 setFormValues((prev) => ({ ...prev, [field.label]: v }))
               }
               disabled={submitting}
+              pendingFile={pendingFiles[field.label] ?? null}
+              maxMb={MAX_MB}
+              onFile={(f) =>
+                setPendingFiles((prev) => {
+                  const next = { ...prev };
+                  if (f) next[field.label] = f;
+                  else delete next[field.label];
+                  return next;
+                })
+              }
             />
           ))}
           {assignment.frontmatter.file_upload !== false && (
@@ -964,12 +1044,83 @@ function FormFieldRenderer({
   value,
   onChange,
   disabled,
+  pendingFile,
+  onFile,
+  maxMb,
 }: {
   field: AssignmentFormField;
   value: string;
   onChange: (v: string) => void;
   disabled: boolean;
+  pendingFile?: File | null;
+  onFile?: (f: File | null) => void;
+  maxMb?: number;
 }) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // A labelled upload slot — e.g. the Business Plan asks for one file for the
+  // pledge sheet and one for the plan deck. `value` carries the URL of a file
+  // kept from a previous submission so it shows as already-attached.
+  if (field.kind === "file") {
+    const existingUrl = value && /^https?:\/\//.test(value.trim()) ? value.trim() : null;
+    return (
+      <div className="space-y-1.5">
+        <label className="text-sm font-semibold text-foreground">{field.label}</label>
+        {field.hint && (
+          <p className="text-xs text-muted-foreground whitespace-pre-wrap">{field.hint}</p>
+        )}
+        <input
+          ref={fileInputRef}
+          type="file"
+          className="hidden"
+          accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg"
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (!f) return;
+            if (maxMb && f.size > maxMb * 1024 * 1024) {
+              toast.error(`File exceeds ${maxMb}MB limit`);
+              e.target.value = "";
+              return;
+            }
+            onFile?.(f);
+          }}
+        />
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={disabled}
+          className="w-full border-dashed border-2 h-16 flex items-center justify-center gap-2"
+        >
+          {pendingFile ? (
+            <span className="flex items-center gap-2 text-sm">
+              <FileText className="h-4 w-4" />
+              {pendingFile.name}
+            </span>
+          ) : (
+            <>
+              <Upload className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">
+                {existingUrl ? "Replace uploaded file" : "Click to upload a PDF"}
+              </span>
+            </>
+          )}
+        </Button>
+        {existingUrl && !pendingFile && (
+          <a
+            href={existingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            View current upload
+          </a>
+        )}
+      </div>
+    );
+  }
+
   // A "section" field is a non-input divider that breaks a long form into
   // labelled chunks (Part A / Part B / Part C) so it reads as steps, not a wall.
   if (field.kind === "section") {

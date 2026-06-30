@@ -1,4 +1,4 @@
-export type AssignmentFormFieldKind = "text" | "textarea" | "section" | "check";
+export type AssignmentFormFieldKind = "text" | "textarea" | "section" | "check" | "file";
 
 export interface AssignmentFormField {
   label: string;
@@ -140,7 +140,9 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
           ? "section"
           : kindStr === "check"
             ? "check"
-            : "textarea";
+            : kindStr === "file"
+              ? "file"
+              : "textarea";
     const rows = rowsStr ? Math.max(2, Math.min(12, Number(rowsStr) || 0)) : undefined;
     const hint = hintRaw ? hintRaw.replace(/\\n/g, "\n") : undefined;
     fields.push({ label, kind, hint, rows });
