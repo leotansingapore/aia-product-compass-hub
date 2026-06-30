@@ -1,6 +1,8 @@
 import type { Components } from "react-markdown";
 import { Link } from "react-router-dom";
 import { dayMarkdownComponents } from "./dayMarkdownComponents";
+import { markdownComponents } from "@/lib/markdown-config";
+import { detectVideoEmbed } from "@/lib/video-embed-utils";
 
 const DAY_HREF_RE = /(?:\.\.\/)*first-60-days\/week-\d+\/day-(\d+)\.md/;
 
@@ -54,10 +56,20 @@ export const assignmentMarkdownComponents: Components = {
         </Link>
       );
     }
+    // A standalone link to a video (Loom / YouTube) gets embedded as an inline
+    // player, matching day-page behaviour — assignment instructions sometimes
+    // walk through a tutorial video and want it playable in place. We only do
+    // this for links whose visible text equals the href (i.e. a bare URL on its
+    // own line), so inline links inside a sentence or a table cell stay plain
+    // clickable anchors and never blow a table column out with an iframe.
+    const childText = Array.isArray(children) ? children.join("") : String(children ?? "");
+    const isBareUrl = childText.trim() === url.trim();
+    if (isBareUrl && detectVideoEmbed(url).isVideo) {
+      const Base = markdownComponents.a as any;
+      return <Base href={url} {...rest}>{children}</Base>;
+    }
     // External link (YouTube, Loom, docs.google, etc.) — render as a plain clickable
-    // anchor. Intentionally NOT delegating to the auto-video-embed fallback because
-    // the auto-embed replaces links with iframes, which breaks in tables and inline
-    // contexts where learners need a clickable link instead of an inline player.
+    // anchor for inline / table contexts where an iframe would break the layout.
     return (
       <a
         href={url}
