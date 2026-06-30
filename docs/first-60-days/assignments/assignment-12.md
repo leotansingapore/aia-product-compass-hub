@@ -49,6 +49,11 @@ You don't have to start from a blank page. Print these, fill them by hand, or co
 - [**New FC Business Plan deck (PDF)**](/first-60-days/assignments/business-plan-template.pdf) - the official deck with all six sections and worked samples to model yours on.
 - [**My Pledge Sheet (PDF)**](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the one-page sheet where you work the income you want down to the FYC, cases, and the weekly and daily activity you pledge. This is what the two videos above walk you through.
 
+**Prefer to type instead of print?** Fill in the same two worksheets right here in the app - they save to your account, you can re-open them any time from your profile, and you can export a PDF when you're done.
+
+- [Fill in My Pledge Sheet online](/learning-track/pre-rnf/worksheets/pledge-sheet)
+- [Fill in the Business Plan online](/learning-track/pre-rnf/worksheets/business-plan)
+
 ## The six sections
 
 Cover all six in your deck. One section per slide is a good rule, but split or combine as the content needs. Short on design time? Start from a ready-made deck in [Canva's business presentation templates](https://www.canva.com/presentations/templates/business/) and drop your content in.

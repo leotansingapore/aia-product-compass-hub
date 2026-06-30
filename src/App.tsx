@@ -103,6 +103,7 @@ const OutreachBuilder = lazyWithRetry(() => import("./pages/learning-track/Outre
 const LearningTrackPostRnf = lazyWithRetry(() => import("./pages/learning-track/PostRnf"));
 const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-track/Resources"));
 const LearningTrackCompetitorProducts = lazyWithRetry(() => import("./pages/learning-track/CompetitorProductsReference"));
+const WorksheetBuilder = lazyWithRetry(() => import("./pages/learning-track/WorksheetBuilder"));
 const LearningTrackFirst60Days = lazyWithRetry(() => import("./pages/learning-track/First60Days"));
 const LearningTrackFirst60DaysDay = lazyWithRetry(() => import("./pages/learning-track/First60DaysDay"));
 const LearningTrackFirst60DaysWeekRecap = lazyWithRetry(() => import("./pages/learning-track/First60DaysWeekRecap"));
@@ -242,6 +243,8 @@ const App = () => (
                       <Route path="pre-rnf/first-60-days" element={<Navigate to="/learning-track/first-60-days" replace />} />
                       <Route path="pre-rnf/assignments" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
                       <Route path="pre-rnf/assignments/:itemId" element={<RequireTier feature="pre-rnf-track"><LearningTrackPreRnf /></RequireTier>} />
+                      <Route path="pre-rnf/worksheets" element={<RequireTier feature="pre-rnf-track"><WorksheetBuilder /></RequireTier>} />
+                      <Route path="pre-rnf/worksheets/:slug" element={<RequireTier feature="pre-rnf-track"><WorksheetBuilder /></RequireTier>} />
                       {/* Outreach Builder — both old (assignment-02) and new (outreach-playbook) URLs supported */}
                       <Route path="pre-rnf/assignments/assignment-02/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />
                       <Route path="pre-rnf/assignments/outreach-playbook/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />

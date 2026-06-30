@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Loader2, Search, Users2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import AdminWorksheetRoster from "@/components/leaderboard/AdminWorksheetRoster";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -195,6 +196,10 @@ export default function AssignmentTracker({ enabled }: { enabled: boolean }) {
           </div>
         </div>
       )}
+
+      <div className="border-t pt-5">
+        <AdminWorksheetRoster enabled={enabled} />
+      </div>
     </div>
   );
 }

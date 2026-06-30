@@ -709,3 +709,27 @@
     animation: cmfas-study-spin 30s linear infinite reverse;
   }
 }
+
+/* Print: isolate a worksheet for "Download as PDF" (window.print → Save as PDF).
+   Everything outside [data-print-root] is hidden; chrome marked [data-no-print]
+   is removed so the export is just the filled worksheet. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  [data-print-root],
+  [data-print-root] * {
+    visibility: visible;
+  }
+  [data-print-root] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 8mm;
+  }
+  [data-no-print] {
+    display: none !important;
+  }
+}
