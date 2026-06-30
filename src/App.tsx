@@ -79,6 +79,7 @@ const DrawingsPlaybook = lazyWithRetry(() => import("./pages/DrawingsPlaybook"))
 const AssignDrawings = lazyWithRetry(() => import("./pages/AssignDrawings"));
 const ProductExam = lazyWithRetry(() => import("./pages/ProductExam"));
 const QuestionBanks = lazyWithRetry(() => import("./pages/QuestionBanks"));
+const ReviewBank = lazyWithRetry(() => import("./pages/ReviewBank"));
 const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
 const Library = lazyWithRetry(() => import("./pages/Library"));
 const LibraryProductsTab = lazyWithRetry(() =>
@@ -201,6 +202,7 @@ const App = () => (
                     <Route path="/product/:productSlugOrId/exam" element={<RequireAuth><RequireTier feature="question-banks"><ProductExam /></RequireTier></RequireAuth>} />
                     <Route path="/product/:productSlugOrId/video/:videoId" element={<RequireAuth><RequireTier feature="products"><VideoDetail /></RequireTier></RequireAuth>} />
                     <Route path="/question-banks" element={<RequireAuth><RequireTier feature="question-banks"><QuestionBanks /></RequireTier></RequireAuth>} />
+                    <Route path="/review-bank" element={<RequireAuth><RequireTier feature="question-banks"><ReviewBank /></RequireTier></RequireAuth>} />
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
                     <Route path="/library" element={<RequireAuth><Library /></RequireAuth>}>
                       <Route path="products" element={<LibraryProductsTab />} />
