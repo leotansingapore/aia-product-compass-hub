@@ -62,9 +62,11 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 
 ### Case A - Marcus, 23
 
-Final-year undergrad, tutors part-time (around S$1,400 a month plus a parental allowance). Wants to marry his girlfriend and BTO in three to four years. Says his goal is "growing my money". Nothing of his own income is protected yet, and everything he has was bought by his parents.
+**Final-year undergrad · tutors part-time ~S$1,400/mo + parental allowance · marrying + BTO in 3-4 years · goal: "grow my money"**
 
-Existing policies:
+Nothing of his own income is protected yet, and everything he has was bought by his parents.
+
+**Existing policies**
 
 - Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month - about S$28,800 paid in by the time it matures in eight years, projected to come back around S$35,000 (the guaranteed part is about S$30,000)
 - NTUC Income - Enhanced IncomeShield Preferred, no rider, premiums still paid by his parents - about S$295 a year, mostly from MediSave with roughly S$45 of it cash
@@ -72,9 +74,11 @@ Existing policies:
 
 ### Case B - Priya, 29
 
-Marketing executive, S$4,800/month. Married last year, collected their BTO, mortgage is S$1,800/month. She and her husband want to start a baby fund and "make sure we don't lose the flat if one of us can't work".
+**Marketing executive ~S$4,800/mo · married last year, new BTO, S$1,800/mo mortgage · goal: baby fund + protect the flat**
 
-Existing policies:
+She and her husband want to start a baby fund and "make sure we don't lose the flat if one of us can't work".
+
+**Existing policies**
 
 - AIA - HealthShield Gold Max (Plan A, private hospital), no rider - about S$173 a year, fully from MediSave; with no rider she still pays the deductible and 5% co-insurance in cash on any claim
 - Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her - S$100k base with a 4x multiplier (about S$400k cover to age 65), S$300/month, projected cash value around S$150,000 by 65
@@ -82,17 +86,21 @@ Existing policies:
 
 ### Case C - Daniel, 35
 
-Self-employed renovation contractor, income swings between S$4,000 and S$10,000 a month, averages around S$7,000. Sole breadwinner; his wife stays home with their two kids (ages 2 and 5). Cashflow is lumpy and he hates locking into anything.
+**Self-employed renovation contractor · ~S$7,000/mo (swings S$4k-10k) · sole breadwinner, wife at home + 2 kids (2 & 5) · goal: protect his family's income**
 
-Existing policies:
+Cashflow is lumpy and he hates locking into anything.
+
+**Existing policies**
 
 - NTUC Income - IncomeShield Standard Plan, B1 ward, no rider, around S$690 a year, all from MediSave
 
 ### Case D - Mr & Mrs Tan, 57 & 55
 
-Empty-nesters - Mr Tan is 57, Mrs Tan is 55. Combined income S$13,000/month, HDB fully paid, both kids working. They want a combined S$10,000 a month in passive retirement income, and something left for the children. They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
+**Empty-nesters, 57 & 55 · combined ~S$13,000/mo · HDB fully paid, both kids working · goal: S$10k/mo retirement income + a legacy**
 
-Existing policies:
+They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
+
+**Existing policies**
 
 - CPF - Mr Tan has about S$180,000 in his Ordinary Account, S$210,000 in his Retirement Account (just past the Full Retirement Sum), and S$79,000 in MediSave; Mrs Tan has about S$150,000 in OA, S$220,400 in her RA (at the Full Retirement Sum), and S$79,000 in MediSave. On CPF LIFE Standard that works out to roughly S$1,670/month for him and S$1,710 for her from age 65 - about S$3,380 a month combined
 - NTUC Income - Gro Retire Flex Pro (Mrs Tan), a S$100,000 single premium that pays out from age 60 to 79, about S$675/month (only around S$520 of it guaranteed)
@@ -104,13 +112,16 @@ One lever they're already weighing: topping up their Retirement Accounts towards
 
 ### Case E - Wei Ling, 41
 
-Senior engineer, S$9,500/month, single, no children. Gives her parents S$1,500/month and they have almost no coverage of their own. Her family has a history of cancer, and she "keeps meaning to sort it out". Long runway to retirement, but nothing structured for it.
+**Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · family cancer history · goal: cover her parents + her own future**
 
-Existing policies:
+Her parents have almost no coverage of their own, she "keeps meaning to sort it out", and there's a long runway to retirement but nothing structured for it.
+
+**Existing policies**
 
 - Manulife - Manulife InvestReady, a whole-life ILP she's paid S$500/month into for eight years - about S$48,000 in, now worth around S$45,000 (less if surrendered), so the fees have kept it at best break-even
 - Great Eastern - GREAT Life Advantage 4, a whole-life investment-linked plan (protection plus an invested account), S$550/month, about S$180,000 of life cover - the cash value is the fund value and isn't guaranteed
 - AIA - HealthShield Gold Max (Plan A), no rider - about S$467 a year, fully from MediSave; with no rider, claims carry the deductible and 5% co-insurance in cash
+
 ## What you build for your case
 
 **Portfolio summary.** Map every existing policy into one page in the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2): sum assured, premium, mode, payment term, coverage term, riders, nominees. The summary's job is to make the gaps and overlaps obvious - name them specifically.

@@ -53,19 +53,31 @@ You don't have to start from a blank page. Print these, fill them by hand, or co
 
 Cover all six in your deck. One section per slide is a good rule, but split or combine as the content needs. Short on design time? Start from a ready-made deck in [Canva's business presentation templates](https://www.canva.com/presentations/templates/business/) and drop your content in.
 
-**1. My goals.** Split it three ways, the way the tutorials do. *Financial:* the income you want a month in five years, and the cash you want saved by then. *Personal:* what you want for your professional development, your family, your home, the things you're really doing this for. *Business:* a breakdown over the next three years - clubs, awards, income, number of clients and cases. Then do the maths backwards with the [Goals & Pledge Worksheet](/first-60-days/assignments/goals-pledge-worksheet.pdf): income, to FYC per year, to Club tier, to clients and cases, down to the appointments you'll hold each week. Put the headline figures in a small table on the slide. The numbers don't have to be perfect on the first pass - the point is to see what your goal actually asks of you each week.
+### 1. My goals
+
+Split it three ways, the way the tutorials do. *Financial:* the income you want a month in five years, and the cash you want saved by then. *Personal:* what you want for your professional development, your family, your home, the things you're really doing this for. *Business:* a breakdown over the next three years - clubs, awards, income, number of clients and cases. Then do the maths backwards with the [Goals & Pledge Worksheet](/first-60-days/assignments/goals-pledge-worksheet.pdf): income, to FYC per year, to Club tier, to clients and cases, down to the appointments you'll hold each week. Put the headline figures in a small table on the slide. The numbers don't have to be perfect on the first pass - the point is to see what your goal actually asks of you each week.
 
 For the club tiers, the MDRT / COT / TOT thresholds, the EPS scheme, the income-to-FYC ratios, and the new-recruit incentives that sit behind these numbers, work off the [activity & rewards overview board](https://app.excalidraw.com/s/2dHyey2Mayl/3N5uXQljwP9) - it maps the whole picture from awards down to the activity that earns them.
 
-**2. My strengths and areas to grow.** Three strengths and how each helps you advise well. Three weaknesses and how you'll work on each. Write the honest version - the gaps are the part worth coaching.
+### 2. My strengths and areas to grow
 
-**3. My lead generation.** Three target markets you can operate in, with the real reason each fits - usually existing trust or a network you already belong to. For each one, spell out the demographics, the expected income level, and the needs they're likely to have, so it's clear why the market is yours to work. Tie it back to your Project 200 list. Then pick three prospecting methods (calling, face to face, texting, referrals, social media) and for each say how you'll run it - the frequency, the time you'll spend, and the honest advantages and disadvantages. Set the monthly FYC you'd stand behind for each market.
+Three strengths and how each helps you advise well. Three weaknesses and how you'll work on each. Write the honest version - the gaps are the part worth coaching.
 
-**4. My weekly timetable.** A typical week, colour-coded, split across prospecting, preparation, me time, learning, and study if you're still in classes. Build it in your calendar and drop a screenshot onto the slide. It makes the trade-offs obvious: there are only so many prospecting slots in a week, and your goal in section one tells you how many you need.
+### 3. My lead generation
 
-**5. My calling system.** The script you'll actually use to reach people - how you introduce yourself and your new career, your purpose for the call (market survey or setting an appointment), and how you close and keep the door open if they say no. Write it the way you'd say it out loud. Add the system you'll use to track every prospect and follow up.
+Three target markets you can operate in, with the real reason each fits - usually existing trust or a network you already belong to. For each one, spell out the demographics, the expected income level, and the needs they're likely to have, so it's clear why the market is yours to work. Tie it back to your Project 200 list. Then pick three prospecting methods (calling, face to face, texting, referrals, social media) and for each say how you'll run it - the frequency, the time you'll spend, and the honest advantages and disadvantages. Set the monthly FYC you'd stand behind for each market.
 
-**6. Sales competency.** Name your first three prospects from your list: who they are, their occupation, how you know them, what you think they need, the plan that could meet it, and how you'll engage them - the opener you'd actually use to get the first appointment. To be sales certified, your mentor observes your first three appointments, and you need three separate lives (not yourself or your spouse) taking up a HealthShield, life, or investment policy.
+### 4. My weekly timetable
+
+A typical week, colour-coded, split across prospecting, preparation, me time, learning, and study if you're still in classes. Build it in your calendar and drop a screenshot onto the slide. It makes the trade-offs obvious: there are only so many prospecting slots in a week, and your goal in section one tells you how many you need.
+
+### 5. My calling system
+
+The script you'll actually use to reach people - how you introduce yourself and your new career, your purpose for the call (market survey or setting an appointment), and how you close and keep the door open if they say no. Write it the way you'd say it out loud. Add the system you'll use to track every prospect and follow up.
+
+### 6. Sales competency
+
+Name your first three prospects from your list: who they are, their occupation, how you know them, what you think they need, the plan that could meet it, and how you'll engage them - the opener you'd actually use to get the first appointment. To be sales certified, your mentor observes your first three appointments, and you need three separate lives (not yourself or your spouse) taking up a HealthShield, life, or investment policy.
 
 ## What good looks like
 
