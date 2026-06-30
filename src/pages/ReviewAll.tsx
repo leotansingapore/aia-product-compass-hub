@@ -84,8 +84,8 @@ export default function ReviewAll() {
                 before a client meeting. {all.length} questions in total.
               </p>
             </div>
-            <Button variant="outline" className="gap-1.5" onClick={() => window.print()}>
-              <Printer className="h-4 w-4" /> Print
+            <Button variant="outline" className="gap-1.5" onClick={() => window.print()} title="Opens the print dialog — choose 'Save as PDF' as the destination to download">
+              <Printer className="h-4 w-4" /> Print / Save as PDF
             </Button>
           </div>
 
