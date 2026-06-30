@@ -488,7 +488,10 @@ function ResourceBar({ resources }: { resources: AssignmentResource[] }) {
         {resources.map((r) => {
           const meta = RESOURCE_META[r.kind];
           const Icon = meta.icon;
-          const isInternal = r.url.startsWith("/");
+          // Only in-app routes use the router Link. PDFs live under /public as
+          // static files — a <Link> would try to client-route to them and the
+          // file would never load — so they use a plain <a download> instead.
+          const useRouterLink = r.url.startsWith("/") && r.kind !== "pdf";
           const primary = r.kind === "worksheet";
           const inner = (
             <>
@@ -519,7 +522,7 @@ function ResourceBar({ resources }: { resources: AssignmentResource[] }) {
               ? "border-primary/40 hover:border-primary/60 hover:bg-primary/5"
               : "hover:border-primary/40 hover:bg-muted/40",
           );
-          return isInternal ? (
+          return useRouterLink ? (
             <Link key={r.url} to={r.url} className={className}>
               {inner}
             </Link>
@@ -527,10 +530,10 @@ function ResourceBar({ resources }: { resources: AssignmentResource[] }) {
             <a
               key={r.url}
               href={r.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              // PDFs download straight to disk; videos/links open in a new tab.
-              {...(r.kind === "pdf" ? { download: "" } : {})}
+              // PDFs download to disk; videos/external links open in a new tab.
+              {...(r.kind === "pdf"
+                ? { download: "" }
+                : { target: "_blank", rel: "noopener noreferrer" })}
               className={className}
             >
               {inner}
