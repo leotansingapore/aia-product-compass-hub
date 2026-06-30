@@ -401,6 +401,120 @@ export type Database = {
         }
         Relationships: []
       }
+      cmfas_credit_ledger: {
+        Row: {
+          amount_cents: number
+          created_at: string | null
+          id: string
+          reason: string
+          ref_session_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string | null
+          id?: string
+          reason: string
+          ref_session_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string | null
+          id?: string
+          reason?: string
+          ref_session_id?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cmfas_entitlements: {
+        Row: {
+          created_at: string
+          exams: string[]
+          expires_at: string | null
+          id: string
+          plan: string | null
+          scope: string
+          source: string
+          stripe_session_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          exams?: string[]
+          expires_at?: string | null
+          id?: string
+          plan?: string | null
+          scope?: string
+          source: string
+          stripe_session_id?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          exams?: string[]
+          expires_at?: string | null
+          id?: string
+          plan?: string | null
+          scope?: string
+          source?: string
+          stripe_session_id?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cmfas_referral_codes: {
+        Row: {
+          code: string
+          created_at: string | null
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cmfas_referrals: {
+        Row: {
+          amount_paid_cents: number
+          commission_cents: number
+          created_at: string | null
+          id: string
+          referred_email: string | null
+          referred_user_id: string | null
+          referrer_user_id: string
+          stripe_session_id: string
+        }
+        Insert: {
+          amount_paid_cents: number
+          commission_cents: number
+          created_at?: string | null
+          id?: string
+          referred_email?: string | null
+          referred_user_id?: string | null
+          referrer_user_id: string
+          stripe_session_id: string
+        }
+        Update: {
+          amount_paid_cents?: number
+          commission_cents?: number
+          created_at?: string | null
+          id?: string
+          referred_email?: string | null
+          referred_user_id?: string | null
+          referrer_user_id?: string
+          stripe_session_id?: string
+        }
+        Relationships: []
+      }
       coaching_events: {
         Row: {
           created_at: string
