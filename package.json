@@ -87,6 +87,7 @@
     "emoji-picker-react": "^4.15.0",
     "github-slugger": "^2.0.0",
     "html-to-image": "^1.11.13",
+    "html2pdf.js": "^0.14.0",
     "input-otp": "^1.2.4",
     "jspdf": "^3.0.4",
     "lowlight": "^3.3.0",

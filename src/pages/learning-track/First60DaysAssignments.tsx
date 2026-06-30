@@ -529,6 +529,8 @@ function ResourceBar({ resources }: { resources: AssignmentResource[] }) {
               href={r.url}
               target="_blank"
               rel="noopener noreferrer"
+              // PDFs download straight to disk; videos/links open in a new tab.
+              {...(r.kind === "pdf" ? { download: "" } : {})}
               className={className}
             >
               {inner}

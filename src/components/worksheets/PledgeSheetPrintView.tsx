@@ -1,94 +1,221 @@
+import type { ReactNode } from "react";
 import { derivePledge, POINTS } from "@/features/pre-rnf-worksheets/pledgeCalc";
+import { personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
-// Template-styled print/PDF render of the Pledge Sheet calculator: the goals,
-// the worked funnel, and the monthly / weekly point targets. Mirrors the look of
-// the downloadable template PDFs (AIA red, bordered tables).
-const RED = "#D31145";
+// Print/PDF render of the Pledge Sheet, styled to match the official
+// "MY PLEDGE SHEET" template: accent left-label blocks for the goals, black
+// bands for the activity sections, bordered tables. Adds the calculator's
+// Goals & Targets and Strategy fields; the redundant "Previous Year" section is
+// dropped. Accent colour + name come from the learner's personalisation.
+const INK = "#111111";
+
+function round1(n: number) {
+  return Math.round(n * 10) / 10;
+}
 
 export default function PledgeSheetPrintView({ values }: { values: WorksheetValues }) {
+  const RED = schemeFor(values).accent;
+  const name = personName(values);
   const d = derivePledge(values);
   const g = (id: string) => (values[id] ?? "").trim();
   const money = (id: string) => {
     const n = Number(values[id] ?? "");
-    return Number.isFinite(n) && n > 0 ? `S$${n.toLocaleString()}` : "—";
+    return Number.isFinite(n) && n > 0 ? `S$${n.toLocaleString()}` : "";
+  };
+  const lifeCases = (fycId: string, csId: string) => {
+    const f = Number(values[fycId] ?? "");
+    const c = Number(values[csId] ?? "");
+    return f > 0 && c > 0 ? String(Math.round(f / c)) : "";
+  };
+  const daily = {
+    sets: round1(d.weekly.sets / 5),
+    openings: round1(d.weekly.openings / 5),
+    closings: round1(d.weekly.closings / 5),
+    cases: round1(d.weekly.cases / 5),
   };
 
-  const strategy: Array<[string, string]> = [
-    ["Target market / products focus", g("products_focus")],
-    ["Methods (how I prospect)", g("methods")],
-    ["Sales angles that work", g("angles_working")],
-    ["Sales angles to try", g("angles_to_try")],
-    ["Key touchpoints & events", g("touchpoints")],
-    ["Focus strategies", g("focus_strategies")],
-    ["My why", g("motivation_why")],
-    ["Life better if achieved", g("life_better")],
-  ].filter(([, v]) => v.length > 0) as Array<[string, string]>;
+  const strategy: Array<[string, string]> = (
+    [
+      ["Target market / products focus", g("products_focus")],
+      ["Methods (how I prospect)", g("methods")],
+      ["Sales angles that work", g("angles_working")],
+      ["Sales angles to try", g("angles_to_try")],
+      ["Key touchpoints & events", g("touchpoints")],
+      ["Focus strategies", g("focus_strategies")],
+      ["My motivation — why", g("motivation_why")],
+      ["How life gets better", g("life_better")],
+      ["Consequence if I don't", g("consequence")],
+      ["New skills I need", g("new_skills")],
+    ] as Array<[string, string]>
+  ).filter(([, v]) => v.length > 0);
+
+  const funnelRows: Array<{ text: ReactNode; num: string; label: string }> = [
+    {
+      text: (
+        <>
+          Based on an Average Case Size (FYC) of <b>{money("avg_case_size") || "S$____"}</b>, I must close
+        </>
+      ),
+      num: d.hasGoal ? String(d.annual.cases) : "",
+      label: "Life Cases",
+    },
+    {
+      text: (
+        <>
+          Based on ONE Sale from <b>{d.closingRate}</b> Closing Interviews <span className="hint">(New FSC: 3, Club FSC: 2)</span>, I must have at least
+        </>
+      ),
+      num: d.hasGoal ? String(d.annual.closings) : "",
+      label: "Closing Interviews",
+    },
+    {
+      text: (
+        <>
+          Based on ONE Closing from <b>{d.openingToClosing}</b> Opening Interviews <span className="hint">(New FSC: 2.5, Club FSC: 2)</span>, I must have at least
+        </>
+      ),
+      num: d.hasGoal ? String(d.annual.openings) : "",
+      label: "Opening Interviews",
+    },
+    {
+      text: (
+        <>
+          Based on ONE Opening from <b>{d.setToOpening}</b> New Approaches <span className="hint">(Cold Leads: 5, New FSC: 3, Club FSC: 1.5)</span>, I must have at least
+        </>
+      ),
+      num: d.hasGoal ? String(d.annual.sets) : "",
+      label: "Approaches / Sets",
+    },
+  ];
 
   return (
-    <div className="pspv">
+    <div className="psv">
       <style>{`
-        .pspv { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 11px; line-height: 1.5; }
-        .pspv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
-        .pspv-kicker { letter-spacing: 4px; font-size: 10px; font-weight: 700; color: ${RED}; text-transform: uppercase; }
-        .pspv-title { font-size: 26px; font-weight: 800; margin: 6px 0 4px; }
-        .pspv-sub { color: #444; font-size: 11.5px; margin: 0; }
-        .pspv-rule { height: 3px; width: 60px; background: ${RED}; margin: 12px 0 16px; border-radius: 2px; }
-        .pspv h3 { font-size: 14px; font-weight: 800; margin: 16px 0 6px; border-bottom: 2px solid ${RED}; padding-bottom: 4px; break-inside: avoid; }
-        .pspv table { width: 100%; border-collapse: collapse; margin: 4px 0; break-inside: avoid; }
-        .pspv th, .pspv td { border: 1px solid #c8c8c8; padding: 6px 8px; text-align: left; }
-        .pspv th { background: #fbe7ec; color: #8a0c2e; font-size: 9.5px; text-transform: uppercase; letter-spacing: .4px; }
-        .pspv td.lab { background: #fafafa; font-weight: 600; }
-        .pspv .num { text-align: center; font-weight: 700; }
-        .pspv .tot { background: #fff1f5; color: ${RED}; text-align: center; font-weight: 800; }
-        .pspv .field { break-inside: avoid; margin: 6px 0; }
-        .pspv .field .l { font-weight: 700; font-size: 11px; }
-        .pspv .field .v { border-bottom: 1px solid #bbb; min-height: 15px; white-space: pre-wrap; padding: 1px 2px 3px; }
+        .psv { font-family: "Helvetica Neue", Arial, sans-serif; color: ${INK}; font-size: 10.5px; line-height: 1.4; }
+        .psv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+        .psv-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+        .psv-title { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
+        .psv-title .out { color: #fff; -webkit-text-stroke: 1.3px ${INK}; }
+        .psv-title .red { color: ${RED}; }
+        .psv-name { font-size: 11px; font-weight: 700; color: ${RED}; margin-top: 2px; }
+        .psv-tag { text-align: right; font-weight: 800; font-size: 11px; line-height: 1.15; }
+        .psv-tag .red { color: ${RED}; }
+        .psv table { width: 100%; border-collapse: collapse; margin: 0 0 14px; break-inside: avoid; }
+        .psv td, .psv th { border: 1px solid #222; padding: 5px 8px; vertical-align: middle; }
+        .redlabel { background: ${RED}; color: #fff; font-weight: 800; font-size: 12px; width: 130px; text-align: center; vertical-align: middle; }
+        .colhdr { background: #f0f0f0; font-weight: 800; text-align: center; text-transform: uppercase; font-size: 9.5px; letter-spacing: .5px; }
+        .rowname { font-weight: 600; width: 38%; }
+        .cell { height: 22px; text-align: center; }
+        .auto { background: #fafafa; }
+        .blackband { background: ${INK}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 11px; padding: 6px 10px; margin: 14px 0 0; break-inside: avoid; }
+        .funnel { margin-top: 0; }
+        .funnel td.ftext { width: 72%; font-size: 10.5px; }
+        .funnel td.ftext .hint { color: #777; font-size: 9px; }
+        .funnel td.fnum { text-align: center; font-size: 22px; font-weight: 800; width: 12%; }
+        .funnel td.flabel { text-align: center; font-weight: 700; font-size: 9.5px; color: #333; }
+        .targets th { background: ${INK}; color: #fff; text-align: center; font-size: 9px; text-transform: uppercase; letter-spacing: .3px; }
+        .targets td.num { text-align: center; font-weight: 800; font-size: 13px; }
+        .targets td.rl { background: #f0f0f0; font-weight: 800; font-size: 10px; }
+        .targets td.tot { text-align: center; font-weight: 800; color: ${RED}; font-size: 13px; background: #fff4f4; }
+        .redband { background: ${RED}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 11px; padding: 6px 10px; margin: 16px 0 8px; break-inside: avoid; }
+        .strat { break-inside: avoid; margin: 7px 0; }
+        .strat .l { font-weight: 800; font-size: 10px; }
+        .strat .v { border-bottom: 1px solid #aaa; min-height: 14px; white-space: pre-wrap; padding: 1px 2px 3px; }
+        .goalrow td { height: 22px; }
       `}</style>
 
-      <div className="pspv-kicker">FINternship &middot; Pre-RNF</div>
-      <div className="pspv-title">My Pledge Sheet</div>
-      <p className="pspv-sub">Goals worked backwards into the weekly activity I pledge to hold.</p>
-      <div className="pspv-rule" />
+      <div className="psv-head">
+        <div>
+          <div className="psv-title">
+            <span>MY </span>
+            <span className="out">PLEDGE </span>
+            <span className="red">SHEET</span>
+          </div>
+          {name && <div className="psv-name">{name}</div>}
+        </div>
+        <div className="psv-tag">
+          <div>TOGETHER</div>
+          <div>WE ARE</div>
+          <div className="red">POSSIBLE</div>
+        </div>
+      </div>
 
-      <h3>Production goals</h3>
+      {/* ── Production Goals ── */}
       <table>
-        <thead>
-          <tr>
-            <th style={{ width: "34%" }}> </th>
-            <th>Minimum</th>
-            <th>Stretched</th>
-          </tr>
-        </thead>
         <tbody>
-          <tr><td className="lab">Life FYC</td><td>{money("min_fyc")}</td><td>{money("stretch_fyc")}</td></tr>
-          <tr><td className="lab">Avg case size</td><td>{money("min_case_size")}</td><td>{money("stretch_case_size")}</td></tr>
-          <tr><td className="lab">Recognition (Clubs / MDRT)</td><td>{g("min_clubs") || "—"}</td><td>{g("stretch_clubs") || "—"}</td></tr>
+          <tr>
+            <td className="redlabel" rowSpan={5}>My Current Year Production Goals</td>
+            <td className="colhdr"> </td>
+            <td className="colhdr">Minimum</td>
+            <td className="colhdr">Stretched</td>
+          </tr>
+          <tr>
+            <td className="rowname">Life FYC</td>
+            <td className="cell">{money("min_fyc")}</td>
+            <td className="cell">{money("stretch_fyc")}</td>
+          </tr>
+          <tr>
+            <td className="rowname">Average Case Size (FYC)</td>
+            <td className="cell">{money("min_case_size")}</td>
+            <td className="cell">{money("stretch_case_size")}</td>
+          </tr>
+          <tr>
+            <td className="rowname">Life Cases <span style={{ color: "#888", fontWeight: 400 }}>(auto)</span></td>
+            <td className="cell auto">{lifeCases("min_fyc", "min_case_size")}</td>
+            <td className="cell auto">{lifeCases("stretch_fyc", "stretch_case_size")}</td>
+          </tr>
+          <tr>
+            <td className="rowname">Clubs / MDRT / Recognition</td>
+            <td className="cell">{g("min_clubs")}</td>
+            <td className="cell">{g("stretch_clubs")}</td>
+          </tr>
         </tbody>
       </table>
 
-      <h3>My target activities {d.hasGoal ? `(FYC S$${d.fycGoal.toLocaleString()} over ${d.months} months)` : ""}</h3>
+      {/* ── Current Year Goals ── */}
       <table>
-        <thead>
-          <tr>
-            <th>Funnel (annual)</th>
-            <th style={{ width: "22%" }}>Conversion</th>
-            <th style={{ width: "22%" }}>Target</th>
-          </tr>
-        </thead>
         <tbody>
-          <tr><td className="lab">Life Cases</td><td>FYC ÷ {money("avg_case_size")}</td><td className="num">{d.hasGoal ? d.annual.cases : "—"}</td></tr>
-          <tr><td className="lab">Closing Appts</td><td>× {d.closingRate} per sale</td><td className="num">{d.hasGoal ? d.annual.closings : "—"}</td></tr>
-          <tr><td className="lab">Opening Appts</td><td>× {d.openingToClosing} per closing</td><td className="num">{d.hasGoal ? d.annual.openings : "—"}</td></tr>
-          <tr><td className="lab">Appt Sets</td><td>× {d.setToOpening} per opening</td><td className="num">{d.hasGoal ? d.annual.sets : "—"}</td></tr>
+          <tr>
+            <td className="redlabel" rowSpan={4}>My Current Year Goals</td>
+            <td className="colhdr" style={{ width: "8%" }}> </td>
+            <td className="colhdr">Business</td>
+            <td className="colhdr">Personal</td>
+          </tr>
+          {[1, 2, 3].map((i) => (
+            <tr key={i} className="goalrow">
+              <td className="cell" style={{ fontWeight: 700 }}>{i}</td>
+              <td>{g(`business_goal_${i}`)}</td>
+              <td>{g(`personal_goal_${i}`)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      <h3>Pledge targets — over {d.months} months</h3>
-      <table>
+      {/* ── Targeted Activities ── */}
+      <div className="blackband">
+        My Targeted Activities Based on {d.hasGoal ? `S$${d.fycGoal.toLocaleString()} FYC` : "My Goal"}
+      </div>
+      <table className="funnel">
+        <tbody>
+          {funnelRows.map((r, i) => (
+            <tr key={i}>
+              <td className="ftext">{r.text}</td>
+              <td className="fnum">{r.num || "—"}</td>
+              <td className="flabel">{r.label}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* ── Activity targets table ── */}
+      <div className="blackband">
+        I Target To Achieve The Following Over {d.months} Months
+      </div>
+      <table className="targets">
         <thead>
           <tr>
-            <th>I must achieve…</th>
+            <th style={{ width: "22%" }}>I MUST!!!</th>
             <th>Sets ({POINTS.set}pt)</th>
             <th>Openings ({POINTS.opening}pts)</th>
             <th>Closings ({POINTS.closing}pts)</th>
@@ -97,49 +224,33 @@ export default function PledgeSheetPrintView({ values }: { values: WorksheetValu
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="lab">Monthly</td>
-            <td className="num">{d.hasGoal ? d.monthly.sets : "—"}</td>
-            <td className="num">{d.hasGoal ? d.monthly.openings : "—"}</td>
-            <td className="num">{d.hasGoal ? d.monthly.closings : "—"}</td>
-            <td className="num">{d.hasGoal ? d.monthly.cases : "—"}</td>
-            <td className="tot">{d.hasGoal ? d.monthlyPoints : "—"}</td>
-          </tr>
-          <tr>
-            <td className="lab">Weekly</td>
-            <td className="num">{d.hasGoal ? d.weekly.sets : "—"}</td>
-            <td className="num">{d.hasGoal ? d.weekly.openings : "—"}</td>
-            <td className="num">{d.hasGoal ? d.weekly.closings : "—"}</td>
-            <td className="num">{d.hasGoal ? d.weekly.cases : "—"}</td>
-            <td className="tot">{d.hasGoal ? d.weeklyPoints : "—"}</td>
-          </tr>
+          {([
+            { label: "Targeted Monthly", t: d.monthly, p: d.monthlyPoints },
+            { label: "Targeted Weekly", t: d.weekly, p: d.weeklyPoints },
+            {
+              label: "Targeted Daily",
+              t: daily,
+              p: round1(daily.sets * POINTS.set + daily.openings * POINTS.opening + daily.closings * POINTS.closing + daily.cases * POINTS.closed),
+            },
+          ] as const).map((row) => (
+            <tr key={row.label}>
+              <td className="rl">{row.label}</td>
+              <td className="num">{d.hasGoal ? row.t.sets : "—"}</td>
+              <td className="num">{d.hasGoal ? row.t.openings : "—"}</td>
+              <td className="num">{d.hasGoal ? row.t.closings : "—"}</td>
+              <td className="num">{d.hasGoal ? row.t.cases : "—"}</td>
+              <td className="tot">{d.hasGoal ? row.p : "—"}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      {(g("business_goal_1") || g("personal_goal_1")) && (
-        <>
-          <h3>Business &amp; personal goals</h3>
-          <table>
-            <thead>
-              <tr><th>Top 3 business goals</th><th>Top 3 personal goals</th></tr>
-            </thead>
-            <tbody>
-              {[1, 2, 3].map((i) => (
-                <tr key={i}>
-                  <td>{g(`business_goal_${i}`) || "—"}</td>
-                  <td>{g(`personal_goal_${i}`) || "—"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-
+      {/* ── Strategy & mindset ── */}
       {strategy.length > 0 && (
         <>
-          <h3>Strategy &amp; mindset</h3>
+          <div className="redband">My Strategy &amp; Mindset</div>
           {strategy.map(([label, v]) => (
-            <div key={label} className="field">
+            <div key={label} className="strat">
               <div className="l">{label}</div>
               <div className="v">{v}</div>
             </div>

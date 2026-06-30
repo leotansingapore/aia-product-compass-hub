@@ -1,13 +1,11 @@
 import { cellKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
+import { headline, personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
-// A print-only render of a worksheet that mirrors the downloadable PDF template:
-// AIA red accents, a kicker/title header, red-ruled section heads, and bordered
-// tables. Uses inline styles + a scoped <style> so the look survives Tailwind
-// purging and the browser's print colour stripping. Shown only while printing
-// (the builder mounts it inside [data-print-root]); window.print → Save as PDF.
-const RED = "#D31145";
-
+// A print/PDF render of a worksheet that mirrors the downloadable PDF template:
+// section heads ruled in the chosen accent colour, bordered tables, and the
+// learner's name. Uses inline styles + a scoped <style> so the look survives
+// Tailwind purging and the browser's colour stripping.
 const v = (values: WorksheetValues, id: string) => values[id] ?? "";
 
 function FieldValue({ value }: { value: string }) {
@@ -27,16 +25,19 @@ export default function WorksheetPrintView({
   schema: WorksheetBlock[];
   values: WorksheetValues;
 }) {
+  const scheme = schemeFor(values);
+  const name = personName(values);
+  const customHeadline = headline(values);
   return (
     <div className="wpv">
       <style>{`
         .wpv { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 11px; line-height: 1.5; }
         .wpv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
-        .wpv-kicker { letter-spacing: 4px; font-size: 10px; font-weight: 700; color: ${RED}; text-transform: uppercase; }
-        .wpv-title { font-size: 26px; font-weight: 800; margin: 6px 0 4px; }
+        .wpv-name { font-size: 11px; font-weight: 700; color: ${scheme.accent}; }
+        .wpv-title { font-size: 26px; font-weight: 800; margin: 4px 0 4px; }
         .wpv-sub { color: #444; font-size: 11.5px; margin: 0; max-width: 165mm; }
-        .wpv-rule { height: 3px; width: 60px; background: ${RED}; margin: 12px 0 18px; border-radius: 2px; }
-        .wpv-step { break-inside: avoid; margin: 16px 0 8px; border-bottom: 2px solid ${RED}; padding-bottom: 5px; }
+        .wpv-rule { height: 3px; width: 60px; background: ${scheme.accent}; margin: 12px 0 18px; border-radius: 2px; }
+        .wpv-step { break-inside: avoid; margin: 16px 0 8px; border-bottom: 2px solid ${scheme.accent}; padding-bottom: 5px; }
         .wpv-step h3 { font-size: 15px; font-weight: 800; margin: 0; }
         .wpv-step p { font-size: 10px; color: #666; font-style: italic; margin: 3px 0 0; }
         .wpv-field { break-inside: avoid; margin: 8px 0; }
@@ -45,15 +46,15 @@ export default function WorksheetPrintView({
         .wpv-value.box { border: 1px solid #cfcfcf; border-radius: 4px; min-height: 40px; padding: 5px 7px; }
         .wpv table { width: 100%; border-collapse: collapse; margin: 6px 0; break-inside: avoid; }
         .wpv th, .wpv td { border: 1px solid #c8c8c8; padding: 6px 8px; text-align: left; vertical-align: top; }
-        .wpv th { background: #fbe7ec; color: #8a0c2e; font-size: 9.5px; text-transform: uppercase; letter-spacing: .4px; }
+        .wpv th { background: ${scheme.tint}; color: ${scheme.deep}; font-size: 9.5px; text-transform: uppercase; letter-spacing: .4px; }
         .wpv td.rowlabel { background: #fafafa; font-weight: 600; font-size: 10px; }
         .wpv td .wpv-cell { min-height: 16px; white-space: pre-wrap; }
-        .wpv-note { background: #fff6f8; border-left: 3px solid ${RED}; padding: 8px 12px; font-size: 10.5px; color: #5a2230; margin: 10px 0; }
+        .wpv-note { background: ${scheme.tint}; border-left: 3px solid ${scheme.accent}; padding: 8px 12px; font-size: 10.5px; color: ${scheme.deep}; margin: 10px 0; }
         .wpv-table-label { font-size: 11px; font-weight: 700; margin: 8px 0 2px; }
       `}</style>
 
-      <div className="wpv-kicker">FINternship &middot; Pre-RNF</div>
-      <div className="wpv-title">{title}</div>
+      {name && <div className="wpv-name">{name}</div>}
+      <div className="wpv-title">{customHeadline || title}</div>
       <p className="wpv-sub">{subtitle}</p>
       <div className="wpv-rule" />
 

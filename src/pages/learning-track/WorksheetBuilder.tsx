@@ -21,6 +21,8 @@ import WorksheetForm from "@/components/worksheets/WorksheetForm";
 import WorksheetPrintView from "@/components/worksheets/WorksheetPrintView";
 import PledgeSheetCalculator from "@/components/worksheets/PledgeSheetCalculator";
 import PledgeSheetPrintView from "@/components/worksheets/PledgeSheetPrintView";
+import CustomizePanel from "@/components/worksheets/CustomizePanel";
+import { personName } from "@/features/pre-rnf-worksheets/customize";
 import { WORKSHEET_SCHEMAS } from "@/features/pre-rnf-worksheets/schema";
 import {
   WORKSHEETS,
@@ -95,6 +97,7 @@ export default function WorksheetBuilder() {
   const [printing, setPrinting] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const hydrated = useRef(false);
+  const printRef = useRef<HTMLDivElement>(null);
 
   const valid = isWorksheetSlug(slug);
 
@@ -165,14 +168,34 @@ export default function WorksheetBuilder() {
     }
   };
 
-  const downloadPdf = () => {
-    // Switch to the clean read-only render, let it paint, then open the print
-    // dialog where the browser's "Save as PDF" produces the file.
+  const downloadPdf = async () => {
+    // Mount the off-screen template view, let it paint, then render it straight
+    // to a PDF file the browser downloads — no print dialog.
     setPrinting(true);
-    setTimeout(() => {
-      window.print();
+    await new Promise((r) => setTimeout(r, 180));
+    try {
+      const el = printRef.current;
+      if (el) {
+        const html2pdf = (await import("html2pdf.js")).default;
+        const who = personName(values);
+        const filename = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}.pdf`;
+        await html2pdf()
+          .set({
+            margin: [8, 8, 10, 8],
+            filename,
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+            pagebreak: { mode: ["css", "legacy"] },
+          })
+          .from(el)
+          .save();
+      }
+    } catch {
+      toast.error("Couldn't generate the PDF — please try again.");
+    } finally {
       setPrinting(false);
-    }, 100);
+    }
   };
 
   if (!valid) return <WorksheetHub />;
@@ -212,12 +235,18 @@ export default function WorksheetBuilder() {
         </div>
       )}
 
-      <div data-no-print className="rounded-2xl border bg-card p-4 sm:p-8">
+      {!loaded.isLoading && (
+        <CustomizePanel
+          values={values}
+          onChange={onChange}
+          readOnly={readOnly}
+          showHeadline={!isPledge}
+        />
+      )}
+
+      <div className="rounded-2xl border bg-card p-4 sm:p-8">
         <div className="mb-5 border-b pb-4">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            FINternship · Pre-RNF
-          </p>
-          <h1 className="mt-1 font-serif text-xl font-bold sm:text-2xl">{meta.title}</h1>
+          <h1 className="font-serif text-xl font-bold sm:text-2xl">{meta.title}</h1>
           <p className="mt-1 text-sm text-muted-foreground">{meta.short}</p>
         </div>
 
@@ -232,9 +261,20 @@ export default function WorksheetBuilder() {
         )}
       </div>
 
-      {/* Template-styled export — mounted only while printing, becomes the PDF. */}
+      {/* Off-screen template view, rendered straight to PDF on download. */}
       {printing && (
-        <div data-print-root style={{ position: "absolute", left: 0, top: 0, width: "100%" }}>
+        <div
+          ref={printRef}
+          style={{
+            position: "fixed",
+            left: "-10000px",
+            top: 0,
+            width: "794px",
+            background: "#fff",
+            padding: "24px",
+            zIndex: -1,
+          }}
+        >
           {isPledge ? (
             <PledgeSheetPrintView values={values} />
           ) : (
