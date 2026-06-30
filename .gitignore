@@ -52,3 +52,6 @@ docs/first-60-days/STRUCTURE.md
 docs/first-60-days/_source-supplementary/right-questions-ingest/
 docs/first-60-days/_source-supplementary/behavioural-competency-ingest/
 docs/first-60-days/_source-supplementary/sales-training-ingest/
+
+# Question-bank audit working files (local only)
+_audit/
