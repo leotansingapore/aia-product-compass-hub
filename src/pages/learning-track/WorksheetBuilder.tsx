@@ -181,7 +181,10 @@ export default function WorksheetBuilder() {
       await new Promise((r) => setTimeout(r, 60));
       const html2pdf = (await import("html2pdf.js")).default;
       const who = personName(values);
-      const filename = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}.pdf`;
+      const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
+      // Strip characters that are illegal in filenames (/, \, :, *, ?, ", <, >, |)
+      // so a name like "Jane/Tan" can't break or redirect the download.
+      const filename = `${rawName.replace(/[\\/:*?"<>|]+/g, "-").trim() || "worksheet"}.pdf`;
       await html2pdf()
         .set({
           margin: [8, 8, 10, 8],
