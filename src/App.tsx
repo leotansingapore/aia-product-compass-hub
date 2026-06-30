@@ -206,6 +206,7 @@ const App = () => (
                     <Route path="/review-bank" element={<RequireAuth><RequireTier feature="question-banks"><ReviewBank /></RequireTier></RequireAuth>} />
                     <Route path="/review-all" element={<RequireAuth><RequireTier feature="question-banks"><ReviewAll /></RequireTier></RequireAuth>} />
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
+                    <Route path="/leaderboard/:tab" element={<RequireAuth><Leaderboard /></RequireAuth>} />
                     <Route path="/library" element={<RequireAuth><Library /></RequireAuth>}>
                       <Route path="products" element={<LibraryProductsTab />} />
                       <Route path="question-banks" element={<LibraryQuestionBanksTab />} />

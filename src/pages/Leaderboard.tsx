@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useNavigate, useParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -327,6 +328,9 @@ export default function Leaderboard() {
   const { tier } = useUserTier();
   const { isAdmin, isMasterAdmin } = usePermissions();
   const admin = isAdmin() || isMasterAdmin();
+  const { tab } = useParams<{ tab?: string }>();
+  const navigate = useNavigate();
+  const activeTab = tab === "tracker" ? "tracker" : "rankings";
   const scopedTier =
     tier === "explorer" || tier === "papers_taker" || tier === "post_rnf"
       ? tier
@@ -388,7 +392,13 @@ export default function Leaderboard() {
       </div>
 
       {admin ? (
-        <Tabs defaultValue="rankings" className="space-y-5">
+        <Tabs
+          value={activeTab}
+          onValueChange={(v) =>
+            navigate(v === "tracker" ? "/leaderboard/tracker" : "/leaderboard")
+          }
+          className="space-y-5"
+        >
           <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:inline-grid">
             <TabsTrigger value="rankings">Rankings</TabsTrigger>
             <TabsTrigger value="tracker">Assignment Tracker</TabsTrigger>

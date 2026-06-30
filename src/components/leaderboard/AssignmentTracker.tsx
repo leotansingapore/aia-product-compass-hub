@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Check, Loader2, Search, Users2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,12 +17,17 @@ function HeaderCell({ col, count, total }: { col: TrackerColumn; count: number; 
   return (
     <th
       className="sticky top-0 z-10 bg-muted/60 px-1.5 py-2 text-center align-bottom backdrop-blur"
-      title={`Assignment ${col.order}: ${col.title} — ${count}/${total} submitted`}
+      title={`Assignment ${col.order}: ${col.title} — ${count}/${total} submitted. Click to open the assignment.`}
     >
-      <div className="mx-auto flex w-9 flex-col items-center gap-0.5">
-        <span className="text-xs font-bold tabular-nums text-foreground">{col.order}</span>
+      <Link
+        to={`/learning-track/pre-rnf/assignments/${col.urlSlug}`}
+        className="mx-auto flex w-9 flex-col items-center gap-0.5 rounded-md py-0.5 transition-colors hover:bg-primary/10"
+      >
+        <span className="text-xs font-bold tabular-nums text-primary underline-offset-2 hover:underline">
+          {col.order}
+        </span>
         <span className="text-[10px] tabular-nums text-muted-foreground">{count}</span>
-      </div>
+      </Link>
     </th>
   );
 }
@@ -164,6 +170,29 @@ export default function AssignmentTracker({ enabled }: { enabled: boolean }) {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {columns.length > 0 && (
+        <div className="rounded-lg border bg-muted/20 p-3">
+          <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            What each number is
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {columns.map((col) => (
+              <Link
+                key={col.statusKey}
+                to={`/learning-track/pre-rnf/assignments/${col.urlSlug}`}
+                className="inline-flex items-center gap-1.5 rounded-md border bg-background px-2 py-1 text-xs transition-colors hover:border-primary/40 hover:bg-primary/5"
+                title={col.short}
+              >
+                <span className="flex h-4 min-w-4 items-center justify-center rounded bg-primary/10 px-1 text-[10px] font-bold tabular-nums text-primary">
+                  {col.order}
+                </span>
+                <span className="max-w-[180px] truncate text-foreground/80">{col.title}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
