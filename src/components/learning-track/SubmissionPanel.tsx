@@ -65,8 +65,21 @@ export function SubmissionPanel({ itemId, userId, readOnly = false }: Props) {
     setLinkUrl("");
   };
 
+  // Let learners paste an image straight from the clipboard (screenshot, copied
+  // image) instead of having to save it to a file first, then upload it.
+  const handlePaste = (e: React.ClipboardEvent) => {
+    if (!canEdit) return;
+    const imageItem = Array.from(e.clipboardData.items).find((it) => it.type.startsWith("image/"));
+    if (!imageItem) return;
+    const blob = imageItem.getAsFile();
+    if (!blob) return;
+    e.preventDefault();
+    const ext = (blob.type.split("/")[1] || "png").replace("jpeg", "jpg");
+    handleFile(new File([blob], `pasted-${Date.now()}.${ext}`, { type: blob.type }));
+  };
+
   return (
-    <div className="rounded border bg-muted/30 p-4 space-y-3">
+    <div className="rounded border bg-muted/30 p-4 space-y-3" onPaste={handlePaste}>
       <div className="flex items-center justify-between">
         <h4 className="text-sm font-semibold">Submission</h4>
         {submission && (
@@ -121,6 +134,9 @@ export function SubmissionPanel({ itemId, userId, readOnly = false }: Props) {
             />
             <span>Attach file</span>
           </label>
+          <p className="text-xs text-muted-foreground">
+            …or copy an image and press <kbd className="rounded border bg-muted px-1">⌘/Ctrl+V</kbd> here to paste it in.
+          </p>
           <div className="flex gap-2">
             <input
               type="url"
