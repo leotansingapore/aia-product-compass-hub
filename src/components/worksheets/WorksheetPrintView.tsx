@@ -65,7 +65,6 @@ export default function WorksheetPrintView({
         .wpv-cover .cprep { font-size: 16px; }
         .wpv-cover .cprep b { color: ${scheme.accent}; }
         .wpv-cover .cdate { font-size: 13px; color: #666; margin-top: 4px; }
-        .wpv-cover .cfoot { position: absolute; bottom: 26px; left: 6px; font-size: 11px; color: #999; letter-spacing: 1px; }
         .wpv-name { font-size: 14px; font-weight: 700; color: ${scheme.accent}; }
         .wpv-title { font-size: 30px; font-weight: 800; margin: 4px 0 4px; }
         .wpv-sub { color: #444; font-size: 14px; margin: 0; max-width: 165mm; }
@@ -113,7 +112,6 @@ export default function WorksheetPrintView({
             {schema.filter((b) => b.kind === "step" && /^\d+\./.test(b.label)).length} sections
             {coverDate ? ` · ${coverDate}` : ""}
           </div>
-          <div className="cfoot">FINTERNSHIP · PRE-RNF</div>
         </div>
       ) : (
         <>
