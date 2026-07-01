@@ -349,6 +349,50 @@ export default function WorksheetPrintView({
             );
           }
 
+          case "links":
+            return (
+              <div key={block.id} className="wpv-field">
+                {block.label && <div className="wpv-table-label">{block.label}</div>}
+                {block.links.map((l) => (
+                  <div key={l.url} style={{ fontSize: "12.5px", margin: "3px 0" }}>
+                    <b style={{ color: scheme.accent }}>{l.label}:</b>{" "}
+                    <span style={{ color: "#555" }}>{l.url.replace(/^https?:\/\//, "")}</span>
+                  </div>
+                ))}
+              </div>
+            );
+
+          case "objections": {
+            const extra = Math.max(0, parseInt(values[`${block.id}__rows`] || "0", 10));
+            const rowCount = (block.rows ?? 5) + extra;
+            return (
+              <div key={block.id} className="wpv-field">
+                {block.label && <div className="wpv-table-label">{block.label}</div>}
+                <table>
+                  <thead>
+                    <tr>
+                      <th style={{ width: "34%" }}>Objection</th>
+                      <th>How I'll handle it</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.from({ length: rowCount }).map((_, r) => {
+                      const type = (values[`${block.id}__r${r}_type`] ?? "").trim();
+                      const obj = type === "__other" ? (values[`${block.id}__r${r}_other`] ?? "").trim() : type;
+                      const resp = (values[`${block.id}__r${r}_resp`] ?? "").trim();
+                      return (
+                        <tr key={r}>
+                          <td className="rowlabel">{obj || " "}</td>
+                          <td><div className="wpv-cell">{resp || " "}</div></td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
+
           default:
             return null;
         }

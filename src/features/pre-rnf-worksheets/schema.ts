@@ -23,6 +23,17 @@ export type WorksheetBlock =
   | { kind: "image"; id: string; label?: string; hint?: string }
   | { kind: "timetable"; id: string }
   | { kind: "eps"; id: string }
+  | { kind: "links"; id: string; label?: string; links: Array<{ label: string; url: string }> }
+  | {
+      kind: "objections";
+      id: string;
+      label?: string;
+      hint?: string;
+      /** Preset objections the learner can pick per row (plus "Other"). */
+      options: string[];
+      /** Starting number of rows (they can add more). */
+      rows?: number;
+    }
   | {
       kind: "checklist";
       id: string;
@@ -38,6 +49,21 @@ export type WorksheetBlock =
 
 // Tri-state options for "status" checklist items (policy-summary progress etc.).
 export const STATUS_OPTIONS = ["Not done", "In progress", "Done"] as const;
+
+// Common warm-market objections to choose from (plus "Other" and anything from
+// the Objections library).
+export const OBJECTION_OPTIONS = [
+  "ETFs",
+  "Stocks",
+  "Robo advisors",
+  "DIY",
+  "Too long lock-in",
+  "Not liquid",
+  "Not flexible",
+  "Fees too high",
+  "Using another company",
+  "Risk averse",
+] as const;
 
 export function cellKey(tableId: string, r: number, c: number): string {
   return `${tableId}__r${r}c${c}`;
@@ -148,6 +174,11 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   },
 
   { kind: "step", id: "ssocial", label: "5. My social prospecting & personal brand", hint: "How you'll build a pipeline online — the plan, the content, and the brand people remember you by." },
+  {
+    kind: "links",
+    id: "social_refs",
+    links: [{ label: "Content Studio — generate your content", url: "https://content-studio-beige-eta.vercel.app/generate" }],
+  },
   { kind: "textarea", id: "social_plan", label: "My social prospecting game plan (which platforms, how often, what's the goal)", rows: 3 },
   { kind: "textarea", id: "social_content", label: "The content I'll create — my 3–4 content pillars / themes", rows: 3 },
   { kind: "textarea", id: "social_brand", label: "My personal brand — who I am, my niche, and the hook people remember", rows: 3 },
@@ -157,11 +188,28 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   { kind: "timetable", id: "timetable" },
 
   { kind: "step", id: "s5", label: "7. My warm prospecting system", hint: "This is exactly how you'll reach your warm market. Write it word for word — the way you'd send it and say it — so you're never improvising." },
+  {
+    kind: "links",
+    id: "warm_refs",
+    label: "Reference these for your outreach",
+    links: [
+      { label: "Warm-market scripts", url: "/scripts?audience=warm-market" },
+      { label: "Warm-market objection handling", url: "/objections?audience=warm-market" },
+    ],
+  },
   { kind: "textarea", id: "warm_outreach", label: "How I'll reach out to my warm market (who first, on what channel, how many a day)", rows: 2 },
   { kind: "textarea", id: "warm_text", label: "My initial text message — word for word", rows: 3 },
   { kind: "textarea", id: "warm_call", label: "My initial call — word for word", rows: 3 },
   { kind: "textarea", id: "call_purpose", label: "My purpose for the call (market survey / setting an appointment)", rows: 2 },
   { kind: "textarea", id: "call_track", label: "How I'll track every prospect & follow up", rows: 2 },
+  {
+    kind: "objections",
+    id: "objections",
+    label: "Objection handling — what objections have you met, or do you foresee, and how will you handle them?",
+    hint: "Handle at least 5. Pick an objection (or the Objections library above) and write how you'll respond, row by row.",
+    options: [...OBJECTION_OPTIONS],
+    rows: 5,
+  },
   {
     kind: "checklist",
     id: "prospect_ready",
@@ -171,7 +219,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
       { id: "visionboard", text: "Have I done my vision board?", type: "check" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
-      { id: "flows_conf", text: "Am I confident of my flows?", type: "scale" },
+      { id: "flows_conf", text: "Am I confident of my appointment flows?", type: "scale" },
       { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },
       { id: "slidedeck", text: "Do I have my own slide deck for each CST?", type: "check" },
       { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },

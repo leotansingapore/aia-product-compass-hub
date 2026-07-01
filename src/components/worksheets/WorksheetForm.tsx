@@ -3,8 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { cellKey, STATUS_OPTIONS, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
+import { ExternalLink } from "lucide-react";
 import TimetableGrid from "@/components/worksheets/TimetableGrid";
 import EpsTargetTable from "@/components/worksheets/EpsTargetTable";
+import ObjectionsTable from "@/components/worksheets/ObjectionsTable";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 function statusActiveClass(opt: string): string {
@@ -198,6 +200,49 @@ export default function WorksheetForm({
                 onChange={onChange}
                 readOnly={readOnly}
               />
+            );
+
+          case "links":
+            return (
+              <div key={block.id} className="space-y-1.5">
+                {block.label && (
+                  <p className="text-sm font-semibold text-foreground">{block.label}</p>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  {block.links.map((l) => (
+                    <a
+                      key={l.url}
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border bg-card px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:border-primary/40 hover:bg-primary/5"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+
+          case "objections":
+            return (
+              <div key={block.id} className="space-y-2">
+                {block.label && (
+                  <p className="text-sm font-semibold text-foreground">{block.label}</p>
+                )}
+                {block.hint && (
+                  <p className="text-xs italic text-muted-foreground">{block.hint}</p>
+                )}
+                <ObjectionsTable
+                  id={block.id}
+                  options={block.options}
+                  baseRows={block.rows ?? 5}
+                  values={values}
+                  onChange={onChange}
+                  readOnly={readOnly}
+                />
+              </div>
             );
 
           case "image": {
