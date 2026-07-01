@@ -44,6 +44,12 @@ import {
 } from "@/features/first-60-days/assignments";
 import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import { notifyAssignmentSubmitted } from "@/lib/notifyAssignmentSubmitted";
+import {
+  loadAssignmentDraft,
+  saveAssignmentDraft,
+  deleteAssignmentDraft,
+  draftHasContent,
+} from "@/features/first-60-days/assignmentDrafts";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
@@ -779,6 +785,85 @@ function SubmissionPanel({
     writeDraft(userId, statusKey, { t: text, f: formValues });
   }, [text, formValues, submission, userId, statusKey]);
 
+  // Account-level draft: also save in-progress answers to the learner's account
+  // (a store separate from graded submissions), so work survives a new device /
+  // logout and admins can see it before it's submitted. rowId avoids a duplicate
+  // insert while the first insert is in flight; lastSaved holds what's on the
+  // server so only real changes are pushed.
+  const draftRowId = useRef<string | null>(null);
+  const draftLastSaved = useRef<string | null>(null);
+  const draftSaving = useRef(false);
+  const draftHydrated = useRef(false);
+
+  useEffect(() => {
+    draftHydrated.current = false;
+    draftRowId.current = null;
+    draftLastSaved.current = null;
+  }, [statusKey, userId, submission?.id]);
+
+  // Load the account draft once. Adopt it only if there's no local content yet,
+  // so we never clobber what the learner is already typing.
+  useEffect(() => {
+    if (submission || !userId || draftHydrated.current) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const row = await loadAssignmentDraft(userId, statusKey);
+        if (cancelled) return;
+        draftRowId.current = row?.id ?? null;
+        draftLastSaved.current = row ? JSON.stringify(row.blob) : null;
+        const localEmpty =
+          !text.trim() && !Object.values(formValues).some((v) => v.trim().length > 0);
+        if (localEmpty && row && draftHasContent(row.blob)) {
+          setText(row.blob.t ?? "");
+          setFormValues(row.blob.f ?? {});
+        }
+      } catch {
+        /* offline / RLS — localStorage still covers it */
+      } finally {
+        if (!cancelled) draftHydrated.current = true;
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submission, userId, statusKey]);
+
+  useEffect(() => {
+    if (submission || !userId || !draftHydrated.current) return;
+    const blob = { t: text, f: formValues };
+    if (!draftHasContent(blob)) return;
+    const serialized = JSON.stringify(blob);
+    if (serialized === draftLastSaved.current) return;
+    let cancelled = false;
+    const uid = userId;
+    const attempt = () => {
+      if (cancelled) return;
+      if (draftSaving.current) {
+        window.setTimeout(attempt, 400);
+        return;
+      }
+      draftSaving.current = true;
+      saveAssignmentDraft(uid, statusKey, blob, draftRowId.current)
+        .then((id) => {
+          draftRowId.current = id;
+          draftLastSaved.current = serialized;
+        })
+        .catch(() => {
+          /* keep localStorage; next edit retries */
+        })
+        .finally(() => {
+          draftSaving.current = false;
+        });
+    };
+    const timer = window.setTimeout(attempt, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [text, formValues, submission, userId, statusKey]);
+
   const MAX_MB = 500;
 
   if (submission && !editing && !appendMode) {
@@ -921,6 +1006,10 @@ function SubmissionPanel({
       });
       toast.success(appendMode ? `${labels.cap} logged` : "Assignment submitted");
       clearDraft(userId, statusKey);
+      // The account draft has served its purpose now the graded submission exists.
+      draftRowId.current = null;
+      draftLastSaved.current = null;
+      void deleteAssignmentDraft(userId, statusKey).catch(() => {});
       onSubmitted();
       if (appendMode) {
         // Multi-submission: clear the form so the learner can log the next

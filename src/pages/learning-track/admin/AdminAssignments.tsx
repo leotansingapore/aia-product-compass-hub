@@ -18,6 +18,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { loadAllAssignments, type Assignment } from "@/features/first-60-days/assignments";
+import {
+  loadAllAssignmentDrafts,
+  draftHasContent,
+  type AssignmentDraftBlob,
+  type AssignmentDraftRow as DraftRow,
+} from "@/features/first-60-days/assignmentDrafts";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
@@ -54,7 +60,10 @@ type LearnerRow = {
   name: string;
   email: string | null;
   submissions: Record<string, SubmissionRow>;
+  /** In-progress (unsubmitted) drafts, keyed by assignment status_key. */
+  drafts: Record<string, AssignmentDraftBlob>;
   submittedCount: number;
+  draftCount: number;
 };
 
 function personLabel(p: ProfileRow | undefined, fallbackId: string): string {
@@ -69,21 +78,26 @@ function personLabel(p: ProfileRow | undefined, fallbackId: string): string {
 
 async function fetchAll(): Promise<{
   rows: SubmissionRow[];
+  drafts: DraftRow[];
   profiles: Map<string, ProfileRow>;
   assignments: Assignment[];
 }> {
-  const [subRes, assignments] = await Promise.all([
+  const [subRes, assignments, drafts] = await Promise.all([
     (supabase.from as any)("assignment_submissions")
       .select("id, user_id, item_id, submission_text, file_url, file_name, submitted_at, hidden_from_gallery")
       .eq("product_id", PRODUCT_ID)
       .order("submitted_at", { ascending: false })
       .range(0, 9999),
     loadAllAssignments(),
+    loadAllAssignmentDrafts(),
   ]);
   if (subRes.error) throw subRes.error;
   const rows = (subRes.data ?? []) as SubmissionRow[];
-  const userIds = Array.from(new Set(rows.map((r) => r.user_id)));
-  if (userIds.length === 0) return { rows, profiles: new Map(), assignments };
+  // Profiles for everyone with a submission OR an in-progress draft.
+  const userIds = Array.from(
+    new Set([...rows.map((r) => r.user_id), ...drafts.map((d) => d.userId)]),
+  );
+  if (userIds.length === 0) return { rows, drafts, profiles: new Map(), assignments };
   const { data: profiles, error: profErr } = await supabase
     .from("profiles")
     .select("user_id, display_name, email, first_name, last_name")
@@ -91,6 +105,7 @@ async function fetchAll(): Promise<{
   if (profErr) throw profErr;
   return {
     rows,
+    drafts,
     profiles: new Map((profiles ?? []).map((p: ProfileRow) => [p.user_id, p])),
     assignments,
   };
@@ -98,30 +113,56 @@ async function fetchAll(): Promise<{
 
 function rollUp(
   rows: SubmissionRow[],
+  drafts: DraftRow[],
   profiles: Map<string, ProfileRow>,
   assignments: Assignment[],
 ): LearnerRow[] {
-  const byUser = new Map<string, Record<string, SubmissionRow>>();
+  const validKeys = new Set(assignments.map((a) => a.frontmatter.status_key));
+  const bySubmission = new Map<string, Record<string, SubmissionRow>>();
   for (const r of rows) {
-    const forUser = byUser.get(r.user_id) ?? {};
+    const forUser = bySubmission.get(r.user_id) ?? {};
     // Most recent first in query order; keep first seen per item.
     if (!forUser[r.item_id]) forUser[r.item_id] = r;
-    byUser.set(r.user_id, forUser);
+    bySubmission.set(r.user_id, forUser);
   }
+  const byDraft = new Map<string, Record<string, AssignmentDraftBlob>>();
+  for (const d of drafts) {
+    if (!validKeys.has(d.statusKey)) continue;
+    const forUser = byDraft.get(d.userId) ?? {};
+    if (!forUser[d.statusKey]) forUser[d.statusKey] = d.blob;
+    byDraft.set(d.userId, forUser);
+  }
+
+  const userIds = new Set<string>([...bySubmission.keys(), ...byDraft.keys()]);
   const out: LearnerRow[] = [];
-  for (const [userId, submissions] of byUser) {
+  for (const userId of userIds) {
+    const submissions = bySubmission.get(userId) ?? {};
+    const allDrafts = byDraft.get(userId) ?? {};
+    // Only surface a draft where there's no real submission for that assignment.
+    const drafts: Record<string, AssignmentDraftBlob> = {};
+    for (const [key, blob] of Object.entries(allDrafts)) {
+      if (!submissions[key] && draftHasContent(blob)) drafts[key] = blob;
+    }
     const submittedCount = assignments.filter(
       (a) => !!submissions[a.frontmatter.status_key],
     ).length;
+    const draftCount = assignments.filter((a) => !!drafts[a.frontmatter.status_key]).length;
     out.push({
       userId,
       name: personLabel(profiles.get(userId), userId),
       email: profiles.get(userId)?.email ?? null,
       submissions,
+      drafts,
       submittedCount,
+      draftCount,
     });
   }
-  out.sort((a, b) => b.submittedCount - a.submittedCount || a.name.localeCompare(b.name));
+  out.sort(
+    (a, b) =>
+      b.submittedCount - a.submittedCount ||
+      b.draftCount - a.draftCount ||
+      a.name.localeCompare(b.name),
+  );
   return out;
 }
 
@@ -212,7 +253,7 @@ export default function AdminAssignments() {
 
   const learners = useMemo(() => {
     if (!query.data) return [] as LearnerRow[];
-    return rollUp(query.data.rows, query.data.profiles, query.data.assignments);
+    return rollUp(query.data.rows, query.data.drafts, query.data.profiles, query.data.assignments);
   }, [query.data]);
 
   const assignments = query.data?.assignments ?? [];
@@ -257,7 +298,7 @@ export default function AdminAssignments() {
     return (
       <Card>
         <CardContent className="p-6 text-sm text-muted-foreground">
-          No assignment submissions yet.
+          No assignment submissions or in-progress drafts yet.
         </CardContent>
       </Card>
     );
@@ -267,8 +308,9 @@ export default function AdminAssignments() {
     <div className="space-y-3">
       <Card>
         <CardContent className="p-4 text-sm text-muted-foreground">
-          One row per learner. Click a row to see each assignment they've submitted.
-          Counts show how many of the {assignments.length} assignments are in.
+          One row per learner. Click a row to see each assignment they've submitted — plus any they've
+          started but not submitted yet (shown as <span className="font-medium text-amber-600 dark:text-amber-400">In progress</span>).
+          Counts show submitted / {assignments.length}.
         </CardContent>
       </Card>
 
@@ -300,16 +342,26 @@ export default function AdminAssignments() {
                     <div className="text-xs text-muted-foreground truncate">{l.email}</div>
                   )}
                 </div>
-                <Badge
-                  variant="secondary"
-                  className={cn(
-                    "text-[10px] font-semibold uppercase tracking-wide",
-                    l.submittedCount === assignments.length &&
-                      "bg-green-500/15 text-green-700 dark:text-green-300 border-green-500/30",
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {l.draftCount > 0 && (
+                    <Badge
+                      variant="outline"
+                      className="text-[10px] font-semibold uppercase tracking-wide border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    >
+                      {l.draftCount} in progress
+                    </Badge>
                   )}
-                >
-                  {l.submittedCount} / {assignments.length}
-                </Badge>
+                  <Badge
+                    variant="secondary"
+                    className={cn(
+                      "text-[10px] font-semibold uppercase tracking-wide",
+                      l.submittedCount === assignments.length &&
+                        "bg-green-500/15 text-green-700 dark:text-green-300 border-green-500/30",
+                    )}
+                  >
+                    {l.submittedCount} / {assignments.length}
+                  </Badge>
+                </div>
               </button>
 
               {isOpen && (
@@ -317,6 +369,9 @@ export default function AdminAssignments() {
                   {assignments.map((a) => {
                     const sub = l.submissions[a.frontmatter.status_key];
                     const formValues = parseFormValues(sub?.submission_text);
+                    const draft = !sub ? l.drafts[a.frontmatter.status_key] : undefined;
+                    const draftFields = draft?.f ?? {};
+                    const draftText = (draft?.t ?? "").trim();
                     return (
                       <div key={a.slug} className="p-4 space-y-3">
                         <div className="flex flex-wrap items-start justify-between gap-2">
@@ -330,6 +385,13 @@ export default function AdminAssignments() {
                             <Badge className="bg-green-500/15 text-green-700 dark:text-green-300 border-green-500/30 text-[10px] font-semibold uppercase shrink-0">
                               Submitted
                             </Badge>
+                          ) : draft ? (
+                            <Badge
+                              variant="outline"
+                              className="border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] font-semibold uppercase shrink-0"
+                            >
+                              In progress
+                            </Badge>
                           ) : (
                             <Badge variant="outline" className="text-[10px] font-semibold uppercase shrink-0">
                               Not yet
@@ -340,6 +402,44 @@ export default function AdminAssignments() {
                         {sub && (
                           <div className="text-xs text-muted-foreground">
                             Submitted {sub.submitted_at ? new Date(sub.submitted_at).toLocaleString() : "—"}
+                          </div>
+                        )}
+
+                        {draft && (
+                          <div className="space-y-2 rounded-md border border-amber-500/30 bg-amber-500/5 p-3">
+                            <div className="text-[11px] font-medium text-amber-600 dark:text-amber-400">
+                              Started but not submitted yet — latest saved answers.
+                            </div>
+                            {(() => {
+                              const fieldDefs =
+                                a.frontmatter.form_fields?.filter((f) => f.kind !== "section") ?? [];
+                              const entries = fieldDefs.length
+                                ? fieldDefs
+                                    .map((f) => [f.label, (draftFields[f.label] ?? "").trim()] as const)
+                                    .filter(([, v]) => v.length > 0)
+                                : Object.entries(draftFields)
+                                    .map(([k, v]) => [k, (v ?? "").trim()] as const)
+                                    .filter(([, v]) => v.length > 0);
+                              return (
+                                <>
+                                  {entries.map(([label, value]) => (
+                                    <div key={label} className="rounded-md border bg-background p-3">
+                                      <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+                                        {label}
+                                      </div>
+                                      <div className="text-sm whitespace-pre-wrap break-words">
+                                        {value}
+                                      </div>
+                                    </div>
+                                  ))}
+                                  {draftText && (
+                                    <div className="rounded-md border bg-background p-3 text-sm whitespace-pre-wrap break-words">
+                                      {draftText}
+                                    </div>
+                                  )}
+                                </>
+                              );
+                            })()}
                           </div>
                         )}
 
