@@ -148,7 +148,7 @@ export default function WorksheetPrintView({
                     block.label
                   )}
                 </h3>
-                {block.hint && <p>{block.hint}</p>}
+                {block.pdfHint && <p>{block.pdfHint}</p>}
               </div>
             );
           }

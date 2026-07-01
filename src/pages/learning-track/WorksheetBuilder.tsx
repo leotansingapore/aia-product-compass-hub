@@ -318,19 +318,29 @@ export default function WorksheetBuilder() {
       const hostTop = holder.getBoundingClientRect().top;
       type Block = { top: number; bottom: number; heading: boolean; breakAfter: boolean };
       const blocks: Block[] = [];
-      const headingCls = ["wpv-step", "wpv-table-label", "blackband", "redband"];
-      for (const child of Array.from(root.children)) {
-        if (child.tagName === "STYLE") continue;
-        const r = child.getBoundingClientRect();
-        const top = (r.top - hostTop) * scale;
-        const bottom = (r.bottom - hostTop) * scale;
-        if (bottom - top < 1) continue;
-        const el = child as HTMLElement;
-        const heading = headingCls.some((c) => el.classList.contains(c));
-        // The cover page always gets a page to itself.
-        const breakAfter = el.classList.contains("wpv-cover");
-        blocks.push({ top, bottom, heading, breakAfter });
-      }
+      const headingCls = ["wpv-step", "wpv-table-label", "blackband", "redband", "wpv-label"];
+      // Collect measurable blocks in document order. A block taller than a whole
+      // page (e.g. a long checklist) is broken into its own children so it splits
+      // at an item boundary instead of being cut mid-item.
+      const collect = (el: Element) => {
+        for (const child of Array.from(el.children)) {
+          if (child.tagName === "STYLE") continue;
+          const r = child.getBoundingClientRect();
+          const top = (r.top - hostTop) * scale;
+          const bottom = (r.bottom - hostTop) * scale;
+          if (bottom - top < 1) continue;
+          const c = child as HTMLElement;
+          if (bottom - top > pageHpx && child.children.length > 1) {
+            collect(child);
+            continue;
+          }
+          const heading = headingCls.some((h) => c.classList.contains(h));
+          // The cover page always gets a page to itself.
+          const breakAfter = c.classList.contains("wpv-cover");
+          blocks.push({ top, bottom, heading, breakAfter });
+        }
+      };
+      collect(root);
 
       // Group blocks into pages.
       const pages: Array<{ start: number; end: number }> = [];
