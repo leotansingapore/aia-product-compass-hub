@@ -40,11 +40,32 @@ export default function WorksheetPrintView({
   const scheme = schemeFor(values);
   const name = personName(values);
   const customHeadline = headline(values);
+  const showCover = values._cover === "yes";
+  let coverDate = "";
+  try {
+    coverDate = new Date().toLocaleDateString(undefined, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  } catch {
+    coverDate = "";
+  }
   return (
     <div className="wpv">
       <style>{`
         .wpv { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 14px; line-height: 1.5; }
         .wpv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+        .wpv-cover { position: relative; min-height: 1040px; display: flex; flex-direction: column; justify-content: center; padding: 30px 6px; break-inside: avoid; break-after: page; }
+        .wpv-cover .cbar { position: absolute; top: 0; left: 0; height: 9px; width: 100%; background: ${scheme.accent}; }
+        .wpv-cover .ckick { letter-spacing: 5px; font-size: 12px; font-weight: 800; color: ${scheme.accent}; text-transform: uppercase; }
+        .wpv-cover h1 { font-size: 46px; font-weight: 800; line-height: 1.08; margin: 12px 0 8px; }
+        .wpv-cover .csub { font-size: 16px; color: #444; max-width: 150mm; }
+        .wpv-cover .crule { height: 5px; width: 90px; background: ${scheme.accent}; margin: 26px 0; border-radius: 3px; }
+        .wpv-cover .cprep { font-size: 16px; }
+        .wpv-cover .cprep b { color: ${scheme.accent}; }
+        .wpv-cover .cdate { font-size: 13px; color: #666; margin-top: 4px; }
+        .wpv-cover .cfoot { position: absolute; bottom: 26px; left: 6px; font-size: 11px; color: #999; letter-spacing: 1px; }
         .wpv-name { font-size: 14px; font-weight: 700; color: ${scheme.accent}; }
         .wpv-title { font-size: 30px; font-weight: 800; margin: 4px 0 4px; }
         .wpv-sub { color: #444; font-size: 14px; margin: 0; max-width: 165mm; }
@@ -75,10 +96,29 @@ export default function WorksheetPrintView({
         .wpv-pill { display: inline-block; padding: 1px 8px; border-radius: 9px; font-size: 11px; font-weight: 700; color: #fff; }
       `}</style>
 
-      {name && <div className="wpv-name">{name}</div>}
-      <div className="wpv-title">{customHeadline || title}</div>
-      <p className="wpv-sub">{subtitle}</p>
-      <div className="wpv-rule" />
+      {showCover ? (
+        <div className="wpv-cover">
+          <div className="cbar" />
+          <div className="ckick">Business Plan</div>
+          <h1>{customHeadline || title}</h1>
+          <p className="csub">{subtitle}</p>
+          <div className="crule" />
+          {name && (
+            <div className="cprep">
+              Prepared by <b>{name}</b>
+            </div>
+          )}
+          {coverDate && <div className="cdate">{coverDate}</div>}
+          <div className="cfoot">FINTERNSHIP · PRE-RNF</div>
+        </div>
+      ) : (
+        <>
+          {name && <div className="wpv-name">{name}</div>}
+          <div className="wpv-title">{customHeadline || title}</div>
+          <p className="wpv-sub">{subtitle}</p>
+          <div className="wpv-rule" />
+        </>
+      )}
 
       {schema.map((block) => {
         switch (block.kind) {

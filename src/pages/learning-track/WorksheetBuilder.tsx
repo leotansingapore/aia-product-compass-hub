@@ -247,7 +247,7 @@ export default function WorksheetBuilder() {
       // the foot of a page without the content that follows it.
       const root = (holder.querySelector(".wpv, .psv") as HTMLElement) ?? holder;
       const hostTop = holder.getBoundingClientRect().top;
-      type Block = { top: number; bottom: number; heading: boolean };
+      type Block = { top: number; bottom: number; heading: boolean; breakAfter: boolean };
       const blocks: Block[] = [];
       const headingCls = ["wpv-step", "wpv-table-label", "blackband", "redband"];
       for (const child of Array.from(root.children)) {
@@ -256,8 +256,11 @@ export default function WorksheetBuilder() {
         const top = (r.top - hostTop) * scale;
         const bottom = (r.bottom - hostTop) * scale;
         if (bottom - top < 1) continue;
-        const heading = headingCls.some((c) => (child as HTMLElement).classList.contains(c));
-        blocks.push({ top, bottom, heading });
+        const el = child as HTMLElement;
+        const heading = headingCls.some((c) => el.classList.contains(c));
+        // The cover page always gets a page to itself.
+        const breakAfter = el.classList.contains("wpv-cover");
+        blocks.push({ top, bottom, heading, breakAfter });
       }
 
       // Group blocks into pages.
@@ -273,6 +276,10 @@ export default function WorksheetBuilder() {
           while (last + 1 < blocks.length && blocks[last + 1].bottom <= limit) last++;
           // Never end a page on a heading — push it (and any heading run) forward.
           while (last > i && blocks[last].heading) last--;
+          // Honour an explicit page break (cover page) — end the page at it.
+          for (let j = i; j <= last; j++) {
+            if (blocks[j].breakAfter) { last = j; break; }
+          }
           pages.push({ start, end: blocks[last].bottom });
           i = last + 1;
           if (i < blocks.length) start = blocks[i].top; // trim inter-block gap
@@ -297,6 +304,21 @@ export default function WorksheetBuilder() {
       });
 
       const who = personName(values);
+
+      // Footer on every page: name (left) and "Page x of y" (right). Skip the
+      // cover page (page 1 when a cover is present) so it stays clean.
+      const total = pdf.getNumberOfPages();
+      const coverOn = values._cover === "yes" && slug !== "pledge-sheet";
+      pdf.setFontSize(8);
+      pdf.setTextColor(150);
+      for (let p = 1; p <= total; p++) {
+        if (coverOn && p === 1) continue;
+        pdf.setPage(p);
+        const y = pageH - 4;
+        if (who) pdf.text(who, margin, y);
+        pdf.text(`Page ${p} of ${total}`, pageW - margin, y, { align: "right" });
+      }
+
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
       const filename = `${rawName.replace(/[\\/:*?"<>|]+/g, "-").trim() || "worksheet"}.pdf`;
       pdf.save(filename);

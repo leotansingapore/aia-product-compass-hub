@@ -6,6 +6,7 @@ import type { WorksheetValues } from "./worksheets";
 export const NAME_KEY = "_name";
 export const ACCENT_KEY = "_accent";
 export const HEADLINE_KEY = "_headline";
+export const COVER_KEY = "_cover";
 
 export type ColorScheme = {
   key: string;

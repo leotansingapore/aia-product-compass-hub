@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   ACCENT_KEY,
   COLOR_SCHEMES,
+  COVER_KEY,
   HEADLINE_KEY,
   NAME_KEY,
   schemeFor,
@@ -84,6 +85,21 @@ export default function CustomizePanel({
           })}
         </div>
       </div>
+
+      {showHeadline && (
+        <label className="mt-4 flex cursor-pointer items-center gap-2.5">
+          <input
+            type="checkbox"
+            checked={values[COVER_KEY] === "yes"}
+            disabled={readOnly}
+            onChange={(e) => onChange?.(COVER_KEY, e.target.checked ? "yes" : "")}
+            className="h-4 w-4 accent-primary"
+          />
+          <span className="text-xs font-medium">
+            Add a cover page <span className="text-muted-foreground">— title, your name &amp; date on page 1</span>
+          </span>
+        </label>
+      )}
     </div>
   );
 }
