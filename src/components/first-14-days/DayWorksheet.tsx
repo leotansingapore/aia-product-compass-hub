@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { Loader2, Save, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
@@ -41,14 +40,44 @@ export function DayWorksheet({ dayNumber, prompts, progress: externalProgress }:
   }, [prompts, persisted.reflectionAnswers]);
 
   const [answers, setAnswers] = useState<ReflectionAnswers>(initial);
-  const [busy, setBusy] = useState(false);
+  const [autoSaving, setAutoSaving] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(
     persisted.reflectionSavedAt ?? null,
   );
 
+  // Seed local answers only on first load or a genuine external change while the
+  // learner has no unsaved edits — so live auto-save never clobbers typing.
+  const serverJson = JSON.stringify(persisted.reflectionAnswers ?? {});
+  const seededRef = useRef<string | null>(null);
   useEffect(() => {
-    setAnswers(initial);
-  }, [initial]);
+    if (seededRef.current === null) {
+      setAnswers(initial);
+      seededRef.current = serverJson;
+      return;
+    }
+    if (serverJson !== seededRef.current) {
+      if (JSON.stringify(answers) === seededRef.current) setAnswers(initial);
+      seededRef.current = serverJson;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serverJson, initial]);
+
+  // Live auto-save to the account a short moment after typing stops — no Save
+  // button needed; survives refresh / logout / another device.
+  useEffect(() => {
+    if (JSON.stringify(answers) === serverJson) return;
+    const t = window.setTimeout(() => {
+      setAutoSaving(true);
+      try {
+        saveReflection(dayNumber, answers);
+        setLastSavedAt(new Date().toISOString());
+      } finally {
+        setAutoSaving(false);
+      }
+    }, 1200);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers, serverJson, dayNumber]);
 
   if (prompts.length === 0) {
     return (
@@ -64,19 +93,7 @@ export function DayWorksheet({ dayNumber, prompts, progress: externalProgress }:
     (p) => (answers[String(p.index)] ?? "").trim().length >= MIN_CHARS_PER_ANSWER,
   ).length;
   const allAnswered = answeredCount === prompts.length;
-  const dirty =
-    JSON.stringify(answers) !== JSON.stringify(persisted.reflectionAnswers ?? initial);
   const hasSaved = Boolean(persisted.reflectionSavedAt);
-
-  const persist = async () => {
-    setBusy(true);
-    try {
-      saveReflection(dayNumber, answers);
-      setLastSavedAt(new Date().toISOString());
-    } finally {
-      setBusy(false);
-    }
-  };
 
   return (
     <div className="space-y-4">
@@ -135,21 +152,17 @@ export function DayWorksheet({ dayNumber, prompts, progress: externalProgress }:
           <Badge variant={allAnswered ? "secondary" : "outline"}>
             {answeredCount} / {prompts.length} answered
           </Badge>
-          {lastSavedAt && (
-            <span className="text-xs">
-              Last saved {new Date(lastSavedAt).toLocaleTimeString()}
+          {autoSaving ? (
+            <span className="inline-flex items-center gap-1 text-xs">
+              <Loader2 className="h-3 w-3 animate-spin" /> Saving…
             </span>
-          )}
-        </div>
-        <div className="flex gap-2">
-          <Button disabled={busy || !dirty} onClick={persist} className="gap-2">
-            {busy ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Save className="h-4 w-4" />
-            )}
-            Save
-          </Button>
+          ) : lastSavedAt ? (
+            <span className="inline-flex items-center gap-1 text-xs">
+              <CheckCircle2 className="h-3 w-3 text-emerald-500" /> Saved automatically
+              {" · "}
+              {new Date(lastSavedAt).toLocaleTimeString()}
+            </span>
+          ) : null}
         </div>
       </div>
     </div>

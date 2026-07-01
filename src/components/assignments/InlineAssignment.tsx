@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -33,6 +33,31 @@ export default function InlineAssignment({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Auto-save the typed response to this device so nothing is lost on a refresh
+  // before the learner submits. (Submitting is a one-shot graded action, so the
+  // final answer still goes to the account only on Submit.)
+  const draftKey = user ? `assignment-draft-${user.id}-${productId}-${itemId}` : null;
+  const draftLoaded = useRef(false);
+  useEffect(() => {
+    if (!draftKey || draftLoaded.current) return;
+    try {
+      const saved = localStorage.getItem(draftKey);
+      if (saved) setSubmissionText(saved);
+    } catch {
+      /* private mode — non-fatal */
+    }
+    draftLoaded.current = true;
+  }, [draftKey]);
+  useEffect(() => {
+    if (!draftKey || !draftLoaded.current) return;
+    try {
+      if (submissionText) localStorage.setItem(draftKey, submissionText);
+      else localStorage.removeItem(draftKey);
+    } catch {
+      /* quota / private mode — non-fatal */
+    }
+  }, [submissionText, draftKey]);
 
   const maxFileSizeMb = assignmentConfig.max_file_size_mb ?? 10;
   const showText = assignmentConfig.submission_type === 'text' || assignmentConfig.submission_type === 'both';
@@ -110,6 +135,14 @@ export default function InlineAssignment({
         submissionExcerpt: submissionText.trim() || null,
         fileName,
       });
+
+      if (draftKey) {
+        try {
+          localStorage.removeItem(draftKey);
+        } catch {
+          /* non-fatal */
+        }
+      }
 
       setIsSubmitted(true);
       toast.success('Assignment submitted successfully');
