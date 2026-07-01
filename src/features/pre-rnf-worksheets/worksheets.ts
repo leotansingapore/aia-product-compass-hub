@@ -90,7 +90,7 @@ export async function saveWorksheet(
   const submission_text = JSON.stringify(values);
   if (existingId) {
     const { error } = await (supabase.from as any)("assignment_submissions")
-      .update({ submission_text })
+      .update({ submission_text, submitted_at: new Date().toISOString() })
       .eq("id", existingId);
     if (error) throw error;
     return existingId;

@@ -107,11 +107,22 @@ export default function WorksheetBuilder() {
   const [values, setValues] = useState<WorksheetValues>({});
   const [rowId, setRowId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [autoSaving, setAutoSaving] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const hydrated = useRef(false);
   const printRef = useRef<HTMLDivElement>(null);
+  // Auto-save bookkeeping so nothing is lost even if the learner never clicks
+  // Save. `rowIdRef` avoids inserting a duplicate row while the first insert is
+  // in flight; `lastSavedRef` holds exactly what is on the server so we only push
+  // real changes; `savingRef` serialises overlapping saves.
+  const rowIdRef = useRef<string | null>(null);
+  const lastSavedRef = useRef<string | null>(null);
+  const savingRef = useRef(false);
+  useEffect(() => {
+    rowIdRef.current = rowId;
+  }, [rowId]);
 
   const valid = isWorksheetSlug(slug);
 
@@ -128,7 +139,11 @@ export default function WorksheetBuilder() {
     if (!valid || loaded.isLoading || hydrated.current) return;
     const server = loaded.data;
     setRowId(server?.id ?? null);
+    rowIdRef.current = server?.id ?? null;
     setLastSavedAt(server?.updatedAt ?? null);
+    // `lastSavedRef` tracks what is on the server. If a newer local draft differs,
+    // the auto-save effect will push it up on hydration.
+    lastSavedRef.current = JSON.stringify(server?.values ?? {});
     const draft = isAdminView ? null : readDraft(user?.id, slug as string);
     setValues(draft ?? server?.values ?? {});
     hydrated.current = true;
@@ -139,7 +154,8 @@ export default function WorksheetBuilder() {
     hydrated.current = false;
   }, [slug, ownerId]);
 
-  // Autosave the in-progress draft (own worksheet only).
+  // Autosave the in-progress draft to this device (own worksheet only) — instant,
+  // offline-proof, and survives a refresh even before the server round-trip.
   useEffect(() => {
     if (!valid || isAdminView || !user?.id || !hydrated.current) return;
     try {
@@ -147,6 +163,47 @@ export default function WorksheetBuilder() {
     } catch {
       /* quota / private mode — non-fatal */
     }
+  }, [values, valid, isAdminView, user?.id, slug]);
+
+  // Auto-save to the learner's account (Supabase), debounced. This is what makes
+  // the worksheet survive a cache clear, a different device, or a logout/login —
+  // no need to remember to press Save. Guards: only real changes are pushed, the
+  // first insert finishes before any follow-up (so no duplicate rows), and a
+  // failed save is left in the localStorage draft to retry on the next edit.
+  useEffect(() => {
+    if (!valid || isAdminView || !user?.id || !hydrated.current) return;
+    const serialized = JSON.stringify(values);
+    if (serialized === lastSavedRef.current) return;
+    let cancelled = false;
+    const uid = user.id;
+    const attempt = () => {
+      if (cancelled) return;
+      if (savingRef.current) {
+        window.setTimeout(attempt, 400); // an earlier save is running — wait
+        return;
+      }
+      savingRef.current = true;
+      setAutoSaving(true);
+      saveWorksheet(uid, slug as WorksheetSlug, values, rowIdRef.current)
+        .then((id) => {
+          rowIdRef.current = id;
+          setRowId(id);
+          lastSavedRef.current = serialized;
+          setLastSavedAt(new Date().toISOString());
+        })
+        .catch(() => {
+          /* keep the localStorage draft; the next edit retries */
+        })
+        .finally(() => {
+          savingRef.current = false;
+          setAutoSaving(false);
+        });
+    };
+    const timer = window.setTimeout(attempt, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, [values, valid, isAdminView, user?.id, slug]);
 
   const viewerName = useQuery({
@@ -260,8 +317,10 @@ export default function WorksheetBuilder() {
     }
     setSaving(true);
     try {
-      const id = await saveWorksheet(user.id, slug as WorksheetSlug, values, rowId);
+      const id = await saveWorksheet(user.id, slug as WorksheetSlug, values, rowIdRef.current);
       setRowId(id);
+      rowIdRef.current = id;
+      lastSavedRef.current = JSON.stringify(values);
       setLastSavedAt(new Date().toISOString());
       toast.success("Worksheet saved — you can come back to it any time.");
     } catch (err: any) {
@@ -430,10 +489,19 @@ export default function WorksheetBuilder() {
           <ArrowLeft className="h-4 w-4" />
           Back to assignment
         </Link>
-        {lastSavedAt && !isAdminView && (
+        {!isAdminView && (autoSaving || lastSavedAt) && (
           <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-            <Check className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
-            Saved {new Date(lastSavedAt).toLocaleDateString()}
+            {autoSaving ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                Saving…
+              </>
+            ) : (
+              <>
+                <Check className="h-3.5 w-3.5 text-green-600 dark:text-green-400" />
+                Saved automatically
+              </>
+            )}
           </span>
         )}
       </div>
@@ -528,8 +596,9 @@ export default function WorksheetBuilder() {
 
       {!isAdminView && (
         <p data-no-print className="text-center text-xs text-muted-foreground">
-          Your answers save to this device as you type, and to your account when you hit Save — open
-          this from your profile any time.
+          Everything you type saves automatically — to this device instantly and to your account a
+          moment later. Come back any time, on any device, even after logging out. The Save button is
+          optional.
         </p>
       )}
     </div>
