@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Copy, CheckCircle2, Plus, Trash2, FileSpreadsheet, MessageSquare, Sparkles, Edit3, X, Send, Bell, Search } from "lucide-react";
+import { ArrowLeft, Copy, CheckCircle2, Plus, Trash2, FileSpreadsheet, MessageSquare, Sparkles, Edit3, X, Send, Bell, Search, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -37,6 +39,66 @@ type Prospect = {
 
 const STORAGE_PREFIX = "outreach-builder-v1";
 const SETTINGS_PREFIX = "outreach-builder-settings-v1";
+
+// Account-level persistence. Like the Business Plan worksheets, the whole tool
+// state rides `assignment_submissions` under a dedicated product_id so it saves
+// to the learner's account (surviving logout / cache-clear / another device)
+// with no new migration. localStorage stays as the instant, offline layer.
+const OUTREACH_PRODUCT_ID = "pre-rnf-outreach";
+const OUTREACH_ITEM_ID = "outreach-builder";
+
+type OutreachBlob = { prospects: Prospect[]; advisorName: string };
+
+function coerceBlob(text: string | null): OutreachBlob | null {
+  if (!text) return null;
+  try {
+    const parsed = JSON.parse(text);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      return {
+        prospects: Array.isArray(parsed.prospects) ? parsed.prospects : [],
+        advisorName: typeof parsed.advisorName === "string" ? parsed.advisorName : "",
+      };
+    }
+  } catch {
+    /* not JSON — ignore */
+  }
+  return null;
+}
+
+async function loadOutreach(userId: string): Promise<{ id: string; blob: OutreachBlob } | null> {
+  const { data, error } = await (supabase.from as any)("assignment_submissions")
+    .select("id, submission_text, submitted_at")
+    .eq("product_id", OUTREACH_PRODUCT_ID)
+    .eq("item_id", OUTREACH_ITEM_ID)
+    .eq("user_id", userId)
+    .order("submitted_at", { ascending: false })
+    .limit(1);
+  if (error) throw error;
+  const row = (data ?? [])[0];
+  if (!row) return null;
+  return { id: row.id, blob: coerceBlob(row.submission_text) ?? { prospects: [], advisorName: "" } };
+}
+
+async function saveOutreach(
+  userId: string,
+  blob: OutreachBlob,
+  existingId: string | null,
+): Promise<string> {
+  const submission_text = JSON.stringify(blob);
+  if (existingId) {
+    const { error } = await (supabase.from as any)("assignment_submissions")
+      .update({ submission_text, submitted_at: new Date().toISOString() })
+      .eq("id", existingId);
+    if (error) throw error;
+    return existingId;
+  }
+  const { data, error } = await (supabase.from as any)("assignment_submissions")
+    .insert({ user_id: userId, product_id: OUTREACH_PRODUCT_ID, item_id: OUTREACH_ITEM_ID, submission_text })
+    .select("id")
+    .single();
+  if (error) throw error;
+  return data.id as string;
+}
 
 const TEMP_LABEL: Record<Temperature, string> = {
   "hot": "Hot — close",
@@ -335,30 +397,59 @@ export default function OutreachBuilder() {
   const [editing, setEditing] = useState<Prospect | null>(null);
   const [filter, setFilter] = useState<"all" | Status>("all");
   const [search, setSearch] = useState("");
+  const [autoSaving, setAutoSaving] = useState(false);
+  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const hasHydrated = useRef(false);
+  // Account auto-save bookkeeping (mirrors the worksheet builder): rowIdRef stops
+  // a duplicate insert while the first insert is in flight, lastSavedRef holds
+  // exactly what is on the server, savingRef serialises overlapping saves.
+  const rowIdRef = useRef<string | null>(null);
+  const lastSavedRef = useRef<string | null>(null);
+  const savingRef = useRef(false);
 
-  // Hydrate
+  // Load the account copy (source of truth across devices).
+  const loaded = useQuery({
+    queryKey: ["outreach-builder", user?.id],
+    enabled: Boolean(user?.id),
+    queryFn: () => loadOutreach(user!.id),
+    staleTime: 30_000,
+  });
+
+  // Re-hydrate if the signed-in user changes.
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const raw = localStorage.getItem(storageKey);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) setProspects(parsed);
-      }
-      const settings = localStorage.getItem(settingsKey);
-      if (settings) {
-        const parsed = JSON.parse(settings);
-        if (parsed?.advisorName) setAdvisorName(parsed.advisorName);
-      }
-    } catch (e) {
-      console.warn("Outreach builder: hydration failed", e);
-    } finally {
-      hasHydrated.current = true;
-    }
-  }, [storageKey, settingsKey]);
+    hasHydrated.current = false;
+  }, [user?.id]);
 
-  // Persist
+  // Hydrate once: a local draft (instant/offline) wins over the server copy so an
+  // in-progress edit survives a refresh, but the server value seeds lastSavedRef
+  // so a newer local draft gets pushed up.
+  useEffect(() => {
+    if (!user?.id || loaded.isLoading || hasHydrated.current) return;
+    const server = loaded.data;
+    rowIdRef.current = server?.id ?? null;
+    lastSavedRef.current = JSON.stringify(server?.blob ?? { prospects: [], advisorName: "" });
+
+    let draft: OutreachBlob | null = null;
+    try {
+      const rawP = localStorage.getItem(storageKey);
+      const rawS = localStorage.getItem(settingsKey);
+      const p = rawP ? JSON.parse(rawP) : null;
+      const s = rawS ? JSON.parse(rawS) : null;
+      if (Array.isArray(p) || s?.advisorName) {
+        draft = { prospects: Array.isArray(p) ? p : [], advisorName: s?.advisorName ?? "" };
+      }
+    } catch {
+      /* ignore corrupt local draft */
+    }
+
+    const blob = draft ?? server?.blob ?? { prospects: [], advisorName: "" };
+    setProspects(blob.prospects);
+    setAdvisorName(blob.advisorName);
+    setLastSavedAt(server && !draft ? new Date().toISOString() : null);
+    hasHydrated.current = true;
+  }, [user?.id, loaded.isLoading, loaded.data, storageKey, settingsKey]);
+
+  // Persist to this device instantly (offline-proof, survives refresh).
   useEffect(() => {
     if (typeof window === "undefined" || !hasHydrated.current) return;
     try {
@@ -376,6 +467,44 @@ export default function OutreachBuilder() {
       console.warn("Outreach builder: settings persist failed", e);
     }
   }, [advisorName, settingsKey]);
+
+  // Auto-save to the account, debounced — no Save button, survives logout / other
+  // device. Only real changes are pushed; a failed save stays in localStorage.
+  useEffect(() => {
+    if (!user?.id || !hasHydrated.current) return;
+    const blob: OutreachBlob = { prospects, advisorName };
+    const serialized = JSON.stringify(blob);
+    if (serialized === lastSavedRef.current) return;
+    let cancelled = false;
+    const uid = user.id;
+    const attempt = () => {
+      if (cancelled) return;
+      if (savingRef.current) {
+        window.setTimeout(attempt, 400);
+        return;
+      }
+      savingRef.current = true;
+      setAutoSaving(true);
+      saveOutreach(uid, blob, rowIdRef.current)
+        .then((id) => {
+          rowIdRef.current = id;
+          lastSavedRef.current = serialized;
+          setLastSavedAt(new Date().toISOString());
+        })
+        .catch(() => {
+          /* keep localStorage; next edit retries */
+        })
+        .finally(() => {
+          savingRef.current = false;
+          setAutoSaving(false);
+        });
+    };
+    const timer = window.setTimeout(attempt, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [prospects, advisorName, user?.id]);
 
   const visible = useMemo(() => {
     let list = prospects;
@@ -522,7 +651,7 @@ export default function OutreachBuilder() {
   };
 
   const clearAll = () => {
-    if (!confirm("Delete every prospect from this device? Your Project 100 sheet is unaffected.")) return;
+    if (!confirm("Delete every prospect from your account? Your Project 100 sheet is unaffected.")) return;
     setProspects([]);
     toast.success("Cleared.");
   };
@@ -536,11 +665,22 @@ export default function OutreachBuilder() {
         >
           <ArrowLeft className="h-4 w-4" /> Back to Project 200
         </Link>
-        {prospects.length > 0 && (
-          <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground hover:text-destructive">
-            <Trash2 className="h-3.5 w-3.5 mr-1" /> Clear all
-          </Button>
-        )}
+        <div className="flex items-center gap-3">
+          {autoSaving ? (
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <Loader2 className="h-3 w-3 animate-spin" /> Saving…
+            </span>
+          ) : lastSavedAt ? (
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <CheckCircle2 className="h-3 w-3 text-emerald-500" /> Saved automatically
+            </span>
+          ) : null}
+          {prospects.length > 0 && (
+            <Button variant="ghost" size="sm" onClick={clearAll} className="text-muted-foreground hover:text-destructive">
+              <Trash2 className="h-3.5 w-3.5 mr-1" /> Clear all
+            </Button>
+          )}
+        </div>
       </div>
 
       <div>
@@ -556,7 +696,7 @@ export default function OutreachBuilder() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Your name (used in every message)</CardTitle>
-          <CardDescription className="text-xs">Saved on this device, never sent anywhere.</CardDescription>
+          <CardDescription className="text-xs">Saved to your account — syncs across your devices.</CardDescription>
         </CardHeader>
         <CardContent>
           <Input
