@@ -30,6 +30,14 @@ export default function ObjectionsTable({
   const rowCount = baseRows + extra;
   const v = (k: string) => values[k] ?? "";
 
+  // Objections already picked in any row — so each dropdown can hide the ones
+  // already used elsewhere and narrow the remaining choices.
+  const chosen = new Set<string>();
+  for (let r = 0; r < rowCount; r++) {
+    const t = v(`${id}__r${r}_type`);
+    if (t && t !== "__other") chosen.add(t);
+  }
+
   return (
     <div className="space-y-2">
       <div className="overflow-x-auto">
@@ -66,14 +74,18 @@ export default function ObjectionsTable({
                         >
                           <option value="">Choose…</option>
                           <optgroup label="Product / DIY">
-                            {options.map((o) => (
-                              <option key={o} value={o}>
-                                {o}
-                              </option>
-                            ))}
+                            {options
+                              .filter((o) => o === type || !chosen.has(o))
+                              .map((o) => (
+                                <option key={o} value={o}>
+                                  {o}
+                                </option>
+                              ))}
                           </optgroup>
                           <optgroup label="Warm-market objection library">
-                            {LIBRARY_OBJECTIONS.filter((o) => !options.includes(o)).map((o) => (
+                            {LIBRARY_OBJECTIONS.filter(
+                              (o) => !options.includes(o) && (o === type || !chosen.has(o)),
+                            ).map((o) => (
                               <option key={o} value={o}>
                                 {o}
                               </option>

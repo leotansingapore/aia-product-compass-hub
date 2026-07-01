@@ -425,18 +425,10 @@ export default function WorksheetPrintView({
             );
           }
 
+          // Reference links / tools are interactive helpers for filling the plan
+          // in-app — they're intentionally omitted from the printed/exported PDF.
           case "links":
-            return (
-              <div key={block.id} className="wpv-field">
-                {block.label && <div className="wpv-table-label">{block.label}</div>}
-                {block.links.map((l) => (
-                  <div key={l.url} style={{ fontSize: "12.5px", margin: "3px 0" }}>
-                    <b style={{ color: scheme.accent }}>{l.label}:</b>{" "}
-                    <span style={{ color: "#555" }}>{l.url.replace(/^https?:\/\//, "")}</span>
-                  </div>
-                ))}
-              </div>
-            );
+            return null;
 
           case "objections": {
             const extra = Math.max(0, parseInt(values[`${block.id}__rows`] || "0", 10));

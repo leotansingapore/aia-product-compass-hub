@@ -163,4 +163,26 @@ test.describe("Pre-RNF Business Plan worksheet", () => {
       objectionSelect.locator("option").filter({ hasText: /Let me think about it/i }),
     ).toHaveCount(1);
   });
+
+  test("an objection picked in one row drops out of the other rows' choices", async ({ page }) => {
+    await signIn(page, RECRUIT.email, RECRUIT.password);
+    await openWorksheet(page);
+
+    const objectionSelects = page.locator('select:has(option[value="__other"])');
+    const row0 = objectionSelects.nth(0);
+    const row1 = objectionSelects.nth(1);
+    await expect(row0).toBeVisible();
+
+    // Both rows initially offer ETFs.
+    await expect(row1.locator('option[value="ETFs"]')).toHaveCount(1);
+
+    // Pick ETFs in row 0.
+    await row0.selectOption("ETFs");
+
+    // Row 0 keeps its own choice…
+    await expect(row0).toHaveValue("ETFs");
+    await expect(row0.locator('option[value="ETFs"]')).toHaveCount(1);
+    // …but ETFs is no longer offered in row 1.
+    await expect(row1.locator('option[value="ETFs"]')).toHaveCount(0);
+  });
 });
