@@ -1,11 +1,10 @@
 import { cellKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
 import { headline, personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
 import {
-  TT_CATEGORIES,
   TT_DAYS,
   TT_HOURS,
+  allCategories,
   hourLabel,
-  parseCustomCats,
   resolveCat,
   ttKey,
 } from "@/features/pre-rnf-worksheets/timetable";
@@ -228,8 +227,7 @@ export default function WorksheetPrintView({
           }
 
           case "timetable": {
-            const ttCustom = parseCustomCats(values);
-            const ttAll = [...TT_CATEGORIES, ...ttCustom];
+            const ttAll = allCategories(values);
             return (
               <div key={block.id} className="wpv-field">
                 <div className="wpv-legend">
@@ -254,7 +252,7 @@ export default function WorksheetPrintView({
                       <tr key={h}>
                         <td className="tt-time">{hourLabel(h)}</td>
                         {TT_DAYS.map((d) => {
-                          const c = resolveCat(values[ttKey(d, h)], ttCustom);
+                          const c = resolveCat(values[ttKey(d, h)], ttAll);
                           return <td key={d} style={{ background: c?.color ?? "#ffffff" }} />;
                         })}
                       </tr>

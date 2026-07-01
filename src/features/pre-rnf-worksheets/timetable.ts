@@ -33,6 +33,31 @@ export function ttCategory(key: string | undefined): TtCategory | null {
 // worksheet values under `tt_custom` so they save/export with everything else.
 export const TT_CUSTOM_KEY = "tt_custom";
 
+// Learners can also rename / recolour the built-in activities; those edits are
+// stored as `{ key: { label?, color? } }` under `tt_overrides`.
+export const TT_OVERRIDES_KEY = "tt_overrides";
+
+export function parseOverrides(
+  values: Record<string, string>,
+): Record<string, { label?: string; color?: string }> {
+  try {
+    const raw = values[TT_OVERRIDES_KEY];
+    if (!raw) return {};
+    const o = JSON.parse(raw);
+    return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+  } catch {
+    return {};
+  }
+}
+
+/** Built-in categories with any learner rename/recolour applied. */
+export function effectiveBuiltins(
+  values: Record<string, string>,
+): TtCategory[] {
+  const ov = parseOverrides(values);
+  return TT_CATEGORIES.map((c) => ({ ...c, ...(ov[c.key] ?? {}) }));
+}
+
 export function parseCustomCats(values: Record<string, string>): TtCategory[] {
   try {
     const raw = values[TT_CUSTOM_KEY];
@@ -46,13 +71,18 @@ export function parseCustomCats(values: Record<string, string>): TtCategory[] {
   }
 }
 
-/** Resolve a cell's category key against the built-ins plus any custom ones. */
+/** Resolve a cell's category key against a provided list of categories. */
 export function resolveCat(
   key: string | undefined,
-  custom: TtCategory[],
+  cats: TtCategory[],
 ): TtCategory | null {
   if (!key) return null;
-  return CAT_BY_KEY[key] ?? custom.find((c) => c.key === key) ?? null;
+  return cats.find((c) => c.key === key) ?? null;
+}
+
+/** Every category (built-ins with overrides applied, then custom). */
+export function allCategories(values: Record<string, string>): TtCategory[] {
+  return [...effectiveBuiltins(values), ...parseCustomCats(values)];
 }
 
 export function ttKey(day: string, hour: number): string {

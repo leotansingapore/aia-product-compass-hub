@@ -6,16 +6,21 @@ import {
   TT_CUSTOM_KEY,
   TT_DAYS,
   TT_HOURS,
+  TT_OVERRIDES_KEY,
+  allCategories,
+  effectiveBuiltins,
   hourLabel,
   parseCustomCats,
+  parseOverrides,
   resolveCat,
   ttKey,
 } from "@/features/pre-rnf-worksheets/timetable";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
-// Colour-coded weekly planner. Pick a category (or the eraser), then click — or
-// click-and-drag — across the grid to paint hours. Each cell stores its category
-// key in the worksheet values, so it saves and exports like every other field.
+// Colour-coded weekly planner. Pick an activity (or the eraser), then click — or
+// click-and-drag — across the grid to paint hours. Every activity's name and
+// colour is editable (built-ins via overrides, custom ones inline); custom
+// activities can also be deleted. Everything persists in the worksheet values.
 export default function TimetableGrid({
   values,
   onChange,
@@ -31,33 +36,39 @@ export default function TimetableGrid({
   const [newColor, setNewColor] = useState("#0ea5e9");
 
   const custom = parseCustomCats(values);
-  const allCats = [...TT_CATEGORIES, ...custom];
+  const builtins = effectiveBuiltins(values);
+  const cats = allCategories(values);
+  const builtinKeys = new Set(TT_CATEGORIES.map((c) => c.key));
 
   const paint = (key: string) => {
     if (readOnly) return;
     onChange?.(key, brush === "__erase" ? "" : brush);
   };
 
+  const patchCat = (key: string, patch: { label?: string; color?: string }) => {
+    if (builtinKeys.has(key)) {
+      const ov = parseOverrides(values);
+      ov[key] = { ...ov[key], ...patch };
+      onChange?.(TT_OVERRIDES_KEY, JSON.stringify(ov));
+    } else {
+      onChange?.(
+        TT_CUSTOM_KEY,
+        JSON.stringify(custom.map((c) => (c.key === key ? { ...c, ...patch } : c))),
+      );
+    }
+  };
+
   const addCategory = () => {
     const label = newLabel.trim();
     if (!label) return;
     const key = `custom_${Date.now().toString(36)}`;
-    const next = [...custom, { key, label, color: newColor }];
-    onChange?.(TT_CUSTOM_KEY, JSON.stringify(next));
+    onChange?.(TT_CUSTOM_KEY, JSON.stringify([...custom, { key, label, color: newColor }]));
     setNewLabel("");
     setBrush(key);
   };
 
-  const updateCatColor = (key: string, color: string) => {
-    onChange?.(
-      TT_CUSTOM_KEY,
-      JSON.stringify(custom.map((c) => (c.key === key ? { ...c, color } : c))),
-    );
-  };
-
   const deleteCat = (key: string) => {
     onChange?.(TT_CUSTOM_KEY, JSON.stringify(custom.filter((c) => c.key !== key)));
-    // Clear any hours painted with this activity so no orphan colour lingers.
     for (const d of TT_DAYS) {
       for (const h of TT_HOURS) {
         const ck = ttKey(d, h);
@@ -72,51 +83,45 @@ export default function TimetableGrid({
       {!readOnly && (
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="mr-1 text-xs font-medium text-muted-foreground">Fill with:</span>
-          {TT_CATEGORIES.map((c) => (
-            <button
-              key={c.key}
-              type="button"
-              onClick={() => setBrush(c.key)}
-              className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition-all",
-                brush === c.key ? "ring-2 ring-offset-1" : "hover:bg-muted/50",
-              )}
-              style={brush === c.key ? ({ "--tw-ring-color": c.color } as React.CSSProperties) : undefined}
-            >
-              <span className="h-3 w-3 rounded-full" style={{ backgroundColor: c.color }} />
-              {c.label}
-            </button>
-          ))}
-          {custom.map((c) => (
-            <span
-              key={c.key}
-              className={cn(
-                "inline-flex items-center gap-1 rounded-full border pr-1 text-xs font-medium transition-all",
-                brush === c.key ? "ring-2 ring-offset-1" : "hover:bg-muted/50",
-              )}
-              style={brush === c.key ? ({ "--tw-ring-color": c.color } as React.CSSProperties) : undefined}
-            >
-              <button type="button" onClick={() => setBrush(c.key)} className="inline-flex items-center gap-1.5 py-1 pl-2.5">
-                <span className="h-3 w-3 rounded-full" style={{ backgroundColor: c.color }} />
-                {c.label}
-              </button>
-              <input
-                type="color"
-                value={c.color}
-                onChange={(e) => updateCatColor(c.key, e.target.value)}
-                className="h-4 w-4 cursor-pointer rounded border-0 bg-transparent p-0"
-                title="Change colour"
-              />
-              <button
-                type="button"
-                onClick={() => deleteCat(c.key)}
-                className="flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                title="Delete activity"
+          {cats.map((c) => {
+            const isCustom = !builtinKeys.has(c.key);
+            return (
+              <span
+                key={c.key}
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full border py-0.5 pl-1 pr-1.5 text-xs font-medium transition-all",
+                  brush === c.key ? "ring-2 ring-offset-1" : "hover:bg-muted/50",
+                )}
+                style={brush === c.key ? ({ "--tw-ring-color": c.color } as React.CSSProperties) : undefined}
               >
-                <X className="h-3 w-3" />
-              </button>
-            </span>
-          ))}
+                <input
+                  type="color"
+                  value={c.color}
+                  onChange={(e) => patchCat(c.key, { color: e.target.value })}
+                  className="h-4 w-4 shrink-0 cursor-pointer rounded-full border-0 bg-transparent p-0"
+                  title="Change colour"
+                />
+                <input
+                  value={c.label}
+                  onFocus={() => setBrush(c.key)}
+                  onChange={(e) => patchCat(c.key, { label: e.target.value })}
+                  size={Math.max(4, c.label.length)}
+                  className="cursor-text rounded bg-transparent px-1 py-0.5 outline-none focus:bg-background"
+                  title="Rename — click to also select this activity"
+                />
+                {isCustom && (
+                  <button
+                    type="button"
+                    onClick={() => deleteCat(c.key)}
+                    className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    title="Delete activity"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                )}
+              </span>
+            );
+          })}
           <button
             type="button"
             onClick={() => setBrush("__erase")}
@@ -180,7 +185,7 @@ export default function TimetableGrid({
                 </td>
                 {TT_DAYS.map((d) => {
                   const key = ttKey(d, h);
-                  const cat = resolveCat(values[key], custom);
+                  const cat = resolveCat(values[key], cats);
                   return (
                     <td
                       key={d}

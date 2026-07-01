@@ -147,6 +147,12 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     ],
   },
   { kind: "eps", id: "eps" },
+  {
+    kind: "links",
+    id: "eps_calc",
+    label: "Work out the FYC you need — and the number and mix of cases to close to hit it — with the Commission Calculator:",
+    links: [{ label: "Commission Calculator", url: "https://track.themoneybees.co/tracker/commission-calculator" }],
+  },
 
   { kind: "step", id: "s2", label: "3. My strengths & areas to grow", hint: "Three of each. Write the honest version — the gaps are the part worth coaching." },
   {
@@ -216,6 +222,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     label: "Am I ready to prospect? — a straight self-check",
     items: [
       { id: "project200", text: "Have I built my Project 200?", type: "check" },
+      { id: "hundred_whys", text: "Have I done my 100 Whys?", type: "check" },
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
       { id: "visionboard", text: "Have I done my vision board?", type: "check" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
@@ -225,6 +232,19 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
       { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },
       { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check" },
       { id: "policy_conf", text: "Am I confident building a policy summary?", type: "scale" },
+    ],
+  },
+  {
+    kind: "links",
+    id: "ready_refs",
+    label: "Not done yet? Open the assignment:",
+    links: [
+      { label: "Project 200", url: "/learning-track/pre-rnf/assignments/project-200" },
+      { label: "100 Whys", url: "/learning-track/pre-rnf/assignments/100-whys" },
+      { label: "Joint Field Observation", url: "/learning-track/pre-rnf/assignments/field-observation" },
+      { label: "Vision Board", url: "/learning-track/pre-rnf/assignments/vision-board" },
+      { label: "CST Roleplay", url: "/learning-track/pre-rnf/assignments/cst-roleplay" },
+      { label: "Policy Summary", url: "/learning-track/pre-rnf/assignments/policy-summary" },
     ],
   },
   { kind: "textarea", id: "stored_cases", label: "Stored cases from my warm market for when I RNF (who · what case · how much)", rows: 3 },
@@ -245,6 +265,11 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
       { id: "p2", text: "Prospect 2 — policy summary", type: "status" },
       { id: "p3", text: "Prospect 3 — policy summary", type: "status" },
     ],
+  },
+  {
+    kind: "links",
+    id: "ps_ref",
+    links: [{ label: "Policy Summary assignment", url: "/learning-track/pre-rnf/assignments/policy-summary" }],
   },
 
   { kind: "step", id: "s7", label: "9. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
@@ -267,6 +292,12 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     columns: ["Goal (FYC)", "Deadline", "Weekly pace to hit it (cases / activity per week)"],
     rows: 2,
     addRows: true,
+  },
+  {
+    kind: "links",
+    id: "income_calc",
+    label: "Break your target income into layers with the Income Calculator:",
+    links: [{ label: "Income Calculator", url: "https://track.themoneybees.co/income-calculator/income-layers/detailed" }],
   },
 
   { kind: "step", id: "s9", label: "11. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting." },
