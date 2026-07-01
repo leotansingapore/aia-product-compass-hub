@@ -7,6 +7,7 @@ import { ExternalLink } from "lucide-react";
 import TimetableGrid from "@/components/worksheets/TimetableGrid";
 import EpsTargetTable from "@/components/worksheets/EpsTargetTable";
 import ObjectionsTable from "@/components/worksheets/ObjectionsTable";
+import SignaturePad from "@/components/worksheets/SignaturePad";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 function statusActiveClass(opt: string): string {
@@ -310,8 +311,10 @@ export default function WorksheetForm({
                     <ReadValue value={current || fetched} block />
                   </div>
                 ) : (
+                  // Bind to state only (it's pre-seeded from the assignment) so the
+                  // field is fully editable — clearing it stays cleared.
                   <Textarea
-                    value={current || fetched}
+                    value={current}
                     onChange={(e) => set(block.id, e.target.value)}
                     rows={6}
                     style={{ fieldSizing: "content" } as React.CSSProperties}
@@ -341,18 +344,11 @@ export default function WorksheetForm({
                     <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Signed
                     </label>
-                    {readOnly ? (
-                      <div className="min-h-9 border-b-2 border-foreground/40 px-1 py-1 font-serif text-lg">
-                        <ReadValue value={val(`${block.id}_signed`)} />
-                      </div>
-                    ) : (
-                      <input
-                        value={val(`${block.id}_signed`)}
-                        onChange={(e) => set(`${block.id}_signed`, e.target.value)}
-                        placeholder="Your signature"
-                        className="w-full border-0 border-b-2 border-foreground/40 bg-transparent px-1 py-1 font-serif text-lg outline-none focus:border-primary"
-                      />
-                    )}
+                    <SignaturePad
+                      value={val(`${block.id}_signed`)}
+                      onChange={(v) => set(`${block.id}_signed`, v)}
+                      readOnly={readOnly}
+                    />
                   </div>
                   <div className="space-y-1.5 sm:w-40">
                     <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">

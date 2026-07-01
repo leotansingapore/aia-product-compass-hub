@@ -261,8 +261,12 @@ export default function WorksheetPrintView({
                 </p>
                 <div style={{ display: "flex", gap: "24px", marginTop: "26px" }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ borderBottom: "1.5px solid #333", minHeight: "26px", fontFamily: "Georgia, serif", fontSize: "18px", paddingLeft: "2px" }}>
-                      {signed || " "}
+                    <div style={{ borderBottom: "1.5px solid #333", minHeight: "44px", paddingLeft: "2px", display: "flex", alignItems: "flex-end" }}>
+                      {signed.startsWith("data:image") ? (
+                        <img src={signed} alt="Signature" style={{ maxHeight: "42px", maxWidth: "100%" }} />
+                      ) : (
+                        <span style={{ fontFamily: "Georgia, serif", fontSize: "18px" }}>{signed || " "}</span>
+                      )}
                     </div>
                     <div style={{ fontSize: "11px", color: "#666", marginTop: "3px", textTransform: "uppercase", letterSpacing: ".5px" }}>
                       Signed

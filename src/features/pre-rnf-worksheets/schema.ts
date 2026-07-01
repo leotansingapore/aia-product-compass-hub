@@ -240,8 +240,10 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
       { id: "roleplays", text: "Have I done my roleplays?", type: "check", link: "/learning-track/pre-rnf/assignments/cst-roleplay" },
       { id: "flows_conf", text: "Am I confident of my appointment flows?", type: "scale" },
       { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },
+      { id: "call_script", text: "Do I have my cold calling / warm calling script ready?", type: "check" },
       { id: "slidedeck", text: "Do I have my own slide deck for each CST?", type: "check" },
       { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },
+      { id: "cold_call_conf", text: "How confident am I to start cold calling?", type: "scale" },
       { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check", link: "/learning-track/pre-rnf/assignments/policy-summary" },
       { id: "policy_conf", text: "Am I confident building a policy summary?", type: "scale" },
     ],
@@ -335,7 +337,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     kind: "pledge",
     id: "final_pledge",
     heading: "My Pledge",
-    text: "I have written this plan with my own hand, and I own it. I commit to run my week to the activity I have pledged, to hold my minimum weekly points target, and to answer to my mentor for every one of them. I know the future I mapped out here is not given to me — it is earned, week by week, by the work I put in before I can sell a thing. I will not let a good week fool me or a bad week stop me. From today, this is the standard I hold myself to. This is my word, and I am signing for it.",
+    text: "have written this plan with my own hand, and I own it. I commit to run my week to the activity I have pledged, to hold my minimum weekly points target, and to answer to my mentor for every one of them. I know the future I mapped out here is not given to me — it is earned, week by week, by the work I put in before I can sell a thing. I will not let a good week fool me or a bad week stop me. From today, this is the standard I hold myself to. This is my word, and I am signing for it.",
   },
 ];
 

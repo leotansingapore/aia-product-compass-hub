@@ -42,6 +42,15 @@ test.describe("Pre-RNF Business Plan worksheet", () => {
     // own sections now).
     await expect(page.getByText("Have I done my 100 Whys?")).toHaveCount(0);
     await expect(page.getByText("Have I done my vision board?")).toHaveCount(0);
+
+    // The extra readiness self-checks are present.
+    await expect(
+      page.getByText("Do I have my cold calling / warm calling script ready?"),
+    ).toBeVisible();
+    await expect(page.getByText("How confident am I to start cold calling?")).toBeVisible();
+
+    // The pledge declaration reads cleanly (no doubled "I, <name>, I have written").
+    await expect(page.getByText(", I have written")).toHaveCount(0);
   });
 
   test("100 Whys section either auto-fills or links to the assignment", async ({ page }) => {
@@ -87,27 +96,49 @@ test.describe("Pre-RNF Business Plan worksheet", () => {
     expect(fieldSizing).toBe("content");
   });
 
-  test("pledge signature + date are editable and survive a reload", async ({ page }) => {
+  test("pledge has a drawable signature pad + date that survive a reload", async ({ page }) => {
     await signIn(page, RECRUIT.email, RECRUIT.password);
     await openWorksheet(page);
 
-    const sig = page.getByPlaceholder("Your signature");
-    const date = page.getByPlaceholder("DD / MM / YYYY");
-    await expect(sig).toBeVisible();
-    await expect(date).toBeVisible();
+    // The old plain-text signature input is gone; a canvas takes its place.
+    await expect(page.getByPlaceholder("Your signature")).toHaveCount(0);
+    const canvas = page.locator("canvas").first();
+    await expect(canvas).toBeVisible();
 
-    const stamp = "E2E Signer 42";
-    await sig.fill(stamp);
+    const date = page.getByPlaceholder("DD / MM / YYYY");
     await date.fill("01 / 07 / 2026");
 
-    // The in-progress draft autosaves to localStorage on every keystroke, so a
-    // reload must restore what was typed without needing an explicit Save.
+    // Draw a signature stroke on the canvas (scroll it into view so the mouse
+    // coordinates actually land on it).
+    await canvas.scrollIntoViewIfNeeded();
+    const box = await canvas.boundingBox();
+    if (!box) throw new Error("signature canvas has no bounding box");
+    await page.mouse.move(box.x + 30, box.y + box.height * 0.6);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width * 0.4, box.y + box.height * 0.3, { steps: 10 });
+    await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.7, { steps: 10 });
+    await page.mouse.up();
+
+    // The signature is captured as a PNG data URL and the draft autosaves it, so
+    // it survives a reload (both the drawn ink and the typed date).
     await page.reload();
     await expect(page.getByRole("heading", { name: "My vision board" })).toBeVisible({
       timeout: 15_000,
     });
-    await expect(page.getByPlaceholder("Your signature")).toHaveValue(stamp);
     await expect(page.getByPlaceholder("DD / MM / YYYY")).toHaveValue("01 / 07 / 2026");
+
+    const savedSig = await page.evaluate(() => {
+      const key = Object.keys(localStorage).find(
+        (k) => k.startsWith("worksheet-draft-") && k.includes("business-plan"),
+      );
+      if (!key) return "";
+      try {
+        return JSON.parse(localStorage.getItem(key) || "{}").final_pledge_signed || "";
+      } catch {
+        return "";
+      }
+    });
+    expect(savedSig.startsWith("data:image")).toBeTruthy();
   });
 
   test("objection dropdown offers the full warm-market library", async ({ page }) => {

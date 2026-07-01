@@ -195,10 +195,43 @@ export default function WorksheetBuilder() {
         .eq("user_id", ownerId)
         .order("submitted_at", { ascending: false })
         .limit(1);
-      return (data?.[0]?.submission_text as string | undefined)?.trim() || null;
+      const raw = (data?.[0]?.submission_text as string | undefined)?.trim();
+      if (!raw) return null;
+      // The assignment is a multi-field form stored as JSON — pull out only the
+      // "100 Whys" answer itself, not the whole blob of every prompt.
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+          const keys = Object.keys(parsed);
+          const key =
+            keys.find((k) => /100\s*whys/i.test(k)) ??
+            keys.find((k) => /why/i.test(k)) ??
+            keys[0];
+          return String(parsed[key] ?? "").trim() || null;
+        }
+      } catch {
+        /* not JSON — it's already plain text */
+      }
+      return raw;
     },
   });
   const autofill = hundredWhys.data ? { hundred_whys_text: hundredWhys.data } : undefined;
+
+  // Seed the 100 Whys text into the editable form state once, so the textarea is
+  // a normal controlled field (fully clearable / backspaceable). A ref keeps a
+  // deliberate clear from being re-filled, and admin (read-only) views are left
+  // to render straight from `autofill`.
+  const whysSeededFor = useRef<string | null>(null);
+  useEffect(() => {
+    if (!valid || slug !== "business-plan" || isAdminView) return;
+    if (loaded.isLoading || !hydrated.current) return;
+    const text = hundredWhys.data;
+    if (!text || whysSeededFor.current === ownerId) return;
+    whysSeededFor.current = ownerId ?? null;
+    setValues((prev) =>
+      prev.hundred_whys_text?.trim() ? prev : { ...prev, hundred_whys_text: text },
+    );
+  }, [valid, slug, isAdminView, loaded.isLoading, hundredWhys.data, ownerId]);
 
   const onChange = (id: string, v: string) =>
     setValues((prev) => ({ ...prev, [id]: v }));
