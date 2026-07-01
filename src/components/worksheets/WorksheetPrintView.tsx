@@ -72,6 +72,7 @@ export default function WorksheetPrintView({
         .wpv-rule { height: 3px; width: 64px; background: ${scheme.accent}; margin: 12px 0 18px; border-radius: 2px; }
         .wpv-step { break-inside: avoid; margin: 18px 0 9px; border-bottom: 2px solid ${scheme.accent}; padding-bottom: 6px; }
         .wpv-step h3 { font-size: 18px; font-weight: 800; margin: 0; }
+        .wpv-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 6px; background: ${scheme.accent}; color: #fff; font-size: 14px; font-weight: 800; margin-right: 9px; vertical-align: middle; }
         .wpv-step p { font-size: 12px; color: #666; font-style: italic; margin: 4px 0 0; }
         .wpv-field { break-inside: avoid; margin: 10px 0; }
         .wpv-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
@@ -108,7 +109,10 @@ export default function WorksheetPrintView({
               Prepared by <b>{name}</b>
             </div>
           )}
-          {coverDate && <div className="cdate">{coverDate}</div>}
+          <div className="cdate">
+            {schema.filter((b) => b.kind === "step" && /^\d+\./.test(b.label)).length} sections
+            {coverDate ? ` · ${coverDate}` : ""}
+          </div>
           <div className="cfoot">FINTERNSHIP · PRE-RNF</div>
         </div>
       ) : (
@@ -122,13 +126,26 @@ export default function WorksheetPrintView({
 
       {schema.map((block) => {
         switch (block.kind) {
-          case "step":
+          case "step": {
+            // Drop the vision-board heading from the PDF when there's no board.
+            if (block.id === "svb" && !images?.vision_board) return null;
+            const m = block.label.match(/^(\d+)\.\s*(.*)$/);
             return (
               <div key={block.id} className="wpv-step">
-                <h3>{block.label}</h3>
+                <h3>
+                  {m ? (
+                    <>
+                      <span className="wpv-badge">{m[1]}</span>
+                      {m[2]}
+                    </>
+                  ) : (
+                    block.label
+                  )}
+                </h3>
                 {block.hint && <p>{block.hint}</p>}
               </div>
             );
+          }
           case "text":
             return (
               <div key={block.id} className="wpv-field">

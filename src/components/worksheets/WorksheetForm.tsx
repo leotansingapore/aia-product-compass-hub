@@ -41,17 +41,28 @@ export default function WorksheetForm({
     <div className="space-y-6">
       {schema.map((block) => {
         switch (block.kind) {
-          case "step":
+          case "step": {
+            const m = block.label.match(/^(\d+)\.\s*(.*)$/);
             return (
               <div key={block.id} className="border-b-2 border-primary/70 pb-1.5">
-                <h3 className="font-serif text-base font-bold text-foreground sm:text-lg">
-                  {block.label}
+                <h3 className="flex items-center gap-2 font-serif text-base font-bold text-foreground sm:text-lg">
+                  {m ? (
+                    <>
+                      <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-md bg-primary px-1.5 text-sm font-bold text-primary-foreground">
+                        {m[1]}
+                      </span>
+                      <span>{m[2]}</span>
+                    </>
+                  ) : (
+                    block.label
+                  )}
                 </h3>
                 {block.hint && (
                   <p className="mt-1 text-xs italic text-muted-foreground">{block.hint}</p>
                 )}
               </div>
             );
+          }
 
           case "text":
             return (

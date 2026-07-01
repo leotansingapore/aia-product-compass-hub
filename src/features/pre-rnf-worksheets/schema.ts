@@ -102,7 +102,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   { kind: "textarea", id: "goals_why", label: "What hitting this changes for me and my family", rows: 3 },
   { kind: "textarea", id: "goals_dev", label: "Professional development I want (1–3 years)", rows: 3 },
 
-  { kind: "step", id: "srec", label: "My recognition & EPS targets", hint: "Decide what you're gunning for — a production club, Convention, an MDRT level, or a mix. The figures are shown next to each." },
+  { kind: "step", id: "srec", label: "2. My recognition & EPS targets", hint: "Decide what you're gunning for — a production club, Convention, an MDRT level, or a mix. The figures are shown next to each." },
   {
     kind: "checklist",
     id: "recognition",
@@ -122,7 +122,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   },
   { kind: "eps", id: "eps" },
 
-  { kind: "step", id: "s2", label: "2. My strengths & areas to grow", hint: "Three of each. Write the honest version — the gaps are the part worth coaching." },
+  { kind: "step", id: "s2", label: "3. My strengths & areas to grow", hint: "Three of each. Write the honest version — the gaps are the part worth coaching." },
   {
     kind: "table",
     id: "strengths",
@@ -138,7 +138,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     addRows: true,
   },
 
-  { kind: "step", id: "s3", label: "3. My lead generation", hint: "Three markets you can operate in, with the real reason each fits. Tie each back to your Project 200 list." },
+  { kind: "step", id: "s3", label: "4. My lead generation", hint: "Three markets you can operate in, with the real reason each fits. Tie each back to your Project 200 list." },
   {
     kind: "table",
     id: "markets",
@@ -147,16 +147,16 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     addRows: true,
   },
 
-  { kind: "step", id: "ssocial", label: "My social prospecting & personal brand", hint: "How you'll build a pipeline online — the plan, the content, and the brand people remember you by." },
+  { kind: "step", id: "ssocial", label: "5. My social prospecting & personal brand", hint: "How you'll build a pipeline online — the plan, the content, and the brand people remember you by." },
   { kind: "textarea", id: "social_plan", label: "My social prospecting game plan (which platforms, how often, what's the goal)", rows: 3 },
   { kind: "textarea", id: "social_content", label: "The content I'll create — my 3–4 content pillars / themes", rows: 3 },
   { kind: "textarea", id: "social_brand", label: "My personal brand — who I am, my niche, and the hook people remember", rows: 3 },
   { kind: "textarea", id: "social_cadence", label: "My posting & engagement commitment (posts per week, DMs / comments per day)", rows: 2 },
 
-  { kind: "step", id: "s4", label: "4. My weekly timetable", hint: "Colour-code a typical week hour by hour — prospecting, appointments, preparation, learning, study, me time. Count your prospecting slots: section 1 tells you how many you need." },
+  { kind: "step", id: "s4", label: "6. My weekly timetable", hint: "Colour-code a typical week hour by hour — prospecting, appointments, preparation, learning, study, me time. Count your prospecting slots: section 1 tells you how many you need." },
   { kind: "timetable", id: "timetable" },
 
-  { kind: "step", id: "s5", label: "5. My warm prospecting system", hint: "This is exactly how you'll reach your warm market. Write it word for word — the way you'd send it and say it — so you're never improvising." },
+  { kind: "step", id: "s5", label: "7. My warm prospecting system", hint: "This is exactly how you'll reach your warm market. Write it word for word — the way you'd send it and say it — so you're never improvising." },
   { kind: "textarea", id: "warm_outreach", label: "How I'll reach out to my warm market (who first, on what channel, how many a day)", rows: 2 },
   { kind: "textarea", id: "warm_text", label: "My initial text message — word for word", rows: 3 },
   { kind: "textarea", id: "warm_call", label: "My initial call — word for word", rows: 3 },
@@ -182,7 +182,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   },
   { kind: "textarea", id: "stored_cases", label: "Stored cases from my warm market for when I RNF (who · what case · how much)", rows: 3 },
 
-  { kind: "step", id: "s6", label: "6. Sales competency — my first three prospects", hint: "Real people you could call this week. A specific need next to each name." },
+  { kind: "step", id: "s6", label: "8. Sales competency — my first three prospects", hint: "Real people you could call this week. A specific need next to each name." },
   {
     kind: "table",
     id: "prospects",
@@ -200,7 +200,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     ],
   },
 
-  { kind: "step", id: "s7", label: "7. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
+  { kind: "step", id: "s7", label: "9. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
   {
     kind: "table",
     id: "kpi",
@@ -213,7 +213,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     text: "Points per activity, for reference: Appointment Set = 1 · Opening Interview = 3 · Closing Interview = 4 · Case Closed = 5 · Referral = 1 · Client Servicing = 2.",
   },
 
-  { kind: "step", id: "s8", label: "8. My income goal", hint: "The FYC you're chasing, by when, and the weekly pace it takes (carry this from your Pledge Sheet)." },
+  { kind: "step", id: "s8", label: "10. My income goal", hint: "The FYC you're chasing, by when, and the weekly pace it takes (carry this from your Pledge Sheet)." },
   {
     kind: "table",
     id: "income",
@@ -222,7 +222,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     addRows: true,
   },
 
-  { kind: "step", id: "s9", label: "9. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting." },
+  { kind: "step", id: "s9", label: "11. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting." },
   {
     kind: "table",
     id: "stake",
