@@ -29,7 +29,7 @@ export const WORKSHEETS: Record<WorksheetSlug, WorksheetMeta> = {
     slug: "business-plan",
     title: "Business Plan — Your First Five Years",
     short:
-      "Your six-section plan: goals, strengths, lead generation, weekly timetable, calling system, and first three prospects.",
+      "Your plan: goals, strengths, lead generation, weekly timetable, calling system, first three prospects, KPIs, income goal, and the accountability stakes you'll hold yourself to.",
   },
 };
 

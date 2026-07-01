@@ -123,6 +123,31 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     columns: ["Name", "Occupation", "How I know them", "What I think they need + the plan"],
     rows: 3,
   },
+
+  { kind: "step", id: "s7", label: "7. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
+  {
+    kind: "table",
+    id: "kpi",
+    columns: ["", "Daily", "Weekly", "Monthly"],
+    rowLabels: ["Activity commitment", "Points target"],
+  },
+
+  { kind: "step", id: "s8", label: "8. My income goal", hint: "The FYC you're chasing, by when, and the weekly pace it takes (carry this from your Pledge Sheet)." },
+  {
+    kind: "table",
+    id: "income",
+    columns: ["Goal", "Deadline", "KPI to reach"],
+    rows: 2,
+  },
+
+  { kind: "step", id: "s9", label: "9. My accountability & stakes", hint: "Name what keeps you honest and the stake if you fall short of your points — make it sting. e.g. pay $50 to your mentor, run 10km, buy the team lunch, name a pacer to beat." },
+  {
+    kind: "table",
+    id: "accountability",
+    columns: ["Accountability", "The stake if I fall short"],
+    rows: 3,
+  },
+
   {
     kind: "note",
     id: "n1",
