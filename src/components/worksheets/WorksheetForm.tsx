@@ -139,16 +139,20 @@ export default function WorksheetForm({
                             }
                             const k = cellKey(block.id, r, c);
                             return (
-                              <td key={c} className="border p-0">
+                              <td key={c} className="border p-0 align-top">
                                 {readOnly ? (
-                                  <div className="min-h-8 px-2 py-1.5 text-sm">
+                                  <div className="min-h-8 whitespace-pre-wrap px-2 py-1.5 text-sm">
                                     <ReadValue value={val(k)} />
                                   </div>
                                 ) : (
-                                  <input
+                                  <textarea
                                     value={val(k)}
                                     onChange={(e) => set(k, e.target.value)}
-                                    className="w-full bg-transparent px-2 py-1.5 text-sm outline-none focus:bg-primary/5"
+                                    rows={1}
+                                    // field-sizing grows the box as they type / hit Enter;
+                                    // browsers without it still allow multi-line + resize.
+                                    style={{ fieldSizing: "content" } as React.CSSProperties}
+                                    className="block w-full resize-y bg-transparent px-2 py-1.5 text-sm leading-snug outline-none focus:bg-primary/5"
                                   />
                                 )}
                               </td>
@@ -273,25 +277,23 @@ export default function WorksheetForm({
                 {block.items.map((item) => {
                   const k = `${block.id}__${item.id}`;
                   const v = val(k);
+                  let control: JSX.Element;
                   if (item.type === "check") {
                     const checked = v === "yes";
-                    return (
+                    control = (
                       <button
-                        key={item.id}
                         type="button"
                         disabled={readOnly}
                         onClick={() => set(k, checked ? "" : "yes")}
                         className={cn(
-                          "flex w-full items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
+                          "flex flex-1 items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
                           checked ? "border-green-500/40 bg-green-500/5" : "hover:bg-muted/40",
                         )}
                       >
                         <span
                           className={cn(
                             "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2",
-                            checked
-                              ? "border-green-600 bg-green-600 text-white"
-                              : "border-muted-foreground/40",
+                            checked ? "border-green-600 bg-green-600 text-white" : "border-muted-foreground/40",
                           )}
                         >
                           {checked && <Check className="h-3.5 w-3.5" />}
@@ -299,18 +301,16 @@ export default function WorksheetForm({
                         <span className="font-medium">{item.text}</span>
                       </button>
                     );
-                  }
-                  if (item.type === "radio") {
+                  } else if (item.type === "radio") {
                     const gk = `${block.id}__grp_${item.group ?? "g"}`;
                     const selected = val(gk) === item.id;
-                    return (
+                    control = (
                       <button
-                        key={item.id}
                         type="button"
                         disabled={readOnly}
                         onClick={() => set(gk, selected ? "" : item.id)}
                         className={cn(
-                          "flex w-full items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
+                          "flex flex-1 items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
                           selected ? "border-primary/50 bg-primary/5" : "hover:bg-muted/40",
                         )}
                       >
@@ -325,10 +325,9 @@ export default function WorksheetForm({
                         <span className="font-medium">{item.text}</span>
                       </button>
                     );
-                  }
-                  if (item.type === "scale") {
-                    return (
-                      <div key={item.id} className="rounded-lg border p-2.5">
+                  } else if (item.type === "scale") {
+                    control = (
+                      <div className="flex-1 rounded-lg border p-2.5">
                         <p className="mb-1.5 text-sm font-medium">{item.text}</p>
                         <div className="flex flex-wrap gap-1">
                           {Array.from({ length: 11 }).map((_, n) => (
@@ -339,9 +338,7 @@ export default function WorksheetForm({
                               onClick={() => set(k, String(n))}
                               className={cn(
                                 "h-7 w-7 rounded-md border text-xs font-semibold transition-colors",
-                                v === String(n)
-                                  ? "border-primary bg-primary text-primary-foreground"
-                                  : "hover:bg-muted",
+                                v === String(n) ? "border-primary bg-primary text-primary-foreground" : "hover:bg-muted",
                               )}
                             >
                               {n}
@@ -350,29 +347,44 @@ export default function WorksheetForm({
                         </div>
                       </div>
                     );
+                  } else {
+                    control = (
+                      <div className="flex flex-1 flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5">
+                        <span className="text-sm font-medium">{item.text}</span>
+                        <div className="flex gap-1">
+                          {STATUS_OPTIONS.map((opt) => (
+                            <button
+                              key={opt}
+                              type="button"
+                              disabled={readOnly}
+                              onClick={() => set(k, opt)}
+                              className={cn(
+                                "rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
+                                v === opt ? statusActiveClass(opt) : "hover:bg-muted",
+                              )}
+                            >
+                              {opt}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    );
                   }
                   return (
-                    <div
-                      key={item.id}
-                      className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5"
-                    >
-                      <span className="text-sm font-medium">{item.text}</span>
-                      <div className="flex gap-1">
-                        {STATUS_OPTIONS.map((opt) => (
-                          <button
-                            key={opt}
-                            type="button"
-                            disabled={readOnly}
-                            onClick={() => set(k, opt)}
-                            className={cn(
-                              "rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
-                              v === opt ? statusActiveClass(opt) : "hover:bg-muted",
-                            )}
-                          >
-                            {opt}
-                          </button>
-                        ))}
-                      </div>
+                    <div key={item.id} className="flex items-start gap-2">
+                      {control}
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open the assignment"
+                          className="mt-0.5 inline-flex shrink-0 items-center gap-1 rounded-md border px-2 py-1.5 text-xs font-medium text-primary hover:bg-primary/5"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          Open
+                        </a>
+                      )}
                     </div>
                   );
                 })}

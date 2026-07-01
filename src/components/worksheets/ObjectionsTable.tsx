@@ -1,6 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { CURATED_OBJECTIONS } from "@/data/curatedObjections";
+import { GENERATED_OBJECTIONS } from "@/data/curatedObjections.generated";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
+
+// The full objection library from the Objections sales tool, deduped + sorted.
+const LIBRARY_OBJECTIONS = Array.from(
+  new Set([...CURATED_OBJECTIONS, ...GENERATED_OBJECTIONS].map((o) => o.title)),
+).sort((a, b) => a.localeCompare(b));
 
 // Row-by-row objection handling: pick an objection (preset or your own) and write
 // how you'll respond. Learners are asked to handle at least 5.
@@ -58,11 +65,20 @@ export default function ObjectionsTable({
                           className="h-8 w-full rounded-md border border-input bg-background px-2 text-sm"
                         >
                           <option value="">Choose…</option>
-                          {options.map((o) => (
-                            <option key={o} value={o}>
-                              {o}
-                            </option>
-                          ))}
+                          <optgroup label="Product / DIY">
+                            {options.map((o) => (
+                              <option key={o} value={o}>
+                                {o}
+                              </option>
+                            ))}
+                          </optgroup>
+                          <optgroup label="Warm-market objection library">
+                            {LIBRARY_OBJECTIONS.filter((o) => !options.includes(o)).map((o) => (
+                              <option key={o} value={o}>
+                                {o}
+                              </option>
+                            ))}
+                          </optgroup>
                           <option value="__other">Other…</option>
                         </select>
                         {type === "__other" && (

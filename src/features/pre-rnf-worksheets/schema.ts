@@ -44,6 +44,8 @@ export type WorksheetBlock =
         type: "check" | "scale" | "status" | "radio";
         /** For "radio" items: only one per group can be selected at a time. */
         group?: string;
+        /** Optional link (e.g. to the relevant assignment) shown by the item. */
+        link?: string;
       }>;
     };
 
@@ -221,30 +223,17 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "prospect_ready",
     label: "Am I ready to prospect? — a straight self-check",
     items: [
-      { id: "project200", text: "Have I built my Project 200?", type: "check" },
-      { id: "hundred_whys", text: "Have I done my 100 Whys?", type: "check" },
-      { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
-      { id: "visionboard", text: "Have I done my vision board?", type: "check" },
-      { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
+      { id: "project200", text: "Have I built my Project 200?", type: "check", link: "/learning-track/pre-rnf/assignments/project-200" },
+      { id: "hundred_whys", text: "Have I done my 100 Whys?", type: "check", link: "/learning-track/pre-rnf/assignments/100-whys" },
+      { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check", link: "/learning-track/pre-rnf/assignments/field-observation" },
+      { id: "visionboard", text: "Have I done my vision board?", type: "check", link: "/learning-track/pre-rnf/assignments/vision-board" },
+      { id: "roleplays", text: "Have I done my roleplays?", type: "check", link: "/learning-track/pre-rnf/assignments/cst-roleplay" },
       { id: "flows_conf", text: "Am I confident of my appointment flows?", type: "scale" },
       { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },
       { id: "slidedeck", text: "Do I have my own slide deck for each CST?", type: "check" },
       { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },
-      { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check" },
+      { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check", link: "/learning-track/pre-rnf/assignments/policy-summary" },
       { id: "policy_conf", text: "Am I confident building a policy summary?", type: "scale" },
-    ],
-  },
-  {
-    kind: "links",
-    id: "ready_refs",
-    label: "Not done yet? Open the assignment:",
-    links: [
-      { label: "Project 200", url: "/learning-track/pre-rnf/assignments/project-200" },
-      { label: "100 Whys", url: "/learning-track/pre-rnf/assignments/100-whys" },
-      { label: "Joint Field Observation", url: "/learning-track/pre-rnf/assignments/field-observation" },
-      { label: "Vision Board", url: "/learning-track/pre-rnf/assignments/vision-board" },
-      { label: "CST Roleplay", url: "/learning-track/pre-rnf/assignments/cst-roleplay" },
-      { label: "Policy Summary", url: "/learning-track/pre-rnf/assignments/policy-summary" },
     ],
   },
   { kind: "textarea", id: "stored_cases", label: "Stored cases from my warm market for when I RNF (who · what case · how much)", rows: 3 },
@@ -261,15 +250,10 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "prospect_ps",
     label: "Have I built a policy summary for each of them?",
     items: [
-      { id: "p1", text: "Prospect 1 — policy summary", type: "status" },
-      { id: "p2", text: "Prospect 2 — policy summary", type: "status" },
-      { id: "p3", text: "Prospect 3 — policy summary", type: "status" },
+      { id: "p1", text: "Prospect 1 — policy summary", type: "status", link: "/learning-track/pre-rnf/assignments/policy-summary" },
+      { id: "p2", text: "Prospect 2 — policy summary", type: "status", link: "/learning-track/pre-rnf/assignments/policy-summary" },
+      { id: "p3", text: "Prospect 3 — policy summary", type: "status", link: "/learning-track/pre-rnf/assignments/policy-summary" },
     ],
-  },
-  {
-    kind: "links",
-    id: "ps_ref",
-    links: [{ label: "Policy Summary assignment", url: "/learning-track/pre-rnf/assignments/policy-summary" }],
   },
 
   { kind: "step", id: "s7", label: "9. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
