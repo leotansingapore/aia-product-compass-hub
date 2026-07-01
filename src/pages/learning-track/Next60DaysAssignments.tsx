@@ -228,7 +228,7 @@ export default function Next60DaysAssignments() {
                       : "bg-primary text-primary-foreground group-hover:bg-primary/90",
                   )}
                 >
-                  {submitted ? "Review submission" : "Open assignment"}
+                  {submitted ? "Review / edit submission" : "Open assignment"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </div>
               </CardContent>
@@ -431,9 +431,14 @@ function SubmissionPanel({
             {submission.submission_text}
           </div>
         ) : null}
-        <Button variant="outline" size="sm" onClick={() => setEditing(true)}>
-          Edit & resubmit
-        </Button>
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <Button size="sm" onClick={() => setEditing(true)}>
+            Edit &amp; resubmit
+          </Button>
+          <span className="text-xs text-muted-foreground">
+            You can change your answers and resubmit any time.
+          </span>
+        </div>
       </div>
     );
   }
