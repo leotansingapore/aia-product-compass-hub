@@ -148,6 +148,39 @@ export default function WorksheetBuilder() {
     },
   });
 
+  // Vision board image (business plan only) — pulled from the owner's Vision
+  // Board assignment and inlined as a data URL so html2canvas can rasterise it
+  // into the PDF without a cross-origin taint.
+  const visionBoard = useQuery({
+    queryKey: ["worksheet-vision-board", ownerId],
+    enabled: valid && slug === "business-plan" && !!ownerId,
+    staleTime: 5 * 60_000,
+    queryFn: async () => {
+      const { data } = await (supabase.from as any)("assignment_submissions")
+        .select("file_url, submitted_at")
+        .eq("product_id", "first-60-days-assignments")
+        .eq("item_id", "assignment-06-vision-board")
+        .eq("user_id", ownerId)
+        .order("submitted_at", { ascending: false })
+        .limit(1);
+      const url: string | undefined = data?.[0]?.file_url ?? undefined;
+      if (!url) return null;
+      try {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        return await new Promise<string>((resolve) => {
+          const fr = new FileReader();
+          fr.onload = () => resolve(String(fr.result));
+          fr.onerror = () => resolve(url);
+          fr.readAsDataURL(blob);
+        });
+      } catch {
+        return url;
+      }
+    },
+  });
+  const images = visionBoard.data ? { vision_board: visionBoard.data } : undefined;
+
   const onChange = (id: string, v: string) =>
     setValues((prev) => ({ ...prev, [id]: v }));
 
@@ -336,7 +369,7 @@ export default function WorksheetBuilder() {
         ) : isPledge ? (
           <PledgeSheetCalculator values={values} onChange={onChange} readOnly={readOnly} />
         ) : (
-          <WorksheetForm schema={schema} values={values} onChange={onChange} readOnly={readOnly} />
+          <WorksheetForm schema={schema} values={values} onChange={onChange} readOnly={readOnly} images={images} />
         )}
       </div>
 
@@ -369,6 +402,7 @@ export default function WorksheetBuilder() {
                     subtitle={meta.short}
                     schema={schema}
                     values={values}
+                    images={images}
                   />
                 )}
               </div>

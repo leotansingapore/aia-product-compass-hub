@@ -25,11 +25,14 @@ export default function WorksheetForm({
   values,
   onChange,
   readOnly = false,
+  images,
 }: {
   schema: WorksheetBlock[];
   values: WorksheetValues;
   onChange?: (id: string, value: string) => void;
   readOnly?: boolean;
+  /** Resolved image srcs (e.g. the vision board) keyed by block id. */
+  images?: Record<string, string>;
 }) {
   const set = (id: string, v: string) => onChange?.(id, v);
   const val = (id: string) => values[id] ?? "";
@@ -185,6 +188,25 @@ export default function WorksheetForm({
                 readOnly={readOnly}
               />
             );
+
+          case "image": {
+            const src = images?.[block.id];
+            return (
+              <div key={block.id}>
+                {src ? (
+                  <img
+                    src={src}
+                    alt={block.label ?? "Image"}
+                    className="max-h-80 w-full rounded-lg border bg-muted/20 object-contain"
+                  />
+                ) : (
+                  <div className="rounded-lg border border-dashed bg-muted/20 p-6 text-center text-sm text-muted-foreground">
+                    {block.hint ?? "Nothing here yet."}
+                  </div>
+                )}
+              </div>
+            );
+          }
 
           case "checklist":
             return (

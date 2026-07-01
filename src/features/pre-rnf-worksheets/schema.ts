@@ -20,6 +20,7 @@ export type WorksheetBlock =
       addRows?: boolean;
     }
   | { kind: "note"; id: string; text: string }
+  | { kind: "image"; id: string; label?: string; hint?: string }
   | { kind: "timetable"; id: string }
   | { kind: "eps"; id: string }
   | {
@@ -76,6 +77,9 @@ const PLEDGE: WorksheetBlock[] = [
 ];
 
 const BUSINESS_PLAN: WorksheetBlock[] = [
+  { kind: "step", id: "svb", label: "My vision board" },
+  { kind: "image", id: "vision_board", hint: "This is pulled from your Vision Board assignment — do it there and it appears here and in your exported PDF." },
+
   { kind: "step", id: "s1", label: "1. My goals", hint: "Carry the headline numbers from your Pledge Sheet here, then add the life behind them." },
   {
     kind: "table",
@@ -159,6 +163,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     items: [
       { id: "project200", text: "Have I built my Project 200?", type: "check" },
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
+      { id: "visionboard", text: "Have I done my vision board?", type: "check" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
       { id: "flows_conf", text: "Am I confident of my flows?", type: "scale" },
       { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },

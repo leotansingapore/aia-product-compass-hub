@@ -29,11 +29,13 @@ export default function WorksheetPrintView({
   subtitle,
   schema,
   values,
+  images,
 }: {
   title: string;
   subtitle: string;
   schema: WorksheetBlock[];
   values: WorksheetValues;
+  images?: Record<string, string>;
 }) {
   const scheme = schemeFor(values);
   const name = personName(values);
@@ -150,6 +152,25 @@ export default function WorksheetPrintView({
                 {block.text}
               </p>
             );
+
+          case "image": {
+            const src = images?.[block.id];
+            if (!src) return null; // omit from the PDF when there's no image
+            return (
+              <div key={block.id} className="wpv-field" style={{ textAlign: "center" }}>
+                <img
+                  src={src}
+                  alt={block.label ?? ""}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "150mm",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+            );
+          }
 
           case "timetable": {
             const ttCustom = parseCustomCats(values);
