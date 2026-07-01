@@ -244,6 +244,32 @@ export default function WorksheetForm({
                       </button>
                     );
                   }
+                  if (item.type === "radio") {
+                    const gk = `${block.id}__grp_${item.group ?? "g"}`;
+                    const selected = val(gk) === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        disabled={readOnly}
+                        onClick={() => set(gk, selected ? "" : item.id)}
+                        className={cn(
+                          "flex w-full items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
+                          selected ? "border-primary/50 bg-primary/5" : "hover:bg-muted/40",
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2",
+                            selected ? "border-primary" : "border-muted-foreground/40",
+                          )}
+                        >
+                          {selected && <span className="h-2.5 w-2.5 rounded-full bg-primary" />}
+                        </span>
+                        <span className="font-medium">{item.text}</span>
+                      </button>
+                    );
+                  }
                   if (item.type === "scale") {
                     return (
                       <div key={item.id} className="rounded-lg border p-2.5">

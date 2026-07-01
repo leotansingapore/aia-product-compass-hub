@@ -224,6 +224,18 @@ export default function WorksheetPrintView({
                       </div>
                     );
                   }
+                  if (item.type === "radio") {
+                    const selected =
+                      (values[`${block.id}__grp_${item.group ?? "g"}`] ?? "").trim() === item.id;
+                    return (
+                      <div key={item.id} className="wpv-check">
+                        <span className="bx" style={{ borderRadius: "50%" }}>
+                          {selected ? "●" : ""}
+                        </span>
+                        {item.text}
+                      </div>
+                    );
+                  }
                   if (item.type === "scale") {
                     return (
                       <div key={item.id} className="wpv-check">

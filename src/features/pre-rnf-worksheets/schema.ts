@@ -27,7 +27,13 @@ export type WorksheetBlock =
       kind: "checklist";
       id: string;
       label?: string;
-      items: Array<{ id: string; text: string; type: "check" | "scale" | "status" }>;
+      items: Array<{
+        id: string;
+        text: string;
+        type: "check" | "scale" | "status" | "radio";
+        /** For "radio" items: only one per group can be selected at a time. */
+        group?: string;
+      }>;
     };
 
 // Tri-state options for "status" checklist items (policy-summary progress etc.).
@@ -100,18 +106,18 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "checklist",
     id: "recognition",
-    label: "Tick the recognition you're aiming for (a club tier, and/or Convention, and/or an MDRT level):",
+    label: "Pick ONE production club to aim for, plus Convention and/or an MDRT level if you're going for them:",
     items: [
-      { id: "centurion", text: "Premier Centurion — S$100,000 FYC", type: "check" },
-      { id: "diamond", text: "Premier Prestige Diamond — S$80,000 FYC", type: "check" },
-      { id: "platinum", text: "Premier Prestige Platinum — S$70,000 FYC", type: "check" },
-      { id: "titanium", text: "Premier Prestige Titanium — S$50,000 FYC", type: "check" },
-      { id: "gold", text: "Premier Prestige Gold — S$40,000 FYC", type: "check" },
-      { id: "silver", text: "Premier Prestige Silver — S$30,000 FYC", type: "check" },
+      { id: "centurion", text: "Premier Centurion — S$100,000 FYC", type: "radio", group: "club" },
+      { id: "diamond", text: "Premier Prestige Diamond — S$80,000 FYC", type: "radio", group: "club" },
+      { id: "platinum", text: "Premier Prestige Platinum — S$70,000 FYC", type: "radio", group: "club" },
+      { id: "titanium", text: "Premier Prestige Titanium — S$50,000 FYC", type: "radio", group: "club" },
+      { id: "gold", text: "Premier Prestige Gold — S$40,000 FYC", type: "radio", group: "club" },
+      { id: "silver", text: "Premier Prestige Silver — S$30,000 FYC", type: "radio", group: "club" },
       { id: "convention", text: "Convention (new consultants) — S$138,000 ANP", type: "check" },
-      { id: "mdrt", text: "MDRT — S$75,800 (raw FYC ≈ S$55,735, i.e. ÷ 1.36)", type: "check" },
-      { id: "cot", text: "COT — S$227,400 (raw FYC ≈ S$167,206)", type: "check" },
-      { id: "tot", text: "TOT — S$454,800 (raw FYC ≈ S$334,412)", type: "check" },
+      { id: "mdrt", text: "MDRT — S$75,800 (raw FYC ≈ S$55,735, i.e. ÷ 1.36)", type: "radio", group: "mdrt" },
+      { id: "cot", text: "COT — S$227,400 (raw FYC ≈ S$167,206)", type: "radio", group: "mdrt" },
+      { id: "tot", text: "TOT — S$454,800 (raw FYC ≈ S$334,412)", type: "radio", group: "mdrt" },
     ],
   },
   { kind: "eps", id: "eps" },
@@ -122,12 +128,14 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "strengths",
     columns: ["Strength", "How it helps me advise well"],
     rows: 3,
+    addRows: true,
   },
   {
     kind: "table",
     id: "weaknesses",
     columns: ["Weakness", "How I'll work on it"],
     rows: 3,
+    addRows: true,
   },
 
   { kind: "step", id: "s3", label: "3. My lead generation", hint: "Three markets you can operate in, with the real reason each fits. Tie each back to your Project 200 list." },
@@ -138,7 +146,6 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     rows: 3,
     addRows: true,
   },
-  { kind: "textarea", id: "market_prospecting", label: "For each method — advantages & disadvantages", rows: 3 },
 
   { kind: "step", id: "ssocial", label: "My social prospecting & personal brand", hint: "How you'll build a pipeline online — the plan, the content, and the brand people remember you by." },
   { kind: "textarea", id: "social_plan", label: "My social prospecting game plan (which platforms, how often, what's the goal)", rows: 3 },
