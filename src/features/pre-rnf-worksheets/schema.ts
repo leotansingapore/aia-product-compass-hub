@@ -161,7 +161,6 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   { kind: "textarea", id: "warm_text", label: "My initial text message — word for word", rows: 3 },
   { kind: "textarea", id: "warm_call", label: "My initial call — word for word", rows: 3 },
   { kind: "textarea", id: "call_purpose", label: "My purpose for the call (market survey / setting an appointment)", rows: 2 },
-  { kind: "textarea", id: "call_close", label: "How I close — and keep the door open if they say no", rows: 2 },
   { kind: "textarea", id: "call_track", label: "How I'll track every prospect & follow up", rows: 2 },
   {
     kind: "checklist",
