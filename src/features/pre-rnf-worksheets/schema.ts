@@ -17,7 +17,17 @@ export type WorksheetBlock =
       /** When there are no rowLabels, how many blank rows to render. */
       rows?: number;
     }
-  | { kind: "note"; id: string; text: string };
+  | { kind: "note"; id: string; text: string }
+  | { kind: "timetable"; id: string }
+  | {
+      kind: "checklist";
+      id: string;
+      label?: string;
+      items: Array<{ id: string; text: string; type: "check" | "scale" | "status" }>;
+    };
+
+// Tri-state options for "status" checklist items (policy-summary progress etc.).
+export const STATUS_OPTIONS = ["Not done", "In progress", "Done"] as const;
 
 export function cellKey(tableId: string, r: number, c: number): string {
   return `${tableId}__r${r}c${c}`;
@@ -102,19 +112,33 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   },
   { kind: "textarea", id: "market_prospecting", label: "For each method — advantages & disadvantages", rows: 3 },
 
-  { kind: "step", id: "s4", label: "4. My weekly timetable", hint: "Block a typical week across prospecting, preparation, me time, learning, and study. Count your prospecting slots — section 1 tells you how many you need." },
-  {
-    kind: "table",
-    id: "timetable",
-    columns: ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    rowLabels: ["Morning", "Afternoon", "Evening"],
-  },
+  { kind: "step", id: "s4", label: "4. My weekly timetable", hint: "Colour-code a typical week hour by hour — prospecting, appointments, preparation, learning, study, me time. Count your prospecting slots: section 1 tells you how many you need." },
+  { kind: "timetable", id: "timetable" },
 
-  { kind: "step", id: "s5", label: "5. My calling system", hint: "Write the script the way you'd say it out loud. Read it back — if it sounds like a brochure, rewrite it until it sounds like you." },
-  { kind: "textarea", id: "call_intro", label: "How I introduce myself & my new career", rows: 2 },
+  { kind: "step", id: "s5", label: "5. My warm prospecting system", hint: "This is exactly how you'll reach your warm market. Write it word for word — the way you'd send it and say it — so you're never improvising." },
+  { kind: "textarea", id: "warm_outreach", label: "How I'll reach out to my warm market (who first, on what channel, how many a day)", rows: 2 },
+  { kind: "textarea", id: "warm_text", label: "My initial text message — word for word", rows: 3 },
+  { kind: "textarea", id: "warm_call", label: "My initial call — word for word", rows: 3 },
   { kind: "textarea", id: "call_purpose", label: "My purpose for the call (market survey / setting an appointment)", rows: 2 },
   { kind: "textarea", id: "call_close", label: "How I close — and keep the door open if they say no", rows: 2 },
   { kind: "textarea", id: "call_track", label: "How I'll track every prospect & follow up", rows: 2 },
+  {
+    kind: "checklist",
+    id: "prospect_ready",
+    label: "Am I ready to prospect? — a straight self-check",
+    items: [
+      { id: "project200", text: "Have I built my Project 200?", type: "check" },
+      { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
+      { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
+      { id: "flows_conf", text: "Am I confident of my flows?", type: "scale" },
+      { id: "script", text: "Have I done my script?", type: "check" },
+      { id: "slidedeck", text: "Do I have my own slide deck for each CST?", type: "check" },
+      { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },
+      { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check" },
+      { id: "policy_conf", text: "Am I confident building a policy summary?", type: "scale" },
+    ],
+  },
+  { kind: "textarea", id: "stored_cases", label: "Stored cases from my warm market for when I RNF (who · what case · how much)", rows: 3 },
 
   { kind: "step", id: "s6", label: "6. Sales competency — my first three prospects", hint: "Real people you could call this week. A specific need next to each name." },
   {
@@ -123,6 +147,16 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     columns: ["Name", "Occupation", "How I know them", "What I think they need + the plan"],
     rows: 3,
   },
+  {
+    kind: "checklist",
+    id: "prospect_ps",
+    label: "Have I built a policy summary for each of them?",
+    items: [
+      { id: "p1", text: "Prospect 1 — policy summary", type: "status" },
+      { id: "p2", text: "Prospect 2 — policy summary", type: "status" },
+      { id: "p3", text: "Prospect 3 — policy summary", type: "status" },
+    ],
+  },
 
   { kind: "step", id: "s7", label: "7. My KPIs", hint: "The activity you commit to at each cadence, and the points behind it. For your weekly points target, use the number your Pledge Sheet works out." },
   {
@@ -130,6 +164,11 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "kpi",
     columns: ["", "Daily", "Weekly", "Monthly"],
     rowLabels: ["Activity commitment", "Points target"],
+  },
+  {
+    kind: "note",
+    id: "points_ref",
+    text: "Points per activity, for reference: Appointment Set = 1 · Opening Interview = 3 · Closing Interview = 4 · Case Closed = 5 · Referral = 1 · Client Servicing = 2.",
   },
 
   { kind: "step", id: "s8", label: "8. My income goal", hint: "The FYC you're chasing, by when, and the weekly pace it takes (carry this from your Pledge Sheet)." },
@@ -140,12 +179,26 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     rows: 2,
   },
 
-  { kind: "step", id: "s9", label: "9. My accountability & stakes", hint: "Name what keeps you honest and the stake if you fall short of your points — make it sting. e.g. pay $50 to your mentor, run 10km, buy the team lunch, name a pacer to beat." },
+  { kind: "step", id: "s9", label: "9. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting." },
   {
     kind: "table",
-    id: "accountability",
-    columns: ["Accountability", "The stake if I fall short"],
-    rows: 3,
+    id: "stake",
+    columns: ["Minimum weekly points", "The stake if I fall short (e.g. $50 to mentor, run 10km)"],
+    rows: 1,
+  },
+  {
+    kind: "table",
+    id: "support",
+    columns: ["My pacer (who I'll race)", "My mentor (who holds me to it)"],
+    rows: 1,
+  },
+  {
+    kind: "checklist",
+    id: "commit",
+    items: [
+      { id: "timetable", text: "I commit to adhere to my weekly timetable", type: "check" },
+      { id: "target", text: "I commit to hit the minimum weekly points target I've set", type: "check" },
+    ],
   },
 
   {

@@ -1,5 +1,13 @@
 import { cellKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
 import { headline, personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
+import {
+  TT_CATEGORIES,
+  TT_DAYS,
+  TT_HOURS,
+  hourLabel,
+  ttCategory,
+  ttKey,
+} from "@/features/pre-rnf-worksheets/timetable";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 // A print/PDF render of a worksheet that mirrors the downloadable PDF template:
@@ -51,6 +59,16 @@ export default function WorksheetPrintView({
         .wpv td .wpv-cell { min-height: 20px; white-space: pre-wrap; }
         .wpv-note { background: ${scheme.tint}; border-left: 3px solid ${scheme.accent}; padding: 10px 14px; font-size: 13.5px; color: ${scheme.deep}; margin: 12px 0; }
         .wpv-table-label { font-size: 14px; font-weight: 700; margin: 9px 0 3px; }
+        .wpv-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 6px; font-size: 11px; }
+        .wpv-legend .lg { display: inline-flex; align-items: center; gap: 5px; }
+        .wpv-legend .sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+        .wpv-tt { width: 100%; border-collapse: collapse; margin: 4px 0; break-inside: avoid; }
+        .wpv-tt th, .wpv-tt td { border: 1px solid #ccc; height: 16px; font-size: 9px; text-align: center; padding: 0; }
+        .wpv-tt th { background: #efefef; font-weight: 700; }
+        .wpv-tt td.tt-time { background: #fafafa; text-align: right; padding: 0 4px; color: #555; white-space: nowrap; width: 34px; }
+        .wpv-check { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 13px; break-inside: avoid; }
+        .wpv-check .bx { width: 15px; height: 15px; border: 1.5px solid #555; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #16a34a; }
+        .wpv-pill { display: inline-block; padding: 1px 8px; border-radius: 9px; font-size: 11px; font-weight: 700; color: #fff; }
       `}</style>
 
       {name && <div className="wpv-name">{name}</div>}
@@ -126,6 +144,74 @@ export default function WorksheetPrintView({
                 {block.text}
               </p>
             );
+
+          case "timetable":
+            return (
+              <div key={block.id} className="wpv-field">
+                <div className="wpv-legend">
+                  {TT_CATEGORIES.map((c) => (
+                    <span key={c.key} className="lg">
+                      <span className="sw" style={{ background: c.color }} />
+                      {c.label}
+                    </span>
+                  ))}
+                </div>
+                <table className="wpv-tt">
+                  <thead>
+                    <tr>
+                      <th style={{ width: "34px" }}>Time</th>
+                      {TT_DAYS.map((d) => (
+                        <th key={d}>{d}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {TT_HOURS.map((h) => (
+                      <tr key={h}>
+                        <td className="tt-time">{hourLabel(h)}</td>
+                        {TT_DAYS.map((d) => {
+                          const c = ttCategory(values[ttKey(d, h)]);
+                          return <td key={d} style={{ background: c?.color ?? "#ffffff" }} />;
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+
+          case "checklist":
+            return (
+              <div key={block.id} className="wpv-field">
+                {block.label && <div className="wpv-table-label">{block.label}</div>}
+                {block.items.map((item) => {
+                  const v = (values[`${block.id}__${item.id}`] ?? "").trim();
+                  if (item.type === "check") {
+                    return (
+                      <div key={item.id} className="wpv-check">
+                        <span className="bx">{v === "yes" ? "✓" : ""}</span>
+                        {item.text}
+                      </div>
+                    );
+                  }
+                  if (item.type === "scale") {
+                    return (
+                      <div key={item.id} className="wpv-check">
+                        {item.text} — <b>&nbsp;{v !== "" ? v : "__"}</b>&nbsp;/ 10
+                      </div>
+                    );
+                  }
+                  const color = v === "Done" ? "#16a34a" : v === "In progress" ? "#d97706" : "#94a3b8";
+                  return (
+                    <div key={item.id} className="wpv-check">
+                      {item.text} —&nbsp;
+                      <span className="wpv-pill" style={{ background: color }}>{v || "Not done"}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+
           default:
             return null;
         }

@@ -1,8 +1,16 @@
+import { Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { cellKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
+import { cellKey, STATUS_OPTIONS, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
+import TimetableGrid from "@/components/worksheets/TimetableGrid";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
+
+function statusActiveClass(opt: string): string {
+  if (opt === "Done") return "border-green-600 bg-green-600 text-white";
+  if (opt === "In progress") return "border-amber-500 bg-amber-500 text-white";
+  return "border-slate-400 bg-slate-400 text-white";
+}
 
 function ReadValue({ value, block }: { value: string; block?: boolean }) {
   if (value.trim().length === 0) {
@@ -144,6 +152,105 @@ export default function WorksheetForm({
               >
                 {block.text}
               </p>
+            );
+
+          case "timetable":
+            return (
+              <TimetableGrid
+                key={block.id}
+                values={values}
+                onChange={onChange}
+                readOnly={readOnly}
+              />
+            );
+
+          case "checklist":
+            return (
+              <div key={block.id} className="space-y-2.5">
+                {block.label && (
+                  <p className="text-sm font-semibold text-foreground">{block.label}</p>
+                )}
+                {block.items.map((item) => {
+                  const k = `${block.id}__${item.id}`;
+                  const v = val(k);
+                  if (item.type === "check") {
+                    const checked = v === "yes";
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        disabled={readOnly}
+                        onClick={() => set(k, checked ? "" : "yes")}
+                        className={cn(
+                          "flex w-full items-center gap-3 rounded-lg border p-2.5 text-left text-sm transition-colors",
+                          checked ? "border-green-500/40 bg-green-500/5" : "hover:bg-muted/40",
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2",
+                            checked
+                              ? "border-green-600 bg-green-600 text-white"
+                              : "border-muted-foreground/40",
+                          )}
+                        >
+                          {checked && <Check className="h-3.5 w-3.5" />}
+                        </span>
+                        <span className="font-medium">{item.text}</span>
+                      </button>
+                    );
+                  }
+                  if (item.type === "scale") {
+                    return (
+                      <div key={item.id} className="rounded-lg border p-2.5">
+                        <p className="mb-1.5 text-sm font-medium">{item.text}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {Array.from({ length: 11 }).map((_, n) => (
+                            <button
+                              key={n}
+                              type="button"
+                              disabled={readOnly}
+                              onClick={() => set(k, String(n))}
+                              className={cn(
+                                "h-7 w-7 rounded-md border text-xs font-semibold transition-colors",
+                                v === String(n)
+                                  ? "border-primary bg-primary text-primary-foreground"
+                                  : "hover:bg-muted",
+                              )}
+                            >
+                              {n}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div
+                      key={item.id}
+                      className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-2.5"
+                    >
+                      <span className="text-sm font-medium">{item.text}</span>
+                      <div className="flex gap-1">
+                        {STATUS_OPTIONS.map((opt) => (
+                          <button
+                            key={opt}
+                            type="button"
+                            disabled={readOnly}
+                            onClick={() => set(k, opt)}
+                            className={cn(
+                              "rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
+                              v === opt ? statusActiveClass(opt) : "hover:bg-muted",
+                            )}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             );
 
           default:
