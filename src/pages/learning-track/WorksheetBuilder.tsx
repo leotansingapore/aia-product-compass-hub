@@ -36,6 +36,19 @@ import {
 
 const draftKey = (userId: string, slug: string) => `worksheet-draft-${userId}-${slug}`;
 
+// A leftover raw form-submission blob (an object serialised to JSON) rather than
+// a human-written 100 Whys answer.
+function looksLikeFormJson(s: string): boolean {
+  const t = s.trim();
+  if (!t.startsWith("{") || !t.endsWith("}")) return false;
+  try {
+    const o = JSON.parse(t);
+    return !!o && typeof o === "object" && !Array.isArray(o);
+  } catch {
+    return false;
+  }
+}
+
 function readDraft(userId: string | undefined, slug: string): WorksheetValues | null {
   if (!userId || typeof window === "undefined") return null;
   try {
@@ -228,9 +241,13 @@ export default function WorksheetBuilder() {
     const text = hundredWhys.data;
     if (!text || whysSeededFor.current === ownerId) return;
     whysSeededFor.current = ownerId ?? null;
-    setValues((prev) =>
-      prev.hundred_whys_text?.trim() ? prev : { ...prev, hundred_whys_text: text },
-    );
+    setValues((prev) => {
+      const cur = prev.hundred_whys_text;
+      // Seed when empty, or replace a stale raw-JSON blob left over from an older
+      // build (so a genuine hand-written answer is never overwritten).
+      if (cur?.trim() && !looksLikeFormJson(cur)) return prev;
+      return { ...prev, hundred_whys_text: text };
+    });
   }, [valid, slug, isAdminView, loaded.isLoading, hundredWhys.data, ownerId]);
 
   const onChange = (id: string, v: string) =>
