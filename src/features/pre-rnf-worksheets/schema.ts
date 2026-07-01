@@ -16,9 +16,12 @@ export type WorksheetBlock =
       rowLabels?: string[];
       /** When there are no rowLabels, how many blank rows to render. */
       rows?: number;
+      /** When true, learners can add more blank rows beyond `rows`. */
+      addRows?: boolean;
     }
   | { kind: "note"; id: string; text: string }
   | { kind: "timetable"; id: string }
+  | { kind: "eps"; id: string }
   | {
       kind: "checklist";
       id: string;
@@ -89,6 +92,26 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   { kind: "textarea", id: "goals_why", label: "What hitting this changes for me and my family", rows: 3 },
   { kind: "textarea", id: "goals_dev", label: "Professional development I want (1–3 years)", rows: 3 },
 
+  { kind: "step", id: "srec", label: "My recognition & EPS targets", hint: "Decide what you're gunning for — a production club, Convention, an MDRT level, or a mix. The figures are shown next to each." },
+  {
+    kind: "checklist",
+    id: "recognition",
+    label: "Tick the recognition you're aiming for (a club tier, and/or Convention, and/or an MDRT level):",
+    items: [
+      { id: "centurion", text: "Premier Centurion — S$100,000 FYC", type: "check" },
+      { id: "diamond", text: "Premier Prestige Diamond — S$80,000 FYC", type: "check" },
+      { id: "platinum", text: "Premier Prestige Platinum — S$70,000 FYC", type: "check" },
+      { id: "titanium", text: "Premier Prestige Titanium — S$50,000 FYC", type: "check" },
+      { id: "gold", text: "Premier Prestige Gold — S$40,000 FYC", type: "check" },
+      { id: "silver", text: "Premier Prestige Silver — S$30,000 FYC", type: "check" },
+      { id: "convention", text: "Convention (new consultants) — S$138,000 ANP", type: "check" },
+      { id: "mdrt", text: "MDRT — S$75,800 (raw FYC ≈ S$55,735, i.e. ÷ 1.36)", type: "check" },
+      { id: "cot", text: "COT — S$227,400 (raw FYC ≈ S$167,206)", type: "check" },
+      { id: "tot", text: "TOT — S$454,800 (raw FYC ≈ S$334,412)", type: "check" },
+    ],
+  },
+  { kind: "eps", id: "eps" },
+
   { kind: "step", id: "s2", label: "2. My strengths & areas to grow", hint: "Three of each. Write the honest version — the gaps are the part worth coaching." },
   {
     kind: "table",
@@ -109,8 +132,15 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "markets",
     columns: ["Target market", "Why it fits me (trust, network, demographics)", "How I'll prospect it", "Monthly FYC"],
     rows: 3,
+    addRows: true,
   },
   { kind: "textarea", id: "market_prospecting", label: "For each method — advantages & disadvantages", rows: 3 },
+
+  { kind: "step", id: "ssocial", label: "My social prospecting & personal brand", hint: "How you'll build a pipeline online — the plan, the content, and the brand people remember you by." },
+  { kind: "textarea", id: "social_plan", label: "My social prospecting game plan (which platforms, how often, what's the goal)", rows: 3 },
+  { kind: "textarea", id: "social_content", label: "The content I'll create — my 3–4 content pillars / themes", rows: 3 },
+  { kind: "textarea", id: "social_brand", label: "My personal brand — who I am, my niche, and the hook people remember", rows: 3 },
+  { kind: "textarea", id: "social_cadence", label: "My posting & engagement commitment (posts per week, DMs / comments per day)", rows: 2 },
 
   { kind: "step", id: "s4", label: "4. My weekly timetable", hint: "Colour-code a typical week hour by hour — prospecting, appointments, preparation, learning, study, me time. Count your prospecting slots: section 1 tells you how many you need." },
   { kind: "timetable", id: "timetable" },
@@ -131,7 +161,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check" },
       { id: "flows_conf", text: "Am I confident of my flows?", type: "scale" },
-      { id: "script", text: "Have I done my script?", type: "check" },
+      { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },
       { id: "slidedeck", text: "Do I have my own slide deck for each CST?", type: "check" },
       { id: "prospect_conf", text: "Am I confident prospecting my warm and cold market?", type: "scale" },
       { id: "policy_summary", text: "Have I done my own policy summary — for myself and 1 other person?", type: "check" },
@@ -175,8 +205,9 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "income",
-    columns: ["Goal", "Deadline", "KPI to reach"],
+    columns: ["Goal (FYC)", "Deadline", "Weekly pace to hit it (cases / activity per week)"],
     rows: 2,
+    addRows: true,
   },
 
   { kind: "step", id: "s9", label: "9. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting." },

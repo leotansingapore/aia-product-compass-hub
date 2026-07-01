@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
-import { Eraser } from "lucide-react";
+import { Eraser, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   TT_CATEGORIES,
+  TT_CUSTOM_KEY,
   TT_DAYS,
   TT_HOURS,
   hourLabel,
-  ttCategory,
+  parseCustomCats,
+  resolveCat,
   ttKey,
 } from "@/features/pre-rnf-worksheets/timetable";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
@@ -25,10 +27,25 @@ export default function TimetableGrid({
 }) {
   const [brush, setBrush] = useState<string>(TT_CATEGORIES[0].key);
   const painting = useRef(false);
+  const [newLabel, setNewLabel] = useState("");
+  const [newColor, setNewColor] = useState("#0ea5e9");
+
+  const custom = parseCustomCats(values);
+  const allCats = [...TT_CATEGORIES, ...custom];
 
   const paint = (key: string) => {
     if (readOnly) return;
     onChange?.(key, brush === "__erase" ? "" : brush);
+  };
+
+  const addCategory = () => {
+    const label = newLabel.trim();
+    if (!label) return;
+    const key = `custom_${Date.now().toString(36)}`;
+    const next = [...custom, { key, label, color: newColor }];
+    onChange?.(TT_CUSTOM_KEY, JSON.stringify(next));
+    setNewLabel("");
+    setBrush(key);
   };
 
   return (
@@ -36,7 +53,7 @@ export default function TimetableGrid({
       {!readOnly && (
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="mr-1 text-xs font-medium text-muted-foreground">Fill with:</span>
-          {TT_CATEGORIES.map((c) => (
+          {allCats.map((c) => (
             <button
               key={c.key}
               type="button"
@@ -61,6 +78,29 @@ export default function TimetableGrid({
           >
             <Eraser className="h-3 w-3" />
             Erase
+          </button>
+          <span className="mx-1 h-4 w-px bg-border" />
+          <input
+            type="color"
+            value={newColor}
+            onChange={(e) => setNewColor(e.target.value)}
+            className="h-6 w-6 cursor-pointer rounded border p-0"
+            title="Pick a colour"
+          />
+          <input
+            value={newLabel}
+            onChange={(e) => setNewLabel(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && addCategory()}
+            placeholder="Add your own activity…"
+            className="h-7 w-40 rounded-md border px-2 text-xs"
+          />
+          <button
+            type="button"
+            onClick={addCategory}
+            className="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium hover:bg-muted/50"
+          >
+            <Plus className="h-3 w-3" />
+            Add
           </button>
         </div>
       )}
@@ -91,7 +131,7 @@ export default function TimetableGrid({
                 </td>
                 {TT_DAYS.map((d) => {
                   const key = ttKey(d, h);
-                  const cat = ttCategory(values[key]);
+                  const cat = resolveCat(values[key], custom);
                   return (
                     <td
                       key={d}

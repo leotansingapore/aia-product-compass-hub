@@ -29,6 +29,32 @@ export function ttCategory(key: string | undefined): TtCategory | null {
   return key ? CAT_BY_KEY[key] ?? null : null;
 }
 
+// Learners can add their own colour-coded activities; these live as JSON in the
+// worksheet values under `tt_custom` so they save/export with everything else.
+export const TT_CUSTOM_KEY = "tt_custom";
+
+export function parseCustomCats(values: Record<string, string>): TtCategory[] {
+  try {
+    const raw = values[TT_CUSTOM_KEY];
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr)
+      ? arr.filter((c) => c && typeof c.key === "string" && typeof c.color === "string")
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+/** Resolve a cell's category key against the built-ins plus any custom ones. */
+export function resolveCat(
+  key: string | undefined,
+  custom: TtCategory[],
+): TtCategory | null {
+  if (!key) return null;
+  return CAT_BY_KEY[key] ?? custom.find((c) => c.key === key) ?? null;
+}
+
 export function ttKey(day: string, hour: number): string {
   return `tt_${day.toLowerCase()}_${String(hour).padStart(2, "0")}`;
 }

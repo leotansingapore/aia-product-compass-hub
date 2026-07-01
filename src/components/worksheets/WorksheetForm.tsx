@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { cellKey, STATUS_OPTIONS, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
 import TimetableGrid from "@/components/worksheets/TimetableGrid";
+import EpsTargetTable from "@/components/worksheets/EpsTargetTable";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 function statusActiveClass(opt: string): string {
@@ -82,7 +83,9 @@ export default function WorksheetForm({
             );
 
           case "table": {
-            const rowCount = block.rowLabels?.length ?? block.rows ?? 1;
+            const baseRows = block.rowLabels?.length ?? block.rows ?? 1;
+            const extra = block.addRows ? Math.max(0, parseInt(val(`${block.id}__rows`) || "0", 10)) : 0;
+            const rowCount = baseRows + extra;
             const hasRowLabels = !!block.rowLabels?.length;
             return (
               <div key={block.id} className="space-y-2">
@@ -140,6 +143,15 @@ export default function WorksheetForm({
                     </tbody>
                   </table>
                 </div>
+                {block.addRows && !readOnly && (
+                  <button
+                    type="button"
+                    onClick={() => set(`${block.id}__rows`, String(extra + 1))}
+                    className="text-xs font-medium text-primary hover:underline"
+                  >
+                    + Add row
+                  </button>
+                )}
               </div>
             );
           }
@@ -157,6 +169,16 @@ export default function WorksheetForm({
           case "timetable":
             return (
               <TimetableGrid
+                key={block.id}
+                values={values}
+                onChange={onChange}
+                readOnly={readOnly}
+              />
+            );
+
+          case "eps":
+            return (
+              <EpsTargetTable
                 key={block.id}
                 values={values}
                 onChange={onChange}

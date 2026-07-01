@@ -5,9 +5,11 @@ import {
   TT_DAYS,
   TT_HOURS,
   hourLabel,
-  ttCategory,
+  parseCustomCats,
+  resolveCat,
   ttKey,
 } from "@/features/pre-rnf-worksheets/timetable";
+import { EPS_TABLE, money } from "@/features/pre-rnf-worksheets/recognition";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 // A print/PDF render of a worksheet that mirrors the downloadable PDF template:
@@ -100,7 +102,11 @@ export default function WorksheetPrintView({
               </div>
             );
           case "table": {
-            const rowCount = block.rowLabels?.length ?? block.rows ?? 1;
+            const baseRows = block.rowLabels?.length ?? block.rows ?? 1;
+            const extra = block.addRows
+              ? Math.max(0, parseInt(v(values, `${block.id}__rows`) || "0", 10))
+              : 0;
+            const rowCount = baseRows + extra;
             const hasRowLabels = !!block.rowLabels?.length;
             return (
               <div key={block.id} className="wpv-field">
@@ -145,11 +151,13 @@ export default function WorksheetPrintView({
               </p>
             );
 
-          case "timetable":
+          case "timetable": {
+            const ttCustom = parseCustomCats(values);
+            const ttAll = [...TT_CATEGORIES, ...ttCustom];
             return (
               <div key={block.id} className="wpv-field">
                 <div className="wpv-legend">
-                  {TT_CATEGORIES.map((c) => (
+                  {ttAll.map((c) => (
                     <span key={c.key} className="lg">
                       <span className="sw" style={{ background: c.color }} />
                       {c.label}
@@ -170,7 +178,7 @@ export default function WorksheetPrintView({
                       <tr key={h}>
                         <td className="tt-time">{hourLabel(h)}</td>
                         {TT_DAYS.map((d) => {
-                          const c = ttCategory(values[ttKey(d, h)]);
+                          const c = resolveCat(values[ttKey(d, h)], ttCustom);
                           return <td key={d} style={{ background: c?.color ?? "#ffffff" }} />;
                         })}
                       </tr>
@@ -179,6 +187,7 @@ export default function WorksheetPrintView({
                 </table>
               </div>
             );
+          }
 
           case "checklist":
             return (
@@ -211,6 +220,46 @@ export default function WorksheetPrintView({
                 })}
               </div>
             );
+
+          case "eps": {
+            const level = (values.eps_target ?? "").trim();
+            const arr = EPS_TABLE[level];
+            if (!arr) {
+              return (
+                <div key={block.id} className="wpv-field">
+                  <div className="wpv-label">EPS I'm gunning for</div>
+                  <div className="wpv-value"> </div>
+                </div>
+              );
+            }
+            return (
+              <div key={block.id} className="wpv-field">
+                <div className="wpv-table-label">
+                  EPS target: {money(Number(level))} / month — cumulative FYC to validate, by month
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th style={{ width: "10%" }}>Mo</th>
+                      <th style={{ width: "40%" }}>Cumulative FYC</th>
+                      <th style={{ width: "10%" }}>Mo</th>
+                      <th style={{ width: "40%" }}>Cumulative FYC</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.from({ length: 12 }).map((_, i) => (
+                      <tr key={i}>
+                        <td className="rowlabel">{i + 1}</td>
+                        <td>{money(arr[i])}</td>
+                        <td className="rowlabel">{i + 13}</td>
+                        <td>{money(arr[i + 12])}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
 
           default:
             return null;
