@@ -500,7 +500,7 @@ export default function WorksheetBuilder() {
                 ) : (
                   <WorksheetPrintView
                     title={meta.title}
-                    subtitle={meta.short}
+                    subtitle="My plan for the next five years — my goals, my strengths, how I'll find and win clients, and the standards I'm holding myself to."
                     schema={schema}
                     values={values}
                     images={images}

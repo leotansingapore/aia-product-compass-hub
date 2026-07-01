@@ -333,7 +333,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "note",
     id: "n1",
-    text: "Nobody runs the plan they first write down. The value is in building it — seeing how much the goal asks of your week, and where the plan is still thin. You're pre-licence, so you can't sell any of this yet, but the plan is what you'll run from the day you can.",
+    text: "Nobody runs the plan they first write down. The value was in building it — seeing how much my goal asks of my week, and where my plan is still thin. I'm pre-licence, so I can't sell any of this yet — but this is the plan I'll run from the day I can.",
   },
 
   {
