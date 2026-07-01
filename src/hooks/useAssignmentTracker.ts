@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { loadAllAssignments, type Assignment } from "@/features/first-60-days/assignments";
+import { loadAllAssignmentDrafts } from "@/features/first-60-days/assignmentDrafts";
 
 const PRODUCT_ID = "first-60-days-assignments";
 
@@ -18,6 +19,8 @@ export type TrackerUser = {
   /** item_id (status_key) -> earliest submitted_at ISO for that assignment. */
   completedAt: Record<string, string | null>;
   completedCount: number;
+  /** status_keys the learner has STARTED but not submitted (in-progress drafts). */
+  draftKeys: string[];
 };
 
 export type AssignmentTracker = {
@@ -25,6 +28,8 @@ export type AssignmentTracker = {
   users: TrackerUser[];
   /** statusKey -> how many distinct learners have submitted it. */
   perColumnCount: Record<string, number>;
+  /** statusKey -> how many distinct learners have it in progress (draft only). */
+  perColumnDraftCount: Record<string, number>;
 };
 
 async function resolveNames(ids: string[]): Promise<Record<string, string>> {
@@ -64,11 +69,14 @@ async function fetchTracker(): Promise<AssignmentTracker> {
     }));
   const validKeys = new Set(columns.map((c) => c.statusKey));
 
-  const { data, error } = await (supabase.from as any)("assignment_submissions")
-    .select("user_id, item_id, submitted_at")
-    .eq("product_id", PRODUCT_ID)
-    .order("submitted_at", { ascending: true })
-    .limit(5000);
+  const [{ data, error }, drafts] = await Promise.all([
+    (supabase.from as any)("assignment_submissions")
+      .select("user_id, item_id, submitted_at")
+      .eq("product_id", PRODUCT_ID)
+      .order("submitted_at", { ascending: true })
+      .limit(5000),
+    loadAllAssignmentDrafts(),
+  ]);
   if (error) throw error;
 
   type Row = { user_id: string; item_id: string; submitted_at: string | null };
@@ -83,26 +91,52 @@ async function fetchTracker(): Promise<AssignmentTracker> {
     byUser.set(r.user_id, map);
   }
 
-  const names = await resolveNames(Array.from(byUser.keys()));
+  // In-progress drafts: only count a draft where there's no real submission for
+  // that assignment. Learners who ONLY have drafts still appear in the tracker.
+  const draftsByUser = new Map<string, Set<string>>();
+  for (const d of drafts) {
+    if (!validKeys.has(d.statusKey)) continue;
+    if (byUser.get(d.userId)?.[d.statusKey] !== undefined) continue;
+    const set = draftsByUser.get(d.userId) ?? new Set<string>();
+    set.add(d.statusKey);
+    draftsByUser.set(d.userId, set);
+  }
 
-  const users: TrackerUser[] = Array.from(byUser.entries()).map(([userId, completedAt]) => ({
-    userId,
-    name: names[userId] ?? `${userId.slice(0, 8)}…`,
-    completedAt,
-    completedCount: Object.keys(completedAt).length,
-  }));
-  // Most-complete first; ties broken by name so the order is stable.
-  users.sort((a, b) => b.completedCount - a.completedCount || a.name.localeCompare(b.name));
+  const allUserIds = new Set<string>([...byUser.keys(), ...draftsByUser.keys()]);
+  const names = await resolveNames(Array.from(allUserIds));
+
+  const users: TrackerUser[] = Array.from(allUserIds).map((userId) => {
+    const completedAt = byUser.get(userId) ?? {};
+    return {
+      userId,
+      name: names[userId] ?? `${userId.slice(0, 8)}…`,
+      completedAt,
+      completedCount: Object.keys(completedAt).length,
+      draftKeys: Array.from(draftsByUser.get(userId) ?? []),
+    };
+  });
+  // Most-complete first, then most in-progress; ties broken by name for stability.
+  users.sort(
+    (a, b) =>
+      b.completedCount - a.completedCount ||
+      b.draftKeys.length - a.draftKeys.length ||
+      a.name.localeCompare(b.name),
+  );
 
   const perColumnCount: Record<string, number> = {};
+  const perColumnDraftCount: Record<string, number> = {};
   for (const c of columns) {
     perColumnCount[c.statusKey] = users.reduce(
       (n, u) => n + (u.completedAt[c.statusKey] !== undefined ? 1 : 0),
       0,
     );
+    perColumnDraftCount[c.statusKey] = users.reduce(
+      (n, u) => n + (u.draftKeys.includes(c.statusKey) ? 1 : 0),
+      0,
+    );
   }
 
-  return { columns, users, perColumnCount };
+  return { columns, users, perColumnCount, perColumnDraftCount };
 }
 
 export function useAssignmentTracker(enabled: boolean) {
