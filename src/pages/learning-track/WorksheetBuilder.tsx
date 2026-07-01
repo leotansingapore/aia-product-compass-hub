@@ -436,13 +436,38 @@ export default function WorksheetBuilder() {
             if (blocks[j].breakAfter) { last = j; break; }
           }
           // If the page's content is taller than one page (an indivisible block,
-          // e.g. a single huge paragraph), slice it across pages by page-height
-          // chunks so nothing is ever clipped/lost.
+          // e.g. a single huge paragraph), slice it across pages so nothing is
+          // ever clipped/lost. Cut at a near-blank canvas row (the gap between
+          // text lines) close to the page boundary so a line is never bisected.
           if (blocks[last].bottom - start > pageHpx) {
+            const sctx = canvas.getContext("2d", { willReadFrequently: true });
+            const x0 = Math.floor(canvas.width * 0.05);
+            const x1 = Math.ceil(canvas.width * 0.95);
+            const cutAt = (target: number, floor: number): number => {
+              const t = Math.min(Math.round(target), canvas.height);
+              if (!sctx) return t;
+              const win = Math.round(pageHpx * 0.14);
+              let bestY = t;
+              let bestInk = Infinity;
+              for (let y = t; y > t - win && y > floor + 1; y--) {
+                let ink = 0;
+                const row = sctx.getImageData(x0, y, x1 - x0, 1).data;
+                for (let p = 0; p < row.length; p += 4 * 6) {
+                  if (row[p] < 245 || row[p + 1] < 245 || row[p + 2] < 245) ink++;
+                }
+                if (ink < bestInk) {
+                  bestInk = ink;
+                  bestY = y;
+                  if (ink === 0) break; // fully blank row — ideal cut
+                }
+              }
+              return bestY;
+            };
             let s = start;
             while (blocks[last].bottom - s > pageHpx) {
-              pages.push({ start: s, end: s + pageHpx });
-              s += pageHpx;
+              const cut = cutAt(s + pageHpx, s);
+              pages.push({ start: s, end: cut });
+              s = cut;
             }
             pages.push({ start: s, end: blocks[last].bottom });
           } else {
