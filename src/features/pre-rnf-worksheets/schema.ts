@@ -21,6 +21,10 @@ export type WorksheetBlock =
     }
   | { kind: "note"; id: string; text: string }
   | { kind: "image"; id: string; label?: string; hint?: string }
+  /** Auto-populated from an assignment's text submission (editable afterwards). */
+  | { kind: "whys"; id: string; label?: string; hint?: string; link: string }
+  /** Official-looking closing pledge with a signature + date line. */
+  | { kind: "pledge"; id: string; heading: string; text: string }
   | { kind: "timetable"; id: string }
   | { kind: "eps"; id: string }
   | { kind: "links"; id: string; label?: string; links: Array<{ label: string; url: string }> }
@@ -113,6 +117,14 @@ const PLEDGE: WorksheetBlock[] = [
 const BUSINESS_PLAN: WorksheetBlock[] = [
   { kind: "step", id: "svb", label: "My vision board" },
   { kind: "image", id: "vision_board", hint: "This is pulled from your Vision Board assignment — do it there and it appears here and in your exported PDF." },
+
+  { kind: "step", id: "s100w", label: "My 100 Whys" },
+  {
+    kind: "whys",
+    id: "hundred_whys_text",
+    link: "/learning-track/pre-rnf/assignments/100-whys",
+    hint: "Pulled from your 100 Whys assignment. Not done it yet? Do it and it appears here — you can also edit it here anytime.",
+  },
 
   { kind: "step", id: "s1", label: "1. My goals", hint: "Carry the headline numbers from your Pledge Sheet here, then add the life behind them." },
   {
@@ -224,9 +236,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     label: "Am I ready to prospect? — a straight self-check",
     items: [
       { id: "project200", text: "Have I built my Project 200?", type: "check", link: "/learning-track/pre-rnf/assignments/project-200" },
-      { id: "hundred_whys", text: "Have I done my 100 Whys?", type: "check", link: "/learning-track/pre-rnf/assignments/100-whys" },
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check", link: "/learning-track/pre-rnf/assignments/field-observation" },
-      { id: "visionboard", text: "Have I done my vision board?", type: "check", link: "/learning-track/pre-rnf/assignments/vision-board" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check", link: "/learning-track/pre-rnf/assignments/cst-roleplay" },
       { id: "flows_conf", text: "Am I confident of my appointment flows?", type: "scale" },
       { id: "script", text: "Do I have a script for the Risk Management CST and the Wealth Accumulation CST?", type: "check" },
@@ -306,10 +316,26 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     ],
   },
 
+  { kind: "step", id: "smotto", label: "My motto to live by" },
+  {
+    kind: "textarea",
+    id: "motto",
+    label: "My personal motto, vision, or favourite quote — the words I run on",
+    hint: "In your own words: the belief, motto, or quote that keeps you going when the week gets hard.",
+    rows: 3,
+  },
+
   {
     kind: "note",
     id: "n1",
     text: "Nobody runs the plan they first write down. The value is in building it — seeing how much the goal asks of your week, and where the plan is still thin. You're pre-licence, so you can't sell any of this yet, but the plan is what you'll run from the day you can.",
+  },
+
+  {
+    kind: "pledge",
+    id: "final_pledge",
+    heading: "My Pledge",
+    text: "I have written this plan with my own hand, and I own it. I commit to run my week to the activity I have pledged, to hold my minimum weekly points target, and to answer to my mentor for every one of them. I know the future I mapped out here is not given to me — it is earned, week by week, by the work I put in before I can sell a thing. I will not let a good week fool me or a bad week stop me. From today, this is the standard I hold myself to. This is my word, and I am signing for it.",
   },
 ];
 

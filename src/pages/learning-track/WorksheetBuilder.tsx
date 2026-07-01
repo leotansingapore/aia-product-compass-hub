@@ -181,6 +181,25 @@ export default function WorksheetBuilder() {
   });
   const images = visionBoard.data ? { vision_board: visionBoard.data } : undefined;
 
+  // 100 Whys text (business plan only) — pulled from the owner's 100 Whys
+  // assignment so it pre-fills the "My 100 Whys" section (still editable there).
+  const hundredWhys = useQuery({
+    queryKey: ["worksheet-100-whys", ownerId],
+    enabled: valid && slug === "business-plan" && !!ownerId,
+    staleTime: 5 * 60_000,
+    queryFn: async () => {
+      const { data } = await (supabase.from as any)("assignment_submissions")
+        .select("submission_text, submitted_at")
+        .eq("product_id", "first-60-days-assignments")
+        .eq("item_id", "assignment-07-100-whys")
+        .eq("user_id", ownerId)
+        .order("submitted_at", { ascending: false })
+        .limit(1);
+      return (data?.[0]?.submission_text as string | undefined)?.trim() || null;
+    },
+  });
+  const autofill = hundredWhys.data ? { hundred_whys_text: hundredWhys.data } : undefined;
+
   const onChange = (id: string, v: string) =>
     setValues((prev) => ({ ...prev, [id]: v }));
 
@@ -391,7 +410,7 @@ export default function WorksheetBuilder() {
         ) : isPledge ? (
           <PledgeSheetCalculator values={values} onChange={onChange} readOnly={readOnly} />
         ) : (
-          <WorksheetForm schema={schema} values={values} onChange={onChange} readOnly={readOnly} images={images} />
+          <WorksheetForm schema={schema} values={values} onChange={onChange} readOnly={readOnly} images={images} autofill={autofill} />
         )}
       </div>
 
@@ -425,6 +444,7 @@ export default function WorksheetBuilder() {
                     schema={schema}
                     values={values}
                     images={images}
+                    autofill={autofill}
                   />
                 )}
               </div>

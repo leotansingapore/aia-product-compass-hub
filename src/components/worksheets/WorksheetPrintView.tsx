@@ -29,12 +29,14 @@ export default function WorksheetPrintView({
   schema,
   values,
   images,
+  autofill,
 }: {
   title: string;
   subtitle: string;
   schema: WorksheetBlock[];
   values: WorksheetValues;
   images?: Record<string, string>;
+  autofill?: Record<string, string>;
 }) {
   const scheme = schemeFor(values);
   const name = personName(values);
@@ -126,6 +128,13 @@ export default function WorksheetPrintView({
           case "step": {
             // Drop the vision-board heading from the PDF when there's no board.
             if (block.id === "svb" && !images?.vision_board) return null;
+            // Drop the 100 Whys heading when there's nothing written or pulled in.
+            if (
+              block.id === "s100w" &&
+              !v(values, "hundred_whys_text").trim() &&
+              !(autofill?.hundred_whys_text ?? "").trim()
+            )
+              return null;
             const m = block.label.match(/^(\d+)\.\s*(.*)$/);
             return (
               <div key={block.id} className="wpv-step">
@@ -206,6 +215,71 @@ export default function WorksheetPrintView({
                 {block.text}
               </p>
             );
+
+          case "whys": {
+            const text = v(values, block.id).trim() || (autofill?.[block.id] ?? "").trim();
+            if (!text) return null; // omit entirely from the PDF when empty
+            return (
+              <div key={block.id} className="wpv-field">
+                {block.label && <div className="wpv-label">{block.label}</div>}
+                <div className="wpv-value box">{text}</div>
+              </div>
+            );
+          }
+
+          case "pledge": {
+            const who = (values._name ?? "").trim();
+            const signed = v(values, `${block.id}_signed`).trim();
+            const date = v(values, `${block.id}_date`).trim();
+            return (
+              <div
+                key={block.id}
+                className="wpv-field"
+                style={{
+                  border: `2px solid ${scheme.accent}`,
+                  borderRadius: "8px",
+                  padding: "16px 18px",
+                  marginTop: "16px",
+                  breakInside: "avoid",
+                }}
+              >
+                <div
+                  style={{
+                    textAlign: "center",
+                    letterSpacing: "3px",
+                    fontSize: "11px",
+                    fontWeight: 800,
+                    textTransform: "uppercase",
+                    color: scheme.accent,
+                  }}
+                >
+                  {block.heading}
+                </div>
+                <p style={{ textAlign: "center", fontSize: "13.5px", lineHeight: 1.6, margin: "10px 0 0" }}>
+                  {who ? `I, ${who}, ` : "I "}
+                  {block.text}
+                </p>
+                <div style={{ display: "flex", gap: "24px", marginTop: "26px" }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ borderBottom: "1.5px solid #333", minHeight: "26px", fontFamily: "Georgia, serif", fontSize: "18px", paddingLeft: "2px" }}>
+                      {signed || " "}
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#666", marginTop: "3px", textTransform: "uppercase", letterSpacing: ".5px" }}>
+                      Signed
+                    </div>
+                  </div>
+                  <div style={{ width: "150px" }}>
+                    <div style={{ borderBottom: "1.5px solid #333", minHeight: "26px", fontSize: "14px", paddingLeft: "2px" }}>
+                      {date || " "}
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#666", marginTop: "3px", textTransform: "uppercase", letterSpacing: ".5px" }}>
+                      Date
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
 
           case "image": {
             const src = images?.[block.id];

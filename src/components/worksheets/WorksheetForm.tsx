@@ -28,6 +28,7 @@ export default function WorksheetForm({
   onChange,
   readOnly = false,
   images,
+  autofill,
 }: {
   schema: WorksheetBlock[];
   values: WorksheetValues;
@@ -35,6 +36,8 @@ export default function WorksheetForm({
   readOnly?: boolean;
   /** Resolved image srcs (e.g. the vision board) keyed by block id. */
   images?: Record<string, string>;
+  /** Text pulled from an assignment (e.g. 100 Whys) keyed by block id. */
+  autofill?: Record<string, string>;
 }) {
   const set = (id: string, v: string) => onChange?.(id, v);
   const val = (id: string) => values[id] ?? "";
@@ -93,6 +96,8 @@ export default function WorksheetForm({
                     value={val(block.id)}
                     onChange={(e) => set(block.id, e.target.value)}
                     rows={block.rows ?? 4}
+                    style={{ fieldSizing: "content" } as React.CSSProperties}
+                    className="resize-y"
                   />
                 )}
               </div>
@@ -264,6 +269,109 @@ export default function WorksheetForm({
                     {block.hint ?? "Nothing here yet."}
                   </div>
                 )}
+              </div>
+            );
+          }
+
+          case "whys": {
+            const fetched = autofill?.[block.id] ?? "";
+            const current = val(block.id);
+            // Nothing written and nothing pulled from the assignment yet — nudge
+            // them to go do it (the value will flow in once they submit it).
+            if (!current && !fetched) {
+              return (
+                <div
+                  key={block.id}
+                  className="rounded-lg border border-dashed bg-muted/20 p-5 text-center text-sm text-muted-foreground"
+                >
+                  <p>You haven't done your 100 Whys yet — that's the fuel behind this whole plan.</p>
+                  <a
+                    href={block.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 rounded-lg border bg-card px-3 py-1.5 font-medium text-primary hover:bg-primary/5"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Do my 100 Whys
+                  </a>
+                </div>
+              );
+            }
+            return (
+              <div key={block.id} className="space-y-1.5">
+                {block.label && (
+                  <label className="text-sm font-semibold text-foreground">{block.label}</label>
+                )}
+                {block.hint && (
+                  <p className="text-xs italic text-muted-foreground">{block.hint}</p>
+                )}
+                {readOnly ? (
+                  <div className="min-h-12 rounded-md border bg-muted/20 px-3 py-1.5 text-sm">
+                    <ReadValue value={current || fetched} block />
+                  </div>
+                ) : (
+                  <Textarea
+                    value={current || fetched}
+                    onChange={(e) => set(block.id, e.target.value)}
+                    rows={6}
+                    style={{ fieldSizing: "content" } as React.CSSProperties}
+                    className="resize-y"
+                  />
+                )}
+              </div>
+            );
+          }
+
+          case "pledge": {
+            const who = values._name?.trim();
+            return (
+              <div
+                key={block.id}
+                className="rounded-xl border-2 border-primary/60 bg-gradient-to-b from-primary/5 to-transparent p-5 sm:p-6"
+              >
+                <p className="text-center text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+                  {block.heading}
+                </p>
+                <p className="mt-3 text-center text-sm leading-relaxed text-foreground/90">
+                  {who ? `I, ${who}, ` : "I "}
+                  {block.text}
+                </p>
+                <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+                  <div className="flex-1 space-y-1.5">
+                    <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Signed
+                    </label>
+                    {readOnly ? (
+                      <div className="min-h-9 border-b-2 border-foreground/40 px-1 py-1 font-serif text-lg">
+                        <ReadValue value={val(`${block.id}_signed`)} />
+                      </div>
+                    ) : (
+                      <input
+                        value={val(`${block.id}_signed`)}
+                        onChange={(e) => set(`${block.id}_signed`, e.target.value)}
+                        placeholder="Your signature"
+                        className="w-full border-0 border-b-2 border-foreground/40 bg-transparent px-1 py-1 font-serif text-lg outline-none focus:border-primary"
+                      />
+                    )}
+                  </div>
+                  <div className="space-y-1.5 sm:w-40">
+                    <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Date
+                    </label>
+                    {readOnly ? (
+                      <div className="min-h-9 border-b-2 border-foreground/40 px-1 py-1 text-sm">
+                        <ReadValue value={val(`${block.id}_date`)} />
+                      </div>
+                    ) : (
+                      <input
+                        value={val(`${block.id}_date`)}
+                        onChange={(e) => set(`${block.id}_date`, e.target.value)}
+                        placeholder="DD / MM / YYYY"
+                        className="w-full border-0 border-b-2 border-foreground/40 bg-transparent px-1 py-1 text-sm outline-none focus:border-primary"
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             );
           }
