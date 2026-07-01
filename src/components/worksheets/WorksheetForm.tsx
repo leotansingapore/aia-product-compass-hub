@@ -306,6 +306,17 @@ export default function WorksheetForm({
                 {block.hint && (
                   <p className="text-xs italic text-muted-foreground">{block.hint}</p>
                 )}
+                {!readOnly && block.link && (
+                  <a
+                    href={block.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Open the 100 Whys assignment
+                  </a>
+                )}
                 {readOnly ? (
                   <div className="min-h-12 rounded-md border bg-muted/20 px-3 py-1.5 text-sm">
                     <ReadValue value={current || fetched} block />
