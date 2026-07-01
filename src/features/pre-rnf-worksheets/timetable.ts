@@ -89,7 +89,23 @@ export function ttKey(day: string, hour: number): string {
   return `tt_${day.toLowerCase()}_${String(hour).padStart(2, "0")}`;
 }
 
+// Free-text note for a single block — the task, remark, or goal the learner
+// wants to accomplish in that hour. Stored alongside the colour under
+// `ttnote_<day>_<hour>` so it rides the same save/load/export path.
+export function ttNoteKey(day: string, hour: number): string {
+  return `ttnote_${day.toLowerCase()}_${String(hour).padStart(2, "0")}`;
+}
+
 export function hourLabel(hour: number): string {
   const h12 = ((hour + 11) % 12) + 1;
   return `${h12}${hour < 12 ? "am" : "pm"}`;
+}
+
+// Pick black or white text so a note stays legible on top of its block colour.
+export function readableTextColor(hex?: string | null): string {
+  const m = hex ? /^#?([0-9a-fA-F]{6})$/.exec(hex) : null;
+  if (!m) return "#111827";
+  const n = parseInt(m[1], 16);
+  const lum = (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  return lum > 0.6 ? "#111827" : "#ffffff";
 }

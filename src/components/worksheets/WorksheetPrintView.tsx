@@ -5,8 +5,10 @@ import {
   TT_HOURS,
   allCategories,
   hourLabel,
+  readableTextColor,
   resolveCat,
   ttKey,
+  ttNoteKey,
 } from "@/features/pre-rnf-worksheets/timetable";
 import { EPS_TABLE, money } from "@/features/pre-rnf-worksheets/recognition";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
@@ -91,6 +93,7 @@ export default function WorksheetPrintView({
         .wpv-tt { width: 100%; border-collapse: collapse; margin: 4px 0; break-inside: avoid; }
         .wpv-tt th, .wpv-tt td { border: 1px solid #ccc; height: 16px; font-size: 9px; text-align: center; padding: 0; }
         .wpv-tt th { background: #efefef; font-weight: 700; }
+        .wpv-tt td.tt-cell { height: 26px; padding: 1px 2px; font-size: 7px; line-height: 1.1; text-align: left; vertical-align: top; overflow: hidden; word-break: break-word; }
         .wpv-tt td.tt-time { background: #fafafa; text-align: right; padding: 0 4px; color: #555; white-space: nowrap; width: 34px; }
         .wpv-check { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 13px; break-inside: avoid; }
         .wpv-check .bx { width: 15px; height: 15px; border: 1.5px solid #555; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #16a34a; }
@@ -331,7 +334,19 @@ export default function WorksheetPrintView({
                         <td className="tt-time">{hourLabel(h)}</td>
                         {TT_DAYS.map((d) => {
                           const c = resolveCat(values[ttKey(d, h)], ttAll);
-                          return <td key={d} style={{ background: c?.color ?? "#ffffff" }} />;
+                          const note = (values[ttNoteKey(d, h)] ?? "").trim();
+                          return (
+                            <td
+                              key={d}
+                              className="tt-cell"
+                              style={{
+                                background: c?.color ?? "#ffffff",
+                                color: note ? readableTextColor(c?.color) : undefined,
+                              }}
+                            >
+                              {note}
+                            </td>
+                          );
                         })}
                       </tr>
                     ))}
