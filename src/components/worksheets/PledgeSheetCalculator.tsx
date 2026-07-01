@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Target, TrendingUp } from "lucide-react";
+import { Calendar, ExternalLink, Target, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { POINTS, derivePledge, PLEDGE_DEFAULTS } from "@/features/pre-rnf-worksheets/pledgeCalc";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
@@ -190,6 +190,31 @@ export default function PledgeSheetCalculator({ values, onChange, readOnly = fal
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <GoalColumn variant="min" values={values} onChange={onChange} readOnly={readOnly} />
               <GoalColumn variant="stretch" values={values} onChange={onChange} readOnly={readOnly} />
+            </div>
+            <div className="space-y-1.5 border-t pt-4">
+              <p className="text-sm font-semibold text-foreground">
+                Work these numbers out — the FYC you need, your case mix, and how your income builds over time:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <a
+                  href="https://present.financeillustrator.com/commission-calculator"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border bg-card px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  Commission Calculator
+                </a>
+                <a
+                  href="https://present.financeillustrator.com/income-calculator/income-layers/detailed"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border bg-card px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  Income Calculator
+                </a>
+              </div>
             </div>
           </CardContent>
         </Card>

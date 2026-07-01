@@ -168,7 +168,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     kind: "links",
     id: "eps_calc",
     label: "Work out the FYC you need — and the number and mix of cases to close to hit it — with the Commission Calculator:",
-    links: [{ label: "Commission Calculator", url: "https://track.themoneybees.co/tracker/commission-calculator" }],
+    links: [{ label: "Commission Calculator", url: "https://present.financeillustrator.com/commission-calculator" }],
   },
 
   { kind: "step", id: "s2", label: "3. My strengths & areas to grow", hint: "Three of each. Write the honest version — the gaps are the part worth coaching.", pdfHint: "Who I was at the start — the edges I leaned on, and the gaps I chose to close." },
@@ -296,7 +296,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     kind: "links",
     id: "income_calc",
     label: "Break your target income into layers with the Income Calculator:",
-    links: [{ label: "Income Calculator", url: "https://track.themoneybees.co/income-calculator/income-layers/detailed" }],
+    links: [{ label: "Income Calculator", url: "https://present.financeillustrator.com/income-calculator/income-layers/detailed" }],
   },
 
   { kind: "step", id: "s9", label: "11. My minimum weekly points target", hint: "The points floor you'll hold yourself to every week, and the stake if you miss it — make it sting.", pdfHint: "The floor I refused to drop below — and what it would cost me to miss it." },
