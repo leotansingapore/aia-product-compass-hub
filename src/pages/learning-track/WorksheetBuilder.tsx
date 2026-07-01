@@ -389,7 +389,13 @@ export default function WorksheetBuilder() {
           const bottom = (r.bottom - hostTop) * scale;
           if (bottom - top < 1) continue;
           const c = child as HTMLElement;
-          if (bottom - top > pageHpx && child.children.length > 1) {
+          // A block taller than a page must be broken down so it splits at an
+          // inner boundary instead of being clipped. Recurse through ANY element
+          // that has children — including single-child wrappers (e.g. a bordered
+          // field that wraps one long <ol>/<table>), which previously slipped
+          // through the `> 1` check and got rendered as one over-height, clipped
+          // image (dropping everything past the first page).
+          if (bottom - top > pageHpx && child.children.length >= 1) {
             collect(child);
             continue;
           }
@@ -414,11 +420,34 @@ export default function WorksheetBuilder() {
           while (last + 1 < blocks.length && blocks[last + 1].bottom <= limit) last++;
           // Never end a page on a heading — push it (and any heading run) forward.
           while (last > i && blocks[last].heading) last--;
+          // …but don't strand a lone heading on an otherwise-empty page when the
+          // very next block is itself taller than a page (it can only be sliced,
+          // never packed) — keep the heading with the first slice of its content.
+          if (
+            last === i &&
+            blocks[i].heading &&
+            i + 1 < blocks.length &&
+            blocks[i + 1].bottom - blocks[i + 1].top > pageHpx
+          ) {
+            last = i + 1;
+          }
           // Honour an explicit page break (cover page) — end the page at it.
           for (let j = i; j <= last; j++) {
             if (blocks[j].breakAfter) { last = j; break; }
           }
-          pages.push({ start, end: blocks[last].bottom });
+          // If the page's content is taller than one page (an indivisible block,
+          // e.g. a single huge paragraph), slice it across pages by page-height
+          // chunks so nothing is ever clipped/lost.
+          if (blocks[last].bottom - start > pageHpx) {
+            let s = start;
+            while (blocks[last].bottom - s > pageHpx) {
+              pages.push({ start: s, end: s + pageHpx });
+              s += pageHpx;
+            }
+            pages.push({ start: s, end: blocks[last].bottom });
+          } else {
+            pages.push({ start, end: blocks[last].bottom });
+          }
           i = last + 1;
           if (i < blocks.length) start = blocks[i].top; // trim inter-block gap
         }
