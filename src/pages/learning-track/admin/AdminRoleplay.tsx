@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, ChevronDown, ChevronRight, ArrowUpDown, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -443,12 +443,13 @@ export default function AdminRoleplay() {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y">
-            {filtered.map((l) => {
+          {/* One <tbody> per learner (valid HTML) so the row + expandable
+              detail row share a keyed container without a Fragment. */}
+          {filtered.map((l) => {
               const isOpen = expanded.has(l.userId);
               const daysStale = daysSince(l.lastSessionAt);
               return (
-                <Fragment key={l.userId}>
+                <tbody key={l.userId} className="divide-y border-t first:border-t-0">
                   <tr
                     className="cursor-pointer hover:bg-muted/30"
                     onClick={() => toggleExpand(l.userId)}
@@ -550,10 +551,9 @@ export default function AdminRoleplay() {
                       </td>
                     </tr>
                   )}
-                </Fragment>
+                </tbody>
               );
             })}
-          </tbody>
         </table>
       </div>
       )}

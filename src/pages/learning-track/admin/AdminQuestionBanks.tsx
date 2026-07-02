@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Loader2, ChevronDown, ChevronRight, ArrowUpDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -288,13 +288,14 @@ export default function AdminQuestionBanks() {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y">
-            {filtered.map((l) => {
+          {/* One <tbody> per learner (valid HTML) so the row + expandable
+              detail row share a keyed container without a Fragment. */}
+          {filtered.map((l) => {
               const isOpen = expanded.has(l.user_id);
               const touched = l.product_breakdown.filter((b) => b.last_studied !== null);
               const daysStale = daysSince(l.last_studied);
               return (
-                <Fragment key={l.user_id}>
+                <tbody key={l.user_id} className="divide-y border-t first:border-t-0">
                   <tr
                     className={cn(
                       "cursor-pointer hover:bg-muted/30",
@@ -380,10 +381,9 @@ export default function AdminQuestionBanks() {
                       </td>
                     </tr>
                   )}
-                </Fragment>
+                </tbody>
               );
             })}
-          </tbody>
         </table>
       </div>
       )}
