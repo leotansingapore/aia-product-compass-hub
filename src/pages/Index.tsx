@@ -14,7 +14,7 @@ const Dashboard = lazyWithRetry(() => import("./Dashboard"));
 
 const Index = memo(() => {
   const { user, loading } = useSimplifiedAuth();
-  const { isAdmin } = useAdmin();
+  const { isAdmin, loading: adminLoading } = useAdmin();
   const { tier } = useUserTier();
   const navigate = useNavigate();
 
@@ -33,7 +33,10 @@ const Index = memo(() => {
     }
   }, [user, loading, navigate, hasRecoveryHash]);
 
-  if (loading) {
+  // Wait for BOTH auth and the async admin-role fetch. Redirecting on
+  // `!isAdmin` while the role is still in flight sent admins to the learner
+  // track on every fresh load of `/`.
+  if (loading || adminLoading) {
     return <SkeletonLoader type="dashboard" />;
   }
 
