@@ -205,8 +205,12 @@ serve(async (req) => {
 
   try {
     const { messages, mode } = await req.json();
+    // Prefer the team's own OpenAI key — the Lovable AI gateway runs on
+    // prepaid credits and returns 402 when they run out. Both endpoints use
+    // the same OpenAI-compatible request/stream shape.
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -228,21 +232,28 @@ serve(async (req) => {
     const objectionsContext = isObjectionMode ? await getObjectionsContext(supabase, userQuery) : "";
     const systemPrompt = basePrompt + ragContext + objectionsContext;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
+    const useOwnKey = !!OPENAI_API_KEY;
+    const response = await fetch(
+      useOwnKey
+        ? "https://api.openai.com/v1/chat/completions"
+        : "https://ai.gateway.lovable.dev/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // gpt-4o-mini: cheap, fast, and reads the pasted screenshots.
+          model: useOwnKey ? "gpt-4o-mini" : "google/gemini-3-flash-preview",
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...messages,
+          ],
+          stream: true,
+        }),
       },
-      body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...messages,
-        ],
-        stream: true,
-      }),
-    });
+    );
 
     if (!response.ok) {
       if (response.status === 429) {
