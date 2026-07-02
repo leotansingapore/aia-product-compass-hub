@@ -1,5 +1,6 @@
-import { memo } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /** Underline tabs on brand gradient / dark header — same pattern as Learning Track. */
@@ -30,23 +31,75 @@ function useScriptsHubCurrentKey() {
 export const ScriptsHubHeaderTabs = memo(function ScriptsHubHeaderTabs() {
   const navigate = useNavigate();
   const currentKey = useScriptsHubCurrentKey();
+  const navRef = useRef<HTMLElement>(null);
+  // With 9 tabs the row overflows on most widths and the hidden scrollbar
+  // gave no hint that Concept Cards / Case Vault existed off-screen.
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollHints = useCallback(() => {
+    const el = navRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    updateScrollHints();
+    const el = navRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateScrollHints, { passive: true });
+    window.addEventListener("resize", updateScrollHints);
+    // Bring the active tab into view without scrolling the page itself.
+    const active = el.querySelector<HTMLElement>("[data-active=true]");
+    if (active) {
+      const target = active.offsetLeft - (el.clientWidth - active.offsetWidth) / 2;
+      el.scrollLeft = Math.max(0, target);
+    }
+    return () => {
+      el.removeEventListener("scroll", updateScrollHints);
+      window.removeEventListener("resize", updateScrollHints);
+    };
+  }, [updateScrollHints, currentKey]);
 
   return (
-    <nav className={SCRIPTS_HUB_TAB_NAV_CLASS} aria-label="Sales playbooks sections">
-      {SCRIPTS_HUB_TABS.map((tab) => {
-        const isActive = currentKey === tab.key;
-        return (
-          <button
-            key={tab.key}
-            type="button"
-            onClick={() => navigate(tab.path)}
-            className={cn(SCRIPTS_HUB_TAB_LINK_CLASS, isActive && SCRIPTS_HUB_TAB_ACTIVE_CLASS)}
-          >
-            {tab.label}
-          </button>
-        );
-      })}
-    </nav>
+    <div className="relative">
+      <nav
+        ref={navRef}
+        className={cn(
+          SCRIPTS_HUB_TAB_NAV_CLASS,
+          canScrollRight && !canScrollLeft && "[mask-image:linear-gradient(to_right,black_calc(100%-56px),transparent)]",
+          canScrollLeft && !canScrollRight && "[mask-image:linear-gradient(to_right,transparent,black_56px)]",
+          canScrollLeft && canScrollRight && "[mask-image:linear-gradient(to_right,transparent,black_56px,black_calc(100%-56px),transparent)]",
+        )}
+        aria-label="Sales playbooks sections"
+      >
+        {SCRIPTS_HUB_TABS.map((tab) => {
+          const isActive = currentKey === tab.key;
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              data-active={isActive || undefined}
+              onClick={() => navigate(tab.path)}
+              className={cn(SCRIPTS_HUB_TAB_LINK_CLASS, isActive && SCRIPTS_HUB_TAB_ACTIVE_CLASS)}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </nav>
+      {canScrollRight && (
+        <button
+          type="button"
+          aria-label="Scroll tabs right"
+          onClick={() => navRef.current?.scrollBy({ left: 200, behavior: "smooth" })}
+          className="absolute right-0 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full text-white/80 hover:text-white"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      )}
+    </div>
   );
 });
 
