@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, ChevronDown, ChevronRight, ArrowUpDown, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -448,9 +448,8 @@ export default function AdminRoleplay() {
               const isOpen = expanded.has(l.userId);
               const daysStale = daysSince(l.lastSessionAt);
               return (
-                <>
+                <Fragment key={l.userId}>
                   <tr
-                    key={l.userId}
                     className="cursor-pointer hover:bg-muted/30"
                     onClick={() => toggleExpand(l.userId)}
                   >
@@ -551,7 +550,7 @@ export default function AdminRoleplay() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               );
             })}
           </tbody>

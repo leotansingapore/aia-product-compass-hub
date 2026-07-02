@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { Loader2, ChevronDown, ChevronRight, ArrowUpDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -294,9 +294,8 @@ export default function AdminQuestionBanks() {
               const touched = l.product_breakdown.filter((b) => b.last_studied !== null);
               const daysStale = daysSince(l.last_studied);
               return (
-                <>
+                <Fragment key={l.user_id}>
                   <tr
-                    key={l.user_id}
                     className={cn(
                       "cursor-pointer hover:bg-muted/30",
                       !l.has_studied && "opacity-60",
@@ -381,7 +380,7 @@ export default function AdminQuestionBanks() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               );
             })}
           </tbody>
