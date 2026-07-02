@@ -625,6 +625,8 @@ export default function ScriptFlows() {
                       const url = `${window.location.origin}/flows/view/${activeFlowId}`;
                       navigator.clipboard.writeText(url).then(() => {
                         toast.success('Share link copied!');
+                      }).catch(() => {
+                        toast.error("Couldn't copy — your browser blocked clipboard access");
                       });
                     }}
                   >

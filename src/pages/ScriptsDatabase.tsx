@@ -1216,10 +1216,14 @@ const FALLBACK_SCRIPTS: ScriptEntry[] = [
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = async () => {
-    await copyRichContent(text);
-    setCopied(true);
-    toast.success("Script copied to clipboard");
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyRichContent(text);
+      setCopied(true);
+      toast.success("Script copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("Couldn't copy — your browser blocked clipboard access");
+    }
   };
   return (
     <Button variant="ghost" size="sm" onClick={handleCopy} className="h-7 gap-1.5 text-xs">
@@ -2627,12 +2631,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              <button
                                className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                                title="Copy link to this version"
-                               onClick={() => {
+                               onClick={async () => {
                                  const url = new URL(window.location.href);
                                  url.pathname = `/scripts/${script.id}`;
                                  url.searchParams.set("v", String(i));
-                                 navigator.clipboard.writeText(url.toString());
-                                 toast.success("Version link copied!");
+                                 try {
+                                   await navigator.clipboard.writeText(url.toString());
+                                   toast.success("Version link copied!");
+                                 } catch {
+                                   toast.error("Couldn't copy — your browser blocked clipboard access");
+                                 }
                                }}
                              >
                                <Link2 className="h-3 w-3" /> Copy link
@@ -2769,12 +2777,16 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                              <button
                                className="flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded border border-transparent hover:border-border"
                                title="Copy link to this version"
-                               onClick={() => {
+                               onClick={async () => {
                                  const url = new URL(window.location.href);
                                  url.pathname = `/scripts/${script.id}`;
                                  url.searchParams.set("v", `uv-${uv.id}`);
-                                 navigator.clipboard.writeText(url.toString());
-                                 toast.success("Version link copied!");
+                                 try {
+                                   await navigator.clipboard.writeText(url.toString());
+                                   toast.success("Version link copied!");
+                                 } catch {
+                                   toast.error("Couldn't copy — your browser blocked clipboard access");
+                                 }
                                }}
                              >
                                <Link2 className="h-3 w-3" /> Copy link
@@ -3831,9 +3843,13 @@ export default function ScriptsDatabase() {
             size="sm"
             className="h-10 px-3 shrink-0 gap-1.5 text-xs hidden sm:flex"
             title="Copy link to current view"
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href);
-              toast.success("Link copied to clipboard");
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(window.location.href);
+                toast.success("Link copied to clipboard");
+              } catch {
+                toast.error("Couldn't copy — your browser blocked clipboard access");
+              }
             }}
           >
             <Share2 className="h-4 w-4" />
@@ -3844,9 +3860,13 @@ export default function ScriptsDatabase() {
             size="icon"
             className="h-10 w-10 shrink-0 sm:hidden"
             title="Copy link to current view"
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href);
-              toast.success("Link copied to clipboard");
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(window.location.href);
+                toast.success("Link copied to clipboard");
+              } catch {
+                toast.error("Couldn't copy — your browser blocked clipboard access");
+              }
             }}
           >
             <Share2 className="h-4 w-4" />

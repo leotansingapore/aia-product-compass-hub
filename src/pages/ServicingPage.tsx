@@ -510,8 +510,12 @@ function ServicingScriptCard({
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
                         <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={async () => {
-                          await copyRichContent(v.content);
-                          toast.success("Copied to clipboard");
+                          try {
+                            await copyRichContent(v.content);
+                            toast.success("Copied to clipboard");
+                          } catch {
+                            toast.error("Couldn't copy — your browser blocked clipboard access");
+                          }
                         }}>
                           <Copy className="h-3 w-3" /> Copy
                         </Button>
@@ -552,8 +556,12 @@ function ServicingScriptCard({
                       </ReactMarkdown>
                       <div className="flex gap-1 mt-3">
                         <Button variant="outline" size="sm" className="h-7 text-xs gap-1" onClick={async () => {
-                          await copyRichContent(uv.content);
-                          toast.success("Copied to clipboard");
+                          try {
+                            await copyRichContent(uv.content);
+                            toast.success("Copied to clipboard");
+                          } catch {
+                            toast.error("Couldn't copy — your browser blocked clipboard access");
+                          }
                         }}>
                           <Copy className="h-3 w-3" /> Copy
                         </Button>
