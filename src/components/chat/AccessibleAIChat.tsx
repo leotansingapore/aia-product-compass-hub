@@ -271,10 +271,15 @@ function AccessibleAIChatInner({ productData, className }: AccessibleAIChatProps
     toast({ title: 'New Chat', description: 'Started a fresh conversation' });
   }, [productData, chatMode, announceStatus, toast]);
 
-  const handleCopyMessage = useCallback((content: string) => {
-    navigator.clipboard.writeText(content);
-    announceStatus('Copied to clipboard');
-    toast({ title: 'Copied', description: 'Message copied to clipboard' });
+  const handleCopyMessage = useCallback(async (content: string) => {
+    try {
+      await navigator.clipboard.writeText(content);
+      announceStatus('Copied to clipboard');
+      toast({ title: 'Copied', description: 'Message copied to clipboard' });
+    } catch {
+      announceStatus('Copy failed');
+      toast({ title: "Couldn't copy", description: 'Your browser blocked clipboard access', variant: 'destructive' });
+    }
   }, [announceStatus, toast]);
 
   useKeyboardShortcuts([

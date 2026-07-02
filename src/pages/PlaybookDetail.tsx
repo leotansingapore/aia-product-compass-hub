@@ -822,7 +822,7 @@ export default function PlaybookDetail() {
                         <Label className="text-xs text-muted-foreground">View-only link</Label>
                         <div className="flex gap-1.5">
                           <Input readOnly value={`${window.location.origin}/playbooks/share/${playbook.share_token}`} className="h-8 text-xs font-mono bg-muted border-0" />
-                          <Button size="sm" variant="outline" className="h-8 px-2 shrink-0" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`); toast.success("Link copied"); }}><Copy className="h-3.5 w-3.5" /></Button>
+                          <Button size="sm" variant="outline" className="h-8 px-2 shrink-0" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`).then(() => toast.success("Link copied")).catch(() => toast.error("Couldn't copy — your browser blocked clipboard access")); }}><Copy className="h-3.5 w-3.5" /></Button>
                         </div>
                       </div>
                       <div className="flex items-center justify-between mb-3">
@@ -834,7 +834,7 @@ export default function PlaybookDetail() {
                           <Label className="text-xs text-muted-foreground">Edit link</Label>
                           <div className="flex gap-1.5">
                             <Input readOnly value={`${window.location.origin}/playbooks/share/${playbook.share_token}`} className="h-8 text-xs font-mono bg-muted border-0" />
-                            <Button size="sm" variant="outline" className="h-8 px-2 shrink-0" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`); toast.success("Edit link copied"); }}><Copy className="h-3.5 w-3.5" /></Button>
+                            <Button size="sm" variant="outline" className="h-8 px-2 shrink-0" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/playbooks/share/${playbook.share_token}`).then(() => toast.success("Edit link copied")).catch(() => toast.error("Couldn't copy — your browser blocked clipboard access")); }}><Copy className="h-3.5 w-3.5" /></Button>
                           </div>
                         </div>
                       )}

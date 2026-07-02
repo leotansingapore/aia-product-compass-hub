@@ -7,6 +7,7 @@ import { createMessageAriaLabel, formatTimeForA11y } from '@/lib/accessibility/a
 import { markdownComponents } from '@/lib/markdown-config';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface MessageProps {
   message: ChatMessage;
@@ -27,9 +28,12 @@ export const Message = memo(({ message, isMobile = false, onCopy }: MessageProps
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } else {
-      navigator.clipboard.writeText(content);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+      navigator.clipboard.writeText(content).then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      }).catch(() => {
+        toast.error("Couldn't copy — your browser blocked clipboard access");
+      });
     }
   };
 

@@ -28,9 +28,12 @@ function CopyButton({ text }: { text: string }) {
       className="h-7 gap-1 text-xs"
       onClick={(e) => {
         e.stopPropagation();
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        navigator.clipboard.writeText(text).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }).catch(() => {
+          toast.error("Couldn't copy — your browser blocked clipboard access");
+        });
       }}
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -46,9 +49,12 @@ function SectionAnchorLink({ anchor }: { anchor: string }) {
     <button
       title="Copy link to this section"
       onClick={() => {
-        navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        navigator.clipboard.writeText(url).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }).catch(() => {
+          toast.error("Couldn't copy — your browser blocked clipboard access");
+        });
       }}
       className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground"
     >
