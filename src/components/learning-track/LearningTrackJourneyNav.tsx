@@ -80,10 +80,11 @@ export function LearningTrackJourneyNav({ activeKey }: Props = {}) {
   const { tier } = useUserTier();
   const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
 
-  const accessibleSteps = JOURNEY_STEPS.filter((s) => can(s.feature));
-  const currentTierKey = accessibleSteps.length > 0
-    ? accessibleSteps[accessibleSteps.length - 1].key
-    : "explorer";
+  // The user's stage IS their tier (step keys mirror TierLevel). Deriving it
+  // from "last step can() allows" overstated the stage whenever extra track
+  // visibility was granted (DB tier_permissions rows, admin bypass) — a brand
+  // new Explorer saw "Current stage: Post-RNF".
+  const currentTierKey: JourneyStep["key"] = tier;
   const nextTier = NEXT_TIER[tier];
 
   return (
