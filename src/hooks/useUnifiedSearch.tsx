@@ -138,13 +138,18 @@ function getSemanticBoost(query: string, content: string): number {
   return boost;
 }
 
+// Module-level so the fallback keeps one identity across renders — declaring
+// it inside the hook gave `scripts` a new [] every render while the query was
+// in flight, which re-created performSearch and made the debounce effect's
+// setResults([]) loop ("Maximum update depth exceeded" on the dashboard).
+const EMPTY_SCRIPTS: any[] = [];
+
 export function useUnifiedSearch() {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<UnifiedSearchFilters>({});
   const { allProducts, loading: productsLoading } = useAllProducts();
 
   // Fetch scripts for search
-  const EMPTY_SCRIPTS: any[] = [];
   const { data: scriptsData } = useQuery({
     queryKey: ['search-scripts'],
     queryFn: async () => {
@@ -278,7 +283,8 @@ export function useUnifiedSearch() {
 
   useEffect(() => {
     if (!query.trim()) {
-      setResults([]);
+      // Keep the previous [] identity so dep churn can't re-render forever.
+      setResults((prev) => (prev.length === 0 ? prev : []));
       return;
     }
     setIsSearching(true);
