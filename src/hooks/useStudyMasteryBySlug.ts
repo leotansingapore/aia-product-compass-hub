@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 import { useAuth } from '@/hooks/useAuth';
 
 /** Must match `QUESTION_MASTERY_STREAK` in `useQuestionProgress.tsx`. */
@@ -31,27 +32,27 @@ export function useStudyMasteryBySlug() {
       // Query user's progress rows directly by product_slug (no question_id join).
       // This is resilient to question bank re-seeding — mastery survives even if
       // question IDs change, because progress rows carry their own product_slug.
-      const [progressRes, studyCountRes] = await Promise.all([
-        supabase
-          .from('user_question_progress')
-          .select('product_slug, mastered, consecutive_correct')
-          .eq('user_id', user.id),
-        supabase
-          .from('question_bank_questions' as never)
-          .select('product_slug')
-          .eq('bank_type', 'study')
-          .range(0, 9999),
+      // Both tables can exceed the server's 1,000-row response cap (one
+      // progress row per question per user; ~1,400 study questions) — page
+      // through instead of a single capped .range(0, 9999).
+      const [progressRows, studyCountRows] = await Promise.all([
+        fetchAllRows<{ product_slug: string; mastered: boolean; consecutive_correct: number }>((from, to) =>
+          supabase
+            .from('user_question_progress')
+            .select('question_id, product_slug, mastered, consecutive_correct')
+            .eq('user_id', user.id)
+            .order('question_id')
+            .range(from, to),
+        ),
+        fetchAllRows<{ product_slug: string }>((from, to) =>
+          supabase
+            .from('question_bank_questions' as never)
+            .select('id, product_slug')
+            .eq('bank_type', 'study')
+            .order('id')
+            .range(from, to),
+        ),
       ]);
-
-      if (progressRes.error) throw progressRes.error;
-      if (studyCountRes.error) throw studyCountRes.error;
-
-      const progressRows = (progressRes.data ?? []) as Array<{
-        product_slug: string;
-        mastered: boolean;
-        consecutive_correct: number;
-      }>;
-      const studyCountRows = (studyCountRes.data ?? []) as Array<{ product_slug: string }>;
 
       // Denominator: total study questions per product slug
       const studyTotalBySlug = new Map<string, number>();

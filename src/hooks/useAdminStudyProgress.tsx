@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from '@/types/questionBank';
 
 export interface StudyProductBreakdown {
@@ -35,32 +36,40 @@ export function useAdminStudyProgress() {
     setLoading(true);
     setError(null);
     try {
-      const [profilesRes, progressRes, studyTotalsRes] = await Promise.all([
+      // user_question_progress holds one row per (user, question) — with a
+      // full cohort that is far beyond the server's 1,000-row response cap,
+      // so both big tables are paged; a single un-ranged select silently
+      // truncated the stats.
+      const [profilesRes, progressRows, studyTotals] = await Promise.all([
         supabase
           .from('profiles')
           .select('user_id, display_name, email, first_name, last_name'),
-        supabase
-          .from('user_question_progress')
-          .select('user_id, product_slug, mastered, last_answered_at'),
-        supabase
-          .from('question_bank_questions' as never)
-          .select('product_slug')
-          .eq('bank_type', 'study')
-          .range(0, 9999),
+        fetchAllRows<{
+          user_id: string;
+          product_slug: string;
+          mastered: boolean;
+          last_answered_at: string;
+        }>((from, to) =>
+          supabase
+            .from('user_question_progress')
+            .select('user_id, question_id, product_slug, mastered, last_answered_at')
+            .order('user_id')
+            .order('question_id')
+            .range(from, to),
+        ),
+        fetchAllRows<{ product_slug: string }>((from, to) =>
+          supabase
+            .from('question_bank_questions' as never)
+            .select('id, product_slug')
+            .eq('bank_type', 'study')
+            .order('id')
+            .range(from, to),
+        ),
       ]);
 
       if (profilesRes.error) throw profilesRes.error;
-      if (progressRes.error) throw progressRes.error;
-      if (studyTotalsRes.error) throw studyTotalsRes.error;
 
       const profiles = profilesRes.data ?? [];
-      const progressRows = (progressRes.data ?? []) as Array<{
-        user_id: string;
-        product_slug: string;
-        mastered: boolean;
-        last_answered_at: string;
-      }>;
-      const studyTotals = (studyTotalsRes.data ?? []) as Array<{ product_slug: string }>;
 
       // Count study questions per product slug
       const studyTotalBySlug = new Map<string, number>();

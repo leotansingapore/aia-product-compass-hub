@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from '@/types/questionBank';
 import { useStudyMasteryBySlug } from '@/hooks/useStudyMasteryBySlug';
 import { useBankAttempts, useReviewBank } from '@/hooks/useQuestionBankStore';
@@ -39,13 +40,15 @@ function useBankCounts() {
   return useQuery({
     queryKey: ['question-bank-counts'],
     queryFn: async (): Promise<Record<string, { study: number; exam: number }>> => {
-      const { data, error } = await supabase
-        .from('question_bank_questions' as never)
-        .select('product_slug, bank_type')
-        .range(0, 9999);
-      if (error) throw error;
+      const rows = await fetchAllRows<{ product_slug: string; bank_type: 'study' | 'exam' }>((from, to) =>
+        supabase
+          .from('question_bank_questions' as never)
+          .select('id, product_slug, bank_type')
+          .order('id')
+          .range(from, to),
+      );
       const counts: Record<string, { study: number; exam: number }> = {};
-      for (const row of (data ?? []) as Array<{ product_slug: string; bank_type: 'study' | 'exam' }>) {
+      for (const row of rows) {
         counts[row.product_slug] ??= { study: 0, exam: 0 };
         counts[row.product_slug][row.bank_type]++;
       }

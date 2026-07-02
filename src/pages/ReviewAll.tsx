@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 import {
   PRODUCT_SLUGS,
   PRODUCT_LABELS,
@@ -19,16 +20,18 @@ function useAllQuestions() {
   return useQuery({
     queryKey: ['all-question-bank-questions'],
     queryFn: async (): Promise<QuestionBankQuestion[]> => {
-      const { data, error } = await supabase
-        .from('question_bank_questions' as never)
-        .select('*')
-        .order('product_slug', { ascending: true })
-        .order('bank_type', { ascending: true })
-        .order('category', { ascending: true })
-        .order('sort_order', { ascending: true })
-        .range(0, 9999);
-      if (error) throw error;
-      return (data ?? []) as unknown as QuestionBankQuestion[];
+      const rows = await fetchAllRows<QuestionBankQuestion>((from, to) =>
+        supabase
+          .from('question_bank_questions' as never)
+          .select('*')
+          .order('product_slug', { ascending: true })
+          .order('bank_type', { ascending: true })
+          .order('category', { ascending: true })
+          .order('sort_order', { ascending: true })
+          .order('id', { ascending: true }) // unique tiebreaker so pages never overlap
+          .range(from, to),
+      );
+      return rows;
     },
     staleTime: 5 * 60 * 1000,
   });

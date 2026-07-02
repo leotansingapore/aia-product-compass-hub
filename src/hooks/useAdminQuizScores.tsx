@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 import { PRODUCT_SLUGS, PRODUCT_LABELS } from '@/types/questionBank';
 
 export interface UserQuizStat {
@@ -72,28 +73,36 @@ export function useAdminQuizScores() {
       if (productsError) throw productsError;
 
       // Mastery aggregates: count mastered rows per user × product_slug.
-      const { data: masteryData, error: masteryError } = await supabase
-        .from('user_question_progress')
-        .select('user_id, product_slug, mastered');
-
-      if (masteryError) throw masteryError;
+      // Both tables can exceed the server's 1,000-row response cap (progress
+      // is one row per user per question) — page through or the stats are
+      // silently truncated.
+      const masteryData = await fetchAllRows<{ user_id: string; product_slug: string; mastered: boolean }>(
+        (from, to) =>
+          supabase
+            .from('user_question_progress')
+            .select('user_id, question_id, product_slug, mastered')
+            .order('user_id')
+            .order('question_id')
+            .range(from, to),
+      );
 
       // Study-bank totals per product_slug, for denominator.
-      const { data: studyTotalsData, error: studyTotalsError } = await supabase
-        .from('question_bank_questions' as never)
-        .select('product_slug')
-        .eq('bank_type', 'study')
-        .range(0, 9999);
-
-      if (studyTotalsError) throw studyTotalsError;
+      const studyTotalsData = await fetchAllRows<{ product_slug: string }>((from, to) =>
+        supabase
+          .from('question_bank_questions' as never)
+          .select('id, product_slug')
+          .eq('bank_type', 'study')
+          .order('id')
+          .range(from, to),
+      );
 
       const studyTotalBySlug = new Map<string, number>();
-      for (const row of (studyTotalsData ?? []) as Array<{ product_slug: string }>) {
+      for (const row of studyTotalsData) {
         studyTotalBySlug.set(row.product_slug, (studyTotalBySlug.get(row.product_slug) ?? 0) + 1);
       }
 
       const masteryByUserSlug = new Map<string, Map<string, number>>();
-      for (const row of (masteryData ?? []) as Array<{ user_id: string; product_slug: string; mastered: boolean }>) {
+      for (const row of masteryData) {
         if (!row.mastered) continue;
         if (!masteryByUserSlug.has(row.user_id)) masteryByUserSlug.set(row.user_id, new Map());
         const inner = masteryByUserSlug.get(row.user_id)!;
