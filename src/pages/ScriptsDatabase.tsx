@@ -2343,6 +2343,33 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 <span title={isAdmin ? "Right-click for options · Double-click to rename" : "Right-click for options"}>
                                   {v.title || v.author || `Version ${i + 1}`}
                                 </span>
+                                {/* TabsTrigger is already a <button>, so the pencil is a
+                                    keyboard-operable span to avoid invalid button nesting. */}
+                                {isAdmin && onMetadataSave && activeVersionTab === String(i) && (
+                                  <span
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`Rename ${v.title || v.author || `Version ${i + 1}`}`}
+                                    title="Rename version"
+                                    className="ml-1.5 -mr-1 p-0.5 rounded-full hover:bg-primary-foreground/25 inline-flex"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      e.preventDefault();
+                                      setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
+                                      setEditingVersionTitle(i);
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' || e.key === ' ') {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        setVersionTitleDraft(v.title || v.author || `Version ${i + 1}`);
+                                        setEditingVersionTitle(i);
+                                      }
+                                    }}
+                                  >
+                                    <Pencil className="h-3 w-3" />
+                                  </span>
+                                )}
                               </TabsTrigger>
                             </span>
                           </ContextMenuTrigger>
@@ -2417,6 +2444,31 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 <span title={currentUserId === uv.user_id ? "Right-click for options · Double-click to rename" : "Right-click for options"}>
                                   {uv.author_name}
                                 </span>
+                                {(currentUserId === uv.user_id || isAdmin) && activeVersionTab === `uv-${uv.id}` && (
+                                  <span
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`Rename ${uv.author_name}`}
+                                    title="Rename version"
+                                    className="ml-1.5 -mr-1 p-0.5 rounded-full hover:bg-primary-foreground/25 inline-flex"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      e.preventDefault();
+                                      setEditUserVersionName(uv.author_name);
+                                      setEditingUserVersionId(uv.id);
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' || e.key === ' ') {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        setEditUserVersionName(uv.author_name);
+                                        setEditingUserVersionId(uv.id);
+                                      }
+                                    }}
+                                  >
+                                    <Pencil className="h-3 w-3" />
+                                  </span>
+                                )}
                               </TabsTrigger>
                             </span>
                           </ContextMenuTrigger>
