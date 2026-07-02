@@ -342,6 +342,115 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
 
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 
+/** Theme buckets for the scripts-table objections. First match (by tag) wins. */
+const OBJECTION_SCRIPT_THEMES: ReadonlyArray<{ key: string; label: string; emoji: string; match: (tags: string[]) => boolean }> = [
+  { key: "faq", label: "Free Course & FAQ (Telemarketer)", emoji: "❓", match: (t) => t.includes("faq") },
+  { key: "comprehensive", label: "By Audience — All-Objections Guides", emoji: "🧭", match: (t) => t.includes("comprehensive") },
+  { key: "warm", label: "Warm Market & Texting", emoji: "💬", match: (t) => t.includes("texting-eq") || t.includes("warm-market") },
+  { key: "appointment", label: "Appointment & Meeting", emoji: "📅", match: (t) => t.includes("appointment") || t.includes("zoom") },
+  { key: "money", label: "Insurance & Money", emoji: "🛡️", match: (t) => t.includes("insurance") || t.includes("retirement") || t.includes("investment") || t.includes("savings") },
+  { key: "other", label: "Other Objections", emoji: "📌", match: () => true },
+];
+
+/**
+ * User-visible home for scripts categorised `objection-handling` (incl. the
+ * telemarketer FAQ objections merged in from the old FAQ category). Grouped
+ * by theme when browsing; flat when searching.
+ */
+function ObjectionScriptsSection({ scripts, loading }: { scripts: ScriptEntry[]; loading: boolean }) {
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return scripts;
+    return scripts.filter((s) => {
+      if (s.stage.toLowerCase().includes(q)) return true;
+      if ((s.tags || []).some((t) => t.toLowerCase().includes(q))) return true;
+      return s.versions.some((v) => v.content.toLowerCase().includes(q) || (v.author || "").toLowerCase().includes(q));
+    });
+  }, [scripts, query]);
+
+  const grouped = useMemo(() => {
+    if (query.trim()) return null;
+    const buckets = OBJECTION_SCRIPT_THEMES.map((theme) => ({ theme, scripts: [] as ScriptEntry[] }));
+    for (const s of filtered) {
+      const tags = s.tags || [];
+      const bucket = buckets.find((b) => b.theme.match(tags))!;
+      bucket.scripts.push(s);
+    }
+    return buckets.filter((b) => b.scripts.length > 0);
+  }, [filtered, query]);
+
+  if (!loading && scripts.length === 0) return null;
+
+  return (
+    <div className="mt-10">
+      <div className="flex items-center gap-3 mb-1">
+        <h2 className="text-lg font-semibold">Objection Scripts & FAQ</h2>
+        <Badge variant="secondary" className="text-[10px]">{scripts.length}</Badge>
+      </div>
+      <p className="text-sm text-muted-foreground mb-4">
+        Full word-for-word scripts for specific objections — including the free-course FAQ answers for telemarketers.
+      </p>
+
+      <div className="relative mb-4">
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          type="text"
+          placeholder="Search objection scripts… e.g. free, zoom, advisor, not interested"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="pl-10 pr-10 h-10 text-sm"
+        />
+        {query && (
+          <button
+            onClick={() => setQuery("")}
+            aria-label="Clear search"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+
+      {loading ? (
+        <div className="flex justify-center py-8"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
+      ) : grouped ? (
+        <div className="space-y-6">
+          {grouped.map(({ theme, scripts: group }) => (
+            <section key={theme.key}>
+              <div className="flex items-center gap-2 mb-2.5">
+                <span className="text-base leading-none">{theme.emoji}</span>
+                <h3 className="text-sm font-semibold">{theme.label}</h3>
+                <span className="text-xs text-muted-foreground">({group.length})</span>
+              </div>
+              <div className="space-y-3">
+                {group.map((script) => (
+                  <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : filtered.length > 0 ? (
+        <div className="space-y-3">
+          <p className="text-xs text-muted-foreground">{filtered.length} matching "{query.trim()}"</p>
+          {filtered.map((script) => (
+            <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-8 text-muted-foreground">
+          <p className="text-sm font-medium">No objection scripts match "{query.trim()}"</p>
+          <button onClick={() => setQuery("")} className="text-xs underline hover:text-foreground mt-1">
+            Clear search
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; firstVersion: ScriptVersion | undefined }) {
   const [open, setOpen] = useState(false);
   const [copiedVersionIdx, setCopiedVersionIdx] = useState<number | null>(null);
@@ -422,7 +531,6 @@ export function ObjectionHandlingDatabase() {
   const { user } = useSimplifiedAuth();
   const isMobile = useIsMobile();
   const { scripts: allScripts, loading: scriptsLoading } = useScripts();
-  const [objScriptsOpen, setObjScriptsOpen] = useState(true);
 
   // Scripts categorised as 'objection-handling' from the scripts table
   const objectionScripts = useMemo(
@@ -585,6 +693,9 @@ export function ObjectionHandlingDatabase() {
       {/* Curriculum-anchored library - canonical source of truth */}
       <CuratedObjectionsLibrary />
 
+      {/* Scripts-table objections (incl. merged telemarketer FAQ) — searchable, grouped by theme */}
+      <ObjectionScriptsSection scripts={objectionScripts} loading={scriptsLoading} />
+
       {/* Legacy DB — admin-only, collapsed by default */}
       {!isAdmin ? null : (
         <Collapsible open={legacyOpen} onOpenChange={setLegacyOpen} className="mt-8 mb-6">
@@ -746,40 +857,6 @@ export function ObjectionHandlingDatabase() {
               </p>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Objection Handling Scripts (from scripts table) */}
-      {objectionScripts.length > 0 && (
-        <div className="mt-8">
-          <Collapsible open={objScriptsOpen} onOpenChange={setObjScriptsOpen}>
-            <CollapsibleTrigger asChild>
-              <div className="flex items-center gap-3 cursor-pointer group mb-4">
-                <div className="h-px flex-1 bg-border" />
-                <button className="flex items-center gap-2 text-sm font-semibold text-foreground px-3 py-1.5 rounded-full border bg-muted/50 hover:bg-muted transition-colors group-hover:border-primary/40">
-                  <span>📋</span>
-                  <span>Objection Scripts</span>
-                  <Badge variant="secondary" className="text-[10px] ml-1">{objectionScripts.length}</Badge>
-                  <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform ${objScriptsOpen ? "rotate-180" : ""}`} />
-                </button>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              {scriptsLoading ? (
-                <div className="flex justify-center py-8"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
-              ) : (
-                <div className="space-y-3">
-                  {objectionScripts.map(script => {
-                    const firstVersion = script.versions[0];
-                    return (
-                      <ObjectionScriptCard key={script.id} script={script} firstVersion={firstVersion} />
-                    );
-                  })}
-                </div>
-              )}
-            </CollapsibleContent>
-          </Collapsible>
         </div>
       )}
 
