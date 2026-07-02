@@ -532,9 +532,14 @@ export function ObjectionHandlingDatabase() {
   const isMobile = useIsMobile();
   const { scripts: allScripts, loading: scriptsLoading } = useScripts();
 
-  // Scripts categorised as 'objection-handling' from the scripts table
+  // Scripts categorised as 'objection-handling' from the scripts table, plus
+  // the telemarketer FAQ entries (category 'faq', tagged objection-handling) —
+  // those are objection answers and live here, not on the Sales Scripts page.
   const objectionScripts = useMemo(
-    () => allScripts.filter(s => s.category === "objection-handling"),
+    () => allScripts.filter(s =>
+      s.category === "objection-handling" ||
+      (s.category === "faq" && (s.tags || []).includes("objection-handling"))
+    ),
     [allScripts]
   );
 
