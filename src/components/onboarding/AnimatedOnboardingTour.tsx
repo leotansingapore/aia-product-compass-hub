@@ -417,14 +417,12 @@ export function AnimatedOnboardingTour({ open, onClose, onFinish }: AnimatedOnbo
       <div className="absolute right-3 top-5 z-40 md:right-12 md:top-6">
         <button
           onClick={finish}
+          aria-label="Skip tour"
           className="group flex min-h-[44px] items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white/90 backdrop-blur transition hover:border-white/40 hover:bg-white/20 sm:px-4"
         >
-          {paused ? (
-            <Pause className="h-3.5 w-3.5" />
-          ) : (
-            <span className="hidden sm:inline">Skip tour</span>
-          )}
-          <X className="h-3.5 w-3.5" />
+          {paused && <Pause className="h-3.5 w-3.5" aria-hidden="true" />}
+          <span className="hidden sm:inline">Skip tour</span>
+          <X className="h-3.5 w-3.5" aria-hidden="true" />
         </button>
       </div>
 
