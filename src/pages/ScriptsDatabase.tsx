@@ -32,7 +32,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
+import { ChevronDown, ChevronRight, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -4352,6 +4352,71 @@ export default function ScriptsDatabase() {
                   );
                 }
 
+                const renderScriptCard = (script: ScriptEntry) => (
+                  <div key={script.id} id={`script-${script.id}`}>
+                    <ScriptCard
+                      script={script}
+                      isAdmin={isAdmin}
+                      isOpenByUrl={resolvedScriptId === script.id}
+                      searchQuery={searchQuery}
+                      myPlaybooks={myPlaybooks}
+                      onAddToPlaybook={handleAddToPlaybook}
+                      onCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
+                      isAuthenticated={!!user}
+                      userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
+                      isFavourite={favouriteIds.has(script.id)}
+                      onToggleFavourite={() => toggleFavourite.mutate(script.id)}
+                      isMobile={isMobile}
+                      allScripts={dbScripts}
+                      onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
+                      onDelete={() => setDeleteTarget(script)}
+                      onInlineSave={handleInlineSave}
+                      onMetadataSave={handleMetadataSave}
+                      mergeSourceId={mergeState.sourceId}
+                      mergeOverId={mergeState.dragOverId}
+                      tapSelectMode={mergeState.tapSelectMode}
+                      onMergeDragStart={startDrag}
+                      onMergeDragEnd={endDrag}
+                      onMergeOver={onDragOver}
+                      onMergeLeave={onDragLeave}
+                      onMergeDrop={onDrop}
+                      onTapSelect={tapSelect}
+                      onTapTarget={tapTarget}
+                      onToggle={(open) => {
+                        if (open) {
+                          navigateToScriptInternal(script.id);
+                        } else if (resolvedScriptId === script.id) {
+                          navigate('/scripts', { replace: true });
+                        }
+                      }}
+                    />
+                  </div>
+                );
+
+                // Browsing everything = group by category with headers so the
+                // list is scannable instead of a flat wall of 100+ cards.
+                // Search results stay flat (best-match order matters there);
+                // single-category views are already scoped.
+                const showCategoryGroups = activeCategory === "all" && !searchQuery.trim();
+                const groupedByCategory = (() => {
+                  if (!showCategoryGroups) return null;
+                  const groups = new Map<string, ScriptEntry[]>();
+                  for (const s of filteredScripts) {
+                    if (!groups.has(s.category)) groups.set(s.category, []);
+                    groups.get(s.category)!.push(s);
+                  }
+                  const knownOrder = Object.keys(categoryLabels);
+                  const orderedKeys = [...groups.keys()].sort((a, b) => {
+                    const ia = knownOrder.indexOf(a);
+                    const ib = knownOrder.indexOf(b);
+                    return (
+                      (ia === -1 ? knownOrder.length : ia) - (ib === -1 ? knownOrder.length : ib) ||
+                      a.localeCompare(b)
+                    );
+                  });
+                  return orderedKeys.map((key) => ({ key, info: getCategoryInfo(key), scripts: groups.get(key)! }));
+                })();
+
                 return (
                   <>
                     {/* Tap-to-merge banner (mobile) */}
@@ -4365,46 +4430,29 @@ export default function ScriptsDatabase() {
                         </button>
                       </div>
                     )}
-                      {filteredScripts.map((script) => (
-                       <div key={script.id} id={`script-${script.id}`}>
-                       <ScriptCard
-                         script={script}
-                         isAdmin={isAdmin}
-                         isOpenByUrl={resolvedScriptId === script.id}
-                        searchQuery={searchQuery}
-                        myPlaybooks={myPlaybooks}
-                        onAddToPlaybook={handleAddToPlaybook}
-                        onCreatePlaybookAndAdd={handleCreatePlaybookAndAdd}
-                        isAuthenticated={!!user}
-                        userDisplayName={user?.user_metadata?.display_name || user?.email?.split('@')[0] || ''}
-                        isFavourite={favouriteIds.has(script.id)}
-                        onToggleFavourite={() => toggleFavourite.mutate(script.id)}
-                        isMobile={isMobile}
-                        allScripts={dbScripts}
-                        onEdit={() => { setEditingScript(script); setEditorOpen(true); }}
-                        onDelete={() => setDeleteTarget(script)}
-                        onInlineSave={handleInlineSave}
-                        onMetadataSave={handleMetadataSave}
-                        mergeSourceId={mergeState.sourceId}
-                        mergeOverId={mergeState.dragOverId}
-                        tapSelectMode={mergeState.tapSelectMode}
-                        onMergeDragStart={startDrag}
-                        onMergeDragEnd={endDrag}
-                        onMergeOver={onDragOver}
-                        onMergeLeave={onDragLeave}
-                        onMergeDrop={onDrop}
-                        onTapSelect={tapSelect}
-                        onTapTarget={tapTarget}
-                        onToggle={(open) => {
-                          if (open) {
-                            navigateToScriptInternal(script.id);
-                          } else if (resolvedScriptId === script.id) {
-                            navigate('/scripts', { replace: true });
-                          }
-                        }}
-                       />
-                       </div>
-                     ))}
+                    {groupedByCategory
+                      ? groupedByCategory.map(({ key, info, scripts: group }) => {
+                          const CatIcon = info.icon;
+                          return (
+                            <section key={key} className="space-y-3 pt-2 first:pt-0">
+                              <button
+                                type="button"
+                                onClick={() => setActiveCategory(key)}
+                                title={`Show only ${info.label}`}
+                                className="group flex w-full items-center gap-2 rounded-md px-1 py-1 text-left hover:bg-accent/60 transition-colors"
+                              >
+                                <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md ${info.color}`}>
+                                  <CatIcon className="h-3.5 w-3.5" />
+                                </span>
+                                <span className="text-sm font-semibold text-foreground">{info.label}</span>
+                                <span className="text-xs text-muted-foreground">({group.length})</span>
+                                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </button>
+                              {group.map(renderScriptCard)}
+                            </section>
+                          );
+                        })
+                      : filteredScripts.map(renderScriptCard)}
                   </>
                 );
               })()
