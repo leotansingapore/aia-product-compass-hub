@@ -4460,7 +4460,22 @@ export default function ScriptsDatabase() {
               <div className="text-center py-12 text-muted-foreground">
                 <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
                 <p className="font-medium">No scripts found</p>
-                <p className="text-sm">Try adjusting your search or category filter.</p>
+                <p className="text-sm mb-3">Try adjusting your search or category filter.</p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setSearchInput("");
+                    setSearchQuery("");
+                    setActiveCategory("all");
+                    setActiveAudience("all");
+                    setActiveRole("all");
+                    setActiveTag("all");
+                    setShowFavouritesOnly(false);
+                  }}
+                >
+                  <X className="h-3.5 w-3.5 mr-1.5" /> Reset search & filters
+                </Button>
               </div>
             )}
           </div>
