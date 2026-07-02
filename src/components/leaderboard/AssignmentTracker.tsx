@@ -73,6 +73,81 @@ async function fetchCellContent(view: CellView): Promise<ViewContent> {
   return { fields, text: (draft?.blob.t ?? "").trim(), fileUrl: null, fileName: null, at: null };
 }
 
+// Multi-file assignments ride their per-slot upload URLs inside the answers
+// JSON, so a field whose whole value is a URL is a deliverable, not prose.
+function isUploadUrl(value: string): boolean {
+  return /^https?:\/\/\S+$/i.test(value.trim());
+}
+
+function uploadDisplayName(url: string): string {
+  const seg = url.split("?")[0].split("/").pop() ?? "";
+  const ext = seg.includes(".") ? seg.split(".").pop()!.toUpperCase() : "";
+  return ext ? `View uploaded ${ext}` : "View uploaded file";
+}
+
+function FileLink({ url, name }: { url: string; name: string }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60"
+    >
+      <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
+      <span className="min-w-0 flex-1 truncate">{name}</span>
+      <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground" />
+    </a>
+  );
+}
+
+function SubmissionBody({ data }: { data: ViewContent }) {
+  const fieldUrls = new Set(
+    data.fields.filter((f) => isUploadUrl(f.value)).map((f) => f.value.trim()),
+  );
+  // The row-level file column mirrors the first deliverable; skip the
+  // standalone card when that same upload already renders under its slot label.
+  const showTopFile = !!data.fileName && !!data.fileUrl && !fieldUrls.has(data.fileUrl);
+
+  return (
+    <div className="space-y-2">
+      {showTopFile && <FileLink url={data.fileUrl!} name={data.fileName!} />}
+      {data.fields.map((f) => {
+        const value = f.value.trim();
+        if (isUploadUrl(value)) {
+          return (
+            <div key={f.label}>
+              <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {f.label}
+              </div>
+              <FileLink
+                url={value}
+                name={
+                  value === data.fileUrl && data.fileName
+                    ? data.fileName
+                    : uploadDisplayName(value)
+                }
+              />
+            </div>
+          );
+        }
+        return (
+          <div key={f.label} className="rounded-md border bg-background p-3">
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {f.label}
+            </div>
+            <div className="whitespace-pre-wrap break-words text-sm">{f.value}</div>
+          </div>
+        );
+      })}
+      {data.text && (
+        <div className="whitespace-pre-wrap break-words rounded-md border bg-background p-3 text-sm">
+          {data.text}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function fmtDate(iso: string | null): string {
   if (!iso) return "Submitted";
   const d = new Date(iso);
@@ -327,33 +402,7 @@ export default function AssignmentTracker({ enabled }: { enabled: boolean }) {
                 </div>
               ) : content.data &&
                 (content.data.fields.length > 0 || content.data.text || content.data.fileUrl) ? (
-                <div className="space-y-2">
-                  {content.data.fileName && content.data.fileUrl && (
-                    <a
-                      href={content.data.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60"
-                    >
-                      <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <span className="min-w-0 flex-1 truncate">{content.data.fileName}</span>
-                      <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground" />
-                    </a>
-                  )}
-                  {content.data.fields.map((f) => (
-                    <div key={f.label} className="rounded-md border bg-background p-3">
-                      <div className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        {f.label}
-                      </div>
-                      <div className="whitespace-pre-wrap break-words text-sm">{f.value}</div>
-                    </div>
-                  ))}
-                  {content.data.text && (
-                    <div className="whitespace-pre-wrap break-words rounded-md border bg-background p-3 text-sm">
-                      {content.data.text}
-                    </div>
-                  )}
-                </div>
+                <SubmissionBody data={content.data} />
               ) : (
                 <div className="py-6 text-sm text-muted-foreground">
                   Nothing recorded yet.
