@@ -63,6 +63,7 @@ const MyAccount = lazyWithRetry(() => import("./pages/MyAccount"));
 const VideoDetail = lazyWithRetry(() => import("./pages/VideoDetail"));
 const ManageProductVideos = lazyWithRetry(() => import("./pages/ManageProductVideos"));
 const ScriptsDatabase = lazyWithRetry(() => import("./pages/ScriptsDatabase"));
+const ScriptsCourse = lazyWithRetry(() => import("./pages/ScriptsCourse"));
 const Changelog = lazyWithRetry(() => import("./pages/Changelog"));
 const ServicingPage = lazyWithRetry(() => import("./pages/ServicingPage"));
 const Playbooks = lazyWithRetry(() => import("./pages/Playbooks"));
@@ -218,6 +219,7 @@ const App = () => (
                     </Route>
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
+                    <Route path="/scripts/course" element={<RequireAuth><RequireTier feature="scripts"><ScriptsCourse /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/objections" element={<RequireAuth><RequireTier feature="objections"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/servicing" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
