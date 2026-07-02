@@ -164,7 +164,18 @@ export default function ProductExam() {
 
           {mode === 'simulation' && (
             <>
-              <Button variant="ghost" size="sm" onClick={() => setMode('intro')} className="mb-3 -ml-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  // A mis-click here used to silently throw away a timed
+                  // 60-question attempt — there is no resume.
+                  if (confirm('Exit the simulation? Your answers this round will be lost.')) {
+                    setMode('intro');
+                  }
+                }}
+                className="mb-3 -ml-2"
+              >
                 <ArrowLeft className="h-4 w-4 mr-1" /> Exit simulation
               </Button>
               <SimulationQuiz
