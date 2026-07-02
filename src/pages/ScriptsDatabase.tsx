@@ -32,7 +32,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown, ChevronRight, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
+import { BookOpen, CheckCircle2, ChevronDown, ChevronRight, Phone, MessageSquare, HelpCircle, Copy, Check, UserPlus, CalendarCheck, Lightbulb, Megaphone, Users, Plus, Pencil, Trash2, Loader2, Filter, X, Download, Image as ImageIcon, Search, Heart, Share2, Link2, History, RotateCcw, GripVertical, GitMerge } from "lucide-react";
 import { useMergeScripts } from "@/hooks/useMergeScripts";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -46,6 +46,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { useScriptFavourites } from "@/hooks/useScriptFavourites";
+import { getReadLessonIds } from "@/lib/scriptsCourseProgress";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ObjectionHandlingDatabase } from "@/components/scripts/ObjectionHandlingDatabase";
 import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
@@ -75,6 +76,11 @@ function getCategoryInfo(key: string) {
     color: "bg-muted text-muted-foreground",
   };
 }
+
+// Categories with their own home — never listed on the Sales Scripts tab:
+// servicing → /servicing · objection-handling + faq → /objections (Objection
+// Scripts & FAQ section) · tips → the /scripts/course mini-course.
+const OFFPAGE_CATEGORIES = new Set(["servicing", "objection-handling", "faq", "tips"]);
 
 // Sub-type labels for Follow-Up grouping
 const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
@@ -3505,6 +3511,38 @@ export default function ScriptsDatabase() {
   // Use DB scripts if available, otherwise fallback
   const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
 
+  // Deep links to scripts that no longer live on this page go to their home:
+  // tips → the mini-course lesson, objections/FAQ → the Objections tab.
+  useEffect(() => {
+    if (!resolvedScriptId || loading) return;
+    const target = scriptsData.find((s) => s.id === resolvedScriptId);
+    if (!target) return;
+    if (target.category === "tips") {
+      navigate(`/scripts/course?lesson=${target.id}`, { replace: true });
+    } else if (target.category === "objection-handling" || target.category === "faq") {
+      navigate("/objections", { replace: true });
+    }
+  }, [resolvedScriptId, loading, scriptsData, navigate]);
+
+  // A persisted or deep-linked category that no longer has scripts on this
+  // page (recategorised, deleted, or moved to its own page) would render an
+  // empty list forever — fall back to All instead.
+  useEffect(() => {
+    if (loading || activeCategory === "all") return;
+    const stillExists = scriptsData.some(
+      (s) => s.category === activeCategory && !OFFPAGE_CATEGORIES.has(s.category),
+    );
+    if (!stillExists) setActiveCategory("all");
+  }, [loading, activeCategory, scriptsData]);
+
+  // Scripts Fundamentals mini-course (the tips category) — recommended
+  // reading, surfaced as a banner above the database.
+  const courseLessons = useMemo(() => scriptsData.filter((s) => s.category === "tips"), [scriptsData]);
+  const courseReadCount = useMemo(() => {
+    const read = getReadLessonIds(user?.id);
+    return courseLessons.filter((l) => read.has(l.id)).length;
+  }, [courseLessons, user?.id]);
+
   // Strict substring match: only matches if query words appear as substrings
   const strictMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
     if (!target || !query) return { match: false, score: 0 };
@@ -3524,8 +3562,7 @@ export default function ScriptsDatabase() {
   }, [strictMatch]);
 
   const filteredScripts = useMemo(() => {
-    // Exclude servicing scripts from the main Scripts tab (they have their own tab)
-    let result = scriptsData.filter((s) => s.category !== "servicing");
+    let result = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
     if (activeCategory !== "all") {
       result = result.filter((s) => s.category === activeCategory);
     }
@@ -3563,12 +3600,16 @@ export default function ScriptsDatabase() {
   const suggestions = useMemo(() => {
     if (!searchInput.trim() || searchInput.length < 2) return [];
     const q = searchInput.toLowerCase();
-    const titleMatches = scriptsData
+    // Suggest only scripts that actually render on this page — off-page
+    // categories (servicing/objections/faq/tips) have their own homes.
+    const onPageScripts = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
+    const titleMatches = onPageScripts
       .map(s => ({ s, fm: strictMatch(s.stage, q) }))
       .filter(({ fm }) => fm.match)
       .sort((a, b) => b.fm.score - a.fm.score)
       .map(({ s }) => ({ type: "script" as const, label: s.stage, id: s.id }));
     const categoryMatches = Object.entries(categoryLabels)
+      .filter(([key]) => !OFFPAGE_CATEGORIES.has(key))
       .filter(([, val]) => strictIncludes(val.label, q))
       .map(([key, val]) => ({ type: "category" as const, label: val.label, id: key }));
     const audienceMatches = Object.entries(audienceLabels)
@@ -3577,12 +3618,12 @@ export default function ScriptsDatabase() {
     const roleMatches = Object.entries(roleLabels)
       .filter(([, val]) => strictIncludes(val, q))
       .map(([key, val]) => ({ type: "role" as const, label: val, id: key }));
-    const authorMatches = scriptsData
+    const authorMatches = onPageScripts
       .flatMap(s => s.versions.map(v => ({ author: v.author, scriptId: s.id, scriptTitle: s.stage })))
       .filter(v => strictIncludes(v.author, q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
-    const tagMatches = Array.from(new Set(scriptsData.flatMap(s => s.tags || [])))
+    const tagMatches = Array.from(new Set(onPageScripts.flatMap(s => s.tags || [])))
       .filter(t => strictIncludes(t, q))
       .slice(0, 3)
       .map(t => ({ type: "script" as const, label: `🏷️ ${t}`, id: t }));
@@ -3650,8 +3691,7 @@ export default function ScriptsDatabase() {
 
   // Helper: apply all filters EXCEPT a given dimension
   const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
-    // Always exclude servicing scripts — they live on their own page
-    let result = scriptsData.filter((s) => s.category !== "servicing");
+    let result = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
     if (exclude !== 'category' && activeCategory !== "all") {
       result = result.filter((s) => s.category === activeCategory);
     }
@@ -4250,6 +4290,38 @@ export default function ScriptsDatabase() {
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
           </div>
+        )}
+
+        {/* Scripts Fundamentals mini-course — recommended before using the scripts */}
+        {!loading && courseLessons.length > 0 && (
+          courseReadCount >= courseLessons.length ? (
+            <div className="flex items-center gap-2 rounded-lg border border-green-300/50 bg-green-50/50 dark:border-green-900 dark:bg-green-950/20 px-3 py-2 mb-3 text-xs text-muted-foreground">
+              <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
+              <span className="flex-1 min-w-0">Scripts Fundamentals course completed — nice work.</span>
+              <button onClick={() => navigate("/scripts/course")} className="underline hover:text-foreground shrink-0">
+                Revisit
+              </button>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-primary/25 bg-gradient-to-r from-primary/10 to-primary/5 p-4 mb-3 flex flex-col sm:flex-row sm:items-center gap-3">
+              <div className="flex items-start gap-3 flex-1 min-w-0">
+                <BookOpen className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold">
+                    {courseReadCount > 0
+                      ? `Continue the Scripts Fundamentals course — ${courseReadCount}/${courseLessons.length} lessons read`
+                      : "New to the scripts? Start with the Scripts Fundamentals course"}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {courseLessons.length} short lessons on calling, texting, and warm outreach — recommended reading before you use the scripts below.
+                  </p>
+                </div>
+              </div>
+              <Button size="sm" className="shrink-0 w-full sm:w-auto" onClick={() => navigate("/scripts/course")}>
+                {courseReadCount > 0 ? "Continue reading" : "Start reading"} <ChevronRight className="h-3.5 w-3.5 ml-1" />
+              </Button>
+            </div>
+          )
         )}
 
         {/* Onboarding prompt — shown when no filters are selected and no search */}
