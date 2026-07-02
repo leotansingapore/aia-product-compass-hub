@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BarChart3, BrainCircuit, Waypoints } from "lucide-react";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { SimplifiedAuthForm } from "@/components/auth/SimplifiedAuthForm";
@@ -39,12 +39,17 @@ function AuthHeroPolyLayer() {
 const SimplifiedAuth = () => {
   const { user, loading } = useSimplifiedAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (user && !loading) {
-      navigate("/", { replace: true });
+      // RequireAuth stashes the page the user was trying to open — return
+      // there after sign-in instead of dumping everyone on "/".
+      const from = (location.state as { from?: { pathname?: string; search?: string } } | null)?.from;
+      const target = from?.pathname ? `${from.pathname}${from.search ?? ""}` : "/";
+      navigate(target, { replace: true });
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, location.state]);
 
   if (loading) {
     return (
