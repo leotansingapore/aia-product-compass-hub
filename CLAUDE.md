@@ -182,7 +182,6 @@ src/
 **AI:** `/product/:productId/ai-assistant` (lazy-loaded)
 **CMFAS:** `/cmfas-exams` · `/cmfas/module/:moduleId` · `/cmfas/module/:moduleId/video/:videoSlugOrId` · `/cmfas/chat/:moduleId?`
 **Roleplay:** `/roleplay` · `/roleplay/feedback/:sessionId`
-**Knowledge Base:** `/kb` · `/kb/:categorySlug` · `/kb/:categorySlug/:productSlug`
 **User:** `/my-account` · `/bookmarks` · `/how-to-use` · `/search-by-profile` · `/consultant-landing`
 **Admin:** `/admin` (ProtectedAdminPage → AdminDashboard)
 
