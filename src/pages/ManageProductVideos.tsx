@@ -10,11 +10,14 @@ import { VideoEditingInterface } from '@/components/video-editing/VideoEditingIn
 import { useVideoManagement } from '@/hooks/useVideoManagement';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import type { TrainingVideo } from '@/hooks/useProducts';
-import { moduleIdToProductId } from '@/data/cmfasModuleData';
+import { moduleIdToProductId, cmfasModuleVideos } from '@/data/cmfasModuleData';
 
 // CMFAS lesson products — the 5 modules map to these product IDs. Used to
 // surface the Action Steps editor only for CMFAS lessons, per plan scope.
 const CMFAS_PRODUCT_IDS = new Set<string>(Object.values(moduleIdToProductId));
+const PRODUCT_ID_TO_MODULE_ID: Record<string, string> = Object.fromEntries(
+  Object.entries(moduleIdToProductId).map(([moduleId, productId]) => [productId, moduleId]),
+);
 
 export default function ManageProductVideos() {
   const { productSlugOrId } = useParams();
@@ -29,18 +32,34 @@ export default function ManageProductVideos() {
     navigate(`/product/${productSlugOrId}`);
   };
 
+  // CMFAS modules render the static curriculum (cmfasModuleData.ts) whenever
+  // their DB row has no training_videos — so an empty editor here was a trap:
+  // saving a single new video would override and hide the whole curriculum.
+  // Pre-load the editor with the static lessons instead, so admins edit the
+  // real curriculum; the first Save persists the full list to the DB, which
+  // the module pages then prefer over the static fallback.
+  const dbVideos = product?.training_videos || [];
+  const cmfasModuleId = product ? PRODUCT_ID_TO_MODULE_ID[product.id] : undefined;
+  const initialVideos =
+    dbVideos.length === 0 && cmfasModuleId
+      ? (cmfasModuleVideos[cmfasModuleId] ?? [])
+      : dbVideos;
+
   // Get unique categories from existing videos
   const existingCategories = Array.from(
     new Set(
-      (product?.training_videos || [])
+      initialVideos
         .map(v => v.category)
         .filter(Boolean)
     )
   );
 
+  // productId keys the hook's reset effect: on a hard page load the product
+  // arrives async, and without it the editor keeps the empty pre-load state.
   const videoManagement = useVideoManagement({
-    initialVideos: product?.training_videos || [],
-    onSave: handleVideoSave
+    initialVideos,
+    onSave: handleVideoSave,
+    productId: product?.id
   });
 
   // Auto-select the first lesson on load so admins land in the editor with
