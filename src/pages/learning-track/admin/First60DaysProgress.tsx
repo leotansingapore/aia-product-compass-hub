@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Loader2, ArrowUpDown } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
@@ -57,12 +58,14 @@ function personLabel(p: ProfileRow | undefined, fallbackId: string): string {
 }
 
 async function fetchAllProgress(): Promise<{ rows: ProgressRow[]; profiles: Map<string, ProfileRow> }> {
-  const { data, error } = await supabase
-    .from("first_60_days_progress")
-    .select("user_id, day_number, quiz_passed_at, reflection_submitted_at, updated_at")
-    .range(0, 9999);
-  if (error) throw error;
-  const rows = (data ?? []) as ProgressRow[];
+  const rows = await fetchAllRows<ProgressRow>((from, to) =>
+    supabase
+      .from("first_60_days_progress")
+      .select("user_id, day_number, quiz_passed_at, reflection_submitted_at, updated_at")
+      .order("user_id")
+      .order("day_number")
+      .range(from, to),
+  );
   const userIds = Array.from(new Set(rows.map((r) => r.user_id)));
   if (userIds.length === 0) return { rows, profiles: new Map() };
   const { data: profiles, error: profErr } = await supabase

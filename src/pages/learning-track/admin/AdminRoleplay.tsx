@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2, ChevronDown, ChevronRight, ArrowUpDown, Video } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -74,24 +75,28 @@ async function fetchAll(): Promise<{
   feedback: FeedbackRow[];
   profiles: Map<string, ProfileRow>;
 }> {
-  const sessionsRes = await supabase
-    .from("roleplay_sessions")
-    .select("id, user_id, scenario_title, scenario_category, scenario_difficulty, started_at, ended_at, duration_seconds, video_url")
-    .order("started_at", { ascending: false })
-    .range(0, 9999);
-  if (sessionsRes.error) throw sessionsRes.error;
-  const sessions = (sessionsRes.data ?? []) as SessionRow[];
+  const sessions = await fetchAllRows<SessionRow>((from, to) =>
+    supabase
+      .from("roleplay_sessions")
+      .select("id, user_id, scenario_title, scenario_category, scenario_difficulty, started_at, ended_at, duration_seconds, video_url")
+      .order("started_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(from, to),
+  );
 
   const sessionIds = sessions.map((s) => s.id);
   const feedback: FeedbackRow[] = [];
   if (sessionIds.length > 0) {
-    const feedbackRes = await supabase
-      .from("roleplay_feedback")
-      .select("session_id, overall_score, communication_score, active_listening_score, objection_handling_score, product_knowledge_score, created_at")
-      .in("session_id", sessionIds)
-      .range(0, 9999);
-    if (feedbackRes.error) throw feedbackRes.error;
-    feedback.push(...((feedbackRes.data ?? []) as FeedbackRow[]));
+    const fbRows = await fetchAllRows<FeedbackRow>((from, to) =>
+      supabase
+        .from("roleplay_feedback")
+        .select("session_id, overall_score, communication_score, active_listening_score, objection_handling_score, product_knowledge_score, created_at")
+        .in("session_id", sessionIds)
+        .order("session_id")
+        .order("created_at")
+        .range(from, to),
+    );
+    feedback.push(...fbRows);
   }
 
   const userIds = Array.from(new Set(sessions.map((s) => s.user_id)));

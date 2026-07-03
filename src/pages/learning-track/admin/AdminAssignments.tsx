@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -82,17 +83,18 @@ async function fetchAll(): Promise<{
   profiles: Map<string, ProfileRow>;
   assignments: Assignment[];
 }> {
-  const [subRes, assignments, drafts] = await Promise.all([
-    (supabase.from as any)("assignment_submissions")
-      .select("id, user_id, item_id, submission_text, file_url, file_name, submitted_at, hidden_from_gallery")
-      .eq("product_id", PRODUCT_ID)
-      .order("submitted_at", { ascending: false })
-      .range(0, 9999),
+  const [rows, assignments, drafts] = await Promise.all([
+    fetchAllRows<SubmissionRow>((from, to) =>
+      (supabase.from as any)("assignment_submissions")
+        .select("id, user_id, item_id, submission_text, file_url, file_name, submitted_at, hidden_from_gallery")
+        .eq("product_id", PRODUCT_ID)
+        .order("submitted_at", { ascending: false })
+        .order("id", { ascending: false })
+        .range(from, to),
+    ),
     loadAllAssignments(),
     loadAllAssignmentDrafts(),
   ]);
-  if (subRes.error) throw subRes.error;
-  const rows = (subRes.data ?? []) as SubmissionRow[];
   // Profiles for everyone with a submission OR an in-progress draft.
   const userIds = Array.from(
     new Set([...rows.map((r) => r.user_id), ...drafts.map((d) => d.userId)]),

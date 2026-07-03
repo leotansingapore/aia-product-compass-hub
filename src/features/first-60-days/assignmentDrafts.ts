@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 
 // In-progress assignment answers, saved to the learner's account so nothing is
 // lost across refresh / logout / device — and so admins can see work that has
@@ -103,20 +104,22 @@ export type AssignmentDraftRow = {
  * dropped so a stale zero-content row never shows as "in progress".
  */
 export async function loadAllAssignmentDrafts(): Promise<AssignmentDraftRow[]> {
-  const { data, error } = await (supabase.from as any)("assignment_submissions")
-    .select("user_id, item_id, submission_text, submitted_at")
-    .eq("product_id", ASSIGNMENT_DRAFT_PRODUCT_ID)
-    .order("submitted_at", { ascending: false })
-    .range(0, 9999);
-  if (error) throw error;
-  const seen = new Set<string>();
-  const out: AssignmentDraftRow[] = [];
-  for (const r of (data ?? []) as Array<{
+  const data = await fetchAllRows<{
     user_id: string;
     item_id: string;
     submission_text: string | null;
     submitted_at: string | null;
-  }>) {
+  }>((from, to) =>
+    (supabase.from as any)("assignment_submissions")
+      .select("user_id, item_id, submission_text, submitted_at")
+      .eq("product_id", ASSIGNMENT_DRAFT_PRODUCT_ID)
+      .order("submitted_at", { ascending: false })
+      .order("id", { ascending: false })
+      .range(from, to),
+  );
+  const seen = new Set<string>();
+  const out: AssignmentDraftRow[] = [];
+  for (const r of data) {
     const key = `${r.user_id}:${r.item_id}`;
     if (seen.has(key)) continue; // newest row already taken (ordered desc)
     seen.add(key);
