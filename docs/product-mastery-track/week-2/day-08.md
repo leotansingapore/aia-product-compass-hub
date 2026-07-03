@@ -44,6 +44,8 @@ The bonus framing:
 
 > *"After 10 years, we give you an extra 2% special bonus. After 6 years it's 100% allocation versus the previous plan which was only 95%."* [Video 1]
 
+> **Note:** The product summary and brochure confirm 100% allocation from **Year 5**; "after 6 years" in the video means once Year 5 has been cleared. Quote Year 5 to prospects.
+
 > *"100% of your premiums will go into your investments from the 5th year, further increasing to 102% of your premiums from the 10th year onwards."* [Brochure p.3]
 
 ## Top-up premium charge: flat 5%
@@ -231,7 +233,7 @@ The honest answer: front-loaded premium charge schedule.
 
 The reframe:
 
-> *"Year 1 is the worst-looking year. By Year 6 you'll see the trajectory. By Year 10, with the 2% bonus, you're getting 102% allocated. The plan rewards patience."*
+> *"Year 1 is the worst-looking year. By Year 5 you'll see the trajectory — 100% of your premium going straight in. By Year 10, with the 2% bonus, you're getting 102% allocated. The plan rewards patience."*
 
 [Source: PS p.3]
 

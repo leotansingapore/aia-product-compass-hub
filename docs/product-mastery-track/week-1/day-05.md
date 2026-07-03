@@ -44,7 +44,7 @@ When a competitor name surfaces in the appointment, don't argue the competitor d
 
 In fact, you can illustrate the above point using our presenter here: **[present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees](https://present.financeillustrator.com/long-term-investment-illustrator/other-details?section=break-even-fees)**
 
-![[pro-achiever/day-05/ltii-break-even-fees.png|Long-Term Investment Illustrator — Break-even Fees chart at 0% assumed return over 20yr IIP with $7.2K annual premium: net charges turn negative around Year 33 as bonuses overtake fees, and by Year 66 bonuses exceed total charges by $19,332]]
+!Long-Term Investment Illustrator — Break-even Fees chart at 0% assumed return over 20yr IIP with $7.2K annual premium: net charges turn negative around Year 33 as bonuses overtake fees, and by Year 66 bonuses exceed total charges by $19,332
 
 ### Where APA structurally wins, in one row per battleground
 
@@ -380,9 +380,8 @@ Pair the structural math with the relationship-erosion observation — *"who has
 
 ## Related
 
-- **Compass-hub reference:** [Competitor pricing & spec reference](../../docs/_competitor-pricing-reference.md) — verified competitor specs across PA, UCC, HSGM with source URLs
-- **Cross-shop objections in the appointment:** [Day 4 Part 1](./day-04.md#part-1--top-5-objections--the-conviction-story-heart) — the in-appointment versions of these reframes
-- **Risk disclosure objections:** [Day 4 Part 2](./day-04.md#part-2--risk-disclosures-as-objection-handling)
-- **Practice:** [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
-- **Previous:** [Day 4 — Defence + Disclosures](./day-04.md)
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Previous: [Day 4](/learning-track/product-mastery/day/4)
+- Next: [Day 6](/learning-track/product-mastery/day/6)
 - Track index: [Product Mastery Track](/learning-track/product-mastery)

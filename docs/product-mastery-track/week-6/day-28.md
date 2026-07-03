@@ -137,7 +137,7 @@ This is a critical disclosure — Day 5 covers in detail.
 
 > *"If your bill is $100, we give you $100. If your bill is $5,000, we give you $5,000. If your bill is $10,000, we still give you $5,000 — it's capped."* [Video 1, Video 7]
 
-This is the highest-frequency-claims feature in the AIA stack. Multiple accidents in a year = multiple S$5,000 reimbursement claims.
+This is the highest-frequency-claims feature in the AIA stack. Multiple accidents in a year = multiple reimbursement claims (up to S$2,000–S$5,000 per accident depending on plan).
 
 ## Distribution cost disclosure
 
@@ -302,7 +302,7 @@ But if they push:
 
 7. **Day 3 answers Q3 ("Is the $5K medical reimbursement a lifetime cap?") in what way?**
 - A) Yes, it is a lifetime cap that resets only at renewal
-- B) No, it is a per-accident benefit; the cap resets every accident, so multiple accidents in a year mean multiple S$5,000 reimbursement claims ✓
+- B) No, it is a per-accident benefit; the cap resets every accident, so multiple accidents in a year mean multiple reimbursement claims (each up to the plan limit: S$2,000–S$5,000 per accident) ✓
 - C) Yes, with annual top-up
 - D) Only resets after the policy is reinstated
 

@@ -162,7 +162,7 @@ A SGD-denominated, **regular-premium Investment-Linked Policy (ILP)** issued by 
 - **Max entry age:** 70
 - **Min annual premium:** $2,400 / year ($200/month)
 - **Min top-up:** $1,000
-- **Min partial withdrawal:** $500 (remaining policy value must stay above minimum)
+- **Min partial withdrawal:** $1,000 (remaining policy value must stay at least $10,000)
 - **Free-look period:** 14 days from receipt of policy contract
 
 ## The four structural differentiators
@@ -356,7 +356,7 @@ A temporary pause during the IIP — useful for job loss or short-term cash flow
 Lump-sum additions of $1,000 or more at any time. Top-up Premium Charge: 0%.
 
 ### Partial Withdrawals
-$500 minimum, subject to remaining policy value. Partial Withdrawal Charges apply during IIP only.
+$1,000 minimum; remaining policy value must stay at least $10,000. Partial Withdrawal Charges apply during IIP only. Withdrawals are blocked in Years 1–2; from Year 3 the charge factor is ~4.0 (prohibitive); the ~5.3% effective rate only applies from Year 10 onwards.
 
 ### Fund Switching
 Unlimited, free, instant.
@@ -465,7 +465,7 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 
 ## Related
 
-- **Sales psychology:** [Hot Buttons (HOLOS deck)](../../next-60-days/_source-holos-decks/hot-buttons.md) · [SPIN Fact-Finding (FINternship deck)](../../first-60-days/_source-decks/fact-finding-map-4-spin-finternship/deck.md)
-- **Practice:** [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
-- **Next:** [Day 2 — The Appointment Flow](./day-02.md)
+- Core product page (training videos + Product Summary): [Pro Achiever 3.0](/product/core-pro-achiever)
+- Practice with the question banks: [Study Bank](/product/pro-achiever/study) · [Exam Questions](/product/pro-achiever/exam)
+- Next: [Day 2](/learning-track/product-mastery/day/2)
 - Track index: [Product Mastery Track](/learning-track/product-mastery)

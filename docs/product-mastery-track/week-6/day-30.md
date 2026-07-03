@@ -327,20 +327,22 @@ The trust this builds long-term is significant. The prospect saves money now, ge
 
 ### The structural comparison
 
-| Coverage area | Plan 1 | Plan 2 | Plan 3 (Premier) | Plan 4 (Elite) |
+| Coverage area | Plan 1 | Plan 2 | Plan 3 | Plan 4 |
 |---|---|---|---|---|
-| Accidental death | $100K | **$250K** | $500K | $1M |
-| Accidental TPD | $100K | $250K | $500K | $1M |
-| Permanent dismemberment | scaled | 2.5× scaled | scaled higher | top tier |
-| Medical reimbursement per event | $3K | $5K | $10K | $20K |
-| Daily hospital cash | $50/day | $100/day | $150/day | $250/day |
-| Monthly premium (approx) | $20 | $30 | $50 | $80 |
+| Accidental death | $100K | **$250K** | $500K | $750K |
+| Accidental Major Dismemberment | $300K | $750K | $1,500K | $2,250K |
+| Accidental TPD | $300K | $750K | $1,500K | $2,250K |
+| Medical reimbursement per accident | $2K | $3K | $4K | $5K |
+| Daily accidental hospital income | $50/day | $150/day | $250/day | $350/day |
+| Monthly basic premium (approx, Class 1-2) | ~$19 | ~$31 | ~$50 | ~$71 |
+
+[PS p.1, Brochure p.2-3]
 
 The differential between Plan 1 and Plan 2 is roughly $10/mo for the same prospect, but the coverage uplift is 2-3× across every line. For most prospects, Plan 2 is structurally the correct entry point.
 
 ### The closer line
 
-> *"Plan 1 is the entry plan, Plan 2 is what I'd actually recommend for you. The differential is about $10 a month — basically a meal out. For that $10/mo, your accidental death cover jumps from $100K to $250K, your permanent dismemberment cover scales similarly, and your per-event medical reimbursement goes from $3K to $5K. Same structural plan, just sized to actually handle a real claim. It's structurally one-sided to skip the upgrade."*
+> *"Plan 1 is the entry plan, Plan 2 is what I'd actually recommend for you. The differential is about $12 a month — basically a meal out. For that $12/mo, your accidental death cover jumps from $100K to $250K, your major dismemberment from $300K to $750K, and your per-accident medical reimbursement from $2K to $3K. Same structural plan, just sized to actually handle a real claim. It's structurally one-sided to skip the upgrade."*
 
 ---
 
@@ -371,15 +373,17 @@ For elderly parents, falls are the dominant claim trigger — and most fall inju
 
 | Parent | SPA Plan 2 cost | Coverage |
 |---|---|---|
-| Mother | ~$200-300/yr | $250K accidental death + $5K per accident medical + $100/day hospital cash |
+| Mother | ~$200-300/yr | $250K accidental death + $3K per accident medical (Feature 6 Plan 2) + $150/day hospital cash (if Accidental Hospitalisation group added) |
 | Father | ~$200-300/yr | Same |
 | **Total for both** | **~$400-600/yr** | Comprehensive accident cover |
+
+[PS p.1, Brochure p.2-3 — daily hospital cash requires Accidental Hospitalisation Benefits Group to be elected]
 
 ### The closer line
 
 > *"Your parents' hospital plan covers them if they're warded for 6 hours or have surgery. What it doesn't cover: a sprain at A&E, a TCM visit for a back injury, dengue treatment, food poisoning. And those are the most common claims for people in their 60s and 70s — they're not always hospitalised, but they generate real expenses.*
 >
-> *Solitaire PA Plan 2 for both your parents is about $400-600 a year combined. That covers $5K per accident in medical reimbursement, $100/day hospital cash if they are warded, and $250K of accidental death cover each. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
+> *Solitaire PA Plan 2 for both your parents is about $400-600 a year combined. That covers $3K per accident in medical reimbursement (Plan 2 basic), $250K of accidental death cover each, and — if you add the Accidental Hospitalisation group — $150/day hospital cash if they are warded. For a few hundred a year, you've closed a coverage gap that has a real claim probability for elderly parents."*
 
 ---
 

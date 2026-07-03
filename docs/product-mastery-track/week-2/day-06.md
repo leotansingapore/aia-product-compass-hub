@@ -183,6 +183,8 @@ The "laptop" analogy that explains it:
 
 > *"After 10 years, we give you an extra 2% special bonus. After 6 years it's 100% allocation versus the previous plan which was only 95%."* [Video 1]
 
+> **Note:** The product summary and brochure confirm 100% allocation from **Year 5** (premium charge drops to 0% in Year 5); "after 6 years" in the video refers to clearing the Year 5 mark. The canonical figure to quote is Year 5. [PS p.3, Brochure p.3]
+
 This explains why the cash value looks LOW in the first 4 years — and why this is a feature, not a bug. The front-loading is the price of permanent + flexibility.
 
 ## The lifelong-coverage discount

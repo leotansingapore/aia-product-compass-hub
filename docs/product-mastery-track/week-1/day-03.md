@@ -115,14 +115,14 @@ The 4% number stays in the illustration as compliance protection. Your job is to
 Total premium paid over 45 years:    $96,000
 Projected value at age 65:           $411,600
 Net gain:                            $315,600
-$315,600 ÷ 45 yrs ÷ 12 mo =          ~$583/month
+$315,600 ÷ 45 yrs ÷ 12 mo =          ~$584/month
 ```
 
 The script:
 
-> *"For every $200 you put in, you're effectively earning back $583 a month in the long run. That's much more impactful than quoting a lump sum 40 years away."*
+> *"For every $200 you put in, you're effectively earning back $584 a month in the long run. That's much more impactful than quoting a lump sum 40 years away."*
 
-A 22-year-old can't picture $411,600. They CAN picture $583/month of passive income for life. Always linearise.
+A 22-year-old can't picture $411,600. They CAN picture $584/month of passive income for life. Always linearise.
 
 ---
 
@@ -177,7 +177,9 @@ The trial close at the end hands the conversation back. If they hesitate on the 
 **Partial withdrawal:**
 - Min withdrawal: $1,000
 - Min remaining policy value: $10,000
-- Charge Year 3 onward: ~$53 per $1,000 withdrawn (5.3% effective)
+- Blocked in Years 1–2 entirely
+- Year 3 charge factor: ~4.0 (prohibitive — effectively the full policy value withdrawn)
+- Year 10 charge factor: ~0.053 (5.3% effective)
 - After Year 10: drops to 0%
 
 **Premium Pass:**
@@ -229,7 +231,7 @@ In the first 2 policy years, accidental death pays an additional 100% of total r
 | 9   | Premium pass                                                    | 1 per 5 yrs paid, 12 mo pause                            |
 | 10  | Maximum maturity age                                            | 100                                                      |
 | 11  | Free-look                                                       | 14 days                                                  |
-| 12  | How much does an age 20 earn investing $200/mo till age 65?     | $96k in → $411,600 → $583/mo                             |
+| 12  | How much does an age 20 earn investing $200/mo till age 65?     | $96k in → $411,600 → $584/mo                             |
 | 13  | Monthly Distribution cost for a $200/mth plan                   | ~$11/month over 45 yrs                                   |
 | 14  | Break-even year where bonuses = supplementary charges ($12k/yr) | ~Year 34                                                 |
 | 15  | FMC of default funds                                            | Conservative ~1.05%, Balanced ~1.25%, Adventurous ~1.45% |
@@ -450,7 +452,7 @@ The five answers above handle *curious* prospects. If a prospect asks:
 - C) Smoothing the projection to remove volatility
 - D) Converting SGD returns to USD
 
-**Why:** Linearization makes a 45-year projection feel real to a 22-year-old — they CAN picture $583/mo for life.
+**Why:** Linearization makes a 45-year projection feel real to a 22-year-old — they CAN picture $584/mo for life.
 
 5. **What is the surrender charge in policy years 1–2?**
 - A) 50%

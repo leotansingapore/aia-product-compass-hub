@@ -231,7 +231,7 @@ Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C
 
 | Case | Prospect type | Anchor | Headline receipt |
 |---|---|---|---|
-| **H1** | Prospect with HSG B-Lite, no rider | Rider upgrade + plan upgrade | $3,500 deductible exposure + 10% co-pay → with rider, capped at $3K |
+| **H1** | Prospect with HSG B-Lite, no rider | Rider upgrade + plan upgrade | $3,500 deductible + uncapped 10% co-pay → with rider: deductible remains + co-insurance capped at $6K/yr |
 | **H2** | Prospect with GE P-Optimum (competitor) | AIA HSGM private vs GE P-Optimum | $800/yr AIA Vitalcare A vs $1.1K GE equivalent + GE limitations + pre-auth suspension |
 | **H3** | Hospital coverage on parents (multi-generational) | Parents' plan upgrade for hospitalisation gap | $1.3K/yr private B rider for parents → covers what MediShield doesn't |
 
@@ -244,31 +244,31 @@ Hospital plan case studies from real closes. Pattern: prospect has a B-Lite or C
 > **TLDR**
 > - Prospect has **AIA HSG B-Lite, no rider** — basic hospital cover at lowest tier
 > - **Exposure on a typical $10K hospital bill:** $3,500 deductible + 10% co-insurance ($650) = **$4,150 out of pocket**
-> - With rider: $0 deductible + 5% co-pay capped at $3,000 = **max $3,000 out of pocket** (often much less for moderate bills)
+> - With rider: deductible still applies; co-insurance drops from 10% to 5% capped at $6,000/year (subject to preferred provider/pre-auth/A&E referral) — significantly lower exposure than without rider
 > - **Attack: most prospects don't realise the deductible exists. Walk them through the actual claim math on a $10K and $30K bill.**
 
 ### The deductible / co-insurance math (the visceral attack)
 
 | Bill scenario | HSG B-Lite, no rider — out of pocket | HSG B + rider — out of pocket |
 |---|---|---|
-| $5,000 bill | $3,500 deductible + 10% of remainder ($150) = **$3,650** | 5% of $5,000 = **$250** |
-| $10,000 bill | $3,500 deductible + 10% of remainder ($650) = **$4,150** | 5% of $10,000 = **$500** |
-| $30,000 bill | $3,500 deductible + 10% of remainder ($2,650) = **$6,150** | 5% capped at $3,000 = **$3,000** |
-| $100,000 bill | $3,500 deductible + 10% of remainder ($9,650) = **$13,150** | 5% capped at $3,000 = **$3,000** |
+| $5,000 bill | $3,500 deductible + 10% of remainder ($150) = **$3,650** | $2,500 deductible + 5% of remainder ($125) = **$2,625** (B1-class deductible) |
+| $10,000 bill | $3,500 deductible + 10% of remainder ($650) = **$4,150** | $2,500 deductible + 5% of remainder ($375) = **$2,875** |
+| $30,000 bill | $3,500 deductible + 10% of remainder ($2,650) = **$6,150** | $2,500 deductible + 5% of remainder ($1,375) = **$3,875** |
+| $100,000 bill | $3,500 deductible + 10% of remainder ($9,650) = **$13,150** | $2,500 deductible + 5% of remainder, co-ins capped at $6,000/yr = **$8,500** (with preferred provider/pre-auth) |
 
-The rider is the **single biggest delta in the entire AIA hospital product line**. At ~$200-500/yr depending on ward tier, it saves $3,000-$10,000 on any single significant claim.
+The rider is the **single biggest delta in the entire AIA hospital product line**. At ~$200-500/yr depending on ward tier, it significantly reduces the co-insurance exposure on any significant claim — converting an uncapped 10% to 5% capped at $6,000/year (with preferred provider/pre-auth/A&E referral).
 
-### The April rider deadline (regulatory urgency)
+### Rider urgency
 
-From April 2026 (verify the exact effective date in iPOS), MAS rules around riders are tightening — the maximum co-insurance cap on the rider rises from $3,000 to $6,000. Existing riders bought before the deadline are typically grandfathered at the lower cap. This is a **time-sensitive close moment** — prospects who buy / upgrade before the deadline lock in the better terms permanently.
+The AIA Max VitalHealth Pro rider's co-insurance cap is $6,000 per policy year (subject to preferred provider/pre-auth/A&E referral). Adding the rider now — while the prospect is healthy and underwriting is clean — locks in co-insurance protection before any conditions develop.
 
 ### The structural attack script
 
 > *"Your HSG B-Lite covers the hospital bill — that's true. What it doesn't tell you on the surface is that there's a $3,500 deductible you pay upfront, plus 10% of everything above that. On a $10,000 bill, that's $4,150 out of your pocket. On a $30,000 bill, $6,150. The cover isn't 'fully paid' — there's a meaningful exposure window.*
 >
-> *Adding the rider: no deductible, just 5% of the bill capped at $3,000. So on a $30K bill, you pay $3,000. On a $100K bill, you also pay $3,000. The rider is the single biggest cover delta in the entire hospital plan structure.*
+> *Adding the rider: the deductible still applies (e.g. $2,500 for B1-class), but co-insurance drops from 10% to 5% capped at $6,000/year — with preferred provider or pre-authorisation. So on a $30K bill with pre-auth: $2,500 deductible + $1,375 co-insurance = $3,875 out of pocket, vs $6,150 without a rider. The rider is the single biggest cover delta in the entire AIA hospital product line.*
 >
-> *Cost: roughly $200-500/year depending on ward tier. For a fraction of one expected hospital claim, you eliminate the deductible exposure for life. And — heads up — MAS is changing rider terms in April. Locking in the rider before the deadline grandfathers you at the better cap. Worth doing now, not later."*
+> *Cost: roughly $200-500/year depending on ward tier. For a fraction of one expected hospital claim, you convert an uncapped 10% co-insurance exposure into a capped 5%. Worth doing now, not later."*
 
 ### The ward tier upsell (B-Lite → B → A)
 
@@ -278,7 +278,7 @@ While the prospect is in restructure mode, the second move: upgrade from B-Lite 
 - **B** → can stay in B or C
 - **A** → can stay in A, B, or C — full flexibility
 
-Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the rider, the prospect goes from "$3,500 deductible exposed + restricted to C ward" to "$3,000 cap + can choose any ward" — the actual structural answer for someone planning to retire with proper coverage.
+Typical upgrade cost: $50-100/mo for the ward tier upgrade. Combined with the rider, the prospect goes from "$3,500 deductible exposed + uncapped 10% co-insurance + restricted to C ward" to "deductible applies + 5% co-ins capped at $6,000/yr + can choose any ward" — the actual structural answer for someone planning to retire with proper coverage.
 
 ---
 
@@ -342,7 +342,7 @@ A common elderly-parent claim scenario:
 | Plan | Cost/yr | Coverage |
 |---|---|---|
 | MediShield Life (existing) | ~$1,000 | C / B2 ward, limited caps |
-| **AIA HSG B + rider for parent** | ~$1,300 | Up to B ward, rider waives deductible, caps co-pay at $3K |
+| **AIA HSG B + rider for parent** | ~$1,300 | Up to B ward, rider reduces co-pay from 10% to 5% capped at $6K/yr (deductible still applies) |
 | **AIA Solitaire PA Plan 2 for parent** | ~$200-400 | Accident reimbursement up to $5K/event |
 
 Total upgrade cost: ~$1,500-1,700/yr per parent. For two parents: ~$3,000-3,400/yr.
@@ -353,7 +353,7 @@ For a working adult earning $80K+/yr, this is a small fraction of income that tr
 
 > *"Your parents are on MediShield Life with a basic GE DPS plan. That gives them C-tier ward access and minimal claim caps. The structural problem: most elderly hospital claims are bigger than MediShield's caps. A hip fracture, a stroke, a cancer diagnosis — these run $30K-$80K in private hospital, and MediShield covers maybe 30-50% of that. The rest is out of pocket — yours or theirs.*
 >
-> *Upgrade plan: B + rider for both parents at ~$1,300/yr each. The rider waives the $3,500 deductible and caps the co-pay at 5%, max $3,000. Plus an accident plan at ~$200-400/yr each for fall-related coverage that the hospital plan doesn't fully address.*
+> *Upgrade plan: B + rider for both parents at ~$1,300/yr each. The rider reduces co-insurance from 10% to 5% capped at $6,000/year (subject to preferred provider/pre-auth/A&E referral) — the deductible still applies, but the co-insurance exposure is capped. Plus an accident plan at ~$200-400/yr each for fall-related coverage that the hospital plan doesn't fully address.*
 >
 > *Total: about $3,000-3,400/yr for both parents. Versus the alternative — a single uncovered medical event in your parents' 70s costing $30K-50K out of pocket. The math is structurally one-sided."*
 

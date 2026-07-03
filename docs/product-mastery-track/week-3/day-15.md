@@ -80,7 +80,7 @@ The verbatim:
 - 6-month prior employment required
 - 2-month deferment when unemployed
 - 12-month pause + 12-month interest-free repayment then interest accrues
-- **Full-time MPs cannot exercise Premium Pause** (specific exclusion)
+- **Self-employed persons and independent contractors cannot exercise Premium Pause** — it requires involuntary retrenchment from full-time employment (Product Summary s.4(f))
 
 ---
 
