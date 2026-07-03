@@ -16,8 +16,10 @@ serve(async (req) => {
       });
     }
 
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
+    const useOwnKey = !!OPENAI_API_KEY;
 
     // Download and convert each PDF to base64
     const pdfContents: string[] = [];
@@ -30,12 +32,15 @@ serve(async (req) => {
     }
 
     // Build message content with PDFs as file data
-    const fileContents = pdfContents.map((b64) => ({
-      type: "image_url",
-      image_url: {
-        url: `data:application/pdf;base64,${b64}`,
-      },
-    }));
+    const fileContents = pdfContents.map((b64, i) => useOwnKey
+      ? {
+          type: "file",
+          file: { filename: `document-${i + 1}.pdf`, file_data: `data:application/pdf;base64,${b64}` },
+        }
+      : {
+          type: "image_url",
+          image_url: { url: `data:application/pdf;base64,${b64}` },
+        });
 
     const prompt = `You are extracting sales scripts from PDF documents.
 
@@ -60,14 +65,14 @@ Rules:
 - If the PDF has no script content, return { "scripts": [] }.
 - Return ONLY the JSON object, no extra commentary.`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: useOwnKey ? "gpt-4o-mini" : "google/gemini-2.5-flash",
         messages: [
           {
             role: "user",

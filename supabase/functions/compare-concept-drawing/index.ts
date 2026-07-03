@@ -17,8 +17,10 @@ serve(async (req) => {
       });
     }
 
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
+    const useOwnKey = !!OPENAI_API_KEY;
 
     const systemPrompt = `You are an expert visual learning coach who evaluates hand-drawn concept diagrams for financial advisors in training.
 Your job is to compare a student's drawing with the reference concept drawing and give constructive feedback.
@@ -31,14 +33,14 @@ Score from 0–100:
 - 30–49: Partial — some relevant content but significant gaps
 - 0–29: Needs work — significantly different from reference`;
 
-    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: useOwnKey ? "gpt-4o-mini" : "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: systemPrompt },
           {

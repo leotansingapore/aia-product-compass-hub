@@ -18,8 +18,10 @@ serve(async (req) => {
       });
     }
 
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
+    const useOwnKey = !!OPENAI_API_KEY;
 
     // Fetch existing concept card images from Supabase
     const supabase = createClient(
@@ -71,14 +73,14 @@ serve(async (req) => {
       content.push({ type: "image_url", image_url: { url: ref.url, detail: "low" } });
     });
 
-    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: useOwnKey ? "gpt-4o-mini" : "google/gemini-2.5-flash",
         messages: [{ role: "user", content }],
         tools: [
           {

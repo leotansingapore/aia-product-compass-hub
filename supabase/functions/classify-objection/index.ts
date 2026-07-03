@@ -20,8 +20,10 @@ serve(async (req) => {
       });
     }
 
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
+    const useOwnKey = !!OPENAI_API_KEY;
 
     const systemPrompt = `You are a classifier for a financial advisory objection handling database. Given raw text about a client objection (or multiple objections), extract structured objection entries.
 
@@ -41,13 +43,14 @@ The text may contain one or multiple objections. For each objection found, deter
 
 Return an array of objection objects. If the text clearly describes just one objection, return an array with one item.`;
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${useOwnKey ? OPENAI_API_KEY : LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        ...(useOwnKey ? { model: "gpt-4o-mini" } : {}),
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: `Objection text:\n${content.slice(0, 4000)}` },

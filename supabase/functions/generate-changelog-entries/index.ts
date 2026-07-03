@@ -25,10 +25,12 @@ serve(async (req) => {
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const openaiKey = Deno.env.get("OPENAI_API_KEY");
   const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
+  const useOwnKey = !!openaiKey;
 
-  if (!lovableApiKey) {
-    return new Response(JSON.stringify({ error: "LOVABLE_API_KEY not configured" }), {
+  if (!openaiKey && !lovableApiKey) {
+    return new Response(JSON.stringify({ error: "No AI API key configured" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
@@ -179,14 +181,14 @@ Generate changelog entries as a JSON array with this exact structure:
 
     console.log(`Sending activity signals to AI:\n${activitySummary}`);
 
-    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${lovableApiKey}`,
+        "Authorization": `Bearer ${useOwnKey ? openaiKey : lovableApiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: useOwnKey ? "gpt-4o-mini" : "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },

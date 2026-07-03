@@ -400,11 +400,13 @@ serve(async (req) => {
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const openaiKey = Deno.env.get("OPENAI_API_KEY");
   const lovableKey = Deno.env.get("LOVABLE_API_KEY");
   const firecrawlKey = Deno.env.get("FIRECRAWL_API_KEY");
+  const useOwnKey = !!openaiKey;
 
-  if (!lovableKey) {
-    return new Response(JSON.stringify({ error: "LOVABLE_API_KEY not configured" }), {
+  if (!openaiKey && !lovableKey) {
+    return new Response(JSON.stringify({ error: "No AI API key configured" }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
@@ -583,14 +585,14 @@ Return ONLY a valid JSON object (no markdown, no code blocks). Structure:
     const userPrompt = `Here is the sales pitch transcript to analyse:\n\n${transcript.slice(0, 8000)}`;
 
     // ── 6. Call AI ────────────────────────────────────────────────────────────
-    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const aiResponse = await fetch((useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"), {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${lovableKey}`,
+        Authorization: `Bearer ${useOwnKey ? openaiKey : lovableKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
+        model: useOwnKey ? "gpt-4o-mini" : "google/gemini-3-flash-preview",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },

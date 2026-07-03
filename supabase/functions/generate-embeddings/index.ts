@@ -78,22 +78,24 @@ function fallbackKeywords(text: string): string[] {
 }
 
 async function extractKeywords(text: string, apiKey: string): Promise<string[]> {
+  const openaiKey = Deno.env.get("OPENAI_API_KEY");
+  const useOwnKey = !!openaiKey;
   const truncated = text.slice(0, 3000);
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     const response = await fetch(
-      "https://ai.gateway.lovable.dev/v1/chat/completions",
+      (useOwnKey ? "https://api.openai.com/v1/chat/completions" : "https://ai.gateway.lovable.dev/v1/chat/completions"),
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${useOwnKey ? openaiKey : apiKey}`,
           "Content-Type": "application/json",
         },
         signal: controller.signal,
         body: JSON.stringify({
-          model: "google/gemini-2.5-flash-lite",
+          model: useOwnKey ? "gpt-4o-mini" : "google/gemini-2.5-flash-lite",
           messages: [
             {
               role: "system",
@@ -145,8 +147,9 @@ serve(async (req) => {
       );
     }
 
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!OPENAI_API_KEY && !LOVABLE_API_KEY) throw new Error("No AI API key is configured");
 
     const embeddings: number[][] = [];
     for (const text of texts) {
@@ -154,7 +157,7 @@ serve(async (req) => {
         embeddings.push(new Array(768).fill(0));
         continue;
       }
-      const keywords = await extractKeywords(text, LOVABLE_API_KEY);
+      const keywords = await extractKeywords(text, LOVABLE_API_KEY ?? "");
       if (keywords.length === 0) {
         embeddings.push(new Array(768).fill(0));
         continue;
