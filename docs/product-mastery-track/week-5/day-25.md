@@ -61,9 +61,9 @@ The lead-in:
 
 This protects the FC against future "but you said Teladoc was free!" complaints.
 
-## The "anti-market" disclosure
+## Who HSGM is NOT for
 
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
+Be straight about who the plan doesn't suit — cushion first, then the honest disqualifier:
 
 > *"To be straight with you — HSGM isn't right for everyone. If you genuinely only ever see yourself using C-class public-hospital wards, MediShield Life is enough on its own. If you don't want to pay any premium for upgrade options, this isn't your plan. And if you've already got a pre-existing condition that's likely to be excluded, it's worth a conversation with an underwriter before we even apply. If any of those describe you, just say so — the right move is sometimes not to sell."*
 

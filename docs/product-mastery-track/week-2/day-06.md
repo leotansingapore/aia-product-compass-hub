@@ -96,7 +96,7 @@ This is the price-anchor headline — but verify in iPOS at quote time. The illu
 - **30s-50s** owning a permanent floor for legacy / estate / business succession
 - **Existing GPP holder** wanting a permanent floor underneath the term-pay GPP
 
-## Anti-market
+## Who this plan is NOT for
 
 > *"PLP isn't for everyone. If you want pure investment only, prefer DIY or robo-advisors, can't sit with non-guaranteed returns, can't commit S$100/month, or need short-term access to funds, this isn't your plan. PLP needs at least a 10-year horizon."* [Video 14]
 
@@ -274,7 +274,7 @@ Pair this with the SFT comparison from Day 4 — extending term coverage from 65
 - C) Yes, but only if they choose Pro Adventurous
 - D) Yes, but only after a 14-day cooling period
 
-**Why:** The anti-market disclosure: PLP isn't right for pure-investment-only buyers — pivot to APA [Video 14, Day 1 Part 1].
+**Why:** The wrong-fit call-out: PLP isn't right for pure-investment-only buyers — pivot to APA [Video 14, Day 1 Part 1].
 
 9. **A prospect asks: "If I pay $10K in Year 1, why does my account look so low?" Which is the correct framing?**
 - A) AIA charges hidden management fees that are not disclosed

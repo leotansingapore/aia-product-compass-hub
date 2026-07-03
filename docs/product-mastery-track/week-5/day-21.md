@@ -68,9 +68,9 @@ For minor outpatient (stitches, A&E visits without admission), HSGM doesn't appl
 - Active professionals who don't want to share a 6-bedder
 - Pre-retirees protecting savings from medical inflation (Singapore 2004→2024: **+55.8%** medical inflation [Brochure p.1])
 
-## Anti-market
+## Who this plan is NOT for
 
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
+Be straight about who the plan doesn't suit — cushion first, then the honest disqualifier:
 
 > *"To be straight with you — HSGM isn't always the answer. If you genuinely only ever see yourself using C-class public-hospital care, and you'd rather not pay anything for the option to upgrade, then MediShield Life on its own is enough. The question is whether, over the next 50 years, there's even one scenario where you'd want to choose your doctor or your room. If yes, HSGM is the foundation. If no, you can stop here."*
 

@@ -89,9 +89,9 @@ The bridge:
 - **Wants quarterly income stream** plus capital preservation for family
 - **Has at least 5 years** of premium-paying capacity
 
-## Anti-market
+## Who this plan is NOT for
 
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
+Be straight about who the plan doesn't suit — cushion first, then the honest disqualifier:
 
 > *"To be straight with you — PWV isn't right for everyone. If you're under 50 without accumulated wealth to redeploy, or if you might need short-term liquidity in the first 7 years, or if you don't have 5 years of stable premium-paying capacity, this isn't your plan. If any of those describe you, just say so — we can map a different direction. The wrong sale here is worse than no sale."*
 
@@ -337,7 +337,7 @@ For a fresh, normal pre-retiree, all 7 panels at full delivery in 25 minutes.
 
 **Why:** Panel 2 of the Drawing Concept uses the exact phrase "your ammunition" to plant the funding-mechanism idea for Panel 7.
 
-4. **Which prospect profile is explicitly listed as the anti-market for PWV?**
+4. **Which prospect profile is explicitly listed as a wrong fit for PWV?**
 - A) A 55-year-old with maturing endowments
 - B) Someone aged under 50 without accumulated wealth ✓
 - C) A 60-year-old with CPF OA excess

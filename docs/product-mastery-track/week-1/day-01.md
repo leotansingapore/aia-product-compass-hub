@@ -455,13 +455,13 @@ Day 5 covers each of these reframes in full as objection-handling. The point on 
 
 **Why:** This is the spouse-protection prospect (archetype #5). Their dominant hot button is loved-ones + fear. The Secondary Insured feature maps directly to that pain. Don't lead with structural features that don't address their actual worry.
 
-10. **A prospect who fits the anti-market for APA (wants liquidity, guaranteed cash values, sub-10-year horizon) — what's the right move?**
+10. **A prospect who fits the wrong-fit list for APA (wants liquidity, guaranteed cash values, sub-10-year horizon) — what's the right move?**
 - A) Sell APA anyway and emphasise dividends
 - B) Be upfront about who APA isn't for, recommend an endowment or fixed deposit instead, and use the cushion-before-disqualifier pattern ✓
 - C) Lower the premium until it fits
 - D) Switch them to Elite Conservative and proceed
 
-**Why:** The Day 1 anti-market disclosure says APA is wrong for prospects wanting short-term liquidity, guaranteed cash values, fixed return, or a sub-10-year horizon. The cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
+**Why:** The Day 1 wrong-fit disclosure says APA is wrong for prospects wanting short-term liquidity, guaranteed cash values, fixed return, or a sub-10-year horizon. The cushion line ("honestly... isn't for everyone") before the disqualifier is what makes the prospect lean in instead of pull back.
 
 ## Related
 

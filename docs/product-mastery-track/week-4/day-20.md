@@ -82,7 +82,7 @@ Surface them as objection reframes when they come up naturally:
 - **"What if I get diagnosed in the first 90 days?"** → reframe: 90-day waiting is industry-wide and applies to the named cardiac + cancer conditions specifically (not the full list). Honest framing: "no insurer covers Day-1 cancer claims to prevent fraud. Your unrelated CIs are covered from day 1."
 - **"7-day survival is harsh"** → reframe: 7 days is among the shortest survival periods in the market. Many competitor plans require 14 or 30 days. For CI claims that pay out hundreds of thousands, 7 days is the industry's working compromise.
 
-For UCC specifically, the anti-market reframes:
+For UCC specifically, the wrong-fit redirects:
 - **"I want cash value"** → UCC isn't the cash-value product. PLP or GPP carries that. UCC's structural decoupling is what makes the multi-claim + unlimited Major-stage claims affordable.
 - **"I want death cover as primary"** → UCC's death benefit is only 5% non-accidental — by design. If death is the primary need, that's a term-life or whole-life conversation. UCC slots in alongside, not instead of.
 
@@ -510,13 +510,13 @@ Net change for the prospect:
 
 **Why:** Pillar 6 disclosure clarifies premiums are non-guaranteed and may be adjusted, but adjustments are portfolio-wide rather than triggered by an individual's claim [PS p.9].
 
-9. **A prospect's primary need is death cover and they want surrender value. What is the correct anti-market disclosure?**
+9. **A prospect's primary need is death cover and they want surrender value. What is the correct wrong-fit disclosure?**
 - A) Sell them UCC anyway and explain it later
 - B) "UCC has no cash value, and the death benefit is only 5% non-accidental — if death cover is your primary need, UCC is not the right plan; let's look at GPP, Term, or PLP instead." ✓
 - C) "Buy UCC and cancel after the free-look period."
 - D) Tell them the death benefit is 100%.
 
-**Why:** The anti-market disclosure tells the prospect honestly when UCC is wrong for them — including primary death-cover needs, where UCC's 5% non-accidental death benefit makes it unsuitable.
+**Why:** The wrong-fit call-out tells the prospect honestly when UCC is wrong for them — including primary death-cover needs, where UCC's 5% non-accidental death benefit makes it unsuitable.
 
 10. **The 37 severe-stage critical illness conditions on UCC follow which definitional standard, and how should the FC frame this for a cross-shopping prospect?**
 - A) AIA-determined for all 150 conditions, no industry standard

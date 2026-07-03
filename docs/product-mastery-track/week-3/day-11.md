@@ -79,7 +79,7 @@ Use these as your internal qualification — if at least one is true, GPP is on 
 - Someone with dependants (spouse, child, ageing parents) — the booster years are the high-responsibility years
 - Cases land most often in the **$300k–$500k death cover band** with 3x multiplier as the default
 
-## Who GPP is NOT for (anti-market)
+## Who GPP is NOT for
 
 > *"GPP isn't for everyone. If you prefer only the cheapest possible premium, term would be a better fit."*
 
@@ -258,7 +258,7 @@ The diagram is for *uncertain* prospects in *normal-length* appointments. Read t
 - C) Someone whose only goal is the absolute lowest premium per dollar of cover ✓
 - D) A prospect with a CI shortfall against the 5x-income benchmark
 
-**Why:** Saying GPP is wrong for the rock-bottom-premium prospect is the trust-building anti-market disclosure — pure term is the right tool there.
+**Why:** Saying GPP is wrong for the rock-bottom-premium prospect is an honest wrong-fit call-out that builds trust — pure term is the right tool there.
 
 5. **What are the three pay-term choices for GPP?**
 - A) 10 / 15 / 20 years
@@ -290,7 +290,7 @@ The diagram is for *uncertain* prospects in *normal-length* appointments. Read t
 - C) Drop the multiplier to 5x to make it cheaper
 - D) Switch to pitching APA instead
 
-**Why:** The anti-market disclosure ("this plan isn't right for someone who only wants the cheapest premium") is the trust move — compare side by side and let them choose.
+**Why:** The wrong-fit call-out ("this plan isn't right for someone who only wants the cheapest premium") is the trust move — compare side by side and let them choose.
 
 9. **A prospect asks "why should I take GPP instead of just the cheapest term?" Which line is the highest-leverage opener?**
 - A) "Term is bad — never buy term."

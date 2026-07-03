@@ -96,9 +96,9 @@ Every prospect:
 - Pre-retirees: cover steps down at 75 — get it now while still cheap
 - Frequent travellers: 24/7 worldwide — covers overseas accidents
 
-## Anti-market
+## Who this plan is NOT for
 
-Naming who the plan *isn't* for is a credibility move. Cushion first, then the disqualifier:
+Be straight about who the plan doesn't suit — cushion first, then the honest disqualifier:
 
 > *"To be honest — Solitaire PA isn't right for everyone. If you've got a genuinely portable, lifetime employer group PA with no caps that follows you across jobs, you may not need this. Or if you'd actually rather just absorb outpatient bills from cash without ever bothering to claim, this isn't your plan. For most people though, neither of those holds."*
 
