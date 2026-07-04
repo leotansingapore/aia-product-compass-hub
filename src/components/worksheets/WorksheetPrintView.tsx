@@ -63,7 +63,7 @@ export default function WorksheetPrintView({
         .wpv-cover .cbar { position: absolute; top: 0; left: 0; height: 9px; width: 100%; background: ${scheme.accent}; }
         .wpv-cover .ckick { letter-spacing: 5px; font-size: 12px; font-weight: 800; color: ${scheme.accent}; text-transform: uppercase; }
         .wpv-cover h1 { font-size: 46px; font-weight: 800; line-height: 1.08; margin: 12px 0 8px; }
-        .wpv-cover .csub { font-size: 16px; color: #444; max-width: 150mm; }
+        .wpv-cover .csub { font-size: 16px; color: #444; max-width: 150mm; margin: 10px 0 0; }
         .wpv-cover .crule { height: 5px; width: 90px; background: ${scheme.accent}; margin: 26px 0; border-radius: 3px; }
         .wpv-cover .cprep { font-size: 16px; }
         .wpv-cover .cprep b { color: ${scheme.accent}; }
@@ -74,7 +74,11 @@ export default function WorksheetPrintView({
         .wpv-rule { height: 3px; width: 64px; background: ${scheme.accent}; margin: 12px 0 18px; border-radius: 2px; }
         .wpv-step { break-inside: avoid; margin: 18px 0 9px; border-bottom: 2px solid ${scheme.accent}; padding-bottom: 6px; }
         .wpv-step h3 { font-size: 18px; font-weight: 800; margin: 0; }
-        .wpv-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 6px; background: ${scheme.accent}; color: #fff; font-size: 14px; font-weight: 800; margin-right: 9px; vertical-align: middle; }
+        /* NOTE: no flex/inline-flex centering anywhere in this stylesheet — html2canvas
+           (the PDF rasteriser) mis-places glyphs inside flex-centred boxes and the
+           accumulated height drift makes page cuts land mid-line. Centre with
+           line-height + inline-block instead. */
+        .wpv-badge { color: ${scheme.accent}; font-size: 19px; font-weight: 800; letter-spacing: .5px; margin-right: 9px; }
         .wpv-step p { font-size: 12px; color: #666; font-style: italic; margin: 4px 0 0; }
         .wpv-field { break-inside: avoid; margin: 10px 0; }
         .wpv-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
@@ -82,22 +86,28 @@ export default function WorksheetPrintView({
         .wpv-value.box { border: 1px solid #cfcfcf; border-radius: 4px; min-height: 46px; padding: 6px 8px; }
         .wpv table { width: 100%; border-collapse: collapse; margin: 7px 0; break-inside: avoid; }
         .wpv th, .wpv td { border: 1px solid #c8c8c8; padding: 7px 9px; text-align: left; vertical-align: top; }
-        .wpv th { background: ${scheme.tint}; color: ${scheme.deep}; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; }
+        .wpv th { background: ${scheme.tint}; color: ${scheme.deep}; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; word-break: normal; overflow-wrap: normal; hyphens: none; }
         .wpv td.rowlabel { background: #fafafa; font-weight: 600; font-size: 13px; }
         .wpv td .wpv-cell { min-height: 20px; white-space: pre-wrap; }
         .wpv-note { background: ${scheme.tint}; border-left: 3px solid ${scheme.accent}; padding: 10px 14px; font-size: 13.5px; color: ${scheme.deep}; margin: 12px 0; }
         .wpv-table-label { font-size: 14px; font-weight: 700; margin: 9px 0 3px; }
-        .wpv-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 6px; font-size: 11px; }
-        .wpv-legend .lg { display: inline-flex; align-items: center; gap: 5px; }
-        .wpv-legend .sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
-        .wpv-tt { width: 100%; border-collapse: collapse; margin: 4px 0; break-inside: avoid; }
+        .wpv-legend { margin: 4px 0 6px; font-size: 11px; }
+        .wpv-legend .lg { display: inline-block; margin: 0 10px 3px 0; }
+        .wpv-legend .sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; vertical-align: -1.5px; margin-right: 5px; }
+        .wpv-tt { width: 100%; border-collapse: collapse; margin: 4px 0; break-inside: avoid; table-layout: fixed; }
         .wpv-tt th, .wpv-tt td { border: 1px solid #ccc; height: 16px; font-size: 9px; text-align: center; padding: 0; }
         .wpv-tt th { background: #efefef; font-weight: 700; }
         .wpv-tt td.tt-cell { height: 26px; padding: 1px 2px; font-size: 7px; line-height: 1.1; text-align: left; vertical-align: top; overflow: hidden; word-break: break-word; }
         .wpv-tt td.tt-time { background: #fafafa; text-align: right; padding: 0 4px; color: #555; white-space: nowrap; width: 34px; }
-        .wpv-check { display: flex; align-items: center; gap: 8px; margin: 5px 0; font-size: 13px; break-inside: avoid; }
-        .wpv-check .bx { width: 15px; height: 15px; border: 1.5px solid #555; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #16a34a; }
-        .wpv-pill { display: inline-block; padding: 1px 8px; border-radius: 9px; font-size: 11px; font-weight: 700; color: #fff; }
+        .wpv-check { margin: 5px 0; font-size: 13px; break-inside: avoid; }
+        .wpv-check .bx { position: relative; display: inline-block; width: 15px; height: 15px; border: 1.5px solid #555; border-radius: 3px; vertical-align: -2.5px; margin-right: 8px; }
+        .wpv-check .bx.round { border-radius: 50%; }
+        /* Tick and dot are drawn with borders/backgrounds (not glyphs) so the PDF
+           rasteriser places them exactly. */
+        .wpv-check .bx .tick { position: absolute; left: 2px; top: 2.5px; width: 8px; height: 4.5px; border-left: 2px solid #16a34a; border-bottom: 2px solid #16a34a; transform: rotate(-45deg); }
+        .wpv-check .bx .dot { position: absolute; left: 3px; top: 3px; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+        .wpv-st { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -2px; margin-right: 5px; }
+        .wpv-pill { font-size: 12px; font-weight: 700; }
       `}</style>
 
       {showCover ? (
@@ -144,7 +154,7 @@ export default function WorksheetPrintView({
                 <h3>
                   {m ? (
                     <>
-                      <span className="wpv-badge">{m[1]}</span>
+                      <span className="wpv-badge">{m[1].padStart(2, "0")}</span>
                       {m[2]}
                     </>
                   ) : (
@@ -183,7 +193,7 @@ export default function WorksheetPrintView({
                   <thead>
                     <tr>
                       {block.columns.map((c, ci) => (
-                        <th key={ci}>{c || " "}</th>
+                        <th key={ci} style={block.colWidths?.[ci] ? { width: block.colWidths[ci] } : undefined}>{c || " "}</th>
                       ))}
                     </tr>
                   </thead>
@@ -365,7 +375,7 @@ export default function WorksheetPrintView({
                   if (item.type === "check") {
                     return (
                       <div key={item.id} className="wpv-check">
-                        <span className="bx">{v === "yes" ? "✓" : ""}</span>
+                        <span className="bx">{v === "yes" && <span className="tick" />}</span>
                         {item.text}
                       </div>
                     );
@@ -375,9 +385,7 @@ export default function WorksheetPrintView({
                       (values[`${block.id}__grp_${item.group ?? "g"}`] ?? "").trim() === item.id;
                     return (
                       <div key={item.id} className="wpv-check">
-                        <span className="bx" style={{ borderRadius: "50%" }}>
-                          {selected ? "●" : ""}
-                        </span>
+                        <span className="bx round">{selected && <span className="dot" />}</span>
                         {item.text}
                       </div>
                     );
@@ -389,11 +397,13 @@ export default function WorksheetPrintView({
                       </div>
                     );
                   }
-                  const color = v === "Done" ? "#16a34a" : v === "In progress" ? "#d97706" : "#94a3b8";
+                  const sw = v === "Done" ? "#16a34a" : v === "In progress" ? "#d97706" : "#94a3b8";
+                  const ink = v === "Done" ? "#15803d" : v === "In progress" ? "#b45309" : "#64748b";
                   return (
                     <div key={item.id} className="wpv-check">
                       {item.text} —&nbsp;
-                      <span className="wpv-pill" style={{ background: color }}>{v || "Not done"}</span>
+                      <span className="wpv-st" style={{ background: sw }} />
+                      <span className="wpv-pill" style={{ color: ink }}>{v || "Not done"}</span>
                     </div>
                   );
                 })}

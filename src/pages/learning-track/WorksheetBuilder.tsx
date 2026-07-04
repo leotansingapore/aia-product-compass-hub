@@ -478,6 +478,34 @@ export default function WorksheetBuilder() {
         }
       }
 
+      // Safety net: html2canvas can paint content a few px lower than the DOM
+      // measurement (line-height rounding accumulates down the page), so a cut
+      // taken exactly at a measured block bottom can shave the last text line.
+      // Nudge every page end down to the nearest blank canvas row, staying
+      // inside the gap before the next page's content.
+      const snapCtx = canvas.getContext("2d", { willReadFrequently: true });
+      if (snapCtx) {
+        const x0 = Math.floor(canvas.width * 0.05);
+        const x1 = Math.ceil(canvas.width * 0.95);
+        const rowBlank = (y: number): boolean => {
+          const row = snapCtx.getImageData(x0, Math.min(Math.round(y), canvas.height - 1), x1 - x0, 1).data;
+          for (let p = 0; p < row.length; p += 4 * 6) {
+            if (row[p] < 245 || row[p + 1] < 245 || row[p + 2] < 245) return false;
+          }
+          return true;
+        };
+        for (let p = 0; p < pages.length; p++) {
+          const cap = Math.min(
+            p + 1 < pages.length ? pages[p + 1].start : canvas.height,
+            pages[p].end + 14 * scale,
+            canvas.height,
+          );
+          let e = Math.round(pages[p].end);
+          while (e < cap && !rowBlank(e)) e++;
+          pages[p].end = e;
+        }
+      }
+
       pages.forEach((pg, p) => {
         const sliceH = Math.max(1, Math.round(pg.end - pg.start));
         const slice = document.createElement("canvas");

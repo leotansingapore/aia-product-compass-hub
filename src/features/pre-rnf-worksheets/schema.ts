@@ -21,6 +21,9 @@ export type WorksheetBlock =
       rows?: number;
       /** When true, learners can add more blank rows beyond `rows`. */
       addRows?: boolean;
+      /** Per-column widths for the PDF (e.g. "18%"); stops narrow columns
+       *  squeezing headers/names into ugly mid-word breaks. */
+      colWidths?: string[];
     }
   | { kind: "note"; id: string; text: string }
   | { kind: "image"; id: string; label?: string; hint?: string }
@@ -133,6 +136,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "goals",
+    colWidths: ["66%", "34%"],
     columns: ["What I'm aiming at (in 5 years)", "Target"],
     rowLabels: [
       "Income per month",
@@ -175,6 +179,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "strengths",
+    colWidths: ["28%", "72%"],
     columns: ["Strength", "How it helps me advise well"],
     rows: 3,
     addRows: true,
@@ -182,6 +187,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "weaknesses",
+    colWidths: ["28%", "72%"],
     columns: ["Weakness", "How I'll work on it"],
     rows: 3,
     addRows: true,
@@ -191,6 +197,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "markets",
+    colWidths: ["16%", "38%", "31%", "15%"],
     columns: ["Target market", "Why it fits me (trust, network, demographics)", "How I'll prospect it", "Monthly FYC"],
     rows: 3,
     addRows: true,
@@ -257,6 +264,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "prospects",
+    colWidths: ["17%", "15%", "16%", "52%"],
     columns: ["Name", "Occupation", "How I know them", "What I think they need + the plan"],
     rows: 3,
   },
@@ -275,6 +283,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "kpi",
+    colWidths: ["28%", "24%", "24%", "24%"],
     columns: ["", "Daily", "Weekly", "Monthly"],
     rowLabels: ["Activity commitment", "Points target"],
   },
@@ -288,6 +297,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "income",
+    colWidths: ["20%", "18%", "62%"],
     columns: ["Goal (FYC)", "Deadline", "Weekly pace to hit it (cases / activity per week)"],
     rows: 2,
     addRows: true,
@@ -303,12 +313,14 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
   {
     kind: "table",
     id: "stake",
+    colWidths: ["30%", "70%"],
     columns: ["Minimum weekly points", "The stake if I fall short (e.g. $50 to mentor, run 10km)"],
     rows: 1,
   },
   {
     kind: "table",
     id: "support",
+    colWidths: ["50%", "50%"],
     columns: ["My pacer (who I'll race)", "My mentor (who holds me to it)"],
     rows: 1,
   },
