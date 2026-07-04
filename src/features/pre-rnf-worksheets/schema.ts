@@ -81,6 +81,57 @@ export function cellKey(tableId: string, r: number, c: number): string {
   return `${tableId}__r${r}c${c}`;
 }
 
+/** Key under which a section (step id) is excluded from the exported PDF. */
+export function omitKey(stepId: string): string {
+  return `_omit_${stepId}`;
+}
+
+/** True when the learner has entered nothing a PDF could show for this block —
+ *  used by the "hide unanswered fields" export option. */
+export function blockIsEmpty(
+  block: WorksheetBlock,
+  values: Record<string, string>,
+  extras?: { images?: Record<string, string>; autofill?: Record<string, string> },
+): boolean {
+  const v = (id: string) => (values[id] ?? "").trim();
+  switch (block.kind) {
+    case "text":
+    case "textarea":
+      return !v(block.id);
+    case "whys":
+      return !v(block.id) && !(extras?.autofill?.[block.id] ?? "").trim();
+    case "image":
+      return !extras?.images?.[block.id];
+    case "table": {
+      const base = block.rowLabels?.length ?? block.rows ?? 1;
+      const extra = block.addRows ? Math.max(0, parseInt(v(`${block.id}__rows`) || "0", 10)) : 0;
+      const startCol = block.rowLabels?.length ? 1 : 0;
+      for (let r = 0; r < base + extra; r++)
+        for (let c = startCol; c < block.columns.length; c++)
+          if (v(cellKey(block.id, r, c))) return false;
+      return true;
+    }
+    case "objections": {
+      const rows = (block.rows ?? 5) + Math.max(0, parseInt(v(`${block.id}__rows`) || "0", 10));
+      for (let r = 0; r < rows; r++)
+        if (v(`${block.id}__r${r}_type`) || v(`${block.id}__r${r}_resp`)) return false;
+      return true;
+    }
+    case "checklist":
+      return block.items.every((it) =>
+        it.type === "radio" ? !v(`${block.id}__grp_${it.group ?? "g"}`) : !v(`${block.id}__${it.id}`),
+      );
+    case "eps":
+      return !v("eps_target");
+    case "timetable":
+      return !Object.keys(values).some(
+        (k) => /^tt_(mon|tue|wed|thu|fri|sat|sun)_\d\d$/.test(k) && (values[k] ?? "").trim(),
+      );
+    default:
+      return false; // steps, notes, the pledge and links have no learner input
+  }
+}
+
 const PLEDGE: WorksheetBlock[] = [
   { kind: "step", id: "s1", label: "1. Where you want to land", hint: "Start at the destination — the life, not the activity." },
   { kind: "text", id: "income_month", label: "Income I want per month (in 5 years)" },

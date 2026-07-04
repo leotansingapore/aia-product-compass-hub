@@ -24,7 +24,7 @@ import WorksheetDeckPrintView, { DECK_SLIDE_W } from "@/components/worksheets/Wo
 import PledgeSheetCalculator from "@/components/worksheets/PledgeSheetCalculator";
 import PledgeSheetPrintView from "@/components/worksheets/PledgeSheetPrintView";
 import CustomizePanel from "@/components/worksheets/CustomizePanel";
-import { personName } from "@/features/pre-rnf-worksheets/customize";
+import { personName, themeFor } from "@/features/pre-rnf-worksheets/customize";
 import { WORKSHEET_SCHEMAS } from "@/features/pre-rnf-worksheets/schema";
 import {
   WORKSHEETS,
@@ -357,12 +357,20 @@ export default function WorksheetBuilder() {
     // Deck mode: landscape pages, full-bleed slides (the slide supplies its own
     // padding), so the holder gets no extra width or padding of its own.
     const deck = pdfLayout === "deck" && !isPledge;
+    // The theme's page colour is the "paper" everywhere: holder, canvas
+    // background, page fill, and the blank-row detector's idea of "blank".
+    const pageTint = themeFor(values).pageTint;
+    const tintRgb = (() => {
+      const m = /^#([0-9a-f]{6})$/i.exec(pageTint);
+      const n = m ? parseInt(m[1], 16) : 0xffffff;
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    })();
     setGenerating(true);
     // Render the print HTML in a clean, on-screen, body-level container so the
     // modal's fixed / overflow / backdrop-blur ancestors don't make html2canvas
     // capture an empty region (the cause of the earlier blank pages).
     const holder = document.createElement("div");
-    holder.style.cssText = `position:fixed;left:0;top:0;width:${deck ? DECK_SLIDE_W : 794}px;background:#ffffff;padding:${deck ? 0 : 24}px;z-index:2147483647;`;
+    holder.style.cssText = `position:fixed;left:0;top:0;width:${deck ? DECK_SLIDE_W : 794}px;background:${pageTint};padding:${deck ? 0 : 24}px;z-index:2147483647;`;
     // Deep-clone the already-rendered (and escaped) print DOM — no re-parsing of
     // HTML, so no XSS surface, and the scoped <style> + content come along.
     holder.appendChild(src.cloneNode(true));
@@ -376,7 +384,7 @@ export default function WorksheetBuilder() {
       await new Promise((r) => setTimeout(r, 40));
       const canvas = await html2canvas(holder, {
         scale: 2,
-        backgroundColor: "#ffffff",
+        backgroundColor: pageTint,
         useCORS: true,
         logging: false,
       });
@@ -482,7 +490,13 @@ export default function WorksheetBuilder() {
                 let ink = 0;
                 const row = sctx.getImageData(x0, y, x1 - x0, 1).data;
                 for (let p = 0; p < row.length; p += 4 * 6) {
-                  if (row[p] < 245 || row[p + 1] < 245 || row[p + 2] < 245) ink++;
+                  // "Blank" = the theme's paper colour, not just near-white.
+                  if (
+                    Math.abs(row[p] - tintRgb.r) > 10 ||
+                    Math.abs(row[p + 1] - tintRgb.g) > 10 ||
+                    Math.abs(row[p + 2] - tintRgb.b) > 10
+                  )
+                    ink++;
                 }
                 if (ink < bestInk) {
                   bestInk = ink;
@@ -519,7 +533,12 @@ export default function WorksheetBuilder() {
         const rowBlank = (y: number): boolean => {
           const row = snapCtx.getImageData(x0, Math.min(Math.round(y), canvas.height - 1), x1 - x0, 1).data;
           for (let p = 0; p < row.length; p += 4 * 6) {
-            if (row[p] < 245 || row[p + 1] < 245 || row[p + 2] < 245) return false;
+            if (
+              Math.abs(row[p] - tintRgb.r) > 10 ||
+              Math.abs(row[p + 1] - tintRgb.g) > 10 ||
+              Math.abs(row[p + 2] - tintRgb.b) > 10
+            )
+              return false;
           }
           return true;
         };
@@ -542,31 +561,41 @@ export default function WorksheetBuilder() {
         slice.height = sliceH;
         const sctx = slice.getContext("2d");
         if (sctx) {
-          // Paint white first — a bare canvas is transparent, and JPEG renders
-          // transparency as black (the stray dark bar seen between pages).
-          sctx.fillStyle = "#ffffff";
+          // Paint the paper colour first — a bare canvas is transparent, and
+          // JPEG renders transparency as black (the stray dark bar seen
+          // between pages).
+          sctx.fillStyle = pageTint;
           sctx.fillRect(0, 0, slice.width, sliceH);
           sctx.drawImage(canvas, 0, pg.start, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
         }
         if (p > 0) pdf.addPage();
+        // Tinted paper fills the whole page (margins included) so the sheet
+        // reads as coloured stock, not a tinted block on white.
+        if (pageTint.toLowerCase() !== "#ffffff") {
+          pdf.setFillColor(tintRgb.r, tintRgb.g, tintRgb.b);
+          pdf.rect(0, 0, pageW, pageH, "F");
+        }
         pdf.addImage(slice.toDataURL("image/jpeg", 0.95), "JPEG", margin, margin, imgW, sliceH / pxPerMm);
       });
 
       const who = personName(values);
 
       // Footer on every page: name (left) and "Page x of y" (right). Skip the
-      // cover page (page 1 when a cover is present) so it stays clean.
-      const total = pdf.getNumberOfPages();
-      const coverOn = deck || (values._cover === "yes" && slug !== "pledge-sheet");
-      pdf.setFontSize(8);
-      pdf.setTextColor(150);
-      const fx = Math.max(margin, 10); // keep the footer off the page edge on full-bleed pages
-      for (let p = 1; p <= total; p++) {
-        if (coverOn && p === 1) continue;
-        pdf.setPage(p);
-        const y = pageH - 4;
-        if (who) pdf.text(who, fx, y);
-        pdf.text(`Page ${p} of ${total}`, pageW - fx, y, { align: "right" });
+      // cover page (page 1 when a cover is present) so it stays clean; the
+      // learner can switch the footer off entirely in the export options.
+      if (values._footer !== "no") {
+        const total = pdf.getNumberOfPages();
+        const coverOn = deck || (values._cover === "yes" && slug !== "pledge-sheet");
+        pdf.setFontSize(8);
+        pdf.setTextColor(150);
+        const fx = Math.max(margin, 10); // keep the footer off the page edge on full-bleed pages
+        for (let p = 1; p <= total; p++) {
+          if (coverOn && p === 1) continue;
+          pdf.setPage(p);
+          const y = pageH - 4;
+          if (who) pdf.text(who, fx, y);
+          pdf.text(`Page ${p} of ${total}`, pageW - fx, y, { align: "right" });
+        }
       }
 
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
@@ -634,6 +663,11 @@ export default function WorksheetBuilder() {
           onChange={onChange}
           readOnly={readOnly}
           showHeadline={!isPledge}
+          sections={
+            isPledge
+              ? undefined
+              : schema.flatMap((b) => (b.kind === "step" ? [{ id: b.id, label: b.label }] : []))
+          }
         />
       )}
 
@@ -700,7 +734,7 @@ export default function WorksheetBuilder() {
               <div
                 ref={printRef}
                 style={{
-                  background: "#fff",
+                  background: themeFor(values).pageTint,
                   padding: !isPledge && pdfLayout === "deck" ? 0 : "24px",
                   borderRadius: "6px",
                   overflow: "hidden",

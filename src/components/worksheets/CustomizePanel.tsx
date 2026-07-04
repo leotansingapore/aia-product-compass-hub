@@ -22,11 +22,14 @@ export default function CustomizePanel({
   onChange,
   readOnly = false,
   showHeadline = false,
+  sections,
 }: {
   values: WorksheetValues;
   onChange?: (id: string, value: string) => void;
   readOnly?: boolean;
   showHeadline?: boolean;
+  /** Worksheet sections the learner can include/exclude from the export. */
+  sections?: Array<{ id: string; label: string }>;
 }) {
   const active = schemeFor(values);
   const activeTheme = themeFor(values);
@@ -67,12 +70,19 @@ export default function CustomizePanel({
           {PRINT_THEMES.map((t) => {
             const selected = t.key === activeTheme.key;
             const band = t.stepStyle === "band";
+            const themeAccent =
+              COLOR_SCHEMES.find((s) => s.key === t.defaultScheme)?.accent ?? active.accent;
             return (
               <button
                 key={t.key}
                 type="button"
                 disabled={readOnly}
-                onClick={() => onChange?.(THEME_KEY, t.key)}
+                onClick={() => {
+                  // A theme is a full look — apply its designed palette with it
+                  // (the colour scheme row below still lets them swap after).
+                  onChange?.(THEME_KEY, t.key);
+                  onChange?.(ACCENT_KEY, t.defaultScheme);
+                }}
                 title={t.blurb}
                 className={cn(
                   "rounded-lg border p-2 text-left transition-colors",
@@ -81,24 +91,28 @@ export default function CustomizePanel({
                 )}
                 aria-pressed={selected}
               >
-                {/* Mini preview: the theme's own heading treatment over body lines. */}
-                <div className="rounded-md bg-white px-2 py-1.5 shadow-sm ring-1 ring-black/5">
+                {/* Mini preview: the theme's own colours, paper, and heading treatment. */}
+                <div
+                  className="rounded-md px-2 py-1.5 shadow-sm ring-1 ring-black/5"
+                  style={{ background: t.pageTint }}
+                >
                   <div
-                    className="truncate text-[11px] leading-4 text-neutral-900"
+                    className="truncate text-[11px] leading-4"
                     style={{
                       fontFamily: t.headFont,
                       fontWeight: t.headWeight,
                       textTransform: t.headCase,
+                      color: t.ink,
                       ...(band
                         ? { background: t.bandBg, color: "#fff", padding: "0 4px", borderRadius: "2px" }
                         : {
-                            borderBottom: `2px solid ${t.stepStyle === "hairline" ? t.tableBorderColor : active.accent}`,
+                            borderBottom: `2px solid ${t.stepStyle === "hairline" ? t.tableBorderColor : themeAccent}`,
                           }),
                     }}
                   >
-                    Aa Goals
+                    <span style={{ color: themeAccent }}>01</span> Goals
                   </div>
-                  <div className="mt-1 h-1 w-4/5 rounded-sm" style={{ background: t.tableBorderColor }} />
+                  <div className="mt-1 h-1 w-4/5 rounded-sm" style={{ background: themeAccent, opacity: 0.55 }} />
                   <div className="mt-0.5 h-1 w-3/5 rounded-sm" style={{ background: t.tableBorderColor }} />
                 </div>
                 <div className="mt-1.5 text-xs font-semibold">{t.label}</div>
@@ -151,6 +165,76 @@ export default function CustomizePanel({
             Add a cover page <span className="text-muted-foreground">— title, your name &amp; date on page 1</span>
           </span>
         </label>
+      )}
+
+      {sections && sections.length > 0 && (
+        <div className="mt-4 space-y-1.5">
+          <Label className="text-xs font-medium">
+            Sections in your PDF{" "}
+            <span className="font-normal text-muted-foreground">— untick anything you don't want exported</span>
+          </Label>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+            {sections.map((s) => (
+              <label key={s.id} className="flex cursor-pointer items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={values[`_omit_${s.id}`] !== "yes"}
+                  disabled={readOnly}
+                  onChange={(e) => onChange?.(`_omit_${s.id}`, e.target.checked ? "" : "yes")}
+                  className="h-3.5 w-3.5 shrink-0 accent-primary"
+                />
+                <span className="truncate">{s.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {sections && (
+        <div className="mt-4 space-y-1.5">
+          <Label className="text-xs font-medium">Export options</Label>
+          <div className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
+            <label className="flex cursor-pointer items-center gap-2 text-xs">
+              <input
+                type="checkbox"
+                checked={values._footer !== "no"}
+                disabled={readOnly}
+                onChange={(e) => onChange?.("_footer", e.target.checked ? "" : "no")}
+                className="h-3.5 w-3.5 shrink-0 accent-primary"
+              />
+              Name &amp; page numbers in the footer
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-xs">
+              <input
+                type="checkbox"
+                checked={values._cover_date !== "no"}
+                disabled={readOnly}
+                onChange={(e) => onChange?.("_cover_date", e.target.checked ? "" : "no")}
+                className="h-3.5 w-3.5 shrink-0 accent-primary"
+              />
+              Date on the cover
+            </label>
+            <label className="flex cursor-pointer items-center gap-2 text-xs">
+              <input
+                type="checkbox"
+                checked={values._hide_empty === "yes"}
+                disabled={readOnly}
+                onChange={(e) => onChange?.("_hide_empty", e.target.checked ? "yes" : "")}
+                className="h-3.5 w-3.5 shrink-0 accent-primary"
+              />
+              Hide unanswered fields
+            </label>
+          </div>
+          <div className="pt-1.5">
+            <Input
+              value={values._contact ?? ""}
+              readOnly={readOnly}
+              onChange={(e) => onChange?.("_contact", e.target.value)}
+              placeholder="Contact line for the cover (optional) — e.g. +65 9123 4567 · jane@aia.com.sg"
+              className={cn("h-9 text-sm", readOnly && "bg-muted/40")}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

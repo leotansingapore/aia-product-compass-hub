@@ -1,4 +1,4 @@
-import { cellKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
+import { blockIsEmpty, cellKey, omitKey, type WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
 import { headline, personName, schemeFor, themeFor } from "@/features/pre-rnf-worksheets/customize";
 import {
   TT_DAYS,
@@ -66,6 +66,47 @@ export default function WorksheetPrintView({
     band: `background: ${theme.bandBg}; padding: 9px 12px 8px; border-radius: 3px;`,
   }[theme.stepStyle];
   const band = theme.stepStyle === "band";
+  // Section numbers sit ON the dark band in band themes — a dark accent (e.g.
+  // Slate/Charcoal) would disappear there, so fall back to white.
+  const accentLum = (() => {
+    const m = /^#([0-9a-f]{6})$/i.exec(scheme.accent);
+    if (!m) return 0;
+    const n = parseInt(m[1], 16);
+    return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+  })();
+  const bandNumColor = band && accentLum < 0.32 ? "#ffffff" : scheme.accent;
+
+  // Export options (all ride the worksheet values like the theme does).
+  const hideEmpty = values._hide_empty === "yes";
+  const showDate = values._cover_date !== "no";
+  const contact = (values._contact ?? "").trim();
+
+  // Respect section toggles and (optionally) drop unanswered blocks, then prune
+  // any heading whose whole section ended up empty so it isn't stranded.
+  const visibleSchema = (() => {
+    const kept: WorksheetBlock[] = [];
+    let omit = false;
+    for (const b of schema) {
+      if (b.kind === "step") {
+        omit = values[omitKey(b.id)] === "yes";
+        if (!omit) kept.push(b);
+        continue;
+      }
+      if (omit) continue;
+      if (hideEmpty && blockIsEmpty(b, values, { images, autofill })) continue;
+      kept.push(b);
+    }
+    // A heading survives only if real learner content follows it before the
+    // next heading — fixed notes and the closing pledge don't count, so an
+    // emptied section's heading goes while the closers still print.
+    return kept.filter((b, i) => {
+      if (b.kind !== "step") return true;
+      for (let j = i + 1; j < kept.length && kept[j].kind !== "step"; j++) {
+        if (kept[j].kind !== "note" && kept[j].kind !== "pledge") return true;
+      }
+      return false;
+    });
+  })();
   let coverDate = "";
   try {
     coverDate = new Date().toLocaleDateString(undefined, {
@@ -79,16 +120,17 @@ export default function WorksheetPrintView({
   return (
     <div className="wpv">
       <style>{`
-        .wpv { font-family: ${theme.bodyFont}; color: ${theme.ink}; font-size: 14px; line-height: 1.5; }
+        .wpv { font-family: ${theme.bodyFont}; color: ${theme.ink}; font-size: 14px; line-height: 1.5; background: ${theme.pageTint}; }
         .wpv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
         .wpv-cover { position: relative; min-height: 1040px; display: flex; flex-direction: column; justify-content: center; padding: 30px 6px; break-inside: avoid; break-after: page; }
-        .wpv-cover .cbar { position: absolute; top: 0; left: 0; height: 9px; width: 100%; background: ${scheme.accent}; }
+        .wpv-cover .cbar { position: absolute; top: 0; left: 0; height: 9px; width: 100%; background: ${theme.darkCover ? theme.bandBg : scheme.accent}; }
         .wpv-cover .ckick { letter-spacing: 5px; font-size: 12px; font-weight: 800; color: ${scheme.accent}; text-transform: uppercase; font-family: ${theme.headFont}; }
         .wpv-cover h1 { ${headCss} font-size: ${theme.headCase === "uppercase" ? 40 : 46}px; line-height: 1.08; margin: 12px 0 8px; }
         .wpv-cover .csub { font-size: 16px; color: ${theme.mutedInk}; max-width: 150mm; margin: 10px 0 0; }
         .wpv-cover .crule { height: 5px; width: 90px; background: ${scheme.accent}; margin: 26px 0; border-radius: 3px; }
         .wpv-cover .cprep { font-size: 16px; }
         .wpv-cover .cprep b { color: ${scheme.accent}; }
+        .wpv-cover .ccontact { font-size: 13.5px; color: ${theme.mutedInk}; margin-top: 8px; }
         .wpv-cover .cdate { font-size: 13px; color: ${theme.mutedInk}; margin-top: 4px; }
         .wpv-name { font-size: 14px; font-weight: 700; color: ${scheme.accent}; font-family: ${theme.headFont}; }
         .wpv-title { ${headCss} font-size: ${theme.headCase === "uppercase" ? 26 : 30}px; margin: 4px 0 4px; }
@@ -100,7 +142,7 @@ export default function WorksheetPrintView({
            (the PDF rasteriser) mis-places glyphs inside flex-centred boxes and the
            accumulated height drift makes page cuts land mid-line. Centre with
            line-height + inline-block instead. */
-        .wpv-badge { color: ${band ? "#ffffff" : scheme.accent}; ${band ? "opacity: .75;" : ""} font-size: ${theme.headCase === "uppercase" ? 17 : 19}px; font-weight: ${theme.headWeight}; letter-spacing: .5px; margin-right: 9px; font-family: ${theme.headFont}; }
+        .wpv-badge { color: ${bandNumColor}; font-size: ${theme.headCase === "uppercase" ? 17 : 19}px; font-weight: ${theme.headWeight}; letter-spacing: .5px; margin-right: 9px; font-family: ${theme.headFont}; }
         .wpv-step p { font-size: 12px; color: ${band ? "rgba(255,255,255,.78)" : theme.mutedInk}; font-style: italic; margin: 4px 0 0; }
         .wpv-field { break-inside: avoid; margin: 10px 0; }
         .wpv-label { font-size: 13.5px; font-weight: 700; margin-bottom: 4px; font-family: ${theme.headFont}; }
@@ -109,7 +151,8 @@ export default function WorksheetPrintView({
         .wpv table { width: 100%; border-collapse: collapse; margin: 7px 0; break-inside: avoid; }
         .wpv th, .wpv td { ${cellBorder} padding: 7px 9px; text-align: left; vertical-align: top; }
         .wpv th { ${thCss} font-size: 12px; text-transform: uppercase; letter-spacing: .4px; word-break: normal; overflow-wrap: normal; hyphens: none; font-family: ${theme.headFont}; font-weight: 700; }
-        .wpv td.rowlabel { background: ${theme.tableBorders === "horizontal" ? "transparent" : "#fafafa"}; font-weight: 600; font-size: 13px; }
+        .wpv td.rowlabel { background: ${theme.tableBorders === "horizontal" || theme.zebra ? "transparent" : "#fafafa"}; font-weight: 600; font-size: 13px; }
+        ${theme.zebra ? `.wpv table:not(.wpv-tt) tbody tr:nth-child(even) td { background: ${scheme.tint}; }` : ""}
         .wpv td .wpv-cell { min-height: 20px; white-space: pre-wrap; }
         .wpv-note { background: ${scheme.tint}; border-left: 3px solid ${scheme.accent}; padding: 10px 14px; font-size: 13.5px; color: ${scheme.deep}; margin: 12px 0; }
         .wpv-table-label { font-size: 13.5px; font-weight: 700; margin: 9px 0 3px; font-family: ${theme.headFont}; }
@@ -144,9 +187,10 @@ export default function WorksheetPrintView({
               Prepared by <b>{name}</b>
             </div>
           )}
+          {contact && <div className="ccontact">{contact}</div>}
           <div className="cdate">
-            {schema.filter((b) => b.kind === "step" && /^\d+\./.test(b.label)).length} sections
-            {coverDate ? ` · ${coverDate}` : ""}
+            {visibleSchema.filter((b) => b.kind === "step" && /^\d+\./.test(b.label)).length} sections
+            {showDate && coverDate ? ` · ${coverDate}` : ""}
           </div>
         </div>
       ) : (
@@ -158,7 +202,7 @@ export default function WorksheetPrintView({
         </>
       )}
 
-      {schema.map((block) => {
+      {visibleSchema.map((block) => {
         switch (block.kind) {
           case "step": {
             // Drop the vision-board heading from the PDF when there's no board.
@@ -206,8 +250,15 @@ export default function WorksheetPrintView({
             const extra = block.addRows
               ? Math.max(0, parseInt(v(values, `${block.id}__rows`) || "0", 10))
               : 0;
-            const rowCount = baseRows + extra;
             const hasRowLabels = !!block.rowLabels?.length;
+            // With "hide unanswered fields" on, blank rows in free tables are
+            // dropped (labelled rows keep their structure).
+            const rowIdx = Array.from({ length: baseRows + extra }, (_, r) => r).filter(
+              (r) =>
+                hasRowLabels ||
+                !hideEmpty ||
+                block.columns.some((_, c) => v(values, cellKey(block.id, r, c)).trim()),
+            );
             return (
               <div key={block.id} className="wpv-field">
                 {block.label && <div className="wpv-table-label">{block.label}</div>}
@@ -220,7 +271,7 @@ export default function WorksheetPrintView({
                     </tr>
                   </thead>
                   <tbody>
-                    {Array.from({ length: rowCount }).map((_, r) => (
+                    {rowIdx.map((r) => (
                       <tr key={r}>
                         {block.columns.map((_, c) => {
                           if (hasRowLabels && c === 0) {
@@ -479,7 +530,12 @@ export default function WorksheetPrintView({
 
           case "objections": {
             const extra = Math.max(0, parseInt(values[`${block.id}__rows`] || "0", 10));
-            const rowCount = (block.rows ?? 5) + extra;
+            const objIdx = Array.from({ length: (block.rows ?? 5) + extra }, (_, r) => r).filter(
+              (r) =>
+                !hideEmpty ||
+                (values[`${block.id}__r${r}_type`] ?? "").trim() ||
+                (values[`${block.id}__r${r}_resp`] ?? "").trim(),
+            );
             return (
               <div key={block.id} className="wpv-field">
                 {block.label && <div className="wpv-table-label">{block.label}</div>}
@@ -491,7 +547,7 @@ export default function WorksheetPrintView({
                     </tr>
                   </thead>
                   <tbody>
-                    {Array.from({ length: rowCount }).map((_, r) => {
+                    {objIdx.map((r) => {
                       const type = (values[`${block.id}__r${r}_type`] ?? "").trim();
                       const obj = type === "__other" ? (values[`${block.id}__r${r}_other`] ?? "").trim() : type;
                       const resp = (values[`${block.id}__r${r}_resp`] ?? "").trim();

@@ -27,6 +27,11 @@ export const COLOR_SCHEMES: ColorScheme[] = [
   { key: "emerald", label: "Emerald", accent: "#059669", tint: "#dcf5ec", deep: "#075c45" },
   { key: "slate", label: "Slate", accent: "#334155", tint: "#e9edf3", deep: "#1e293b" },
   { key: "amber", label: "Amber", accent: "#b45309", tint: "#fcefda", deep: "#7c3a06" },
+  // Theme-flavoured palettes (each theme defaults to one of these; all remain
+  // freely combinable with any theme).
+  { key: "oxblood", label: "Oxblood", accent: "#7f1d1d", tint: "#f4e8e4", deep: "#581414" },
+  { key: "gold", label: "Gold", accent: "#a8842c", tint: "#f5eeda", deep: "#6f5518" },
+  { key: "charcoal", label: "Charcoal", accent: "#1f2937", tint: "#eceef1", deep: "#0f172a" },
 ];
 
 export const DEFAULT_SCHEME = COLOR_SCHEMES[0];
@@ -73,6 +78,15 @@ export type PrintTheme = {
   mutedInk: string;
   /** Dark fill used for band headings / dark table headers. */
   bandBg: string;
+  /** The colour scheme this theme is designed around — applied when the theme
+   *  is picked (the learner can still swap it afterwards). */
+  defaultScheme: string;
+  /** Full-bleed page colour (e.g. warm paper for Editorial). */
+  pageTint: string;
+  /** Soft fill on alternating table rows. */
+  zebra: boolean;
+  /** Covers/slide bars draw from the dark band instead of the accent. */
+  darkCover: boolean;
 };
 
 export const PRINT_THEMES: PrintTheme[] = [
@@ -92,6 +106,10 @@ export const PRINT_THEMES: PrintTheme[] = [
     ink: "#1a1a1a",
     mutedInk: "#666666",
     bandBg: "#111111",
+    defaultScheme: "red",
+    pageTint: "#ffffff",
+    zebra: false,
+    darkCover: false,
   },
   {
     key: "editorial",
@@ -109,6 +127,10 @@ export const PRINT_THEMES: PrintTheme[] = [
     ink: "#22201c",
     mutedInk: "#77716a",
     bandBg: "#22201c",
+    defaultScheme: "oxblood",
+    pageTint: "#fbf7ef",
+    zebra: false,
+    darkCover: false,
   },
   {
     key: "bold",
@@ -126,6 +148,10 @@ export const PRINT_THEMES: PrintTheme[] = [
     ink: "#111111",
     mutedInk: "#555555",
     bandBg: "#111111",
+    defaultScheme: "crimson",
+    pageTint: "#ffffff",
+    zebra: true,
+    darkCover: false,
   },
   {
     key: "minimal",
@@ -143,6 +169,10 @@ export const PRINT_THEMES: PrintTheme[] = [
     ink: "#333333",
     mutedInk: "#8a8a8a",
     bandBg: "#3a3a3a",
+    defaultScheme: "charcoal",
+    pageTint: "#ffffff",
+    zebra: false,
+    darkCover: false,
   },
   {
     key: "executive",
@@ -160,6 +190,10 @@ export const PRINT_THEMES: PrintTheme[] = [
     ink: "#1c2432",
     mutedInk: "#5d6675",
     bandBg: "#1c2432",
+    defaultScheme: "gold",
+    pageTint: "#ffffff",
+    zebra: true,
+    darkCover: true,
   },
 ];
 
