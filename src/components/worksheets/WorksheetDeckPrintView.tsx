@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { WorksheetBlock } from "@/features/pre-rnf-worksheets/schema";
-import { headline, personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
+import { headline, personName, schemeFor, themeFor } from "@/features/pre-rnf-worksheets/customize";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 import WorksheetPrintView from "./WorksheetPrintView";
 
@@ -114,8 +114,10 @@ export default function WorksheetDeckPrintView({
   autofill?: Record<string, string>;
 }) {
   const scheme = schemeFor(values);
+  const theme = themeFor(values);
   const name = personName(values);
   const deckTitle = headline(values) || title;
+  const headCss = `font-family: ${theme.headFont}; font-weight: ${theme.headWeight}; text-transform: ${theme.headCase}; letter-spacing: ${theme.headCase === "uppercase" ? ".5px" : "0"};`;
   let coverDate = "";
   try {
     coverDate = new Date().toLocaleDateString(undefined, {
@@ -174,32 +176,32 @@ export default function WorksheetDeckPrintView({
   return (
     <div className="wdv">
       <style>{`
-        .wdv { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 13px; line-height: 1.5; }
+        .wdv { font-family: ${theme.bodyFont}; color: ${theme.ink}; font-size: 13px; line-height: 1.5; }
         .wdv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
         /* Same rule as the portrait view: no flex centering — the PDF rasteriser
            (html2canvas) misplaces glyphs inside flex-centred boxes. */
         .wdv-slide { position: relative; width: ${DECK_SLIDE_W}px; min-height: ${DECK_SLIDE_H}px; background: #ffffff; padding: 42px 60px 46px; }
         .wdv-slide .bar { position: absolute; top: 0; left: 0; width: 100%; height: 7px; background: ${scheme.accent}; }
-        .wdv-kick { letter-spacing: 4px; font-size: 10.5px; font-weight: 800; color: ${scheme.accent}; text-transform: uppercase; }
-        .wdv-snum { color: ${scheme.accent}; font-size: 26px; font-weight: 800; letter-spacing: .5px; margin-right: 12px; }
-        .wdv-slide h2 { font-size: 27px; font-weight: 800; margin: 6px 0 0; }
-        .wdv-ssub { color: #666; font-style: italic; font-size: 13px; margin: 5px 0 0; }
+        .wdv-kick { letter-spacing: 4px; font-size: 10.5px; font-weight: 800; color: ${scheme.accent}; text-transform: uppercase; font-family: ${theme.headFont}; }
+        .wdv-snum { color: ${scheme.accent}; font-size: ${theme.headCase === "uppercase" ? 24 : 26}px; font-weight: ${theme.headWeight}; letter-spacing: .5px; margin-right: 12px; font-family: ${theme.headFont}; }
+        .wdv-slide h2 { ${headCss} font-size: ${theme.headCase === "uppercase" ? 24 : 27}px; margin: 6px 0 0; }
+        .wdv-ssub { color: ${theme.mutedInk}; font-style: italic; font-size: 13px; margin: 5px 0 0; }
         .wdv-srule { height: 4px; width: 64px; background: ${scheme.accent}; margin: 12px 0 6px; border-radius: 2px; }
         .wdv-col { display: inline-block; vertical-align: top; padding-right: 26px; white-space: pre-wrap; font-size: 10.5px; line-height: 1.55; }
         /* Cover */
         .wdv-cover { position: relative; width: ${DECK_SLIDE_W}px; min-height: ${DECK_SLIDE_H}px; background: #ffffff; }
         .wdv-cover .panel { position: absolute; top: 0; left: 0; bottom: 0; width: 420px; background: ${scheme.accent}; padding: 56px 44px; color: #fff; }
-        .wdv-cover .panel .ck { letter-spacing: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: .92; }
-        .wdv-cover .panel h1 { color: #fff; font-size: 37px; font-weight: 800; line-height: 1.12; margin: 14px 0 0; }
+        .wdv-cover .panel .ck { letter-spacing: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: .92; font-family: ${theme.headFont}; }
+        .wdv-cover .panel h1 { ${headCss} color: #fff; font-size: ${theme.headCase === "uppercase" ? 32 : 37}px; line-height: 1.12; margin: 14px 0 0; }
         .wdv-cover .panel .rl { height: 4px; width: 64px; background: #ffffff; opacity: .9; margin: 22px 0; border-radius: 2px; }
         .wdv-cover .panel .by { font-size: 15px; }
         .wdv-cover .panel .by b { font-size: 17px; }
         .wdv-cover .panel .dt { font-size: 12px; opacity: .85; margin-top: 6px; }
         .wdv-cover .toc { margin-left: 420px; padding: 52px 60px; }
-        .wdv-cover .toc .th { letter-spacing: 3px; font-size: 11px; font-weight: 800; color: #999; text-transform: uppercase; margin-bottom: 14px; }
+        .wdv-cover .toc .th { letter-spacing: 3px; font-size: 11px; font-weight: 800; color: ${theme.mutedInk}; text-transform: uppercase; margin-bottom: 14px; font-family: ${theme.headFont}; }
         .wdv-cover .toc .ti { font-size: 14.5px; font-weight: 600; margin: 9px 0; }
-        .wdv-cover .toc .ti .n { color: ${scheme.accent}; font-weight: 800; display: inline-block; width: 34px; }
-        .wdv-cover .toc .sub { color: #777; font-size: 12.5px; font-weight: 400; margin-top: 16px; max-width: 520px; }
+        .wdv-cover .toc .ti .n { color: ${scheme.accent}; font-weight: ${theme.headWeight}; display: inline-block; width: 34px; font-family: ${theme.headFont}; }
+        .wdv-cover .toc .sub { color: ${theme.mutedInk}; font-size: 12.5px; font-weight: 400; margin-top: 16px; max-width: 520px; }
         /* Landscape tuning of the shared block styles. */
         .wdv .wpv { font-size: 13px; }
         .wdv .wpv-value.box { min-height: 40px; }

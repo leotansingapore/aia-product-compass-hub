@@ -1,21 +1,26 @@
 import type { ReactNode } from "react";
 import { derivePledge, POINTS } from "@/features/pre-rnf-worksheets/pledgeCalc";
-import { personName, schemeFor } from "@/features/pre-rnf-worksheets/customize";
+import { personName, schemeFor, themeFor } from "@/features/pre-rnf-worksheets/customize";
 import type { WorksheetValues } from "@/features/pre-rnf-worksheets/worksheets";
 
 // Print/PDF render of the Pledge Sheet, styled to match the official
 // "MY PLEDGE SHEET" template: accent left-label blocks for the goals, black
 // bands for the activity sections, bordered tables. Adds the calculator's
 // Goals & Targets and Strategy fields; the redundant "Previous Year" section is
-// dropped. Accent colour + name come from the learner's personalisation.
-const INK = "#111111";
-
+// dropped. Accent colour, theme, and name come from the learner's personalisation.
 function round1(n: number) {
   return Math.round(n * 10) / 10;
 }
 
 export default function PledgeSheetPrintView({ values }: { values: WorksheetValues }) {
   const RED = schemeFor(values).accent;
+  const theme = themeFor(values);
+  // The pledge sheet mirrors the official form, so the theme applies with a
+  // lighter touch: typography, band fill, and border tone — not the structure.
+  const INK_T = theme.ink;
+  const BAND = theme.bandBg;
+  const BORDER = theme.key === "minimal" || theme.key === "editorial" ? "#8a8a8a" : "#222222";
+  const headCss = `font-family: ${theme.headFont}; font-weight: ${Math.max(theme.headWeight, 700)};`;
   const name = personName(values);
   const d = derivePledge(values);
   const g = (id: string) => (values[id] ?? "").trim();
@@ -92,29 +97,29 @@ export default function PledgeSheetPrintView({ values }: { values: WorksheetValu
   return (
     <div className="psv">
       <style>{`
-        .psv { font-family: "Helvetica Neue", Arial, sans-serif; color: ${INK}; font-size: 14px; line-height: 1.45; }
+        .psv { font-family: ${theme.bodyFont}; color: ${INK_T}; font-size: 14px; line-height: 1.45; }
         .psv * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
         .psv-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-        .psv-title { font-size: 36px; font-weight: 800; letter-spacing: 1px; }
-        .psv-title .out { color: #9a9a9a; -webkit-text-stroke: 1.4px ${INK}; }
+        .psv-title { ${headCss} font-size: 36px; letter-spacing: 1px; }
+        .psv-title .out { color: #9a9a9a; -webkit-text-stroke: 1.4px ${INK_T}; }
         .psv-title .red { color: ${RED}; }
-        .psv-name { font-size: 15px; font-weight: 700; color: ${RED}; margin-top: 3px; }
-        .psv-tag { text-align: right; font-weight: 800; font-size: 13px; line-height: 1.15; }
+        .psv-name { font-size: 15px; font-weight: 700; color: ${RED}; margin-top: 3px; font-family: ${theme.headFont}; }
+        .psv-tag { text-align: right; font-weight: 800; font-size: 13px; line-height: 1.15; font-family: ${theme.headFont}; }
         .psv-tag .red { color: ${RED}; }
         .psv table { width: 100%; border-collapse: collapse; margin: 0 0 16px; break-inside: avoid; }
-        .psv td, .psv th { border: 1px solid #222; padding: 7px 10px; vertical-align: middle; }
+        .psv td, .psv th { border: 1px solid ${BORDER}; padding: 7px 10px; vertical-align: middle; }
         .redlabel { background: ${RED}; color: #fff; font-weight: 800; font-size: 15px; width: 140px; text-align: center; vertical-align: middle; }
         .colhdr { background: #f0f0f0; font-weight: 800; text-align: center; text-transform: uppercase; font-size: 12px; letter-spacing: .5px; }
         .rowname { font-weight: 600; width: 38%; }
         .cell { height: 28px; text-align: center; }
         .auto { background: #fafafa; }
-        .blackband { background: ${INK}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 14px; padding: 8px 12px; margin: 16px 0 0; break-inside: avoid; }
+        .blackband { background: ${BAND}; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: .6px; font-size: 14px; padding: 8px 12px; margin: 16px 0 0; break-inside: avoid; }
         .funnel { margin-top: 0; }
         .funnel td.ftext { width: 70%; font-size: 14px; }
         .funnel td.ftext .hint { color: #777; font-size: 11px; }
-        .funnel td.fnum { text-align: center; font-size: 28px; font-weight: 800; width: 13%; }
+        .funnel td.fnum { text-align: center; font-size: 28px; font-weight: 800; width: 13%; white-space: nowrap; }
         .funnel td.flabel { text-align: center; font-weight: 700; font-size: 12px; color: #333; }
-        .targets th { background: ${INK}; color: #fff; text-align: center; font-size: 11.5px; text-transform: uppercase; letter-spacing: .3px; }
+        .targets th { background: ${BAND}; color: #fff; text-align: center; font-size: 11.5px; text-transform: uppercase; letter-spacing: .3px; }
         .targets td.num { text-align: center; font-weight: 800; font-size: 17px; }
         .targets td.rl { background: #f0f0f0; font-weight: 800; font-size: 13px; }
         .targets td.tot { text-align: center; font-weight: 800; color: ${RED}; font-size: 17px; background: #fff4f4; }
