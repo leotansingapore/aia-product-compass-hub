@@ -32,6 +32,7 @@ export default function WorksheetPrintView({
   values,
   images,
   autofill,
+  bare = false,
 }: {
   title: string;
   subtitle: string;
@@ -39,6 +40,8 @@ export default function WorksheetPrintView({
   values: WorksheetValues;
   images?: Record<string, string>;
   autofill?: Record<string, string>;
+  /** Render only the blocks (no cover/title header) — used inside deck slides. */
+  bare?: boolean;
 }) {
   const scheme = schemeFor(values);
   const name = personName(values);
@@ -110,7 +113,7 @@ export default function WorksheetPrintView({
         .wpv-pill { font-size: 12px; font-weight: 700; }
       `}</style>
 
-      {showCover ? (
+      {bare ? null : showCover ? (
         <div className="wpv-cover">
           <div className="cbar" />
           <div className="ckick">Business Plan</div>

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -19,6 +20,7 @@ import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
 import WorksheetForm from "@/components/worksheets/WorksheetForm";
 import WorksheetPrintView from "@/components/worksheets/WorksheetPrintView";
+import WorksheetDeckPrintView, { DECK_SLIDE_W } from "@/components/worksheets/WorksheetDeckPrintView";
 import PledgeSheetCalculator from "@/components/worksheets/PledgeSheetCalculator";
 import PledgeSheetPrintView from "@/components/worksheets/PledgeSheetPrintView";
 import CustomizePanel from "@/components/worksheets/CustomizePanel";
@@ -110,6 +112,22 @@ export default function WorksheetBuilder() {
   const [autoSaving, setAutoSaving] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [generating, setGenerating] = useState(false);
+  // PDF layout: classic A4 portrait document, or the landscape per-section deck.
+  const [pdfLayout, setPdfLayout] = useState<"doc" | "deck">(() => {
+    try {
+      return localStorage.getItem("worksheet-pdf-layout") === "deck" ? "deck" : "doc";
+    } catch {
+      return "doc";
+    }
+  });
+  const setLayoutMode = (l: "doc" | "deck") => {
+    setPdfLayout(l);
+    try {
+      localStorage.setItem("worksheet-pdf-layout", l);
+    } catch {
+      /* non-fatal */
+    }
+  };
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const hydrated = useRef(false);
   const printRef = useRef<HTMLDivElement>(null);
@@ -336,13 +354,15 @@ export default function WorksheetBuilder() {
   const generatePdf = async () => {
     const src = printRef.current;
     if (!src) return;
+    // Deck mode: landscape pages, full-bleed slides (the slide supplies its own
+    // padding), so the holder gets no extra width or padding of its own.
+    const deck = pdfLayout === "deck" && !isPledge;
     setGenerating(true);
     // Render the print HTML in a clean, on-screen, body-level container so the
     // modal's fixed / overflow / backdrop-blur ancestors don't make html2canvas
     // capture an empty region (the cause of the earlier blank pages).
     const holder = document.createElement("div");
-    holder.style.cssText =
-      "position:fixed;left:0;top:0;width:794px;background:#ffffff;padding:24px;z-index:2147483647;";
+    holder.style.cssText = `position:fixed;left:0;top:0;width:${deck ? DECK_SLIDE_W : 794}px;background:#ffffff;padding:${deck ? 0 : 24}px;z-index:2147483647;`;
     // Deep-clone the already-rendered (and escaped) print DOM — no re-parsing of
     // HTML, so no XSS surface, and the scoped <style> + content come along.
     holder.appendChild(src.cloneNode(true));
@@ -361,10 +381,10 @@ export default function WorksheetBuilder() {
         logging: false,
       });
       const scale = 2;
-      const pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+      const pdf = new JsPDF({ unit: "mm", format: "a4", orientation: deck ? "landscape" : "portrait" });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
-      const margin = 8;
+      const margin = deck ? 0 : 8;
       const imgW = pageW - margin * 2;
       const pxPerMm = canvas.width / imgW;
       const pageHpx = (pageH - margin * 2) * pxPerMm;
@@ -373,7 +393,7 @@ export default function WorksheetBuilder() {
       // field, note) in the captured layout, then pack whole blocks onto pages so
       // nothing is ever split mid-block, and a heading is never left stranded at
       // the foot of a page without the content that follows it.
-      const root = (holder.querySelector(".wpv, .psv") as HTMLElement) ?? holder;
+      const root = (holder.querySelector(".wpv, .psv, .wdv") as HTMLElement) ?? holder;
       const hostTop = holder.getBoundingClientRect().top;
       type Block = { top: number; bottom: number; heading: boolean; breakAfter: boolean };
       const blocks: Block[] = [];
@@ -381,7 +401,7 @@ export default function WorksheetBuilder() {
       // Collect measurable blocks in document order. A block taller than a whole
       // page (e.g. a long checklist) is broken into its own children so it splits
       // at an item boundary instead of being cut mid-item.
-      const collect = (el: Element) => {
+      const collect = (el: Element, markLastBreak = false) => {
         for (const child of Array.from(el.children)) {
           if (child.tagName === "STYLE") continue;
           const r = child.getBoundingClientRect();
@@ -389,21 +409,30 @@ export default function WorksheetBuilder() {
           const bottom = (r.bottom - hostTop) * scale;
           if (bottom - top < 1) continue;
           const c = child as HTMLElement;
+          // The cover page / a deck slide always ends its page.
+          const breakAfter =
+            c.classList.contains("wpv-cover") ||
+            c.classList.contains("wdv-slide") ||
+            c.classList.contains("wdv-cover");
           // A block taller than a page must be broken down so it splits at an
           // inner boundary instead of being clipped. Recurse through ANY element
           // that has children — including single-child wrappers (e.g. a bordered
           // field that wraps one long <ol>/<table>), which previously slipped
           // through the `> 1` check and got rendered as one over-height, clipped
-          // image (dropping everything past the first page).
-          if (bottom - top > pageHpx && child.children.length >= 1) {
-            collect(child);
+          // image (dropping everything past the first page). An over-tall slide
+          // passes its page break down to its last descendant. A nested print
+          // root (a WorksheetPrintView embedded in a deck slide) is always
+          // transparent — treating it as one atomic block stranded a slide's
+          // heading alone on its page whenever the body didn't quite fit.
+          const printRoot = el !== root && (c.classList.contains("wpv") || c.classList.contains("psv"));
+          if (printRoot || (bottom - top > pageHpx && child.children.length >= 1)) {
+            collect(child, breakAfter);
             continue;
           }
           const heading = headingCls.some((h) => c.classList.contains(h));
-          // The cover page always gets a page to itself.
-          const breakAfter = c.classList.contains("wpv-cover");
           blocks.push({ top, bottom, heading, breakAfter });
         }
+        if (markLastBreak && blocks.length > 0) blocks[blocks.length - 1].breakAfter = true;
       };
       collect(root);
 
@@ -528,15 +557,16 @@ export default function WorksheetBuilder() {
       // Footer on every page: name (left) and "Page x of y" (right). Skip the
       // cover page (page 1 when a cover is present) so it stays clean.
       const total = pdf.getNumberOfPages();
-      const coverOn = values._cover === "yes" && slug !== "pledge-sheet";
+      const coverOn = deck || (values._cover === "yes" && slug !== "pledge-sheet");
       pdf.setFontSize(8);
       pdf.setTextColor(150);
+      const fx = Math.max(margin, 10); // keep the footer off the page edge on full-bleed pages
       for (let p = 1; p <= total; p++) {
         if (coverOn && p === 1) continue;
         pdf.setPage(p);
         const y = pageH - 4;
-        if (who) pdf.text(who, margin, y);
-        pdf.text(`Page ${p} of ${total}`, pageW - margin, y, { align: "right" });
+        if (who) pdf.text(who, fx, y);
+        pdf.text(`Page ${p} of ${total}`, pageW - fx, y, { align: "right" });
       }
 
       const rawName = `${who ? `${who} - ` : ""}${WORKSHEETS[slug as WorksheetSlug].title}`;
@@ -624,15 +654,38 @@ export default function WorksheetBuilder() {
         )}
       </div>
 
-      {/* Preview modal: shows the exact PDF layout on-screen and downloads it. */}
-      {previewOpen && (
+      {/* Preview modal: shows the exact PDF layout on-screen and downloads it.
+          Rendered in a body-level portal — an ancestor with a CSS transform
+          (the route's page-transition wrapper) would otherwise become the
+          containing block for `fixed` and push the modal off-screen. */}
+      {previewOpen && createPortal(
         <div
           className="fixed inset-0 z-50 flex flex-col bg-black/60 backdrop-blur-sm"
           onClick={() => !generating && setPreviewOpen(false)}
         >
-          <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
             <span className="text-sm font-semibold text-white">Preview — {meta.title}</span>
             <div className="flex items-center gap-2">
+              {!isPledge && (
+                <div className="flex overflow-hidden rounded-md border border-white/25 text-xs font-semibold">
+                  <button
+                    type="button"
+                    disabled={generating}
+                    onClick={(e) => { e.stopPropagation(); setLayoutMode("doc"); }}
+                    className={`px-2.5 py-1.5 ${pdfLayout === "doc" ? "bg-white text-neutral-900" : "text-white/80 hover:text-white"}`}
+                  >
+                    A4 document
+                  </button>
+                  <button
+                    type="button"
+                    disabled={generating}
+                    onClick={(e) => { e.stopPropagation(); setLayoutMode("deck"); }}
+                    className={`px-2.5 py-1.5 ${pdfLayout === "deck" ? "bg-white text-neutral-900" : "text-white/80 hover:text-white"}`}
+                  >
+                    Landscape deck
+                  </button>
+                </div>
+              )}
               <Button size="sm" onClick={(e) => { e.stopPropagation(); generatePdf(); }} disabled={generating} className="gap-2">
                 {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
                 Download PDF
@@ -643,10 +696,27 @@ export default function WorksheetBuilder() {
             </div>
           </div>
           <div className="flex-1 overflow-auto p-4 sm:p-6" onClick={(e) => e.stopPropagation()}>
-            <div className="mx-auto" style={{ width: "794px", maxWidth: "100%" }}>
-              <div ref={printRef} style={{ background: "#fff", padding: "24px", borderRadius: "6px" }}>
+            <div className="mx-auto" style={{ width: !isPledge && pdfLayout === "deck" ? `${DECK_SLIDE_W}px` : "794px", maxWidth: "100%" }}>
+              <div
+                ref={printRef}
+                style={{
+                  background: "#fff",
+                  padding: !isPledge && pdfLayout === "deck" ? 0 : "24px",
+                  borderRadius: "6px",
+                  overflow: "hidden",
+                }}
+              >
                 {isPledge ? (
                   <PledgeSheetPrintView values={values} />
+                ) : pdfLayout === "deck" ? (
+                  <WorksheetDeckPrintView
+                    title={meta.title}
+                    subtitle="My plan for the next five years — my goals, my strengths, how I'll find and win clients, and the standards I'm holding myself to."
+                    schema={schema}
+                    values={values}
+                    images={images}
+                    autofill={autofill}
+                  />
                 ) : (
                   <WorksheetPrintView
                     title={meta.title}
@@ -660,7 +730,8 @@ export default function WorksheetBuilder() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
 
       <div data-no-print className="flex flex-col gap-3 sm:flex-row">
