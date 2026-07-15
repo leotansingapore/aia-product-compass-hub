@@ -2,14 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipboardList, Film, GraduationCap, PlayCircle, Search, Sparkles } from "lucide-react";
 import {
-  CommandDialog,
-  CommandEmpty,
+  Command,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   getDaySummaries as getF60DaySummaries,
   prefetchDay as prefetchF60Day,
@@ -38,6 +38,22 @@ type SearchEntry = {
 
 const CMFAS_MODULE_IDS = ["onboarding", "m9", "m9a", "hi", "res5"] as const;
 
+// Deterministic scorer instead of cmdk's fuzzy default. The default's
+// scattered-letter matching ranked "The Lifeblood of Your Business /
+// Productivity Principles" above the literal "Business Plan" assignment for
+// the query "business plan". Rules here: exact phrase in the value wins,
+// phrase in keywords next, then all-tokens-present; anything else is hidden.
+function scoreEntry(value: string, search: string, keywords?: string[]): number {
+  const q = search.toLowerCase().trim();
+  if (!q) return 1;
+  const v = value.toLowerCase();
+  const kw = (keywords ?? []).join(" ").toLowerCase();
+  if (v.includes(q)) return 2;
+  if (kw.includes(q)) return 1.5;
+  const tokens = q.split(/\s+/);
+  return tokens.every((t) => v.includes(t) || kw.includes(t)) ? 1 : 0;
+}
+
 /**
  * Search across everything the learner can open right now: unlocked First 60
  * Days lessons and recaps, assignments, unlocked Product Mastery days, and
@@ -47,6 +63,7 @@ const CMFAS_MODULE_IDS = ["onboarding", "m9", "m9a", "hi", "res5"] as const;
  */
 export default function LearningSearch() {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const [assignments, setAssignments] = useState<Assignment[] | null>(null);
   const navigate = useNavigate();
   const { isUnlocked: isF60Unlocked } = useFirst60DaysProgress();
@@ -167,13 +184,35 @@ export default function LearningSearch() {
     [navigate],
   );
 
-  const groups: { heading: string; icon: typeof Search; entries: SearchEntry[] }[] = [
-    { heading: "Lessons — First 60 Days", icon: GraduationCap, entries: lessonEntries },
-    { heading: "Week Recaps", icon: Film, entries: recapEntries },
-    { heading: "Assignments", icon: ClipboardList, entries: assignmentEntries },
-    { heading: "Product Mastery", icon: Sparkles, entries: productMasteryEntries },
-    { heading: "CMFAS Exams", icon: PlayCircle, entries: cmfasEntries },
-  ];
+  const handleOpenChange = useCallback((next: boolean) => {
+    setOpen(next);
+    if (!next) setQuery("");
+  }, []);
+
+  // Filtering and ranking are done here, not by cmdk (shouldFilter={false}).
+  // cmdk's fuzzy scorer ranked scattered-letter matches above literal phrase
+  // matches, and its DOM re-sorting fought our group wrappers — computing the
+  // ordered result set in React keeps ranking deterministic.
+  const groups = useMemo(() => {
+    const defs: { heading: string; icon: typeof Search; entries: SearchEntry[] }[] = [
+      { heading: "Lessons — First 60 Days", icon: GraduationCap, entries: lessonEntries },
+      { heading: "Week Recaps", icon: Film, entries: recapEntries },
+      { heading: "Assignments", icon: ClipboardList, entries: assignmentEntries },
+      { heading: "Product Mastery", icon: Sparkles, entries: productMasteryEntries },
+      { heading: "CMFAS Exams", icon: PlayCircle, entries: cmfasEntries },
+    ];
+    if (!query.trim()) return defs.filter((g) => g.entries.length > 0);
+    return defs
+      .map((g) => {
+        const scored = g.entries
+          .map((entry) => ({ entry, score: scoreEntry(entry.value, query, entry.keywords) }))
+          .filter((s) => s.score > 0)
+          .sort((a, b) => b.score - a.score);
+        return { ...g, entries: scored.map((s) => s.entry), best: scored[0]?.score ?? 0 };
+      })
+      .filter((g) => g.entries.length > 0)
+      .sort((a, b) => (b.best ?? 0) - (a.best ?? 0));
+  }, [query, lessonEntries, recapEntries, assignmentEntries, productMasteryEntries, cmfasEntries]);
 
   return (
     <>
@@ -192,15 +231,24 @@ export default function LearningSearch() {
         </kbd>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search your unlocked lessons, assignments, anything…" />
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogContent className="overflow-hidden p-0 shadow-lg">
+          <Command
+            shouldFilter={false}
+            className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
+          >
+        <CommandInput
+          value={query}
+          onValueChange={setQuery}
+          placeholder="Search your unlocked lessons, assignments, anything…"
+        />
         <CommandList>
-          <CommandEmpty>
-            No matches in your unlocked content. Complete more days to unlock more lessons.
-          </CommandEmpty>
-          {groups
-            .filter((g) => g.entries.length > 0)
-            .map((g, i) => (
+          {groups.length === 0 && (
+            <p className="py-6 text-center text-sm text-muted-foreground">
+              No matches in your unlocked content. Complete more days to unlock more lessons.
+            </p>
+          )}
+          {groups.map((g, i) => (
               <div key={g.heading}>
                 {i > 0 && <CommandSeparator />}
                 <CommandGroup heading={g.heading}>
@@ -224,7 +272,9 @@ export default function LearningSearch() {
               </div>
             ))}
         </CommandList>
-      </CommandDialog>
+          </Command>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
