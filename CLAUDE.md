@@ -1,3 +1,14 @@
+## DATABASE WORKFLOW - DIRECT (Lovable retired 2026-07-19)
+
+**This repo's Supabase project is OWNED by us** (see `VITE_SUPABASE_URL` in `.env`; it is in Leo's Supabase org). Apply schema changes (tables, columns, RLS, functions, triggers, storage buckets) **DIRECTLY** - do NOT hand off to Lovable and do NOT keep a `SUPABASE.md` pending list.
+
+- Write the migration under `supabase/migrations/<UTC-timestamp>_<slug>.sql`, then apply it via the Supabase Management API (token at `~/.local/state/va-watchdog/token`, browser User-Agent to pass Cloudflare) or the supabase MCP, then commit.
+- Deploys are Vercel git-connected: `git push origin main` IS the deploy. There is no Lovable "publish" step.
+- If this repo is still edited in Lovable's visual editor, `git pull` before applying so direct + editor changes don't drift.
+- **This section supersedes any older "Lovable handles migrations / SUPABASE.md handoff" text below.**
+
+---
+
 # CLAUDE.md
 
 ---
