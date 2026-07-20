@@ -28,10 +28,10 @@ describe("TestimonialGenerator", () => {
     expect(screen.getByRole("heading", { name: /Testimonial Generator/i })).toBeInTheDocument();
     // A known starter statement is present as an editable input value.
     expect(
-      screen.getByDisplayValue(/Never pushy - I felt they were on my side/i),
+      screen.getByDisplayValue(/Professional and reliable from the first meeting/i),
     ).toBeInTheDocument();
-    // All 15 starters included by default.
-    expect(screen.getByText(/15 included/i)).toBeInTheDocument();
+    // All 16 starters included by default.
+    expect(screen.getByText(/16 included/i)).toBeInTheDocument();
   });
 
   it("adds a custom statement", () => {
@@ -40,14 +40,14 @@ describe("TestimonialGenerator", () => {
     fireEvent.change(input, { target: { value: "Made my parents feel at ease too." } });
     fireEvent.click(screen.getByRole("button", { name: /^Add$/i }));
     expect(screen.getByDisplayValue("Made my parents feel at ease too.")).toBeInTheDocument();
-    expect(screen.getByText(/16 included/i)).toBeInTheDocument();
+    expect(screen.getByText(/17 included/i)).toBeInTheDocument();
   });
 
   it("untick reduces the included count", () => {
     renderTool();
     const firstToggle = screen.getAllByLabelText("Include this statement")[0];
     fireEvent.click(firstToggle);
-    expect(screen.getByText(/14 included/i)).toBeInTheDocument();
+    expect(screen.getByText(/15 included/i)).toBeInTheDocument();
   });
 
   it("assembles a testimonial from picked statements in the preview", () => {
