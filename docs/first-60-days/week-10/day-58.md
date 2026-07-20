@@ -240,7 +240,7 @@ This is the highest-leverage pre-licence activity in the entire 60 days, and mos
 
 Even before your RNF clears, you can:
 
-1. **Pick 3-5 close friends from your Project 100.** Tell them honestly: *"I'm in training, and one of the best ways for me to get reps is to do a policy summary for someone whose policies I can actually see. Want me to do yours? Free, just send me whatever policy docs you've got."*
+1. **Pick 3-5 close friends from your Project 1000.** Tell them honestly: *"I'm in training, and one of the best ways for me to get reps is to do a policy summary for someone whose policies I can actually see. Want me to do yours? Free, just send me whatever policy docs you've got."*
 2. **Get hold of their policy documents.** They'll dig out PDFs, screenshots from the AIA+ app, or emailed renewal letters. Whatever they have.
 3. **Build the summary using the canonical template.** Fill in the table. Compute their gaps against the baseline (10x life, 5x major CI, 2x early CI, max-tier hospital, 60-70% disability income).
 4. **Walk them through it - no recommendations.** *"Here's what you've got. Here's where the gaps are. When I'm licensed in [month], we'll come back and look at how to close them."*

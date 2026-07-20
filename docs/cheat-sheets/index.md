@@ -26,7 +26,7 @@ For FCs in the FINternship before CMFAS exams. Mindset, math, productivity, fund
 | 4 | Productivity Principles | [Week 4](first-60-days/week-04.md) | 30-day pipeline rule, 3 prospecting buckets, 100->10->3->1 funnel, 4 business-generating activities, Covey matrix Q2-target |
 | 5 | Operating Rhythms & Daily Discipline | [Week 5](first-60-days/week-05.md) | Sun/daily/Fri rituals, Activities x Skills x Knowledge formula, QO x ASR x SUR x CR x LTV funnel math, remuneration model |
 | 6 | Financial Fundamentals | [Week 6](first-60-days/week-06.md) | Rule of 72 by rate, CPF (37%/23%, $6,800 ceiling, FRS/BRS/ERS), real-vs-nominal returns, 5 TVM error patterns |
-| 7 | The Approach & Digital Prospecting | [Week 7](first-60-days/week-07.md) | Project 100 funnel, 4-stage Social Media Journey, 5 silent questions, 7-touch follow-up, NSF + working-adult touchpoints |
+| 7 | The Approach & Digital Prospecting | [Week 7](first-60-days/week-07.md) | Project 1000 funnel, 4-stage Social Media Journey, 5 silent questions, 7-touch follow-up, NSF + working-adult touchpoints |
 | 8 | Fact Finding & Reading People | [Week 8](first-60-days/week-08.md) | 5 cushion phrases, Type 1/2/Uncertainty diagnostic, framework A/B/C matrix, 10 stock reflex objections, ABCD 4 Promises |
 | 9 | Uncovering Needs & Sales Concepts | [Week 9](first-60-days/week-09.md) | Full SPIN question stems, 10-second silence, 6 Golden Rules, CFR 3-section structure, Retirement CST + Risks CST |
 | 10 | Product Mastery & Graduation | [Week 10](first-60-days/week-10.md) | AIA product taxonomy (Wealth/Protection/Living Benefits), 10x/5x/$100K coverage benchmarks, 5 closing techniques, claims handling |

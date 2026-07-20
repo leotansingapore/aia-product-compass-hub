@@ -157,13 +157,13 @@ Repeated asks trigger the *pushy* filter. Repeated value drops trigger the *gene
 
 ---
 
-## Team operations — build Project 100
+## Team operations — build Project 1000
 
-The 6-step message above is the *how*. The list of names you send it to is **Project 100** — your formal warm-database build, which is this week's team deliverable.
+The 6-step message above is the *how*. The list of names you send it to is **Project 1000** — your formal warm-database build, which is this week's team deliverable.
 
-- **Download + duplicate [the Warm Database sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit).** Fill with every name you can remember — the goal is 100 names, not 20.
+- **Download + duplicate [the Warm Database sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit).** Fill with every name you can — mine every WhatsApp group chat (screenshot big member lists into ChatGPT to extract names). The goal is 1000 names, not 20.
 - **Focus on warm/semi-warm, not "hot".** Most of your business will come from **semi-warm** — people you haven't spoken to in years. Most untapped segment.
-- Watch [the Project 100 walkthrough Loom](https://www.loom.com/share/679b8b0aba404b0d80e8e446314ac51c).
+- Watch [the Project 1000 walkthrough Loom](https://www.loom.com/share/679b8b0aba404b0d80e8e446314ac51c).
 - Post upcoming friend meetings to the onboarding GC so the team can support on portfolio structure and reach-out angles.
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §3f.

@@ -122,7 +122,7 @@ Today marks 60 days.
 
 - **Mindset installed:** 4 high-income skills, growth mindset, purpose-driven approach.
 - **Knowledge foundation:** TVM, CPF, investments, inflation, Rule of 72.
-- **Prospecting system:** Project 100, daily non-negotiable, content rhythm.
+- **Prospecting system:** Project 1000, daily non-negotiable, content rhythm.
 - **Sales skill arc:** Approach -> SPIN -> CSTs -> concept selling -> closing.
 - **Product category mastery:** Investment-Linked, Whole Life, Endowment, Term, A&H, Disability, Universal Life, ILPs.
 - **Service discipline:** policy reviews, claims handling, annual reviews.
@@ -140,7 +140,7 @@ Rate yourself honestly (1-10) on each:
 | Product knowledge | |
 | Service orientation | |
 | Weekly rhythm adherence | |
-| Project 100 progress | |
+| Project 1000 progress | |
 
 Average: __/10.
 

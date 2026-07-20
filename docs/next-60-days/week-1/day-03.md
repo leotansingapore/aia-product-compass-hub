@@ -222,4 +222,4 @@ The diagnostic is almost always one of the three. Name which one. Then next week
 - Previous: [[day-02|Day 2 — The Activity Math]]
 - Next: [[day-04|Day 4 — Your Story (First Draft)]]
 - Week 1 overview: [[README|Week 1 — Reset & Activate]]
-- Cross-reference: [[../../first-60-days/week-5/day-27|First 60 Days D27 — Activity Scorecard]], [[../../first-60-days/week-7/day-39|First 60 Days D39 — Project 100]]
+- Cross-reference: [[../../first-60-days/week-5/day-27|First 60 Days D27 — Activity Scorecard]], [[../../first-60-days/week-7/day-39|First 60 Days D39 — Project 1000]]

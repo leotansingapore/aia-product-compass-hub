@@ -28,7 +28,7 @@ tags: [core-training, warm-market-flow, cheatsheet, canned-sales-track, cst]
 
 ## The 6-step warm-market outreach
 
-1. **List building** - dump your phone contacts, IG followers, school groups, ex-colleagues into a sheet. Target: 100-300 names. *Project 100* if you want the round number.
+1. **List building** - dump your phone contacts, IG followers, school groups, ex-colleagues, and every WhatsApp group chat into a sheet (screenshot big member lists into ChatGPT to extract names). Target: 1000 names. *Project 1000* - it's a volume game.
 2. **Tag by temperature** - hot / warm / semi-warm. Sort by how recently you spoke.
 3. **Open with a reason** - never *"want to meet up?"* with no anchor. Use the career update. *"Hey, just transitioned to financial advisory. Updating people in my network - mind if we catch up over coffee?"*
 4. **Pick the approach** - Method 1 (direct fact-find appointment) for warm + ready, Method 2 (warm-up first) for semi-warm or rebuilding.
@@ -185,7 +185,7 @@ For older or "I've forgotten what I have" prospects. SG Findex pulls policy data
 
 ## Numbers worth memorising
 
-- **Project 100:** target 100-300 names in your warm + semi-warm list
+- **Project 1000:** target 1000 names in your warm + semi-warm list (the bulk mined from your group chats)
 - **Warm-up to FF conversion:** ~1.5 in 3 warm-up sessions transition to a fact-find
 - **CST length:** 25 minutes flat, 95% memorisation accuracy
 - **CI coverage rule:** 100K base + 3-5x annual income

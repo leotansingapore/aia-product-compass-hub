@@ -214,16 +214,16 @@ export const learningTrack: TrackPhase[] = [
     items: [
       {
         id: "p3-1",
-        title: "Project 100 — Warm Market",
-        description: "Complete Project 100 with the Intern's warm market. Identify and list 100 contacts to approach.",
+        title: "Project 1000 — Warm Market",
+        description: "Complete Project 1000 with the Intern's warm market. Identify and list 1000 contacts to approach - mine every WhatsApp group chat you're in.",
         objectives: [
-          "Identify your personal warm market of 100+ people",
+          "Identify your personal warm market of 1000+ people",
           "Categorize contacts into hot, warm, and luke-warm tiers",
           "Begin systematic outreach",
         ],
         actionItems: [
-          "Complete filling in Project 100 list",
-          "Categorize all 100 contacts by tier",
+          "Complete filling in Project 1000 list",
+          "Categorize all contacts by tier",
           "Begin approaching contacts systematically",
         ],
         defaultContent: [

@@ -26,7 +26,7 @@ You need to know the various product flows on our [Miro board](https://miro.com/
 
 1. **Inform Aira** to create a policy summary template for you in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg)
 2. **[Learn how to create a policy summary](https://nsgukkz32942.sg.larksuite.com/wiki/SyDgwo8z1iPMgukezzolxHZ2gOP)** from the tutorials
-3. **Reach out to someone** in your semi-warm/warm market (from Project 100) to create a policy summary for them
+3. **Reach out to someone** in your semi-warm/warm market (from Project 1000) to create a policy summary for them
 4. **Send it to your onboarding group chat** for review — we can strategise how best to propose a portfolio
 
 ### Familiarity with Product Presenters

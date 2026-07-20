@@ -9,19 +9,21 @@ tags: [first-60-days, week-7, cheatsheet, approach, project-100, social-media, t
 
 # Week 7: The Approach & Digital Prospecting - Cheat Sheet
 
-> **The one idea:** Project 100 is the input; the 4-stage Social Media Journey is the lane; the 7-touch follow-up is the engine. Skip any of the three and the pipeline starves by Month 4.
+> **The one idea:** Project 1000 is the input; the 4-stage Social Media Journey is the lane; the 7-touch follow-up is the engine. Skip any of the three and the pipeline starves by Month 4.
 
-## Project 100 - the conversion funnel
+## Project 1000 - the conversion funnel
 
-| Stage | Number | Note |
+Build the list as big as you can (target **1000** - mine every group chat, ChatGPT-extract the big ones). The funnel converts at a roughly fixed rate **per 100 names worked**, so more names means proportionally more clients.
+
+| Stage (per 100 names worked) | Number | Note |
 |---|---:|---|
-| Names on list | 100 | Goldilocks - under 50 starves, over 200 unmanageable |
+| Names worked | 100 | A 1000-name list is 10 rounds of this |
 | Reached | 60-70 | Phone or message back |
 | Market surveys completed | 30-40 | Agree to a conversation |
 | Fact-finds | 20 | Real meeting booked |
 | Closed clients | 8-15 | ~$1K FYC each, ~$25K CLV each |
 
-**Priority quota:** <= 25 Hot, >= 40 Semi-Warm, rest Cold / Referred. Most new FCs underestimate their pool 5-10x. Scroll full WhatsApp + LinkedIn + Instagram contacts - anyone with shared memory belongs on the list.
+**Priority quota:** >= 100 Hot/warm, >= 500 Semi-Warm, rest Cold / Referred. Most new FCs underestimate their pool 5-10x. Scroll full WhatsApp + LinkedIn + Instagram contacts and every group chat - anyone with shared memory belongs on the list.
 
 **Maintenance:** add 5 names/week. Re-sort monthly. Reactivate "not now" quarterly. Archive closed to a separate list.
 
@@ -107,10 +109,10 @@ In the first meeting, extract:
 |---|---:|---:|
 | Dials / touches | 20 | 100-140 |
 | Appointments from dials | 1 | 5-7 |
-| New names added to Project 100 | - | 5 |
+| New names added to Project 1000 | - | 5 |
 | Engagement block (commenting on others) | 15 min | - |
 | Content post (Sun ideation / Tue draft / Thu publish) | - | 1 |
-| Project 100 review | - | Sunday evening |
+| Project 1000 review | - | Sunday evening |
 
 End-to-end math: ~100 "not nows" -> 1 closed sale.
 
@@ -131,7 +133,7 @@ End-to-end math: ~100 "not nows" -> 1 closed sale.
 - **Building the list of 100 then not calling.** The list is not the problem - the calling is. Day 26's 10X Rule + Day 19's counting-rejections fix it.
 - **Posting and ghosting.** Check within 2 hours, reply to all early comments. Otherwise engagement is cold.
 - **Sending a calendar link in the first DM reply.** Converts at 1/5x the rate of "answer briefly + ask a genuine follow-up question." Earn the call.
-- **Treating Project 100 as a one-time build.** It's a living document. Add 5 weekly, re-sort monthly, reactivate quarterly.
+- **Treating Project 1000 as a one-time build.** It's a living document. Add 5 weekly, re-sort monthly, reactivate quarterly.
 - **Closing a "no" with "ok, no worries."** Reads as door shut. Use the open-door close - name a future scenario explicitly.
 
 ## Taxi Cab Theory - the mental model behind nurture
@@ -144,4 +146,4 @@ Write that on your monitor.
 
 ## Sources
 
-[[../../first-60-days/week-7/day-37|Day 37 - The Approach: Cold, Warm, Follow-Up & Nurture]] · [[../../first-60-days/week-7/day-38|Day 38 - Natural Market vs Referred Leads]] · [[../../first-60-days/week-7/day-39|Day 39 - Project 100 & Marketing Kit]] · [[../../first-60-days/week-7/day-40|Day 40 - Digital Influence: Setting Up Your Presence]] · [[../../first-60-days/week-7/day-41|Day 41 - Digital Influence: Content & Engagement]] · [[../../first-60-days/week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]] · [[../../first-60-days/warm-market-funnel|Warm Market Funnel]]
+[[../../first-60-days/week-7/day-37|Day 37 - The Approach: Cold, Warm, Follow-Up & Nurture]] · [[../../first-60-days/week-7/day-38|Day 38 - Natural Market vs Referred Leads]] · [[../../first-60-days/week-7/day-39|Day 39 - Project 1000 & Marketing Kit]] · [[../../first-60-days/week-7/day-40|Day 40 - Digital Influence: Setting Up Your Presence]] · [[../../first-60-days/week-7/day-41|Day 41 - Digital Influence: Content & Engagement]] · [[../../first-60-days/week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]] · [[../../first-60-days/warm-market-funnel|Warm Market Funnel]]

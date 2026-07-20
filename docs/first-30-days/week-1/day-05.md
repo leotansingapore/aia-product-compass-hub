@@ -1,14 +1,14 @@
 ---
 week: 1
 day: 5
-title: "Pledge Sheet & Project 100"
+title: "Pledge Sheet & Project 1000"
 tags: [post-rnf, week-1, prospecting, warm-market]
 duration_minutes: 45
 ---
 
-# Pledge Sheet & Project 100
+# Pledge Sheet & Project 1000
 
-Today you'll complete your pledge sheet (your personal commitment document) and start Project 100 — building your warm prospect database and beginning outreach.
+Today you'll complete your pledge sheet (your personal commitment document) and start Project 1000 — building your warm prospect database and beginning outreach.
 
 ---
 
@@ -24,7 +24,7 @@ Download the [Pledge Sheet template](https://nsgukkz32942.sg.larksuite.com/wiki/
 
 ---
 
-## Project 100 & Warm Prospecting
+## Project 1000 & Warm Prospecting
 
 [loom video](https://www.loom.com/share/679b8b0aba404b0d80e8e446314ac51c)
 

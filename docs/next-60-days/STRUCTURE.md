@@ -26,7 +26,7 @@ their first case. **This module is the first 60 days of their real business.**
 - [[_source-holos-transcripts|HOLOS YouTube transcripts (20 sessions)]] — primary curriculum source.
 - [[_source-holos-decks|HOLOS slide decks (14 decks)]] — structural backbone for each HOLOS lesson.
 - [[_source-articles|Source articles (15 pieces)]] — Leo-authored + ingested third-party frameworks covering warm-market scripts, prospecting taxonomy, database segmentation + revenue math, content creation, IG profile/stories, DM funnel, texting EQ, cold prospecting, social-proof closing, full sales-prospecting-referral training workbook.
-- Pulled selectively from `../first-60-days/` for continuity (Project 100, DISC basics, Closing).
+- Pulled selectively from `../first-60-days/` for continuity (Project 1000, DISC basics, Closing).
 
 ---
 
@@ -379,9 +379,9 @@ Known cross-references where a next-60-days day materially extends a first-60-da
 | N60 Day | N60 Topic | `see_also:` wikilinks |
 |---:|---|---|
 | D2 | Activity math | `[[../../first-60-days/week-4/day-19]]` (Prospecting — Lifeblood), `[[../../first-60-days/week-5/day-27]]` (Activity Scorecard) |
-| D3 | 90-Day Scorecard | `[[../../first-60-days/week-5/day-27]]` (Activity Scorecard), `[[../../first-60-days/week-7/day-39]]` (Project 100) |
+| D3 | 90-Day Scorecard | `[[../../first-60-days/week-5/day-27]]` (Activity Scorecard), `[[../../first-60-days/week-7/day-39]]` (Project 1000) |
 | D9 | Positioning | `[[../../first-60-days/week-8/day-43]]` (Scripting Your Approach) |
-| D19 | Prospecting mindset (master map) | `[[../../first-60-days/week-4/day-19]]` (Prospecting — Lifeblood), `[[../../first-60-days/week-7/day-39]]` (Project 100) |
+| D19 | Prospecting mindset (master map) | `[[../../first-60-days/week-4/day-19]]` (Prospecting — Lifeblood), `[[../../first-60-days/week-7/day-39]]` (Project 1000) |
 | D22 | Cold prospecting | `[[../../first-60-days/week-7/day-40]]` (Digital Influence setup), `[[../../first-60-days/week-7/day-42]]` (Lead-Gen Playbook) |
 | D31 | DISC + 5-min speed-read | `[[../../first-60-days/week-8/day-46]]` (Identifying DISC) — **prerequisite** |
 | D32 | D profile + tailored pitch + Assumptive close | `[[../../first-60-days/week-8/day-46]]` |
@@ -422,7 +422,7 @@ Source: [[_source-articles/onboarding-steps-first-30-days]] — ingested from `a
 
 | Onboarding section | Existing article(s) | Action |
 |---|---|---|
-| §3f Project 100 + Warm Prospecting (warm database, semi-warm focus, 3-year reality) | `warm-prospecting-methodology`, `warm-market-success`, `reaching-out-without-feeling-salesy` | **No cleanup needed.** The onboarding article references these via inline Lark links and adds a Loom walkthrough; it is a pointer, not a full re-write. |
+| §3f Project 1000 + Warm Prospecting (warm database, semi-warm focus, 3-year reality) | `warm-prospecting-methodology`, `warm-market-success`, `reaching-out-without-feeling-salesy` | **No cleanup needed.** The onboarding article references these via inline Lark links and adds a Loom walkthrough; it is a pointer, not a full re-write. |
 | §3f Texting EQ reference | `texting-eq-warm-client` | The onboarding article links out to the same Wilfred/AWM Texting EQ doc. The full treatment already lives in the `_source-articles/texting-eq-warm-client` file (used in D16, D17, D20). **No cleanup.** |
 | §3f Market-survey script reference | `market-survey-warm-market` | Onboarding article points at the Lark script; the `_source-articles` version is the ingested markdown. **No cleanup** — they're the same source, stored two ways. |
 
@@ -437,7 +437,7 @@ Source: [[_source-articles/onboarding-steps-first-30-days]] — ingested from `a
 | D3 (90-Day Scorecard) | §3a Tech Stack Access, §3b Business Plan | Scorecard anchors the sales KPIs; the operational checklist anchors the tooling + written plan. |
 | D4 (Your Story) | §3c Vision Board, §3d/e Pledge Sheet | Parallel motivation-artefact homework. |
 | D15 (Digital Pipeline Hygiene) | §4c Marketing Kits | Asset-provisioning side of pipeline hygiene. |
-| D20 (Reaching Out Without Feeling Salesy) | §3f Project 100 | Reinforce the warm-database build. |
+| D20 (Reaching Out Without Feeling Salesy) | §3f Project 1000 | Reinforce the warm-database build. |
 | D22 (Cold Prospecting + ABCD) | §4b Prospecting Daily (2 phones, WhatsApp Business, SMA) | Infrastructure setup gate before cold volume. |
 | D23 (Pipeline Board) | §4b Prospecting Daily (Activity Tracker) | Surface the team's tracker URL. |
 | D47 (Analyze Products + Craft Pitch) | §4a Familiarity — product presenters + decks | Hand over the specific AIA presenter links + 4 core decks. |

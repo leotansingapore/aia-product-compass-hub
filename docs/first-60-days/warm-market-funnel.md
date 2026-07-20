@@ -1,6 +1,6 @@
 ---
 title: "The Warm Market Funnel — From Instastory to Business Appointment"
-purpose: "Canonical reference for the social-first warm prospecting flow. One source of truth — referenced from Day 37 (The Approach), Day 39 (Project 100), and Day 43 (Warm Market Survey)."
+purpose: "Canonical reference for the social-first warm prospecting flow. One source of truth — referenced from Day 37 (The Approach), Day 39 (Project 1000), and Day 43 (Warm Market Survey)."
 duration_minutes: 15
 audience: pre-rnf, post-rnf
 tags: [warm-market, prospecting, funnel, social-first, instastory]
@@ -10,7 +10,7 @@ tags: [warm-market, prospecting, funnel, social-first, instastory]
 
 > **The one idea:** A warm prospect goes from cold-passive social touchpoint to booked business appointment in 3-4 weeks if you run the funnel deliberately. Each step has a specific lag time, a specific move, and a specific fallback if the prospect goes quiet. Skip a step and you'll either feel pushy (jumping ahead) or invisible (drifting back).
 
-This doc is the canonical reference. The full social-to-appointment flow lives here so we can keep one source of truth instead of duplicating script-text into every day file. Day 37 (The Approach), Day 39 (Project 100), and Day 43 (Warm Market Survey) all link back to this page.
+This doc is the canonical reference. The full social-to-appointment flow lives here so we can keep one source of truth instead of duplicating script-text into every day file. Day 37 (The Approach), Day 39 (Project 1000), and Day 43 (Warm Market Survey) all link back to this page.
 
 ---
 
@@ -28,7 +28,7 @@ End-to-end: **3-4 weeks** from passive story tap to booked business appointment.
 
 The funnel starts before any conversation. **Passive presence creates active opportunities.** Two surfaces matter:
 
-1. **Reply to their stories.** Not every story; the ones where you have a genuine reaction. A travel post -> "where was this taken? looks unreal." A food post -> "is this the [restaurant]? been meaning to go." Two stories a week from your most relevant Project 100 contacts is enough.
+1. **Reply to their stories.** Not every story; the ones where you have a genuine reaction. A travel post -> "where was this taken? looks unreal." A food post -> "is this the [restaurant]? been meaning to go." Two stories a week from your most relevant Project 1000 contacts is enough.
 2. **Post stories yourself that invite reply.** "Tell me your favourite breakfast spot" beats "look at my breakfast." Open hooks invite people to reply. Replies become the conversation in Step 2.
 
 **The principle:** the people who pick up your call in Step 4 are the ones who already feel like you've been around. Instastory is the cheap, ambient way to be around without intruding.
@@ -182,7 +182,7 @@ This branch only fires when the casual meet went deep enough that the prospect *
 
 - **Not for cold leads.** This works because there's a pre-existing thread - mutual following on socials, an old friendship, a former classmate. For genuinely cold names, run [Day 43's pinpoint cold-call script](week-8/day-43.md#the-pinpoint-driven-cold-call-script-the-one-that-lifts-conversion-10x).
 - **Not the only warm-market path.** The Day 43 Market Survey is phone-first; this funnel is social-first. Both end at the same 30-min appointment. Choose by the contact's preferred channel and how much pre-existing trust there is.
-- **Not a script to run on every contact.** Reserve for the top 30-50 names of your Project 100 - the ones where the relationship genuinely warrants this much investment.
+- **Not a script to run on every contact.** Reserve for the top 30-50 names of your Project 1000 - the ones where the relationship genuinely warrants this much investment.
 
 ---
 
@@ -192,7 +192,7 @@ This branch only fires when the casual meet went deep enough that the prospect *
 |---|---|---|
 | [Day 19 - Prospecting: The Lifeblood](week-4/day-19.md) | Why prospecting is non-negotiable | Sets up *why* the funnel needs to run consistently, not in bursts |
 | [Day 37 - The Approach](week-7/day-37.md) | Cold / warm / follow-up / nurture, big-picture | This funnel is the warm-social-first variant |
-| [Day 39 - Project 100](week-7/day-39.md) | Build the list of 100 names | Project 100 is the input list this funnel runs against |
+| [Day 39 - Project 1000](week-7/day-39.md) | Build the list of 1000 names | Project 1000 is the input list this funnel runs against |
 | [Day 43 - Warm Market Survey & Cold Calls](week-8/day-43.md) | Phone-first warm script + cold-call flow | Different doorway to the same destination - phone vs social |
 | [Day 44 - Objection Handling](week-8/day-44.md) | What to say when they push back | Use the AQR pattern (Acknowledge -> Question -> Reframe) inside Step 4 if they hesitate |
 | [Day 45 - Storytelling](week-8/day-45.md) | The 6P story | Use a 6P story inside Step 7's FORM discovery to surface emotional weight |
@@ -202,7 +202,7 @@ This branch only fires when the casual meet went deep enough that the prospect *
 
 ## Practice ladder
 
-1. **Today:** pick 5 names from your Project 100. Look at their last 3 Instastories. Reply to one each. *(Step 1, ambient)*
+1. **Today:** pick 5 names from your Project 1000. Look at their last 3 Instastories. Reply to one each. *(Step 1, ambient)*
 2. **This week:** run Steps 2 and 3 with at least 2 of them - get to a personal conversation.
 3. **Next week:** run Step 4 with the one most likely to say yes. Even if it's a soft no, run Step 5.
 4. **In two weeks:** do the casual meet-up with anyone who said yes. **Don't pitch.** Run FORM.

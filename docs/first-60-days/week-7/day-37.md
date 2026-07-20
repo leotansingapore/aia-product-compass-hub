@@ -25,7 +25,7 @@ By the end of today you should be able to:
 
 > **Why no referrals lesson today:** before RNF you don't have clients yet, so referred prospects aren't a working channel for you. Referral-asking, the FACT method, the 4 angles, intro scripts and the borrowed-trust window are all covered properly in [[../../next-60-days/week-5/README|Next 60 Days - Week 5: Referrals From Day One]] once you're licensed and have closed first cases.
 
-> **For the social-first warm path:** the full 10-step funnel (Instastory -> Casual Meet -> 2-Liner Hook -> Business Appointment) lives in the canonical [Warm Market Funnel](../warm-market-funnel.md) reference. Use that doc when the relationship is genuinely warm and the contact is a Project 100 name; use the cold-call flow on Day 43 for everyone else.
+> **For the social-first warm path:** the full 10-step funnel (Instastory -> Casual Meet -> 2-Liner Hook -> Business Appointment) lives in the canonical [Warm Market Funnel](../warm-market-funnel.md) reference. Use that doc when the relationship is genuinely warm and the contact is a Project 1000 name; use the cold-call flow on Day 43 for everyone else.
 
 ---
 
@@ -118,9 +118,9 @@ The warm market has three concentric rings, and the real career lives in the mid
 
 > **The bigger picture:** the #1 reason warm-market FCs wash out isn't product knowledge — it's failing to consistently work the database over the *three years* it actually takes. The lukewarm ring (~66% of a typical 500-contact network) is exactly where most give up, and exactly where the career lives. The table above is the *who*; this is the *why it's worth the grind*.
 
-**Cast wide before you cast deep.** A practical test: scroll your full WhatsApp contact list, your full LinkedIn connections, and your full Instagram following list - all of them, not the favourites tab. Anyone you can place a memory to (their wedding, a project at work, a class in school, a holiday) belongs on the Project 100 list. **Most new FCs underestimate this number by 5-10x.** They count maybe 30 names; their actual reachable warm pool is closer to 300.
+**Cast wide before you cast deep.** A practical test: scroll your full WhatsApp contact list, your full LinkedIn connections, and your full Instagram following list - all of them, not the favourites tab. Anyone you can place a memory to (their wedding, a project at work, a class in school, a holiday) belongs on the Project 1000 list. **Most new FCs underestimate this number by 5-10x.** They count maybe 30 names; their actual reachable warm pool runs into the hundreds - and past a thousand once you add in every WhatsApp group chat you sit in.
 
-The Day 39 - Project 100 page treats this in full, with the priority quota (<=25 Hot, >=40 Semi-Warm, rest cold/referred) and the mining technique for finding the missing semi-warm names. Skim it before you write your list, not after. See [[day-39|Day 39 - Project 100]].
+The Day 39 - Project 1000 page treats this in full, with the priority quota (at least 100 Hot/warm, 500+ Semi-Warm, the rest cold/referred) and the mining technique - including pulling names out of your group chats with ChatGPT - for finding the missing semi-warm names. Skim it before you write your list, not after. See [[day-39|Day 39 - Project 1000]].
 
 > **Worth saying twice:** the friend you haven't spoken to in 7 years is more valuable than the cousin you message every day. The cousin will say yes once. The drifted friend has untouched relationship equity, no other FC has reconnected with them yet, and the reconnect itself is a gift to both sides.
 
@@ -470,7 +470,7 @@ Do all four before Day 38.
 
 A low-pressure, text-first warm opener that uses a useful resource as the bridge to a business appointment. Sits to the left of the cold-call script - lighter, slower, and built for contacts where a phone call would feel heavy but a text feels honest.
 
-**Use this when** you've identified a warm contact (someone from your Project 100 list or a friend you haven't spoken business with yet) and want a soft opener that doesn't feel like the first move toward a sale.
+**Use this when** you've identified a warm contact (someone from your Project 1000 list or a friend you haven't spoken business with yet) and want a soft opener that doesn't feel like the first move toward a sale.
 
 ### The flow
 

@@ -6,7 +6,7 @@
 - [Day 2](/learning-track/first-30-days/day/2) — Learned EPS scheme, income stacking, and new consultant challenges
 - [Day 3](/learning-track/first-30-days/day/3) — Set up Lark, task management, and CRM pipeline
 - [Day 4](/learning-track/first-30-days/day/4) — Created business plan and vision board
-- [Day 5](/learning-track/first-30-days/day/5) — Completed pledge sheet and started Project 100 warm prospecting
+- [Day 5](/learning-track/first-30-days/day/5) — Completed pledge sheet and started Project 1000 warm prospecting
 - [Day 6](/learning-track/first-30-days/day/6) — Began daily Familiarity + Prospecting routine and set up marketing kits
 
 ## Key takeaways

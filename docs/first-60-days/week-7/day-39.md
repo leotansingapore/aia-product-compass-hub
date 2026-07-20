@@ -1,7 +1,7 @@
 ---
 week: 7
 day: 39
-title: "Building the Prospect List - Project 100"
+title: "Building the Prospect List - Project 1000"
 primary_source: internal-reference
 primary_slides: "n/a"
 supporting_sources:
@@ -11,42 +11,41 @@ duration_minutes: 30
 tags: [first-60-days, week-7, skills, touchpoints]
 ---
 
-# Day 39 - Building the Prospect List: Project 100
+# Day 39 - Building the Prospect List: Project 1000
 
-> **The one idea for today:** Your prospect list is the single most valuable asset in your new business. A disciplined list of 100 names, worked systematically, produces more business than a chaotic pile of 500 half-remembered contacts.
+> **The one idea for today:** Your prospect list is the single most valuable asset in your new business, and this is a volume game - the more names on it, the more business it produces. Aim for **1000**. You already have them: the WhatsApp group chats you sit in hold hundreds of names you'd never list from memory. Mine every one, cast as wide as you can, then work the list systematically.
 
 ## What you'll walk away with
 
 By the end of today you should be able to:
 
-1. **Build** your first Project 100 list - names, context, priority.
+1. **Build** your first Project 1000 list - names, context, priority.
 2. **Segment** prospects into the right buckets for the right activity.
 3. **Maintain** the list as a living asset, not a one-time exercise.
 
-> **What you do with the list:** Project 100 is the *input* to a deliberate funnel - not just names to call randomly. The canonical 10-step flow from passive Instastory engagement to booked business appointment lives in [The Warm Market Funnel](../warm-market-funnel.md). Build the list today; pick the top 30 contacts to run through the funnel this quarter.
+> **What you do with the list:** Project 1000 is the *input* to a deliberate funnel - not just names to call randomly. The canonical 10-step flow from passive Instastory engagement to booked business appointment lives in [The Warm Market Funnel](../warm-market-funnel.md). Build the list today; pick the top 30 contacts to run through the funnel this quarter.
 
 > [!important] **Today's work submits as Assignment 2.**
-> Today's lesson is the input to **[Assignment 2 - Contact List + Personal Outreach Playbook](../assignments/assignment-02.md)**. After reading this page, head over and complete the assignment - the 100-name list, the priority quota, the per-contact context columns, and the customised opener / objection / follow-up scripts all roll up there. Day 39 explains *what* and *why*; the assignment is *where you do it*.
+> Today's lesson is the input to **[Assignment 2 - Contact List + Personal Outreach Playbook](../assignments/assignment-02.md)**. After reading this page, head over and complete the assignment - the 1000-name list, the priority quota, the per-contact context columns, and the customised opener / objection / follow-up scripts all roll up there. Day 39 explains *what* and *why*; the assignment is *where you do it*.
 >
 > **Tool:** [Outreach Builder](/learning-track/pre-rnf/assignments/outreach-playbook/tool) drafts the first messages automatically once your list is in. Full tool list at [/tools](/tools).
 
 ---
 
-## 1. What is Project 100?
+## 1. What is Project 1000?
 
-**Project 100:** the structured process of identifying **100 warm-market names** and systematically working through them in your first 3-6 months as an FC.
+**Project 1000:** the structured process of identifying **1000 warm-market names** and systematically working through them from the day you join.
 
 The target:
-- **100 names** in the initial list.
-- **30-50 market surveys** completed from those 100 names.
-- **20 Fact-Find interviews** from the market surveys.
-- **8-15 closed clients** from the fact-finds.
+- **1000 names** in the list - built wide, sorted by temperature.
+- For **every 100 names you actively work**: 30-50 market surveys, 20 fact-finds, 8-15 closed clients.
+- Stack that across a 1000-name list and the lifetime maths is enormous - that's the whole point of going big.
 
-**Why 100?** It's the sweet spot. Under 50 is too few to sustain a pipeline. Over 200 is unmanageable and mentally exhausting. 100 is the Goldilocks number.
+**Why 1000, not 100?** Because it's a volume game. The old advice capped lists at ~100 - not because 100 was ideal, but because building and tracking more was painful by hand. Two things killed that ceiling: you can pull names out of your group chats in bulk (screenshot the member list into ChatGPT, paste into your sheet), and you can automate every follow-up (recurring Google Calendar touchpoints). The constraint is gone. More names means more shots, means more business - so you go as wide as you can.
 
 ## 1a. Build it before RNF - the unguarded window
 
-Project 100 is meant to start the **day you join**, not the day you pass M9. The pre-RNF window is the most undervalued asset in this entire programme, for a simple reason:
+Project 1000 is meant to start the **day you join**, not the day you pass M9. The pre-RNF window is the most undervalued asset in this entire programme, for a simple reason:
 
 **Before licensing, you can honestly say "I can't sell you anything anyway."**
 
@@ -63,7 +62,7 @@ This works for two reasons that disappear the moment you're licensed:
 
 ### What this looks like by license day
 
-A properly-worked pre-licensing window - say 6-8 weeks of market-survey conversations with 30-50 people from your Project 100 - leaves you with:
+A properly-worked pre-licensing window - say 6-8 weeks of market-survey conversations with 30-50 people from your Project 1000 - leaves you with:
 
 - **10-20 prospects who already know you and your "why"**, and have been told you'll be licensed in a few weeks.
 - A nurture list with real context - kids, mortgage, parents' health, retirement worry - that you couldn't have extracted in a cold sales meeting.
@@ -91,34 +90,39 @@ Before you start listing names, understand the three rings your contacts sit in.
 | **Semi-Warm** | Friends, ex-colleagues, relatives you see sometimes, old classmates you message once a year | This is **where most of your career lives**. Largest ring, lowest competition, real relationship equity. |
 | **Cold** | Strangers from ads, roadshows, cold calls, referrals | Lower conversion, transactional - but infinite supply. Day 40-42 territory. |
 
-**The mistake:** most people look for names in the Hot ring only, then stall when it's depleted. The actual mining work happens in Semi-Warm - and the whole reason Project 100 is set at *100* is to force you out of Hot and into the Semi-Warm ring where the long-term pipeline lives.
+**The mistake:** most people look for names in the Hot ring only, then stall when it's depleted. The actual mining work happens in Semi-Warm - and you can't get anywhere near 1000 from Hot alone. The target forces you out of your closest circle and into the Semi-Warm ring - your group chats, old classmates, ex-colleagues - where the real volume and the long-term pipeline live.
 
-**Rule of thumb for your Project 100:** <=25 Hot, >=40 Semi-Warm, rest Cold leads or referrals.
+**Rule of thumb for your Project 1000:** the bulk is Semi-Warm - aim for at least **100 Hot / warm** (the ones you'd genuinely meet) and **500+ Semi-Warm**, with the rest cold leads or referrals. Most of the semi-warm haul comes straight out of your group chats.
 
-## 2. How to build your 100
+## 2. How to build your 1000
 
-Start with a blank spreadsheet. Use these 10 categories to get you to 100.
+Your biggest source is already on your phone: **the WhatsApp group chats you're in.** School and uni cohorts, every past and present work group, condo and estate groups, CCA / club / hobby / sport groups, church and religious groups, alumni groups, event groups. Each one is a room full of names you'd never recall from memory.
 
-| Category | Typical # of names |
+Go group by group and add every name you can place. **If a group is too big to type out, screenshot the member list, drop the screenshots into ChatGPT, and ask it to pull the names into a clean list you can paste straight into your sheet.** A few screenshots of a 200-person group become a ready-made block of names in seconds - that's how you get to 1000 without grinding.
+
+Then top it up from everywhere else. These sources comfortably clear 1000 between them:
+
+| Source | Typical # of names |
 |---|---:|
-| Immediate family + extended family | 10-15 |
-| Close friends (WhatsApp contacts you talk to weekly) | 10-20 |
-| Best friends from school (primary, secondary, uni) | 15-25 |
-| Former colleagues (present + past employers) | 10-15 |
-| University / CCA group members | 10-15 |
-| Neighbours, church / temple / mosque members | 5-10 |
-| Professional connections (clients, vendors, partners from past roles) | 5-10 |
-| Social connections (gym, hobbies, sports teams) | 5-10 |
-| Friends-of-friends you've met a few times | 10-15 |
-| People you've met at events in the past 2 years | 5-10 |
+| WhatsApp / Telegram group chats (all of them) | 300-600 |
+| Immediate + extended family | 10-15 |
+| Close friends (people you talk to weekly) | 10-20 |
+| School friends (primary, secondary, uni) | 30-60 |
+| Former colleagues (present + past employers) | 20-40 |
+| University / CCA / club group members | 20-40 |
+| Neighbours, church / temple / mosque members | 10-20 |
+| Professional connections (clients, vendors, partners) | 10-20 |
+| Social connections (gym, hobbies, sports teams) | 10-20 |
+| IG followers / LinkedIn connections you can place | 50-150 |
+| Friends-of-friends and people met at events | 20-40 |
 
-**Total:** comfortably 100+.
+**Total:** comfortably 1000+.
 
-**The trick:** don't stop at your "usual suspects." Many new FCs only list the top 20 they know well, then get stuck. **Go wide.** Old classmates you haven't spoken to in 5 years count. Former colleagues count. That person you met at a wedding and exchanged numbers with counts.
+**The trick:** don't stop at your "usual suspects." Going wide is the whole game. Old classmates you haven't spoken to in 5 years count. Former colleagues count. Everyone in that condo group counts. The more you add, the more the funnel below pays out.
 
 ## 3. The spreadsheet columns
 
-A functional Project 100 list has these columns:
+A functional Project 1000 list has these columns:
 
 | # | Name | Relationship | Last contact | Phone | Priority (A/B/C) | Status | Notes |
 |---|---|---|---|---|---|---|---|
@@ -143,23 +147,22 @@ A functional Project 100 list has these columns:
 - **Met, not proceeding.**
 - **Reconnecting (warming up for later).**
 
-## 4. The 100 to 30 funnel
+## 4. The conversion funnel - and why volume wins
 
-Not everyone on your list of 100 will become a prospect. That's expected.
+Not everyone you list becomes a prospect. That's expected. The funnel has a stable shape, so you work it by feeding more names in at the top.
 
-**Expected conversion funnel:**
+**For every 100 names you actively work:**
 
-- **100 names**, then reach out.
 - **60-70 reach** - actually get on the phone or message back.
 - **30-40 market surveys completed** - agree to a quick conversation.
 - **20 fact-finds** - agree to a real meeting.
 - **8-15 closes** - become clients.
 
-**The math:** ~8-15 clients from 100 names is a good Year-1 benchmark. **Each client = $1,000+ FYC + CLV that compounds.**
+**The math:** ~8-15 clients for every 100 names worked, each worth **$1,000+ FYC + lifetime value that compounds.** Now multiply that across a 1000-name list. That is the entire argument for going big: the conversion rate is roughly fixed, so the one lever you fully control is how many names you put in. More names, more clients. Full stop.
 
-**Don't be discouraged by the drop-off.** It's the normal shape. The point of the 100 is to get *enough at the top* so the 8-15 at the bottom actually materialise.
+**Don't be discouraged by the drop-off.** It's the normal shape at every stage. Volume at the top is what makes the closes at the bottom materialise.
 
-![The Project 100 prospecting funnel narrowing from 100 names, to 60-70 reached, 30-40 market surveys, 20 fact-finds, and 8-15 closes.](/first-60-days/images/day39-project-100-funnel.webp)
+![The prospecting funnel for every 100 names worked: narrowing from 100 names, to 60-70 reached, 30-40 market surveys, 20 fact-finds, and 8-15 closes - multiply this across your 1000-name list.](/first-60-days/images/day39-project-100-funnel.webp)
 
 ## 5. The natural market profile check
 
@@ -179,38 +182,38 @@ Not all warm-market contacts are equally valuable. Use this quick scoring to pri
 
 ## 6. Keeping the list alive
 
-The biggest mistake new FCs make: **treating Project 100 as a one-time exercise.**
+The biggest mistake new FCs make: **treating Project 1000 as a one-time exercise.**
 
 You build the list in Week 1. By Week 10, you've contacted everyone. What now?
 
-**The answer:** Project 100 is a **living document.** It should be:
+**The answer:** Project 1000 is a **living document.** It should be:
 
 - **Added to weekly.** Every new person you meet gets added. Target: 5 new names per week.
 - **Re-sorted monthly.** Warmth changes. Priorities shift.
 - **Archived when closed.** Closed clients go to a separate "Active Clients" list.
 - **Reactivated quarterly.** People who said "not now" 6 months ago may be ready today.
 
-**After Year 1**, your Project 100 evolves into a continuous prospect pipeline of 200-500+ names across warm, referred, and cold tiers.
+**After Year 1**, your Project 1000 keeps growing - a continuous pipeline of thousands of names across warm, referred, and cold tiers, fed by referrals and every new group chat you join.
 
 ![Keeping the list alive: Add 5 names, weekly; Re-sort priorities, monthly; Reactivate 'not now', contacts quarterly; Archive closed, to Active Clients.](/first-60-days/images/day-39-m0.webp)
 
 ## 7. A note on digital-first prospect lists
 
-If you're starting in the 2026 era, some of your Project 100 may come from **digital connections** rather than pure warm market:
+If you're starting in the 2026 era, some of your Project 1000 may come from **digital connections** rather than pure warm market:
 
 - LinkedIn connections with meaningful engagement history.
 - Instagram DM contacts who've asked you finance questions.
 - Telegram/WhatsApp group members you've interacted with.
 - Commenters on your content who've shown genuine interest.
 
-These count. But they're **lower-priority than real warm market** for your first 30 meetings. Digital-first prospecting is Week 7 Days 40-42 territory. Use Project 100 first for its intended purpose (warm launch), then layer digital on top.
+These count. But they're **lower-priority than real warm market** for your first 30 meetings. Digital-first prospecting is Week 7 Days 40-42 territory. Use Project 1000 first for its intended purpose (warm launch), then layer digital on top.
 
 ## 8. The psychological trap
 
-Building the list of 100 is easy. **Calling them is the hard part.**
+Building a list of 1000 is the easy part. **Working it is the hard part.**
 
 The trap:
-- Week 1: You list 100 names. Feels productive.
+- Week 1: You list a few hundred names. Feels productive.
 - Week 2: You've called 3. Start inventing reasons to delay.
 - Week 3: You call 2 more, both reject you awkwardly. You avoid the list for a week.
 - Week 4: You tell yourself you need "a better approach" and start researching scripts again.
@@ -218,11 +221,11 @@ The trap:
 
 **The reality:** the list is not your problem. **The calling is your problem.** See Day 26 on the 10X Rule in Daily Action and Day 19 on counting rejections.
 
-**Goal for Week 7:** call **at least 20 people from your Project 100 list.** Not "prepare to call." Actually call.
+**Goal for Week 7:** call **at least 20 people from your Project 1000 list.** Not "prepare to call." Actually call.
 
 ## 9. The Marketing Kit - what to bring to every first meeting
 
-Project 100 is the *who*. The Marketing Kit is the *what you show them when you're across the table*. Without it, your first appointment leans on talk only. With it, every prospect leaves with a tangible artefact and a clear sense of who you are.
+Project 1000 is the *who*. The Marketing Kit is the *what you show them when you're across the table*. Without it, your first appointment leans on talk only. With it, every prospect leaves with a tangible artefact and a clear sense of who you are.
 
 ### What it is, in one line
 
@@ -267,11 +270,11 @@ That sentence, dropped early, sets the expectation. By the time you close (meeti
 
 ### Why this is in Day 39 specifically
 
-A great list (Project 100) and a great Marketing Kit are the two halves of being *ready for week 7's calls*. The list answers *who do I call?* The kit answers *what do I show them when they say yes?* Building the list without the kit - or vice versa - leaves the other half of the loop broken.
+A great list (Project 1000) and a great Marketing Kit are the two halves of being *ready for week 7's calls*. The list answers *who do I call?* The kit answers *what do I show them when they say yes?* Building the list without the kit - or vice versa - leaves the other half of the loop broken.
 
 ## 10. After the first conversation - building each prospect's touchpoint timeline
 
-Project 100 is the names. The Marketing Kit is what you show them. **Touchpoints are what you do for the next 4–10 years.**
+Project 1000 is the names. The Marketing Kit is what you show them. **Touchpoints are what you do for the next 4–10 years.**
 
 Most prospects don't buy in the first conversation. They buy when their life shifts — promotion, marriage, kid, parent diagnosis, mortgage approval. Your job is to be the one they already know on the day that shift happens. That only happens if you stayed present, on the right cadence, around milestones that mattered to them.
 
@@ -348,7 +351,7 @@ The shape is the same: extract dates in the first meeting, set the calendar that
 
 This page is the lesson; the deliverable is the assignment. Head to **[Assignment 2 - Contact List + Personal Outreach Playbook](../assignments/assignment-02.md)** and complete it before moving on:
 
-- Build out the full Project 100 list with priority quotas (≤25 Hot, ≥40 Semi-Warm, the rest Cold/Referred).
+- Build out the full Project 1000 list with priority quotas (≥100 Hot/warm, ≥500 Semi-Warm, the rest Cold/Referred).
 - Fill in the per-contact context columns (life stage, last touch, priority, mapped angle).
 - Write your three customised messages — opener, objection handler, follow-up — using the lower-pressure angles from [Day 37](day-37.md).
 
@@ -358,9 +361,9 @@ Don't move on to Day 40 until the list and the playbook exist as a real document
 
 ## 2-Liner Hook (Warm Prospecting Flow)
 
-Once your Project 100 list is built, the 2-Liner Hook is the lightest opener for working through it. Two text/DM lines, a useful resource as the bridge, and a follow-up 1-2 weeks later that asks how the prospect got on with the problem. No phone call, no meeting ask up front. The follow-up is what opens the appointment.
+Once your Project 1000 list is built, the 2-Liner Hook is the lightest opener for working through it. Two text/DM lines, a useful resource as the bridge, and a follow-up 1-2 weeks later that asks how the prospect got on with the problem. No phone call, no meeting ask up front. The follow-up is what opens the appointment.
 
-**Use this when** you've built your 100 names and need to start activating the Warm and Semi-Warm tiers without making the first move feel like a sales call.
+**Use this when** you've built your list and need to start activating the Warm and Semi-Warm tiers without making the first move feel like a sales call.
 
 ### The flow
 
@@ -386,13 +389,13 @@ If the answer is anything other than "yes, fully sorted", that's the appointment
 
 ### Where this fits in today's lesson
 
-The Project 100 list is only useful if you have a clean way to open each name. The 2-Liner is one tool. The Market Survey phone call (Day 43) is another. Most FCs use a mix - 2-Liner for Semi-Warm (haven't spoken in 6+ months, prefer text), Market Survey for genuinely Warm (would pick up your call). Both produce the same outcome: a first meeting on the prospect's terms.
+The Project 1000 list is only useful if you have a clean way to open each name. The 2-Liner is one tool. The Market Survey phone call (Day 43) is another. Most FCs use a mix - 2-Liner for Semi-Warm (haven't spoken in 6+ months, prefer text), Market Survey for genuinely Warm (would pick up your call). Both produce the same outcome: a first meeting on the prospect's terms.
 
 ---
 
 ## Scripts Library
 
-Here are the canonical scripts for activating Project 100 names without burning the relationship. Practise them out loud, then make them yours.
+Here are the canonical scripts for activating Project 1000 names without burning the relationship. Practise them out loud, then make them yours.
 
 _Note: at this stage you're not licensed yet. The "appointment" you book here runs the canned Insurance CST or Investing CST as practice - see [Day 43](../week-8/day-43) for the full framing._
 
@@ -460,7 +463,7 @@ The principle: you've earned the right to ask directly. Don't dress it up.
 
 > "Hey [name] - quick one. Last time we mapped out [their plan], we said we'd revisit when [trigger event] happened. Now that it has, I'd like to grab 30 mins to look at the new picture together. Tuesday 7pm or Thursday lunch?"
 
-For Project 100 *before* you have a book, this version isn't the right tool - use the warm-market introduction or career-transition scripts above instead. Keep this one in your back pocket for Year 2 onwards.
+For Project 1000 *before* you have a book, this version isn't the right tool - use the warm-market introduction or career-transition scripts above instead. Keep this one in your back pocket for Year 2 onwards.
 
 _Source: Academy scripts library._
 
@@ -468,29 +471,29 @@ _Source: Academy scripts library._
 
 ## Quick quiz
 
-1. **The target number for Project 100 is:**
+1. **The target number for Project 1000 is:**
  - A) 30
- - B) 100 (correct)
- - C) 300
- - D) 500
+ - B) 100
+ - C) 500
+ - D) 1000 (correct)
 
- **Why:** 100 is explicitly described as the Goldilocks number - large enough to produce a working funnel, small enough to manage systematically. 30 (A) is the market-survey floor, not the list size. 300 and 500 are mentally exhausting to manage and push beyond the warm-market sweet spot into contacts that are effectively strangers. The discipline of 100 ensures each name gets proper attention.
+ **Why:** Project 1000 is a volume play - you aim for 1000 names because the funnel converts at a roughly fixed rate, so more names means more clients. 30 (A) is the market-survey floor, not the list size. 100 (B) and 500 (C) undershoot the network you can actually reach once you mine your WhatsApp group chats. The concrete 1000 target is what forces you to go wide instead of stopping when it feels like enough.
 
-2. **A typical conversion funnel from 100 names is:**
+2. **For every 100 names you actively work, a typical conversion funnel is:**
  - A) 50 meetings, 25 closes
  - B) 30-40 market surveys, 20 fact-finds, 8-15 closes (correct)
  - C) 100 meetings, 50 closes
  - D) 10 meetings, 5 closes
 
- **Why:** The stated funnel is: 100 names -> 60-70 reached -> 30-40 market surveys -> 20 fact-finds -> 8-15 closes. Option A overstates how many people agree to a meeting. Option C assumes everyone on the list becomes a meeting, which ignores normal drop-off at each stage. Option D undershoots the expected outcome and would make the whole exercise seem not worth the effort.
+ **Why:** For every 100 names worked: 60-70 reached -> 30-40 market surveys -> 20 fact-finds -> 8-15 closes. Multiply that across a 1000-name list and the totals scale with it - which is the whole reason to build big. Option A and C overstate how many people agree to a meeting; option D undershoots and would make the exercise seem not worth it.
 
-3. **Your Project 100 list should be:**
+3. **Your Project 1000 list should be:**
  - A) Built once in Week 1 and worked through
  - B) A living document - added to weekly, re-prioritised monthly (correct)
  - C) Discarded after Year 1
  - D) Shared with your team
 
- **Why:** Project 100 is explicitly a living document: add 5 names weekly, re-sort monthly as warmth changes, archive closed clients, and reactivate contacts who said "not now" every quarter. Treating it as a one-time build (A) is called out as the biggest mistake new FCs make. Discarding it after Year 1 (C) throws away the compounding asset. Sharing the list with your team (D) is not part of the process described and would conflict with client confidentiality.
+ **Why:** Project 1000 is explicitly a living document: add 5 names weekly, re-sort monthly as warmth changes, archive closed clients, and reactivate contacts who said "not now" every quarter. Treating it as a one-time build (A) is called out as the biggest mistake new FCs make. Discarding it after Year 1 (C) throws away the compounding asset. Sharing the list with your team (D) is not part of the process described and would conflict with client confidentiality.
 
 4. **A contact aged 28, recently married, steadily employed, and open to financial advice scores as:**
  - A) Priority C - too young to have real needs
@@ -500,15 +503,15 @@ _Source: Academy scripts library._
 
  **Why:** The natural market profile check scores this contact green on all five factors - age in the 25-50 prime planning window, stable income, a triggering life event (marriage), open attitude to advice, and presumably warm enough to call. Priority C (A) misreads the age bracket. Priority B for reconnection (B) applies to cooler contacts, not someone you'd "happily call." Finances being unstable (D) contradicts the "steadily employed" condition in the question.
 
-5. **The primary reason the Project 100 target is 100 names rather than 500 is:**
- - A) It takes too long to find 500 warm contacts
- - B) 100 is the Goldilocks number - large enough to sustain a pipeline, small enough to manage (correct)
- - C) AIA policy caps the list at 100
- - D) Digital tools cannot handle more than 100 contacts
+5. **The primary reason Project 1000 aims for 1000 names rather than a small handpicked list is:**
+ - A) A bigger list looks more impressive to your manager
+ - B) It's a volume game - the funnel converts at a roughly fixed rate, so more names means more clients (correct)
+ - C) AIA requires a minimum of 1000 contacts
+ - D) You must contact all 1000 in the first month
 
- **Why:** The lesson explicitly calls 100 the "Goldilocks number" - under 50 starves the funnel, over 200 becomes unmanageable and mentally exhausting. There is no AIA policy cap (C). Most FCs can find 200-300 warm contacts if they go wide (D is a red herring). The real constraint is cognitive and operational manageability, not time or technology.
+ **Why:** The conversion funnel has a stable shape, so the lever you control is how many names you feed in - more names, more closes. There is no AIA minimum (C), and you do not work all 1000 at once (D) - you sort by temperature and work the top tiers first while the rest sits as pipeline, kept warm by your calendar touchpoints. Impressing your manager (A) is not the point.
 
-6. **An FC lists 100 names in Week 1 but has called only 5 by Week 4. What does Day 39 identify as the real problem?**
+6. **An FC builds a big Project 1000 list but has called only 5 people by Week 4. What does Day 39 identify as the real problem?**
  - A) The script is not good enough
  - B) The list has too many C-priority contacts
  - C) The calling itself - avoidance behaviour, not list quality (correct)
@@ -516,7 +519,7 @@ _Source: Academy scripts library._
 
  **Why:** Day 39 directly names the trap: the list is not the problem, the calling is. The FC is inventing reasons to delay - researching better scripts, questioning list quality, anything but picking up the phone. Script quality (A) and list composition (B) are surface justifications for avoidance. Updating survey questions (D) is another delay tactic. The Day 26 reference to the 10X Rule and Day 19 on counting rejections are the prescribed antidotes.
 
-7. **What is the recommended weekly addition target to keep Project 100 alive?**
+7. **What is the recommended weekly addition target to keep Project 1000 alive?**
  - A) 1 new name
  - B) 5 new names (correct)
  - C) 20 new names

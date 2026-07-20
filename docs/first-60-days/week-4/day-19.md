@@ -25,7 +25,7 @@ By the end of today you should be able to:
 2. **Count** the right number (rejections, not appointments).
 3. **State** the Law of Large Numbers ratios you'll be tracking for the next 60 days.
 
-> **Where the actual scripts live:** today's day frames *why* prospecting works (numbers, not luck). The *how* lives in three companion docs - [The Warm Market Funnel](../warm-market-funnel.md) (10-step social-first flow), [Day 43 - Warm Market Survey + Cold Calls](../week-8/day-43.md), and [Day 39 - Project 100](../week-7/day-39.md) (the list this all runs against).
+> **Where the actual scripts live:** today's day frames *why* prospecting works (numbers, not luck). The *how* lives in three companion docs - [The Warm Market Funnel](../warm-market-funnel.md) (10-step social-first flow), [Day 43 - Warm Market Survey + Cold Calls](../week-8/day-43.md), and [Day 39 - Project 1000](../week-7/day-39.md) (the list this all runs against).
 
 ---
 
@@ -84,7 +84,7 @@ By the time your license drops:
 - A properly-worked pre-license window leaves you with **10-20 people queued up** - already in conversation, already aware you'll be licensed soon, already comfortable the next chat is "the real one."
 - Compare that to the FC who waits to be licensed before reaching out. Their first message after licensing reads as a pitch - even when it isn't. Guards go up. The cycle restarts at zero.
 
-**Practical implication:** don't wait until you have your license to start your Project 100 (Day 39) or your warm outreach. Start now, with the honest framing that you're learning. The unguarded window only opens once.
+**Practical implication:** don't wait until you have your license to start your Project 1000 (Day 39) or your warm outreach. Start now, with the honest framing that you're learning. The unguarded window only opens once.
 
 ## 3. The three prospecting activities
 

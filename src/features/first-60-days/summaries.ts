@@ -359,7 +359,7 @@ export const DAY_SUMMARIES: DaySummary[] = [
     "dayNumber": 39,
     "week": 7,
     "dayInWeek": 3,
-    "title": "Building the Prospect List - Project 100",
+    "title": "Building the Prospect List - Project 1000",
     "duration": 25,
     "hasReflection": false,
     "hasQuiz": true

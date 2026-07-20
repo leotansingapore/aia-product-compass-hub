@@ -76,7 +76,7 @@ tags: [first-60-days]
 *From knowledge to activity. How you get from zero to a full calendar.*
 - [ ] [[week-7/day-37|Day 37 - The Approach: Why It Matters]]
 - [ ] [[week-7/day-38|Day 38 - Natural Market vs Referred Leads]]
-- [ ] [[week-7/day-39|Day 39 - Building the Prospect List: Project 100]]
+- [ ] [[week-7/day-39|Day 39 - Building the Prospect List: Project 1000]]
 - [ ] [[week-7/day-40|Day 40 - Digital Influence: Setting Up Your Presence]]
 - [ ] [[week-7/day-41|Day 41 - Digital Influence: Content & Engagement]]
 - [ ] [[week-7/day-42|Day 42 - Digital Influence: Lead-Gen Playbook]]
@@ -149,7 +149,7 @@ Week  10      PRODUCT MASTERY & GRADUATION (6 days)
 ### What "graduated" means
 - You've completed all 60 days.
 - You've built the weekly rhythms.
-- You're running live activity (Project 100 calls, first meetings, first proposals).
+- You're running live activity (Project 1000 calls, first meetings, first proposals).
 - You have first-hand reps on the full arc: Approach -> SPIN -> Recommendation -> Close.
 
 ---

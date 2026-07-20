@@ -209,7 +209,7 @@ For the next 2 weeks, practise on:
 
 - **Existing relationships.** Classify family members and friends. What's your mum's DISC? Your boss's?
 - **Public figures.** Watch a TV interview. Classify the guest. Were you right?
-- **Project 100 contacts.** Before each call, take 30 seconds to guess their DISC based on what you know. Adjust your script.
+- **Project 1000 contacts.** Before each call, take 30 seconds to guess their DISC based on what you know. Adjust your script.
 
 After 100 classifications, your intuition sharpens. By Month 3, you'll read new clients in 60 seconds without thinking about it.
 

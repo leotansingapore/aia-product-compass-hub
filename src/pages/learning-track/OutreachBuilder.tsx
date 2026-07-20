@@ -651,7 +651,7 @@ export default function OutreachBuilder() {
   };
 
   const clearAll = () => {
-    if (!confirm("Delete every prospect from your account? Your Project 100 sheet is unaffected.")) return;
+    if (!confirm("Delete every prospect from your account? Your Project 1000 sheet is unaffected.")) return;
     setProspects([]);
     toast.success("Cleared.");
   };
@@ -689,7 +689,7 @@ export default function OutreachBuilder() {
         </div>
         <h1 className="font-serif text-3xl sm:text-4xl font-semibold tracking-tight">Generate first-message templates per prospect</h1>
         <p className="mt-2 text-muted-foreground text-sm sm:text-base">
-          Paste rows from your Project 100 sheet (or add prospects one at a time). The tool generates a starter message per row based on temperature and channel — edit before sending, then one-tap copy to WhatsApp / Telegram / wherever.
+          Paste rows from your Project 1000 sheet (or add prospects one at a time). The tool generates a starter message per row based on temperature and channel — edit before sending, then one-tap copy to WhatsApp / Telegram / wherever.
         </p>
       </div>
 
@@ -761,7 +761,7 @@ export default function OutreachBuilder() {
         <Card className="border-dashed">
           <CardContent className="py-12 text-center text-sm text-muted-foreground">
             <MessageSquare className="h-8 w-8 mx-auto mb-3 opacity-50" />
-            No prospects yet. Paste your Project 100 sheet above, or add one to get started.
+            No prospects yet. Paste your Project 1000 sheet above, or add one to get started.
           </CardContent>
         </Card>
       ) : (

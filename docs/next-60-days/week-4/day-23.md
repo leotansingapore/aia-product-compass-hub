@@ -89,7 +89,7 @@ Where do they come from? If you have 50 existing clients and 30% meet for annual
 
 For a Week-4 new FC, you don't have 50 clients yet. Everything is new leads. Which means:
 
-- **Current Inventory** (your Project 100, Market Survey list) = your next 6 weeks of appointments
+- **Current Inventory** (your Project 1000, Market Survey list) = your next 6 weeks of appointments
 - **Recurring Inventory** (content, referrals, events) = what sustains you past week 6
 
 If the Strategic Target List hits 20 names every month from day 1, and each month ~30% convert to Fact-Finds, that's **6 FHRs/month from warm market alone** — which is enough to hit the math. Not *luxurious*, but *viable*.
@@ -271,7 +271,7 @@ The Strategic Target List (§2) tags prospects as A/B/C or 1/2/3. The Pyramid ad
 - C) A once-a-year budget review
 - D) Only relevant after Month 12
 
-**Why:** 80% of Week 4 goes to Current Inventory (your Project 100, Market Surveys, reactivations) — that's fine. The 20% you reserve for Recurring Inventory is what prevents the Month-9 cliff when Current runs out. New FCs skip Recurring because it feels unrewarding in the short run; that skip is what breaks them later.
+**Why:** 80% of Week 4 goes to Current Inventory (your Project 1000, Market Surveys, reactivations) — that's fine. The 20% you reserve for Recurring Inventory is what prevents the Month-9 cliff when Current runs out. New FCs skip Recurring because it feels unrewarding in the short run; that skip is what breaks them later.
 
 **Q7. The "not having appointments is more tiring than having them" rule means:**
 - A) You should schedule more appointments than you can handle

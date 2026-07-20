@@ -68,7 +68,7 @@ Targets that make a list pass:
 - **At least 100 names Priority A** (likely to meet). Can't find 100? You haven't mined enough groups - alumni, past colleagues, gym, church, sports clubs, the wedding guest list, your partner's circle.
 - **At least 500 names Semi-warm.** This is the group-chat haul - the people you'd never list from memory but genuinely know. This is where your long-term pipeline lives.
 
-Day 39 (Project 100) has the full A/B/C priority scoring if you want the method behind it.
+Day 39 (Project 1000) has the full A/B/C priority scoring if you want the method behind it.
 
 ## Turn the list into a year-round touchpoint system
 

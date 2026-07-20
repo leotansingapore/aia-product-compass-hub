@@ -26,7 +26,7 @@ By the end of today you should be able to:
 ## 1. Natural market vs referred - the difference
 
 ### Natural market
-The 100-300 people you already have some relationship with.
+The hundreds - often over a thousand - of people you already have some relationship with.
 
 - **Pros:** trust pre-exists. They'll take your call.
 - **Cons:** finite. Once you've worked through them, it's gone.
@@ -364,4 +364,4 @@ _Source: Academy scripts library._
 ## Related
 
 - Previous: [[day-37|Day 37 - The Approach: Why It Matters]]
-- Next: [[day-39|Day 39 - Building the Prospect List (Project 100)]]
+- Next: [[day-39|Day 39 - Building the Prospect List (Project 1000)]]
