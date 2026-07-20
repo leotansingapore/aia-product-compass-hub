@@ -53,6 +53,12 @@ import {
 
 const PRODUCT_ID = "first-60-days-assignments";
 
+// Leo's public scheduling link. Surfaced on every assignment so a learner can
+// book two touchpoints: a briefing before they start, and a verification once
+// they've submitted. Kept as one constant so the prompt is universal and not
+// gated on each assignment's frontmatter.
+const BOOKING_URL = "https://www.pick-a-time.app/book/withleo";
+
 // Assignments that show a cohort gallery of other students' submissions once
 // the current student has submitted their own. "image" boards render as a photo
 // grid; "text" submissions render their written answers. Cross-user reads depend
@@ -303,6 +309,56 @@ export default function First60DaysAssignments() {
   );
 }
 
+// Universal "book time with Leo" panel shown on every assignment. Two CTAs:
+// a briefing before the learner starts, and a verification once they've
+// submitted. Both point at the same scheduling link — the label tells Leo
+// which kind of session it is when they arrive on the page.
+function BookingWithLeo() {
+  const cta =
+    "flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4 transition-colors hover:bg-primary/10";
+  return (
+    <div className="rounded-2xl border bg-card p-4 sm:p-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary shrink-0">
+          <CalendarClock className="h-5 w-5" />
+        </div>
+        <div>
+          <h3 className="font-serif text-lg font-bold">Book time with Leo</h3>
+          <p className="text-xs text-muted-foreground">
+            Two sessions for this assignment - one to get briefed before you start, one to verify your work once you've submitted.
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={cta}>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary shrink-0">
+            <CalendarClock className="h-5 w-5" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-foreground">Get briefed</p>
+            <p className="text-xs text-muted-foreground">
+              Pick a time to walk through what this assignment asks before you start.
+            </p>
+          </div>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-primary" />
+        </a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={cta}>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary shrink-0">
+            <CheckCircle2 className="h-5 w-5" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold text-foreground">Verify your submission</p>
+            <p className="text-xs text-muted-foreground">
+              Pick a time to review your completed work together once you've submitted.
+            </p>
+          </div>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-primary" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function AssignmentDetail({
   assignment,
   submission,
@@ -407,6 +463,8 @@ function AssignmentDetail({
           </article>
         </div>
       </div>
+
+      <BookingWithLeo />
 
       {assignment.frontmatter.multiple_submissions ? (
         <div className="space-y-4 sm:space-y-5">
