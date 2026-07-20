@@ -37,7 +37,7 @@ export interface AssignmentFrontmatter {
   submit_intro?: string;
   /** When false, the optional "attach a file" control is hidden — used by
    *  checklist-style assignments where uploading a screenshot/sheet would
-   *  create privacy friction (Project 200, CST roleplay). Defaults to true. */
+   *  create privacy friction (Project 1000, CST roleplay). Defaults to true. */
   file_upload?: boolean;
   /** Optional booking link surfaced as a prominent button in the submission
    *  panel — used by assignments whose checklist includes "I've booked a call
