@@ -5,9 +5,9 @@ order: 5
 title: "Build Your Marketing Kit"
 short: "Assemble the deck you show every prospect, print your referral letter, and bookmark your reference decks - so every first meeting has something tangible behind it."
 icon: briefcase
-deliverable: "Your own Marketing Kit deck, a printed referral letter in your name, and the five reference decks bookmarked in Chrome"
+deliverable: "Your own Marketing Kit deck, a printed referral letter in your name, the five reference decks bookmarked in Chrome, and a testimonial generator (Google Form) clients can pick from"
 submission_type: "form"
-estimated_time: "2 to 3 hours"
+estimated_time: "3 to 4 hours"
 weeks_covered: [7]
 related_days: [39]
 status_key: "assignment-14-marketing-kit"
@@ -27,10 +27,11 @@ form_fields:
   - "I've duplicated the Marketing Kit deck and edited the flow to my style|check|File -> Make a copy, then rework it so the story, photos and order are yours - not a generic template."
   - "I've copied the referral letter, changed it to my name, and printed it|check|File -> Make a copy, edit the name and details to yours, then print a physical copy to bring to meetings."
   - "I've bookmarked all five reference decks in Chrome|check|Basic Medical Insurance, Claim samples, Investing track record, APA competitor analysis, and the Retirement Planning deck - all saved where you can reach them fast in a meeting."
+  - "I've built my testimonial generator and loaded it into a Google Form|check|Use the built-in Testimonial Generator to build your statement bank, then paste the options into a Google Form checkbox question with a consent line, so clients can pick the ones that fit them."
   - "Link to your Marketing Kit deck (optional)|text|Paste a view-access link if you'd like Leo to look over your flow. Optional."
 ---
 
-> **The gist.** Your Marketing Kit is the deck you put in front of every prospect - the thing that introduces **you**, your **services**, and **AIA**, in the order that matters. This assignment is where you build your own copy of it, print your referral letter, and bookmark the reference decks you'll pull up mid-meeting. It's a checklist: duplicate, edit, print, bookmark. [Day 39](/learning-track/first-60-days/day/39) covers *why* the kit matters; this is *where you build it*.
+> **The gist.** Your Marketing Kit is the deck you put in front of every prospect - the thing that introduces **you**, your **services**, and **AIA**, in the order that matters. This assignment is where you build your own copy of it, print your referral letter, bookmark the reference decks you'll pull up mid-meeting, and build a testimonial generator your clients can fill in one tick at a time. It's a checklist: duplicate, edit, print, bookmark, generate. [Day 39](/learning-track/first-60-days/day/39) covers *why* the kit matters; this is *where you build it*.
 
 ## Why the kit matters
 
@@ -65,6 +66,14 @@ These are the decks you pull up mid-meeting when the conversation turns to a spe
 - **[APA competitor analysis](https://docs.google.com/presentation/d/1o6rnafqQPV6z4n0NcKWOBTFs_6kntjKUolSB3-v_zOc/edit?usp=sharing)** - how the APA stacks up.
 - **[Retirement Planning deck](https://docs.google.com/presentation/d/1zJBkSwfQlWoeus1-GqG2GD9SFh5qCToG/edit?usp=sharing&ouid=117605838416133603235&rtpof=true&sd=true)** - use this with pre-retirees.
 
+## Step 4 - Build your testimonial generator
+
+Testimonials are part of the kit - but the hardest thing about collecting them is that clients don't know what to write. So don't make them write. Make them **pick**. You write a bank of short statements a happy client might agree with, put them in a Google Form as a checkbox list, and the client ticks the ones that describe their experience. Their selections become their testimonial, in their words, in under a minute.
+
+**Use the built-in [Testimonial Generator](/learning-track/pre-rnf/assignments/marketing-kit/tool).** It gives you a starter bank of statements to edit into your own voice, lets you add your own, previews exactly what the client sees, and hands you the question prompt plus a one-tap "copy all options" to paste straight into a Google Form. Build your list there, then load it into a form and keep the link handy for after a good meeting or a close.
+
+Keep it clean: only ever use what a client genuinely ticked, always get their permission first (add a consent checkbox to the form), and keep every statement about *the experience of working with you* - never guaranteed returns, product performance, or being "best" or "cheapest". Follow your firm's rules on using testimonials.
+
 ### The checklist
 
 - [ ] Duplicated the Marketing Kit deck into my own Drive
@@ -73,6 +82,9 @@ These are the decks you pull up mid-meeting when the conversation turns to a spe
 - [ ] Printed a physical copy of the referral letter
 - [ ] Opened all five reference decks and confirmed I have access
 - [ ] Bookmarked all five in Chrome, somewhere I can reach fast in a meeting
+- [ ] Built my statement bank in the Testimonial Generator and edited it into my voice
+- [ ] Loaded the statements into a Google Form as a checkbox question, with a consent line
+- [ ] Tested the form and have the share link ready for after a meeting
 
 ## What good looks like
 
@@ -80,3 +92,4 @@ These are the decks you pull up mid-meeting when the conversation turns to a spe
 - The sell order is intact: you, then the company, then your services, with product last.
 - A printed referral letter in your name is ready to bring to a meeting.
 - All five reference decks open for you and are one click away in Chrome when a prospect raises a specific need.
+- Your testimonial generator is live - a Google Form a client can finish in under a minute, with a consent checkbox, feeding straight into your kit's testimonials.

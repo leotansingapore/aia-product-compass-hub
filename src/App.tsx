@@ -101,6 +101,7 @@ const LearningTrackIndex = lazyWithRetry(() => import("./pages/learning-track/Le
 const LearningTrackPreRnf = lazyWithRetry(() => import("./pages/learning-track/PreRnf"));
 const FinancialAdvisorDifferentiation = lazyWithRetry(() => import("./pages/learning-track/FinancialAdvisorDifferentiation"));
 const OutreachBuilder = lazyWithRetry(() => import("./pages/learning-track/OutreachBuilder"));
+const TestimonialGenerator = lazyWithRetry(() => import("./pages/learning-track/TestimonialGenerator"));
 const LearningTrackPostRnf = lazyWithRetry(() => import("./pages/learning-track/PostRnf"));
 const LearningTrackResources = lazyWithRetry(() => import("./pages/learning-track/Resources"));
 const LearningTrackCompetitorProducts = lazyWithRetry(() => import("./pages/learning-track/CompetitorProductsReference"));
@@ -250,6 +251,9 @@ const App = () => (
                       {/* Outreach Builder — both old (assignment-02) and new (outreach-playbook) URLs supported */}
                       <Route path="pre-rnf/assignments/assignment-02/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />
                       <Route path="pre-rnf/assignments/outreach-playbook/tool" element={<RequireTier feature="pre-rnf-track"><OutreachBuilder /></RequireTier>} />
+                      {/* Testimonial Generator — part of the Marketing Kit assignment */}
+                      <Route path="pre-rnf/assignments/marketing-kit/tool" element={<RequireTier feature="pre-rnf-track"><TestimonialGenerator /></RequireTier>} />
+                      <Route path="pre-rnf/assignments/assignment-14/tool" element={<RequireTier feature="pre-rnf-track"><TestimonialGenerator /></RequireTier>} />
                       {/* F.A.D.S. brand-builder — both old (assignment-08) and new (audience-differentiation) URLs supported */}
                       <Route path="pre-rnf/assignments/assignment-08/tool" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
                       <Route path="pre-rnf/assignments/assignment-08/tool/:tab" element={<RequireTier feature="pre-rnf-track"><FinancialAdvisorDifferentiation /></RequireTier>} />
