@@ -14,6 +14,7 @@ import {
   FileSpreadsheet,
   FileText,
   Loader2,
+  MessageSquare,
   PlayCircle,
   Target,
   Upload,
@@ -100,6 +101,7 @@ const ICON_MAP: Record<string, typeof Video> = {
   "book-open": BookOpen,
   clipboard: ClipboardList,
   target: Target,
+  "message-square": MessageSquare,
 };
 
 type Submission = {

@@ -1,7 +1,7 @@
 ---
 id: assignment-11
 url_slug: case-study-competition
-order: 10
+order: 11
 title: "Case Study Competition - The Capstone"
 short: "Draw a client profile, build the full case - portfolio summary, recommendation, before-and-after, objections - and present it to the cohort in a judged sharing session."
 icon: target
