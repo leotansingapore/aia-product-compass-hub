@@ -5,19 +5,21 @@ order: 4
 title: "Project 200 - Build Your List"
 short: "Build a 200-name warm-market list sorted by relationship temperature - and look past your inner circle to the semi-warm names that are the real market."
 icon: users
-deliverable: "Your 200-name list (kept private) + a booked review call"
+deliverable: "Your 200-name list with birthdays, dates and milestones (kept private), recurring Google Calendar touchpoints set, and a booked review call"
 submission_type: "form"
-estimated_time: "2 to 3 hours"
+estimated_time: "3 to 4 hours"
 weeks_covered: [7, 8]
 related_days: [19, 37, 38, 39, 40, 41, 42, 43, 44]
 status_key: "assignment-02-outreach"
 submit_heading: "Your Project 200 checklist"
-submit_intro: "Two confirmations, then your count and your plan for working the list. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
+submit_intro: "A few confirmations, then your count and your plan for working the list. Your list stays private - no sheet link or screenshot needed. Autosaves on this device."
 file_upload: false
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
-  - "Submit your Project 200|section|Two quick confirmations, then your count and your plan. Your list stays on your own device or Drive - nothing gets uploaded here."
+  - "Submit your Project 200|section|Quick confirmations, then your count and your plan. Your list stays on your own device or Drive - nothing gets uploaded here."
   - "I've finished building my Project 200 list|check|Names entered in your own sheet, sorted by temperature and priority. Tick this once it's built out - keep adding names over time."
+  - "I've added birthday month, important dates and milestones to my list|check|For each name you can: their birthday month (date where you know it), key dates (anniversaries, kids' birthdays), and any milestone coming up (new job, home, wedding, baby, exams)."
+  - "I've saved these to Google Calendar as recurring touchpoint reminders|check|Birthdays set to repeat yearly, milestones and dates saved with the right repeat, and reminders switched on so each touchpoint reaches you a day or two ahead."
   - "I've booked a call with Leo to walk through my Project 200 list|check|Use the booking link further down this page. We go through your names and your plan together."
   - "How many names on your list|text|Just the number, e.g. 200. You don't need all 200 to submit - log what you have and keep adding."
   - "Your plan for working the list|textarea|In your own words: who you'll contact first, in what order, and how you'll get through the names over the coming weeks.|5"
@@ -48,10 +50,34 @@ Two targets make a list pass:
 
 Day 39 (Project 100) has the full A/B/C priority scoring if you want the method behind it.
 
+## Turn the list into a year-round touchpoint system
+
+A name on a sheet is a cold contact. A name with their birthday, their kid's arrival, the month their bonus lands - that's a reason to reach out that never feels like a pitch. The list only works if it keeps you in these people's lives all year, and that means capturing the dates and setting them to come back to you automatically.
+
+For every name you can, add three things to your sheet:
+
+- **Birthday month** - at least the month; the exact date where you know it.
+- **Important dates** - anniversaries, their children's birthdays, key work dates.
+- **Milestones** - anything coming up: a new job, a new home, a wedding, a new baby, exams, a promotion.
+
+Then turn each one into a **recurring event in Google Calendar** so the reminder comes to you - you never have to remember. A birthday becomes a yearly nudge to send a genuine message; a milestone becomes a reminder to check in right when it lands.
+
+### The touchpoint checklist
+
+- [ ] Every Priority A name has a birthday month in the sheet (exact date where you know it)
+- [ ] Important dates captured where you know them - anniversaries, kids' birthdays, work dates
+- [ ] Milestones noted for anyone with something coming up - new job, home, wedding, baby, exams
+- [ ] Each birthday saved to Google Calendar as a **yearly recurring** event
+- [ ] Each anniversary or repeating date saved with the right repeat; each one-off milestone saved with a reminder for when it lands
+- [ ] Reminders switched on so the touchpoint reaches you a day or two ahead - in time to send something real
+
+Keep the reason honest and warm: a birthday note is a birthday note, not an opening for a pitch. The dates just make sure you show up consistently, so that when something financial does come up, you're already the person they hear from.
+
 ## What a passing list looks like
 
 - 200 contacts, at least 60 Priority A and 80 Semi-warm, with context filled in for your A's.
 - The semi-warm ring is genuinely worked - not just your closest 30 friends padded out with acquaintances you'd never call.
+- Birthdays, key dates and milestones captured, and set up as recurring Google Calendar touchpoints so the reminders come to you all year.
 - A review call booked with Leo to walk through the list together.
 
 ## Submission
