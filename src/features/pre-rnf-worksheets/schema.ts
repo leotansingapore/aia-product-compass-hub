@@ -244,7 +244,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     addRows: true,
   },
 
-  { kind: "step", id: "s3", label: "4. My lead generation", hint: "Three markets you can operate in, with the real reason each fits. Tie each back to your Project 200 list.", pdfHint: "The markets I backed myself to win." },
+  { kind: "step", id: "s3", label: "4. My lead generation", hint: "Three markets you can operate in, with the real reason each fits. Tie each back to your Project 1000 list.", pdfHint: "The markets I backed myself to win." },
   {
     kind: "table",
     id: "markets",
@@ -296,7 +296,7 @@ const BUSINESS_PLAN: WorksheetBlock[] = [
     id: "prospect_ready",
     label: "Am I ready to prospect? — a straight self-check",
     items: [
-      { id: "project200", text: "Have I built my Project 200?", type: "check", link: "/learning-track/pre-rnf/assignments/project-200" },
+      { id: "project200", text: "Have I built my Project 1000?", type: "check", link: "/learning-track/pre-rnf/assignments/project-200" },
       { id: "observed", text: "Have I observed at least 2 appointments of a senior?", type: "check", link: "/learning-track/pre-rnf/assignments/field-observation" },
       { id: "roleplays", text: "Have I done my roleplays?", type: "check", link: "/learning-track/pre-rnf/assignments/cst-roleplay" },
       { id: "flows_conf", text: "Am I confident of my appointment flows?", type: "scale" },

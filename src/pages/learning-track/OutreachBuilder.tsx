@@ -663,7 +663,7 @@ export default function OutreachBuilder() {
           to="/learning-track/pre-rnf/assignments/project-200"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to Project 200
+          <ArrowLeft className="h-4 w-4" /> Back to Project 1000
         </Link>
         <div className="flex items-center gap-3">
           {autoSaving ? (

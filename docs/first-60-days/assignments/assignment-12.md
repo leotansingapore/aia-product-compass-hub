@@ -36,7 +36,7 @@ form_fields:
 1. **Pledge sheet.** Fill in the [My Pledge Sheet](/first-60-days/assignments/goals-pledge-worksheet.pdf) - the step-by-step maths from your target income, to FYC, to clubs, to cases and clients, down to the weekly and daily activity you pledge. This is the engine room of the plan and what the two tutorial videos walk you through. Upload it as deliverable 1.
 2. **Business plan deck.** Build the six sections below into a slide deck (the [New FC Business Plan deck](/first-60-days/assignments/business-plan-template.pdf) lays them all out, with samples). Carry your pledge numbers into section 1, then fill the rest. Upload it as deliverable 2.
 
-Everything else in the track builds one skill at a time. This pulls them into a single plan you can actually steer by: your [why](/learning-track/pre-rnf/assignments/100-whys) and your [vision board](/learning-track/pre-rnf/assignments/vision-board) set the direction, your [Project 200 list](/learning-track/pre-rnf/assignments/project-200) feeds the markets, and your [market survey practice](/learning-track/pre-rnf/assignments/market-survey-practice) and [CST roleplay](/learning-track/pre-rnf/assignments/cst-roleplay) are how you'll work it. The plan is where it all connects.
+Everything else in the track builds one skill at a time. This pulls them into a single plan you can actually steer by: your [why](/learning-track/pre-rnf/assignments/100-whys) and your [vision board](/learning-track/pre-rnf/assignments/vision-board) set the direction, your [Project 1000 list](/learning-track/pre-rnf/assignments/project-200) feeds the markets, and your [market survey practice](/learning-track/pre-rnf/assignments/market-survey-practice) and [CST roleplay](/learning-track/pre-rnf/assignments/cst-roleplay) are how you'll work it. The plan is where it all connects.
 
 ## Watch these first
 
@@ -73,7 +73,7 @@ Three strengths and how each helps you advise well. Three weaknesses and how you
 
 ### 3. My lead generation
 
-Three target markets you can operate in, with the real reason each fits - usually existing trust or a network you already belong to. For each one, spell out the demographics, the expected income level, and the needs they're likely to have, so it's clear why the market is yours to work. Tie it back to your Project 200 list. Then pick three prospecting methods (calling, face to face, texting, referrals, social media) and for each say how you'll run it - the frequency, the time you'll spend, and the honest advantages and disadvantages. Set the monthly FYC you'd stand behind for each market.
+Three target markets you can operate in, with the real reason each fits - usually existing trust or a network you already belong to. For each one, spell out the demographics, the expected income level, and the needs they're likely to have, so it's clear why the market is yours to work. Tie it back to your Project 1000 list. Then pick three prospecting methods (calling, face to face, texting, referrals, social media) and for each say how you'll run it - the frequency, the time you'll spend, and the honest advantages and disadvantages. Set the monthly FYC you'd stand behind for each market.
 
 ### 4. My weekly timetable
 

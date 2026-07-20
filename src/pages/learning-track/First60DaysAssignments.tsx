@@ -627,7 +627,7 @@ function parseFormValues(submissionText: string | null | undefined): Record<stri
 }
 
 // --- Local draft autosave -------------------------------------------------
-// Heavy form assignments (Project 200 has 13 fields, some 10 rows tall) used to
+// Heavy form assignments (Project 1000 has 13 fields, some 10 rows tall) used to
 // lose everything on an accidental refresh or back-navigation. We mirror the
 // in-progress answers to localStorage so a student never retypes a playbook.
 type Draft = { t?: string; f?: Record<string, string> };

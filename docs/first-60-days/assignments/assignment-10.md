@@ -3,7 +3,7 @@ id: assignment-10
 url_slug: market-survey-practice
 order: 5
 title: "Market Survey Practice"
-short: "Reach out to your Project 200 list and run 30 warm-market surveys - the reps that make the scripts yours before your licence drops."
+short: "Reach out to your Project 1000 list and run 30 warm-market surveys - the reps that make the scripts yours before your licence drops."
 icon: clipboard
 deliverable: "30 warm-market surveys, logged with name, relationship, and outcome"
 submission_type: "form"
@@ -21,9 +21,9 @@ form_fields:
   - "The script you're least confident about|textarea|Name one and say why. Bring it to your review with Leo.|3"
 ---
 
-> **The gist.** This is where you reach out. Run **30 warm-market surveys** off your [Project 200 list](/learning-track/pre-rnf/assignments/project-200), across your study weeks, while the "I can't sell you anything yet" framing is still honestly true. The openers and scripts are below - it's the reps, not the reading, that make them yours.
+> **The gist.** This is where you reach out. Run **30 warm-market surveys** off your [Project 1000 list](/learning-track/pre-rnf/assignments/project-200), across your study weeks, while the "I can't sell you anything yet" framing is still honestly true. The openers and scripts are below - it's the reps, not the reading, that make them yours.
 
-**This one fills up over time.** Run your surveys in blocks across your CMFAS / RES5 study window, then come back and log them as they grow. Build your [Project 200 list](/learning-track/pre-rnf/assignments/project-200) first - the surveys come off those names.
+**This one fills up over time.** Run your surveys in blocks across your CMFAS / RES5 study window, then come back and log them as they grow. Build your [Project 1000 list](/learning-track/pre-rnf/assignments/project-200) first - the surveys come off those names.
 
 ## Why 30, and why before RNF
 
@@ -64,7 +64,7 @@ Don't dial cold into your real semi-warm market on day one. Each stage builds th
 | **1. Solo** | 5 to 10 read-throughs | Yourself - mirror, voice memo | Words flow without freezing |
 | **2. Cohort roleplay** | 3 to 5 | Another pre-RNF FC | Swap roles, throw objections |
 | **3. Hot warm-up** | 3 to 5 calls | Family, partner, best friends | A gentle live audience to settle nerves |
-| **4. Real semi-warm** | The remaining ~20 | Project 200 Priority A and B | Where the real practice happens |
+| **4. Real semi-warm** | The remaining ~20 | Project 1000 Priority A and B | Where the real practice happens |
 
 Cluster the calls - 5 to 7 in a focused 90-minute block beats one a day. Your voice warms up by call 2 and peaks around call 5.
 
