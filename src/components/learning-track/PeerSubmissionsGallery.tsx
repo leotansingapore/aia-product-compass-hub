@@ -52,6 +52,34 @@ function parseFormAnswers(text: string | null): { label: string; value: string }
   return null;
 }
 
+// Renders text with any http(s) URLs turned into clickable links, keeping the
+// surrounding text and line breaks intact (used inside whitespace-pre-wrap
+// blocks). Learners paste Lark/Google Drive links into their answers, so the
+// gallery must make them openable rather than showing bare text.
+function Linkify({ text }: { text: string }) {
+  const parts = text.split(/(https?:\/\/[^\s]+)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^https?:\/\/[^\s]+$/.test(part) ? (
+          <a
+            key={i}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-primary underline underline-offset-2 hover:no-underline break-all"
+          >
+            {part}
+          </a>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 function PeerCard({
   row,
   variant,
@@ -124,7 +152,7 @@ function PeerCard({
                 {a.label}
               </p>
               <p className="mt-0.5 line-clamp-4 whitespace-pre-wrap text-sm leading-relaxed">
-                {a.value}
+                <Linkify text={a.value} />
               </p>
             </div>
           ))}
@@ -141,7 +169,7 @@ function PeerCard({
         </a>
       ) : (
         <p className="line-clamp-6 whitespace-pre-wrap text-sm leading-relaxed">
-          {row.submission_text}
+          <Linkify text={row.submission_text ?? ""} />
         </p>
       )}
     </div>
@@ -213,7 +241,9 @@ function AdminCard({
               <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {a.label}
               </p>
-              <p className="mt-0.5 whitespace-pre-wrap text-sm leading-relaxed">{a.value}</p>
+              <p className="mt-0.5 whitespace-pre-wrap text-sm leading-relaxed">
+                <Linkify text={a.value} />
+              </p>
             </div>
           ))}
         </div>
@@ -228,7 +258,9 @@ function AdminCard({
           Open shared link
         </a>
       ) : row.submission_text && !img ? (
-        <p className="whitespace-pre-wrap text-sm leading-relaxed">{row.submission_text}</p>
+        <p className="whitespace-pre-wrap text-sm leading-relaxed">
+          <Linkify text={row.submission_text ?? ""} />
+        </p>
       ) : null}
 
       <Button
