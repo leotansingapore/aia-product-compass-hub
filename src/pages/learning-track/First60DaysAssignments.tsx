@@ -4,6 +4,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
+  Briefcase,
   CalendarClock,
   Check,
   CheckCircle2,
@@ -102,6 +103,7 @@ const ICON_MAP: Record<string, typeof Video> = {
   clipboard: ClipboardList,
   target: Target,
   "message-square": MessageSquare,
+  briefcase: Briefcase,
 };
 
 type Submission = {

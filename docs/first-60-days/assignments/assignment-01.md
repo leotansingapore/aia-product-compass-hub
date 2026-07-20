@@ -1,7 +1,7 @@
 ---
 id: assignment-01
 url_slug: cst-roleplay
-order: 7
+order: 8
 title: "Roleplay - Two CSTs: Wealth Angle + Risk Management Angle"
 short: "Build, rehearse, and get trainer sign-off on two CSTs - the Wealth Angle (retirement step-by-step) and the Risk Management Angle (Total Wealth Concept)."
 icon: video

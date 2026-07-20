@@ -1,7 +1,7 @@
 ---
 id: assignment-09
 url_slug: policy-summary
-order: 9
+order: 10
 title: "Policy Summary - Build One for Yourself and One for a Family Member"
 short: "Build two clean one-page Policy Summaries in the Total Wealth Concept tool - one for yourself, one for a family member - and submit a screenshot of each."
 icon: file-text

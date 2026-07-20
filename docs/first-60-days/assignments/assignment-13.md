@@ -1,7 +1,7 @@
 ---
 id: assignment-13
 url_slug: post-meeting-texts
-order: 10
+order: 11
 title: "Creating Post-Meeting Texts"
 short: "Recreate the concept drawings from the two CSTs, describe each one as if texting the client, and turn them into a post-meeting text - the recap you send so the whole conversation lives on one page."
 icon: message-square

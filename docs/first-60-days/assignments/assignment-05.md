@@ -1,7 +1,7 @@
 ---
 id: assignment-05
 url_slug: cold-calling
-order: 8
+order: 9
 title: "Cold Calling Sessions + Set Two Appointments"
 short: "Run 2 cold-calling sessions, then set 2 first-meeting appointments with a senior FC sitting in. Log each part as you go."
 icon: users
