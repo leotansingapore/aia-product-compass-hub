@@ -1011,8 +1011,14 @@ function SubmissionPanel({
         return { url: pub.publicUrl, name: f.name };
       };
 
-      let fileUrl: string | null = null;
-      let fileName: string | null = null;
+      // Preserve a previously-attached file on resubmit. submit() always INSERTs
+      // a fresh row, so without carrying the old file forward a learner who edits
+      // their answers and clicks Resubmit (without re-picking the file) would land
+      // a new latest row with file_url = null — silently dropping their upload.
+      // appendMode passes submission=undefined, so each logged entry still starts
+      // clean; a newly picked file below always overrides.
+      let fileUrl: string | null = submission?.file_url ?? null;
+      let fileName: string | null = submission?.file_name ?? null;
       // Per-slot uploaded deliverables — their URLs ride in the JSON payload
       // under each field label so each renders as its own download link.
       const urlByLabel: Record<string, string> = {};
@@ -1032,11 +1038,20 @@ function SubmissionPanel({
       }
       if (file) {
         const up = await uploadOne(file, "attachment");
-        if (!fileUrl) {
+        if (isFormMode) {
+          // Form mode: the row's file column is lit by the first slot deliverable;
+          // a generic attachment rides alongside under an "Attachment" label.
+          if (!fileUrl) {
+            fileUrl = up.url;
+            fileName = up.name;
+          } else {
+            urlByLabel["Attachment"] = up.url;
+          }
+        } else {
+          // Non-form: the generic upload IS the deliverable, so a freshly picked
+          // file always replaces whatever was preserved from the prior submission.
           fileUrl = up.url;
           fileName = up.name;
-        } else if (isFormMode) {
-          urlByLabel["Attachment"] = up.url;
         }
       }
 
@@ -1187,6 +1202,8 @@ function SubmissionPanel({
             disabled={submitting}
             label="Upload file"
             sublabel={`(optional, max ${MAX_MB}MB)`}
+            existingName={submission?.file_name}
+            existingUrl={submission?.file_url}
           />
 
           <div className="space-y-2">
@@ -1241,12 +1258,18 @@ function AssignmentFileUpload({
   disabled,
   label,
   sublabel,
+  existingName,
+  existingUrl,
 }: {
   file: File | null;
   onFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
   label: string;
   sublabel: string;
+  /** File carried from a previous submission — shown so a learner resubmitting
+   *  sees their upload is retained and only needs to pick a new one to replace it. */
+  existingName?: string | null;
+  existingUrl?: string | null;
 }) {
   const ref = useRef<HTMLInputElement>(null);
   return (
@@ -1276,10 +1299,33 @@ function AssignmentFileUpload({
         ) : (
           <>
             <Upload className="h-5 w-5 text-muted-foreground" />
-            <span className="text-xs text-muted-foreground">Click to upload</span>
+            <span className="text-xs text-muted-foreground">
+              {existingName ? "Click to replace uploaded file" : "Click to upload"}
+            </span>
           </>
         )}
       </Button>
+      {!file && existingName && (
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <FileText className="h-3.5 w-3.5 shrink-0" />
+          <span className="min-w-0 truncate">
+            Current file:{" "}
+            {existingUrl ? (
+              <a
+                href={existingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                {existingName}
+              </a>
+            ) : (
+              <span className="text-foreground">{existingName}</span>
+            )}
+            {" "}— kept unless you upload a new one.
+          </span>
+        </p>
+      )}
     </div>
   );
 }
