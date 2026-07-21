@@ -486,8 +486,13 @@ function SubmissionPanel({
     setSubmitting(true);
     let uploadedPath: string | null = null;
     try {
-      let fileUrl: string | null = null;
-      let fileName: string | null = null;
+      // Preserve a previously-attached file on resubmit. submit() always INSERTs
+      // a fresh row, so without carrying the old file forward a learner who edits
+      // their notes and clicks Resubmit (without re-picking the file) would land a
+      // new latest row with file_url = null — silently dropping their upload. A
+      // freshly picked file below overrides it.
+      let fileUrl: string | null = submission?.file_url ?? null;
+      let fileName: string | null = submission?.file_name ?? null;
       if (!isFormMode && file) {
         const ext = file.name.split(".").pop() ?? "bin";
         const path = `${userId}/${PRODUCT_ID}/${assignment.frontmatter.status_key}/${Date.now()}.${ext}`;
@@ -596,10 +601,33 @@ function SubmissionPanel({
               ) : (
                 <>
                   <Upload className="h-5 w-5 text-muted-foreground" />
-                  <span className="text-xs text-muted-foreground">Click to upload</span>
+                  <span className="text-xs text-muted-foreground">
+                    {submission?.file_name ? "Click to replace uploaded file" : "Click to upload"}
+                  </span>
                 </>
               )}
             </Button>
+            {!file && submission?.file_name && (
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <FileText className="h-3.5 w-3.5 shrink-0" />
+                <span className="min-w-0 truncate">
+                  Current file:{" "}
+                  {submission.file_url ? (
+                    <a
+                      href={submission.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      {submission.file_name}
+                    </a>
+                  ) : (
+                    <span className="text-foreground">{submission.file_name}</span>
+                  )}
+                  {" "}— kept unless you upload a new one.
+                </span>
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
