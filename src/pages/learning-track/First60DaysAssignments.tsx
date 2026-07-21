@@ -1016,9 +1016,12 @@ function SubmissionPanel({
       // their answers and clicks Resubmit (without re-picking the file) would land
       // a new latest row with file_url = null — silently dropping their upload.
       // appendMode passes submission=undefined, so each logged entry still starts
-      // clean; a newly picked file below always overrides.
+      // clean; any newly picked file below refreshes the row pointer.
       let fileUrl: string | null = submission?.file_url ?? null;
       let fileName: string | null = submission?.file_name ?? null;
+      // Once a freshly uploaded file claims the row's file column, keep it — so a
+      // replacement doesn't leave the row pointing at the preserved old file.
+      let rowFileFromNewUpload = false;
       // Per-slot uploaded deliverables — their URLs ride in the JSON payload
       // under each field label so each renders as its own download link.
       const urlByLabel: Record<string, string> = {};
@@ -1028,11 +1031,12 @@ function SubmissionPanel({
           if (!pf) continue;
           const up = await uploadOne(pf, f.label);
           urlByLabel[f.label] = up.url;
-          // Light up the row's file column with the first deliverable so list /
-          // gallery views that key off file_url still register a submission.
-          if (!fileUrl) {
+          // Light up the row's file column with the first freshly uploaded
+          // deliverable so list / gallery views that key off file_url register it.
+          if (!rowFileFromNewUpload) {
             fileUrl = up.url;
             fileName = up.name;
+            rowFileFromNewUpload = true;
           }
         }
       }
@@ -1041,9 +1045,10 @@ function SubmissionPanel({
         if (isFormMode) {
           // Form mode: the row's file column is lit by the first slot deliverable;
           // a generic attachment rides alongside under an "Attachment" label.
-          if (!fileUrl) {
+          if (!rowFileFromNewUpload) {
             fileUrl = up.url;
             fileName = up.name;
+            rowFileFromNewUpload = true;
           } else {
             urlByLabel["Attachment"] = up.url;
           }
