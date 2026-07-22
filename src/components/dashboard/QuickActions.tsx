@@ -3,7 +3,7 @@ import { Library, GraduationCap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const shortcuts = [
-  { title: "Products", icon: Library, href: "/consultant-landing", bg: "bg-blue-100 dark:bg-blue-950/40", color: "text-blue-600 dark:text-blue-400" },
+  { title: "Products", icon: Library, href: "/library/products", bg: "bg-blue-100 dark:bg-blue-950/40", color: "text-blue-600 dark:text-blue-400" },
   { title: "CMFAS", icon: GraduationCap, href: "/cmfas-exams", bg: "bg-emerald-100 dark:bg-emerald-950/40", color: "text-emerald-600 dark:text-emerald-400" },
 ];
 

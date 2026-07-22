@@ -447,7 +447,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                 <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1 mb-2">Quick Actions</p>
                 {isPapersTaker ? (
                   <>
-                    <QuickLink icon={Brain} label="Question Bank" onClick={() => goTo('/library?tab=banks')} />
+                    <QuickLink icon={Brain} label="Question Bank" onClick={() => goTo('/library/question-banks')} />
                     <QuickLink icon={CalendarCheck} label="First 60 Days" onClick={() => goTo('/learning-track/first-60-days')} />
                     <QuickLink icon={ClipboardCheck} label="Assignments" onClick={() => goTo('/learning-track/pre-rnf/assignments')} />
                     <QuickLink icon={FileSpreadsheet} label="My Business Plan Worksheets" onClick={() => goTo('/learning-track/pre-rnf/worksheets')} />
@@ -492,6 +492,14 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                 >
                   <Compass className="h-4 w-4" />
                   Platform Tour
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-3 h-10"
+                  onClick={() => goTo('/changelog')}
+                >
+                  <Clock className="h-4 w-4" />
+                  What's New
                 </Button>
 
                 {isAdminUser && (
