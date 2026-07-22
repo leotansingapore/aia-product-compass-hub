@@ -15,6 +15,7 @@ import {
   FileSpreadsheet,
   FileText,
   Loader2,
+  Trash2,
   MessageSquare,
   PlayCircle,
   Target,
@@ -36,6 +37,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useSignedAssignmentUrl } from "@/hooks/useSignedAssignmentUrl";
+import { assignmentStoragePath } from "@/lib/assignmentFileUrl";
 import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
 import PeerSubmissionsGallery from "@/components/learning-track/PeerSubmissionsGallery";
@@ -507,6 +509,7 @@ function AssignmentDetail({
                   submission={s}
                   assignment={assignment}
                   label={`${labels.cap} ${history.length - i}`}
+                  onDeleted={onSubmitted}
                 />
               ))}
             </div>
@@ -701,12 +704,36 @@ function SubmittedSummary({
   assignment,
   label,
   onEdit,
+  onDeleted,
 }: {
   submission: Submission;
   assignment: Assignment;
   label?: string;
   onEdit?: () => void;
+  onDeleted?: () => void;
 }) {
+  const [deleting, setDeleting] = useState(false);
+  const handleDelete = async () => {
+    if (!window.confirm("Delete this submission? This can't be undone.")) return;
+    setDeleting(true);
+    try {
+      const { error } = await (supabase.from as any)("assignment_submissions")
+        .delete()
+        .eq("id", submission.id);
+      if (error) throw error;
+      // Best-effort cleanup of the uploaded file so it doesn't linger in storage.
+      if (submission.file_url) {
+        const path = assignmentStoragePath(submission.file_url);
+        if (path) await supabase.storage.from("assignment-files").remove([path]).catch(() => {});
+      }
+      toast.success("Submission deleted.");
+      onDeleted?.();
+    } catch (err: any) {
+      toast.error(err?.message ?? "Couldn't delete the submission.");
+    } finally {
+      setDeleting(false);
+    }
+  };
   const isFormMode =
     assignment.frontmatter.submission_type === "form" &&
     !!assignment.frontmatter.form_fields?.length;
@@ -786,14 +813,30 @@ function SubmittedSummary({
           {submission.submission_text}
         </div>
       ) : null}
-      {onEdit && (
+      {(onEdit || onDeleted) && (
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          <Button size="sm" onClick={onEdit}>
-            Edit &amp; resubmit
-          </Button>
-          <span className="text-xs text-muted-foreground">
-            You can change your answers and resubmit any time.
-          </span>
+          {onEdit && (
+            <Button size="sm" onClick={onEdit}>
+              Edit &amp; resubmit
+            </Button>
+          )}
+          {onDeleted && (
+            <Button
+              size="sm"
+              variant="ghost"
+              className="text-destructive hover:text-destructive"
+              onClick={handleDelete}
+              disabled={deleting}
+            >
+              {deleting ? <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" /> : <Trash2 className="h-3.5 w-3.5 mr-1" />}
+              Delete
+            </Button>
+          )}
+          {onEdit && (
+            <span className="text-xs text-muted-foreground">
+              You can change your answers and resubmit any time.
+            </span>
+          )}
         </div>
       )}
     </div>
@@ -959,6 +1002,7 @@ const MAX_MB = 50;
         submission={submission}
         assignment={assignment}
         onEdit={() => setEditing(true)}
+        onDeleted={onSubmitted}
       />
     );
   }
