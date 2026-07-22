@@ -931,7 +931,10 @@ function SubmissionPanel({
     };
   }, [text, formValues, submission, userId, statusKey]);
 
-  const MAX_MB = 500;
+  // Matches the `assignment-files` bucket's server-side file_size_limit (50 MB).
+// The two MUST stay in sync — a larger client cap just lets a doomed upload run
+// for minutes before the server rejects it with a cryptic "Payload too large".
+const MAX_MB = 50;
 
   if (submission && !editing && !appendMode) {
     return (
@@ -1286,7 +1289,7 @@ function AssignmentFileUpload({
         ref={ref}
         type="file"
         className="hidden"
-        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.mp4,.mov,.zip"
+        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.png,.jpg,.jpeg,.zip"
         onChange={onFile}
       />
       <Button
