@@ -14,6 +14,7 @@
 
 const ATTEMPTS_KEY = 'qb-attempts';
 const REVIEW_KEY = 'qb-review-bank';
+const SIM_SESSION_PREFIX = 'qb-sim-session-';
 const MAX_ATTEMPTS = 300;
 
 export type QuizMode = 'simulation' | 'study' | 'quick';
@@ -181,4 +182,45 @@ export function reviewItemsForProduct(productSlug: string): ReviewItem[] {
 
 export function reviewCount(): number {
   return getReviewBank().length;
+}
+
+// ── Live simulation session ─────────────────────────────────────────────────
+/**
+ * An in-progress timed simulation, persisted so a refresh, tab crash, or the
+ * OS back-gesture does not throw away a paper mid-attempt. `endsAt` is an
+ * ABSOLUTE epoch (ms) so the timer keeps counting down correctly across a
+ * reload instead of resetting. `signature` pins the session to the exact
+ * question set it was built against — if the bank changes the session is
+ * discarded rather than mis-graded against a shifted answer key.
+ */
+export interface SimSession {
+  productSlug: string;
+  signature: string;
+  startedAt: number;
+  endsAt: number;
+  answers: (number | null)[];
+  flagged: number[];
+  shuffleMaps: number[][];
+  currentIdx: number;
+}
+
+export function getSimSession(productSlug: string): SimSession | null {
+  return readJSON<SimSession | null>(SIM_SESSION_PREFIX + productSlug, null);
+}
+
+/** Persist without pub/sub — this fires on every answer and needs no re-render. */
+export function saveSimSession(s: SimSession): void {
+  try {
+    localStorage.setItem(SIM_SESSION_PREFIX + s.productSlug, JSON.stringify(s));
+  } catch {
+    /* quota / private mode — fail soft */
+  }
+}
+
+export function clearSimSession(productSlug: string): void {
+  try {
+    localStorage.removeItem(SIM_SESSION_PREFIX + productSlug);
+  } catch {
+    /* ignore */
+  }
 }

@@ -22,6 +22,9 @@ import {
   addAttempt,
   addReviewItems,
   upsertReviewItem,
+  getSimSession,
+  saveSimSession,
+  clearSimSession,
   type BankAttempt,
   type ReviewItem,
 } from '@/lib/questionBankStore';
@@ -65,34 +68,87 @@ export function SimulationQuiz({
 }: SimulationQuizProps) {
   const totalSec = durationSec ?? Math.max(600, questions.length * 60);
 
+  // Pins a session to the exact question set it was built against, so a
+  // restored session is never graded against a shifted answer key.
+  const signature = useMemo(() => questions.map((q) => q.id ?? q.question).join('|'), [questions]);
+
+  // Restore an in-progress paper (refresh / crash / back-gesture) if one exists
+  // for this product and still matches the current question set.
+  const [restored] = useState(() => {
+    const saved = getSimSession(productSlug);
+    if (
+      saved &&
+      saved.signature === signature &&
+      Array.isArray(saved.answers) &&
+      saved.answers.length === questions.length &&
+      Array.isArray(saved.shuffleMaps) &&
+      saved.shuffleMaps.length === questions.length
+    ) {
+      return saved;
+    }
+    return null;
+  });
+
   // Stable per-session derived state.
-  const [shuffleMaps] = useState<number[][]>(() => questions.map((q) => createShuffleMap(q.options.length)));
-  const [answers, setAnswers] = useState<(number | null)[]>(() => new Array(questions.length).fill(null));
-  const [flagged, setFlagged] = useState<Set<number>>(() => new Set());
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [remainingSec, setRemainingSec] = useState(totalSec);
+  const [shuffleMaps] = useState<number[][]>(
+    () => restored?.shuffleMaps ?? questions.map((q) => createShuffleMap(q.options.length)),
+  );
+  const [answers, setAnswers] = useState<(number | null)[]>(
+    () => restored?.answers ?? new Array(questions.length).fill(null),
+  );
+  const [flagged, setFlagged] = useState<Set<number>>(() => new Set(restored?.flagged ?? []));
+  const [currentIdx, setCurrentIdx] = useState(() => restored?.currentIdx ?? 0);
+  const startedAt = useRef(restored?.startedAt ?? Date.now());
+  // Absolute expiry epoch — the timer survives a reload instead of resetting.
+  const endsAt = useRef(restored?.endsAt ?? Date.now() + totalSec * 1000);
+  const [remainingSec, setRemainingSec] = useState(() =>
+    Math.max(0, Math.round((endsAt.current - Date.now()) / 1000)),
+  );
   const [phase, setPhase] = useState<'running' | 'results'>('running');
-  const startedAt = useRef(Date.now());
 
   const finish = useCallback(() => {
     setPhase((p) => (p === 'running' ? 'results' : p));
   }, []);
 
-  // Countdown
+  // Countdown — recomputed from the absolute expiry each tick so a reload picks
+  // up the true remaining time, and expiry auto-submits.
   useEffect(() => {
     if (phase !== 'running') return;
-    const t = setInterval(() => {
-      setRemainingSec((s) => {
-        if (s <= 1) {
-          clearInterval(t);
-          finish();
-          return 0;
-        }
-        return s - 1;
-      });
-    }, 1000);
+    const tick = () => {
+      const left = Math.max(0, Math.round((endsAt.current - Date.now()) / 1000));
+      setRemainingSec(left);
+      if (left <= 0) finish();
+    };
+    tick(); // handles a session whose timer already expired while away
+    const t = setInterval(tick, 1000);
     return () => clearInterval(t);
   }, [phase, finish]);
+
+  // Persist the live paper on every change so nothing is lost mid-attempt.
+  useEffect(() => {
+    if (phase !== 'running') return;
+    saveSimSession({
+      productSlug,
+      signature,
+      startedAt: startedAt.current,
+      endsAt: endsAt.current,
+      answers,
+      flagged: Array.from(flagged),
+      shuffleMaps,
+      currentIdx,
+    });
+  }, [phase, productSlug, signature, answers, flagged, shuffleMaps, currentIdx]);
+
+  // Warn before a hard unload (refresh/close/back) while the paper is live.
+  useEffect(() => {
+    if (phase !== 'running') return;
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [phase]);
 
   const answeredCount = answers.filter((a) => a !== null).length;
 
@@ -179,6 +235,7 @@ export function SimulationQuiz({
     };
     addAttempt(attempt);
     addReviewItems(results.wrongItems);
+    clearSimSession(productSlug); // scored — the live paper is now an attempt
     onComplete?.({
       score: results.score,
       correct: results.correct,

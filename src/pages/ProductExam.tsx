@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +11,7 @@ import { useQuestionBank } from '@/hooks/useQuestionBank';
 import { PRODUCT_LABELS } from '@/types/questionBank';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
+import { getSimSession, clearSimSession } from '@/lib/questionBankStore';
 import { ArrowLeft, Brain, Target, Shield, Loader2, Clock, Timer, GraduationCap, BookOpen } from 'lucide-react';
 
 const PASS_MARK = 70;
@@ -30,6 +31,18 @@ export default function ProductExam() {
     bankType: 'exam',
     enabled: !!title,
   });
+
+  // If the learner refreshed / crashed out of a live paper, drop straight back
+  // into it instead of the intro so the timer keeps running and no answers are
+  // lost. Only resumes a session that matches the current question set.
+  useEffect(() => {
+    if (mode !== 'intro' || !questions || questions.length === 0) return;
+    const saved = getSimSession(productSlug);
+    if (!saved) return;
+    const sig = questions.map((q) => q.id ?? q.question).join('|');
+    if (saved.signature === sig) setMode('simulation');
+    else clearSimSession(productSlug); // stale question set — discard
+  }, [mode, questions, productSlug]);
 
   if (!title) {
     return (
@@ -168,9 +181,8 @@ export default function ProductExam() {
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  // A mis-click here used to silently throw away a timed
-                  // 60-question attempt — there is no resume.
                   if (confirm('Exit the simulation? Your answers this round will be lost.')) {
+                    clearSimSession(productSlug);
                     setMode('intro');
                   }
                 }}
