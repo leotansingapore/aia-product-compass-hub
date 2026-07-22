@@ -8,7 +8,16 @@
   "headers": [
     {
       "source": "/.well-known/oauth-authorization-server",
-      "headers": [{ "key": "Content-Type", "value": "application/json" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
     },
     {
       "source": "/assets/(.*)",
