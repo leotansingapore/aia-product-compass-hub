@@ -98,6 +98,14 @@ export function AgentAccessCard() {
 
   const mcpUrl = `${FUNCTIONS_BASE}/mcp`;
   const apiUrl = `${FUNCTIONS_BASE}/api/v1`;
+  const desktopConfig = `{
+  "mcpServers": {
+    "compass-hub": {
+      "command": "npx",
+      "args": ["mcp-remote", "${mcpUrl}", "--header", "Authorization: Bearer YOUR_KEY"]
+    }
+  }
+}`;
 
   return (
     <Card className="shadow-sm">
@@ -165,28 +173,29 @@ export function AgentAccessCard() {
             <ol className="list-decimal pl-5 space-y-2.5 text-muted-foreground marker:text-foreground/40">
               <li>Tap <span className="text-foreground">New key</span> above, pick read or read+write, and copy the key (it&apos;s shown once).</li>
               <li>
-                In Claude (claude.ai or the desktop app), open <span className="text-foreground">Settings → Connectors → Add custom connector</span> and paste this address:
+                In <span className="text-foreground">Claude Desktop</span>, open <span className="text-foreground">Settings → Developer → Edit Config</span> and add this, replacing <span className="text-foreground">YOUR_KEY</span> with the key you just copied:
+                <div className="mt-1.5 space-y-1.5">
+                  <pre className="px-3 py-2 rounded bg-background border text-xs overflow-x-auto text-foreground"><code>{desktopConfig}</code></pre>
+                  <CopyButton text={desktopConfig} label="Copy config" />
+                </div>
+                Save the file and restart Claude — the Hub&apos;s tools appear automatically. (First run downloads the small <code className="text-xs">mcp-remote</code> helper via npx.)
+              </li>
+              <li>
+                Using a different MCP client? Point it at this address and send your key as a bearer token:
                 <div className="flex items-center gap-2 flex-wrap mt-1.5">
                   <code className="px-2 py-1 rounded bg-background border text-xs break-all text-foreground">{mcpUrl}</code>
                   <CopyButton text={mcpUrl} label="Copy" />
                 </div>
-                When it asks for a token, paste your key.
               </li>
               <li>
-                For Claude Desktop / stdio clients, use the bridge (replace <span className="text-foreground">YOUR_KEY</span>):
-                <div className="flex items-start gap-2 flex-wrap mt-1.5">
-                  <code className="px-2 py-1 rounded bg-background border text-xs break-all text-foreground">npx mcp-remote {mcpUrl} --header "Authorization: Bearer YOUR_KEY"</code>
-                  <CopyButton text={`npx mcp-remote ${mcpUrl} --header "Authorization: Bearer YOUR_KEY"`} label="Copy" />
-                </div>
-              </li>
-              <li>
-                Or call the REST API directly:
+                Or call the REST API directly from a script:
                 <div className="flex items-center gap-2 flex-wrap mt-1.5">
                   <code className="px-2 py-1 rounded bg-background border text-xs break-all text-foreground">curl {apiUrl}/progress -H "Authorization: Bearer YOUR_KEY"</code>
                   <CopyButton text={`curl ${apiUrl}/progress -H "Authorization: Bearer YOUR_KEY"`} label="Copy" />
                 </div>
               </li>
             </ol>
+            <p className="text-muted-foreground text-xs">A one-tap “Add connector” inside Claude&apos;s web app needs OAuth, which is coming — for now the desktop config above is the quickest way in.</p>
           </div>
 
           {/* What you can ask it */}
