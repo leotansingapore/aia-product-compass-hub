@@ -885,6 +885,18 @@ function SubmissionPanel({
   const [submitting, setSubmitting] = useState(false);
   const [editing, setEditing] = useState(!submission);
 
+  // A file upload can take a while on a slow connection; warn before a hard
+  // navigation/close mid-submit so an in-flight submission isn't silently lost.
+  useEffect(() => {
+    if (!submitting) return;
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [submitting]);
+
   useEffect(() => {
     const parsed = parseFormValues(submission?.submission_text);
     const staleNonFormSubmission =
@@ -1307,7 +1319,7 @@ const MAX_MB = 50;
           {submitting ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Submitting…
+              {Object.keys(pendingFiles).length > 0 ? "Uploading file — keep this tab open…" : "Submitting…"}
             </>
           ) : (
             <>
