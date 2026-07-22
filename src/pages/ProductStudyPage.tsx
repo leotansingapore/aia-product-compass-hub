@@ -144,9 +144,15 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
     const saved = loadSetup(productSlug);
     if (!saved) return; // No saved session
 
-    // Verify the saved question texts still match (in case question bank changed)
+    // Verify the saved question texts still match (in case question bank changed).
+    // Consume matches from a pool so two questions with identical text map to two
+    // distinct bank rows instead of both collapsing onto the first match.
+    const pool = [...studyBank];
     const restored = saved.questionTexts
-      .map(text => studyBank.find(q => q.question === text))
+      .map(text => {
+        const idx = pool.findIndex(q => q.question === text);
+        return idx === -1 ? undefined : pool.splice(idx, 1)[0];
+      })
       .filter((q): q is QuizQuestion => q !== undefined);
 
     if (restored.length === saved.questionTexts.length) {
