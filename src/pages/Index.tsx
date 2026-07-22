@@ -25,7 +25,9 @@ const Index = memo(() => {
 
   useEffect(() => {
     if (hasRecoveryHash) {
-      navigate("/reset-password", { replace: true });
+      // Preserve the hash — it still carries the recovery token, and dropping it
+      // here was leaving /reset-password with no session to work from.
+      navigate(`/reset-password${window.location.hash}`, { replace: true });
       return;
     }
     if (!loading && !user) {

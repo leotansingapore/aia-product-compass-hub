@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +16,7 @@ export default function ResetPassword() {
   const [loading, setLoading] = useState(false);
   const [validSession, setValidSession] = useState(false);
   const [linkError, setLinkError] = useState<string | null>(null);
+  const validRef = useRef(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -33,54 +34,49 @@ export default function ResetPassword() {
     if (linkError) return; // Don't attempt session flow if link is invalid/expired
     let mounted = true;
 
-    // Listen for auth state changes to catch PASSWORD_RECOVERY event
+    const markValid = () => {
+      if (!mounted) return;
+      validRef.current = true;
+      setValidSession(true);
+    };
+
+    // A valid recovery session can arrive either as a live PASSWORD_RECOVERY /
+    // SIGNED_IN event or as an already-hydrated session (INITIAL_SESSION, or a
+    // session persisted from a full-page hand-off). Accept any of them.
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (!mounted) return;
-        
-        console.log('[ResetPassword] Auth event:', event);
-        
-        if (event === 'PASSWORD_RECOVERY' && session) {
-          setValidSession(true);
-        } else if (event === 'SIGNED_OUT' || (!session && event !== 'INITIAL_SESSION')) {
-          // If user is signed out or no session, redirect to auth
+        if (session && event !== 'SIGNED_OUT') {
+          markValid();
+        } else if (event === 'SIGNED_OUT') {
           navigate('/auth');
         }
-      }
+      },
     );
 
-    // Check for existing session
-    const checkSession = async () => {
-      try {
-        const { data: { session }, error } = await supabase.auth.getSession();
-        if (mounted) {
-          console.log('[ResetPassword] Initial session check:', !!session, error?.message);
-          if (session && !error) {
-            setValidSession(true);
-          } else if (!session) {
-            // Give it a moment for the auth state to initialize
-            setTimeout(() => {
-              if (mounted && !validSession) {
-                navigate('/auth');
-              }
-            }, 1000);
-          }
-        }
-      } catch (error) {
-        console.error('[ResetPassword] Session check error:', error);
-        if (mounted) {
-          navigate('/auth');
-        }
-      }
-    };
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        if (mounted && session) markValid();
+      })
+      .catch(() => {
+        /* handled by the fallback below */
+      });
 
-    checkSession();
+    // Only bounce to sign-in if, after a generous window, NO recovery session
+    // ever arrived — e.g. a truly invalid link with no error param. The old 1s
+    // timeout turned valid links into dead-ends on slow networks/devices, and
+    // the recovery token in the URL is single-use so the user couldn't retry.
+    const fallback = setTimeout(() => {
+      if (mounted && !validRef.current) navigate('/auth');
+    }, 10000);
 
     return () => {
       mounted = false;
       subscription.unsubscribe();
+      clearTimeout(fallback);
     };
-  }, [navigate, validSession, linkError]);
+  }, [navigate, linkError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
