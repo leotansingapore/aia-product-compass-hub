@@ -12,10 +12,29 @@
  * tab; the native `storage` event covers other tabs.
  */
 
+import { toast } from 'sonner';
+
 const ATTEMPTS_KEY = 'qb-attempts';
 const REVIEW_KEY = 'qb-review-bank';
 const SIM_SESSION_PREFIX = 'qb-sim-session-';
 const MAX_ATTEMPTS = 300;
+
+// Attempts, the review bank, and live exam sessions all persist to localStorage.
+// If a write throws (quota exceeded, Safari Private mode, storage disabled by
+// policy) the data is silently lost — a finished exam that shows a score but
+// saves nothing. Warn the user once so the loss isn't invisible.
+let storageWarned = false;
+function handleStorageError() {
+  if (storageWarned) return;
+  storageWarned = true;
+  try {
+    toast.error("Couldn't save your progress", {
+      description: 'Your browser storage is full or disabled — recent results may not be kept.',
+    });
+  } catch {
+    /* toast unavailable outside the app — ignore */
+  }
+}
 
 export type QuizMode = 'simulation' | 'study' | 'quick';
 
@@ -94,7 +113,7 @@ function writeJSON(key: string, value: unknown) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    /* quota / private mode — fail soft */
+    handleStorageError();
   }
   emit();
 }
@@ -242,7 +261,7 @@ export function saveSimSession(s: SimSession): void {
   try {
     localStorage.setItem(SIM_SESSION_PREFIX + s.productSlug, JSON.stringify(s));
   } catch {
-    /* quota / private mode — fail soft */
+    handleStorageError();
   }
 }
 
