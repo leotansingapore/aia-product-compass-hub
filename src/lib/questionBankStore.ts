@@ -53,6 +53,9 @@ export interface ReviewItem {
   explanation: string;
   status: ReviewStatus;
   dateISO: string;
+  /** Consecutive correct answers in Review-Bank practice. Clears at 2, matching
+   *  the app's "2-in-a-row = mastered" rule. Absent = 0. */
+  correctStreak?: number;
 }
 
 /** Higher number wins when the same question is added under different statuses. */
@@ -173,6 +176,32 @@ export function clearReviewItemIfPresent(questionId: string): void {
   const bank = getReviewBank();
   if (bank.some((b) => b.questionId === questionId)) {
     writeJSON(REVIEW_KEY, bank.filter((b) => b.questionId !== questionId));
+  }
+}
+
+/**
+ * Record a Review-Bank practice answer. A question only leaves the bank after
+ * TWO consecutive correct answers (matching the "2-in-a-row = mastered" rule) —
+ * a single lucky guess on a 4-option MCQ shouldn't retire a question the learner
+ * got wrong. A wrong answer resets the streak.
+ */
+export function recordReviewPractice(questionId: string, correct: boolean): void {
+  const bank = getReviewBank();
+  const idx = bank.findIndex((b) => b.questionId === questionId);
+  if (idx === -1) return;
+  if (!correct) {
+    if (bank[idx].correctStreak) {
+      bank[idx] = { ...bank[idx], correctStreak: 0 };
+      writeJSON(REVIEW_KEY, bank);
+    }
+    return;
+  }
+  const streak = (bank[idx].correctStreak ?? 0) + 1;
+  if (streak >= 2) {
+    writeJSON(REVIEW_KEY, bank.filter((b) => b.questionId !== questionId));
+  } else {
+    bank[idx] = { ...bank[idx], correctStreak: streak };
+    writeJSON(REVIEW_KEY, bank);
   }
 }
 

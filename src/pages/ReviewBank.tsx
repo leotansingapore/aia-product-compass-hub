@@ -9,7 +9,7 @@ import { StudyQuiz } from '@/components/study/StudyQuiz';
 import { useReviewBank } from '@/hooks/useQuestionBankStore';
 import {
   removeReviewItem,
-  clearReviewItemIfPresent,
+  recordReviewPractice,
   type ReviewItem,
   type ReviewStatus,
 } from '@/lib/questionBankStore';
@@ -83,17 +83,15 @@ export default function ReviewBank() {
             <div className="mb-4">
               <h1 className="text-xl font-bold">Review Bank Practice</h1>
               <p className="text-sm text-muted-foreground">
-                {questions.length} saved question{questions.length !== 1 ? 's' : ''}. Answer one correctly and it
-                clears from your bank automatically.
+                {questions.length} saved question{questions.length !== 1 ? 's' : ''}. Answer one correctly twice in a
+                row and it clears from your bank automatically.
               </p>
             </div>
             <StudyQuiz
               questions={questions}
               productSlug="review-bank"
               onFinish={() => setPracticeItems(null)}
-              onAnswered={(qid, correct) => {
-                if (correct) clearReviewItemIfPresent(qid);
-              }}
+              onAnswered={(qid, correct) => recordReviewPractice(qid, correct)}
             />
           </div>
         </PageLayout>
