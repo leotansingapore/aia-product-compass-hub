@@ -26,6 +26,14 @@ type ApiKeyRow = {
   expires_at: string | null;
 };
 
+type OAuthApp = {
+  id: string;
+  client_name: string | null;
+  scope: string;
+  created_at: string;
+  last_used_at: string | null;
+};
+
 function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) {
   const [copied, setCopied] = useState(false);
   return (
@@ -47,6 +55,7 @@ function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) 
 
 export function AgentAccessCard() {
   const [keys, setKeys] = useState<ApiKeyRow[]>([]);
+  const [apps, setApps] = useState<OAuthApp[]>([]);
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [newName, setNewName] = useState("");
@@ -64,7 +73,20 @@ export function AgentAccessCard() {
       .order("created_at", { ascending: false });
     if (error) toast.error("Could not load API keys");
     setKeys((data as ApiKeyRow[]) ?? []);
+    const { data: appData } = await supabase
+      .from("oauth_tokens")
+      .select("id, client_name, scope, created_at, last_used_at")
+      .is("revoked_at", null)
+      .order("created_at", { ascending: false });
+    setApps((appData as OAuthApp[]) ?? []);
     setLoading(false);
+  }
+
+  async function revokeApp(id: string, name: string) {
+    const { error } = await supabase.rpc("oauth_revoke_token", { p_id: id });
+    if (error) { toast.error(error.message); return; }
+    toast.success(`Disconnected "${name}"`);
+    load();
   }
 
   useEffect(() => { load(); }, []);
@@ -165,11 +187,63 @@ export function AgentAccessCard() {
           )}
         </div>
 
+        {/* Connected apps (OAuth) */}
+        {apps.length > 0 && (
+          <div className="space-y-3">
+            <h3 className="text-sm font-medium">Connected apps</h3>
+            <div className="space-y-2">
+              {apps.map((a) => (
+                <div key={a.id} className="flex items-center justify-between gap-3 rounded-lg border p-3">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-medium truncate">{a.client_name || "MCP client"}</span>
+                      {a.scope.split(/\s+/).filter(Boolean).map((s) => (
+                        <Badge key={s} variant={s === "write" ? "default" : "secondary"} className="text-xs">{s}</Badge>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Connected {new Date(a.created_at).toLocaleDateString()}
+                      {a.last_used_at ? ` · last used ${new Date(a.last_used_at).toLocaleDateString()}` : ""}
+                    </p>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => revokeApp(a.id, a.client_name || "app")}>
+                    <Trash2 className="w-4 h-4 text-destructive" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* How to connect — step by step */}
         <div className="space-y-5">
           <h3 className="text-sm font-medium">How to connect</h3>
 
+          {/* Path A: one-click Claude (OAuth) */}
           <div className="p-4 rounded-lg bg-muted/50 border space-y-3 text-sm">
+            <div className="flex items-center gap-2">
+              <Badge className="text-xs">Easiest</Badge>
+              <p className="font-medium">Connect Claude in one click</p>
+            </div>
+            <p className="text-muted-foreground text-xs">No key to copy — you approve it in your browser.</p>
+            <ol className="list-decimal pl-5 space-y-2.5 text-muted-foreground marker:text-foreground/40">
+              <li>In Claude (claude.ai or the desktop app), open <span className="text-foreground">Settings → Connectors → Add custom connector</span>.</li>
+              <li>
+                Paste this address and continue:
+                <div className="flex items-center gap-2 flex-wrap mt-1.5">
+                  <code className="px-2 py-1 rounded bg-background border text-xs break-all text-foreground">{mcpUrl}</code>
+                  <CopyButton text={mcpUrl} label="Copy" />
+                </div>
+              </li>
+              <li>Claude opens a <span className="text-foreground">Compass Hub approval screen</span>. Click <span className="text-foreground">Approve</span> — keep "Save notes" checked to let it write, or uncheck it for read-only.</li>
+              <li>Ask Claude <span className="text-foreground">"how am I doing in Compass Hub?"</span> and you're connected.</li>
+            </ol>
+            <p className="text-muted-foreground text-xs">Approved apps show under "Connected apps" above — revoke anytime.</p>
+          </div>
+
+          {/* Path B: API key / Claude Desktop config */}
+          <div className="p-4 rounded-lg bg-muted/50 border space-y-3 text-sm">
+            <p className="font-medium">Use an API key (scripts or Claude Desktop config)</p>
             <ol className="list-decimal pl-5 space-y-2.5 text-muted-foreground marker:text-foreground/40">
               <li>Tap <span className="text-foreground">New key</span> above, pick read or read+write, and copy the key (it&apos;s shown once).</li>
               <li>
@@ -195,7 +269,7 @@ export function AgentAccessCard() {
                 </div>
               </li>
             </ol>
-            <p className="text-muted-foreground text-xs">A one-tap “Add connector” inside Claude&apos;s web app needs OAuth, which is coming — for now the desktop config above is the quickest way in.</p>
+            <p className="text-muted-foreground text-xs">Prefer the one-click option above unless you need a key for a script or a non-Claude client.</p>
           </div>
 
           {/* What you can ask it */}

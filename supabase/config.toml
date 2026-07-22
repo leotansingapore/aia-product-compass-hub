@@ -6,6 +6,9 @@ verify_jwt = false
 [functions.mcp]
 verify_jwt = false
 
+[functions.oauth]
+verify_jwt = false
+
 [functions.send-password-reset]
 verify_jwt = false
 

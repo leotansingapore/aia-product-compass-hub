@@ -1,11 +1,15 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!\\.well-known).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [

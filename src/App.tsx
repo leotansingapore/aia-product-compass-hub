@@ -39,6 +39,7 @@ const Index = lazyWithRetry(() => import("./pages/Index"));
 const SimplifiedAuth = lazyWithRetry(() => import("./pages/SimplifiedAuth"));
 const ForcePasswordChange = lazyWithRetry(() => import("./pages/ForcePasswordChange"));
 const ResetPassword = lazyWithRetry(() => import("./pages/ResetPassword"));
+const OAuthConsentPage = lazyWithRetry(() => import("./pages/OAuthConsentPage"));
 const NotFound = lazyWithRetry(() => import("./pages/NotFound"));
 
 // Lazy loaded pages (heavy / secondary routes)
@@ -172,6 +173,7 @@ const App = () => (
                     <Route path="/auth" element={<SimplifiedAuth />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/oauth/authorize" element={<OAuthConsentPage />} />
                     <Route path="/flows/view/:flowId" element={<PublicFlowView />} />
                     <Route path="/playbooks/share/:shareToken" element={<PublicPlaybookView />} />
 

@@ -6,6 +6,9 @@ import type { AuthContext } from '../_shared/agent-auth.ts';
 import { ApiError, getMe, getProgress, getAchievements, listSubmissions, listBookmarks, listNotes, createNote } from '../_shared/agent-handlers.ts';
 
 const PROTOCOL_VERSION = '2024-11-05';
+const ISSUER = 'https://academy.finternship.com';
+const RESOURCE_URL = `${Deno.env.get('SUPABASE_URL')}/functions/v1/mcp`;
+const RESOURCE_METADATA_URL = `${RESOURCE_URL}/.well-known/oauth-protected-resource`;
 
 const TOOLS = [
   { name: 'get_profile', description: 'Your Compass Hub membership: email, status, tier, admin.', inputSchema: { type: 'object', properties: {} }, handler: (c: AuthContext) => getMe(c) },
@@ -22,10 +25,25 @@ const rpcError = (id: unknown, code: number, message: string) => json({ jsonrpc:
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
+
+  const reqUrl = new URL(req.url);
+  // OAuth Protected Resource Metadata (RFC 9728) — tells an MCP client which
+  // authorization server guards this endpoint.
+  if (req.method === 'GET' && reqUrl.pathname.endsWith('/.well-known/oauth-protected-resource')) {
+    return json({ resource: RESOURCE_URL, authorization_servers: [ISSUER], scopes_supported: ['read', 'write'], bearer_methods_supported: ['header'] });
+  }
   if (req.method !== 'POST') return json({ error: 'method_not_allowed', message: 'JSON-RPC over POST.' }, 405);
 
   const ctx = await authenticate(req);
-  if (ctx instanceof Response) return ctx;
+  if (ctx instanceof Response) {
+    // Attach the OAuth challenge so clients can discover how to authorize.
+    if (ctx.status === 401) {
+      const headers = new Headers(ctx.headers);
+      headers.set('WWW-Authenticate', `Bearer resource_metadata="${RESOURCE_METADATA_URL}"`);
+      return new Response(ctx.body, { status: 401, headers });
+    }
+    return ctx;
+  }
 
   let msg: any;
   try { msg = await req.json(); } catch { return rpcError(null, -32700, 'Parse error'); }
