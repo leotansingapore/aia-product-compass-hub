@@ -124,7 +124,15 @@ function parseFlexYaml(yaml: string): Record<string, unknown> {
 
 function splitFrontmatter(raw: string): { fm: Record<string, unknown>; body: string } {
   const m = raw.match(FRONTMATTER_RE);
-  if (!m) return { fm: {}, body: raw };
+  if (!m) {
+    // No `---` block: the assignment silently falls back to slug-derived
+    // title/status_key and a "file" submission type. Surface it in dev so a
+    // malformed .md is caught instead of shipping a garbled card + tracker column.
+    if (import.meta.env.DEV && raw.trim().length > 0) {
+      console.warn("[assignments] Markdown has no frontmatter block — falling back to slug defaults.");
+    }
+    return { fm: {}, body: raw };
+  }
   return { fm: parseFlexYaml(m[1]), body: raw.slice(m[0].length) };
 }
 
@@ -147,6 +155,11 @@ function coerceFormFields(raw: unknown): AssignmentFormField[] | undefined {
     const parts = entry.split("|").map((p) => p.trim());
     const [label, kindStr = "textarea", hintRaw = "", rowsStr = ""] = parts;
     if (!label) continue;
+    // A typo like `fil` silently becomes a textarea, turning a required file
+    // upload into a text box. Warn in dev so the deliverable type is right.
+    if (import.meta.env.DEV && !["text", "section", "check", "file", "textarea"].includes(kindStr)) {
+      console.warn(`[assignments] Unknown field kind "${kindStr}" for "${label}" — defaulting to textarea.`);
+    }
     const kind: AssignmentFormFieldKind =
       kindStr === "text"
         ? "text"
