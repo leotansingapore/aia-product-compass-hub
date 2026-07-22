@@ -13,6 +13,7 @@
  */
 
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const ATTEMPTS_KEY = 'qb-attempts';
 const REVIEW_KEY = 'qb-review-bank';
@@ -126,6 +127,7 @@ export function getAttempts(): BankAttempt[] {
 export function addAttempt(attempt: BankAttempt): void {
   const next = [attempt, ...getAttempts()].slice(0, MAX_ATTEMPTS);
   writeJSON(ATTEMPTS_KEY, next);
+  mirrorAttempt(attempt);
 }
 
 export function attemptsForProduct(productSlug: string): BankAttempt[] {
@@ -157,6 +159,7 @@ export function upsertReviewItem(item: ReviewItem): void {
   const idx = bank.findIndex((b) => b.questionId === item.questionId);
   if (idx === -1) {
     writeJSON(REVIEW_KEY, [item, ...bank]);
+    mirrorReviewUpsert(item);
     return;
   }
   const existing = bank[idx];
@@ -164,6 +167,7 @@ export function upsertReviewItem(item: ReviewItem): void {
     STATUS_PRIORITY[existing.status] >= STATUS_PRIORITY[item.status] ? existing.status : item.status;
   bank[idx] = { ...item, status: keepStatus };
   writeJSON(REVIEW_KEY, bank);
+  mirrorReviewUpsert(bank[idx]);
 }
 
 /** Bulk add (used when a scored session finishes and auto-collects wrong answers). */
@@ -184,10 +188,12 @@ export function addReviewItems(items: ReviewItem[]): void {
     }
   }
   writeJSON(REVIEW_KEY, Array.from(byId.values()));
+  for (const it of items) mirrorReviewUpsert(byId.get(it.questionId) ?? it);
 }
 
 export function removeReviewItem(questionId: string): void {
   writeJSON(REVIEW_KEY, getReviewBank().filter((b) => b.questionId !== questionId));
+  mirrorReviewDelete(questionId);
 }
 
 /** Remove a question from the bank once it has been answered correctly again. */
@@ -195,6 +201,7 @@ export function clearReviewItemIfPresent(questionId: string): void {
   const bank = getReviewBank();
   if (bank.some((b) => b.questionId === questionId)) {
     writeJSON(REVIEW_KEY, bank.filter((b) => b.questionId !== questionId));
+    mirrorReviewDelete(questionId);
   }
 }
 
@@ -212,15 +219,18 @@ export function recordReviewPractice(questionId: string, correct: boolean): void
     if (bank[idx].correctStreak) {
       bank[idx] = { ...bank[idx], correctStreak: 0 };
       writeJSON(REVIEW_KEY, bank);
+      mirrorReviewUpsert(bank[idx]);
     }
     return;
   }
   const streak = (bank[idx].correctStreak ?? 0) + 1;
   if (streak >= 2) {
     writeJSON(REVIEW_KEY, bank.filter((b) => b.questionId !== questionId));
+    mirrorReviewDelete(questionId);
   } else {
     bank[idx] = { ...bank[idx], correctStreak: streak };
     writeJSON(REVIEW_KEY, bank);
+    mirrorReviewUpsert(bank[idx]);
   }
 }
 
@@ -270,5 +280,140 @@ export function clearSimSession(productSlug: string): void {
     localStorage.removeItem(SIM_SESSION_PREFIX + productSlug);
   } catch {
     /* ignore */
+  }
+}
+
+// ── Server sync ─────────────────────────────────────────────────────────────
+// localStorage stays the synchronous source of truth (no consumer changes);
+// these mirror writes to Supabase and merge the server copy in on login so
+// attempts and the Review Bank follow the user across devices/browsers.
+let currentUserId: string | null = null;
+
+/** Set (or clear, on sign-out) the account that store writes mirror to. */
+export function setQuestionBankUserId(id: string | null): void {
+  currentUserId = id;
+}
+
+function mirrorAttempt(a: BankAttempt): void {
+  if (!currentUserId) return;
+  void (supabase.from as any)('qb_attempts')
+    .upsert({
+      user_id: currentUserId,
+      id: a.id,
+      product_slug: a.productSlug,
+      bank_type: a.bankType,
+      mode: a.mode,
+      score: a.score,
+      correct: a.correct,
+      total: a.total,
+      passed: a.passed,
+      pass_mark: a.passMark,
+      date_iso: a.dateISO,
+      duration_sec: a.durationSec,
+      category_breakdown: a.categoryBreakdown,
+    })
+    .then(undefined, () => {});
+}
+
+function mirrorReviewUpsert(it: ReviewItem): void {
+  if (!currentUserId) return;
+  void (supabase.from as any)('qb_review_bank')
+    .upsert({
+      user_id: currentUserId,
+      question_id: it.questionId,
+      product_slug: it.productSlug,
+      bank_type: it.bankType,
+      category: it.category,
+      question: it.question,
+      options: it.options,
+      correct_answer: it.correctAnswer,
+      explanation: it.explanation,
+      status: it.status,
+      date_iso: it.dateISO,
+      correct_streak: it.correctStreak ?? 0,
+      updated_at: new Date().toISOString(),
+    })
+    .then(undefined, () => {});
+}
+
+function mirrorReviewDelete(questionId: string): void {
+  if (!currentUserId) return;
+  void (supabase.from as any)('qb_review_bank')
+    .delete()
+    .eq('user_id', currentUserId)
+    .eq('question_id', questionId)
+    .then(undefined, () => {});
+}
+
+/**
+ * Pull the account's attempts + Review Bank from Supabase and merge with the
+ * local cache (union; the later `dateISO` wins on conflict), then push any
+ * local-only rows up. Safe to call on every login; falls back to localStorage
+ * if offline.
+ */
+export async function syncQuestionBankFromServer(userId: string): Promise<void> {
+  currentUserId = userId;
+  try {
+    const [aRes, rRes] = await Promise.all([
+      (supabase.from as any)('qb_attempts').select('*').eq('user_id', userId),
+      (supabase.from as any)('qb_review_bank').select('*').eq('user_id', userId),
+    ]);
+
+    const aRows = aRes?.data as any[] | null;
+    if (Array.isArray(aRows)) {
+      const local = getAttempts();
+      const byId = new Map<string, BankAttempt>(local.map((a) => [a.id, a]));
+      for (const r of aRows) {
+        if (byId.has(r.id)) continue;
+        byId.set(r.id, {
+          id: r.id,
+          productSlug: r.product_slug,
+          bankType: r.bank_type,
+          mode: r.mode,
+          score: r.score,
+          correct: r.correct,
+          total: r.total,
+          passed: r.passed,
+          passMark: r.pass_mark,
+          dateISO: new Date(r.date_iso).toISOString(),
+          durationSec: r.duration_sec ?? 0,
+          categoryBreakdown: r.category_breakdown ?? {},
+        });
+      }
+      const merged = Array.from(byId.values())
+        .sort((a, b) => (a.dateISO < b.dateISO ? 1 : -1))
+        .slice(0, MAX_ATTEMPTS);
+      writeJSON(ATTEMPTS_KEY, merged);
+      const serverIds = new Set(aRows.map((r) => r.id));
+      for (const a of local) if (!serverIds.has(a.id)) mirrorAttempt(a);
+    }
+
+    const rRows = rRes?.data as any[] | null;
+    if (Array.isArray(rRows)) {
+      const local = getReviewBank();
+      const byQ = new Map<string, ReviewItem>(local.map((it) => [it.questionId, it]));
+      for (const r of rRows) {
+        const serverItem: ReviewItem = {
+          questionId: r.question_id,
+          productSlug: r.product_slug,
+          bankType: r.bank_type,
+          category: r.category,
+          question: r.question,
+          options: r.options ?? [],
+          correctAnswer: r.correct_answer,
+          explanation: r.explanation ?? '',
+          status: r.status,
+          dateISO: new Date(r.date_iso).toISOString(),
+          correctStreak: r.correct_streak ?? 0,
+        };
+        const existing = byQ.get(r.question_id);
+        if (!existing || existing.dateISO < serverItem.dateISO) byQ.set(r.question_id, serverItem);
+      }
+      writeJSON(REVIEW_KEY, Array.from(byQ.values()));
+      const serverQ = new Set(rRows.map((r) => r.question_id));
+      for (const it of local) if (!serverQ.has(it.questionId)) mirrorReviewUpsert(it);
+    }
+  } catch {
+    /* offline / not signed in — localStorage stays authoritative */
   }
 }

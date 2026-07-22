@@ -24,6 +24,7 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { RequireTier } from "@/components/RequireTier";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
+import { QuestionBankSync } from "@/components/QuestionBankSync";
 import { PageErrorBoundary } from "@/components/PageErrorBoundary";
 import { PerfOverlay } from "@/components/PerfOverlay";
 
@@ -163,6 +164,7 @@ const App = () => (
                   </Suspense>
                   <AppLayout>
                   <RouteTracker />
+                  <QuestionBankSync />
                   <PageErrorBoundary>
                   <Suspense fallback={<SkeletonLoader type="page" />}>
                   <Routes>
