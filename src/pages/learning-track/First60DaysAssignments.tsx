@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -35,6 +35,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { usePermissions } from "@/hooks/usePermissions";
+import { useSignedAssignmentUrl } from "@/hooks/useSignedAssignmentUrl";
 import { Input } from "@/components/ui/input";
 import { assignmentMarkdownComponents } from "@/components/first-60-days/assignmentMarkdownComponents";
 import PeerSubmissionsGallery from "@/components/learning-track/PeerSubmissionsGallery";
@@ -54,6 +55,26 @@ import {
 } from "@/features/first-60-days/assignmentDrafts";
 
 const PRODUCT_ID = "first-60-days-assignments";
+
+// Anchor to an uploaded assignment file. The `assignment-files` bucket is
+// private, so the stored value (a legacy public URL) is resolved to a temporary
+// signed URL before it's clickable; external pasted links pass through.
+function SignedFileLink({
+  url,
+  className,
+  children,
+}: {
+  url: string | null | undefined;
+  className?: string;
+  children: ReactNode;
+}) {
+  const signed = useSignedAssignmentUrl(url);
+  return (
+    <a href={signed ?? url ?? "#"} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  );
+}
 
 // Leo's public scheduling link. Surfaced on every assignment so a learner can
 // book two touchpoints: a briefing before they start, and a verification once
@@ -706,15 +727,13 @@ function SubmittedSummary({
         </div>
       </div>
       {submission.file_name && (
-        <a
-          href={submission.file_url ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+        <SignedFileLink
+          url={submission.file_url}
           className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60 transition-colors"
         >
           <FileText className="h-4 w-4 text-muted-foreground shrink-0" />
           <span className="truncate flex-1">{submission.file_name}</span>
-        </a>
+        </SignedFileLink>
       )}
       {isFormMode && hasFormValues ? (
         <div className="space-y-3">
@@ -735,11 +754,9 @@ function SubmittedSummary({
             }
             if (field.kind === "file" && /^https?:\/\//.test(value.trim())) {
               return (
-                <a
+                <SignedFileLink
                   key={field.label}
-                  href={value.trim()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  url={value.trim()}
                   className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3 text-sm hover:bg-muted/60 transition-colors"
                 >
                   <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -751,7 +768,7 @@ function SubmittedSummary({
                       View submitted file
                     </span>
                   </span>
-                </a>
+                </SignedFileLink>
               );
             }
             return (
@@ -1319,14 +1336,9 @@ function AssignmentFileUpload({
           <span className="min-w-0 truncate">
             Current file:{" "}
             {existingUrl ? (
-              <a
-                href={existingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
+              <SignedFileLink url={existingUrl} className="text-primary hover:underline">
                 {existingName}
-              </a>
+              </SignedFileLink>
             ) : (
               <span className="text-foreground">{existingName}</span>
             )}
@@ -1406,15 +1418,13 @@ function FormFieldRenderer({
           )}
         </Button>
         {existingUrl && !pendingFile && (
-          <a
-            href={existingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <SignedFileLink
+            url={existingUrl}
             className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
           >
             <FileText className="h-3.5 w-3.5" />
             View current upload
-          </a>
+          </SignedFileLink>
         )}
       </div>
     );

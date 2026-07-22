@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useSignedAssignmentUrl } from "@/hooks/useSignedAssignmentUrl";
 import { Check, Clock, ExternalLink, FileText, Loader2, Search, Users2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import AdminWorksheetRoster from "@/components/leaderboard/AdminWorksheetRoster";
@@ -86,9 +87,11 @@ function uploadDisplayName(url: string): string {
 }
 
 function FileLink({ url, name }: { url: string; name: string }) {
+  // Bucket uploads are private now — sign them; external pasted links pass through.
+  const signed = useSignedAssignmentUrl(url);
   return (
     <a
-      href={url}
+      href={signed ?? url}
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 rounded-lg border bg-background px-3 py-2 text-sm hover:bg-muted/60"

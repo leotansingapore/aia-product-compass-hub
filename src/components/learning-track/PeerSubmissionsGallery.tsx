@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useSignedAssignmentUrl } from "@/hooks/useSignedAssignmentUrl";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -91,20 +92,22 @@ function PeerCard({
 }) {
   const when = row.submitted_at ? new Date(row.submitted_at).toLocaleDateString() : null;
   const answers = parseFormAnswers(row.submission_text);
+  // The private bucket only serves via signed URLs — resolve the stored value.
+  const fileUrl = useSignedAssignmentUrl(row.file_url);
 
   // Vision-board style: prefer the uploaded image, then a PDF/link, then text.
   if (variant === "image") {
-    if (isImage(row.file_url, row.file_name) && row.file_url) {
+    if (isImage(row.file_url, row.file_name) && fileUrl) {
       return (
         <a
-          href={row.file_url}
+          href={fileUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="group block overflow-hidden rounded-xl border bg-card transition-colors hover:border-primary/40"
         >
           <div className="aspect-[4/5] w-full overflow-hidden bg-muted">
             <img
-              src={row.file_url}
+              src={fileUrl}
               alt={`${name}'s vision board`}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
@@ -117,7 +120,7 @@ function PeerCard({
         </a>
       );
     }
-    const link = row.file_url ?? (looksLikeUrl(row.submission_text) ? row.submission_text : null);
+    const link = fileUrl ?? (looksLikeUrl(row.submission_text) ? row.submission_text : null);
     if (link) {
       return (
         <a
@@ -192,8 +195,9 @@ function AdminCard({
 }) {
   const when = row.submitted_at ? new Date(row.submitted_at).toLocaleString() : null;
   const answers = parseFormAnswers(row.submission_text);
-  const img = isImage(row.file_url, row.file_name) ? row.file_url : null;
-  const fileLink = !img && row.file_url ? row.file_url : null;
+  const fileUrl = useSignedAssignmentUrl(row.file_url);
+  const img = isImage(row.file_url, row.file_name) ? fileUrl : null;
+  const fileLink = !isImage(row.file_url, row.file_name) && fileUrl ? fileUrl : null;
   const textLink = looksLikeUrl(row.submission_text);
   const hidden = !!row.hidden_from_gallery;
 
