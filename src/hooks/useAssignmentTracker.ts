@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 import { loadAllAssignments, type Assignment } from "@/features/first-60-days/assignments";
 import { loadAllAssignmentDrafts } from "@/features/first-60-days/assignmentDrafts";
 
@@ -69,18 +70,26 @@ async function fetchTracker(): Promise<AssignmentTracker> {
     }));
   const validKeys = new Set(columns.map((c) => c.statusKey));
 
-  const [{ data, error }, drafts] = await Promise.all([
-    (supabase.from as any)("assignment_submissions")
-      .select("user_id, item_id, submitted_at")
-      .eq("product_id", PRODUCT_ID)
-      .order("submitted_at", { ascending: true })
-      .limit(5000),
+  type Row = { user_id: string; item_id: string; submitted_at: string | null };
+  // PostgREST silently caps every response on this project at 1,000 rows — a bare
+  // `.limit(5000)` returns only the first 1,000. Ordered oldest-first, that would
+  // drop the NEWEST submissions once the cohort passes 1,000 rows (reached quickly
+  // since every resubmit inserts a new row), so recent submitters would vanish from
+  // the tracker. Page through with fetchAllRows instead. The `id` tiebreaker keeps
+  // pages from overlapping when two rows share a submitted_at.
+  const [rowsRaw, drafts] = await Promise.all([
+    fetchAllRows<Row>((from, to) =>
+      (supabase.from as any)("assignment_submissions")
+        .select("user_id, item_id, submitted_at")
+        .eq("product_id", PRODUCT_ID)
+        .order("submitted_at", { ascending: true })
+        .order("id", { ascending: true })
+        .range(from, to),
+    ),
     loadAllAssignmentDrafts(),
   ]);
-  if (error) throw error;
 
-  type Row = { user_id: string; item_id: string; submitted_at: string | null };
-  const rows = ((data ?? []) as Row[]).filter((r) => validKeys.has(r.item_id));
+  const rows = rowsRaw.filter((r) => validKeys.has(r.item_id));
 
   const byUser = new Map<string, Record<string, string | null>>();
   for (const r of rows) {
