@@ -1,17 +1,65 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ProductQuiz } from '@/components/ProductQuiz';
+import { StudyQuiz } from '@/components/study/StudyQuiz';
 import { SimulationQuiz } from '@/components/study/SimulationQuiz';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
 import { useQuestionBank } from '@/hooks/useQuestionBank';
-import { PRODUCT_LABELS } from '@/types/questionBank';
+import { useQuestionProgress } from '@/hooks/useQuestionProgress';
+import { PRODUCT_LABELS, type QuizQuestion } from '@/types/questionBank';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
-import { getSimSession, clearSimSession } from '@/lib/questionBankStore';
+import { getSimSession, clearSimSession, upsertReviewItem } from '@/lib/questionBankStore';
+
+/**
+ * Exam "Practice" mode. Runs the same instant-feedback StudyQuiz the study page
+ * uses — so it shuffles options (no memorising answer position), records
+ * per-question mastery, AND drops missed questions into the Review Bank —
+ * instead of the old ProductQuiz, which did none of those and silently made
+ * practice effort invisible.
+ */
+function ExamPracticeQuiz({
+  questions,
+  productSlug,
+  onFinish,
+}: {
+  questions: QuizQuestion[];
+  productSlug: string;
+  onFinish: () => void;
+}) {
+  const { recordAnswer } = useQuestionProgress(productSlug);
+  const byId = useMemo(() => new Map(questions.map((q) => [q.id, q])), [questions]);
+  return (
+    <StudyQuiz
+      questions={questions}
+      productSlug={productSlug}
+      onFinish={onFinish}
+      onAnswered={(qid, correct) => {
+        recordAnswer(qid, correct);
+        if (!correct) {
+          const q = byId.get(qid);
+          if (q?.id) {
+            upsertReviewItem({
+              questionId: q.id,
+              productSlug,
+              bankType: 'exam',
+              category: q.category,
+              question: q.question,
+              options: q.options,
+              correctAnswer: q.correct,
+              explanation: q.explanation,
+              status: 'wrong',
+              dateISO: new Date().toISOString(),
+            });
+          }
+        }
+      }}
+    />
+  );
+}
 import { ArrowLeft, Brain, Target, Shield, Loader2, Clock, Timer, GraduationCap, BookOpen } from 'lucide-react';
 
 const PASS_MARK = 70;
@@ -207,7 +255,7 @@ export default function ProductExam() {
               <Button variant="ghost" size="sm" onClick={() => setMode('intro')} className="mb-3 -ml-2">
                 <ArrowLeft className="h-4 w-4 mr-1" /> Back to options
               </Button>
-              <ProductQuiz questions={questions} productId={productSlug} />
+              <ExamPracticeQuiz questions={questions} productSlug={productSlug} onFinish={() => setMode('intro')} />
             </>
           )}
         </div>
