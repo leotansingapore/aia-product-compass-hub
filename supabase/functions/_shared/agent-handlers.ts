@@ -67,9 +67,10 @@ export async function listNotes(ctx: AuthContext, params: Record<string, unknown
 export async function createNote(ctx: AuthContext, params: Record<string, unknown>) {
   const content = String(params.content ?? '').trim();
   if (!content) throw new ApiError('content is required', 422);
-  const row: Record<string, unknown> = { user_id: ctx.userId, content };
-  if (params.product_id != null) row.product_id = String(params.product_id);
-  const { data, error } = await ctx.supabase.from('user_notes').insert(row).select('id, product_id, updated_at').single();
+  const productId = params.product_id != null ? String(params.product_id) : '';
+  if (!productId) throw new ApiError('product_id is required (Hub notes are attached to a product).', 422);
+  const { data, error } = await ctx.supabase.from('user_notes')
+    .insert({ user_id: ctx.userId, content, product_id: productId }).select('id, product_id, updated_at').single();
   if (error) throw new ApiError(error.message, 500);
   return { created: data };
 }

@@ -14,7 +14,7 @@ const TOOLS = [
   { name: 'list_submissions', description: 'Your learning-track submissions and their review status/feedback.', inputSchema: { type: 'object', properties: {} }, handler: (c: AuthContext) => listSubmissions(c) },
   { name: 'list_bookmarks', description: 'Products you have bookmarked.', inputSchema: { type: 'object', properties: {} }, handler: (c: AuthContext) => listBookmarks(c) },
   { name: 'list_notes', description: 'Your notes (preview + product).', inputSchema: { type: 'object', properties: { limit: { type: 'number' } } }, handler: (c: AuthContext, a: Record<string, unknown>) => listNotes(c, a) },
-  { name: 'create_note', description: 'Create a note, optionally tied to a product_id. Requires the write scope.', inputSchema: { type: 'object', required: ['content'], properties: { content: { type: 'string' }, product_id: { type: 'string' } } }, scope: 'write', handler: (c: AuthContext, a: Record<string, unknown>) => createNote(c, a) },
+  { name: 'create_note', description: 'Create a note, optionally tied to a product_id. Requires the write scope.', inputSchema: { type: 'object', required: ['content','product_id'], properties: { content: { type: 'string' }, product_id: { type: 'string' } } }, scope: 'write', handler: (c: AuthContext, a: Record<string, unknown>) => createNote(c, a) },
 ] as const;
 
 const rpcResult = (id: unknown, result: unknown) => json({ jsonrpc: '2.0', id, result });
