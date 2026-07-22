@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 interface SkeletonLoaderProps {
-  type: 'dashboard' | 'category' | 'product' | 'card' | 'stats';
+  type: 'dashboard' | 'category' | 'product' | 'card' | 'stats' | 'page';
   count?: number;
 }
 
@@ -159,6 +159,20 @@ export function SkeletonLoader({ type, count = 1 }: SkeletonLoaderProps) {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        );
+
+      case 'page':
+        // Neutral, shape-agnostic placeholder for lazy route transitions — a
+        // title line plus a few content blocks. Avoids flashing a page-specific
+        // layout (e.g. a product hero) on routes that look nothing like it.
+        return (
+          <div className="max-w-3xl mx-auto px-4 py-8 space-y-4">
+            <Skeleton className="h-8 w-1/2" />
+            <Skeleton className="h-4 w-3/4" />
+            <Skeleton className="h-40 w-full rounded-lg" />
+            <Skeleton className="h-4 w-2/3" />
+            <Skeleton className="h-4 w-1/2" />
           </div>
         );
 

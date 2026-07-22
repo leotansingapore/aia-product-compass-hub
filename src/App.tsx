@@ -164,7 +164,7 @@ const App = () => (
                   <AppLayout>
                   <RouteTracker />
                   <PageErrorBoundary>
-                  <Suspense fallback={<SkeletonLoader type="product" />}>
+                  <Suspense fallback={<SkeletonLoader type="page" />}>
                   <Routes>
                     {/* Public routes — no auth required */}
                     <Route path="/auth" element={<SimplifiedAuth />} />
