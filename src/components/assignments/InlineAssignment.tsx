@@ -33,6 +33,28 @@ export default function InlineAssignment({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // The most recent submission's file, so a resubmit that doesn't re-pick a file
+  // keeps the previously uploaded one instead of overwriting it with null.
+  const [existingFile, setExistingFile] = useState<{ url: string | null; name: string | null } | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    let active = true;
+    (async () => {
+      const { data } = await (supabase.from as any)('assignment_submissions')
+        .select('file_url, file_name')
+        .eq('user_id', user.id)
+        .eq('product_id', productId)
+        .eq('item_id', itemId)
+        .order('submitted_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (active && data) setExistingFile({ url: data.file_url ?? null, name: data.file_name ?? null });
+    })();
+    return () => {
+      active = false;
+    };
+  }, [user, productId, itemId]);
 
   // Auto-save the typed response to this device so nothing is lost on a refresh
   // before the learner submits. (Submitting is a one-shot graded action, so the
@@ -94,9 +116,12 @@ export default function InlineAssignment({
 
     setIsSubmitting(true);
 
+    let uploadedPath: string | null = null;
     try {
-      let fileUrl: string | null = null;
-      let fileName: string | null = null;
+      // Default to the previously uploaded file so a resubmit without a new file
+      // keeps it rather than dropping it.
+      let fileUrl: string | null = existingFile?.url ?? null;
+      let fileName: string | null = existingFile?.name ?? null;
 
       if (selectedFile) {
         const ext = selectedFile.name.split('.').pop() ?? 'bin';
@@ -107,6 +132,7 @@ export default function InlineAssignment({
           .upload(storagePath, selectedFile);
 
         if (uploadError) throw uploadError;
+        uploadedPath = storagePath;
 
         const { data: urlData } = supabase.storage
           .from('assignment-files')
@@ -125,7 +151,15 @@ export default function InlineAssignment({
         file_name: fileName,
       });
 
-      if (insertError) throw insertError;
+      // Don't leave a just-uploaded file orphaned in storage if the row fails.
+      if (insertError) {
+        if (uploadedPath) {
+          await supabase.storage.from('assignment-files').remove([uploadedPath]).catch(() => {});
+        }
+        throw insertError;
+      }
+
+      if (fileUrl) setExistingFile({ url: fileUrl, name: fileName });
 
       notifyAssignmentSubmitted({
         userId: user.id,
