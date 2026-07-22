@@ -152,6 +152,23 @@ export function SimulationQuiz({
 
   const answeredCount = answers.filter((a) => a !== null).length;
 
+  // Manual submit guards against a mis-tap ending the paper with questions left
+  // blank (blanks score as wrong). Timeout auto-submit skips this.
+  const submitManually = useCallback(() => {
+    const unanswered = questions.length - answeredCount;
+    if (
+      unanswered > 0 &&
+      !window.confirm(
+        `You have ${unanswered} unanswered question${unanswered !== 1 ? 's' : ''} — ${
+          unanswered !== 1 ? 'they' : 'it'
+        } will be marked wrong. Submit anyway?`,
+      )
+    ) {
+      return;
+    }
+    finish();
+  }, [answeredCount, questions.length, finish]);
+
   const select = useCallback(
     (displayIdx: number) => {
       setAnswers((prev) => {
@@ -458,7 +475,7 @@ export function SimulationQuiz({
               <ChevronLeft className="h-4 w-4 mr-1" /> Previous
             </Button>
             {currentIdx === questions.length - 1 ? (
-              <Button size="sm" onClick={finish}>Submit exam</Button>
+              <Button size="sm" onClick={submitManually}>Submit exam</Button>
             ) : (
               <Button size="sm" onClick={() => setCurrentIdx((i) => Math.min(questions.length - 1, i + 1))}>
                 Next <ChevronRight className="h-4 w-4 ml-1" />
@@ -490,7 +507,7 @@ export function SimulationQuiz({
           ))}
         </div>
         <div className="mt-3 flex justify-end">
-          <Button size="sm" onClick={finish} variant="default">
+          <Button size="sm" onClick={submitManually} variant="default">
             Submit exam ({answeredCount}/{questions.length})
           </Button>
         </div>
