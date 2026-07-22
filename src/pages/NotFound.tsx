@@ -43,7 +43,7 @@ const NotFound = () => {
             <Button className="w-full">Go to Dashboard</Button>
           </Link>
           <div className="flex gap-2">
-            <Link to="/categories" className="flex-1">
+            <Link to="/library/products" className="flex-1">
               <Button variant="outline" className="w-full text-xs">Browse Products</Button>
             </Link>
             <Link to="/cmfas-exams" className="flex-1">

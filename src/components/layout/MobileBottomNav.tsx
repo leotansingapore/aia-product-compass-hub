@@ -93,7 +93,7 @@ const QUICK_LINKS: QuickLink[] = [
   // Case Vault for browsing real-prospect receipts).
   { name: "Concept Cards", href: "/concept-cards", icon: Pencil, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-950/30", features: [FEATURES.CONCEPT_CARDS] },
   { name: "Case Vault", href: "/case-vault", icon: Archive, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30", features: [FEATURES.CASE_VAULT] },
-  { name: "Question Banks", href: "/library?tab=banks", icon: Brain, color: "text-indigo-500", bg: "bg-indigo-50 dark:bg-indigo-950/30", features: [FEATURES.QUESTION_BANKS] },
+  { name: "Question Banks", href: "/library/question-banks", icon: Brain, color: "text-indigo-500", bg: "bg-indigo-50 dark:bg-indigo-950/30", features: [FEATURES.QUESTION_BANKS] },
   { name: "Roleplay", href: "/roleplay", icon: MessageCircle, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-950/30", features: [FEATURES.ROLEPLAY] },
   { name: "Bookmarks", href: "/bookmarks", icon: Bookmark, color: "text-rose-500", bg: "bg-rose-50 dark:bg-rose-950/30", features: [FEATURES.BOOKMARKS] },
   { name: "Feedback", href: FEEDBACK_HREF, icon: MessageSquarePlus, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-900/40" },
