@@ -24,10 +24,11 @@ export default function ForcePasswordChange() {
     }
   }, [user, loading, navigate]);
 
-  // While waiting for auth to initialize or for recovery token to log user in, avoid flashing redirect
-  const hash = window.location.hash || '';
-  const hasRecoveryToken = hash.includes('type=recovery') || hash.includes('access_token');
-  if (loading || (!user && hasRecoveryToken)) return null;
+  // Never render the form without a user: the recovery-token case is still
+  // logging in (wait), and the no-user/no-token case is being redirected to
+  // /auth by the effect above. Rendering anyway let onSuccess deref user.id and
+  // throw on an unauthenticated submit.
+  if (loading || !user) return null;
 
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
