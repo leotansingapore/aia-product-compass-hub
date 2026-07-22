@@ -333,6 +333,12 @@ export default function WorksheetBuilder() {
       toast.error("Please sign in to save.");
       return;
     }
+    // Wait out any in-flight autosave first: racing it would run a second INSERT
+    // (rowIdRef isn't set until the first one resolves) and create a duplicate row.
+    while (savingRef.current) {
+      await new Promise((r) => window.setTimeout(r, 200));
+    }
+    savingRef.current = true;
     setSaving(true);
     try {
       const id = await saveWorksheet(user.id, slug as WorksheetSlug, values, rowIdRef.current);
@@ -344,6 +350,7 @@ export default function WorksheetBuilder() {
     } catch (err: any) {
       toast.error(err?.message ?? "Couldn't save.");
     } finally {
+      savingRef.current = false;
       setSaving(false);
     }
   };
@@ -354,6 +361,15 @@ export default function WorksheetBuilder() {
   const generatePdf = async () => {
     const src = printRef.current;
     if (!src) return;
+    // Don't "successfully" download a blank PDF from an untouched worksheet.
+    // Internal settings keys are `_`-prefixed; real answers are everything else.
+    const hasContent = Object.entries(values).some(
+      ([k, v]) => !k.startsWith("_") && typeof v === "string" && v.trim().length > 0,
+    );
+    if (!hasContent) {
+      toast.error("This worksheet is empty — add some content before exporting.");
+      return;
+    }
     // Deck mode: landscape pages, full-bleed slides (the slide supplies its own
     // padding), so the holder gets no extra width or padding of its own.
     const deck = pdfLayout === "deck" && !isPledge;
