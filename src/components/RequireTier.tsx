@@ -35,10 +35,12 @@ export function RequireTier({ feature, children, redirectTo = '/' }: RequireTier
     if (permissionsLoading) return;
     if (!allowed && !toastShownRef.current) {
       toastShownRef.current = true;
+      // Informational, not destructive: this fires on ordinary app opens too
+      // (e.g. restoring a last-visited route after an access change), where a
+      // red error toast reads as something having gone wrong.
       toast({
-        title: 'Not available on your tier',
-        description: 'Request an upgrade to unlock this section.',
-        variant: 'destructive',
+        title: 'This section is locked',
+        description: 'Not included in your current access — ask your admin to unlock it.',
       });
     }
   }, [allowed, permissionsLoading]);
