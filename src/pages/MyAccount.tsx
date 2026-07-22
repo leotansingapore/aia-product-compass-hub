@@ -4,6 +4,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { ProfileSection } from "@/components/account/ProfileSection";
 import { SecuritySection } from "@/components/account/SecuritySection";
+import { AgentAccessCard } from "@/components/account/AgentAccessCard";
 
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
@@ -120,7 +121,9 @@ export default function MyAccount() {
 
           <ProfileSection />
 
-          
+          <Separator />
+
+          <AgentAccessCard />
 
           <Separator />
 
