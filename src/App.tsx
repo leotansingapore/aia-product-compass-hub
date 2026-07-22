@@ -24,6 +24,7 @@ import { RequireAuth } from "@/components/RequireAuth";
 import { RequireTier } from "@/components/RequireTier";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
+import { PageErrorBoundary } from "@/components/PageErrorBoundary";
 import { PerfOverlay } from "@/components/PerfOverlay";
 
 const OnboardingTutorial = lazyWithRetry(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
@@ -162,6 +163,7 @@ const App = () => (
                   </Suspense>
                   <AppLayout>
                   <RouteTracker />
+                  <PageErrorBoundary>
                   <Suspense fallback={<SkeletonLoader type="product" />}>
                   <Routes>
                     {/* Public routes — no auth required */}
@@ -304,6 +306,7 @@ const App = () => (
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                   </Suspense>
+                  </PageErrorBoundary>
 
                   {/* Enhanced Onboarding Components — lazy-loaded */}
                   <Suspense fallback={null}>
