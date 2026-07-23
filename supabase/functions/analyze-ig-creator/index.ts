@@ -71,6 +71,27 @@ Deno.serve(async (req) => {
     const apifyKey = Deno.env.get("APIFY_API_KEY");
     if (!apifyKey) return json({ error: "APIFY_API_KEY not configured" }, 500);
 
+    // Cost guard: cap uncached (paid) lookups at 10 per user per hour.
+    const jwt = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
+    const { data: userData } = await admin.auth.getUser(jwt);
+    const uid = userData?.user?.id;
+    if (!uid) return json({ error: "Not signed in" }, 401);
+    const hourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count } = await admin
+      .from("ig_lookup_log")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", uid)
+      .gte("at", hourAgo);
+    if ((count ?? 0) >= 10) {
+      return json(
+        {
+          error:
+            "You've hit the hourly limit for new Instagram lookups (10). Already-analyzed accounts stay available — try again in an hour.",
+        },
+        429,
+      );
+    }
+
     const run = await fetch(
       `https://api.apify.com/v2/acts/${APIFY_ACTOR}/run-sync-get-dataset-items?token=${apifyKey}`,
       {
@@ -134,6 +155,7 @@ Deno.serve(async (req) => {
     await admin
       .from("ig_creator_cache")
       .upsert({ handle: bare, fetched_at: payload.fetchedAt, data: payload });
+    await admin.from("ig_lookup_log").insert({ user_id: uid, handle: bare });
 
     return json({ ...payload, cached: false });
   } catch (e) {
