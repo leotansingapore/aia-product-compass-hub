@@ -12,9 +12,25 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const APIFY_ACTOR = "apify~instagram-profile-scraper";
 const MAX_HANDLES_PER_RUN = 50;
 
+// Constant-time secret check via digest comparison — string !== leaks length
+// and prefix timing.
+async function secretMatches(provided: string, expected: string): Promise<boolean> {
+  const enc = new TextEncoder();
+  const [a, b] = await Promise.all([
+    crypto.subtle.digest("SHA-256", enc.encode(provided)),
+    crypto.subtle.digest("SHA-256", enc.encode(expected)),
+  ]);
+  const av = new Uint8Array(a);
+  const bv = new Uint8Array(b);
+  let diff = 0;
+  for (let i = 0; i < av.length; i++) diff |= av[i] ^ bv[i];
+  return diff === 0;
+}
+
 Deno.serve(async (req) => {
   const secret = Deno.env.get("REFRESH_SECRET");
-  if (!secret || req.headers.get("x-refresh-secret") !== secret) {
+  const provided = req.headers.get("x-refresh-secret") ?? "";
+  if (!secret || !(await secretMatches(provided, secret))) {
     return new Response(JSON.stringify({ error: "forbidden" }), { status: 403 });
   }
   const apifyKey = Deno.env.get("APIFY_API_KEY");
@@ -28,6 +44,21 @@ Deno.serve(async (req) => {
     Deno.env.get("SUPABASE_URL")!,
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
+
+  // Frequency guard: this is a monthly job — even with the secret, refuse to
+  // run more than once per 20 hours so a leaked trigger can't burn credit.
+  const twentyHoursAgo = new Date(Date.now() - 20 * 60 * 60 * 1000).toISOString();
+  const { count: recentRuns } = await admin
+    .from("ig_refresh_runs")
+    .select("at", { count: "exact", head: true })
+    .gte("at", twentyHoursAgo);
+  if ((recentRuns ?? 0) > 0) {
+    return new Response(
+      JSON.stringify({ error: "already ran in the last 20 hours" }),
+      { status: 429 },
+    );
+  }
+  await admin.from("ig_refresh_runs").insert({});
 
   const { data: rows, error } = await admin
     .from("ig_creator_cache")
@@ -76,6 +107,14 @@ Deno.serve(async (req) => {
           caption: String(p.caption ?? ""),
         }))
         .filter((p) => p.shortCode);
+      // Apify occasionally returns the profile without latestPosts. Never
+      // replace a cache that has posts with one that doesn't — keep the old
+      // data and let next month's run try again.
+      const oldPosts = ((row.data as { posts?: unknown[] })?.posts ?? []).length;
+      if (posts.length === 0 && oldPosts > 0) {
+        failed.push(row.handle);
+        continue;
+      }
       const payload = {
         handle: `@${row.handle}`,
         url: `https://www.instagram.com/${row.handle}/`,
