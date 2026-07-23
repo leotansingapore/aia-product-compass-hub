@@ -31,6 +31,33 @@ interface LivePost {
   caption: string;
 }
 
+// Compact stats from a stored payload — enough for month-over-month deltas
+// without shipping the whole old post list to the client.
+function summarize(data: Record<string, unknown>): {
+  followers: number;
+  avgLikes: number;
+  avgComments: number;
+  videoShare: number;
+} {
+  const posts = (data.posts ?? []) as Array<{
+    likes?: number;
+    comments?: number;
+    type?: string;
+    productType?: string | null;
+  }>;
+  const n = posts.length || 1;
+  const isVideo = (p: { type?: string; productType?: string | null }) =>
+    /video|clips|igtv/i.test(`${p.productType ?? ""} ${p.type ?? ""}`);
+  return {
+    followers: Number(data.followers ?? 0) || 0,
+    avgLikes: Math.round(posts.reduce((s, p) => s + (p.likes ?? 0), 0) / n),
+    avgComments:
+      Math.round((posts.reduce((s, p) => s + (p.comments ?? 0), 0) / n) * 10) /
+      10,
+    videoShare: Math.round((posts.filter(isVideo).length / n) * 100),
+  };
+}
+
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
@@ -55,6 +82,18 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
+    // Latest monthly snapshot (if any) so the client can show deltas.
+    const { data: snap } = await admin
+      .from("ig_creator_snapshots")
+      .select("taken_at, data")
+      .eq("handle", bare)
+      .order("taken_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    const previous = snap
+      ? { takenAt: snap.taken_at, ...summarize(snap.data) }
+      : null;
+
     // Serve from cache when fresh.
     const { data: cached } = await admin
       .from("ig_creator_cache")
@@ -65,7 +104,7 @@ Deno.serve(async (req) => {
       cached &&
       Date.now() - new Date(cached.fetched_at).getTime() < CACHE_TTL_MS
     ) {
-      return json({ ...cached.data, cached: true });
+      return json({ ...cached.data, previous, cached: true });
     }
 
     const apifyKey = Deno.env.get("APIFY_API_KEY");
@@ -157,7 +196,7 @@ Deno.serve(async (req) => {
       .upsert({ handle: bare, fetched_at: payload.fetchedAt, data: payload });
     await admin.from("ig_lookup_log").insert({ user_id: uid, handle: bare });
 
-    return json({ ...payload, cached: false });
+    return json({ ...payload, previous, cached: false });
   } catch (e) {
     console.error("analyze-ig-creator failed", e);
     return json({ error: "Lookup failed — try again" }, 500);
