@@ -81,7 +81,7 @@ She and her husband want to start a baby fund and "make sure we don't lose the f
 **Existing policies**
 
 - AIA - HealthShield Gold Max (Plan A, private hospital), no rider - about S$173 a year, fully from MediSave; with no rider she still pays the deductible and 5% co-insurance in cash on any claim
-- Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her - S$100k base with a 4x multiplier (about S$400k cover to age 65), S$300/month, projected cash value around S$150,000 by 65
+- Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her when she was 27 (three years ago) - S$100k base with a 4x multiplier (about S$400k cover to age 65), S$300/month on a 25-year payment term (premiums run to age 52), projected cash value around S$150,000 by 65 - which works out to a return of only about 2% p.a. on what she pays in
 - Manulife - Manulife InvestReady, a regular-premium ILP she started at her first job, S$300/month - about S$29,000 paid in over eight years and worth roughly the same today (early fees and the surrender charge leave her near break-even). Her whole fund sits in one holding, the Manulife Global Technology Fund (1.5% fund management charge) - no diversification. On the plan's projected (non-guaranteed) basis the surrender value works out to around S$790,245 by age 65
 
 ### Case C - Daniel, 35
