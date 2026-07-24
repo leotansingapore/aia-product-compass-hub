@@ -81,7 +81,7 @@ She's about 13 weeks into her first pregnancy, and she and her husband want to s
 **Existing policies**
 
 - Great Eastern - GREAT SupremeHealth P Plus (private hospital), no rider - about S$752 a year (roughly S$595 from MediSave, S$157 in cash); with no rider she still pays the deductible and 10% co-insurance in cash on any claim
-- Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her recently, at 28 - S$100k base with a 3x multiplier (about S$300k cover to age 65), major CI only (no early- or intermediate-stage CI cover), about S$3,199 a year on a 25-year payment term (premiums run to age 53), projected surrender value only around S$70,000 by 65 - less than the roughly S$80,000 she'll have paid in
+- Prudential - PRUActive Life III, a whole life plan a friend who's an agent sold her recently, at 28 - S$100k base with a 3x multiplier (about S$300k cover to age 65), with S$300k early-stage CI cover, about S$4,298 a year on a 25-year payment term (premiums run to age 53), projected surrender value only around S$70,000 by 65 - less than the roughly S$80,000 she'll have paid in
 - Manulife - Manulife InvestReady, a regular-premium ILP she started at her first job, S$300/month - about S$29,000 paid in over eight years and worth roughly the same today (early fees and the surrender charge leave her near break-even). Her whole fund sits in one holding, the Manulife Global Technology Fund (1.5% fund management charge) - no diversification. On the plan's projected (non-guaranteed) basis the surrender value works out to around S$790,245 by age 65
 
 ### Case C - Daniel, 35
