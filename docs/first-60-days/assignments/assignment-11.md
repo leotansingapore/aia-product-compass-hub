@@ -62,7 +62,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 
 ### Case A - Marcus, 23
 
-**Final-year undergrad · tutors part-time ~S$1,400/mo + parental allowance · marrying + BTO in 3-4 years · goal: "grow my money"**
+**Final-year undergrad · tutors part-time ~S$1,400/mo + parental allowance · lives with parents, spends ~S$700/mo · marrying + BTO in 3-4 years · goal: "grow my money"**
 
 Nothing of his own income is protected yet, and everything he has was bought by his parents.
 
@@ -74,7 +74,7 @@ Nothing of his own income is protected yet, and everything he has was bought by 
 
 ### Case B - Priya, 30
 
-**Marketing executive ~S$4,800/mo · married last year, new BTO, S$1,800/mo mortgage · goal: baby fund + protect the flat**
+**Marketing executive ~S$4,800/mo · married last year, new BTO, S$1,800/mo mortgage · ~S$1,700/mo other living costs · goal: baby fund + protect the flat**
 
 She and her husband want to start a baby fund and "make sure we don't lose the flat if one of us can't work".
 
@@ -86,7 +86,7 @@ She and her husband want to start a baby fund and "make sure we don't lose the f
 
 ### Case C - Daniel, 35
 
-**Self-employed renovation contractor · ~S$7,000/mo (swings S$4k-10k) · sole breadwinner, wife at home + 2 kids (2 & 5) · goal: protect his family's income**
+**Self-employed renovation contractor · ~S$7,000/mo (swings S$4k-10k) · sole breadwinner, wife at home + 2 kids (2 & 5) · household spends ~S$5,500/mo · goal: protect his family's income**
 
 Cashflow is lumpy and he hates locking into anything.
 
@@ -96,7 +96,7 @@ Cashflow is lumpy and he hates locking into anything.
 
 ### Case D - Mr & Mrs Tan, 57 & 55
 
-**Empty-nesters, 57 & 55 · combined ~S$13,000/mo · HDB fully paid, both kids working · goal: S$10k/mo retirement income + a legacy**
+**Empty-nesters, 57 & 55 · combined ~S$13,000/mo · HDB fully paid, both kids working · currently spend ~S$6,000/mo · goal: S$10k/mo retirement income + a legacy**
 
 They've "bought a lot of things over the years" but have never seen it all on one page, and they assume they're nowhere near ready.
 
@@ -112,7 +112,7 @@ One lever they're already weighing: topping up their Retirement Accounts towards
 
 ### Case E - Wei Ling, 41
 
-**Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · family cancer history · goal: cover her parents + her own future**
+**Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · spends ~S$4,500/mo all-in (incl. the S$1,500) · family cancer history · goal: cover her parents + her own future**
 
 Her parents have almost no coverage of their own, she "keeps meaning to sort it out", and there's a long runway to retirement but nothing structured for it.
 
