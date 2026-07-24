@@ -76,7 +76,7 @@ Nothing of his own income is protected yet, and everything he has was bought by 
 
 **Marketing executive ~S$4,800/mo · married last year, new BTO, S$1,800/mo mortgage · ~S$1,700/mo other living costs · goal: baby fund + protect the flat**
 
-She and her husband want to start a baby fund and "make sure we don't lose the flat if one of us can't work".
+She's about 13 weeks into her first pregnancy, and she and her husband want to start a baby fund and "make sure we don't lose the flat if one of us can't work".
 
 **Existing policies**
 
