@@ -36,7 +36,7 @@ form_fields:
 
 Everything you've done so far was one piece in isolation. A real client meeting asks for all of it at once: you read the messy portfolio, you work out what actually matters for this person, you propose something that fits their budget, you present it so a non-FC follows along, and you hold your ground when they push back. This is the dry run, with a fictional client and a friendly room.
 
-![Capstone Showdown overview: build, present, defend - one client, one case, one chance to win. The seven-step game plan runs draw a case, map policies, rank needs, decide and propose, build before-and-after, prepare objections, then present and defend in a 20-minute live session worth scoring across portfolio summary, needs analysis, recommendation, CST delivery, before-and-after, and objection handling. The five case files are Marcus 23 (wealth accumulation and BTO planning), Priya 29 (family protection and mortgage), Daniel 35 (income protection for a sole breadwinner), Mr and Mrs Tan 57 and 55 (retirement income and legacy), and Wei Ling 41 (parent dependency and long-term protection). Best case takes the round.](/first-60-days/images/case-study-competition.webp)
+![Capstone Showdown overview: build, present, defend - one client, one case, one chance to win. The seven-step game plan runs draw a case, map policies, rank needs, decide and propose, build before-and-after, prepare objections, then present and defend in a 20-minute live session worth scoring across portfolio summary, needs analysis, recommendation, CST delivery, before-and-after, and objection handling. The five case files are Marcus 23 (wealth accumulation and BTO planning), Priya 30 (family protection and mortgage), Daniel 35 (income protection for a sole breadwinner), Mr and Mrs Tan 57 and 55 (retirement income and legacy), and Wei Ling 41 (parent dependency and long-term protection). Best case takes the round.](/first-60-days/images/case-study-competition.webp)
 
 ## How the competition runs
 
@@ -55,7 +55,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | Case | Client | Goal in their words |
 |---|---|---|
 | A | Marcus, 23 | "Grow my money, and save for the BTO" |
-| B | Priya, 29 | "Protect the household now that we're married" |
+| B | Priya, 30 | "Protect the household now that we're married" |
 | C | Daniel, 35 | "If something happens to me, my family is the question" |
 | D | Mr & Mrs Tan, 57 & 55 | "A S$10k-a-month retirement income, and something for the kids" |
 | E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" |
@@ -72,7 +72,7 @@ Nothing of his own income is protected yet, and everything he has was bought by 
 - NTUC Income - Enhanced IncomeShield Preferred, no rider, premiums still paid by his parents - about S$295 a year, mostly from MediSave with roughly S$45 of it cash
 - Prudential - PRUPersonal Accident, a mid-tier plan from his polytechnic days (around S$80,000 of accidental-death cover), S$17/month
 
-### Case B - Priya, 29
+### Case B - Priya, 30
 
 **Marketing executive ~S$4,800/mo · married last year, new BTO, S$1,800/mo mortgage · goal: baby fund + protect the flat**
 
