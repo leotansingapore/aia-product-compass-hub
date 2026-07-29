@@ -62,11 +62,11 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 
 ### Case A - Marcus, 23
 
-**Final-year undergrad · tutors part-time ~S$1,400/mo + parental allowance · lives with parents, spends ~S$700/mo · marrying + BTO in 3-4 years · goal: "grow my money"**
+**Final-year undergrad · tutors part-time ~S$1,400/mo + parental allowance · lives with parents, spends ~S$700/mo · marrying in ~4 years · BTO booking next year · goal: "grow my money"**
 
 Nothing of his own income is protected yet, and everything he has was bought by his parents.
 
-He and his girlfriend plan to book a roughly S$600,000 BTO next year, which will take about four years to build. On graduation he expects to earn about S$5,000/mo, and she'll be earning around the same. They expect renovation to cost about S$50,000, and between that and the coming mortgage payments they're putting off the idea of investing once he graduates.
+He and his girlfriend plan to book a roughly S$600,000 BTO next year, which will take about four years to build, and to marry in about four years - around when the flat is ready. On graduation he expects to earn about S$5,000/mo, and she'll be earning around the same. They expect renovation to cost about S$50,000, and between that and the coming mortgage payments they're putting off the idea of investing once he graduates.
 
 **Existing policies**
 
