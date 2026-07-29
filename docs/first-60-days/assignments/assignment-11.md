@@ -89,9 +89,13 @@ She's about 13 weeks into her first pregnancy, and she and her husband want to s
 
 ### Case C - Daniel, 35
 
-**Self-employed renovation contractor · ~S$7,000/mo (swings S$4k-10k) · sole breadwinner, wife at home + 2 kids (2 & 5) · household spends ~S$5,500/mo · goal: protect his family's income**
+**Self-employed renovation contractor · ~S$7,000/mo (swings S$4k-10k) · sole breadwinner, wife at home + 2 kids (2 & 5) · household spends ~S$5,500/mo · ~S$200k cash savings · goal: protect his family's income**
 
 Cashflow is lumpy and he hates locking into anything.
+
+He's a typical sandwich-generation kid - young children on one side, ageing parents on the other. Beyond his own income, he's worried about the kids' education planning and their coverage, and about his parents' plans. His dad, 65, holds a Great Eastern GREAT SupremeHealth P Plus (private hospital) at about S$3,990 a year - S$600 from MediSave, roughly S$3,390 in cash, and it steps up to around S$5,560 a year from 66 - which Daniel finds quite expensive. His mum, 64, is on the same private-hospital plan at a similar premium, and a pre-existing condition means moving her anywhere isn't straightforward.
+
+He also has around S$200,000 sitting in cash savings and would like some of it generating passive income.
 
 **Existing policies**
 
