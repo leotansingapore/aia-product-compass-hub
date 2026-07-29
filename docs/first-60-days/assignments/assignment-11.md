@@ -66,8 +66,11 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 
 Nothing of his own income is protected yet, and everything he has was bought by his parents.
 
+He and his girlfriend plan to book a roughly S$600,000 BTO next year, which will take about four years to build. On graduation he expects to earn about S$5,000/mo, and she'll be earning around the same. They expect renovation to cost about S$50,000, and between that and the coming mortgage payments they're putting off the idea of investing once he graduates.
+
 **Existing policies**
 
+- A whole-life plan called "Prime Life" that his parents have paid S$70/month on since he was born - the cash value sits at about S$30,000 today, but the cover is only S$30,000 for death or TPD
 - Great Eastern - a 20-year endowment his parents started when he was 11, around S$120/month - about S$28,800 paid in by the time it matures in eight years, projected to come back around S$35,000 (the guaranteed part is about S$30,000)
 - NTUC Income - Enhanced IncomeShield Preferred, no rider, premiums still paid by his parents - about S$295 a year, mostly from MediSave with roughly S$45 of it cash
 - Prudential - PRUPersonal Accident, a mid-tier plan from his polytechnic days (around S$80,000 of accidental-death cover), S$17/month
