@@ -264,6 +264,10 @@ export default function ScriptFlows() {
   const [mobilePreviewOpen, setMobilePreviewOpen] = useState(false);
   // Unsaved changes confirmation dialog
   const [showLeaveDialog, setShowLeaveDialog] = useState(false);
+  // Which flow id local state (localNodes/localEdges/title) currently mirrors.
+  // The canvas must never mount before this matches activeFlowId — it snapshots
+  // initialNodes on mount, and autosave would persist an empty canvas otherwise.
+  const [syncedFlowId, setSyncedFlowId] = useState<string | null>(null);
 
   const controlsRef = useRef<FlowCanvasControls | null>(null);
   const autoSaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -273,11 +277,16 @@ export default function ScriptFlows() {
   const activeFlowUpdatedAt = activeFlow?.updated_at;
   useEffect(() => {
     if (!activeFlowId || !activeFlow) return;
+    // Don't clobber edits typed during a save round-trip: after a save the
+    // refetched row bumps updated_at, but the canvas is the source of truth
+    // while this flow still has unsaved changes.
+    if (hasUnsaved && syncedFlowId === activeFlowId) return;
     setLocalNodes([...activeFlow.nodes]);
     setLocalEdges([...activeFlow.edges]);
     setFlowTitle(activeFlow.title);
     setFlowDescription(activeFlow.description || '');
     setHasUnsaved(false);
+    setSyncedFlowId(activeFlowId);
   }, [activeFlowId, activeFlowUpdatedAt]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const openFlow = useCallback((id: string) => {
@@ -355,33 +364,38 @@ export default function ScriptFlows() {
     return warnings;
   }, []);
 
-  const handleSave = useCallback(async () => {
-    if (!activeFlowId) return;
+  const handleSave = useCallback(async (opts?: { isAutosave?: boolean }) => {
+    // Never save before local state mirrors the loaded flow — a save fired
+    // against an unsynced canvas would overwrite the real flow with nothing.
+    if (!activeFlowId || syncedFlowId !== activeFlowId) return;
     const data = controlsRef.current?.save();
     const nodes = data?.nodes ?? localNodes;
     const edges = data?.edges ?? localEdges;
-
-    // Run validation and show warnings (non-blocking)
-    const warnings = validateFlow(nodes, edges);
-    if (warnings.length > 0) {
-      toast.warning('Flow saved with warnings', {
-        description: warnings.join('. '),
-        duration: 6000,
-      });
-    }
 
     await updateFlow.mutateAsync({ id: activeFlowId, title: flowTitle, description: flowDescription, nodes, edges });
     setLocalNodes(nodes);
     setLocalEdges(edges);
     setHasUnsaved(false);
-  }, [activeFlowId, flowTitle, flowDescription, localNodes, localEdges, updateFlow, validateFlow]);
+
+    // Warn after a successful explicit save only — the 5s autosave would
+    // otherwise re-toast the same warnings on every pause while building.
+    if (!opts?.isAutosave) {
+      const warnings = validateFlow(nodes, edges);
+      if (warnings.length > 0) {
+        toast.warning('Flow saved with warnings', {
+          description: warnings.join('. '),
+          duration: 6000,
+        });
+      }
+    }
+  }, [activeFlowId, syncedFlowId, flowTitle, flowDescription, localNodes, localEdges, updateFlow, validateFlow]);
 
   // Auto-save: debounce 5 seconds after changes
   useEffect(() => {
     if (!hasUnsaved || !activeFlowId) return;
     if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current);
     autoSaveTimerRef.current = setTimeout(() => {
-      handleSave();
+      handleSave({ isAutosave: true }).catch(() => {}); // failure already toasted by the mutation
     }, 5000);
     return () => {
       if (autoSaveTimerRef.current) clearTimeout(autoSaveTimerRef.current);
@@ -393,12 +407,23 @@ export default function ScriptFlows() {
     const handler = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 's' && activeFlowId) {
         e.preventDefault();
-        handleSave();
+        handleSave().catch(() => {});
       }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [activeFlowId, handleSave]);
+
+  // Warn before closing/refreshing the tab while edits are unsaved
+  useEffect(() => {
+    if (!hasUnsaved || !activeFlowId) return;
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [hasUnsaved, activeFlowId]);
 
   const handleNodeSave = (updates: Partial<FlowNode>) => {
     if (!editingNode) return;
@@ -535,6 +560,35 @@ export default function ScriptFlows() {
   };
 
   if (activeFlowId) {
+    // Never render the editable canvas until the flow row is actually loaded —
+    // the canvas snapshots initialNodes on mount, so mounting early freezes an
+    // empty canvas that autosave would then persist over the real flow.
+    if (isLoading || (activeFlow && syncedFlowId !== activeFlowId)) {
+      return (
+        <PageLayout title="Script Flows" description="Script Flow Builder">
+          <div className="flex items-center justify-center gap-2 text-muted-foreground" style={{ height: 'calc(100vh - 240px)', minHeight: 350 }}>
+            <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+            Loading flow...
+          </div>
+        </PageLayout>
+      );
+    }
+    if (!activeFlow) {
+      return (
+        <PageLayout title="Script Flows" description="Script Flow Builder">
+          <div className="flex flex-col items-center justify-center gap-4 text-center px-4" style={{ height: 'calc(100vh - 240px)', minHeight: 350 }}>
+            <GitBranch className="h-12 w-12 text-muted-foreground/30" />
+            <div>
+              <h2 className="text-lg font-semibold">Flow not found</h2>
+              <p className="text-sm text-muted-foreground mt-1">This flow may have been deleted, or the link is invalid.</p>
+            </div>
+            <Button variant="outline" onClick={() => navigate('/flows')}>
+              <ArrowLeft className="h-4 w-4 mr-1.5" /> Back to My Flows
+            </Button>
+          </div>
+        </PageLayout>
+      );
+    }
     return (
       <TooltipProvider>
         <PageLayout title={flowTitle} description="Script Flow Builder">
@@ -682,7 +736,7 @@ export default function ScriptFlows() {
                 {hasUnsaved && (
                   <span className="text-[10px] text-amber-600 dark:text-amber-400 hidden sm:inline">Auto-saving...</span>
                 )}
-                <Button size="sm" className="h-8 gap-1.5 text-xs" onClick={handleSave} disabled={!hasUnsaved || updateFlow.isPending}>
+                <Button size="sm" className="h-8 gap-1.5 text-xs" onClick={() => handleSave().catch(() => {})} disabled={!hasUnsaved || updateFlow.isPending}>
                   <Save className="h-3.5 w-3.5" />
                   <span className="hidden sm:inline">
                     {updateFlow.isPending ? 'Saving...' : hasUnsaved ? 'Save now' : 'Saved'}
