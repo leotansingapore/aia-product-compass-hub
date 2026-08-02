@@ -17,6 +17,7 @@ import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
 import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { getReadLessonIds, markLessonRead } from "@/lib/scriptsCourseProgress";
+import { recordScriptVersionSnapshot } from "@/lib/scriptVersionHistory";
 import { cn } from "@/lib/utils";
 
 const ScriptEditorDialog = lazy(() =>
@@ -86,6 +87,7 @@ export default function ScriptsCourse() {
     attachments?: ScriptAttachment[];
   }) => {
     if (activeLesson) {
+      await recordScriptVersionSnapshot({ scriptId: activeLesson.id, currentVersions: activeLesson.versions, user });
       await updateScript(activeLesson.id, data);
       refetch();
     }

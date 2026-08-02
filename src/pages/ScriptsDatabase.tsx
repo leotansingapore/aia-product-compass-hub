@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { copyRichContent } from "@/lib/copy-rich-content";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
+import { saveScriptVersions, recordScriptVersionSnapshot } from "@/lib/scriptVersionHistory";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -3797,32 +3798,22 @@ export default function ScriptsDatabase() {
     });
   }, [updateScript, refetch]);
 
+  const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
+    await saveScriptVersions({
+      scriptId,
+      versions,
+      currentVersions: dbScriptsRef.current.find(s => s.id === scriptId)?.versions,
+      user,
+      updateScript,
+    });
+    refetch();
+  }, [updateScript, refetch, user]);
+
   const { mergeState, pendingMerge, merging, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     dbScripts,
-    async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); },
+    handleInlineSave,
     handleMergeUndo,
   );
-
-  const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
-    // Save a snapshot of the current versions before updating
-    const currentScript = dbScripts.find(s => s.id === scriptId);
-    if (currentScript && user) {
-      try {
-        await supabase
-          .from('script_version_history' as any)
-          .insert({
-            script_id: scriptId,
-            versions: JSON.parse(JSON.stringify(currentScript.versions)),
-            edited_by: user.id,
-            editor_name: user.user_metadata?.display_name || user.email?.split('@')[0] || 'Unknown',
-          } as any);
-      } catch (e) {
-        console.error('Failed to save version history:', e);
-      }
-    }
-    await updateScript(scriptId, { versions });
-    refetch();
-  }, [updateScript, refetch, dbScripts, user]);
 
   const handleMetadataSave = useCallback(async (scriptId: string, updates: Partial<ScriptEntry>) => {
     await updateScript(scriptId, updates);
@@ -3831,6 +3822,7 @@ export default function ScriptsDatabase() {
 
   const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null; attachments?: ScriptAttachment[] }) => {
     if (editingScript) {
+      await recordScriptVersionSnapshot({ scriptId: editingScript.id, currentVersions: editingScript.versions, user });
       await updateScript(editingScript.id, data);
       refetch();
     } else {

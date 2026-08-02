@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
+import { saveScriptVersions, recordScriptVersionSnapshot } from "@/lib/scriptVersionHistory";
 import { useScriptUserVersions } from "@/hooks/useScriptUserVersions";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -731,14 +732,23 @@ export default function ServicingPage() {
 
   const hasActiveFilters = activeCategory !== "all" || activeAudience !== "all" || activeRole !== "all" || activeTag !== "all" || !!searchQuery;
 
+  const scriptsRef = useRef<ScriptEntry[]>([]);
+  scriptsRef.current = dbScripts;
+
   const handleInlineSave = useCallback(async (scriptId: string, versions: ScriptVersion[]) => {
-    await updateScript(scriptId, { versions });
+    await saveScriptVersions({
+      scriptId,
+      versions,
+      currentVersions: scriptsRef.current.find(s => s.id === scriptId)?.versions,
+      user,
+      updateScript,
+    });
     refetch();
-  }, [updateScript, refetch]);
+  }, [updateScript, refetch, user]);
 
   const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     servicingBase,
-    async (scriptId, versions) => { await updateScript(scriptId, { versions }); refetch(); }
+    handleInlineSave
   );
 
   const handleMetadataSave = useCallback(async (scriptId: string, updates: Partial<ScriptEntry>) => {
@@ -1059,6 +1069,7 @@ export default function ServicingPage() {
         mergeNavigateBase="/servicing"
         onSave={async (scriptData) => {
           if (editingScript) {
+            await recordScriptVersionSnapshot({ scriptId: editingScript.id, currentVersions: editingScript.versions, user });
             await updateScript(editingScript.id, scriptData);
           } else {
             await createScript({ ...scriptData, category: "servicing", target_audience: "clients" } as any);
