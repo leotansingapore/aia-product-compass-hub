@@ -150,6 +150,10 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
   const [newVersionContent, setNewVersionContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  // Deleting someone's contributed version is irreversible — confirm first,
+  // the same way deleting the objection itself does.
+  const [pendingDeleteResponse, setPendingDeleteResponse] = useState<ObjectionResponse | null>(null);
+  const [deletingResponse, setDeletingResponse] = useState(false);
   const cat = categoryConfig[entry.category] || categoryConfig.generic;
 
   const hasResponseMatch = matchedResponseIds && matchedResponseIds.size > 0;
@@ -184,6 +188,7 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
   };
 
   return (
+    <>
     <Collapsible open={open || !!hasResponseMatch} onOpenChange={setOpen}>
       <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
         <CollapsibleTrigger asChild>
@@ -279,7 +284,13 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
                             {copiedId === resp.id ? <><Check className="h-3 w-3 text-green-500" /> Copied</> : <><Copy className="h-3 w-3" /> Copy</>}
                           </button>
                           {(resp.user_id === userId || isAdmin) && (
-                            <Button variant="ghost" size="sm" className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive" onClick={() => onDeleteResponse(resp.id)}>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive"
+                              aria-label={`Delete ${resp.author_name}'s version`}
+                              onClick={() => setPendingDeleteResponse(resp)}
+                            >
                               <Trash2 className="h-3 w-3" />
                             </Button>
                           )}
@@ -356,6 +367,38 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
         </CollapsibleContent>
       </Card>
     </Collapsible>
+
+    <AlertDialog open={!!pendingDeleteResponse} onOpenChange={(o) => { if (!o && !deletingResponse) setPendingDeleteResponse(null); }}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this version?</AlertDialogTitle>
+          <AlertDialogDescription>
+            "{pendingDeleteResponse?.author_name}"'s version of this objection response will be permanently removed. This cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={deletingResponse}>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            disabled={deletingResponse}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            onClick={async (e) => {
+              e.preventDefault();
+              if (!pendingDeleteResponse) return;
+              setDeletingResponse(true);
+              try {
+                await onDeleteResponse(pendingDeleteResponse.id);
+                setPendingDeleteResponse(null);
+              } finally {
+                setDeletingResponse(false);
+              }
+            }}
+          >
+            {deletingResponse ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1.5" />Deleting…</> : "Delete"}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+    </>
   );
 }
 
