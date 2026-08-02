@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useMemo, useEffect } from 'react';
+import { lazy, Suspense, useState, useMemo, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
@@ -73,7 +73,30 @@ function FlashCard({
   const hasImages = allImages.length > 0;
   const currentImg = allImages[imgIndex] ?? null;
 
-  const goToStep = (s: number) => setStep(Math.max(0, Math.min(2, s)));
+  const panelsRef = useRef<HTMLDivElement | null>(null);
+
+  /**
+   * Flip the card and move focus onto the face that just became visible.
+   *
+   * Without the focus move, activating a face by keyboard left focus on the
+   * old face — which is now `aria-hidden` and `tabIndex={-1}` — so a screen
+   * reader announced nothing after Enter and the next Tab jumped somewhere
+   * unrelated. Only re-focus when the keyboard was actually being used
+   * (focus is currently inside this card), so a mouse click doesn't yank
+   * focus and force a focus ring on sighted pointer users.
+   */
+  const goToStep = (s: number) => {
+    const next = Math.max(0, Math.min(2, s));
+    const hadFocusInside = !!panelsRef.current?.contains(document.activeElement);
+    setStep(next);
+    if (!hadFocusInside) return;
+    requestAnimationFrame(() => {
+      const target = panelsRef.current?.querySelector<HTMLElement>(
+        `[data-panel-step="${next}"]`,
+      );
+      target?.focus();
+    });
+  };
 
   const PANEL_HEIGHT = 260;
 
@@ -100,10 +123,11 @@ function FlashCard({
 
 
         {/* Panels — absolute positioned so width always = card width */}
-        <div className="relative w-full h-full">
+        <div ref={panelsRef} className="relative w-full h-full">
           {/* PANEL 1 — Question */}
           <div
             role="button"
+            data-panel-step="0"
             tabIndex={step === 0 ? 0 : -1}
             aria-hidden={step !== 0}
             aria-label={hasImages
@@ -152,6 +176,7 @@ function FlashCard({
           {/* PANEL 2 — Drawing(s): tap anywhere to go to next step */}
           <div
             role="button"
+            data-panel-step="1"
             tabIndex={step === 1 ? 0 : -1}
             aria-hidden={step !== 1}
             aria-label={`Show explanation for ${card.title}`}
@@ -207,6 +232,7 @@ function FlashCard({
           {/* PANEL 3 — Explanation: tap to loop back to question */}
           <div
             role="button"
+            data-panel-step="2"
             tabIndex={step === 2 ? 0 : -1}
             aria-hidden={step !== 2}
             aria-label={`Back to the question for ${card.title}`}
