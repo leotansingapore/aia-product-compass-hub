@@ -1949,8 +1949,15 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     setEditContent("");
   };
 
+  // Blur fires the same save as the Save button, so clicking Save used to send
+  // two writes for one edit (the click blurs the editor first). A ref, not the
+  // isSaving state, because both calls land in the same tick.
+  const inlineSaveInFlightRef = useRef(false);
+
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null || !onInlineSave) return;
+    if (inlineSaveInFlightRef.current) return;
+    inlineSaveInFlightRef.current = true;
     setIsSaving(true);
     try {
       const latest =
@@ -1968,12 +1975,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     } catch (e) {
       console.error("Inline save failed:", e);
     } finally {
+      inlineSaveInFlightRef.current = false;
       setIsSaving(false);
     }
   };
 
   const handleEditorBlur = () => {
-    if (editingVersionIdx !== null) {
+    if (editingVersionIdx !== null && !inlineSaveInFlightRef.current) {
       saveInlineEdit();
     }
   };
