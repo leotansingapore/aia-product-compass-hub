@@ -160,7 +160,7 @@ src/
 │   ├── useSimplifiedAuth.tsx  # Auth provider (Supabase + edge functions)
 │   ├── usePermissions.tsx     # Role checks (user/admin/master_admin)
 │   ├── useProducts.tsx        # Product data fetching
-│   ├── useBookmarks.tsx       # Bookmarks with optimistic updates
+│   ├── useBookmarks.tsx       # Bookmarks (pessimistic: state updates after the write confirms)
 │   ├── useGamification.tsx    # XP, achievements, streaks
 │   ├── useRoleplay.ts         # Roleplay session management
 │   ├── useVideoProgress.tsx   # Video completion tracking
@@ -258,9 +258,28 @@ src/
 - **localStorage** — recently viewed, quiz progress, pending auth
 - **No Zustand** — pure Context + TanStack Query approach
 
-### Optimistic Updates
-Used in `useBookmarks.tsx` — setState immediately before server confirmation, rollback on error.
-Follow this pattern for any new bookmark-like CRUD operations.
+### Write confirmation (this repo's actual pattern)
+CORRECTED 2026-08-03: this section previously described `useBookmarks.tsx` as an
+optimistic-update reference — "setState immediately before server confirmation,
+rollback on error". It never behaved that way. Every `setBookmarks` runs AFTER
+the await, and there is no rollback path because there is nothing to roll back.
+Anyone who "followed the pattern" was copying a description of code that did not
+exist.
+
+What this repo actually requires for any Supabase write:
+
+1. Update local state only AFTER the write confirms.
+2. Append `.select('id')` to every UPDATE and DELETE and treat an EMPTY result
+   as a failure. A write that RLS filters to zero rows returns `error === null`,
+   so an error-only check reports success for a change that never happened. This
+   exact bug was found and fixed across playbooks, scripts, admin, product and
+   bookmark surfaces during the 2026-08-02 audit. (INSERTs are not affected —
+   a blocked insert raises 42501.)
+3. Never show a success toast before the write is confirmed.
+
+Genuine optimistic updates DO exist for drag-reorder in
+`src/hooks/usePlaybooks.ts` (`onMutate` snapshot + `onError` rollback +
+`onSettled` invalidate) — use that as the reference if you need one.
 
 ### Supabase Edge Functions
 - `check-academy-user-exists` — verify user in Academy DB

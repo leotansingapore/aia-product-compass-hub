@@ -250,17 +250,23 @@ async function fetchProductsFromServer(categoryId?: string): Promise<Product[]> 
 // need the full data (search, recommendations, offline cache, product detail
 // page) should keep using `fetchProductsFromServer` / `useAllProducts`.
 async function fetchProductsListingFromServer(categoryId?: string): Promise<Product[]> {
-  let query = supabase
-    .from('products')
-    .select(PRODUCTS_LISTING_SELECT)
-    .order('title');
+  // Paged for the same reason as fetchProductsFromServer: with no categoryId
+  // this fetches the entire catalogue and would silently stop at PostgREST's
+  // 1000-row cap. `id` is the tiebreaker because titles are not unique.
+  const data = await fetchAllRows<any>((from, to) => {
+    let query = supabase
+      .from('products')
+      .select(PRODUCTS_LISTING_SELECT)
+      .order('title')
+      .order('id', { ascending: true })
+      .range(from, to);
 
-  if (categoryId) {
-    query = query.eq('category_id', categoryId);
-  }
-
-  const { data, error } = await query;
-  if (error) throw error;
+    if (categoryId) {
+      query = query.eq('category_id', categoryId);
+    }
+    return query;
+  });
+  // fetchAllRows throws on error, so there is nothing to check here.
   return (data || []).map(transformProductListing);
 }
 

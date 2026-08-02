@@ -76,20 +76,25 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
     setUploadingAvatar(true);
     
     try {
+      // Dedicated `avatars` bucket, not the shared knowledge-files one: it
+      // enforces the 5MB ceiling and the image-type allowlist SERVER-side, so
+      // a direct API call can't bypass the client check above. The user-id
+      // folder is what the owner-scoped write policies key on — a user can
+      // only write inside their own folder.
       const fileExt = file.name.split('.').pop();
-      const fileName = `${profile.user_id}-${Date.now()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const fileName = `${Date.now()}.${fileExt}`;
+      const filePath = `${profile.user_id}/${fileName}`;
 
       const { error: uploadError } = await supabase.storage
-        .from('knowledge-files')
-        .upload(filePath, file);
+        .from('avatars')
+        .upload(filePath, file, { upsert: true });
 
       if (uploadError) {
         throw uploadError;
       }
 
       const { data: { publicUrl } } = supabase.storage
-        .from('knowledge-files')
+        .from('avatars')
         .getPublicUrl(filePath);
 
       // `.select()` makes the write verifiable: an UPDATE blocked by RLS (or
