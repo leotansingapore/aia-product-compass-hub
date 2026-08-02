@@ -197,7 +197,11 @@ export default function ProductCategory() {
       visible_tiers: string[] | null;
     },
   ) => {
-    const { error } = await supabase
+    // `.select("id")` on every write below: an RLS-blocked update/delete comes
+    // back as `error === null` with ZERO affected rows, so checking only
+    // `error` reports "Module updated" for a change that never landed. An
+    // empty result is a failure. Same pattern as `useProductUpdate`.
+    const { data: updated, error } = await supabase
       .from("products")
       .update({
         title: data.title,
@@ -206,11 +210,14 @@ export default function ProductCategory() {
         highlights: data.highlights,
         visible_tiers: data.visible_tiers,
       })
-      .eq("id", productId);
+      .eq("id", productId)
+      .select("id");
 
-    if (error) {
-      toast.error("Failed to update module");
-      console.error(error);
+    if (error || !updated?.length) {
+      toast.error("Failed to update module", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Update module failed", { productId, error });
     } else {
       toast.success("Module updated");
       refetch();
@@ -218,14 +225,17 @@ export default function ProductCategory() {
   };
 
   const handleDeleteProduct = async (productId: string) => {
-    const { error } = await supabase
+    const { data: deleted, error } = await supabase
       .from("products")
       .delete()
-      .eq("id", productId);
+      .eq("id", productId)
+      .select("id");
 
-    if (error) {
-      toast.error("Failed to delete module");
-      console.error(error);
+    if (error || !deleted?.length) {
+      toast.error("Failed to delete module", {
+        description: error?.message ?? "Nothing was deleted — you may not have permission.",
+      });
+      console.error("Delete module failed", { productId, error });
     } else {
       toast.success("Module deleted");
       refetch();
@@ -236,12 +246,16 @@ export default function ProductCategory() {
     productId: string,
     newPublished: boolean,
   ) => {
-    const { error } = await supabase
+    const { data: updated, error } = await supabase
       .from("products")
       .update({ published: newPublished })
-      .eq("id", productId);
-    if (error) {
-      toast.error("Failed to update product status");
+      .eq("id", productId)
+      .select("id");
+    if (error || !updated?.length) {
+      toast.error("Failed to update product status", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Toggle product publish failed", { productId, error });
     } else {
       toast.success(newPublished ? "Product published" : "Product unpublished");
       refetch();
@@ -255,13 +269,16 @@ export default function ProductCategory() {
       .replace(/^\p{Emoji_Presentation}\s*/u, "")
       .trim();
     if (!cleanTitle) return;
-    const { error } = await supabase
+    const { data: updated, error } = await supabase
       .from("categories")
       .update({ name: cleanTitle })
-      .eq("id", categoryId);
-    if (error) {
-      toast.error("Failed to update category title");
-      console.error(error);
+      .eq("id", categoryId)
+      .select("id");
+    if (error || !updated?.length) {
+      toast.error("Failed to update category title", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Update category title failed", { categoryId, error });
     } else {
       toast.success("Category title updated");
       refetchCategories();
@@ -270,13 +287,16 @@ export default function ProductCategory() {
 
   const handleCategoryDescriptionEdit = async (newDescription: string) => {
     if (!categoryId) return;
-    const { error } = await supabase
+    const { data: updated, error } = await supabase
       .from("categories")
       .update({ description: newDescription })
-      .eq("id", categoryId);
-    if (error) {
-      toast.error("Failed to update category description");
-      console.error(error);
+      .eq("id", categoryId)
+      .select("id");
+    if (error || !updated?.length) {
+      toast.error("Failed to update category description", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Update category description failed", { categoryId, error });
     } else {
       toast.success("Category description updated");
       refetchCategories();
@@ -286,12 +306,16 @@ export default function ProductCategory() {
   const handleTogglePublished = async () => {
     if (!categoryId) return;
     const newPublished = !category?.published;
-    const { error } = await supabase
+    const { data: updated, error } = await supabase
       .from("categories")
       .update({ published: newPublished })
-      .eq("id", categoryId);
-    if (error) {
-      toast.error("Failed to update publish status");
+      .eq("id", categoryId)
+      .select("id");
+    if (error || !updated?.length) {
+      toast.error("Failed to update publish status", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Toggle category publish failed", { categoryId, error });
     } else {
       toast.success(
         newPublished ? "Category published" : "Category unpublished",

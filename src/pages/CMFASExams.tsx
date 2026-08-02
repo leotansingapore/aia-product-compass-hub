@@ -168,12 +168,19 @@ export default function CMFASExams() {
   const handleTogglePublished = async () => {
     if (!categoryId || !cmfasCategory) return;
     const next = !cmfasCategory.published;
-    const { error } = await supabase
+    // `.select("id")`: an RLS-blocked update returns `error === null` with zero
+    // affected rows, so an error-only check would toast success for a change
+    // that never landed.
+    const { data: updated, error } = await supabase
       .from("categories")
       .update({ published: next })
-      .eq("id", categoryId);
-    if (error) {
-      toast.error("Failed to update publish status");
+      .eq("id", categoryId)
+      .select("id");
+    if (error || !updated?.length) {
+      toast.error("Failed to update publish status", {
+        description: error?.message ?? "The change wasn't saved — you may not have permission.",
+      });
+      console.error("Toggle CMFAS category publish failed", { categoryId, error });
       return;
     }
     toast.success(next ? "Category published" : "Category unpublished");
