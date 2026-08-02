@@ -348,12 +348,27 @@ function ServicingScriptCard({
               {/* Action buttons — only favourite + delete remain */}
               <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
                 {onToggleFavourite && (
-                  <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onToggleFavourite}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    aria-label={isFavourite ? `Remove "${script.stage}" from favourites` : `Add "${script.stage}" to favourites`}
+                    aria-pressed={!!isFavourite}
+                    onClick={onToggleFavourite}
+                  >
                     <Heart className={`h-3.5 w-3.5 ${isFavourite ? 'fill-red-500 text-red-500' : ''}`} />
                   </Button>
                 )}
                 {isAdmin && (
-                  <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={(e) => { e.stopPropagation(); onDelete(); }}><Trash2 className="h-3.5 w-3.5" /></Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 text-destructive"
+                    aria-label={`Delete "${script.stage}"`}
+                    onClick={(e) => { e.stopPropagation(); onDelete(); }}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
                 )}
               </div>
             </div>

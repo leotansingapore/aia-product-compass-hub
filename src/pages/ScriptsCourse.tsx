@@ -169,6 +169,8 @@ export default function ScriptsCourse() {
                       <button
                         key={lesson.id}
                         type="button"
+                        // The active lesson was only signalled by colour.
+                        aria-current={isActive ? "page" : undefined}
                         onClick={() => goToLesson(lesson)}
                         className={cn(
                           "flex shrink-0 items-center gap-2 rounded-lg border px-3 py-2 text-left text-xs transition-colors max-w-[240px] lg:max-w-none lg:w-full",

@@ -3985,6 +3985,18 @@ export default function ScriptsDatabase() {
                 type="text"
                 placeholder="Search scripts..."
                 value={searchInput}
+                // Screen readers had no way to know a suggestion list appeared
+                // below the box, or which entry the arrow keys had landed on.
+                role="combobox"
+                aria-expanded={showSuggestions && suggestions.length > 0}
+                aria-controls="script-search-suggestions"
+                aria-autocomplete="list"
+                aria-activedescendant={
+                  showSuggestions && selectedSuggestion >= 0
+                    ? `script-search-suggestion-${selectedSuggestion}`
+                    : undefined
+                }
+                aria-label="Search scripts"
                 onChange={(e) => {
                   setSearchInput(e.target.value);
                   setSearchQuery(e.target.value);
@@ -4006,10 +4018,18 @@ export default function ScriptsDatabase() {
               )}
             </div>
             {showSuggestions && suggestions.length > 0 && (
-              <div className="absolute z-50 w-full mt-1 bg-popover border rounded-lg shadow-lg overflow-hidden">
+              <div
+                id="script-search-suggestions"
+                role="listbox"
+                aria-label="Search suggestions"
+                className="absolute z-50 w-full mt-1 bg-popover border rounded-lg shadow-lg overflow-hidden"
+              >
                 {suggestions.map((s, i) => (
                   <button
                     key={`${s.type}-${s.id}-${i}`}
+                    id={`script-search-suggestion-${i}`}
+                    role="option"
+                    aria-selected={i === selectedSuggestion}
                     onMouseDown={() => handleSearchSelect(s)}
                     className={`w-full text-left px-3 py-2.5 text-sm flex items-center gap-2 transition-colors ${
                       i === selectedSuggestion ? "bg-accent text-accent-foreground" : "hover:bg-muted"
