@@ -138,6 +138,19 @@ export const SimplifiedAuthProvider = ({ children }: { children: React.ReactNode
           return;
         }
 
+        // A suspended account fails here too, and telling that learner their
+        // password is wrong sends them round the reset loop forever. Now that
+        // "Suspend access" issues a real GoTrue ban, name the actual reason.
+        if ((error as { code?: string } | null)?.code === 'user_banned') {
+          console.log('[SimplifiedAuth] Sign in refused — account suspended');
+          toast({
+            variant: "destructive",
+            title: "Account Suspended",
+            description: "This account has been suspended. Contact your administrator to restore access."
+          });
+          return;
+        }
+
         // Wrong password for existing user
         console.log('[SimplifiedAuth] Wrong password for existing user');
         toast({
