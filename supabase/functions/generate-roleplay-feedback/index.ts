@@ -1,6 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.50.3';
+import { identifyCaller, denied } from '../_shared/caller-auth.ts';
 import { Resend } from "https://esm.sh/resend@4.0.0";
 import { renderAsync } from "https://esm.sh/@react-email/render@0.0.17";
 import React from "https://esm.sh/react@18.3.1";
@@ -23,8 +24,33 @@ serve(async (req) => {
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY')!;
     
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
+
     const { sessionId } = await req.json();
+
+    // Each invocation costs 3 OpenAI calls and emails the session owner, so an
+    // anonymous caller must not be able to trigger it for an arbitrary session.
+    // Two legitimate callers: the tavus-webhook (server-to-server, presents the
+    // internal secret) and the session's own owner (user JWT).
+    const internalSecret = Deno.env.get('TAVUS_WEBHOOK_SECRET');
+    const presentedSecret = req.headers.get('x-internal-secret') ?? '';
+    const isInternalCall = !!internalSecret && presentedSecret === internalSecret;
+
+    if (!isInternalCall) {
+      const caller = await identifyCaller(req);
+      if (!caller.userId) {
+        return denied(corsHeaders, 'Sign in to generate feedback', 401);
+      }
+      const { data: owned, error: ownerErr } = await supabase
+        .from('roleplay_sessions')
+        .select('user_id')
+        .eq('id', sessionId)
+        .maybeSingle();
+      // Fail closed, and do not distinguish "not yours" from "not found" —
+      // that difference is itself a session-id oracle.
+      if (ownerErr || !owned || (owned.user_id !== caller.userId && !caller.isAdmin)) {
+        return denied(corsHeaders, 'Roleplay session not found', 404);
+      }
+    }
 
     console.log('Generating feedback for session:', sessionId);
 

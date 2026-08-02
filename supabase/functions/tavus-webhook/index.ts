@@ -7,6 +7,16 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+/**
+ * generate-roleplay-feedback now requires either a session-owner JWT or this
+ * internal secret. We are a server-to-server caller with no user session, so
+ * we present the secret.
+ */
+function internalSecretHeaders(): Record<string, string> {
+  const secret = Deno.env.get('TAVUS_WEBHOOK_SECRET');
+  return secret ? { 'x-internal-secret': secret } : {};
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -14,11 +24,36 @@ serve(async (req) => {
   }
 
   try {
+    // Tavus calls this server-to-server, so it cannot require a user JWT.
+    // Instead tavus-session embeds an unguessable token in the callback_url and
+    // we verify it here. Without this, anyone could forge a transcript for
+    // another user's session, trigger paid feedback generation (3 OpenAI calls)
+    // and send them an email from the platform domain.
+    const expectedToken = Deno.env.get('TAVUS_WEBHOOK_SECRET');
+    if (expectedToken) {
+      const url = new URL(req.url);
+      const presented = url.searchParams.get('token')
+        ?? req.headers.get('x-tavus-webhook-token')
+        ?? '';
+      // Constant-time-ish compare: equal length check first, then char diff.
+      const ok = presented.length === expectedToken.length
+        && presented.split('').reduce((acc, c, i) => acc | (c.charCodeAt(0) ^ expectedToken.charCodeAt(i)), 0) === 0;
+      if (!ok) {
+        console.warn('tavus-webhook rejected: bad or missing token');
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    } else {
+      console.warn('TAVUS_WEBHOOK_SECRET is not set — webhook is running UNAUTHENTICATED');
+    }
+
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    
+
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
+
     const webhookData = await req.json();
     const { event_type, conversation_id, properties, timestamp } = webhookData;
 
@@ -161,7 +196,10 @@ serve(async (req) => {
           try {
             console.log('🤖 Triggering feedback generation for session:', session.id);
             const { error: feedbackError } = await supabase.functions.invoke('generate-roleplay-feedback', {
-              body: { sessionId: session.id }
+              body: { sessionId: session.id },
+              // Server-to-server call: present the internal secret so the
+              // feedback function can tell us apart from an anonymous caller.
+              headers: internalSecretHeaders(),
             });
 
             if (feedbackError) {
@@ -323,7 +361,8 @@ async function retrieveTranscriptFromTavus(conversationId: string, session: any,
         try {
           console.log('🤖 Triggering feedback generation for session:', session.id);
           const { error: feedbackError } = await supabase.functions.invoke('generate-roleplay-feedback', {
-            body: { sessionId: session.id }
+            body: { sessionId: session.id },
+            headers: internalSecretHeaders(),
           });
 
           if (feedbackError) {

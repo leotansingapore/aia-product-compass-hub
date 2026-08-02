@@ -91,6 +91,17 @@ serve(async (req) => {
         // so it authenticates callers by this unguessable token rather than by
         // a JWT. Without it anyone could forge transcripts and trigger paid
         // feedback generation for another user's session.
+        //
+        // TRADE-OFF, deliberate: a bearer token in a URL is weaker than a
+        // signed header, because query strings land in access logs (ours, and
+        // Tavus's record of the callback_url). We accept that here because
+        // Tavus controls the request and we cannot add headers to its callback,
+        // so the realistic alternatives were this or NO authentication at all.
+        // The token carries no privilege beyond posting webhooks for this
+        // deployment, and rotating it is one `supabase secrets set` away.
+        // UPGRADE PATH: if Tavus exposes a webhook-signing secret, verify that
+        // signature in tavus-webhook and drop this query parameter — the
+        // webhook already accepts an `x-tavus-webhook-token` header instead.
         const webhookSecret = Deno.env.get('TAVUS_WEBHOOK_SECRET') ?? '';
         const callbackUrl = `${Deno.env.get('SUPABASE_URL')}/functions/v1/tavus-webhook`
           + (webhookSecret ? `?token=${encodeURIComponent(webhookSecret)}` : '');
