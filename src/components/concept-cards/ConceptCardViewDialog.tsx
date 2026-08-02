@@ -1001,7 +1001,9 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
   const handleCropApply = (croppedUrl: string) => {
     setCroppedImageUrl(croppedUrl);
     setIsCropping(false);
-    toast.success('Image cropped');
+    // The crop lives in component state only — closing the dialog discards it.
+    // Say so, otherwise "Image cropped" reads as a save.
+    toast.success('Cropped for this view — not saved to the card');
   };
 
   return (
