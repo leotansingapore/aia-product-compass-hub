@@ -15,10 +15,12 @@ const corsHeaders = {
 
 const ADMIN_EMAIL = 'tanjunsing@gmail.com';
 
-// Every button in these emails used to point at the retired Lovable host
-// (lovable.app), which stopped serving this app on 2026-07-19 — deploys are
-// Vercel now. Read the origin from APP_BASE_URL so it can be repointed without
-// a code change, defaulting to production.
+// Every button in these emails used to point at the retired Lovable host.
+// Verified 2026-08-03: that host still answers 200 and serves a STALE copy of
+// the app — so the links weren't obviously broken, they quietly sent people to
+// an out-of-date deployment, which is harder to notice than a 404. Read the
+// origin from APP_BASE_URL so it can be repointed without a code change;
+// the default matches the Supabase auth SITE_URL.
 const APP_BASE_URL = (Deno.env.get('APP_BASE_URL') ?? 'https://academy.finternship.com').replace(/\/+$/, '');
 
 const ADMIN_URL = `${APP_BASE_URL}/learning-track/admin/first-60-days`;

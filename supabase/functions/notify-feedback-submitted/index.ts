@@ -14,8 +14,10 @@ const corsHeaders = {
 const ADMIN_EMAIL = 'tanjunsing@gmail.com';
 
 // The "Open Admin Dashboard" button used to be hardcoded to the retired
-// Lovable host (lovable.app), dead since 2026-07-19. Read the origin from
-// APP_BASE_URL, defaulting to production.
+// Lovable host. Verified 2026-08-03: it still answers 200 with a STALE copy,
+// so the button silently opened an out-of-date admin panel rather than
+// failing visibly. Read the origin from APP_BASE_URL; the default matches the
+// Supabase auth SITE_URL.
 const APP_BASE_URL = (Deno.env.get('APP_BASE_URL') ?? 'https://academy.finternship.com').replace(/\/+$/, '');
 
 serve(async (req) => {
