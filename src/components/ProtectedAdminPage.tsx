@@ -1,41 +1,29 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { usePermissions } from '@/hooks/usePermissions';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ProtectedAdminPageProps {
   children: ReactNode;
   redirectTo?: string;
 }
 
+/**
+ * Route guard for admin-only pages. Mirrors `RequireTier`: waits for the
+ * permission check to settle, then redirects declaratively with `<Navigate>`
+ * instead of painting an "Access Denied" card and navigating from an effect
+ * (which flashed the denial screen for a frame before the redirect landed).
+ */
 export function ProtectedAdminPage({ children, redirectTo = '/' }: ProtectedAdminPageProps) {
   const { isMasterAdmin, hasRole, loading } = usePermissions();
   const { user } = useSimplifiedAuth();
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const isAdmin = isMasterAdmin() || hasRole('admin');
 
-  useEffect(() => {
-    // If not loading and no user, redirect to auth (session expired)
-    if (!loading && !user) {
-      console.log('🔒 No authenticated user found, redirecting to auth');
-      navigate('/auth', { replace: true });
-      return;
-    }
-    
-    // Don't redirect while still loading permissions or user data
-    if (loading || !user) return;
-    
-    // Redirect non-admin users
-    if (!isAdmin) {
-      console.log('🔒 Non-admin user attempting to access admin dashboard, redirecting to:', redirectTo);
-      navigate(redirectTo, { replace: true });
-    }
-  }, [isAdmin, loading, user, navigate, redirectTo]);
-
   // Show loading state while checking permissions
-  if (loading || !user) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Card className="w-[400px]">
@@ -50,20 +38,14 @@ export function ProtectedAdminPage({ children, redirectTo = '/' }: ProtectedAdmi
     );
   }
 
-  // Show access denied if not admin
+  // Session expired / signed out while on an admin page.
+  if (!user) {
+    return <Navigate to="/auth" replace state={{ from: location }} />;
+  }
+
   if (!isAdmin) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Card className="w-[400px]">
-          <CardHeader>
-            <CardTitle>Access Denied</CardTitle>
-            <CardDescription>
-              You must be an admin to access this page. You will be redirected shortly.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
+    const target = redirectTo === location.pathname ? '/auth' : redirectTo;
+    return <Navigate to={target} replace state={{ from: location }} />;
   }
 
   return <>{children}</>;
