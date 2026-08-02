@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, localDayIso, startOfLocalDay, startOfLocalDayIso } from './localDay';
+import {
+  addDays,
+  localDayIso,
+  localTimezoneOffsetMinutes,
+  startOfLocalDay,
+  startOfLocalDayIso,
+} from './localDay';
 
 describe('localDayIso', () => {
   it('formats the local calendar day as YYYY-MM-DD', () => {
@@ -62,6 +68,39 @@ describe('startOfLocalDayIso', () => {
     const boundary = Date.parse(startOfLocalDayIso(new Date(2026, 7, 2, 12, 0)));
     expect(new Date(2026, 7, 2, 23, 59).getTime()).toBeGreaterThan(boundary);
     expect(new Date(2026, 7, 1, 23, 59).getTime()).toBeLessThan(boundary);
+  });
+});
+
+describe('localTimezoneOffsetMinutes', () => {
+  it('flips the sign of getTimezoneOffset, so east of UTC is positive', () => {
+    const date = new Date(2026, 7, 2, 12, 0);
+    expect(localTimezoneOffsetMinutes(date)).toBe(-date.getTimezoneOffset());
+  });
+
+  it('reports UTC+8 as +480 and UTC-5 as -300', () => {
+    expect(localTimezoneOffsetMinutes({ getTimezoneOffset: () => -480 } as Date)).toBe(480);
+    expect(localTimezoneOffsetMinutes({ getTimezoneOffset: () => 300 } as Date)).toBe(-300);
+  });
+
+  it('reconstructs local midnight when applied to the UTC clock', () => {
+    // Mirrors what the database does: shift UTC by the offset, truncate the
+    // day, shift back. The result has to be the same instant the browser calls
+    // the start of its local day.
+    const now = new Date(2026, 7, 2, 21, 15);
+    const offsetMs = localTimezoneOffsetMinutes(now) * 60_000;
+    const shifted = new Date(now.getTime() + offsetMs);
+    const truncated = Date.UTC(
+      shifted.getUTCFullYear(),
+      shifted.getUTCMonth(),
+      shifted.getUTCDate(),
+    );
+    expect(truncated - offsetMs).toBe(startOfLocalDay(now).getTime());
+  });
+
+  it('stays inside the range of real-world UTC offsets', () => {
+    const offset = localTimezoneOffsetMinutes();
+    expect(offset).toBeGreaterThanOrEqual(-720);
+    expect(offset).toBeLessThanOrEqual(840);
   });
 });
 

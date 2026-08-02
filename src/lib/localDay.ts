@@ -47,3 +47,20 @@ export function addDays(days: number, date: Date = new Date()): Date {
 export function startOfLocalDayIso(date: Date = new Date()): string {
   return startOfLocalDay(date).toISOString();
 }
+
+/**
+ * The browser's offset from UTC in minutes, signed the way humans write it:
+ * Singapore (UTC+8) is `+480`, New York in winter (UTC-5) is `-300`.
+ *
+ * `Date#getTimezoneOffset` returns the opposite sign (minutes to ADD to local
+ * to get UTC), which is a perennial source of off-by-a-whole-day bugs — hence
+ * this wrapper.
+ *
+ * Server-side XP awards take this so the "one quiz per day" limit lands on the
+ * learner's own midnight rather than UTC's. The database clamps whatever it is
+ * given to the range of real-world offsets, so a tampered value can shift the
+ * boundary but not disable the limit.
+ */
+export function localTimezoneOffsetMinutes(date: Date = new Date()): number {
+  return -date.getTimezoneOffset();
+}

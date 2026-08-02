@@ -3,17 +3,16 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { AchievementToast } from '@/components/AchievementToast';
-import { addDays, localDayIso, startOfLocalDayIso } from '@/lib/localDay';
+import { localTimezoneOffsetMinutes } from '@/lib/localDay';
 
 interface QuizResult {
   productId: string;
   /**
-   * The real category this product belongs to. `learning_progress.category_id`
-   * is NOT NULL, so when the caller genuinely has no category to hand (CMFAS
-   * modules, which are not products in a category) we skip the
-   * learning_progress row rather than fabricate one — the previous code wrote
-   * `productId.split('-')[0]`, which produced "core" for slug ids and the
-   * first eight hex characters of a UUID otherwise.
+   * The real category this product belongs to. When the caller genuinely has no
+   * category to hand (CMFAS modules, which are not products in a category) we
+   * skip the `learning_progress` row rather than fabricate one — the original
+   * code wrote `productId.split('-')[0]`, which produced "core" for slug ids and
+   * the first eight hex characters of a UUID otherwise.
    */
   categoryId?: string | null;
   /**
@@ -26,51 +25,128 @@ interface QuizResult {
   videoId?: string | null;
   score: number;
   totalQuestions: number;
+  /**
+   * Kept for callers, but no longer trusted: the server decides what counts as
+   * a perfect score from the attempt row it wrote.
+   */
   isPerfectScore: boolean;
 }
 
+/** Shape returned by `award_quiz_xp` / `award_page_visit_xp`. */
+interface XpAwardResult {
+  duplicate: boolean;
+  awarded_xp: number;
+  total_xp: number;
+  current_level: number;
+  previous_level: number;
+  leveled_up: boolean;
+  streak_days: number;
+}
+
+interface ClaimedAchievement {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  xp_reward: number;
+}
+
+interface ClaimAchievementsResult {
+  awarded: ClaimedAchievement[];
+  awarded_xp: number;
+  total_xp: number;
+  current_level: number;
+  previous_level: number;
+  leveled_up: boolean;
+  streak_days: number;
+}
+
+/**
+ * XP is awarded by the DATABASE, not by this hook.
+ *
+ * Everything here used to run in the browser: the XP was computed client-side,
+ * the `quiz_attempts` row was inserted client-side, and `profiles.total_xp` /
+ * `current_level` were then written straight from the client. The own-row RLS
+ * policy on `profiles` allowed that, so any learner could paste
+ * `supabase.from('profiles').update({ total_xp: 999999 })` into the console and
+ * take the leaderboard. The "one quiz per day" limit was a client SELECT
+ * followed by an unconditional client INSERT, so it stopped nothing either.
+ *
+ * The gamification columns are no longer writable by `authenticated` at all
+ * (see `supabase/migrations/20260802120000_server_side_xp_award.sql`); these
+ * SECURITY DEFINER functions are the only path:
+ *
+ *   award_quiz_xp       — recomputes the reward, enforces the daily limit
+ *   award_page_visit_xp — the 5 XP page-visit award, likewise once per day
+ *   claim_achievements  — evaluates badge requirements against the user's rows
+ *
+ * The user-facing behaviour is unchanged: same toasts, same "Quiz Already
+ * Completed Today" path (now driven by the server's `duplicate` flag), same
+ * achievement check afterwards, same level-up celebration.
+ */
 export const useGamification = () => {
   const { user } = useAuth();
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const calculateXP = (score: number, totalQuestions: number) => {
-    const baseXP = 20;
-    const bonusXP = Math.floor((score / totalQuestions) * 50);
-    return baseXP + bonusXP;
-  };
+  const celebrateLevelUp = useCallback(
+    (result: { leveled_up?: boolean; current_level?: number }) => {
+      if (!result?.leveled_up) return;
+      toast({
+        title: "Level Up! 🚀",
+        description: `Congratulations! You've reached Level ${result.current_level}!`,
+      });
+    },
+    [toast],
+  );
+
+  /**
+   * Claims any newly-earned badges and shows their toasts. The requirements are
+   * evaluated server-side, so a client that lies about its quiz result cannot
+   * unlock a badge it hasn't earned.
+   */
+  const claimAchievements = useCallback(async () => {
+    // Typed loosely: these functions are newer than the generated Supabase
+    // types, which have no entry for them.
+    const { data, error } = await (supabase.rpc as any)('claim_achievements', {
+      p_tz_offset_minutes: localTimezoneOffsetMinutes(),
+    });
+
+    if (error) {
+      console.error('Error claiming achievements:', error);
+      return;
+    }
+
+    const result = data as ClaimAchievementsResult | null;
+    for (const achievement of result?.awarded ?? []) {
+      toast({
+        description: <AchievementToast achievement={achievement} />,
+        duration: 5000,
+      });
+    }
+    celebrateLevelUp(result ?? {});
+  }, [toast, celebrateLevelUp]);
 
   const recordQuizCompletion = useCallback(async (result: QuizResult) => {
     if (!user || isProcessing) return;
 
-    console.log('🎯 Starting quiz completion recording for user:', user.id, 'result:', result);
     setIsProcessing(true);
     try {
-      // Check if user has already completed this quiz today to prevent XP
-      // farming. The boundary is the learner's own midnight — a UTC boundary
-      // rolled the "day" over at 08:00 in Singapore, so an evening quiz still
-      // counted as "today" the following morning.
-      // Scope the limit to this specific lesson when we have one, so other
-      // lessons in the same course still earn. Typed loosely because chaining a
-      // conditional filter onto the builder trips TS2589 (excessively deep
-      // instantiation) in the generated Supabase types.
-      const baseAttemptQuery: any = supabase
-        .from('quiz_attempts')
-        .select('id')
-        .eq('user_id', user.id)
-        .eq('product_id', result.productId)
-        .gte('completed_at', startOfLocalDayIso());
+      const { data, error } = await (supabase.rpc as any)('award_quiz_xp', {
+        p_product_id: result.productId,
+        p_video_id: result.videoId ?? null,
+        p_score: result.score,
+        p_total_questions: result.totalQuestions,
+        p_category_id: result.categoryId ?? null,
+        p_tz_offset_minutes: localTimezoneOffsetMinutes(),
+      });
 
-      const scopedAttemptQuery = result.videoId
-        ? baseAttemptQuery.eq('video_id', result.videoId)
-        : baseAttemptQuery.is('video_id', null);
+      if (error) throw error;
 
-      const { data: existingAttempt } = await scopedAttemptQuery
-        .order('completed_at', { ascending: false })
-        .limit(1);
+      const award = data as XpAwardResult | null;
+      if (!award) throw new Error('award_quiz_xp returned no result');
 
-      if (existingAttempt && existingAttempt.length > 0) {
-        console.log('⚠️ Quiz already completed today, no XP awarded');
+      if (award.duplicate) {
         toast({
           title: "Quiz Already Completed Today",
           description: result.videoId
@@ -81,77 +157,17 @@ export const useGamification = () => {
         return;
       }
 
-      const xpEarned = calculateXP(result.score, result.totalQuestions);
-      console.log('💎 Calculated XP:', xpEarned);
-      
-      // Record quiz attempt
-      console.log('📝 Recording quiz attempt...');
-      const { error: quizError } = await supabase
-        .from('quiz_attempts')
-        .insert({
-          user_id: user.id,
-          product_id: result.productId,
-          video_id: result.videoId ?? null,
-          score: result.score,
-          total_questions: result.totalQuestions,
-          xp_earned: xpEarned
-        } as never);
+      // Level-up celebration first, then badges — the same order as before,
+      // when the profile write happened ahead of the achievement check.
+      celebrateLevelUp(award);
+      await claimAchievements();
 
-      if (quizError) {
-        console.error('❌ Quiz attempt error:', quizError);
-        throw quizError;
-      }
-      console.log('✅ Quiz attempt recorded successfully');
-
-      // Record learning progress. Only when we know the real category — see
-      // QuizResult.categoryId. The quiz attempt and the XP above are recorded
-      // either way, so nothing the learner earned depends on this row.
-      if (result.categoryId) {
-        console.log('📊 Recording learning progress...');
-        const { error: progressError } = await supabase
-          .from('learning_progress')
-          .insert({
-            user_id: user.id,
-            category_id: result.categoryId,
-            product_id: result.productId,
-            progress_type: 'quiz_completed',
-            xp_earned: xpEarned
-          });
-
-        if (progressError) {
-          console.error('❌ Learning progress error:', progressError);
-          throw progressError;
-        }
-        console.log('✅ Learning progress recorded successfully');
-      } else {
-        console.log('ℹ️ No category id for this quiz — skipping learning_progress row');
-      }
-
-      // Update user profile with new XP and level. This runs before the
-      // achievement check because the check reads the freshly-bumped streak.
-      console.log('🔄 Updating user profile...');
-      await updateUserProfile(xpEarned);
-      console.log('✅ User profile updated successfully');
-
-      // Check for new achievements. Their XP comes back as a single total and
-      // is applied in one further write — previously each award called
-      // updateUserProfile individually, landed inside its 5-second throttle,
-      // and had its XP silently thrown away.
-      console.log('🏆 Checking for achievements...');
-      const achievementXp = await checkAchievements(result);
-      if (achievementXp > 0) {
-        await updateUserProfile(achievementXp);
-      }
-      console.log('✅ Achievements checked successfully');
-
-      // Show XP toast
       toast({
         title: "Quiz Completed! 🎉",
-        description: `You earned ${xpEarned} XP!`,
+        description: `You earned ${award.awarded_xp} XP!`,
       });
-
     } catch (error) {
-      console.error('💥 Error recording quiz completion:', error);
+      console.error('Error recording quiz completion:', error);
       toast({
         title: "Error",
         description: "Failed to record quiz completion",
@@ -160,237 +176,37 @@ export const useGamification = () => {
     } finally {
       setIsProcessing(false);
     }
-  }, [user, isProcessing, toast]);
-
-  /**
-   * Applies an XP delta to the profile (and recomputes level + streak).
-   *
-   * There is deliberately no time-based throttle here any more. The old one
-   * *discarded* any XP that arrived within 5 seconds of the previous write,
-   * and because achievements are checked milliseconds after the quiz XP write,
-   * every single badge reward fell inside that window — the learner saw the
-   * badge toast but their total_xp never moved. Callers now batch their XP and
-   * call this once, so the number of writes is bounded by the caller instead.
-   */
-  const updateUserProfile = async (xpEarned: number) => {
-    if (!user) return;
-
-    try {
-      // Get current profile
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('total_xp, current_level, last_active_date, streak_days')
-        .eq('user_id', user.id)
-        .single();
-
-      if (!profile) return;
-
-      const newTotalXP = profile.total_xp + xpEarned;
-      
-      // Progressive level calculation: Level 1 = 200 XP, Level 2 = 600 XP, Level 3 = 1200 XP, etc.
-      // Each level requires (level * 200) XP total
-      let newLevel = 1;
-      let totalXPNeeded = 0;
-      while (totalXPNeeded <= newTotalXP) {
-        totalXPNeeded += newLevel * 200;
-        if (totalXPNeeded > newTotalXP) break;
-        newLevel++;
-      }
-      
-      // Calculate streak against the learner's local calendar day, not UTC.
-      const today = localDayIso();
-      const lastActive = profile.last_active_date;
-      const yesterdayStr = localDayIso(addDays(-1));
-
-      let newStreak = profile.streak_days;
-      if (lastActive === yesterdayStr) {
-        newStreak += 1;
-      } else if (lastActive !== today) {
-        newStreak = 1;
-      }
-
-      // Update profile
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          total_xp: newTotalXP,
-          current_level: newLevel,
-          last_active_date: today,
-          streak_days: newStreak
-        })
-        .eq('user_id', user.id);
-
-      if (error) throw error;
-
-      // Check for level up
-      if (newLevel > profile.current_level) {
-        toast({
-          title: "Level Up! 🚀",
-          description: `Congratulations! You've reached Level ${newLevel}!`,
-        });
-      }
-    } catch (error) {
-      console.error('Error updating user profile:', error);
-    }
-  };
-
-  /**
-   * Awards any newly-earned achievements and returns the TOTAL XP they carry,
-   * for the caller to apply in one profile write. Returns 0 if nothing new.
-   */
-  const checkAchievements = async (result: QuizResult): Promise<number> => {
-    if (!user) return 0;
-
-    console.log('🏆 Checking achievements for user:', user.id);
-
-    // Get all achievements and user's current achievements
-    const [{ data: allAchievements }, { data: userAchievements }] = await Promise.all([
-      supabase.from('achievements').select('*'),
-      supabase.from('user_achievements').select('achievement_id').eq('user_id', user.id)
-    ]);
-
-    if (!allAchievements || !userAchievements) {
-      console.log('❌ Missing achievements or user achievements data');
-      return 0;
-    }
-
-    console.log('🎯 Found achievements:', allAchievements.length);
-    console.log('🏅 User already has:', userAchievements.length, 'achievements');
-
-    const earnedAchievementIds = new Set(userAchievements.map(ua => ua.achievement_id));
-    const newAchievements = [];
-
-    for (const achievement of allAchievements) {
-      if (earnedAchievementIds.has(achievement.id)) {
-        console.log('⏭️ Already earned:', achievement.name);
-        continue;
-      }
-
-      console.log('🔍 Checking achievement:', achievement.name, achievement.requirement_type, achievement.requirement_value);
-      const shouldEarn = await checkAchievementRequirement(achievement, result);
-      console.log('✅ Should earn?', shouldEarn);
-      
-      if (shouldEarn) {
-        console.log('🎉 New achievement earned:', achievement.name);
-        newAchievements.push(achievement);
-      }
-    }
-
-    console.log('🆕 Total new achievements:', newAchievements.length);
-
-    // Award new achievements, accumulating their XP rather than writing it one
-    // badge at a time.
-    let awardedXp = 0;
-    for (const achievement of newAchievements) {
-      awardedXp += await awardAchievement(achievement);
-    }
-    console.log('💎 Achievement XP to apply:', awardedXp);
-    return awardedXp;
-  };
-
-  const checkAchievementRequirement = async (achievement: any, result: QuizResult) => {
-    const { requirement_type, requirement_value } = achievement;
-
-    switch (requirement_type) {
-      case 'quiz_completion':
-        // This should trigger after completing the current quiz
-        return true;
-
-      case 'perfect_score':
-        return result.isPerfectScore;
-
-      case 'total_quizzes':
-        const { count: totalQuizzes } = await supabase
-          .from('quiz_attempts')
-          .select('*', { count: 'exact' })
-          .eq('user_id', user!.id);
-        return (totalQuizzes || 0) >= requirement_value;
-
-      case 'streak':
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('streak_days')
-          .eq('user_id', user!.id)
-          .single();
-        return (profile?.streak_days || 0) >= requirement_value;
-
-      default:
-        return false;
-    }
-  };
-
-  /**
-   * Records the badge and returns its XP reward for the caller to batch.
-   * Returns 0 if the badge could not be recorded, so no XP is credited for a
-   * badge the learner didn't actually get.
-   */
-  const awardAchievement = async (achievement: any): Promise<number> => {
-    if (!user) return 0;
-
-    try {
-      // Insert user achievement
-      const { error } = await supabase
-        .from('user_achievements')
-        .insert({
-          user_id: user.id,
-          achievement_id: achievement.id
-        });
-
-      if (error) throw error;
-
-      // Show achievement toast
-      toast({
-        description: (
-          <AchievementToast achievement={achievement} />
-        ),
-        duration: 5000,
-      });
-
-      return achievement.xp_reward ?? 0;
-    } catch (error) {
-      console.error('Error awarding achievement:', error);
-      return 0;
-    }
-  };
+  }, [user, isProcessing, toast, celebrateLevelUp, claimAchievements]);
 
   const recordPageVisit = useCallback(async (categoryId: string, productId?: string) => {
     if (!user) return;
 
-    // Throttle page visits - only record once per product per day using localStorage
+    // Cheap client-side throttle so a browsing session doesn't fire a request
+    // per page view. It is NOT the limit — the server enforces once per local
+    // day per (user, category, product), so clearing site data no longer farms
+    // 5 XP per refresh the way this localStorage key alone used to allow.
     const visitKey = `page_visit_${user.id}_${productId || categoryId}`;
     const lastVisit = localStorage.getItem(visitKey);
     const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-    
-    // Only record if not visited in the last 24 hours
-    if (lastVisit && (now - parseInt(lastVisit)) < oneDay) {
-      console.log('⏳ Page visit throttled - already recorded today');
-      return; // This should prevent the entire function from continuing
-    }
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    if (lastVisit && (now - parseInt(lastVisit)) < oneDay) return;
 
     try {
-      console.log('📄 Recording new page visit for:', productId || categoryId);
-      const { error } = await supabase
-        .from('learning_progress')
-        .insert({
-          user_id: user.id,
-          category_id: categoryId,
-          product_id: productId,
-          progress_type: 'page_visited',
-          xp_earned: 5
-        });
+      const { data, error } = await (supabase.rpc as any)('award_page_visit_xp', {
+        p_category_id: categoryId,
+        p_product_id: productId ?? null,
+        p_tz_offset_minutes: localTimezoneOffsetMinutes(),
+      });
 
       if (error) throw error;
-      
-      // Update localStorage to prevent duplicate calls
+
       localStorage.setItem(visitKey, now.toString());
-      console.log('🏆 Page visit recorded, awarding 5 XP');
-      
-      await updateUserProfile(5);
+      celebrateLevelUp((data as XpAwardResult | null) ?? {});
     } catch (error) {
       console.error('Error recording page visit:', error);
     }
-  }, [user]);
+  }, [user, celebrateLevelUp]);
 
   return {
     recordQuizCompletion,
