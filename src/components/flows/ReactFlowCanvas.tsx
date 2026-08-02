@@ -65,6 +65,8 @@ export interface FlowCanvasControls {
   getNodes: () => FlowNode[];
   getEdges: () => FlowEdge[];
   save: () => { nodes: FlowNode[]; edges: FlowEdge[] };
+  /** Replace the entire canvas with DB-shape nodes/edges (AI assistant, JSON import) */
+  replaceAll: (nodes: FlowNode[], edges: FlowEdge[]) => void;
   updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => void;
   updateEdgeData?: (edgeId: string, dataUpdates: Record<string, any>) => void;
   snapToGrid: boolean;
@@ -569,6 +571,26 @@ function ReactFlowCanvasInner({
         nodes: fromReactFlowNodes(rfGetNodes()),
         edges: fromReactFlowEdges(rfGetEdges()),
       }),
+      replaceAll: (dbN: FlowNode[], dbE: FlowEdge[]) => {
+        // Convert DB shape through the bridge and swap React Flow state —
+        // setting only the parent's local state never reaches the canvas,
+        // and the next save would erase the replacement.
+        const rfNodes = toReactFlowNodes(dbN).map((n) => {
+          if (n.data?.scriptId) {
+            const script = scripts.find((s) => s.id === n.data.scriptId);
+            return { ...n, data: { ...n.data, scriptName: script?.stage } };
+          }
+          return n;
+        });
+        const rfEdges = toReactFlowEdges(dbE);
+        setNodes(rfNodes);
+        setEdges(rfEdges);
+        requestAnimationFrame(() => {
+          history.takeSnapshot(rfGetNodes(), rfGetEdges(), 'Replaced flow');
+          notifyParent();
+          fitView({ padding: 0.15, duration: 300 });
+        });
+      },
       updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => {
         setNodes((nds) => nds.map((n) => (n.id === nodeId ? applyNodeDataUpdates(n, dataUpdates) : n)));
         requestAnimationFrame(() => {

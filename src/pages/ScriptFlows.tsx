@@ -13,6 +13,7 @@ import { Plus, GitBranch, Trash2, Layout, ArrowLeft, Save, Undo2, Redo2, Keyboar
 import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
 import { useScriptFlows, type FlowNode, type FlowEdge } from '@/hooks/useScriptFlows';
+import { fromReactFlowNodes, fromReactFlowEdges } from '@/utils/flowDataBridge';
 import { useScripts } from '@/hooks/useScripts';
 // ReactFlow + cytoscape (~430 KB combined) only matter once a learner opens
 // a specific flow. Defer the canvas so the flows list page paints fast.
@@ -697,10 +698,22 @@ export default function ScriptFlows() {
                   onExport={handleExport}
                   onImportJson={(data) => {
                     try {
-                      setLocalNodes(data.nodes);
-                      setLocalEdges(data.edges);
-                      setHasUnsaved(true);
-                      toast.success(`Imported ${data.nodes.length} nodes and ${data.edges.length} connections`);
+                      if (!controlsRef.current) {
+                        toast.error('Canvas is still loading — try again in a moment');
+                        return;
+                      }
+                      // Exported files are React Flow-shaped (position/data);
+                      // hand-written files may already be DB-shaped (x/y).
+                      const rawNodes = (data.nodes || []) as any[];
+                      const rawEdges = (data.edges || []) as any[];
+                      const dbNodes = rawNodes[0]?.position !== undefined
+                        ? fromReactFlowNodes(rawNodes)
+                        : (rawNodes as FlowNode[]);
+                      const dbEdges = rawEdges[0]?.source !== undefined
+                        ? fromReactFlowEdges(rawEdges)
+                        : (rawEdges as FlowEdge[]);
+                      controlsRef.current.replaceAll(dbNodes, dbEdges);
+                      toast.success(`Imported ${dbNodes.length} nodes and ${dbEdges.length} connections`);
                     } catch {
                       toast.error('Failed to import: invalid flow data');
                     }
@@ -838,9 +851,16 @@ export default function ScriptFlows() {
                   edges={localEdges}
                   flowTitle={flowTitle}
                   onFlowUpdated={(nodes, edges) => {
-                    setLocalNodes([...nodes]);
-                    setLocalEdges([...edges]);
-                    setHasUnsaved(true);
+                    // Push into the canvas itself — updating only local state
+                    // leaves the canvas untouched and the next save (which
+                    // prefers canvas state) would erase the AI's changes.
+                    if (controlsRef.current) {
+                      controlsRef.current.replaceAll(nodes, edges);
+                    } else {
+                      setLocalNodes([...nodes]);
+                      setLocalEdges([...edges]);
+                      setHasUnsaved(true);
+                    }
                   }}
                 />
               </div>
