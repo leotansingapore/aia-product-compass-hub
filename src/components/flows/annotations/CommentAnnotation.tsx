@@ -20,9 +20,10 @@ interface Props {
 export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onReply, zoom, canEdit, panX, panY, currentUserId }: Props) {
   const [open, setOpen] = useState(true);
   const [replyText, setReplyText] = useState('');
-  const dragStart = useRef<{ mx: number; my: number; x: number; y: number } | null>(null);
+  const dragStart = useRef<{ pointerId: number; mx: number; my: number; x: number; y: number; moved: boolean } | null>(null);
   const [dragging, setDragging] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const justDragged = useRef(false);
   // Local position while dragging — persist once on mouseup instead of one
   // Supabase UPDATE per mousemove.
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
@@ -32,34 +33,50 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
   const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
   const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  // Pointer events cover mouse, touch and stylus in one path; pointer capture
+  // keeps move/up coming to this element even when the finger leaves it.
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!canEdit) return;
-    if ((e.target as HTMLElement).closest('textarea, button, input')) return;
+    if ((e.target as HTMLElement).closest('textarea, button, input, a')) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (!e.isPrimary || dragStart.current) return;
     e.stopPropagation();
     setDragging(true);
-    dragStart.current = { mx: e.clientX, my: e.clientY, x: annotation.x, y: annotation.y };
+    dragStart.current = { pointerId: e.pointerId, mx: e.clientX, my: e.clientY, x: annotation.x, y: annotation.y, moved: false };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* capture unsupported */ }
+  };
 
-    const onMove = (ev: MouseEvent) => {
-      if (!dragStart.current) return;
-      const dx = (ev.clientX - dragStart.current.mx) / zoom;
-      const dy = (ev.clientY - dragStart.current.my) / zoom;
-      setDragPos({ x: dragStart.current.x + dx, y: dragStart.current.y + dy });
-    };
-    const onUp = (ev: MouseEvent) => {
-      setDragging(false);
-      if (dragStart.current) {
-        const dx = (ev.clientX - dragStart.current.mx) / zoom;
-        const dy = (ev.clientY - dragStart.current.my) / zoom;
-        if (dx !== 0 || dy !== 0) {
-          onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
-        }
-      }
-      dragStart.current = null;
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
-    };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const start = dragStart.current;
+    if (!start || start.pointerId !== e.pointerId) return;
+    if (Math.abs(e.clientX - start.mx) > 3 || Math.abs(e.clientY - start.my) > 3) start.moved = true;
+    setDragPos({ x: start.x + (e.clientX - start.mx) / zoom, y: start.y + (e.clientY - start.my) / zoom });
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>, commit: boolean) => {
+    const start = dragStart.current;
+    if (!start || start.pointerId !== e.pointerId) return;
+    dragStart.current = null;
+    setDragging(false);
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { /* already released */ }
+    const dx = (e.clientX - start.mx) / zoom;
+    const dy = (e.clientY - start.my) / zoom;
+    // Persist once, on release — never one write per move
+    if (commit && (start.moved || (e.pointerType === 'mouse' && (dx !== 0 || dy !== 0)))) {
+      if (start.moved) justDragged.current = true;
+      onUpdate({ id: annotation.id, x: start.x + dx, y: start.y + dy });
+      return;
+    }
+    setDragPos(null);
+  };
+
+  // Dragging by the header must not also collapse the thread
+  const toggleOpen = () => {
+    if (justDragged.current) {
+      justDragged.current = false;
+      return;
+    }
+    setOpen(o => !o);
   };
 
   const handleDeleteClick = (e: React.MouseEvent) => {
@@ -86,13 +103,19 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
         !dragging && canEdit && 'cursor-grab',
       )}
       style={{ left: screenX, top: screenY, zIndex: 25, width: 220 * zoom }}
-      onMouseDown={handleMouseDown}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={e => endDrag(e, true)}
+      onPointerCancel={e => endDrag(e, false)}
     >
-      {/* Bubble icon */}
+      {/* Bubble icon — also the drag handle, so it owns the touch gesture */}
       <div
-        className="flex items-center gap-1.5 px-2 py-1.5 rounded-t-lg text-white font-semibold text-xs shadow cursor-pointer"
+        className={cn(
+          'flex items-center gap-1.5 px-2 py-1.5 rounded-t-lg text-white font-semibold text-xs shadow cursor-pointer',
+          canEdit && 'touch-none'
+        )}
         style={{ backgroundColor: annotation.color, borderRadius: open ? '8px 8px 0 0' : 8 }}
-        onClick={() => setOpen(!open)}
+        onClick={toggleOpen}
       >
         <MessageSquare className="h-3.5 w-3.5" />
         <span className="truncate flex-1">{annotation.author_name}</span>
@@ -145,7 +168,7 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
             <textarea
               value={replyText}
               onChange={e => setReplyText(e.target.value)}
-              onMouseDown={e => e.stopPropagation()}
+              onPointerDown={e => e.stopPropagation()}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitReply(); } }}
               rows={1}
               placeholder="Reply…"

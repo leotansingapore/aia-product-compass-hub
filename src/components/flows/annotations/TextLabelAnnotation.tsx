@@ -16,7 +16,7 @@ interface Props {
 export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canEdit, panX, panY }: Props) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(annotation.content || '');
-  const dragStart = useRef<{ mx: number; my: number; x: number; y: number } | null>(null);
+  const dragStart = useRef<{ pointerId: number; mx: number; my: number; x: number; y: number; moved: boolean } | null>(null);
   const [dragging, setDragging] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   // Local position while dragging — persist once on mouseup instead of one
@@ -28,33 +28,47 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
   const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
   const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  // Pointer events cover mouse, touch and stylus in one path; pointer capture
+  // keeps move/up coming to this element even when the finger leaves it.
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!canEdit || editing) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (!e.isPrimary || dragStart.current) return;
+    // Never capture the pointer when a control was hit — that would swallow its click
+    if ((e.target as HTMLElement).closest('button, textarea, input, a')) return;
     e.stopPropagation();
     setDragging(true);
-    dragStart.current = { mx: e.clientX, my: e.clientY, x: annotation.x, y: annotation.y };
+    dragStart.current = { pointerId: e.pointerId, mx: e.clientX, my: e.clientY, x: annotation.x, y: annotation.y, moved: false };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* capture unsupported */ }
+  };
 
-    const onMove = (ev: MouseEvent) => {
-      if (!dragStart.current) return;
-      const dx = (ev.clientX - dragStart.current.mx) / zoom;
-      const dy = (ev.clientY - dragStart.current.my) / zoom;
-      setDragPos({ x: dragStart.current.x + dx, y: dragStart.current.y + dy });
-    };
-    const onUp = (ev: MouseEvent) => {
-      setDragging(false);
-      if (dragStart.current) {
-        const dx = (ev.clientX - dragStart.current.mx) / zoom;
-        const dy = (ev.clientY - dragStart.current.my) / zoom;
-        if (dx !== 0 || dy !== 0) {
-          onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
-        }
-      }
-      dragStart.current = null;
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
-    };
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const start = dragStart.current;
+    if (!start || start.pointerId !== e.pointerId) return;
+    if (Math.abs(e.clientX - start.mx) > 3 || Math.abs(e.clientY - start.my) > 3) start.moved = true;
+    setDragPos({ x: start.x + (e.clientX - start.mx) / zoom, y: start.y + (e.clientY - start.my) / zoom });
+  };
+
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>, commit: boolean) => {
+    const start = dragStart.current;
+    if (!start || start.pointerId !== e.pointerId) return;
+    dragStart.current = null;
+    setDragging(false);
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { /* already released */ }
+    if (!commit) {
+      setDragPos(null);
+      return;
+    }
+    const dx = (e.clientX - start.mx) / zoom;
+    const dy = (e.clientY - start.my) / zoom;
+    // Persist once, on release — never one write per move
+    if (start.moved || (e.pointerType === 'mouse' && (dx !== 0 || dy !== 0))) {
+      onUpdate({ id: annotation.id, x: start.x + dx, y: start.y + dy });
+      return;
+    }
+    setDragPos(null);
+    // A tap that never moved is the touch equivalent of double-click-to-edit
+    if (e.pointerType !== 'mouse' && canEdit) setEditing(true);
   };
 
   const handleDeleteClick = (e: React.MouseEvent) => {
@@ -78,9 +92,14 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
         'absolute group',
         dragging && 'cursor-grabbing',
         !dragging && canEdit && 'cursor-grab',
+        // Stop the browser scrolling/zooming the canvas instead of dragging the label
+        canEdit && !editing && 'touch-none',
       )}
       style={{ left: screenX, top: screenY, zIndex: 25 }}
-      onMouseDown={handleMouseDown}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={e => endDrag(e, true)}
+      onPointerCancel={e => endDrag(e, false)}
       onDoubleClick={() => canEdit && setEditing(true)}
     >
       {editing ? (
@@ -90,7 +109,7 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
           onChange={e => setDraft(e.target.value)}
           onBlur={saveEdit}
           onKeyDown={e => e.key === 'Enter' && saveEdit()}
-          onMouseDown={e => e.stopPropagation()}
+          onPointerDown={e => e.stopPropagation()}
           className="bg-background/90 border border-primary rounded px-1.5 py-0.5 text-sm font-semibold outline-none shadow"
           style={{ color: annotation.color, minWidth: 80 }}
           placeholder="Label text…"
