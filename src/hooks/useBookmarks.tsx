@@ -97,14 +97,23 @@ export function useBookmarks() {
 
     try {
       const userId = user?.id || '00000000-0000-0000-0000-000000000000';
-      const { error } = await supabase
+      // `.select('id')` is what makes this honest: a DELETE that matches zero
+      // rows (RLS filtered it out, or it was already gone) still returns
+      // `error === null`. Without the returned rows we would drop the card from
+      // the grid and toast "Removed" for a delete the server never performed,
+      // and the bookmark would reappear on the next load.
+      const { data, error } = await supabase
         .from('user_bookmarks')
         .delete()
         .eq('user_id', userId)
-        .eq('product_id', productId);
+        .eq('product_id', productId)
+        .select('id');
 
       if (error) throw error;
-      
+      if (!data || data.length === 0) {
+        throw new Error('Bookmark was not removed');
+      }
+
       setBookmarks(prev => prev.filter(bookmark => bookmark.product_id !== productId));
       toast({
         title: "Removed",
