@@ -18,7 +18,6 @@ import { cn } from "@/lib/utils";
 import {
   CASES,
   CASE_PRODUCTS,
-  ALL_CASE_PLAYS,
   type CaseEntry,
   type CaseProduct,
 } from "@/data/caseVault";
@@ -33,7 +32,12 @@ const PRODUCT_FILTER_OPTIONS: ("All" | CaseProduct)[] = [
   ...(Object.keys(CASE_PRODUCTS) as CaseProduct[]),
 ];
 
-const PLAY_FILTER_OPTIONS = ["All", ...ALL_CASE_PLAYS];
+// Derive plays from BOTH curated and real-appointment cases so real cases
+// (whose plays don't all appear in the curated set) stay filterable.
+const PLAY_FILTER_OPTIONS = [
+  "All",
+  ...Array.from(new Set(ALL_CASES.map((c) => c.play))).sort(),
+];
 
 // ─── Case Card ──────────────────────────────────────────────────────────
 function CaseCard({ entry }: { entry: CaseEntry }) {
