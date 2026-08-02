@@ -26,6 +26,7 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { RequireProductTier } from "@/components/RequireProductTier";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -226,6 +227,9 @@ export default function ProductDetail() {
 
   return (
     <ProtectedPage pageId="product-detail">
+      {/* `pageId` above is a page-level flag; this is the per-product
+          `visible_tiers` allow-list that the category grid already filters on. */}
+      <RequireProductTier visibleTiers={product.visible_tiers}>
       <PageLayout
         title={`${product?.title || 'Product Details'} - FINternship Learning Platform`}
         description={`Learn about ${product?.title || 'this product'} - ${product?.description || 'Complete product information including benefits, features, training videos, and AI assistance for financial advisors.'}`}
@@ -342,6 +346,7 @@ export default function ProductDetail() {
 
         </div>
       </PageLayout>
+      </RequireProductTier>
     </ProtectedPage>
   );
 }

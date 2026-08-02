@@ -5,6 +5,8 @@ import { getCategorySlugFromId } from "@/utils/slugUtils";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useGamification } from "@/hooks/useGamification";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { passesProductTierGate } from "@/lib/productTierAccess";
 
 export function useProductDetail() {
   const { productSlugOrId } = useParams<{ productSlugOrId: string }>();
@@ -14,16 +16,22 @@ export function useProductDetail() {
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
+  const { tier, isAdminBypass, permissionsLoading } = useFeatureAccess();
   const [assistantOpen, setAssistantOpen] = useState(false);
+
+  // Per-product `visible_tiers` gate. Resolved here (not just in the page) so
+  // the XP write below never fires for a learner who is about to be bounced.
+  const tierAllowed =
+    !permissionsLoading && passesProductTierGate(product?.visible_tiers, tier, isAdminBypass);
 
   // Track product view and award XP - only run once per product
   useEffect(() => {
-    if (product) {
+    if (product && tierAllowed) {
       addToRecent(product.id, 'product');
       // Award XP for visiting the product page
       recordPageVisit(product.category_id, product.id);
     }
-  }, [product?.id, addToRecent, recordPageVisit]);
+  }, [product?.id, tierAllowed, addToRecent, recordPageVisit]);
 
   const handleUpdate = async (field: string, value: any) => {
     if (!product) return;

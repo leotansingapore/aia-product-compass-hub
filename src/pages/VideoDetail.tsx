@@ -5,6 +5,7 @@ import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { VideoLearningInterface } from "@/components/video-learning/VideoLearningInterface";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
+import { RequireProductTier } from "@/components/RequireProductTier";
 import { useProductBySlugOrId } from "@/hooks/useProducts";
 import { getVideoSlug, isVideoId } from "@/utils/slugUtils";
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
@@ -82,19 +83,23 @@ export default function VideoDetail() {
 
   return (
     <ProtectedPage pageId="video-detail">
-      <PageLayout
-        title={`${currentVideo.title} - ${product.title} | FINternship`}
-        description={`Watch "${currentVideo.title}" - ${currentVideo.description || 'Training video'} from the ${product.title} course.`}
-      >
-        <VideoLearningInterface
-          videos={videos}
-          productId={product.id}
-          categoryId={product.category_id}
-          initialVideoIndex={videoIndex}
-          onClose={() => navigate(`/product/${productSlugOrId}`)}
-        />
-        <FloatingAIChat productId={product.id} productName={product.title} />
-      </PageLayout>
+      {/* Per-product `visible_tiers` gate — the lesson content lives here too,
+          so it needs the same allow-list check as /product/<slug>. */}
+      <RequireProductTier visibleTiers={product.visible_tiers}>
+        <PageLayout
+          title={`${currentVideo.title} - ${product.title} | FINternship`}
+          description={`Watch "${currentVideo.title}" - ${currentVideo.description || 'Training video'} from the ${product.title} course.`}
+        >
+          <VideoLearningInterface
+            videos={videos}
+            productId={product.id}
+            categoryId={product.category_id}
+            initialVideoIndex={videoIndex}
+            onClose={() => navigate(`/product/${productSlugOrId}`)}
+          />
+          <FloatingAIChat productId={product.id} productName={product.title} />
+        </PageLayout>
+      </RequireProductTier>
     </ProtectedPage>
   );
 }

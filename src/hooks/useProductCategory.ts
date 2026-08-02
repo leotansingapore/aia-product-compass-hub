@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useProducts, useCategories } from '@/hooks/useProducts';
 import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
 import { useFeatureAccess } from '@/hooks/useFeatureAccess';
+import { passesProductTierGate } from '@/lib/productTierAccess';
 import { getCategoryIdFromSlug, getCategorySlugFromId, getCategorySlug, isUUID, createSlug } from '@/utils/slugUtils';
 
 export function useProductCategory() {
@@ -62,14 +63,9 @@ export function useProductCategory() {
   // restriction" — visible to anyone who already has access to the category.
   // Admins (real admin, not impersonating) always bypass via isAdminBypass.
   const filteredProducts = products.filter(product => {
-    const visibleTiers = product.visible_tiers;
-    const passesTierGate =
-      isAdminBypass ||
-      !visibleTiers ||
-      visibleTiers.length === 0 ||
-      visibleTiers.includes(tier);
-
-    if (!passesTierGate) return false;
+    // Same helper backs the /product/<slug> and /product/<slug>/video/<id>
+    // route guards (RequireProductTier), so grid and detail can't disagree.
+    if (!passesProductTierGate(product.visible_tiers, tier, isAdminBypass)) return false;
 
     const matchesSearch = !searchQuery ||
       product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
