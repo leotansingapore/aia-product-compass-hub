@@ -66,7 +66,18 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   moduleType = 'product'
 }: VideoLearningInterfaceProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
+  // Real <video> playback state. Only ever set from the element's own
+  // play/pause/ended events — never guessed.
   const [isPlaying, setIsPlaying] = useState(false);
+  // Fallback signal for third-party iframe embeds (YouTube/Loom/Vimeo). We
+  // cannot observe play/pause across the iframe boundary without loading each
+  // provider's JS SDK, so we deliberately do NOT pretend to know whether the
+  // clip is rolling. Instead we count elapsed time only while this lesson is
+  // open AND the tab is actually in the foreground. That is "time on lesson",
+  // not "time watched" — treat the number accordingly.
+  const [isTabVisible, setIsTabVisible] = useState(
+    () => typeof document === 'undefined' || document.visibilityState === 'visible',
+  );
   const [watchTime, setWatchTime] = useState(0);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -78,7 +89,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const navigate = useNavigate();
   const { isAdmin } = useAdmin();
 
-  const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress } = useVideoProgress(productId);
+  const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress, loading: progressLoading } = useVideoProgress(productId);
 
   // Guards against a double-click firing two completion writes before the
   // first one has landed. The ref is the real gate (state updates are async and
@@ -112,6 +123,9 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const currentVideoId = currentVideo?.id;
   const currentVideoUrl = currentVideo?.url ?? '';
   const currentVideoRichContent = currentVideo?.rich_content?.trim() ?? '';
+  const videoInfo = useMemo(() => (currentVideoUrl ? getVideoEmbedInfo(currentVideoUrl) : null), [currentVideoUrl]);
+  // Only a native <video> gives us real play/pause/ended events.
+  const hasNativePlaybackEvents = videoInfo?.type === 'mp4';
 
   // Auto-complete handler for quiz/assignment items
   const handleItemComplete = useCallback(async () => {
@@ -143,10 +157,29 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   useEffect(() => {
     setCurrentVideoIndex(initialVideoIndex);
-    setWatchTime(0);
     setShowMobileSidebar(false);
     setVideoError(false);
+    setIsPlaying(false);
   }, [initialVideoIndex, videos.length]);
+
+  // Resume: seed the counter from whatever was last written for this lesson so
+  // a learner who comes back doesn't restart from zero (and doesn't overwrite
+  // their stored watch time with a smaller number). Seeded once per lesson,
+  // and only after the progress rows have actually loaded.
+  const seededVideoIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!currentVideoId || progressLoading) return;
+    if (seededVideoIdRef.current === currentVideoId) return;
+    seededVideoIdRef.current = currentVideoId;
+    setWatchTime(currentProgress?.watch_time_seconds ?? 0);
+  }, [currentVideoId, currentProgress, progressLoading]);
+
+  // Foreground/background tracking for the iframe fallback above.
+  useEffect(() => {
+    const onVisibilityChange = () => setIsTabVisible(document.visibilityState === 'visible');
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
 
   // Scroll mini-nav to keep current item visible
   useEffect(() => {
@@ -156,23 +189,34 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [currentVideoIndex]);
 
-  // Track watch time
+  // Held in a ref so the ticker below doesn't get torn down and restarted every
+  // time the progress cache refreshes (which changes updateWatchTime's identity).
+  const updateWatchTimeRef = useRef(updateWatchTime);
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    const activeVideo = videos[safeVideoIndex];
+    updateWatchTimeRef.current = updateWatchTime;
+  }, [updateWatchTime]);
 
-    if (isPlaying && activeVideo) {
-      interval = setInterval(() => {
-        setWatchTime(prev => {
-          const newTime = prev + 1;
-          const percentage = activeVideo.duration ? Math.min((newTime / activeVideo.duration) * 100, 100) : 0;
-          if (newTime % 10 === 0) updateWatchTime(activeVideo.id, newTime, percentage);
-          return newTime;
-        });
-      }, 1000);
-    }
+  // Track watch time.
+  //
+  // mp4 lessons count only while the element reports it is playing. Embedded
+  // providers (YouTube/Loom/Vimeo) give us no cross-origin playback events, so
+  // rather than faking a "playing" flag we count the time the lesson is open in
+  // a foregrounded tab. Backgrounding the tab stops the counter.
+  const isCounting = hasNativePlaybackEvents ? isPlaying : isTabVisible;
+  useEffect(() => {
+    const activeVideo = videos[safeVideoIndex];
+    if (!isCounting || !activeVideo) return;
+
+    const interval = setInterval(() => {
+      setWatchTime(prev => {
+        const newTime = prev + 1;
+        const percentage = activeVideo.duration ? Math.min((newTime / activeVideo.duration) * 100, 100) : 0;
+        if (newTime % 10 === 0) updateWatchTimeRef.current(activeVideo.id, newTime, percentage);
+        return newTime;
+      });
+    }, 1000);
     return () => clearInterval(interval);
-  }, [isPlaying, safeVideoIndex, updateWatchTime, videos]);
+  }, [isCounting, safeVideoIndex, videos]);
 
   const handleToggleStickyComplete = useCallback(async () => {
     const activeVideo = videos[safeVideoIndex];
@@ -198,8 +242,6 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     }
   }, [safeVideoIndex, videos, moduleType, moduleId, productSlugOrId, navigate]);
 
-  const videoInfo = useMemo(() => (currentVideoUrl ? getVideoEmbedInfo(currentVideoUrl) : null), [currentVideoUrl]);
-
   const sidebarContent = (
     <div className="space-y-4">
       <Card>
@@ -214,7 +256,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             videos={videos}
             onVideoSelect={(index) => {
               setCurrentVideoIndex(index);
-              setWatchTime(0);
+              setIsPlaying(false);
               setVideoError(false);
               setShowMobileSidebar(false);
               setShouldAutoplay(true);
@@ -447,7 +489,10 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           preload="metadata"
                           playsInline
                           autoPlay={shouldAutoplay}
-                          onError={() => setVideoError(true)}
+                          onPlay={() => setIsPlaying(true)}
+                          onPause={() => setIsPlaying(false)}
+                          onEnded={() => setIsPlaying(false)}
+                          onError={() => { setVideoError(true); setIsPlaying(false); }}
                         />
                       ) : (
                         <iframe
@@ -462,7 +507,9 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           mozallowfullscreen="true"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                           style={{ border: 0 }}
-                          onLoad={() => { setIsPlaying(false); setShouldAutoplay(false); }}
+                          // No playback events cross this boundary — the ticker
+                          // uses tab visibility for embeds (see isCounting).
+                          onLoad={() => setShouldAutoplay(false)}
                         />
                       )}
                     </div>

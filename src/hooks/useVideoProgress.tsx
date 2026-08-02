@@ -136,12 +136,16 @@ export function useVideoProgress(productId: string) {
 
   const updateWatchTime = useCallback(
     async (videoId: string, watchTime: number, percentage: number) => {
+      const existing = videoProgress.find((p) => p.video_id === videoId);
+      // Progress is a high-water mark. A ticker that starts mid-lesson (or a
+      // lesson already marked complete at 100%) must never be walked backwards
+      // by a smaller in-session number.
       await updateVideoProgress(videoId, {
-        watch_time_seconds: watchTime,
-        completion_percentage: percentage,
+        watch_time_seconds: Math.max(watchTime, existing?.watch_time_seconds ?? 0),
+        completion_percentage: Math.max(percentage, existing?.completion_percentage ?? 0),
       });
     },
-    [updateVideoProgress],
+    [updateVideoProgress, videoProgress],
   );
 
   const getVideoProgress = useCallback(
