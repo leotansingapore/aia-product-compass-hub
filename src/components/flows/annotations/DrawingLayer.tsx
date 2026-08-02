@@ -63,6 +63,8 @@ export function DrawingLayer({
       // Ignore secondary mouse buttons and extra fingers of a pinch
       if (e.pointerType === 'mouse' && e.button !== 0) return;
       if (!e.isPrimary || drawing) return;
+      // Using the toolbar must not start a stroke underneath it
+      if ((e.target as HTMLElement | null)?.closest('[data-annotation-toolbar]')) return;
       drawing = true;
       activePointerId = e.pointerId;
       try { el.setPointerCapture(e.pointerId); } catch { /* capture unsupported */ }

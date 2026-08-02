@@ -78,8 +78,11 @@ export function AnnotationToolbar({
     <div
       ref={barRef}
       role="toolbar"
+      data-annotation-toolbar
       aria-label="Annotation tools. Press Escape to exit."
-      className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 bg-background/95 backdrop-blur border border-border rounded-2xl px-3 py-2 shadow-lg"
+      // z-50 keeps the bar above the annotation layer (z-35 armed, z-40 drawing);
+      // below that, arming a tool made every toolbar click drop an annotation instead.
+      className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 bg-background/95 backdrop-blur border border-border rounded-2xl px-3 py-2 shadow-lg"
     >
       {/* Tools */}
       {tools.map(t => (
