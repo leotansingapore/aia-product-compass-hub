@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,6 +10,11 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    // Spends AI credits per call: any signed-in learner may use it, anonymous
+    // callers may not.
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to compare your drawing", 401);
+
     const { userDrawingBase64, referenceImageUrl, cardTitle } = await req.json();
 
     if (!userDrawingBase64 || !referenceImageUrl) {

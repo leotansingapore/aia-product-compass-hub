@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,6 +11,12 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    // Writes to public storage with the service-role key and spends AI credits:
+    // admin-only (concept cards are authored by admins).
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to enhance images", 401);
+    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can enhance concept images");
+
     const { imageBase64, fileName } = await req.json();
     if (!imageBase64 || !fileName) {
       return new Response(JSON.stringify({ error: "imageBase64 and fileName are required" }), {
