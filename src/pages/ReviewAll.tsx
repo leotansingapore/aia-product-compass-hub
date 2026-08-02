@@ -52,10 +52,12 @@ export default function ReviewAll() {
         (productFilter === 'all' || row.product_slug === productFilter) &&
         (bankFilter === 'all' || row.bank_type === bankFilter) &&
         (categoryFilter === 'all' || row.category === categoryFilter) &&
+        // These are unvalidated DB rows and this runs on every keystroke —
+        // a null explanation or options array crashed the whole page mid-search.
         (q === '' ||
-          row.question.toLowerCase().includes(q) ||
-          row.explanation.toLowerCase().includes(q) ||
-          row.options.some((o) => o.toLowerCase().includes(q))),
+          (row.question ?? '').toLowerCase().includes(q) ||
+          (row.explanation ?? '').toLowerCase().includes(q) ||
+          (row.options ?? []).some((o) => String(o ?? '').toLowerCase().includes(q))),
     );
   }, [all, productFilter, bankFilter, categoryFilter, search]);
 
@@ -151,7 +153,7 @@ export default function ReviewAll() {
                               </div>
                             </div>
                             <div className="space-y-1 pl-5">
-                              {row.options.map((opt, oi) => (
+                              {(row.options ?? []).map((opt, oi) => (
                                 <div
                                   key={oi}
                                   className={`text-xs rounded px-2 py-1 flex items-start gap-1.5 ${
