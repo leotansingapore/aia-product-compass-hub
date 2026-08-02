@@ -30,6 +30,8 @@ function PublicFlowViewInner() {
   const [edges, setEdges] = useState<ReturnType<typeof toReactFlowEdges>>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
   useEffect(() => {
     if (!flowId) {
@@ -39,13 +41,22 @@ function PublicFlowViewInner() {
     }
 
     async function fetchFlow() {
+      setLoading(true);
+      setFetchError(false);
+      // maybeSingle: a missing row is data=null with NO error, so transient
+      // network/server failures are distinguishable from a deleted flow.
       const { data, error } = await supabase
         .from('script_flows')
         .select('*')
         .eq('id', flowId!)
-        .single();
+        .maybeSingle();
 
-      if (error || !data) {
+      if (error) {
+        setFetchError(true);
+        setLoading(false);
+        return;
+      }
+      if (!data) {
         setNotFound(true);
         setLoading(false);
         return;
@@ -63,13 +74,29 @@ function PublicFlowViewInner() {
     }
 
     fetchFlow();
-  }, [flowId]);
+  }, [flowId, retryKey]);
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen text-muted-foreground gap-2">
         <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
         Loading flow...
+      </div>
+    );
+  }
+
+  if (fetchError) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen gap-4 text-muted-foreground px-4">
+        <GitBranch className="h-12 w-12 opacity-30" />
+        <h1 className="text-2xl font-bold text-foreground">Couldn't load this flow</h1>
+        <p className="text-center">Something went wrong while fetching it — this is usually temporary.</p>
+        <button
+          onClick={() => setRetryKey(k => k + 1)}
+          className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          Try again
+        </button>
       </div>
     );
   }
