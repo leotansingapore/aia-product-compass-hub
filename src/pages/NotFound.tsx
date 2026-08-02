@@ -2,9 +2,14 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES } from "@/lib/tiers";
 
 const NotFound = () => {
   const location = useLocation();
+  // Only offer shortcuts the current tier can actually open — otherwise a 404
+  // hands the user a second dead end.
+  const { can } = useFeatureAccess();
 
   useEffect(() => {
     console.error(
@@ -43,15 +48,21 @@ const NotFound = () => {
             <Button className="w-full">Go to Dashboard</Button>
           </Link>
           <div className="flex gap-2">
-            <Link to="/library/products" className="flex-1">
-              <Button variant="outline" className="w-full text-xs">Browse Products</Button>
-            </Link>
-            <Link to="/cmfas-exams" className="flex-1">
-              <Button variant="outline" className="w-full text-xs">CMFAS Exams</Button>
-            </Link>
-            <Link to="/scripts" className="flex-1">
-              <Button variant="outline" className="w-full text-xs">Sales Scripts</Button>
-            </Link>
+            {can(FEATURES.PRODUCTS) && (
+              <Link to="/library/products" className="flex-1">
+                <Button variant="outline" className="w-full text-xs">Browse Products</Button>
+              </Link>
+            )}
+            {can(FEATURES.CMFAS) && (
+              <Link to="/cmfas-exams" className="flex-1">
+                <Button variant="outline" className="w-full text-xs">CMFAS Exams</Button>
+              </Link>
+            )}
+            {can(FEATURES.SCRIPTS) && (
+              <Link to="/scripts" className="flex-1">
+                <Button variant="outline" className="w-full text-xs">Sales Scripts</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
