@@ -127,7 +127,7 @@ Her parents have almost no coverage of their own, she "keeps meaning to sort it 
 
 - Manulife - Manulife InvestReady, a whole-life ILP she's paid S$500/month into for eight years - about S$48,000 in, now worth around S$45,000 (less if surrendered), so the fees have kept it at best break-even
 - Great Eastern - GREAT Life Advantage 4, a whole-life investment-linked plan (protection plus an invested account), S$550/month, about S$180,000 of life cover - the cash value is the fund value and isn't guaranteed
-- AIA - HealthShield Gold Max (Plan A), no rider - about S$467 a year, fully from MediSave; with no rider, claims carry the deductible and 5% co-insurance in cash
+- NTUC Income - Enhanced IncomeShield Preferred (private hospital), no rider - about S$977 a year, S$600 from MediSave and roughly S$377 in cash; with no rider, claims carry the deductible and 10% co-insurance in cash
 
 ## What you build for your case
 
