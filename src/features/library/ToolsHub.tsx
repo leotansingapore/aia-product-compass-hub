@@ -20,9 +20,12 @@ import {
   ExternalLink,
   ArrowRight,
   Wrench,
+  Lock,
   type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES, type FeatureKey } from "@/lib/tiers";
 import { cn } from "@/lib/utils";
 
 type ToolBadge = "New" | "Required" | "Practice" | "Tier-gated" | "Static" | null;
@@ -35,6 +38,8 @@ interface Tool {
   external?: boolean;
   icon: LucideIcon;
   badge?: ToolBadge;
+  /** Tier feature that unlocks the destination. Omitted = open to every tier. */
+  feature?: FeatureKey;
 }
 
 interface ToolGroup {
@@ -63,6 +68,7 @@ const TOOL_GROUPS: ToolGroup[] = [
         name: "F.A.D.S. (Audience Differentiation)",
         tagline: "Define the audience you serve, your edge, and your one-line positioning.",
         href: "/learning-track/pre-rnf/assignments/audience-differentiation/tool",
+        feature: FEATURES.PRE_RNF_TRACK,
         icon: Users,
         badge: null,
       },
@@ -71,6 +77,7 @@ const TOOL_GROUPS: ToolGroup[] = [
         name: "Outreach Builder",
         tagline: "Drafts your first 100 warm-market messages with audience and life-stage hooks.",
         href: "/learning-track/pre-rnf/assignments/outreach-playbook/tool",
+        feature: FEATURES.PRE_RNF_TRACK,
         icon: MessageSquare,
         badge: "Required",
       },
@@ -95,6 +102,7 @@ const TOOL_GROUPS: ToolGroup[] = [
         name: "Scripts Database",
         tagline: "Canonical openers, fact-find scripts, objection responses, and referral asks.",
         href: "/scripts",
+        feature: FEATURES.SCRIPTS,
         icon: BookOpen,
         badge: null,
       },
@@ -103,6 +111,7 @@ const TOOL_GROUPS: ToolGroup[] = [
         name: "Roleplay (Tavus AI)",
         tagline: "Talk through scenarios with an AI prospect on video. Get scored feedback after.",
         href: "/roleplay",
+        feature: FEATURES.ROLEPLAY,
         icon: Video,
         badge: "Tier-gated",
       },
@@ -118,6 +127,7 @@ const TOOL_GROUPS: ToolGroup[] = [
         name: "CMFAS Chatbot",
         tagline: "Module-specific tutor for M9, M9A, HI, and RES5. Ask anything.",
         href: "/cmfas/chat",
+        feature: FEATURES.CMFAS,
         icon: GraduationCap,
         badge: null,
       },
@@ -128,20 +138,31 @@ const TOOL_GROUPS: ToolGroup[] = [
 function ToolCard({ tool }: { tool: Tool }) {
   const Icon = tool.icon;
   const isExternal = !!tool.external;
+  const { can } = useFeatureAccess();
+  // The header promises "tier-gated tools open only when your access tier
+  // unlocks them" — so a tool the tier can't open renders as a disabled card
+  // with a lock chip instead of a link into a redirect.
+  const unlocked = !tool.feature || can(tool.feature);
 
   const content = (
     <article
       className={cn(
         "group relative flex h-full flex-col gap-3 rounded-xl border bg-card p-5",
-        "transition-all hover:border-primary/40 hover:shadow-md",
-        "focus-within:border-primary/40 focus-within:shadow-md"
+        unlocked
+          ? "transition-all hover:border-primary/40 hover:shadow-md focus-within:border-primary/40 focus-within:shadow-md"
+          : "opacity-60"
       )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/20">
           <Icon className="h-5 w-5" aria-hidden />
         </div>
-        {tool.badge && (
+        {!unlocked ? (
+          <Badge variant="outline" className="gap-1">
+            <Lock className="h-3 w-3" aria-hidden />
+            Locked
+          </Badge>
+        ) : tool.badge && (
           <Badge
             variant={tool.badge === "Required" ? "default" : "secondary"}
             className={cn(
@@ -167,16 +188,30 @@ function ToolCard({ tool }: { tool: Tool }) {
         </p>
       </div>
 
-      <div className="mt-1 flex items-center gap-1.5 text-sm font-semibold text-primary">
-        <span>Open</span>
-        {isExternal ? (
-          <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-        ) : (
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-        )}
-      </div>
+      {unlocked ? (
+        <div className="mt-1 flex items-center gap-1.5 text-sm font-semibold text-primary">
+          <span>Open</span>
+          {isExternal ? (
+            <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          ) : (
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          )}
+        </div>
+      ) : (
+        <div className="mt-1 text-sm font-medium text-muted-foreground">
+          Not included in your access
+        </div>
+      )}
     </article>
   );
+
+  if (!unlocked) {
+    return (
+      <div className="block h-full rounded-xl" aria-disabled="true">
+        {content}
+      </div>
+    );
+  }
 
   if (isExternal) {
     return (
