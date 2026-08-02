@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useId } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -190,6 +190,7 @@ export function StudyQuiz({
 
   // Snapshot mastery at session start to calculate newly mastered this session
   const [sessionStartMastered] = useState(() => masteryMastered ?? 0);
+  const questionLabelId = useId();
 
   const q = questions[currentIdx];
   const map = shuffleMaps[currentIdx];
@@ -303,9 +304,9 @@ export function StudyQuiz({
 
     return (
       <Card className="border-accent/20">
-        <CardHeader className="text-center pb-2">
+        <CardHeader className="text-center pb-2" role="status" aria-live="polite">
           <div className="mx-auto mb-2">
-            <Trophy className={cn("h-10 w-10", scorePercent >= 80 ? "text-yellow-500" : "text-muted-foreground")} />
+            <Trophy aria-hidden className={cn("h-10 w-10", scorePercent >= 80 ? "text-yellow-500" : "text-muted-foreground")} />
           </div>
           <CardTitle className="text-2xl">
             {graded.correct}/{graded.gradable}
@@ -428,10 +429,12 @@ export function StudyQuiz({
 
       <CardContent className="px-4 sm:px-6 space-y-4">
         {/* Question */}
-        <p className="text-sm sm:text-base font-medium leading-relaxed">{q.question}</p>
+        <p id={questionLabelId} className="text-sm sm:text-base font-medium leading-relaxed">{q.question}</p>
 
-        {/* Options — rendered in shuffled order */}
-        <div className="space-y-2">
+        {/* Options — rendered in shuffled order.
+            Radiogroup semantics: correctness and selection were conveyed by
+            colour and a ring only, which a screen-reader user cannot perceive. */}
+        <div className="space-y-2" role="radiogroup" aria-labelledby={questionLabelId}>
           {map.map((originalIdx, displayIdx) => {
             const option = q.options[originalIdx];
             let variant: string = 'border-border bg-background hover:bg-accent/50';
@@ -441,9 +444,20 @@ export function StudyQuiz({
               else variant = 'border-border bg-background opacity-50';
             }
 
+            // Once answered, spell out in text what the colours convey.
+            let stateLabel = '';
+            if (hasAnswered) {
+              if (displayIdx === correctDisplay) stateLabel = ' — correct answer';
+              else if (displayIdx === selected) stateLabel = ' — your answer, incorrect';
+            }
+
             return (
               <button
                 key={displayIdx}
+                type="button"
+                role="radio"
+                aria-checked={selected === displayIdx}
+                aria-disabled={hasAnswered}
                 onClick={() => handleSelect(displayIdx)}
                 disabled={hasAnswered}
                 className={cn(
@@ -453,25 +467,26 @@ export function StudyQuiz({
                 )}
               >
                 {hasAnswered && displayIdx === correctDisplay && (
-                  <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 aria-hidden className="h-4 w-4 text-green-600 shrink-0 mt-0.5" />
                 )}
                 {hasAnswered && displayIdx === selected && displayIdx !== correctDisplay && (
-                  <XCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+                  <XCircle aria-hidden className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
                 )}
                 {(!hasAnswered || (displayIdx !== correctDisplay && displayIdx !== selected)) && (
-                  <span className="h-4 w-4 shrink-0 mt-0.5 rounded-full border text-center text-[10px] leading-4 font-medium">
+                  <span aria-hidden className="h-4 w-4 shrink-0 mt-0.5 rounded-full border text-center text-[10px] leading-4 font-medium">
                     {String.fromCharCode(65 + displayIdx)}
                   </span>
                 )}
                 <span>{option}</span>
+                {stateLabel && <span className="sr-only">{stateLabel}</span>}
               </button>
             );
           })}
         </div>
 
-        {/* Explanation */}
+        {/* Explanation — announced, matching the DayQuiz feedback panel. */}
         {hasAnswered && (
-          <div className={cn(
+          <div role="status" aria-live="polite" className={cn(
             'rounded-lg border p-3 text-sm',
             isQuestionBroken
               ? 'border-amber-200 bg-amber-50/50 dark:border-amber-900 dark:bg-amber-950/20'

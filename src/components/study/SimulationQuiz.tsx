@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef, useId } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -64,6 +64,22 @@ function fmt(sec: number): string {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+/**
+ * Time checkpoints announced to assistive tech. A ticking clock read out every
+ * second would drown the questions, so a non-sighted candidate gets the same
+ * few "you're running out of time" cues a sighted one takes from the colour
+ * change — and never gets auto-submitted without warning.
+ */
+const TIME_THRESHOLDS_SEC = [600, 300, 120, 60, 30] as const;
+
+function thresholdLabel(sec: number): string {
+  if (sec >= 60) {
+    const m = sec / 60;
+    return `${m} minute${m !== 1 ? 's' : ''}`;
+  }
+  return `${sec} seconds`;
+}
+
 export function SimulationQuiz({
   questions,
   productSlug,
@@ -120,6 +136,9 @@ export function SimulationQuiz({
     Math.max(0, Math.round((endsAt.current - Date.now()) / 1000)),
   );
   const [phase, setPhase] = useState<'running' | 'results'>('running');
+  const questionLabelId = useId();
+  const [timeAnnouncement, setTimeAnnouncement] = useState('');
+  const announcedThresholds = useRef<Set<number>>(new Set());
 
   const finish = useCallback(() => {
     setPhase((p) => (p === 'running' ? 'results' : p));
@@ -153,6 +172,17 @@ export function SimulationQuiz({
       currentIdx,
     });
   }, [phase, productSlug, signature, answers, flagged, shuffleMaps, currentIdx]);
+
+  // Announce the clock only at meaningful checkpoints.
+  useEffect(() => {
+    if (phase !== 'running') return;
+    const newly = TIME_THRESHOLDS_SEC.filter(
+      (t) => remainingSec <= t && !announcedThresholds.current.has(t),
+    );
+    if (newly.length === 0) return;
+    newly.forEach((t) => announcedThresholds.current.add(t));
+    setTimeAnnouncement(`${thresholdLabel(Math.min(...newly))} remaining in this exam.`);
+  }, [remainingSec, phase]);
 
   // Warn before a hard unload (refresh/close/back) while the paper is live.
   useEffect(() => {
@@ -294,8 +324,8 @@ export function SimulationQuiz({
     return (
       <div className="space-y-5">
         <Card className={cn('border-2', results.passed ? 'border-green-500/40' : 'border-amber-500/40')}>
-          <CardHeader className="text-center pb-2">
-            <Trophy className={cn('h-10 w-10 mx-auto mb-2', results.passed ? 'text-green-500' : 'text-amber-500')} />
+          <CardHeader className="text-center pb-2" role="status" aria-live="polite">
+            <Trophy aria-hidden className={cn('h-10 w-10 mx-auto mb-2', results.passed ? 'text-green-500' : 'text-amber-500')} />
             <CardTitle className="text-3xl tabular-nums">{results.score}%</CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
               {results.correct} / {results.gradable} correct · {fmt(results.durationSec)} taken
@@ -468,9 +498,14 @@ export function SimulationQuiz({
             lowTime ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300 animate-pulse' : 'bg-muted',
           )}
         >
-          <Clock className="h-4 w-4" />
+          <Clock className="h-4 w-4" aria-hidden />
+          <span className="sr-only">Time remaining: </span>
           {fmt(remainingSec)}
         </div>
+      </div>
+      {/* Checkpoint-only clock announcements — see TIME_THRESHOLDS_SEC. */}
+      <div role="status" aria-live="assertive" className="sr-only">
+        {timeAnnouncement}
       </div>
       <Progress value={(answeredCount / questions.length) * 100} className="h-1.5" />
 
@@ -495,11 +530,16 @@ export function SimulationQuiz({
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm sm:text-base font-medium leading-relaxed">{q.question}</p>
-          <div className="space-y-2">
+          <p id={questionLabelId} className="text-sm sm:text-base font-medium leading-relaxed">{q.question}</p>
+          {/* Radiogroup semantics: selection was conveyed by a CSS ring alone,
+              which a screen reader cannot see. */}
+          <div className="space-y-2" role="radiogroup" aria-labelledby={questionLabelId}>
             {map.map((origIdx, displayIdx) => (
               <button
                 key={displayIdx}
+                type="button"
+                role="radio"
+                aria-checked={selected === displayIdx}
                 onClick={() => select(displayIdx)}
                 className={cn(
                   'w-full text-left rounded-lg border p-3 text-sm transition-all flex items-start gap-2 cursor-pointer',
@@ -508,7 +548,7 @@ export function SimulationQuiz({
                     : 'border-border bg-background hover:bg-accent/50',
                 )}
               >
-                <span className="h-5 w-5 shrink-0 rounded-full border text-center text-[11px] leading-5 font-medium">
+                <span aria-hidden className="h-5 w-5 shrink-0 rounded-full border text-center text-[11px] leading-5 font-medium">
                   {String.fromCharCode(65 + displayIdx)}
                 </span>
                 <span>{q.options[origIdx]}</span>
@@ -543,7 +583,12 @@ export function SimulationQuiz({
           {questions.map((_, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => setCurrentIdx(i)}
+              aria-current={i === currentIdx ? 'true' : undefined}
+              aria-label={`Question ${i + 1}, ${answers[i] !== null ? 'answered' : 'not answered'}${
+                flagged.has(i) ? ', flagged' : ''
+              }`}
               className={cn(
                 'h-7 w-7 rounded text-[11px] font-medium border transition-colors relative',
                 i === currentIdx && 'ring-2 ring-primary',
@@ -552,8 +597,8 @@ export function SimulationQuiz({
                   : 'bg-background border-border text-muted-foreground hover:bg-accent',
               )}
             >
-              {i + 1}
-              {flagged.has(i) && <Flag className="h-2.5 w-2.5 absolute -top-1 -right-1 text-amber-500 fill-amber-500" />}
+              <span aria-hidden>{i + 1}</span>
+              {flagged.has(i) && <Flag aria-hidden className="h-2.5 w-2.5 absolute -top-1 -right-1 text-amber-500 fill-amber-500" />}
             </button>
           ))}
         </div>
