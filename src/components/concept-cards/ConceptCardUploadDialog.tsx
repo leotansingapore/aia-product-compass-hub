@@ -17,6 +17,11 @@ import { functionsErrorMessage } from '@/lib/functionsErrorMessage';
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
+/** Matches the concept-card storage bucket limits (enforced server-side too). */
+const MAX_IMAGE_MB = 10;
+const MAX_IMAGE_BYTES = MAX_IMAGE_MB * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+
 interface DuplicateResult {
   isDuplicate: boolean;
   isSimilar: boolean;
@@ -131,7 +136,24 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
 
   // ── Add files ─────────────────────────────────────────────────────────────
   const addFiles = useCallback((files: File[]) => {
-    const imageFiles = files.filter(f => f.type.startsWith('image/'));
+    // Mirror the storage bucket's limits client-side so a rejected file gets a
+    // clear message naming it, instead of an opaque upload failure later.
+    // HEIC (iPhone default) is rejected here because browsers can't render it.
+    const imageFiles = files.filter(file => {
+      // Pasted images can arrive without a filename.
+      const label = file.name || 'Pasted image';
+      if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+        toast.error(`${label} isn't a supported image — use JPG, PNG, WebP or GIF`);
+        return false;
+      }
+      if (file.size > MAX_IMAGE_BYTES) {
+        toast.error(
+          `${label} is ${(file.size / 1024 / 1024).toFixed(1)}MB — the limit is ${MAX_IMAGE_MB}MB per image`,
+        );
+        return false;
+      }
+      return true;
+    });
     if (!imageFiles.length) return;
 
     imageFiles.forEach(file => {
@@ -374,6 +396,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                   <div>
                     <p className="text-sm font-medium text-muted-foreground">Paste images, drag & drop, or click to browse</p>
                     <p className="text-xs text-muted-foreground/60 mt-0.5">Multiple images supported — one card per image · AI auto-enhances to clean B&W</p>
+                    <p className="text-xs text-muted-foreground/60 mt-0.5">JPG, PNG, WebP or GIF · up to {MAX_IMAGE_MB}MB each</p>
                   </div>
                 </div>
               ) : (
@@ -385,7 +408,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                 </div>
               )}
             </div>
-            <input ref={fileRef} type="file" accept="image/*" multiple className="hidden" onChange={handleFileInput} />
+            <input ref={fileRef} type="file" accept={ACCEPTED_IMAGE_TYPES.join(',')} multiple className="hidden" onChange={handleFileInput} />
           </div>
 
           {/* ── Image strip + editor ──────────────────────── */}
