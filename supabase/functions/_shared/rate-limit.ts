@@ -5,9 +5,11 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
  * a session exists, so authentication is not an option and rate limiting is
  * the control).
  *
- * Fails CLOSED: if the limiter itself errors we deny rather than wave the
- * caller through, because these endpoints are an enumeration oracle and a
- * password-guessing proxy respectively.
+ * Fails OPEN when the limiter itself is unavailable, and CLOSED only on a real
+ * over-limit count. These sit in front of sign-in: a limiter outage that denies
+ * everyone is a platform-wide lockout, and worse, `signIn` reports it as a bad
+ * password. That is a bigger harm than briefly un-throttling an endpoint whose
+ * only secret is whether an email is registered.
  */
 export interface RateLimitRule {
   endpoint: string;
@@ -84,10 +86,19 @@ export async function isRateLimited(
         .eq("identifier_hash", hash)
         .gte("attempted_at", since);
 
-      // Fail closed — a broken limiter must not reopen the oracle.
+      // Fail OPEN on limiter-infrastructure errors, and only on those.
+      //
+      // These endpoints sit in front of sign-in. Failing closed meant that if
+      // this table or its prune RPC were briefly unavailable (a migration, an
+      // RLS change, a lock), EVERY user on the platform would be refused — and
+      // because signIn falls through to its generic branch, they'd be told
+      // their password was wrong. A total, self-inflicted, misdiagnosed
+      // outage is a worse outcome than a short window of un-throttled
+      // enumeration on an endpoint that only reveals whether an email is
+      // registered. An actual over-limit COUNT below still blocks.
       if (error) {
-        console.error("rate-limit check failed", error);
-        return true;
+        console.error("rate-limit check unavailable — allowing request", error);
+        return false;
       }
       const limit = kind === "ip" ? (rule.ipMax ?? DEFAULT_IP_MAX) : rule.max;
       if ((count ?? 0) >= limit) return true;
@@ -101,8 +112,10 @@ export async function isRateLimited(
 
     return false;
   } catch (e) {
-    console.error("rate-limit exception", e);
-    return true;
+    // Same reasoning as above: an exception here is our infrastructure
+    // failing, not evidence of abuse. Do not turn it into a sign-in outage.
+    console.error("rate-limit exception — allowing request", e);
+    return false;
   }
 }
 
