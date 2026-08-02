@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -123,6 +124,13 @@ serve(async (req) => {
   }
 
   try {
+    // Holds the service-role key and every action deletes + re-embeds knowledge
+    // chunks (unbounded AI spend). Admin-only: without this an anonymous caller
+    // could wipe the knowledge corpus in a loop.
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to sync knowledge", 401);
+    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can sync knowledge");
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);

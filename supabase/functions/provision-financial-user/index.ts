@@ -165,30 +165,37 @@ Deno.serve(async (req) => {
       console.error("Error creating profile:", profileError);
     }
 
-    // Step 5: Assign roles based on Financial app response
+    // Step 5: Assign access tier from the Financial app response.
+    //
+    // SECURITY: this endpoint is reachable without an Academy session and its
+    // only gate is the response body of a remote service. It therefore must
+    // NEVER grant Academy admin rights: anyone able to spoof or compromise
+    // that service could otherwise mint master_admin and receive a live
+    // session token below. Admin elevation is an explicit in-Academy action.
+    // For the same reason we never DELETE an existing admin row here — a
+    // remote roles array of ['user'] used to silently demote a real Academy
+    // master_admin on their next login.
     const financialRoles: string[] = eligibility.user?.roles || [];
-    console.log("Roles from Financial app:", financialRoles);
-
-    let adminRole = 'user';
-    if (financialRoles.includes('master_admin')) {
-      adminRole = 'master_admin';
-    } else if (financialRoles.includes('admin')) {
-      adminRole = 'admin';
-    }
+    console.log("Roles from Financial app (advisory only):", financialRoles);
 
     const hasElevatedRole = financialRoles.some(r =>
       ['admin', 'master_admin', 'consultant'].includes(r)
     );
     const accessTier = hasElevatedRole ? 'level_2' : 'level_1';
 
-    console.log("Mapped roles:", { adminRole, accessTier });
-
-    // Sync admin role (clear stale rows first)
-    await supabaseAdmin.from("user_admin_roles").delete().eq("user_id", userId);
-    const { error: adminRoleError } = await supabaseAdmin
+    // Seed a baseline 'user' row only when the account has no admin row at all.
+    const { data: existingAdminRole } = await supabaseAdmin
       .from("user_admin_roles")
-      .insert({ user_id: userId, admin_role: adminRole });
-    if (adminRoleError) console.error("Error assigning admin role:", adminRoleError);
+      .select("id")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (!existingAdminRole) {
+      const { error: adminRoleError } = await supabaseAdmin
+        .from("user_admin_roles")
+        .insert({ user_id: userId, admin_role: 'user' });
+      if (adminRoleError) console.error("Error assigning baseline role:", adminRoleError);
+    }
 
     // Upsert access tier
     const { error: tierError } = await supabaseAdmin

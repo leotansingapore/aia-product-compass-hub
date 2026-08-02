@@ -10,6 +10,19 @@ interface DemoAccountRequest {
   email: string;
 }
 
+/**
+ * Hard allowlist. This function holds the service-role key and creates a
+ * confirmed auth user with a well-known password, so without this an
+ * anonymous caller could mint an account for ANY address (locking the real
+ * owner out of sign-up and handing the attacker an account in their name).
+ */
+const DEMO_EMAILS = new Set([
+  'master_admin@demo.com',
+  'admin@demo.com',
+  'user@demo.com',
+  'demo-core@demo.com',
+])
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -36,6 +49,14 @@ serve(async (req) => {
 
     if (!email) {
       return new Response('Email is required', { status: 400, headers: corsHeaders })
+    }
+
+    if (!DEMO_EMAILS.has(String(email).trim().toLowerCase())) {
+      console.warn('ensure-demo-account rejected non-demo email')
+      return new Response(JSON.stringify({ error: 'This endpoint only provisions demo accounts' }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      })
     }
 
     // Check if user already exists

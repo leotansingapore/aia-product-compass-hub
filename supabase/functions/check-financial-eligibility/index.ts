@@ -1,3 +1,5 @@
+import { isRateLimited, tooManyRequests } from "../_shared/rate-limit.ts";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
@@ -18,6 +20,14 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: "Email and password are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // This relays a credential check to the Financial app using OUR server-side
+    // API key, so upstream sees a single trusted caller and cannot throttle the
+    // real attacker. Without this limit the endpoint is a free, unauthenticated
+    // brute-force front-end for that password database.
+    if (await isRateLimited(req, { endpoint: "check-financial-eligibility", max: 8, windowMinutes: 15 }, email)) {
+      return tooManyRequests(corsHeaders);
     }
 
     const financialApiKey = Deno.env.get("FINANCIAL_APP_API_KEY");

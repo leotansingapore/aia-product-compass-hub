@@ -1,4 +1,5 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { isRateLimited, tooManyRequests } from "../_shared/rate-limit.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,6 +19,13 @@ Deno.serve(async (req) => {
         JSON.stringify({ error: "Email is required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // This endpoint answers "is this email registered?" and must stay callable
+    // without a session (the login form calls it first), so throttling is the
+    // only control against scripted enumeration of the agent roster.
+    if (await isRateLimited(req, { endpoint: "check-academy-user-exists", max: 20, windowMinutes: 15 }, email)) {
+      return tooManyRequests(corsHeaders);
     }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
