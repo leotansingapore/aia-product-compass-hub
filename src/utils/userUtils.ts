@@ -66,6 +66,24 @@ export const getRoleBadgeVariant = (role: string) => {
 };
 
 export const AVAILABLE_STATUSES = ['pending_approval', 'approved', 'active', 'suspended', 'rejected'] as const;
+
+/**
+ * Labels for the "Change Status" menu.
+ *
+ * These statuses are written to `user_approval_requests.status`, which is a
+ * record only — nothing in the sign-in path reads it (`useSimplifiedAuth.signIn`
+ * goes straight to `supabase.auth.signInWithPassword`). So "Suspended" does NOT
+ * revoke access, and the label says so rather than implying enforcement the app
+ * does not have. Real suspension needs `auth.admin.updateUserById(id, { ban_duration })`
+ * inside an admin-gated edge function.
+ */
+export const STATUS_ACTION_LABELS: Record<(typeof AVAILABLE_STATUSES)[number], string> = {
+  pending_approval: 'Pending approval',
+  approved: 'Approved',
+  active: 'Active',
+  suspended: 'Mark as suspended (does not block sign-in)',
+  rejected: 'Rejected',
+};
 // `mentor` role removed — the Mentor Dashboard feature was deleted in commit
 // 8405541c and the role was never wired up anywhere else (no permission
 // checks, no UI gates, no edge-function paths). Existing DB rows with role

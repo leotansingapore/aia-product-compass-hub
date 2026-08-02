@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { UnifiedUser } from '@/hooks/useUserManagement';
 import { useUserActions } from '@/hooks/useUserActions';
-import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES } from '@/utils/userUtils';
+import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSES, AVAILABLE_ADMIN_ROLES, STATUS_ACTION_LABELS } from '@/utils/userUtils';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { TierBadge } from '@/components/tier/TierBadge';
@@ -212,7 +212,7 @@ export const UserMobileCard = memo(function UserMobileCard({
                   disabled={user.status === status}
                   className={user.status === status ? 'opacity-50' : ''}
                 >
-                  {status.replace('_', ' ')} {user.status === status && '(current)'}
+                  {STATUS_ACTION_LABELS[status]} {user.status === status && '(current)'}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

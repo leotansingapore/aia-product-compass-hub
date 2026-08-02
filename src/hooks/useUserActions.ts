@@ -137,22 +137,39 @@ export function useUserActions() {
   };
 
   const updateUserStatus = async (user: UnifiedUser, newStatus: UnifiedUser['status']) => {
+    // Status lives on `user_approval_requests`. Accounts created directly (e.g. via
+    // create-user-account) never get such a row, so there is nothing to write —
+    // previously this silently no-opped and still showed a success toast.
+    if (!user.approval_request_id) {
+      toast({
+        title: "Status can't be changed for this account",
+        description: `${user.email} was created directly by an admin and has no approval request, which is where status is stored. Nothing was changed.`,
+        variant: "destructive",
+      });
+      return false;
+    }
+
     setUserLoading(user.id, 'status');
     try {
-      if (user.approval_request_id) {
-        const { error } = await supabase
-          .from('user_approval_requests')
-          .update({ status: newStatus })
-          .eq('id', user.approval_request_id);
-        
-        if (error) throw error;
+      const { data, error } = await supabase
+        .from('user_approval_requests')
+        .update({ status: newStatus })
+        .eq('id', user.approval_request_id)
+        .select('id');
+
+      if (error) throw error;
+      // RLS can filter an UPDATE to zero rows and still return error === null.
+      if (!data || data.length === 0) {
+        throw new Error('No approval request was updated — you may not have permission to change this user.');
       }
-      
+
       toast({
         title: "Success",
-        description: `User status changed to ${newStatus.replace('_', ' ')}`,
+        description: newStatus === 'suspended'
+          ? `${user.email} is marked suspended. Note: this is a record only — it does not block them from signing in.`
+          : `User status changed to ${newStatus.replace('_', ' ')}`,
       });
-      
+
       return true;
     } catch (error: any) {
       console.error('Error updating status:', error);
