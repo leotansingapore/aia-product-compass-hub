@@ -33,7 +33,8 @@ import { useMyTierRequests } from "@/hooks/useTierRequests";
 import { RequestUpgradeButton } from "@/components/tier/RequestUpgradeButton";
 import { TierBadge } from "@/components/tier/TierBadge";
 import { isModuleFolder } from "@/lib/learning-track/moduleGrouping";
-import { TIER_META, type TierLevel } from "@/lib/tiers";
+import { FEATURES, TIER_META, type TierLevel } from "@/lib/tiers";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import type { Track } from "@/types/learning-track";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { TOTAL_DAYS as FIRST_60_DAYS_TOTAL } from "@/features/first-60-days/content";
@@ -78,6 +79,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
   const { toast } = useToast();
   const { startOnboarding } = useOnboarding();
   const { tier } = useUserTier();
+  const { can } = useFeatureAccess();
   const { pendingRequest } = useMyTierRequests();
 
   // Tier-progress data: count completed items in the current tier's qualifying
@@ -454,11 +456,21 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
                     <QuickLink icon={Library} label="Core Products" onClick={() => goTo('/category/core-products')} />
                   </>
                 ) : (
+                  /* This branch serves Explorer AND Post-RNF. Learning Track
+                     always stays (its index self-routes to whichever track the
+                     tier owns); the other three are tier-gated destinations,
+                     so only offer them when the tier actually unlocks them. */
                   <>
                     <QuickLink icon={GraduationCap} label="Learning Track" onClick={() => goTo('/learning-track')} />
-                    <QuickLink icon={Swords} label="AI Roleplay" onClick={() => goTo('/roleplay')} />
-                    <QuickLink icon={BookOpen} label="CMFAS Exams" onClick={() => goTo('/cmfas-exams')} />
-                    <QuickLink icon={BarChart3} label="Sales Playbooks" onClick={() => goTo('/scripts')} />
+                    {can(FEATURES.ROLEPLAY) && (
+                      <QuickLink icon={Swords} label="AI Roleplay" onClick={() => goTo('/roleplay')} />
+                    )}
+                    {can(FEATURES.CMFAS) && (
+                      <QuickLink icon={BookOpen} label="CMFAS Exams" onClick={() => goTo('/cmfas-exams')} />
+                    )}
+                    {can(FEATURES.SCRIPTS) && (
+                      <QuickLink icon={BarChart3} label="Sales Playbooks" onClick={() => goTo('/scripts')} />
+                    )}
                   </>
                 )}
               </div>
