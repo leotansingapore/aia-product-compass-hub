@@ -19,6 +19,7 @@ import {
   Trophy,
   Eye,
   RotateCcw,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ConceptCard } from "@/hooks/useConceptCards";
@@ -97,9 +98,11 @@ interface DailyDrillDialogProps {
   onOpenChange: (open: boolean) => void;
   /** All available cards — drill picks from cards tagged "tier-1". */
   cards: ConceptCard[];
+  /** True while the concept cards are still being fetched. */
+  loading?: boolean;
 }
 
-export function DailyDrillDialog({ open, onOpenChange, cards }: DailyDrillDialogProps) {
+export function DailyDrillDialog({ open, onOpenChange, cards, loading = false }: DailyDrillDialogProps) {
   const tier1Cards = useMemo(
     () => cards.filter((c) => (c.tags || []).includes("tier-1")),
     [cards]
@@ -187,6 +190,27 @@ export function DailyDrillDialog({ open, onOpenChange, cards }: DailyDrillDialog
   const currentCard = session[currentIdx];
   const timerPct = (secondsLeft / DRILL_DURATION_SECONDS) * 100;
   const drilledToday = streakData.lastDrillDate === todayIso();
+
+  // Cards still loading — show a spinner rather than a dead-end
+  // "unavailable" message that would flash while the fetch is in flight.
+  if (open && loading) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <div className="flex items-center gap-2 mb-1">
+              <Timer className="h-5 w-5 text-primary" />
+              <DialogTitle>Daily Drill</DialogTitle>
+            </div>
+            <DialogDescription>Loading concept cards…</DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center py-8">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   // No tier-1 cards available — guard before render.
   if (open && tier1Cards.length === 0) {

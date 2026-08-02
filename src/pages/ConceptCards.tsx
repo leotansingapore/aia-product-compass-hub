@@ -647,6 +647,7 @@ export default function ConceptCardsPage() {
             open={drillOpen}
             onOpenChange={setDrillOpen}
             cards={cards}
+            loading={loading}
           />
         </Suspense>
       )}
