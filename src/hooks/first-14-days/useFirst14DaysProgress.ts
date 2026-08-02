@@ -360,13 +360,24 @@ export function useFirst14DaysProgress() {
 
   const reset = useCallback(async () => {
     if (!userId) return;
-    const { error } = await supabase
+    // Returning the deleted rows is mandatory here: a DELETE that RLS filters
+    // to zero rows still resolves with `error === null`, so an error-only check
+    // reported a successful reset while every day stayed complete. This table
+    // has no `id` column — its key is (user_id, day_number).
+    const hadProgress = Object.keys(daysMap).length > 0;
+    const { data, error } = await supabase
       .from("first_14_days_progress")
       .delete()
-      .eq("user_id", userId);
+      .eq("user_id", userId)
+      .select("day_number");
     if (error) throw error;
+    if (hadProgress && (!data || data.length === 0)) {
+      throw new Error(
+        "Nothing was reset — the server rejected the delete. Your progress is unchanged.",
+      );
+    }
     qc.invalidateQueries({ queryKey: ["first-14-days-progress", userId] });
-  }, [userId, qc]);
+  }, [userId, qc, daysMap]);
 
   const markDayCompleteAsAdmin = useCallback(
     (dayNumber: number) => {
