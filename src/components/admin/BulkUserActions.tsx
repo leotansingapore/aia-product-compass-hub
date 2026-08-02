@@ -14,6 +14,7 @@ import {
   Shield,
   Settings
 } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface BulkUserActionsProps {
@@ -24,11 +25,26 @@ interface BulkUserActionsProps {
 
 export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComplete }: BulkUserActionsProps) {
   const { toast } = useToast();
+  const { user: currentUser } = useAuth();
+  const currentUserId = currentUser?.id;
   const [loading, setLoading] = useState<string | null>(null);
 
   const pendingUsers = selectedUsers.filter(u => u.status === 'pending_approval');
   const activeUsers = selectedUsers.filter(u => u.status === 'active' || u.status === 'approved');
   const nonAdminUsers = selectedUsers.filter(u => u.admin_role !== 'master_admin');
+
+  // Deletion guards — mirror the single-row rules in useUserActions.deleteUser so
+  // bulk delete can't be used as a bypass. Deleting a master admin (or yourself)
+  // permanently locks the org out of /admin.
+  const excludedFromDelete = selectedUsers
+    .map(u => {
+      if (u.admin_role === 'master_admin') return { email: u.email, reason: 'master admin' };
+      if (currentUserId && u.id === currentUserId) return { email: u.email, reason: 'your own account' };
+      return null;
+    })
+    .filter(Boolean) as { email: string; reason: string }[];
+  const excludedEmails = new Set(excludedFromDelete.map(e => e.email));
+  const deletableUsers = selectedUsers.filter(u => !excludedEmails.has(u.email));
 
   const handleBulkApprove = async () => {
     if (pendingUsers.length === 0) {
@@ -248,8 +264,19 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
   };
 
   const handleBulkDelete = async () => {
+    if (deletableUsers.length === 0) {
+      toast({
+        title: 'Nothing to delete',
+        description: excludedFromDelete.length > 0
+          ? `All ${excludedFromDelete.length} selected user(s) are protected: ${excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}.`
+          : 'Select at least one user to delete.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     const confirmDelete = window.confirm(
-      `Are you sure you want to delete ${selectedUsers.length} user(s)? This action cannot be undone.`
+      `Are you sure you want to delete ${deletableUsers.length} user(s)? This action cannot be undone.`
     );
 
     if (!confirmDelete) return;
@@ -259,8 +286,8 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
-      const userIds = selectedUsers.filter(u => !!u.profile).map(u => u.id);
-      const requestIds = selectedUsers.map(u => u.approval_request_id).filter(Boolean) as string[];
+      const userIds = deletableUsers.filter(u => !!u.profile).map(u => u.id);
+      const requestIds = deletableUsers.map(u => u.approval_request_id).filter(Boolean) as string[];
 
       const { data, error } = await supabase.functions.invoke('admin-delete-users', {
         body: { user_ids: userIds, approval_request_ids: requestIds },
@@ -273,11 +300,15 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
       const anyDeleted = (result.deleted?.length || 0) > 0 || (result.deleted_requests || 0) > 0;
       const anyFailed = (result.failed?.length || 0) > 0;
 
+      const skippedNote = excludedFromDelete.length > 0
+        ? ` Skipped ${excludedFromDelete.length}: ${excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}.`
+        : '';
+
       toast({
         title: anyDeleted ? 'Users deleted' : 'Nothing deleted',
-        description: anyFailed
+        description: (anyFailed
           ? `Deleted accounts: ${result.deleted?.length || 0}, requests: ${result.deleted_requests || 0}. Failed: ${result.failed.length}`
-          : `Deleted accounts: ${result.deleted?.length || 0}, requests: ${result.deleted_requests || 0}`,
+          : `Deleted accounts: ${result.deleted?.length || 0}, requests: ${result.deleted_requests || 0}`) + skippedNote,
         variant: anyFailed || !anyDeleted ? 'destructive' : 'default',
       });
 
@@ -381,9 +412,9 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           )}
           
           {/* Delete Action */}
-          <Button 
+          <Button
             onClick={handleBulkDelete}
-            disabled={loading === 'delete'}
+            disabled={loading === 'delete' || deletableUsers.length === 0}
             variant="destructive"
             size="sm"
             className="gap-1"
@@ -393,7 +424,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
             ) : (
               <Trash2 className="h-3 w-3" />
             )}
-            Delete {selectedUsers.length}
+            Delete {deletableUsers.length}
           </Button>
         </div>
         
@@ -415,6 +446,14 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
             </Badge>
           )}
         </div>
+
+        {excludedFromDelete.length > 0 && (
+          <p className="mt-2 text-micro text-muted-foreground">
+            Protected from deletion:{' '}
+            {excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}. Deleting a master
+            admin or your own account would lock you out of the admin area.
+          </p>
+        )}
       </CardContent>
     </Card>
   );
