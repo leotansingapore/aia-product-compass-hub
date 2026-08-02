@@ -10,6 +10,36 @@ interface ProtectedPageProps {
   redirectTo?: string;
 }
 
+/**
+ * Purely decorative stand-in for the gated page, used behind the lock/sign-in
+ * overlays. The real `children` must NEVER be mounted on a denial path: it
+ * would put the restricted content in the DOM (readable via DevTools, Ctrl+A,
+ * reader mode, and screen readers regardless of `blur`/`opacity`) and would
+ * run the children's effects — e.g. `useProductDetail` fires `recordPageVisit`,
+ * an XP write, for a user who was just denied access.
+ */
+function BlurredPlaceholder() {
+  return (
+    <div
+      className="absolute inset-0 overflow-hidden blur-sm opacity-30 pointer-events-none select-none"
+      aria-hidden="true"
+    >
+      <div className="mx-auto w-full max-w-4xl space-y-4 p-8">
+        <div className="h-10 w-2/3 rounded-lg bg-muted" />
+        <div className="h-4 w-full rounded bg-muted" />
+        <div className="h-4 w-5/6 rounded bg-muted" />
+        <div className="h-48 w-full rounded-xl bg-muted" />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="h-28 rounded-xl bg-muted" />
+          <div className="h-28 rounded-xl bg-muted" />
+        </div>
+        <div className="h-4 w-3/4 rounded bg-muted" />
+        <div className="h-4 w-2/3 rounded bg-muted" />
+      </div>
+    </div>
+  );
+}
+
 export function ProtectedPage({ pageId, children, fallback, redirectTo }: ProtectedPageProps) {
   const { getPagePermission, canAccessPage, loading } = usePermissions();
   const { user } = useSimplifiedAuth();
@@ -62,11 +92,8 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
     if (!user) {
       return (
         <div className="relative min-h-screen">
-          {/* Blurred background content */}
-          <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
-            {children}
-          </div>
-          
+          <BlurredPlaceholder />
+
           {/* Sign-in overlay */}
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
             <div className="max-w-md mx-auto space-y-4">
@@ -94,11 +121,8 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
     // Show access restricted message for authenticated users without permissions
     return (
       <div className="relative min-h-screen">
-        {/* Blurred background content */}
-        <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
-          {children}
-        </div>
-        
+        <BlurredPlaceholder />
+
         {/* Lock overlay */}
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
           <div className="max-w-md mx-auto space-y-4">
@@ -124,11 +148,8 @@ export function ProtectedPage({ pageId, children, fallback, redirectTo }: Protec
     }
     return (
       <div className="relative min-h-screen">
-        {/* Blurred background content */}
-        <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
-          {children}
-        </div>
-        
+        <BlurredPlaceholder />
+
         {/* Lock overlay */}
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center">
           <div className="max-w-md mx-auto space-y-4">
