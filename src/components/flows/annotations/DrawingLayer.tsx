@@ -41,33 +41,52 @@ export function DrawingLayer({
 
   const drawings = annotations.filter(a => a.type === 'drawing');
 
-  // Mouse drawing
+  // Pointer drawing — one code path for mouse, touch and stylus
   useEffect(() => {
     if (!isDrawing || !containerRef.current) return;
     const el = containerRef.current;
 
-    const getPos = (e: MouseEvent): [number, number] => {
+    // Stop the browser claiming the gesture for panning/zooming while the pen is armed
+    const prevTouchAction = el.style.touchAction;
+    el.style.touchAction = 'none';
+
+    const getPos = (e: PointerEvent): [number, number] => {
       const rect = el.getBoundingClientRect();
       return [e.clientX - rect.left, e.clientY - rect.top];
     };
 
     let currentPoints: [number, number][] = [];
     let drawing = false;
+    let activePointerId: number | null = null;
 
-    const onDown = (e: MouseEvent) => {
-      if (e.button !== 0) return;
+    const onDown = (e: PointerEvent) => {
+      // Ignore secondary mouse buttons and extra fingers of a pinch
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (!e.isPrimary || drawing) return;
       drawing = true;
+      activePointerId = e.pointerId;
+      try { el.setPointerCapture(e.pointerId); } catch { /* capture unsupported */ }
       const pt = getPos(e);
       currentPoints = [pt];
       setActivePath({ points: [pt] });
     };
-    const onMove = (e: MouseEvent) => {
-      if (!drawing) return;
+    const onMove = (e: PointerEvent) => {
+      if (!drawing || e.pointerId !== activePointerId) return;
       const pt = getPos(e);
       currentPoints = [...currentPoints, pt];
       setActivePath({ points: currentPoints });
     };
-    const onUp = () => {
+    const onCancel = (e: PointerEvent) => {
+      if (e.pointerId !== activePointerId) return;
+      drawing = false;
+      activePointerId = null;
+      currentPoints = [];
+      setActivePath(null);
+    };
+    const onUp = (e: PointerEvent) => {
+      if (e.pointerId !== activePointerId) return;
+      activePointerId = null;
+      try { el.releasePointerCapture(e.pointerId); } catch { /* already released */ }
       if (!drawing || currentPoints.length < 2) {
         drawing = false;
         setActivePath(null);
@@ -94,13 +113,17 @@ export function DrawingLayer({
       currentPoints = [];
     };
 
-    el.addEventListener('mousedown', onDown);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
+    // Pointer capture keeps move/up on the container even if the finger leaves it
+    el.addEventListener('pointerdown', onDown);
+    el.addEventListener('pointermove', onMove);
+    el.addEventListener('pointerup', onUp);
+    el.addEventListener('pointercancel', onCancel);
     return () => {
-      el.removeEventListener('mousedown', onDown);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onUp);
+      el.style.touchAction = prevTouchAction;
+      el.removeEventListener('pointerdown', onDown);
+      el.removeEventListener('pointermove', onMove);
+      el.removeEventListener('pointerup', onUp);
+      el.removeEventListener('pointercancel', onCancel);
     };
   }, [isDrawing, penColor, penWidth, zoom, panX, panY, containerRef, onSaveDrawing]);
 

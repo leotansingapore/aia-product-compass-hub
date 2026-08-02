@@ -118,6 +118,9 @@ export function AnnotationLayer({
         cursor: activeTool === 'drawing' ? 'crosshair' : activeTool !== 'none' ? 'crosshair' : 'default',
         // When no tool active, layer is non-interactive (annotations are still visible via child pointer-events)
         pointerEvents: activeTool !== 'none' ? 'all' : 'none',
+        // With a tool armed the layer owns the gesture — stop touch devices
+        // turning a pen stroke or a placement tap into a canvas pan/zoom.
+        touchAction: activeTool !== 'none' ? 'none' : undefined,
       }}
       onClick={handleCanvasClick}
       data-annotation-layer
