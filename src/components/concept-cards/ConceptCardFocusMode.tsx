@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef, useId } from 'react';
 import { ConceptCard } from '@/hooks/useConceptCards';
 import { useSpacedRepetition, Grade, previewIntervals, formatInterval } from '@/hooks/useSpacedRepetition';
 import { Button } from '@/components/ui/button';
@@ -52,6 +52,25 @@ const GRADE_CONFIG: { grade: Grade; label: string; key: string; color: string; a
   },
 ];
 
+// Everything the focus trap will cycle through. Off-screen carousel panels set
+// tabIndex={-1} on their own controls, so they drop out of this list.
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+// Enter/Space on a div that behaves like a button.
+function panelKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  if (e.target !== e.currentTarget) return;
+  e.preventDefault();
+  e.currentTarget.click();
+}
+
 export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props) {
   const [index, setIndex] = useState(initialIndex);
   // 3-step carousel: 0 = Question, 1 = Drawing, 2 = Explanation
@@ -61,6 +80,8 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const [imgIndex, setImgIndex] = useState(0);
   const [gradedIds, setGradedIds] = useState<Set<string>>(new Set());
   const [lastGradeMap, setLastGradeMap] = useState<Map<string, Grade>>(new Map());
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
   const { gradeCard, getReview, reviewStats } = useSpacedRepetition(cards);
 
@@ -107,11 +128,50 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
     goNext();
   }, [card, gradeCard, goNext]);
 
-  // Keyboard shortcuts
+  // Modal behaviour: remember what opened us, move focus in, lock the page
+  // behind, and hand focus back on close so a keyboard user isn't dumped at
+  // the top of the document.
+  useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // Focus the dialog itself so the first Tab lands on the first control.
+    dialogRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      if (opener && document.contains(opener)) opener.focus();
+    };
+  }, []);
+
+  // Keyboard shortcuts + focus trap
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { onClose(); return; }
+      const root = dialogRef.current;
+      if (e.key === 'Escape') { e.preventDefault(); onClose(); return; }
+
+      if (e.key === 'Tab' && root) {
+        const nodes = Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+          .filter(n => n.offsetParent !== null && !n.closest('[aria-hidden="true"]'));
+        if (nodes.length === 0) { e.preventDefault(); root.focus(); return; }
+        const first = nodes[0];
+        const last = nodes[nodes.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        const inside = !!active && root.contains(active) && active !== root;
+        if (e.shiftKey) {
+          if (!inside || active === first) { e.preventDefault(); last.focus(); }
+        } else if (!inside || active === last) {
+          e.preventDefault(); first.focus();
+        }
+        return;
+      }
+
+      // Don't hijack Space/Enter from whatever control the user has focused —
+      // the browser already activates it.
+      const target = e.target as HTMLElement | null;
+      const onControl = !!target && !!target.closest('button,a,input,textarea,select,[role="button"]');
+
       if (e.key === ' ' || e.key === 'Enter') {
+        if (onControl) return;
         e.preventDefault();
         setStep(s => Math.min(2, s + 1));
         return;
@@ -146,7 +206,21 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
   const currentImg = cardImages[safeImgIndex] ?? null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col overflow-hidden" onClick={onClose}>
+    <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      tabIndex={-1}
+      className="fixed inset-0 z-50 bg-background/98 backdrop-blur-sm flex flex-col overflow-hidden focus:outline-none"
+      onClick={onClose}
+    >
+      <h2 id={titleId} className="sr-only">
+        Concept cards focus mode — card {index + 1} of {total}: {card.title}
+      </h2>
+      <p aria-live="polite" className="sr-only">
+        Card {index + 1} of {total}: {card.title}. Showing {step === 0 ? 'the question' : step === 1 ? 'the drawing' : 'the explanation'}.
+      </p>
 
       {/* Card area — centred, with controls floating just above */}
       <div className="flex-1 flex items-center justify-center px-3 sm:px-8 md:px-12 py-4 sm:py-6 min-h-0" onClick={e => e.stopPropagation()}>
@@ -179,16 +253,24 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
             {/* Keys toggle — desktop only */}
             <button
+              type="button"
               onClick={() => setShowKeys(v => !v)}
-              className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border shrink-0"
+              aria-expanded={showKeys}
+              aria-label={showKeys ? 'Hide keyboard shortcuts' : 'Show keyboard shortcuts'}
+              className="hidden sm:flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-1 rounded border border-border/60 hover:border-border shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <Keyboard className="h-3.5 w-3.5" />
+              <Keyboard className="h-3.5 w-3.5" aria-hidden="true" />
               Keys
             </button>
 
             {/* Close */}
-            <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors shrink-0 p-1">
-              <X className="h-4 w-4" />
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Exit focus mode"
+              className="text-muted-foreground hover:text-foreground transition-colors shrink-0 p-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
 
@@ -215,7 +297,7 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                   {gradedCount} cards graded — intervals saved to your schedule
                 </p>
               </div>
-              <Button size="sm" variant="outline" onClick={onClose} className="text-xs border-green-300 dark:border-green-700 shrink-0">
+              <Button size="sm" variant="outline" onClick={onClose} aria-label="Done — exit focus mode" className="text-xs border-green-300 dark:border-green-700 shrink-0">
                 Done
               </Button>
             </div>
@@ -224,11 +306,13 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
           {/* Card navigator row */}
           <div className="flex items-stretch gap-2 sm:gap-3 mb-3 flex-1 min-h-0">
             <button
+              type="button"
               onClick={goPrev}
               disabled={index === 0}
-              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0"
+              aria-label="Previous card"
+              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             </button>
 
             {/* 3-step Carousel Card */}
@@ -242,12 +326,15 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               >
                 {/* Step indicator dots */}
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
-                  {[0, 1, 2].map(i => (
+                  {(['Question', 'Drawing', 'Explanation'] as const).map((stepLabel, i) => (
                     <button
                       key={i}
+                      type="button"
                       onClick={() => setStep(i)}
+                      aria-label={`Show ${stepLabel.toLowerCase()}`}
+                      aria-current={step === i}
                       className={cn(
-                        "rounded-full transition-all duration-200",
+                        "rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                         step === i ? "w-5 h-1.5 bg-primary" : "w-1.5 h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
                       )}
                     />
@@ -271,7 +358,15 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                       lastGrade === 'good' && "border-green-400/50 dark:border-green-600/40",
                       lastGrade === 'easy' && "border-blue-400/50 dark:border-blue-600/40",
                       !lastGrade && "border-border",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary",
                     )}
+                    role="button"
+                    tabIndex={step === 0 ? 0 : -1}
+                    aria-hidden={step !== 0}
+                    aria-label={cardImages.length > 0
+                      ? `Show drawing for ${card.title}`
+                      : `Show explanation for ${card.title}`}
+                    onKeyDown={panelKeyToClick}
                     onClick={() => setStep(cardImages.length > 0 ? 1 : 2)}
                   >
                     {lastGrade && (
@@ -313,17 +408,17 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                   </div>
 
                   {/* PANEL 2 — Drawing */}
-                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden relative">
+                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg overflow-hidden relative" aria-hidden={step !== 1}>
                     <div className="absolute top-6 left-3 z-10 text-[10px] font-semibold text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded border border-border/40">
                       Drawing {cardImages.length > 1 ? `${safeImgIndex + 1}/${cardImages.length}` : ''}
                     </div>
-                    <button onClick={() => setStep(0)}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
-                      <ChevronLeft className="h-3.5 w-3.5" />
+                    <button type="button" onClick={() => setStep(0)} tabIndex={step === 1 ? 0 : -1} aria-label="Back to the question"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>
-                    <button onClick={() => setStep(2)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
-                      <ChevronRight className="h-3.5 w-3.5" />
+                    <button type="button" onClick={() => setStep(2)} tabIndex={step === 1 ? 0 : -1} aria-label="Show the explanation"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>
                     {currentImg
                       ? <img src={currentImg} alt={card.title} loading="lazy" className="w-full h-full object-contain p-4 pointer-events-none" />
@@ -331,30 +426,37 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
                     }
                     {cardImages.length > 1 && (
                       <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-2 z-20">
-                        <button onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
-                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
-                          <ChevronLeft className="h-3.5 w-3.5" />
+                        <button type="button" onClick={() => setImgIndex(i => Math.max(0, i - 1))} disabled={safeImgIndex === 0}
+                          tabIndex={step === 1 ? 0 : -1} aria-label="Previous drawing"
+                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                          <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                         <div className="flex gap-1">
                           {cardImages.map((_, i) => (
-                            <button key={i} onClick={() => setImgIndex(i)}
-                              className={cn("w-1.5 h-1.5 rounded-full transition-colors",
+                            <button key={i} type="button" onClick={() => setImgIndex(i)}
+                              tabIndex={step === 1 ? 0 : -1}
+                              aria-label={`Show drawing ${i + 1} of ${cardImages.length}`}
+                              aria-current={i === safeImgIndex}
+                              className={cn("w-1.5 h-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                                 i === safeImgIndex ? "bg-primary" : "bg-muted-foreground/40 hover:bg-muted-foreground/70")} />
                           ))}
                         </div>
-                        <button onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
-                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors">
-                          <ChevronRight className="h-3.5 w-3.5" />
+                        <button type="button" onClick={() => setImgIndex(i => Math.min(cardImages.length - 1, i + 1))} disabled={safeImgIndex === cardImages.length - 1}
+                          tabIndex={step === 1 ? 0 : -1} aria-label="Next drawing"
+                          className="p-1 rounded-lg bg-background/80 border border-border text-muted-foreground disabled:opacity-30 hover:border-primary/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                          <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                         </button>
                       </div>
                     )}
                   </div>
 
                   {/* PANEL 3 — Explanation */}
-                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col relative">
-                    <button onClick={() => setStep(cardImages.length > 0 ? 1 : 0)}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors">
-                      <ChevronLeft className="h-3.5 w-3.5" />
+                  <div className="w-1/3 shrink-0 rounded-2xl border-2 border-border bg-card shadow-lg p-4 sm:p-6 md:p-8 flex flex-col relative" aria-hidden={step !== 2}>
+                    <button type="button" onClick={() => setStep(cardImages.length > 0 ? 1 : 0)}
+                      tabIndex={step === 2 ? 0 : -1}
+                      aria-label={cardImages.length > 0 ? 'Back to the drawing' : 'Back to the question'}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-background/80 border border-border text-muted-foreground hover:border-primary/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                     </button>
                     <div className="mt-4 flex items-center gap-1.5 mb-3">
                       <Lightbulb className="h-4 w-4 text-amber-500" />
@@ -381,11 +483,13 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             </div>
 
             <button
+              type="button"
               onClick={() => goNext()}
               disabled={index === total - 1}
-              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0"
+              aria-label="Next card"
+              className="p-1.5 sm:p-2 rounded-full border border-border hover:border-primary/60 text-muted-foreground hover:text-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed self-center shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
 
@@ -394,25 +498,30 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
             {GRADE_CONFIG.map(({ grade, label, key, activeClass, hoverClass }) => (
               <button
                 key={grade}
+                type="button"
                 onClick={() => handleGrade(grade)}
+                aria-keyshortcuts={key}
+                aria-label={`${label} — next review in ${formatInterval(intervals[grade])}. Keyboard shortcut ${key}`}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-1 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border shadow-sm",
+                  "flex flex-col items-center gap-0.5 px-1 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                   lastGrade === grade ? activeClass : hoverClass
                 )}
               >
                 <span>{label}</span>
                 <span className="text-[9px] sm:text-[10px] font-normal opacity-70 hidden xs:block">{formatInterval(intervals[grade])}</span>
-                <kbd className="hidden md:inline text-[10px] px-1 py-0.5 bg-white/20 rounded border border-current/30 opacity-60">{key}</kbd>
+                <kbd className="text-[10px] px-1 py-0.5 bg-white/20 rounded border border-current/30 opacity-60" aria-hidden="true">{key}</kbd>
               </button>
             ))}
           </div>
 
-          {/* Hint — show when on step 0 */}
-          {cardImages.length > 0 && step === 0 && (
-            <p className="text-center text-xs text-muted-foreground mt-2 shrink-0">
-              Tap card to continue · Grade after revealing
-            </p>
-          )}
+          {/* Hint — the grading shortcuts have to be visible, not buried behind "Keys" */}
+          <p className="text-center text-xs text-muted-foreground mt-2 shrink-0">
+            {cardImages.length > 0 && step === 0 && <>Tap or press Enter to continue · </>}
+            Press <kbd className="px-1 py-0.5 bg-muted rounded border text-[10px]">1</kbd>–<kbd className="px-1 py-0.5 bg-muted rounded border text-[10px]">4</kbd> to grade ·{' '}
+            <kbd className="px-1 py-0.5 bg-muted rounded border text-[10px]">←</kbd>
+            <kbd className="px-1 py-0.5 bg-muted rounded border text-[10px]">→</kbd> to move ·{' '}
+            <kbd className="px-1 py-0.5 bg-muted rounded border text-[10px]">Esc</kbd> to exit
+          </p>
 
           {/* Dot nav */}
           <div className="flex justify-center gap-1 mt-3 overflow-hidden max-w-full shrink-0">
@@ -422,7 +531,10 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
               return (
                 <button
                   key={c.id}
-                    onClick={() => navigateTo(realIndex)}
+                  type="button"
+                  onClick={() => navigateTo(realIndex)}
+                  aria-label={`Go to card ${realIndex + 1} of ${total}: ${c.title}`}
+                  aria-current={realIndex === index}
                   className={cn(
                     "rounded-full transition-all duration-200",
                     realIndex === index ? "w-5 h-2 bg-primary" : "w-2 h-2",
