@@ -90,12 +90,8 @@ export function useUserActions() {
       return false;
     }
 
-    const confirmDelete = window.confirm(
-      `Are you sure you want to delete ${user.email}? This action cannot be undone.`
-    );
-
-    if (!confirmDelete) return false;
-
+    // Confirmation is the caller's responsibility — UserTableRow / UserMobileCard
+    // present an AlertDialog naming the account before calling this.
     setUserLoading(user.id, 'delete');
     try {
       const { data: { session } } = await supabase.auth.getSession();

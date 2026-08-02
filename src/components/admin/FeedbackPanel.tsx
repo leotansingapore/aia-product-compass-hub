@@ -9,6 +9,7 @@ import { Bug, Lightbulb, MessageCircle, ChevronDown, ChevronUp, Trash2, RefreshC
 import { cn } from '@/lib/utils';
 import { toast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
+import { ConfirmActionDialog } from './ConfirmActionDialog';
 
 const TYPE_META = {
   bug: { label: 'Bug', icon: Bug, color: 'text-destructive bg-destructive/10 border-destructive/20' },
@@ -32,6 +33,7 @@ function FeedbackRow({ item, onUpdate, onDelete }: {
   const [notes, setNotes] = useState(item.admin_notes ?? '');
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const typeMeta = TYPE_META[item.type as keyof typeof TYPE_META] ?? TYPE_META.feedback;
   const TypeIcon = typeMeta.icon;
@@ -61,7 +63,7 @@ function FeedbackRow({ item, onUpdate, onDelete }: {
   };
 
   const handleDelete = async () => {
-    if (!confirm('Delete this feedback? This cannot be undone.')) return;
+    setConfirmDelete(false);
     setDeleting(true);
     try {
       await onDelete(item.id);
@@ -158,7 +160,7 @@ function FeedbackRow({ item, onUpdate, onDelete }: {
               size="sm"
               variant="ghost"
               className="text-destructive hover:bg-destructive/10 h-7 text-xs gap-1.5"
-              onClick={handleDelete}
+              onClick={() => setConfirmDelete(true)}
               disabled={deleting}
             >
               <Trash2 className="h-3.5 w-3.5" />
@@ -167,6 +169,17 @@ function FeedbackRow({ item, onUpdate, onDelete }: {
           </div>
         </div>
       )}
+
+      <ConfirmActionDialog
+        open={confirmDelete}
+        onOpenChange={setConfirmDelete}
+        title="Delete this feedback?"
+        description="The submission and any admin notes on it are removed permanently. This cannot be undone."
+        items={[item.title]}
+        itemsLabel="Will be deleted"
+        confirmLabel="Delete feedback"
+        onConfirm={handleDelete}
+      />
     </Card>
   );
 }

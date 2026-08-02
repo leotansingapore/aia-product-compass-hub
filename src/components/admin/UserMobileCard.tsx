@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,6 +28,7 @@ import { getDisplayName, getStatusConfig, getRoleBadgeVariant, AVAILABLE_STATUSE
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { TierBadge } from '@/components/tier/TierBadge';
+import { ConfirmActionDialog } from './ConfirmActionDialog';
 import { TierControl } from '@/components/admin/TierControl';
 
 interface UserMobileCardProps {
@@ -56,6 +57,8 @@ export const UserMobileCard = memo(function UserMobileCard({
     deleteUser, 
     updateUserStatus
   } = useUserActions();
+
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
 
   const statusConfig = getStatusConfig(user.status);
   const userLoading = loading(user.id);
@@ -110,6 +113,7 @@ export const UserMobileCard = memo(function UserMobileCard({
   };
 
   const handleDelete = async () => {
+    setConfirmDeleteOpen(false);
     const success = await deleteUser(user);
     if (success) onUpdate();
   };
@@ -162,7 +166,7 @@ export const UserMobileCard = memo(function UserMobileCard({
               <DropdownMenuSeparator />
               
               <DropdownMenuItem 
-                onClick={handleDelete}
+                onClick={() => setConfirmDeleteOpen(true)}
                 disabled={userLoading === 'delete'}
                 className="text-destructive focus:text-destructive"
               >
@@ -312,6 +316,17 @@ export const UserMobileCard = memo(function UserMobileCard({
             Provision Account
           </Button>
         )}
+
+          <ConfirmActionDialog
+            open={confirmDeleteOpen}
+            onOpenChange={setConfirmDeleteOpen}
+            title="Delete this account?"
+            description="This permanently removes the account and its learning progress. It cannot be undone."
+            items={[user.email]}
+            itemsLabel="Will be deleted"
+            confirmLabel="Delete user"
+            onConfirm={handleDelete}
+          />
       </CardContent>
     </Card>
   );

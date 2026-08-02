@@ -15,6 +15,7 @@ import {
   Settings
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { ConfirmActionDialog } from "./ConfirmActionDialog";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface BulkUserActionsProps {
@@ -23,11 +24,14 @@ interface BulkUserActionsProps {
   onActionComplete: () => void;
 }
 
+type BulkAction = 'approve' | 'reject' | 'admin' | 'delete';
+
 export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComplete }: BulkUserActionsProps) {
   const { toast } = useToast();
   const { user: currentUser } = useAuth();
   const currentUserId = currentUser?.id;
   const [loading, setLoading] = useState<string | null>(null);
+  const [confirming, setConfirming] = useState<BulkAction | null>(null);
 
   const pendingUsers = selectedUsers.filter(u => u.status === 'pending_approval');
   const activeUsers = selectedUsers.filter(u => u.status === 'active' || u.status === 'approved');
@@ -46,16 +50,38 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
   const excludedEmails = new Set(excludedFromDelete.map(e => e.email));
   const deletableUsers = selectedUsers.filter(u => !excludedEmails.has(u.email));
 
-  const handleBulkApprove = async () => {
-    if (pendingUsers.length === 0) {
+  /** Validate the selection, then open the confirmation dialog for `action`. */
+  const requestAction = (action: BulkAction) => {
+    if ((action === 'approve' || action === 'reject') && pendingUsers.length === 0) {
       toast({
         title: "No pending users",
-        description: "Select users with pending approval status to approve them",
+        description: `Select users with pending approval status to ${action} them`,
         variant: "destructive",
       });
       return;
     }
+    if (action === 'admin' && nonAdminUsers.length === 0) {
+      toast({
+        title: "No eligible users",
+        description: "Select non-admin users to make them admins",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (action === 'delete' && deletableUsers.length === 0) {
+      toast({
+        title: 'Nothing to delete',
+        description: excludedFromDelete.length > 0
+          ? `All ${excludedFromDelete.length} selected user(s) are protected: ${excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}.`
+          : 'Select at least one user to delete.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    setConfirming(action);
+  };
 
+  const handleBulkApprove = async () => {
     setLoading('approve');
     try {
       let successCount = 0;
@@ -98,21 +124,6 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
   };
 
   const handleBulkReject = async () => {
-    if (pendingUsers.length === 0) {
-      toast({
-        title: "No pending users",
-        description: "Select users with pending approval status to reject them",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const confirmReject = window.confirm(
-      `Are you sure you want to reject ${pendingUsers.length} pending approval request(s)?`
-    );
-
-    if (!confirmReject) return;
-
     setLoading('reject');
     try {
       const userIds = pendingUsers.map(u => u.approval_request_id).filter(Boolean);
@@ -200,21 +211,6 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
   };
 
   const handleBulkMakeAdmin = async () => {
-    if (nonAdminUsers.length === 0) {
-      toast({
-        title: "No eligible users",
-        description: "Select non-admin users to make them admins",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const confirmAdmin = window.confirm(
-      `Are you sure you want to make ${nonAdminUsers.length} user(s) admins? This gives them elevated privileges.`
-    );
-
-    if (!confirmAdmin) return;
-
     setLoading('admin');
     try {
       let successCount = 0;
@@ -264,23 +260,6 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
   };
 
   const handleBulkDelete = async () => {
-    if (deletableUsers.length === 0) {
-      toast({
-        title: 'Nothing to delete',
-        description: excludedFromDelete.length > 0
-          ? `All ${excludedFromDelete.length} selected user(s) are protected: ${excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}.`
-          : 'Select at least one user to delete.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    const confirmDelete = window.confirm(
-      `Are you sure you want to delete ${deletableUsers.length} user(s)? This action cannot be undone.`
-    );
-
-    if (!confirmDelete) return;
-
     setLoading('delete');
     try {
       const { data: { session } } = await supabase.auth.getSession();
@@ -325,6 +304,60 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
     }
   };
 
+  const CONFIRM_CONFIG: Record<BulkAction, {
+    title: string;
+    description: string;
+    items: string[];
+    itemsLabel: string;
+    confirmLabel: string;
+    destructive: boolean;
+    run: () => Promise<void>;
+  }> = {
+    approve: {
+      title: 'Approve these users?',
+      description:
+        'Approving grants each of these accounts access to the platform. Review the list before confirming.',
+      items: pendingUsers.map(u => u.email),
+      itemsLabel: 'Will be approved',
+      confirmLabel: `Approve ${pendingUsers.length}`,
+      destructive: false,
+      run: handleBulkApprove,
+    },
+    reject: {
+      title: 'Reject these approval requests?',
+      description:
+        'These people will not get access. They will need to request approval again.',
+      items: pendingUsers.map(u => u.email),
+      itemsLabel: 'Will be rejected',
+      confirmLabel: `Reject ${pendingUsers.length}`,
+      destructive: true,
+      run: handleBulkReject,
+    },
+    admin: {
+      title: 'Grant admin privileges?',
+      description:
+        'Admins can see and edit every user, question bank and platform setting. Only grant this to people who should have full control.',
+      items: nonAdminUsers.map(u => u.email),
+      itemsLabel: 'Will become admins',
+      confirmLabel: `Make ${nonAdminUsers.length} admin${nonAdminUsers.length === 1 ? '' : 's'}`,
+      destructive: true,
+      run: handleBulkMakeAdmin,
+    },
+    delete: {
+      title: 'Delete these accounts?',
+      description: excludedFromDelete.length > 0
+        ? `This permanently removes the accounts below, along with their progress. It cannot be undone. ${excludedFromDelete.length} selected account(s) are protected and will be skipped: ${excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}.`
+        : 'This permanently removes the accounts below, along with their progress. It cannot be undone.',
+      items: deletableUsers.map(u => u.email),
+      itemsLabel: 'Will be deleted',
+      confirmLabel: `Delete ${deletableUsers.length}`,
+      destructive: true,
+      run: handleBulkDelete,
+    },
+  };
+
+  const activeConfirm = confirming ? CONFIRM_CONFIG[confirming] : null;
+
   return (
     <Card className="border-2 border-primary/20 bg-primary/5">
       <CardHeader className="pb-3">
@@ -342,7 +375,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           {pendingUsers.length > 0 && (
             <>
               <Button 
-                onClick={handleBulkApprove}
+                onClick={() => requestAction('approve')}
                 disabled={loading === 'approve'}
                 variant="default"
                 size="sm"
@@ -357,7 +390,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
               </Button>
               
               <Button 
-                onClick={handleBulkReject}
+                onClick={() => requestAction('reject')}
                 disabled={loading === 'reject'}
                 variant="destructive"
                 size="sm"
@@ -396,7 +429,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           {/* Admin Actions */}
           {nonAdminUsers.length > 0 && (
             <Button 
-              onClick={handleBulkMakeAdmin}
+              onClick={() => requestAction('admin')}
               disabled={loading === 'admin'}
               variant="outline"
               size="sm"
@@ -413,7 +446,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           
           {/* Delete Action */}
           <Button
-            onClick={handleBulkDelete}
+            onClick={() => requestAction('delete')}
             disabled={loading === 'delete' || deletableUsers.length === 0}
             variant="destructive"
             size="sm"
@@ -453,6 +486,23 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
             {excludedFromDelete.map(e => `${e.email} (${e.reason})`).join(', ')}. Deleting a master
             admin or your own account would lock you out of the admin area.
           </p>
+        )}
+
+        {activeConfirm && (
+          <ConfirmActionDialog
+            open
+            onOpenChange={(open) => { if (!open) setConfirming(null); }}
+            title={activeConfirm.title}
+            description={activeConfirm.description}
+            items={activeConfirm.items}
+            itemsLabel={activeConfirm.itemsLabel}
+            confirmLabel={activeConfirm.confirmLabel}
+            destructive={activeConfirm.destructive}
+            onConfirm={() => {
+              setConfirming(null);
+              void activeConfirm.run();
+            }}
+          />
         )}
       </CardContent>
     </Card>

@@ -13,6 +13,7 @@ import { toast } from 'sonner';
 import { useQuestionBankRows } from '@/hooks/useQuestionBank';
 import { useQuestionBankAdmin } from '@/hooks/useQuestionBankAdmin';
 import { QuestionFormDialog } from './QuestionFormDialog';
+import { ConfirmActionDialog } from './ConfirmActionDialog';
 import {
   PRODUCT_SLUGS,
   PRODUCT_LABELS,
@@ -39,6 +40,8 @@ export function QuestionBankManager() {
   const [dialogMode, setDialogMode] = useState<'create' | 'edit' | 'duplicate'>('create');
   const [editingQuestion, setEditingQuestion] = useState<QuestionBankQuestion | null>(null);
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+  const [pendingDelete, setPendingDelete] = useState<QuestionBankQuestion | null>(null);
+  const [confirmBulkDelete, setConfirmBulkDelete] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   const { data: rows = [], isLoading } = useQuestionBankRows({ productSlug, bankType });
@@ -112,13 +115,13 @@ export function QuestionBankManager() {
     setExpandedIds(next);
   };
 
-  const handleDelete = async (id: string, questionText: string) => {
-    if (!confirm(`Delete this question?\n\n"${questionText.slice(0, 80)}..."`)) return;
+  const handleDelete = async (id: string) => {
+    setPendingDelete(null);
     await deleteQuestion.mutateAsync(id);
   };
 
   const handleBulkDelete = async () => {
-    if (!confirm(`Delete ${selectedIds.size} selected question(s)?`)) return;
+    setConfirmBulkDelete(false);
     await bulkDelete.mutateAsync(Array.from(selectedIds));
     setSelectedIds(new Set());
   };
@@ -248,7 +251,7 @@ export function QuestionBankManager() {
             </div>
             <div className="flex gap-2">
               {selectedIds.size > 0 && (
-                <Button variant="destructive" size="sm" onClick={handleBulkDelete} disabled={bulkDelete.isPending}>
+                <Button variant="destructive" size="sm" onClick={() => setConfirmBulkDelete(true)} disabled={bulkDelete.isPending}>
                   <Trash2 className="h-4 w-4 mr-1" />
                   Delete {selectedIds.size}
                 </Button>
@@ -343,7 +346,7 @@ export function QuestionBankManager() {
                         <Button
                           size="icon"
                           variant="ghost"
-                          onClick={() => handleDelete(q.id, q.question)}
+                          onClick={() => setPendingDelete(q)}
                           disabled={deleteQuestion.isPending}
                           title="Delete"
                         >
@@ -358,6 +361,28 @@ export function QuestionBankManager() {
           </CardContent>
         </Card>
       )}
+
+      <ConfirmActionDialog
+        open={pendingDelete !== null}
+        onOpenChange={(open) => { if (!open) setPendingDelete(null); }}
+        title="Delete this question?"
+        description="The question and its explanation are removed from the bank permanently. Learners mid-attempt will no longer see it."
+        items={pendingDelete ? [pendingDelete.question] : []}
+        itemsLabel="Will be deleted"
+        confirmLabel="Delete question"
+        onConfirm={() => { if (pendingDelete) void handleDelete(pendingDelete.id); }}
+      />
+
+      <ConfirmActionDialog
+        open={confirmBulkDelete}
+        onOpenChange={setConfirmBulkDelete}
+        title="Delete these questions?"
+        description="These questions are removed from the bank permanently. This cannot be undone."
+        items={rows.filter((r) => selectedIds.has(r.id)).map((r) => r.question)}
+        itemsLabel="Will be deleted"
+        confirmLabel={`Delete ${selectedIds.size}`}
+        onConfirm={handleBulkDelete}
+      />
 
       <QuestionFormDialog
         open={dialogOpen}
