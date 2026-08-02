@@ -191,6 +191,10 @@ export default function CaseDetailPage() {
   const playPhrase = playInSentence(entry.play);
   const tldr = `A ${entry.prospect.toLowerCase()} — ${titleNoun}. The move: ${playPhrase}, structured as ${entry.anchor}. The numbers landed at ${entry.headline}.`;
 
+  // Real-appointment cases have no standalone long-form page (their narrative
+  // is already rendered in full on this page), so there is nothing to link to.
+  const hasFullCasePage = !entry.id.startsWith("real-");
+
   return (
     <PageLayout
       title={`Case ${entry.code}: ${entry.title} — Case Vault`}
@@ -383,12 +387,14 @@ export default function CaseDetailPage() {
                 Open Concept Cards
               </Link>
             </Button>
-            <Button asChild className="gap-1.5">
-              <Link to={entry.sourcePath}>
-                Read the full case
-                <ExternalLink className="h-4 w-4" />
-              </Link>
-            </Button>
+            {hasFullCasePage && (
+              <Button asChild className="gap-1.5">
+                <Link to={entry.sourcePath}>
+                  Read the full case
+                  <ExternalLink className="h-4 w-4" />
+                </Link>
+              </Button>
+            )}
           </section>
 
           {/* Related cases */}
