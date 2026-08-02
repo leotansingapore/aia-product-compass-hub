@@ -13,6 +13,11 @@ const corsHeaders = {
 
 const ADMIN_EMAIL = 'tanjunsing@gmail.com';
 
+// The "Open Admin Dashboard" button used to be hardcoded to the retired
+// Lovable host (lovable.app), dead since 2026-07-19. Read the origin from
+// APP_BASE_URL, defaulting to production.
+const APP_BASE_URL = (Deno.env.get('APP_BASE_URL') ?? 'https://academy.finternship.com').replace(/\/+$/, '');
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -58,6 +63,7 @@ serve(async (req) => {
         userEmail: userEmail || 'Unknown',
         userName: userName || 'Unknown User',
         pageUrl: pageUrl || '/',
+        adminUrl: `${APP_BASE_URL}/admin`,
       })
     );
 

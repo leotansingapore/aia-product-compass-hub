@@ -14,7 +14,14 @@ const corsHeaders = {
 };
 
 const ADMIN_EMAIL = 'tanjunsing@gmail.com';
-const ADMIN_URL = 'https://aia-product-compass-hub.lovable.app/learning-track/admin/first-60-days';
+
+// Every button in these emails used to point at the retired Lovable host
+// (lovable.app), which stopped serving this app on 2026-07-19 — deploys are
+// Vercel now. Read the origin from APP_BASE_URL so it can be repointed without
+// a code change, defaulting to production.
+const APP_BASE_URL = (Deno.env.get('APP_BASE_URL') ?? 'https://academy.finternship.com').replace(/\/+$/, '');
+
+const ADMIN_URL = `${APP_BASE_URL}/learning-track/admin/first-60-days`;
 
 const TRACK_LABELS: Record<string, string> = {
   'first-60-days-assignments': 'First 60 Days',
@@ -22,8 +29,8 @@ const TRACK_LABELS: Record<string, string> = {
 };
 
 const TRACK_LEARNER_URLS: Record<string, string> = {
-  'first-60-days-assignments': 'https://aia-product-compass-hub.lovable.app/learning-track/pre-rnf/assignments',
-  'next-60-days-assignments': 'https://aia-product-compass-hub.lovable.app/learning-track/post-rnf/next-60-days',
+  'first-60-days-assignments': `${APP_BASE_URL}/learning-track/pre-rnf/assignments`,
+  'next-60-days-assignments': `${APP_BASE_URL}/learning-track/post-rnf/next-60-days`,
 };
 
 serve(async (req) => {

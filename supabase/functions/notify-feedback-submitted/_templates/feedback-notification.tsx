@@ -10,10 +10,12 @@ interface FeedbackNotificationEmailProps {
   userEmail: string;
   userName: string;
   pageUrl: string;
+  /** Absolute admin-dashboard link, built from APP_BASE_URL by the caller. */
+  adminUrl: string;
 }
 
 export const FeedbackNotificationEmail = ({
-  type, title, description, userEmail, userName, pageUrl,
+  type, title, description, userEmail, userName, pageUrl, adminUrl,
 }: FeedbackNotificationEmailProps) => {
   const typeEmoji = type === 'bug' ? '🐛' : type === 'feature' ? '💡' : '📝';
   const typeLabel = type === 'bug' ? 'Bug Report' : type === 'feature' ? 'Feature Request' : 'Feedback';
@@ -50,7 +52,7 @@ export const FeedbackNotificationEmail = ({
               Review this in the admin dashboard under the Feedback panel.
             </Text>
             <Link
-              href="https://aia-product-compass-hub.lovable.app/admin"
+              href={adminUrl}
               target="_blank"
               style={button}
             >
