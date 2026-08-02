@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -375,7 +376,7 @@ const OBJECTION_SCRIPT_THEMES: ReadonlyArray<{ key: string; label: string; emoji
  * telemarketer FAQ objections merged in from the old FAQ category). Grouped
  * by theme when browsing; flat when searching.
  */
-function ObjectionScriptsSection({ scripts, loading }: { scripts: ScriptEntry[]; loading: boolean }) {
+function ObjectionScriptsSection({ scripts, loading, targetScriptId }: { scripts: ScriptEntry[]; loading: boolean; targetScriptId?: string | null }) {
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -444,7 +445,7 @@ function ObjectionScriptsSection({ scripts, loading }: { scripts: ScriptEntry[];
               </div>
               <div className="space-y-3">
                 {group.map((script) => (
-                  <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} />
+                  <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} isTarget={script.id === targetScriptId} />
                 ))}
               </div>
             </section>
@@ -454,7 +455,7 @@ function ObjectionScriptsSection({ scripts, loading }: { scripts: ScriptEntry[];
         <div className="space-y-3">
           <p className="text-xs text-muted-foreground">{filtered.length} matching "{query.trim()}"</p>
           {filtered.map((script) => (
-            <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} />
+            <ObjectionScriptCard key={script.id} script={script} firstVersion={script.versions[0]} isTarget={script.id === targetScriptId} />
           ))}
         </div>
       ) : (
@@ -469,9 +470,20 @@ function ObjectionScriptsSection({ scripts, loading }: { scripts: ScriptEntry[];
   );
 }
 
-function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; firstVersion: ScriptVersion | undefined }) {
-  const [open, setOpen] = useState(false);
+function ObjectionScriptCard({ script, firstVersion, isTarget }: { script: ScriptEntry; firstVersion: ScriptVersion | undefined; isTarget?: boolean }) {
+  const [open, setOpen] = useState(!!isTarget);
   const [copiedVersionIdx, setCopiedVersionIdx] = useState<number | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // A ?script= deep link (e.g. redirected off the Sales Scripts tab) opens this
+  // card and brings it into view — otherwise the reader lands at the top of a
+  // long page with no sign of what they clicked.
+  useEffect(() => {
+    if (!isTarget) return;
+    setOpen(true);
+    const t = setTimeout(() => cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 200);
+    return () => clearTimeout(t);
+  }, [isTarget]);
 
   const handleCopy = async (content: string, idx: number) => {
     try {
@@ -484,8 +496,9 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
   };
 
   return (
+    <div ref={cardRef} id={`objection-script-${script.id}`}>
     <Collapsible open={open} onOpenChange={setOpen}>
-      <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
+      <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""} ${isTarget ? "ring-2 ring-primary/50" : ""}`}>
         <CollapsibleTrigger asChild>
           <CardHeader
             role="button"
@@ -545,6 +558,7 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
         </CollapsibleContent>
       </Card>
     </Collapsible>
+    </div>
   );
 }
 
@@ -554,6 +568,9 @@ export function ObjectionHandlingDatabase() {
   const { user } = useSimplifiedAuth();
   const isMobile = useIsMobile();
   const { scripts: allScripts, loading: scriptsLoading } = useScripts();
+  // Deep links from the Sales Scripts tab arrive as /objections?script=<id>.
+  const [objectionSearchParams] = useSearchParams();
+  const targetScriptId = objectionSearchParams.get("script");
 
   // Scripts categorised as 'objection-handling' from the scripts table, plus
   // the telemarketer FAQ entries (category 'faq', tagged objection-handling) —
@@ -722,7 +739,7 @@ export function ObjectionHandlingDatabase() {
       <CuratedObjectionsLibrary />
 
       {/* Scripts-table objections (incl. merged telemarketer FAQ) — searchable, grouped by theme */}
-      <ObjectionScriptsSection scripts={objectionScripts} loading={scriptsLoading} />
+      <ObjectionScriptsSection scripts={objectionScripts} loading={scriptsLoading} targetScriptId={targetScriptId} />
 
       {/* Legacy DB — admin-only, collapsed by default */}
       {!isAdmin ? null : (

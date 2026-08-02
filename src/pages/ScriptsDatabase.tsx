@@ -3417,6 +3417,10 @@ export default function ScriptsDatabase() {
       // preserve the version param if it was in the URL
       const v = prev.get("v");
       if (v) params.set("v", v);
+      // ?script= identifies the objection script a deep link was pointing at —
+      // dropping it here would strand the reader at the top of the tab.
+      const targetScript = prev.get("script");
+      if (targetScript) params.set("script", targetScript);
       return params;
     }, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
@@ -3570,7 +3574,9 @@ export default function ScriptsDatabase() {
     } else if (target.category === "servicing") {
       navigate(`/servicing/${toScriptSlug(target.stage, target.id)}`, { replace: true });
     } else if (target.category === "objection-handling" || target.category === "faq") {
-      navigate("/objections", { replace: true });
+      // Carry the script through so the Objections tab opens and scrolls to it
+      // instead of dumping the reader at the top of a long page.
+      navigate(`/objections?script=${encodeURIComponent(target.id)}`, { replace: true });
     }
   }, [resolvedScriptId, loading, scriptsData, navigate]);
 
