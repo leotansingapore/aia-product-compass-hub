@@ -31,6 +31,7 @@ export function ProfileSection() {
   const [quizCount, setQuizCount] = useState(0);
   const [videoCount, setVideoCount] = useState(0);
   const [roleplayCount, setRoleplayCount] = useState(0);
+  const [statsError, setStatsError] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -72,12 +73,28 @@ export function ProfileSection() {
 
   const fetchStats = async () => {
     if (!user) return;
-    const [quizRes, roleplayRes] = await Promise.all([
-      supabase.from('quiz_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
-      supabase.from('roleplay_sessions').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
-    ]);
-    setQuizCount(quizRes.count ?? 0);
-    setRoleplayCount(roleplayRes.count ?? 0);
+    setStatsError(false);
+    try {
+      const [quizRes, roleplayRes, videoRes] = await Promise.all([
+        supabase.from('quiz_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
+        supabase.from('roleplay_sessions').select('id', { count: 'exact', head: true }).eq('user_id', user.id),
+        // The "Videos" tile used to render a permanent 0 - `setVideoCount` was
+        // never called. Count the videos actually finished.
+        supabase.from('video_progress').select('id', { count: 'exact', head: true })
+          .eq('user_id', user.id).eq('completed', true),
+      ]);
+
+      const firstError = quizRes.error || roleplayRes.error || videoRes.error;
+      if (firstError) throw firstError;
+
+      setQuizCount(quizRes.count ?? 0);
+      setRoleplayCount(roleplayRes.count ?? 0);
+      setVideoCount(videoRes.count ?? 0);
+    } catch (error) {
+      // A failed count must not read as "you have done nothing".
+      console.error('Error fetching profile stats:', error);
+      setStatsError(true);
+    }
   };
 
   const handleProfileUpdate = (updatedProfile: Profile) => {
@@ -133,11 +150,22 @@ export function ProfileSection() {
       </Card>
 
       {/* Activity stats */}
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:gap-4">
-        <StatCard icon={CheckCircle2} label="Quizzes Done" value={quizCount} color="emerald" />
-        <StatCard icon={BookOpen} label="Roleplays" value={roleplayCount} color="blue" />
-        <StatCard icon={Video} label="Videos" value={videoCount} color="amber" />
-      </div>
+      {statsError ? (
+        <Card className="border shadow-sm">
+          <CardContent className="p-4 flex flex-col items-center gap-2 text-center">
+            <p className="text-sm text-muted-foreground">
+              Couldn't load your activity stats. Your progress is unaffected.
+            </p>
+            <Button variant="outline" size="sm" onClick={() => fetchStats()}>Retry</Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 md:gap-4">
+          <StatCard icon={CheckCircle2} label="Quizzes Done" value={quizCount} color="emerald" />
+          <StatCard icon={BookOpen} label="Roleplays" value={roleplayCount} color="blue" />
+          <StatCard icon={Video} label="Videos" value={videoCount} color="amber" />
+        </div>
+      )}
 
     </div>
   );
