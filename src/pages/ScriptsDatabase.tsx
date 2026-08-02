@@ -3512,13 +3512,16 @@ export default function ScriptsDatabase() {
   const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
 
   // Deep links to scripts that no longer live on this page go to their home:
-  // tips → the mini-course lesson, objections/FAQ → the Objections tab.
+  // tips → the mini-course lesson, objections/FAQ → the Objections tab,
+  // servicing → the Servicing page (its own /servicing/<slug> deep link).
   useEffect(() => {
     if (!resolvedScriptId || loading) return;
     const target = scriptsData.find((s) => s.id === resolvedScriptId);
     if (!target) return;
     if (target.category === "tips") {
       navigate(`/scripts/course?lesson=${target.id}`, { replace: true });
+    } else if (target.category === "servicing") {
+      navigate(`/servicing/${toScriptSlug(target.stage, target.id)}`, { replace: true });
     } else if (target.category === "objection-handling" || target.category === "faq") {
       navigate("/objections", { replace: true });
     }

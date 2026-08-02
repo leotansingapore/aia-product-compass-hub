@@ -1105,7 +1105,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
                           className="gap-1.5 text-xs"
                           onClick={() => {
                             onClose();
-                            navigate(`/scripts/${s.id}`);
+                            navigate(`${mergeNavigateBase || "/scripts"}/${s.id}`);
                           }}
                         >
                           <ExternalLink className="h-3 w-3" />
