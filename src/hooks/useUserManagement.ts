@@ -31,6 +31,32 @@ interface FilterState {
   sortOrder: 'asc' | 'desc';
 }
 
+/**
+ * Ids of the accounts GoTrue is currently refusing sign-ins for.
+ *
+ * Returns null (rather than an empty set) when the lookup fails, so a
+ * transient error shows the recorded status instead of silently reporting
+ * every suspended user as active.
+ */
+async function fetchSuspendedUserIds(): Promise<Set<string> | null> {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return null;
+
+    const { data, error } = await supabase.functions.invoke('admin-set-user-suspension', {
+      body: { action: 'list' },
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    });
+    if (error) throw error;
+
+    const ids = (data as { suspended_user_ids?: string[] } | null)?.suspended_user_ids;
+    return Array.isArray(ids) ? new Set(ids) : null;
+  } catch (error) {
+    console.error('Could not read suspension state:', error);
+    return null;
+  }
+}
+
 export function useUserManagement() {
   const { toast } = useToast();
   const [users, setUsers] = useState<UnifiedUser[]>([]);
@@ -153,6 +179,20 @@ export function useUserManagement() {
       }
 
       const final = [...deduped.values()];
+
+      // The TRUE suspension state lives on auth.users.banned_until, which only
+      // the service role can read — `user_approval_requests.status` is just a
+      // record that used to drift from reality (and was absent entirely for
+      // admin-created accounts). Overlay the real bans, after the dedupe so a
+      // suspended account cannot be outranked out of the list.
+      const suspendedIds = await fetchSuspendedUserIds();
+      if (suspendedIds) {
+        for (const user of final) {
+          if (suspendedIds.has(user.id)) user.status = 'suspended';
+          else if (user.status === 'suspended') user.status = user.profile ? 'active' : 'approved';
+        }
+      }
+
       final.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
       setUsers(final);
     } catch (error) {

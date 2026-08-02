@@ -70,18 +70,21 @@ export const AVAILABLE_STATUSES = ['pending_approval', 'approved', 'active', 'su
 /**
  * Labels for the "Change Status" menu.
  *
- * These statuses are written to `user_approval_requests.status`, which is a
- * record only — nothing in the sign-in path reads it (`useSimplifiedAuth.signIn`
- * goes straight to `supabase.auth.signInWithPassword`). So "Suspended" does NOT
- * revoke access, and the label says so rather than implying enforcement the app
- * does not have. Real suspension needs `auth.admin.updateUserById(id, { ban_duration })`
- * inside an admin-gated edge function.
+ * Most of these are written to `user_approval_requests.status`, which is a
+ * record only — nothing in the sign-in path reads it.
+ *
+ * "Suspended" is the exception and is now real: it calls the admin-gated
+ * `admin-set-user-suspension` edge function, which bans the account in
+ * GoTrue (`auth.admin.updateUserById(id, { ban_duration })`) so
+ * `signInWithPassword` is refused. Moving a suspended user back to Active or
+ * Approved lifts the ban. The displayed status comes from the real ban state,
+ * not from the approval-request row — see `useUserManagement`.
  */
 export const STATUS_ACTION_LABELS: Record<(typeof AVAILABLE_STATUSES)[number], string> = {
   pending_approval: 'Pending approval',
   approved: 'Approved',
   active: 'Active',
-  suspended: 'Mark as suspended (does not block sign-in)',
+  suspended: 'Suspend access (blocks sign-in)',
   rejected: 'Rejected',
 };
 // `mentor` role removed — the Mentor Dashboard feature was deleted in commit

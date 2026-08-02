@@ -136,10 +136,91 @@ export function useUserActions() {
     }
   };
 
+  /**
+   * Actually blocks (or restores) sign-in, via `admin-set-user-suspension` →
+   * `auth.admin.updateUserById(id, { ban_duration })`.
+   *
+   * The old "Suspended" control only wrote `user_approval_requests.status`,
+   * which nothing in the sign-in path reads — a suspended learner kept full
+   * access, and accounts with no approval request weren't touched at all.
+   */
+  const setUserSuspension = async (user: UnifiedUser, suspended: boolean) => {
+    if (user.admin_role === 'master_admin') {
+      toast({
+        title: "Cannot Suspend Master Admin",
+        description: "Master administrators cannot be suspended for security reasons.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!user.profile) {
+      toast({
+        title: "No account to suspend",
+        description: `${user.email} has an approval request but no account yet, so there is no sign-in to block. Reject the request instead.`,
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    setUserLoading(user.id, 'suspend');
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('No active session');
+
+      const { data, error } = await supabase.functions.invoke('admin-set-user-suspension', {
+        body: { userId: user.id, suspended },
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+
+      // A non-2xx from an edge function arrives as FunctionsHttpError, whose
+      // message is generic — read the body so the admin sees the real reason
+      // ("Master administrators cannot be suspended", etc).
+      if (error) {
+        const body = await (error as any)?.context?.json?.().catch(() => null);
+        throw new Error(body?.error || error.message);
+      }
+      if (!(data as any)?.success) throw new Error((data as any)?.error || 'Suspension failed');
+
+      toast({
+        title: suspended ? 'Access suspended' : 'Access restored',
+        description: suspended
+          ? `${user.email} can no longer sign in. Their existing session ends at its next refresh.`
+          : `${user.email} can sign in again.`,
+      });
+
+      return true;
+    } catch (error: any) {
+      console.error('Error setting suspension:', error);
+      toast({
+        title: "Error",
+        description: error.message || `Failed to ${suspended ? 'suspend' : 'restore'} this user`,
+        variant: "destructive",
+      });
+      return false;
+    } finally {
+      setUserLoading(user.id, null);
+    }
+  };
+
   const updateUserStatus = async (user: UnifiedUser, newStatus: UnifiedUser['status']) => {
-    // Status lives on `user_approval_requests`. Accounts created directly (e.g. via
-    // create-user-account) never get such a row, so there is nothing to write —
-    // previously this silently no-opped and still showed a success toast.
+    // "Suspended" is no longer a label on a record — it revokes access. Moving
+    // a suspended user back to active/approved restores it.
+    const suspending = newStatus === 'suspended';
+    const restoring = user.status === 'suspended' && (newStatus === 'active' || newStatus === 'approved');
+
+    if (suspending || restoring) {
+      const applied = await setUserSuspension(user, suspending);
+      if (!applied) return false;
+      // The edge function mirrors the approval request itself, so there is
+      // nothing left to write here.
+      return true;
+    }
+
+    // Every other status lives on `user_approval_requests`. Accounts created
+    // directly (e.g. via create-user-account) never get such a row, so there is
+    // nothing to write — previously this silently no-opped and still showed a
+    // success toast.
     if (!user.approval_request_id) {
       toast({
         title: "Status can't be changed for this account",
@@ -165,9 +246,7 @@ export function useUserActions() {
 
       toast({
         title: "Success",
-        description: newStatus === 'suspended'
-          ? `${user.email} is marked suspended. Note: this is a record only — it does not block them from signing in.`
-          : `User status changed to ${newStatus.replace('_', ' ')}`,
+        description: `User status changed to ${newStatus.replace('_', ' ')}`,
       });
 
       return true;
@@ -228,6 +307,7 @@ export function useUserActions() {
     rejectUser,
     deleteUser,
     updateUserStatus,
+    setUserSuspension,
     updateUserRole
   };
 }

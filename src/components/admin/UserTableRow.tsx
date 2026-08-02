@@ -55,17 +55,21 @@ export const UserTableRow = memo(function UserTableRow({
     loading, 
     approveUser, 
     rejectUser, 
-    deleteUser, 
-    updateUserStatus
+    deleteUser,
+    updateUserStatus,
+    setUserSuspension
   } = useUserActions();
 
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
 
   const statusConfig = getStatusConfig(user.status);
   const userLoading = loading(user.id);
-  
+
   // Use admin_role from props (single source of truth)
   const adminRole = user.admin_role || 'user';
+  // `status` now reflects the real GoTrue ban, not the approval-request record.
+  const isSuspended = user.status === 'suspended';
+  const canSuspend = Boolean(user.profile) && adminRole !== 'master_admin';
 
   const handleQuickAction = async (action: 'approve' | 'reject') => {
     const success = action === 'approve' ? 
@@ -118,6 +122,11 @@ export const UserTableRow = memo(function UserTableRow({
   const handleDelete = async () => {
     setConfirmDeleteOpen(false);
     const success = await deleteUser(user);
+    if (success) onUpdate();
+  };
+
+  const handleSuspensionToggle = async () => {
+    const success = await setUserSuspension(user, !isSuspended);
     if (success) onUpdate();
   };
 
@@ -309,10 +318,35 @@ export const UserTableRow = memo(function UserTableRow({
                   Reset Password
                 </DropdownMenuItem>
               )}
-              
+
+              {canSuspend && (
+                <DropdownMenuItem
+                  onClick={handleSuspensionToggle}
+                  disabled={userLoading === 'suspend'}
+                  className={isSuspended ? '' : 'text-destructive focus:text-destructive'}
+                >
+                  {userLoading === 'suspend' ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      {isSuspended ? 'Restoring...' : 'Suspending...'}
+                    </>
+                  ) : isSuspended ? (
+                    <>
+                      <UserCheck className="h-4 w-4 mr-2" />
+                      Restore access
+                    </>
+                  ) : (
+                    <>
+                      <UserX className="h-4 w-4 mr-2" />
+                      Suspend access
+                    </>
+                  )}
+                </DropdownMenuItem>
+              )}
+
               <DropdownMenuSeparator />
-              
-              <DropdownMenuItem 
+
+              <DropdownMenuItem
                 onClick={() => setConfirmDeleteOpen(true)}
                 disabled={userLoading === 'delete'}
                 className="text-destructive focus:text-destructive"
