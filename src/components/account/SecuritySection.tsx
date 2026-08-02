@@ -1,56 +1,19 @@
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useAuth } from "@/hooks/useAuth";
 import { SecurityForm } from "./SecurityForm";
-import { Shield, Key, AlertTriangle, LogOut, Trash2 } from "lucide-react";
+import { Shield, Key, LogOut } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 
+// Account deletion is deliberately NOT offered here. The previous handler only
+// signed the user out while telling them "your account deletion request has
+// been processed" - nothing was ever deleted. Real deletion needs a server-side
+// flow plus a retention decision, so until that exists the UI must not claim it.
 export function SecuritySection() {
-  const { user, signOut } = useAuth();
+  const { signOut } = useAuth();
   const { toast } = useToast();
   const [changingPassword, setChangingPassword] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
-  const handleDeleteAccount = async () => {
-    if (!user) return;
-
-    setDeleting(true);
-    
-    try {
-      // Note: In a real app, you'd want to call a server function to properly delete the user
-      // For now, we'll just sign them out and show a message
-      await signOut();
-      
-      toast({
-        title: "Account Deletion",
-        description: "Your account deletion request has been processed. You have been signed out.",
-      });
-    } catch (error) {
-      console.error('Error deleting account:', error);
-      toast({
-        title: "Error",
-        description: "Failed to delete account. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setDeleting(false);
-    }
-  };
 
   if (changingPassword) {
     return (
