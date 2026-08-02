@@ -181,6 +181,9 @@ const App = () => (
                     {/* All other routes require authentication */}
                     <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
                     <Route path="/consultant-landing" element={<RequireAuth><RequireTier feature="consultant-landing"><ConsultantLanding /></RequireTier></RequireAuth>} />
+                    {/* routePrefetch warms ConsultantLanding for /how-to-use, but no
+                        such route existed - anyone following that link hit the 404. */}
+                    <Route path="/how-to-use" element={<Navigate to="/consultant-landing" replace />} />
                     <Route path="/bookmarks" element={<RequireAuth><RequireTier feature="bookmarks"><Bookmarks /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams" element={<RequireAuth><RequireTier feature="cmfas"><CMFASExams /></RequireTier></RequireAuth>} />
                     <Route path="/cmfas-exams/manage" element={<RequireAuth><ProtectedAdminPage><CMFASManage /></ProtectedAdminPage></RequireAuth>} />
