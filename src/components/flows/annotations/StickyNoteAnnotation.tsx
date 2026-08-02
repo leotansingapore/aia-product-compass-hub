@@ -166,7 +166,7 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
               confirmDelete ? 'bg-destructive p-0.5' : 'hover:opacity-80'
             )}
             onClick={handleDeleteClick}
-            onKeyDown={e => e.stopPropagation()}
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
             aria-label={confirmDelete ? 'Press again to confirm deleting this note' : `Delete note by ${annotation.author_name}`}
             title={confirmDelete ? 'Click again to confirm delete' : 'Delete note'}
           >

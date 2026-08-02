@@ -179,7 +179,7 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
                   : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 [@media(pointer:coarse)]:opacity-100 bg-background/80'
               )}
               onClick={handleDeleteClick}
-              onKeyDown={e => e.stopPropagation()}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
               aria-label={confirmDelete ? 'Press again to confirm deleting this label' : `Delete label by ${annotation.author_name}`}
               title={confirmDelete ? 'Click again to confirm delete' : 'Delete label'}
             >

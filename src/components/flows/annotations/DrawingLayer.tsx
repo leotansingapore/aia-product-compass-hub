@@ -207,7 +207,7 @@ export function DrawingLayer({
                       className={`h-5 ${confirmDeleteId === ann.id ? 'px-1.5 ring-2 ring-destructive/50' : 'w-5'} bg-destructive text-white rounded-full text-xs flex items-center justify-center shadow whitespace-nowrap relative after:absolute after:content-[''] after:-inset-[8px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive`}
                       aria-label={confirmDeleteId === ann.id ? 'Press again to confirm deleting this drawing' : `Delete drawing by ${ann.author_name}`}
                       title={confirmDeleteId === ann.id ? 'Click again to confirm delete' : 'Delete drawing'}
-                      onKeyDown={e => e.stopPropagation()}
+                      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); }}
                       onClick={(e) => {
                         e.stopPropagation();
                         if (confirmDeleteId === ann.id) {
