@@ -12,6 +12,17 @@ interface UseQuestionBankParams {
 /**
  * Fetch questions for a product bank (study or exam) from Supabase.
  * Returns questions in the legacy QuizQuestion shape expected by quiz components.
+ *
+ * ORDER STABILITY IS A CORRECTNESS REQUIREMENT, NOT A NICETY.
+ * `sort_order` is `not null default 0` and is NOT unique, so ordering by it
+ * alone leaves row order undefined between fetches. A live exam must not
+ * reorder underneath the candidate: `answers` and `shuffleMaps` are indexed
+ * positionally against the question array, so a reshuffled fetch grades
+ * answer i against a different question, and ProductExam's id signature would
+ * change and bin a paper the learner is 40 minutes into. Hence:
+ *   - `.order('id')` as a unique tiebreaker (same fix ReviewAll already uses)
+ *   - `refetchOnWindowFocus: false` so tabbing away and back never re-fetches
+ *     the bank mid-paper.
  */
 export function useQuestionBank({ productSlug, bankType, enabled = true }: UseQuestionBankParams) {
   return useQuery({
@@ -22,13 +33,15 @@ export function useQuestionBank({ productSlug, bankType, enabled = true }: UseQu
         .select('*')
         .eq('product_slug', productSlug)
         .eq('bank_type', bankType)
-        .order('sort_order', { ascending: true });
+        .order('sort_order', { ascending: true })
+        .order('id', { ascending: true });
 
       if (error) throw error;
       return ((data ?? []) as unknown as QuestionBankQuestion[]).map(dbRowToQuizQuestion);
     },
     enabled: enabled && !!productSlug && !!bankType,
     staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnWindowFocus: false,
   });
 }
 
@@ -44,7 +57,10 @@ export function useQuestionBankRows({ productSlug, bankType, enabled = true }: U
         .select('*')
         .eq('product_slug', productSlug)
         .eq('bank_type', bankType)
-        .order('sort_order', { ascending: true });
+        .order('sort_order', { ascending: true })
+        // Same unique tiebreaker: without it the admin list silently reorders
+        // between refetches, so "row 3" is not the row you just edited.
+        .order('id', { ascending: true });
 
       if (error) throw error;
       return (data ?? []) as unknown as QuestionBankQuestion[];
