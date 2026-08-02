@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { useToast } from './use-toast';
@@ -13,37 +13,47 @@ export interface Bookmark {
 export function useBookmarks() {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [loading, setLoading] = useState(true);
+  // A failed fetch used to be swallowed into console.error, leaving `bookmarks`
+  // at [] - which the page rendered as "No bookmarks yet". Someone with 30
+  // saved products was told they had none. Surface the failure instead.
+  const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Fetch user's bookmarks
-  useEffect(() => {
+  const fetchBookmarks = useCallback(async () => {
     const isDevelopment = import.meta.env.DEV;
     if (!user && !isDevelopment) {
+      setBookmarks([]);
+      setError(null);
       setLoading(false);
       return;
     }
 
-    async function fetchBookmarks() {
-      try {
-        const userId = user?.id || '00000000-0000-0000-0000-000000000000';
-        const { data, error } = await supabase
-          .from('user_bookmarks')
-          .select('id, user_id, product_id, created_at')
-          .eq('user_id', userId)
-          .order('created_at', { ascending: false });
+    setLoading(true);
+    try {
+      const userId = user?.id || '00000000-0000-0000-0000-000000000000';
+      const { data, error: fetchError } = await supabase
+        .from('user_bookmarks')
+        .select('id, user_id, product_id, created_at')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
 
-        if (error) throw error;
-        setBookmarks(data || []);
-      } catch (error) {
-        console.error('Error fetching bookmarks:', error);
-      } finally {
-        setLoading(false);
-      }
+      if (fetchError) throw fetchError;
+      setBookmarks(data || []);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching bookmarks:', err);
+      setBookmarks([]);
+      setError(err instanceof Error ? err.message : 'Failed to load bookmarks');
+    } finally {
+      setLoading(false);
     }
-
-    fetchBookmarks();
   }, [user]);
+
+  // Fetch user's bookmarks
+  useEffect(() => {
+    void fetchBookmarks();
+  }, [fetchBookmarks]);
 
   // Check if product is bookmarked
   const isBookmarked = (productId: string) => {
@@ -141,6 +151,8 @@ export function useBookmarks() {
   return {
     bookmarks,
     loading,
+    error,
+    refetch: fetchBookmarks,
     isBookmarked,
     addBookmark,
     removeBookmark,

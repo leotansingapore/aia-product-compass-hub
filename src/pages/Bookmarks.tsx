@@ -4,17 +4,34 @@ import { ProductCard } from "@/components/ProductCard";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { BookmarkX } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
 
 export default function Bookmarks() {
-  const { bookmarks, loading: bookmarksLoading } = useBookmarks();
-  const { allProducts, loading: productsLoading } = useAllProducts();
+  const {
+    bookmarks,
+    loading: bookmarksLoading,
+    error: bookmarksError,
+    refetch: refetchBookmarks,
+  } = useBookmarks();
+  const { allProducts, loading: productsLoading, error: productsError } = useAllProducts();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const loading = bookmarksLoading || productsLoading;
+  // Never render a load failure as the empty state - "No bookmarks yet" is
+  // indistinguishable from data loss for someone with saved products.
+  const loadError = bookmarksError || productsError;
+
+  // Either half can be the one that failed, so retry re-runs both.
+  const handleRetry = () => {
+    void refetchBookmarks();
+    void queryClient.invalidateQueries({ queryKey: ['products', 'all'] });
+  };
 
   // Get bookmarked products
   const bookmarkedProducts = allProducts.filter(product => 
@@ -75,7 +92,17 @@ export default function Bookmarks() {
       />
 
       <div className="mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
-        {bookmarkedProducts.length === 0 ? (
+        {loadError ? (
+          <Card className="text-center py-12 border-dashed">
+            <CardContent>
+              <p className="font-medium mb-1">Couldn't load your bookmarks</p>
+              <p className="text-muted-foreground text-sm mb-5">
+                Your saved products are still there. Check your connection and try again.
+              </p>
+              <Button variant="outline" onClick={handleRetry}>Retry</Button>
+            </CardContent>
+          </Card>
+        ) : bookmarkedProducts.length === 0 ? (
           <div className="text-center py-12">
             <BookmarkX className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
             <h2 className="text-xl font-semibold mb-2">No bookmarks yet</h2>
