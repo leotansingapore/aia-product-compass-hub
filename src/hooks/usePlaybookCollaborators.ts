@@ -112,13 +112,24 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
     onError: () => toast.error('Failed to remove access'),
   });
 
-  // Request edit access (for non-owners)
+  // Request edit access (for non-owners). A previously rejected request is
+  // re-submitted in place (unique constraint blocks a second insert).
   const requestEditAccess = useMutation({
     mutationFn: async () => {
       if (!playbookId || !user) throw new Error('Not authenticated');
       const profile = await supabase.from('profiles').select('display_name, first_name, last_name, email').eq('user_id', user.id).single();
       const p = profile.data;
       const name = p?.display_name || `${p?.first_name || ''} ${p?.last_name || ''}`.trim() || user.email?.split('@')[0] || 'Unknown';
+
+      if (myRequest?.status === 'rejected') {
+        const { error } = await supabase
+          .from('playbook_edit_requests' as any)
+          .update({ status: 'pending', reviewed_at: null, reviewed_by: null, requester_name: name, requester_email: user.email })
+          .eq('id', myRequest.id);
+        if (error) throw error;
+        return;
+      }
+
       const { error } = await supabase
         .from('playbook_edit_requests' as any)
         .insert({

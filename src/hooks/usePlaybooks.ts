@@ -33,7 +33,7 @@ export function usePlaybooks() {
   const { user } = useSimplifiedAuth();
   const queryClient = useQueryClient();
 
-  const { data: playbooks = [], isLoading } = useQuery({
+  const { data: playbooks = [], isLoading, error, refetch } = useQuery({
     queryKey: ['playbooks'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -160,7 +160,7 @@ export function usePlaybooks() {
     onError: () => toast.error('Failed to update sharing'),
   });
 
-  return { playbooks, myPlaybooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, togglePublic, userId: user?.id };
+  return { playbooks, myPlaybooks, isLoading, error, refetch, createPlaybook, updatePlaybook, deletePlaybook, togglePublic, userId: user?.id };
 }
 
 export function usePlaybookItems(playbookId: string | null) {
@@ -203,6 +203,7 @@ export function usePlaybookItems(playbookId: string | null) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
+      queryClient.invalidateQueries({ queryKey: ['playbooks'] }); // item_count on list cards
       toast.success('Added to playbook');
     },
     onError: (e: Error) => toast.error(e.message || 'Failed to add item'),
@@ -218,9 +219,10 @@ export function usePlaybookItems(playbookId: string | null) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
-      toast.success('Script removed from playbook');
+      queryClient.invalidateQueries({ queryKey: ['playbooks'] }); // item_count on list cards
+      toast.success('Removed from playbook');
     },
-    onError: () => toast.error('Failed to remove script'),
+    onError: () => toast.error('Failed to remove item'),
   });
 
   const reorderItems = useMutation({
@@ -235,10 +237,27 @@ export function usePlaybookItems(playbookId: string | null) {
       const error = results.find(r => r.error);
       if (error?.error) throw error.error;
     },
-    onSuccess: () => {
+    // Optimistic: apply the new order to the cache immediately so cards don't
+    // snap back to their old position while the writes are in flight.
+    onMutate: async (reorderedItems) => {
+      await queryClient.cancelQueries({ queryKey: ['playbook-items', playbookId] });
+      const previous = queryClient.getQueryData<PlaybookItem[]>(['playbook-items', playbookId]);
+      if (previous) {
+        const orderMap = new Map(reorderedItems.map(r => [r.id, r.sort_order]));
+        const next = previous
+          .map(i => (orderMap.has(i.id) ? { ...i, sort_order: orderMap.get(i.id)! } : i))
+          .sort((a, b) => a.sort_order - b.sort_order);
+        queryClient.setQueryData(['playbook-items', playbookId], next);
+      }
+      return { previous };
+    },
+    onError: (_err, _vars, context) => {
+      if (context?.previous) queryClient.setQueryData(['playbook-items', playbookId], context.previous);
+      toast.error('Failed to reorder');
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });
     },
-    onError: () => toast.error('Failed to reorder'),
   });
 
   return { items, isLoading, addItem, removeItem, reorderItems };
