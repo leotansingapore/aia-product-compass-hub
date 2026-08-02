@@ -3,7 +3,8 @@ import { CMFASModuleHeader } from "@/components/cmfas/CMFASHubHero";
 import { CMFASModuleCourseLayout } from "@/components/cmfas/CMFASModuleCourseLayout";
 import { CMFASUsefulLinks } from "@/components/cmfas/CMFASUsefulLinks";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
-import { useState, useEffect } from "react";
+import { CMFASModuleLoadError } from "@/components/cmfas/CMFASModuleLoadError";
+import { useState, useEffect, useCallback } from "react";
 import { useProductUpdate } from "@/hooks/useProductUpdate";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -78,52 +79,46 @@ export default function M9AModule({ embedded = false }: { embedded?: boolean } =
 
   const [customGptLink, setCustomGptLink] = useState<string>("https://chatgpt.com/g/g-example-m9a");
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+
+  // Read-only on purpose. This page used to INSERT the hardcoded placeholder
+  // content above (example.com links) whenever the row was missing, which then
+  // became the persisted truth for every learner — and it fell back to those
+  // same placeholders on ANY read error. Now a real error surfaces as an
+  // explicit error + Retry, and the hardcoded content is only an in-memory
+  // display default for the case where there is genuinely no row and no error.
+  const loadData = useCallback(async () => {
+    setLoading(true);
+    setLoadError(false);
+
+    // maybeSingle(): a missing row is a normal state here, not an error.
+    const { data, error } = await supabase.from("products").select("*").eq("id", productId).maybeSingle();
+
+    if (error) {
+      console.error("Error loading M9A module data:", error);
+      setLoadError(true);
+      setLoading(false);
+      return;
+    }
+
+    if (data) {
+      if (data.training_videos && Array.isArray(data.training_videos)) {
+        setTutorialLectures(data.training_videos as any[]);
+      }
+      if (data.useful_links && Array.isArray(data.useful_links)) {
+        setUsefulLinks(data.useful_links as any[]);
+      }
+      if (data.custom_gpt_link && typeof data.custom_gpt_link === "string") {
+        setCustomGptLink(data.custom_gpt_link);
+      }
+    }
+
+    setLoading(false);
+  }, [productId]);
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const { data, error } = await supabase.from("products").select("*").eq("id", productId).single();
-
-        if (error && error.code !== "PGRST116") {
-          console.error("Error loading M9A module data:", error);
-          return;
-        }
-
-        if (data) {
-          if (data.training_videos && Array.isArray(data.training_videos)) {
-            setTutorialLectures(data.training_videos as any[]);
-          }
-          if (data.useful_links && Array.isArray(data.useful_links)) {
-            setUsefulLinks(data.useful_links as any[]);
-          }
-          if (data.custom_gpt_link && typeof data.custom_gpt_link === "string") {
-            setCustomGptLink(data.custom_gpt_link);
-          }
-        } else {
-          const categoryResult = await supabase.from("categories").select("id").eq("name", "Learning Modules").single();
-          const { error: insertError } = await supabase.from("products").insert({
-            id: productId,
-            title: "CMFAS M9A Module",
-            description: "Life Insurance & Investment-Linked Policies II",
-            category_id: categoryResult.data?.id,
-            training_videos: tutorialLectures,
-            useful_links: usefulLinks,
-            custom_gpt_link: customGptLink,
-          });
-
-          if (insertError) {
-            console.error("Error creating M9A module entry:", insertError);
-          }
-        }
-      } catch (error) {
-        console.error("Error in loadData:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadData();
-  }, [productId]);
+  }, [loadData]);
 
   const handleUpdate = async (field: string, value: any) => {
     try {
@@ -157,6 +152,10 @@ export default function M9AModule({ embedded = false }: { embedded?: boolean } =
         </div>
       </div>
     );
+  }
+
+  if (loadError) {
+    return <CMFASModuleLoadError moduleName="M9A" onRetry={loadData} embedded={embedded} />;
   }
 
   return (
