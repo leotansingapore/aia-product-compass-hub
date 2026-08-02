@@ -28,6 +28,8 @@ import { AIFlowChat } from '@/components/flows/AIFlowChat';
 import { NodeSearch } from '@/components/flows/controls/NodeSearch';
 import DOMPurify from 'dompurify';
 import { toast } from 'sonner';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
 import { ScriptsHubHeaderTabs } from '@/components/scripts/ScriptsTabBar';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -288,6 +290,30 @@ export default function ScriptFlows() {
     setHasUnsaved(false);
     setSyncedFlowId(activeFlowId);
   }, [activeFlowId, activeFlowUpdatedAt]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // The flows list is scoped to the signed-in user, so a shared /flows/:id
+  // link to someone else's flow won't be in it. Probe whether the row exists
+  // at all: if it does, this user isn't the owner — send them to the
+  // read-only public viewer instead of an editor whose saves silently no-op.
+  const flowProbe = useQuery({
+    queryKey: ['script-flow-exists', activeFlowId],
+    enabled: !!activeFlowId && !isLoading && !activeFlow,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('script_flows')
+        .select('id')
+        .eq('id', activeFlowId!)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+  });
+  const shouldRedirectToViewer = !!(activeFlowId && !isLoading && !activeFlow && flowProbe.data?.id);
+  useEffect(() => {
+    if (shouldRedirectToViewer) {
+      navigate(`/flows/view/${activeFlowId}`, { replace: true });
+    }
+  }, [shouldRedirectToViewer, activeFlowId, navigate]);
 
   const openFlow = useCallback((id: string) => {
     navigate(`/flows/${id}`);
@@ -574,6 +600,18 @@ export default function ScriptFlows() {
       );
     }
     if (!activeFlow) {
+      // Still working out whether the flow exists (or about to redirect a
+      // non-owner to the read-only viewer) — keep showing the loader.
+      if (flowProbe.isLoading || shouldRedirectToViewer) {
+        return (
+          <PageLayout title="Script Flows" description="Script Flow Builder">
+            <div className="flex items-center justify-center gap-2 text-muted-foreground" style={{ height: 'calc(100vh - 240px)', minHeight: 350 }}>
+              <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+              Loading flow...
+            </div>
+          </PageLayout>
+        );
+      }
       return (
         <PageLayout title="Script Flows" description="Script Flow Builder">
           <div className="flex flex-col items-center justify-center gap-4 text-center px-4" style={{ height: 'calc(100vh - 240px)', minHeight: 350 }}>

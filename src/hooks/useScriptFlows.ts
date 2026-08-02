@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
+import { usePermissions } from '@/hooks/usePermissions';
 import { toast } from 'sonner';
 
 export interface FlowNode {
@@ -46,15 +47,23 @@ export interface ScriptFlow {
 
 export function useScriptFlows() {
   const { user } = useSimplifiedAuth();
+  const { isAdmin } = usePermissions();
   const queryClient = useQueryClient();
+  const admin = isAdmin();
 
-  const { data: flows = [], isLoading } = useQuery({
-    queryKey: ['script-flows'],
+  // "My Flows" is scoped to the signed-in user; admins keep visibility of all
+  // flows. Without the created_by filter every user saw everyone's flows and
+  // could open (but not actually save) them.
+  const { data: flows = [], isPending: isLoading } = useQuery({
+    queryKey: ['script-flows', user?.id ?? 'anon', admin],
+    enabled: !!user,
     queryFn: async () => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('script_flows')
         .select('*')
         .order('updated_at', { ascending: false });
+      if (!admin) query = query.eq('created_by', user!.id);
+      const { data, error } = await query;
       if (error) throw error;
       return (data || []).map(d => ({
         ...d,
@@ -97,26 +106,30 @@ export function useScriptFlows() {
       if (updates.description !== undefined) payload.description = updates.description;
       if (updates.nodes !== undefined) payload.nodes = JSON.parse(JSON.stringify(updates.nodes));
       if (updates.edges !== undefined) payload.edges = JSON.parse(JSON.stringify(updates.edges));
-      const { error } = await supabase.from('script_flows').update(payload).eq('id', id);
+      // .select('id') detects RLS silently dropping the write: 0 affected rows
+      // means this user doesn't own the flow (previously toasted "Flow saved").
+      const { data, error } = await supabase.from('script_flows').update(payload).eq('id', id).select('id');
       if (error) throw error;
+      if (!data || data.length === 0) throw new Error('NOT_OWNER');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['script-flows'] });
       toast.success('Flow saved');
     },
-    onError: () => toast.error('Failed to save flow'),
+    onError: (err: Error) => toast.error(err.message === 'NOT_OWNER' ? 'You can only edit your own flows' : 'Failed to save flow'),
   });
 
   const deleteFlow = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from('script_flows').delete().eq('id', id);
+      const { data, error } = await supabase.from('script_flows').delete().eq('id', id).select('id');
       if (error) throw error;
+      if (!data || data.length === 0) throw new Error('NOT_OWNER');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['script-flows'] });
       toast.success('Flow deleted');
     },
-    onError: () => toast.error('Failed to delete flow'),
+    onError: (err: Error) => toast.error(err.message === 'NOT_OWNER' ? 'You can only delete your own flows' : 'Failed to delete flow'),
   });
 
   return { flows, isLoading, createFlow, updateFlow, deleteFlow, userId: user?.id };
