@@ -830,8 +830,17 @@ export function ObjectionHandlingDatabase() {
         </div>
       )}
 
+      {/* Fetch failed — say so instead of rendering an empty database */}
+      {!loading && objectionsError && (
+        <div className="text-center py-12">
+          <p className="font-medium mb-1">Couldn't load the objection database</p>
+          <p className="text-muted-foreground text-sm mb-5">Check your connection and try again.</p>
+          <Button variant="outline" onClick={() => refetch()}>Retry</Button>
+        </div>
+      )}
+
       {/* Entries list */}
-      {!loading && (
+      {!loading && !objectionsError && (
         <div className="space-y-3">
           {filteredEntries.length > 0 ? (
             filteredEntries.map(entry => (

@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { Eye, EyeOff, ChevronDown, Shield, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAdmin } from '@/hooks/useAdmin';
+import { usePermissions } from '@/hooks/usePermissions';
 import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
 import {
   DropdownMenu,
@@ -47,10 +48,21 @@ function readStoredTier(): TierLevel | null {
 }
 
 export function ViewModeProvider({ children }: { children: ReactNode }) {
-  const [viewAsTier, setViewAsTierState] = useState<TierLevel | null>(() => readStoredTier());
+  const [storedTier, setStoredTierState] = useState<TierLevel | null>(() => readStoredTier());
+  const { isMasterAdmin, hasRole, loading: permissionsLoading } = usePermissions();
+  const { loading: authLoading, user } = useSimplifiedAuth();
+
+  // Tier impersonation is an ADMIN debug tool. `view-as-tier` lives in
+  // localStorage, which any user can write, so admin status is re-checked
+  // here — the resolved `viewAsTier` is null for everyone else no matter what
+  // the key says. Without this, a regular user could set the key to
+  // `post_rnf` and unlock every tier-gated route in the client.
+  const isActualAdmin =
+    !permissionsLoading && !authLoading && !!user && (isMasterAdmin() || hasRole('admin'));
+  const viewAsTier = isActualAdmin ? storedTier : null;
 
   const setViewAsTier = useCallback((tier: TierLevel | null) => {
-    setViewAsTierState(tier);
+    setStoredTierState(tier);
     if (typeof window === 'undefined') return;
     try {
       if (tier) window.localStorage.setItem(STORAGE_KEY, tier);
@@ -59,6 +71,19 @@ export function ViewModeProvider({ children }: { children: ReactNode }) {
       /* ignore */
     }
   }, []);
+
+  // Drop a persisted impersonation once we're sure the signed-in user is not
+  // an admin (e.g. their role was revoked, or they set the key by hand).
+  //
+  // WAIT for BOTH auth AND permissions to finish loading first.
+  // `usePermissions.loading` flips false the moment `user` is null (which is
+  // the initial state before auth resolves on every page load) — clearing
+  // during that gap stomped `view-as-tier` back to null on every refresh, so
+  // an admin's "View as Papers-taker" reverted to admin view after any reload.
+  useEffect(() => {
+    if (permissionsLoading || authLoading || !user) return;
+    if (!isActualAdmin && storedTier !== null) setViewAsTier(null);
+  }, [isActualAdmin, permissionsLoading, authLoading, user, storedTier, setViewAsTier]);
 
   const toggleViewMode = useCallback(() => {
     setViewAsTier(viewAsTier ? null : 'explorer');
@@ -87,20 +112,8 @@ export function AdminViewSwitcher() {
   const { viewAsTier, setViewAsTier } = useViewMode();
   const [open, setOpen] = useState(false);
 
-  // If the user loses admin, drop impersonation so they don't get stuck.
-  //
-  // WAIT for BOTH auth AND permissions to finish loading before doing this.
-  // `usePermissions.loading` flips false the moment `user` is null (which is
-  // the initial state before auth resolves on every page load) — so checking
-  // only `loading` from useAdmin let the wipe fire during the auth gap,
-  // stomping `view-as-tier` in localStorage back to null on every refresh.
-  // Bug repro before this fix: admin sets "View as Papers-taker", navigates
-  // to /learning-track/product-mastery (or any reload), immediately reverts
-  // to admin view because the localStorage tier got cleared mid-bootstrap.
-  useEffect(() => {
-    if (loading || authLoading || !user) return;
-    if (!isActualAdmin && viewAsTier !== null) setViewAsTier(null);
-  }, [isActualAdmin, loading, authLoading, user, viewAsTier, setViewAsTier]);
+  // Losing admin drops the impersonation — handled in ViewModeProvider, which
+  // owns the localStorage key and re-checks admin status before honouring it.
 
   if (loading || authLoading || !isActualAdmin) return null;
 
