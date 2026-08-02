@@ -27,6 +27,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ProtectedSection } from "@/components/ProtectedSection";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { RequireProductTier } from "@/components/RequireProductTier";
+import { PageLoadError } from "@/components/PageLoadError";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import { useAdmin } from "@/hooks/useAdmin";
@@ -95,6 +96,8 @@ export default function ProductDetail() {
   const {
     product,
     loading,
+    error,
+    retry,
     productId,
     handleUpdate,
     handleBack,
@@ -202,6 +205,26 @@ export default function ProductDetail() {
 
   if (loading) {
     return <SkeletonLoader type="product" />;
+  }
+
+  // The fetch failed — don't tell the learner the course doesn't exist.
+  if (error) {
+    return (
+      <PageLayout
+        title="Couldn't load this module | FINternship"
+        description="The module could not be loaded."
+      >
+        <PageLoadError
+          title="Couldn't load this module"
+          onRetry={() => retry()}
+          secondaryAction={
+            <Button variant="ghost" size="sm" onClick={handleBack}>
+              Return to Dashboard
+            </Button>
+          }
+        />
+      </PageLayout>
+    );
   }
 
   if (!product) {

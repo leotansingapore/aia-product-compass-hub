@@ -9,7 +9,12 @@ import { getCategoryIdFromSlug, getCategorySlugFromId, getCategorySlug, isUUID, 
 export function useProductCategory() {
   const { categorySlugOrId } = useParams<{ categorySlugOrId: string }>();
   const navigate = useNavigate();
-  const { categories, loading: categoriesLoading, refetch: refetchCategories } = useCategories();
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+    refetch: refetchCategories,
+  } = useCategories();
   const { addToRecent } = useRecentlyViewed();
   
   // Resolve categoryId: try static map first, then dynamic match against loaded categories
@@ -26,7 +31,7 @@ export function useProductCategory() {
     return match?.id;
   }, [categorySlugOrId, categories]);
   
-  const { products, loading: productsLoading, refetch } = useProducts(categoryId);
+  const { products, loading: productsLoading, error: productsError, refetch } = useProducts(categoryId);
   const { tier, isAdminBypass } = useFeatureAccess();
 
   // Search and filter state
@@ -38,6 +43,11 @@ export function useProductCategory() {
 
   // Overall loading: still loading if categories or products haven't loaded yet
   const loading = categoriesLoading || productsLoading;
+
+  // Non-null when a fetch FAILED. Without this the page can't tell "this
+  // category doesn't exist" (a real 404) from "we couldn't reach the server",
+  // and shows "Category not found" for both.
+  const error = categoriesError || productsError || null;
   
   // Redirect UUID-based URLs to slug-based URLs
   useEffect(() => {
@@ -100,6 +110,7 @@ export function useProductCategory() {
     category,
     products: filteredProducts,
     loading,
+    error,
     searchQuery,
     selectedTags,
     refetch,

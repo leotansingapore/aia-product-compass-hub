@@ -9,6 +9,7 @@ import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { EnhancedSearchBar } from "@/components/EnhancedSearchBar";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
+import { PageLoadError } from "@/components/PageLoadError";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
 import { ProductsGrid } from "@/components/category/ProductsGrid";
 import { ChildCategoriesGrid } from "@/components/category/ChildCategoriesGrid";
@@ -100,6 +101,7 @@ export default function ProductCategory() {
     category,
     products: filteredProducts,
     loading,
+    error,
     searchQuery,
     refetch,
     refetchCategories,
@@ -328,6 +330,26 @@ export default function ProductCategory() {
 
   if (loading) {
     return <SkeletonLoader type="category" />;
+  }
+
+  // A failed fetch also leaves `category` undefined — say so honestly instead
+  // of claiming the category doesn't exist.
+  if (error) {
+    return (
+      <PageLoadError
+        title="Couldn't load this category"
+        onRetry={() => {
+          refetchCategories();
+          refetch();
+        }}
+        secondaryAction={
+          <Button variant="ghost" size="sm" onClick={() => navigate("/categories")} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Categories
+          </Button>
+        }
+      />
+    );
   }
 
   if (!category) {

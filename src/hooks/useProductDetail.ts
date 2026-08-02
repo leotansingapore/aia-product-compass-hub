@@ -12,7 +12,7 @@ export function useProductDetail() {
   const { productSlugOrId } = useParams<{ productSlugOrId: string }>();
   const productId = productSlugOrId; // For now, treat as product ID until we implement full product slug support
   const navigate = useNavigate();
-  const { product, loading, silentRefetch } = useProductBySlugOrId(productId || '');
+  const { product, loading, error, refetch, silentRefetch } = useProductBySlugOrId(productId || '');
   const { updateProduct } = useProductUpdate();
   const { addToRecent } = useRecentlyViewed();
   const { recordPageVisit } = useGamification();
@@ -77,6 +77,9 @@ export function useProductDetail() {
   return {
     product,
     loading,
+    /** Non-null when the fetch FAILED — distinct from a successful "no such product". */
+    error,
+    retry: refetch,
     productId,
     assistantOpen,
     setAssistantOpen,

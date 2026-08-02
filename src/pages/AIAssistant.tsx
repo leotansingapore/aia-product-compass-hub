@@ -4,6 +4,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { ProtectedPage } from '@/components/ProtectedPage';
+import { PageLoadError } from '@/components/PageLoadError';
+import { Button } from '@/components/ui/button';
 import { BrandedPageHeader, BreadcrumbItem } from '@/components/layout/BrandedPageHeader';
 import { ProductKnowledgeChat } from '@/components/product-detail/ProductKnowledgeChat';
 
@@ -12,14 +14,16 @@ export default function AIAssistant() {
   const navigate = useNavigate();
 
   // Fetch product data for context
-  const { data: product, isLoading } = useQuery({
+  const { data: product, isLoading, isError, refetch } = useQuery({
     queryKey: ['product', productId],
     queryFn: async () => {
+      // maybeSingle(): "no such product" is a 404, not a thrown error, so the
+      // not-found card below is only reached when the row genuinely isn't there.
       const { data, error } = await supabase
         .from('products')
         .select('*')
         .eq('id', productId)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       return data;
@@ -33,6 +37,26 @@ export default function AIAssistant() {
 
   if (isLoading) {
     return <SkeletonLoader type="product" />;
+  }
+
+  // The product lookup failed — the assistant exists, we just couldn't reach it.
+  if (isError) {
+    return (
+      <PageLayout
+        title="Couldn't load the AI Assistant | FINternship"
+        description="The AI assistant could not be loaded."
+      >
+        <PageLoadError
+          title="Couldn't load the AI Assistant"
+          onRetry={() => refetch()}
+          secondaryAction={
+            <Button variant="ghost" size="sm" onClick={handleHome}>
+              Return to Dashboard
+            </Button>
+          }
+        />
+      </PageLayout>
+    );
   }
 
   if (!product) {

@@ -6,6 +6,7 @@ import { VideoLearningInterface } from "@/components/video-learning/VideoLearnin
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ProtectedPage } from "@/components/ProtectedPage";
 import { RequireProductTier } from "@/components/RequireProductTier";
+import { PageLoadError } from "@/components/PageLoadError";
 import { useProductBySlugOrId } from "@/hooks/useProducts";
 import { getVideoSlug, isVideoId } from "@/utils/slugUtils";
 import { FloatingAIChat } from "@/components/product-detail/FloatingAIChat";
@@ -17,7 +18,7 @@ export default function VideoDetail() {
   }>();
   const navigate = useNavigate();
 
-  const { product, loading } = useProductBySlugOrId(productSlugOrId || '');
+  const { product, loading, error, refetch } = useProductBySlugOrId(productSlugOrId || '');
 
   // Handle backward compatibility - redirect old ID-based URLs to slug-based URLs
   useEffect(() => {
@@ -33,6 +34,26 @@ export default function VideoDetail() {
 
   if (loading) {
     return <SkeletonLoader type="product" />;
+  }
+
+  // Failed fetch — "Video Not Found" here would read as "the lesson was deleted".
+  if (error) {
+    return (
+      <PageLayout
+        title="Couldn't load this lesson | FINternship"
+        description="The lesson could not be loaded."
+      >
+        <PageLoadError
+          title="Couldn't load this lesson"
+          onRetry={() => refetch()}
+          secondaryAction={
+            <Button variant="ghost" size="sm" onClick={() => navigate(`/product/${productSlugOrId}`)}>
+              Return to Product
+            </Button>
+          }
+        />
+      </PageLayout>
+    );
   }
 
   if (!product || !videoSlugOrId) {
