@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { AchievementToast } from '@/components/AchievementToast';
+import { addDays, localDayIso, startOfLocalDayIso } from '@/lib/localDay';
 
 interface QuizResult {
   productId: string;
@@ -28,14 +29,16 @@ export const useGamification = () => {
     console.log('🎯 Starting quiz completion recording for user:', user.id, 'result:', result);
     setIsProcessing(true);
     try {
-      // Check if user has already completed this quiz today to prevent XP farming
-      const today = new Date().toISOString().split('T')[0];
+      // Check if user has already completed this quiz today to prevent XP
+      // farming. The boundary is the learner's own midnight — a UTC boundary
+      // rolled the "day" over at 08:00 in Singapore, so an evening quiz still
+      // counted as "today" the following morning.
       const { data: existingAttempt } = await supabase
         .from('quiz_attempts')
         .select('id')
         .eq('user_id', user.id)
         .eq('product_id', result.productId)
-        .gte('completed_at', today)
+        .gte('completed_at', startOfLocalDayIso())
         .order('completed_at', { ascending: false })
         .limit(1);
 
@@ -151,12 +154,10 @@ export const useGamification = () => {
         newLevel++;
       }
       
-      // Calculate streak
-      const today = new Date().toISOString().split('T')[0];
+      // Calculate streak against the learner's local calendar day, not UTC.
+      const today = localDayIso();
       const lastActive = profile.last_active_date;
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split('T')[0];
+      const yesterdayStr = localDayIso(addDays(-1));
 
       let newStreak = profile.streak_days;
       if (lastActive === yesterdayStr) {
