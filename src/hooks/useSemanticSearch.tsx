@@ -7,11 +7,21 @@ export function useSemanticSearch() {
   const { allProducts, loading } = useAllProducts();
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
-  // Load search history
+  // Load search history. Guarded because a corrupt or legacy value (a truncated
+  // write, a manual edit, another app on this origin) used to throw inside the
+  // effect and take the whole search surface into the error boundary — and a
+  // non-array value like "5" survived JSON.parse only to crash later at .filter.
   useEffect(() => {
-    const history = localStorage.getItem('searchHistory');
-    if (history) {
-      setSearchHistory(JSON.parse(history));
+    try {
+      const history = localStorage.getItem('searchHistory');
+      if (!history) return;
+      const parsed = JSON.parse(history);
+      if (Array.isArray(parsed)) {
+        setSearchHistory(parsed.filter((entry): entry is string => typeof entry === 'string'));
+      }
+    } catch {
+      // Unreadable history is not worth failing the page for — start empty.
+      localStorage.removeItem('searchHistory');
     }
   }, []);
 

@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 
 export interface UsefulLink {
   name: string;
@@ -283,14 +284,21 @@ async function fetchProductBySlugOrIdFromServer(slugOrId: string): Promise<Produ
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+  // Escape LIKE wildcards: the raw slug reached the pattern, so `/product/%`
+  // matched every row. And `.maybeSingle()` ERRORS (PGRST116) when a slug is a
+  // prefix of two titles, which surfaced to the learner as "Product Not Found"
+  // — take the first deterministic match instead.
+  const escapedTitle = titleFromSlug.replace(/[\\%_]/g, (c) => `\\${c}`);
+
   const { data, error } = await supabase
     .from('products')
     .select(PRODUCTS_SELECT)
-    .ilike('title', `%${titleFromSlug}%`)
-    .maybeSingle();
+    .ilike('title', `%${escapedTitle}%`)
+    .order('title', { ascending: true })
+    .limit(1);
 
   if (error) throw error;
-  return data ? transformProduct(data) : null;
+  return data && data.length > 0 ? transformProduct(data[0]) : null;
 }
 
 export function useCategories() {
@@ -363,10 +371,16 @@ const EMPTY_COUNTS: Record<string, number> = {};
  * it selects `*` (which includes per-video rich content + transcripts).
  */
 async function fetchCategoryCountsFromServer(): Promise<Record<string, number>> {
-  const { data, error } = await supabase
-    .from('products')
-    .select('category_id');
-  if (error) throw error;
+  // Paged: PostgREST caps a plain select at 1000 rows on this project, which
+  // would silently under-report category counts once the catalogue grows past
+  // it — the same truncation that once showed "Study (0)" in the question bank.
+  const data = await fetchAllRows<{ category_id: string }>((from, to) =>
+    supabase
+      .from('products')
+      .select('category_id')
+      .order('id', { ascending: true })
+      .range(from, to),
+  );
   const map: Record<string, number> = {};
   (data || []).forEach((row: { category_id: string }) => {
     map[row.category_id] = (map[row.category_id] || 0) + 1;
