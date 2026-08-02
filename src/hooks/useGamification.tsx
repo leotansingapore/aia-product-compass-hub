@@ -16,6 +16,14 @@ interface QuizResult {
    * first eight hex characters of a UUID otherwise.
    */
   categoryId?: string | null;
+  /**
+   * The lesson this quiz belongs to, when it is an in-lesson quiz. The daily
+   * XP limit is scoped per lesson: keying it on productId alone meant a learner
+   * working through a course earned on their first quiz and was then told
+   * "Quiz Already Completed Today" on every other lesson in the same product.
+   * Omit for a product-level quiz (one per product per day, as before).
+   */
+  videoId?: string | null;
   score: number;
   totalQuestions: number;
   isPerfectScore: boolean;
@@ -42,12 +50,22 @@ export const useGamification = () => {
       // farming. The boundary is the learner's own midnight — a UTC boundary
       // rolled the "day" over at 08:00 in Singapore, so an evening quiz still
       // counted as "today" the following morning.
-      const { data: existingAttempt } = await supabase
+      // Scope the limit to this specific lesson when we have one, so other
+      // lessons in the same course still earn. Typed loosely because chaining a
+      // conditional filter onto the builder trips TS2589 (excessively deep
+      // instantiation) in the generated Supabase types.
+      const baseAttemptQuery: any = supabase
         .from('quiz_attempts')
         .select('id')
         .eq('user_id', user.id)
         .eq('product_id', result.productId)
-        .gte('completed_at', startOfLocalDayIso())
+        .gte('completed_at', startOfLocalDayIso());
+
+      const scopedAttemptQuery = result.videoId
+        ? baseAttemptQuery.eq('video_id', result.videoId)
+        : baseAttemptQuery.is('video_id', null);
+
+      const { data: existingAttempt } = await scopedAttemptQuery
         .order('completed_at', { ascending: false })
         .limit(1);
 
@@ -55,7 +73,9 @@ export const useGamification = () => {
         console.log('⚠️ Quiz already completed today, no XP awarded');
         toast({
           title: "Quiz Already Completed Today",
-          description: "You've already earned XP for this quiz today. Try again tomorrow!",
+          description: result.videoId
+            ? "You've already earned XP for this lesson's quiz today. Try again tomorrow!"
+            : "You've already earned XP for this quiz today. Try again tomorrow!",
           variant: "default",
         });
         return;
@@ -71,10 +91,11 @@ export const useGamification = () => {
         .insert({
           user_id: user.id,
           product_id: result.productId,
+          video_id: result.videoId ?? null,
           score: result.score,
           total_questions: result.totalQuestions,
           xp_earned: xpEarned
-        });
+        } as never);
 
       if (quizError) {
         console.error('❌ Quiz attempt error:', quizError);

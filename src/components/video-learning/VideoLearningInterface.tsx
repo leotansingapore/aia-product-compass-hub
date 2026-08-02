@@ -148,8 +148,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   // Quiz submit. Marking the lesson complete is only half of it — the attempt
   // also has to be recorded so the learner gets XP and an achievement check.
-  // (recordQuizCompletion enforces the once-per-product-per-day XP limit and
-  // will tell the learner if they've already earned today.)
+  // Passing videoId scopes the once-per-day XP limit to THIS lesson, so the
+  // other quizzes in the same course still earn today.
   const handleQuizComplete = useCallback(async (outcome: InlineQuizOutcome) => {
     const activeVideo = videos[safeVideoIndex];
     if (!activeVideo?.id) return;
@@ -157,6 +157,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
     await recordQuizCompletion({
       productId,
       categoryId,
+      videoId: activeVideo.id,
       score: outcome.score,
       totalQuestions: outcome.totalQuestions,
       isPerfectScore: outcome.totalQuestions > 0 && outcome.score === outcome.totalQuestions,
