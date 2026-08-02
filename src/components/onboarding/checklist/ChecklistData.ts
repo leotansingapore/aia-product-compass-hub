@@ -7,6 +7,7 @@ import {
   Target,
   Sparkles
 } from 'lucide-react';
+import { FEATURES, type FeatureKey } from '@/lib/tiers';
 
 export interface ChecklistItem {
   id: string;
@@ -16,6 +17,13 @@ export interface ChecklistItem {
   action: () => void;
   points: number;
   category: 'essential' | 'explore' | 'advanced';
+  /**
+   * Feature the item's destination is gated behind. The renderer resolves
+   * this through `can()` and shows a lock instead of a Start button — new
+   * Explorers used to be sent straight into a tier-gated route and bounced
+   * back home with a "This section is locked" toast.
+   */
+  feature?: FeatureKey;
 }
 
 export const getCategoryColor = (category: string) => {
@@ -79,7 +87,8 @@ export const createChecklistItems = (
       navigate('/category/investment-products');
     },
     points: 15,
-    category: 'essential'
+    category: 'essential',
+    feature: FEATURES.PRODUCTS
   },
   {
     id: 'client-profile',
@@ -91,7 +100,8 @@ export const createChecklistItems = (
       navigate('/categories');
     },
     points: 20,
-    category: 'explore'
+    category: 'explore',
+    feature: FEATURES.PRODUCTS
   },
   {
     id: 'bookmark-item',
@@ -103,7 +113,8 @@ export const createChecklistItems = (
       navigate('/category/investment-products');
     },
     points: 10,
-    category: 'explore'
+    category: 'explore',
+    feature: FEATURES.PRODUCTS
   },
   {
     id: 'watch-video',
@@ -115,6 +126,7 @@ export const createChecklistItems = (
       navigate('/category/investment-products');
     },
     points: 15,
-    category: 'explore'
+    category: 'explore',
+    feature: FEATURES.PRODUCTS
   },
 ];

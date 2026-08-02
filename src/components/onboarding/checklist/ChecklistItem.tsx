@@ -1,4 +1,4 @@
-import { CheckCircle, Circle } from 'lucide-react';
+import { CheckCircle, Circle, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ChecklistItem as ChecklistItemType, getCategoryColor, getCategoryLabel } from './ChecklistData';
@@ -6,17 +6,21 @@ import { ChecklistItem as ChecklistItemType, getCategoryColor, getCategoryLabel 
 interface ChecklistItemProps {
   item: ChecklistItemType;
   completed: boolean;
+  /** Destination isn't unlocked on this user's tier — no Start button. */
+  locked?: boolean;
 }
 
-export function ChecklistItem({ item, completed }: ChecklistItemProps) {
+export function ChecklistItem({ item, completed, locked = false }: ChecklistItemProps) {
   const Icon = item.icon;
-  
+
   return (
     <div
       className={`flex items-center gap-4 p-4 rounded-lg border transition-all ${
-        completed 
-          ? 'bg-accent/30 border-primary/20' 
-          : 'hover:bg-accent/20 border-border'
+        completed
+          ? 'bg-accent/30 border-primary/20'
+          : locked
+            ? 'border-dashed border-border bg-muted/30'
+            : 'hover:bg-accent/20 border-border'
       }`}
     >
       <div className="flex-shrink-0">
@@ -53,7 +57,14 @@ export function ChecklistItem({ item, completed }: ChecklistItemProps) {
         </p>
       </div>
 
-      {!completed && (
+      {!completed && locked && (
+        <Badge variant="outline" className="flex-shrink-0 gap-1 text-micro text-muted-foreground">
+          <Lock className="h-3 w-3" aria-hidden="true" />
+          Not in your access
+        </Badge>
+      )}
+
+      {!completed && !locked && (
         <Button
           variant="outline"
           size="sm"
