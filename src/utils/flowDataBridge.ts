@@ -79,7 +79,7 @@ export function fromReactFlowEdges(rfEdges: Edge[]): FlowEdge[] {
 
 // ─── Type mapping helpers ───────────────────────────────────────
 
-function mapNodeType(dbType: FlowNode['type']): string {
+export function mapNodeType(dbType: FlowNode['type']): string {
   const map: Record<string, string> = {
     start: 'scriptStart',
     end: 'scriptEnd',

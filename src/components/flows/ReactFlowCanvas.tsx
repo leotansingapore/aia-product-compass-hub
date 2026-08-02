@@ -22,7 +22,7 @@ import 'reactflow/dist/style.css';
 
 import type { FlowNode, FlowEdge } from '@/hooks/useScriptFlows';
 import type { ScriptEntry } from '@/hooks/useScripts';
-import { toReactFlowNodes, toReactFlowEdges, fromReactFlowNodes, fromReactFlowEdges } from '@/utils/flowDataBridge';
+import { toReactFlowNodes, toReactFlowEdges, fromReactFlowNodes, fromReactFlowEdges, mapNodeType } from '@/utils/flowDataBridge';
 import { scriptFlowNodeTypes } from './nodes';
 import { scriptFlowEdgeTypes } from './edges';
 import { useFlowHistory } from './hooks/useFlowHistory';
@@ -304,6 +304,24 @@ function ReactFlowCanvasInner({
   const selectedNode = useMemo(() => nodes.find((n) => n.id === selectedNodeId) || null, [nodes, selectedNodeId]);
   const selectedEdge = useMemo(() => edges.find((e) => e.id === selectedEdgeId) || null, [edges, selectedEdgeId]);
 
+  // Apply a DB-shape update payload to a React Flow node. A `type` change must
+  // land in BOTH node.type (canvas shape) and data.nodeType (what persistence
+  // reads) — merging it into data alone silently discards the change.
+  const applyNodeDataUpdates = useCallback((n: Node, dataUpdates: Record<string, any>): Node => {
+    const { type: newDbType, ...rest } = dataUpdates;
+    const newData: Record<string, any> = { ...n.data, ...rest };
+    if (rest.scriptId !== undefined) {
+      const script = scripts.find((s) => s.id === rest.scriptId);
+      newData.scriptName = script?.stage;
+    }
+    let rfType = n.type;
+    if (newDbType !== undefined) {
+      newData.nodeType = newDbType;
+      rfType = mapNodeType(newDbType);
+    }
+    return { ...n, type: rfType, data: newData };
+  }, [scripts]);
+
   const handleUpdateNode = useCallback((id: string, dataUpdates: Record<string, any>) => {
     if (Object.keys(dataUpdates).length === 0) {
       // Close panel (deselect)
@@ -312,16 +330,7 @@ function ReactFlowCanvasInner({
       return;
     }
 
-    setNodes((nds) => nds.map((n) => {
-      if (n.id !== id) return n;
-      const newData = { ...n.data, ...dataUpdates };
-      // Enrich script name if scriptId changed
-      if (dataUpdates.scriptId !== undefined) {
-        const script = scripts.find((s) => s.id === dataUpdates.scriptId);
-        newData.scriptName = script?.stage;
-      }
-      return { ...n, data: newData };
-    }));
+    setNodes((nds) => nds.map((n) => (n.id === id ? applyNodeDataUpdates(n, dataUpdates) : n)));
 
     requestAnimationFrame(() => {
       const n = rfGetNodes();
@@ -329,7 +338,7 @@ function ReactFlowCanvasInner({
       history.takeSnapshot(n, e, 'Updated node');
       notifyParent();
     });
-  }, [setNodes, scripts, history, rfGetNodes, rfGetEdges, notifyParent]);
+  }, [setNodes, applyNodeDataUpdates, history, rfGetNodes, rfGetEdges, notifyParent]);
 
   const handleDeleteNode = useCallback((id: string) => {
     setNodes((nds) => nds.filter((n) => n.id !== id));
@@ -561,15 +570,7 @@ function ReactFlowCanvasInner({
         edges: fromReactFlowEdges(rfGetEdges()),
       }),
       updateNodeData: (nodeId: string, dataUpdates: Record<string, any>) => {
-        setNodes((nds) => nds.map((n) => {
-          if (n.id !== nodeId) return n;
-          const newData = { ...n.data, ...dataUpdates };
-          if (dataUpdates.scriptId !== undefined) {
-            const script = scripts.find((s) => s.id === dataUpdates.scriptId);
-            newData.scriptName = script?.stage;
-          }
-          return { ...n, data: newData };
-        }));
+        setNodes((nds) => nds.map((n) => (n.id === nodeId ? applyNodeDataUpdates(n, dataUpdates) : n)));
         requestAnimationFrame(() => {
           const n = rfGetNodes();
           const e = rfGetEdges();
