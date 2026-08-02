@@ -51,7 +51,10 @@ export function useScripts() {
         target_audience: (d.target_audience as string) || 'general',
         script_role: (d as any).script_role || 'consultant',
         tags: (d as any).tags || [],
-        versions: (d.versions as unknown as ScriptVersion[]) || [],
+        // jsonb can come back as an object (or null) if a row was written by
+        // hand — `|| []` wouldn't catch that and every .map/.some downstream
+        // would throw while typing in the search box.
+        versions: Array.isArray(d.versions) ? (d.versions as unknown as ScriptVersion[]) : [],
         attachments: Array.isArray((d as any).attachments) ? ((d as any).attachments as ScriptAttachment[]) : [],
         related_script_id: (d as any).related_script_id || null,
       })));
