@@ -167,6 +167,7 @@ function FlashCard({
           >
             <div className="absolute top-2 right-2 z-10" onClick={e => e.stopPropagation()}>
               <button type="button" onClick={e => { e.stopPropagation(); onOpen(card); }}
+                tabIndex={step === 1 ? 0 : -1}
                 aria-label={`Open ${card.title} in full view`}
                 className={cn(TAP_TARGET, "text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary")}>
                 full view
@@ -174,6 +175,7 @@ function FlashCard({
             </div>
             <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
               <button type="button" onClick={e => { e.stopPropagation(); onDraw(card); }}
+                tabIndex={step === 1 ? 0 : -1}
                 aria-label={`Draw and compare ${card.title}`}
                 className={cn(TAP_TARGET, "flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 px-2 py-1 rounded-lg transition-colors shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary")}>
                 <Pencil className="h-3 w-3" /> Draw &amp; Compare
@@ -185,12 +187,12 @@ function FlashCard({
                 <img src={currentImg!} alt={card.title} loading="lazy" className="w-full h-full object-contain p-2 pointer-events-none" />
                 {allImages.length > 1 && (
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1" onClick={e => e.stopPropagation()}>
-                    <button type="button" aria-label="Previous drawing" onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
+                    <button type="button" aria-label="Previous drawing" tabIndex={step === 1 ? 0 : -1} onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
                       className="p-1.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                       <svg className="h-3 w-3" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                     </button>
                     <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">{imgIndex + 1}/{allImages.length}</span>
-                    <button type="button" aria-label="Next drawing" onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }} disabled={imgIndex === allImages.length - 1}
+                    <button type="button" aria-label="Next drawing" tabIndex={step === 1 ? 0 : -1} onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }} disabled={imgIndex === allImages.length - 1}
                       className="p-1.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                       <svg className="h-3 w-3" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                     </button>
