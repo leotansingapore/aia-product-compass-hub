@@ -13,10 +13,20 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
+import { resolveItemContent, buildEditedCustomContent } from "@/lib/playbookItemContent";
 import { toast } from "sonner";
 
 function slugify(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+/** Bubble Enter/Space on a focusable non-button collapsible header to a click */
+function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.target !== e.currentTarget) return;
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget as HTMLElement).click();
+  }
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -56,7 +66,7 @@ function SectionAnchorLink({ anchor }: { anchor: string }) {
           toast.error("Couldn't copy — your browser blocked clipboard access");
         });
       }}
-      className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground"
+      className="opacity-0 group-hover/section:opacity-100 focus-visible:opacity-100 transition-opacity text-muted-foreground hover:text-foreground"
     >
       {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Link className="h-3.5 w-3.5" />}
     </button>
@@ -163,16 +173,12 @@ export default function PublicPlaybookView() {
   const itemsWithData = useMemo(() => {
     return items.map(item => {
       if (item.item_type === 'section') {
-        return { ...item, script: undefined, originalScript: undefined, objection: undefined };
+        return { ...item, script: undefined, resolved: undefined, objection: undefined };
       }
       const script = item.item_type === 'script' ? scripts.find((s: any) => s.id === item.script_id) : undefined;
       const objection = item.item_type === 'objection' ? objections.find((o: any) => o.id === item.objection_id) : undefined;
-      let displayScript = script;
-      const customContent = (item as any).custom_content;
-      if (script && customContent && typeof customContent === 'object' && !customContent.label) {
-        displayScript = { ...script, versions: customContent };
-      }
-      return { ...item, script: displayScript, originalScript: script, objection };
+      const resolved = script ? resolveItemContent((item as any).custom_content, script as any) : undefined;
+      return { ...item, script, resolved, objection };
     }).filter(item => item.item_type === 'section' || item.script || item.objection);
   }, [items, scripts, objections]);
 
@@ -192,11 +198,8 @@ export default function PublicPlaybookView() {
 
   const handleSaveEdit = useCallback(async (itemId: string, versionIdx: number, newContent: string) => {
     const item = itemsWithData.find(i => i.id === itemId);
-    if (!item?.originalScript) return;
-    const existing = (item as any).custom_content || (item.originalScript as any).versions;
-    const updated = (existing as any[]).map((v: any, i: number) =>
-      i === versionIdx ? { ...v, content: newContent } : v
-    );
+    if (!item?.script) return;
+    const updated = buildEditedCustomContent((item as any).custom_content, item.script as any, versionIdx, newContent);
     const { error } = await supabase
       .from('script_playbook_items')
       .update({ custom_content: updated } as any)
@@ -216,6 +219,7 @@ export default function PublicPlaybookView() {
       .map(i => ({
         id: i.id,
         label: (i as any).custom_content?.label || "Section",
+        level: ((i as any).custom_content?.level as 1 | 2 | 3) || 1,
         anchor: slugify((i as any).custom_content?.label || "section"),
       }));
   }, [itemsWithData]);
@@ -275,21 +279,24 @@ export default function PublicPlaybookView() {
           <div className="mb-8 p-4 rounded-xl border bg-muted/30">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Contents</p>
             <div className="space-y-1">
-              {sections.map((sec) => (
-                <a
-                  key={sec.id}
-                  href={`#${sec.anchor}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById(sec.anchor)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                    window.history.replaceState(null, "", `#${sec.anchor}`);
-                  }}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors py-0.5"
-                >
-                  <Heading1 className="h-3.5 w-3.5 text-primary shrink-0" />
-                  {sec.label}
-                </a>
-              ))}
+              {sections.map((sec) => {
+                const TocIcon = sec.level === 1 ? Heading1 : sec.level === 2 ? Heading2 : Heading3;
+                return (
+                  <a
+                    key={sec.id}
+                    href={`#${sec.anchor}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById(sec.anchor)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      window.history.replaceState(null, "", `#${sec.anchor}`);
+                    }}
+                    className={`flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors py-0.5 ${sec.level === 2 ? "pl-4" : sec.level === 3 ? "pl-8" : ""}`}
+                  >
+                    <TocIcon className="h-3.5 w-3.5 text-primary shrink-0" />
+                    {sec.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}
@@ -336,7 +343,7 @@ export default function PublicPlaybookView() {
                   <Card key={item.id}>
                     <Collapsible>
                       <CollapsibleTrigger asChild>
-                        <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-4">
+                        <CardHeader role="button" tabIndex={0} onKeyDown={headerKeyToClick} className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg">
                           <div className="flex items-start gap-3">
                             <span className="text-xs text-muted-foreground font-mono w-5 text-center mt-0.5">{idx + 1}</span>
                             <div className="flex-1 min-w-0">
@@ -374,7 +381,7 @@ export default function PublicPlaybookView() {
                   <Card key={item.id}>
                     <Collapsible>
                       <CollapsibleTrigger asChild>
-                        <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-4">
+                        <CardHeader role="button" tabIndex={0} onKeyDown={headerKeyToClick} className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg">
                           <div className="flex items-start gap-3">
                             <span className="text-xs text-muted-foreground font-mono w-5 text-center mt-0.5">{idx + 1}</span>
                             <div className="flex-1 min-w-0">
@@ -394,16 +401,16 @@ export default function PublicPlaybookView() {
                       </CollapsibleTrigger>
                       <CollapsibleContent>
                         <CardContent className="pt-0 pb-4 px-4">
-                          {(item.script.versions as any[])?.map((version: any, vi: number) => {
-                            const isEditing = editingItem?.itemId === item.id && editingItem?.versionIdx === vi;
+                          {(item.resolved?.display || []).map(({ version, originalIndex }) => {
+                            const isEditing = editingItem?.itemId === item.id && editingItem?.versionIdx === originalIndex;
                             return (
-                              <div key={vi} className="mb-4 last:mb-0">
+                              <div key={originalIndex} className="mb-4 last:mb-0">
                                 <div className="flex items-center justify-between mb-2">
-                                  <Badge variant="outline" className="text-xs">{version.author || `Version ${vi + 1}`}</Badge>
+                                  <Badge variant="outline" className="text-xs">{version.author || `Version ${originalIndex + 1}`}</Badge>
                                   <div className="flex items-center gap-1">
                                     {allowEdit && !isEditing && (
                                       <Button variant="ghost" size="sm" className="h-7 gap-1 text-xs"
-                                        onClick={() => setEditingItem({ itemId: item.id, versionIdx: vi })}>
+                                        onClick={() => setEditingItem({ itemId: item.id, versionIdx: originalIndex })}>
                                         <Pencil className="h-3 w-3" /> Edit
                                       </Button>
                                     )}
@@ -413,7 +420,7 @@ export default function PublicPlaybookView() {
                                 {isEditing ? (
                                   <InlineEditor
                                     initialValue={version.content || ""}
-                                    onSave={(val) => handleSaveEdit(item.id, vi, val)}
+                                    onSave={(val) => handleSaveEdit(item.id, originalIndex, val)}
                                     onCancel={() => setEditingItem(null)}
                                   />
                                 ) : (

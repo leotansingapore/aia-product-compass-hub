@@ -31,6 +31,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
+import { resolveItemContent, buildEditedCustomContent } from "@/lib/playbookItemContent";
 import { AddToPlaybookDialog } from "@/components/playbooks/AddToPlaybookDialog";
 import { toast } from "sonner";
 import {
@@ -106,10 +107,10 @@ function SectionAnchorLink({ anchor, shareToken }: { anchor: string; shareToken?
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
         } catch {
-          // Insecure context or denied permission — don't pretend it worked.
+          toast.error("Couldn't copy — your browser blocked clipboard access");
         }
       }}
-      className="opacity-0 group-hover/section:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
+      className="opacity-0 group-hover/section:opacity-100 focus-visible:opacity-100 transition-opacity text-muted-foreground hover:text-foreground p-0.5"
     >
       {copied ? <Check className="h-3.5 w-3.5 text-primary" /> : <Link className="h-3.5 w-3.5" />}
     </button>
@@ -132,7 +133,7 @@ function CopyButton({ text }: { text: string }) {
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
         } catch {
-          // Browser blocked clipboard access — leave button in default state.
+          toast.error("Couldn't copy — your browser blocked clipboard access");
         }
       }}
     >
@@ -149,16 +150,25 @@ interface SortableScriptCardProps {
   index: number;
   isOwner: boolean;
   onRemove: (id: string) => void;
-  onInlineSave: (scriptId: string, versions: any[]) => Promise<void>;
+  onInlineSave: (item: any, versionIdx: number, content: string) => Promise<void>;
   isAuthenticated: boolean;
   /** If true render as drag overlay (no dnd hooks) */
   asOverlay?: boolean;
 }
 
+/** Bubble Enter/Space on a focusable non-button collapsible header to a click */
+function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.target !== e.currentTarget) return;
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget as HTMLElement).click();
+  }
+}
+
 function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthenticated, dragHandleProps }: {
   item: any; index: number; isOwner: boolean;
   onRemove: (id: string) => void;
-  onInlineSave: (scriptId: string, versions: any[]) => Promise<void>;
+  onInlineSave: (item: any, versionIdx: number, content: string) => Promise<void>;
   isAuthenticated: boolean;
   dragHandleProps?: any;
 }) {
@@ -167,19 +177,18 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
   const [isSaving, setIsSaving] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
+  const resolved = resolveItemContent(item.custom_content, item.script);
+
   const startInlineEdit = (versionIdx: number) => {
     setEditingVersionIdx(versionIdx);
-    setEditContent(item.script?.versions?.[versionIdx]?.content || "");
+    setEditContent(resolved.allVersions[versionIdx]?.content || "");
   };
   const cancelInlineEdit = () => { setEditingVersionIdx(null); setEditContent(""); };
   const saveInlineEdit = async () => {
     if (editingVersionIdx === null) return;
     setIsSaving(true);
     try {
-      const updatedVersions = item.script.versions.map((v: any, i: number) =>
-        i === editingVersionIdx ? { ...v, content: editContent } : v
-      );
-      await onInlineSave(item.script_id, updatedVersions);
+      await onInlineSave(item, editingVersionIdx, editContent);
       // Only close on success — on failure leave the edit state intact so the
       // user can retry without retyping.
       setEditingVersionIdx(null);
@@ -193,11 +202,17 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
     <Card>
       <Collapsible>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6">
+          <CardHeader
+            role="button"
+            tabIndex={0}
+            onKeyDown={headerKeyToClick}
+            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+          >
             <div className="flex items-start gap-2 sm:gap-3">
               {isOwner && dragHandleProps && (
                 <button
                   {...dragHandleProps}
+                  aria-label="Drag to reorder"
                   className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5"
                   onClick={e => e.stopPropagation()}
                 >
@@ -210,7 +225,7 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
                   <CardTitle className="text-sm font-medium leading-snug">{item.script?.stage}</CardTitle>
                   <div className="flex items-center gap-1">
                     {isAuthenticated && (
-                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); startInlineEdit(0); }} title="Edit script">
+                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); startInlineEdit(resolved.display[0]?.originalIndex ?? 0); }} title="Edit script">
                         <Pencil className="h-3.5 w-3.5" />
                       </Button>
                     )}
@@ -227,9 +242,14 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
                   {item.script?.target_audience && item.script.target_audience !== "general" && (
                     <Badge variant="outline" className="text-[10px]">{item.script.target_audience}</Badge>
                   )}
-                  {item.custom_content?.version_index !== undefined && item.script?.versions?.[item.custom_content.version_index] && (
+                  {resolved.pinnedIndex !== undefined && resolved.display[0] && (
                     <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">
-                      {item.script.versions[item.custom_content.version_index].author || `Version ${item.custom_content.version_index + 1}`}
+                      {resolved.display[0].version.author || `Version ${resolved.pinnedIndex + 1}`}
+                    </Badge>
+                  )}
+                  {resolved.hasLocalEdits && (
+                    <Badge variant="outline" className="text-[10px] text-muted-foreground" title="This script was edited inside this playbook — the original script is unchanged">
+                      Edited in playbook
                     </Badge>
                   )}
                 </div>
@@ -240,11 +260,7 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
         <CollapsibleContent>
           <CardContent className="pt-0 pb-4 px-3 sm:px-6">
             {(() => {
-              const versionIndex = item.custom_content?.version_index;
-              const versionsToRender = versionIndex !== undefined && item.script?.versions?.[versionIndex]
-                ? [{ version: item.script.versions[versionIndex], originalIndex: versionIndex }]
-                : (item.script?.versions || []).map((v: any, i: number) => ({ version: v, originalIndex: i }));
-              return versionsToRender.map(({ version, originalIndex }: { version: any; originalIndex: number }) => (
+              return resolved.display.map(({ version, originalIndex }: { version: any; originalIndex: number }) => (
                 <div key={originalIndex} className="mb-4 last:mb-0">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline" className="text-xs">{version.author || `Version ${originalIndex + 1}`}</Badge>
@@ -326,10 +342,15 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: { item: any; 
       <Card>
         <Collapsible>
           <CollapsibleTrigger asChild>
-            <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6">
+            <CardHeader
+              role="button"
+              tabIndex={0}
+              onKeyDown={headerKeyToClick}
+              className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+            >
               <div className="flex items-start gap-2 sm:gap-3">
                 {isOwner && (
-                  <button {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5" onClick={e => e.stopPropagation()}>
+                  <button {...attributes} {...listeners} aria-label="Drag to reorder" className="cursor-grab active:cursor-grabbing touch-none text-muted-foreground hover:text-foreground p-1 -ml-1 mt-0.5" onClick={e => e.stopPropagation()}>
                     <GripVertical className="h-4 w-4" />
                   </button>
                 )}
@@ -401,6 +422,7 @@ function SectionHeader({
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(item.custom_content?.label || "Section");
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const level: 1 | 2 | 3 = (item.custom_content?.level as 1 | 2 | 3) || 1;
   const cfg = LEVEL_CONFIG[level];
@@ -450,16 +472,30 @@ function SectionHeader({
         {childCount > 0 && collapsed && (
           <span className="text-xs text-muted-foreground bg-background/70 border rounded-full px-2 py-0.5 font-mono shrink-0">{childCount}</span>
         )}
-        <div className="opacity-0 group-hover/section:opacity-100 transition-opacity flex items-center gap-1 shrink-0 ml-1">
+        <div className="opacity-0 group-hover/section:opacity-100 group-focus-within/section:opacity-100 transition-opacity flex items-center gap-1 shrink-0 ml-1">
           <SectionAnchorLink anchor={anchor} shareToken={shareToken} />
           {isOwner && (
             <>
               <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setEditing(true)} title="Rename"><Pencil className="h-3 w-3" /></Button>
-              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => onRemove(item.id)} title="Delete"><X className="h-3 w-3" /></Button>
+              <Button variant="ghost" size="icon" className="h-6 w-6 text-destructive" onClick={() => setShowDeleteConfirm(true)} title="Delete section"><X className="h-3 w-3" /></Button>
             </>
           )}
         </div>
       </div>
+      <AlertDialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this section header?</AlertDialogTitle>
+            <AlertDialogDescription>
+              "{item.custom_content?.label || "Section"}" will be removed. The scripts under it are kept — they'll merge into the section above.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={() => onRemove(item.id)}>Delete Section</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
@@ -473,7 +509,7 @@ function SortableGroup({
   group: Group; isOwner: boolean; onRemove: (id: string) => void;
   onRename: (id: string, label: string, level?: number) => void;
   shareToken?: string | null; collapsed: boolean; onToggleCollapse: () => void;
-  onInlineSave: (scriptId: string, versions: any[]) => Promise<void>;
+  onInlineSave: (item: any, versionIdx: number, content: string) => Promise<void>;
   isAuthenticated: boolean; globalStartIndex: number;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: group.key });
@@ -519,8 +555,8 @@ export default function PlaybookDetail() {
   const navigate = useNavigate();
   const { user } = useSimplifiedAuth();
   const queryClient = useQueryClient();
-  const { playbooks, togglePublic } = usePlaybooks();
-  const { items, isLoading, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
+  const { playbooks, togglePublic, isLoading: playbooksLoading } = usePlaybooks();
+  const { items, isLoading, addItem, removeItem, reorderItems } = usePlaybookItems(playbookId || null);
   const { scripts, loading: scriptsLoading, refetch } = useScripts();
   const { updateScript } = useScriptsMutations();
   const { entries: objections, loading: objectionsLoading } = useObjections();
@@ -558,32 +594,37 @@ export default function PlaybookDetail() {
   // Group IDs for the outer SortableContext (only sections have distinct group keys; "root" group is not draggable as a group)
   const groupIds = useMemo(() => groups.filter(g => g.section).map(g => g.key), [groups]);
 
-  const { addItem } = usePlaybookItems(playbookId || null);
-
   const handleAddSection = async (level: 1 | 2 | 3 = 1) => {
     if (!playbookId) return;
     const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
     const labels = { 1: "New Stage", 2: "New Group", 3: "New Sub-group" };
-    await supabase.from("script_playbook_items").insert({ playbook_id: playbookId, item_type: "section", sort_order: maxOrder, custom_content: { label: labels[level], level } } as any);
+    const { error } = await supabase.from("script_playbook_items").insert({ playbook_id: playbookId, item_type: "section", sort_order: maxOrder, custom_content: { label: labels[level], level } } as any);
+    if (error) { toast.error("Failed to add section"); return; }
     queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
   };
 
   const handleRenameSection = async (itemId: string, label: string, level?: number) => {
     const existing = items.find(i => i.id === itemId);
     const existingLevel = (existing?.custom_content as any)?.level || 1;
-    await supabase.from("script_playbook_items").update({ custom_content: { label, level: level ?? existingLevel } } as any).eq("id", itemId);
+    const { error } = await supabase.from("script_playbook_items").update({ custom_content: { label, level: level ?? existingLevel } } as any).eq("id", itemId);
+    if (error) { toast.error("Failed to update section"); return; }
     queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
   };
 
   const handleUserSearch = async (query: string) => {
     setCollaboratorSearch(query);
-    if (query.length < 2) { setSearchResults([]); return; }
+    // Strip characters that break PostgREST .or() filter syntax
+    const sanitized = query.replace(/[,()\\]/g, " ").trim();
+    if (sanitized.length < 2) { setSearchResults([]); return; }
     setIsSearching(true);
     try {
-      const { data } = await supabase.from("profiles").select("user_id, display_name, first_name, last_name, email")
-        .or(`display_name.ilike.%${query}%,email.ilike.%${query}%,first_name.ilike.%${query}%,last_name.ilike.%${query}%`).limit(6);
+      const { data, error } = await supabase.from("profiles").select("user_id, display_name, first_name, last_name, email")
+        .or(`display_name.ilike.%${sanitized}%,email.ilike.%${sanitized}%,first_name.ilike.%${sanitized}%,last_name.ilike.%${sanitized}%`).limit(6);
+      if (error) { setSearchResults([]); return; }
       const existingIds = new Set([playbook?.created_by, ...collaborators.map(c => c.user_id)]);
       setSearchResults((data || []).filter(p => !existingIds.has(p.user_id)));
+    } catch {
+      setSearchResults([]);
     } finally { setIsSearching(false); }
   };
 
@@ -668,9 +709,26 @@ export default function PlaybookDetail() {
     }
   }, [groups, persistOrder]);
 
-  const handleInlineSave = useCallback(async (scriptId: string, versions: any[]) => {
+  const handleInlineSave = useCallback(async (item: any, versionIdx: number, content: string) => {
+    const resolved = resolveItemContent(item.custom_content, item.script);
+
+    // If this item already carries playbook-local edits, keep the edit local —
+    // that's what's displayed, so that's what the user is editing.
+    if (resolved.hasLocalEdits) {
+      const updated = buildEditedCustomContent(item.custom_content, item.script, versionIdx, content);
+      const { error } = await supabase.from("script_playbook_items").update({ custom_content: updated } as any).eq("id", item.id);
+      if (error) { toast.error("Failed to save edit"); throw error; }
+      toast.success("Edit saved to this playbook");
+      queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
+      return;
+    }
+
+    // Otherwise edit the original shared script (with version history).
+    const scriptId = item.script_id;
     const currentScript = scripts.find(s => s.id === scriptId);
-    if (currentScript && user) {
+    if (!currentScript) { toast.error("Script not found"); return; }
+    const versions = currentScript.versions.map((v: any, i: number) => i === versionIdx ? { ...v, content } : v);
+    if (user) {
       try {
         await supabase.from("script_version_history" as any).insert({
           script_id: scriptId, versions: JSON.parse(JSON.stringify(currentScript.versions)),
@@ -680,7 +738,7 @@ export default function PlaybookDetail() {
     }
     await updateScript(scriptId, { versions });
     refetch();
-  }, [updateScript, refetch, scripts, user]);
+  }, [updateScript, refetch, scripts, user, queryClient, playbookId]);
 
   const handleAISuggest = async () => {
     const usedIds = new Set(items.map(i => i.script_id));
@@ -716,7 +774,15 @@ export default function PlaybookDetail() {
     return map;
   }, [groups]);
 
-  if (!playbook && !isLoading) {
+  if (!playbook && playbooksLoading) {
+    return (
+      <PageLayout title="Playbook" description="Loading playbook">
+        <div className="flex justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>
+      </PageLayout>
+    );
+  }
+
+  if (!playbook && !playbooksLoading) {
     return (
       <PageLayout title="Playbook Not Found" description="The requested playbook was not found">
         <div className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-12 text-center">
@@ -739,20 +805,28 @@ export default function PlaybookDetail() {
             <div className="flex-1 min-w-0">
               <h1 className="text-xl sm:text-2xl font-bold leading-snug">{playbook?.title}</h1>
               {playbook?.description && <p className="text-muted-foreground text-sm mt-1">{playbook.description}</p>}
-              <p className="text-xs text-muted-foreground mt-1">By {playbook?.creator_name} · {items.length} item{items.length !== 1 ? "s" : ""}</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                By {playbook?.creator_name} · {(() => {
+                  const n = items.filter(i => i.item_type !== "section").length;
+                  const s = items.length - n;
+                  return `${n} item${n !== 1 ? "s" : ""}${s > 0 ? ` · ${s} section${s !== 1 ? "s" : ""}` : ""}`;
+                })()}
+              </p>
             </div>
           </div>
           {isOwner && (
             <div className="grid grid-cols-2 sm:flex gap-2 sm:flex-wrap ml-0 sm:ml-11">
-              {/* Share dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              {/* Share panel — Popover (not DropdownMenu: menu typeahead steals
+                  keystrokes from the search input) */}
+              {isActualOwner && (
+              <Popover>
+                <PopoverTrigger asChild>
                   <Button variant={playbook?.is_public ? "secondary" : "outline"} size="sm" className="gap-1.5 flex-1 sm:flex-initial">
                     {playbook?.is_public ? <Globe className="h-4 w-4" /> : <Share2 className="h-4 w-4" />}
                     {playbook?.is_public ? "Shared" : "Share"}
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-96 p-4 max-h-[80vh] overflow-y-auto" align="end" onClick={e => e.stopPropagation()}>
+                </PopoverTrigger>
+                <PopoverContent className="w-96 max-w-[95vw] p-4 max-h-[80vh] overflow-y-auto" align="end">
                   <p className="font-semibold text-sm mb-3">Share & Collaborators</p>
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-2">
@@ -840,8 +914,9 @@ export default function PlaybookDetail() {
                       )}
                     </>
                   )}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                </PopoverContent>
+              </Popover>
+              )}
 
               <Button variant="outline" size="sm" onClick={handleAISuggest} disabled={isAiLoading} className="gap-1.5">
                 {isAiLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
@@ -875,7 +950,12 @@ export default function PlaybookDetail() {
               ) : myRequest?.status === "pending" ? (
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium"><Clock className="h-3.5 w-3.5" /> Request pending approval</div>
               ) : myRequest?.status === "rejected" ? (
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground"><XCircle className="h-3.5 w-3.5" /> Request was declined</div>
+                <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground"><XCircle className="h-3.5 w-3.5" /> Request was declined</span>
+                  <Button variant="outline" size="sm" className="gap-1.5 h-7 text-xs" onClick={() => requestEditAccess.mutate()} disabled={requestEditAccess.isPending}>
+                    {requestEditAccess.isPending ? <Loader2 className="h-3 w-3 animate-spin" /> : <UserPlus className="h-3 w-3" />} Request again
+                  </Button>
+                </div>
               ) : (
                 <Button variant="outline" size="sm" className="gap-1.5" onClick={() => requestEditAccess.mutate()} disabled={requestEditAccess.isPending}>
                   {requestEditAccess.isPending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <UserPlus className="h-3.5 w-3.5" />} Request Edit Access
