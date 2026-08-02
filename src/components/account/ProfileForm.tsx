@@ -92,13 +92,22 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
         .from('knowledge-files')
         .getPublicUrl(filePath);
 
-      const { error: updateError } = await supabase
+      // `.select()` makes the write verifiable: an UPDATE blocked by RLS (or
+      // pointed at a row that isn't there) returns `error === null` with zero
+      // rows touched. Without this the toast said "Avatar updated" and `onSave`
+      // painted the new image for a change the database never took.
+      const { data: updatedRow, error: updateError } = await supabase
         .from('profiles')
         .update({ avatar_url: publicUrl })
-        .eq('user_id', profile.user_id);
+        .eq('user_id', profile.user_id)
+        .select('user_id')
+        .maybeSingle();
 
       if (updateError) {
         throw updateError;
+      }
+      if (!updatedRow) {
+        throw new Error('Avatar was not saved to your profile');
       }
 
       toast({
@@ -111,8 +120,8 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
     } catch (error) {
       console.error('Error uploading avatar:', error);
       toast({
-        title: "Error",
-        description: "Failed to upload avatar",
+        title: "Avatar not updated",
+        description: error instanceof Error ? error.message : "Failed to upload avatar",
         variant: "destructive",
       });
     } finally {
