@@ -11,6 +11,7 @@ import { ChatMessage } from "./ChatMessage";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
 import type { ChatMode } from "@/components/chat/types";
+import { toReadableStream, readSseDeltas, edgeErrorMessage } from "@/lib/sseStream";
 
 interface ChatMessageType {
   role: 'user' | 'assistant';
@@ -192,40 +193,29 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
 
       if (error) throw error;
 
-      // Handle streaming response
-      if (data instanceof ReadableStream) {
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        let fullContent = '';
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
-          for (const line of lines) {
-            const jsonStr = line.slice(6);
-            if (jsonStr === '[DONE]') continue;
-            try {
-              const parsed = JSON.parse(jsonStr);
-              const delta = parsed.choices?.[0]?.delta?.content;
-              if (delta) {
-                fullContent += delta;
-                setMessages(prev => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = { ...updated[updated.length - 1], content: fullContent, isStreaming: true };
-                  return updated;
-                });
-              }
-            } catch { /* skip */ }
-          }
-        }
+      // Handle streaming response. `invoke` returns the Response object (not a
+      // ReadableStream) for text/event-stream, so resolve it before reading —
+      // the old `instanceof ReadableStream` check silently matched nothing and
+      // left this bubble empty forever.
+      const stream = toReadableStream(data);
+      if (stream) {
+        const fullContent = await readSseDeltas(stream, (text) => {
+          setMessages(prev => {
+            const updated = [...prev];
+            updated[updated.length - 1] = { ...updated[updated.length - 1], content: text, isStreaming: true };
+            return updated;
+          });
+        });
 
         setMessages(prev => {
           const updated = [...prev];
           updated[updated.length - 1] = { ...updated[updated.length - 1], content: fullContent, isStreaming: false };
           return updated;
         });
+
+        if (!fullContent.trim()) {
+          throw new Error('The assistant returned an empty response. Please try again.');
+        }
       } else if (data?.message) {
         setMessages(prev => {
           const updated = [...prev];
@@ -238,7 +228,10 @@ export function EnhancedAIChat({ productData }: EnhancedAIChatProps) {
     } catch (error: any) {
       console.error('Error sending message:', error);
       setMessages(prev => prev.slice(0, -1));
-      toast({ title: "Error", description: error.message || "Failed to send message.", variant: "destructive" });
+      // Surface the function's real 402/429 body — supabase-js otherwise hides
+      // it behind a generic "non-2xx status code".
+      const description = await edgeErrorMessage(error, "Failed to send message.");
+      toast({ title: "Error", description, variant: "destructive" });
     } finally {
       setIsLoading(false);
     }

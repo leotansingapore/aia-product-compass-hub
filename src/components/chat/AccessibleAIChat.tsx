@@ -13,6 +13,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
+import { toReadableStream, readSseDeltas, edgeErrorMessage } from '@/lib/sseStream';
 
 interface AccessibleAIChatProps {
   productData?: ProductData;
@@ -164,40 +165,24 @@ function AccessibleAIChatInner({ productData, className }: AccessibleAIChatProps
 
       if (error) throw error;
 
-      // Handle streaming response
-      if (data instanceof ReadableStream) {
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        let fullContent = '';
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
-
-          for (const line of lines) {
-            const jsonStr = line.slice(6);
-            if (jsonStr === '[DONE]') continue;
-            try {
-              const parsed = JSON.parse(jsonStr);
-              const delta = parsed.choices?.[0]?.delta?.content;
-              if (delta) {
-                fullContent += delta;
-                setMessages((prev) => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = {
-                    ...updated[updated.length - 1],
-                    content: fullContent,
-                    isStreaming: true
-                  };
-                  return updated;
-                });
-              }
-            } catch { /* skip malformed chunks */ }
-          }
-        }
+      // Handle streaming response. `invoke` hands back the Response object for
+      // text/event-stream, so the previous `instanceof ReadableStream` check
+      // matched nothing: the answer never rendered and — worse for this
+      // component — announceMessage never fired, so screen-reader users got
+      // silence.
+      const stream = toReadableStream(data);
+      if (stream) {
+        const fullContent = await readSseDeltas(stream, (text) => {
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = {
+              ...updated[updated.length - 1],
+              content: text,
+              isStreaming: true
+            };
+            return updated;
+          });
+        });
 
         setMessages((prev) => {
           const updated = [...prev];
@@ -209,6 +194,9 @@ function AccessibleAIChatInner({ productData, className }: AccessibleAIChatProps
           return updated;
         });
 
+        if (!fullContent.trim()) {
+          throw new Error('The assistant returned an empty response. Please try again.');
+        }
         announceMessage(fullContent, 'assistant');
       } else if (data?.message) {
         setMessages((prev) => {
@@ -232,7 +220,9 @@ function AccessibleAIChatInner({ productData, className }: AccessibleAIChatProps
       console.error('Error sending message:', error);
       setMessages((prev) => prev.slice(0, -1));
 
-      const errorMessage = error.message || 'Failed to send message';
+      // Surface the function's real 402/429 body rather than supabase-js's
+      // generic "non-2xx status code".
+      const errorMessage = await edgeErrorMessage(error, 'Failed to send message');
       announceError(errorMessage);
       setStatus((prev) => ({ ...prev, error: errorMessage }));
 
