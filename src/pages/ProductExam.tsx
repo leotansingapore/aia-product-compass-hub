@@ -75,6 +75,8 @@ export default function ProductExam() {
   const { user } = useAuth();
   const cameFromQuestionBank = location.state?.from === 'question-banks';
   const [mode, setMode] = useState<'intro' | 'simulation' | 'practice'>('intro');
+  // Remount key for the simulation — see onRetake below.
+  const [attemptKey, setAttemptKey] = useState(0);
 
   const productSlug = productSlugOrId || '';
   const title = PRODUCT_LABELS[productSlug];
@@ -260,12 +262,20 @@ export default function ProductExam() {
                 <ArrowLeft className="h-4 w-4 mr-1" /> Exit simulation
               </Button>
               <SimulationQuiz
+                // Bumping this key mounts a genuinely fresh paper. A page
+                // reload used to be the "retake" — it dropped the query cache
+                // and dumped the learner back on the intro picker instead.
+                key={attemptKey}
                 questions={questions}
                 productSlug={productSlug}
                 productTitle={title}
                 passMark={PASS_MARK}
                 durationSec={durationMin * 60}
                 onExit={() => navigate(cameFromQuestionBank ? '/question-banks' : `/product/${productSlug}`)}
+                onRetake={() => {
+                  clearSimSession(productSlug);
+                  setAttemptKey((k) => k + 1);
+                }}
                 onComplete={recordAttempt}
               />
             </>

@@ -39,6 +39,12 @@ interface SimulationQuizProps {
   /** Seconds allowed. Defaults to ~1 min per question (min 10 min). */
   durationSec?: number;
   onExit: () => void;
+  /**
+   * Start a fresh paper. The parent should bump a remount key — reloading the
+   * page instead threw away the query cache and landed the learner back on the
+   * intro picker rather than a new attempt.
+   */
+  onRetake?: () => void;
   /** Fired once when the exam is scored — used to record the attempt server-side. */
   onComplete?: (result: { score: number; correct: number; total: number; passed: boolean }) => void;
 }
@@ -65,6 +71,7 @@ export function SimulationQuiz({
   passMark = 70,
   durationSec,
   onExit,
+  onRetake,
   onComplete,
 }: SimulationQuizProps) {
   const totalSec = durationSec ?? Math.max(600, questions.length * 60);
@@ -338,9 +345,11 @@ export function SimulationQuiz({
             )}
             <div className="flex flex-wrap gap-2 pt-1">
               <Button onClick={onExit} variant="default">Back to product</Button>
-              <Button onClick={() => window.location.reload()} variant="outline" className="gap-1.5">
-                <RotateCcw className="h-4 w-4" /> Retake
-              </Button>
+              {onRetake && (
+                <Button onClick={onRetake} variant="outline" className="gap-1.5">
+                  <RotateCcw className="h-4 w-4" /> Retake
+                </Button>
+              )}
             </div>
           </CardContent>
         </Card>
