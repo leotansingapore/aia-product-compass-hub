@@ -294,6 +294,37 @@ export function clearSimSession(productSlug: string): void {
 // attempts and the Review Bank follow the user across devices/browsers.
 let currentUserId: string | null = null;
 
+/**
+ * supabase-js RESOLVES with `{ error }` instead of rejecting, so the old
+ * `.then(undefined, () => {})` on these mirror writes caught nothing: a
+ * permanent RLS denial on `qb_attempts` left the cross-device sync dead with
+ * no trace anywhere. Log every failure, and warn the learner once — their
+ * results are still on this device, but they will not follow them elsewhere.
+ */
+let mirrorWarned = false;
+function handleMirrorError(operation: string, error: unknown): void {
+  if (!error) return;
+  console.error(`Question bank server sync failed (${operation}):`, error);
+  if (mirrorWarned) return;
+  mirrorWarned = true;
+  try {
+    toast.warning("Your results aren't syncing to your account", {
+      description:
+        'They are saved on this device, but the server copy could not be updated — they may not appear on another device.',
+    });
+  } catch {
+    /* toast unavailable outside the app — ignore */
+  }
+}
+
+/** Attach the shared handler to a supabase thenable (resolved error AND rejection). */
+function watchMirror(operation: string, p: PromiseLike<{ error?: unknown } | null | undefined>): void {
+  void p.then(
+    (res) => handleMirrorError(operation, res?.error),
+    (err) => handleMirrorError(operation, err ?? new Error('rejected')),
+  );
+}
+
 /** Set (or clear, on sign-out) the account that store writes mirror to. */
 export function setQuestionBankUserId(id: string | null): void {
   currentUserId = id;
@@ -301,8 +332,9 @@ export function setQuestionBankUserId(id: string | null): void {
 
 function mirrorAttempt(a: BankAttempt): void {
   if (!currentUserId) return;
-  void (supabase.from as any)('qb_attempts')
-    .upsert({
+  watchMirror(
+    'attempt upsert',
+    (supabase.from as any)('qb_attempts').upsert({
       user_id: currentUserId,
       id: a.id,
       product_slug: a.productSlug,
@@ -316,14 +348,15 @@ function mirrorAttempt(a: BankAttempt): void {
       date_iso: a.dateISO,
       duration_sec: a.durationSec,
       category_breakdown: a.categoryBreakdown,
-    })
-    .then(undefined, () => {});
+    }),
+  );
 }
 
 function mirrorReviewUpsert(it: ReviewItem): void {
   if (!currentUserId) return;
-  void (supabase.from as any)('qb_review_bank')
-    .upsert({
+  watchMirror(
+    'review-bank upsert',
+    (supabase.from as any)('qb_review_bank').upsert({
       user_id: currentUserId,
       question_id: it.questionId,
       product_slug: it.productSlug,
@@ -337,17 +370,19 @@ function mirrorReviewUpsert(it: ReviewItem): void {
       date_iso: it.dateISO,
       correct_streak: it.correctStreak ?? 0,
       updated_at: new Date().toISOString(),
-    })
-    .then(undefined, () => {});
+    }),
+  );
 }
 
 function mirrorReviewDelete(questionId: string): void {
   if (!currentUserId) return;
-  void (supabase.from as any)('qb_review_bank')
-    .delete()
-    .eq('user_id', currentUserId)
-    .eq('question_id', questionId)
-    .then(undefined, () => {});
+  watchMirror(
+    'review-bank delete',
+    (supabase.from as any)('qb_review_bank')
+      .delete()
+      .eq('user_id', currentUserId)
+      .eq('question_id', questionId),
+  );
 }
 
 /**
