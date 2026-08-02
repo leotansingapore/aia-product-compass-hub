@@ -83,6 +83,20 @@ function getCategoryInfo(key: string) {
 // Scripts & FAQ section) · tips → the /scripts/course mini-course.
 const OFFPAGE_CATEGORIES = new Set(["servicing", "objection-handling", "faq", "tips"]);
 
+/**
+ * CollapsibleTrigger asChild on a <div>-based CardHeader produces something a
+ * mouse can open but a keyboard cannot. Paired with role="button" tabIndex={0}
+ * this restores Enter/Space. The target check keeps nested buttons, inputs and
+ * drag grips working normally.
+ */
+function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.target !== e.currentTarget) return;
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget as HTMLElement).click();
+  }
+}
+
 // Sub-type labels for Follow-Up grouping
 const followUpSubTypeLabels: Record<string, { label: string; icon: string; description: string }> = {
   "initial-text": { label: "Initial Contact", icon: "📨", description: "First texts after lead opt-in" },
@@ -1979,7 +1993,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
         onClick={() => { if (tapSelectMode && mergeSourceId && mergeSourceId !== script.id) onTapTarget?.(script.id); }}
       >
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+          <CardHeader
+            role="button"
+            tabIndex={0}
+            onKeyDown={headerKeyToClick}
+            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+          >
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
               {onMergeDragStart && (
                 <div

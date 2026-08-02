@@ -67,6 +67,20 @@ const audienceLabels: Record<string, string> = {
   clients: "Clients",
 };
 
+/**
+ * CollapsibleTrigger asChild on a <div>-based CardHeader produces something a
+ * mouse can open but a keyboard cannot. Paired with role="button" tabIndex={0}
+ * this restores Enter/Space. The target check keeps nested buttons, inputs and
+ * the drag grip working normally.
+ */
+function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.target !== e.currentTarget) return;
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget as HTMLElement).click();
+  }
+}
+
 const roleLabels: Record<string, string> = {
   consultant: "Consultant",
   va: "VA",
@@ -165,7 +179,12 @@ function ServicingScriptCard({
     >
       <Collapsible open={open} onOpenChange={handleOpenChange}>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+          <CardHeader
+            role="button"
+            tabIndex={0}
+            onKeyDown={headerKeyToClick}
+            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+          >
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
               {onMergeDragStart && (
                 <div

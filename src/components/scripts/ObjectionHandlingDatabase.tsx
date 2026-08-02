@@ -113,6 +113,19 @@ const categoryConfig: Record<string, { label: string; icon: string; color: strin
   timing: { label: "Timing & Delay", icon: "⏳", color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
 };
 
+/**
+ * CollapsibleTrigger asChild on a <div>-based CardHeader produces something a
+ * mouse can open but a keyboard cannot. Paired with role="button" tabIndex={0}
+ * this restores Enter/Space. The target check keeps nested controls working.
+ */
+function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.target !== e.currentTarget) return;
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget as HTMLElement).click();
+  }
+}
+
 interface ObjectionCardProps {
   entry: ObjectionEntry;
   responses: ObjectionResponse[];
@@ -173,7 +186,12 @@ function ObjectionCard({ entry, responses, isAdmin, isAuthenticated, userId, use
     <Collapsible open={open || !!hasResponseMatch} onOpenChange={setOpen}>
       <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+          <CardHeader
+            role="button"
+            tabIndex={0}
+            onKeyDown={headerKeyToClick}
+            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+          >
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
               <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
               <div className="min-w-0 flex-1">
@@ -469,7 +487,12 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
     <Collapsible open={open} onOpenChange={setOpen}>
       <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""}`}>
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6">
+          <CardHeader
+            role="button"
+            tabIndex={0}
+            onKeyDown={headerKeyToClick}
+            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+          >
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
               <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground shrink-0 mt-0.5 sm:mt-0" />
               <div className="min-w-0 flex-1">

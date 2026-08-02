@@ -92,10 +92,18 @@ export function useUserTier() {
 
   const effectiveTier: TierLevel = viewAsTier ?? query.data ?? DEFAULT_TIER;
 
+  // The tier is UNKNOWN (not "explorer") when the lookup failed and we never
+  // got a row. Callers must not treat `tier` as the user's real tier in that
+  // case — silently falling back to Explorer used to lock a Post-RNF user out
+  // of every route with a "This section is locked" toast.
+  const isError = viewAsTier === null && query.isError && query.data === undefined;
+
   return {
     tier: effectiveTier,
     isLoading: query.isLoading,
+    /** True when the tier lookup failed — `tier` is a fallback, not the truth. */
+    isError,
     error: query.error,
-    refetch: () => queryClient.invalidateQueries({ queryKey: userTierQueryKey(user?.id) }),
+    refetch: () => query.refetch(),
   };
 }
