@@ -3469,6 +3469,20 @@ export default function ScriptsDatabase() {
     [scriptId, scriptsForSlug]
   );
 
+  // A slug that matches no script (deleted, retyped, or truncated by a chat
+  // client) used to fail open: the list rendered as normal with the dud slug
+  // still in the address bar, so the link looked like it had worked.
+  const missingScriptToastRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!scriptId || loading || scriptsError) return;
+    if (dbScripts.length === 0) return; // nothing to resolve against yet
+    if (resolveScriptSlug(scriptId, dbScripts) !== null) return;
+    if (missingScriptToastRef.current === scriptId) return;
+    missingScriptToastRef.current = scriptId;
+    toast.error("That script no longer exists");
+    navigate("/scripts", { replace: true });
+  }, [scriptId, loading, scriptsError, dbScripts, navigate]);
+
   // Auto-scroll to a newly created or deep-linked script once it renders
   useEffect(() => {
     if (!resolvedScriptId || loading) return;

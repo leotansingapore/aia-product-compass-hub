@@ -637,6 +637,20 @@ export default function ServicingPage() {
     [scriptId, dbScripts]
   );
 
+  // A slug that matches no template (deleted, retyped, or truncated by a chat
+  // client) used to fail open: the list rendered as normal with the dud slug
+  // still in the address bar, so the link looked like it had worked.
+  const missingScriptToastRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!scriptId || loading || scriptsError) return;
+    if (dbScripts.length === 0) return; // nothing to resolve against yet
+    if (resolveScriptSlug(scriptId, dbScripts) !== null) return;
+    if (missingScriptToastRef.current === scriptId) return;
+    missingScriptToastRef.current = scriptId;
+    toast.error("That template no longer exists");
+    navigate("/servicing", { replace: true });
+  }, [scriptId, loading, scriptsError, dbScripts, navigate]);
+
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("category") || "all");
   const [activeAudience, setActiveAudience] = useState(searchParams.get("audience") || "all");
