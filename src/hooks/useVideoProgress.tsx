@@ -80,7 +80,6 @@ export function useVideoProgress(productId: string) {
     ) => {
       if (!user) return;
       try {
-        const existing = videoProgress.find((p) => p.video_id === videoId);
         const progressData = {
           user_id: user.id,
           product_id: productId,
@@ -96,18 +95,16 @@ export function useVideoProgress(productId: string) {
             : {}),
         };
 
-        if (existing) {
-          const { error } = await supabase
-            .from('video_progress')
-            .update(progressData)
-            .eq('id', existing.id);
-          if (error) throw error;
-        } else {
-          const { error } = await supabase
-            .from('video_progress')
-            .insert(progressData);
-          if (error) throw error;
-        }
+        // Single upsert instead of a cache-read-then-insert/update. The old
+        // path decided insert-vs-update from the (possibly stale) React Query
+        // cache, so a double-click on "Mark Complete" fired two inserts and the
+        // second one blew up on the video_progress unique index. The DB is the
+        // arbiter now — `(user_id, product_id, video_id)` is unique, so the
+        // second write lands as an update.
+        const { error } = await supabase
+          .from('video_progress')
+          .upsert(progressData, { onConflict: 'user_id,product_id,video_id' });
+        if (error) throw error;
 
         queryClient.invalidateQueries({
           queryKey: videoProgressQueryKey(productId, user.id),
@@ -127,7 +124,7 @@ export function useVideoProgress(productId: string) {
         });
       }
     },
-    [user, productId, videoProgress, queryClient, toast],
+    [user, productId, queryClient, toast],
   );
 
   const markVideoComplete = useCallback(

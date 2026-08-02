@@ -1,11 +1,23 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.50.3';
+import { identifyCaller, denied } from '../_shared/caller-auth.ts';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+/**
+ * Every conversation created here is BILLED. Without a per-user cap any signed-in
+ * learner could loop create_conversation and mint unlimited 10-minute recorded
+ * sessions on the account.
+ */
+const MAX_CONVERSATIONS_PER_DAY = 20;
+
+/** Only replicas/personas the product actually uses may be spun up. */
+const ALLOWED_REPLICA_IDS = new Set(['r9d30b0e55ac']);
+const ALLOWED_PERSONA_IDS = new Set(['p74cc7de032d']);
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -36,11 +48,57 @@ serve(async (req) => {
     switch (action) {
       case 'create_conversation': {
         const { replica_id, persona_id, conversation_name, enable_recording } = params;
+
+        // Cost gate: identify the caller, cap their daily conversations, and
+        // refuse replicas/personas outside the product's own scenarios.
+        const caller = await identifyCaller(req);
+        if (!caller.userId) return denied(corsHeaders, 'Sign in to start a roleplay session', 401);
+
+        if (replica_id && !ALLOWED_REPLICA_IDS.has(replica_id)) {
+          return denied(corsHeaders, 'Unknown roleplay avatar');
+        }
+        if (persona_id && !ALLOWED_PERSONA_IDS.has(persona_id)) {
+          return denied(corsHeaders, 'Unknown roleplay persona');
+        }
+
+        if (!caller.isAdmin) {
+          const admin = createClient(
+            Deno.env.get('SUPABASE_URL')!,
+            Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+          );
+          const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+          const { count, error: countErr } = await admin
+            .from('roleplay_sessions')
+            .select('id', { count: 'exact', head: true })
+            .eq('user_id', caller.userId)
+            .gte('created_at', since);
+
+          // Fail closed — an unmeasurable quota must not mean an unlimited one.
+          if (countErr) {
+            console.error('roleplay quota check failed', countErr);
+            return denied(corsHeaders, 'Could not verify your session quota. Please try again.', 503);
+          }
+          if ((count ?? 0) >= MAX_CONVERSATIONS_PER_DAY) {
+            return denied(
+              corsHeaders,
+              `You have reached the daily limit of ${MAX_CONVERSATIONS_PER_DAY} roleplay sessions. Please try again tomorrow.`,
+              429,
+            );
+          }
+        }
         
+        // The webhook is necessarily public (Tavus calls it server-to-server),
+        // so it authenticates callers by this unguessable token rather than by
+        // a JWT. Without it anyone could forge transcripts and trigger paid
+        // feedback generation for another user's session.
+        const webhookSecret = Deno.env.get('TAVUS_WEBHOOK_SECRET') ?? '';
+        const callbackUrl = `${Deno.env.get('SUPABASE_URL')}/functions/v1/tavus-webhook`
+          + (webhookSecret ? `?token=${encodeURIComponent(webhookSecret)}` : '');
+
         const requestBody: any = {
           replica_id,
           conversation_name: conversation_name || 'Roleplay Session',
-          callback_url: `${Deno.env.get('SUPABASE_URL')}/functions/v1/tavus-webhook`,
+          callback_url: callbackUrl,
           properties: {
             max_call_duration: 600, // 10 minutes
             participant_left_timeout: 30,

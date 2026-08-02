@@ -80,11 +80,26 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress } = useVideoProgress(productId);
 
+  // Guards against a double-click firing two completion writes before the
+  // first one has landed. The ref is the real gate (state updates are async and
+  // would let a fast second click through); the state only drives the disabled
+  // styling on the button.
+  const completeInFlightRef = useRef(false);
+  const [isTogglingComplete, setIsTogglingComplete] = useState(false);
+
   const handleToggleComplete = useCallback(async (videoId: string, currentlyCompleted: boolean) => {
-    if (currentlyCompleted) {
-      await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
-    } else {
-      await markVideoComplete(videoId);
+    if (completeInFlightRef.current) return;
+    completeInFlightRef.current = true;
+    setIsTogglingComplete(true);
+    try {
+      if (currentlyCompleted) {
+        await updateVideoProgress(videoId, { completed: false, completion_percentage: 0 });
+      } else {
+        await markVideoComplete(videoId);
+      }
+    } finally {
+      completeInFlightRef.current = false;
+      setIsTogglingComplete(false);
     }
   }, [markVideoComplete, updateVideoProgress]);
 
@@ -589,8 +604,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                       className="h-11 w-full"
                       onClick={handleToggleStickyComplete}
                       variant={currentProgress?.completed ? 'secondary' : 'default'}
-                      disabled={actionStepsBlockComplete && !currentProgress?.completed}
-                      aria-disabled={actionStepsBlockComplete && !currentProgress?.completed}
+                      disabled={isTogglingComplete || (actionStepsBlockComplete && !currentProgress?.completed)}
+                      aria-disabled={isTogglingComplete || (actionStepsBlockComplete && !currentProgress?.completed)}
                     >
                       {currentProgress?.completed ? (
                         <>
