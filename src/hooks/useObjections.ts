@@ -30,6 +30,10 @@ export function useObjections() {
   const [entries, setEntries] = useState<ObjectionEntry[]>([]);
   const [responses, setResponses] = useState<ObjectionResponse[]>([]);
   const [loading, setLoading] = useState(true);
+  // A swallowed fetch error used to render as "No objections found", which
+  // reads like the database is empty. Callers need to tell the two apart so
+  // they can offer a retry instead.
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchAll = useCallback(async () => {
     setLoading(true);
@@ -53,12 +57,20 @@ export function useObjections() {
       setResponses(responsesRes.data || []);
     }
 
+    const failure = entriesRes.error || responsesRes.error;
+    if (failure) {
+      toast.error('Failed to load objections');
+      setError(new Error((failure as { message?: string }).message || 'Failed to load objections'));
+    } else {
+      setError(null);
+    }
+
     setLoading(false);
   }, []);
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  return { entries, responses, loading, refetch: fetchAll };
+  return { entries, responses, loading, error, refetch: fetchAll };
 }
 
 export function useObjectionMutations() {

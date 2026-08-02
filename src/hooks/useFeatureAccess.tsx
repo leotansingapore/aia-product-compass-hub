@@ -75,13 +75,13 @@ export function useFeatureAccess() {
   const can = useCallback(
     (featureKey: FeatureKey): boolean => {
       if (isAdminBypass) return true;
-      // Hard exclusions: Roleplay and Bookmarks are Post-RNF and Papers-taker
-      // features respectively — Explorer cannot get bookmarks; Papers-taker
-      // cannot get roleplay (Post-RNF-only). Mirrors static matrix, applied
-      // here so stale DB rows cannot widen access beyond tier intent.
+      // Hard exclusions: Explorer is orientation-only — bookmarks and
+      // supplementary training are Papers-taker features. Mirrors the static
+      // matrix, applied here so stale DB rows cannot widen Explorer access.
+      // (Papers-taker/roleplay needs no such guard: the static matrix keeps
+      // roleplay in POST_RNF_ADDITIONS and the stale DB row is deleted.)
       if (tier === 'explorer' && featureKey === FEATURES.BOOKMARKS) return false;
       if (tier === 'explorer' && featureKey === FEATURES.SUPPLEMENTARY_TRAINING) return false;
-      if (tier === 'papers_taker' && featureKey === FEATURES.ROLEPLAY) return false;
       return permissionsByTier.get(tier)?.has(featureKey) ?? false;
     },
     [permissionsByTier, tier, isAdminBypass],
@@ -95,7 +95,6 @@ export function useFeatureAccess() {
       return featureKeys.some((key) => {
         if (tier === 'explorer' && key === FEATURES.BOOKMARKS) return false;
         if (tier === 'explorer' && key === FEATURES.SUPPLEMENTARY_TRAINING) return false;
-        if (tier === 'papers_taker' && key === FEATURES.ROLEPLAY) return false;
         return allowed.has(key);
       });
     },

@@ -526,7 +526,7 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
 }
 
 export function ObjectionHandlingDatabase() {
-  const { entries, responses, loading, refetch } = useObjections();
+  const { entries, responses, loading, error: objectionsError, refetch } = useObjections();
   const { createEntry, updateEntry, deleteEntry, addResponse, deleteResponse, isAdmin } = useObjectionMutations();
   const { user } = useSimplifiedAuth();
   const isMobile = useIsMobile();
