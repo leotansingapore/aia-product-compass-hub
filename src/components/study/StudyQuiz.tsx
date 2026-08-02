@@ -25,7 +25,17 @@ function saveWeakQuestions(productSlug: string, data: Record<string, number>) {
 }
 
 // ── Session persistence helpers ─────────────────────────────────────────
-const SESSION_KEY = (productSlug: string) => `study_session_${productSlug}`;
+/**
+ * A product's STUDY bank and EXAM bank are different question sets under the
+ * same slug, so keying the saved session on the slug alone let one bank
+ * overwrite the other's answers: a learner 18 questions into Study who tapped
+ * "Practice instead" on the exam page and answered once lost all 18. The bank
+ * is part of the key.
+ */
+export type StudyBankKey = 'study' | 'exam' | 'review';
+const SESSION_KEY = (productSlug: string, bank: StudyBankKey) => `study_session_${productSlug}_${bank}`;
+/** Pre-bank-scoped key. Only the study bank may adopt a session left under it. */
+const LEGACY_SESSION_KEY = (productSlug: string) => `study_session_${productSlug}`;
 
 interface PersistedSession {
   questionTexts: string[];
@@ -35,26 +45,46 @@ interface PersistedSession {
   currentIdx: number;
 }
 
-function loadSession(productSlug: string, questions: StudyQuestion[]): PersistedSession | null {
+/** Parse + validate one stored session blob. Anything unexpected reads as absent. */
+function parseSession(raw: string | null, questions: StudyQuestion[]): PersistedSession | null {
+  if (!raw) return null;
   try {
-    const raw = localStorage.getItem(SESSION_KEY(productSlug));
-    if (!raw) return null;
     const parsed: PersistedSession = JSON.parse(raw);
     const n = questions.length;
-    if (parsed.selectedAnswers?.length !== n || parsed.questionTexts?.length !== n) return null;
+    if (parsed?.selectedAnswers?.length !== n || parsed?.questionTexts?.length !== n) return null;
     const textsMatch = parsed.questionTexts.every((t, i) => t === questions[i]?.question);
     if (!textsMatch) return null;
     return parsed;
-  } catch { /* ignore */ }
+  } catch {
+    return null;
+  }
+}
+
+function loadSession(
+  productSlug: string,
+  bank: StudyBankKey,
+  questions: StudyQuestion[],
+): PersistedSession | null {
+  try {
+    const current = parseSession(localStorage.getItem(SESSION_KEY(productSlug, bank)), questions);
+    if (current) return current;
+    // A session saved before this key change belongs to the study bank; adopt it
+    // once so an in-flight session isn't thrown away by the deploy. Exam
+    // practice never reads it.
+    if (bank === 'study') {
+      return parseSession(localStorage.getItem(LEGACY_SESSION_KEY(productSlug)), questions);
+    }
+  } catch { /* storage unavailable — behave as if there is no session */ }
   return null;
 }
 
-function saveSession(productSlug: string, session: PersistedSession) {
-  localStorage.setItem(SESSION_KEY(productSlug), JSON.stringify(session));
+function saveSession(productSlug: string, bank: StudyBankKey, session: PersistedSession) {
+  localStorage.setItem(SESSION_KEY(productSlug, bank), JSON.stringify(session));
 }
 
-function clearSession(productSlug: string) {
-  localStorage.removeItem(SESSION_KEY(productSlug));
+function clearSession(productSlug: string, bank: StudyBankKey) {
+  localStorage.removeItem(SESSION_KEY(productSlug, bank));
+  if (bank === 'study') localStorage.removeItem(LEGACY_SESSION_KEY(productSlug));
 }
 
 // ── Option shuffling ────────────────────────────────────────────────────
@@ -74,6 +104,11 @@ interface StudyQuizProps {
   onFinish: () => void;
   /** Product slug for persistence, e.g. "pro-achiever" */
   productSlug?: string;
+  /**
+   * Which bank these questions came from. Part of the persistence key so the
+   * exam-practice run and the study run keep separate saved sessions.
+   */
+  bankType?: StudyBankKey;
   /** Called whenever the user answers a question. Used to persist per-question mastery. */
   onAnswered?: (questionId: string, isCorrect: boolean) => void;
   /** If both provided, renders a mastery progress bar above the session progress bar. */
@@ -87,6 +122,7 @@ export function StudyQuiz({
   questions,
   onFinish,
   productSlug = '',
+  bankType = 'study',
   onAnswered,
   masteryMastered,
   masteryTotal,
@@ -94,24 +130,24 @@ export function StudyQuiz({
 }: StudyQuizProps) {
   // Generate shuffle maps per question (stable per session)
   const [shuffleMaps, setShuffleMaps] = useState<number[][]>(() => {
-    const saved = productSlug ? loadSession(productSlug, questions) : null;
+    const saved = productSlug ? loadSession(productSlug, bankType, questions) : null;
     if (saved?.shuffleMaps?.length === questions.length) return saved.shuffleMaps;
     return questions.map(q => createShuffleMap(q.options.length));
   });
 
   const [currentIdx, setCurrentIdx] = useState(() => {
-    const saved = productSlug ? loadSession(productSlug, questions) : null;
+    const saved = productSlug ? loadSession(productSlug, bankType, questions) : null;
     return saved?.currentIdx ?? 0;
   });
 
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>(() => {
-    const saved = productSlug ? loadSession(productSlug, questions) : null;
+    const saved = productSlug ? loadSession(productSlug, bankType, questions) : null;
     if (saved?.selectedAnswers?.length === questions.length) return saved.selectedAnswers;
     return new Array(questions.length).fill(null);
   });
 
   const [score, setScore] = useState(() => {
-    const saved = productSlug ? loadSession(productSlug, questions) : null;
+    const saved = productSlug ? loadSession(productSlug, bankType, questions) : null;
     return saved?.score ?? 0;
   });
 
@@ -132,14 +168,14 @@ export function StudyQuiz({
   // Persist session on every state change
   useEffect(() => {
     if (!productSlug) return;
-    saveSession(productSlug, {
+    saveSession(productSlug, bankType, {
       questionTexts: questions.map(qq => qq.question),
       selectedAnswers,
       shuffleMaps,
       score,
       currentIdx,
     });
-  }, [selectedAnswers, score, currentIdx, productSlug, questions, shuffleMaps]);
+  }, [selectedAnswers, score, currentIdx, productSlug, bankType, questions, shuffleMaps]);
 
   const handleSelect = useCallback((displayIdx: number) => {
     if (hasAnswered) return;
@@ -171,10 +207,10 @@ export function StudyQuiz({
           }
         });
         saveWeakQuestions(productSlug, weak);
-        clearSession(productSlug);
+        clearSession(productSlug, bankType);
       }
     }
-  }, [currentIdx, questions, allAnswered, productSlug, selectedAnswers, shuffleMaps]);
+  }, [currentIdx, questions, allAnswered, productSlug, bankType, selectedAnswers, shuffleMaps]);
 
   const handlePrev = useCallback(() => {
     if (currentIdx > 0) setCurrentIdx((i) => i - 1);

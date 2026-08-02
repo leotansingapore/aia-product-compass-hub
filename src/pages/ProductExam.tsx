@@ -36,6 +36,9 @@ function ExamPracticeQuiz({
     <StudyQuiz
       questions={questions}
       productSlug={productSlug}
+      // Exam bank — keeps this run's saved session separate from the study
+      // bank's, which shares the same product slug.
+      bankType="exam"
       onFinish={onFinish}
       onAnswered={(qid, correct) => {
         recordAnswer(qid, correct);

@@ -90,6 +90,7 @@ export default function ReviewBank() {
             <StudyQuiz
               questions={questions}
               productSlug="review-bank"
+              bankType="review"
               onFinish={() => setPracticeItems(null)}
               onAnswered={(qid, correct) => recordReviewPractice(qid, correct)}
             />
