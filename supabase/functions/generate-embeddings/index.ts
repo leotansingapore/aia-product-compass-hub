@@ -1,4 +1,8 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { identifyCaller, denied } from "../_shared/caller-auth.ts";
+
+/** Hard ceiling on the per-request LLM fan-out. */
+const MAX_TEXTS_PER_REQUEST = 64;
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -139,7 +143,19 @@ serve(async (req) => {
   }
 
   try {
+    // Fans out one LLM call per array element on the team's own API key, so an
+    // unauthenticated caller could drain the account with a single request.
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, "Sign in to generate embeddings", 401);
+    if (!caller.isAdmin) return denied(corsHeaders, "Only admins can generate embeddings");
+
     const { texts } = await req.json();
+    if (Array.isArray(texts) && texts.length > MAX_TEXTS_PER_REQUEST) {
+      return new Response(
+        JSON.stringify({ error: `Too many texts in one request (max ${MAX_TEXTS_PER_REQUEST})` }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
     if (!texts || !Array.isArray(texts) || texts.length === 0) {
       return new Response(
         JSON.stringify({ error: "texts array is required" }),
