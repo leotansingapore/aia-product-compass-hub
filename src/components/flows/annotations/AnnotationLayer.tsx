@@ -101,7 +101,9 @@ export function AnnotationLayer({
     } as Omit<FlowAnnotation, 'id' | 'flow_id' | 'user_id' | 'author_name' | 'created_at' | 'updated_at'>);
   }, [annotations, addAnnotation]);
 
-  const canEdit = !!currentUserId;
+  // Only the author can edit/move/delete an annotation — RLS drops writes from
+  // everyone else anyway, so offering the controls to all users was a lie.
+  const canEdit = (ann: FlowAnnotation) => !!currentUserId && currentUserId === ann.user_id;
 
   const sticky    = annotations.filter(a => a.type === 'sticky');
   const textLabels = annotations.filter(a => a.type === 'text');
@@ -132,6 +134,7 @@ export function AnnotationLayer({
         zoom={zoom}
         panX={panX}
         panY={panY}
+        currentUserId={currentUserId}
       />
 
       {/* Sticky notes */}
@@ -142,7 +145,7 @@ export function AnnotationLayer({
             onUpdate={updateAnnotation}
             onDelete={deleteAnnotation}
             zoom={zoom}
-            canEdit={canEdit}
+            canEdit={canEdit(ann)}
             panX={panX}
             panY={panY}
           />
@@ -157,7 +160,7 @@ export function AnnotationLayer({
             onUpdate={updateAnnotation}
             onDelete={deleteAnnotation}
             zoom={zoom}
-            canEdit={canEdit}
+            canEdit={canEdit(ann)}
             panX={panX}
             panY={panY}
           />
@@ -174,7 +177,7 @@ export function AnnotationLayer({
             onDelete={deleteAnnotation}
             onReply={handleReply}
             zoom={zoom}
-            canEdit={canEdit}
+            canEdit={canEdit(ann)}
             panX={panX}
             panY={panY}
             currentUserId={currentUserId}

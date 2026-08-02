@@ -18,6 +18,7 @@ interface Props {
   zoom: number;
   panX: number;
   panY: number;
+  currentUserId?: string;
 }
 
 export function DrawingLayer({
@@ -31,10 +32,12 @@ export function DrawingLayer({
   zoom,
   panX,
   panY,
+  currentUserId,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [activePath, setActivePath] = useState<{ points: [number, number][] } | null>(null);
   const [selectedDrawing, setSelectedDrawing] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   const drawings = annotations.filter(a => a.type === 'drawing');
 
@@ -155,14 +158,28 @@ export function DrawingLayer({
                   strokeDasharray="4 2"
                   rx={4}
                 />
-                <foreignObject x={w * zoom - 4} y={-16} width={20} height={20}>
-                  <button
-                    className="w-5 h-5 bg-destructive text-white rounded-full text-xs flex items-center justify-center shadow"
-                    onClick={(e) => { e.stopPropagation(); onDelete(ann.id); setSelectedDrawing(null); }}
-                  >
-                    ×
-                  </button>
-                </foreignObject>
+                {/* Only the author can delete (RLS drops other users' deletes anyway) */}
+                {currentUserId === ann.user_id && (
+                  <foreignObject x={w * zoom - 4} y={-16} width={confirmDeleteId === ann.id ? 60 : 20} height={20}>
+                    <button
+                      className={`h-5 ${confirmDeleteId === ann.id ? 'px-1.5 ring-2 ring-destructive/50' : 'w-5'} bg-destructive text-white rounded-full text-xs flex items-center justify-center shadow whitespace-nowrap`}
+                      title={confirmDeleteId === ann.id ? 'Click again to confirm delete' : 'Delete drawing'}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (confirmDeleteId === ann.id) {
+                          onDelete(ann.id);
+                          setSelectedDrawing(null);
+                          setConfirmDeleteId(null);
+                        } else {
+                          setConfirmDeleteId(ann.id);
+                          setTimeout(() => setConfirmDeleteId(prev => (prev === ann.id ? null : prev)), 3000);
+                        }
+                      }}
+                    >
+                      {confirmDeleteId === ann.id ? 'Sure?' : '×'}
+                    </button>
+                  </foreignObject>
+                )}
               </g>
             )}
           </svg>

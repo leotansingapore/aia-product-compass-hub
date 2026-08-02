@@ -84,31 +84,38 @@ export function useFlowAnnotations(flowId: string | null) {
 
   const updateAnnotation = useMutation({
     mutationFn: async ({ id, ...updates }: Partial<FlowAnnotation> & { id: string }) => {
-      const { error } = await supabase
+      // .select('id') detects RLS silently dropping the write — 0 affected
+      // rows means this annotation belongs to someone else.
+      const { data, error } = await supabase
         .from('flow_annotations')
         .update(updates)
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!data || data.length === 0) throw new Error('NOT_OWNER');
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['flow-annotations', flowId] });
       qc.invalidateQueries({ queryKey: ['flow-annotation-replies', flowId] });
     },
+    onError: (err: Error) => toast.error(err.message === 'NOT_OWNER' ? 'You can only edit your own notes' : 'Failed to update annotation'),
   });
 
   const deleteAnnotation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('flow_annotations')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!data || data.length === 0) throw new Error('NOT_OWNER');
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['flow-annotations', flowId] });
       qc.invalidateQueries({ queryKey: ['flow-annotation-replies', flowId] });
     },
-    onError: () => toast.error('Failed to delete annotation'),
+    onError: (err: Error) => toast.error(err.message === 'NOT_OWNER' ? 'You can only delete your own notes' : 'Failed to delete annotation'),
   });
 
   const repliesFor = (annotationId: string) =>

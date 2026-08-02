@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, CheckCircle, Circle, ChevronDown, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -22,9 +22,15 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
   const [replyText, setReplyText] = useState('');
   const dragStart = useRef<{ mx: number; my: number; x: number; y: number } | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  // Local position while dragging — persist once on mouseup instead of one
+  // Supabase UPDATE per mousemove.
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
 
-  const screenX = annotation.x * zoom + panX;
-  const screenY = annotation.y * zoom + panY;
+  useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
+
+  const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
+  const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!canEdit) return;
@@ -37,16 +43,33 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
       if (!dragStart.current) return;
       const dx = (ev.clientX - dragStart.current.mx) / zoom;
       const dy = (ev.clientY - dragStart.current.my) / zoom;
-      onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+      setDragPos({ x: dragStart.current.x + dx, y: dragStart.current.y + dy });
     };
-    const onUp = () => {
+    const onUp = (ev: MouseEvent) => {
       setDragging(false);
+      if (dragStart.current) {
+        const dx = (ev.clientX - dragStart.current.mx) / zoom;
+        const dy = (ev.clientY - dragStart.current.my) / zoom;
+        if (dx !== 0 || dy !== 0) {
+          onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+        }
+      }
       dragStart.current = null;
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
     };
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (confirmDelete) {
+      onDelete(annotation.id);
+      return;
+    }
+    setConfirmDelete(true);
+    setTimeout(() => setConfirmDelete(false), 3000);
   };
 
   const submitReply = () => {
@@ -80,8 +103,12 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
         {open ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
         {canEdit && (
           <button
-            onClick={(e) => { e.stopPropagation(); onDelete(annotation.id); }}
-            className="hover:opacity-70 transition-opacity"
+            onClick={handleDeleteClick}
+            className={cn(
+              'transition-all rounded',
+              confirmDelete ? 'bg-destructive p-0.5' : 'hover:opacity-70'
+            )}
+            title={confirmDelete ? 'Click again to confirm delete (removes replies too)' : 'Delete comment'}
           >
             <X className="h-3 w-3" />
           </button>

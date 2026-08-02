@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { FlowAnnotation } from '@/hooks/useFlowAnnotations';
@@ -18,9 +18,15 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
   const [draft, setDraft] = useState(annotation.content || '');
   const dragStart = useRef<{ mx: number; my: number; x: number; y: number } | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  // Local position while dragging — persist once on mouseup instead of one
+  // Supabase UPDATE per mousemove.
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
 
-  const screenX = annotation.x * zoom + panX;
-  const screenY = annotation.y * zoom + panY;
+  useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
+
+  const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
+  const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!canEdit || editing) return;
@@ -32,16 +38,33 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
       if (!dragStart.current) return;
       const dx = (ev.clientX - dragStart.current.mx) / zoom;
       const dy = (ev.clientY - dragStart.current.my) / zoom;
-      onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+      setDragPos({ x: dragStart.current.x + dx, y: dragStart.current.y + dy });
     };
-    const onUp = () => {
+    const onUp = (ev: MouseEvent) => {
       setDragging(false);
+      if (dragStart.current) {
+        const dx = (ev.clientX - dragStart.current.mx) / zoom;
+        const dy = (ev.clientY - dragStart.current.my) / zoom;
+        if (dx !== 0 || dy !== 0) {
+          onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+        }
+      }
       dragStart.current = null;
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
     };
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (confirmDelete) {
+      onDelete(annotation.id);
+      return;
+    }
+    setConfirmDelete(true);
+    setTimeout(() => setConfirmDelete(false), 3000);
   };
 
   const saveEdit = () => {
@@ -82,10 +105,16 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
           </span>
           {canEdit && (
             <button
-              className="opacity-0 group-hover:opacity-100 transition-opacity p-0.5 rounded-full bg-background/80 border shadow"
-              onClick={(e) => { e.stopPropagation(); onDelete(annotation.id); }}
+              className={cn(
+                'transition-all p-0.5 rounded-full border shadow',
+                confirmDelete
+                  ? 'opacity-100 bg-destructive border-destructive'
+                  : 'opacity-0 group-hover:opacity-100 bg-background/80'
+              )}
+              onClick={handleDeleteClick}
+              title={confirmDelete ? 'Click again to confirm delete' : 'Delete label'}
             >
-              <X className="h-2.5 w-2.5 text-muted-foreground" />
+              <X className={cn('h-2.5 w-2.5', confirmDelete ? 'text-white' : 'text-muted-foreground')} />
             </button>
           )}
         </div>

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { X, GripHorizontal, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { FlowAnnotation } from '@/hooks/useFlowAnnotations';
@@ -17,12 +17,19 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(annotation.content || '');
   const [dragging, setDragging] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  // Local position while dragging — persisting on every mousemove fired one
+  // Supabase UPDATE per pixel and rubber-banded against the refetch.
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
   const dragStart = useRef<{ mx: number; my: number; x: number; y: number } | null>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
 
+  // Once the persisted position catches up, drop the local override
+  useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
+
   // Convert flow coords to screen coords
-  const screenX = annotation.x * zoom + panX;
-  const screenY = annotation.y * zoom + panY;
+  const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
+  const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!canEdit || editing) return;
@@ -34,16 +41,33 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
       if (!dragStart.current) return;
       const dx = (ev.clientX - dragStart.current.mx) / zoom;
       const dy = (ev.clientY - dragStart.current.my) / zoom;
-      onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+      setDragPos({ x: dragStart.current.x + dx, y: dragStart.current.y + dy });
     };
-    const onUp = () => {
+    const onUp = (ev: MouseEvent) => {
       setDragging(false);
+      if (dragStart.current) {
+        const dx = (ev.clientX - dragStart.current.mx) / zoom;
+        const dy = (ev.clientY - dragStart.current.my) / zoom;
+        if (dx !== 0 || dy !== 0) {
+          onUpdate({ id: annotation.id, x: dragStart.current.x + dx, y: dragStart.current.y + dy });
+        }
+      }
       dragStart.current = null;
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
     };
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (confirmDelete) {
+      onDelete(annotation.id);
+      return;
+    }
+    setConfirmDelete(true);
+    setTimeout(() => setConfirmDelete(false), 3000);
   };
 
   const saveEdit = () => {
@@ -79,10 +103,14 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
         <span className="text-[9px] font-medium text-black/50">{annotation.author_name}</span>
         {canEdit && (
           <button
-            className="hover:opacity-80 transition-opacity"
-            onClick={(e) => { e.stopPropagation(); onDelete(annotation.id); }}
+            className={cn(
+              'transition-all rounded',
+              confirmDelete ? 'bg-destructive p-0.5' : 'hover:opacity-80'
+            )}
+            onClick={handleDeleteClick}
+            title={confirmDelete ? 'Click again to confirm delete' : 'Delete note'}
           >
-            <X className="h-3 w-3 text-black/50" />
+            <X className={cn('h-3 w-3', confirmDelete ? 'text-white' : 'text-black/50')} />
           </button>
         )}
       </div>
