@@ -221,17 +221,25 @@ async function fetchCategoriesFromServer(): Promise<Category[]> {
 }
 
 async function fetchProductsFromServer(categoryId?: string): Promise<Product[]> {
-  let query = supabase
-    .from('products')
-    .select(PRODUCTS_SELECT)
-    .order('title');
+  // Paged: PostgREST caps a plain select at 1000 rows, and this is what backs
+  // `useAllProducts` - which `/bookmarks` filters by bookmark id. A product
+  // sitting past row 1000 alphabetically simply vanished from a user's saved
+  // list. `.order('title')` is the stable sort the pager needs.
+  const data = await fetchAllRows<any>((from, to) => {
+    let query = supabase
+      .from('products')
+      .select(PRODUCTS_SELECT)
+      // `id` is the tiebreaker - titles are not unique, and a non-total order
+      // lets the pager skip or repeat rows across page boundaries.
+      .order('title')
+      .order('id', { ascending: true });
 
-  if (categoryId) {
-    query = query.eq('category_id', categoryId);
-  }
+    if (categoryId) {
+      query = query.eq('category_id', categoryId);
+    }
 
-  const { data, error } = await query;
-  if (error) throw error;
+    return query.range(from, to);
+  });
   return (data || []).map(transformProduct);
 }
 
