@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAdmin } from '@/hooks/useAdmin';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 
 export interface ScriptVersion {
   author: string;
@@ -40,11 +41,24 @@ export function useScripts() {
 
   const fetchScripts = useCallback(async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('scripts')
-      .select('*')
-      .order('sort_order', { ascending: true })
-      .order('created_at', { ascending: true });
+    // Paged: PostgREST caps a single response at 1,000 rows, so an unpaged
+    // select silently drops every script past the first thousand. `id` is the
+    // tiebreaker that keeps page boundaries stable.
+    let data: any[] | null = null;
+    let error: unknown = null;
+    try {
+      data = await fetchAllRows<any>((from, to) =>
+        supabase
+          .from('scripts')
+          .select('*')
+          .order('sort_order', { ascending: true })
+          .order('created_at', { ascending: true })
+          .order('id', { ascending: true })
+          .range(from, to)
+      );
+    } catch (e) {
+      error = e;
+    }
 
     if (error) {
       console.error('Error fetching scripts:', error);

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAdmin } from '@/hooks/useAdmin';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 
 export interface ObjectionEntry {
   id: string;
@@ -37,9 +38,27 @@ export function useObjections() {
 
   const fetchAll = useCallback(async () => {
     setLoading(true);
+    // Paged: PostgREST truncates a single response at 1,000 rows, so an unpaged
+    // select would silently hide objections (and the answers under them) once
+    // the team passes that mark. `id` keeps the page boundaries stable.
     const [entriesRes, responsesRes] = await Promise.all([
-      supabase.from('objection_entries').select('id, title, category, description, tags, sort_order, created_by, created_at, updated_at').order('sort_order').order('created_at'),
-      supabase.from('objection_responses').select('id, objection_id, content, author_name, user_id, upvotes, created_at, updated_at').order('created_at', { ascending: true }),
+      fetchAllRows<ObjectionEntry>((from, to) =>
+        supabase
+          .from('objection_entries')
+          .select('id, title, category, description, tags, sort_order, created_by, created_at, updated_at')
+          .order('sort_order')
+          .order('created_at')
+          .order('id')
+          .range(from, to)
+      ).then(data => ({ data, error: null as unknown })).catch(error => ({ data: null, error })),
+      fetchAllRows<ObjectionResponse>((from, to) =>
+        supabase
+          .from('objection_responses')
+          .select('id, objection_id, content, author_name, user_id, upvotes, created_at, updated_at')
+          .order('created_at', { ascending: true })
+          .order('id', { ascending: true })
+          .range(from, to)
+      ).then(data => ({ data, error: null as unknown })).catch(error => ({ data: null, error })),
     ]);
 
     if (entriesRes.error) {

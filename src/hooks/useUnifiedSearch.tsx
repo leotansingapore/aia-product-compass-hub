@@ -3,6 +3,7 @@ import { useAllProducts } from './useProducts';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { getCMFASModuleName } from '@/data/cmfasModuleData';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 
 export type SearchResultType = 'product' | 'cmfas' | 'script' | 'kb';
 
@@ -153,11 +154,17 @@ export function useUnifiedSearch() {
   const { data: scriptsData } = useQuery({
     queryKey: ['search-scripts'],
     queryFn: async () => {
-      const { data } = await supabase
-        .from('scripts')
-        .select('id, category, stage, tags, target_audience, versions')
-        .limit(200);
-      return data || [];
+      // Was capped at 200 rows, so global search silently couldn't find any
+      // script past the 200th. Paged instead — PostgREST truncates a single
+      // response at 1,000 rows regardless of the range asked for.
+      return await fetchAllRows<any>((from, to) =>
+        supabase
+          .from('scripts')
+          .select('id, category, stage, tags, target_audience, versions')
+          .order('sort_order', { ascending: true })
+          .order('id', { ascending: true })
+          .range(from, to)
+      );
     },
     staleTime: 5 * 60 * 1000,
   });
