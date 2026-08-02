@@ -15,7 +15,12 @@ interface InlineQuizProps {
 }
 
 export function InlineQuiz({ title, description, quizConfig, onComplete }: InlineQuizProps) {
-  const { questions } = quizConfig;
+  // The editor creates quizzes with `{ questions: [] }`, and nothing forces an
+  // author to fill them in before saving. Reading `questions[0].question` off
+  // that used to blow the whole lesson up with a TypeError, so treat a missing
+  // or empty array as a first-class "not authored yet" state.
+  const questions = Array.isArray(quizConfig?.questions) ? quizConfig.questions : [];
+  const hasQuestions = questions.length > 0;
   const totalQuestions = questions.length;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,6 +68,30 @@ export function InlineQuiz({ title, description, quizConfig, onComplete }: Inlin
     setSelectedAnswers(Array(totalQuestions).fill(null));
     setAnsweredQuestions(Array(totalQuestions).fill(false));
     setSubmitted(false);
+  }
+
+  if (!hasQuestions) {
+    return (
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Brain className="h-5 w-5 text-primary" />
+            {title}
+          </CardTitle>
+          {description && (
+            <p className="text-sm text-muted-foreground">{description}</p>
+          )}
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-lg border border-dashed p-6 text-center">
+            <p className="font-medium">This quiz has no questions yet</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Your training coordinator is still building it — check back soon.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    );
   }
 
   if (submitted) {

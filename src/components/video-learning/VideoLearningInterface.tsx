@@ -420,12 +420,16 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
             <div className="lg:col-span-2 space-y-4 sm:space-y-6 order-1 lg:order-2">
 
               {/* Content area — switches based on item type */}
-              {currentVideo?.type === 'quiz' && currentVideo.quiz_config ? (
+              {/* A quiz item is routed by its `type`, not by whether
+                  `quiz_config` happens to be truthy — the editor's default
+                  `{ questions: [] }` is truthy but unusable, so InlineQuiz owns
+                  the "no questions authored yet" state. */}
+              {currentVideo?.type === 'quiz' ? (
                 <Suspense fallback={<Card><CardContent className="p-8 text-center text-muted-foreground">Loading quiz...</CardContent></Card>}>
                   <InlineQuiz
                     title={currentVideo.title}
                     description={currentVideo.description}
-                    quizConfig={currentVideo.quiz_config}
+                    quizConfig={currentVideo.quiz_config ?? { questions: [] }}
                     onComplete={handleItemComplete}
                   />
                 </Suspense>
