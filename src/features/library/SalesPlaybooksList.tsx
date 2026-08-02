@@ -17,9 +17,12 @@ import {
   FolderOpen,
   ArrowRight,
   Sparkles,
+  Lock,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { CASES } from "@/data/caseVault";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES, type FeatureKey } from "@/lib/tiers";
 
 interface PlaybookSection {
   key: string;
@@ -29,6 +32,8 @@ interface PlaybookSection {
   description: string;
   useFor: string;
   badge?: string;
+  /** Tier feature that unlocks the destination page. */
+  feature: FeatureKey;
   accent: {
     iconBg: string;
     iconColor: string;
@@ -38,6 +43,7 @@ interface PlaybookSection {
 
 export function SalesPlaybooksList() {
   const caseVaultCount = useMemo(() => CASES.length, []);
+  const { can } = useFeatureAccess();
 
   const sections: PlaybookSection[] = useMemo(
     () => [
@@ -45,6 +51,7 @@ export function SalesPlaybooksList() {
         key: "scripts",
         title: "Scripts & Objection Handling",
         path: "/scripts",
+        feature: FEATURES.SCRIPTS,
         icon: MessageSquare,
         description:
           "Sales scripts (cold-call openers, WhatsApp warm-ups, referral asks, follow-ups), in-force servicing touchpoints (claim follow-ups, anniversary check-ins, lapse rescues, COSA conversions), and a verified rebuttal for every objection. Copy, tweak, send.",
@@ -59,6 +66,7 @@ export function SalesPlaybooksList() {
         key: "playbooks",
         title: "Playbooks",
         path: "/playbooks",
+        feature: FEATURES.PLAYBOOKS,
         icon: BookOpen,
         description:
           "Multi-step plays bundled end-to-end — Goals-Mapper close, Pre-Retiree CST, BTIR restructure, MUM2BABY rider close. Each playbook is the full sequence.",
@@ -73,6 +81,7 @@ export function SalesPlaybooksList() {
         key: "flows",
         title: "Flows",
         path: "/flows",
+        feature: FEATURES.FLOWS,
         icon: Workflow,
         description:
           "Visual diagrams of decision trees — if prospect says X, branch to Y. Built for prep before tough conversations, especially objection-heavy meetings.",
@@ -87,6 +96,7 @@ export function SalesPlaybooksList() {
         key: "concept-cards",
         title: "Concept Cards",
         path: "/concept-cards",
+        feature: FEATURES.CONCEPT_CARDS,
         icon: Pencil,
         description:
           "Drawable explanations — Term vs Life, BTIR decoupling, 4-quadrant grid, Welcome+Loyalty stack, retirement-gap. With reference photos to copy in the meeting.",
@@ -101,6 +111,7 @@ export function SalesPlaybooksList() {
         key: "case-vault",
         title: "Case Vault",
         path: "/case-vault",
+        feature: FEATURES.CASE_VAULT,
         icon: FolderOpen,
         description:
           "Real-prospect receipts across all 7 AIA products — what the prospect had, the play used, the close shape, and the numbers. Drill these before any appointment.",
@@ -142,12 +153,13 @@ export function SalesPlaybooksList() {
       <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {sections.map((s) => {
           const Icon = s.icon;
-          return (
-            <Link
-              key={s.key}
-              to={s.path}
-              className="group relative rounded-2xl border bg-card shadow-sm overflow-hidden transition-all hover:shadow-lg hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex flex-col"
-            >
+          // Sections the tier can't open stay on the page as muted, non-clickable
+          // cards so the hub still explains what exists — but they never send the
+          // user into a redirect.
+          const unlocked = can(s.feature);
+
+          const body = (
+            <>
               <div
                 className={`absolute inset-x-0 top-0 h-24 bg-gradient-to-b pointer-events-none opacity-60 ${s.accent.accent}`}
                 aria-hidden="true"
@@ -160,12 +172,19 @@ export function SalesPlaybooksList() {
                   >
                     <Icon className="h-5 w-5" />
                   </div>
-                  {s.badge && (
-                    <Badge
-                      variant="outline"
-                      className="text-[10px] font-mono shrink-0"
-                    >
-                      {s.badge}
+                  {unlocked ? (
+                    s.badge && (
+                      <Badge
+                        variant="outline"
+                        className="text-[10px] font-mono shrink-0"
+                      >
+                        {s.badge}
+                      </Badge>
+                    )
+                  ) : (
+                    <Badge variant="outline" className="gap-1 text-[10px] shrink-0">
+                      <Lock className="h-3 w-3" aria-hidden />
+                      Locked
                     </Badge>
                   )}
                 </div>
@@ -182,11 +201,39 @@ export function SalesPlaybooksList() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                  Open
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </div>
+                {unlocked ? (
+                  <div className="flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    Open
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                ) : (
+                  <div className="text-sm font-medium text-muted-foreground">
+                    Not included in your access
+                  </div>
+                )}
               </div>
+            </>
+          );
+
+          if (!unlocked) {
+            return (
+              <div
+                key={s.key}
+                aria-disabled="true"
+                className="relative rounded-2xl border bg-card shadow-sm overflow-hidden opacity-60 flex flex-col"
+              >
+                {body}
+              </div>
+            );
+          }
+
+          return (
+            <Link
+              key={s.key}
+              to={s.path}
+              className="group relative rounded-2xl border bg-card shadow-sm overflow-hidden transition-all hover:shadow-lg hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex flex-col"
+            >
+              {body}
             </Link>
           );
         })}
