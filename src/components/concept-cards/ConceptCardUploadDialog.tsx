@@ -34,6 +34,9 @@ interface ImageEntry {
   file: File;
   originalPreview: string;
   enhancedUrl: string | null;
+  /** Manual crop/edit result when there is no enhanced image to edit
+   *  (enhancement failed or AI Enhance is off). */
+  editedUrl: string | null;
   enhancing: boolean;
   title: string;
   description: string;
@@ -140,6 +143,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           id, file,
           originalPreview: base64,
           enhancedUrl: null,
+          editedUrl: null,
           enhancing: false,
           title: '',
           description: '',
@@ -242,7 +246,9 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
         failCount++;
         continue;
       }
-      const finalImageUrl = aiEnhance ? (entry.enhancedUrl || originalUrl) : originalUrl;
+      const finalImageUrl = aiEnhance
+        ? (entry.enhancedUrl || entry.editedUrl || originalUrl)
+        : (entry.editedUrl || originalUrl);
       let saved = false;
 
       if (entry.duplicateAction === 'replace' && entry.duplicate?.matchedCardId) {
@@ -398,7 +404,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     )}
                   >
                     <img
-                      src={entry.enhancedUrl || entry.originalPreview}
+                      src={entry.enhancedUrl || entry.editedUrl || entry.originalPreview}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -600,7 +606,7 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                           <p className="text-xs text-muted-foreground font-medium flex items-center gap-1">
                             AI Enhanced {active.enhancing && <Loader2 className="h-3 w-3 animate-spin" />}
                           </p>
-                          {active.enhancedUrl && !active.enhancing && editingId !== active.id && croppingId !== active.id && (
+                          {!active.enhancing && editingId !== active.id && croppingId !== active.id && (
                             <div className="flex items-center gap-1">
                               <button
                                 onClick={() => setCroppingId(active.id)}
@@ -624,29 +630,31 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                               <p className="text-xs text-muted-foreground">Enhancing...</p>
                             </div>
                           </div>
-                        ) : croppingId === active.id && active.enhancedUrl ? (
+                        ) : croppingId === active.id ? (
                           <ImageCropper
-                            imageUrl={active.enhancedUrl}
+                            imageUrl={active.enhancedUrl || active.editedUrl || active.originalPreview}
                             maxImgClass="max-w-full max-h-[40vh]"
                             onCrop={(cropped) => {
-                              updateActive({ enhancedUrl: cropped });
+                              // When enhancement failed (or hasn't run) the crop
+                              // applies to the original via editedUrl.
+                              updateActive(active.enhancedUrl ? { enhancedUrl: cropped } : { editedUrl: cropped });
                               setCroppingId(null);
                               toast.success('Image cropped ✓');
                             }}
                             onCancel={() => setCroppingId(null)}
                           />
-                        ) : editingId === active.id && active.enhancedUrl ? (
+                        ) : editingId === active.id ? (
                           <InlineImageEditor
-                            imageUrl={active.enhancedUrl}
+                            imageUrl={active.enhancedUrl || active.editedUrl || active.originalPreview}
                             onApply={(edited) => {
-                              updateActive({ enhancedUrl: edited });
+                              updateActive(active.enhancedUrl ? { enhancedUrl: edited } : { editedUrl: edited });
                               setEditingId(null);
                               toast.success('Image updated ✓');
                             }}
                             onCancel={() => setEditingId(null)}
                           />
-                        ) : active.enhancedUrl ? (
-                          <img src={active.enhancedUrl} alt="Enhanced" className="rounded-lg w-full object-contain max-h-32 bg-white" />
+                        ) : (active.enhancedUrl || active.editedUrl) ? (
+                          <img src={active.enhancedUrl || active.editedUrl!} alt="Enhanced" className="rounded-lg w-full object-contain max-h-32 bg-white" />
                         ) : (
                           <div className="rounded-lg bg-muted/40 flex items-center justify-center h-32">
                             <p className="text-xs text-muted-foreground">Using original</p>
@@ -656,8 +664,49 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
                     </div>
                   ) : (
                     <div className="space-y-1">
-                      <p className="text-xs text-muted-foreground font-medium">Image Preview</p>
-                      <img src={active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-40 bg-muted/20" />
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-muted-foreground font-medium">Image Preview</p>
+                        {editingId !== active.id && croppingId !== active.id && (
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={() => setCroppingId(active.id)}
+                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                            >
+                              <Crop className="h-2.5 w-2.5" /> Crop
+                            </button>
+                            <button
+                              onClick={() => setEditingId(active.id)}
+                              className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border border-border text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors"
+                            >
+                              <Eraser className="h-2.5 w-2.5" /> Edit
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      {croppingId === active.id ? (
+                        <ImageCropper
+                          imageUrl={active.editedUrl || active.originalPreview}
+                          maxImgClass="max-w-full max-h-[40vh]"
+                          onCrop={(cropped) => {
+                            updateActive({ editedUrl: cropped });
+                            setCroppingId(null);
+                            toast.success('Image cropped ✓');
+                          }}
+                          onCancel={() => setCroppingId(null)}
+                        />
+                      ) : editingId === active.id ? (
+                        <InlineImageEditor
+                          imageUrl={active.editedUrl || active.originalPreview}
+                          onApply={(edited) => {
+                            updateActive({ editedUrl: edited });
+                            setEditingId(null);
+                            toast.success('Image updated ✓');
+                          }}
+                          onCancel={() => setEditingId(null)}
+                        />
+                      ) : (
+                        <img src={active.editedUrl || active.originalPreview} alt="" className="rounded-lg w-full object-contain max-h-40 bg-muted/20" />
+                      )}
                     </div>
                   )}
 
