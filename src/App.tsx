@@ -22,6 +22,7 @@ import { ProtectedPage } from "@/components/ProtectedPage";
 import { ProtectedAdminPage } from "@/components/ProtectedAdminPage";
 import { RequireAuth } from "@/components/RequireAuth";
 import { RequireTier } from "@/components/RequireTier";
+import { RequirePlaybookAccess } from "@/components/playbooks/RequirePlaybookAccess";
 import { SkeletonLoader } from "@/components/SkeletonLoader";
 import { RouteTracker } from "@/components/RouteTracker";
 import { QuestionBankSync } from "@/components/QuestionBankSync";
@@ -232,7 +233,7 @@ const App = () => (
                     <Route path="/servicing" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
                     <Route path="/servicing/:scriptId" element={<RequireAuth><RequireTier feature="servicing"><ServicingPage /></RequireTier></RequireAuth>} />
                     <Route path="/playbooks" element={<RequireAuth><RequireTier feature="playbooks"><Playbooks /></RequireTier></RequireAuth>} />
-                    <Route path="/playbooks/:playbookId" element={<RequireAuth><RequireTier feature="playbooks"><PlaybookDetail /></RequireTier></RequireAuth>} />
+                    <Route path="/playbooks/:playbookId" element={<RequireAuth><RequirePlaybookAccess><PlaybookDetail /></RequirePlaybookAccess></RequireAuth>} />
                     <Route path="/flows" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/flows/:flowId" element={<RequireAuth><RequireTier feature="flows"><ScriptFlows /></RequireTier></RequireAuth>} />
                     <Route path="/sales-playbooks" element={<Navigate to="/library/playbooks" replace />} />
