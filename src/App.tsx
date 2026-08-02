@@ -279,10 +279,10 @@ const App = () => (
                       <Route path="first-60-days/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysDay /></RequireTier>} />
                       <Route path="first-60-days/recap/:weekNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysWeekRecap /></RequireTier>} />
                       <Route path="first-60-days/reference/:slug" element={<RequireTier feature="pre-rnf-track"><LearningTrackFirst60DaysReference /></RequireTier>} />
-                      <Route path="next-60-days" element={<LearningTrackNext60Days />} />
-                      <Route path="next-60-days/day/:dayNumber" element={<LearningTrackNext60DaysDay />} />
-                      <Route path="product-mastery" element={<LearningTrackProductMastery />} />
-                      <Route path="product-mastery/day/:dayNumber" element={<LearningTrackProductMasteryDay />} />
+                      <Route path="next-60-days" element={<RequireTier feature="post-rnf-track"><LearningTrackNext60Days /></RequireTier>} />
+                      <Route path="next-60-days/day/:dayNumber" element={<RequireTier feature="post-rnf-track"><LearningTrackNext60DaysDay /></RequireTier>} />
+                      <Route path="product-mastery" element={<RequireTier feature="pre-rnf-track"><LearningTrackProductMastery /></RequireTier>} />
+                      <Route path="product-mastery/day/:dayNumber" element={<RequireTier feature="pre-rnf-track"><LearningTrackProductMasteryDay /></RequireTier>} />
                       <Route path="first-30-days" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="first-30-days/day/:dayNumber" element={<Navigate to="/learning-track/next-60-days" replace />} />
                       <Route path="admin" element={<ProtectedAdminPage><LearningTrackAdminLayout /></ProtectedAdminPage>}>
