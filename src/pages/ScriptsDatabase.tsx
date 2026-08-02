@@ -1377,7 +1377,14 @@ function MobileVersionSelector({
 
   const activeContent = activeUv?.content ?? activeOfficial?.content ?? fallbackOfficial?.content ?? "";
   const activeName = activeUv?.author_name ?? activeOfficial?.title ?? activeOfficial?.author ?? "Version 1";
+  // Editing an OFFICIAL version is open to any signed-in consultant on desktop
+  // (double-click the body) — the phone dropdown used to hide it behind admin,
+  // so the same person could edit a script on a laptop but not on their phone.
   const canEditActive = isUv
+    ? (currentUserId === activeUv?.user_id || !!isAdmin)
+    : (!!isAuthenticated && !!onInlineSave);
+  // Renaming an official version stays admin-only, matching the desktop tab strip.
+  const canRenameActive = isUv
     ? (currentUserId === activeUv?.user_id || !!isAdmin)
     : (!!isAdmin && !!onInlineSave);
 
@@ -1512,7 +1519,7 @@ function MobileVersionSelector({
               <Pencil className="h-3 w-3" /> Edit
             </Button>
           )}
-          {!editing && !renaming && canEditActive && (
+          {!editing && !renaming && canRenameActive && (
             <Button variant="outline" size="sm" className="h-8 gap-1 text-xs" onClick={startRename} title="Rename version">
               <Pencil className="h-3 w-3" /> Rename
             </Button>
