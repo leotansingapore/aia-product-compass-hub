@@ -126,6 +126,36 @@ export default function CaseDetailPage() {
     return merged;
   }, [entry]);
 
+  // Live Concept Cards (Supabase) — used to embed the actual drawing image
+  // inline in the narrative wherever the prose references that drawing.
+  // Without the lookup the narrative still renders correctly, just without
+  // images (linkified text only).
+  // NOTE: all hooks must run before the not-found early return below, or
+  // React crashes when flipping between a valid and an invalid case id.
+  const { cards: conceptCards } = useConceptCards();
+
+  const drawingImageLookup: DrawingImageLookup = useMemo(() => {
+    const map = new Map<string, { imageUrls: string[]; cardId: string }>();
+    for (const card of conceptCards) {
+      const images: string[] = (card.image_urls && card.image_urls.length > 0)
+        ? card.image_urls
+        : card.image_url ? [card.image_url] : [];
+      if (images.length === 0) continue;
+      map.set(normaliseDrawingTitle(card.title), {
+        imageUrls: images,
+        cardId: card.id,
+      });
+    }
+    return {
+      get: (key: string) => map.get(key),
+    };
+  }, [conceptCards]);
+
+  const narrative = useMemo(
+    () => (entry ? getCaseNarrative(entry.id, drawingImageLookup) : null),
+    [entry, drawingImageLookup],
+  );
+
   if (!entry) {
     return (
       <PageLayout title="Case not found — Case Vault" description="">
@@ -157,36 +187,9 @@ export default function CaseDetailPage() {
     );
   }
 
-  // Live Concept Cards (Supabase) — used to embed the actual drawing image
-  // inline in the narrative wherever the prose references that drawing.
-  // Without the lookup the narrative still renders correctly, just without
-  // images (linkified text only).
-  const { cards: conceptCards } = useConceptCards();
-
-  const drawingImageLookup: DrawingImageLookup = useMemo(() => {
-    const map = new Map<string, { imageUrls: string[]; cardId: string }>();
-    for (const card of conceptCards) {
-      const images: string[] = (card.image_urls && card.image_urls.length > 0)
-        ? card.image_urls
-        : card.image_url ? [card.image_url] : [];
-      if (images.length === 0) continue;
-      map.set(normaliseDrawingTitle(card.title), {
-        imageUrls: images,
-        cardId: card.id,
-      });
-    }
-    return {
-      get: (key: string) => map.get(key),
-    };
-  }, [conceptCards]);
-
   const titleNoun = prospectFromTitle(entry.title);
   const playPhrase = playInSentence(entry.play);
   const tldr = `A ${entry.prospect.toLowerCase()} — ${titleNoun}. The move: ${playPhrase}, structured as ${entry.anchor}. The numbers landed at ${entry.headline}.`;
-  const narrative = useMemo(
-    () => getCaseNarrative(entry.id, drawingImageLookup),
-    [entry.id, drawingImageLookup],
-  );
 
   return (
     <PageLayout
