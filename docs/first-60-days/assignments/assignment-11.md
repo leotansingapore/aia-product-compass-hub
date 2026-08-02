@@ -119,9 +119,9 @@ One lever they're already weighing: topping up their Retirement Accounts towards
 
 ### Case E - Wei Ling, 41
 
-**Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · spends ~S$4,500/mo all-in (incl. the S$1,500) · family cancer history · goal: cover her parents + her own future**
+**Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · spends ~S$4,500/mo all-in (incl. the S$1,500) · mum has a cancer history · goal: cover her parents + her own future**
 
-Her parents have almost no coverage of their own, she "keeps meaning to sort it out", and there's a long runway to retirement but nothing structured for it.
+Her parents are both 64, she "keeps meaning to sort it out" for them, and there's a long runway to her own retirement but nothing structured for it. Her mum has a cancer history and almost no coverage of her own - what's still insurable for her is the real question. Her dad is healthy with no history, and holds a Great Eastern GREAT SupremeHealth P Plus (private hospital) at about S$3,990 a year - S$600 from MediSave, roughly S$3,390 in cash, stepping up to around S$5,560 from 66 - which he keeps complaining is expensive. Wei Ling wants to put cover in place for both of them from whatever plans are still available at their age.
 
 **Existing policies**
 
