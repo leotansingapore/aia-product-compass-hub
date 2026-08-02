@@ -505,7 +505,7 @@ function ObjectionScriptCard({ script, firstVersion }: { script: ScriptEntry; fi
                   </div>
                 )}
                 <div className="prose prose-sm dark:prose-invert max-w-none">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema]]} components={markdownComponents}>
                     {v.content}
                   </ReactMarkdown>
                 </div>
