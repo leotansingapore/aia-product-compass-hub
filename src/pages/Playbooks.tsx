@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
@@ -46,8 +46,15 @@ function PlaybookCard({
 
   return (
     <Card
-      className="cursor-pointer hover:shadow-md transition-all active:scale-[0.98] group relative border-l-4 border-l-transparent hover:border-l-primary/40"
+      role="link"
+      tabIndex={0}
+      aria-label={`Open playbook: ${pb.title}`}
+      className="cursor-pointer hover:shadow-md transition-all active:scale-[0.98] group relative border-l-4 border-l-transparent hover:border-l-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
       onClick={() => navigate(`/playbooks/${pb.id}`)}
+      onKeyDown={e => {
+        if (e.target !== e.currentTarget) return;
+        if (e.key === "Enter") navigate(`/playbooks/${pb.id}`);
+      }}
     >
       <CardHeader className="pb-2 px-4 sm:px-5">
         <div className="flex items-start justify-between gap-2">
@@ -61,7 +68,7 @@ function PlaybookCard({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity shrink-0"
+                className="h-7 w-7 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100 sm:group-focus-within:opacity-100 transition-opacity shrink-0"
                 onClick={e => e.stopPropagation()}
               >
                 <MoreVertical className="h-3.5 w-3.5" />
@@ -135,7 +142,7 @@ function EmptyState({ message, cta, icon: Icon = FileText }: { message: string; 
 export default function Playbooks() {
   const { user } = useSimplifiedAuth();
   const { isMasterAdmin, hasRole } = usePermissions();
-  const { playbooks, isLoading, createPlaybook, updatePlaybook, deletePlaybook, userId } = usePlaybooks();
+  const { playbooks, isLoading, error, refetch, createPlaybook, updatePlaybook, deletePlaybook, userId } = usePlaybooks();
   const { isFavourite, isHidden, toggleFavourite, toggleHidden } = usePlaybookPrefs();
   const navigate = useNavigate();
 
@@ -170,6 +177,7 @@ export default function Playbooks() {
 
   // Split playbooks into categories
   const myPlaybooks = userId ? playbooks.filter(pb => pb.created_by === userId) : [];
+  const hiddenFromOthers = playbooks.filter(pb => pb.created_by !== userId && isHidden(pb.id)).length;
   const othersPlaybooks = userId
     ? playbooks.filter(pb => pb.created_by !== userId && !isHidden(pb.id))
     : playbooks.filter(pb => !isHidden(pb.id));
@@ -203,11 +211,33 @@ export default function Playbooks() {
     onDelete: () => setDeleteTarget(pb.id),
   });
 
+  // If the user unhides the last hidden playbook while on the Hidden tab, the
+  // tab trigger disappears — bounce back to My Playbooks so they aren't stranded.
+  useEffect(() => {
+    if (tab === "hidden" && hiddenPlaybooks.length === 0) setTab("mine");
+  }, [tab, hiddenPlaybooks.length]);
+
   if (isLoading) {
     return (
       <PageLayout title="Script Playbooks" description="Curated collections of scripts">
         <div className="flex items-center justify-center py-20">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <PageLayout title="Script Playbooks" description="Curated collections of scripts">
+        <div className="px-3 md:px-6 lg:px-8 max-w-6xl mx-auto pt-8">
+          <Card className="text-center py-12 border-dashed">
+            <CardContent>
+              <p className="font-medium mb-1">Couldn't load playbooks</p>
+              <p className="text-muted-foreground text-sm mb-5">Check your connection and try again.</p>
+              <Button variant="outline" onClick={() => refetch()}>Retry</Button>
+            </CardContent>
+          </Card>
         </div>
       </PageLayout>
     );
@@ -313,7 +343,9 @@ export default function Playbooks() {
           <TabsContent value="others">
             <p className="text-xs text-muted-foreground mb-4">Playbooks created by other team members. Use the <strong>...</strong> menu to favourite or hide any of these.</p>
             {othersPlaybooks.length === 0 ? (
-              <EmptyState message="No playbooks from others to show — you may have hidden them all." />
+              <EmptyState message={hiddenFromOthers > 0
+                ? "No playbooks from others to show — you've hidden them all. Check the Hidden tab to bring them back."
+                : "No one else has shared a playbook yet. Playbooks created by other team members will show up here."} />
             ) : filteredOthers.length === 0 ? (
               <EmptyState icon={Search} message={`No playbooks matching "${search}"`} />
             ) : (
