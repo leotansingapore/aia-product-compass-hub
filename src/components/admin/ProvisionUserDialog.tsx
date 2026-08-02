@@ -13,8 +13,9 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Zap, Loader2, User, Shield, Award, Star } from "lucide-react";
+import { Zap, Loader2 } from "lucide-react";
 import { generateSecurePassword } from "@/lib/generatePassword";
+import { TIER_LEVELS, TIER_META, DEFAULT_TIER, type TierLevel } from "@/lib/tiers";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface ProvisionUserDialogProps {
@@ -28,7 +29,7 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [tempPassword, setTempPassword] = useState("");
-  const [selectedTier, setSelectedTier] = useState("user");
+  const [selectedTier, setSelectedTier] = useState<TierLevel>(DEFAULT_TIER);
 
   if (!user) return null;
 
@@ -44,14 +45,6 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
     }
   };
 
-  const getTierIcon = (tier: string) => {
-    switch (tier) {
-      case 'advanced': return Star;
-      case 'intermediate': return Award;
-      case 'basic': return Shield;
-      default: return User;
-    }
-  };
 
   const handleProvisionUser = async () => {
     if (!tempPassword || tempPassword.length < 6) {
@@ -68,47 +61,56 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('No active session');
 
-      // Create user account via create-user-account edge function
+      // Field names must match what create-user-account reads (firstName/lastName/tier).
+      // Sending first_name/last_name/no tier meant the names were dropped and every
+      // provisioned user silently landed on the default tier.
       const { data, error } = await supabase.functions.invoke('create-user-account', {
-        body: { 
+        body: {
           email: user.email,
           password: tempPassword,
-          first_name: user.profile?.first_name || '',
-          last_name: user.profile?.last_name || '',
+          firstName: user.profile?.first_name || '',
+          lastName: user.profile?.last_name || '',
+          tier: selectedTier,
         },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
       if (error) throw error;
+      // The function returns 200 with { error } for handled failures.
+      if (data?.error) throw new Error(data.error);
 
-      // If a tier is selected (not default 'user'), assign the tier role
       const newUserId = data?.user?.id;
-      if (selectedTier !== 'user' && newUserId) {
-        await supabase
-          .from('user_roles')
-          .insert({ user_id: newUserId, role: selectedTier });
-      }
+      if (!newUserId) throw new Error('The account was not created — no user id came back.');
 
-      // Mark approval request as approved
+      // Mark approval request as approved.
       if (user.approval_request_id) {
-        await supabase
+        const { data: approvalRows, error: approvalError } = await supabase
           .from('user_approval_requests')
           .update({ status: 'approved', reviewed_at: new Date().toISOString() })
-          .eq('id', user.approval_request_id);
+          .eq('id', user.approval_request_id)
+          .select('id');
+
+        if (approvalError) throw approvalError;
+        // RLS can filter an UPDATE to zero rows while returning error === null.
+        if (!approvalRows || approvalRows.length === 0) {
+          throw new Error(
+            `Account created for ${user.email}, but the approval request could not be marked approved (no permission or the request no longer exists). Update it manually.`,
+          );
+        }
       }
 
       toast({
         title: '✅ User Provisioned',
-        description: `${user.email} has been provisioned successfully with ${selectedTier} access.`,
+        description: `${user.email} has been provisioned successfully with ${TIER_META[selectedTier].label} access.`,
       });
 
       onOpenChange(false);
       onSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error provisioning user:', error);
       toast({
         title: "Error",
-        description: "Failed to provision user account",
+        description: error?.message || "Failed to provision user account",
         variant: "destructive",
       });
     } finally {
@@ -116,7 +118,7 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
     }
   };
 
-  const TierIcon = getTierIcon(selectedTier);
+  const TierIcon = TIER_META[selectedTier].icon;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -141,7 +143,7 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
 
           <div>
             <Label htmlFor="access-tier">Access Level</Label>
-            <Select value={selectedTier} onValueChange={setSelectedTier}>
+            <Select value={selectedTier} onValueChange={(v) => setSelectedTier(v as TierLevel)}>
               <SelectTrigger className="mt-1">
                 <div className="flex items-center gap-2">
                   <TierIcon className="h-4 w-4" />
@@ -149,30 +151,17 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
                 </div>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="user">
-                  <div className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    Standard User
-                  </div>
-                </SelectItem>
-                <SelectItem value="basic">
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4" />
-                    Basic Tier
-                  </div>
-                </SelectItem>
-                <SelectItem value="intermediate">
-                  <div className="flex items-center gap-2">
-                    <Award className="h-4 w-4" />
-                    Intermediate Tier
-                  </div>
-                </SelectItem>
-                <SelectItem value="advanced">
-                  <div className="flex items-center gap-2">
-                    <Star className="h-4 w-4" />
-                    Advanced Tier
-                  </div>
-                </SelectItem>
+                {TIER_LEVELS.map((t) => {
+                  const Icon = TIER_META[t].icon;
+                  return (
+                    <SelectItem key={t} value={t}>
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4" />
+                        {TIER_META[t].label} — {TIER_META[t].description}
+                      </div>
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
             <p className="text-micro text-muted-foreground mt-1">
