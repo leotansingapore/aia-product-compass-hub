@@ -32,7 +32,7 @@ export default function ScriptsCourse() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useSimplifiedAuth();
-  const { scripts, loading, refetch } = useScripts();
+  const { scripts, loading, error: scriptsError, refetch } = useScripts();
   const { updateScript, isAdmin } = useScriptsMutations();
 
   // Already sorted by sort_order from useScripts — that IS the lesson order.
@@ -117,6 +117,12 @@ export default function ScriptsCourse() {
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+          </div>
+        ) : scriptsError ? (
+          <div className="text-center py-16">
+            <p className="font-medium mb-1">Couldn't load the course</p>
+            <p className="text-muted-foreground text-sm mb-5">Check your connection and try again.</p>
+            <Button variant="outline" onClick={() => refetch()}>Retry</Button>
           </div>
         ) : lessons.length === 0 ? (
           <div className="text-center py-16 text-muted-foreground">

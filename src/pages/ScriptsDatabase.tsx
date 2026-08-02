@@ -3426,7 +3426,7 @@ export default function ScriptsDatabase() {
     }
   }, [scriptId]);
   
-  const { scripts: dbScripts, loading, refetch } = useScripts();
+  const { scripts: dbScripts, loading, error: scriptsError, refetch } = useScripts();
   const { createScript, updateScript, deleteScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
 
@@ -3495,7 +3495,9 @@ export default function ScriptsDatabase() {
   // Auto-seed DB when empty
   const [seeding, setSeeding] = useState(false);
   useEffect(() => {
-    if (!loading && dbScripts.length === 0 && !seeding) {
+    // Only seed when the fetch actually SUCCEEDED and came back empty — a
+    // failed fetch also looks like "0 scripts" and must not trigger a write.
+    if (!loading && !scriptsError && dbScripts.length === 0 && !seeding) {
       setSeeding(true);
       const seedScripts = async () => {
         try {
@@ -3507,8 +3509,16 @@ export default function ScriptsDatabase() {
             },
             body: JSON.stringify({ scripts: FALLBACK_SCRIPTS }),
           });
+          // Seeding is admin-only — a 401/403 for everyone else is expected,
+          // so it stays silent instead of alarming the consultant.
+          if (!resp.ok) {
+            console.warn("Skipping script seed:", resp.status);
+            return;
+          }
           const result = await resp.json();
-          if (result.count > 0) {
+          // "Scripts already seeded" also returns a count — only celebrate a
+          // real insert.
+          if (result.message !== "Scripts already seeded" && result.count > 0) {
             toast.success(`Seeded ${result.count} scripts to database`);
             refetch();
           }
@@ -3520,10 +3530,14 @@ export default function ScriptsDatabase() {
       };
       seedScripts();
     }
-  }, [loading, dbScripts.length, seeding, refetch]);
+  }, [loading, scriptsError, dbScripts.length, seeding, refetch]);
 
-  // Use DB scripts if available, otherwise fallback
-  const scriptsData = dbScripts.length > 0 ? dbScripts : FALLBACK_SCRIPTS;
+  // Use DB scripts when there are any. The hardcoded FALLBACK_SCRIPTS are only
+  // a first-run placeholder — showing them after a FAILED fetch passed stale
+  // hardcoded copy off as the live database.
+  const scriptsData = dbScripts.length > 0
+    ? dbScripts
+    : (!loading && !scriptsError ? FALLBACK_SCRIPTS : []);
 
   // Deep links to scripts that no longer live on this page go to their home:
   // tips → the mini-course lesson, objections/FAQ → the Objections tab,
@@ -4309,8 +4323,19 @@ export default function ScriptsDatabase() {
           </div>
         )}
 
+        {/* Fetch failed — say so instead of rendering placeholder content */}
+        {!loading && scriptsError && (
+          <Card className="text-center py-12 border-dashed">
+            <CardContent>
+              <p className="font-medium mb-1">Couldn't load scripts</p>
+              <p className="text-muted-foreground text-sm mb-5">Check your connection and try again.</p>
+              <Button variant="outline" onClick={() => refetch()}>Retry</Button>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Scripts Fundamentals mini-course — recommended before using the scripts */}
-        {!loading && courseLessons.length > 0 && (
+        {!loading && !scriptsError && courseLessons.length > 0 && (
           courseReadCount >= courseLessons.length ? (
             <div className="flex items-center gap-2 rounded-lg border border-green-300/50 bg-green-50/50 dark:border-green-900 dark:bg-green-950/20 px-3 py-2 mb-3 text-xs text-muted-foreground">
               <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
@@ -4342,7 +4367,7 @@ export default function ScriptsDatabase() {
         )}
 
         {/* Onboarding prompt — shown when no filters are selected and no search */}
-        {!loading && activeCategory === "all" && activeAudience === "all" && !searchQuery && !showFavouritesOnly && (
+        {!loading && !scriptsError && activeCategory === "all" && activeAudience === "all" && !searchQuery && !showFavouritesOnly && (
           <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 mb-2">
             <div className="flex items-start gap-3">
               <div className="mt-0.5 text-2xl">🎯</div>
@@ -4386,7 +4411,7 @@ export default function ScriptsDatabase() {
         )}
 
         {/* Scripts list */}
-        {!loading && (
+        {!loading && !scriptsError && (
           <div className="space-y-3">
             {filteredScripts.length > 0 ? (
               (() => {

@@ -33,6 +33,10 @@ export interface ScriptEntry {
 export function useScripts() {
   const [scripts, setScripts] = useState<ScriptEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  // Callers need to tell "the fetch failed" apart from "there are no scripts" —
+  // an empty list used to make the page render hardcoded fallback content and
+  // try to seed the database.
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchScripts = useCallback(async () => {
     setLoading(true);
@@ -45,7 +49,9 @@ export function useScripts() {
     if (error) {
       console.error('Error fetching scripts:', error);
       toast.error('Failed to load scripts');
+      setError(new Error((error as { message?: string }).message || 'Failed to load scripts'));
     } else {
+      setError(null);
       setScripts((data || []).map(d => ({
         ...d,
         target_audience: (d.target_audience as string) || 'general',
@@ -66,7 +72,7 @@ export function useScripts() {
     fetchScripts();
   }, [fetchScripts]);
 
-  return { scripts, loading, refetch: fetchScripts };
+  return { scripts, loading, error, refetch: fetchScripts };
 }
 
 /**

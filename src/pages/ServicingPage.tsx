@@ -607,7 +607,7 @@ export default function ServicingPage() {
   const { scriptId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const internalNavRef = useRef(false);
-  const { scripts: dbScripts, loading, refetch } = useScripts();
+  const { scripts: dbScripts, loading, error: scriptsError, refetch } = useScripts();
   const { updateScript, deleteScript, createScript, isAdmin } = useScriptsMutations();
   const { user } = useSimplifiedAuth();
   const { favouriteIds, toggleFavourite } = useScriptFavourites();
@@ -979,6 +979,12 @@ export default function ServicingPage() {
         {/* Scripts list */}
         {loading ? (
           <div className="text-center py-12 text-muted-foreground">Loading...</div>
+        ) : scriptsError ? (
+          <div className="text-center py-12">
+            <p className="font-medium mb-1">Couldn't load servicing templates</p>
+            <p className="text-muted-foreground text-sm mb-5">Check your connection and try again.</p>
+            <Button variant="outline" onClick={() => refetch()}>Retry</Button>
+          </div>
         ) : filteredScripts.length === 0 ? (
           <div className="text-center py-12 text-muted-foreground">
             <p className="text-sm">No servicing templates found.</p>
