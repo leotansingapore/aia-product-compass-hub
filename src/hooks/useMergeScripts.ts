@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { toast } from "sonner";
 import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
 
 export interface MergeState {
@@ -146,8 +147,10 @@ export function useMergeScripts(
       }));
 
     if (incoming.length === 0) {
-      // Nothing new to add — close dialog and notify caller without saving.
+      // Nothing new to add. The dialog used to just vanish, which read like the
+      // merge had silently failed — say why nothing happened.
       setPendingMerge(null);
+      toast.info("Nothing new to merge - all versions already exist");
       return;
     }
 

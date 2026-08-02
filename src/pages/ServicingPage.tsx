@@ -779,9 +779,31 @@ export default function ServicingPage() {
     refetch();
   }, [updateScript, refetch, user]);
 
-  const { mergeState, pendingMerge, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
+  // Without this the merge finished with no confirmation and no way back —
+  // matching the scripts page, a successful merge now says so and offers Undo.
+  const handleMergeUndo = useCallback(async (targetId: string, previousVersions: ScriptVersion[], targetName: string) => {
+    toast.success(`Merged into "${targetName}"`, {
+      description: "Versions were appended successfully.",
+      duration: 8000,
+      action: {
+        label: "Undo",
+        onClick: async () => {
+          try {
+            await updateScript(targetId, { versions: previousVersions });
+            refetch();
+            toast.success("Merge undone");
+          } catch {
+            // updateScript already toasted the failure — don't claim it undid.
+          }
+        },
+      },
+    });
+  }, [updateScript, refetch]);
+
+  const { mergeState, pendingMerge, merging, startDrag, endDrag, onDragOver, onDragLeave, onDrop, tapSelect, tapTarget, cancelTapSelect, confirmMerge, cancelMerge } = useMergeScripts(
     servicingBase,
-    handleInlineSave
+    handleInlineSave,
+    handleMergeUndo,
   );
 
   const handleMetadataSave = useCallback(async (scriptId: string, updates: Partial<ScriptEntry>) => {
@@ -1089,9 +1111,10 @@ export default function ServicingPage() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmMerge} className="gap-1.5">
-              <GitMerge className="h-4 w-4" /> Merge versions
+            <AlertDialogCancel disabled={merging}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={(e) => { e.preventDefault(); confirmMerge(); }} disabled={merging} className="gap-1.5">
+              {merging ? <Loader2 className="h-4 w-4 animate-spin" /> : <GitMerge className="h-4 w-4" />}
+              {merging ? "Merging…" : "Merge versions"}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
