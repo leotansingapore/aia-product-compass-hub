@@ -12,6 +12,7 @@ import {
   Bot,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchAllRows } from "@/lib/fetchAllRows";
 
 interface ChangelogEntry {
   id: string;
@@ -52,15 +53,22 @@ function useChangelogEntries() {
     try {
       setLoading(true);
       setError(null);
-      const { data, error: fetchError } = await supabase
-        .from("changelog_entries")
-        .select("*")
-        .eq("is_published", true)
-        .order("entry_date", { ascending: false })
-        .order("created_at", { ascending: false });
-
-      if (fetchError) throw fetchError;
-      setEntries((data as ChangelogEntry[]) || []);
+      // Paged rather than a load-more control: the page groups every entry by
+      // month and the counts have to be right, so a partial list would be
+      // wrong rather than merely short. PostgREST caps a plain select at 1000
+      // rows, which the changelog will pass as AI entries accumulate weekly.
+      // `id` is the tiebreaker so pages can't overlap on a shared date.
+      const data = await fetchAllRows<ChangelogEntry>((from, to) =>
+        supabase
+          .from("changelog_entries")
+          .select("*")
+          .eq("is_published", true)
+          .order("entry_date", { ascending: false })
+          .order("created_at", { ascending: false })
+          .order("id", { ascending: true })
+          .range(from, to),
+      );
+      setEntries(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load changelog");
     } finally {
