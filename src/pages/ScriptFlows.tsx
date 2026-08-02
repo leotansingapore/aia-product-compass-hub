@@ -321,18 +321,17 @@ export default function ScriptFlows() {
   }, [navigate]);
 
   const createFromTemplate = useCallback(async (index: number) => {
+    if (createFlow.isPending) return; // rapid double-click = duplicate flows
     const tpl = FLOW_TEMPLATES[index];
     const result = await createFlow.mutateAsync({
       title: tpl.title, description: tpl.description,
       nodes: tpl.nodes, edges: tpl.edges,
     });
-    if (result) {
-      setTimeout(() => openFlow((result as any).id), 500);
-    }
+    if (result) openFlow((result as any).id);
   }, [createFlow, openFlow]);
 
   const handleCreateNew = async () => {
-    if (!newTitle.trim()) return;
+    if (!newTitle.trim() || createFlow.isPending) return;
     const startNode: FlowNode = { id: 'n1', scriptId: null, label: 'Start', type: 'start', x: 400, y: 50 };
     const result = await createFlow.mutateAsync({ title: newTitle, description: newDesc, nodes: [startNode], edges: [] });
     setShowNewDialog(false);
@@ -342,15 +341,16 @@ export default function ScriptFlows() {
   };
 
   const handleDuplicateFlow = async (flow: typeof flows[0]) => {
+    if (createFlow.isPending) return;
     const result = await createFlow.mutateAsync({
       title: `${flow.title} (Copy)`,
       description: flow.description || undefined,
       nodes: flow.nodes,
       edges: flow.edges,
     });
-    if (result) {
-      toast.success('Flow duplicated');
-    }
+    // createFlow already toasts "Flow created" — open the copy instead of
+    // double-toasting and stranding the user on the list.
+    if (result) openFlow((result as any).id);
   };
 
   const handleAIFlowGenerated = async (data: { title: string; description: string; nodes: any[]; edges: any[] }) => {

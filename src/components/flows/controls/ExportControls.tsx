@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { toast } from 'sonner';
 import { Download, Image, FileText, Braces, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -35,7 +36,9 @@ export function ExportControls({ onExport, onImportJson }: ExportControlsProps) 
           edges: parsed.edges || [],
         });
       } catch {
-        // Error handling done by parent via toast
+        // The parent never sees this failure (the callback was never called),
+        // so surface it here instead of failing silently.
+        toast.error('Import failed: not a valid flow JSON file');
       }
     };
     reader.readAsText(file);

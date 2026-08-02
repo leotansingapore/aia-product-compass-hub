@@ -407,11 +407,16 @@ function ScriptPickerRow({
   return (
     <div
       className={cn(
-        "group flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-all",
-        selected ? "bg-primary/10 text-primary" : "hover:bg-muted/50 text-foreground"
+        "group flex items-center gap-2 px-3 py-2 rounded-md transition-all",
+        selected ? "bg-primary/10 text-primary" : "hover:bg-muted/50 focus-within:bg-muted/50 text-foreground"
       )}
     >
-      <div className="flex-1 min-w-0" onClick={onSelect}>
+      {/* Real button so keyboard users can Tab to rows and select with Enter/Space */}
+      <button
+        type="button"
+        onClick={onSelect}
+        className="flex-1 min-w-0 text-left cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+      >
         <p className="text-xs font-medium truncate">{script.stage}</p>
         <div className="flex items-center gap-1 mt-0.5 flex-wrap">
           <span className="text-[9px] text-muted-foreground bg-muted px-1.5 rounded">{script.category}</span>
@@ -422,12 +427,14 @@ function ScriptPickerRow({
             <span key={t} className="text-[9px] text-muted-foreground bg-muted px-1.5 rounded">{t}</span>
           ))}
         </div>
-      </div>
+      </button>
       <div className="flex items-center gap-1 shrink-0">
         <button
+          type="button"
           onClick={onPreview}
+          aria-label={`Preview ${script.stage}`}
           className={cn(
-            "hidden group-hover:flex items-center gap-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors",
+            "hidden group-hover:flex group-focus-within:flex items-center gap-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             previewing && "flex text-primary"
           )}
         >

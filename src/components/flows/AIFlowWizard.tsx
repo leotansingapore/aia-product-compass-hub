@@ -15,7 +15,7 @@ import type { FlowNode, FlowEdge } from '@/hooks/useScriptFlows';
 interface AIFlowWizardProps {
   open: boolean;
   onClose: () => void;
-  onFlowGenerated: (data: { title: string; description: string; nodes: FlowNode[]; edges: FlowEdge[] }) => void;
+  onFlowGenerated: (data: { title: string; description: string; nodes: FlowNode[]; edges: FlowEdge[] }) => void | Promise<void>;
 }
 
 const AUDIENCE_OPTIONS = [
@@ -71,8 +71,15 @@ export function AIFlowWizard({ open, onClose, onFlowGenerated }: AIFlowWizardPro
         toast.error(data.error);
         return;
       }
+      // Validate the AI payload before handing it to the flow creator —
+      // a malformed response used to reach createFlow after a success toast.
+      if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.edges)) {
+        toast.error('The AI returned an invalid flow. Please try again.');
+        return;
+      }
 
-      onFlowGenerated(data);
+      // Wait for the flow to actually be created before celebrating/closing
+      await onFlowGenerated(data);
       toast.success('Flow generated! You can now edit and customise it.');
       resetAndClose();
     } catch (err: any) {
