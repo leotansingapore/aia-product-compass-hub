@@ -23,6 +23,7 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
   const dragStart = useRef<{ pointerId: number; mx: number; my: number; x: number; y: number; moved: boolean } | null>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // Once the persisted position catches up, drop the local override
   useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
@@ -89,12 +90,43 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
   const saveEdit = () => {
     onUpdate({ id: annotation.id, content: draft });
     setEditing(false);
+    rootRef.current?.focus();
   };
+
+  const cancelEdit = () => {
+    setDraft(annotation.content || '');
+    setEditing(false);
+    rootRef.current?.focus();
+  };
+
+  // Keyboard equivalent of double-click / tap to edit
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (editing) {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        cancelEdit();
+      }
+      return;
+    }
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (!canEdit) return;
+      e.preventDefault();
+      e.stopPropagation();
+      setEditing(true);
+    }
+  };
+
+  const label = `Sticky note by ${annotation.author_name}: ${annotation.content || 'empty'}${canEdit ? '. Press Enter to edit.' : ''}`;
 
   return (
     <div
+      ref={rootRef}
+      role={canEdit && !editing ? 'button' : undefined}
+      tabIndex={canEdit && !editing ? 0 : undefined}
+      aria-label={canEdit && !editing ? label : undefined}
       className={cn(
         'absolute select-none rounded-lg shadow-md border border-black/10',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1',
         dragging && 'cursor-grabbing opacity-80',
         !dragging && canEdit && 'cursor-grab',
         !canEdit && 'cursor-default',
@@ -113,6 +145,7 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
       onPointerMove={handlePointerMove}
       onPointerUp={e => endDrag(e, true)}
       onPointerCancel={e => endDrag(e, false)}
+      onKeyDown={handleKeyDown}
       onDoubleClick={() => canEdit && setEditing(true)}
     >
       {/* Header strip */}
@@ -124,11 +157,17 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
         <span className="text-[9px] font-medium text-black/50">{annotation.author_name}</span>
         {canEdit && (
           <button
+            type="button"
             className={cn(
-              'transition-all rounded',
+              'transition-all rounded relative',
+              // Invisible padded hit area — the icon stays 12px, the target is ~32px
+              "after:absolute after:content-[''] after:-inset-[10px]",
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive',
               confirmDelete ? 'bg-destructive p-0.5' : 'hover:opacity-80'
             )}
             onClick={handleDeleteClick}
+            onKeyDown={e => e.stopPropagation()}
+            aria-label={confirmDelete ? 'Press again to confirm deleting this note' : `Delete note by ${annotation.author_name}`}
             title={confirmDelete ? 'Click again to confirm delete' : 'Delete note'}
           >
             <X className={cn('h-3 w-3', confirmDelete ? 'text-white' : 'text-black/50')} />
@@ -146,21 +185,28 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
               value={draft}
               onChange={e => setDraft(e.target.value)}
               onPointerDown={e => e.stopPropagation()}
+              onKeyDown={e => {
+                if (e.key === 'Escape') { e.stopPropagation(); cancelEdit(); }
+                if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); e.stopPropagation(); saveEdit(); }
+              }}
+              aria-label={`Note text, by ${annotation.author_name}. Press Escape to cancel.`}
               className="w-full bg-transparent border-none outline-none resize-none text-black/80 text-xs leading-snug"
               style={{ minHeight: 60 * zoom }}
               rows={4}
               placeholder="Write a note..."
             />
             <button
+              type="button"
               onClick={saveEdit}
-              className="self-end p-1 rounded hover:bg-black/10 transition-colors"
+              aria-label="Save note"
+              className="self-end p-1 rounded hover:bg-black/10 transition-colors min-h-[32px] min-w-[32px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <Check className="h-3 w-3 text-black/60" />
             </button>
           </div>
         ) : (
           <p className="text-black/75 text-xs leading-snug whitespace-pre-wrap break-words">
-            {annotation.content || <em className="opacity-40">Double-click to edit…</em>}
+            {annotation.content || <em className="opacity-40">{canEdit ? 'Tap, double-click or press Enter to edit…' : 'Empty note'}</em>}
           </p>
         )}
       </div>

@@ -153,10 +153,28 @@ export function DrawingLayer({
           <svg
             key={ann.id}
             className="absolute pointer-events-auto group cursor-pointer"
-            style={{ left: sx, top: sy, zIndex: 20, overflow: 'visible' }}
+            style={{ left: sx, top: sy, zIndex: 20, overflow: 'visible', touchAction: 'none' }}
             width={w * zoom}
             height={h * zoom}
+            // Only the author has an action here, so only they get a button
+            role={currentUserId === ann.user_id ? 'button' : 'img'}
+            tabIndex={currentUserId === ann.user_id ? 0 : undefined}
+            aria-label={currentUserId === ann.user_id
+              ? `Drawing by ${ann.author_name}. Press Enter to select it, then use the delete button.`
+              : `Drawing by ${ann.author_name}`}
+            aria-pressed={currentUserId === ann.user_id ? selectedDrawing === ann.id : undefined}
             onClick={() => setSelectedDrawing(selectedDrawing === ann.id ? null : ann.id)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                setSelectedDrawing(selectedDrawing === ann.id ? null : ann.id);
+              } else if (e.key === 'Escape' && selectedDrawing === ann.id) {
+                e.stopPropagation();
+                setSelectedDrawing(null);
+                setConfirmDeleteId(null);
+              }
+            }}
           >
             {paths.map((p, i) => (
               <path
@@ -185,8 +203,11 @@ export function DrawingLayer({
                 {currentUserId === ann.user_id && (
                   <foreignObject x={w * zoom - 4} y={-16} width={confirmDeleteId === ann.id ? 60 : 20} height={20}>
                     <button
-                      className={`h-5 ${confirmDeleteId === ann.id ? 'px-1.5 ring-2 ring-destructive/50' : 'w-5'} bg-destructive text-white rounded-full text-xs flex items-center justify-center shadow whitespace-nowrap`}
+                      type="button"
+                      className={`h-5 ${confirmDeleteId === ann.id ? 'px-1.5 ring-2 ring-destructive/50' : 'w-5'} bg-destructive text-white rounded-full text-xs flex items-center justify-center shadow whitespace-nowrap relative after:absolute after:content-[''] after:-inset-[8px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive`}
+                      aria-label={confirmDeleteId === ann.id ? 'Press again to confirm deleting this drawing' : `Delete drawing by ${ann.author_name}`}
                       title={confirmDeleteId === ann.id ? 'Click again to confirm delete' : 'Delete drawing'}
+                      onKeyDown={e => e.stopPropagation()}
                       onClick={(e) => {
                         e.stopPropagation();
                         if (confirmDeleteId === ann.id) {

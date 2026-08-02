@@ -22,6 +22,8 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
   // Local position while dragging — persist once on mouseup instead of one
   // Supabase UPDATE per mousemove.
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const cancelled = useRef(false);
 
   useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
 
@@ -84,12 +86,47 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
   const saveEdit = () => {
     onUpdate({ id: annotation.id, content: draft });
     setEditing(false);
+    rootRef.current?.focus();
   };
+
+  const cancelEdit = () => {
+    // Blur-to-save must not fire after an explicit cancel
+    cancelled.current = true;
+    setDraft(annotation.content || '');
+    setEditing(false);
+    rootRef.current?.focus();
+  };
+
+  const handleBlur = () => {
+    if (cancelled.current) {
+      cancelled.current = false;
+      return;
+    }
+    saveEdit();
+  };
+
+  // Keyboard equivalent of double-click / tap to edit
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (editing) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      if (!canEdit) return;
+      e.preventDefault();
+      e.stopPropagation();
+      setEditing(true);
+    }
+  };
+
+  const label = `Text label by ${annotation.author_name}: ${annotation.content || 'empty'}${canEdit ? '. Press Enter to edit.' : ''}`;
 
   return (
     <div
+      ref={rootRef}
+      role={canEdit && !editing ? 'button' : undefined}
+      tabIndex={canEdit && !editing ? 0 : undefined}
+      aria-label={canEdit && !editing ? label : undefined}
       className={cn(
-        'absolute group',
+        'absolute group rounded',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1',
         dragging && 'cursor-grabbing',
         !dragging && canEdit && 'cursor-grab',
         // Stop the browser scrolling/zooming the canvas instead of dragging the label
@@ -100,6 +137,7 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
       onPointerMove={handlePointerMove}
       onPointerUp={e => endDrag(e, true)}
       onPointerCancel={e => endDrag(e, false)}
+      onKeyDown={handleKeyDown}
       onDoubleClick={() => canEdit && setEditing(true)}
     >
       {editing ? (
@@ -107,8 +145,12 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
           autoFocus
           value={draft}
           onChange={e => setDraft(e.target.value)}
-          onBlur={saveEdit}
-          onKeyDown={e => e.key === 'Enter' && saveEdit()}
+          onBlur={handleBlur}
+          onKeyDown={e => {
+            if (e.key === 'Enter') saveEdit();
+            if (e.key === 'Escape') { e.stopPropagation(); cancelEdit(); }
+          }}
+          aria-label={`Label text, by ${annotation.author_name}. Press Enter to save, Escape to cancel.`}
           onPointerDown={e => e.stopPropagation()}
           className="bg-background/90 border border-primary rounded px-1.5 py-0.5 text-sm font-semibold outline-none shadow"
           style={{ color: annotation.color, minWidth: 80 }}
@@ -124,13 +166,21 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
           </span>
           {canEdit && (
             <button
+              type="button"
               className={cn(
-                'transition-all p-0.5 rounded-full border shadow',
+                'transition-all p-0.5 rounded-full border shadow relative',
+                // Invisible padded hit area — the icon stays 10px, the target is ~32px
+                "after:absolute after:content-[''] after:-inset-[10px]",
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive',
                 confirmDelete
                   ? 'opacity-100 bg-destructive border-destructive'
-                  : 'opacity-0 group-hover:opacity-100 bg-background/80'
+                  // Keyboard focus reveals it like hover does; touch has no hover, so
+                  // coarse pointers get it permanently or deleting would be impossible
+                  : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 [@media(pointer:coarse)]:opacity-100 bg-background/80'
               )}
               onClick={handleDeleteClick}
+              onKeyDown={e => e.stopPropagation()}
+              aria-label={confirmDelete ? 'Press again to confirm deleting this label' : `Delete label by ${annotation.author_name}`}
               title={confirmDelete ? 'Click again to confirm delete' : 'Delete label'}
             >
               <X className={cn('h-2.5 w-2.5', confirmDelete ? 'text-white' : 'text-muted-foreground')} />

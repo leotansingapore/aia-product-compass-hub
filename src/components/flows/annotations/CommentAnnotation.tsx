@@ -115,20 +115,33 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
           canEdit && 'touch-none'
         )}
         style={{ backgroundColor: annotation.color, borderRadius: open ? '8px 8px 0 0' : 8 }}
-        onClick={toggleOpen}
       >
-        <MessageSquare className="h-3.5 w-3.5" />
-        <span className="truncate flex-1">{annotation.author_name}</span>
-        {annotation.resolved
-          ? <CheckCircle className="h-3 w-3 opacity-80" />
-          : <Circle className="h-3 w-3 opacity-50" />
-        }
-        {open ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
+        {/* Real button so the thread can be expanded from the keyboard */}
+        <button
+          type="button"
+          onClick={toggleOpen}
+          aria-expanded={open}
+          aria-label={`Comment thread by ${annotation.author_name}${annotation.resolved ? ', resolved' : ''}. ${open ? 'Collapse' : 'Expand'}.`}
+          className="flex items-center gap-1.5 flex-1 min-w-0 text-left text-inherit min-h-[24px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+        >
+          <MessageSquare className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate flex-1">{annotation.author_name}</span>
+          {annotation.resolved
+            ? <CheckCircle className="h-3 w-3 opacity-80 shrink-0" />
+            : <Circle className="h-3 w-3 opacity-50 shrink-0" />
+          }
+          {open ? <ChevronDown className="h-3 w-3 shrink-0" /> : <ChevronRight className="h-3 w-3 shrink-0" />}
+        </button>
         {canEdit && (
           <button
+            type="button"
             onClick={handleDeleteClick}
+            aria-label={confirmDelete ? 'Press again to confirm deleting this thread and its replies' : `Delete comment thread by ${annotation.author_name}`}
             className={cn(
-              'transition-all rounded',
+              'transition-all rounded relative shrink-0',
+              // Invisible padded hit area — the icon stays 12px, the target is ~32px
+              "after:absolute after:content-[''] after:-inset-[10px]",
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80',
               confirmDelete ? 'bg-destructive p-0.5' : 'hover:opacity-70'
             )}
             title={confirmDelete ? 'Click again to confirm delete (removes replies too)' : 'Delete comment'}
@@ -169,16 +182,22 @@ export function CommentAnnotation({ annotation, replies, onUpdate, onDelete, onR
               value={replyText}
               onChange={e => setReplyText(e.target.value)}
               onPointerDown={e => e.stopPropagation()}
-              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitReply(); } }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitReply(); }
+                // Escape backs out of the reply box before it exits annotate mode
+                if (e.key === 'Escape') { e.stopPropagation(); e.currentTarget.blur(); }
+              }}
               rows={1}
+              aria-label={`Reply to ${annotation.author_name}`}
               placeholder="Reply…"
               className="flex-1 text-xs resize-none bg-transparent border-none outline-none text-foreground/80 placeholder:text-muted-foreground/50"
             />
             <Button
               size="sm"
               variant="ghost"
-              className="h-6 w-6 p-0 shrink-0"
+              className="h-6 w-6 p-0 shrink-0 relative after:absolute after:content-[''] after:-inset-[9px]"
               onClick={submitReply}
+              aria-label="Send reply"
               disabled={!replyText.trim()}
             >
               <Send className="h-3 w-3" />
