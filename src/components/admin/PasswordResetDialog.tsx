@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Key, Loader2, Copy, Eye, EyeOff } from "lucide-react";
+import { generateSecurePassword } from "@/lib/generatePassword";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface PasswordResetDialogProps {
@@ -32,12 +33,15 @@ export function PasswordResetDialog({ user, open, onOpenChange, onSuccess }: Pas
   if (!user) return null;
 
   const generateRandomPassword = () => {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
-    let result = "";
-    for (let i = 0; i < 12; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    try {
+      setTempPassword(generateSecurePassword(12));
+    } catch (error: any) {
+      toast({
+        title: 'Could not generate password',
+        description: error?.message || 'Secure random generation is unavailable. Enter a password manually.',
+        variant: 'destructive',
+      });
     }
-    setTempPassword(result);
   };
 
   const handleSendResetLink = async () => {

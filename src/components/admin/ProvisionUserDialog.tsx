@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Zap, Loader2, User, Shield, Award, Star } from "lucide-react";
+import { generateSecurePassword } from "@/lib/generatePassword";
 import type { UnifiedUser } from "@/hooks/useUserManagement";
 
 interface ProvisionUserDialogProps {
@@ -32,12 +33,15 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
   if (!user) return null;
 
   const generateRandomPassword = () => {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
-    let result = "";
-    for (let i = 0; i < 12; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    try {
+      setTempPassword(generateSecurePassword(12));
+    } catch (error: any) {
+      toast({
+        title: 'Could not generate password',
+        description: error?.message || 'Secure random generation is unavailable. Enter a password manually.',
+        variant: 'destructive',
+      });
     }
-    setTempPassword(result);
   };
 
   const getTierIcon = (tier: string) => {

@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { UserPlus, Eye, EyeOff } from "lucide-react";
 import { TIER_LEVELS, TIER_META, type TierLevel } from "@/lib/tiers";
+import { generateSecurePassword, STRONG_CHARSET } from "@/lib/generatePassword";
 
 export function CreateUserForm() {
   const { toast } = useToast();
@@ -29,14 +30,17 @@ export function CreateUserForm() {
   };
 
   const generatePassword = () => {
-    const length = 12;
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-    let password = "";
-    for (let i = 0; i < length; i++) {
-      password += charset.charAt(Math.floor(Math.random() * charset.length));
+    try {
+      const password = generateSecurePassword(16, STRONG_CHARSET);
+      setFormData(prev => ({ ...prev, password }));
+      toast({ title: "Password Generated", description: "A secure password has been generated." });
+    } catch (error: any) {
+      toast({
+        title: "Could not generate password",
+        description: error?.message || "Secure random generation is unavailable. Enter a password manually.",
+        variant: "destructive",
+      });
     }
-    setFormData(prev => ({ ...prev, password }));
-    toast({ title: "Password Generated", description: "A secure password has been generated." });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
