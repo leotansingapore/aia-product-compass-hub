@@ -80,6 +80,23 @@ serve(async (req) => {
     const tierLabel = TIER_LABELS[toTier] || toTier;
     const userName = profile.display_name || profile.first_name || "there";
 
+    /**
+     * Escape before interpolating into the HTML body below.
+     *
+     * This is the only email in the repo that builds raw HTML — every other one
+     * uses react-email JSX, which escapes automatically. Without this, a user
+     * whose display_name is `<a href="https://evil/">Click to verify</a>` gets
+     * that markup rendered in a message sent from our own domain, and the same
+     * applies to `adminNote` from the request body.
+     */
+    const esc = (value: string) =>
+      String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
     // Send email via Resend
     if (!RESEND_API_KEY) {
       console.warn("RESEND_API_KEY not configured, skipping email");
@@ -93,23 +110,23 @@ serve(async (req) => {
 
     const isApproved = status === "approved";
     const subject = isApproved
-      ? `🎉 You're now ${tierLabel} on Academy`
+      ? `🎉 You're now ${esc(tierLabel)} on Academy`
       : `Update on your upgrade request`;
 
     const bodyLines = isApproved
       ? [
-          `Hi ${userName},`,
+          `Hi ${esc(userName)},`,
           "",
-          `Great news! Your tier upgrade request has been approved. You now have **${tierLabel}** access on FINternship Academy.`,
+          `Great news! Your tier upgrade request has been approved. You now have **${esc(tierLabel)}** access on FINternship Academy.`,
           "",
           "Log in to explore your newly unlocked features.",
-          ...(adminNote ? ["", `Note from your admin: ${adminNote}`] : []),
+          ...(adminNote ? ["", `Note from your admin: ${esc(adminNote)}`] : []),
         ]
       : [
-          `Hi ${userName},`,
+          `Hi ${esc(userName)},`,
           "",
           `We've reviewed your tier upgrade request, and unfortunately it hasn't been approved at this time.`,
-          ...(adminNote ? ["", `Admin feedback: ${adminNote}`] : []),
+          ...(adminNote ? ["", `Admin feedback: ${esc(adminNote)}`] : []),
           "",
           "You can submit a new request when you're ready.",
         ];
