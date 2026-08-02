@@ -169,6 +169,12 @@ export function StudyQuiz({
   });
 
   const [showSummary, setShowSummary] = useState(false);
+  // True once the set has been scored. `showSummary` alone can't gate the
+  // persist effect: "Review All" turns it back off and moves currentIdx, which
+  // re-ran the effect and re-wrote the session that finishing had just cleared,
+  // so a completed set came back as an in-progress one on the next visit.
+  // Retrying missed questions puts the session live again and clears this.
+  const [finished, setFinished] = useState(false);
 
   // Snapshot mastery at session start to calculate newly mastered this session
   const [sessionStartMastered] = useState(() => masteryMastered ?? 0);
@@ -182,9 +188,10 @@ export function StudyQuiz({
   const isCorrect = selected === correctDisplay;
   const allAnswered = selectedAnswers.every((a) => a !== null);
 
-  // Persist session on every state change
+  // Persist session on every state change — but never while the set is on the
+  // summary screen or already scored, or reviewing would resurrect it.
   useEffect(() => {
-    if (!productSlug) return;
+    if (!productSlug || showSummary || finished) return;
     saveSession(productSlug, bankType, {
       questionTexts: questions.map(qq => qq.question),
       selectedAnswers,
@@ -192,7 +199,7 @@ export function StudyQuiz({
       score,
       currentIdx,
     });
-  }, [selectedAnswers, score, currentIdx, productSlug, bankType, questions, shuffleMaps]);
+  }, [selectedAnswers, score, currentIdx, productSlug, bankType, questions, shuffleMaps, showSummary, finished]);
 
   const handleSelect = useCallback((displayIdx: number) => {
     if (hasAnswered) return;
@@ -210,6 +217,7 @@ export function StudyQuiz({
       setCurrentIdx((i) => i + 1);
     } else if (allAnswered) {
       setShowSummary(true);
+      setFinished(true);
       // Update spaced repetition data
       if (productSlug) {
         const weak = loadWeakQuestions(productSlug);
@@ -264,6 +272,7 @@ export function StudyQuiz({
       });
       setSelectedAnswers(newAnswers);
       setShowSummary(false);
+      setFinished(false); // live again — this run should persist
       setCurrentIdx(missed[0]);
     };
 
