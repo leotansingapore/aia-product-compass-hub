@@ -60,6 +60,15 @@ export function resolveItemContent(
  * Build the next `custom_content` value after editing one version's content,
  * preserving a pin and tolerating all legacy shapes.
  */
+/**
+ * Anchor id for a section header. Falls back to a stable id-based anchor when
+ * the label slugifies to nothing (emoji-only or symbol-only labels).
+ */
+export function sectionAnchor(label: string | undefined | null, itemId: string): string {
+  const slug = (label || "section").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return slug || `section-${itemId.slice(0, 8)}`;
+}
+
 export function buildEditedCustomContent(
   customContent: unknown,
   script: { versions?: ScriptVersion[] } | undefined | null,

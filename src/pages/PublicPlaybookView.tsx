@@ -13,12 +13,8 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
-import { resolveItemContent, buildEditedCustomContent } from "@/lib/playbookItemContent";
+import { resolveItemContent, buildEditedCustomContent, sectionAnchor } from "@/lib/playbookItemContent";
 import { toast } from "sonner";
-
-function slugify(text: string) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
 
 /** Bubble Enter/Space on a focusable non-button collapsible header to a click */
 function headerKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
@@ -76,6 +72,14 @@ function SectionAnchorLink({ anchor }: { anchor: string }) {
 function InlineEditor({ initialValue, onSave, onCancel }: { initialValue: string; onSave: (val: string) => Promise<void>; onCancel: () => void }) {
   const [value, setValue] = useState(initialValue);
   const [saving, setSaving] = useState(false);
+
+  // Don't let a refresh/close silently discard an in-progress edit
+  useEffect(() => {
+    if (value === initialValue) return;
+    const warn = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [value, initialValue]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -220,7 +224,7 @@ export default function PublicPlaybookView() {
         id: i.id,
         label: (i as any).custom_content?.label || "Section",
         level: ((i as any).custom_content?.level as 1 | 2 | 3) || 1,
-        anchor: slugify((i as any).custom_content?.label || "section"),
+        anchor: sectionAnchor((i as any).custom_content?.label, i.id),
       }));
   }, [itemsWithData]);
 
@@ -315,7 +319,7 @@ export default function PublicPlaybookView() {
               if (item.item_type === 'section') {
                 const label = (item as any).custom_content?.label || "Section";
                 const level: 1 | 2 | 3 = (item as any).custom_content?.level || 1;
-                const anchor = slugify(label);
+                const anchor = sectionAnchor(label, item.id);
                 const lvlCfg = {
                   1: { iconClass: "h-5 w-5", textClass: "text-lg font-bold", topMargin: "mt-8", indent: "" },
                   2: { iconClass: "h-4 w-4", textClass: "text-base font-semibold", topMargin: "mt-5", indent: "ml-0" },

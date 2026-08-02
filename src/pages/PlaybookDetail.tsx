@@ -1,7 +1,7 @@
-import { useState, useMemo, useCallback, useRef, useId } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef, useId } from "react";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link as RouterLink } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { markdownSanitizeSchema } from "@/lib/markdown-sanitize";
 import { markdownComponents } from "@/lib/markdown-config";
-import { resolveItemContent, buildEditedCustomContent } from "@/lib/playbookItemContent";
+import { resolveItemContent, buildEditedCustomContent, sectionAnchor } from "@/lib/playbookItemContent";
 import { AddToPlaybookDialog } from "@/components/playbooks/AddToPlaybookDialog";
 import { toast } from "sonner";
 import {
@@ -65,10 +65,6 @@ interface Group {
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-
-function slugify(text: string) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
 
 function buildGroups(items: any[]): Group[] {
   const groups: Group[] = [];
@@ -178,6 +174,14 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
   const resolved = resolveItemContent(item.custom_content, item.script);
+
+  // Don't let a refresh/close silently discard an in-progress inline edit
+  useEffect(() => {
+    if (editingVersionIdx === null) return;
+    const warn = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [editingVersionIdx]);
 
   const startInlineEdit = (versionIdx: number) => {
     setEditingVersionIdx(versionIdx);
@@ -381,7 +385,9 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: { item: any; 
           <CollapsibleContent>
             <CardContent className="pt-0 pb-4 px-3 sm:px-6">
               {item.objection?.description && <p className="text-sm text-muted-foreground mb-3">{item.objection.description}</p>}
-              <p className="text-xs text-muted-foreground italic">View full objection responses in the Objection Handling database.</p>
+              <RouterLink to="/objections" className="inline-flex items-center gap-1 text-xs text-primary hover:underline">
+                <MessageSquare className="h-3 w-3" /> View full responses in the Objection Database
+              </RouterLink>
             </CardContent>
           </CollapsibleContent>
         </Collapsible>
@@ -427,7 +433,7 @@ function SectionHeader({
   const level: 1 | 2 | 3 = (item.custom_content?.level as 1 | 2 | 3) || 1;
   const cfg = LEVEL_CONFIG[level];
   const LevelIcon = cfg.icon;
-  const anchor = slugify(item.custom_content?.label || "section");
+  const anchor = sectionAnchor(item.custom_content?.label, item.id);
 
   const commit = () => { const trimmed = draft.trim() || "Section"; onRename(item.id, trimmed, level); setEditing(false); };
   const changeLevel = (newLevel: number) => onRename(item.id, item.custom_content?.label || "Section", newLevel);
@@ -569,6 +575,7 @@ export default function PlaybookDetail() {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
+  const [tocOpen, setTocOpen] = useState(false);
 
   // Active drag item id for overlay
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -741,6 +748,7 @@ export default function PlaybookDetail() {
   }, [updateScript, refetch, scripts, user, queryClient, playbookId]);
 
   const handleAISuggest = async () => {
+    if (scriptsLoading) { toast.info("Scripts are still loading — try again in a moment"); return; }
     const usedIds = new Set(items.map(i => i.script_id));
     const available = scripts.filter(s => !usedIds.has(s.id));
     if (available.length === 0) { toast.info("All scripts are already in this playbook"); return; }
@@ -807,8 +815,8 @@ export default function PlaybookDetail() {
               {playbook?.description && <p className="text-muted-foreground text-sm mt-1">{playbook.description}</p>}
               <p className="text-xs text-muted-foreground mt-1">
                 By {playbook?.creator_name} · {(() => {
-                  const n = items.filter(i => i.item_type !== "section").length;
-                  const s = items.length - n;
+                  const n = itemsWithData.filter(i => i.item_type !== "section").length;
+                  const s = itemsWithData.length - n;
                   return `${n} item${n !== 1 ? "s" : ""}${s > 0 ? ` · ${s} section${s !== 1 ? "s" : ""}` : ""}`;
                 })()}
               </p>
@@ -1009,7 +1017,7 @@ export default function PlaybookDetail() {
         {itemsWithData.length > 0 && groups.some(g => g.section) && (
           <div className="mb-4 flex flex-col sm:flex-row sm:items-start gap-3">
             {/* Table of Contents */}
-            <Popover>
+            <Popover open={tocOpen} onOpenChange={setTocOpen}>
               <PopoverTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-1.5 text-xs">
                   <List className="h-3.5 w-3.5" /> Table of Contents
@@ -1021,7 +1029,7 @@ export default function PlaybookDetail() {
                   {groups.filter(g => g.section).map(g => {
                     const label = g.section.custom_content?.label || "Section";
                     const level = (g.section.custom_content?.level as number) || 1;
-                    const anchor = slugify(label);
+                    const anchor = sectionAnchor(label, g.section.id);
                     return (
                       <button
                         key={g.key}
@@ -1035,6 +1043,7 @@ export default function PlaybookDetail() {
                           if (collapsedSections[g.section.id]) {
                             setCollapsedSections(prev => ({ ...prev, [g.section.id]: false }));
                           }
+                          setTocOpen(false);
                           setTimeout(() => {
                             document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth", block: "start" });
                           }, 50);

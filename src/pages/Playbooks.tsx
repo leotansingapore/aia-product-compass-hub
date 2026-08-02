@@ -376,7 +376,7 @@ export default function Playbooks() {
           <div className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium">Title</label>
-              <Input placeholder="e.g. First Meeting Scripts, Objection Handling for HNW" value={title} onChange={e => setTitle(e.target.value)} autoFocus />
+              <Input placeholder="e.g. First Meeting Scripts, Objection Handling for HNW" value={title} onChange={e => setTitle(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && title.trim()) handleCreate(); }} autoFocus />
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium">Description <span className="text-muted-foreground font-normal">(optional)</span></label>
@@ -400,7 +400,7 @@ export default function Playbooks() {
           <div className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium">Title</label>
-              <Input placeholder="Playbook title" value={title} onChange={e => setTitle(e.target.value)} autoFocus />
+              <Input placeholder="Playbook title" value={title} onChange={e => setTitle(e.target.value)} onKeyDown={e => { if (e.key === "Enter" && title.trim()) handleUpdate(); }} autoFocus />
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium">Description <span className="text-muted-foreground font-normal">(optional)</span></label>
