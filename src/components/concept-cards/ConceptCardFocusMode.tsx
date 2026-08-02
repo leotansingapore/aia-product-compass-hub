@@ -94,7 +94,11 @@ export function ConceptCardFocusMode({ cards, initialIndex = 0, onClose }: Props
 
   const handleGrade = useCallback(async (grade: Grade) => {
     if (!card) return;
-    await gradeCard(card.id, grade);
+    const ok = await gradeCard(card.id, grade);
+    if (!ok) {
+      toast.error("Couldn't save that rating — check your connection and try again");
+      return;
+    }
     setGradedIds(prev => new Set([...prev, card.id]));
     setLastGradeMap(prev => new Map([...prev, [card.id, grade]]));
 

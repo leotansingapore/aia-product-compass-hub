@@ -72,7 +72,8 @@ interface UseSpacedRepetitionReturn {
   reviews: Map<string, ReviewRow>;
   dueCards: ConceptCard[];
   reviewStats: { dueToday: number; reviewedToday: number };
-  gradeCard: (cardId: string, grade: Grade) => Promise<void>;
+  /** Returns true when the grade was persisted; false when the write failed. */
+  gradeCard: (cardId: string, grade: Grade) => Promise<boolean>;
   isDue: (cardId: string) => boolean;
   getReview: (cardId: string) => ReviewRow | undefined;
   loading: boolean;
@@ -123,8 +124,8 @@ export function useSpacedRepetition(cards: ConceptCard[]): UseSpacedRepetitionRe
     ).length,
   };
 
-  const gradeCard = useCallback(async (cardId: string, grade: Grade) => {
-    if (!user) return;
+  const gradeCard = useCallback(async (cardId: string, grade: Grade): Promise<boolean> => {
+    if (!user) return false;
 
     const existing = reviews.get(cardId);
     const current = existing
@@ -151,7 +152,7 @@ export function useSpacedRepetition(cards: ConceptCard[]): UseSpacedRepetitionRe
 
     if (error) {
       console.error('SRS grade error:', error);
-      return;
+      return false;
     }
 
     setReviews(prev => {
@@ -159,6 +160,7 @@ export function useSpacedRepetition(cards: ConceptCard[]): UseSpacedRepetitionRe
       updated.set(cardId, data as ReviewRow);
       return updated;
     });
+    return true;
   }, [user, reviews]);
 
   const getReview = useCallback((cardId: string) => reviews.get(cardId), [reviews]);
