@@ -125,10 +125,13 @@ function Whiteboard({
   onCompare,
   comparing,
   referenceImageUrl,
+  onSkipToReference,
 }: {
   onCompare: (base64: string) => void;
   comparing: boolean;
   referenceImageUrl?: string | null;
+  /** Escape hatch for anyone who can't draw with a pointer. */
+  onSkipToReference: () => void;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -557,6 +560,11 @@ function Whiteboard({
           )}
           style={{ background: '#ffffff', cursor: cursorStyle, touchAction: 'none' }}
         >
+          <p className="sr-only">
+            Freehand drawing canvas. Drawing needs a mouse, stylus or touch — there is no
+            keyboard equivalent. If you can't draw, use the "Can't draw? Show me the
+            reference instead" button to go straight to the reference drawing and its explanation.
+          </p>
           <svg
             ref={svgRef}
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', touchAction: 'none', userSelect: 'none' }}
@@ -651,6 +659,7 @@ function Whiteboard({
                   if (e.key === 'Escape') { setEditingText(null); setEditingValue(''); }
                 }}
                 onBlur={commitText}
+                aria-label="Text to place on the drawing"
                 placeholder="Type…"
                 className="bg-white/95 border-2 border-primary/70 rounded px-2 py-0.5 outline-none shadow-md min-w-[100px] max-w-[260px]"
                 style={{ fontSize: `${fontSize}px`, lineHeight: 1.3, color: '#1a1a1a', fontFamily: 'system-ui, sans-serif', caretColor: 'hsl(var(--primary))' }}
@@ -663,18 +672,34 @@ function Whiteboard({
 
           {/* Empty hint */}
           {!hasDrawn && !editingText && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center space-y-2 opacity-30">
-                {tool === 'text'
-                  ? <Type className="h-8 w-8 mx-auto text-muted-foreground" />
-                  : tool === 'select'
-                    ? <MousePointer2 className="h-8 w-8 mx-auto text-muted-foreground" />
-                    : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" />}
-                <p className="text-sm text-muted-foreground font-medium">
-                  {tool === 'text' ? 'Tap to type' : tool === 'select' ? 'Click or drag to select' : 'Draw freely'}
-                </p>
+            <>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="text-center space-y-2 opacity-30">
+                  {tool === 'text'
+                    ? <Type className="h-8 w-8 mx-auto text-muted-foreground" aria-hidden="true" />
+                    : tool === 'select'
+                      ? <MousePointer2 className="h-8 w-8 mx-auto text-muted-foreground" aria-hidden="true" />
+                      : <Pencil className="h-8 w-8 mx-auto text-muted-foreground" aria-hidden="true" />}
+                  <p className="text-sm text-muted-foreground font-medium">
+                    {tool === 'text' ? 'Tap to type' : tool === 'select' ? 'Click or drag to select' : 'Draw freely'}
+                  </p>
+                </div>
               </div>
-            </div>
+              {/* Freehand drawing needs a pointer. Rather than pretend otherwise,
+                  offer the way out: go straight to the reference and explanation.
+                  Parked at the bottom edge so it doesn't eat the drawing area. */}
+              <div className="absolute bottom-2 inset-x-0 flex justify-center pointer-events-none px-3">
+                <button
+                  type="button"
+                  onClick={onSkipToReference}
+                  className="pointer-events-auto min-h-[44px] px-4 py-2 rounded-lg text-xs font-medium text-primary bg-primary/5 border border-primary/30 hover:bg-primary/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {referenceImageUrl
+                    ? "Can't draw? Show me the reference instead"
+                    : "Can't draw? Skip to the explanation"}
+                </button>
+              </div>
+            </>
           )}
 
           {/* Select tool hint when content exists */}
@@ -714,10 +739,13 @@ function Whiteboard({
         ] as const).map(({ id, icon: Icon, label }) => (
           <button
             key={id}
+            type="button"
             onClick={() => { setTool(id); setEditingText(null); setEditingValue(''); if (id !== 'select') setSelection(null); }}
             title={label}
+            aria-label={`${label} tool`}
+            aria-pressed={tool === id}
             className={cn(
-              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border",
+              "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
               tool === id
                 ? "bg-primary text-primary-foreground border-primary shadow-sm"
                 : "bg-background text-muted-foreground border-border hover:border-primary/60 hover:bg-primary/5"
@@ -732,8 +760,9 @@ function Whiteboard({
         {tool === 'pen' && (
           <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {PEN_SIZES.map(s => (
-              <button key={s} onClick={() => setPenSize(s)}
-                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+              <button key={s} type="button" onClick={() => setPenSize(s)}
+                aria-label={`Pen size ${s} pixels`} aria-pressed={penSize === s}
+                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   penSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60")}>
                 <div className="rounded-full bg-foreground" style={{ width: s + 1, height: s + 1 }} />
               </button>
@@ -743,8 +772,9 @@ function Whiteboard({
         {tool === 'eraser' && (
           <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {ERASER_SIZES.map(s => (
-              <button key={s} onClick={() => setEraserSize(s)} title={`${s}px`}
-                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all",
+              <button key={s} type="button" onClick={() => setEraserSize(s)} title={`${s}px`}
+                aria-label={`Eraser size ${s} pixels`} aria-pressed={eraserSize === s}
+                className={cn("w-7 h-7 rounded-full flex items-center justify-center border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   eraserSize === s ? "border-primary bg-primary/10 scale-110" : "border-border hover:border-primary/60")}>
                 <div className="rounded-full bg-foreground/20 border border-foreground/30"
                   style={{ width: Math.min(s / 3 + 3, 20), height: Math.min(s / 3 + 3, 20) }} />
@@ -755,8 +785,9 @@ function Whiteboard({
         {tool === 'text' && (
           <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
             {FONT_SIZES.map(s => (
-              <button key={s} onClick={() => setFontSize(s)}
-                className={cn("min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-all",
+              <button key={s} type="button" onClick={() => setFontSize(s)}
+                aria-label={`Text size ${s} pixels`} aria-pressed={fontSize === s}
+                className={cn("min-w-[28px] h-7 px-1.5 rounded-lg flex items-center justify-center border text-xs font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                   fontSize === s ? "border-primary bg-primary/10 text-primary scale-105" : "border-border hover:border-primary/60 text-muted-foreground")}>
                 {s}
               </button>
@@ -792,30 +823,33 @@ function Whiteboard({
 
         {/* Undo / Redo */}
         <div className="flex items-center gap-1 ml-1 pl-1.5 border-l border-border/50">
-          <button onClick={undo} title="Undo (⌘Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
-            <Undo2 className="h-3.5 w-3.5" />
+          <button type="button" onClick={undo} title="Undo (⌘Z)" aria-label="Undo"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <Undo2 className="h-3.5 w-3.5" aria-hidden="true" />
           </button>
-          <button onClick={redo} title="Redo (⌘⇧Z)"
-            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors">
-            <Redo2 className="h-3.5 w-3.5" />
+          <button type="button" onClick={redo} title="Redo (⌘⇧Z)" aria-label="Redo"
+            className="p-1.5 rounded-lg border border-border text-muted-foreground hover:border-primary/60 hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <Redo2 className="h-3.5 w-3.5" aria-hidden="true" />
           </button>
         </div>
 
         <div className="flex-1" />
 
         {referenceImageUrl && (
-          <button onClick={() => setShowRef(v => !v)}
-            className={cn("flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border",
+          <button type="button" onClick={() => setShowRef(v => !v)}
+            aria-pressed={showRef}
+            aria-label={showRef ? 'Hide the reference drawing' : 'Show the reference drawing beside your canvas'}
+            className={cn("flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors border focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
               showRef ? "bg-primary/10 text-primary border-primary/40" : "bg-background text-muted-foreground border-border hover:border-primary/60")}>
-            <Columns2 className="h-3.5 w-3.5" />
+            <Columns2 className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="hidden sm:inline">{showRef ? 'Hide ref' : 'Show ref'}</span>
           </button>
         )}
 
-        <button onClick={clearAll}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border hover:border-destructive/60 hover:text-destructive transition-colors">
-          <Trash2 className="h-3.5 w-3.5" />
+        <button type="button" onClick={clearAll}
+          aria-label="Clear the whole canvas"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-border hover:border-destructive/60 hover:text-destructive transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
           <span className="hidden sm:inline">Clear</span>
         </button>
 
@@ -948,6 +982,8 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
   const [isCropping, setIsCropping] = useState(false);
   const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
+  // Controlled so the whiteboard can hand a non-drawing user back to the reference.
+  const [tab, setTab] = useState<'view' | 'draw'>(initialTab);
 
   // Normalise image list
   const allImages: string[] = card
@@ -1025,7 +1061,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
         </div>
 
         {/* Tabs */}
-        <Tabs defaultValue={initialTab} className="flex flex-col flex-1 overflow-hidden min-h-0 bg-background">
+        <Tabs value={tab} onValueChange={v => setTab(v as 'view' | 'draw')} className="flex flex-col flex-1 overflow-hidden min-h-0 bg-background">
           <TabsList className="mx-4 mt-3 self-start shrink-0 bg-transparent border-b border-transparent">
             <TabsTrigger value="view" className="text-xs sm:text-sm gap-1.5">
               <Eye className="h-3.5 w-3.5" /> View Drawing
@@ -1051,9 +1087,12 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
                     {allImages.map((url, i) => (
                       <button
                         key={url}
+                        type="button"
                         onClick={() => { setActiveImgIndex(i); setCroppedImageUrl(null); setZoom(1); }}
+                        aria-label={`Show drawing ${i + 1} of ${allImages.length}`}
+                        aria-current={i === activeImgIndex}
                         className={cn(
-                          "shrink-0 w-14 h-14 rounded-lg border-2 overflow-hidden transition-all",
+                          "shrink-0 w-14 h-14 rounded-lg border-2 overflow-hidden transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
                           i === activeImgIndex ? "border-primary shadow-sm" : "border-border/40 opacity-60 hover:opacity-100"
                         )}
                       >
@@ -1078,12 +1117,12 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
                 </div>
                 {displayImageUrl && (
                   <div className="flex items-center justify-center gap-2 py-3 border-t bg-card shrink-0">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.max(0.5, z - 0.25))}>
-                      <ZoomOut className="h-4 w-4" />
+                    <Button variant="outline" size="icon" className="h-8 w-8" aria-label="Zoom out" onClick={() => setZoom(z => Math.max(0.5, z - 0.25))}>
+                      <ZoomOut className="h-4 w-4" aria-hidden="true" />
                     </Button>
                     <span className="text-sm text-muted-foreground w-12 text-center">{Math.round(zoom * 100)}%</span>
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => setZoom(z => Math.min(3, z + 0.25))}>
-                      <ZoomIn className="h-4 w-4" />
+                    <Button variant="outline" size="icon" className="h-8 w-8" aria-label="Zoom in" onClick={() => setZoom(z => Math.min(3, z + 0.25))}>
+                      <ZoomIn className="h-4 w-4" aria-hidden="true" />
                     </Button>
                     <Button variant="ghost" size="sm" className="text-xs text-muted-foreground ml-2" onClick={() => setZoom(1)}>
                       Reset
@@ -1129,6 +1168,7 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
                   onCompare={handleCompare}
                   comparing={comparing}
                   referenceImageUrl={displayImageUrl}
+                  onSkipToReference={() => setTab('view')}
                 />
               )}
             </div>
