@@ -1,4 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
+import { identifyCaller, denied } from '../_shared/caller-auth.ts';
+import { isRateLimited, tooManyRequests } from '../_shared/rate-limit.ts';
 import { Resend } from 'npm:resend@4.0.0';
 import { renderAsync } from 'npm:@react-email/components@0.0.22';
 import React from 'npm:react@18.3.1';
@@ -25,7 +27,19 @@ serve(async (req) => {
       );
     }
 
-    const { type, title, description, userEmail, userName, pageUrl } = await req.json();
+    // Sends mail from the platform domain on the caller's say-so. Unauthenticated
+    // this was a mail cannon: forged "bug reports" flooding the owner's inbox and
+    // burning the Resend domain reputation that password-reset mail depends on.
+    // The reporter identity is taken from the token, not the body.
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, 'Sign in to send feedback', 401);
+    if (await isRateLimited(req, { endpoint: 'notify-feedback-submitted', max: 10, windowMinutes: 60 }, caller.userId)) {
+      return tooManyRequests(corsHeaders);
+    }
+
+    const { type, title, description, pageUrl } = await req.json();
+    const userEmail = caller.email ?? 'unknown';
+    const userName = caller.email?.split('@')[0] ?? 'Unknown';
 
     if (!title || !description) {
       return new Response(

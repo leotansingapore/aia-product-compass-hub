@@ -1,5 +1,7 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.50.0';
+import { identifyCaller, denied } from '../_shared/caller-auth.ts';
+import { isRateLimited, tooManyRequests } from '../_shared/rate-limit.ts';
 import { Resend } from 'npm:resend@4.0.0';
 import { renderAsync } from 'npm:@react-email/components@0.0.22';
 import React from 'npm:react@18.3.1';
@@ -41,8 +43,19 @@ serve(async (req) => {
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
     const SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
-    const { user_id, product_id, item_id, assignment_title, submission_excerpt, file_name } =
+    // Emails a learner from the platform domain about "their" submission. When
+    // this was unauthenticated, an attacker could pick any user_id and send
+    // them a convincing fake — a ready-made phishing pretext — and flood the
+    // admin inbox. The submitter is now the token holder, not a body field.
+    const caller = await identifyCaller(req);
+    if (!caller.userId) return denied(corsHeaders, 'Sign in to submit', 401);
+    if (await isRateLimited(req, { endpoint: 'notify-assignment-submitted', max: 20, windowMinutes: 60 }, caller.userId)) {
+      return tooManyRequests(corsHeaders);
+    }
+
+    const { product_id, item_id, assignment_title, submission_excerpt, file_name } =
       await req.json();
+    const user_id = caller.userId;
 
     if (!user_id || !product_id || !item_id) {
       return new Response(

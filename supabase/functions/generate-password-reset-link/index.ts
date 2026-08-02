@@ -84,8 +84,16 @@ serve(async (req) => {
         .eq('email', email)
         .single();
 
+      // Only REPAIR a known Academy user whose auth row is missing. Creating an
+      // account for an unknown address turned an admin's typo into a real,
+      // confirmed, loginable account — and the password below used to be a
+      // literal committed to this repo.
       if (profileErr || !profileData) {
-        console.log(`No profile found for ${email}, proceeding to create minimal auth user...`);
+        console.warn(`No profile for ${email} — refusing to create an account from a reset request`);
+        return new Response(
+          JSON.stringify({ error: 'No account exists for this email. Use Create User to add them explicitly.' }),
+          { status: 404, headers: { "Content-Type": "application/json", ...corsHeaders } },
+        );
       }
       const metaFirst = profileData?.first_name || '';
       const metaLast = profileData?.last_name || '';
@@ -94,9 +102,14 @@ serve(async (req) => {
       console.log(`Creating auth user for ${email} with metadata from ${profileData ? 'profile' : 'defaults'}...`);
       
       // Create auth user with available metadata
+      // Random, never logged, never returned — the account is only reachable
+      // through the reset link generated below. A shared literal here meant
+      // anyone reading this repo could log into such an account.
+      const throwawayPassword = crypto.randomUUID() + crypto.randomUUID();
+
       const { data: createUserData, error: createUserErr } = await serviceClient.auth.admin.createUser({
         email: email,
-        password: 'temporary-password-will-be-reset',
+        password: throwawayPassword,
         email_confirm: true,
         user_metadata: {
           first_name: metaFirst,
