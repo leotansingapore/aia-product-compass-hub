@@ -86,7 +86,14 @@ export function useVideoProgress(productId: string) {
           product_id: productId,
           video_id: videoId,
           ...updates,
-          completed_at: updates.completed ? new Date().toISOString() : null,
+          // `completed_at` is only written when the caller actually changes the
+          // completion state. A watch-time tick leaves `updates.completed`
+          // undefined — unconditionally including the key here used to write
+          // `null` and wipe the completion timestamp off an already-finished
+          // lesson on every 10-second progress write.
+          ...(updates.completed !== undefined
+            ? { completed_at: updates.completed ? new Date().toISOString() : null }
+            : {}),
         };
 
         if (existing) {
