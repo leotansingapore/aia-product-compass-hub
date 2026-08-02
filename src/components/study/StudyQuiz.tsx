@@ -65,6 +65,17 @@ function parseSession(raw: string | null, questions: StudyQuestion[]): Persisted
     if (parsed?.selectedAnswers?.length !== n || parsed?.questionTexts?.length !== n) return null;
     const textsMatch = parsed.questionTexts.every((t, i) => t === questions[i]?.question);
     if (!textsMatch) return null;
+    // A stored shuffle map of the wrong length renders a truncated option list —
+    // possibly without the correct answer in it. Reject rather than restore.
+    if (
+      !Array.isArray(parsed.shuffleMaps) ||
+      parsed.shuffleMaps.length !== n ||
+      !parsed.shuffleMaps.every(
+        (m, i) => Array.isArray(m) && m.length === (questions[i]?.options?.length ?? -1),
+      )
+    ) {
+      return null;
+    }
     return parsed;
   } catch {
     return null;

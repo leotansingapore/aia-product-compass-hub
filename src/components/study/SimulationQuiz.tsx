@@ -83,7 +83,14 @@ export function SimulationQuiz({
       Array.isArray(saved.answers) &&
       saved.answers.length === questions.length &&
       Array.isArray(saved.shuffleMaps) &&
-      saved.shuffleMaps.length === questions.length
+      saved.shuffleMaps.length === questions.length &&
+      // The signature is built from question IDs only, so editing a question's
+      // OPTION LIST without changing its id leaves a stale map of the wrong
+      // length. Restoring that renders a paper with options missing — possibly
+      // the correct one. Every map must still match its question.
+      saved.shuffleMaps.every(
+        (m, i) => Array.isArray(m) && m.length === (questions[i]?.options?.length ?? -1),
+      )
     ) {
       return saved;
     }
