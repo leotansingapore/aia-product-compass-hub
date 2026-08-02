@@ -121,8 +121,13 @@ function ServicingScriptCard({
   const saveMetaField = async (updates: Partial<ScriptEntry>) => {
     if (!onMetadataSave) return;
     setIsSaving(true);
-    await onMetadataSave(script.id, updates);
-    setIsSaving(false);
+    try {
+      await onMetadataSave(script.id, updates);
+    } catch (e) {
+      console.error("Failed to save template metadata:", e);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   useEffect(() => {
@@ -366,14 +371,14 @@ function ServicingScriptCard({
                                 if (e.key === 'Enter') {
                                   e.preventDefault();
                                   const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
-                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions).catch(() => { /* already toasted */ });
                                   setEditingVersionTitle(null);
                                 } else if (e.key === 'Escape') setEditingVersionTitle(null);
                               }}
                               onBlur={async () => {
                                 if (versionTitleDraft !== v.author) {
                                   const newVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, author: versionTitleDraft, title: versionTitleDraft } : ver);
-                                  if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                  if (onInlineSave) await onInlineSave(script.id, newVersions).catch(() => { /* already toasted */ });
                                 }
                                 setEditingVersionTitle(null);
                               }}
@@ -489,10 +494,18 @@ function ServicingScriptCard({
                       <div className="flex gap-2">
                         <Button size="sm" disabled={isSaving} onClick={async () => {
                           setIsSaving(true);
-                          const latest = (await editVersionEditorRef.current?.getMarkdownForSave()) ?? editContent;
-                          const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: latest } : ver);
-                          if (onInlineSave) await onInlineSave(script.id, updatedVersions);
-                          setEditingVersionIdx(null); setEditContent(""); setIsSaving(false);
+                          try {
+                            const latest = (await editVersionEditorRef.current?.getMarkdownForSave()) ?? editContent;
+                            const updatedVersions = script.versions.map((ver, idx) => idx === i ? { ...ver, content: latest } : ver);
+                            if (onInlineSave) await onInlineSave(script.id, updatedVersions);
+                            // Only close on success — a failed save keeps the
+                            // draft on screen so it isn't lost.
+                            setEditingVersionIdx(null); setEditContent("");
+                          } catch (e) {
+                            console.error("Inline save failed:", e);
+                          } finally {
+                            setIsSaving(false);
+                          }
                         }}>
                           {isSaving ? <><Loader2 className="h-3.5 w-3.5 animate-spin mr-1" />Saving…</> : "Save"}
                         </Button>
@@ -772,9 +785,14 @@ export default function ServicingPage() {
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
-    const ok = await deleteScript(deleteTarget.id);
-    if (ok) refetch();
-    setDeleteTarget(null);
+    try {
+      await deleteScript(deleteTarget.id);
+      refetch();
+    } catch {
+      // deleteScript already toasted — the template is still there.
+    } finally {
+      setDeleteTarget(null);
+    }
   };
 
   // Active categories that actually have scripts (fully dynamic — includes AI-created ones)

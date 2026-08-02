@@ -69,6 +69,12 @@ export function useScripts() {
   return { scripts, loading, refetch: fetchScripts };
 }
 
+/**
+ * Script writes REJECT on failure (after toasting) instead of returning a
+ * falsy value. Callers used to ignore the return value and close their dialog
+ * / fire a success toast even when the row never changed — the user lost the
+ * edit and never knew. Every caller must await inside try/catch.
+ */
 export function useScriptsMutations() {
   const { isAdmin } = useAdmin();
 
@@ -91,7 +97,7 @@ export function useScriptsMutations() {
       } as any])
       .select()
       .single();
-    if (error) { toast.error('Failed to create script'); console.error(error); return null; }
+    if (error) { toast.error('Failed to create script'); console.error(error); throw error; }
     toast.success('Script created');
     return data;
   };
@@ -111,15 +117,15 @@ export function useScriptsMutations() {
     if (updates.attachments !== undefined) payload.attachments = JSON.parse(JSON.stringify(updates.attachments));
 
     const { error } = await supabase.from('scripts').update(payload).eq('id', id);
-    if (error) { toast.error('Failed to update script'); console.error(error); return false; }
+    if (error) { toast.error('Failed to update script'); console.error(error); throw error; }
     toast.success('Script updated');
     return true;
   };
 
   const deleteScript = async (id: string) => {
-    if (!isAdmin) { toast.error('Admin access required'); return false; }
+    if (!isAdmin) { toast.error('Admin access required'); throw new Error('Admin access required'); }
     const { error } = await supabase.from('scripts').delete().eq('id', id);
-    if (error) { toast.error('Failed to delete script'); console.error(error); return false; }
+    if (error) { toast.error('Failed to delete script'); console.error(error); throw error; }
     toast.success('Script deleted');
     return true;
   };

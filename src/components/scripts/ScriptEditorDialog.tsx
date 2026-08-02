@@ -794,6 +794,9 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       // Only close on success — on failure leave the dialog open with the
       // user's edits intact so they can retry.
       onClose();
+    } catch (e) {
+      // The mutation already toasted the reason; keep the dialog open.
+      console.error("Failed to save script:", e);
     } finally {
       setSaving(false);
     }

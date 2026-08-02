@@ -157,6 +157,10 @@ export function useMergeScripts(
       await onSave(target.id, newVersions);
       setPendingMerge(null);
       onMergeComplete?.(target.id, previousVersions, target.stage);
+    } catch (e) {
+      // The save already toasted the reason. Keep the confirm dialog open and
+      // never fire the "Merged into ..." success toast for a write that failed.
+      console.error("Merge failed:", e);
     } finally {
       setMerging(false);
     }

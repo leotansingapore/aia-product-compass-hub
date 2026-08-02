@@ -1395,6 +1395,8 @@ function MobileVersionSelector({
         await onInlineSave(scriptId, updated);
         setEditing(false);
       }
+    } catch (e) {
+      console.error("Version save failed:", e);
     } finally {
       // Only the mutation branch already cleared isSaving; otherwise reset
       // here so a failed onInlineSave still releases the spinner.
@@ -1419,7 +1421,7 @@ function MobileVersionSelector({
       const finalName = trimmed || original;
       if (finalName !== (activeOfficial.title || activeOfficial.author)) {
         const updated = versions.map((ver, i) => i === officialIdx ? { ...ver, author: finalName, title: finalName } : ver);
-        onInlineSave(scriptId, updated);
+        void onInlineSave(scriptId, updated).catch(() => { /* already toasted */ });
       }
     }
     setRenaming(false);
@@ -1899,6 +1901,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     setIsSaving(true);
     try {
       await onMetadataSave(script.id, updates);
+    } catch (e) {
+      console.error("Failed to save script metadata:", e);
     } finally {
       setIsSaving(false);
     }
@@ -1930,6 +1934,8 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
       // mode with their unsaved changes so they can retry without retyping.
       setEditingVersionIdx(null);
       setEditContent("");
+    } catch (e) {
+      console.error("Inline save failed:", e);
     } finally {
       setIsSaving(false);
     }
@@ -2266,7 +2272,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                 const newVersions = script.versions.map((ver, idx) =>
                                   idx === editingVersionTitle ? { ...ver, author: finalName, title: finalName } : ver
                                 );
-                                if (onInlineSave) await onInlineSave(script.id, newVersions);
+                                if (onInlineSave) await onInlineSave(script.id, newVersions).catch(() => { /* already toasted */ });
                               }
                               setEditingVersionTitle(null);
                             } else if (e.key === 'Escape') {
@@ -2282,7 +2288,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                               const newVersions = script.versions.map((ver, idx) =>
                                 idx === editingVersionTitle ? { ...ver, author: finalName, title: finalName } : ver
                               );
-                              if (onInlineSave) await onInlineSave(script.id, newVersions);
+                              if (onInlineSave) await onInlineSave(script.id, newVersions).catch(() => { /* already toasted */ });
                             }
                             setEditingVersionTitle(null);
                           }}
@@ -2742,9 +2748,13 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                                    const versionName = v.title || v.author || `Version ${i + 1}`;
                                    if (!confirm(`Delete version "${versionName}"? This cannot be undone.`)) return;
                                    const newVersions = script.versions.filter((_, idx) => idx !== i);
-                                   await onInlineSave(script.id, newVersions);
-                                   manualTabRef.current = "0";
-                                   setActiveVersionTab("0");
+                                   try {
+                                     await onInlineSave(script.id, newVersions);
+                                     manualTabRef.current = "0";
+                                     setActiveVersionTab("0");
+                                   } catch {
+                                     // updateScript already toasted the failure.
+                                   }
                                  }}
                                >
                                  <Trash2 className="h-3 w-3 mr-1" /> Delete version
@@ -3195,9 +3205,12 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
             {/* Version History (Admin Only) */}
             {isAdmin && (
               <ScriptVersionHistory scriptId={script.id} onRollback={async (versions) => {
-                if (onInlineSave) {
+                if (!onInlineSave) return;
+                try {
                   await onInlineSave(script.id, versions);
                   toast.success('Script rolled back to selected version');
+                } catch {
+                  // updateScript already toasted the failure.
                 }
               }} />
             )}
@@ -3772,9 +3785,13 @@ export default function ScriptsDatabase() {
       action: {
         label: "Undo",
         onClick: async () => {
-          await updateScript(targetId, { versions: previousVersions });
-          refetch();
-          toast.success("Merge undone");
+          try {
+            await updateScript(targetId, { versions: previousVersions });
+            refetch();
+            toast.success("Merge undone");
+          } catch {
+            // updateScript already toasted the failure — don't claim it undid.
+          }
         },
       },
     });
@@ -3834,9 +3851,14 @@ export default function ScriptsDatabase() {
 
   const handleDelete = async () => {
     if (!deleteTarget) return;
-    await deleteScript(deleteTarget.id);
-    setDeleteTarget(null);
-    refetch();
+    try {
+      await deleteScript(deleteTarget.id);
+      refetch();
+    } catch {
+      // deleteScript already toasted — the row is still there.
+    } finally {
+      setDeleteTarget(null);
+    }
   };
 
   const handleDeleteCategory = async () => {
