@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import type { BankType, QuestionBankQuestion, QuizQuestion } from '@/types/questionBank';
 import { dbRowToQuizQuestion } from '@/types/questionBank';
+import { fetchAllRows } from '@/lib/fetchAllRows';
 
 interface UseQuestionBankParams {
   productSlug: string;
@@ -28,16 +29,19 @@ export function useQuestionBank({ productSlug, bankType, enabled = true }: UseQu
   return useQuery({
     queryKey: ['question-bank', productSlug, bankType],
     queryFn: async (): Promise<QuizQuestion[]> => {
-      const { data, error } = await supabase
-        .from('question_bank_questions' as never)
-        .select('*')
-        .eq('product_slug', productSlug)
-        .eq('bank_type', bankType)
-        .order('sort_order', { ascending: true })
-        .order('id', { ascending: true });
-
-      if (error) throw error;
-      return ((data ?? []) as unknown as QuestionBankQuestion[]).map(dbRowToQuizQuestion);
+      // Paged: PostgREST caps a bare select at 1,000 rows, so a large bank
+      // would silently hand the learner a truncated paper.
+      const rows = await fetchAllRows<QuestionBankQuestion>((from, to) =>
+        supabase
+          .from('question_bank_questions' as never)
+          .select('*')
+          .eq('product_slug', productSlug)
+          .eq('bank_type', bankType)
+          .order('sort_order', { ascending: true })
+          .order('id', { ascending: true })
+          .range(from, to),
+      );
+      return rows.map(dbRowToQuizQuestion);
     },
     enabled: enabled && !!productSlug && !!bankType,
     staleTime: 5 * 60 * 1000, // 5 minutes
@@ -52,18 +56,19 @@ export function useQuestionBankRows({ productSlug, bankType, enabled = true }: U
   return useQuery({
     queryKey: ['question-bank-rows', productSlug, bankType],
     queryFn: async (): Promise<QuestionBankQuestion[]> => {
-      const { data, error } = await supabase
-        .from('question_bank_questions' as never)
-        .select('*')
-        .eq('product_slug', productSlug)
-        .eq('bank_type', bankType)
-        .order('sort_order', { ascending: true })
-        // Same unique tiebreaker: without it the admin list silently reorders
-        // between refetches, so "row 3" is not the row you just edited.
-        .order('id', { ascending: true });
-
-      if (error) throw error;
-      return (data ?? []) as unknown as QuestionBankQuestion[];
+      return await fetchAllRows<QuestionBankQuestion>((from, to) =>
+        supabase
+          .from('question_bank_questions' as never)
+          .select('*')
+          .eq('product_slug', productSlug)
+          .eq('bank_type', bankType)
+          .order('sort_order', { ascending: true })
+          // Same unique tiebreaker: without it the admin list silently reorders
+          // between refetches, so "row 3" is not the row you just edited — and
+          // paging needs a stable order or pages overlap.
+          .order('id', { ascending: true })
+          .range(from, to),
+      );
     },
     enabled: enabled && !!productSlug && !!bankType,
   });
