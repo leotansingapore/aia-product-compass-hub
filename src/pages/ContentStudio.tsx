@@ -5,6 +5,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -112,6 +122,10 @@ export default function ContentStudio() {
   const [ctaType, setCtaType] = useState<CtaType>("dm-keyword");
   const [draft, setDraft] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  // The last text the generator produced. If `draft` has drifted from this, the
+  // user has edited in place - and a re-roll would silently destroy that work.
+  const [lastGenerated, setLastGenerated] = useState<string>("");
+  const [confirmRerollOpen, setConfirmRerollOpen] = useState(false);
 
   const pillarMeta = useMemo(() => PILLARS.find((p) => p.value === pillar)!, [pillar]);
   const ideaMeta = useMemo(() => IDEA_SOURCES.find((s) => s.value === ideaSource)!, [ideaSource]);
@@ -145,6 +159,7 @@ export default function ContentStudio() {
         throw new Error(errMsg);
       }
       setDraft(text);
+      setLastGenerated(text);
       toast({ title: "Draft ready", description: "Review, edit, copy. Re-run if you want a different angle." });
     } catch (err) {
       console.error(err);
@@ -156,6 +171,18 @@ export default function ContentStudio() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const hasUnsavedEdits = draft.trim().length > 0 && draft !== lastGenerated;
+
+  // Generating overwrites the textarea. Ask first when that would throw away
+  // edits the user typed in place.
+  const requestGenerate = () => {
+    if (hasUnsavedEdits) {
+      setConfirmRerollOpen(true);
+      return;
+    }
+    void handleGenerate();
   };
 
   const handleCopy = async () => {
@@ -356,7 +383,7 @@ export default function ContentStudio() {
         </div>
         <Button
           size="lg"
-          onClick={handleGenerate}
+          onClick={requestGenerate}
           disabled={loading}
           className="gap-2 bg-gradient-primary text-primary-foreground shadow-elegant hover:opacity-95"
         >
@@ -378,7 +405,7 @@ export default function ContentStudio() {
               <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5">
                 <Copy className="h-3.5 w-3.5" /> Copy
               </Button>
-              <Button variant="outline" size="sm" onClick={handleGenerate} disabled={loading} className="gap-1.5">
+              <Button variant="outline" size="sm" onClick={requestGenerate} disabled={loading} className="gap-1.5">
                 <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} /> Re-roll
               </Button>
             </div>
@@ -399,6 +426,30 @@ export default function ContentStudio() {
           </CardContent>
         </Card>
       )}
+
+      <AlertDialog open={confirmRerollOpen} onOpenChange={setConfirmRerollOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Replace your edited draft?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You've edited this draft since it was generated. Generating again overwrites
+              the textarea and those edits can't be recovered. Copy them somewhere first if
+              you want to keep them.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep my draft</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                setConfirmRerollOpen(false);
+                void handleGenerate();
+              }}
+            >
+              Generate a new one
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
