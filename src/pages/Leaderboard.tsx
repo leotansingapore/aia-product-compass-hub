@@ -88,11 +88,7 @@ function LeaderboardTable({
     const reranked = pool.map((r, i) => ({ ...r, rank: i + 1 }));
     const q = filter.trim().toLowerCase();
     if (!q) return reranked;
-    return reranked.filter(
-      (r) =>
-        r.name.toLowerCase().includes(q) ||
-        (r.email ?? "").toLowerCase().includes(q),
-    );
+    return reranked.filter((r) => r.name.toLowerCase().includes(q));
   }, [rows, tier, filter]);
 
   if (filtered.length === 0) {

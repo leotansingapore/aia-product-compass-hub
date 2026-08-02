@@ -15,7 +15,8 @@ export type PointBreakdown = {
 export type LeaderboardRow = {
   userId: string;
   name: string;
-  email: string | null;
+  // No `email`: peers' addresses were being shipped to every browser for a
+  // search box that never ran. The RPC no longer returns it either.
   tier: TierLevel;
   totalPoints: number;
   daysActive: number;
@@ -27,7 +28,6 @@ export type LeaderboardRow = {
 type RpcRow = {
   user_id: string;
   name: string;
-  email: string | null;
   total_points: number | string;
   days_active: number;
   first_14_days: number | string;
@@ -78,7 +78,6 @@ async function fetchLeaderboard(
     return {
       userId: r.user_id,
       name: r.name,
-      email: r.email,
       tier,
       totalPoints: toNum(r.total_points),
       daysActive: r.days_active,
