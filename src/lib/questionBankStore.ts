@@ -25,7 +25,12 @@ const MAX_ATTEMPTS = 300;
 // policy) the data is silently lost — a finished exam that shows a score but
 // saves nothing. Warn the user once so the loss isn't invisible.
 let storageWarned = false;
-function handleStorageError() {
+/**
+ * Warn ONCE per session that a localStorage write failed. Exported so every
+ * quiz surface shares the same one-shot warning instead of each inventing its
+ * own (or, worse, letting the throw blank the route).
+ */
+export function handleStorageError() {
   if (storageWarned) return;
   storageWarned = true;
   try {

@@ -7,6 +7,7 @@ import { CheckCircle2, XCircle, ChevronLeft, ChevronRight, RotateCcw, Trophy, Bo
 import { cn } from '@/lib/utils';
 import type { StudyQuestion } from '@/data/proAchieverStudyBank';
 import { MasteryProgressBar } from '@/components/study/MasteryProgressBar';
+import { handleStorageError } from '@/lib/questionBankStore';
 
 // ── Spaced repetition helpers ───────────────────────────────────────────
 const WEAK_KEY = (productSlug: string) => `study_weak_${productSlug}`;
@@ -19,9 +20,18 @@ function loadWeakQuestions(productSlug: string): Record<string, number> {
   } catch { return {}; }
 }
 
-/** Save weak-question data — keyed by question text, value = miss count */
+/**
+ * Save weak-question data — keyed by question text, value = miss count.
+ * Persistence is best-effort: a QuotaExceededError (full storage, Safari
+ * Private mode, storage disabled by policy) must never blank the route the
+ * learner is studying on.
+ */
 function saveWeakQuestions(productSlug: string, data: Record<string, number>) {
-  localStorage.setItem(WEAK_KEY(productSlug), JSON.stringify(data));
+  try {
+    localStorage.setItem(WEAK_KEY(productSlug), JSON.stringify(data));
+  } catch {
+    handleStorageError();
+  }
 }
 
 // ── Session persistence helpers ─────────────────────────────────────────
@@ -79,12 +89,19 @@ function loadSession(
 }
 
 function saveSession(productSlug: string, bank: StudyBankKey, session: PersistedSession) {
-  localStorage.setItem(SESSION_KEY(productSlug, bank), JSON.stringify(session));
+  // Runs inside a render effect — an unguarded throw here unmounts the quiz.
+  try {
+    localStorage.setItem(SESSION_KEY(productSlug, bank), JSON.stringify(session));
+  } catch {
+    handleStorageError();
+  }
 }
 
 function clearSession(productSlug: string, bank: StudyBankKey) {
-  localStorage.removeItem(SESSION_KEY(productSlug, bank));
-  if (bank === 'study') localStorage.removeItem(LEGACY_SESSION_KEY(productSlug));
+  try {
+    localStorage.removeItem(SESSION_KEY(productSlug, bank));
+    if (bank === 'study') localStorage.removeItem(LEGACY_SESSION_KEY(productSlug));
+  } catch { /* nothing to clear if storage is unavailable */ }
 }
 
 // ── Option shuffling ────────────────────────────────────────────────────
