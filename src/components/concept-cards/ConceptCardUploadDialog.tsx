@@ -12,6 +12,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useConceptCardsMutations, removeConceptCardImages } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { functionsErrorMessage } from '@/lib/functionsErrorMessage';
 
 const AUDIENCE_OPTIONS = ['NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
@@ -89,7 +90,9 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           ? { ...e, enhancing: false, enhancedUrl: (!error && data?.enhancedUrl) ? data.enhancedUrl : null }
           : e
       ));
-      if (error || !data?.enhancedUrl) toast.error('AI enhancement failed for one image — original will be used');
+      if (error || !data?.enhancedUrl) {
+        toast.error(await functionsErrorMessage(error, 'AI enhancement failed for one image — original will be used'));
+      }
     } catch {
       setEntries(prev => prev.map(e => e.id === id ? { ...e, enhancing: false } : e));
     }

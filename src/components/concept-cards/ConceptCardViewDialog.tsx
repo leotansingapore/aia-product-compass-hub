@@ -42,6 +42,7 @@ import { ConceptCard } from '@/hooks/useConceptCards';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { functionsErrorMessage } from '@/lib/functionsErrorMessage';
 import { ImageCropper } from './ImageCropper';
 
 interface Props {
@@ -975,7 +976,12 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
       const { data, error } = await supabase.functions.invoke('compare-concept-drawing', {
         body: { userDrawingBase64, referenceImageUrl: displayImageUrl, cardTitle: card.title },
       });
-      if (error || !data) { toast.error(error?.message || 'Comparison failed'); return; }
+      if (error || !data) {
+        // Surface the edge function's own message (e.g. 402 credits / 429 rate
+        // limit) instead of the generic FunctionsHttpError text.
+        toast.error(await functionsErrorMessage(error, 'Comparison failed — please try again'));
+        return;
+      }
       if (data.error) { toast.error(data.error); return; }
       setCompareResult(data as CompareResult);
     } catch (e) {

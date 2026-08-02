@@ -10,6 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useConceptCardsMutations, removeConceptCardImages, ConceptCard } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { functionsErrorMessage } from '@/lib/functionsErrorMessage';
 import { ImageCropper } from './ImageCropper';
 import { InlineImageEditor } from './InlineImageEditor';
 
@@ -105,7 +106,7 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
         body: { imageBase64: base64, fileName: file.name },
       });
       if (error || !data?.enhancedUrl) {
-        toast.error('Enhancement failed — original will be used');
+        toast.error(await functionsErrorMessage(error, 'Enhancement failed — original will be used'));
       } else {
         setImages(prev => prev.map(img => img.key === key ? { ...img, enhancedUrl: data.enhancedUrl } : img));
         toast.success('Image enhanced ✨');
