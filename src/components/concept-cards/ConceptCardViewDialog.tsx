@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -1048,8 +1048,13 @@ export function ConceptCardViewDialog({ card, onClose, initialTab = 'view' }: Pr
         {/* Header */}
         <div className="px-5 py-4 border-b bg-card flex items-start justify-between gap-3 shrink-0">
           <div className="space-y-1 flex-1 min-w-0">
-            <h2 className="font-bold text-base sm:text-lg leading-snug">{card.title}</h2>
-            {card.description && <p className="text-sm text-muted-foreground">{card.description}</p>}
+            {/* DialogTitle/Description, not bare h2/p — without them the dialog
+                has no accessible name and Radix warns at runtime. Classes keep
+                the existing look. */}
+            <DialogTitle className="font-bold text-base sm:text-lg leading-snug tracking-normal">{card.title}</DialogTitle>
+            {card.description
+              ? <DialogDescription>{card.description}</DialogDescription>
+              : <DialogDescription className="sr-only">Concept card drawing, with a draw-and-compare exercise.</DialogDescription>}
             <div className="flex flex-wrap gap-1 pt-1">
               {card.audience.map(a => <Badge key={a} variant="outline" className="text-xs">{a}</Badge>)}
               {card.product_type.map(p => (
