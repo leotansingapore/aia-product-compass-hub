@@ -24,7 +24,7 @@ Deno.serve(async (req) => {
     // This endpoint answers "is this email registered?" and must stay callable
     // without a session (the login form calls it first), so throttling is the
     // only control against scripted enumeration of the agent roster.
-    if (await isRateLimited(req, { endpoint: "check-academy-user-exists", max: 20, windowMinutes: 15 }, email)) {
+    if (await isRateLimited(req, { endpoint: "check-academy-user-exists", max: 20, ipMax: 400, windowMinutes: 15 }, email)) {
       return tooManyRequests(corsHeaders);
     }
 

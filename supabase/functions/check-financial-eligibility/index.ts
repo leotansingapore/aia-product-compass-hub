@@ -26,7 +26,7 @@ Deno.serve(async (req) => {
     // API key, so upstream sees a single trusted caller and cannot throttle the
     // real attacker. Without this limit the endpoint is a free, unauthenticated
     // brute-force front-end for that password database.
-    if (await isRateLimited(req, { endpoint: "check-financial-eligibility", max: 8, windowMinutes: 15 }, email)) {
+    if (await isRateLimited(req, { endpoint: "check-financial-eligibility", max: 8, ipMax: 200, windowMinutes: 15 }, email)) {
       return tooManyRequests(corsHeaders);
     }
 

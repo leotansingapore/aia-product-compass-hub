@@ -58,7 +58,7 @@ serve(async (req) => {
     // admin inbox. The submitter is now the token holder, not a body field.
     const caller = await identifyCaller(req);
     if (!caller.userId) return denied(corsHeaders, 'Sign in to submit', 401);
-    if (await isRateLimited(req, { endpoint: 'notify-assignment-submitted', max: 20, windowMinutes: 60 }, caller.userId)) {
+    if (await isRateLimited(req, { endpoint: 'notify-assignment-submitted', max: 20, ipMax: 400, windowMinutes: 60 }, caller.userId)) {
       return tooManyRequests(corsHeaders);
     }
 

@@ -40,7 +40,7 @@ serve(async (req) => {
     // The reporter identity is taken from the token, not the body.
     const caller = await identifyCaller(req);
     if (!caller.userId) return denied(corsHeaders, 'Sign in to send feedback', 401);
-    if (await isRateLimited(req, { endpoint: 'notify-feedback-submitted', max: 10, windowMinutes: 60 }, caller.userId)) {
+    if (await isRateLimited(req, { endpoint: 'notify-feedback-submitted', max: 10, ipMax: 300, windowMinutes: 60 }, caller.userId)) {
       return tooManyRequests(corsHeaders);
     }
 

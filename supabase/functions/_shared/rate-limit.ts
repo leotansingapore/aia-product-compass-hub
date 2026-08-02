@@ -11,10 +11,27 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
  */
 export interface RateLimitRule {
   endpoint: string;
-  /** Max attempts allowed inside the window, per identifier. */
+  /**
+   * Max attempts per EMAIL inside the window. Tight — this is what stops
+   * someone grinding one account's password.
+   */
   max: number;
+  /**
+   * Max attempts per IP inside the window. Must be MUCH looser than `max`:
+   * these are pre-session endpoints the login form calls, and real users share
+   * IPs constantly — one office behind NAT, a corporate VPN, or mobile carrier
+   * CGNAT (routine in Singapore). Applying the per-email number per-IP would
+   * let eight colleagues signing in lock out the whole building.
+   *
+   * It still bounds scripted enumeration, which needs thousands of requests to
+   * be worth anything, not dozens.
+   */
+  ipMax?: number;
   windowMinutes: number;
 }
+
+/** Generous default: stops a scraper, never a shared office. */
+const DEFAULT_IP_MAX = 300;
 
 async function sha256(value: string): Promise<string> {
   const bytes = new TextEncoder().encode(value.trim().toLowerCase());
@@ -72,7 +89,8 @@ export async function isRateLimited(
         console.error("rate-limit check failed", error);
         return true;
       }
-      if ((count ?? 0) >= rule.max) return true;
+      const limit = kind === "ip" ? (rule.ipMax ?? DEFAULT_IP_MAX) : rule.max;
+      if ((count ?? 0) >= limit) return true;
 
       await admin.from("auth_endpoint_rate_limits").insert({
         endpoint: rule.endpoint,
