@@ -93,29 +93,35 @@ export function MobileDrawer() {
 
             <Separator className="mb-6" />
 
-            {/* Product Categories — single link */}
-            <div className="mb-6">
-              <div className="space-y-1">
-                <NavLink
-                  to="/categories"
-                  onClick={handleLinkClick}
-                  className={({ isActive }) =>
-                    cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                      "hover:bg-muted",
-                      isActive
-                        ? "bg-muted text-primary font-medium"
-                        : "text-muted-foreground"
-                    )
-                  }
-                >
-                  <Archive className="h-4 w-4 shrink-0" />
-                  <span>Product Categories</span>
-                </NavLink>
-              </div>
-            </div>
+            {/* Product Categories — single link. /categories is gated on the
+                `products` feature, so hide the entry for tiers without it
+                instead of sending them into a redirect. */}
+            {can(FEATURES.PRODUCTS) && (
+              <>
+                <div className="mb-6">
+                  <div className="space-y-1">
+                    <NavLink
+                      to="/categories"
+                      onClick={handleLinkClick}
+                      className={({ isActive }) =>
+                        cn(
+                          "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                          "hover:bg-muted",
+                          isActive
+                            ? "bg-muted text-primary font-medium"
+                            : "text-muted-foreground"
+                        )
+                      }
+                    >
+                      <Archive className="h-4 w-4 shrink-0" />
+                      <span>Product Categories</span>
+                    </NavLink>
+                  </div>
+                </div>
 
-            <Separator className="mb-6" />
+                <Separator className="mb-6" />
+              </>
+            )}
 
             {/* Resources */}
             {resourceItems.length > 0 && (
