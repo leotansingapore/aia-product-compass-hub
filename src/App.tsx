@@ -218,8 +218,8 @@ const App = () => (
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
                     <Route path="/leaderboard/:tab" element={<RequireAuth><Leaderboard /></RequireAuth>} />
                     <Route path="/library" element={<RequireAuth><Library /></RequireAuth>}>
-                      <Route path="products" element={<LibraryProductsTab />} />
-                      <Route path="question-banks" element={<LibraryQuestionBanksTab />} />
+                      <Route path="products" element={<RequireTier feature="products" redirectTo="/library/cheat-sheets"><LibraryProductsTab /></RequireTier>} />
+                      <Route path="question-banks" element={<RequireTier feature="question-banks" redirectTo="/library/cheat-sheets"><LibraryQuestionBanksTab /></RequireTier>} />
                       <Route path="cheat-sheets" element={<LibraryCheatSheetsTab />} />
                       <Route path="playbooks" element={<RequireTier feature="sales-playbooks"><LibrarySalesPlaybooksTab /></RequireTier>} />
                       <Route path="tools" element={<LibraryToolsHub />} />
