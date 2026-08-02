@@ -61,7 +61,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { LIBRARY_TABS } from "@/pages/Library";
+import { visibleLibraryTabs } from "@/pages/Library";
 import { ChevronRight } from "lucide-react";
 import { useCategories, invalidateCategoriesCache, useProducts } from "@/hooks/useProducts";
 import { useQueryClient } from "@tanstack/react-query";
@@ -647,13 +647,18 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
 export { AppSidebar };
 
 function LibraryTabsPreview() {
+  // Same tier filter as the Library tab bar — never preview a tab that would
+  // just bounce the user back out.
+  const { can } = useFeatureAccess();
+  const tabs = visibleLibraryTabs(can);
+
   return (
     <>
       <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
         Jump to
       </p>
       <ul className="space-y-0.5">
-        {LIBRARY_TABS.map((tab) => {
+        {tabs.map((tab) => {
           const TabIcon = tab.icon;
           return (
             <li key={tab.slug}>

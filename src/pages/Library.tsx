@@ -4,6 +4,8 @@ import { BookOpen, Brain, FileText, TrendingUp, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { BrandedPageHeader } from "@/components/layout/BrandedPageHeader";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { FEATURES, type FeatureKey } from "@/lib/tiers";
 import { cn } from "@/lib/utils";
 
 type LibraryTab = {
@@ -11,15 +13,22 @@ type LibraryTab = {
   label: string;
   icon: LucideIcon;
   path: string;
+  /** Tier feature required to open the tab. Omitted = available to every tier. */
+  feature?: FeatureKey;
 };
 
 export const LIBRARY_TABS: ReadonlyArray<LibraryTab> = [
-  { slug: "products", label: "Products", icon: BookOpen, path: "/library/products" },
-  { slug: "question-banks", label: "Question Banks", icon: Brain, path: "/library/question-banks" },
+  { slug: "products", label: "Products", icon: BookOpen, path: "/library/products", feature: FEATURES.PRODUCTS },
+  { slug: "question-banks", label: "Question Banks", icon: Brain, path: "/library/question-banks", feature: FEATURES.QUESTION_BANKS },
   { slug: "cheat-sheets", label: "Cheat Sheets", icon: FileText, path: "/library/cheat-sheets" },
-  { slug: "playbooks", label: "Sales Playbooks", icon: TrendingUp, path: "/library/playbooks" },
+  { slug: "playbooks", label: "Sales Playbooks", icon: TrendingUp, path: "/library/playbooks", feature: FEATURES.SALES_PLAYBOOKS },
   { slug: "tools", label: "Tools", icon: Wrench, path: "/library/tools" },
 ] as const;
+
+/** The Library tabs the given access checker can actually open. */
+export function visibleLibraryTabs(can: (feature: FeatureKey) => boolean): ReadonlyArray<LibraryTab> {
+  return LIBRARY_TABS.filter((tab) => !tab.feature || can(tab.feature));
+}
 
 // Legacy query-param URLs that the rest of the app may still link to.
 // Map them to the new path-based URLs so we keep one canonical location per
@@ -36,6 +45,7 @@ const LEGACY_QUERY_TAB_TO_SLUG: Record<string, LibraryTab["slug"]> = {
 export default function Library() {
   const location = useLocation();
   const indexMatch = useMatch("/library");
+  const { can, permissionsLoading } = useFeatureAccess();
 
   // If somebody hits /library?tab=banks (the old URL shape), bounce them to
   // the canonical /library/<slug> URL so the address bar matches the tab.
@@ -52,9 +62,12 @@ export default function Library() {
     return <Navigate to={legacyQueryRedirect} replace />;
   }
 
-  // Bare /library lands on the Products tab so the page never renders empty.
+  // Bare /library lands on the first tab this tier can actually open, so a
+  // user without Products access doesn't get bounced straight back out.
   if (indexMatch) {
-    return <Navigate to="/library/products" replace />;
+    if (permissionsLoading) return null;
+    const firstTab = visibleLibraryTabs(can)[0] ?? LIBRARY_TABS[2];
+    return <Navigate to={firstTab.path} replace />;
   }
 
   return (
@@ -86,13 +99,18 @@ function LibraryTabBar() {
   // Underline-style horizontal tab bar that scrolls sideways when the
   // viewport is narrower than the row of tabs — avoids the uneven 3+2
   // wrap that a grid produced at ~640-1024px with 5 tabs.
+  // Tabs whose destination is tier-gated are dropped rather than rendered as
+  // guaranteed redirects.
+  const { can } = useFeatureAccess();
+  const tabs = visibleLibraryTabs(can);
+
   return (
     <nav
       aria-label="Library sections"
       className="-mx-2 sm:mx-0 border-b"
     >
       <div className="flex w-full flex-nowrap items-center gap-1 overflow-x-auto px-2 sm:gap-2 sm:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {LIBRARY_TABS.map((tab) => {
+        {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
             <NavLink
