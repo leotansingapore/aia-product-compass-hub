@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, Sparkles, X, ImageIcon, Save, Crop, Eraser, Plus } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { useConceptCardsMutations, ConceptCard } from '@/hooks/useConceptCards';
+import { useConceptCardsMutations, removeConceptCardImages, ConceptCard } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { ImageCropper } from './ImageCropper';
@@ -154,8 +154,9 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
     setTagInput('');
   };
 
-  // Upload a base64 data URL as a new file to Supabase storage
-  const uploadBase64 = async (dataUrl: string, prefix: string): Promise<string> => {
+  // Upload a base64 data URL as a new file to Supabase storage.
+  // Returns null when the upload fails — callers must handle it.
+  const uploadBase64 = async (dataUrl: string, prefix: string): Promise<string | null> => {
     const res = await fetch(dataUrl);
     const blob = await res.blob();
     const file = new File([blob], `${prefix}_${Date.now()}.png`, { type: 'image/png' });
@@ -166,25 +167,41 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
     if (!title.trim()) { toast.error('Please enter a question/title'); return; }
     setSaving(true);
 
+    // Track uploads made during this save so they can be cleaned up if the
+    // save doesn't go through (best-effort — never blocks the user).
+    const uploadedThisSave: string[] = [];
+    const abortSave = () => {
+      toast.error('Image upload failed — changes not saved. Please try again.');
+      void removeConceptCardImages(uploadedThisSave);
+      setSaving(false);
+    };
+
     // Resolve final URL for each image entry
     const finalUrls: string[] = [];
     for (const img of images) {
       if (img.file) {
         // New upload
         const origUrl = await uploadOriginalImage(img.file);
+        if (origUrl) uploadedThisSave.push(origUrl);
         const finalEnhanced = img.editedEnhancedUrl || img.enhancedUrl;
-        const finalOrig = img.editedUrl || origUrl;
         if (finalEnhanced) {
-          const url = img.editedEnhancedUrl
-            ? await uploadBase64(img.editedEnhancedUrl, 'enhanced')
-            : finalEnhanced;
+          let url: string | null = finalEnhanced;
+          if (img.editedEnhancedUrl) {
+            url = await uploadBase64(img.editedEnhancedUrl, 'enhanced');
+            if (!url) { abortSave(); return; }
+            uploadedThisSave.push(url);
+          }
           finalUrls.push(url);
         } else {
+          const finalOrig = img.editedUrl || origUrl;
+          if (!finalOrig) { abortSave(); return; }
           finalUrls.push(finalOrig);
         }
       } else if (img.editedUrl) {
         // Existing image was edited/cropped
         const url = await uploadBase64(img.editedUrl, 'edited');
+        if (!url) { abortSave(); return; }
+        uploadedThisSave.push(url);
         finalUrls.push(url);
       } else if (img.savedUrl) {
         // Unchanged existing image
@@ -205,7 +222,13 @@ export function ConceptCardEditDialog({ card, onClose, onUpdated }: Props) {
 
     const ok = await updateCard(card.id, updates);
     setSaving(false);
-    if (ok) { onUpdated(); handleClose(); }
+    if (ok) {
+      onUpdated();
+      handleClose();
+    } else {
+      // DB write failed — clean up the objects uploaded for this save.
+      void removeConceptCardImages(uploadedThisSave);
+    }
   };
 
   // ── Active edit/crop mode ─────────────────────────────────────────────────

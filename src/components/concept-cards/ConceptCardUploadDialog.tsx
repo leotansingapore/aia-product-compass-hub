@@ -9,7 +9,7 @@ import { Upload, Loader2, Sparkles, X, ImageIcon, ClipboardPaste, CheckCircle, C
 import { ImageCropper } from './ImageCropper';
 import { InlineImageEditor } from './InlineImageEditor';
 import { supabase } from '@/integrations/supabase/client';
-import { useConceptCardsMutations } from '@/hooks/useConceptCards';
+import { useConceptCardsMutations, removeConceptCardImages } from '@/hooks/useConceptCards';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
@@ -229,21 +229,25 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser();
     let successCount = 0;
+    let failCount = 0;
 
     for (const entry of toSave) {
       const originalUrl = await uploadOriginalImage(entry.file);
+      if (!originalUrl) {
+        // Upload failed — never save the card with a null image or claim success.
+        toast.error(`Image upload failed for "${entry.title.trim()}" — card not saved`);
+        failCount++;
+        continue;
+      }
       const finalImageUrl = aiEnhance ? (entry.enhancedUrl || originalUrl) : originalUrl;
+      let saved = false;
 
       if (entry.duplicateAction === 'replace' && entry.duplicate?.matchedCardId) {
         // Replace the matched card's image
-        const ok = await updateCard(entry.duplicate.matchedCardId, {
+        saved = await updateCard(entry.duplicate.matchedCardId, {
           image_url: finalImageUrl,
           original_image_url: originalUrl,
         });
-        if (ok) {
-          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
-          successCount++;
-        }
       } else if (entry.duplicateAction === 'add-version' && entry.duplicate?.matchedCardId) {
         // Fetch existing image_urls for the matched card and append
         const { data: existing } = await supabase
@@ -253,13 +257,9 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           .single();
         const existingUrls: string[] = existing?.image_urls || [];
         const newUrls = [...existingUrls, finalImageUrl].filter(Boolean) as string[];
-        const ok = await updateCard(entry.duplicate.matchedCardId, {
+        saved = await updateCard(entry.duplicate.matchedCardId, {
           image_urls: newUrls,
         });
-        if (ok) {
-          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
-          successCount++;
-        }
       } else {
         // Create new card as usual
         const result = await createCard({
@@ -273,10 +273,16 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
           sort_order: 0,
           created_by: user?.id || null,
         });
-        if (result) {
-          setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
-          successCount++;
-        }
+        saved = !!result;
+      }
+
+      if (saved) {
+        setEntries(prev => prev.map(e => e.id === entry.id ? { ...e, saved: true } : e));
+        successCount++;
+      } else {
+        failCount++;
+        // Best-effort: the DB write failed, so clean up the just-uploaded object.
+        void removeConceptCardImages([originalUrl]);
       }
     }
 
@@ -284,6 +290,9 @@ export function ConceptCardUploadDialog({ open, onClose, onCreated }: Props) {
     if (successCount > 0) {
       toast.success(`${successCount} card${successCount > 1 ? 's' : ''} saved!`);
       onCreated();
+    }
+    // Only close when nothing failed — failed entries stay in the dialog for retry.
+    if (successCount > 0 && failCount === 0) {
       reset();
       onClose();
     }

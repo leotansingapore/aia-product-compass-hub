@@ -40,6 +40,40 @@ export function useConceptCards() {
   return { cards, loading, refetch };
 }
 
+const BUCKET = 'concept-card-images';
+
+/**
+ * Derive the storage object path from a public URL on the concept-card-images
+ * bucket. Returns null for anything else (external URLs pass through untouched).
+ */
+export function conceptCardStoragePath(url: string): string | null {
+  const marker = `/storage/v1/object/public/${BUCKET}/`;
+  const idx = url.indexOf(marker);
+  if (idx === -1) return null;
+  const path = url.slice(idx + marker.length).split('?')[0];
+  return path ? decodeURIComponent(path) : null;
+}
+
+/**
+ * Best-effort removal of the storage objects behind the given URLs.
+ * Never blocks the user flow — failures are logged and swallowed.
+ */
+export async function removeConceptCardImages(urls: Array<string | null | undefined>): Promise<void> {
+  const paths = [...new Set(
+    urls
+      .filter((u): u is string => !!u)
+      .map(conceptCardStoragePath)
+      .filter((p): p is string => !!p)
+  )];
+  if (paths.length === 0) return;
+  try {
+    const { error } = await supabase.storage.from(BUCKET).remove(paths);
+    if (error) console.error('Concept card storage cleanup failed (non-blocking):', error);
+  } catch (e) {
+    console.error('Concept card storage cleanup failed (non-blocking):', e);
+  }
+}
+
 export function useConceptCardsMutations() {
   const createCard = async (card: Omit<ConceptCard, 'id' | 'created_at' | 'updated_at'>) => {
     const { data, error } = await supabase
@@ -70,9 +104,19 @@ export function useConceptCardsMutations() {
   };
 
   const deleteCard = async (id: string) => {
+    // Grab the card's image URLs first so its storage objects can be cleaned up.
+    const { data: card } = await supabase
+      .from('concept_cards')
+      .select('image_url, original_image_url, image_urls')
+      .eq('id', id)
+      .maybeSingle();
     const { error } = await supabase.from('concept_cards').delete().eq('id', id);
     if (error) { toast.error('Failed to delete card'); console.error(error); return false; }
     toast.success('Card deleted');
+    if (card) {
+      // Best-effort: remove the card's files from storage; never block deletion.
+      void removeConceptCardImages([card.image_url, card.original_image_url, ...(card.image_urls ?? [])]);
+    }
     return true;
   };
 
