@@ -19,7 +19,7 @@ export interface ConceptCard {
 }
 
 export function useConceptCards() {
-  const { data: cards = [], isLoading: loading, refetch } = useQuery({
+  const { data: cards = [], isLoading: loading, isError, refetch } = useQuery({
     queryKey: ['concept-cards'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -37,7 +37,7 @@ export function useConceptCards() {
     },
   });
 
-  return { cards, loading, refetch };
+  return { cards, loading, isError, refetch };
 }
 
 const BUCKET = 'concept-card-images';

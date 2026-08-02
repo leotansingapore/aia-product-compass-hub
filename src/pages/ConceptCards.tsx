@@ -292,7 +292,7 @@ function QuizBanner({
 
 // ─── Page ──────────────────────────────────────────────────────────────────
 export default function ConceptCardsPage() {
-  const { cards, loading, refetch } = useConceptCards();
+  const { cards, loading, isError, refetch } = useConceptCards();
   const { deleteCard } = useConceptCardsMutations();
   const { isAdmin } = useAdmin();
   const [uploadOpen, setUploadOpen] = useState(false);
@@ -579,6 +579,12 @@ export default function ConceptCardsPage() {
             {[...Array(6)].map((_, i) => (
               <div key={i} className="rounded-2xl border bg-card h-60 animate-pulse" />
             ))}
+          </div>
+        ) : isError ? (
+          <div className="text-center py-16 space-y-3">
+            <p className="font-medium">Couldn't load concept cards</p>
+            <p className="text-muted-foreground text-sm">Check your connection and try again.</p>
+            <Button variant="outline" onClick={() => refetch()}>Retry</Button>
           </div>
         ) : filtered.length === 0 ? (
           <div className="text-center py-16 space-y-3">
