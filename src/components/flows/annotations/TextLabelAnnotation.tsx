@@ -24,8 +24,18 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const cancelled = useRef(false);
+  const refocus = useRef(false);
 
   useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
+
+  // Return focus to the label after editing — but only once it is focusable
+  // again, since the root drops its tabIndex while the input is open.
+  useEffect(() => {
+    if (!editing && refocus.current) {
+      refocus.current = false;
+      rootRef.current?.focus();
+    }
+  }, [editing]);
 
   const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
   const screenY = (dragPos?.y ?? annotation.y) * zoom + panY;
@@ -85,16 +95,16 @@ export function TextLabelAnnotation({ annotation, onUpdate, onDelete, zoom, canE
 
   const saveEdit = () => {
     onUpdate({ id: annotation.id, content: draft });
+    refocus.current = true;
     setEditing(false);
-    rootRef.current?.focus();
   };
 
   const cancelEdit = () => {
     // Blur-to-save must not fire after an explicit cancel
     cancelled.current = true;
     setDraft(annotation.content || '');
+    refocus.current = true;
     setEditing(false);
-    rootRef.current?.focus();
   };
 
   const handleBlur = () => {

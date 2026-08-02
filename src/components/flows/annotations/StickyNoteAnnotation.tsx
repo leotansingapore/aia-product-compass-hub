@@ -24,9 +24,19 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
   const dragStart = useRef<{ pointerId: number; mx: number; my: number; x: number; y: number; moved: boolean } | null>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const refocus = useRef(false);
 
   // Once the persisted position catches up, drop the local override
   useEffect(() => { setDragPos(null); }, [annotation.x, annotation.y]);
+
+  // Return focus to the note after editing — but only once it is focusable
+  // again, since the root drops its tabIndex while the textarea is open.
+  useEffect(() => {
+    if (!editing && refocus.current) {
+      refocus.current = false;
+      rootRef.current?.focus();
+    }
+  }, [editing]);
 
   // Convert flow coords to screen coords
   const screenX = (dragPos?.x ?? annotation.x) * zoom + panX;
@@ -89,14 +99,14 @@ export function StickyNoteAnnotation({ annotation, onUpdate, onDelete, zoom, can
 
   const saveEdit = () => {
     onUpdate({ id: annotation.id, content: draft });
+    refocus.current = true;
     setEditing(false);
-    rootRef.current?.focus();
   };
 
   const cancelEdit = () => {
     setDraft(annotation.content || '');
+    refocus.current = true;
     setEditing(false);
-    rootRef.current?.focus();
   };
 
   // Keyboard equivalent of double-click / tap to edit
