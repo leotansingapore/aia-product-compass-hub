@@ -395,7 +395,11 @@ export default function AssignDrawingsPage() {
       return;
     }
     setBusyPhotoUrl(photo.url);
-    const existing = selectedCard.image_urls ?? [];
+    // Seed from image_urls, falling back to the legacy image_url so cards
+    // created before the array column existed don't lose their drawing.
+    const existing = selectedCard.image_urls?.length
+      ? selectedCard.image_urls
+      : selectedCard.image_url ? [selectedCard.image_url] : [];
     const already = existing.includes(photo.url);
     const newUrls = already
       ? existing.filter((u) => u !== photo.url)

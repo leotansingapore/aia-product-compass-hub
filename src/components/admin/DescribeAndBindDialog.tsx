@@ -224,7 +224,11 @@ export function DescribeAndBindDialog({
       return;
     }
     setBusy(true);
-    const existing = selectedCard.image_urls ?? [];
+    // Seed from image_urls, falling back to the legacy image_url so cards
+    // created before the array column existed keep their drawing in the array.
+    const existing = selectedCard.image_urls?.length
+      ? selectedCard.image_urls
+      : selectedCard.image_url ? [selectedCard.image_url] : [];
     if (!existing.includes(photoUrl)) {
       const newUrls = [...existing, photoUrl];
       const { error } = await supabase

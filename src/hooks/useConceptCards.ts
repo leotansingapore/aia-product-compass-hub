@@ -82,6 +82,9 @@ export function useConceptCardsMutations() {
         title: card.title,
         description: card.description || null,
         image_url: card.image_url || null,
+        // Keep the image_urls array in sync from day one so later "assign
+        // drawings" flows never have to guess at the legacy field.
+        image_urls: card.image_url ? [card.image_url] : [],
         original_image_url: card.original_image_url || null,
         audience: card.audience || [],
         product_type: card.product_type || [],
