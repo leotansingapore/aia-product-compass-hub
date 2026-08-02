@@ -11,6 +11,7 @@ import { useQuestionBank } from '@/hooks/useQuestionBank';
 import { useQuestionProgress } from '@/hooks/useQuestionProgress';
 import { PRODUCT_LABELS, type QuizQuestion } from '@/types/questionBank';
 import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { getSimSession, clearSimSession, upsertReviewItem } from '@/lib/questionBankStore';
 
@@ -140,17 +141,34 @@ export default function ProductExam() {
   const objectionCount = questions.filter((q) => q.category === 'objection-handling').length;
   const durationMin = Math.max(10, questions.length);
 
+  // supabase-js resolves with `{ error }` rather than throwing, so the old
+  // try/catch here never fired: a null `user_id` (token rotation) was rejected
+  // by RLS while the learner was still shown a full PASS card. Check the
+  // result, and tell them if the score didn't reach the server — but never
+  // hide the result itself, they still sat the paper.
   const recordAttempt = async (result: { score: number; correct: number; total: number }) => {
-    try {
-      await supabase.from('quiz_attempts').insert({
-        user_id: user?.id,
-        product_id: productSlug,
-        score: result.correct,
-        total_questions: result.total,
-        xp_earned: 0,
+    const warn = (detail: string) =>
+      toast.warning("Your score wasn't saved to your record", {
+        description: `${detail} Your result below is still correct — take a screenshot if you need it.`,
       });
-    } catch (e) {
-      console.error('Failed to record exam attempt:', e);
+
+    if (!user?.id) {
+      console.error('Exam attempt not recorded: no signed-in user');
+      warn('You appear to be signed out.');
+      return;
+    }
+
+    const { error } = await supabase.from('quiz_attempts').insert({
+      user_id: user.id,
+      product_id: productSlug,
+      score: result.correct,
+      total_questions: result.total,
+      xp_earned: 0,
+    });
+
+    if (error) {
+      console.error('Failed to record exam attempt:', error);
+      warn('The server rejected the write.');
     }
   };
 
