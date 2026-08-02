@@ -19,6 +19,7 @@ export const SCRIPTS_HUB_TABS = [
   { key: "flows", label: "Flows", path: "/flows" },
   { key: "appointment-flows", label: "Appointment Flows", path: "/appointment-flows" },
   { key: "concept-cards", label: "Concept Cards", path: "/concept-cards" },
+  { key: "drawings-playbook", label: "Drawings Playbook", path: "/drawings-playbook" },
   { key: "case-vault", label: "Case Vault", path: "/case-vault" },
 ] as const;
 
@@ -32,7 +33,7 @@ export const ScriptsHubHeaderTabs = memo(function ScriptsHubHeaderTabs() {
   const navigate = useNavigate();
   const currentKey = useScriptsHubCurrentKey();
   const navRef = useRef<HTMLElement>(null);
-  // With 9 tabs the row overflows on most widths and the hidden scrollbar
+  // With 10 tabs the row overflows on most widths and the hidden scrollbar
   // gave no hint that Concept Cards / Case Vault existed off-screen.
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
