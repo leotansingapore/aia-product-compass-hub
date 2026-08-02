@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { AVATAR_ALLOWED_MIME_TYPES, validateAvatarFile } from "@/lib/avatarUpload";
 import { Upload, Save, X } from "lucide-react";
 
 const profileSchema = z.object({
@@ -57,6 +58,20 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
   const handleAvatarUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file || !profile) return;
+
+    // `accept="image/*"` is only a file-dialog hint, so enforce the promised
+    // "JPG, PNG or GIF (max 5MB)" here before anything reaches storage.
+    const rejection = validateAvatarFile(file);
+    if (rejection) {
+      toast({
+        title: "Can't use that file",
+        description: rejection,
+        variant: "destructive",
+      });
+      // Clear the input so picking the same file again re-fires onChange.
+      event.target.value = "";
+      return;
+    }
 
     setUploadingAvatar(true);
     
@@ -169,12 +184,12 @@ export function ProfileForm({ profile, onSave, onCancel }: ProfileFormProps) {
             <Input
               id="avatar-upload"
               type="file"
-              accept="image/*"
+              accept={AVATAR_ALLOWED_MIME_TYPES.join(",")}
               onChange={handleAvatarUpload}
               className="hidden"
             />
             <p className="text-micro text-muted-foreground mt-1">
-              JPG, PNG or GIF (max 5MB)
+              JPG, PNG, GIF or WebP (max 5MB)
             </p>
           </div>
         </div>
