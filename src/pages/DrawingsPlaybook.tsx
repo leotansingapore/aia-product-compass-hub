@@ -227,7 +227,7 @@ export default function DrawingsPlaybookPage() {
               <span className="text-sm font-semibold">Case Vault</span>
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              31 real-prospect receipts across all 7 AIA products. Each case lists the drawings used.
+              Real-prospect receipts across all 7 AIA products. Each case lists the drawings used.
             </p>
           </Link>
         </div>

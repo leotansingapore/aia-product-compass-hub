@@ -177,7 +177,7 @@ export default function CaseVaultPage() {
   return (
     <PageLayout
       title="Case Vault — FINternship"
-      description="31 real-prospect case studies across 7 AIA products — receipts, anchors, and the drawings that closed them."
+      description={`${ALL_CASES.length} real-prospect case studies across ${Object.keys(CASE_PRODUCTS).length} AIA products — receipts, anchors, and the drawings that closed them.`}
     >
       <BrandedPageHeader
         tone="dark"
