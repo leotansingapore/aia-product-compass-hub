@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { useScripts } from "@/hooks/useScripts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import {
   AlertDialog,
@@ -91,7 +91,7 @@ interface SimilarScript {
 interface Props {
   open: boolean;
   onClose: () => void;
-  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => Promise<void>;
+  onSave: (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null; attachments?: ScriptAttachment[] }) => Promise<void>;
   script?: ScriptEntry | null;
   lockedAudience?: string;
   lockedRoles?: { value: string; label: string }[];
@@ -790,7 +790,7 @@ export function ScriptEditorDialog({ open, onClose, onSave, script, lockedAudien
       ...pastePdfs.map(pdf => ({ label: pdf.name, url: pdf.url, type: "pdf" as const })),
     ];
     try {
-      await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) } as any);
+      await onSave({ stage, category, target_audience: targetAudience, script_role: scriptRole, tags, versions: validVersions, sort_order: sortOrder, related_script_id: relatedScriptId, ...(attachments.length > 0 ? { attachments } : {}) });
       // Only close on success — on failure leave the dialog open with the
       // user's edits intact so they can retry.
       onClose();

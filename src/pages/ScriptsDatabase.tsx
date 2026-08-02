@@ -3812,7 +3812,7 @@ export default function ScriptsDatabase() {
     refetch();
   }, [updateScript, refetch]);
 
-  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null }) => {
+  const handleSave = async (data: { stage: string; category: string; target_audience: string; script_role: string; tags: string[]; versions: ScriptVersion[]; sort_order: number; related_script_id?: string | null; attachments?: ScriptAttachment[] }) => {
     if (editingScript) {
       await updateScript(editingScript.id, data);
       refetch();

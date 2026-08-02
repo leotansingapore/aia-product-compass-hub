@@ -52,6 +52,7 @@ export function useScripts() {
         script_role: (d as any).script_role || 'consultant',
         tags: (d as any).tags || [],
         versions: (d.versions as unknown as ScriptVersion[]) || [],
+        attachments: Array.isArray((d as any).attachments) ? ((d as any).attachments as ScriptAttachment[]) : [],
         related_script_id: (d as any).related_script_id || null,
       })));
     }
@@ -80,6 +81,10 @@ export function useScriptsMutations() {
         versions: JSON.parse(JSON.stringify(script.versions)),
         sort_order: script.sort_order,
         related_script_id: script.related_script_id || null,
+        // `attachments` is a live jsonb column; types.ts may not list it yet.
+        ...(script.attachments !== undefined
+          ? { attachments: JSON.parse(JSON.stringify(script.attachments)) }
+          : {}),
       } as any])
       .select()
       .single();
@@ -98,6 +103,9 @@ export function useScriptsMutations() {
     if (updates.versions !== undefined) payload.versions = JSON.parse(JSON.stringify(updates.versions));
     if (updates.sort_order !== undefined) payload.sort_order = updates.sort_order;
     if (updates.related_script_id !== undefined) payload.related_script_id = updates.related_script_id || null;
+    // Only sent when the caller supplied it, so metadata-only saves (inline
+    // title/tag edits, merges) never wipe an existing attachment list.
+    if (updates.attachments !== undefined) payload.attachments = JSON.parse(JSON.stringify(updates.attachments));
 
     const { error } = await supabase.from('scripts').update(payload).eq('id', id);
     if (error) { toast.error('Failed to update script'); console.error(error); return false; }

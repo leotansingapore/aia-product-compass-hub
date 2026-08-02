@@ -14,7 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Loader2, Pencil } from "lucide-react";
 import { useScripts, useScriptsMutations } from "@/hooks/useScripts";
-import type { ScriptEntry, ScriptVersion } from "@/hooks/useScripts";
+import type { ScriptEntry, ScriptVersion, ScriptAttachment } from "@/hooks/useScripts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { getReadLessonIds, markLessonRead } from "@/lib/scriptsCourseProgress";
 import { cn } from "@/lib/utils";
@@ -83,6 +83,7 @@ export default function ScriptsCourse() {
     versions: ScriptVersion[];
     sort_order: number;
     related_script_id?: string | null;
+    attachments?: ScriptAttachment[];
   }) => {
     if (activeLesson) {
       await updateScript(activeLesson.id, data);
