@@ -433,7 +433,9 @@ export const ProductKnowledgeChat = memo(function ProductKnowledgeChat({
           <div>
             <h3 className="text-sm font-semibold">{productName} Expert</h3>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <Sparkles className="h-3 w-3" /> Trained on all lecture transcripts
+              {/* Honest scope: this searches the indexed product material, it is
+                  not a model fine-tuned on transcripts. */}
+              <Sparkles className="h-3 w-3" /> Searches this product's lecture notes and materials
             </p>
           </div>
         </div>

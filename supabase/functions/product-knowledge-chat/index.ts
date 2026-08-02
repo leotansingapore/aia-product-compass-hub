@@ -86,8 +86,15 @@ serve(async (req) => {
           query_text: queryText,
           match_count: 10,
           filter_product_id: productId,
-          vector_weight: 0.6,
-          keyword_weight: 0.4,
+          // The stored "embeddings" are NOT semantic embeddings: keywordToVector
+          // in generate-embeddings seeds a PRNG from a string hash, so two
+          // synonyms produce statistically orthogonal vectors. Weighting that
+          // signal at 0.6 was actively displacing the keyword ranking that does
+          // work — a query about "stops paying" would miss the premium-holiday
+          // chunk because no surface word matched AND the vector score was
+          // noise. Keyword-only until a real embedding model is wired up.
+          vector_weight: 0,
+          keyword_weight: 1,
         }
       );
 

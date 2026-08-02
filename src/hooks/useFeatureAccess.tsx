@@ -6,6 +6,13 @@ import { usePermissions } from '@/hooks/usePermissions';
 import { useViewMode } from '@/components/admin/AdminViewSwitcher';
 import { FEATURES, TIER_FEATURE_MATRIX, type FeatureKey, type TierLevel } from '@/lib/tiers';
 
+/**
+ * Features that ONLY the static matrix may grant — a `tier_permissions` row is
+ * ignored for these. Reserved for anything that costs real money per use, where
+ * one stray DB row would quietly start a bill.
+ */
+const MATRIX_ONLY_FEATURES = new Set<string>([FEATURES.ROLEPLAY]);
+
 export const tierPermissionsQueryKey = ['tier-permissions'] as const;
 
 interface TierPermissionRow {
@@ -64,7 +71,14 @@ export function useFeatureAccess() {
       const set = new Set<string>(features);
       if (rows) {
         for (const row of rows) {
-          if (row.tier_level === t) set.add(row.resource_id);
+          if (row.tier_level !== t) continue;
+          // MATRIX-ONLY features cannot be widened by a DB row. Roleplay bills
+          // per session through Tavus, so a single accidental row in
+          // `tier_permissions` (e.g. from a future admin tier-matrix UI) would
+          // otherwise hand every user in that tier a metered external service.
+          // The code matrix is the only place that can grant these.
+          if (MATRIX_ONLY_FEATURES.has(row.resource_id)) continue;
+          set.add(row.resource_id);
         }
       }
       map.set(t, set);
