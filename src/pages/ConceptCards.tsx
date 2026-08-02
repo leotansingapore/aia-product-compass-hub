@@ -30,6 +30,21 @@ import { toast } from 'sonner';
 const AUDIENCE_OPTIONS = ['All', 'NSF / NS', 'Young Adults', 'Working Adults', 'Pre-Retirees (50-65)', 'Parents', 'General'];
 const PRODUCT_OPTIONS = ['All', 'Investment', 'Endowment', 'Whole Life', 'Term', 'Medical', 'Critical Illness', 'General'];
 
+// Card faces are divs (they hold headings and nested controls, so a real
+// <button> would be invalid markup). Give them button semantics by hand —
+// same pattern as headerKeyToClick in PlaybookDetail / ScriptsDatabase.
+function panelKeyToClick(e: React.KeyboardEvent<HTMLElement>) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  // Let nested controls (full view / draw / arrows) handle their own keys.
+  if (e.target !== e.currentTarget) return;
+  e.preventDefault();
+  e.currentTarget.click();
+}
+
+// Invisible ~44px touch target around a visually small control.
+const TAP_TARGET =
+  "relative after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:min-w-[44px] after:min-h-[44px] after:w-full after:h-full after:content-['']";
+
 // ─── Flash Card (3D flip) ──────────────────────────────────────────────────
 function FlashCard({
   card, onOpen, onDraw, onDelete, onEdit, isAdmin, quizMode,
@@ -88,19 +103,26 @@ function FlashCard({
         <div className="relative w-full h-full">
           {/* PANEL 1 — Question */}
           <div
-            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer"
+            role="button"
+            tabIndex={step === 0 ? 0 : -1}
+            aria-hidden={step !== 0}
+            aria-label={hasImages
+              ? `Show drawing for ${card.title}`
+              : `Show explanation for ${card.title}`}
+            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
             style={{
               opacity: step === 0 ? 1 : 0,
               pointerEvents: step === 0 ? 'auto' : 'none',
               transform: `translateX(${(0 - step) * 100}%)`,
               transition: 'transform 0.3s ease-in-out, opacity 0.3s',
             }}
+            onKeyDown={panelKeyToClick}
             onClick={() => hasImages ? goToStep(1) : goToStep(2)}
           >
             <div className="flex-1 pt-4">
               <div className="flex items-center gap-1.5 mb-2">
                 <span className="text-[10px] font-semibold text-primary/70 uppercase tracking-wide">Question</span>
-                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to continue →</span>
+                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap or Enter →</span>
               </div>
               <h3 className="font-semibold text-sm sm:text-base leading-snug">{card.title}</h3>
             </div>
@@ -108,7 +130,7 @@ function FlashCard({
               <div className="mt-3 rounded-lg overflow-hidden border border-dashed border-border/50 h-20 flex items-center justify-center relative bg-muted/20">
                 <img src={currentImg!} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-contain blur-sm opacity-40" />
                 <span className="relative z-10 text-xs text-muted-foreground font-medium">
-                  Tap to reveal {allImages.length > 1 ? `${allImages.length} drawings` : 'drawing'}
+                  Tap or Enter to reveal {allImages.length > 1 ? `${allImages.length} drawings` : 'drawing'}
                 </span>
               </div>
             ) : (
@@ -129,41 +151,48 @@ function FlashCard({
           {/* PANEL 2 — Drawing(s) */}
           {/* PANEL 2 — Drawing(s): tap anywhere to go to next step */}
           <div
-            className="absolute inset-0 cursor-pointer"
+            role="button"
+            tabIndex={step === 1 ? 0 : -1}
+            aria-hidden={step !== 1}
+            aria-label={`Show explanation for ${card.title}`}
+            className="absolute inset-0 cursor-pointer focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
             style={{
               opacity: step === 1 ? 1 : 0,
               pointerEvents: step === 1 ? 'auto' : 'none',
               transform: `translateX(${(1 - step) * 100}%)`,
               transition: 'transform 0.3s ease-in-out, opacity 0.3s',
             }}
+            onKeyDown={panelKeyToClick}
             onClick={() => goToStep(2)}
           >
             <div className="absolute top-2 right-2 z-10" onClick={e => e.stopPropagation()}>
-              <button onClick={e => { e.stopPropagation(); onOpen(card); }}
-                className="text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors">
+              <button type="button" onClick={e => { e.stopPropagation(); onOpen(card); }}
+                aria-label={`Open ${card.title} in full view`}
+                className={cn(TAP_TARGET, "text-[9px] text-primary/70 bg-background/80 px-1.5 py-0.5 rounded-md border border-primary/20 hover:border-primary/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary")}>
                 full view
               </button>
             </div>
             <div className="absolute bottom-2 left-2 z-10" onClick={e => e.stopPropagation()}>
-              <button onClick={e => { e.stopPropagation(); onDraw(card); }}
-                className="flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 px-2 py-1 rounded-lg transition-colors shadow-sm">
+              <button type="button" onClick={e => { e.stopPropagation(); onDraw(card); }}
+                aria-label={`Draw and compare ${card.title}`}
+                className={cn(TAP_TARGET, "flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 px-2 py-1 rounded-lg transition-colors shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary")}>
                 <Pencil className="h-3 w-3" /> Draw &amp; Compare
               </button>
             </div>
-            <div className="absolute bottom-2 right-2 z-10 text-[9px] text-muted-foreground/50 pointer-events-none">tap →</div>
+            <div className="absolute bottom-2 right-2 z-10 text-[9px] text-muted-foreground/50 pointer-events-none">tap or Enter →</div>
             {hasImages ? (
               <>
                 <img src={currentImg!} alt={card.title} loading="lazy" className="w-full h-full object-contain p-2 pointer-events-none" />
                 {allImages.length > 1 && (
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1" onClick={e => e.stopPropagation()}>
-                    <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
-                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30">
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                    <button type="button" aria-label="Previous drawing" onClick={e => { e.stopPropagation(); setImgIndex(i => Math.max(0, i - 1)); }} disabled={imgIndex === 0}
+                      className="p-1.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <svg className="h-3 w-3" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                     </button>
                     <span className="text-[9px] bg-background/80 px-1.5 py-0.5 rounded-md border border-border/40 text-muted-foreground tabular-nums">{imgIndex + 1}/{allImages.length}</span>
-                    <button onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }} disabled={imgIndex === allImages.length - 1}
-                      className="p-0.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30">
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    <button type="button" aria-label="Next drawing" onClick={e => { e.stopPropagation(); setImgIndex(i => Math.min(allImages.length - 1, i + 1)); }} disabled={imgIndex === allImages.length - 1}
+                      className="p-1.5 rounded bg-background/80 border border-border/60 text-muted-foreground disabled:opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <svg className="h-3 w-3" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                     </button>
                   </div>
                 )}
@@ -175,20 +204,25 @@ function FlashCard({
 
           {/* PANEL 3 — Explanation: tap to loop back to question */}
           <div
-            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer"
+            role="button"
+            tabIndex={step === 2 ? 0 : -1}
+            aria-hidden={step !== 2}
+            aria-label={`Back to the question for ${card.title}`}
+            className="absolute inset-0 p-4 sm:p-5 flex flex-col cursor-pointer focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
             style={{
               opacity: step === 2 ? 1 : 0,
               pointerEvents: step === 2 ? 'auto' : 'none',
               transform: `translateX(${(2 - step) * 100}%)`,
               transition: 'transform 0.3s ease-in-out, opacity 0.3s',
             }}
+            onKeyDown={panelKeyToClick}
             onClick={() => goToStep(0)}
           >
             <div className="flex-1 overflow-y-auto">
               <div className="flex items-center gap-1.5 mb-2">
                 <Lightbulb className="h-3.5 w-3.5 text-amber-500" />
                 <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wide">Explanation</span>
-                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap to restart →</span>
+                <span className="text-[9px] text-muted-foreground/50 ml-auto">tap or Enter to restart →</span>
               </div>
               {card.description ? (
                 <p className="text-sm text-foreground leading-relaxed">{card.description}</p>
@@ -215,34 +249,42 @@ function FlashCard({
           onClick={e => e.stopPropagation()}
         >
           <button
+            type="button"
             onClick={() => { onKnow?.(card.id); setStep(0); }}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors shadow-md"
+            aria-label={`Mark ${card.title} as known`}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            <CheckCircle className="h-3.5 w-3.5" /> Know it
+            <CheckCircle className="h-3.5 w-3.5" aria-hidden="true" /> Know it
           </button>
           <button
+            type="button"
             onClick={() => { onReview?.(card.id); setStep(0); }}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow-md"
+            aria-label={`Mark ${card.title} for review later`}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-500 text-white hover:bg-yellow-600 transition-colors shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            <XCircle className="h-3.5 w-3.5" /> Review later
+            <XCircle className="h-3.5 w-3.5" aria-hidden="true" /> Review later
           </button>
         </div>
       )}
 
       {/* Admin actions (hover) */}
       {isAdmin && !quizMode && (
-        <div className="absolute top-2 right-2 z-20 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-2 right-2 z-20 flex gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
           <button
+            type="button"
             onClick={e => { e.stopPropagation(); onEdit(card); }}
-            className="p-1.5 rounded-lg bg-background/90 border border-border/60 hover:border-primary/60 hover:text-primary text-muted-foreground transition-colors shadow-sm"
+            aria-label={`Edit ${card.title}`}
+            className="p-1.5 rounded-lg bg-background/90 border border-border/60 hover:border-primary/60 hover:text-primary text-muted-foreground transition-colors shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <Pencil className="h-3.5 w-3.5" />
+            <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
           </button>
           <button
+            type="button"
             onClick={e => { e.stopPropagation(); onDelete(card.id); }}
-            className="p-1.5 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors"
+            aria-label={`Delete ${card.title}`}
+            className="p-1.5 rounded-lg bg-destructive/10 hover:bg-destructive/20 text-destructive transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
           >
-            <Trash2 className="h-3.5 w-3.5" />
+            <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
           </button>
         </div>
       )}
@@ -376,7 +418,7 @@ export default function ConceptCardsPage() {
         tone="dark"
         showOnMobile
         title="Concept Cards"
-        subtitle="Visual concept drawings as flashcards — tap to flip and reveal the drawing"
+        subtitle="Visual concept drawings as flashcards — tap or press Enter to flip and reveal the drawing"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />
@@ -569,7 +611,7 @@ export default function ConceptCardsPage() {
         <p className="text-sm text-muted-foreground mb-4">
           {loading ? 'Loading...' : `${filtered.length} card${filtered.length !== 1 ? 's' : ''}`}
           {quizMode && !showReviewOnly && filtered.length > 0 && (
-            <span className="ml-2 text-xs text-muted-foreground/70">— Tap a card to flip, then mark yourself</span>
+            <span className="ml-2 text-xs text-muted-foreground/70">— Tap or press Enter on a card to flip, then mark yourself</span>
           )}
         </p>
 
