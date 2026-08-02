@@ -89,6 +89,7 @@ export default function VideoDetail() {
         <VideoLearningInterface
           videos={videos}
           productId={product.id}
+          categoryId={product.category_id}
           initialVideoIndex={videoIndex}
           onClose={() => navigate(`/product/${productSlugOrId}`)}
         />

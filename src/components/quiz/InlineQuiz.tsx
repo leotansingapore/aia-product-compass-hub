@@ -7,11 +7,22 @@ import { Progress } from "@/components/ui/progress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
 import type { QuizConfig } from "@/hooks/useProducts";
 
+/** What the learner actually scored, reported up on submit. */
+export interface InlineQuizOutcome {
+  score: number;
+  totalQuestions: number;
+}
+
 interface InlineQuizProps {
   title: string;
   description?: string;
   quizConfig: QuizConfig;
-  onComplete: () => void;
+  /**
+   * Called on submit with the learner's score. The parent marks the lesson
+   * complete AND records the attempt for XP/achievements — the outcome has to
+   * travel up, otherwise in-lesson quizzes award nothing.
+   */
+  onComplete: (outcome: InlineQuizOutcome) => void;
 }
 
 export function InlineQuiz({ title, description, quizConfig, onComplete }: InlineQuizProps) {
@@ -60,7 +71,7 @@ export function InlineQuiz({ title, description, quizConfig, onComplete }: Inlin
 
   function handleSubmit() {
     setSubmitted(true);
-    onComplete();
+    onComplete({ score, totalQuestions });
   }
 
   function handleRetake() {

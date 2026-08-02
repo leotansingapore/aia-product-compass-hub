@@ -7,6 +7,15 @@ import { addDays, localDayIso, startOfLocalDayIso } from '@/lib/localDay';
 
 interface QuizResult {
   productId: string;
+  /**
+   * The real category this product belongs to. `learning_progress.category_id`
+   * is NOT NULL, so when the caller genuinely has no category to hand (CMFAS
+   * modules, which are not products in a category) we skip the
+   * learning_progress row rather than fabricate one — the previous code wrote
+   * `productId.split('-')[0]`, which produced "core" for slug ids and the
+   * first eight hex characters of a UUID otherwise.
+   */
+  categoryId?: string | null;
   score: number;
   totalQuestions: number;
   isPerfectScore: boolean;
@@ -73,32 +82,45 @@ export const useGamification = () => {
       }
       console.log('✅ Quiz attempt recorded successfully');
 
-      // Record learning progress
-      console.log('📊 Recording learning progress...');
-      const { error: progressError } = await supabase
-        .from('learning_progress')
-        .insert({
-          user_id: user.id,
-          category_id: result.productId.split('-')[0] || 'general',
-          product_id: result.productId,
-          progress_type: 'quiz_completed',
-          xp_earned: xpEarned
-        });
+      // Record learning progress. Only when we know the real category — see
+      // QuizResult.categoryId. The quiz attempt and the XP above are recorded
+      // either way, so nothing the learner earned depends on this row.
+      if (result.categoryId) {
+        console.log('📊 Recording learning progress...');
+        const { error: progressError } = await supabase
+          .from('learning_progress')
+          .insert({
+            user_id: user.id,
+            category_id: result.categoryId,
+            product_id: result.productId,
+            progress_type: 'quiz_completed',
+            xp_earned: xpEarned
+          });
 
-      if (progressError) {
-        console.error('❌ Learning progress error:', progressError);
-        throw progressError;
+        if (progressError) {
+          console.error('❌ Learning progress error:', progressError);
+          throw progressError;
+        }
+        console.log('✅ Learning progress recorded successfully');
+      } else {
+        console.log('ℹ️ No category id for this quiz — skipping learning_progress row');
       }
-      console.log('✅ Learning progress recorded successfully');
 
-      // Update user profile with new XP and level
+      // Update user profile with new XP and level. This runs before the
+      // achievement check because the check reads the freshly-bumped streak.
       console.log('🔄 Updating user profile...');
       await updateUserProfile(xpEarned);
       console.log('✅ User profile updated successfully');
 
-      // Check for new achievements
+      // Check for new achievements. Their XP comes back as a single total and
+      // is applied in one further write — previously each award called
+      // updateUserProfile individually, landed inside its 5-second throttle,
+      // and had its XP silently thrown away.
       console.log('🏆 Checking for achievements...');
-      await checkAchievements(result);
+      const achievementXp = await checkAchievements(result);
+      if (achievementXp > 0) {
+        await updateUserProfile(achievementXp);
+      }
       console.log('✅ Achievements checked successfully');
 
       // Show XP toast
@@ -119,18 +141,18 @@ export const useGamification = () => {
     }
   }, [user, isProcessing, toast]);
 
+  /**
+   * Applies an XP delta to the profile (and recomputes level + streak).
+   *
+   * There is deliberately no time-based throttle here any more. The old one
+   * *discarded* any XP that arrived within 5 seconds of the previous write,
+   * and because achievements are checked milliseconds after the quiz XP write,
+   * every single badge reward fell inside that window — the learner saw the
+   * badge toast but their total_xp never moved. Callers now batch their XP and
+   * call this once, so the number of writes is bounded by the caller instead.
+   */
   const updateUserProfile = async (xpEarned: number) => {
     if (!user) return;
-
-    // Throttle profile updates - only allow one update per 5 seconds
-    const updateKey = `profile_update_${user.id}`;
-    const lastUpdate = sessionStorage.getItem(updateKey);
-    const now = Date.now();
-    
-    if (lastUpdate && (now - parseInt(lastUpdate)) < 5000) {
-      console.log('⏳ Profile update throttled, too frequent');
-      return;
-    }
 
     try {
       // Get current profile
@@ -179,9 +201,6 @@ export const useGamification = () => {
 
       if (error) throw error;
 
-      // Mark this update in session storage
-      sessionStorage.setItem(updateKey, now.toString());
-
       // Check for level up
       if (newLevel > profile.current_level) {
         toast({
@@ -194,8 +213,12 @@ export const useGamification = () => {
     }
   };
 
-  const checkAchievements = async (result: QuizResult) => {
-    if (!user) return;
+  /**
+   * Awards any newly-earned achievements and returns the TOTAL XP they carry,
+   * for the caller to apply in one profile write. Returns 0 if nothing new.
+   */
+  const checkAchievements = async (result: QuizResult): Promise<number> => {
+    if (!user) return 0;
 
     console.log('🏆 Checking achievements for user:', user.id);
 
@@ -207,7 +230,7 @@ export const useGamification = () => {
 
     if (!allAchievements || !userAchievements) {
       console.log('❌ Missing achievements or user achievements data');
-      return;
+      return 0;
     }
 
     console.log('🎯 Found achievements:', allAchievements.length);
@@ -234,10 +257,14 @@ export const useGamification = () => {
 
     console.log('🆕 Total new achievements:', newAchievements.length);
 
-    // Award new achievements
+    // Award new achievements, accumulating their XP rather than writing it one
+    // badge at a time.
+    let awardedXp = 0;
     for (const achievement of newAchievements) {
-      await awardAchievement(achievement);
+      awardedXp += await awardAchievement(achievement);
     }
+    console.log('💎 Achievement XP to apply:', awardedXp);
+    return awardedXp;
   };
 
   const checkAchievementRequirement = async (achievement: any, result: QuizResult) => {
@@ -271,8 +298,13 @@ export const useGamification = () => {
     }
   };
 
-  const awardAchievement = async (achievement: any) => {
-    if (!user) return;
+  /**
+   * Records the badge and returns its XP reward for the caller to batch.
+   * Returns 0 if the badge could not be recorded, so no XP is credited for a
+   * badge the learner didn't actually get.
+   */
+  const awardAchievement = async (achievement: any): Promise<number> => {
+    if (!user) return 0;
 
     try {
       // Insert user achievement
@@ -285,9 +317,6 @@ export const useGamification = () => {
 
       if (error) throw error;
 
-      // Update user XP
-      await updateUserProfile(achievement.xp_reward);
-
       // Show achievement toast
       toast({
         description: (
@@ -296,8 +325,10 @@ export const useGamification = () => {
         duration: 5000,
       });
 
+      return achievement.xp_reward ?? 0;
     } catch (error) {
       console.error('Error awarding achievement:', error);
+      return 0;
     }
   };
 

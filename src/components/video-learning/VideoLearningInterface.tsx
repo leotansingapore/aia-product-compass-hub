@@ -16,6 +16,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 // Each rich-content block on this page suspends until the chunk lands, but the
 // rest of the lesson UI (video player, sidebar, action steps) paints immediately.
 import { useAdmin } from '@/hooks/useAdmin';
+import { useGamification } from '@/hooks/useGamification';
+import type { InlineQuizOutcome } from '@/components/quiz/InlineQuiz';
 import { useLessonActionStepProgress } from '@/hooks/useLessonActionStepProgress';
 import { LessonActionStepsPanel } from '@/components/cmfas/LessonActionStepsPanel';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -33,6 +35,13 @@ interface VideoLearningInterfaceProps {
   initialVideoIndex?: number;
   moduleId?: string;
   moduleType?: 'product' | 'cmfas';
+  /**
+   * Real category of the product these lessons belong to. Passed straight
+   * through to the gamification record so `learning_progress.category_id` is
+   * a genuine category rather than a slice of the product id. CMFAS modules
+   * have no category and correctly leave this undefined.
+   */
+  categoryId?: string | null;
 }
 
 function getVideoEmbedInfo(url: string) {
@@ -63,7 +72,8 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   onClose,
   initialVideoIndex = 0,
   moduleId,
-  moduleType = 'product'
+  moduleType = 'product',
+  categoryId,
 }: VideoLearningInterfaceProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(initialVideoIndex);
   // Real <video> playback state. Only ever set from the element's own
@@ -88,6 +98,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
   const { productSlugOrId } = useParams();
   const navigate = useNavigate();
   const { isAdmin } = useAdmin();
+  const { recordQuizCompletion } = useGamification();
 
   const { getVideoProgress, markVideoComplete, updateVideoProgress, updateWatchTime, getCourseProgress, loading: progressLoading } = useVideoProgress(productId);
 
@@ -134,6 +145,23 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
       await markVideoComplete(activeVideo.id);
     }
   }, [videos, safeVideoIndex, markVideoComplete]);
+
+  // Quiz submit. Marking the lesson complete is only half of it — the attempt
+  // also has to be recorded so the learner gets XP and an achievement check.
+  // (recordQuizCompletion enforces the once-per-product-per-day XP limit and
+  // will tell the learner if they've already earned today.)
+  const handleQuizComplete = useCallback(async (outcome: InlineQuizOutcome) => {
+    const activeVideo = videos[safeVideoIndex];
+    if (!activeVideo?.id) return;
+    await markVideoComplete(activeVideo.id);
+    await recordQuizCompletion({
+      productId,
+      categoryId,
+      score: outcome.score,
+      totalQuestions: outcome.totalQuestions,
+      isPerfectScore: outcome.totalQuestions > 0 && outcome.score === outcome.totalQuestions,
+    });
+  }, [videos, safeVideoIndex, markVideoComplete, recordQuizCompletion, productId, categoryId]);
 
   const currentProgress = useMemo(
     () => (currentVideoId ? getVideoProgress(currentVideoId) : undefined),
@@ -430,7 +458,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                     title={currentVideo.title}
                     description={currentVideo.description}
                     quizConfig={currentVideo.quiz_config ?? { questions: [] }}
-                    onComplete={handleItemComplete}
+                    onComplete={handleQuizComplete}
                   />
                 </Suspense>
               ) : currentVideo?.type === 'assignment' && currentVideo.assignment_config ? (
