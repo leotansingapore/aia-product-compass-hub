@@ -28,6 +28,7 @@ import {
   type BankAttempt,
   type ReviewItem,
 } from '@/lib/questionBankStore';
+import { correctDisplayIndex, gradeShuffledQuiz, EXCLUDED_QUESTION_NOTE } from '@/lib/quizGrading';
 
 interface SimulationQuizProps {
   questions: QuizQuestion[];
@@ -192,44 +193,53 @@ export function SimulationQuiz({
   // ── Results: compute once when entering results phase ─────────────────────
   const results = useMemo(() => {
     if (phase !== 'results') return null;
-    let correct = 0;
-    const categoryBreakdown: Record<string, { correct: number; total: number }> = {};
-    const wrongItems: ReviewItem[] = [];
+    // A question whose stored correct_answer is out of range can never be
+    // matched by any option. Excluding it is the only fair outcome — counting
+    // it silently marks the whole cohort wrong.
+    const graded = gradeShuffledQuiz(questions, shuffleMaps, answers);
+    const excludedSet = new Set(graded.excluded);
     const nowISO = new Date().toISOString();
-    questions.forEach((q, i) => {
-      const correctDisplay = shuffleMaps[i].indexOf(q.correct);
-      const isCorrect = answers[i] === correctDisplay;
-      const cat = q.category;
-      categoryBreakdown[cat] ??= { correct: 0, total: 0 };
-      categoryBreakdown[cat].total++;
-      if (isCorrect) {
-        correct++;
-        categoryBreakdown[cat].correct++;
-      } else if (q.id) {
-        wrongItems.push({
-          questionId: q.id,
-          productSlug,
-          bankType: 'exam',
-          category: q.category,
-          question: q.question,
-          options: q.options,
-          correctAnswer: q.correct,
-          explanation: q.explanation,
-          status: 'wrong',
-          dateISO: nowISO,
-        });
-      }
-    });
-    const score = Math.round((correct / questions.length) * 100);
+    const wrongItems: ReviewItem[] = [];
+    for (const i of graded.missed) {
+      const q = questions[i];
+      if (!q.id) continue;
+      wrongItems.push({
+        questionId: q.id,
+        productSlug,
+        bankType: 'exam',
+        category: q.category,
+        question: q.question,
+        options: q.options,
+        correctAnswer: q.correct,
+        explanation: q.explanation,
+        status: 'wrong',
+        dateISO: nowISO,
+      });
+    }
     return {
-      correct,
-      score,
-      passed: score >= passMark,
-      categoryBreakdown,
+      correct: graded.correct,
+      gradable: graded.gradable,
+      excludedSet,
+      score: graded.scorePercent,
+      passed: graded.scorePercent >= passMark,
+      categoryBreakdown: graded.categoryBreakdown,
       wrongItems,
       durationSec: Math.round((Date.now() - startedAt.current) / 1000),
     };
   }, [phase, questions, shuffleMaps, answers, passMark, productSlug]);
+
+  // Surface a bad answer key to whoever is watching the console — an excluded
+  // question is a content bug an admin has to fix in the bank.
+  useEffect(() => {
+    if (!results || results.excludedSet.size === 0) return;
+    console.error(
+      `SimulationQuiz(${productSlug}): ${results.excludedSet.size} question(s) excluded from scoring — ` +
+        'correct_answer is out of range for the option list. Question ids: ' +
+        Array.from(results.excludedSet)
+          .map((i) => questions[i]?.id ?? `#${i + 1}`)
+          .join(', '),
+    );
+  }, [results, productSlug, questions]);
 
   // Persist attempt + auto-collect wrong answers when results are computed.
   const persisted = useRef(false);
@@ -243,7 +253,7 @@ export function SimulationQuiz({
       mode: 'simulation',
       score: results.score,
       correct: results.correct,
-      total: questions.length,
+      total: results.gradable,
       passed: results.passed,
       passMark,
       dateISO: new Date().toISOString(),
@@ -256,10 +266,10 @@ export function SimulationQuiz({
     onComplete?.({
       score: results.score,
       correct: results.correct,
-      total: questions.length,
+      total: results.gradable,
       passed: results.passed,
     });
-  }, [results, productSlug, questions.length, passMark, onComplete]);
+  }, [results, productSlug, passMark, onComplete]);
 
   // ── RESULTS VIEW ──────────────────────────────────────────────────────────
   if (phase === 'results' && results) {
@@ -274,8 +284,15 @@ export function SimulationQuiz({
             <Trophy className={cn('h-10 w-10 mx-auto mb-2', results.passed ? 'text-green-500' : 'text-amber-500')} />
             <CardTitle className="text-3xl tabular-nums">{results.score}%</CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              {results.correct} / {questions.length} correct · {fmt(results.durationSec)} taken
+              {results.correct} / {results.gradable} correct · {fmt(results.durationSec)} taken
             </p>
+            {results.excludedSet.size > 0 && (
+              <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
+                {results.excludedSet.size} question{results.excludedSet.size !== 1 ? 's were' : ' was'} excluded from
+                scoring because of a data error — {results.excludedSet.size !== 1 ? 'they' : 'it'} did not count for or
+                against you.
+              </p>
+            )}
             <div className="mt-3">
               <Badge
                 className={cn(
@@ -325,14 +342,27 @@ export function SimulationQuiz({
         <div className="space-y-3">
           <h3 className="text-sm font-semibold">Answer review</h3>
           {questions.map((q, i) => {
-            const correctDisplay = shuffleMaps[i].indexOf(q.correct);
+            const correctDisplay = correctDisplayIndex(shuffleMaps[i], q.correct);
+            const isExcluded = results.excludedSet.has(i);
             const chosen = answers[i];
-            const isCorrect = chosen === correctDisplay;
+            const isCorrect = !isExcluded && chosen === correctDisplay;
             return (
-              <Card key={q.id ?? i} className={cn('border', isCorrect ? 'border-green-200 dark:border-green-900' : 'border-red-200 dark:border-red-900')}>
+              <Card
+                key={q.id ?? i}
+                className={cn(
+                  'border',
+                  isExcluded
+                    ? 'border-amber-200 dark:border-amber-900'
+                    : isCorrect
+                      ? 'border-green-200 dark:border-green-900'
+                      : 'border-red-200 dark:border-red-900',
+                )}
+              >
                 <CardContent className="p-4 space-y-2">
                   <div className="flex items-start gap-2">
-                    {isCorrect ? (
+                    {isExcluded ? (
+                      <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                    ) : isCorrect ? (
                       <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0 mt-0.5" />
                     ) : (
                       <XCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
@@ -363,8 +393,13 @@ export function SimulationQuiz({
                       );
                     })}
                   </div>
+                  {isExcluded && (
+                    <p className="text-xs text-amber-700 dark:text-amber-400 pl-6 leading-relaxed">
+                      {EXCLUDED_QUESTION_NOTE}
+                    </p>
+                  )}
                   <p className="text-xs text-muted-foreground pl-6 leading-relaxed">{q.explanation}</p>
-                  {!isCorrect && q.id && (
+                  {!isCorrect && !isExcluded && q.id && (
                     <div className="pl-6">
                       <Button
                         size="sm"

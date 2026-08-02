@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import type { StudyQuestion } from '@/data/proAchieverStudyBank';
 import { MasteryProgressBar } from '@/components/study/MasteryProgressBar';
 import { handleStorageError } from '@/lib/questionBankStore';
+import { correctDisplayIndex, gradeShuffledQuiz, EXCLUDED_QUESTION_NOTE } from '@/lib/quizGrading';
 
 // ── Spaced repetition helpers ───────────────────────────────────────────
 const WEAK_KEY = (productSlug: string) => `study_weak_${productSlug}`;
@@ -183,9 +184,13 @@ export function StudyQuiz({
   const map = shuffleMaps[currentIdx];
   const selected = selectedAnswers[currentIdx];
   const hasAnswered = selected !== null;
-  // Map the correct original index through the shuffle to find display position
-  const correctDisplay = map.indexOf(q.correct);
-  const isCorrect = selected === correctDisplay;
+  // Map the correct original index through the shuffle to find display position.
+  // -1 means the stored correct_answer is out of range for this question's
+  // options — an unanswerable question, excluded from scoring rather than
+  // marked wrong for everyone.
+  const correctDisplay = correctDisplayIndex(map, q.correct);
+  const isQuestionBroken = correctDisplay < 0;
+  const isCorrect = !isQuestionBroken && selected === correctDisplay;
   const allAnswered = selectedAnswers.every((a) => a !== null);
 
   // Persist session on every state change — but never while the set is on the
@@ -222,7 +227,9 @@ export function StudyQuiz({
       if (productSlug) {
         const weak = loadWeakQuestions(productSlug);
         questions.forEach((qq, i) => {
-          const displayCorrect = shuffleMaps[i].indexOf(qq.correct);
+          const displayCorrect = correctDisplayIndex(shuffleMaps[i], qq.correct);
+          // An ungradable question isn't a weakness — don't drill it forever.
+          if (displayCorrect < 0) return;
           if (selectedAnswers[i] !== displayCorrect) {
             weak[qq.question] = (weak[qq.question] || 0) + 1;
           } else if (weak[qq.question]) {
@@ -243,24 +250,29 @@ export function StudyQuiz({
 
   const percent = Math.round(((selectedAnswers.filter(a => a !== null).length) / questions.length) * 100);
 
-  // Compute missed questions for summary
-  const missed = useMemo(() =>
-    selectedAnswers
-      .map((a, i) => (a !== shuffleMaps[i].indexOf(questions[i].correct) ? i : -1))
-      .filter((i) => i >= 0),
-    [selectedAnswers, shuffleMaps, questions]
+  // Single grading pass; questions with an unusable correct_answer are excluded
+  // from the denominator and never reported as missed.
+  const graded = useMemo(
+    () => gradeShuffledQuiz(questions, shuffleMaps, selectedAnswers),
+    [questions, shuffleMaps, selectedAnswers],
   );
+  const missed = graded.missed;
+
+  useEffect(() => {
+    if (graded.excluded.length === 0) return;
+    console.error(
+      `StudyQuiz(${productSlug || 'unscoped'}): ${graded.excluded.length} question(s) excluded from scoring — ` +
+        'correct_answer is out of range for the option list. Question ids: ' +
+        graded.excluded
+          .map((i) => (questions[i] as unknown as { id?: string }).id ?? `#${i + 1}`)
+          .join(', '),
+    );
+  }, [graded.excluded, questions, productSlug]);
 
   // Summary screen
   if (showSummary) {
-    const scorePercent = Math.round((score / questions.length) * 100);
-
-    const categoryBreakdown: Record<string, { correct: number; total: number }> = {};
-    questions.forEach((qq, i) => {
-      if (!categoryBreakdown[qq.category]) categoryBreakdown[qq.category] = { correct: 0, total: 0 };
-      categoryBreakdown[qq.category].total++;
-      if (selectedAnswers[i] === shuffleMaps[i].indexOf(qq.correct)) categoryBreakdown[qq.category].correct++;
-    });
+    const scorePercent = graded.scorePercent;
+    const categoryBreakdown = graded.categoryBreakdown;
 
     const gradeLabel = scorePercent === 100 ? 'Perfect!' : scorePercent >= 80 ? 'Excellent' : scorePercent >= 60 ? 'Good effort' : scorePercent >= 40 ? 'Keep practising' : 'Review needed';
 
@@ -285,11 +297,17 @@ export function StudyQuiz({
             <Trophy className={cn("h-10 w-10", scorePercent >= 80 ? "text-yellow-500" : "text-muted-foreground")} />
           </div>
           <CardTitle className="text-2xl">
-            {score}/{questions.length}
+            {graded.correct}/{graded.gradable}
           </CardTitle>
           <CardDescription className="text-base font-medium">
             {gradeLabel} — {scorePercent}%
           </CardDescription>
+          {graded.excluded.length > 0 && (
+            <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
+              {graded.excluded.length} question{graded.excluded.length !== 1 ? 's were' : ' was'} excluded from
+              scoring because of a data error.
+            </p>
+          )}
           {newlyMastered > 0 && (
             <div className="mt-2 px-3 py-1.5 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded text-xs font-medium text-green-700 dark:text-green-400">
               🎉 You mastered {newlyMastered} new question{newlyMastered !== 1 ? 's' : ''} this session!
@@ -444,17 +462,24 @@ export function StudyQuiz({
         {hasAnswered && (
           <div className={cn(
             'rounded-lg border p-3 text-sm',
-            isCorrect
-              ? 'border-green-200 bg-green-50/50 dark:border-green-900 dark:bg-green-950/20'
-              : 'border-red-200 bg-red-50/50 dark:border-red-900 dark:bg-red-950/20'
+            isQuestionBroken
+              ? 'border-amber-200 bg-amber-50/50 dark:border-amber-900 dark:bg-amber-950/20'
+              : isCorrect
+                ? 'border-green-200 bg-green-50/50 dark:border-green-900 dark:bg-green-950/20'
+                : 'border-red-200 bg-red-50/50 dark:border-red-900 dark:bg-red-950/20'
           )}>
             <p className="font-medium mb-1 flex items-center gap-1.5">
-              {isCorrect ? (
+              {isQuestionBroken ? (
+                <><AlertTriangle className="h-4 w-4 text-amber-500" /> Question excluded</>
+              ) : isCorrect ? (
                 <><CheckCircle2 className="h-4 w-4 text-green-600" /> Correct!</>
               ) : (
                 <><XCircle className="h-4 w-4 text-red-500" /> Incorrect</>
               )}
             </p>
+            {isQuestionBroken && (
+              <p className="text-amber-700 dark:text-amber-400 leading-relaxed mb-1">{EXCLUDED_QUESTION_NOTE}</p>
+            )}
             <p className="text-muted-foreground leading-relaxed">{q.explanation}</p>
           </div>
         )}
