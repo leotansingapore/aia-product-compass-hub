@@ -1832,13 +1832,22 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
     }
   }, [isOpenByUrl, setSearchParams]);
 
-  // Toast for official version deep links (e.g. ?v=0, ?v=1) — fires once on mount
+  // Toast for official version deep links (e.g. ?v=0, ?v=1) — fires once on mount.
+  // An out-of-range or non-numeric ?v= used to announce a version that doesn't
+  // exist over an empty pane (no tab matches, so nothing renders).
   useEffect(() => {
     if (!urlVersionParam || urlVersionParam.startsWith("uv-")) return;
     if (deepLinkToastFiredRef.current) return;
     const versionIdx = parseInt(urlVersionParam, 10);
-    const versionName = script.versions[versionIdx]?.title || script.versions[versionIdx]?.author || `Version ${versionIdx + 1}`;
+    const target = Number.isInteger(versionIdx) ? script.versions[versionIdx] : undefined;
     deepLinkToastFiredRef.current = true;
+    if (!target) {
+      manualTabRef.current = "0";
+      setActiveVersionTabState("0");
+      toast("That version is no longer available — showing the first version.", { duration: 3500 });
+      return;
+    }
+    const versionName = target.title || target.author || `Version ${versionIdx + 1}`;
     toast(`Viewing version: ${versionName}`, { duration: 3000 });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
