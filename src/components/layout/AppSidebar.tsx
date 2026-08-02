@@ -125,7 +125,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const location = useLocation();
   const navigate = useNavigate();
   const { categories, refetch: refetchCategories } = useCategories();
-  const { isMasterAdmin, canAccessSection, isAdmin, hasRole } = usePermissions();
+  const { isMasterAdmin, isAdmin, hasRole } = usePermissions();
   const { user, signOut } = useSimplifiedAuth();
   const { isAdmin: isAdminUser } = useAdmin();
   const { isViewingAsUser } = useViewMode();
@@ -170,18 +170,17 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     ...(isAdminUser ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
   ], [isMasterAdmin, hasRole]);
 
+  // The tier check is the only gate here — `usePermissions.canAccessSection`
+  // returns true for every authenticated user, so including it only obscured
+  // which check actually hides a nav entry.
   const mainNavItems = useMemo(() =>
-    allMainNavItems.filter(item =>
-      canAccessSection(item.sectionId) && sectionVisibleForTier(item.sectionId)
-    ),
-    [allMainNavItems, canAccessSection, sectionVisibleForTier]
+    allMainNavItems.filter(item => sectionVisibleForTier(item.sectionId)),
+    [allMainNavItems, sectionVisibleForTier]
   );
 
   const resourceItems = useMemo(() =>
-    allResourceItems.filter(item =>
-      canAccessSection(item.sectionId) && sectionVisibleForTier(item.sectionId)
-    ),
-    [canAccessSection, sectionVisibleForTier]
+    allResourceItems.filter(item => sectionVisibleForTier(item.sectionId)),
+    [sectionVisibleForTier]
   );
 
   const isCollapsed = state === "collapsed";
