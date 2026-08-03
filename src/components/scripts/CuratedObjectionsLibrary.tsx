@@ -345,10 +345,29 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, drillSummon, searchS
   );
 }
 
-export function CuratedObjectionsLibrary() {
+interface CuratedObjectionsLibraryProps {
+  /**
+   * The search box here is the page's ONE search box — it also drives the
+   * Objection Scripts & FAQ section further down, which has its own corpus.
+   * Two boxes 4,600px apart searching different content meant a consultant who
+   * typed "not interested" up here never learned there was a full word-for-word
+   * script for it six screens below.
+   */
+  query: string;
+  onQueryChange: (q: string) => void;
+  /** How many Objection Scripts & FAQ entries the same query matches. */
+  otherMatchCount?: number;
+  onJumpToOtherMatches?: () => void;
+}
+
+export function CuratedObjectionsLibrary({
+  query,
+  onQueryChange,
+  otherMatchCount = 0,
+  onJumpToOtherMatches,
+}: CuratedObjectionsLibraryProps) {
   const [open, setOpen] = useState(true);
   const [activeFamily, setActiveFamily] = useState<string>("all");
-  const [query, setQuery] = useState("");
   const [mastered, setMastered] = useState<Set<string>>(() => loadMastered());
   const [randomTargetId, setRandomTargetId] = useState<string | null>(null);
   const [randomNonce, setRandomNonce] = useState(0);
@@ -517,7 +536,7 @@ export function CuratedObjectionsLibrary() {
               <Input
                 type="search"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => onQueryChange(e.target.value)}
                 placeholder='What did they say? e.g. "not interested", "no money", "let me think"'
                 aria-label="Search objections by what the prospect said"
                 className="pl-10 pr-10 h-11"
@@ -525,7 +544,7 @@ export function CuratedObjectionsLibrary() {
               {query && (
                 <button
                   type="button"
-                  onClick={() => setQuery("")}
+                  onClick={() => onQueryChange("")}
                   aria-label="Clear search"
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
@@ -560,6 +579,20 @@ export function CuratedObjectionsLibrary() {
               })}
             </div>
 
+            {query.trim().length > 0 && otherMatchCount > 0 && (
+              <button
+                type="button"
+                onClick={onJumpToOtherMatches}
+                className="w-full flex items-center justify-between gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-left hover:bg-primary/10 transition-colors"
+              >
+                <span className="text-xs text-foreground/85">
+                  <span className="font-semibold">{otherMatchCount}</span> full word-for-word script
+                  {otherMatchCount === 1 ? "" : "s"} for “{query.trim()}” in Objection Scripts &amp; FAQ
+                </span>
+                <ChevronDown className="h-4 w-4 text-primary shrink-0" />
+              </button>
+            )}
+
             <div className="space-y-2.5">
               {filtered.length === 0 ? (
                 <div className="rounded-lg border border-dashed py-8 px-4 text-center">
@@ -580,7 +613,7 @@ export function CuratedObjectionsLibrary() {
                       if (matchesAcrossAllFamilies > 0) {
                         setActiveFamily("all");
                       } else {
-                        setQuery("");
+                        onQueryChange("");
                         setActiveFamily("all");
                       }
                     }}

@@ -419,17 +419,33 @@ const OBJECTION_SCRIPT_THEMES: ReadonlyArray<{ key: string; label: string; emoji
  * telemarketer FAQ objections merged in from the old FAQ category). Grouped
  * by theme when browsing; flat when searching.
  */
-function ObjectionScriptsSection({ scripts, loading, targetScriptId }: { scripts: ScriptEntry[]; loading: boolean; targetScriptId?: string | null }) {
-  const [query, setQuery] = useState("");
+/** Shared by the section and its parent so both count matches identically. */
+export function matchesObjectionScript(s: ScriptEntry, q: string): boolean {
+  if (s.stage.toLowerCase().includes(q)) return true;
+  if ((s.tags || []).some((t) => t.toLowerCase().includes(q))) return true;
+  return s.versions.some((v) => v.content.toLowerCase().includes(q) || (v.author || "").toLowerCase().includes(q));
+}
 
+function ObjectionScriptsSection({
+  scripts,
+  loading,
+  targetScriptId,
+  query,
+  onQueryChange,
+  sectionRef,
+}: {
+  scripts: ScriptEntry[];
+  loading: boolean;
+  targetScriptId?: string | null;
+  /** Driven by the single search box at the top of the page — see below. */
+  query: string;
+  onQueryChange: (q: string) => void;
+  sectionRef?: React.RefObject<HTMLDivElement>;
+}) {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return scripts;
-    return scripts.filter((s) => {
-      if (s.stage.toLowerCase().includes(q)) return true;
-      if ((s.tags || []).some((t) => t.toLowerCase().includes(q))) return true;
-      return s.versions.some((v) => v.content.toLowerCase().includes(q) || (v.author || "").toLowerCase().includes(q));
-    });
+    return scripts.filter((s) => matchesObjectionScript(s, q));
   }, [scripts, query]);
 
   const grouped = useMemo(() => {
@@ -446,7 +462,9 @@ function ObjectionScriptsSection({ scripts, loading, targetScriptId }: { scripts
   if (!loading && scripts.length === 0) return null;
 
   return (
-    <div className="mt-10">
+    // scroll-mt clears the sticky app header (57px mobile, 48px from md up),
+    // which otherwise covers the heading we just scrolled to.
+    <div className="mt-10 scroll-mt-[72px] md:scroll-mt-16" ref={sectionRef}>
       <div className="flex items-center gap-3 mb-1">
         <h2 className="text-lg font-semibold">Objection Scripts & FAQ</h2>
         <Badge variant="secondary" className="text-[10px]">{scripts.length}</Badge>
@@ -455,25 +473,25 @@ function ObjectionScriptsSection({ scripts, loading, targetScriptId }: { scripts
         Full word-for-word scripts for specific objections — including the free-course FAQ answers for telemarketers.
       </p>
 
-      <div className="relative mb-4">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          type="text"
-          placeholder="Search objection scripts… e.g. free, zoom, advisor, not interested"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="pl-10 pr-10 h-10 text-sm"
-        />
-        {query && (
+      {/* No search box here on purpose. This section used to carry its own,
+          4,600px below the library's — two boxes over two different corpora,
+          so a search up there silently excluded everything down here. Both are
+          now driven by the one box at the top of the page. */}
+      {query.trim() && (
+        <div className="mb-4 flex items-center gap-2 rounded-lg border bg-muted/30 px-3 py-2">
+          <Search className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+          <span className="text-xs text-muted-foreground flex-1 min-w-0 truncate">
+            Filtered by “{query.trim()}” from the search at the top
+          </span>
           <button
-            onClick={() => setQuery("")}
+            onClick={() => onQueryChange("")}
             aria-label="Clear search"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground shrink-0"
           >
-            <X className="h-4 w-4" />
+            <X className="h-3.5 w-3.5" />
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {loading ? (
         <div className="flex justify-center py-8"><Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /></div>
@@ -504,7 +522,7 @@ function ObjectionScriptsSection({ scripts, loading, targetScriptId }: { scripts
       ) : (
         <div className="text-center py-8 text-muted-foreground">
           <p className="text-sm font-medium">No objection scripts match "{query.trim()}"</p>
-          <button onClick={() => setQuery("")} className="text-xs underline hover:text-foreground mt-1">
+          <button onClick={() => onQueryChange("")} className="text-xs underline hover:text-foreground mt-1">
             Clear search
           </button>
         </div>
@@ -539,7 +557,7 @@ function ObjectionScriptCard({ script, firstVersion, isTarget }: { script: Scrip
   };
 
   return (
-    <div ref={cardRef} id={`objection-script-${script.id}`}>
+    <div ref={cardRef} id={`objection-script-${script.id}`} className="scroll-mt-[72px] md:scroll-mt-16">
     <Collapsible open={open} onOpenChange={setOpen}>
       <Card className={`overflow-hidden transition-shadow ${open ? "shadow-md ring-1 ring-primary/20" : ""} ${isTarget ? "ring-2 ring-primary/50" : ""}`}>
         <CollapsibleTrigger asChild>
@@ -773,16 +791,43 @@ export function ObjectionHandlingDatabase() {
   // never see it — the curated library is the single source of truth for FCs.
   const [legacyOpen, setLegacyOpen] = useState(false);
 
+  // ONE query for both objection corpora. The curated library owns the input;
+  // the Objection Scripts & FAQ section below reads the same value.
+  const [objectionQuery, setObjectionQuery] = useState("");
+  const scriptsSectionRef = useRef<HTMLDivElement>(null);
+
+  const objectionScriptMatchCount = useMemo(() => {
+    const q = objectionQuery.trim().toLowerCase();
+    if (!q) return 0;
+    return objectionScripts.filter((s) => matchesObjectionScript(s, q)).length;
+  }, [objectionScripts, objectionQuery]);
+
+  const jumpToScriptMatches = useCallback(() => {
+    scriptsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
     <div>
       {/* ARQ framework primer - the reference at the top so newbies know HOW to construct a response */}
       <ArqFrameworkReference />
 
       {/* Curriculum-anchored library - canonical source of truth */}
-      <CuratedObjectionsLibrary />
+      <CuratedObjectionsLibrary
+        query={objectionQuery}
+        onQueryChange={setObjectionQuery}
+        otherMatchCount={objectionScriptMatchCount}
+        onJumpToOtherMatches={jumpToScriptMatches}
+      />
 
       {/* Scripts-table objections (incl. merged telemarketer FAQ) — searchable, grouped by theme */}
-      <ObjectionScriptsSection scripts={objectionScripts} loading={scriptsLoading} targetScriptId={targetScriptId} />
+      <ObjectionScriptsSection
+        scripts={objectionScripts}
+        loading={scriptsLoading}
+        targetScriptId={targetScriptId}
+        query={objectionQuery}
+        onQueryChange={setObjectionQuery}
+        sectionRef={scriptsSectionRef}
+      />
 
       {/* Legacy DB — admin-only, collapsed by default */}
       {!isAdmin ? null : (
