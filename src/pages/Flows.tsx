@@ -237,16 +237,16 @@ Specific event trigger (CI / newborn / admission)            → Flow 5`}
           </div>
         </section>
 
+        {/* All five collapsed. Flow 1 used to be expanded on arrival, which is
+            ~4,850px — so Flows 2 to 5 started 6.5 phone screens down, below a
+            track the consultant had not chosen. That fights the page's own
+            instruction directly above ("Pick a track at the opening based on
+            the entry decision"): the decision table maps conditions to Flow
+            1–5, so what has to be on screen is the LIST, not one opened track. */}
         <div className="space-y-3">
-          {APPOINTMENT_FLOWS.map((flow, i) => (
-            <FlowCard key={flow.id} flow={flow} defaultOpen={i === 0} />
+          {APPOINTMENT_FLOWS.map((flow) => (
+            <FlowCard key={flow.id} flow={flow} defaultOpen={false} />
           ))}
-        </div>
-
-        <div className="mt-6 text-xs text-muted-foreground text-center">
-          Cross-link cases to a branch by adding their id to{" "}
-          <code className="font-mono">exampleCaseIds</code> in{" "}
-          <code className="font-mono">src/data/appointmentFlows.ts</code>.
         </div>
       </div>
     </PageLayout>
