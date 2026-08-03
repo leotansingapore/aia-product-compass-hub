@@ -73,8 +73,17 @@ interface ObjectionCardProps {
   obj: CuratedObjection;
   isMastered: boolean;
   onToggleMastered: () => void;
-  /** Random Drill picked this card: open it, hide the script, scroll to it. */
-  drillSummon?: boolean;
+  /**
+   * Random Drill picked this card: open it, hide the script, scroll to it.
+   *
+   * This is the drill COUNTER, not a boolean, and that matters. As a boolean it
+   * stayed `true` across repeat picks, so the effect never re-fired and drilling
+   * the same objection twice did nothing — it just sat there still revealed from
+   * last time, while the toast claimed a new drill had started. Repeats are most
+   * likely exactly when they hurt: near the end of a mastery run, when the
+   * unmastered pool is down to a handful.
+   */
+  drillSummon?: number;
   /**
    * The search matched only this card. Open it with the script SHOWING — this
    * consultant is mid-conversation and asked for words, not a quiz. Drill mode
@@ -94,7 +103,7 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, drillSummon, searchS
 
   // Force-open when summoned by Random Drill (and scroll into view)
   useEffect(() => {
-    if (drillSummon) {
+    if (drillSummon && drillSummon > 0) {
       setOpen(true);
       setDrillMode(true);
       setRevealed(false);
@@ -444,8 +453,12 @@ export function CuratedObjectionsLibrary({
     const pool = unmastered.length > 0 ? unmastered : CURATED_OBJECTIONS;
     const pick = pool[Math.floor(Math.random() * pool.length)];
     if (!pick) return;
-    // Reset family filter so the card is visible
+    // Clear BOTH filters so the drilled card is actually on screen. The family
+    // reset was already here; the search was not, so drilling while a query was
+    // active announced "Prospect: <objection>" in a toast for a card the query
+    // had filtered away — nothing visibly happened.
     setActiveFamily("all");
+    onQueryChange("");
     setOpen(true);
     setRandomTargetId(pick.id);
     setRandomNonce((n) => n + 1);
@@ -453,7 +466,7 @@ export function CuratedObjectionsLibrary({
       title: unmastered.length > 0 ? "Drill incoming" : "All mastered — sharpening anyway",
       description: `Prospect: "${pick.title}". Drill mode is on. Say your response out loud, then Reveal.`,
     });
-  }, [mastered, toast]);
+  }, [mastered, toast, onQueryChange]);
 
   const handleResetMastery = useCallback(() => {
     if (typeof window !== "undefined" && !window.confirm("Reset all mastery progress? This cannot be undone.")) {
@@ -603,7 +616,11 @@ export function CuratedObjectionsLibrary({
                   <p className="text-sm text-muted-foreground mt-1">
                     {matchesAcrossAllFamilies > 0
                       ? `${matchesAcrossAllFamilies} match${matchesAcrossAllFamilies === 1 ? "" : "es"} in the other categories.`
-                      : `Try the words the prospect used, or clear the search to see all ${familyCounts.all}.`}
+                      : otherMatchCount > 0
+                        ? // Don't tell them the search failed while the button
+                          // directly above reports N word-for-word scripts.
+                          `Nothing in this library — but there ${otherMatchCount === 1 ? "is 1 full script" : `are ${otherMatchCount} full scripts`} below.`
+                        : `Try the words the prospect used, or clear the search to see all ${familyCounts.all}.`}
                   </p>
                   <Button
                     variant="outline"
@@ -612,13 +629,21 @@ export function CuratedObjectionsLibrary({
                     onClick={() => {
                       if (matchesAcrossAllFamilies > 0) {
                         setActiveFamily("all");
+                      } else if (otherMatchCount > 0) {
+                        // Take them to the results rather than discarding the
+                        // search that found them.
+                        onJumpToOtherMatches?.();
                       } else {
                         onQueryChange("");
                         setActiveFamily("all");
                       }
                     }}
                   >
-                    {matchesAcrossAllFamilies > 0 ? "Search every category" : "Show all objections"}
+                    {matchesAcrossAllFamilies > 0
+                      ? "Search every category"
+                      : otherMatchCount > 0
+                        ? "Show me those scripts"
+                        : "Show all objections"}
                   </Button>
                 </div>
               ) : (
@@ -631,7 +656,7 @@ export function CuratedObjectionsLibrary({
                     // A single search hit opens itself — one less tap when the
                     // consultant has already told us exactly what they need.
                     searchSummon={query.trim().length > 0 && filtered.length === 1}
-                    drillSummon={obj.id === randomTargetId ? randomNonce > 0 : false}
+                    drillSummon={obj.id === randomTargetId ? randomNonce : 0}
                   />
                 ))
               )}
