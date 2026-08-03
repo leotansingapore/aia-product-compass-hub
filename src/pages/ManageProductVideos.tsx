@@ -101,8 +101,11 @@ export default function ManageProductVideos() {
           <meta name="description" content={`Edit and organize training videos for ${product.title}`} />
         </Helmet>
 
-        {/* Fixed Header */}
-        <div className="sticky top-0 z-10 bg-background border-b">
+        {/* Page toolbar. Offset below the app header rather than `top-0`: the
+            app header is itself sticky at top-0 (z-40), so top-0 parked this
+            bar underneath it and the Back button and video-count controls sat
+            covered once you scrolled. 57px mobile, 48px (h-12) from md up. */}
+        <div className="sticky top-[57px] md:top-12 z-20 bg-background border-b">
           <div className="max-w-[1600px] mx-auto px-2 sm:px-4 md:px-6 py-2 sm:py-4">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 sm:gap-4 min-w-0">
