@@ -1316,6 +1316,40 @@ function getSearchSnippet(versions: ScriptVersion[], query: string): string | nu
   }
   return null;
 }
+
+/**
+ * Opening words of a script, for the collapsed card.
+ *
+ * Browsing the unfiltered list meant scrolling 83 cards that showed a title, a
+ * category and an audience — and not one word of the actual script. Deciding
+ * whether the wording fits required opening each card, reading, closing, and
+ * opening the next. The first line is what a consultant judges a script on, so
+ * show it up front.
+ */
+function getOpeningPreview(versions: ScriptVersion[]): string | null {
+  const first = versions[0];
+  if (!first?.content) return null;
+  const plain = first.content
+    // Strip markdown FORMATTING only. The blunter regex used by the search
+    // snippet also eats brackets and underscores, which is how these scripts
+    // write their fill-in-the-blanks — "Hi [Name]" became "Hi Name" and
+    // "Is this ____?" became "Is this ?". Tolerable on an occasional search
+    // hit; not on every card in the list.
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^>\s?/gm, "")
+    .replace(/`+/g, "")
+    // `**bold**` only. `__` is NOT treated as emphasis here: a run of
+    // underscores in these scripts is a fill-in blank ("Is this _____?"), and
+    // pairing them off chews the blank down to a stray underscore.
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\\(.)/g, "$1")
+    .replace(/\n+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (plain.length < 2) return null;
+  return plain.length > 150 ? plain.slice(0, 150).trimEnd() + "…" : plain;
+}
+
 /**
  * Mobile-only version selector. Mirrors the desktop tab strip's capability set
  * (official + user versions, edit / rename / duplicate / delete) but in a
@@ -1775,6 +1809,7 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
   const cardRef = useRef<HTMLDivElement>(null);
   const cat = getCategoryInfo(script.category);
   const snippet = useMemo(() => getSearchSnippet(script.versions, searchQuery), [script.versions, searchQuery]);
+  const openingPreview = useMemo(() => getOpeningPreview(script.versions), [script.versions]);
 
   // Inline metadata editing state (admin only)
   const [editingTitle, setEditingTitle] = useState(false);
@@ -2223,10 +2258,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
                     {script.versions.length} version{script.versions.length !== 1 ? 's' : ''}
                   </Badge>
                 </div>
-                {/* Search snippet preview when collapsed */}
-                {!open && snippet && (
+                {/* Collapsed preview. A search match wins — it shows the words
+                    the consultant searched for, in context. Otherwise fall back
+                    to the script's opening line so the list is scannable while
+                    browsing, not just while searching. */}
+                {!open && (snippet || openingPreview) && (
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-2">
-                    <HighlightedTitle text={snippet} query={searchQuery} />
+                    {snippet ? (
+                      <HighlightedTitle text={snippet} query={searchQuery} />
+                    ) : (
+                      openingPreview
+                    )}
                   </p>
                 )}
                 {/* Mobile-friendly action row */}
