@@ -543,27 +543,36 @@ export function CuratedObjectionsLibrary({
 
             {/* Search first: mid-conversation the consultant types the words the
                 prospect just used, rather than reasoning about which family it
-                belongs to. */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
-              <Input
-                type="search"
-                value={query}
-                onChange={(e) => onQueryChange(e.target.value)}
-                placeholder='What did they say? e.g. "not interested", "no money", "let me think"'
-                aria-label="Search objections by what the prospect said"
-                className="pl-10 pr-10 h-11"
-              />
-              {query && (
-                <button
-                  type="button"
-                  onClick={() => onQueryChange("")}
-                  aria-label="Clear search"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
+                belongs to.
+
+                Pinned while the library is on screen — 27 objections is ~7 phone
+                screens, so re-searching from the middle otherwise meant scrolling
+                back to the top. It unpins where the library ends, which is the
+                right boundary: below that is a different section. */}
+            <div className="sticky top-[57px] md:top-12 z-20 -mx-3 sm:-mx-6 px-3 sm:px-6 py-2 bg-card">
+              {/* Inner wrapper carries `relative` for the icon and clear button —
+                  it can't share a class list with `sticky`. */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+                <Input
+                  type="search"
+                  value={query}
+                  onChange={(e) => onQueryChange(e.target.value)}
+                  placeholder='What did they say? e.g. "not interested", "no money", "let me think"'
+                  aria-label="Search objections by what the prospect said"
+                  className="pl-10 pr-10 h-11"
+                />
+                {query && (
+                  <button
+                    type="button"
+                    onClick={() => onQueryChange("")}
+                    aria-label="Clear search"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pb-1">
