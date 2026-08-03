@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Input } from "@/components/ui/input";
 import {
   ChevronDown,
   ChevronRight,
@@ -20,6 +21,8 @@ import {
   CheckCircle2,
   Circle,
   RotateCcw,
+  Search,
+  X,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { CURATED_OBJECTIONS, FRAMEWORK_NAMES, type CuratedObjection } from "@/data/curatedObjections";
@@ -70,10 +73,17 @@ interface ObjectionCardProps {
   obj: CuratedObjection;
   isMastered: boolean;
   onToggleMastered: () => void;
-  forceOpen?: boolean;
+  /** Random Drill picked this card: open it, hide the script, scroll to it. */
+  drillSummon?: boolean;
+  /**
+   * The search matched only this card. Open it with the script SHOWING — this
+   * consultant is mid-conversation and asked for words, not a quiz. Drill mode
+   * would put a "Reveal answer" tap between them and the answer.
+   */
+  searchSummon?: boolean;
 }
 
-function ObjectionCard({ obj, isMastered, onToggleMastered, forceOpen }: ObjectionCardProps) {
+function ObjectionCard({ obj, isMastered, onToggleMastered, drillSummon, searchSummon }: ObjectionCardProps) {
   const [open, setOpen] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [drillMode, setDrillMode] = useState(false);
@@ -84,7 +94,7 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, forceOpen }: Objecti
 
   // Force-open when summoned by Random Drill (and scroll into view)
   useEffect(() => {
-    if (forceOpen) {
+    if (drillSummon) {
       setOpen(true);
       setDrillMode(true);
       setRevealed(false);
@@ -92,7 +102,16 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, forceOpen }: Objecti
         cardRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
-  }, [forceOpen]);
+  }, [drillSummon]);
+
+  // Sole search hit: open straight to the script. No scroll — it is already the
+  // only card in the list — and explicitly no drill mode.
+  useEffect(() => {
+    if (searchSummon) {
+      setOpen(true);
+      setDrillMode(false);
+    }
+  }, [searchSummon]);
 
   const handleCopy = async (content: string, id: string) => {
     try {
@@ -329,6 +348,7 @@ function ObjectionCard({ obj, isMastered, onToggleMastered, forceOpen }: Objecti
 export function CuratedObjectionsLibrary() {
   const [open, setOpen] = useState(true);
   const [activeFamily, setActiveFamily] = useState<string>("all");
+  const [query, setQuery] = useState("");
   const [mastered, setMastered] = useState<Set<string>>(() => loadMastered());
   const [randomTargetId, setRandomTargetId] = useState<string | null>(null);
   const [randomNonce, setRandomNonce] = useState(0);
@@ -357,9 +377,44 @@ export function CuratedObjectionsLibrary() {
   }, []);
 
   const filtered = useMemo(() => {
-    if (activeFamily === "all") return CURATED_OBJECTIONS;
-    return CURATED_OBJECTIONS.filter((o) => o.family === activeFamily);
-  }, [activeFamily]);
+    const byFamily =
+      activeFamily === "all"
+        ? CURATED_OBJECTIONS
+        : CURATED_OBJECTIONS.filter((o) => o.family === activeFamily);
+
+    const q = query.trim().toLowerCase();
+    if (!q) return byFamily;
+
+    // Match on what the prospect actually SAID (title + trigger) first, then on
+    // the response wording. A consultant reaching for this mid-conversation
+    // types the objection they just heard — "not interested", "no money" —
+    // not a category name.
+    return byFamily.filter((o) => {
+      const haystack = [
+        o.title,
+        o.trigger,
+        o.approach,
+        ...o.scripts.map((s) => `${s.label} ${s.content}`),
+      ]
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(q);
+    });
+  }, [activeFamily, query]);
+
+  // How many objections the query matches ignoring the family filter. A search
+  // that finds nothing *inside* the selected family but plenty outside it is
+  // the filter's fault, not the consultant's — say so instead of dead-ending.
+  const matchesAcrossAllFamilies = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q || activeFamily === "all") return filtered.length;
+    return CURATED_OBJECTIONS.filter((o) =>
+      [o.title, o.trigger, o.approach, ...o.scripts.map((s) => `${s.label} ${s.content}`)]
+        .join(" ")
+        .toLowerCase()
+        .includes(q),
+    ).length;
+  }, [query, activeFamily, filtered.length]);
 
   const masteredCount = mastered.size;
   const total = CURATED_OBJECTIONS.length;
@@ -454,6 +509,31 @@ export function CuratedObjectionsLibrary() {
               </div>
             </div>
 
+            {/* Search first: mid-conversation the consultant types the words the
+                prospect just used, rather than reasoning about which family it
+                belongs to. */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+              <Input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder='What did they say? e.g. "not interested", "no money", "let me think"'
+                aria-label="Search objections by what the prospect said"
+                className="pl-10 pr-10 h-11"
+              />
+              {query && (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+
             <div className="flex flex-wrap gap-1.5 pb-1">
               <Button
                 variant={activeFamily === "all" ? "default" : "outline"}
@@ -481,15 +561,47 @@ export function CuratedObjectionsLibrary() {
             </div>
 
             <div className="space-y-2.5">
-              {filtered.map((obj) => (
-                <ObjectionCard
-                  key={obj.id}
-                  obj={obj}
-                  isMastered={mastered.has(obj.id)}
-                  onToggleMastered={() => toggleMastered(obj.id)}
-                  forceOpen={obj.id === randomTargetId ? randomNonce > 0 : false}
-                />
-              ))}
+              {filtered.length === 0 ? (
+                <div className="rounded-lg border border-dashed py-8 px-4 text-center">
+                  <p className="text-sm font-medium">
+                    No objection matches “{query.trim()}”
+                    {activeFamily !== "all" && ` in ${FAMILY_LABELS[activeFamily as CuratedObjection["family"]]}`}
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {matchesAcrossAllFamilies > 0
+                      ? `${matchesAcrossAllFamilies} match${matchesAcrossAllFamilies === 1 ? "" : "es"} in the other categories.`
+                      : `Try the words the prospect used, or clear the search to see all ${familyCounts.all}.`}
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-3"
+                    onClick={() => {
+                      if (matchesAcrossAllFamilies > 0) {
+                        setActiveFamily("all");
+                      } else {
+                        setQuery("");
+                        setActiveFamily("all");
+                      }
+                    }}
+                  >
+                    {matchesAcrossAllFamilies > 0 ? "Search every category" : "Show all objections"}
+                  </Button>
+                </div>
+              ) : (
+                filtered.map((obj) => (
+                  <ObjectionCard
+                    key={obj.id}
+                    obj={obj}
+                    isMastered={mastered.has(obj.id)}
+                    onToggleMastered={() => toggleMastered(obj.id)}
+                    // A single search hit opens itself — one less tap when the
+                    // consultant has already told us exactly what they need.
+                    searchSummon={query.trim().length > 0 && filtered.length === 1}
+                    drillSummon={obj.id === randomTargetId ? randomNonce > 0 : false}
+                  />
+                ))
+              )}
             </div>
           </CardContent>
         </CollapsibleContent>
