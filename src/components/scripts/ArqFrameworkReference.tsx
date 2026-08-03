@@ -66,7 +66,11 @@ function FrameworkBlock({ letter, name, tagline, steps, useFor, example, watchOu
 }
 
 export function ArqFrameworkReference() {
-  const [open, setOpen] = useState(true);
+  // Collapsed by default. Expanded, this primer is ~2,100px — it pushed the
+  // first actual objection to 7,300px (8.65 phone screens) on /objections, the
+  // page an FC opens *while* a prospect is objecting. The theory is worth
+  // reading once; the scripts are needed every time.
+  const [open, setOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
 
   return (
