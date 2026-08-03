@@ -551,9 +551,14 @@ export default function ProductCategory() {
           </div>
         )}
 
-        {/* Sticky Search + admin new module (hidden when showing sub-categories) */}
+        {/* Sticky Search + admin new module (hidden when showing sub-categories).
+            The offset is `top-[57px] md:top-12`, not `top-0`: top-0 pinned this
+            where the app header already sits, so once you scrolled, 40px of the
+            search box sat under the header and the box was not clickable at all.
+            57px is the mobile header, 48px (h-12) the desktop one; z stays below
+            the header's z-40. */}
         {!isParentCategory && (
-          <div className="mb-3 sm:mb-6 md:mb-8 sticky top-0 z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
+          <div className="mb-3 sm:mb-6 md:mb-8 sticky top-[57px] md:top-12 z-20 bg-background/95 backdrop-blur-sm -mx-2 sm:-mx-4 md:-mx-6 px-2 sm:px-4 md:px-6 py-2">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <div className="min-w-0 flex-1">
                 <EnhancedSearchBar

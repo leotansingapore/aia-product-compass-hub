@@ -957,8 +957,13 @@ export default function CompetitorProductsReference() {
         </div>
       </details>
 
-      {/* Sticky filter bar */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border rounded-lg p-2.5 sm:p-3 shadow-sm space-y-2 sm:space-y-3 print:hidden">
+      {/* Sticky filter bar.
+          `top-0` pinned this to the viewport top, which is where the app header
+          already sits — so on the longest page in the app (~48 phone screens)
+          the search box was 100% covered by the header and not clickable at all
+          once you scrolled. Offset by the real header heights instead: 57px on
+          mobile, 48px (h-12) from md up. z stays below the header's z-40. */}
+      <div className="sticky top-[57px] md:top-12 z-20 bg-background/95 backdrop-blur-sm border rounded-lg p-2.5 sm:p-3 shadow-sm space-y-2 sm:space-y-3 print:hidden">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
