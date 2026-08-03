@@ -10,7 +10,10 @@ import {
   ChevronRight,
   RefreshCw,
   Bot,
+  Search,
+  X,
 } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchAllRows } from "@/lib/fetchAllRows";
 
@@ -156,18 +159,32 @@ function ChangeCard({ change }: { change: ChangelogEntry }) {
 
 export default function Changelog() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [query, setQuery] = useState("");
   const { grouped, loading, error, refetch } = useChangelogEntries();
 
+  // Category tabs alone can't answer the question people actually bring here —
+  // "did they change anything about HealthShield?" — across ~50 entries spread
+  // over 15 phone screens. Match the words in the entry, not just its bucket.
   const filteredGroups = grouped
-    .map((group) => ({
-      ...group,
-      changes: activeCategory === "All"
-        ? group.changes
-        : group.changes.filter((c) => c.category === activeCategory),
-    }))
+    .map((group) => {
+      const q = query.trim().toLowerCase();
+      return {
+        ...group,
+        changes: group.changes.filter((c) => {
+          if (activeCategory !== "All" && c.category !== activeCategory) return false;
+          if (!q) return true;
+          return (
+            c.title.toLowerCase().includes(q) ||
+            c.description.toLowerCase().includes(q) ||
+            c.category.toLowerCase().includes(q)
+          );
+        }),
+      };
+    })
     .filter((group) => group.changes.length > 0);
 
   const totalCount = filteredGroups.reduce((s, g) => s + g.changes.length, 0);
+  const isFiltering = query.trim().length > 0 || activeCategory !== "All";
 
   return (
     <>
@@ -199,6 +216,33 @@ export default function Changelog() {
           </Button>
         </div>
 
+        {/* Search, pinned below the app header (57px mobile, 48px from md up).
+            A direct child of the tall page container — a sticky element only
+            sticks while its own parent is in view. */}
+        <div className="sticky top-[57px] md:top-12 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-2 bg-background mb-4">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search the changelog — a product, a page, a feature"
+              aria-label="Search changelog entries"
+              className="pl-10 pr-10"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Category filter tabs */}
         <div className="flex flex-wrap gap-2 mb-8">
           {ALL_CATEGORIES.map((cat) => {
@@ -217,7 +261,7 @@ export default function Changelog() {
               </button>
             );
           })}
-          {activeCategory !== "All" && (
+          {isFiltering && (
             <span className="text-xs text-muted-foreground self-center ml-1">
               {totalCount} {totalCount === 1 ? "entry" : "entries"}
             </span>
@@ -254,9 +298,20 @@ export default function Changelog() {
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-sm text-muted-foreground">No entries in this category yet.</p>
+            {/* Name the filter that actually emptied the list. This used to say
+                "No entries in this category yet" and only reset the category —
+                which reads as a lie, and fixes nothing, when the miss came from
+                the search box. */}
+            <p className="text-sm text-muted-foreground">
+              {query.trim()
+                ? `Nothing in the changelog matches “${query.trim()}”${activeCategory !== "All" ? ` in ${activeCategory}` : ""}.`
+                : "No entries in this category yet."}
+            </p>
             <button
-              onClick={() => setActiveCategory("All")}
+              onClick={() => {
+                setQuery("");
+                setActiveCategory("All");
+              }}
               className="text-xs mt-2 text-primary hover:underline"
             >
               Show all changes
