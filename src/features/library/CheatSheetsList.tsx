@@ -62,13 +62,22 @@ export function CheatSheetsList() {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-2xl text-sm text-muted-foreground">
-          {totalCount} one-page reference cards distilled from the full curriculum. Open the cheat
-          sheet for what you are about to do, not what you finished learning - frameworks,
-          scripts, and numbers worth screenshotting before a call, fact-find, or pitch.
-        </p>
-        <div className="relative w-full max-w-xs">
+      <p className="max-w-2xl text-sm text-muted-foreground">
+        {totalCount} one-page reference cards distilled from the full curriculum. Open the cheat
+        sheet for what you are about to do, not what you finished learning - frameworks,
+        scripts, and numbers worth screenshotting before a call, fact-find, or pitch.
+      </p>
+
+      {/* Search pinned below the app header.
+          These cards are for reaching mid-appointment ("before a call, fact-find,
+          or pitch" per the blurb above), and the list runs ~7 phone screens, so
+          the search has to still be there once you have scrolled into the
+          sections. It sits as a DIRECT child of the tall list container: a
+          sticky element only sticks while its own parent is in view, and it used
+          to be nested in the short header row alongside this paragraph.
+          Offsets match the app headers — 57px mobile, 48px (h-12) from md up. */}
+      <div className="sticky top-[57px] md:top-12 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2 bg-background">
+        <div className="relative w-full sm:max-w-xs">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
