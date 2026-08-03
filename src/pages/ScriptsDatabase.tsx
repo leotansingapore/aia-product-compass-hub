@@ -3997,8 +3997,15 @@ export default function ScriptsDatabase() {
           <ObjectionHandlingDatabase />
         ) : (
         <>
-        {/* Search + Add button */}
-        <div className="mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
+        {/* Search + Add button.
+            Sticky: the unfiltered list is ~19 phone screens. Without this, a
+            consultant who has scrolled to script 40 and wants to search for
+            something else has to flick all the way back to the top. Offsets
+            match the two app headers exactly — 57px mobile, 48px (h-12) from
+            md up — and z-20 keeps this under both (mobile z-40, desktop z-30).
+            The negative margins let the opaque background bleed to the edges of
+            the page container so cards don't show through as they scroll under. */}
+        <div className="sticky top-[57px] md:top-12 z-20 -mx-3 md:-mx-6 px-3 md:px-6 pt-2 pb-1 bg-background mb-4 sm:mb-6 flex gap-2 sm:gap-3 items-start">
           <div className="flex-1 relative" ref={searchRef}>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
