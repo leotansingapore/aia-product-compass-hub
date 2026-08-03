@@ -1338,6 +1338,10 @@ function getOpeningPreview(versions: ScriptVersion[]): string | null {
     .replace(/^#{1,6}\s+/gm, "")
     .replace(/^>\s?/gm, "")
     .replace(/`+/g, "")
+    // `[label](url)` → `label`. Written out, these swallow the whole preview:
+    // four scripts showed the same Instagram URL twice and nothing else. The
+    // pattern requires the `(...)`, so bare `[Name]` placeholders are untouched.
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     // `**bold**` only. `__` is NOT treated as emphasis here: a run of
     // underscores in these scripts is a fill-in blank ("Is this _____?"), and
     // pairing them off chews the blank down to a stray underscore.
@@ -3683,22 +3687,29 @@ export default function ScriptsDatabase() {
   // of the scripts on every single visit — ~146px of phone screen, forever, for
   // a consultant who has already decided not to take the course. Let them put
   // it away; the course stays reachable from the header nav and /scripts/course.
-  const [courseBannerDismissed, setCourseBannerDismissed] = useState(() => {
-    if (typeof window === "undefined") return false;
+  //
+  // Keyed by user, matching `scriptsCourseProgress`'s `scripts-course-read-<id>`.
+  // A single global key meant that on a shared device — normal in an agency —
+  // one consultant's dismissal hid the course recommendation from the next.
+  const courseBannerKey = `scripts-course-banner-dismissed-${user?.id ?? "guest"}`;
+  const [courseBannerDismissed, setCourseBannerDismissed] = useState(false);
+  // Re-read on sign-in: `user` resolves after mount, so a lazy initialiser would
+  // read the guest key once and never look at the real one.
+  useEffect(() => {
     try {
-      return localStorage.getItem("scripts_course_banner_dismissed") === "1";
+      setCourseBannerDismissed(localStorage.getItem(courseBannerKey) === "1");
     } catch {
-      return false;
+      setCourseBannerDismissed(false);
     }
-  });
+  }, [courseBannerKey]);
   const dismissCourseBanner = useCallback(() => {
     setCourseBannerDismissed(true);
     try {
-      localStorage.setItem("scripts_course_banner_dismissed", "1");
+      localStorage.setItem(courseBannerKey, "1");
     } catch {
       // Private mode / storage full — the banner still hides for this session.
     }
-  }, []);
+  }, [courseBannerKey]);
 
   // Strict substring match: only matches if query words appear as substrings
   const strictMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
