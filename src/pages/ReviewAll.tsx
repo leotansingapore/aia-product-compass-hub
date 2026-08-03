@@ -94,8 +94,8 @@ export default function ReviewAll() {
             </Button>
           </div>
 
-          {/* Filters */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
+          {/* Filters (dropdowns only — the search box is pinned below) */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-2">
             <select value={productFilter} onChange={(e) => setProductFilter(e.target.value)} className="rounded-md border border-input bg-background px-3 py-2 text-sm min-h-[44px]">
               <option value="all">All products</option>
               {PRODUCT_SLUGS.map((s) => (
@@ -113,17 +113,34 @@ export default function ReviewAll() {
                 <option key={c} value={c}>{CATEGORY_LABELS[c]}</option>
               ))}
             </select>
-            <div className="relative">
-              <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search questions..."
-                className="w-full rounded-md border border-input bg-background pl-9 pr-3 py-2 text-sm min-h-[44px]"
-              />
-            </div>
           </div>
-          <p className="text-xs text-muted-foreground mb-4">Showing {filtered.length} of {all.length} questions</p>
+        </div>
+
+        {/* Search, pinned.
+            Unfiltered, this page renders all 1752 questions at once — ~820,000px,
+            about 971 phone screens, by far the longest page in the app. Every
+            control used to scroll away after the first screen, so a consultant
+            deep in the list had no way to search without travelling all the way
+            back to the top.
+            Only the search pins: the three dropdowns above stack to ~200px on a
+            phone, which is too much screen to give up permanently.
+            It is a DIRECT child of the tall page container, not of the short
+            `print:hidden` block above — a sticky element only sticks while its
+            own parent is in view. `print:hidden` is kept here so the printed
+            copy still omits it. Offsets match the app headers: 57px mobile,
+            48px (h-12) from md up; z-20 stays under the header's z-40. */}
+        <div className="print:hidden sticky top-[57px] md:top-12 z-20 -mx-3 sm:-mx-6 px-3 sm:px-6 py-2 bg-background mb-2">
+          <div className="relative">
+            <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search questions..."
+              aria-label="Search all questions and answers"
+              className="w-full rounded-md border border-input bg-background pl-9 pr-3 py-2 text-sm min-h-[44px]"
+            />
+          </div>
+          <p className="text-xs text-muted-foreground mt-1.5">Showing {filtered.length} of {all.length} questions</p>
         </div>
 
         {isLoading ? (
