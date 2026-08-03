@@ -897,8 +897,13 @@ export default function ServicingPage() {
 
       <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-4xl">
 
-        {/* Search + Add */}
-        <div className="mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">
+        {/* Search + Add.
+            Sticky for the same reason as the Sales Scripts list: this page is
+            ~20 phone screens, so without pinning, changing your search from
+            halfway down means flicking all the way back to the top. Offsets
+            match the app headers (57px mobile, 48px from md up); z-20 keeps it
+            under both (mobile z-40, desktop z-30). */}
+        <div className="sticky top-[57px] md:top-12 z-20 -mx-3 md:-mx-6 px-3 md:px-6 pt-2 pb-1 bg-background mb-4 sm:mb-5 flex gap-2 sm:gap-3 items-start">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
