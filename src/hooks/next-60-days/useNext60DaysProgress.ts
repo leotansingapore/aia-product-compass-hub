@@ -365,7 +365,12 @@ export function useNext60DaysProgress() {
       upsertMutation.mutate({
         dayNumber,
         patch: {
-          quiz_score: score,
+          // Keep the best score. The quiz UI invites a casual retry ("Retry for
+          // practice") on a day already passed, and writing the retry score
+          // unconditionally downgraded a 5/5 pass to whatever the practice run
+          // scored — the banner then read "You've already passed this quiz
+          // (2/5)". `quiz_passed_at` was already preserved; the score wasn't.
+          quiz_score: Math.max(score, existing.quizScore ?? 0),
           quiz_attempts: (existing.quizAttempts ?? 0) + 1,
           quiz_passed_at: passed ? existing.quizPassedAt ?? new Date().toISOString() : existing.quizPassedAt ?? null,
         },
