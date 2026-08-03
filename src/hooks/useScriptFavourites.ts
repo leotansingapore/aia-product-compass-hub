@@ -37,11 +37,19 @@ export function useScriptFavourites() {
       if (!userId) throw new Error('Not authenticated');
       const existing = favourites.find(f => f.script_id === scriptId);
       if (existing) {
-        const { error } = await supabase
+        // `.select('id')` and an empty-result check, per the house rule in
+        // CLAUDE.md: a DELETE that RLS filters to zero rows comes back with
+        // `error === null`, so an error-only check reports "Removed from
+        // favourites" for a row that is still there — and the heart pops back
+        // as soon as the query refetches.
+        const { data, error } = await supabase
           .from('script_favourites' as any)
           .delete()
-          .eq('id', existing.id);
+          .eq('id', existing.id)
+          .eq('user_id', userId)
+          .select('id');
         if (error) throw error;
+        if (!data || data.length === 0) throw new Error('Favourite was not removed');
         return { action: 'removed' as const };
       } else {
         const { error } = await supabase
