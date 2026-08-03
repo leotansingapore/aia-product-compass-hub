@@ -442,7 +442,13 @@ export function CMFASModuleCourseLayout({
     ) : null;
 
   return (
-    <div className={cn("min-w-0 overflow-x-hidden", className)}>
+    // `overflow-x-clip` rather than `overflow-x-hidden`: both stop sideways
+    // blowout, but `hidden` establishes a scroll container, which silently made
+    // `position: sticky` inert for everything inside — including the mobile tab
+    // bar below, which was written as sticky and never actually stuck. `clip`
+    // has no such side effect. The desktop branch is unaffected either way: its
+    // sticky headers live inside the aside/main panes' own `overflow-y-auto`.
+    <div className={cn("min-w-0 overflow-x-clip", className)}>
       {/* Desktop: left outline + main (Skool-style) */}
       {!isTabletOrMobile && (
       <div className="flex min-h-[calc(100vh-120px)]">
@@ -565,7 +571,11 @@ export function CMFASModuleCourseLayout({
 
         <div className="min-w-0 border-t bg-background">
           <Tabs defaultValue={defaultTab} className="w-full min-w-0">
-            <div className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+            {/* Mobile tab bar: offset below the app header (57px), not `top-0`.
+                This one sits in the PAGE scroll, unlike its desktop twin which
+                lives inside `main`'s own scroll pane, so `top-0` would park it
+                under the header. z-20 keeps it below the header's z-40. */}
+            <div className="sticky top-[57px] z-20 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
               <div className="mx-auto max-w-7xl overflow-x-auto overflow-y-hidden px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-4">
                 <TabsList className="inline-flex h-auto w-max gap-1 bg-muted/50 p-1 sm:w-full sm:grid sm:grid-cols-4">
                   <TabsTrigger

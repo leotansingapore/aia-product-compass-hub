@@ -23,7 +23,7 @@ const OnboardingModule = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen overflow-x-clip bg-gradient-to-br from-background via-background to-muted/20">
       <Helmet>
         <title>CMFAS Onboarding - Getting Started Guide</title>
         <meta

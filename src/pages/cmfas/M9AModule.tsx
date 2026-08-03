@@ -163,7 +163,7 @@ export default function M9AModule({ embedded = false }: { embedded?: boolean } =
       className={
         embedded
           ? "w-full"
-          : "min-h-screen overflow-x-hidden bg-gradient-to-br from-background via-background to-muted/20"
+          : "min-h-screen overflow-x-clip bg-gradient-to-br from-background via-background to-muted/20"
       }
     >
       {!embedded && (
