@@ -3637,6 +3637,27 @@ export default function ScriptsDatabase() {
     return courseLessons.filter((l) => read.has(l.id)).length;
   }, [courseLessons, user?.id]);
 
+  // The course banner is a one-time recommendation, but it re-rendered on top
+  // of the scripts on every single visit — ~146px of phone screen, forever, for
+  // a consultant who has already decided not to take the course. Let them put
+  // it away; the course stays reachable from the header nav and /scripts/course.
+  const [courseBannerDismissed, setCourseBannerDismissed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return localStorage.getItem("scripts_course_banner_dismissed") === "1";
+    } catch {
+      return false;
+    }
+  });
+  const dismissCourseBanner = useCallback(() => {
+    setCourseBannerDismissed(true);
+    try {
+      localStorage.setItem("scripts_course_banner_dismissed", "1");
+    } catch {
+      // Private mode / storage full — the banner still hides for this session.
+    }
+  }, []);
+
   // Strict substring match: only matches if query words appear as substrings
   const strictMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
     if (!target || !query) return { match: false, score: 0 };
@@ -4418,7 +4439,7 @@ export default function ScriptsDatabase() {
         )}
 
         {/* Scripts Fundamentals mini-course — recommended before using the scripts */}
-        {!loading && !scriptsError && courseLessons.length > 0 && (
+        {!loading && !scriptsError && courseLessons.length > 0 && !courseBannerDismissed && (
           courseReadCount >= courseLessons.length ? (
             <div className="flex items-center gap-2 rounded-lg border border-green-300/50 bg-green-50/50 dark:border-green-900 dark:bg-green-950/20 px-3 py-2 mb-3 text-xs text-muted-foreground">
               <CheckCircle2 className="h-4 w-4 text-green-600 shrink-0" />
@@ -4426,12 +4447,26 @@ export default function ScriptsDatabase() {
               <button onClick={() => navigate("/scripts/course")} className="underline hover:text-foreground shrink-0">
                 Revisit
               </button>
+              <button
+                onClick={dismissCourseBanner}
+                aria-label="Hide the Scripts Fundamentals banner"
+                className="shrink-0 text-muted-foreground/70 hover:text-foreground"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
             </div>
           ) : (
-            <div className="rounded-xl border border-primary/25 bg-gradient-to-r from-primary/10 to-primary/5 p-4 mb-3 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="rounded-xl border border-primary/25 bg-gradient-to-r from-primary/10 to-primary/5 p-4 mb-3 flex flex-col sm:flex-row sm:items-center gap-3 relative">
+              <button
+                onClick={dismissCourseBanner}
+                aria-label="Hide the Scripts Fundamentals banner"
+                className="absolute top-2 right-2 text-muted-foreground/70 hover:text-foreground p-1"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
               <div className="flex items-start gap-3 flex-1 min-w-0">
                 <BookOpen className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div className="min-w-0">
+                <div className="min-w-0 pr-5">
                   <p className="text-sm font-semibold">
                     {courseReadCount > 0
                       ? `Continue the Scripts Fundamentals course — ${courseReadCount}/${courseLessons.length} lessons read`
@@ -4449,47 +4484,40 @@ export default function ScriptsDatabase() {
           )
         )}
 
-        {/* Onboarding prompt — shown when no filters are selected and no search */}
+        {/* One-tap shortcuts, shown only on the unfiltered view.
+            These used to sit inside a bordered card with a heading and a
+            sentence explaining that the filters above exist. On a phone that
+            was ~250px of prose between the consultant and the scripts, and it
+            restated the Category/Audience dropdowns already on screen. The
+            chips themselves earn their place — one tap beats open-dropdown,
+            scroll, tap — so they stay, and the explanation goes. */}
         {!loading && !scriptsError && activeCategory === "all" && activeAudience === "all" && !searchQuery && !showFavouritesOnly && (
-          <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 mb-2">
-            <div className="flex items-start gap-3">
-              <div className="mt-0.5 text-2xl">🎯</div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground mb-0.5">Start by choosing your target audience</p>
-                <p className="text-xs text-muted-foreground mb-3">Pick a category or audience below to find the right scripts faster. You're currently seeing all {filteredScripts.length} scripts.</p>
-                <div className="flex flex-wrap gap-2">
-                  {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "warm-market", "cold-lead"] as const)
-                    .filter(aud => filteredScripts.some(s => s.target_audience === aud))
-                    .map(aud => (
-                      <button
-                        key={aud}
-                        onClick={() => setActiveAudience(aud)}
-                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors font-medium"
-                      >
-                        {audienceLabels[aud] ?? aud}
-                      </button>
-                    ))}
-                  <button
-                    onClick={() => setActiveCategory("cold-calling")}
-                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
-                  >
-                    📞 Cold Calling
-                  </button>
-                  <button
-                    onClick={() => setActiveCategory("follow-up")}
-                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
-                  >
-                    💬 Follow-Ups
-                  </button>
-                  <button
-                    onClick={() => setActiveCategory("initial-text")}
-                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
-                  >
-                    💬 Initial Texts
-                  </button>
-                </div>
-              </div>
-            </div>
+          <div className="mb-3 flex flex-wrap items-center gap-1.5">
+            <span className="text-[11px] text-muted-foreground mr-0.5 shrink-0">Jump to:</span>
+            {(["nsf", "young-adult", "working-adult", "pre-retiree", "parent", "warm-market", "cold-lead"] as const)
+              .filter(aud => filteredScripts.some(s => s.target_audience === aud))
+              .map(aud => (
+                <button
+                  key={aud}
+                  onClick={() => setActiveAudience(aud)}
+                  className="text-[11px] px-2.5 py-1 rounded-full border border-primary/30 bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors font-medium"
+                >
+                  {audienceLabels[aud] ?? aud}
+                </button>
+              ))}
+            {([
+              ["cold-calling", "Cold Calling"],
+              ["follow-up", "Follow-Ups"],
+              ["initial-text", "Initial Texts"],
+            ] as const).map(([cat, label]) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className="text-[11px] px-2.5 py-1 rounded-full border border-border bg-background hover:bg-accent transition-colors font-medium text-muted-foreground"
+              >
+                {label}
+              </button>
+            ))}
           </div>
         )}
 
