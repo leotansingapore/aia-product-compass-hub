@@ -188,10 +188,19 @@ export default function CaseVaultPage() {
         headerTabs={<ScriptsHubHeaderTabs />}
       />
 
-      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-6xl overflow-x-hidden">
-        {/* Toolbar */}
-        <div className="flex flex-col gap-2 mb-5">
-          <div className="relative flex-1 min-w-0">
+      {/* `overflow-x-hidden` removed: `overflow-x: hidden` establishes a scroll
+          container, which makes `position: sticky` inert for everything inside
+          it. (`overflow-x: clip`, used on the app shell, does not — leave that
+          one alone.) */}
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-6xl">
+        {/* Search pins (~13 phone screens of cases); the filter row scrolls.
+            A DIRECT child of the tall page container on purpose — a sticky
+            element only sticks while its own parent is in view, so nesting it
+            in the short toolbar wrapper below unpinned it immediately. */}
+        <div className="sticky top-[57px] md:top-12 z-20 -mx-3 md:-mx-6 px-3 md:px-6 pt-2 pb-1 bg-background mb-2">
+          {/* Inner wrapper keeps `relative` for the absolutely-positioned icon —
+              putting it on the sticky element would clash with `sticky`. */}
+          <div className="relative min-w-0">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search by prospect, product, headline, drawing used..."
@@ -200,6 +209,9 @@ export default function CaseVaultPage() {
               className="pl-9"
             />
           </div>
+        </div>
+
+        <div className="flex flex-col gap-2 mb-5">
 
           <div className="flex flex-wrap gap-2">
             <Select value={filterProduct} onValueChange={setFilterProduct}>

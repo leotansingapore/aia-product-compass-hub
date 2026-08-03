@@ -451,28 +451,37 @@ export default function ConceptCardsPage() {
         headerTabs={<ScriptsHubHeaderTabs />}
       />
 
-      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl overflow-x-hidden">
+      {/* `overflow-x-hidden` removed: `overflow-x: hidden` establishes a scroll
+          container, which makes `position: sticky` inert for everything inside
+          it. (`overflow-x: clip`, used on the app shell, does not — that one is
+          fine to leave alone.) */}
+      <div className="mx-auto px-3 md:px-6 py-3 md:py-8 max-w-5xl">
 
-        {/* Toolbar — row 1: search + filters */}
-        <div className="flex flex-col gap-2 mb-3">
-          <div className="flex gap-2">
-            <div className="relative flex-1 min-w-0">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search concept cards..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                className="pl-9"
-              />
-            </div>
-            {isAdmin && (
-              <Button onClick={() => setUploadOpen(true)} className="shrink-0">
-                <Plus className="h-4 w-4 sm:mr-1.5" />
-                <span className="hidden sm:inline">Add Card</span>
-              </Button>
-            )}
+        {/* Search row pins; the filter row below scrolls away, same split as
+            the Sales Scripts list (~19 phone screens of cards here).
+            It sits as a DIRECT child of the tall page container on purpose: a
+            sticky element can only stick while its own parent is still in view,
+            so nesting it inside the short toolbar wrapper below unpinned it the
+            moment that wrapper scrolled off. */}
+        <div className="sticky top-[57px] md:top-12 z-20 -mx-3 md:-mx-6 px-3 md:px-6 pt-2 pb-1 bg-background mb-2 flex gap-2">
+          <div className="relative flex-1 min-w-0">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search concept cards..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="pl-9"
+            />
           </div>
+          {isAdmin && (
+            <Button onClick={() => setUploadOpen(true)} className="shrink-0">
+              <Plus className="h-4 w-4 sm:mr-1.5" />
+              <span className="hidden sm:inline">Add Card</span>
+            </Button>
+          )}
+        </div>
 
+        <div className="flex flex-col gap-2 mb-3">
           {/* Filters + action buttons row */}
           <div className="flex flex-wrap gap-2 min-w-0">
             <Select value={filterAudience} onValueChange={setFilterAudience}>
