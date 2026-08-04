@@ -139,6 +139,16 @@ function DrawingsQuickJump({ ready }: { ready: boolean }) {
     setOpen(false);
     setQuery("");
 
+    // Put the drawing in the address bar. Without this the URL never changed,
+    // so there was no way to send someone "the retirement-gap drawing" — and
+    // Back skipped the whole playbook instead of stepping through your jumps.
+    // `replaceState` keeps it out of history (a jump is not a page visit).
+    try {
+      window.history.replaceState(null, "", `#${id}`);
+    } catch {
+      /* non-critical: the scroll below still works */
+    }
+
     // Offset by whatever is actually pinned to the top right now (app header +
     // this bar) instead of a hard-coded number that breaks at the other
     // breakpoint or if the header height ever changes.
@@ -172,6 +182,7 @@ function DrawingsQuickJump({ ready }: { ready: boolean }) {
     };
     settle();
   }, []);
+
 
   if (!ready || headings.length === 0) return null;
 
@@ -395,7 +406,13 @@ export default function DrawingsPlaybookPage() {
         <Card>
           <CardContent
             data-playbook-body
-            className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8"
+            // `scroll-mt` on every heading so the BROWSER's native #hash scroll
+            // clears the app header (57px) plus the sticky jump bar (~52px).
+            // Fighting the native scroll from JS did not work — it re-fires as
+            // lazy images settle and kept planting the heading at y=0, hidden
+            // behind the chrome. Letting it win, but landing it correctly, is
+            // both simpler and more robust.
+            className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8 [&_h1]:scroll-mt-28 [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28"
           >
             {markdown ? (
               <ReactMarkdown
