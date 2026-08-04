@@ -82,6 +82,13 @@ interface QuickLink {
 }
 
 const QUICK_LINKS: QuickLink[] = [
+  // Dashboard first. Until this existed there was NO way back to "/" on a
+  // phone: the five primary tabs below all point at sections, the header has
+  // only Back / theme / profile, the page title isn't a link, and the
+  // breadcrumb that carries "Home" is hidden at mobile widths. Desktop has
+  // three routes home (sidebar logo, sidebar Home, top-nav Home), so this was
+  // a mobile-only dead end.
+  { name: "Dashboard", href: "/", icon: Home, color: "text-primary", bg: "bg-primary/10" },
   // Daily-use learning surfaces — direct deep-links so mobile FCs reach the
   // current curriculum in 1 tap instead of bouncing through /learning-track →
   // /pre-rnf/assignments → card click. Desktop has these in the sidebar.
