@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useMemo } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -40,10 +40,37 @@ function useAllQuestions() {
 export default function ReviewAll() {
   const navigate = useNavigate();
   const { data: all = [], isLoading } = useAllQuestions();
-  const [productFilter, setProductFilter] = useState<string>('all');
-  const [bankFilter, setBankFilter] = useState<'all' | 'study' | 'exam'>('all');
-  const [categoryFilter, setCategoryFilter] = useState<'all' | QuestionCategory>('all');
-  const [search, setSearch] = useState('');
+  // Filters live in the URL, not component state. This page renders all 1752
+  // questions at once (~971 phone screens), so a narrowed view — "HealthShield,
+  // exam only, objection handling" — is exactly the thing worth bookmarking or
+  // sending to someone. As plain state it evaporated the moment you navigated
+  // away, and there was no way to share what you were looking at.
+  //
+  // Unlike the Objections tab, this is a standalone route: no parent rebuilds
+  // the param set, so plain names are safe here.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const productFilter = searchParams.get('product') ?? 'all';
+  const bankFilter = (searchParams.get('bank') ?? 'all') as 'all' | 'study' | 'exam';
+  const categoryFilter = (searchParams.get('category') ?? 'all') as 'all' | QuestionCategory;
+  const search = searchParams.get('q') ?? '';
+
+  const setParam = useCallback((key: string, value: string, emptyValue = 'all') => {
+    setSearchParams(
+      (prev) => {
+        const params = new URLSearchParams(prev);
+        if (value && value !== emptyValue) params.set(key, value);
+        else params.delete(key);
+        return params;
+      },
+      // Replace so typing doesn't bury the Back button under one entry per key.
+      { replace: true },
+    );
+  }, [setSearchParams]);
+
+  const setProductFilter = useCallback((v: string) => setParam('product', v), [setParam]);
+  const setBankFilter = useCallback((v: string) => setParam('bank', v), [setParam]);
+  const setCategoryFilter = useCallback((v: string) => setParam('category', v), [setParam]);
+  const setSearch = useCallback((v: string) => setParam('q', v, ''), [setParam]);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
