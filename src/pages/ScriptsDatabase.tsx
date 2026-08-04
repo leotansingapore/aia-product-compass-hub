@@ -3491,6 +3491,13 @@ export default function ScriptsDatabase() {
       // dropping it here would strand the reader at the top of the tab.
       const targetScript = prev.get("script");
       if (targetScript) params.set("script", targetScript);
+      // ?oq= is the Objections tab's own search, owned by
+      // ObjectionHandlingDatabase. It is deliberately NOT `q`: this effect
+      // rebuilds the param set from scratch on every filter change, so a child
+      // writing `q` would be silently overwritten by this page's own
+      // (empty-on-that-tab) searchQuery.
+      const objectionQ = prev.get("oq");
+      if (objectionQ) params.set("oq", objectionQ);
       return params;
     }, { replace: true });
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);

@@ -630,7 +630,7 @@ export function ObjectionHandlingDatabase() {
   const isMobile = useIsMobile();
   const { scripts: allScripts, loading: scriptsLoading } = useScripts();
   // Deep links from the Sales Scripts tab arrive as /objections?script=<id>.
-  const [objectionSearchParams] = useSearchParams();
+  const [objectionSearchParams, setObjectionSearchParams] = useSearchParams();
   const targetScriptId = objectionSearchParams.get("script");
 
   // Scripts categorised as 'objection-handling' from the scripts table, plus
@@ -793,7 +793,32 @@ export function ObjectionHandlingDatabase() {
 
   // ONE query for both objection corpora. The curated library owns the input;
   // the Objection Scripts & FAQ section below reads the same value.
-  const [objectionQuery, setObjectionQuery] = useState("");
+  //
+  // Held in the URL as `?oq=` — NOT `?q=`, which the parent ScriptsDatabase
+  // owns and rebuilds from scratch on every filter change (it would silently
+  // overwrite ours). The parent explicitly preserves `oq`. As plain state it
+  // was lost the moment you left the page — and this page sends you away by
+  // design ("Practice in roleplay" navigates to /roleplay), so coming back
+  // meant retyping what the prospect said. It also makes a filtered view
+  // shareable: "/objections?q=not+interested" is a sendable answer.
+  const objectionQuery = objectionSearchParams.get("oq") ?? "";
+  const setObjectionQuery = useCallback((next: string) => {
+    setObjectionSearchParams(
+      (prev) => {
+        const params = new URLSearchParams(prev);
+        if (next.trim()) params.set("oq", next);
+        else params.delete("oq");
+        // A `?script=` deep link has already been consumed by the time anyone
+        // types; carrying it forward would re-trigger the scroll-and-open on
+        // every keystroke.
+        params.delete("script");
+        return params;
+      },
+      // Replace, don't push: otherwise every character typed becomes its own
+      // history entry and Back has to be pressed once per letter.
+      { replace: true },
+    );
+  }, [setObjectionSearchParams]);
   const scriptsSectionRef = useRef<HTMLDivElement>(null);
 
   const objectionScriptMatchCount = useMemo(() => {
