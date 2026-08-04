@@ -3686,7 +3686,13 @@ export default function ScriptsDatabase() {
   // The course banner is a one-time recommendation, but it re-rendered on top
   // of the scripts on every single visit — ~146px of phone screen, forever, for
   // a consultant who has already decided not to take the course. Let them put
-  // it away; the course stays reachable from the header nav and /scripts/course.
+  // it away.
+  //
+  // CORRECTION: this comment used to claim the course "stays reachable from the
+  // header nav". It does not — the ONLY links to /scripts/course are the two
+  // buttons inside this banner, so dismissing it orphaned the course entirely.
+  // Dismissing now collapses the banner to a one-line link instead of removing
+  // it (see below): ~20px rather than ~146px, and the course stays reachable.
   //
   // Keyed by user, matching `scriptsCourseProgress`'s `scripts-course-read-<id>`.
   // A single global key meant that on a shared device — normal in an agency —
@@ -4496,6 +4502,22 @@ export default function ScriptsDatabase() {
               <Button variant="outline" onClick={() => refetch()}>Retry</Button>
             </CardContent>
           </Card>
+        )}
+
+        {/* Dismissed state: a one-line link, NOT nothing. This banner holds the
+            only links to /scripts/course in the app, so hiding it outright made
+            the course unreachable except by typing the URL. */}
+        {!loading && !scriptsError && courseLessons.length > 0 && courseBannerDismissed && (
+          <button
+            onClick={() => navigate("/scripts/course")}
+            className="mb-3 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <BookOpen className="h-3.5 w-3.5" />
+            <span className="underline underline-offset-2">Scripts Fundamentals course</span>
+            <span className="text-muted-foreground/70">
+              ({courseReadCount}/{courseLessons.length} read)
+            </span>
+          </button>
         )}
 
         {/* Scripts Fundamentals mini-course — recommended before using the scripts */}
