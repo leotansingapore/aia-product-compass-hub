@@ -45,13 +45,30 @@ export function MobileHeader({
     return "FINternship";
   };
 
-  // Top-level pages where back should go home instead of history.back()
-  const topLevelPages = ['/learning-track', '/bookmarks', '/cmfas-exams', '/roleplay', '/my-account', '/scripts', '/playbooks', '/flows', '/concept-cards', '/case-vault', '/drawings-playbook'];
+  // Top-level pages where back should go home instead of history.back().
+  // `/objections` and `/servicing` were missing even though they are Sales
+  // Playbooks hub tabs, structurally identical to `/scripts` and the other tabs
+  // already listed — the list had drifted as tabs were added. Same for the
+  // primary nav destinations `/library`, `/leaderboard` and `/sales-playbooks`.
+  const topLevelPages = [
+    '/learning-track', '/bookmarks', '/cmfas-exams', '/roleplay', '/my-account',
+    '/library', '/leaderboard', '/sales-playbooks',
+    // Sales Playbooks hub tabs — all siblings of each other
+    '/scripts', '/servicing', '/objections', '/playbooks', '/flows',
+    '/concept-cards', '/case-vault', '/drawings-playbook', '/appointment-flows',
+  ];
   const isTopLevel = location.pathname === '/' || topLevelPages.some(p => location.pathname === p);
   const isHomePage = location.pathname === '/';
 
   const handleBack = () => {
-    if (isTopLevel) {
+    // `location.key` is the literal string "default" only for the very first
+    // entry of a session, i.e. the page was opened cold — deep link, bookmark,
+    // refresh, or RouteTracker restoring the last route. There is no in-app
+    // history behind it, so `history.back()` either does nothing or throws the
+    // consultant out of the app entirely. (Observed: Back on /objections landed
+    // on the public marketing page.) Go home instead — it is the one
+    // destination that is always correct.
+    if (isTopLevel || location.key === 'default') {
       navigate('/');
     } else {
       window.history.back();
