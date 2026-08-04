@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ReactFlow, {
   Background,
   Controls,
@@ -116,6 +117,14 @@ function PublicFlowViewInner() {
 
   return (
     <div className="flex flex-col h-screen">
+      {/* Name the flow in the page title — same reasoning as the shared
+          playbook view: this page exists to be opened from a pasted link, and
+          it was inheriting the generic app title, so every shared flow looked
+          identical in a tab, a bookmark or history. Browser/bookmark/a11y only;
+          social link previews would need SSR, which this SPA does not have. */}
+      <Helmet>
+        <title>{title ? `${title} — Shared Flow | FINternship` : 'Shared Flow | FINternship'}</title>
+      </Helmet>
       {/* Header */}
       <div className="border-b bg-background px-4 py-3 flex items-center justify-between gap-3">
         <div className="min-w-0 flex-1">

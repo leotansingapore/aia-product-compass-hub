@@ -1,5 +1,6 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -253,6 +254,18 @@ export default function PublicPlaybookView() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Name the playbook in the page title. This is the ONE page in the app
+          most likely to be opened from a pasted link, and it was inheriting the
+          generic "FINternship Learning Platform — Financial Advisory Training &
+          Education" — so a shared "Young Adults" playbook looked identical to
+          every other tab, bookmark and history entry.
+          NOTE: this fixes the browser tab, bookmarks, history and what screen
+          readers announce. It does NOT change WhatsApp/Telegram link previews —
+          those read the served HTML, and this is a client-rendered SPA with no
+          prerender, so og: tags would need SSR to matter. */}
+      <Helmet>
+        <title>{`${playbook.title} — Shared Playbook | FINternship`}</title>
+      </Helmet>
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         {/* Header */}
         <div className="mb-8">
