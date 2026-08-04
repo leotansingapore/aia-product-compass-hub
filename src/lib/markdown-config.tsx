@@ -161,24 +161,34 @@ function InlineVideoEmbed({ embedUrl, platform }: { embedUrl: string; platform: 
  * Matches backend formatting instructions for consistent rendering
  */
 export const markdownComponents: Components = {
-  // Headings with proper hierarchy and spacing
-  h1: ({ children }: any) => (
-    <h1 className="text-xl font-bold mb-3 mt-4 first:mt-0 text-foreground border-b pb-2">
+  // Headings with proper hierarchy and spacing.
+  //
+  // `...rest` is forwarded on purpose: it carries the `id` that `rehype-slug`
+  // generates. These renderers used to destructure `{ children }` only, which
+  // silently threw that id away — so no heading on ANY of the ~19 surfaces
+  // using this config was addressable by `#hash`. That broke real features
+  // rather than just cosmetics: `ProductMasteryDay` has a hash-scroll effect
+  // whose own comment says it is "how the Case Vault 'Read full case' button
+  // ... resolve[s] correctly", and it could never find a target.
+  // `node` is dropped explicitly — react-markdown passes it, and React warns
+  // about unknown props on DOM elements.
+  h1: ({ children, node, ...rest }: any) => (
+    <h1 {...rest} className="text-xl font-bold mb-3 mt-4 first:mt-0 text-foreground border-b pb-2 scroll-mt-24">
       {children}
     </h1>
   ),
-  h2: ({ children }: any) => (
-    <h2 className="text-lg font-semibold mb-2 mt-3 first:mt-0 text-foreground">
+  h2: ({ children, node, ...rest }: any) => (
+    <h2 {...rest} className="text-lg font-semibold mb-2 mt-3 first:mt-0 text-foreground scroll-mt-24">
       {children}
     </h2>
   ),
-  h3: ({ children }: any) => (
-    <h3 className="text-base font-semibold mb-2 mt-2 first:mt-0 text-foreground">
+  h3: ({ children, node, ...rest }: any) => (
+    <h3 {...rest} className="text-base font-semibold mb-2 mt-2 first:mt-0 text-foreground scroll-mt-24">
       {children}
     </h3>
   ),
-  h4: ({ children }: any) => (
-    <h4 className="text-sm font-semibold mb-1 mt-2 text-foreground">
+  h4: ({ children, node, ...rest }: any) => (
+    <h4 {...rest} className="text-sm font-semibold mb-1 mt-2 text-foreground scroll-mt-24">
       {children}
     </h4>
   ),
