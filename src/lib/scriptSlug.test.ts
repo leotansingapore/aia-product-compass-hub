@@ -86,3 +86,48 @@ describe("resolveScriptSlug", () => {
     expect(resolveScriptSlug("warm-market-intro-8f42b1", SCRIPTS)).toBeNull();
   });
 });
+
+describe("resolveScriptSlug — duplicate titles and hostile shapes (edge-case battery 2)", () => {
+  const A = { id: "8f42b1c3-1111-4aaa-8bbb-000000000001", stage: "Duplicate Title" };
+  const B = { id: "9e53c2d4-2222-4ccc-8ddd-000000000002", stage: "Duplicate Title" };
+  const C = { id: "aa64d3e5-3333-4eee-8fff-000000000003", stage: "duplicate title" };
+  const UNICODE = { id: "bb75e4f6-4444-4aaa-8bbb-000000000004", stage: "Ünïcode — Café ☕ 中文" };
+  const HEXY = { id: "cc86f5a7-5555-4bbb-8ccc-000000000005", stage: "Promo code deadbeef" };
+  const DUPES = [A, B, C, UNICODE, HEXY];
+
+  it("duplicate titles resolve to DIFFERENT scripts via id suffix", () => {
+    const slugA = toScriptSlug(A.stage, A.id);
+    const slugB = toScriptSlug(B.stage, B.id);
+    expect(slugA).not.toBe(slugB);
+    expect(resolveScriptSlug(slugA, DUPES)).toBe(A.id);
+    expect(resolveScriptSlug(slugB, DUPES)).toBe(B.id);
+  });
+
+  it("case-variant duplicate title keeps its own resolvable slug", () => {
+    expect(resolveScriptSlug(toScriptSlug(C.stage, C.id), DUPES)).toBe(C.id);
+  });
+
+  it("unicode-heavy title still produces a resolvable ascii-only slug", () => {
+    const slug = toScriptSlug(UNICODE.stage, UNICODE.id);
+    expect(slug).toMatch(/^[a-z0-9-]+$/);
+    expect(resolveScriptSlug(slug, DUPES)).toBe(UNICODE.id);
+  });
+
+  it("a title ENDING in 8 hex chars ('deadbeef') does not shadow the id suffix", () => {
+    const slug = toScriptSlug(HEXY.stage, HEXY.id);
+    expect(resolveScriptSlug(slug, DUPES)).toBe(HEXY.id);
+  });
+
+  it("chat-client truncation that mangles the id fails closed or stays on the same script", () => {
+    const slug = toScriptSlug(A.stage, A.id);
+    const truncated = slug.slice(0, slug.length - 6);
+    const got = resolveScriptSlug(truncated, DUPES);
+    expect(got === null || got === A.id).toBe(true);
+  });
+
+  it("percent-encoded and emoji junk fails closed", () => {
+    for (const junk of ["%20%20", "☕☕☕", "warm%20market-8f42b1c3x"]) {
+      expect(resolveScriptSlug(junk, DUPES)).toBeNull();
+    }
+  });
+});

@@ -3858,10 +3858,13 @@ export default function ScriptsDatabase() {
       .filter(v => strictIncludes(v.author, q))
       .slice(0, 3)
       .map(v => ({ type: "version" as const, label: v.author, id: v.scriptId }));
+    // type "tag", NOT "script": these ids are tag STRINGS. Typed as scripts
+    // they fell into the navigate-to-slug path, built a slug from the tag
+    // text, resolved nothing, and toasted "That script no longer exists".
     const tagMatches = Array.from(new Set(onPageScripts.flatMap(s => s.tags || [])))
       .filter(t => strictIncludes(t, q))
       .slice(0, 3)
-      .map(t => ({ type: "script" as const, label: `🏷️ ${t}`, id: t }));
+      .map(t => ({ type: "tag" as const, label: `🏷️ ${t}`, id: t }));
     return [...categoryMatches, ...audienceMatches, ...roleMatches, ...tagMatches, ...titleMatches.slice(0, 5), ...authorMatches].slice(0, 8);
   }, [searchInput, scriptsData, strictMatch, strictIncludes]);
 
@@ -3876,6 +3879,10 @@ export default function ScriptsDatabase() {
       setSearchQuery("");
     } else if (suggestion.type === "role") {
       setActiveRole(suggestion.id);
+      setSearchInput("");
+      setSearchQuery("");
+    } else if (suggestion.type === "tag") {
+      setActiveTag(suggestion.id);
       setSearchInput("");
       setSearchQuery("");
     } else {
@@ -4147,7 +4154,8 @@ export default function ScriptsDatabase() {
               {searchInput ? (
                 <button
                   aria-label="Clear search"
-                  onClick={() => { setSearchInput(""); setSearchQuery(""); setShowSuggestions(false); }}
+                  // Refocus: clearing is almost always clear-and-retype.
+                  onClick={() => { setSearchInput(""); setSearchQuery(""); setShowSuggestions(false); searchInputRef.current?.focus(); }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
                   <X className="h-4 w-4" />
@@ -4177,7 +4185,7 @@ export default function ScriptsDatabase() {
                     }`}
                   >
                     <Badge variant="outline" className="text-[10px] shrink-0 font-normal">
-                      {s.type === "category" ? "Category" : s.type === "audience" ? "Audience" : s.type === "role" ? "Role" : s.type === "version" ? "Version" : "Script"}
+                      {s.type === "category" ? "Category" : s.type === "audience" ? "Audience" : s.type === "role" ? "Role" : s.type === "tag" ? "Tag" : s.type === "version" ? "Version" : "Script"}
                     </Badge>
                     <span className="truncate">{s.label}</span>
                   </button>
