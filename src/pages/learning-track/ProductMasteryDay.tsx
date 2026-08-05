@@ -22,6 +22,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
+import { PageJumpIndex } from "@/components/navigation/PageJumpIndex";
 import { loadDay, prefetchDay, WEEK_META } from "@/features/product-mastery-track/content";
 import { DAY_SUMMARIES } from "@/features/product-mastery-track/summaries";
 import type { Day } from "@/features/product-mastery-track/types";
@@ -363,8 +364,15 @@ export default function ProductMasteryDay() {
         </TabsList>
 
         <TabsContent value="read" className="mt-5">
+          {/* These days run 14–30 phone screens with 20–44 headings and had no
+              search, contents list or in-page navigation at all. */}
+          <PageJumpIndex
+            containerSelector="[data-day-body]"
+            ready={dayRehypeReady && !!day.markdown}
+            label="a section"
+          />
           <Card className="border-border/60 shadow-card">
-            <CardContent className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
+            <CardContent data-day-body className="prose prose-sm max-w-none px-4 py-5 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
               {dayRehypeReady ? (
                 <ReactMarkdown remarkPlugins={REMARK_PLUGINS} rehypePlugins={dayRehypePlugins} components={dayMarkdownComponents}>
                   {day.markdown}
