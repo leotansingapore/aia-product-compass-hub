@@ -24,16 +24,34 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
+const SRC = path.join(ROOT, "src");
 const APP_FILE = path.join(ROOT, "src/App.tsx");
 const DIST_ASSETS = path.join(ROOT, "dist/assets");
+
+/**
+ * Scan every source file, not just App.tsx. AppLayout.tsx carries its own
+ * named lazy imports (FloatingFeedbackButton, ProfileSheet, AssistantDock) and
+ * they were invisible to this guard — which is exactly how a broken named
+ * export reaches production.
+ */
+function collectSourceFiles(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === "node_modules" || entry.name.startsWith(".")) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...collectSourceFiles(full));
+    else if (/\.(tsx|ts|jsx|js)$/.test(entry.name) && !/\.test\./.test(entry.name)) out.push(full);
+  }
+  return out;
+}
 
 const NAMED_LAZY_RE =
   /import\(\s*["']([^"']+)["']\s*\)\s*\.then\(\s*\w+\s*=>\s*\(\s*\{\s*default:\s*\w+\.(\w+)\s*\}\s*\)\s*\)/g;
 
-function resolveSpecifier(spec) {
+function resolveSpecifier(spec, fromFile) {
   let base;
   if (spec.startsWith("@/")) base = path.join(ROOT, "src", spec.slice(2));
-  else if (spec.startsWith("./") || spec.startsWith("../")) base = path.resolve(path.dirname(APP_FILE), spec);
+  else if (spec.startsWith("./") || spec.startsWith("../")) base = path.resolve(path.dirname(fromFile), spec);
   else return null;
 
   const candidates = [
@@ -80,13 +98,15 @@ function main() {
     console.error(`✗ ${APP_FILE} not found`);
     process.exit(2);
   }
-  const src = readFileSync(APP_FILE, "utf8");
   const expectations = [];
-  for (const m of src.matchAll(NAMED_LAZY_RE)) {
-    expectations.push({ specifier: m[1], name: m[2] });
+  for (const file of collectSourceFiles(SRC)) {
+    const src = readFileSync(file, "utf8");
+    for (const m of src.matchAll(NAMED_LAZY_RE)) {
+      expectations.push({ specifier: m[1], name: m[2], from: file });
+    }
   }
   if (expectations.length === 0) {
-    console.log("• No named lazy imports detected in src/App.tsx — nothing to verify.");
+    console.log("• No named lazy imports detected under src/ — nothing to verify.");
     return;
   }
 
@@ -98,10 +118,10 @@ function main() {
   );
 
   const failures = [];
-  for (const { specifier, name } of expectations) {
-    const file = resolveSpecifier(specifier);
+  for (const { specifier, name, from } of expectations) {
+    const file = resolveSpecifier(specifier, from);
     if (!file) {
-      failures.push(`  ✗ ${specifier} → cannot resolve source file`);
+      failures.push(`  ✗ ${specifier} → cannot resolve source file (imported by ${path.relative(ROOT, from)})`);
       continue;
     }
     if (!sourceExportsName(file, name)) {
