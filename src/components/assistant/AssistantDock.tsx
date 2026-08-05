@@ -10,6 +10,7 @@ import {
   ScrollText,
   Shield,
   BookOpen,
+  GraduationCap,
   Users,
   Trash2,
 } from "lucide-react";
@@ -22,7 +23,7 @@ import { streamAiChat, type AiChatMessage } from "@/lib/aiChatStream";
 import { useAllProducts, useProductBySlugOrId } from "@/hooks/useProducts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
-type ModeId = "ask" | "objections" | "product" | "roleplay";
+type ModeId = "ask" | "lessons" | "objections" | "product" | "roleplay";
 
 type Mode = {
   id: ModeId;
@@ -42,6 +43,19 @@ const MODES: readonly Mode[] = [
       "Which script should I use for a cold call to an NSF?",
       "Give me a second follow-up for someone who hasn't replied",
       "What's a good opening text for warm market outreach?",
+    ],
+  },
+  {
+    id: "lessons",
+    label: "Lessons",
+    icon: GraduationCap,
+    blurb: "Ask anything from the curriculum — it answers from the lessons and links the day.",
+    prompts: [
+      // Wording matches the curriculum: the shipped day files teach Project
+      // 1000, not the Project 100 of the older source decks.
+      "What is Project 1000 and how do I build my list?",
+      "Explain the four assurances of this career",
+      "How should I run a fact-find on a first appointment?",
     ],
   },
   {
@@ -78,7 +92,7 @@ const MODES: readonly Mode[] = [
 type Msg = { role: "user" | "assistant"; content: string };
 type Threads = Record<ModeId, Msg[]>;
 
-const EMPTY_THREADS: Threads = { ask: [], objections: [], product: [], roleplay: [] };
+const EMPTY_THREADS: Threads = { ask: [], lessons: [], objections: [], product: [], roleplay: [] };
 const STORAGE_KEY = "assistant-dock-threads";
 
 function loadThreads(): Threads {
@@ -205,7 +219,7 @@ export function AssistantDock() {
         const body =
           mode === "product"
             ? { productId: selectedProductId, mode: "knowledge" }
-            : { mode: mode === "objections" ? "objections" : "scripts" };
+            : { mode: mode === "objections" ? "objections" : mode === "lessons" ? "lessons" : "scripts" };
 
         await streamAiChat({
           fn,
@@ -253,6 +267,24 @@ export function AssistantDock() {
   const clearThread = useCallback(() => {
     persist((prev) => ({ ...prev, [mode]: [] }));
   }, [mode, persist]);
+
+  // Lessons answers cite days and cheat sheets as markdown links. ReactMarkdown
+  // renders those as plain anchors, which would hard-navigate and reload the
+  // whole SPA; route them instead and close the dock so the learner lands on
+  // the page they clicked.
+  const onMessagesClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const anchor = (e.target as HTMLElement).closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      // Leave external links, mailto/tel and modified clicks (new tab) alone.
+      if (!href.startsWith("/") || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      setOpen(false);
+      navigate(href);
+    },
+    [navigate],
+  );
 
   const productName = useMemo(() => {
     if (!selectedProductId) return "";
@@ -405,7 +437,11 @@ export function AssistantDock() {
             </div>
           )}
 
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3">
+          <div
+            ref={scrollRef}
+            onClick={onMessagesClick}
+            className="flex-1 overflow-y-auto px-3 py-3"
+          >
             {messages.length === 0 ? (
               <div className="flex flex-col gap-2">
                 <p className="text-xs text-muted-foreground">{activeMode.blurb}</p>

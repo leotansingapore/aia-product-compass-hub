@@ -45,6 +45,22 @@ When handling objections:
 
 Always be practical, empathetic, and action-oriented. Keep responses concise unless detail is requested.`;
 
+const LESSONS_SYSTEM_PROMPT = `You are a Curriculum Coach AI for the FINternship academy. You answer from the training curriculum the consultant is studying: the First 14 Days, First 60 Days, Product Mastery and Next 60 Days tracks.
+
+Your role:
+1. **Answer from the lessons** — explain what the curriculum actually teaches, in your own words
+2. **Point to the source** — every lesson chunk below carries its track, day number and a Link. When you use one, name the day and give its link so the consultant can go read it
+3. **Connect ideas across days** — if a concept builds on an earlier day, say so
+4. **Say when you don't know** — if the retrieved lessons don't cover it, say the curriculum doesn't cover it rather than inventing material
+
+Never invent product figures, rates or rules. If a number is not in the retrieved lessons, tell the consultant to check the product summary instead of guessing. Keep answers concise and practical.
+
+ALWAYS end an answer that used the curriculum with a "Where to read this" line listing the days you drew on as markdown links, e.g.:
+
+Where to read this: [Day 19 — Project 1000](/learning-track/first-60-days/day/19)
+
+Take the day number, title and path verbatim from the chunk's header and Link line. Never invent a day number or a URL — if a chunk has no Link, leave it out of the list.`;
+
 async function getRAGContext(supabase: any, userQuery: string): Promise<string> {
   try {
     const searchTerms = userQuery
@@ -71,13 +87,23 @@ async function getRAGContext(supabase: any, userQuery: string): Promise<string> 
     }
 
     let context = "\n--- RELEVANT KNOWLEDGE ---\n\n";
-    
+
     const scriptChunks = chunks.filter((c: any) => c.source_type === "script");
     const docChunks = chunks.filter((c: any) => c.source_type === "document");
+    // Curriculum chunks used to be fetched by the search above and then thrown
+    // away by this filter, so the assistant could never answer from a lesson.
+    const lessonChunks = chunks.filter((c: any) => c.source_type === "curriculum");
 
     if (scriptChunks.length > 0) {
       context += "## From Scripts:\n\n";
       for (const chunk of scriptChunks) {
+        context += chunk.content + "\n\n";
+      }
+    }
+
+    if (lessonChunks.length > 0) {
+      context += "## From the Curriculum (cite the day and its Link when you use these):\n\n";
+      for (const chunk of lessonChunks) {
         context += chunk.content + "\n\n";
       }
     }
@@ -95,6 +121,44 @@ async function getRAGContext(supabase: any, userQuery: string): Promise<string> 
   } catch (e) {
     console.error("RAG search error:", e);
     return await getAllScriptsContext(supabase);
+  }
+}
+
+/**
+ * Curriculum-only retrieval. The shared search above competes across ~6,700
+ * chunks, most of them video transcripts, so a lesson question could come back
+ * with no lesson in it at all. Lessons mode searches the curriculum directly.
+ */
+async function getCurriculumContext(
+  supabase: any,
+  userQuery: string,
+  limit = 12,
+): Promise<string> {
+  const searchTerms = userQuery
+    .toLowerCase()
+    .replace(/[^\w\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 2)
+    .slice(0, 8);
+  if (searchTerms.length === 0) return "";
+
+  try {
+    const { data: chunks, error } = await supabase
+      .from("knowledge_chunks")
+      .select("content, metadata")
+      .eq("source_type", "curriculum")
+      .textSearch("content", searchTerms.join(" | "), { type: "plain" })
+      .limit(limit);
+
+    if (error || !chunks || chunks.length === 0) return "";
+
+    let out = "\n--- FROM THE CURRICULUM ---\n\n";
+    for (const c of chunks) out += c.content + "\n\n";
+    out += "--- END OF CURRICULUM ---";
+    return out;
+  } catch (e) {
+    console.error("Curriculum RAG error:", e);
+    return "";
   }
 }
 
@@ -225,12 +289,33 @@ serve(async (req) => {
           : "");
 
     const isObjectionMode = mode === "objections";
-    const basePrompt = isObjectionMode ? OBJECTIONS_SYSTEM_PROMPT : SCRIPTS_SYSTEM_PROMPT;
+    const isLessonsMode = mode === "lessons";
+    const basePrompt = isLessonsMode
+      ? LESSONS_SYSTEM_PROMPT
+      : isObjectionMode
+        ? OBJECTIONS_SYSTEM_PROMPT
+        : SCRIPTS_SYSTEM_PROMPT;
 
-    // Always get scripts context; add objections context in objections mode
-    const ragContext = await getRAGContext(supabase, userQuery);
-    const objectionsContext = isObjectionMode ? await getObjectionsContext(supabase, userQuery) : "";
-    const systemPrompt = basePrompt + ragContext + objectionsContext;
+    let systemPrompt: string;
+    if (isLessonsMode) {
+      // Lessons answers come from the curriculum, with a few script chunks
+      // behind them for "what do I actually say" follow-ups.
+      const [lessons, scripts] = await Promise.all([
+        getCurriculumContext(supabase, userQuery, 12),
+        getRAGContext(supabase, userQuery),
+      ]);
+      systemPrompt = basePrompt + lessons + scripts;
+    } else {
+      // Scripts/objections lead with their own sources, topped up with a few
+      // curriculum chunks so answers can point back at the lesson that teaches
+      // the technique.
+      const ragContext = await getRAGContext(supabase, userQuery);
+      const objectionsContext = isObjectionMode
+        ? await getObjectionsContext(supabase, userQuery)
+        : "";
+      const lessonTopUp = await getCurriculumContext(supabase, userQuery, 4);
+      systemPrompt = basePrompt + ragContext + objectionsContext + lessonTopUp;
+    }
 
     const useOwnKey = !!OPENAI_API_KEY;
     const response = await fetch(
