@@ -4005,8 +4005,12 @@ export default function ScriptsDatabase() {
   const allCategoriesWithData = useMemo(() => {
     const dbCats = new Set(dbScripts.map(s => s.category).filter(Boolean));
     const combined = new Set([...Object.keys(categoryLabels), ...dbCats]);
-    return Array.from(combined).filter(k => !deletedCategories.has(k) && counts[k] > 0);
-  }, [dbScripts, deletedCategories, counts]);
+    // The ACTIVE category stays listed even at 0 matches — dropping it leaves
+    // the Select holding a value with no item, which renders the trigger blank.
+    return Array.from(combined).filter(
+      k => !deletedCategories.has(k) && (counts[k] > 0 || k === activeCategory)
+    );
+  }, [dbScripts, deletedCategories, counts, activeCategory]);
 
   return (
     <PageLayout
