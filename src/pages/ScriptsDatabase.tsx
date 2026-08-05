@@ -4457,7 +4457,11 @@ export default function ScriptsDatabase() {
                   return (
                     <span key={aud} className="flex items-center gap-1">
                       <button
-                        onClick={() => setActiveAudience(aud)}
+                        // Tapping the chip that's already active clears it —
+                        // matching how people expect pill filters to behave.
+                        onClick={() => setActiveAudience(activeAudience === aud ? "all" : aud)}
+                        aria-pressed={activeAudience === aud}
+                        title={activeAudience === aud ? "Clear audience filter" : `Filter to ${audienceLabels[aud] || aud}`}
                         className={`text-[10px] px-1.5 py-0.5 rounded-full border transition-colors ${
                           activeAudience === aud
                             ? "bg-primary text-primary-foreground border-primary"
