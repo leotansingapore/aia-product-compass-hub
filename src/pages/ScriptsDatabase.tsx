@@ -3420,6 +3420,7 @@ export default function ScriptsDatabase() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   // A URL that carries ANY filter param is a shared/bookmarked view and must be
   // reproduced exactly — its missing dimensions mean "all", not "whatever this
   // device last filtered by". Mixing in localStorage here turned the home-page
@@ -3462,6 +3463,24 @@ export default function ScriptsDatabase() {
     const slug = toScriptSlug(dbScriptsRef.current.find(s => s.id === id)?.stage || id, id);
     navigate(`/scripts/${slug}${qs ? `?${qs}` : ''}`, { replace: true });
   }, [navigate, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
+
+  // "/" focuses the scripts search, matching the home page's shortcut. Guarded
+  // so it never steals a "/" typed into any input, dialog or the editor.
+  const activeTabRef = useRef(activeTab);
+  activeTabRef.current = activeTab;
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (activeTabRef.current !== "scripts") return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable)) return;
+      if (document.querySelector('[role="dialog"]')) return;
+      e.preventDefault();
+      searchInputRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   // Persist filters to localStorage whenever they change
   useEffect(() => {
@@ -4052,6 +4071,7 @@ export default function ScriptsDatabase() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
+                ref={searchInputRef}
                 type="text"
                 placeholder="Search scripts..."
                 value={searchInput}
@@ -4078,7 +4098,7 @@ export default function ScriptsDatabase() {
                 onKeyDown={handleSearchKeyDown}
                 className="pl-10 pr-10 h-10 text-sm border-2 focus:border-primary transition-colors"
               />
-              {searchInput && (
+              {searchInput ? (
                 <button
                   aria-label="Clear search"
                   onClick={() => { setSearchInput(""); setSearchQuery(""); setShowSuggestions(false); }}
@@ -4086,6 +4106,10 @@ export default function ScriptsDatabase() {
                 >
                   <X className="h-4 w-4" />
                 </button>
+              ) : (
+                <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 items-center rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground md:inline-flex">
+                  /
+                </kbd>
               )}
             </div>
             {showSuggestions && suggestions.length > 0 && (
