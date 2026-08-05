@@ -3426,13 +3426,19 @@ export default function ScriptsDatabase() {
   // device last filtered by". Mixing in localStorage here turned the home-page
   // banner link (?category=cold-calling&audience=warm-market) into "0 scripts
   // found" for anyone with a leftover role filter from last week.
+  // `has` not `get`: "?q=" with an empty value is still someone expressing
+  // "this link means exactly this view" — an empty q must not re-admit the
+  // recipient's stored filters through the side door.
   const urlSpecifiesFilters = ["q", "category", "audience", "role", "tag"].some(
-    (k) => searchParams.get(k)
+    (k) => searchParams.has(k)
   );
-  // Restore filters from URL params first; localStorage only when the URL is bare
-  const getInitialFilter = (paramKey: string, storageKey: string) => {
+  // Restore filters from URL params first; localStorage only when the URL is
+  // bare. `fold` lowercases the value — category/audience/role keys are all
+  // lowercase, and links get retyped by hand ("?category=Cold-Calling") —
+  // but NOT tags or q, which are user-authored and case-significant.
+  const getInitialFilter = (paramKey: string, storageKey: string, fold = true) => {
     const fromUrl = searchParams.get(paramKey);
-    if (fromUrl) return fromUrl;
+    if (fromUrl) return fold ? fromUrl.toLowerCase() : fromUrl;
     if (urlSpecifiesFilters) return "all";
     try {
       const stored = localStorage.getItem(`scripts_filter_${storageKey}`);
@@ -3443,7 +3449,7 @@ export default function ScriptsDatabase() {
   const [activeCategory, setActiveCategory] = useState<string>(getInitialFilter("category", "category"));
   const [activeAudience, setActiveAudience] = useState<string>(getInitialFilter("audience", "audience"));
   const [activeRole, setActiveRole] = useState<string>(getInitialFilter("role", "role"));
-  const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag"));
+  const [activeTag, setActiveTag] = useState<string>(getInitialFilter("tag", "tag", false));
   const [showFavouritesOnly, setShowFavouritesOnly] = useState(false);
   const [showMobileExtraFilters, setShowMobileExtraFilters] = useState(false);
 
@@ -3493,31 +3499,45 @@ export default function ScriptsDatabase() {
     } catch {}
   }, [activeTab, activeCategory, activeAudience, activeRole, activeTag]);
 
-  // Sync filter state to URL search params — preserve ?v= param if present
+  // Sync filter state to URL search params.
+  // Debounced 250ms: this used to write history.replaceState on EVERY
+  // keystroke, and Safari rate-limits replaceState (throws SecurityError past
+  // ~100 calls/30s) — a fast typist plus per-key sync is exactly that shape.
+  // One trailing write per pause keeps the URL shareable without the risk.
   useEffect(() => {
-    setSearchParams(prev => {
-      const params = new URLSearchParams();
-      if (searchQuery) params.set("q", searchQuery);
-      if (activeCategory !== "all") params.set("category", activeCategory);
-      if (activeAudience !== "all") params.set("audience", activeAudience);
-      if (activeRole !== "all") params.set("role", activeRole);
-      if (activeTag !== "all") params.set("tag", activeTag);
-      // preserve the version param if it was in the URL
-      const v = prev.get("v");
-      if (v) params.set("v", v);
-      // ?script= identifies the objection script a deep link was pointing at —
-      // dropping it here would strand the reader at the top of the tab.
-      const targetScript = prev.get("script");
-      if (targetScript) params.set("script", targetScript);
-      // ?oq= is the Objections tab's own search, owned by
-      // ObjectionHandlingDatabase. It is deliberately NOT `q`: this effect
-      // rebuilds the param set from scratch on every filter change, so a child
-      // writing `q` would be silently overwritten by this page's own
-      // (empty-on-that-tab) searchQuery.
-      const objectionQ = prev.get("oq");
-      if (objectionQ) params.set("oq", objectionQ);
-      return params;
-    }, { replace: true });
+    const t = window.setTimeout(() => {
+      setSearchParams(prev => {
+        const params = new URLSearchParams();
+        if (searchQuery) params.set("q", searchQuery);
+        if (activeCategory !== "all") params.set("category", activeCategory);
+        if (activeAudience !== "all") params.set("audience", activeAudience);
+        if (activeRole !== "all") params.set("role", activeRole);
+        if (activeTag !== "all") params.set("tag", activeTag);
+        // preserve the version param if it was in the URL
+        const v = prev.get("v");
+        if (v) params.set("v", v);
+        // ?script= identifies the objection script a deep link was pointing at —
+        // dropping it here would strand the reader at the top of the tab.
+        const targetScript = prev.get("script");
+        if (targetScript) params.set("script", targetScript);
+        // ?oq= is the Objections tab's own search, owned by
+        // ObjectionHandlingDatabase. It is deliberately NOT `q`: this effect
+        // rebuilds the param set from scratch on every filter change, so a child
+        // writing `q` would be silently overwritten by this page's own
+        // (empty-on-that-tab) searchQuery.
+        const objectionQ = prev.get("oq");
+        if (objectionQ) params.set("oq", objectionQ);
+        // Any param this page does not own (utm_*, fbclid, future features)
+        // rides along untouched — rebuilding from scratch used to strip
+        // campaign tags off shared links on the first filter change.
+        const OWNED = new Set(["q", "category", "audience", "role", "tag", "v", "script", "oq"]);
+        for (const [key, value] of prev.entries()) {
+          if (!OWNED.has(key) && !params.has(key)) params.set(key, value);
+        }
+        return params;
+      }, { replace: true });
+    }, 250);
+    return () => window.clearTimeout(t);
   }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, setSearchParams]);
 
   // When navigating to a specific script via URL (external), apply URL params if present, else reset
