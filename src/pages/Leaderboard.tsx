@@ -34,6 +34,11 @@ import {
   type LeaderboardRow,
   type PointBreakdown,
 } from "@/hooks/useLearnerLeaderboard";
+import {
+  useLearnerCompletedItems,
+  type CompletedItem,
+  type CompletedItemSource,
+} from "@/hooks/useLearnerCompletedItems";
 import { TIER_META, type TierLevel } from "@/lib/tiers";
 import { HallOfFamePodium } from "@/components/leaderboard/HallOfFamePodium";
 
@@ -71,14 +76,128 @@ function formatPoints(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(1);
 }
 
+const DETAIL_SECTIONS: readonly { source: CompletedItemSource; label: string }[] = [
+  { source: "first_14_days", label: "First 14 Days" },
+  { source: "first_60_days", label: "First 60 Days" },
+  { source: "next_60_days", label: "Next 60 Days" },
+  { source: "product_mastery", label: "Product Mastery" },
+  { source: "assignments", label: "Assignments" },
+  { source: "videos", label: "Core Products videos" },
+];
+
+const DAY_CHIP_SOURCES: ReadonlySet<CompletedItemSource> = new Set([
+  "first_14_days",
+  "first_60_days",
+  "next_60_days",
+  "product_mastery",
+]);
+
+function formatCompletedDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-SG", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function prettyAssignment(slug: string): string {
+  const m = slug.match(/^assignment-(\d+)-(.+)$/);
+  if (!m) return slug;
+  const words = m[2]
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  return `Assignment ${Number(m[1])} — ${words}`;
+}
+
+function CompletedItemsPanel({ userId }: { userId: string }) {
+  const { data, isLoading, error } = useLearnerCompletedItems(userId, true);
+
+  return (
+    <div className="mt-3 border-t pt-3">
+      <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        Completed
+      </div>
+      {isLoading ? (
+        <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+          <Loader2 className="h-3.5 w-3.5 animate-spin" /> Loading completions…
+        </div>
+      ) : error ? (
+        <div className="mt-2 text-xs text-destructive">
+          Couldn't load completed items:{" "}
+          {(error as { message?: string } | null)?.message ?? "Unknown error"}
+        </div>
+      ) : !data || data.length === 0 ? (
+        <div className="mt-2 text-xs italic text-muted-foreground">
+          Nothing completed yet.
+        </div>
+      ) : (
+        <div className="mt-2 flex flex-col gap-2.5">
+          {DETAIL_SECTIONS.map(({ source, label }) => {
+            const items: CompletedItem[] = data.filter((d) => d.source === source);
+            if (items.length === 0) return null;
+            if (DAY_CHIP_SOURCES.has(source)) {
+              const sorted = [...items].sort(
+                (a, b) => Number(a.itemKey) - Number(b.itemKey),
+              );
+              return (
+                <div key={source}>
+                  <div className="text-[11px] font-medium text-muted-foreground">
+                    {label} — {items.length} {items.length === 1 ? "day" : "days"}
+                  </div>
+                  <div className="mt-1 flex flex-wrap gap-1">
+                    {sorted.map((item) => (
+                      <span
+                        key={item.itemKey}
+                        title={`Completed ${formatCompletedDate(item.completedOn)}`}
+                        className="rounded border bg-background px-1.5 py-0.5 text-[11px] tabular-nums text-foreground"
+                      >
+                        {item.itemLabel}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+            return (
+              <div key={source}>
+                <div className="text-[11px] font-medium text-muted-foreground">{label}</div>
+                <div className="mt-1 flex flex-col gap-1">
+                  {items.map((item) => (
+                    <div
+                      key={item.itemKey}
+                      className="flex items-baseline justify-between gap-3 text-xs"
+                    >
+                      <span className="min-w-0 flex-1 truncate">
+                        {source === "assignments"
+                          ? prettyAssignment(item.itemLabel)
+                          : item.itemLabel}
+                      </span>
+                      <span className="shrink-0 tabular-nums text-muted-foreground">
+                        {formatCompletedDate(item.completedOn)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function LeaderboardTable({
   rows,
   tier,
   filter,
+  canViewDetails,
 }: {
   rows: LeaderboardRow[];
   tier: TierLevel;
   filter: string;
+  canViewDetails: boolean;
 }) {
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -180,6 +299,9 @@ function LeaderboardTable({
                       </div>
                     )}
                   </div>
+                  {(canViewDetails || row.isCurrentUser) && (
+                    <CompletedItemsPanel userId={row.userId} />
+                  )}
                 </div>
               )}
             </div>
@@ -358,7 +480,12 @@ export default function Leaderboard() {
           </div>
           <HallOfFamePodium rows={tierRows} />
           <YourRankBanner rows={rows} tier={scopedTier} />
-          <LeaderboardTable rows={rows} tier={scopedTier} filter="" />
+          <LeaderboardTable
+            rows={rows}
+            tier={scopedTier}
+            filter=""
+            canViewDetails={admin}
+          />
         </div>
       );
     })()
