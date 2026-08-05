@@ -3742,6 +3742,13 @@ export default function ScriptsDatabase() {
     [scriptsData, filterState, favouriteIds]
   );
 
+  // Everything the page could show with no filters — the "of M" in the count
+  // line, so "8 scripts found" reads as a filter result, not the whole library.
+  const totalOnPageScripts = useMemo(
+    () => scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category)).length,
+    [scriptsData]
+  );
+
   // Zero results: which single filter, if removed, would bring scripts back.
   // Feeds the empty state's one-tap fixes — a dead-end combination (e.g. a
   // shared link plus a leftover audience) should cost one tap, not a full reset.
@@ -4073,6 +4080,7 @@ export default function ScriptsDatabase() {
               />
               {searchInput && (
                 <button
+                  aria-label="Clear search"
                   onClick={() => { setSearchInput(""); setSearchQuery(""); setShowSuggestions(false); }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
@@ -4419,8 +4427,12 @@ export default function ScriptsDatabase() {
         {/* Results count + audience flow indicator */}
         <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
           <div className="flex items-center gap-3">
-            <div className="text-xs text-muted-foreground">
-              {filteredScripts.length} script{filteredScripts.length !== 1 ? "s" : ""} found
+            {/* aria-live: filtering happens away from the list for screen
+                reader users — announce what each change did to the results. */}
+            <div className="text-xs text-muted-foreground" aria-live="polite" data-testid="scripts-result-count">
+              {filteredScripts.length === totalOnPageScripts
+                ? `${filteredScripts.length} script${filteredScripts.length !== 1 ? "s" : ""} found`
+                : `${filteredScripts.length} of ${totalOnPageScripts} scripts found`}
             </div>
             {user && (
               <Button
