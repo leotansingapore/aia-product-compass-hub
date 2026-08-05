@@ -3758,6 +3758,33 @@ export default function ScriptsDatabase() {
     }
   }, [loading, activeCategory, scriptsData, scriptsError]);
 
+  // Same fallback for audience/role/tag: a stored or hand-typed value that
+  // matches NOTHING in the whole corpus (as opposed to a valid value that a
+  // combination filtered to zero) would pin the page at 0 results forever.
+  const deadFilterToastRef = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    if (loading || scriptsError || scriptsData.length === 0) return;
+    const onPage = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
+    const dead: Array<[label: string, clear: () => void]> = [];
+    if (activeAudience !== "all" && !onPage.some((s) => s.target_audience === activeAudience)) {
+      dead.push([`audience "${audienceLabels[activeAudience] || activeAudience}"`, () => setActiveAudience("all")]);
+    }
+    if (activeRole !== "all" && !onPage.some((s) => (s.script_role || "consultant") === activeRole)) {
+      dead.push([`role "${roleLabels[activeRole] || activeRole}"`, () => setActiveRole("all")]);
+    }
+    if (activeTag !== "all" && !onPage.some((s) => (s.tags || []).includes(activeTag))) {
+      const shown = activeTag.length > 40 ? `${activeTag.slice(0, 40)}…` : activeTag;
+      dead.push([`tag "${shown}"`, () => setActiveTag("all")]);
+    }
+    for (const [label, clear] of dead) {
+      if (!deadFilterToastRef.current.has(label)) {
+        deadFilterToastRef.current.add(label);
+        toast.info(`No scripts match the ${label} filter any more — filter removed`);
+      }
+      clear();
+    }
+  }, [loading, scriptsError, scriptsData, activeAudience, activeRole, activeTag]);
+
   // Scripts Fundamentals mini-course (the tips category) — recommended
   // reading, surfaced as a banner above the database.
   const courseLessons = useMemo(() => scriptsData.filter((s) => s.category === "tips"), [scriptsData]);
@@ -3820,11 +3847,14 @@ export default function ScriptsDatabase() {
   );
 
   // Everything the page could show with no filters — the "of M" in the count
-  // line, so "8 scripts found" reads as a filter result, not the whole library.
-  const totalOnPageScripts = useMemo(
-    () => scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category)).length,
+  // line, and the existence checks behind the audience/role dropdowns. An
+  // audience carried only by servicing/objection scripts must not be offered
+  // here: it would be a guaranteed-zero choice.
+  const onPageScriptsData = useMemo(
+    () => scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category)),
     [scriptsData]
   );
+  const totalOnPageScripts = onPageScriptsData.length;
 
   // Zero results: which single filter, if removed, would bring scripts back.
   // Feeds the empty state's one-tap fixes — a dead-end combination (e.g. a
@@ -4322,7 +4352,7 @@ export default function ScriptsDatabase() {
                     <SelectContent className="bg-popover z-50">
                       <SelectItem value="all">All</SelectItem>
                       {Object.entries(audienceLabels).filter(([key]) =>
-                        scriptsData.some(s => s.target_audience === key)
+                        onPageScriptsData.some(s => s.target_audience === key)
                       ).map(([key, label]) => (
                         <SelectItem key={key} value={key}>
                           {label} ({audienceCounts[key]})
@@ -4359,7 +4389,7 @@ export default function ScriptsDatabase() {
                       <SelectContent className="bg-popover z-50">
                         <SelectItem value="all">All</SelectItem>
                         {Object.entries(roleLabels).filter(([key]) =>
-                          scriptsData.some(s => (s.script_role || 'consultant') === key)
+                          onPageScriptsData.some(s => (s.script_role || 'consultant') === key)
                         ).map(([key, label]) => (
                           <SelectItem key={key} value={key}>
                             {label} ({roleCounts[key]})
@@ -4434,7 +4464,7 @@ export default function ScriptsDatabase() {
                   <SelectContent className="bg-popover z-50">
                     <SelectItem value="all">All</SelectItem>
                     {Object.entries(audienceLabels).filter(([key]) =>
-                      scriptsData.some(s => s.target_audience === key)
+                      onPageScriptsData.some(s => s.target_audience === key)
                     ).map(([key, label]) => (
                       <SelectItem key={key} value={key}>
                         {label} ({audienceCounts[key]})
@@ -4454,7 +4484,7 @@ export default function ScriptsDatabase() {
                   <SelectContent className="bg-popover z-50">
                     <SelectItem value="all">All</SelectItem>
                     {Object.entries(roleLabels).filter(([key]) =>
-                      scriptsData.some(s => (s.script_role || 'consultant') === key)
+                      onPageScriptsData.some(s => (s.script_role || 'consultant') === key)
                     ).map(([key, label]) => (
                       <SelectItem key={key} value={key}>
                         {label} ({roleCounts[key]})
