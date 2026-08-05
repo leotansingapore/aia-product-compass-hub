@@ -3776,6 +3776,24 @@ export default function ScriptsDatabase() {
     [filteredScripts.length, scriptsData, filterState, favouriteIds]
   );
 
+  // Changing a filter while 15 screens deep used to leave you stranded at the
+  // same scroll offset inside a list that just changed under you. When the
+  // results header is already above the viewport (i.e. you're deep), a filter
+  // change scrolls back to it; near the top it does nothing.
+  const resultsAnchorRef = useRef<HTMLDivElement>(null);
+  const revealResults = useCallback(() => {
+    requestAnimationFrame(() => {
+      const el = resultsAnchorRef.current;
+      if (el && el.getBoundingClientRect().top < 100) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }, []);
+  const setCategoryFromControl = useCallback((v: string) => { setActiveCategory(v); revealResults(); }, [revealResults]);
+  const setAudienceFromControl = useCallback((v: string) => { setActiveAudience(v); revealResults(); }, [revealResults]);
+  const setRoleFromControl = useCallback((v: string) => { setActiveRole(v); revealResults(); }, [revealResults]);
+  const setTagFromControl = useCallback((v: string) => { setActiveTag(v); revealResults(); }, [revealResults]);
+
   const clearFilterDimension = useCallback((dimension: FilterDimension) => {
     if (dimension === "q") { setSearchInput(""); setSearchQuery(""); }
     else if (dimension === "category") setActiveCategory("all");
@@ -4197,7 +4215,7 @@ export default function ScriptsDatabase() {
                   <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">
                     <Filter className="h-3 w-3 inline mr-1" />Category
                   </span>
-                  <Select value={activeCategory} onValueChange={setActiveCategory}>
+                  <Select value={activeCategory} onValueChange={setCategoryFromControl}>
                     <SelectTrigger className="h-9 text-xs bg-background">
                       <SelectValue placeholder="All categories" />
                     </SelectTrigger>
@@ -4227,7 +4245,7 @@ export default function ScriptsDatabase() {
                 {/* Audience dropdown */}
                 <div>
                   <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-                  <Select value={activeAudience} onValueChange={setActiveAudience}>
+                  <Select value={activeAudience} onValueChange={setAudienceFromControl}>
                     <SelectTrigger className="h-9 text-xs bg-background">
                       <SelectValue placeholder="All audiences" />
                     </SelectTrigger>
@@ -4264,7 +4282,7 @@ export default function ScriptsDatabase() {
                   {/* Role dropdown */}
                   <div>
                     <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-                    <Select value={activeRole} onValueChange={setActiveRole}>
+                    <Select value={activeRole} onValueChange={setRoleFromControl}>
                       <SelectTrigger className="h-9 text-xs bg-background">
                         <SelectValue placeholder="All roles" />
                       </SelectTrigger>
@@ -4285,7 +4303,7 @@ export default function ScriptsDatabase() {
                   {allTags.length > 0 && (
                     <div>
                       <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
-                      <Select value={activeTag} onValueChange={setActiveTag}>
+                      <Select value={activeTag} onValueChange={setTagFromControl}>
                         <SelectTrigger className="h-9 text-xs bg-background">
                           <SelectValue placeholder="All tags" />
                         </SelectTrigger>
@@ -4309,7 +4327,7 @@ export default function ScriptsDatabase() {
               {/* Category dropdown */}
               <div>
                 <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Category</span>
-                <Select value={activeCategory} onValueChange={setActiveCategory}>
+                <Select value={activeCategory} onValueChange={setCategoryFromControl}>
                   <SelectTrigger className="h-9 text-xs bg-background">
                     <SelectValue placeholder="All categories" />
                   </SelectTrigger>
@@ -4339,7 +4357,7 @@ export default function ScriptsDatabase() {
               {/* Audience dropdown */}
               <div>
                 <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Audience</span>
-                <Select value={activeAudience} onValueChange={setActiveAudience}>
+                <Select value={activeAudience} onValueChange={setAudienceFromControl}>
                   <SelectTrigger className="h-9 text-xs bg-background">
                     <SelectValue placeholder="All audiences" />
                   </SelectTrigger>
@@ -4359,7 +4377,7 @@ export default function ScriptsDatabase() {
               {/* Role dropdown */}
               <div>
                 <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Role</span>
-                <Select value={activeRole} onValueChange={setActiveRole}>
+                <Select value={activeRole} onValueChange={setRoleFromControl}>
                   <SelectTrigger className="h-9 text-xs bg-background">
                     <SelectValue placeholder="All roles" />
                   </SelectTrigger>
@@ -4380,7 +4398,7 @@ export default function ScriptsDatabase() {
               {allTags.length > 0 && (
                 <div>
                   <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1 block">Tag</span>
-                  <Select value={activeTag} onValueChange={setActiveTag}>
+                  <Select value={activeTag} onValueChange={setTagFromControl}>
                     <SelectTrigger className="h-9 text-xs bg-background">
                       <SelectValue placeholder="All tags" />
                     </SelectTrigger>
@@ -4449,7 +4467,10 @@ export default function ScriptsDatabase() {
         )}
 
         {/* Results count + audience flow indicator */}
-        <div className="mb-3 flex items-center justify-between gap-2 flex-wrap">
+        <div
+          ref={resultsAnchorRef}
+          className="mb-3 flex items-center justify-between gap-2 flex-wrap scroll-mt-[125px] md:scroll-mt-[115px]"
+        >
           <div className="flex items-center gap-3">
             {/* aria-live: filtering happens away from the list for screen
                 reader users — announce what each change did to the results. */}
@@ -4483,7 +4504,7 @@ export default function ScriptsDatabase() {
                       <button
                         // Tapping the chip that's already active clears it —
                         // matching how people expect pill filters to behave.
-                        onClick={() => setActiveAudience(activeAudience === aud ? "all" : aud)}
+                        onClick={() => setAudienceFromControl(activeAudience === aud ? "all" : aud)}
                         aria-pressed={activeAudience === aud}
                         title={activeAudience === aud ? "Clear audience filter" : `Filter to ${audienceLabels[aud] || aud}`}
                         className={`text-[10px] px-1.5 py-0.5 rounded-full border transition-colors ${
@@ -4760,7 +4781,7 @@ export default function ScriptsDatabase() {
                             <section key={key} className="space-y-3 pt-2 first:pt-0">
                               <button
                                 type="button"
-                                onClick={() => setActiveCategory(key)}
+                                onClick={() => setCategoryFromControl(key)}
                                 title={`Show only ${info.label}`}
                                 className="group flex w-full items-center gap-2 rounded-md px-1 py-1 text-left hover:bg-accent/60 transition-colors"
                               >
