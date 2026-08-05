@@ -1,6 +1,19 @@
 import { lazy, Suspense, useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { copyRichContent } from "@/lib/copy-rich-content";
 import { toScriptSlug, resolveScriptSlug } from "@/lib/scriptSlug";
+import {
+  CATEGORY_LABELS,
+  OFFPAGE_CATEGORIES,
+  audienceLabels,
+  roleLabels,
+  categoryLabelText,
+  strictMatch as libStrictMatch,
+  strictIncludes as libStrictIncludes,
+  applyScriptFilters,
+  zeroResultRecovery,
+  type ScriptFilterState,
+  type FilterDimension,
+} from "@/lib/scriptsFilter";
 import { saveScriptVersions, recordScriptVersionSnapshot } from "@/lib/scriptVersionHistory";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ReactMarkdown from "react-markdown";
@@ -54,34 +67,38 @@ import { ScriptsHubHeaderTabs } from "@/components/scripts/ScriptsTabBar";
 
 type CategoryKey = "cold-calling" | "initial-text" | "post-call-text" | "callback" | "follow-up" | "ad-campaign" | "referral" | "confirmation" | "faq" | "fact-finding" | "tips" | "servicing" | "sales-scripts";
 
-const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = {
-  "cold-calling": { label: "Cold Calling", icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
-  "initial-text": { label: "Initial Texts", icon: MessageSquare, color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300" },
-  "post-call-text": { label: "Post-Call Texts", icon: MessageSquare, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
-  "callback": { label: "Callback Scripts", icon: Phone, color: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300" },
-  "follow-up": { label: "Follow-Up Messages", icon: MessageSquare, color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" },
-  "ad-campaign": { label: "Ad Campaign / Lead Gen", icon: Megaphone, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
-  "referral": { label: "Referral Scripts", icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
-  "confirmation": { label: "Appointment Confirmation", icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
-  "faq": { label: "FAQ", icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
-  "fact-finding": { label: "Fact Finding", icon: Search, color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300" },
-  "tips": { label: "Tips & Best Practices", icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
-  "servicing": { label: "Servicing", icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
-  "sales-scripts": { label: "Sales Scripts", icon: MessageSquare, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
+// Label text lives in src/lib/scriptsFilter.ts (shared with the filter logic
+// so search-over-label and the UI can never drift); visuals stay here.
+const categoryVisuals: Record<string, { icon: typeof Phone; color: string }> = {
+  "cold-calling": { icon: Phone, color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
+  "initial-text": { icon: MessageSquare, color: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300" },
+  "post-call-text": { icon: MessageSquare, color: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300" },
+  "callback": { icon: Phone, color: "bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300" },
+  "follow-up": { icon: MessageSquare, color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" },
+  "ad-campaign": { icon: Megaphone, color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
+  "referral": { icon: UserPlus, color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300" },
+  "confirmation": { icon: CalendarCheck, color: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300" },
+  "faq": { icon: HelpCircle, color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  "fact-finding": { icon: Search, color: "bg-lime-100 text-lime-800 dark:bg-lime-900/30 dark:text-lime-300" },
+  "tips": { icon: Lightbulb, color: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300" },
+  "servicing": { icon: Users, color: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300" },
+  "sales-scripts": { icon: MessageSquare, color: "bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300" },
 };
+
+const categoryLabels: Record<string, { label: string; icon: typeof Phone; color: string }> = Object.fromEntries(
+  Object.entries(CATEGORY_LABELS).map(([key, label]) => [
+    key,
+    { label, ...(categoryVisuals[key] ?? { icon: HelpCircle, color: "bg-muted text-muted-foreground" }) },
+  ])
+);
 
 function getCategoryInfo(key: string) {
   return categoryLabels[key] ?? {
-    label: key.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+    label: categoryLabelText(key),
     icon: HelpCircle,
     color: "bg-muted text-muted-foreground",
   };
 }
-
-// Categories with their own home — never listed on the Sales Scripts tab:
-// servicing → /servicing · objection-handling + faq → /objections (Objection
-// Scripts & FAQ section) · tips → the /scripts/course mini-course.
-const OFFPAGE_CATEGORIES = new Set(["servicing", "objection-handling", "faq", "tips"]);
 
 /**
  * CollapsibleTrigger asChild on a <div>-based CardHeader produces something a
@@ -124,26 +141,8 @@ const audienceSortOrder: Record<string, number> = {
   "clients": 12,
 };
 
-const audienceLabels: Record<string, string> = {
-  "warm-market": "Warm Market / Friends & Family",
-  general: "General",
-  "young-adult": "Young Adults",
-  nsf: "NSF / NS",
-  "working-adult": "Working Adults",
-  parent: "Parents",
-  "pre-retiree": "Pre-Retirees (50-65)",
-  hnw: "High Net Worth",
-  referral: "Referrals",
-  "cold-lead": "Cold Leads",
-  recruitment: "Recruitment",
-  clients: "Clients",
-};
-
-const roleLabels: Record<string, string> = {
-  consultant: "Consultant",
-  va: "VA",
-  telemarketer: "Telemarketer",
-};
+// audienceLabels and roleLabels are imported from src/lib/scriptsFilter.ts —
+// the filter predicate matches against the same strings the UI renders.
 
 // ===== FALLBACK HARDCODED SCRIPTS (used when DB is empty) =====
 const FALLBACK_SCRIPTS: ScriptEntry[] = [
@@ -3724,58 +3723,24 @@ export default function ScriptsDatabase() {
     }
   }, [courseBannerKey]);
 
-  // Strict substring match: only matches if query words appear as substrings
-  const strictMatch = useCallback((target: string, query: string): { match: boolean; score: number } => {
-    if (!target || !query) return { match: false, score: 0 };
-    const t = target.toLowerCase();
-    const q = query.toLowerCase();
-    if (t.includes(q)) return { match: true, score: 2 };
-    // Multi-word: all words must appear
-    const words = q.split(/\s+/).filter(w => w.length > 0);
-    if (words.length > 1 && words.every(w => t.includes(w))) {
-      return { match: true, score: 1.5 };
-    }
-    return { match: false, score: 0 };
-  }, []);
+  // Matching lives in src/lib/scriptsFilter.ts — one predicate shared by the
+  // list, the dropdown counts, the suggestions and the empty-state recovery.
+  const strictMatch = libStrictMatch;
+  const strictIncludes = libStrictIncludes;
 
-  const strictIncludes = useCallback((target: string, query: string): boolean => {
-    return strictMatch(target, query).match;
-  }, [strictMatch]);
+  const filterState = useMemo<ScriptFilterState>(() => ({
+    q: searchQuery,
+    category: activeCategory,
+    audience: activeAudience,
+    role: activeRole,
+    tag: activeTag,
+    favouritesOnly: showFavouritesOnly,
+  }), [searchQuery, activeCategory, activeAudience, activeRole, activeTag, showFavouritesOnly]);
 
-  const filteredScripts = useMemo(() => {
-    let result = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
-    if (activeCategory !== "all") {
-      result = result.filter((s) => s.category === activeCategory);
-    }
-    if (activeAudience !== "all") {
-      result = result.filter((s) => s.target_audience === activeAudience);
-    }
-    if (activeRole !== "all") {
-      result = result.filter((s) => (s.script_role || "consultant") === activeRole);
-    }
-    if (activeTag !== "all") {
-      result = result.filter((s) => (s.tags || []).includes(activeTag));
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter((s) => {
-        if (strictIncludes(s.stage, q)) return true;
-        if (s.versions.some((v) => strictIncludes(v.content, q) || strictIncludes(v.author, q))) return true;
-        if ((s.tags || []).some((t: string) => strictIncludes(t, q))) return true;
-        const catLabel = getCategoryInfo(s.category).label;
-        if (strictIncludes(s.category, q) || strictIncludes(catLabel, q)) return true;
-        const audLabel = audienceLabels[s.target_audience || ""] || s.target_audience || "";
-        if (strictIncludes(audLabel, q)) return true;
-        const rlLabel = roleLabels[s.script_role || "consultant"] || s.script_role || "";
-        if (strictIncludes(rlLabel, q)) return true;
-        return false;
-      });
-    }
-    if (showFavouritesOnly) {
-      result = result.filter((s) => favouriteIds.has(s.id));
-    }
-    return result;
-  }, [searchQuery, activeCategory, activeAudience, activeRole, activeTag, showFavouritesOnly, favouriteIds, scriptsData, strictIncludes]);
+  const filteredScripts = useMemo(
+    () => applyScriptFilters(scriptsData, filterState, favouriteIds),
+    [scriptsData, filterState, favouriteIds]
+  );
 
   // Script search suggestions
   const suggestions = useMemo(() => {
@@ -3870,31 +3835,14 @@ export default function ScriptsDatabase() {
     }
   }, [suggestions, selectedSuggestion, searchInput, handleSearchSelect]);
 
-  // Helper: apply all filters EXCEPT a given dimension
-  const filterExcluding = useCallback((exclude: 'category' | 'audience' | 'role' | 'tag') => {
-    let result = scriptsData.filter((s) => !OFFPAGE_CATEGORIES.has(s.category));
-    if (exclude !== 'category' && activeCategory !== "all") {
-      result = result.filter((s) => s.category === activeCategory);
-    }
-    if (exclude !== 'audience' && activeAudience !== "all") {
-      result = result.filter((s) => s.target_audience === activeAudience);
-    }
-    if (exclude !== 'role' && activeRole !== "all") {
-      result = result.filter((s) => (s.script_role || "consultant") === activeRole);
-    }
-    if (exclude !== 'tag' && activeTag !== "all") {
-      result = result.filter((s) => (s.tags || []).includes(activeTag));
-    }
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      result = result.filter(
-        (s) =>
-          strictIncludes(s.stage, q) ||
-          s.versions.some((v) => strictIncludes(v.content, q) || strictIncludes(v.author, q))
-      );
-    }
-    return result;
-  }, [scriptsData, activeCategory, activeAudience, activeRole, activeTag, searchQuery, strictIncludes]);
+  // Helper: apply all filters EXCEPT a given dimension. Delegates to the
+  // shared pipeline so its search predicate can never drift from the list's —
+  // the drift is exactly what made counts lie while a query was active.
+  const filterExcluding = useCallback(
+    (exclude: 'category' | 'audience' | 'role' | 'tag') =>
+      applyScriptFilters(scriptsData, filterState, favouriteIds, exclude),
+    [scriptsData, filterState, favouriteIds]
+  );
 
   const counts = useMemo(() => {
     const base = filterExcluding('category');
