@@ -3415,24 +3415,24 @@ export default function ScriptsDatabase() {
     }
   };
 
-  const getInitialValue = (paramKey: string, storageKey: string, defaultVal: string) => {
-    const fromUrl = searchParams.get(paramKey);
-    if (fromUrl) return fromUrl;
-    try {
-      const stored = localStorage.getItem(`scripts_filter_${storageKey}`);
-      if (stored) return stored;
-    } catch {}
-    return defaultVal;
-  };
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
-  // Restore filters from URL params first, then localStorage, then default
+  // A URL that carries ANY filter param is a shared/bookmarked view and must be
+  // reproduced exactly — its missing dimensions mean "all", not "whatever this
+  // device last filtered by". Mixing in localStorage here turned the home-page
+  // banner link (?category=cold-calling&audience=warm-market) into "0 scripts
+  // found" for anyone with a leftover role filter from last week.
+  const urlSpecifiesFilters = ["q", "category", "audience", "role", "tag"].some(
+    (k) => searchParams.get(k)
+  );
+  // Restore filters from URL params first; localStorage only when the URL is bare
   const getInitialFilter = (paramKey: string, storageKey: string) => {
     const fromUrl = searchParams.get(paramKey);
     if (fromUrl) return fromUrl;
+    if (urlSpecifiesFilters) return "all";
     try {
       const stored = localStorage.getItem(`scripts_filter_${storageKey}`);
       if (stored) return stored;
