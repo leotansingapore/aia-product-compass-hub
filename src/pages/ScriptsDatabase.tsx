@@ -2059,6 +2059,17 @@ function ScriptCard({ script, isAdmin, onEdit, onDelete, isOpenByUrl, onToggle, 
             role="button"
             tabIndex={0}
             onKeyDown={headerKeyToClick}
+            // Drag-selecting text across the header fires a click on mouseup,
+            // which toggled the card mid-selection. A live selection at click
+            // time means the mouse was selecting, not opening. Plain clicks
+            // collapse any selection at mousedown, so they pass through.
+            onClickCapture={(e) => {
+              const sel = window.getSelection();
+              if (sel && !sel.isCollapsed && sel.toString().length > 0) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }}
             className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:py-4 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
           >
             <div className="flex items-start sm:items-center gap-2 sm:gap-3">
@@ -3415,12 +3426,6 @@ export default function ScriptsDatabase() {
     }
   };
 
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
-  const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
-  const searchRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   // A URL that carries ANY filter param is a shared/bookmarked view and must be
   // reproduced exactly — its missing dimensions mean "all", not "whatever this
   // device last filtered by". Mixing in localStorage here turned the home-page
@@ -3432,6 +3437,25 @@ export default function ScriptsDatabase() {
   const urlSpecifiesFilters = ["q", "category", "audience", "role", "tag"].some(
     (k) => searchParams.has(k)
   );
+  // The query restores like every other filter: URL first, then the last
+  // locally-typed query on a bare visit (hopping to Objections and back used
+  // to keep your category but eat your search).
+  const initialQuery = (() => {
+    const fromUrl = searchParams.get("q");
+    if (fromUrl) return fromUrl;
+    if (urlSpecifiesFilters) return "";
+    try {
+      return localStorage.getItem("scripts_filter_q") || "";
+    } catch {
+      return "";
+    }
+  })();
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [searchInput, setSearchInput] = useState(initialQuery);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   // Restore filters from URL params first; localStorage only when the URL is
   // bare. `fold` lowercases the value — category/audience/role keys are all
   // lowercase, and links get retyped by hand ("?category=Cold-Calling") —
@@ -3488,7 +3512,9 @@ export default function ScriptsDatabase() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  // Persist filters to localStorage whenever they change
+  // Persist filters to localStorage whenever they change. The query persists
+  // too: category survived a hop to the Objections tab and back while the
+  // typed search vanished — same journey, inconsistent memory.
   useEffect(() => {
     try {
       localStorage.setItem('scripts_filter_tab', activeTab);
@@ -3496,8 +3522,9 @@ export default function ScriptsDatabase() {
       localStorage.setItem('scripts_filter_audience', activeAudience);
       localStorage.setItem('scripts_filter_role', activeRole);
       localStorage.setItem('scripts_filter_tag', activeTag);
+      localStorage.setItem('scripts_filter_q', searchQuery);
     } catch {}
-  }, [activeTab, activeCategory, activeAudience, activeRole, activeTag]);
+  }, [activeTab, activeCategory, activeAudience, activeRole, activeTag, searchQuery]);
 
   // Sync filter state to URL search params.
   // Debounced 250ms: this used to write history.replaceState on EVERY
@@ -3716,6 +3743,9 @@ export default function ScriptsDatabase() {
   const deadCategoryToastRef = useRef<string | null>(null);
   useEffect(() => {
     if (loading || activeCategory === "all") return;
+    // A FAILED fetch also looks like "no scripts in this category" — bailing
+    // here keeps a flaky network from silently wiping the user's filter.
+    if (scriptsError || scriptsData.length === 0) return;
     const stillExists = scriptsData.some(
       (s) => s.category === activeCategory && !OFFPAGE_CATEGORIES.has(s.category),
     );
@@ -3726,7 +3756,7 @@ export default function ScriptsDatabase() {
       }
       setActiveCategory("all");
     }
-  }, [loading, activeCategory, scriptsData]);
+  }, [loading, activeCategory, scriptsData, scriptsError]);
 
   // Scripts Fundamentals mini-course (the tips category) — recommended
   // reading, surfaced as a banner above the database.
@@ -3969,7 +3999,11 @@ export default function ScriptsDatabase() {
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
-    scriptsData.forEach(s => (s.tags || []).forEach(t => tagSet.add(t)));
+    // Only tags that exist on scripts THIS page can show — a tag carried only
+    // by servicing/objection scripts rendered as a dead "(0)" dropdown choice.
+    scriptsData
+      .filter(s => !OFFPAGE_CATEGORIES.has(s.category))
+      .forEach(s => (s.tags || []).forEach(t => tagSet.add(t)));
     return Array.from(tagSet).sort();
   }, [scriptsData]);
 
