@@ -21,30 +21,47 @@ export function useScrollToHash(ready: boolean): void {
     if (!hash) return;
     let findAttempts = 0;
     let cancelled = false;
+    let timer: number | undefined;
     const target = () =>
       document.getElementById(hash) ?? document.getElementById(`user-content-${hash}`);
 
     // Offset keeps the heading clear of the sticky app header (and the jump
     // index bar on pages that have one) instead of hidden underneath it.
     const OFFSET = 88;
+    // How long to keep correcting. A fixed attempt count is not enough: on a
+    // COLD arrival the day's markdown chunk, its images and webfonts land over
+    // several seconds, and each one that resolves ABOVE the target grows the
+    // document and pushes the heading down again. Measured on production, a
+    // warm load settles instantly while a cold one was still drifting after
+    // ~1.2s and left the heading ~470px off. Correct until the position holds
+    // still, not until an arbitrary number of tries.
+    const DEADLINE_MS = 6000;
+    const STABLE_CHECKS = 3;
 
-    // Scroll, then re-measure and correct. Long documents lazy-load images; a
-    // big jump reveals ones ABOVE the target which then load and grow the
-    // document under the in-flight scroll, leaving the heading way off from
-    // where the first scroll put it. Same settle pattern as PageJumpIndex.
-    let settleAttempt = 0;
+    const started = Date.now();
+    let stable = 0;
+    let first = true;
+
     const settle = () => {
       if (cancelled) return;
       const el = target();
       if (!el) return;
       const delta = el.getBoundingClientRect().top - OFFSET;
-      if (Math.abs(delta) <= 4 || settleAttempt > 8) return;
-      window.scrollTo({
-        top: Math.max(0, window.scrollY + delta),
-        behavior: settleAttempt === 0 ? "smooth" : "auto",
-      });
-      settleAttempt += 1;
-      setTimeout(settle, settleAttempt === 1 ? 420 : 110);
+      if (Math.abs(delta) <= 4) {
+        // Hold still for a few consecutive checks before trusting it — late
+        // images can still shift things after a moment of apparent calm.
+        if (++stable >= STABLE_CHECKS || Date.now() - started > DEADLINE_MS) return;
+      } else {
+        stable = 0;
+        window.scrollTo({
+          top: Math.max(0, window.scrollY + delta),
+          behavior: first ? "smooth" : "auto",
+        });
+        if (Date.now() - started > DEADLINE_MS) return;
+      }
+      const wait = first ? 420 : 140;
+      first = false;
+      timer = window.setTimeout(settle, wait);
     };
 
     const tryFind = () => {
@@ -58,6 +75,7 @@ export function useScrollToHash(ready: boolean): void {
     requestAnimationFrame(tryFind);
     return () => {
       cancelled = true;
+      if (timer !== undefined) window.clearTimeout(timer);
     };
   }, [ready, location.hash]);
 }
