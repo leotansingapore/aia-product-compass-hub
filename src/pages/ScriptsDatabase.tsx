@@ -3691,13 +3691,21 @@ export default function ScriptsDatabase() {
 
   // A persisted or deep-linked category that no longer has scripts on this
   // page (recategorised, deleted, or moved to its own page) would render an
-  // empty list forever — fall back to All instead.
+  // empty list forever — fall back to All, and SAY so: a silent fallback makes
+  // a dead shared link look like it worked while showing something else.
+  const deadCategoryToastRef = useRef<string | null>(null);
   useEffect(() => {
     if (loading || activeCategory === "all") return;
     const stillExists = scriptsData.some(
       (s) => s.category === activeCategory && !OFFPAGE_CATEGORIES.has(s.category),
     );
-    if (!stillExists) setActiveCategory("all");
+    if (!stillExists) {
+      if (deadCategoryToastRef.current !== activeCategory) {
+        deadCategoryToastRef.current = activeCategory;
+        toast.info(`No "${getCategoryInfo(activeCategory).label}" scripts here any more — showing all scripts`);
+      }
+      setActiveCategory("all");
+    }
   }, [loading, activeCategory, scriptsData]);
 
   // Scripts Fundamentals mini-course (the tips category) — recommended
@@ -4424,37 +4432,37 @@ export default function ScriptsDatabase() {
             {showFavouritesOnly && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 ❤️ Favourites
-                <button onClick={() => setShowFavouritesOnly(false)} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove favourites filter" onClick={() => setShowFavouritesOnly(false)} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             {searchQuery && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 Search: "{searchQuery}"
-                <button onClick={() => { setSearchInput(""); setSearchQuery(""); }} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove search filter" onClick={() => { setSearchInput(""); setSearchQuery(""); }} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             {activeCategory !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 {getCategoryInfo(activeCategory).label}
-                <button onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove category filter" onClick={() => setActiveCategory("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             {activeAudience !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 {audienceLabels[activeAudience] || activeAudience}
-                <button onClick={() => setActiveAudience("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove audience filter" onClick={() => setActiveAudience("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             {activeRole !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 {roleLabels[activeRole] || activeRole}
-                <button onClick={() => setActiveRole("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove role filter" onClick={() => setActiveRole("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             {activeTag !== "all" && (
               <Badge variant="secondary" className="text-[10px] gap-1 pl-2 pr-1 py-0.5 h-5">
                 #{activeTag}
-                <button onClick={() => setActiveTag("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
+                <button aria-label="Remove tag filter" onClick={() => setActiveTag("all")} className="ml-0.5 hover:text-foreground"><X className="h-2.5 w-2.5" /></button>
               </Badge>
             )}
             <button
