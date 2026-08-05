@@ -1,5 +1,9 @@
 import { lazy, type ComponentType } from "react";
-import { isStaleChunkError, recoverFromStaleChunk } from "./staleChunkRecovery";
+import {
+  isChunkNamespaceError,
+  isStaleChunkError,
+  recoverFromStaleChunk,
+} from "./staleChunkRecovery";
 
 /**
  * Drop-in replacement for React.lazy that recovers from stale chunk errors.
@@ -19,7 +23,12 @@ export function lazyWithRetry<T extends ComponentType<any>>(
 ) {
   return lazy(() =>
     factory().catch(async (error) => {
-      if (!isStaleChunkError(error)) throw error;
+      // A stale chunk has two failure shapes. It can reject outright (the
+      // fetch/MIME messages `isStaleChunkError` matches), or it can resolve to
+      // a namespace that is missing the named export, so the `m.Foo` in the
+      // caller's `.then` throws a TypeError. Both mean "this chunk is not the
+      // module we asked for" and both are recoverable by reloading.
+      if (!isStaleChunkError(error) && !isChunkNamespaceError(error)) throw error;
       // Transient network blips throw the same "Failed to fetch dynamically
       // imported module" error as a genuinely-stale chunk after a deploy.
       // Retry once after a short backoff so a one-off CDN hiccup doesn't
@@ -30,7 +39,10 @@ export function lazyWithRetry<T extends ComponentType<any>>(
         await new Promise((resolve) => setTimeout(resolve, 600));
         return await factory();
       } catch (retryError) {
-        if (isStaleChunkError(retryError) && recoverFromStaleChunk()) {
+        if (
+          (isStaleChunkError(retryError) || isChunkNamespaceError(retryError)) &&
+          recoverFromStaleChunk()
+        ) {
           return new Promise<{ default: T }>(() => {});
         }
         throw retryError;

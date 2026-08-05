@@ -19,7 +19,37 @@ const STALE_CHUNK_PATTERNS = [
   "Failed to fetch dynamically imported module",
   "Importing a module script failed",
   "error loading dynamically imported module",
+  // A missing hashed asset is rewritten to index.html by the SPA fallback, so
+  // the browser gets 200 text/html where it expected JS and refuses to execute
+  // it. Same root cause as a 404 chunk, completely different message.
+  "expected a javascript module script",
+  "expected a javascript-or-wasm module script",
 ];
+
+/**
+ * A stale chunk does not always reject. When the module resolves but its
+ * namespace is missing (or missing the named export), the failure surfaces as
+ * `Cannot read properties of undefined (reading 'WelcomeModal')` — Safari says
+ * `undefined is not an object (evaluating 't.WelcomeModal')`. That message
+ * matches none of the patterns above, so recovery never ran and the user was
+ * parked on the error boundary until they manually reloaded.
+ *
+ * This is deliberately NOT part of `isStaleChunkError`: the shape is common to
+ * ordinary null-reference bugs, and a global listener treating those as stale
+ * chunks would reload the app on unrelated errors. Only `lazyWithRetry` uses
+ * it, where the only thing being dereferenced is a freshly-imported chunk's
+ * namespace.
+ */
+const NAMESPACE_DEREF_PATTERNS = [
+  /cannot read propert(?:y|ies) of undefined \(reading '[^']+'\)/i,
+  /undefined is not an object \(evaluating '[^']*\.[^']+'\)/i,
+  /cannot read propert(?:y|ies) of null \(reading '[^']+'\)/i,
+];
+
+export function isChunkNamespaceError(error: unknown): boolean {
+  const message = getErrorMessage(error);
+  return NAMESPACE_DEREF_PATTERNS.some((re) => re.test(message));
+}
 
 function getErrorMessage(error: unknown): string {
   if (typeof error === "string") return error;
