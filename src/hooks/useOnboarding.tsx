@@ -38,6 +38,17 @@ interface OnboardingContextType {
   completedStepsCount: number;
 }
 
+// localStorage writes throw in private mode / at quota — and these run inside
+// React effects, where an uncaught throw takes down the whole tree, not just
+// onboarding. Losing tour progress is fine; losing the app is not.
+function safeSetItem(key: string, value: string) {
+  try {
+    safeSetItem(key, value);
+  } catch {
+    /* storage unavailable — skip persisting */
+  }
+}
+
 const OnboardingContext = createContext<OnboardingContextType>({
   isOnboardingActive: false,
   currentStep: 0,
@@ -206,9 +217,9 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (user && steps.length > 0) {
       const progressArray = steps.map(s => s.completed);
-      localStorage.setItem(`onboarding-progress-${user.id}`, JSON.stringify(progressArray));
-      localStorage.setItem(`onboarding-current-step-${user.id}`, currentStep.toString());
-      localStorage.setItem(`onboarding-tour-type-${user.id}`, tourType);
+      safeSetItem(`onboarding-progress-${user.id}`, JSON.stringify(progressArray));
+      safeSetItem(`onboarding-current-step-${user.id}`, currentStep.toString());
+      safeSetItem(`onboarding-tour-type-${user.id}`, tourType);
       
       const completed = progressArray.filter(Boolean).length;
       setCompletedStepsCount(completed);
@@ -224,7 +235,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     
     // Add tour start event
     if (user) {
-      localStorage.setItem(`tour-started-${user.id}`, new Date().toISOString());
+      safeSetItem(`tour-started-${user.id}`, new Date().toISOString());
     }
   };
 
@@ -268,9 +279,9 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   const completeOnboarding = () => {
     setIsOnboardingActive(false);
     if (user) {
-      localStorage.setItem(`onboarding-completed-${user.id}`, 'true');
-      localStorage.setItem(`tour-completed-${user.id}`, new Date().toISOString());
-      localStorage.setItem(`tour-version-${user.id}`, '2.0');
+      safeSetItem(`onboarding-completed-${user.id}`, 'true');
+      safeSetItem(`tour-completed-${user.id}`, new Date().toISOString());
+      safeSetItem(`tour-version-${user.id}`, '2.0');
       
       // Show completion celebration
       setTimeout(() => {
@@ -298,8 +309,8 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
   const dismissWelcome = () => {
     setShowWelcome(false);
     if (user) {
-      localStorage.setItem(`welcome-seen-${user.id}`, 'true');
-      localStorage.setItem(`tour-version-${user.id}`, '2.0');
+      safeSetItem(`welcome-seen-${user.id}`, 'true');
+      safeSetItem(`tour-version-${user.id}`, '2.0');
     }
   };
 
