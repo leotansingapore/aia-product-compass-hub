@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 import {
   ArrowLeft,
   ArrowRight,
@@ -18,6 +19,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { loadDay, loadWeekReadme, WEEK_META } from "@/features/first-14-days/content";
 import { DAY_SUMMARIES, TOTAL_DAYS } from "@/features/first-14-days/summaries";
@@ -156,6 +158,7 @@ export default function First14DaysDay() {
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
   const unlocked = bypassGate || isUnlocked(dayNumber);
+  useScrollToHash(Boolean(day) && unlocked);
   const persisted = getDay(dayNumber);
   const worksheetStarted = Boolean(persisted.reflectionSavedAt);
 
@@ -439,7 +442,7 @@ export default function First14DaysDay() {
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={dayMarkdownComponents}>
                 {day.markdown}
               </ReactMarkdown>
             </CardContent>

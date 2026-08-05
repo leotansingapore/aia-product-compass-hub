@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+// rehype-slug gives every heading an id so #anchor deep links (global search
+// "Inside lessons" hits, shared section URLs) can land here.
+import rehypeSlug from "rehype-slug";
 import {
   ArrowLeft,
   ArrowRight,
@@ -19,6 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { loadDay, loadWeekReadme, WEEK_META, TOTAL_DAYS } from "@/features/next-60-days/content";
 import { DAY_SUMMARIES } from "@/features/next-60-days/summaries";
@@ -94,6 +98,7 @@ export default function Next60DaysDay() {
   }, [dayNumber]);
 
   const unlocked = isUnlocked(dayNumber);
+  useScrollToHash(Boolean(day) && unlocked);
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
   const reflectionSubmitted = isReflectionSubmitted(dayNumber);
@@ -261,7 +266,7 @@ export default function Next60DaysDay() {
         <TabsContent value="read" className="mt-5">
           <Card className="border-border/60 shadow-card">
             <CardContent className="prose prose-sm max-w-none px-5 py-6 dark:prose-invert sm:prose-base sm:px-8 sm:py-8">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} components={dayMarkdownComponents}>{day.markdown}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={dayMarkdownComponents}>{day.markdown}</ReactMarkdown>
             </CardContent>
           </Card>
         </TabsContent>

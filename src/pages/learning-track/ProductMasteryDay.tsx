@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // rehype-slug auto-generates id="..." on every heading so in-page #anchor
@@ -23,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { dayMarkdownComponents } from "@/components/first-60-days/dayMarkdownComponents";
 import { PageJumpIndex } from "@/components/navigation/PageJumpIndex";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 import { loadDay, prefetchDay, WEEK_META } from "@/features/product-mastery-track/content";
 import { DAY_SUMMARIES } from "@/features/product-mastery-track/summaries";
 import type { Day } from "@/features/product-mastery-track/types";
@@ -99,7 +100,6 @@ export default function ProductMasteryDay() {
   const { dayNumber: raw } = useParams<{ dayNumber: string }>();
   const dayNumber = Number(raw);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [day, setDay] = useState<Day | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -138,25 +138,10 @@ export default function ProductMasteryDay() {
   );
 
   // Scroll to a #hash anchor once the markdown has finished rendering. This is
-  // how the Case Vault "Read full case" button (and any other deep-link with
-  // an #anchor) lands the user directly on the case heading. We wait one
-  // animation frame after dayRehypeReady so the slugged headings are in DOM.
-  useEffect(() => {
-    if (!day || !dayRehypeReady) return;
-    const hash = location.hash?.replace(/^#/, "");
-    if (!hash) return;
-    // Try a few frames — rendering can be a tick after dayRehypeReady flips.
-    let attempts = 0;
-    const tryScroll = () => {
-      const el = document.getElementById(hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
-      if (attempts++ < 10) requestAnimationFrame(tryScroll);
-    };
-    requestAnimationFrame(tryScroll);
-  }, [day, dayRehypeReady, location.hash]);
+  // how the Case Vault "Read full case" button and global-search section hits
+  // land directly on the heading. The shared hook also handles the
+  // rehype-sanitize `user-content-` id clobber on raw-HTML days.
+  useScrollToHash(Boolean(day) && dayRehypeReady);
 
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);

@@ -16,6 +16,7 @@ const AssistantDock = lazyWithRetry(() => import("@/components/assistant/Assista
 // ProfileSheet is only shown when the user opens the avatar menu; lazy-load so
 // its learning-track queries and sub-forms don't bloat the initial bundle.
 const ProfileSheet = lazyWithRetry(() => import("@/components/profile/ProfileSheet").then(m => ({ default: m.ProfileSheet })));
+import { GlobalSearchHost } from "@/components/GlobalSearch";
 import { useAdmin } from "@/hooks/useAdmin";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useVersionCheck } from "@/hooks/useVersionCheck";
@@ -159,6 +160,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         
         <MobileBottomNav />
 
+        <GlobalSearchHost />
         <Suspense fallback={null}>
           <FloatingFeedbackButton />
         </Suspense>
@@ -189,6 +191,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
           </AdminDesktopLayout>
         </Suspense>
 
+        <GlobalSearchHost />
         <Suspense fallback={null}>
           <FloatingFeedbackButton />
         </Suspense>
@@ -213,6 +216,7 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
         {children}
       </main>
 
+      <GlobalSearchHost />
       <Suspense fallback={null}>
         <FloatingFeedbackButton />
       </Suspense>

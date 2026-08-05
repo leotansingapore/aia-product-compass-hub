@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { getAllWeeks, prefetchDay, TOTAL_DAYS, WEEKS_WITH_RECAP } from "@/features/first-60-days/content";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { LeaderboardRankCard } from "@/components/leaderboard/LeaderboardRankCard";
-import LearningSearch from "@/components/learning-track/LearningSearch";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 
 // Warm the day-page chunk on hover so navigation doesn't wait on the JS fetch.
 // Vite dedupes repeated dynamic imports, so this is cheap to call many times.
@@ -64,7 +64,7 @@ export default function First60Days() {
 
   return (
     <div className="space-y-4 max-w-3xl mx-auto px-1 sm:px-0" data-testid="first-60-days-hub">
-      <LearningSearch />
+      <GlobalSearchTrigger variant="bar" />
       <div className="space-y-2.5">
         <Link
           to="/cmfas-exams"

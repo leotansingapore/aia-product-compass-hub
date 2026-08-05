@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FINTERNSHIP_LOGO_NAVY } from "@/constants/branding";
 import { cn } from "@/lib/utils";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
@@ -144,6 +145,7 @@ export const TopNav = memo(function TopNav({
 
       {/* Right side */}
       <div className="flex shrink-0 items-center gap-1 md:gap-2">
+        <GlobalSearchTrigger />
         <ThemeToggle />
         <button
           type="button"

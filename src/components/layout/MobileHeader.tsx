@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, User } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 
@@ -94,6 +95,7 @@ export function MobileHeader({
         </div>
 
         <div className="flex items-center gap-2">
+          {user && <GlobalSearchTrigger />}
           <ThemeToggle />
           {rightAction}
           {user && (

@@ -35,17 +35,10 @@ export function EnhancedSearchBar({
     }
   }, []);
 
-  // Handle keyboard shortcuts
+  // Escape closes the dropdown. Cmd/Ctrl+K is owned by the global search
+  // palette (GlobalSearchHost) — binding it here too would fire both.
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl/Cmd + K to focus search
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        inputRef.current?.focus();
-        setShowDropdown(true);
-      }
-      
-      // Escape to close dropdown
       if (e.key === 'Escape') {
         setShowDropdown(false);
         inputRef.current?.blur();

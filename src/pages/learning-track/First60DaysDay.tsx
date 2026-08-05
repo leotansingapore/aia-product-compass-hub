@@ -2,6 +2,9 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+// rehype-slug auto-generates id="..." on every heading so #anchor deep links
+// (global search "Inside lessons" hits, shared section links) can land here.
+import rehypeSlug from "rehype-slug";
 type PluggableList = any[];
 import {
   ArrowLeft,
@@ -27,6 +30,7 @@ import { DAY_SUMMARIES } from "@/features/first-60-days/summaries";
 import type { Day } from "@/features/first-60-days/types";
 import { useFirst60DaysProgress } from "@/hooks/first-60-days/useFirst60DaysProgress";
 import { useFirst60DaysDayMeta } from "@/hooks/first-60-days/useFirst60DaysDayMeta";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 
 // Tab-gated chunks — Read is the default landing tab for every day, so Quiz,
 // Reflection, and the video iframe wrapper stay out of the critical path until
@@ -74,11 +78,14 @@ function loadRehypeRaw(): Promise<PluggableList> {
 }
 
 function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: boolean } {
-  const [plugins, setPlugins] = useState<PluggableList>([]);
+  // rehype-slug always runs so heading anchors resolve, even when there is no
+  // raw HTML to parse. Order matters: slug must run BEFORE raw/sanitize swap
+  // in, so ids exist on the final tree either way.
+  const [plugins, setPlugins] = useState<PluggableList>([rehypeSlug]);
   const [ready, setReady] = useState(!enabled);
   useEffect(() => {
     if (!enabled) {
-      setPlugins([]);
+      setPlugins([rehypeSlug]);
       setReady(true);
       return;
     }
@@ -86,7 +93,7 @@ function useRehypePlugins(enabled: boolean): { plugins: PluggableList; ready: bo
     let cancelled = false;
     loadRehypeRaw().then((p) => {
       if (!cancelled) {
-        setPlugins(p);
+        setPlugins([rehypeSlug, ...(p as PluggableList)]);
         setReady(true);
       }
     });
@@ -229,6 +236,10 @@ export default function First60DaysDay() {
   const completed = isDayComplete(dayNumber);
   const quizPassed = isQuizPassed(dayNumber);
   const reflectionSubmitted = isReflectionSubmitted(dayNumber);
+
+  // #hash deep links (global search section hits, shared URLs) land on the
+  // heading once the markdown has rendered with its rehype-slug ids.
+  useScrollToHash(Boolean(day) && dayRehypeReady && unlocked);
 
   useEffect(() => {
     if (day && unlocked) markRead(dayNumber);

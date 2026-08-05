@@ -10,7 +10,7 @@ import { TOTAL_DAYS } from "@/features/product-mastery-track/summaries";
 import { useProductMasteryProgress } from "@/hooks/product-mastery-track/useProductMasteryProgress";
 import { useAdmin } from "@/hooks/useAdmin";
 import { PRODUCT_SLUGS } from "@/types/questionBank";
-import LearningSearch from "@/components/learning-track/LearningSearch";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 
 const PRODUCT_SLUG_SET = new Set<string>(PRODUCT_SLUGS);
 
@@ -82,7 +82,7 @@ export default function ProductMasteryHub() {
   return (
     <div className="space-y-4 max-w-3xl mx-auto" data-testid="product-mastery-hub">
       <div className="px-1 sm:px-0">
-        <LearningSearch />
+        <GlobalSearchTrigger variant="bar" />
       </div>
       <div className="space-y-2.5 px-1 sm:px-0">
         <Link

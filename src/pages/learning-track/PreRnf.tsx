@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import First60DaysAssignments from "@/pages/learning-track/First60DaysAssignments";
 import StudentProgressChecklist from "@/components/learning-track/StudentProgressChecklist";
 import RecommendedOrder from "@/components/learning-track/RecommendedOrder";
-import LearningSearch from "@/components/learning-track/LearningSearch";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 
 export default function PreRnfTrack() {
   return <PreRnfLearnerView />;
@@ -21,7 +21,7 @@ function PreRnfLearnerView() {
           interleaved path) are two views of the same progress. */}
       {!isDetailView && (
         <div className="max-w-4xl mx-auto px-3 sm:px-0 space-y-4">
-          <LearningSearch />
+          <GlobalSearchTrigger variant="bar" />
           <Tabs defaultValue="checklist" className="space-y-4">
             <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:inline-grid">
               <TabsTrigger value="checklist">Checklist</TabsTrigger>

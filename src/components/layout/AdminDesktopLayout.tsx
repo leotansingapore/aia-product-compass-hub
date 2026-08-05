@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useRef, useState, type ReactNode }
 import { SidebarInset, SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { AvatarWithProgress } from "@/components/profile/AvatarWithProgress";
+import { GlobalSearchTrigger } from "@/components/GlobalSearch";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface AdminDesktopLayoutProps {
@@ -25,6 +26,7 @@ function AdminDesktopLayoutImpl({
 
         <SidebarInset className="flex-1 min-w-0 flex flex-col">
           <header className="sticky top-0 z-30 flex h-12 items-center justify-end gap-2 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4">
+            <GlobalSearchTrigger />
             <ThemeToggle />
             <button
               onClick={onProfileClick}
