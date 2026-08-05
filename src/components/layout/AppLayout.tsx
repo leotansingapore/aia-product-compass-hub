@@ -11,7 +11,6 @@ import { lazyWithRetry } from "@/utils/lazyWithRetry";
 // download any of it. lazyWithRetry recovers from stale chunk errors after a
 // new deploy by triggering a one-shot cache-busting reload.
 const AdminDesktopLayout = lazyWithRetry(() => import("./AdminDesktopLayout"));
-const FloatingFeedbackButton = lazyWithRetry(() => import("@/components/FloatingFeedbackButton").then(m => ({ default: m.FloatingFeedbackButton })));
 const AssistantDock = lazyWithRetry(() => import("@/components/assistant/AssistantDock").then(m => ({ default: m.AssistantDock })));
 // ProfileSheet is only shown when the user opens the avatar menu; lazy-load so
 // its learning-track queries and sub-forms don't bloat the initial bundle.
@@ -162,9 +161,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 
         <GlobalSearchHost />
         <Suspense fallback={null}>
-          <FloatingFeedbackButton />
-        </Suspense>
-        <Suspense fallback={null}>
           <AssistantDock />
         </Suspense>
         {profileOpen && (
@@ -193,9 +189,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
 
         <GlobalSearchHost />
         <Suspense fallback={null}>
-          <FloatingFeedbackButton />
-        </Suspense>
-        <Suspense fallback={null}>
           <AssistantDock />
         </Suspense>
         {profileOpen && (
@@ -217,9 +210,6 @@ const AppLayout = memo(function AppLayout({ children }: AppLayoutProps) {
       </main>
 
       <GlobalSearchHost />
-      <Suspense fallback={null}>
-        <FloatingFeedbackButton />
-      </Suspense>
       <Suspense fallback={null}>
         <AssistantDock />
       </Suspense>

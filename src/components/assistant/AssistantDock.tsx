@@ -6,6 +6,7 @@ import {
   X,
   Send,
   Loader2,
+  MessageSquarePlus,
   ScrollText,
   Shield,
   BookOpen,
@@ -15,6 +16,7 @@ import {
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { FeedbackModal } from "@/components/FeedbackButton";
 import { cn } from "@/lib/utils";
 import { streamAiChat, type AiChatMessage } from "@/lib/aiChatStream";
 import { useAllProducts, useProductBySlugOrId } from "@/hooks/useProducts";
@@ -108,8 +110,15 @@ export function AssistantDock() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState("");
+  // The standalone floating Feedback button was retired in favour of this
+  // dock — one launcher in the corner instead of two. Feedback lives in the
+  // panel header so desktop keeps a route to it (mobile also has the entry in
+  // MobileBottomNav).
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   const abortRef = useRef<AbortController | null>(null);
+  /** Throttles how often a streaming answer is checkpointed to localStorage. */
+  const lastStreamPersistRef = useRef(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -182,6 +191,9 @@ export function AssistantDock() {
 
       const controller = new AbortController();
       abortRef.current = controller;
+      // Reset so this answer's first delta always checkpoints, rather than
+      // being throttled by the previous answer's timestamp.
+      lastStreamPersistRef.current = 0;
 
       let acc = "";
       try {
@@ -202,10 +214,21 @@ export function AssistantDock() {
           signal: controller.signal,
           onDelta: (delta) => {
             acc += delta;
-            setThreads((prev) => ({
-              ...prev,
-              [mode]: [...withUser, { role: "assistant", content: acc }],
-            }));
+            const next: Msg[] = [...withUser, { role: "assistant", content: acc }];
+            // Checkpoint the partial answer to storage as it streams, at most
+            // once a second. A plain setThreads here keeps the text in React
+            // state only, so reloading or closing the tab mid-answer left the
+            // question in the thread with the reply gone — the learner saw
+            // their own message hanging with no response. Throttled because a
+            // token-rate localStorage write would serialise the whole store
+            // dozens of times a second.
+            const now = Date.now();
+            if (now - lastStreamPersistRef.current > 1000) {
+              lastStreamPersistRef.current = now;
+              persist((prev) => ({ ...prev, [mode]: next }));
+            } else {
+              setThreads((prev) => ({ ...prev, [mode]: next }));
+            }
           },
         });
 
@@ -239,6 +262,8 @@ export function AssistantDock() {
   // Signed-out visitors get the marketing page, not an assistant.
   if (!user) return null;
 
+  const onCmfas = location.pathname.startsWith("/cmfas");
+
   const launcher = (
     <button
       type="button"
@@ -252,7 +277,12 @@ export function AssistantDock() {
         "fixed z-[9995] flex items-center justify-center rounded-full shadow-lg transition-all",
         "bg-primary text-primary-foreground hover:brightness-110 focus:outline-none",
         "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-        "h-14 w-14 bottom-24 right-4 md:bottom-24 md:right-6",
+        "h-14 w-14 right-4 md:right-6",
+        // Mobile always clears MobileBottomNav. On desktop the dock now owns
+        // the bottom-right corner the Feedback button used to hold — except on
+        // /cmfas, where CMFASHubChatFAB already sits at sm:bottom-8 and the two
+        // would overlap, so the dock stacks above it there.
+        onCmfas ? "bottom-24 md:bottom-24" : "bottom-24 md:bottom-6",
       )}
     >
       {open ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
@@ -266,7 +296,11 @@ export function AssistantDock() {
       className={cn(
         "fixed z-[9994] flex flex-col overflow-hidden rounded-xl border bg-background shadow-2xl",
         "inset-x-3 bottom-40 top-16",
-        "sm:inset-x-auto sm:top-auto sm:right-6 sm:bottom-40 sm:h-[560px] sm:w-[400px]",
+        // The panel sits directly above its launcher, so it follows the same
+        // /cmfas offset rule — otherwise it would cover its own close button.
+        onCmfas
+          ? "sm:inset-x-auto sm:top-auto sm:right-6 sm:bottom-40 sm:h-[560px] sm:w-[400px]"
+          : "sm:inset-x-auto sm:top-auto sm:right-6 sm:bottom-24 sm:h-[560px] sm:w-[400px]",
       )}
     >
       <div className="flex items-center justify-between gap-2 border-b px-3 py-2">
@@ -275,6 +309,15 @@ export function AssistantDock() {
           <span className="truncate text-sm font-semibold">AI assistant</span>
         </div>
         <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setFeedbackOpen(true)}
+            aria-label="Send feedback"
+            title="Send feedback"
+            className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <MessageSquarePlus className="h-3.5 w-3.5" />
+          </button>
           {messages.length > 0 && (
             <button
               type="button"
@@ -457,6 +500,7 @@ export function AssistantDock() {
     <>
       {launcher}
       {panel}
+      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
     </>,
     document.body,
   );

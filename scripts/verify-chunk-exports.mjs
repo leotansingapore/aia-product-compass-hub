@@ -30,7 +30,7 @@ const DIST_ASSETS = path.join(ROOT, "dist/assets");
 
 /**
  * Scan every source file, not just App.tsx. AppLayout.tsx carries its own
- * named lazy imports (FloatingFeedbackButton, ProfileSheet, AssistantDock) and
+ * named lazy imports (GlobalSearchDialog, ProfileSheet, AssistantDock) and
  * they were invisible to this guard — which is exactly how a broken named
  * export reaches production.
  */
