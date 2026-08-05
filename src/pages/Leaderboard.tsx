@@ -372,7 +372,7 @@ const POINT_ROWS: readonly PointRow[] = [
   {
     icon: Brain,
     activity: "Question bank — question answered correctly",
-    points: "1 pt",
+    points: "0.2 pt",
     note: "any correct answer counts once per question",
   },
   {
