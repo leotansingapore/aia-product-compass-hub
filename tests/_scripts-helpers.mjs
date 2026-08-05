@@ -62,7 +62,7 @@ export async function gotoScripts(p, qs = '') {
 
 export async function clearScriptsStorage(p) {
   await p.evaluate(() => {
-    ['tab', 'category', 'audience', 'role', 'tag'].forEach(k =>
+    ['tab', 'category', 'audience', 'role', 'tag', 'q'].forEach(k =>
       localStorage.removeItem(`scripts_filter_${k}`)
     );
   });
