@@ -3742,6 +3742,23 @@ export default function ScriptsDatabase() {
     [scriptsData, filterState, favouriteIds]
   );
 
+  // Zero results: which single filter, if removed, would bring scripts back.
+  // Feeds the empty state's one-tap fixes — a dead-end combination (e.g. a
+  // shared link plus a leftover audience) should cost one tap, not a full reset.
+  const emptyStateRecovery = useMemo(
+    () => (filteredScripts.length === 0 ? zeroResultRecovery(scriptsData, filterState, favouriteIds) : []),
+    [filteredScripts.length, scriptsData, filterState, favouriteIds]
+  );
+
+  const clearFilterDimension = useCallback((dimension: FilterDimension) => {
+    if (dimension === "q") { setSearchInput(""); setSearchQuery(""); }
+    else if (dimension === "category") setActiveCategory("all");
+    else if (dimension === "audience") setActiveAudience("all");
+    else if (dimension === "role") setActiveRole("all");
+    else if (dimension === "tag") setActiveTag("all");
+    else if (dimension === "favourites") setShowFavouritesOnly(false);
+  }, []);
+
   // Script search suggestions
   const suggestions = useMemo(() => {
     if (!searchInput.trim() || searchInput.length < 2) return [];
@@ -4722,10 +4739,42 @@ export default function ScriptsDatabase() {
               <div className="text-center py-12 text-muted-foreground">
                 <MessageSquare className="h-10 w-10 mx-auto mb-3 opacity-40" />
                 <p className="font-medium">No scripts found</p>
-                <p className="text-sm mb-3">Try adjusting your search or category filter.</p>
+                {emptyStateRecovery.length > 0 ? (
+                  <>
+                    <p className="text-sm mb-3">
+                      No script matches this combination — removing one filter brings scripts back:
+                    </p>
+                    <div className="flex flex-col items-center gap-1.5 mb-4">
+                      {emptyStateRecovery.map((r) => {
+                        const label =
+                          r.dimension === "q" ? `search "${searchQuery}"`
+                          : r.dimension === "category" ? `category "${getCategoryInfo(activeCategory).label}"`
+                          : r.dimension === "audience" ? `audience "${audienceLabels[activeAudience] || activeAudience}"`
+                          : r.dimension === "role" ? `role "${roleLabels[activeRole] || activeRole}"`
+                          : r.dimension === "tag" ? `tag "#${activeTag}"`
+                          : "the favourites filter";
+                        return (
+                          <Button
+                            key={r.dimension}
+                            variant="outline"
+                            size="sm"
+                            className="h-8 text-xs"
+                            onClick={() => clearFilterDimension(r.dimension)}
+                          >
+                            <X className="h-3 w-3 mr-1.5" />
+                            Remove {label} — {r.count} script{r.count !== 1 ? "s" : ""}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-sm mb-3">Try different words, or reset below.</p>
+                )}
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
+                  className="text-xs text-muted-foreground"
                   onClick={() => {
                     setSearchInput("");
                     setSearchQuery("");
