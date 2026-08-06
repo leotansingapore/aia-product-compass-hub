@@ -167,7 +167,10 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
     { title: "Bookmarks", url: "/bookmarks", icon: Bookmark, dataAttr: "bookmarks", sectionId: "bookmarks" },
     { title: "CMFAS Exams", url: "/cmfas-exams", icon: GraduationCap, dataAttr: undefined, sectionId: "cmfas-exams" },
     { title: "Roleplay Training", url: "/roleplay", icon: MessageCircle, dataAttr: undefined, sectionId: "roleplay" },
-    ...(isAdminUser ? [{ title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" }] : []),
+    ...(isAdminUser ? [
+      { title: "Team Progress", url: "/team-progress", icon: Users, dataAttr: undefined, sectionId: "admin-panel" },
+      { title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" },
+    ] : []),
   ], [isMasterAdmin, hasRole]);
 
   // The tier check is the only gate here — `usePermissions.canAccessSection`

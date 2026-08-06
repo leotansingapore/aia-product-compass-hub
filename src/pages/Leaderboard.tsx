@@ -11,7 +11,10 @@ import {
   FileCheck2,
   Brain,
   PlayCircle,
+  Users,
 } from "lucide-react";
+import { Link as RouterLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -511,6 +514,14 @@ export default function Leaderboard() {
               distinct days active.
             </p>
           </div>
+          {admin && (
+            <Button asChild variant="outline" size="sm" className="shrink-0 gap-1.5">
+              <RouterLink to="/team-progress">
+                <Users className="h-3.5 w-3.5" />
+                Team Progress
+              </RouterLink>
+            </Button>
+          )}
         </div>
       </div>
 

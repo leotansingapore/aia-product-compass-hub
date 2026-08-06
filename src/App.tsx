@@ -87,6 +87,7 @@ const QuestionBanks = lazyWithRetry(() => import("./pages/QuestionBanks"));
 const ReviewBank = lazyWithRetry(() => import("./pages/ReviewBank"));
 const ReviewAll = lazyWithRetry(() => import("./pages/ReviewAll"));
 const Leaderboard = lazyWithRetry(() => import("./pages/Leaderboard"));
+const TeamProgress = lazyWithRetry(() => import("./pages/TeamProgress"));
 const Library = lazyWithRetry(() => import("./pages/Library"));
 const LibraryProductsTab = lazyWithRetry(() =>
   import("./features/library/ProductsGrid").then((m) => ({ default: m.ProductsGrid })),
@@ -220,6 +221,7 @@ const App = () => (
                     <Route path="/review-all" element={<RequireAuth><RequireTier feature="question-banks"><ReviewAll /></RequireTier></RequireAuth>} />
                     <Route path="/leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
                     <Route path="/leaderboard/:tab" element={<RequireAuth><Leaderboard /></RequireAuth>} />
+                    <Route path="/team-progress" element={<RequireAuth><ProtectedAdminPage><TeamProgress /></ProtectedAdminPage></RequireAuth>} />
                     <Route path="/library" element={<RequireAuth><Library /></RequireAuth>}>
                       <Route path="products" element={<RequireTier feature="products" redirectTo="/library/cheat-sheets"><LibraryProductsTab /></RequireTier>} />
                       <Route path="question-banks" element={<RequireTier feature="question-banks" redirectTo="/library/cheat-sheets"><LibraryQuestionBanksTab /></RequireTier>} />

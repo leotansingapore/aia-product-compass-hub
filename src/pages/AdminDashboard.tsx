@@ -45,6 +45,25 @@ export default function AdminDashboard() {
       {/* Admin shortcut cards — for tools that don't fit the tabbed dashboard. */}
       <div className="mb-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         <Link
+          to="/team-progress"
+          className="group rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/20 p-4 transition-all"
+        >
+          <div className="flex items-start gap-3">
+            <div className="shrink-0 h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
+              <Users className="h-5 w-5 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 mb-1">
+                <h3 className="font-semibold text-sm">Team Progress</h3>
+                <ArrowRight className="h-3.5 w-3.5 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Every consultant's tracks, assignments, trainings and question bank at one glance, with per-person drill-down.
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link
           to="/admin/assign-drawings"
           className="group rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/20 p-4 transition-all"
         >

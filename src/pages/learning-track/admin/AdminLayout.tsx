@@ -10,6 +10,9 @@ export default function AdminLayout() {
     <div className="space-y-4" data-testid="admin-layout-page">
       <div className="relative">
         <nav className="flex gap-1 border-b overflow-x-auto" aria-label="Admin sections">
+          <NavLink to="/team-progress" className={({ isActive }) => cn(tab, isActive && active)}>
+            Team Progress
+          </NavLink>
           <NavLink to="first-14-days" className={({ isActive }) => cn(tab, isActive && active)}>
             First 14 Days
           </NavLink>
