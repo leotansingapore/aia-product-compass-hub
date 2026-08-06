@@ -58,10 +58,18 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
   const selectedAnswer = selectedAnswers[currentQuestion];
   const showResult = answeredQuestions[currentQuestion];
 
-  // Persist state to localStorage on every change
+  // Persist state to localStorage on every change. The write must be guarded:
+  // in private mode or at the storage quota, setItem throws a DOMException, and
+  // an unguarded throw inside this effect takes the whole quiz page down to the
+  // error boundary. Persistence is a convenience — losing it is fine, crashing
+  // is not.
   useEffect(() => {
-    const state: PersistedQuizState = { currentQuestion, score, selectedAnswers, answeredQuestions };
-    localStorage.setItem(storageKey(productId), JSON.stringify(state));
+    try {
+      const state: PersistedQuizState = { currentQuestion, score, selectedAnswers, answeredQuestions };
+      localStorage.setItem(storageKey(productId), JSON.stringify(state));
+    } catch {
+      /* quota / private-mode — non-fatal, in-memory state is still correct */
+    }
   }, [currentQuestion, score, selectedAnswers, answeredQuestions, productId]);
 
   const handleAnswerSelect = useCallback((answerIndex: number) => {
@@ -84,15 +92,20 @@ export const useQuizState = ({ questions, productId }: UseQuizStateProps) => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
     } else if (answeredQuestions[currentQuestion]) {
-      // Record quiz attempt (no XP)
+      // Record quiz attempt (no XP). supabase-js RESOLVES with { error } on a
+      // rejected insert (e.g. RLS 42501) — it does not throw — so the old
+      // try/catch never fired and a failed write was swallowed silently. Check
+      // the returned error explicitly; the catch stays only for genuine network
+      // rejections.
       try {
-        await supabase.from('quiz_attempts').insert({
+        const { error } = await supabase.from('quiz_attempts').insert({
           user_id: user?.id,
           product_id: productId,
           score,
           total_questions: questions.length,
           xp_earned: 0,
         });
+        if (error) console.error('Failed to record quiz attempt:', error);
       } catch (error) {
         console.error('Failed to record quiz attempt:', error);
       }
