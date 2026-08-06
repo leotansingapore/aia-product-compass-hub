@@ -81,10 +81,12 @@ export function QuestionBankManager() {
     if (categoryFilter !== 'all') out = out.filter((r) => r.category === categoryFilter);
     if (search.trim()) {
       const q = search.toLowerCase();
+      // These are unvalidated DB rows and this runs on every keystroke — a null
+      // question or options array crashed the whole admin manager mid-search.
       out = out.filter(
         (r) =>
-          r.question.toLowerCase().includes(q) ||
-          r.options.some((o) => o.toLowerCase().includes(q))
+          (r.question ?? '').toLowerCase().includes(q) ||
+          (r.options ?? []).some((o) => String(o ?? '').toLowerCase().includes(q))
       );
     }
     return out;
@@ -303,7 +305,7 @@ export function QuestionBankManager() {
                         </div>
                         <p className="font-medium text-sm mb-2">{q.question}</p>
                         <ul className="space-y-1 mb-2">
-                          {q.options.map((opt, i) => (
+                          {(q.options ?? []).map((opt, i) => (
                             <li
                               key={i}
                               className={`text-xs flex items-start gap-1.5 ${

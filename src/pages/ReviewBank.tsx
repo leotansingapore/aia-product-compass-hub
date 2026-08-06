@@ -195,7 +195,7 @@ export default function ReviewBank() {
                         </div>
                         <p className="text-sm font-medium mb-2">{item.question}</p>
                         <div className="space-y-1">
-                          {item.options.map((opt, i) => (
+                          {(item.options ?? []).map((opt, i) => (
                             <div
                               key={i}
                               className={`text-xs rounded px-2 py-1 flex items-start gap-1.5 ${
