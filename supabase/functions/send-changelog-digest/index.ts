@@ -7,7 +7,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const APP_URL = "https://academy.finternship.com";
+// Read the origin from APP_BASE_URL so the digest's links can be repointed
+// (staging, a domain move) without a code change, matching notify-feedback-
+// submitted / notify-assignment-submitted. Default is the production host.
+const APP_URL = (Deno.env.get("APP_BASE_URL") ?? "https://academy.finternship.com").replace(/\/+$/, "");
 
 interface ChangeEntry {
   entry_date: string;
