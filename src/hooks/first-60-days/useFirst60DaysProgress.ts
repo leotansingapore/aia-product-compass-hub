@@ -416,16 +416,30 @@ export function useFirst60DaysProgress() {
 
   const reset = useCallback(async () => {
     if (!userId) return;
-    const { error } = await supabase
+    // Returning the deleted rows is mandatory here: a DELETE that RLS filters
+    // to zero rows still resolves with `error === null`, so an error-only check
+    // reported a successful reset while every day stayed complete. This table
+    // has no `id` column — its key is (user_id, day_number). Only clear the
+    // localStorage cache AFTER the delete is confirmed, or a rejected reset
+    // wipes the local snapshot while the server rows remain and the next cold
+    // load repaints them as complete.
+    const hadProgress = Object.keys(daysMap).length > 0;
+    const { data, error } = await supabase
       .from("first_60_days_progress")
       .delete()
-      .eq("user_id", userId);
+      .eq("user_id", userId)
+      .select("day_number");
     if (error) throw error;
+    if (hadProgress && (!data || data.length === 0)) {
+      throw new Error(
+        "Nothing was reset — the server rejected the delete. Your progress is unchanged.",
+      );
+    }
     if (typeof window !== "undefined") {
       localStorage.removeItem(PROGRESS_CACHE_PREFIX + userId);
     }
     qc.invalidateQueries({ queryKey: ["first-60-days-progress", userId] });
-  }, [userId, qc]);
+  }, [userId, qc, daysMap]);
 
   const markDayCompleteAsAdmin = useCallback(
     (dayNumber: number) => {
