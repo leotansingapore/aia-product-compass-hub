@@ -36,7 +36,7 @@ form_fields:
 
 Everything you've done so far was one piece in isolation. A real client meeting asks for all of it at once: you read the messy portfolio, you work out what actually matters for this person, you propose something that fits their budget, you present it so a non-FC follows along, and you hold your ground when they push back. This is the dry run, with a fictional client and a friendly room.
 
-![Capstone Showdown overview: build, present, defend - one client, one case, one chance to win. The seven-step game plan runs draw a case, map policies, rank needs, decide and propose, build before-and-after, prepare objections, then present and defend in a 20-minute live session worth scoring across portfolio summary, needs analysis, recommendation, CST delivery, before-and-after, and objection handling. The five case files are Marcus 23 (wealth accumulation and BTO planning), Priya 30 (family protection and mortgage), Daniel 35 (income protection for a sole breadwinner), Mr and Mrs Tan 57 and 55 (retirement income and legacy), and Wei Ling 41 (parent dependency and long-term protection). Best case takes the round.](/first-60-days/images/case-study-competition.webp)
+![Capstone Showdown overview: build, present, defend - one client, one case, one chance to win. The seven-step game plan runs draw a case, map policies, rank needs, decide and propose, build before-and-after, prepare objections, then present and defend in a 20-minute live session worth scoring across portfolio summary, needs analysis, recommendation, CST delivery, before-and-after, and objection handling. The five case files are Marcus 23 (wealth accumulation and BTO planning), Priya 30 (family protection and mortgage), Daniel 35 (income protection for a sole breadwinner), Mr and Mrs Tan 57 and 55 (retirement income and legacy), and Wei Ling 31 (parent dependency and long-term protection). Best case takes the round.](/first-60-days/images/case-study-competition.webp)
 
 ## How the competition runs
 
@@ -58,7 +58,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | B | Priya, 30 | "Protect the household now that we're married" |
 | C | Daniel, 35 | "If something happens to me, my family is the question" |
 | D | Mr & Mrs Tan, 57 & 55 | "A S$10k-a-month retirement income, and something for the kids" |
-| E | Wei Ling, 41 | "Cover my parents' reliance on me, and my own future" |
+| E | Wei Ling, 31 | "Cover my parents' reliance on me, and my own future" |
 
 ### Case A - Marcus, 23
 
@@ -117,7 +117,7 @@ They've "bought a lot of things over the years" but have never seen it all on on
 
 One lever they're already weighing: topping up their Retirement Accounts towards the Enhanced Retirement Sum to lift their CPF LIFE payouts for life. They have the OA to fund it - work out how much extra monthly income that buys, and how far it moves them toward S$10,000.
 
-### Case E - Wei Ling, 41
+### Case E - Wei Ling, 31
 
 **Senior engineer ~S$9,500/mo · single, no children · gives parents S$1,500/mo · spends ~S$4,500/mo all-in (incl. the S$1,500) · mum has a cancer history · goal: cover her parents + her own future**
 
@@ -131,7 +131,7 @@ For the dad, one lever to work up: put those premiums into the [Retirement Healt
 
 - Manulife - Manulife InvestReady, a whole-life ILP she's paid S$500/month into for eight years - about S$48,000 in, now worth around S$45,000 (less if surrendered), so the fees have kept it at best break-even; the money sits half in the Asia Pacific Investment Grade Bond Fund and half in the Singapore Equity Fund
 - Great Eastern - GREAT Life Advantage 4, a whole-life investment-linked plan (protection plus an invested account) she bought just one week ago - S$550/month, about S$180,000 of Death/TPD/CI cover; the cash value is the fund value and isn't guaranteed, and on the plan's projected (non-guaranteed) basis the surrender value works out to around S$240,000 by age 65
-- NTUC Income - Enhanced IncomeShield Preferred (private hospital), no rider - about S$977 a year, S$600 from MediSave and roughly S$377 in cash; with no rider, claims carry the deductible and 10% co-insurance in cash
+- NTUC Income - Enhanced IncomeShield Preferred (private hospital), no rider - about S$436 a year at her age, S$300 from MediSave and roughly S$136 in cash; with no rider, claims carry the deductible and 10% co-insurance in cash
 
 The GREAT Life Advantage 4 plan is a week old. One route you're weighing: advise her to cancel it now and go Buy Term, Invest the Rest - the same S$180,000 of Death/TPD/CI cover as a term plan, with the rest of the S$550 invested. Work out whether you'd make that case, and what you'd say when the room asks why she should undo a decision she just made.
 
