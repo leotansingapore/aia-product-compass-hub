@@ -70,3 +70,8 @@ verify_jwt = false
 
 [functions.recap-video-proxy]
 verify_jwt = false
+
+# Called by the Activity Tracker's academy-learnings function, not a browser —
+# it authenticates with the TRACKER_LEARNINGS_SECRET header instead of a JWT.
+[functions.tracker-learnings]
+verify_jwt = false
