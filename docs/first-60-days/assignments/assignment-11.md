@@ -9,14 +9,14 @@ deliverable: "A complete case study, presented live at the sharing session"
 submission_type: "form"
 estimated_time: "A week of prep + one sharing session"
 weeks_covered: [9, 10]
-related_days: [10, 14, 18, 43, 44, 52]
+related_days: [10, 14, 18, 30, 43, 44, 52, 57]
 status_key: "assignment-11-case-study"
 submit_heading: "Your case study"
 submit_intro: "Everything you built for your case, plus your sharing-session booking. These are fictional clients, so there's nothing private to hide - write it the way you'd present it. Autosaves on this device."
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to E and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to G and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the five below, or have your trainer assign you one so the room covers a spread. Each client has real-looking policies from a few different insurers - the same mess you'll meet in the field.
+1. **Draw a case.** Pick one of the seven below, or have your trainer assign you one so the room covers a spread. Five are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -59,6 +59,8 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | C | Daniel, 35 | "If something happens to me, my family is the question" |
 | D | Mr & Mrs Tan, 57 & 55 | "A S$10k-a-month retirement income, and something for the kids" |
 | E | Wei Ling, 31 | "Cover my parents' reliance on me, and my own future" |
+| F | Jared, 29 | "I'm already beating the market. Why would I pay you?" |
+| G | Kelvin, 34 | "S&P 500 and chill is working. What do I need you for?" |
 
 ### Case A - Marcus, 23
 
@@ -135,11 +137,66 @@ For the dad, one lever to work up: put those premiums into the [Retirement Healt
 
 The GREAT Life Advantage 4 plan is a week old. One route you're weighing: advise her to cancel it now and go Buy Term, Invest the Rest - the same S$180,000 of Death/TPD/CI cover as a term plan, with the rest of the S$550 invested. Work out whether you'd make that case, and what you'd say when the room asks why she should undo a decision she just made.
 
+### Case F - Jared, 29
+
+**Tech sales, account executive ~S$7,000/mo base + commission averaging another S$2,000 · single, lives with parents, spends ~S$3,200/mo · about S$218,000 spread across seven apps · goal: "I'm already beating the market. Why would I pay you?"**
+
+He came through a friend's referral and took the meeting mostly to argue. He reads r/singaporefi, keeps a spreadsheet nobody else has seen, and calls insurance "a negative expected value product". He is not hostile. He just thinks he has already solved this, and he half has.
+
+Where the money sits today:
+
+- Syfe - Core Equity100 robo portfolio, about S$38,000, S$500/month auto-deposit since 2021
+- iFAST (FSMOne) - about S$30,000 in two unit trusts (a global equity fund and a global technology fund, roughly 1.2% to 1.6% in fund charges) plus a S$300/month regular savings plan into the same two
+- Interactive Brokers - about S$70,000 in VOO, QQQ and SCHD, all US-domiciled and USD-denominated; plus roughly S$20,000 in single US names he trades in and out of (Nvidia, Tesla, Palantir)
+- Moomoo - a S$15,000 day-trading account, mostly US stocks and weekly options, two or three trades a day
+- Crypto - about S$25,000, the bitcoin and ether on a hardware wallet, the rest in altcoins on an exchange; the seed phrase is written in a notebook in a drawer at home, and nobody else knows which drawer
+- IG - a S$8,000 forex account, scalping USD/JPY and EUR/USD in the evenings at up to 20:1 leverage; he's topped it up twice
+- Cash - about S$12,000 in a high-interest savings account
+
+He says he's "up about 35% overall". He has never pulled the seven statements into one number. The 35% is the Syfe and IBKR screens; the Moomoo and IG accounts are "roughly flat", which is what he calls the two top-ups.
+
+Nothing about his life is protected. He's covered by his company's group hospitalisation and about S$150,000 of group term, both of which end the day he resigns, and he changes jobs every two to three years. MediShield Life is the only hospital plan that's his. No Integrated Shield Plan, no critical illness cover, no life cover of his own, no personal accident plan. He's "going to get term at some point".
+
+Your job with Jared is to make the case for investing through you, and the room will ask the obvious question first: he's up 35%, so why would he hand you anything? Don't start from the [Day 52](../../first-60-days/week-9/day-52.md) conviction stack. Start by asking for all seven statements and adding them up with him, because the first time anyone tells him his real return is the first time he listens. Then hold the stack against his actual holdings, not a generic S&P 500 argument: VOO and SCHD lose 30% of every dividend at source; his US-situs holdings are already past the US$60,000 estate-tax exemption; the seed phrase and the leveraged forex position both die with him; and with no cover at all, this portfolio is also his emergency fund, sold at whatever the market is doing the month something happens to him. Don't try to take the trading away from him. Decide what a core looks like, what a sensible satellite budget is, and what you'd leave alone. The [1/3 income rule](../../first-60-days/week-9/day-52.md) gives you the frame.
+
+**Existing policies**
+
+- Company group cover - hospitalisation (A ward) and about S$150,000 of term, both tied to his employment
+- MediShield Life only - no Integrated Shield Plan, so his own hospital cover is B2/C ward
+- No critical illness, no term, no whole life, no personal accident
+
+### Case G - Kelvin, 34
+
+**Operations manager ~S$6,500/mo · married, wife earns ~S$5,000/mo · daughter aged 3 · resale HDB, S$1,700/mo mortgage (shared) · household spends ~S$6,500/mo · invests S$1,000/mo already · goal: "S&P 500 and chill is working. What do I need you for?"**
+
+He isn't a finbro. He read one book in 2020, set up automatic transfers, and has mostly left it alone since - which is the right temperament, and you should tell him so. He came because his wife's colleague is your client, and he's polite, curious and slightly defensive.
+
+Where the money sits today, about S$190,000 all in:
+
+- Tiger Brokers - S$600/month into VOO (US-domiciled, USD-denominated), about S$62,000 today; he has never looked at where the dividends go
+- Endowus - S$250/month into a Flagship 80/20 portfolio, about S$24,000 today
+- Tiger Brokers - a block of tech stocks bought in 2021, about S$45,000 today: Apple, Tesla and Nvidia, with the Nvidia alone now about S$26,000 of it; he's never sold any of it and never rebalanced
+- DBS shares - about S$20,000, bought for the dividends
+- Cash - about S$40,000 in a high-interest savings account, which he calls the emergency fund
+
+He has no number for either of the two things the money is for. Retirement is "keep going and see". His daughter's university is "somewhere in the pot". His wife does not have the Tiger or Endowus logins. Ask him what he'd do if the market fell 35% next year and his answer is "keep buying", which is the right answer, and he has never actually lived through one with this much in it.
+
+**Existing policies**
+
+- NTUC Income - Enhanced IncomeShield Advantage (public A ward), no rider, about S$390 a year, S$300 from MediSave and roughly S$90 in cash; with no rider, claims carry the deductible and 10% co-insurance in cash
+- HDB Home Protection Scheme on the mortgage (covers his share of the outstanding loan on death or TPD, nothing else)
+- Company group cover - hospitalisation and about S$150,000 of term, both tied to his job; his wife has similar cover at hers
+- No critical illness cover, no term of his own, nothing on his daughter
+
+Your job with Kelvin is the same as with Jared, and harder, because he's doing most things right and the fee argument is his to win for the first ten years. Build the case on what he can't see: the same S$1,000 a month, and where it lands. Run the [retirement income calculator](https://present.financeillustrator.com/total-wealth-concept/retirement/income) for what S$1,000 a month gets him by 60 against what the household will actually need, then put a number on the daughter's university and see whether the one pot covers both. Hold the [Day 52](../../first-60-days/week-9/day-52.md) stack against his holdings: VOO's dividends are taxed at source and it's US-situs on death; Nvidia is now 14% of everything he owns; his wife would be calling a helpdesk, not a person. Then the part that most of the room will skip: no critical illness cover means a diagnosis at 45 turns the VOO account into the medical fund. Decide how you'd reshape the S$1,000 without asking him for more, and decide whether you tell him about Irish-domiciled ETFs for the part he keeps - it gives away some of the tax argument's bite and earns the next meeting. The room will ask why you did or didn't.
+
 ## What you build for your case
 
 **Portfolio summary.** Map every existing policy into one page in the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2): sum assured, premium, mode, payment term, coverage term, riders, nominees. The summary's job is to make the gaps and overlaps obvious - name them specifically.
 
 **Needs and priorities.** Rank what matters for this client, in order, against their life stage and cashflow. Daniel's sole-breadwinner risk is not Marcus's BTO savings goal. The ranking is the thinking; get it wrong and the rest of the case is built on sand.
+
+For Jared and Kelvin the recommendation is the argument for investing through you. Start from what they're doing right and say it out loud, then make the case on what they can't see from their own screens - where the dividends go, what happens to the accounts on death, what a critical illness does to a portfolio with no cover beside it, and what the money is actually for. Don't lead with fees; you lose that comparison for the first ten years and you know it. The before-and-after for these two is the monthly investing amount and the portfolio, reshaped on the same budget, with cover only where the gap is real.
 
 **What you'd propose, and why.** For each gap that matters, the plan you'd put forward, tied to a rough budget, with a one-line reason. Just as important: what you'd deliberately leave for later. A new FC's instinct is to fix everything at once; a good one sequences it.
 
@@ -151,7 +208,7 @@ The GREAT Life Advantage 4 plan is a week old. One route you're weighing: advise
 >
 > After: "Okay, now I get what I'm covered for - and the BTO savings part actually makes sense."
 
-**The objections.** Three you most expect, each answered the canonical way: cushion, then reframe. "Too expensive", "let me think about it", "I already have an agent". The cushion-then-reframe pattern and the cadence behind it are in [Day 44](../../first-60-days/week-8/day-44.md) and [Day 43](../../first-60-days/week-8/day-43.md).
+**The objections.** Three you most expect, each answered the canonical way: cushion, then reframe. "Too expensive", "let me think about it", "I already have an agent". For Jared and Kelvin expect "I can do this cheaper myself", "ILP charges are a rip-off" and "I'm already up 35%" - the fees one-liner in [Day 52](../../first-60-days/week-9/day-52.md) and the [SP500-vs-ILP conviction reference](/learning-track/first-60-days/reference/sp500-vs-ilp-conviction) are where to start. The cushion-then-reframe pattern and the cadence behind it are in [Day 44](../../first-60-days/week-8/day-44.md) and [Day 43](../../first-60-days/week-8/day-43.md).
 
 ## How it's judged
 
