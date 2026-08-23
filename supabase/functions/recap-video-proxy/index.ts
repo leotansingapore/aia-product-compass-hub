@@ -46,6 +46,24 @@ const ASSET_MAP: Record<string, Asset> = {
     vtt:
       "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-4/fastrack-training-4-preview.en.vtt",
   },
+  "week-5": {
+    video:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-5/fastrack-training-5-preview.mp4",
+    vtt:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-5/fastrack-training-5-preview.en.vtt",
+  },
+  "week-7": {
+    video:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-7/fastrack-training-7-preview.mp4",
+    vtt:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-7/fastrack-training-7-preview.en.vtt",
+  },
+  "week-9": {
+    video:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-9/fastrack-training-9-preview.mp4",
+    vtt:
+      "https://github.com/leotansingapore/aia-product-compass-hub/releases/download/fastrack-training-9/fastrack-training-9-preview.en.vtt",
+  },
 };
 
 Deno.serve(async (req) => {
