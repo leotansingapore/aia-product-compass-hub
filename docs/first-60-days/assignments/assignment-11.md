@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to M and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to N and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the thirteen below, or have your trainer assign you one so the room covers a spread. Eleven are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the fourteen below, or have your trainer assign you one so the room covers a spread. Twelve are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -67,6 +67,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | K | Ai Lin, 54 | "I'm self-employed. CPF LIFE is all I have coming - can I still hit S$5,000 a month?" |
 | L | Damien & Cheryl, 54 & 41 | "We pay S$76,000 a year in premiums. Is it all still pulling the same direction?" |
 | M | Grace, 52 | "I pay S$49,000 a year in premiums. Where is the retirement income in all this?" |
+| N | Teck Seng, 59 | "I want S$10,000 a month for life. Am I there yet?" |
 
 ### Case A - Marcus, 23
 
@@ -482,6 +483,42 @@ Grace's file is premium-heavy and income-light. She pays roughly S$49,000 a year
 - The two paid-up Prudential endowments return about S$111,500 within months of each other in 2028
 - The at-a-glance was drawn before the mortgage term expired: the S$620,000 of death cover and S$800,000 of TPD both leaned on it for S$500,000
 - Nominations are not done on the policies that track them. The estate checklist - will, LPA and AMD - is blank
+
+### Case N - Teck Seng, 59
+
+**Turns 60 this December · wife newly settled in Singapore, three grown daughters · target: S$10,000/mo of passive income for life · half the portfolio restructured in the last nine months**
+
+Teck Seng is the deck's moving target. He set aside the old Enhanced Retirement Sum at 55, holds annuities from three insurers, and between December and March an adviser team restructured half his file into three new single-insurer plans. Protection went the other way. Outside one 1994 ILP he carries no death, TPD or CI cover of his own, his private-hospital shield has no rider - the S$3,500 deductible plus 10% co-insurance, uncapped, are all his - and beyond an LPA, none of the estate paperwork is done.
+
+**Cash, CPF and SRS**
+
+- CPF: the old Enhanced Retirement Sum of S$288,000 went into his RA at 55 in 2022, projected to reach about S$425,000 at 65, paying roughly S$2,280/month on CPF LIFE Standard. Whatever sat above the ERS stays liquid in OA at 2.5%
+- SRS: mostly deployed - two Manulife single premiums of S$51,039 and S$40,029, a S$60,000 endowment now worth S$72,004 that matures in 2043, and a fresh S$67,000 single premium this March. No withdrawal schedule has been settled, and the file sketches two competing ones
+- Liquid holdings: about S$38,000 in unit trusts, plus a PruLink SuperGrowth account holding S$63,167 of CPF-SA money at about 2.67% p.a. since 2008 - the funds return to OA on surrender
+- Cash at bank: not on file
+- Target: S$10,000/month of passive income. Before the restructuring, the file put the income gap at S$8,000/month between 60 and 65, and S$7,780/month after 75
+
+**His policies**
+
+- Prudential - PruShield Premier, private hospital standard ward with no rider: the S$3,500 deductible and the uncapped 10% co-insurance come out of pocket, on claims-based pricing; about S$1,415/year via MediSave plus S$1,464 in cash
+- Prudential - PruLink Assurance Account (1994): S$100,000 death/TPD with S$100,000 major CI, cash value S$110,602, S$4,400/year - the only death or CI cover he holds anywhere
+- Prudential - Endowment with Profits (1990): S$125.50/month, cash value S$93,798, maturing September 2030 at a projected S$152,644
+- CareShield status is unverified, and so is whether his employer's group cover includes personal accident
+
+**The annuity and income stack**
+
+- Manulife - RetireReady Plus in three tranches (2018 to 2023): S$1,150/month from the two SRS tranches plus S$3,350/month from the cash tranche, each running from 65 to 75; the cash tranche still costs S$24,467/year until 2027
+- AIA - Platinum Infinite Wealth (December 2025): a S$151,000 single premium restructured out of an old whole life, worth S$120,800 as of February, capital-guaranteed from year seven, nominated fully to his wife
+- AIA - Platinum Wealth Venture 2.0 (March 2026): S$50,000/year until 2030 into a dividend ILP targeting 6% p.a. - funded by surrendering, at about S$229,000, a fully paid Singlife annuity that would have paid S$2,000/month guaranteed from this December
+- AIA - Platinum Retirement Elite (March 2026): the S$67,000 SRS single premium, paid up, projected at about S$1,540/month from 70 to 80
+- NTUC Income - SAIL: the S$60,000 SRS endowment, already worth S$72,004 against what went in, with maturity in 2043
+
+**The family**
+
+- His wife settled in Singapore recently on a dependant pass. Her one policy is a private-hospital shield with rider, set up this April at about S$1,956/year via MediSave plus S$698 in cash
+- His three grown daughters each ride on a PruShield Premier he pays through MediSave - rider-less, like his own
+- The household premium bill runs about S$78,100 a year in cash plus S$5,000 through MediSave, with the S$50,000 dividend ILP commitment making up most of it until 2030
+- Estate: the LPA is done. The will, the AMD and the CPF nomination are not, and among the policies only the two newest name anyone
 
 ## What you build for your case
 
