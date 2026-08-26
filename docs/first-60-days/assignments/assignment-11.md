@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to L and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to M and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the twelve below, or have your trainer assign you one so the room covers a spread. Ten are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the thirteen below, or have your trainer assign you one so the room covers a spread. Eleven are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -66,6 +66,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | J | Mr & Mrs Rajan, 63 & 54 | "S$5,000 a month for the two of us. The plans are everywhere - what do we actually have?" |
 | K | Ai Lin, 54 | "I'm self-employed. CPF LIFE is all I have coming - can I still hit S$5,000 a month?" |
 | L | Damien & Cheryl, 54 & 41 | "We pay S$76,000 a year in premiums. Is it all still pulling the same direction?" |
+| M | Grace, 52 | "I pay S$49,000 a year in premiums. Where is the retirement income in all this?" |
 
 ### Case A - Marcus, 23
 
@@ -442,6 +443,45 @@ The age gap runs the whole case. Damien retires while the youngest of their thre
 - Outside the cancer tower, his CI cover totals S$75,000. He is 54
 - The couple's nominations to each other are mostly in place. The estate checklist itself - will, LPA, AMD - is blank for both
 - The Platinum Wealth Venture on her side names Wei Ning as secondary insured, so the plan is built to outlive them both
+
+### Case M - Grace, 52
+
+**Single, 52, turns 55 in 2029 · about S$49,000/yr in premiums, most of it with one insurer · a S$500,000 mortgage term expired this May · goal: "Where is the retirement income in all this?"**
+
+Grace's file is premium-heavy and income-light. She pays roughly S$49,000 a year in cash across ten policies - among them a savings plan drawing S$1,833 a month and a lifetime income plan drawing S$1,062.50 a month - yet the only lifetime income currently pointed at her retirement is CPF LIFE plus a S$100-a-month trickle that starts in 2029. This May her S$500,000 mortgage term ran out. Most of her death cover went with it, and what remains rides on a 2007 ILP protection account.
+
+**Cash and CPF**
+
+- CPF: at 55 in 2029 she sets aside the Full Retirement Sum of S$244,500, her RA is projected to reach about S$360,000 by 65, and CPF LIFE Standard pays roughly S$1,810/month for life from there. Whatever sits above the FRS stays liquid in OA at 2.5%
+- CPF-SA invested: S$68,012 of Special Account money sits in a Singlife CPFSA plan, worth S$69,923 today
+- SRS: one Great Eastern endowment single premium, worth S$17,434
+- Cash at bank is not on file. A Singlife investment cash account holds S$1,911
+- No target income is written down anywhere. The planning conversation centred on fixed expenses, and the biggest one is her hospitalisation cover: the full-pay private plan with no co-payment is projected to cost about S$480,000 in premiums from now to 88, with the yearly bill climbing past S$11,000 near the end
+
+**Her policies**
+
+- Prudential - PruLink Protection Account (2007): S$120,000 death with S$180,000 major CI and S$120,000 TPD to 65, cash value S$51,681, S$2,760/year
+- Prudential - PruShield Premier (2008) with PruExtra Premier CoPay (2013): private hospital at full coverage with no co-payment, about S$815/year via MediSave plus S$3,667 in cash - and the rider reprices on claims
+- Prudential - PruMortgage (2011): the S$500,000 death/TPD/terminal illness term, fully paid, coverage ended 16 May this year
+- Prudential - PruTriple Protect (2018): S$100,000 major CI, TPD to 75 and S$50,000 early CI to 80, S$3,288/year
+- Prudential - PruActive Life (2019): S$80,000 terminal illness and major CI with TPD to 70, S$4,789/year
+- Singlife - ElderShield Standard: monthly payouts for life on the 3-of-6 ADL trigger
+
+**Her savings and investments**
+
+- HSBC Life - Wealth Treasure (2019): S$1,833/month going in, worth S$203,929 today - the largest single asset in the file
+- Prudential - PruSave Limited Pay (2008, paid up): matures on her birthday in 2028 at a projected S$56,803
+- Prudential - PruActive Saver (2018, paid up): matures the same year at a projected S$54,685
+- Prudential - PruLifetime Income Plus (2025): S$1,062.50/month in premium against about S$100/month of cash benefit for life from May 2029, with a disability waiver that ends in 2029
+- Great Eastern - Great SP Series 12 (2023): a single premium that matured in September 2025 at S$10,500
+- Great Eastern - Great Life Endowment (2019): the SRS single premium, worth S$17,434
+
+**What the file shows**
+
+- Combined premiums run about S$49,250 a year in cash plus S$815 through MediSave
+- The two paid-up Prudential endowments return about S$111,500 within months of each other in 2028
+- The at-a-glance was drawn before the mortgage term expired: the S$620,000 of death cover and S$800,000 of TPD both leaned on it for S$500,000
+- Nominations are not done on the policies that track them. The estate checklist - will, LPA and AMD - is blank
 
 ## What you build for your case
 
