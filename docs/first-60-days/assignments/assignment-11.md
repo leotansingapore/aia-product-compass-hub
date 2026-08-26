@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to J and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to K and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the ten below, or have your trainer assign you one so the room covers a spread. Eight are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the eleven below, or have your trainer assign you one so the room covers a spread. Nine are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -64,6 +64,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | H | Mr & Mrs Ng, 61 & 60 | "The money is just sitting in fixed deposits. What should we do with it?" |
 | I | Bee Leng, 50 | "I want to stop work at 60 on S$5,000 a month. Am I on track?" |
 | J | Mr & Mrs Rajan, 63 & 54 | "S$5,000 a month for the two of us. The plans are everywhere - what do we actually have?" |
+| K | Ai Lin, 54 | "I'm self-employed. CPF LIFE is all I have coming - can I still hit S$5,000 a month?" |
 
 ### Case A - Marcus, 23
 
@@ -336,6 +337,50 @@ The Rajans are the fullest file in the deck. Nine years sit between husband and 
 - Nominations exist on exactly two policies in the entire household file
 - He carries no critical illness cover at all at 63. Hers stops at S$100,000 major stage
 - The estate checklist is blank for both of them: no will reviewed, no LPA, no AMD
+
+### Case K - Ai Lin, 54
+
+**Self-employed, 54, turns 55 this December · one daughter, Rachel, 30 · fifteen policies, every one with the same insurer · target: S$5,000/mo from 65**
+
+Ai Lin runs her own business and has bought insurance from one insurer for over twenty years - fifteen policies across mother and daughter, all with the same company. Her estate paperwork is the tidiest in the deck: the will and LPA are done, and even an AMD is signed. The money side is under more strain than the file first suggests. Her premium bill runs about S$86,000 a year in cash against thin spare savings, two of the policies she pays on Rachel have slipped into overdue premiums with automatic policy loans, and the only retirement income stream currently pointed at her is CPF LIFE.
+
+**Cash and CPF**
+
+- CPF today: S$4,000 in OA (earmarked for the mortgage), S$122,000 in Special and S$34,700 in MediSave, plus about S$226,000 of CPF-OA money already invested through the plan below
+- At 55 this December, the Full Retirement Sum of S$220,400 goes into her Retirement Account and about S$128,000 becomes withdrawable
+- Projected RA at 65 is about S$325,000, which pays roughly S$1,640/month on CPF LIFE Standard - at this moment, her only retirement income stream
+- Free cash is thin. The working file pencils in S$4,000 to S$17,000 of spare cash in any given year
+- Her target is S$5,000/month from 65
+
+**Her policies** (all with one insurer)
+
+- HealthShield Gold Max B with the Max VitalHealth B rider (2011): A-ward restructured cover at 95% with the co-payment capped at S$3,000 a year, about S$1,380/year via MediSave plus S$520 in cash
+- Health CashPlus (2011): hospital income of S$200/day (S$300 for accidents, S$450 in ICU), S$46/month
+- Prime Life (2003): a S$50,000 whole life with S$50,000 major CI, where bonuses lift the death cover to about S$118,000; cash value S$32,678 on S$27,440 paid in, S$98/month, nominated
+- S$ Guaranteed 15 For Life (2011): S$100,000 death/TPD/major CI, cash value S$52,921 on about S$83,000 paid in, S$470/month, nominated
+- Complete Critical Cover (2011): S$50,000 major CI with S$10,000 death cover, S$88/month
+- Premier Disability Cover (2013): S$3,000/month disability income at S$221/month, with a definition that only pays if she can perform neither her own job nor any other - a bar that is hard for a self-employed person to clear
+- Solitaire Personal Accident (2011): S$500,000 accidental death with accidental TPD of S$750,000 and a long rider stack, S$66/month, nominated
+
+**Policies she pays on Rachel**
+
+- Life Plus (2008): S$100,000 death/TPD/major CI on Rachel, cash value S$15,384. The premium has gone overdue and an automatic premium loan of about S$350 is running; no nomination
+- S$ Guaranteed 15 For Life (2011): another S$100,000 on Rachel, cash value S$17,566, also overdue with an automatic loan of about S$470; no nomination. She means to hand both policies over to Rachel now that Rachel is working
+
+**Her savings and investments**
+
+- Invest Easy (2021): a S$200,000 single premium from CPF-OA now worth S$226,424, split half into a global technology fund and half into regional equities, nominated 100% to Rachel
+- Smart Goal 10 (2024): S$24,687.50 a year until 2027, S$49,375 in so far, maturing December 2034 at a projected S$95,529
+- Pro Achiever 3.0 (April this year): S$45,000 a year into an adventurous index fund, S$52,046 in it today, nominated to Rachel
+
+**Rachel's own policies**
+
+- HealthShield Gold Max A with the VitalHealth A Cancer Care Booster: private-hospital cover at standard room, about S$300/year via MediSave plus S$1,290 in cash
+- Secure Flexi Term (2021): S$1,300,000 of death/TPD cover that expires in 2030, when she is 34, at S$409.50/year; no nomination
+- Solitaire Personal Accident II (2022): S$500,000 of accidental cover at S$880/year; no nomination
+- SmartRewards Saver (II) 25 (2019): a 25-year endowment at S$4,408/year with a payor waiver on her mum, cash value S$19,124, maturing 2044 at a projected S$155,044
+- Platinum Wealth Elite (2021): a S$27,973 single-premium legacy ILP carrying S$500,000 of death cover, worth S$23,987 today; no nomination
+- Beyond the two mum-paid whole-life plans, she has no critical illness cover of her own
 
 ## What you build for your case
 
