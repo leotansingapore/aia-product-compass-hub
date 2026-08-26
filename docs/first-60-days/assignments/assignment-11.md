@@ -250,6 +250,13 @@ Mr Ng is 61, Mrs Ng is 60, and both are winding down work over the next year or 
 - NTUC Income - GRO Retire Flex, S$15,300 via SRS: projected around S$226/month from 66 to 75
 - NTUC Income - GRO Gen Saver, S$31,683 via SRS in 2021, cash value about S$28,000
 
+**Two annuity quotes on the table**
+
+Another adviser has left two single-premium annuity illustrations with Mr Ng - S$100,000 each, both projected at 4.25%, neither signed. Part of your case is what you'd tell him about them.
+
+- FWD Life Income Plus pays nothing for the first two years, then S$3,290 a year from 63 (S$1,415 of it guaranteed) and steps up to S$3,555 a year from 85, with an illustrated death benefit at 90 of about S$110,976 - S$105,000 of that guaranteed
+- AIA Platinum Gift of Life Plus (II) pays S$1,500 a year in years two and three (S$648 guaranteed) and then S$3,600 a year from 64 onwards (S$1,200 guaranteed plus S$2,400 non-guaranteed), with an illustrated death benefit at 90 of about S$108,900 - S$102,200 of that guaranteed
+
 ### Case I - Bee Leng, 50
 
 **IT manager, ~S$20,000/mo plus a ~S$20,000 annual bonus · single, 50, parents in Penang · wants to stop work at 60 on S$5,000/mo in today's dollars · goal: "Am I on track?"**
