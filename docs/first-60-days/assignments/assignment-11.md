@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to K and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to L and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the eleven below, or have your trainer assign you one so the room covers a spread. Nine are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the twelve below, or have your trainer assign you one so the room covers a spread. Ten are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -65,6 +65,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | I | Bee Leng, 50 | "I want to stop work at 60 on S$5,000 a month. Am I on track?" |
 | J | Mr & Mrs Rajan, 63 & 54 | "S$5,000 a month for the two of us. The plans are everywhere - what do we actually have?" |
 | K | Ai Lin, 54 | "I'm self-employed. CPF LIFE is all I have coming - can I still hit S$5,000 a month?" |
+| L | Damien & Cheryl, 54 & 41 | "We pay S$76,000 a year in premiums. Is it all still pulling the same direction?" |
 
 ### Case A - Marcus, 23
 
@@ -381,6 +382,66 @@ Ai Lin runs her own business and has bought insurance from one insurer for over 
 - SmartRewards Saver (II) 25 (2019): a 25-year endowment at S$4,408/year with a payor waiver on her mum, cash value S$19,124, maturing 2044 at a projected S$155,044
 - Platinum Wealth Elite (2021): a S$27,973 single-premium legacy ILP carrying S$500,000 of death cover, worth S$23,987 today; no nomination
 - Beyond the two mum-paid whole-life plans, she has no critical illness cover of her own
+
+### Case L - Damien & Cheryl, 54 & 41
+
+**He is 54, she is 41 · three school-age children · over thirty policies across seven insurers · household premium commitment ~S$76,000/yr · goal: passive income from 65, with the medical premiums funded**
+
+The age gap runs the whole case. Damien retires while the youngest of their three children - Wei Jie, Wei Lun and Wei Ning - is still in school, and Cheryl works on for another two decades after he stops. The household file spans seven insurers and every member of the family, and the premium commitment lands around S$76,000 a year: his stack about S$29,600, hers with the children about S$46,500. Nobody has ever asked whether the thirty-plus policies still point the same way.
+
+**Cash and CPF**
+
+- His CPF: combined OA and SA around S$400,000. At 55 in 2028, about S$120,000 of OA becomes withdrawable, and his employment keeps adding roughly S$27,000 a year to OA
+- Her CPF is not on file, and neither is a bank balance - the planning notes lean on policy values and CPF rather than a cash pile
+- Retirement income already pointed at him: S$487/month from 65 to 75 out of a paid-up Elite Secure Income, and S$94/month from 60 for 15 years out of an SRS-funded Retirement Saver (IV) with a S$7,084 terminal dividend at 75
+- Hers: a projected S$450/month from 2029 out of a Platinum Wealth Venture ILP she funds at S$18,000 a year
+- No CPF LIFE projection appears in the file for either of them
+
+**His policies**
+
+- AIA - HSG Max B (2001), government restructured A ward with no rider: the S$3,500 deductible plus 10% co-insurance come out of pocket on every claim, about S$1,380/year via MediSave
+- A tower of cancer-only cover built across three insurers: AIA MultiStage Cancer Cover (S$100,000) and MultiStage Critical Protector (S$50,000), Manulife CancerCare Essential (S$100,000) and HeadStart (S$50,000), and an MSIG Ideal Care that pays S$50,000 on prostate cancer - about S$3,850 a year in cash, none of it covering a stroke or a heart attack
+- General CI sits thin beside the tower: AIA Prime Life (1999) at S$35,000 death with S$25,000 major CI (cash value S$24,999, yield about 1.45%), and NTUC Income Protection (1998) at S$50,000 death and major CI (cash value S$48,845, about 1.64%)
+- AIA - US$ Guaranteed 8 for Life (2004), fully paid at S$6,120: US$12,500 of death cover, surrender value about S$10,700 in SGD, roughly 1.8% p.a.
+- AIA - Solitaire Personal Accident II: S$250,000 accidental death with S$750,000 accidental TPD, S$632/year
+- Hospital income from two directions: AIA Pink of Health at S$100/day (S$228/year) and MSIG Wellness Cash at S$500/day for accidents only (S$238/year)
+- UOI - Privilege Protection Plan (2004): S$200,000 of death cover to age 100 at S$12.96 a year - the file's own note says to check who the beneficiary is
+
+**His savings plans**
+
+- AIA - Smart Growth 24 (2008, fully paid at S$20,130): matures 2032 at a projected S$39,718
+- AIA - Wealth Pro Advantage (2017): S$4,200/year, worth S$26,735 today
+- AIA - Pro Achiever 3.0, incepted only this May: S$12,000/year committed until 2035
+- Manulife - SavvyEndowment 19 (2025, S$5,000 single premium): a fixed-deposit equivalent maturing 2028 at about S$5,400
+- Manulife - SmartRetire III (2021): S$1,000/month with S$53,000 in so far, worth S$54,538
+- NTUC Income - RP SAIL (2014): S$520/month until 2028, S$74,360 paid, surrender value S$65,179, maturing 2053 at about S$144,980
+
+**Her policies**
+
+- AIA - HSG Max A private-hospital cover with the VitalHealth A rider: about S$600/year via MediSave plus S$2,740 in cash across base and rider
+- AIA - Secure Flexi Term Plus (II) 30 (2017): S$600,000 death/TPD at S$633.60/year, nominated to him
+- Manulife - LifeReady Plus 15 (2020): S$150,000 death/TPD with S$42,000 major CI and S$33,000 early CI, S$3,797/year until 2035
+- AIA - Guaranteed Protect Plus (II) (2020): S$50,000 across death, TPD and both CI stages until 75, halving from 76; S$1,549/year on a 12-year term
+- Manulife - Life Protector Plus (I) (2010): S$62,500 death and major CI, cash value S$14,476
+- AIA - S$ Guaranteed 15 for Life (2008, paid up at S$17,064): S$40,000 death/TPD, cash value S$15,341
+- Singlife - CareShield Standard: S$1,200/month severe-disability income, mostly via MediSave
+- AIA - Pink of Health at S$50/day, and a Solitaire Personal Accident of S$250,000
+- Tokio Marine - #goClassic (2020): S$12,000/year until 2040, S$72,000 in, surrender value S$53,325 against a stated policy value of S$72,140
+
+**The children**
+
+- All three carry a private-hospital shield with rider, a Star Protector Plus accident plan at S$434.71/year each, and a US$ Guaranteed 8 for Life earning about 2% p.a.
+- Wei Jie also holds a Tokio Marine whole life of S$150,000 death/TPD with S$75,000 early and major CI (S$89.39/month until 2039), plus a S$5,000 IGP Plus single premium now worth S$9,408
+- Wei Lun also holds two Guaranteed Protect Plus tranches - S$300,000 from 2017 and S$75,000 from 2020 - and his own IGP Plus worth S$9,408
+- Wei Ning, the youngest, holds a Guaranteed Protect Plus (II) with S$300,000 death/TPD, S$233,332 major CI and S$100,002 early CI at S$1,910/year until 2039
+- Nominations on the children's policies: almost none done
+
+**What the file shows**
+
+- Three of his oldest policies yield under 2% p.a. and carry a combined surrender value of about S$84,500
+- Outside the cancer tower, his CI cover totals S$75,000. He is 54
+- The couple's nominations to each other are mostly in place. The estate checklist itself - will, LPA, AMD - is blank for both
+- The Platinum Wealth Venture on her side names Wei Ning as secondary insured, so the plan is built to outlive them both
 
 ## What you build for your case
 
