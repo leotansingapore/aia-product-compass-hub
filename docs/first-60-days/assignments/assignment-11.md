@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to H and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to I and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the eight below, or have your trainer assign you one so the room covers a spread. Six are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the nine below, or have your trainer assign you one so the room covers a spread. Seven are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -62,6 +62,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | F | Jared, 29 | "I'm already beating the market. Why would I pay you?" |
 | G | Kelvin, 34 | "S&P 500 and chill is working. What do I need you for?" |
 | H | Mr & Mrs Ng, 61 & 60 | "The money is just sitting in fixed deposits. What should we do with it?" |
+| I | Bee Leng, 50 | "I want to stop work at 60 on S$5,000 a month. Am I on track?" |
 
 ### Case A - Marcus, 23
 
@@ -246,6 +247,38 @@ Mr Ng is 61, Mrs Ng is 60, and both are winding down work over the next year or 
 - Singlife - MyIncome Plus, S$30,496 via SRS: pays S$320/month from 65 to 74
 - NTUC Income - GRO Retire Flex, S$15,300 via SRS: projected around S$226/month from 66 to 75
 - NTUC Income - GRO Gen Saver, S$31,683 via SRS in 2021, cash value about S$28,000
+
+### Case I - Bee Leng, 50
+
+**IT manager, ~S$20,000/mo plus a ~S$20,000 annual bonus · single, 50, parents in Penang · wants to stop work at 60 on S$5,000/mo in today's dollars · goal: "Am I on track?"**
+
+Bee Leng grew up in Penang, built her career in Singapore, and has spent the past six years quietly buying retirement income plans - five of them, from four insurers, all pointed at ages 60 to 70. She plans with a 2.5% inflation assumption and wants S$5,000 a month in today's dollars from 60. The half of the file nobody has looked at is protection. Beyond MediShield Life there is no hospital plan on record and no critical illness cover at any stage, while her S$342,000 of death cover rides entirely on the endowments. Her parents are still in Penang - her dad is pushing 90, her mum is in her late 70s - and they are the named beneficiaries on part of the portfolio.
+
+**Cash, CPF and pensions**
+
+- CPF today: about S$23,000 in her Ordinary Account and S$216,000 in Special, with S$79,000 in MediSave. She turns 55 in 2031
+- Projected at 55: OA about S$176,700 and SA about S$329,600. After the Full Retirement Sum of S$262,000 moves into her Retirement Account, roughly S$244,000 stays in OA, liquid and withdrawable from 55
+- CPF LIFE Standard from 65: about S$1,980/month for life
+- A Malaysian pension pays her about S$1,500/month from age 55, for life
+- Cash at bank: not on file. What she has said is that putting away about S$42,000 a year for the next five years is comfortable on her income
+- SRS: already deployed into two single premiums (below), with no drawdown schedule planned
+
+**Existing policies**
+
+- Prudential - PRUActive Retirement II (first tranche), bought 2022 and fully paid up at S$120,176 (S$30,044 a year for four years): S$1,315/month from 60 to 70, of which S$1,141 is guaranteed, then a projected S$167,395 maturity at 70. Carries S$124,118 of death cover and an accidental disability income rider. Cash value today is about S$22,200 - far below what she has paid in
+- Prudential - PruGolden Retirement Reward II, 2020, paid up at S$111,283: S$1,000/month from 60 to 70 and a projected S$120,409 maturity at 70, about 3.69% p.a. on the illustrated basis. Cash value today about S$62,900
+- Prudential - PRUActive Retirement II (second tranche), late 2024, still in premium at S$2,466.86 a month on her credit card until late 2028: S$1,260/month from 60 to 70 (S$1,100 guaranteed) and a projected S$217,015 maturity at 70, with S$119,658 of death cover. About S$51,800 paid so far of the roughly S$118,400 total
+- NTUC Income - Revoease, 2019, paid up at S$30,000: a ten-year endowment maturing in 2029 when she is 53, sum assured S$31,516, cash value about S$24,000 today
+- Manulife - ReadyBuilder Single Pay, a S$15,273 SRS single premium from 2021: S$200/month from 60 to 70, S$16,800 of death cover, surrender value about S$13,600 today
+- Great Eastern - Great Invest Advantage 2, a S$50,000 SRS single premium bought three months ago: fund value S$48,501 split roughly half into a US income-and-growth fund and half into a multi-sector income fund, projected to pay about S$250/month in dividends from 60 for as long as she holds it, with S$50,000 of death cover
+
+**What the file shows, and what it leaves open**
+
+- The five policy income streams pay about S$4,025/month together, and four of them stop at 70. From 70 what remains is CPF LIFE and the Malaysian pension, plus the S$250 dividend
+- She has already sunk about S$380,000 of premiums into the six policies. The only premium still running is the second PRUActive, at about S$29,600 a year until late 2028
+- Nominations: done on the two paid-up Prudential policies (split three ways across family members) and on the Revoease (50/50 to her parents in Penang), with nothing on the other three
+- The estate checklist is blank - nobody has asked her about a will or an LPA, and there is no AMD
+- Protection sits where the at-a-glance left it: no integrated shield plan, no CI, no personal accident cover, and disability income riders that pay only on accidents
 
 ## What you build for your case
 
