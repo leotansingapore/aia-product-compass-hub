@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to I and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to J and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the nine below, or have your trainer assign you one so the room covers a spread. Seven are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the ten below, or have your trainer assign you one so the room covers a spread. Eight are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -63,6 +63,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | G | Kelvin, 34 | "S&P 500 and chill is working. What do I need you for?" |
 | H | Mr & Mrs Ng, 61 & 60 | "The money is just sitting in fixed deposits. What should we do with it?" |
 | I | Bee Leng, 50 | "I want to stop work at 60 on S$5,000 a month. Am I on track?" |
+| J | Mr & Mrs Rajan, 63 & 54 | "S$5,000 a month for the two of us. The plans are everywhere - what do we actually have?" |
 
 ### Case A - Marcus, 23
 
@@ -279,6 +280,54 @@ Bee Leng grew up in Penang, built her career in Singapore, and has spent the pas
 - Nominations: done on the two paid-up Prudential policies (split three ways across family members) and on the Revoease (50/50 to her parents in Penang), with nothing on the other three
 - The estate checklist is blank - nobody has asked her about a will or an LPA, and there is no AMD
 - Protection sits where the at-a-glance left it: no integrated shield plan, no CI, no personal accident cover, and disability income riders that pay only on accidents
+
+### Case J - Mr & Mrs Rajan, 63 & 54
+
+**He is 63 and easing out of work; she is 54 and still working · two adult sons plus his elderly mum on the household premium bill · a rental flat with a mortgage to 2038 · target: S$5,000/mo combined in today's dollars**
+
+The Rajans are the fullest file in the deck. Nine years sit between husband and wife, policies from four insurers cover five family members, and no one has ever put it on one page. Mr Rajan keeps barely S$20,000 in cash set aside for retirement, yet about S$137,000 sits inside two ILP savings plans growing at roughly 2%, another S$82,000 on a fund platform, and around US$42,000 in a US margin account where he trades index ETFs alongside single-name tech and semiconductor bets. Last year he also put a single premium of USD 170,000 into a long-term endowment. The couple's number is S$5,000 a month combined, in today's dollars.
+
+**Cash, CPF and property**
+
+- His cash set aside for retirement: about S$20,000 at the bank earning roughly 1%, plus around S$20,600 idling in the fund platform's cash account
+- His CPF: OA projected at about S$109,800 by 68, and a CPF LIFE estimate of roughly S$1,400/month that the household plan pencils in from age 68
+- Her CPF: at 55 next year she can withdraw about S$129,000 (OA ~S$61,000 with SA ~S$68,000), her RA sits at about S$228,200 with the Full Retirement Sum met, and CPF LIFE Standard estimates roughly S$1,690/month from 65 - which arrives in 2037
+- Investments: about S$82,200 on the fund platform across a dozen unit trusts and US ETFs, and the margin account holding roughly US$42,000 gross, US$35,800 net of financing
+- Property: the rental flat nets about S$900/month while its mortgage runs to 2038; rented out after the loan clears, the same unit could bring around S$3,500/month. The outstanding mortgage is also why her OA balance is spoken for
+
+**His policies**
+
+- Great Eastern - Living Assurance with CRB, 1993: S$100,000 death/TPD, cash value about S$129,700 - it has grown past the sum assured and now yields about 2.45% p.a. as a savings plan; S$226.50/month still going by GIRO, no nomination
+- Great Eastern - Great SupremeHealth A (2002), restructured A ward with no rider, so the deductible and 10% co-insurance come out of pocket on every claim: about S$1,639/year via MediSave plus S$165 in cash
+- Great Eastern - Premier Health Plan B (2005), a hospital income plan paying per day warded: S$146.91/month by GIRO
+- Great Eastern - ElderShield ValuePlus 400 (2009): S$400/month for up to 72 months on the 3-of-6 ADL trigger, S$71.61/year
+- AIA - Solitaire Personal Accident (2014): S$250,000 accidental death and dismemberment with reimbursement riders, S$41.21/month, no nomination
+- Manulife - InvestReady III, started 2024 at S$1,000/month until 2031 (eight years of S$12,000): invested in capital-appreciation funds, projected ~S$580/month in dividends from 69
+- Singlife - Savvy Invest II, 2023, fully paid at three years of S$10,000: parked 100% in the Fundsmith Equity Fund, projected ~S$200/month from 62
+- AIA - Platinum Infinite Wealth, mid-2025: a USD 170,000 single premium into a long-term endowment with a projected 3-4% p.a. yield - the one policy in the whole file with a nomination done
+
+**Her policies**
+
+- Great Eastern - Living Assurance with CRB, 1996: S$100,000 death/TPD with S$100,000 major-stage CI, cash value about S$88,100 and a yield of roughly 2.4% p.a., S$180.60/month, no nomination
+- Singlife - a term policy whose exact plan name is not on file: S$500,000 death/TPD at about S$700/year, no nomination
+- AIA - HealthShield Gold Max B (2001) with the VitalHealth B rider (2014): A-ward restructured cover at 95% with the co-payment capped at S$3,000, about S$1,284/year via MediSave plus S$440 in cash
+- AIA - Solitaire Personal Accident (2014): S$250,000 accidental death and dismemberment with S$375,000 accidental TPD, S$41.21/month, no nomination
+- Great Eastern - Premier Health Plan C hospital income: S$164.89/month by GIRO
+- Great Eastern - Prestige Life Rewards, bought with S$280,000 of premium financing: nets about S$450/month after the loan interest, and both the death benefit and the surrender value are whatever remains after the financed amount
+
+**The sons and his mum**
+
+- Arjun: AIA HealthShield Gold Max A private-hospital cover (2001) with the HSG Max VitalCare rider (2021), about S$624/year via MediSave plus S$961 in cash; an AIA Solitaire Personal Accident of S$100,000 at S$25.05/month - nominated, but with a spine and back-injury exclusion; and a Premier Health Plan B at S$33.03/month
+- Dinesh: Great Eastern SupremeHealth P Plus private-hospital cover (2006) with Great TotalCare P Signature (2014), about S$509/year via MediSave plus S$909 in cash - the rider reprices on claims-adjusted pricing; and an AIA Star Protector Plus at S$20,000 accidental cover, S$20.80/month
+- His mum: Great Eastern SupremeHealth B (2002) at B1 ward, about S$3,726/year via MediSave plus S$485 in cash, and the premium climbs with every age band
+
+**What the file shows**
+
+- Household premiums run about S$27,600 a year in cash - S$24,000 of that is the two ILP savings plans - and another S$6,500 a year through MediSave
+- As the plans stand, his passive income from 68 works out to about S$3,530/month against the S$5,000 target. Her CPF LIFE joins in 2037. The full S$3,500 rent arrives only after the mortgage clears in 2038
+- Nominations exist on exactly two policies in the entire household file
+- He carries no critical illness cover at all at 63. Hers stops at S$100,000 major stage
+- The estate checklist is blank for both of them: no will reviewed, no LPA, no AMD
 
 ## What you build for your case
 
