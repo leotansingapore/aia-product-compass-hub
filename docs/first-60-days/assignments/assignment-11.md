@@ -205,7 +205,7 @@ Mr Ng is 61, Mrs Ng is 60, and both are winding down work over the next year or 
 - Mr Ng's CPF: about S$466,000 in his Ordinary Account and S$478,000 in his Retirement Account. On CPF LIFE Standard, his payout from 65 works out to roughly S$2,960/month
 - Mrs Ng's CPF: about S$242,000 in OA and S$470,000 in RA, which puts her CPF LIFE payout from 65 at roughly S$2,820/month
 - Combined CPF LIFE from 65: about S$5,780/month against a S$6,000/month lifestyle that inflates every year. Between now and 65, no income stream pays out at all
-- Both have contributed to SRS for years; most of it already sits inside single-premium plans (below), and no withdrawal schedule has been worked out
+- SRS: most of it already sits inside the single-premium plans below, but each of them still holds about S$49,800 in cash inside the account, and he plans to contribute another S$15,300 this year. No withdrawal schedule has been worked out
 - Estate side: LPA done for both and CPF nominations done, but the wills are old, the property arrangement in them conflicts and needs redoing with an updated schedule of assets, no AMD has been signed, and almost none of the insurance policies carry a nomination
 
 **Mr Ng's policies**
@@ -241,6 +241,7 @@ Mr Ng is 61, Mrs Ng is 60, and both are winding down work over the next year or 
 - NTUC Income - GRO Retire Flex, S$15,300 via SRS in 2022: projected around S$216/month from 66 to 75
 - NTUC Income - GRO Gen Saver, S$60,167 via SRS in 2021, cash value about S$53,200: an endowment that runs to age 120, capital-guaranteed from year 10, with a secondary-insured option
 - NTUC Income - Ideal, a S$100/month ILP from 2006, about S$36,500 today in a global balanced fund earning around 4.2% p.a.
+- AIA - Invest Easy, held inside his SRS: pays about S$750 a year, in perpetuity
 
 **Mrs Ng's savings and retirement plans**
 
