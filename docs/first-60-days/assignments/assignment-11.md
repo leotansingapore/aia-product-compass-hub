@@ -16,7 +16,7 @@ submit_intro: "Everything you built for your case, plus your sharing-session boo
 booking_url: "https://www.pick-a-time.app/book/withleo"
 form_fields:
   - "Your case|section|Which case file you drew, and the portfolio summary you built from it."
-  - "Case you drew|text|Case A to G and the client's name, e.g. Case A - Marcus, 23."
+  - "Case you drew|text|Case A to H and the client's name, e.g. Case A - Marcus, 23."
   - "Portfolio summary - what the policies actually say|textarea|Every existing policy mapped: insurer, what it covers, sum assured, premium, and the gaps or overlaps the one-page summary made obvious. Be specific - 'no CI cover, only B1-ward hospitalisation', not 'underinsured'.|6"
   - "Link to your Policy Summary in the tool (optional)|text|Paste the share link from the Policy Summary Builder if you built one. Use a made-up name - this is a practice case."
   - "Your recommendation|section|Needs ranked to this client, the plans you'd propose, and why."
@@ -40,7 +40,7 @@ Everything you've done so far was one piece in isolation. A real client meeting 
 
 ## How the competition runs
 
-1. **Draw a case.** Pick one of the seven below, or have your trainer assign you one so the room covers a spread. Five are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
+1. **Draw a case.** Pick one of the eight below, or have your trainer assign you one so the room covers a spread. Six are protection-and-planning cases with real-looking policies from a few different insurers - the same mess you'll meet in the field. Two (F and G) are people who already invest on their own and want to know why they'd ever invest through you.
 2. **Build the case in the tools.** Map every policy into the [Policy Summary Builder](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/v2), use the [Total Wealth Concept](https://present.financeillustrator.com/total-wealth-concept) to frame the gaps, and build the before-and-after in the [executive summary](https://present.financeillustrator.com/total-wealth-concept/policy-summary-builder/summaries/executive-summary). Use a made-up name for the client in the tool.
 3. **Prepare your delivery.** Choose the CST angle that fits the client, work the numbers, and write out the three objections you most expect. Pull it together as a Google Slides presentation - the portfolio summary, the before-and-after, your CST flow, and the objections. If it helps to sketch the diagrams or map the gaps visually, [Excalidraw](https://excalidraw.com/) is a quick way to draw them out, whether you're prepping or drawing live in the room.
 4. **Present at the sharing session.** Ten minutes: walk the portfolio, deliver the CST live (drawn, not pre-drawn), show the before-and-after, then take objections thrown by the room.
@@ -61,6 +61,7 @@ Recognise the plans before you start. Skim the [Singapore Competitor Product Inv
 | E | Wei Ling, 31 | "Cover my parents' reliance on me, and my own future" |
 | F | Jared, 29 | "I'm already beating the market. Why would I pay you?" |
 | G | Kelvin, 34 | "S&P 500 and chill is working. What do I need you for?" |
+| H | Mr & Mrs Ng, 61 & 60 | "The money is just sitting in fixed deposits. What should we do with it?" |
 
 ### Case A - Marcus, 23
 
@@ -189,6 +190,64 @@ He has no number for either of the two things the money is for. Retirement is "k
 - No critical illness cover, no term of his own, nothing on his daughter
 
 Your job with Kelvin is the same as with Jared, and harder, because he's doing most things right and the fee argument is his to win for the first ten years. Build the case on what he can't see: the same S$1,000 a month, and where it lands. Run the [retirement income calculator](https://present.financeillustrator.com/total-wealth-concept/retirement/income) for what S$1,000 a month gets him by 60 against what the household will actually need, then put a number on the daughter's university and see whether the one pot covers both. Hold the [Day 52](../../first-60-days/week-9/day-52.md) stack against his holdings: VOO's dividends are taxed at source and it's US-situs on death; Nvidia is now 14% of everything he owns; his wife would be calling a helpdesk, not a person. Then the part that most of the room will skip: no critical illness cover means a diagnosis at 45 turns the VOO account into the medical fund. Decide how you'd reshape the S$1,000 without asking him for more, and decide whether you tell him about Irish-domiciled ETFs for the part he keeps - it gives away some of the tax argument's bite and earns the next meeting. The room will ask why you did or didn't.
+
+### Case H - Mr & Mrs Ng, 61 & 60
+
+**Retiring couple · three grown-up children · want to spend ~S$6,000/mo through retirement · ~S$960,000 in cash and fixed deposits · goal: "the money is just sitting in FDs - what should we do with it?"**
+
+Mr Ng is 61, Mrs Ng is 60, and both are winding down work over the next year or two, with three working-adult children - Jun Wei, Jun Hao and Jun Xin. A lifetime of saving has left them with more cash than plan: about S$480,000 each in bank deposits, most of it rolling through fixed deposits at around 2%, every renewal coming back at a lower rate, and three decades of policies from four insurers that nobody has ever put on one page for them.
+
+**Cash and CPF**
+
+- Cash: about S$480,000 each, roughly S$960,000 combined, mostly in fixed deposits earning around 2% p.a. and repricing downward at each rollover
+- Mr Ng's CPF: about S$466,000 in his Ordinary Account and S$478,000 in his Retirement Account. On CPF LIFE Standard, his payout from 65 works out to roughly S$2,960/month
+- Mrs Ng's CPF: about S$242,000 in OA and S$470,000 in RA, which puts her CPF LIFE payout from 65 at roughly S$2,820/month
+- Combined CPF LIFE from 65: about S$5,780/month against a S$6,000/month lifestyle that inflates every year. Between now and 65, no income stream pays out at all
+- Both have contributed to SRS for years; most of it already sits inside single-premium plans (below), and no withdrawal schedule has been worked out
+- Estate side: LPA done for both and CPF nominations done, but the wills are old, the property arrangement in them conflicts and needs redoing with an updated schedule of assets, no AMD has been signed, and almost none of the insurance policies carry a nomination
+
+**Mr Ng's policies**
+
+- Great Eastern - Living Assurance with CRB, bought 1990: S$50,000 death cover, cash value about S$72,400, premiums of S$1,240/year in cash still payable; the cash value grows at about 2.9% p.a.
+- Great Eastern - Whole Life with ERB, 1990: S$50,000 death cover, cash value about S$70,500, S$1,130/year, growing at about 3.2%
+- Great Eastern - GREAT SupremeHealth A Plus (2002), government restructured A ward, about S$1,667/year via MediSave, with the Great TotalCare A rider (95% of deductible, 50% of co-insurance up to S$3,000) at S$894/year in cash
+- NTUC Income - ElderShield Lifetime Care 400: S$400/month when unable to perform 3 of 6 ADLs, about S$585/year via MediSave
+- Singlife - group term life: S$300,000 death/TPD plus S$375,000 personal accident, S$42.30/month; a matching dependant plan covers Mrs Ng for the same amounts
+- Chubb - four policies paid in cash: MyHome Protect II home insurance (S$297/year), True Surgical Cash (S$63/month), True Vital Recovery hospital income of S$100/day (S$1,059/year), and Prime Care Cashback with S$80,000 accidental death cover (S$43/month)
+
+**Mrs Ng's policies**
+
+- Great Eastern - Living Assurance with CRB, 1990: S$25,000 death cover, cash value about S$35,300, S$580/year
+- Great Eastern - Whole Life with ERB, 1996: S$50,000 death cover with S$50,000 major-stage CI (no early-stage CI), cash value about S$46,000, S$1,137/year
+- Great Eastern - GREAT SupremeHealth A Plus, about S$1,632/year via MediSave, with Great TotalCare A at S$839/year in cash
+- Great Eastern - ElderShield ValuePlus 400, S$400/month on the same 3-of-6 ADL trigger, S$71.61/year via MediSave
+- Chubb - True Active Recovery Enhanced (2023): accidental permanent disability cover and accidental medical reimbursement up to S$9,000, plus a S$20,000 nursing benefit, at S$591/year; True Hospital Cash (2022) paying S$100/day at S$671/year; and True Surgical Cash (2021) at S$55/month
+
+**Policies the parents still pay on the children**
+
+- Great Eastern - Whole Life with ERB on Jun Wei, 1996: S$100,000 death and major-stage CI (no early-stage CI), cash value about S$33,800, S$1,096/year
+- Great Eastern - Whole Life with ERB on Jun Hao, 1996: the same shape - S$100,000 of cover, cash value about S$36,400, S$1,139/year
+- Singlife - Premier Life on Jun Hao, 1995: S$150,000 death cover, cash value about S$89,300, S$100/month payable for life, no nomination done
+- Great Eastern - GREAT SupremeHealth A Plus with the TotalCare A rider on each of the three children
+- Great Eastern - Junior Protector Excel on each child: S$30,000 accidental plans from 2008 at S$193/year apiece, still running even though all three are adults now
+
+**Mr Ng's savings and retirement plans**
+
+- Great Eastern - Great SP Series 12, three single-premium tranches at 2.50% p.a. for two years: S$31,500 and S$52,500 funded in cash, S$48,825 via SRS - all three mature within months of each other
+- Great Eastern - Prime Rewards (5+10), a 2016 single premium of S$15,300 via SRS, worth about S$10,700 today and estimated to reach around S$23,800 by 2031
+- Singlife - MyIncomePlus, a S$30,496 single premium via SRS in 2020: pays S$320/month from 67 to 76
+- NTUC Income - GRO Retire Flex, S$15,300 via SRS in 2022: projected around S$216/month from 66 to 75
+- NTUC Income - GRO Gen Saver, S$60,167 via SRS in 2021, cash value about S$53,200: an endowment that runs to age 120, capital-guaranteed from year 10, with a secondary-insured option
+- NTUC Income - Ideal, a S$100/month ILP from 2006, about S$36,500 today in a global balanced fund earning around 4.2% p.a.
+
+**Mrs Ng's savings and retirement plans**
+
+- Great Eastern - Great SP Series 12, a S$48,825 single premium via SRS, maturing in a few months
+- Singlife - MyIncome Plus, S$30,496 via SRS: pays S$320/month from 65 to 74
+- NTUC Income - GRO Retire Flex, S$15,300 via SRS: projected around S$226/month from 66 to 75
+- NTUC Income - GRO Gen Saver, S$31,683 via SRS in 2021, cash value about S$28,000
+
+Add up what the portfolio costs to hold: about S$17,100 a year in cash premiums and another S$5,200 through MediSave, continuing right through retirement, while the old whole-life policies across the household carry a combined cash value of roughly S$314,000. The couple's question is what to do with the S$960,000, but the case runs wider than the cash. The four years from now to 65 have no income stream behind them, CPF LIFE covers S$5,780 of a S$6,000 lifestyle inflating at 2.5% a year, and hospitalisation premiums climb with every age band. Decide which policies earn their keep and which cash values should move into the retirement plan, work out what the maturing SP tranches and the idle OA balances become next, and say what happens to the children's policies now that all three are working adults. Then close the estate gaps: the conflicting wills, the missing AMD, the nominations nobody did. The [retirement income calculator](https://present.financeillustrator.com/total-wealth-concept/retirement/income) and the [Retirement Healthcare Funding Calculator](https://present.financeillustrator.com/retirement-funding-calculator) are where to work the numbers, and the room will want to know how far S$960,000 plus S$314,000 of cash value actually goes against a S$6,000/month lifestyle that keeps inflating for thirty years.
 
 ## What you build for your case
 
