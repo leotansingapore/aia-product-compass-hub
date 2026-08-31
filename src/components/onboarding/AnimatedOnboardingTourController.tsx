@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { useGlobalTourReset } from "@/hooks/useGlobalTourReset";
-import { hasSeenAnimatedTour } from "./tourStorage";
+import { hasSeenAnimatedTour, isTourLandingPath } from "./tourStorage";
 
 const AnimatedOnboardingTour = lazy(() =>
   import("./AnimatedOnboardingTour").then(m => ({
@@ -35,6 +35,11 @@ export function AnimatedOnboardingTourController() {
       setOpen(true);
       return;
     }
+
+    // Never open itself over content the user deliberately navigated to (a
+    // shared playbook link, a specific lesson). Stays pending until they next
+    // land on a home surface.
+    if (!isTourLandingPath(location.pathname)) return;
 
     if (!hasSeenAnimatedTour(user.id, resetAt)) {
       const t = window.setTimeout(() => setOpen(true), 600);
