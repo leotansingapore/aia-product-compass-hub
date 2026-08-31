@@ -120,8 +120,11 @@ export function AdminViewSwitcher() {
   const activeLabel = viewAsTier ? TIER_META[viewAsTier].label : 'Admin';
   const ActiveIcon = viewAsTier ? TIER_META[viewAsTier].icon : Shield;
 
+  // Desktop offset clears the sidebar footer (account row + Sign out, ~121px
+  // tall). At md:bottom-16 the pill landed exactly on the account row and hid
+  // the signed-in email and role badge on every page an admin opened.
   return (
-    <div className="fixed bottom-[4.75rem] md:bottom-16 left-2 sm:left-4 z-[9991]">
+    <div className="fixed bottom-[4.75rem] md:bottom-36 left-2 sm:left-4 z-[9991]">
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button
