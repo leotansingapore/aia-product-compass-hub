@@ -419,23 +419,47 @@ const LEVEL_CONFIG = {
 function SectionHeader({
   item, isOwner, onRemove, onRename, shareToken,
   collapsed, onToggleCollapse, childCount,
-  dragHandleProps, isDragging,
+  dragHandleProps, isDragging, autoEdit, onAutoEditDone,
 }: {
   item: any; isOwner: boolean; onRemove: (id: string) => void;
   onRename: (id: string, label: string, level?: number) => void;
   shareToken?: string | null; collapsed: boolean; onToggleCollapse: () => void; childCount: number;
   dragHandleProps?: any; isDragging?: boolean;
+  /** Just created by "Add Section" — open the rename field and scroll to it. */
+  autoEdit?: boolean;
+  onAutoEditDone?: () => void;
 }) {
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(!!autoEdit);
   const [draft, setDraft] = useState(item.custom_content?.label || "Section");
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  // Consumed once: the placeholder ("New Stage") is selected on focus so the
+  // owner can type straight over it, and only for the freshly created heading
+  // — a later rename via the pencil should place the caret, not wipe the name.
+  const pendingAutoEdit = useRef(!!autoEdit);
 
   const level: 1 | 2 | 3 = (item.custom_content?.level as 1 | 2 | 3) || 1;
   const cfg = LEVEL_CONFIG[level];
   const LevelIcon = cfg.icon;
   const anchor = sectionAnchor(item.custom_content?.label, item.id);
 
-  const commit = () => { const trimmed = draft.trim() || "Section"; onRename(item.id, trimmed, level); setEditing(false); };
+  // Stay in sync with the flag rather than only reading it once at mount: this
+  // row can remount while the list settles after the insert, and an initial
+  // useState(autoEdit) silently lost the rename field when it did (reproduced
+  // 2 times in 3). The flag is cleared by the parent only once the rename is
+  // committed or cancelled, so a remount re-opens the field instead.
+  useEffect(() => {
+    if (autoEdit) setEditing(true);
+  }, [autoEdit]);
+
+  const scrolledForRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!autoEdit || scrolledForRef.current === item.id) return;
+    scrolledForRef.current = item.id;
+    document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [autoEdit, anchor, item.id]);
+
+  const finishAutoEdit = () => { if (autoEdit) onAutoEditDone?.(); };
+  const commit = () => { const trimmed = draft.trim() || "Section"; onRename(item.id, trimmed, level); setEditing(false); finishAutoEdit(); };
   const changeLevel = (newLevel: number) => onRename(item.id, item.custom_content?.label || "Section", newLevel);
 
   return (
@@ -468,7 +492,8 @@ function SectionHeader({
         )}
         {editing ? (
           <Input autoFocus value={draft} onChange={e => setDraft(e.target.value)}
-            onBlur={commit} onKeyDown={e => { if (e.key === "Enter") commit(); if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); } }}
+            onFocus={e => { if (pendingAutoEdit.current) { e.currentTarget.select(); pendingAutoEdit.current = false; } }}
+            onBlur={commit} onKeyDown={e => { if (e.key === "Enter") commit(); if (e.key === "Escape") { setDraft(item.custom_content?.label || "Section"); setEditing(false); finishAutoEdit(); } }}
             className={`h-7 border-0 border-b border-primary rounded-none px-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 ${cfg.textClass}`} />
         ) : (
           <span className={`${cfg.textClass} flex-1 leading-none truncate ${isOwner ? "cursor-pointer hover:text-primary transition-colors" : ""}`} onClick={() => isOwner && setEditing(true)}>
@@ -510,13 +535,14 @@ function SectionHeader({
 
 function SortableGroup({
   group, isOwner, onRemove, onRename, shareToken, collapsed, onToggleCollapse,
-  onInlineSave, isAuthenticated, globalStartIndex,
+  onInlineSave, isAuthenticated, globalStartIndex, autoEditSectionId, onAutoEditDone,
 }: {
   group: Group; isOwner: boolean; onRemove: (id: string) => void;
   onRename: (id: string, label: string, level?: number) => void;
   shareToken?: string | null; collapsed: boolean; onToggleCollapse: () => void;
   onInlineSave: (item: any, versionIdx: number, content: string) => Promise<void>;
   isAuthenticated: boolean; globalStartIndex: number;
+  autoEditSectionId?: string | null; onAutoEditDone?: () => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: group.key });
   const style = { transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 100 : undefined, opacity: isDragging ? 0.85 : 1 };
@@ -529,6 +555,8 @@ function SortableGroup({
           shareToken={shareToken} collapsed={collapsed} onToggleCollapse={onToggleCollapse}
           childCount={group.children.length} dragHandleProps={isOwner ? { ...attributes, ...listeners } : undefined}
           isDragging={isDragging}
+          autoEdit={!!autoEditSectionId && group.section.id === autoEditSectionId}
+          onAutoEditDone={onAutoEditDone}
         />
       )}
       {!collapsed && (
@@ -568,6 +596,7 @@ export default function PlaybookDetail() {
   const { entries: objections, loading: objectionsLoading } = useObjections();
 
   const [addDialogOpen, setAddDialogOpen] = useState(false);
+  const [justAddedSectionId, setJustAddedSectionId] = useState<string | null>(null);
   const [aiSuggestions, setAiSuggestions] = useState<{ script_id: string; reason: string; suggested_position: string }[] | null>(null);
   const [aiSummary, setAiSummary] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
@@ -603,10 +632,29 @@ export default function PlaybookDetail() {
 
   const handleAddSection = async (level: 1 | 2 | 3 = 1) => {
     if (!playbookId) return;
-    const maxOrder = items.length > 0 ? Math.max(...items.map(i => i.sort_order)) + 1 : 0;
     const labels = { 1: "New Stage", 2: "New Group", 3: "New Sub-group" };
-    const { error } = await supabase.from("script_playbook_items").insert({ playbook_id: playbookId, item_type: "section", sort_order: maxOrder, custom_content: { label: labels[level], level } } as any);
-    if (error) { toast.error("Failed to add section"); return; }
+
+    // The FIRST section of a playbook that already has scripts goes to the TOP,
+    // because a heading appended below every existing item heads nothing and
+    // leaves the owner dragging each script up into it one at a time. Every
+    // later section appends, which is what "add" normally means.
+    const hasSections = items.some(i => i.item_type === "section");
+    const sortOrder =
+      items.length === 0
+        ? 0
+        : hasSections
+          ? Math.max(...items.map(i => i.sort_order)) + 1
+          : Math.min(...items.map(i => i.sort_order)) - 1;
+
+    const { data, error } = await supabase
+      .from("script_playbook_items")
+      .insert({ playbook_id: playbookId, item_type: "section", sort_order: sortOrder, custom_content: { label: labels[level], level } } as any)
+      .select("id")
+      .single();
+    if (error || !data) { toast.error("Failed to add section"); return; }
+    // Opens the new heading straight into its rename field with the placeholder
+    // selected, and scrolls it into view, so it never has to be hunted for.
+    setJustAddedSectionId((data as { id: string }).id);
     queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
   };
 
@@ -940,7 +988,12 @@ export default function PlaybookDetail() {
                     <ChevronRight className="h-3 w-3 ml-0.5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-44">
+                {/* Radix hands focus back to this trigger AFTER its close
+                    animation, ~40ms after the new section's rename field has
+                    mounted and taken focus. That blurred the field and
+                    committed the placeholder name before the owner could type
+                    (traced: input at 201ms, stolen at 241ms). */}
+                <DropdownMenuContent align="end" className="w-44" onCloseAutoFocus={(e) => e.preventDefault()}>
                   <DropdownMenuItem onClick={() => handleAddSection(1)} className="gap-2"><Heading1 className="h-4 w-4" /> H1 — Stage</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAddSection(2)} className="gap-2"><Heading2 className="h-4 w-4" /> H2 — Group</DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleAddSection(3)} className="gap-2"><Heading3 className="h-4 w-4" /> H3 — Sub-group</DropdownMenuItem>
@@ -1157,6 +1210,8 @@ export default function PlaybookDetail() {
                       onInlineSave={handleInlineSave}
                       isAuthenticated={!!user}
                       globalStartIndex={globalIndexMap[group.children[0]?.id] ?? 0}
+                      autoEditSectionId={justAddedSectionId}
+                      onAutoEditDone={() => setJustAddedSectionId(null)}
                     />
                   );
                 })}
