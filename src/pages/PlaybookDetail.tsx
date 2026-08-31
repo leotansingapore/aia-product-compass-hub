@@ -210,7 +210,7 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
             role="button"
             tabIndex={0}
             onKeyDown={headerKeyToClick}
-            className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+            className="group cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
           >
             <div className="flex items-start gap-2 sm:gap-3">
               {isOwner && dragHandleProps && (
@@ -238,7 +238,7 @@ function ScriptCardBody({ item, index, isOwner, onRemove, onInlineSave, isAuthen
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     )}
-                    <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                    <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                   </div>
                 </div>
                 <div className="flex gap-1.5 mt-1.5 flex-wrap">
@@ -350,7 +350,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: { item: any; 
               role="button"
               tabIndex={0}
               onKeyDown={headerKeyToClick}
-              className="cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
+              className="group cursor-pointer hover:bg-muted/50 transition-colors py-3 px-3 sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-t-lg"
             >
               <div className="flex items-start gap-2 sm:gap-3">
                 {isOwner && (
@@ -371,7 +371,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: { item: any; 
                           <Trash2 className="h-3 w-3" />
                         </Button>
                       )}
-                      <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                      <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                     </div>
                   </div>
                   <div className="flex gap-1.5 mt-1.5 flex-wrap">
