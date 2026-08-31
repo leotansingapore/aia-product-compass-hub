@@ -1,16 +1,15 @@
-import { useEffect, useRef } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import { AlertTriangle, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useFeatureAccess } from '@/hooks/useFeatureAccess';
-import { toast } from '@/hooks/use-toast';
+import { TierLockedScreen } from '@/components/tier/TierLockedScreen';
 import { passesProductTierGate } from '@/lib/productTierAccess';
+import { TIER_LEVELS, type TierLevel } from '@/lib/tiers';
 
 interface RequireProductTierProps {
   /** `products.visible_tiers` for the product being rendered. */
   visibleTiers: string[] | null | undefined;
   children: React.ReactNode;
-  /** Override redirect destination. Defaults to `/`. */
+  /** Where the locked screen's "way out" link points. Defaults to `/`. */
   redirectTo?: string;
 }
 
@@ -23,7 +22,9 @@ interface RequireProductTierProps {
  *
  * Same behaviour contract as `RequireTier`: wait for `permissionsLoading`,
  * render an explicit error + Retry (never granting access) when the tier lookup
- * itself failed, otherwise toast + redirect when blocked.
+ * itself failed, otherwise render `TierLockedScreen` in place when blocked
+ * (rather than bouncing the user home with a toast that never said which
+ * module they had just tried to open).
  *
  * This is a client-side gate. See `passesProductTierGate` for the residual
  * server-side (RLS) gap.
@@ -33,22 +34,20 @@ export function RequireProductTier({
   children,
   redirectTo = '/',
 }: RequireProductTierProps) {
-  const location = useLocation();
   const { tier, isAdminBypass, permissionsLoading, accessError, retryAccess } = useFeatureAccess();
-  const toastShownRef = useRef(false);
 
   const allowed = passesProductTierGate(visibleTiers, tier, isAdminBypass);
 
-  useEffect(() => {
-    if (permissionsLoading || accessError) return;
-    if (!allowed && !toastShownRef.current) {
-      toastShownRef.current = true;
-      toast({
-        title: 'This module is locked',
-        description: 'Not included in your current access — ask your admin to unlock it.',
-      });
-    }
-  }, [allowed, permissionsLoading, accessError]);
+  // Lowest tier on the product's own allow-list, so the locked screen can name
+  // a real target instead of guessing from the feature matrix (this gate is
+  // per-product, not per-feature). Matched EXACTLY the way
+  // `passesProductTierGate` compares, so the screen can never promise a tier
+  // that would still be refused: a legacy or malformed `visible_tiers` value
+  // yields null ("an admin has to switch it on") rather than a wrong answer.
+  const requiredTier: TierLevel | null =
+    Array.isArray(visibleTiers) && visibleTiers.length > 0
+      ? (TIER_LEVELS.find((level) => visibleTiers.includes(level)) ?? null)
+      : null;
 
   if (permissionsLoading) {
     return (
@@ -83,8 +82,15 @@ export function RequireProductTier({
   }
 
   if (!allowed) {
-    const target = redirectTo === location.pathname ? '/' : redirectTo;
-    return <Navigate to={target} replace state={{ from: location }} />;
+    return (
+      <TierLockedScreen
+        sectionLabel="This module"
+        currentTier={tier}
+        requiredTier={requiredTier}
+        homeHref={redirectTo}
+        homeLabel="Back to what I can open"
+      />
+    );
   }
 
   return <>{children}</>;

@@ -10,6 +10,34 @@ const ROUTE_STORAGE_KEY = 'lastVisitedRoute';
 const EXCLUDED_ROUTES = ['/auth', '/force-password', '/reset-password'];
 
 /**
+ * Paths a route guard has refused for this user in this session.
+ *
+ * Route guards render in place now instead of redirecting, so without this the
+ * refused path is what gets saved as "last visited" — and the next visit to
+ * `/` restores it, dropping the user back on the same wall they just tried to
+ * leave. Being order-independent matters: the save effect and the guard's
+ * effect run in the same commit, so marking also CLEARS an already-stored
+ * value rather than assuming it hasn't been written yet.
+ */
+const blockedPaths = new Set<string>();
+
+export function markRouteBlocked(path: string) {
+  blockedPaths.add(path);
+  try {
+    const stored = localStorage.getItem(ROUTE_STORAGE_KEY);
+    if (stored && (stored === path || stored.startsWith(`${path}?`))) {
+      localStorage.removeItem(ROUTE_STORAGE_KEY);
+    }
+  } catch {
+    // localStorage unavailable
+  }
+}
+
+function isRouteBlocked(path: string) {
+  return blockedPaths.has(path);
+}
+
+/**
  * Tracks the current route in localStorage so the app can restore it after a refresh.
  * Only tracks/restores for authenticated users to prevent stale redirects after sign-out.
  */
@@ -41,7 +69,13 @@ export function RouteTracker() {
     if (currentPath === '/' || currentPath === '') {
       try {
         const stored = localStorage.getItem(ROUTE_STORAGE_KEY);
-        if (stored && stored !== '/' && !EXCLUDED_ROUTES.some(r => stored.startsWith(r))) {
+        const storedPath = stored?.split('?')[0] ?? '';
+        if (
+          stored &&
+          stored !== '/' &&
+          !EXCLUDED_ROUTES.some(r => stored.startsWith(r)) &&
+          !isRouteBlocked(storedPath)
+        ) {
           navigate(stored, { replace: true });
         }
       } catch {
@@ -54,6 +88,7 @@ export function RouteTracker() {
   useEffect(() => {
     if (!user) return;
     const fullPath = location.pathname + location.search;
+    if (isRouteBlocked(location.pathname)) return;
     if (!EXCLUDED_ROUTES.some(r => location.pathname.startsWith(r))) {
       try {
         localStorage.setItem(ROUTE_STORAGE_KEY, fullPath);

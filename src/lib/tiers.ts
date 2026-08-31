@@ -180,3 +180,43 @@ export const TIER_FEATURE_MATRIX: Record<TierLevel, readonly FeatureKey[]> = {
     [...POST_RNF_ADDITIONS],
   ),
 };
+
+/**
+ * Human-readable name per feature key, for anywhere we have to tell a user
+ * WHICH section they just hit a wall on. "This section is locked" was the old
+ * message and it never said which section, which is useless to someone who
+ * followed a link from a colleague and has no idea what they were sent.
+ */
+export const FEATURE_LABELS: Record<FeatureKey, string> = {
+  [FEATURES.HOME]: 'Home',
+  [FEATURES.BOOKMARKS]: 'Bookmarks',
+  [FEATURES.MY_ACCOUNT]: 'My Account',
+  [FEATURES.EXPLORER_TRACK]: 'Your First 14 Days',
+  [FEATURES.PRE_RNF_TRACK]: 'Pre-RNF Training',
+  [FEATURES.POST_RNF_TRACK]: 'Post-RNF Training',
+  [FEATURES.CMFAS]: 'CMFAS Exams',
+  [FEATURES.PRODUCTS]: 'Product Knowledge',
+  [FEATURES.SUPPLEMENTARY_TRAINING]: 'Supplementary Training',
+  [FEATURES.QUESTION_BANKS]: 'Question Banks',
+  [FEATURES.ROLEPLAY]: 'Roleplay Training',
+  [FEATURES.KB]: 'Knowledge Base',
+  [FEATURES.SALES_PLAYBOOKS]: 'Sales Playbooks',
+  [FEATURES.PLAYBOOKS]: 'Sales Playbooks',
+  [FEATURES.FLOWS]: 'Flows',
+  [FEATURES.SCRIPTS]: 'Scripts',
+  [FEATURES.OBJECTIONS]: 'Objection Handlers',
+  [FEATURES.SERVICING]: 'Servicing',
+  [FEATURES.CONCEPT_CARDS]: 'Concept Cards',
+  [FEATURES.CASE_VAULT]: 'Case Vault',
+  [FEATURES.CONSULTANT_LANDING]: 'Consultant Landing Page',
+};
+
+/**
+ * The tier immediately above `tier`, or null at the top. Upgrade requests are
+ * linear (Explorer -> Papers-taker -> Post-RNF), enforced by a DB CHECK, so a
+ * user can only ever ask for this one.
+ */
+export function nextTierAbove(tier: TierLevel): TierLevel | null {
+  const i = TIER_LEVELS.indexOf(tier);
+  return i >= 0 && i < TIER_LEVELS.length - 1 ? TIER_LEVELS[i + 1] : null;
+}

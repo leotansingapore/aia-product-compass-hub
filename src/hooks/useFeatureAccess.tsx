@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useUserTier } from '@/hooks/useUserTier';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useViewMode } from '@/components/admin/AdminViewSwitcher';
-import { FEATURES, TIER_FEATURE_MATRIX, type FeatureKey, type TierLevel } from '@/lib/tiers';
+import { FEATURES, TIER_FEATURE_MATRIX, TIER_LEVELS, type FeatureKey, type TierLevel } from '@/lib/tiers';
 
 /**
  * Features that ONLY the static matrix may grant — a `tier_permissions` row is
@@ -101,6 +101,26 @@ export function useFeatureAccess() {
     [permissionsByTier, tier, isAdminBypass],
   );
 
+  /**
+   * Lowest tier whose resolved permissions include `featureKey`, or null if no
+   * tier does. Read from the SAME `permissionsByTier` map (static matrix union
+   * DB rows) plus the same Explorer hard-exclusions that `can()` applies, so a
+   * locked screen can never name a tier that would not actually unlock the
+   * page. Ignores `isAdminBypass` on purpose: this answers "what does a real
+   * user need", not "can I see it".
+   */
+  const lowestTierFor = useCallback(
+    (featureKey: FeatureKey): TierLevel | null => {
+      for (const level of TIER_LEVELS) {
+        if (level === 'explorer' && featureKey === FEATURES.BOOKMARKS) continue;
+        if (level === 'explorer' && featureKey === FEATURES.SUPPLEMENTARY_TRAINING) continue;
+        if (permissionsByTier.get(level)?.has(featureKey)) return level;
+      }
+      return null;
+    },
+    [permissionsByTier],
+  );
+
   const canAny = useCallback(
     (featureKeys: readonly FeatureKey[]): boolean => {
       if (isAdminBypass) return true;
@@ -118,6 +138,7 @@ export function useFeatureAccess() {
   return {
     can,
     canAny,
+    lowestTierFor,
     tier: tier as TierLevel,
     isAdminBypass,
     /** True while admin role OR user tier is in flight — tier route guards must wait (see RequireTier). */

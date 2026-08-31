@@ -1,15 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import { AlertTriangle, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useFeatureAccess } from '@/hooks/useFeatureAccess';
-import { toast } from '@/hooks/use-toast';
-import type { FeatureKey } from '@/lib/tiers';
+import { TierLockedScreen } from '@/components/tier/TierLockedScreen';
+import { FEATURE_LABELS, type FeatureKey } from '@/lib/tiers';
 
 interface RequireTierProps {
   feature: FeatureKey;
   children: React.ReactNode;
-  /** Override redirect destination. Defaults to `/`. */
+  /** Where the locked screen's "way out" link points. Defaults to `/`. */
   redirectTo?: string;
 }
 
@@ -19,36 +17,24 @@ interface RequireTierProps {
  * `useFeatureAccess.isAdminBypass`. Intended to wrap route elements INSIDE
  * `<RequireAuth>`.
  *
- * On block: shows a toast ("Not available on your tier…") and redirects to
- * `/` (or `redirectTo`), so the user always lands on a tier-appropriate home.
+ * On block: renders `TierLockedScreen` IN PLACE. It used to toast and redirect
+ * to `/`, which meant anyone opening a link to a gated page (a playbook a
+ * colleague shared, a bookmark) silently lost the page and was told only that
+ * "this section" was locked. The screen names the section, names the tier that
+ * unlocks it, offers the existing upgrade-request flow, and links home — so
+ * nothing is lost and nobody is stranded.
  *
  * If the tier lookup itself FAILED we can't tell allowed from blocked, so we
  * render an explicit error + Retry instead of redirecting (which would look
  * like a downgrade to Explorer). Access is never granted on that path.
  *
- * Mirrors the shape of `RequireAuth`: uses `<Navigate replace state={{from}}>`
- * and waits for loading to settle before making a decision.
+ * Waits for loading to settle before making a decision, like `RequireAuth`.
  */
 export function RequireTier({ feature, children, redirectTo = '/' }: RequireTierProps) {
-  const location = useLocation();
-  const { can, isAdminBypass, permissionsLoading, accessError, retryAccess } = useFeatureAccess();
-  const toastShownRef = useRef(false);
+  const { can, lowestTierFor, tier, isAdminBypass, permissionsLoading, accessError, retryAccess } =
+    useFeatureAccess();
 
   const allowed = isAdminBypass || can(feature);
-
-  useEffect(() => {
-    if (permissionsLoading || accessError) return;
-    if (!allowed && !toastShownRef.current) {
-      toastShownRef.current = true;
-      // Informational, not destructive: this fires on ordinary app opens too
-      // (e.g. restoring a last-visited route after an access change), where a
-      // red error toast reads as something having gone wrong.
-      toast({
-        title: 'This section is locked',
-        description: 'Not included in your current access — ask your admin to unlock it.',
-      });
-    }
-  }, [allowed, permissionsLoading, accessError]);
 
   if (permissionsLoading) {
     return (
@@ -79,12 +65,17 @@ export function RequireTier({ feature, children, redirectTo = '/' }: RequireTier
   }
 
   if (!allowed) {
-    // Safety net: if the redirect target equals the current path (e.g. the
-    // fallback `/` itself ever gets gated by a tier this user lacks), we'd
-    // ping-pong here forever. Bail out to /auth to escape the loop instead
-    // of stack-overflowing the router.
-    const target = redirectTo === location.pathname ? '/auth' : redirectTo;
-    return <Navigate to={target} replace state={{ from: location }} />;
+    // Rendered in place, so there is no redirect target to ping-pong against
+    // even when `/` itself is gated — `redirectTo` is now just where the
+    // "way out" link points.
+    return (
+      <TierLockedScreen
+        sectionLabel={FEATURE_LABELS[feature] ?? 'This section'}
+        currentTier={tier}
+        requiredTier={lowestTierFor(feature)}
+        homeHref={redirectTo}
+      />
+    );
   }
 
   return <>{children}</>;
