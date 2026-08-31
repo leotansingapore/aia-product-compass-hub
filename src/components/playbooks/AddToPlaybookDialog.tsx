@@ -198,7 +198,15 @@ export function AddToPlaybookDialog({
     let filtered = scripts.filter(s => !usedScriptIds.has(s.id));
     if (search.trim()) {
       const q = search.toLowerCase();
-      filtered = filtered.filter(s => s.stage.toLowerCase().includes(q) || s.category.toLowerCase().includes(q));
+      // Match everything the row actually shows as a chip. Searching "pre-retiree"
+      // used to miss the scripts tagged pre-retiree whose title never says it —
+      // the tag was on screen but unsearchable.
+      filtered = filtered.filter(s =>
+        s.stage.toLowerCase().includes(q) ||
+        s.category.toLowerCase().includes(q) ||
+        (s.target_audience?.toLowerCase().includes(q) ?? false) ||
+        (s.script_role?.toLowerCase().includes(q) ?? false)
+      );
     }
     if (categoryFilter) filtered = filtered.filter(s => s.category === categoryFilter);
     if (audienceFilter) filtered = filtered.filter(s => s.target_audience === audienceFilter);
@@ -210,7 +218,11 @@ export function AddToPlaybookDialog({
     let filtered = objections.filter(o => !usedObjectionIds.has(o.id));
     if (search.trim()) {
       const q = search.toLowerCase();
-      filtered = filtered.filter(o => o.title.toLowerCase().includes(q) || o.category.toLowerCase().includes(q));
+      filtered = filtered.filter(o =>
+        o.title.toLowerCase().includes(q) ||
+        o.category.toLowerCase().includes(q) ||
+        (o.tags?.some(t => t.toLowerCase().includes(q)) ?? false)
+      );
     }
     if (objCategoryFilter) filtered = filtered.filter(o => o.category === objCategoryFilter);
     return filtered;
