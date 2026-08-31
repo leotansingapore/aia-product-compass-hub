@@ -367,7 +367,7 @@ function SortableObjectionCard({ item, index, isOwner, onRemove }: { item: any; 
                     </CardTitle>
                     <div className="flex items-center gap-1 shrink-0">
                       {isOwner && (
-                        <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); setShowRemoveConfirm(true); }}>
+                        <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:text-destructive" onClick={(e) => { e.stopPropagation(); setShowRemoveConfirm(true); }} title="Remove">
                           <Trash2 className="h-3 w-3" />
                         </Button>
                       )}
