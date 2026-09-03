@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, MessageSquare, Lightbulb, BookOpen, Loader2, Sparkles, Copy, CheckCircle2, Trophy, Flame, Heart, Star, Shield, Zap, FileText, Mail, Layout, Mic, MessageCircle, Presentation, Quote, ListChecks, GraduationCap, Share2, Image as ImageIcon, AlertCircle, ChevronRight, CircleDot, Code2, Megaphone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download, User, Briefcase, Users, Target, MessageSquare, Lightbulb, BookOpen, Loader2, Sparkles, Copy, CheckCircle2, Trophy, Flame, Heart, Star, Shield, Zap, FileText, Mail, Layout, Mic, MessageCircle, Presentation, Quote, ListChecks, GraduationCap, Share2, Image as ImageIcon, AlertCircle, ChevronRight, CircleDot, Code2, Megaphone, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -342,22 +342,6 @@ const TABS = [
   { id: "output", label: "Brand Output", icon: Sparkles },
 ];
 
-// ============ SECTION PROGRESS BAR ============
-
-function SectionProgress({ label, fields, formData }: { label: string; fields: (keyof FormData)[]; formData: FormData }) {
-  const filled = fields.filter(f => formData[f]?.trim()).length;
-  const pct = Math.round((filled / fields.length) * 100);
-  return (
-    <div className="flex items-center gap-3 text-sm">
-      <span className="text-muted-foreground min-w-[80px]">{label}</span>
-      <Progress value={pct} className="h-2 flex-1" />
-      <span className={`font-medium min-w-[40px] text-right ${pct === 100 ? 'text-green-500' : 'text-muted-foreground'}`}>
-        {pct === 100 ? <CheckCircle2 className="h-4 w-4 inline" /> : `${pct}%`}
-      </span>
-    </div>
-  );
-}
-
 // ============ CONVICTION CARD ============
 
 function ConvictionCard({ icon: Icon, title, text }: { icon: React.ElementType; title: string; text: string }) {
@@ -369,6 +353,37 @@ function ConvictionCard({ icon: Icon, title, text }: { icon: React.ElementType; 
         <p className="text-xs text-muted-foreground mt-1">{text}</p>
       </div>
     </div>
+  );
+}
+
+// ============ OPTIONAL DETAIL ============
+// Every section leads with the questions the progress bar actually counts.
+// The rest sit behind this disclosure, so nobody opens a tab to 50 empty boxes.
+
+function MoreDetail({
+  title = "Add more depth (optional)",
+  count,
+  filled,
+  children,
+}: {
+  title?: string;
+  count: number;
+  filled: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <details className="group rounded-lg border border-dashed">
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-center gap-2 rounded-lg px-3 py-2.5 transition-colors hover:bg-muted/40">
+          <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+          <span className="text-sm font-medium">{title}</span>
+          <span className="ml-auto text-xs text-muted-foreground">
+            {filled > 0 ? `${filled} of ${count} answered` : `${count} questions`}
+          </span>
+        </div>
+      </summary>
+      <div className="space-y-4 px-3 pb-4 pt-1">{children}</div>
+    </details>
   );
 }
 
@@ -397,6 +412,15 @@ export default function FinancialAdvisorDifferentiation() {
   const [isSubmittingToMentor, setIsSubmittingToMentor] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const hasHydrated = useRef(false);
+  // Which audience the Audience tab is showing. Two 30-field columns side by
+  // side read as one 60-field wall, so we show one at a time.
+  const [audienceFocus, setAudienceFocus] = useState<1 | 2>(1);
+  // Set once the first autosave lands, so the header can say so out loud.
+  const [hasSaved, setHasSaved] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  // Last state before a bulk action (sample fill, profile fill, copy, clear)
+  // so every one of them can offer Undo instead of a confirm dialog.
+  const undoSnapshot = useRef<FormData | null>(null);
 
   // Hydrate from localStorage once we know the user.
   useEffect(() => {
@@ -429,6 +453,8 @@ export default function FinancialAdvisorDifferentiation() {
     if (!hasHydrated.current) return;
     try {
       localStorage.setItem(storageKey, JSON.stringify(formData));
+      // Don't claim "Saved" over an untouched worksheet.
+      if (Object.values(formData).some(v => v?.trim())) setHasSaved(true);
     } catch (e) {
       console.warn("FADS tool: failed to persist", e);
     }
@@ -485,16 +511,31 @@ export default function FinancialAdvisorDifferentiation() {
     }
   }, [tab, navigate]);
 
+  // Switching step used to keep the old scroll offset, so Next from the bottom
+  // of a long tab landed you halfway down the next one.
+  const firstTabRender = useRef(true);
+  useEffect(() => {
+    if (firstTabRender.current) {
+      firstTabRender.current = false;
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeTab]);
+
   const updateFormData = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // Overall progress
-  const overallProgress = useMemo(() => {
-    const allFields = Object.values(TAB_FIELDS).flat();
-    const filled = allFields.filter(f => formData[f]?.trim()).length;
-    return Math.round((filled / allFields.length) * 100);
-  }, [formData]);
+  const countFilled = (fields: (keyof FormData)[]) => fields.filter(f => formData[f]?.trim()).length;
+
+  // Overall progress counts the same key questions each section shows above its
+  // optional block, so the percentage always matches what is on screen.
+  const scoredFields = useMemo(() => Object.values(TAB_FIELDS).flat(), []);
+  const answeredCount = useMemo(() => scoredFields.filter(f => formData[f]?.trim()).length, [formData, scoredFields]);
+  const overallProgress = Math.round((answeredCount / scoredFields.length) * 100);
+  // Includes the optional questions, so a bulk action can never quietly
+  // overwrite work that the score does not happen to count.
+  const hasAnyAnswer = useMemo(() => Object.values(formData).some(v => v?.trim()), [formData]);
 
   // Tab progress
   const tabProgress = useMemo(() => {
@@ -526,9 +567,31 @@ export default function FinancialAdvisorDifferentiation() {
     }
   };
 
+  // Every bulk action snapshots first and offers Undo in its toast. Nothing
+  // here should be able to wipe half an hour of typing with one click.
+  const snapshotForUndo = () => {
+    undoSnapshot.current = formData;
+  };
+
+  const undoToast = (message: string) => {
+    toast.success(message, {
+      action: {
+        label: "Undo",
+        onClick: () => {
+          const snap = undoSnapshot.current;
+          if (!snap) return;
+          setFormData(snap);
+          undoSnapshot.current = null;
+          toast.success("Put your answers back");
+        },
+      },
+    });
+  };
+
   // Prefill audience from profile
   const applyProfilePrefill = (profileKey: keyof typeof CLIENT_PROFILES, num: 1 | 2) => {
     const p = CLIENT_PROFILES[profileKey];
+    snapshotForUndo();
     const pre = num === 1 ? "audience1" : "audience2";
     setFormData(prev => ({
       ...prev,
@@ -560,7 +623,31 @@ export default function FinancialAdvisorDifferentiation() {
       [`${pre}IntangibleSolutions`]: p.intangibleSolutions,
       [`${pre}Differentiators`]: p.differentiators,
     } as any));
-    toast.success(`Filled Audience #${num} with ${p.name} profile`);
+    undoToast(`Filled Audience #${num} with the ${p.name} profile`);
+  };
+
+  // Copies audience #1 across so a near-identical second group is an edit,
+  // not 30 fields of retyping.
+  const copyAudienceAcross = () => {
+    snapshotForUndo();
+    setFormData(prev => {
+      const next: FormData = { ...prev };
+      for (const key of Object.keys(prev) as (keyof FormData)[]) {
+        if (!key.startsWith("audience1")) continue;
+        const twin = key.replace("audience1", "audience2") as keyof FormData;
+        if (twin in next) next[twin] = prev[key];
+      }
+      return next;
+    });
+    undoToast("Copied Audience #1 into Audience #2");
+  };
+
+  const clearEverything = () => {
+    snapshotForUndo();
+    setFormData(INITIAL_FORM);
+    setAiPolish({});
+    setShowResetConfirm(false);
+    undoToast("Cleared every answer");
   };
 
   const applyFrameworkTemplate = (key: keyof typeof FRAMEWORKS) => {
@@ -573,11 +660,12 @@ export default function FinancialAdvisorDifferentiation() {
     }));
   };
 
-  // Fill random for demo
-  const fillRandomAnswers = () => {
+  // A worked example of every answer, used to show a learner what "good" looks
+  // like before they write their own.
+  const buildSampleAnswers = (): FormData => {
     const p1 = CLIENT_PROFILES.profileA;
     const p2 = CLIENT_PROFILES.profileB;
-    setFormData({
+    return ({
       personalityStyle: "empathetic",
       coreValues: "Integrity, Family, Excellence",
       beliefs: "Financial planning should be simple and understandable for everyone",
@@ -631,7 +719,22 @@ export default function FinancialAdvisorDifferentiation() {
       selectedFramework: "fat", customFramework: "",
       endResultStatement: "I help busy working fathers achieve financial freedom and peace of mind through my F.A.T. Method",
     });
-    toast.success("Filled with sample answers");
+  };
+
+  // "blanks" leaves anything already typed alone, which is what you want once
+  // a learner has started. "all" only runs on a genuinely empty worksheet.
+  const applySample = (mode: "blanks" | "all") => {
+    const sample = buildSampleAnswers();
+    snapshotForUndo();
+    setFormData(prev => {
+      if (mode === "all") return sample;
+      const next = { ...prev };
+      for (const key of Object.keys(sample) as (keyof FormData)[]) {
+        if (!next[key]?.trim()) next[key] = sample[key];
+      }
+      return next;
+    });
+    undoToast(mode === "all" ? "Filled every question with sample answers" : "Filled the blanks with sample answers");
   };
 
   // Build the brand brief JSON for AI/content strategist
@@ -1190,9 +1293,10 @@ export default function FinancialAdvisorDifferentiation() {
 
   // ============ RENDER HELPERS ============
 
-  const renderField = (field: keyof FormData, label: string, placeholder: string, rows = 3) => (
-    <div>
+  const renderField = (field: keyof FormData, label: string, placeholder: string, rows = 3, hint?: string) => (
+    <div className="space-y-1.5">
       <Label htmlFor={field}>{label}</Label>
+      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
       {rows <= 1 ? (
         <Input
           id={field}
@@ -1212,57 +1316,82 @@ export default function FinancialAdvisorDifferentiation() {
     </div>
   );
 
+  // Ten questions up front, the other fifteen behind a disclosure. The ten are
+  // exactly the ones TAB_FIELDS scores, so progress matches what you can see.
+  const audienceKeyFields = (num: 1 | 2): (keyof FormData)[] => {
+    const pre = num === 1 ? "audience1" : "audience2";
+    return TAB_FIELDS.audience.filter(f => String(f).startsWith(pre));
+  };
+
   const renderAudienceCard = (num: 1 | 2) => {
     const pre = num === 1 ? "audience1" : "audience2";
     const color = num === 1 ? "text-primary" : "text-orange-500";
+    const optionalFields = [
+      `${pre}Gender`, `${pre}Income`, `${pre}MaritalStatus`, `${pre}Kids`, `${pre}Citizenship`,
+      `${pre}HoldsBack`, `${pre}Environment`, `${pre}Entertainment`, `${pre}MoneyRelationship`,
+      `${pre}Communication`, `${pre}GroupDescription`,
+      `${pre}AdvisorFear2`, `${pre}AdvisorFear3`, `${pre}AdvisorFear4`, `${pre}AdvisorFear5`,
+    ] as (keyof FormData)[];
     return (
       <Card>
         <CardHeader>
           <CardTitle className={color}>
             {num === 1 ? "Primary" : "Secondary"} Audience #{num}
           </CardTitle>
-          <CardDescription>Deep profile of your {num === 1 ? "ideal" : "secondary"} client</CardDescription>
+          <CardDescription>
+            {num === 1
+              ? "Your ideal client. These ten answers feed every asset the tool builds."
+              : "A second group you serve well. Same ten answers."}
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="bg-muted/50 p-3 rounded-lg mb-4">
-            <p className="text-xs font-medium text-muted-foreground mb-2">DEMOGRAPHICS</p>
-            <div className="grid grid-cols-2 gap-3">
-              {renderField(`${pre}Age` as keyof FormData, "Age Range", "e.g. 30-48", 1)}
-              {renderField(`${pre}Gender` as keyof FormData, "Gender", "e.g. Male", 1)}
-              {renderField(`${pre}Occupation` as keyof FormData, "Occupation", "e.g. Auditor", 1)}
-              {renderField(`${pre}Income` as keyof FormData, "Income Range", "e.g. Middle income", 1)}
-              {renderField(`${pre}MaritalStatus` as keyof FormData, "Marital Status", "e.g. Married", 1)}
-              {renderField(`${pre}Kids` as keyof FormData, "Kids", "e.g. 1+", 1)}
-              {renderField(`${pre}Citizenship` as keyof FormData, "Citizenship", "e.g. SG Citizen", 1)}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {renderField(`${pre}Age` as keyof FormData, "Age Range", "e.g. 30-48", 1)}
+            {renderField(`${pre}Occupation` as keyof FormData, "Occupation", "e.g. Auditor", 1)}
           </div>
-          <p className="text-xs font-medium text-muted-foreground">PSYCHOGRAPHICS</p>
           {renderField(`${pre}Challenges` as keyof FormData, "Current Challenges & Roadblocks", "What tangible and intangible barriers do they face?", 3)}
           {renderField(`${pre}KeepsAwake` as keyof FormData, "What Keeps Them Up at Night?", "Their biggest worries and anxieties", 2)}
-          {renderField(`${pre}HoldsBack` as keyof FormData, "What Holds Them Back?", "What stops them from achieving their desired state on their own?", 2)}
-          {renderField(`${pre}Fears` as keyof FormData, "Primary Fears (Shame / Survival / Social / Self-Actualization)", "Financial fears, social anxieties, survival concerns", 2)}
-          {renderField(`${pre}Environment` as keyof FormData, "Environment & Lifestyle", "What kind of environment is this audience in?", 2)}
-          {renderField(`${pre}Entertainment` as keyof FormData, "Entertainment", "What do they do for entertainment?", 1)}
-          {renderField(`${pre}MoneyRelationship` as keyof FormData, "Relationship with Money", "What's their relationship with money?", 2)}
+          {renderField(`${pre}Fears` as keyof FormData, "Primary Fears", "Financial fears, social anxieties, survival concerns", 2, "Shame, survival, social standing or self-actualisation.")}
           {renderField(`${pre}DesiredState` as keyof FormData, "Desired State vs Current State", "Where do they want to be vs where they are now?", 3)}
           {renderField(`${pre}SecretDesires` as keyof FormData, "Secret Desires", "What do they secretly want most?", 2)}
-          {renderField(`${pre}Communication` as keyof FormData, "Preferred Communication", "e.g. Telegram (casual), WhatsApp (work)", 1)}
           {renderField(`${pre}Mistakes` as keyof FormData, "Top 3 Mistakes They Are Making", "Common financial mistakes related to the problem you solve", 2)}
           {renderField(`${pre}Objections` as keyof FormData, "Common Objections", "What objections do they usually give?", 2)}
-          {renderField(`${pre}GroupDescription` as keyof FormData, "How Else Would You Describe This Group?", "General traits, mindset, personality", 2)}
-          <div className="bg-muted/50 p-3 rounded-lg">
-            <p className="text-xs font-medium text-muted-foreground mb-2">5 FEARS ABOUT WORKING WITH ADVISORS</p>
-            <div className="space-y-2">
-              {[1, 2, 3, 4, 5].map(i => (
-                <Input
-                  key={i}
-                  value={(formData as any)[`${pre}AdvisorFear${i}`]}
-                  onChange={(e) => updateFormData(`${pre}AdvisorFear${i}` as keyof FormData, e.target.value)}
-                  placeholder={`Fear ${i}`}
-                />
-              ))}
+          {renderField(`${pre}AdvisorFear1` as keyof FormData, "Their Biggest Fear About Advisors", "e.g. Worried the advisor puts commission first", 1, "One is enough here. Four more sit in the optional block below.")}
+
+          <MoreDetail count={optionalFields.length} filled={countFilled(optionalFields)}>
+            <div>
+              <p className="text-xs font-medium text-muted-foreground mb-2">DEMOGRAPHICS</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {renderField(`${pre}Gender` as keyof FormData, "Gender", "e.g. Male", 1)}
+                {renderField(`${pre}Income` as keyof FormData, "Income Range", "e.g. Middle income", 1)}
+                {renderField(`${pre}MaritalStatus` as keyof FormData, "Marital Status", "e.g. Married", 1)}
+                {renderField(`${pre}Kids` as keyof FormData, "Kids", "e.g. 1+", 1)}
+                {renderField(`${pre}Citizenship` as keyof FormData, "Citizenship", "e.g. SG Citizen", 1)}
+              </div>
             </div>
-          </div>
+            <div className="space-y-4">
+              <p className="text-xs font-medium text-muted-foreground">PSYCHOGRAPHICS</p>
+              {renderField(`${pre}HoldsBack` as keyof FormData, "What Holds Them Back?", "What stops them from achieving their desired state on their own?", 2)}
+              {renderField(`${pre}Environment` as keyof FormData, "Environment & Lifestyle", "What kind of environment is this audience in?", 2)}
+              {renderField(`${pre}Entertainment` as keyof FormData, "Entertainment", "What do they do for entertainment?", 1)}
+              {renderField(`${pre}MoneyRelationship` as keyof FormData, "Relationship with Money", "What's their relationship with money?", 2)}
+              {renderField(`${pre}Communication` as keyof FormData, "Preferred Communication", "e.g. Telegram (casual), WhatsApp (work)", 1)}
+              {renderField(`${pre}GroupDescription` as keyof FormData, "How Else Would You Describe This Group?", "General traits, mindset, personality", 2)}
+            </div>
+            <div>
+              <p className="text-xs font-medium text-muted-foreground mb-2">FOUR MORE FEARS ABOUT ADVISORS</p>
+              <div className="space-y-2">
+                {[2, 3, 4, 5].map(i => (
+                  <Input
+                    key={i}
+                    value={(formData as any)[`${pre}AdvisorFear${i}`]}
+                    onChange={(e) => updateFormData(`${pre}AdvisorFear${i}` as keyof FormData, e.target.value)}
+                    placeholder={`Fear ${i}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </MoreDetail>
         </CardContent>
       </Card>
     );
@@ -1281,71 +1410,110 @@ export default function FinancialAdvisorDifferentiation() {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">F.A.D.S.</h1>
-          <p className="text-xl text-muted-foreground mb-2">Financial Advisor Differentiation Stack</p>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
-            Build your unique personal brand. Define your purpose, understand your audience,
-            and craft compelling messaging that sets you apart. Your completed profile generates
-            a brand brief for content strategists and AI agents.
-          </p>
-
-          {/* Overall Progress */}
-          <div className="mt-6 max-w-lg mx-auto">
-            <div className="flex justify-between text-sm text-muted-foreground mb-2">
-              <span>Overall Progress</span>
-              <span className={overallProgress === 100 ? "text-green-500 font-semibold" : ""}>{overallProgress}%</span>
+        <div className="mb-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">F.A.D.S.</h1>
+              <p className="text-base sm:text-lg text-muted-foreground">Financial Advisor Differentiation Stack</p>
+              <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+                Answer the questions once. The last step turns them into your social bios, story posts,
+                a first-appointment deck and a one-page brochure you can hand a client.
+              </p>
             </div>
-            <Progress value={overallProgress} className="h-3" />
+            <div className="flex shrink-0 flex-col items-start gap-2 sm:items-end">
+              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                {hasSaved ? (
+                  <><CheckCircle2 className="h-3.5 w-3.5 text-green-600 dark:text-green-500" /> Saved on this device</>
+                ) : (
+                  "Your answers save as you type"
+                )}
+              </span>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => applySample(hasAnyAnswer ? "blanks" : "all")}
+                  className="gap-2"
+                  title={hasAnyAnswer ? "Only fills questions you have left empty" : "See a worked example in every field"}
+                >
+                  <Lightbulb className="h-4 w-4" />
+                  {hasAnyAnswer ? "Fill the blanks" : "Show me an example"}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setShowResetConfirm(true)}
+                  disabled={!hasAnyAnswer}
+                  className="gap-2 text-muted-foreground"
+                >
+                  <Trash2 className="h-4 w-4" /> Clear all
+                </Button>
+              </div>
+            </div>
           </div>
 
-          {/* Per-section mini progress */}
-          <div className="mt-4 max-w-lg mx-auto space-y-1">
-            {Object.entries(TAB_FIELDS).map(([tabId, fields]) => (
-              <SectionProgress key={tabId} label={TABS.find(t => t.id === tabId)?.label || tabId} fields={fields} formData={formData} />
-            ))}
-          </div>
-
-          {/* Demo fill */}
-          <div className="mt-6">
-            <Button onClick={fillRandomAnswers} variant="outline" size="lg"
-              className="bg-gradient-to-r from-accent/10 to-primary/10 hover:from-accent/20 hover:to-primary/20">
-              <Lightbulb className="h-4 w-4 mr-2" /> Fill with Sample Answers
-            </Button>
+          {/* Overall progress */}
+          <div className="mt-5 rounded-lg border bg-card p-4">
+            <div className="flex items-baseline justify-between gap-3 text-sm">
+              <span className="font-medium">
+                {answeredCount} of {scoredFields.length} key questions answered
+              </span>
+              <span className={`shrink-0 tabular-nums ${overallProgress === 100 ? "font-semibold text-green-600 dark:text-green-500" : "text-muted-foreground"}`}>
+                {overallProgress}%
+              </span>
+            </div>
+            <Progress value={overallProgress} className="mt-2 h-2" />
+            <p className="mt-2 text-xs text-muted-foreground">
+              None of it is compulsory. Fill what you know now and come back for the rest. Each step keeps its
+              deeper questions in a separate block so you are never staring at a wall of empty boxes.
+            </p>
           </div>
         </div>
 
         {/* Tabs */}
         <Tabs value={activeTab} className="w-full">
-          <div className="relative mb-8">
-            <TabsList className="flex w-full overflow-x-auto sm:grid sm:grid-cols-7">
-              {TABS.map((t) => {
-                const Icon = t.icon;
-                const pct = tabProgress[t.id] ?? 0;
-                return (
-                  <Link
-                    key={t.id}
-                    to={`${BASE_PATH}/${t.id}`}
-                    className={`flex flex-col items-center gap-1 py-3 rounded-md px-3 text-sm font-medium transition-all relative shrink-0 min-w-[76px] sm:min-w-0 sm:shrink ${activeTab === t.id ? 'bg-background text-foreground shadow-sm' : ''}`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span className="text-[10px] sm:text-xs">{t.label}</span>
-                    {pct > 0 && pct < 100 && t.id !== "output" && (
-                      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-6 h-1 bg-muted rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
-                      </div>
-                    )}
-                    {pct === 100 && t.id !== "output" && (
-                      <CheckCircle2 className="absolute top-1 right-1 h-3 w-3 text-green-500" />
-                    )}
-                  </Link>
-                );
-              })}
-            </TabsList>
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent sm:hidden"
-            />
+          {/* Step rail. Sticky so the seven steps and their progress stay
+              reachable from anywhere in a very long form. */}
+          <div className="sticky top-14 z-20 mb-6 rounded-xl border bg-background/95 p-2 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/80">
+            <div className="relative">
+              <TabsList className="flex w-full gap-1 overflow-x-auto bg-transparent p-0 sm:grid sm:grid-cols-7">
+                {TABS.map((t, i) => {
+                  const Icon = t.icon;
+                  const scored = TAB_FIELDS[t.id];
+                  const pct = tabProgress[t.id] ?? 0;
+                  const done = Boolean(scored) && pct === 100;
+                  const isActive = activeTab === t.id;
+                  return (
+                    <Link
+                      key={t.id}
+                      to={`${BASE_PATH}/${t.id}`}
+                      aria-current={isActive ? "page" : undefined}
+                      title={scored ? `Step ${i + 1}: ${t.label} (${countFilled(scored)} of ${scored.length} answered)` : `Step ${i + 1}: ${t.label}`}
+                      className={`flex shrink-0 flex-col items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all min-w-[76px] sm:min-w-0 sm:shrink ${isActive ? "bg-primary/10 text-foreground ring-1 ring-primary/30" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"}`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        {done ? (
+                          <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-500" />
+                        ) : (
+                          <Icon className="h-4 w-4" />
+                        )}
+                        <span className="text-[10px] tabular-nums opacity-60">{i + 1}</span>
+                      </span>
+                      <span className="whitespace-nowrap text-[10px] sm:text-xs">{t.label}</span>
+                      <span className="h-1 w-8 overflow-hidden rounded-full bg-muted">
+                        {scored && !done && (
+                          <span className="block h-full rounded-full bg-primary transition-all" style={{ width: `${pct}%` }} />
+                        )}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </TabsList>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 w-8 rounded-r-lg bg-gradient-to-l from-background to-transparent sm:hidden"
+              />
+            </div>
           </div>
 
           {/* ===== PERSONALITY TAB ===== */}
@@ -1378,12 +1546,15 @@ export default function FinancialAdvisorDifferentiation() {
                   <p className="text-xs text-muted-foreground mb-2">What principles guide your advisory practice?</p>
                   <div className="flex flex-wrap gap-2 mb-2">
                     {CORE_VALUES_OPTIONS.map(v => {
-                      const selected = formData.coreValues.includes(v);
+                      // Exact match, not substring: a typed value that happens to
+                      // contain "Trust" should not light up the Trust chip, and
+                      // "Trust,Growth" typed without a space must still toggle off.
+                      const current = formData.coreValues.split(/\s*,\s*/).map(c => c.trim()).filter(Boolean);
+                      const selected = current.includes(v);
                       return (
                         <button
                           key={v}
                           onClick={() => {
-                            const current = formData.coreValues ? formData.coreValues.split(", ").filter(Boolean) : [];
                             const next = selected ? current.filter(c => c !== v) : [...current, v];
                             updateFormData("coreValues", next.join(", "));
                           }}
@@ -1476,15 +1647,20 @@ export default function FinancialAdvisorDifferentiation() {
                 <CardContent className="space-y-4">
                   {renderField("pastJobs", "Past Jobs/Industries", "e.g. Teaching, Engineering, F&B", 1)}
                   {renderField("education", "Highest Education", "Degree, school, notable achievements", 1)}
-                  {renderField("schoolLife", "School Life & Grades", "How was your school experience?", 2)}
-                  {renderField("activitiesEnjoy", "Activities You Enjoy", "What do you enjoy doing outside work?", 1)}
-                  {renderField("activitiesDislike", "Activities You Don't Enjoy", "What don't you enjoy doing?", 1)}
                   {renderField("strengths", "Top 3 Strengths", "What are you naturally good at?", 2)}
-                  {renderField("strengthsWhy", "Why These Strengths?", "Why did you put these as your top 3?", 2)}
                   {renderField("weaknesses", "Top 3 Areas for Growth", "What areas are you working to improve?", 2)}
-                  {renderField("weaknessesWhy", "Why These Weaknesses?", "Why did you put these as your top 3?", 2)}
                   {renderField("personalGoals", "Personal Goals", "What drives you personally?", 2)}
-                  {renderField("goalInspiration", "What Inspired This Dream?", "Where did this aspiration come from?", 2)}
+                  <MoreDetail
+                    count={6}
+                    filled={countFilled(["schoolLife", "activitiesEnjoy", "activitiesDislike", "strengthsWhy", "weaknessesWhy", "goalInspiration"])}
+                  >
+                    {renderField("schoolLife", "School Life & Grades", "How was your school experience?", 2)}
+                    {renderField("activitiesEnjoy", "Activities You Enjoy", "What do you enjoy doing outside work?", 1)}
+                    {renderField("activitiesDislike", "Activities You Don't Enjoy", "What don't you enjoy doing?", 1)}
+                    {renderField("strengthsWhy", "Why These Strengths?", "Why did you put these as your top 3?", 2)}
+                    {renderField("weaknessesWhy", "Why These Weaknesses?", "Why did you put these as your top 3?", 2)}
+                    {renderField("goalInspiration", "What Inspired This Dream?", "Where did this aspiration come from?", 2)}
+                  </MoreDetail>
                 </CardContent>
               </Card>
             </div>
@@ -1492,57 +1668,92 @@ export default function FinancialAdvisorDifferentiation() {
             <Card>
               <CardHeader>
                 <CardTitle>Defining Moments</CardTitle>
-                <CardDescription>Top 5 emotionally intense moments from the past 20 years that shaped your outlook</CardDescription>
+                <CardDescription>The emotionally intense moments that shaped how you see money and risk. Three is enough to start.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {[1, 2, 3, 4, 5].map(i => renderField(`moment${i}` as keyof FormData, `Moment ${i}`, `Describe a key moment that impacted your outlook`, 2))}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[1, 2, 3].map(i => <React.Fragment key={i}>{renderField(`moment${i}` as keyof FormData, `Moment ${i}`, `Describe a key moment that impacted your outlook`, 2)}</React.Fragment>)}
                 </div>
-                {renderField("momentsWhy", "Why These Moments?", "Why did you list these as the most emotionally intense?", 3)}
-                {renderField("momentsFeel", "How Did You Feel?", "What emotions did you experience during these moments?", 2)}
-                {renderField("momentsMind", "What Was Going Through Your Mind?", "What thoughts were running through your head?", 2)}
                 {renderField("momentsImpact", "How Did They Change You?", "How did these moments impact you as a person and change your outlook on life?", 3)}
+                <MoreDetail
+                  count={5}
+                  filled={countFilled(["moment4", "moment5", "momentsWhy", "momentsFeel", "momentsMind"])}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[4, 5].map(i => <React.Fragment key={i}>{renderField(`moment${i}` as keyof FormData, `Moment ${i}`, `Describe a key moment that impacted your outlook`, 2)}</React.Fragment>)}
+                  </div>
+                  {renderField("momentsWhy", "Why These Moments?", "Why did you list these as the most emotionally intense?", 3)}
+                  {renderField("momentsFeel", "How Did You Feel?", "What emotions did you experience during these moments?", 2)}
+                  {renderField("momentsMind", "What Was Going Through Your Mind?", "What thoughts were running through your head?", 2)}
+                </MoreDetail>
               </CardContent>
             </Card>
           </TabsContent>
 
           {/* ===== AUDIENCE TAB ===== */}
           <TabsContent value="audience" className="space-y-6">
-            <div className="text-center mb-4">
-              <h3 className="text-2xl font-semibold mb-2">Define Your Core Audiences</h3>
-              <p className="text-muted-foreground text-sm">Deeply understand the two primary groups you serve best</p>
+            <div>
+              <h3 className="text-xl font-semibold">Define your core audiences</h3>
+              <p className="text-sm text-muted-foreground">The two groups you serve best. Fill one at a time.</p>
             </div>
 
-            {/* Quick Start */}
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Lightbulb className="h-5 w-5" /> Quick Start Profiles</CardTitle>
-                <CardDescription>Choose a common client profile to get started, then customize</CardDescription>
+            {/* Which audience is on screen */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div role="tablist" aria-label="Which audience to edit" className="inline-flex rounded-lg border bg-muted/40 p-1">
+                {([1, 2] as const).map(n => {
+                  const fields = audienceKeyFields(n);
+                  const filled = countFilled(fields);
+                  const active = audienceFocus === n;
+                  return (
+                    <button
+                      key={n}
+                      role="tab"
+                      aria-selected={active}
+                      onClick={() => setAudienceFocus(n)}
+                      className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ${active ? "bg-background shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                    >
+                      <Users className="h-4 w-4" />
+                      <span className="whitespace-nowrap">Audience #{n}</span>
+                      <span className={`rounded-full px-1.5 py-0.5 text-[10px] tabular-nums ${filled === fields.length ? "bg-green-500/15 text-green-600 dark:text-green-500" : "bg-muted text-muted-foreground"}`}>
+                        {filled}/{fields.length}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              {audienceFocus === 2 && (
+                <Button variant="outline" size="sm" onClick={copyAudienceAcross} className="gap-2 sm:ml-auto">
+                  <Copy className="h-4 w-4" /> Copy Audience #1 across
+                </Button>
+              )}
+            </div>
+
+            {/* Quick start */}
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base"><Lightbulb className="h-4 w-4" /> Start from a common profile</CardTitle>
+                <CardDescription>Fills Audience #{audienceFocus} with a worked example you can edit. Undo sits in the confirmation toast.</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                   {Object.entries(CLIENT_PROFILES).map(([key, profile]) => (
-                    <div key={key} className="border rounded-lg p-4 space-y-2">
-                      <h4 className="font-semibold text-sm">{profile.name}</h4>
-                      <p className="text-xs text-muted-foreground">{profile.demographics}</p>
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="outline" onClick={() => applyProfilePrefill(key as keyof typeof CLIENT_PROFILES, 1)} className="text-xs flex-1">
-                          Fill #1
-                        </Button>
-                        <Button size="sm" variant="outline" onClick={() => applyProfilePrefill(key as keyof typeof CLIENT_PROFILES, 2)} className="text-xs flex-1">
-                          Fill #2
-                        </Button>
-                      </div>
-                    </div>
+                    <button
+                      key={key}
+                      onClick={() => applyProfilePrefill(key as keyof typeof CLIENT_PROFILES, audienceFocus)}
+                      className="rounded-lg border p-3 text-left transition-all hover:border-primary/50 hover:bg-muted/40"
+                    >
+                      <p className="text-sm font-semibold">{profile.name}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">{profile.demographics}</p>
+                      <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-primary">
+                        Use for Audience #{audienceFocus} <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </button>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {renderAudienceCard(1)}
-              {renderAudienceCard(2)}
-            </div>
+            {renderAudienceCard(audienceFocus)}
           </TabsContent>
 
           {/* ===== SOLUTIONS TAB ===== */}
@@ -1587,7 +1798,11 @@ export default function FinancialAdvisorDifferentiation() {
                 <CardHeader>
                   <CardTitle className="text-primary">Solutions for Audience #1</CardTitle>
                   <CardDescription>
-                    {formData.audience1Occupation ? `${formData.audience1Occupation} (${formData.audience1Age})` : "Define your primary audience first"}
+                    {formData.audience1Occupation ? `${formData.audience1Occupation} (${formData.audience1Age})` : (
+                      <Link to={`${BASE_PATH}/audience`} className="text-primary underline underline-offset-2">
+                        Define your primary audience first
+                      </Link>
+                    )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -1617,7 +1832,11 @@ export default function FinancialAdvisorDifferentiation() {
                 <CardHeader>
                   <CardTitle className="text-orange-500">Solutions for Audience #2</CardTitle>
                   <CardDescription>
-                    {formData.audience2Occupation ? `${formData.audience2Occupation} (${formData.audience2Age})` : "Define your secondary audience first"}
+                    {formData.audience2Occupation ? `${formData.audience2Occupation} (${formData.audience2Age})` : (
+                      <Link to={`${BASE_PATH}/audience`} className="text-primary underline underline-offset-2">
+                        Define your secondary audience first
+                      </Link>
+                    )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -2109,19 +2328,51 @@ export default function FinancialAdvisorDifferentiation() {
           </TabsContent>
         </Tabs>
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center mt-8">
-          <Button variant="outline" onClick={goToPrevTab} disabled={getTabIndex(activeTab) === 0}>
-            <ArrowLeft className="h-4 w-4 mr-2" /> Previous
+        {/* Navigation. Naming the next step beats a bare arrow when there are
+            seven of them. */}
+        <div className="mt-8 flex items-center justify-between gap-3 border-t pt-6">
+          <Button variant="outline" onClick={goToPrevTab} disabled={getTabIndex(activeTab) === 0} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            <span>
+              Back
+              {getTabIndex(activeTab) > 0 && (
+                <span className="hidden text-muted-foreground sm:inline"> to {TABS[getTabIndex(activeTab) - 1].label}</span>
+              )}
+            </span>
           </Button>
-          <span className="text-sm text-muted-foreground">
-            {getTabIndex(activeTab) + 1} / {TABS.length}
+          <span className="shrink-0 text-sm text-muted-foreground">
+            Step {getTabIndex(activeTab) + 1} of {TABS.length}
           </span>
-          <Button onClick={goToNextTab} disabled={getTabIndex(activeTab) === TABS.length - 1}>
-            Next <ArrowRight className="h-4 w-4 ml-2" />
+          <Button onClick={goToNextTab} disabled={getTabIndex(activeTab) === TABS.length - 1} className="gap-2">
+            <span>
+              Next
+              {getTabIndex(activeTab) < TABS.length - 1 && (
+                <span className="hidden opacity-80 sm:inline">: {TABS[getTabIndex(activeTab) + 1].label}</span>
+              )}
+            </span>
+            <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
       </div>
+
+      {/* Clear all confirm */}
+      <Dialog open={showResetConfirm} onOpenChange={setShowResetConfirm}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Clear every answer?</DialogTitle>
+            <DialogDescription>
+              This empties all {scoredFields.length} key questions, the optional ones, and any AI polished drafts
+              on this device. Undo is available from the toast straight after.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-4 flex justify-end gap-2">
+            <Button variant="outline" onClick={() => setShowResetConfirm(false)}>Keep my answers</Button>
+            <Button variant="destructive" onClick={clearEverything} className="gap-2">
+              <Trash2 className="h-4 w-4" /> Clear everything
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Brand Template Modal */}
       <Dialog open={showTemplateModal} onOpenChange={setShowTemplateModal}>
