@@ -51,7 +51,6 @@ const SLUG = process.argv[2] ?? '26th-aug-activity-tracker-features-routines-lea
 const PAGE = `https://academy.finternship.com/product/training-meetings/${SLUG}`
 const fails = []
 const errors = []
-
 const b = await chromium.launch({ headless: true })
   .catch(() => chromium.launch({ channel: 'chrome', headless: true }))
 try {
@@ -72,9 +71,13 @@ try {
   await p.goto(PAGE, { waitUntil: 'domcontentloaded' })
   await p.waitForTimeout(9000)
 
-  // Deep links land on lesson 1; click the lesson in the sidebar.
-  const side = p.getByText(/26th Aug/).first()
-  if (await side.count()) { await side.click().catch(() => {}); await p.waitForTimeout(4000) }
+  // Deep links land on lesson 1, so the lesson has to be clicked in the
+  // sidebar. Derive the label from the slug rather than hardcoding one date,
+  // or passing a slug silently re-checks whichever lesson was hardcoded.
+  const label = SLUG.replace(/^(\d+)(st|nd|rd|th)-([a-z]{3})-.*/, '$1$2 $3')
+  const side = p.getByText(new RegExp(label, 'i')).first()
+  if (!(await side.count())) fails.push(`no sidebar row matching "${label}"`)
+  else { await side.click().catch(() => {}); await p.waitForTimeout(4000) }
 
   const probe = await p.evaluate(async () => {
     const v = document.querySelector('video')
@@ -108,7 +111,17 @@ try {
   if (!probe.video) fails.push('no <video> element on the lesson page')
   else {
     if (!/recap-video-proxy/.test(probe.src || '')) fails.push(`video src is not the proxy: ${probe.src}`)
-    if (!probe.duration || probe.duration < 3000) fails.push(`video duration ${probe.duration}s, expected the full trimmed recording`)
+    // The src must be THIS lesson's release key, not whichever lesson the page
+    // opened on: 19 Aug once passed while the 26 Aug player was on screen.
+    const wantMonth = label.slice(-3).toLowerCase()
+    if (!new RegExp(`team-training-\\d{4}-${{jan:'01',feb:'02',mar:'03',apr:'04',may:'05',jun:'06',jul:'07',aug:'08',sep:'09',oct:'10',nov:'11',dec:'12'}[wantMonth]}-`).test(probe.src || '')) {
+      fails.push(`player is not this lesson: ${probe.src}`)
+    }
+    // A trimmed training runs tens of minutes. The bar is "a real recording
+    // loaded", not a length: these calls run anywhere from 35 to 180 minutes.
+    if (!probe.duration || probe.duration < 600) {
+      fails.push(`video duration ${probe.duration}s, too short to be a training`)
+    }
     if (!probe.trackSrc) fails.push('no caption <track> rendered')
     if (probe.vttStatus !== 200) fails.push(`caption fetch returned ${probe.vttStatus}`)
     if (!probe.hasNotes) fails.push('lecture notes not rendered')
