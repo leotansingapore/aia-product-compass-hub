@@ -66,6 +66,22 @@ const ASSET_MAP: Record<string, Asset> = {
   },
 };
 
+// Keys minted by an automation (weekly team trainings) are resolved by
+// convention instead of being pasted into ASSET_MAP, so the function does not
+// need a redeploy every week. Convention: key `team-training-2026-08-26` means
+// release tag `team-training-2026-08-26` holding
+// `team-training-2026-08-26-preview.mp4` and `...-preview.en.vtt`.
+const RELEASE_BASE =
+  "https://github.com/leotansingapore/aia-product-compass-hub/releases/download";
+const CONVENTION_PREFIXES = ["team-training-"];
+
+function resolveByConvention(key: string): Asset | null {
+  if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(key)) return null;
+  if (!CONVENTION_PREFIXES.some((p) => key.startsWith(p))) return null;
+  const base = `${RELEASE_BASE}/${key}/${key}-preview`;
+  return { video: `${base}.mp4`, vtt: `${base}.en.vtt` };
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -75,7 +91,7 @@ Deno.serve(async (req) => {
   const rawKey = url.searchParams.get("key") ?? "week-1";
   const wantVtt = rawKey.endsWith(".vtt");
   const key = wantVtt ? rawKey.slice(0, -".vtt".length) : rawKey;
-  const asset = ASSET_MAP[key];
+  const asset = ASSET_MAP[key] ?? resolveByConvention(key);
   if (!asset) {
     return new Response(`Unknown video key: ${rawKey}`, {
       status: 404,
