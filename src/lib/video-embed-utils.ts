@@ -60,6 +60,27 @@ export function detectVideoEmbed(url: string): VideoEmbedInfo {
 }
 
 /**
+ * Recap and team-training videos are streamed through the `recap-video-proxy`
+ * edge function, which serves the WebVTT sidecar under the same key with a
+ * `.vtt` suffix. Any other mp4 has no caption sidecar to point at.
+ *
+ * Tolerates extra query params (the lesson hero appends `autoplay=1`).
+ */
+export function recapCaptionUrl(embedUrl: string): string | null {
+  try {
+    const u = new URL(embedUrl);
+    if (!u.pathname.includes("/recap-video-proxy")) return null;
+    const key = u.searchParams.get("key");
+    if (!key || key.endsWith(".vtt")) return null;
+    u.searchParams.delete("autoplay");
+    u.searchParams.set("key", `${key}.vtt`);
+    return u.href;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * True when two URLs resolve to the same playable video. Used to avoid
  * rendering duplicate players in hero + markdown.
  */

@@ -30,7 +30,7 @@ import type { TrainingVideo } from "@/hooks/useProducts";
 // (react-markdown + remark/rehype plugins + VideoEmbed) is lazy-loaded behind
 // LessonRichMarkdown — saves ~30KB on the ProductDetail chunk for users
 // whose current lesson has no rich_content to render.
-import { detectVideoEmbed } from "@/lib/video-embed-utils";
+import { detectVideoEmbed, recapCaptionUrl } from "@/lib/video-embed-utils";
 const LessonRichMarkdown = lazy(() =>
   import("./LessonRichMarkdown").then((m) => ({ default: m.LessonRichMarkdown })),
 );
@@ -291,6 +291,13 @@ export function ProductModuleCourseLayout({
     }
     return url;
   }, [videoInfo, shouldAutoplay]);
+
+  // Recordings published by the weekly team-training sync carry a WebVTT
+  // sidecar on the same proxy key.
+  const lessonCaptionUrl = useMemo(
+    () => (resolvedLessonStreamUrl ? recapCaptionUrl(resolvedLessonStreamUrl) : null),
+    [resolvedLessonStreamUrl]
+  );
 
   const onSelectVideoFromOutline = useCallback((index: number) => {
     setCurrentVideoIndex(index);
@@ -578,9 +585,16 @@ export function ProductModuleCourseLayout({
             preload="metadata"
             playsInline
             autoPlay={shouldAutoplay}
+            // A cross-origin <track> only loads when the media element is in
+            // CORS mode, so opt in only when there is a sidecar to load.
+            {...(lessonCaptionUrl ? { crossOrigin: "anonymous" as const } : {})}
             onError={() => setVideoError(true)}
             onLoadedMetadata={(e) => autoFillDuration(currentVideo?.id, e.currentTarget.duration)}
-          />
+          >
+            {lessonCaptionUrl && (
+              <track kind="captions" srcLang="en" label="English" src={lessonCaptionUrl} default />
+            )}
+          </video>
         ) : (
           <iframe
             ref={iframeRef}

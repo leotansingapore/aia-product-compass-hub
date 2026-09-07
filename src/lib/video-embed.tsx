@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
+import { recapCaptionUrl } from "@/lib/video-embed-utils";
 
 interface VideoEmbedProps {
   embedUrl: string;
@@ -21,24 +22,6 @@ interface VideoEmbedProps {
  * Native <video> (mp4) is already cheap with `preload="metadata"`, so it
  * loads eagerly as before.
  */
-/**
- * Recap videos are streamed through the `recap-video-proxy` edge function,
- * which serves the WebVTT sidecar under the same key with a `.vtt` suffix.
- * Any other mp4 has no caption sidecar to point at.
- */
-function recapCaptionUrl(embedUrl: string): string | null {
-  try {
-    const u = new URL(embedUrl);
-    if (!u.pathname.includes("/recap-video-proxy")) return null;
-    const key = u.searchParams.get("key");
-    if (!key || key.endsWith(".vtt")) return null;
-    u.searchParams.set("key", `${key}.vtt`);
-    return u.href;
-  } catch {
-    return null;
-  }
-}
-
 export function VideoEmbed({ embedUrl, platform }: VideoEmbedProps) {
   const [activated, setActivated] = useState(false);
 
