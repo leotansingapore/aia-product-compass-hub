@@ -695,7 +695,7 @@ export function ProductModuleCourseLayout({
               content={currentVideo.rich_content}
               dedupHeroUrl={resolvedLessonStreamUrl || currentVideo?.url?.trim() || undefined}
               shouldAutoplay={shouldAutoplay}
-              sameVideoHintText="Same as the lesson video above — lecture notes continue below."
+              sameVideoHintText="Same as the lesson video above. Lecture notes continue below."
             />
           </Suspense>
         </div>

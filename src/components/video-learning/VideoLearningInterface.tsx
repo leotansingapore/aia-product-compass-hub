@@ -613,7 +613,7 @@ export const VideoLearningInterface = memo(function VideoLearningInterface({
                           content={currentVideo.rich_content}
                           dedupHeroUrl={currentVideo?.url || undefined}
                           shouldAutoplay={shouldAutoplay}
-                          sameVideoHintText="Same as the lesson video above — notes continue below."
+                          sameVideoHintText="Same as the lesson video above. Notes continue below."
                         />
                       </Suspense>
                     </div>

@@ -342,7 +342,7 @@ export function CMFASModuleCourseLayout({
                       ) {
                         return (
                           <span className="my-2 block rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
-                            Same as the lesson video above — notes continue below.
+                            Same as the lesson video above. Notes continue below.
                           </span>
                         );
                       }

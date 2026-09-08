@@ -52,7 +52,7 @@ export function LessonRichMarkdown({
   content,
   dedupHeroUrl,
   shouldAutoplay,
-  sameVideoHintText = "Same as the lesson video above — notes continue below.",
+  sameVideoHintText = "Same as the lesson video above. Notes continue below.",
 }: LessonRichMarkdownProps) {
   return (
     <ReactMarkdown
