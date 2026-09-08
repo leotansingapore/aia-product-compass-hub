@@ -338,6 +338,12 @@ export default function ProductDetail() {
                   originalSlug={continueOriginalSlug}
                   resourceCount={resourceCount}
                   extraTabs={getProductExtraTabs(product.id)}
+                  activeLessonSlug={pageId}
+                  onActiveLessonChange={(slug) => {
+                    if (slug && slug !== pageId) {
+                      navigate(`/product/${productSlugOrId}/${slug}`, { replace: true });
+                    }
+                  }}
                   tabResources={
                     <ProductUsefulLinks
                       links={product.useful_links || []}

@@ -31,6 +31,7 @@ import type { TrainingVideo } from "@/hooks/useProducts";
 // LessonRichMarkdown — saves ~30KB on the ProductDetail chunk for users
 // whose current lesson has no rich_content to render.
 import { detectVideoEmbed, recapCaptionUrl } from "@/lib/video-embed-utils";
+import { getVideoSlug } from "@/utils/slugUtils";
 const LessonRichMarkdown = lazy(() =>
   import("./LessonRichMarkdown").then((m) => ({ default: m.LessonRichMarkdown })),
 );
@@ -164,6 +165,12 @@ export interface ProductModuleCourseLayoutProps {
   resourceCount?: number;
   /** Product-specific extra tabs appended after the standard three. */
   extraTabs?: ProductExtraTab[];
+  /** Lesson slug from the URL. Opens that lesson instead of the first one, so a
+   *  copied lesson link actually lands on the lesson it names. */
+  activeLessonSlug?: string;
+  /** Called when the learner switches lesson, so the page can keep the URL in
+   *  step and the address bar stays copyable. */
+  onActiveLessonChange?: (slug: string) => void;
 }
 
 export function ProductModuleCourseLayout({
@@ -179,6 +186,8 @@ export function ProductModuleCourseLayout({
   originalSlug,
   resourceCount = 0,
   extraTabs,
+  activeLessonSlug,
+  onActiveLessonChange,
 }: ProductModuleCourseLayoutProps) {
   const resourcesLabel = resourceCount > 0 ? `Resources (${resourceCount})` : "Resources";
   // Pick a single layout per viewport so the video iframe only mounts ONCE.
@@ -264,6 +273,18 @@ export function ProductModuleCourseLayout({
     });
   }, [processedVideos.length]);
 
+  // A lesson slug in the URL selects that lesson. Without this the learner view
+  // ignored the slug entirely and every shared lesson link opened lesson 1
+  // (only the admin path resolved it, in ProductDetail).
+  useEffect(() => {
+    if (!activeLessonSlug || processedVideos.length === 0) return;
+    const index = processedVideos.findIndex(
+      (v) => getVideoSlug(v.title || "") === activeLessonSlug
+    );
+    if (index === -1) return;
+    setCurrentVideoIndex((prev) => (prev === index ? prev : index));
+  }, [activeLessonSlug, processedVideos]);
+
   const resolvedLessonStreamUrl = useMemo(() => {
     const fromField = sanitizeLessonMediaUrl(currentVideo?.url);
     if (fromField) return fromField;
@@ -304,7 +325,9 @@ export function ProductModuleCourseLayout({
     setVideoError(false);
     setShouldAutoplay(true);
     setOutlineOpen(false);
-  }, []);
+    const picked = processedVideos[index];
+    if (picked?.title) onActiveLessonChange?.(getVideoSlug(picked.title));
+  }, [processedVideos, onActiveLessonChange]);
 
   /** "Mark complete (if needed) and jump to the next lesson" — shared by the
    *  Up next button AND the Shift+Enter keyboard shortcut. */
