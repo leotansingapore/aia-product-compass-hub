@@ -88,3 +88,31 @@ export const getVideoSlug = (videoTitle: string): string => {
 export const isVideoId = (str: string): boolean => {
   return /^video-\d+-[a-z0-9]+$/i.test(str);
 };
+/**
+ * Which lesson index a URL slug should select.
+ *
+ * Two lessons in one product can carry the same title, and therefore the same
+ * slug (real cases in production: "Closed $400/mth APA" twice, "GPP vs Term"
+ * twice, and "APA vs. ETFs" / "APA vs ETFs", which differ only by a stripped
+ * period). A plain findIndex always returns the FIRST twin, so clicking the
+ * second one wrote its slug to the URL and was then dragged straight back to
+ * the first. Keeping the current lesson when it already matches the slug means
+ * the learner stays where they clicked; a cold load still resolves to the first
+ * twin, which is the best a shared link can do while the titles collide.
+ */
+export const resolveLessonIndexFromSlug = (
+  titles: readonly string[],
+  slug: string | undefined,
+  currentIndex: number,
+): number => {
+  if (!slug || titles.length === 0) return currentIndex;
+  if (
+    currentIndex >= 0 &&
+    currentIndex < titles.length &&
+    getVideoSlug(titles[currentIndex] || '') === slug
+  ) {
+    return currentIndex;
+  }
+  const found = titles.findIndex((t) => getVideoSlug(t || '') === slug);
+  return found === -1 ? currentIndex : found;
+};

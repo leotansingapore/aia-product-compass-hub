@@ -31,7 +31,7 @@ import type { TrainingVideo } from "@/hooks/useProducts";
 // LessonRichMarkdown — saves ~30KB on the ProductDetail chunk for users
 // whose current lesson has no rich_content to render.
 import { detectVideoEmbed, recapCaptionUrl } from "@/lib/video-embed-utils";
-import { getVideoSlug } from "@/utils/slugUtils";
+import { getVideoSlug, resolveLessonIndexFromSlug } from "@/utils/slugUtils";
 const LessonRichMarkdown = lazy(() =>
   import("./LessonRichMarkdown").then((m) => ({ default: m.LessonRichMarkdown })),
 );
@@ -278,11 +278,11 @@ export function ProductModuleCourseLayout({
   // (only the admin path resolved it, in ProductDetail).
   useEffect(() => {
     if (!activeLessonSlug || processedVideos.length === 0) return;
-    const index = processedVideos.findIndex(
-      (v) => getVideoSlug(v.title || "") === activeLessonSlug
-    );
-    if (index === -1) return;
-    setCurrentVideoIndex((prev) => (prev === index ? prev : index));
+    const titles = processedVideos.map((v) => v.title || "");
+    setCurrentVideoIndex((prev) => {
+      const next = resolveLessonIndexFromSlug(titles, activeLessonSlug, prev);
+      return next === prev ? prev : next;
+    });
   }, [activeLessonSlug, processedVideos]);
 
   const resolvedLessonStreamUrl = useMemo(() => {
