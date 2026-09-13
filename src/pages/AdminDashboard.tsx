@@ -26,12 +26,20 @@ const PanelFallback = () => (
     <div className="h-64 w-full animate-pulse rounded bg-muted/30" />
   </div>
 );
-import { Users, Video, Brain, MessageSquare, Trophy, BookOpen, GraduationCap, BarChart3, Inbox, FolderTree } from 'lucide-react';
+import { Users, Video, Brain, MessageSquare, Trophy, BookOpen, GraduationCap, BarChart3, Inbox, FolderTree, LineChart } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
+import { useSimplifiedAuth } from '@/hooks/useSimplifiedAuth';
+import { isProductAnalyticsAdmin } from '@/lib/productAnalyticsAccess';
+import { ProductAnalyticsPanel } from '@/components/product-analytics/ProductAnalyticsPanel';
 
 export default function AdminDashboard() {
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') || 'users';
+  // Product is the developer's view of which screens get opened. Gated on the
+  // developer's account, not admin_role: the academy's admins did not ask
+  // for it, and the SQL behind it answers only the same account.
+  const { user } = useSimplifiedAuth();
+  const showProduct = isProductAnalyticsAdmin(user?.id);
 
   return (
     <AdminLayout
@@ -142,6 +150,15 @@ export default function AdminDashboard() {
             <FolderTree className="h-4 w-4 shrink-0" />
             <span>Categories</span>
           </TabsTrigger>
+          {showProduct && (
+            <TabsTrigger
+              value="product"
+              className="flex items-center gap-1.5 flex-none rounded-none whitespace-nowrap border-b-2 border-transparent bg-transparent px-4 py-2.5 text-muted-foreground shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none hover:text-foreground"
+            >
+              <LineChart className="h-4 w-4 shrink-0" />
+              <span>Product</span>
+            </TabsTrigger>
+          )}
           </TabsList>
           <div
             aria-hidden
@@ -203,6 +220,12 @@ export default function AdminDashboard() {
         <TabsContent value="categories">
           <Suspense fallback={<PanelFallback />}><CategoryTreeEditor /></Suspense>
         </TabsContent>
+
+        {showProduct && (
+          <TabsContent value="product">
+            <ProductAnalyticsPanel />
+          </TabsContent>
+        )}
       </Tabs>
     </AdminLayout>
   );

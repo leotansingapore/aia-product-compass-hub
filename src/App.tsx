@@ -6,6 +6,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { FeatureTracking } from "@/hooks/useFeatureTracking";
 import { HelmetProvider } from "react-helmet-async";
 import { SimplifiedAuthProvider } from "@/hooks/useSimplifiedAuth";
 import { ViewModeProvider, AdminViewSwitcher } from "@/components/admin/AdminViewSwitcher";
@@ -158,6 +159,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <FeatureTracking />
               <OnboardingProvider>
                 <ChecklistProvider>
                   <SlideSubmissionsProvider>
