@@ -37,6 +37,9 @@ export function initSentry(pending: unknown[] = []): void {
       userInfo: false,
       httpBodies: [],
     },
+    // The default ('always') rewrites the real TypeError message to append the
+    // hostname, which then shows up verbatim in user-facing toasts.
+    enhanceFetchErrorMessages: 'report-only',
     integrations: [Sentry.browserTracingIntegration()],
     // 1.0 is the wizard default and eats the free span quota in days.
     tracesSampleRate: 0.1,
