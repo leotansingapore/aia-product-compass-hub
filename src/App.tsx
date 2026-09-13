@@ -29,6 +29,7 @@ import { RouteTracker } from "@/components/RouteTracker";
 import { QuestionBankSync } from "@/components/QuestionBankSync";
 import { PageErrorBoundary } from "@/components/PageErrorBoundary";
 import { PerfOverlay } from "@/components/PerfOverlay";
+import PublicRoadmap from "@/pages/PublicRoadmap";
 
 const OnboardingTutorial = lazyWithRetry(() => import("@/components/onboarding/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 const OnboardingHelpButton = lazyWithRetry(() => import("@/components/onboarding/OnboardingHelpButton").then(m => ({ default: m.OnboardingHelpButton })));
@@ -175,6 +176,8 @@ const App = () => (
                   <Suspense fallback={<SkeletonLoader type="page" />}>
                   <Routes>
                     {/* Public routes — no auth required */}
+                    {/* Public: what people asked for, what is being built, what shipped. */}
+                    <Route path="/roadmap" element={<PublicRoadmap />} />
                     <Route path="/auth" element={<SimplifiedAuth />} />
                     <Route path="/force-password" element={<ForcePasswordChange />} />
                     <Route path="/reset-password" element={<ResetPassword />} />
@@ -233,7 +236,7 @@ const App = () => (
                       <Route path="tools" element={<LibraryToolsHub />} />
                       <Route path="tools/content-studio" element={<ContentStudio />} />
                     </Route>
-                    <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
+                    <Route path="/changelog" element={<Navigate to="/roadmap?tab=changelog" replace />} />
                     <Route path="/feedback" element={<RequireAuth><Feedback /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/course" element={<RequireAuth><RequireTier feature="scripts"><ScriptsCourse /></RequireTier></RequireAuth>} />

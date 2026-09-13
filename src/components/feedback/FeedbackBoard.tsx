@@ -1,21 +1,25 @@
 "use client";
 
 /**
- * FeedbackBoard - the in-app feedback board.
+ * FeedbackBoard - the public roadmap page every product mounts at /roadmap.
  *
- * Drop this file into any app and render it on a /feedback route. It is deliberately
- * self-contained: React + Tailwind on the shadcn tokens every app already defines
- * (bg-background, text-foreground, border-border, bg-primary, ...). No imports from the
- * host app, no router coupling, no component-library dependency.
+ * One page, three tabs: Roadmap (what is coming), Feedback (ask and vote) and Changelog
+ * (what shipped). Layout and navigation follow the reference portal at
+ * roadmap.respond.io; the colours come from the shadcn tokens each app already defines,
+ * so the same file works in a light app and a dark one.
  *
  *   <FeedbackBoard apiUrl="https://leotan-feedback.vercel.app/api/v1"
  *                  boardKey="fb_..." appName="ActivityTracker"
- *                  identity={{ id: user.id, name, email }} />
+ *                  identity={{ id: user.id, name, email }} homeUrl="/" />
+ *
+ * It is deliberately self-contained: React + Tailwind, no imports from the host app, no
+ * router coupling, no component library. Tab and post state live in the query string.
  *
  * Source of truth: github.com/leotansingapore/feedback-board/client/FeedbackBoard.tsx
+ * Every app's copy is an exact copy. Change it there, then run scripts/sync-dock.mjs.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 // ---------- types ----------
 
@@ -23,7 +27,9 @@ export type FeedbackIdentity = { id: string; name?: string | null; email?: strin
 
 type Category = "feature" | "bug" | "improvement" | "question";
 type Status = "open" | "under_review" | "planned" | "in_progress" | "shipped" | "declined";
+type ListStatus = Status | "all" | "complete";
 type Sort = "trending" | "top" | "new";
+type ChangeType = "new" | "improved" | "fixed" | "removed";
 
 type Post = {
   id: string;
@@ -52,13 +58,41 @@ type Comment = {
 
 type StatusEvent = { id: string; to_status: Status; created_at: string };
 
-type View = { kind: "list" } | { kind: "roadmap" } | { kind: "changelog" } | { kind: "post"; number: number };
+type Duplicate = { id: string; number: number; title: string; body: string; author_name: string | null; created_at: string };
 
-const CATEGORIES: { value: Category; label: string; hint: string }[] = [
-  { value: "feature", label: "Feature", hint: "Something new you want to exist" },
-  { value: "improvement", label: "Improvement", hint: "Something that exists but could be better" },
-  { value: "bug", label: "Bug", hint: "Something is broken or wrong" },
-  { value: "question", label: "Question", hint: "You want to know how something works" },
+type ChangelogItem = {
+  id: string;
+  date: string;
+  type: ChangeType;
+  title: string;
+  body: string;
+  postNumber: number | null;
+  likes: number;
+  liked: boolean;
+  source: "entry" | "post";
+};
+
+type BoardInfo = {
+  name: string;
+  slug: string;
+  tagline: string | null;
+  intro: string | null;
+  appUrl: string | null;
+  notifies: boolean;
+  assistant: boolean;
+  support: boolean;
+};
+
+type Summary = { counts: Record<Category, number>; byStatus: Record<string, number>; total: number };
+
+type Tab = "roadmap" | "feedback" | "changelog";
+type View = { kind: Tab } | { kind: "post"; number: number };
+
+const CATEGORIES: { value: Category; label: string; plural: string; hint: string }[] = [
+  { value: "feature", label: "Feature request", plural: "Feature requests", hint: "Something new you want to exist" },
+  { value: "improvement", label: "Improvement", plural: "Improvements", hint: "Something that exists but could be better" },
+  { value: "bug", label: "Bug", plural: "Bugs", hint: "Something is broken or wrong" },
+  { value: "question", label: "Question", plural: "Questions", hint: "You want to know how something works" },
 ];
 
 const STATUS_LABEL: Record<Status, string> = {
@@ -66,45 +100,88 @@ const STATUS_LABEL: Record<Status, string> = {
   under_review: "Under review",
   planned: "Planned",
   in_progress: "In progress",
-  shipped: "Shipped",
+  shipped: "Complete",
   declined: "Not planned",
 };
 
-const STATUS_CLASS: Record<Status, string> = {
-  open: "bg-muted text-muted-foreground",
-  under_review: "bg-amber-500/15 text-amber-700 dark:text-amber-300",
-  planned: "bg-violet-500/15 text-violet-700 dark:text-violet-300",
-  in_progress: "bg-sky-500/15 text-sky-700 dark:text-sky-300",
-  shipped: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
-  declined: "bg-muted text-muted-foreground",
+// Dot and pill colours read from the reference portal. They hold up on a light or a dark
+// background, which the shadcn tokens alone cannot promise for a status.
+const STATUS_TONE: Record<Status, { dot: string; pill: string }> = {
+  open: { dot: "#9a9a9a", pill: "bg-muted text-muted-foreground" },
+  under_review: { dot: "#85b5b5", pill: "bg-teal-500/15 text-teal-700 dark:text-teal-300" },
+  planned: { dot: "#1fa0ff", pill: "bg-sky-500/15 text-sky-700 dark:text-sky-300" },
+  in_progress: { dot: "#c17aff", pill: "bg-violet-500/15 text-violet-700 dark:text-violet-300" },
+  shipped: { dot: "#34c759", pill: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300" },
+  declined: { dot: "#9a9a9a", pill: "bg-muted text-muted-foreground" },
 };
 
-const ROADMAP: { status: Status; blurb: string }[] = [
+const ROADMAP_COLUMNS: { status: Status; blurb: string }[] = [
+  { status: "under_review", blurb: "Being looked at" },
   { status: "planned", blurb: "Agreed and queued up" },
   { status: "in_progress", blurb: "Being built right now" },
-  { status: "shipped", blurb: "Live for everyone" },
 ];
+
+// The filter menu on the feedback list, in the reference portal's order.
+const LIST_FILTERS: { value: ListStatus; label: string }[] = [
+  { value: "all", label: "All posts" },
+  { value: "under_review", label: "Under review" },
+  { value: "planned", label: "Planned" },
+  { value: "in_progress", label: "In progress" },
+  { value: "complete", label: "Complete" },
+  { value: "declined", label: "Not planned" },
+];
+
+const CHANGE_TYPES: { value: ChangeType; label: string; pill: string }[] = [
+  { value: "new", label: "New", pill: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300" },
+  { value: "improved", label: "Improved", pill: "bg-sky-500/15 text-sky-700 dark:text-sky-300" },
+  { value: "fixed", label: "Fixed", pill: "bg-amber-500/15 text-amber-700 dark:text-amber-300" },
+  { value: "removed", label: "Removed", pill: "bg-red-500/15 text-red-700 dark:text-red-300" },
+];
+
+const PAGE = 20;
 
 // ---------- small helpers ----------
 
-function timeAgo(iso: string) {
-  const s = Math.max(1, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
-  if (s < 60) return "just now";
-  const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
-  const d = Math.floor(h / 24);
-  if (d < 7) return `${d}d ago`;
-  const w = Math.floor(d / 7);
-  if (w < 5) return `${w}w ago`;
-  const mo = Math.floor(d / 30);
-  if (mo < 12) return `${mo}mo ago`;
-  return `${Math.floor(d / 365)}y ago`;
-}
-
 function shortDate(iso: string | null) {
   return iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+}
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+/** "September 3, 2026", the heading each changelog entry carries. */
+function longDate(date: string) {
+  const [y, m, d] = date.slice(0, 10).split("-").map(Number);
+  if (!y || !m || !d) return date;
+  return `${MONTHS[m - 1]} ${d}, ${y}`;
+}
+
+type Block = { kind: "p"; text: string } | { kind: "ul"; items: string[] };
+
+/** Entry bodies are plain sentences with the odd "- " bullet list. */
+function paragraphs(body: string): Block[] {
+  const blocks: Block[] = [];
+  let bullets: string[] = [];
+  const flush = () => {
+    if (bullets.length) {
+      blocks.push({ kind: "ul", items: bullets });
+      bullets = [];
+    }
+  };
+  for (const raw of (body ?? "").split(/\r?\n/)) {
+    const line = raw.trim();
+    if (!line) {
+      flush();
+      continue;
+    }
+    const bullet = line.match(/^[-*]\s+(.*)$/);
+    if (bullet) bullets.push(bullet[1].trim());
+    else {
+      flush();
+      blocks.push({ kind: "p", text: line });
+    }
+  }
+  flush();
+  return blocks;
 }
 
 function initials(name: string | null) {
@@ -141,12 +218,42 @@ function voterId(identity?: FeedbackIdentity) {
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-/** localStorage key set once the board has been opened; hosts read it to drop a "New" marker. */
+// The page can be server-rendered (one app runs Next.js), so the first render must not
+// read the URL: that is a hydration mismatch. State starts at the defaults and the query
+// string is applied in a layout effect, which runs before the browser paints.
+const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+type UrlState = { view: View; status: ListStatus; category: Category | "all"; entryId: string | null };
+
+function readUrl(): UrlState | null {
+  if (typeof window === "undefined") return null;
+  const sp = new URLSearchParams(window.location.search);
+  const n = Number(sp.get("post"));
+  const tab = sp.get("tab");
+  const view: View =
+    Number.isInteger(n) && n > 0
+      ? { kind: "post", number: n }
+      : tab === "feedback" || tab === "changelog" || tab === "roadmap"
+        ? { kind: tab }
+        : { kind: "roadmap" };
+  const s = sp.get("status");
+  const c = sp.get("category");
+  return {
+    view,
+    status: (LIST_FILTERS.find((f) => f.value === s)?.value ?? "all") as ListStatus,
+    category: (CATEGORIES.find((x) => x.value === c)?.value ?? "all") as Category | "all",
+    entryId: window.location.hash.slice(1) || null,
+  };
+}
+
+const categoryLabel = (c: Category) => CATEGORIES.find((x) => x.value === c)?.label ?? c;
+
+/** localStorage key set once the page has been opened; hosts read it to drop a "New" marker. */
 export function feedbackSeenKey(boardKey: string) {
   return `fb_seen_${boardKey.slice(-8)}`;
 }
 
-/** True until the person has opened the board once in this browser. Safe to call during render in a browser-only app. */
+/** True until the person has opened the page once in this browser. */
 export function isFeedbackNew(boardKey: string): boolean {
   try {
     return typeof window !== "undefined" && !localStorage.getItem(feedbackSeenKey(boardKey));
@@ -159,6 +266,10 @@ export function isFeedbackNew(boardKey: string): boolean {
 
 class Api {
   constructor(private base: string, private key: string, private voter: string) {}
+
+  get rssUrl() {
+    return `${this.base}/changelog.rss?key=${encodeURIComponent(this.key)}`;
+  }
 
   private async call<T>(path: string, init?: RequestInit): Promise<T> {
     const res = await fetch(`${this.base}${path}`, {
@@ -175,17 +286,24 @@ class Api {
     return data;
   }
 
-  list(p: { sort: Sort; status: Status | "all"; category: Category | "all"; q: string }) {
+  board() {
+    return this.call<{ board: BoardInfo } & Summary>("/board");
+  }
+  list(p: { sort: Sort; status: ListStatus; category: Category | "all"; q: string; offset: number }) {
     const sp = new URLSearchParams();
     if (p.sort !== "trending") sp.set("sort", p.sort);
     if (p.status !== "all") sp.set("status", p.status);
     if (p.category !== "all") sp.set("category", p.category);
     if (p.q.trim()) sp.set("q", p.q.trim());
-    const qs = sp.toString();
-    return this.call<{ board: { name: string; slug: string; notifies: boolean }; posts: Post[] }>(`/posts${qs ? `?${qs}` : ""}`);
+    sp.set("limit", String(PAGE));
+    if (p.offset) sp.set("offset", String(p.offset));
+    return this.call<{ board: { name: string; notifies: boolean }; posts: Post[]; hasMore: boolean; total: number }>(`/posts?${sp}`);
   }
   detail(n: number) {
-    return this.call<{ post?: Post; comments?: Comment[]; events?: StatusEvent[]; duplicates?: number; redirect?: number }>(`/posts/${n}`);
+    return this.call<{
+      post?: Post; comments?: Comment[]; events?: StatusEvent[]; duplicates?: Duplicate[];
+      voters?: { count: number; names: string[] }; redirect?: number;
+    }>(`/posts/${n}`);
   }
   create(b: { title: string; body: string; category: Category; name: string; email: string; website: string }) {
     return this.call<{ number: number }>("/posts", { method: "POST", body: JSON.stringify(b) });
@@ -202,8 +320,21 @@ class Api {
   roadmap() {
     return this.call<{ posts: Post[] }>("/roadmap");
   }
-  changelog() {
-    return this.call<{ posts: Post[] }>("/changelog");
+  changelog(p: { type: ChangeType | "all"; q: string }) {
+    const sp = new URLSearchParams();
+    if (p.type !== "all") sp.set("type", p.type);
+    if (p.q.trim()) sp.set("q", p.q.trim());
+    const qs = sp.toString();
+    return this.call<{ items: ChangelogItem[] }>(`/changelog${qs ? `?${qs}` : ""}`);
+  }
+  like(id: string) {
+    return this.call<{ liked: boolean; count: number }>(`/changelog/${id}/like`, { method: "POST" });
+  }
+  subscribe(email: string, website: string) {
+    return this.call<{ ok: boolean }>("/changelog/subscribe", { method: "POST", body: JSON.stringify({ email, website }) });
+  }
+  support(b: { message: string; name: string; email: string; page: string; website: string }) {
+    return this.call<{ ok: boolean; emailed: boolean }>("/support", { method: "POST", body: JSON.stringify(b) });
   }
 }
 
@@ -221,22 +352,53 @@ const btn = {
 const input =
   "w-full rounded-md border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
+function Icon({ path, className = "h-4 w-4", filled = false }: { path: string; className?: string; filled?: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d={path} />
+    </svg>
+  );
+}
+
+const ICONS = {
+  map: "M9 4L3 7v13l6-3 6 3 6-3V4l-6 3-6-3z",
+  bulb: "M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z",
+  refresh: "M21 12a9 9 0 11-3-6.7M21 3v6h-6",
+  search: "M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-3.5-3.5",
+  filter: "M3 5h18l-7 8v6l-4 2v-8L3 5z",
+  chevronUp: "M6 15l6-6 6 6",
+  chevronDown: "M6 9l6 6 6-6",
+  chevronLeft: "M15 18l-6-6 6-6",
+  arrowRight: "M5 12h14M13 6l6 6-6 6",
+  comment: "M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z",
+  heart: "M20.8 5.6a5 5 0 00-7.1 0L12 7.3l-1.7-1.7a5 5 0 00-7.1 7.1l8.8 8.8 8.8-8.8a5 5 0 000-7.1z",
+  link: "M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7",
+  close: "M18 6L6 18M6 6l12 12",
+  check: "M20 6L9 17l-5-5",
+  plus: "M12 5v14M5 12h14",
+  mail: "M4 4h16v16H4zM4 6l8 6 8-6",
+};
+
 function StatusPill({ status, size = "sm" }: { status: Status; size?: "sm" | "md" }) {
-  if (status === "open" && size === "sm") return null;
+  if (status === "open") return null;
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full font-medium ${STATUS_CLASS[status]} ${
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded font-medium ${STATUS_TONE[status].pill} ${
         size === "sm" ? "px-2 py-0.5 text-[11px]" : "px-2.5 py-1 text-xs"
       }`}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />
       {STATUS_LABEL[status]}
     </span>
   );
 }
 
+function TypePill({ type }: { type: ChangeType }) {
+  const t = CHANGE_TYPES.find((x) => x.value === type) ?? CHANGE_TYPES[0];
+  return <span className={`inline-flex shrink-0 items-center rounded px-2 py-0.5 text-[11px] font-medium ${t.pill}`}>{t.label}</span>;
+}
+
 function MakerBadge() {
-  return <span className="rounded-full bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Maker</span>;
+  return <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Maker</span>;
 }
 
 function Avatar({ name, size = 20 }: { name: string | null; size?: number }) {
@@ -252,25 +414,11 @@ function Avatar({ name, size = 20 }: { name: string | null; size?: number }) {
   );
 }
 
-function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+function Empty({ title, body, action }: { title: string; body?: string; action?: React.ReactNode }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`inline-flex h-8 shrink-0 items-center whitespace-nowrap rounded-full px-3 text-[13px] font-medium transition-colors ${
-        active ? "bg-secondary text-secondary-foreground ring-1 ring-inset ring-border" : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-function Empty({ title, body, action }: { title: string; body: string; action?: React.ReactNode }) {
-  return (
-    <div className="rounded-lg border border-dashed border-border px-6 py-14 text-center">
-      <p className="text-[15px] font-medium">{title}</p>
-      <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">{body}</p>
+    <div className="px-6 py-12 text-center">
+      <p className="text-[14px] font-medium">{title}</p>
+      {body ? <p className="mx-auto mt-1.5 max-w-sm text-[13px] text-muted-foreground">{body}</p> : null}
       {action ? <div className="mt-5 flex justify-center">{action}</div> : null}
     </div>
   );
@@ -278,14 +426,13 @@ function Empty({ title, body, action }: { title: string; body: string; action?: 
 
 function Skeleton({ rows = 4 }: { rows?: number }) {
   return (
-    <ul className="space-y-2" aria-hidden>
+    <ul className="divide-y divide-border" aria-hidden>
       {Array.from({ length: rows }).map((_, i) => (
-        <li key={i} className="flex gap-3 rounded-lg border border-border bg-card p-3 sm:p-4">
-          <div className="h-14 w-[52px] shrink-0 animate-pulse rounded-md bg-muted" />
+        <li key={i} className="flex gap-4 p-4">
+          <div className="h-11 w-10 shrink-0 animate-pulse rounded-md bg-muted" />
           <div className="flex-1 space-y-2 py-1">
             <div className="h-3.5 w-2/3 animate-pulse rounded bg-muted" />
             <div className="h-3 w-full animate-pulse rounded bg-muted" />
-            <div className="h-3 w-1/3 animate-pulse rounded bg-muted" />
           </div>
         </li>
       ))}
@@ -306,9 +453,80 @@ function ErrorNote({ message, onRetry }: { message: string; onRetry?: () => void
   );
 }
 
-// ---------- vote button ----------
+/** A menu anchored under its trigger. Closes on Escape, on a click outside, and on pick. */
+function Menu({
+  label,
+  children,
+  align = "right",
+  trigger,
+}: {
+  label: string;
+  children: (close: () => void) => React.ReactNode;
+  align?: "left" | "right";
+  trigger: (open: boolean) => React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  const close = useCallback(() => setOpen(false), []);
 
-function VoteButton({
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (box.current && !box.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div className="relative" ref={box}>
+      <button type="button" aria-haspopup="menu" aria-expanded={open} aria-label={label} onClick={() => setOpen((o) => !o)}>
+        {trigger(open)}
+      </button>
+      {open ? (
+        <div
+          role="menu"
+          className={`absolute z-30 mt-1.5 min-w-[13rem] overflow-hidden rounded-lg border border-border bg-background py-1 shadow-lg ${
+            align === "right" ? "right-0" : "left-0"
+          }`}
+        >
+          {children(close)}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function MenuHeading({ children }: { children: React.ReactNode }) {
+  return <p className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{children}</p>;
+}
+
+function MenuItem({ active, onClick, children }: { active?: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      role="menuitem"
+      onClick={onClick}
+      className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-[13px] transition-colors hover:bg-accent hover:text-accent-foreground ${
+        active ? "font-medium text-foreground" : "text-muted-foreground"
+      }`}
+    >
+      {children}
+      {active ? <Icon path={ICONS.check} className="h-3.5 w-3.5 text-primary" /> : null}
+    </button>
+  );
+}
+
+// ---------- vote pill ----------
+
+function VotePill({
   api,
   post,
   size = "md",
@@ -326,8 +544,6 @@ function VoteButton({
   // newest click is allowed to write the server's answer into state.
   const seq = useRef(0);
 
-  // When the parent re-fetches, take the server's numbers; the render-time compare avoids
-  // an effect that would set state synchronously.
   const [seen, setSeen] = useState({ voted: post.voted, count: post.vote_count });
   if (seen.voted !== post.voted || seen.count !== post.vote_count) {
     setSeen({ voted: post.voted, count: post.vote_count });
@@ -368,18 +584,16 @@ function VoteButton({
         aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
         title={state.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
-          lg ? "w-16 py-3" : "w-[52px] py-2.5"
+          lg ? "w-14 py-2.5" : "w-10 py-2"
         } ${
           state.voted
             ? "border-primary bg-primary/10 text-foreground"
-            : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
+            : "border-border bg-background text-muted-foreground hover:border-primary hover:text-foreground"
         }`}
       >
-        <svg viewBox="0 0 24 24" className={lg ? "h-4 w-4" : "h-3.5 w-3.5"} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M6 15l6-6 6 6" />
-        </svg>
+        <Icon path={ICONS.chevronUp} className={lg ? "h-4 w-4" : "h-3 w-3"} />
         <span
-          className={`font-semibold tabular-nums ${lg ? "text-lg" : "text-sm"}`}
+          className={`font-bold tabular-nums text-foreground ${lg ? "text-base" : "text-[13px]"}`}
           style={pop ? { transform: "scale(1.18)", transition: "transform 120ms" } : { transform: "scale(1)", transition: "transform 140ms" }}
         >
           {state.count}
@@ -392,73 +606,236 @@ function VoteButton({
   );
 }
 
-// ---------- post card ----------
+// ---------- top bar ----------
 
-function PostCard({ api, post, onOpen }: { api: Api; post: Post; onOpen: (n: number) => void }) {
+function TopBar({
+  appName,
+  tab,
+  identity,
+  homeUrl,
+  onTab,
+  onSearch,
+  onContact,
+}: {
+  appName: string;
+  tab: Tab;
+  identity?: FeedbackIdentity;
+  homeUrl?: string;
+  onTab: (t: Tab) => void;
+  onSearch: () => void;
+  onContact: () => void;
+}) {
+  const tabs: { key: Tab; label: string; icon: string }[] = [
+    { key: "roadmap", label: "Roadmap", icon: ICONS.map },
+    { key: "feedback", label: "Feedback", icon: ICONS.bulb },
+    { key: "changelog", label: "Changelog", icon: ICONS.refresh },
+  ];
   return (
-    <li className="relative">
-      <div className="flex gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-foreground/25 sm:gap-4 sm:p-4">
-        {/* z-10 keeps the vote control above the title's stretched-link overlay. */}
-        <div className="relative z-10">
-          <VoteButton api={api} post={post} />
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="min-w-0 text-[15px] font-semibold leading-snug">
-              <button
-                type="button"
-                onClick={() => onOpen(post.number)}
-                className="text-left after:absolute after:inset-0 hover:underline"
-              >
-                {post.pinned ? <span aria-label="Pinned" title="Pinned" className="mr-1.5 align-middle text-primary">&#9679;</span> : null}
-                {post.title}
-              </button>
-            </h3>
-            <StatusPill status={post.status} />
-          </div>
-          {post.body ? <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{post.body}</p> : null}
-          <div className="mt-2.5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] text-muted-foreground">
-            <Avatar name={post.author_name} size={18} />
-            <span className="font-medium">{post.author_name || "Anonymous"}</span>
-            {post.is_official ? <MakerBadge /> : null}
-            <span aria-hidden>&middot;</span>
-            <time dateTime={post.created_at}>{timeAgo(post.created_at)}</time>
-            <span aria-hidden>&middot;</span>
-            <span>{CATEGORIES.find((c) => c.value === post.category)?.label ?? post.category}</span>
-            {post.comment_count > 0 ? (
-              <>
-                <span aria-hidden>&middot;</span>
-                <span>{post.comment_count} {post.comment_count === 1 ? "comment" : "comments"}</span>
-              </>
-            ) : null}
-          </div>
+    <header className="border-b border-border">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-3 px-4 py-4">
+        <a href={homeUrl ?? "#"} className="flex min-w-0 items-center gap-2.5" aria-label={homeUrl ? `Back to ${appName}` : appName}>
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary text-[13px] font-bold text-primary-foreground">
+            {appName.trim()[0]?.toUpperCase() ?? "A"}
+          </span>
+          <span className="truncate text-[19px] font-semibold tracking-tight">{appName}</span>
+        </a>
+        <div className="ml-auto flex items-center gap-2">
+          {identity?.name || identity?.email ? (
+            <span className="hidden items-center gap-2 text-[13px] text-muted-foreground sm:flex">
+              <Avatar name={identity.name ?? identity.email ?? null} size={22} />
+              <span className="max-w-[10rem] truncate">{identity.name || identity.email}</span>
+            </span>
+          ) : null}
+          <button type="button" onClick={onContact} className={btn.outline}>
+            Contact us
+          </button>
         </div>
       </div>
-    </li>
+      <div className="mx-auto flex w-full max-w-5xl items-center gap-1 px-2 sm:gap-5 sm:px-4">
+        <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 sm:gap-5">
+          {tabs.map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              aria-current={tab === t.key ? "page" : undefined}
+              onClick={() => onTab(t.key)}
+              className={`relative -mb-px flex items-center gap-1.5 whitespace-nowrap px-2 py-3 text-[13px] font-medium transition-colors sm:text-[14px] ${
+                tab === t.key ? "text-primary" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon path={t.icon} className="h-4 w-4" />
+              {t.label}
+              {tab === t.key ? <span className="absolute inset-x-1 -bottom-px h-0.5 rounded-full bg-primary" /> : null}
+            </button>
+          ))}
+        </nav>
+        <button
+          type="button"
+          onClick={onSearch}
+          className="flex shrink-0 items-center gap-1.5 px-2 py-3 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-[14px]"
+        >
+          <Icon path={ICONS.search} className="h-4 w-4" />
+          <span className="hidden sm:inline">Search</span>
+        </button>
+      </div>
+    </header>
   );
 }
 
-// ---------- submit dialog ----------
+// ---------- roadmap tab ----------
+
+function RoadmapTab({
+  api,
+  summary,
+  onOpen,
+  onCategory,
+}: {
+  api: Api;
+  summary: Summary | null;
+  onOpen: (n: number) => void;
+  onCategory: (c: Category) => void;
+}) {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
+  const [hidden, setHidden] = useState<Set<Category>>(new Set());
+
+  useEffect(() => {
+    let cancelled = false;
+    api
+      .roadmap()
+      .then((r) => {
+        if (!cancelled) setPosts(r.posts);
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : "Could not load the roadmap.");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [api, attempt]);
+
+  const retry = useCallback(() => {
+    setError(null);
+    setAttempt((a) => a + 1);
+  }, []);
+
+  const toggle = (c: Category) =>
+    setHidden((h) => {
+      const next = new Set(h);
+      if (next.has(c)) next.delete(c);
+      else next.add(c);
+      return next;
+    });
+
+  const shown = (posts ?? []).filter((p) => !hidden.has(p.category));
+
+  return (
+    <>
+      <h1 className="text-[16px] font-bold">Boards</h1>
+      <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {CATEGORIES.map((c) => (
+          <button
+            key={c.value}
+            type="button"
+            onClick={() => onCategory(c.value)}
+            className="flex h-12 items-center justify-between gap-3 rounded-[10px] border border-border bg-background px-4 text-left transition-colors hover:border-primary"
+          >
+            <span className="truncate text-[14px] font-medium">{c.plural}</span>
+            <span className="shrink-0 text-[13px] tabular-nums text-muted-foreground">{summary?.counts[c.value] ?? 0}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-8 flex items-center justify-between gap-3">
+        <h2 className="text-[16px] font-semibold">Roadmap</h2>
+        <Menu
+          label="Filter the roadmap"
+          trigger={() => (
+            <span className={btn.outline}>
+              <Icon path={ICONS.filter} className="h-4 w-4" />
+              Filters
+            </span>
+          )}
+        >
+          {() => (
+            <div className="w-60">
+              <div className="flex items-center justify-between gap-3 border-b border-border px-3 py-2">
+                <span className="text-[13px] font-semibold">Filters</span>
+                <button type="button" onClick={() => setHidden(new Set())} className="text-[13px] font-medium text-primary hover:underline">
+                  Select all
+                </button>
+              </div>
+              {CATEGORIES.map((c) => (
+                <label key={c.value} className="flex cursor-pointer items-center gap-2.5 px-3 py-2 text-[13px] hover:bg-accent hover:text-accent-foreground">
+                  <input type="checkbox" checked={!hidden.has(c.value)} onChange={() => toggle(c.value)} className="h-4 w-4 accent-[var(--primary)]" />
+                  {c.plural}
+                </label>
+              ))}
+            </div>
+          )}
+        </Menu>
+      </div>
+
+      {error ? (
+        <div className="mt-4">
+          <ErrorNote message={error} onRetry={retry} />
+        </div>
+      ) : !posts ? (
+        <div className="mt-4 grid gap-6 md:grid-cols-3">
+          {ROADMAP_COLUMNS.map((c) => (
+            <div key={c.status} className="rounded-[10px] border border-border">
+              <Skeleton rows={2} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-4 grid gap-6 md:grid-cols-3">
+          {ROADMAP_COLUMNS.map((col) => {
+            const items = shown.filter((p) => p.status === col.status);
+            return (
+              <section key={col.status} aria-label={STATUS_LABEL[col.status]} className="overflow-hidden rounded-[10px] border border-border">
+                <header className="flex h-12 items-center gap-2 border-b border-border bg-muted/40 px-4">
+                  <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: STATUS_TONE[col.status].dot }} />
+                  <h3 className="text-[14px] font-semibold">{STATUS_LABEL[col.status]}</h3>
+                  <span className="ml-auto text-[12px] tabular-nums text-muted-foreground" title={col.blurb}>
+                    {items.length}
+                  </span>
+                </header>
+                {items.length === 0 ? (
+                  <p className="px-4 py-10 text-center text-[13px] text-muted-foreground">Nothing here yet</p>
+                ) : (
+                  <ul className="max-h-[560px] space-y-4 overflow-y-auto p-4">
+                    {items.map((p) => (
+                      <li key={p.id} className="relative flex items-start gap-4">
+                        <div className="relative z-10">
+                          <VotePill api={api} post={p} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-[15px] leading-snug">
+                            <button type="button" onClick={() => onOpen(p.number)} className="text-left after:absolute after:inset-0 hover:underline">
+                              {p.title}
+                            </button>
+                          </h4>
+                          <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{categoryLabel(p.category)}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}
+
+// ---------- feedback tab ----------
 
 type Draft = { title: string; body: string; category: Category; name: string; email: string };
-const EMPTY: Draft = { title: "", body: "", category: "feature", name: "", email: "" };
-
-type SubmitProps = {
-  api: Api;
-  boardKey: string;
-  appName: string;
-  identity?: FeedbackIdentity;
-  notifies: boolean;
-  onClose: () => void;
-  onCreated: (n: number) => void;
-  onOpenPost: (n: number) => void;
-};
-
-// Mounted only while open, so every opening starts from a fresh useState initialiser
-// (which is where the saved draft is restored) instead of an effect.
-function SubmitDialog({ open, ...props }: SubmitProps & { open: boolean }) {
-  return open ? <SubmitDialogBody {...props} /> : null;
-}
+const EMPTY_DRAFT: Draft = { title: "", body: "", category: "feature", name: "", email: "" };
 
 function restoreDraft(draftKey: string, identity?: FeedbackIdentity): Draft {
   let base: Partial<Draft> = {};
@@ -474,7 +851,7 @@ function restoreDraft(draftKey: string, identity?: FeedbackIdentity): Draft {
     /* ignore */
   }
   return {
-    ...EMPTY,
+    ...EMPTY_DRAFT,
     ...base,
     ...restored,
     name: identity?.name ?? restored.name ?? base.name ?? "",
@@ -482,31 +859,52 @@ function restoreDraft(draftKey: string, identity?: FeedbackIdentity): Draft {
   };
 }
 
-function SubmitDialogBody({ api, boardKey, appName, identity, notifies, onClose, onCreated, onOpenPost }: SubmitProps) {
+/** The create card at the top of the feedback list. Opens on focus, the way the
+ *  reference portal does, so posting is one click from reading. */
+function CreateCard({
+  api,
+  boardKey,
+  appName,
+  identity,
+  notifies,
+  category,
+  onCreated,
+  onOpenPost,
+}: {
+  api: Api;
+  boardKey: string;
+  appName: string;
+  identity?: FeedbackIdentity;
+  notifies: boolean;
+  category: Category | "all";
+  onCreated: (n: number) => void;
+  onOpenPost: (n: number) => void;
+}) {
   const draftKey = `fb_draft_${boardKey.slice(-8)}`;
-  // Restore whatever was typed before, so a closed tab never costs someone their idea.
   const [draft, setDraft] = useState<Draft>(() => restoreDraft(draftKey, identity));
+  const [open, setOpen] = useState(false);
   const [similar, setSimilar] = useState<Post[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<number | null>(null);
-  const titleRef = useRef<HTMLInputElement>(null);
   const hasIdentity = !!identity?.id;
 
+  // A typed draft survives a closed tab; nobody loses an idea to a stray click.
   useEffect(() => {
-    const t = window.setTimeout(() => titleRef.current?.focus(), 60);
-    return () => window.clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    if (done !== null) return;
     if (draft.title || draft.body) storage(draftKey, JSON.stringify(draft));
-  }, [draft, done, draftKey]);
+  }, [draft, draftKey]);
+
+  // Picking a category in the rail should pre-set the kind of post being written. React
+  // calls this adjusting state while rendering; an effect here would cascade a render.
+  const [seenCategory, setSeenCategory] = useState(category);
+  if (seenCategory !== category) {
+    setSeenCategory(category);
+    if (category !== "all") setDraft((d) => ({ ...d, category }));
+  }
 
   // Show what people already asked for while the title is still being typed. Voting on
   // an existing post beats filing the same idea twice.
   useEffect(() => {
-    if (done !== null) return;
     const title = draft.title.trim();
     const t = window.setTimeout(() => {
       if (title.length < 5) {
@@ -516,22 +914,15 @@ function SubmitDialogBody({ api, boardKey, appName, identity, notifies, onClose,
       api.similar(title).then((r) => setSimilar(r.posts)).catch(() => setSimilar([]));
     }, 350);
     return () => window.clearTimeout(t);
-  }, [draft.title, done, api]);
+  }, [draft.title, api]);
 
-  const close = useCallback(() => onClose(), [onClose]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [close]);
+  function reset() {
+    setDraft({ ...EMPTY_DRAFT, name: draft.name, email: draft.email, category: category === "all" ? "feature" : category });
+    setSimilar([]);
+    setOpen(false);
+    setError(null);
+    storage(draftKey, null);
+  }
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -547,6 +938,9 @@ function SubmitDialogBody({ api, boardKey, appName, identity, notifies, onClose,
       storage(draftKey, null);
       storage("fb_identity", JSON.stringify({ name: draft.name, email: draft.email }));
       setDone(res.number);
+      setDraft({ ...EMPTY_DRAFT, name: draft.name, email: draft.email });
+      setSimilar([]);
+      setOpen(false);
       onCreated(res.number);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save that.");
@@ -555,174 +949,471 @@ function SubmitDialogBody({ api, boardKey, appName, identity, notifies, onClose,
     }
   }
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-sm sm:p-6"
-      onMouseDown={(e) => {
-        if (e.target === e.currentTarget) close();
-      }}
-    >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-label={done !== null ? "Feedback posted" : `Give feedback on ${appName}`}
-        className="my-auto w-full max-w-xl rounded-xl border border-border bg-background text-foreground shadow-2xl"
-      >
-        {done !== null ? (
-          <div className="p-6 text-center sm:p-8">
-            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-            </div>
-            <h2 className="mt-4 text-lg font-semibold">That is on the board</h2>
-            <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">
+  if (done !== null) {
+    return (
+      <div className="rounded-[10px] border border-emerald-500/40 bg-emerald-500/5 p-4">
+        <div className="flex items-start gap-3">
+          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
+            <Icon path={ICONS.check} className="h-4 w-4" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[14px] font-semibold">That is on the board</p>
+            <p className="mt-1 text-[13px] text-muted-foreground">
               Everyone using {appName} can see it and vote on it now. It carries your vote already.
               {draft.email && notifies ? " You will get an email when its status changes." : ""}
             </p>
-            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
-              <button
-                type="button"
-                className={btn.primary}
-                onClick={() => {
-                  close();
-                  onOpenPost(done);
-                }}
-              >
+            <div className="mt-3 flex flex-wrap gap-2">
+              <button type="button" className={btn.primary} onClick={() => onOpenPost(done)}>
                 See your post
               </button>
-              <button type="button" onClick={close} className={btn.outline}>
-                Back to the board
+              <button type="button" className={btn.ghost} onClick={() => setDone(null)}>
+                Post something else
               </button>
             </div>
           </div>
-        ) : (
-          <form onSubmit={submit}>
-            <header className="flex items-start justify-between gap-4 border-b border-border p-5">
-              <div>
-                <h2 className="text-[15px] font-semibold">Give feedback on {appName}</h2>
-                <p className="mt-0.5 text-[13px] text-muted-foreground">Everyone using {appName} can see this, and the most-voted items get built first.</p>
-              </div>
-              <button type="button" onClick={close} aria-label="Close" className="-m-1 rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground">
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden>
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </header>
+        </div>
+      </div>
+    );
+  }
 
-            <div className="max-h-[60vh] space-y-5 overflow-y-auto p-5">
-              <fieldset>
-                <legend className="mb-2 text-[13px] font-medium text-muted-foreground">What kind of feedback is this?</legend>
-                <div className="grid grid-cols-2 gap-2">
-                  {CATEGORIES.map((c) => (
-                    <label
-                      key={c.value}
-                      className={`cursor-pointer rounded-md border px-3 py-2.5 transition-colors ${
-                        draft.category === c.value ? "border-primary bg-primary/10" : "border-border bg-card hover:border-foreground/30"
-                      }`}
-                    >
-                      <input type="radio" name="category" value={c.value} checked={draft.category === c.value} onChange={() => setDraft({ ...draft, category: c.value })} className="sr-only" />
-                      <span className="block text-[13px] font-medium">{c.label}</span>
-                      <span className="mt-0.5 block text-[11px] leading-snug text-muted-foreground">{c.hint}</span>
-                    </label>
+  return (
+    <form onSubmit={submit} className="overflow-hidden rounded-[10px] border border-border">
+      <div className="space-y-3 p-4">
+        <label htmlFor="fb-title" className="sr-only">
+          Say it in one line
+        </label>
+        <input
+          id="fb-title"
+          value={draft.title}
+          onFocus={() => setOpen(true)}
+          onChange={(e) => {
+            setDraft({ ...draft, title: e.target.value });
+            setOpen(true);
+          }}
+          maxLength={160}
+          placeholder="Short, descriptive title"
+          className="w-full bg-transparent text-[16px] placeholder:text-muted-foreground focus-visible:outline-none"
+        />
+
+        {open ? (
+          <>
+            {similar.length > 0 ? (
+              <div className="rounded-md border border-amber-500/30 bg-amber-500/10 p-3">
+                <p className="text-[12px] font-medium text-amber-800 dark:text-amber-200">Someone may have asked for this already</p>
+                <p className="mt-0.5 text-[11px] text-amber-800/70 dark:text-amber-200/70">Voting on one of these counts for more than a second post.</p>
+                <ul className="mt-2.5 space-y-1.5">
+                  {similar.map((p) => (
+                    <li key={p.id} className="flex items-center gap-2.5 rounded-md bg-background p-2">
+                      <VotePill api={api} post={p} />
+                      <button type="button" onClick={() => onOpenPost(p.number)} className="min-w-0 flex-1 truncate text-left text-[13px] hover:underline">
+                        {p.title}
+                      </button>
+                    </li>
                   ))}
-                </div>
-              </fieldset>
-
-              <div>
-                <label htmlFor="fb-title" className="mb-1.5 flex items-baseline justify-between">
-                  <span className="text-[13px] font-medium text-muted-foreground">Say it in one line</span>
-                  <span className={`text-[11px] tabular-nums ${draft.title.length > 140 ? "text-destructive" : "text-muted-foreground"}`}>{draft.title.length}/140</span>
-                </label>
-                <input id="fb-title" ref={titleRef} value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} maxLength={160} required placeholder="Let me export the report as a PDF" className={input} />
+                </ul>
               </div>
+            ) : null}
 
-              {similar.length > 0 ? (
-                <div className="rounded-md border border-amber-500/30 bg-amber-500/10 p-3">
-                  <p className="text-[12px] font-medium text-amber-800 dark:text-amber-200">Someone may have asked for this already</p>
-                  <p className="mt-0.5 text-[11px] text-amber-800/70 dark:text-amber-200/70">Voting on one of these counts for more than a second post.</p>
-                  <ul className="mt-2.5 space-y-1.5">
-                    {similar.map((p) => (
-                      <li key={p.id} className="flex items-center gap-2.5 rounded-md bg-background p-2">
-                        <VoteButton api={api} post={p} />
-                        <button
-                          type="button"
-                          onClick={() => {
-                            close();
-                            onOpenPost(p.number);
-                          }}
-                          className="min-w-0 flex-1 truncate text-left text-[13px] hover:underline"
-                        >
-                          {p.title}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-
-              <div>
-                <label htmlFor="fb-body" className="mb-1.5 block text-[13px] font-medium text-muted-foreground">
-                  What are you trying to do, and what gets in the way? <span className="font-normal">Optional</span>
-                </label>
-                <textarea id="fb-body" value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })} rows={4} maxLength={4000} placeholder="The more specific, the more likely it gets built. Real examples help most." className={input} />
-              </div>
-
-              {hasIdentity ? (
-                <p className="text-[12px] text-muted-foreground">
-                  Posting as <span className="font-medium text-foreground">{draft.name || draft.email || "you"}</span>. Your email is never shown
-                  {notifies ? ", and you will get one email when the status changes." : "."}
-                </p>
-              ) : (
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="fb-name" className="mb-1.5 block text-[13px] font-medium text-muted-foreground">
-                      Your name <span className="font-normal">Optional</span>
-                    </label>
-                    <input id="fb-name" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} maxLength={60} placeholder="Anonymous" className={input} />
-                  </div>
-                  <div>
-                    <label htmlFor="fb-email" className="mb-1.5 block text-[13px] font-medium text-muted-foreground">
-                      Email <span className="font-normal">Optional</span>
-                    </label>
-                    <input id="fb-email" type="email" value={draft.email} onChange={(e) => setDraft({ ...draft, email: e.target.value })} maxLength={120} placeholder={notifies ? "To hear when it ships" : "Only used to follow up"} className={input} />
-                  </div>
-                </div>
-              )}
-
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0" />
-
-              {error ? <ErrorNote message={error} /> : null}
+            <div>
+              <p className="text-[14px] font-semibold">Details</p>
+              <label htmlFor="fb-body" className="sr-only">
+                Any additional details
+              </label>
+              <textarea
+                id="fb-body"
+                value={draft.body}
+                onChange={(e) => setDraft({ ...draft, body: e.target.value })}
+                rows={3}
+                maxLength={4000}
+                placeholder="Any additional details..."
+                className="mt-1 w-full resize-y bg-transparent text-[14px] placeholder:text-muted-foreground focus-visible:outline-none"
+              />
             </div>
 
-            <footer className="flex items-center justify-between gap-3 border-t border-border p-4">
-              <p className="text-[11px] text-muted-foreground">Posts are visible to everyone on {appName}. Emails are not.</p>
-              <div className="flex gap-2">
-                <button type="button" onClick={close} className={btn.ghost}>
-                  Cancel
-                </button>
-                <button type="submit" disabled={busy || draft.title.trim().length < 4} className={btn.primary}>
-                  {busy ? "Posting..." : "Post it"}
-                </button>
+            <fieldset>
+              <legend className="sr-only">What kind of feedback is this?</legend>
+              <div className="flex flex-wrap gap-1.5">
+                {CATEGORIES.map((c) => (
+                  <label
+                    key={c.value}
+                    title={c.hint}
+                    className={`cursor-pointer rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors ${
+                      draft.category === c.value ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="category"
+                      value={c.value}
+                      checked={draft.category === c.value}
+                      onChange={() => setDraft({ ...draft, category: c.value })}
+                      className="sr-only"
+                    />
+                    {c.label}
+                  </label>
+                ))}
               </div>
-            </footer>
-          </form>
-        )}
+            </fieldset>
+
+            {hasIdentity ? (
+              <p className="text-[12px] text-muted-foreground">
+                Posting as <span className="font-medium text-foreground">{draft.name || draft.email || "you"}</span>. Your email is never shown
+                {notifies ? ", and you will get one email when the status changes." : "."}
+              </p>
+            ) : (
+              <div className="grid gap-2 sm:grid-cols-2">
+                <input
+                  value={draft.name}
+                  onChange={(e) => setDraft({ ...draft, name: e.target.value })}
+                  maxLength={60}
+                  placeholder="Your name (optional)"
+                  aria-label="Your name"
+                  className={`${input} h-9`}
+                />
+                <input
+                  type="email"
+                  value={draft.email}
+                  onChange={(e) => setDraft({ ...draft, email: e.target.value })}
+                  maxLength={120}
+                  placeholder={notifies ? "Email, to hear when it ships" : "Email (optional)"}
+                  aria-label="Your email"
+                  className={`${input} h-9`}
+                />
+              </div>
+            )}
+
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0" />
+            {error ? <ErrorNote message={error} /> : null}
+          </>
+        ) : null}
+      </div>
+
+      {open ? (
+        <footer className="flex items-center justify-end gap-2 border-t border-border bg-muted/40 px-4 py-3">
+          <button type="button" onClick={reset} className={btn.ghost}>
+            Cancel
+          </button>
+          <button type="submit" disabled={busy || draft.title.trim().length < 4} className={btn.primary}>
+            {busy ? "Posting..." : "Create post"}
+          </button>
+        </footer>
+      ) : null}
+    </form>
+  );
+}
+
+function FeedbackTab({
+  api,
+  boardKey,
+  appName,
+  board,
+  summary,
+  identity,
+  sort,
+  status,
+  category,
+  q,
+  searchRef,
+  onSort,
+  onStatus,
+  onCategory,
+  onQ,
+  onOpen,
+  reloadKey,
+  onReload,
+}: {
+  api: Api;
+  boardKey: string;
+  appName: string;
+  board: BoardInfo | null;
+  summary: Summary | null;
+  identity?: FeedbackIdentity;
+  sort: Sort;
+  status: ListStatus;
+  category: Category | "all";
+  q: string;
+  searchRef: React.RefObject<HTMLInputElement | null>;
+  onSort: (s: Sort) => void;
+  onStatus: (s: ListStatus) => void;
+  onCategory: (c: Category | "all") => void;
+  onQ: (q: string) => void;
+  onOpen: (n: number) => void;
+  reloadKey: number;
+  onReload: () => void;
+}) {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [hasMore, setHasMore] = useState(false);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Any change to the query starts the list again from the top. Adjusting both pieces of
+  // state here, while rendering, keeps the fetch effect below down to one run per query.
+  const queryKey = `${sort}|${status}|${category}|${q}|${reloadKey}`;
+  const [seenQuery, setSeenQuery] = useState(queryKey);
+  if (seenQuery !== queryKey) {
+    setSeenQuery(queryKey);
+    setOffset(0);
+    setPosts(null);
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+    const first = offset === 0;
+    const t = window.setTimeout(() => {
+      api
+        .list({ sort, status, category, q, offset })
+        .then((r) => {
+          if (cancelled) return;
+          setPosts((prev) => (first ? r.posts : [...(prev ?? []), ...r.posts]));
+          setHasMore(r.hasMore);
+          setTotal(r.total);
+          setError(null);
+        })
+        .catch((e) => {
+          if (!cancelled) setError(e instanceof Error ? e.message : "Could not load the feedback.");
+        })
+        .finally(() => {
+          if (!cancelled) setLoadingMore(false);
+        });
+    }, q && offset === 0 ? 300 : 0);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(t);
+    };
+  }, [api, sort, status, category, q, offset, reloadKey]);
+
+  const sortLabel = sort === "trending" ? "Trending" : sort === "top" ? "Top" : "New";
+  const statusLabel = LIST_FILTERS.find((f) => f.value === status)?.label ?? "All posts";
+  const filtered = status !== "all" || category !== "all" || q.trim() !== "";
+
+  return (
+    <div className="md:grid md:grid-cols-[240px_1fr] md:gap-8">
+      <aside className="mb-6 md:mb-0">
+        <h2 className="px-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Boards</h2>
+        <ul className="mt-2 space-y-0.5">
+          <li>
+            <button
+              type="button"
+              onClick={() => onCategory("all")}
+              className={`flex h-9 w-full items-center justify-between gap-2 rounded-md px-3 text-left text-[13px] transition-colors ${
+                category === "all" ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+              }`}
+            >
+              All posts
+              <span className="tabular-nums text-[12px] text-muted-foreground">{summary?.total ?? 0}</span>
+            </button>
+          </li>
+          {CATEGORIES.map((c) => (
+            <li key={c.value}>
+              <button
+                type="button"
+                onClick={() => onCategory(c.value)}
+                className={`flex h-9 w-full items-center justify-between gap-2 rounded-md px-3 text-left text-[13px] transition-colors ${
+                  category === c.value ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                <span className="truncate">{c.plural}</span>
+                <span className="tabular-nums text-[12px] text-muted-foreground">{summary?.counts[c.value] ?? 0}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <div className="min-w-0">
+        <h1 className="text-[16px] font-semibold">{category === "all" ? "Feedback" : CATEGORIES.find((c) => c.value === category)?.plural}</h1>
+        <p className="mt-1 text-[14px] text-muted-foreground">
+          {board?.tagline ?? `Ask for what you need in ${appName}, see what everyone else has asked for, and vote so the most wanted work goes first.`}
+        </p>
+
+        <div className="mt-4">
+          <CreateCard
+            api={api}
+            boardKey={boardKey}
+            appName={appName}
+            identity={identity}
+            notifies={!!board?.notifies}
+            category={category}
+            onCreated={onReload}
+            onOpenPost={onOpen}
+          />
+        </div>
+
+        <div className="mt-4 overflow-hidden rounded-[10px] border border-border">
+          <div className="flex flex-wrap items-center gap-3 border-b border-border px-4 py-3">
+            <div className="flex items-center gap-1.5 text-[14px] text-muted-foreground">
+              <span>Showing</span>
+              <Menu
+                label="Sort and filter posts"
+                align="left"
+                trigger={(open) => (
+                  <span className="inline-flex items-center gap-1 rounded px-1 py-0.5 text-[14px] font-medium text-foreground hover:bg-accent">
+                    {sortLabel}
+                    {status === "all" ? "" : ` . ${statusLabel}`}
+                    <Icon path={open ? ICONS.chevronUp : ICONS.chevronDown} className="h-3.5 w-3.5" />
+                  </span>
+                )}
+              >
+                {(close) => (
+                  <div className="w-56">
+                    <MenuHeading>Sort</MenuHeading>
+                    {(["trending", "top", "new"] as Sort[]).map((s) => (
+                      <MenuItem
+                        key={s}
+                        active={sort === s}
+                        onClick={() => {
+                          onSort(s);
+                          close();
+                        }}
+                      >
+                        {s === "trending" ? "Trending" : s === "top" ? "Top" : "New"}
+                      </MenuItem>
+                    ))}
+                    <MenuHeading>Filter</MenuHeading>
+                    {LIST_FILTERS.map((f) => (
+                      <MenuItem
+                        key={f.value}
+                        active={status === f.value}
+                        onClick={() => {
+                          onStatus(f.value);
+                          close();
+                        }}
+                      >
+                        {f.label}
+                      </MenuItem>
+                    ))}
+                  </div>
+                )}
+              </Menu>
+              <span>posts</span>
+            </div>
+            <div className="relative ml-auto w-full sm:w-56">
+              <Icon path={ICONS.search} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                ref={searchRef}
+                type="search"
+                value={q}
+                onChange={(e) => onQ(e.target.value)}
+                placeholder="Search..."
+                aria-label="Search posts"
+                className={`${input} h-9 pl-9`}
+              />
+            </div>
+          </div>
+
+          {error ? (
+            <div className="p-4">
+              <ErrorNote message={error} onRetry={onReload} />
+            </div>
+          ) : !posts ? (
+            <Skeleton />
+          ) : posts.length === 0 ? (
+            filtered ? (
+              <Empty
+                title="Nothing matches that"
+                body="Try another filter or a different search term."
+                action={
+                  <button
+                    type="button"
+                    className={btn.outline}
+                    onClick={() => {
+                      onStatus("all");
+                      onCategory("all");
+                      onQ("");
+                    }}
+                  >
+                    Clear the filters
+                  </button>
+                }
+              />
+            ) : (
+              <Empty title="Nothing here yet" body={`Be the first to say what ${appName} should do next. It takes about twenty seconds.`} />
+            )
+          ) : (
+            <>
+              <ul className="divide-y divide-border">
+                {posts.map((p) => (
+                  <li key={p.id} className="relative flex items-start gap-4 px-4 py-4 transition-colors hover:bg-muted/30">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-[14px] font-semibold leading-snug">
+                        <button type="button" onClick={() => onOpen(p.number)} className="text-left after:absolute after:inset-0 hover:underline">
+                          {p.pinned ? (
+                            <span aria-label="Pinned" title="Pinned" className="mr-1.5 align-middle text-primary">
+                              &#9679;
+                            </span>
+                          ) : null}
+                          {p.title}
+                        </button>
+                      </h3>
+                      {p.body ? <p className="mt-1 line-clamp-2 text-[14px] leading-relaxed text-muted-foreground">{p.body}</p> : null}
+                      <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px] text-muted-foreground">
+                        <span className="inline-flex items-center gap-1">
+                          <Icon path={ICONS.comment} className="h-3.5 w-3.5" />
+                          {p.comment_count}
+                        </span>
+                        {p.status !== "open" ? (
+                          <>
+                            <span aria-hidden>&middot;</span>
+                            <StatusPill status={p.status} />
+                          </>
+                        ) : null}
+                        {p.is_official ? (
+                          <>
+                            <span aria-hidden>&middot;</span>
+                            <MakerBadge />
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="relative z-10">
+                      <VotePill api={api} post={p} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center justify-between gap-3 px-4 py-3 text-[13px] text-muted-foreground">
+                <span className="tabular-nums">
+                  {posts.length} of {total} {total === 1 ? "post" : "posts"}
+                </span>
+                {hasMore ? (
+                  <button
+                    type="button"
+                    disabled={loadingMore}
+                    onClick={() => {
+                      // Flip the label on the click, not when the request returns, so the
+                      // press is acknowledged straight away.
+                      setLoadingMore(true);
+                      setOffset(posts.length);
+                    }}
+                    className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline disabled:opacity-60"
+                  >
+                    {loadingMore ? "Loading..." : "Load more"}
+                    <Icon path={ICONS.arrowRight} className="h-3.5 w-3.5" />
+                  </button>
+                ) : null}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-// ---------- post detail ----------
+// ---------- post view ----------
 
-function PostDetail({
+function PostView({
   api,
+  appName,
   number,
   identity,
   onBack,
   onRedirect,
 }: {
   api: Api;
+  appName: string;
   number: number;
   identity?: FeedbackIdentity;
   onBack: () => void;
@@ -739,7 +1430,9 @@ function PostDetail({
     }
   }, [identity?.id, identity?.name, identity?.email]);
 
-  const [data, setData] = useState<{ post: Post; comments: Comment[]; events: StatusEvent[]; duplicates: number } | null>(null);
+  const [data, setData] = useState<{
+    post: Post; comments: Comment[]; events: StatusEvent[]; duplicates: Duplicate[]; voters: { count: number; names: string[] };
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [body, setBody] = useState(() => storage(draftKey) ?? "");
   const [name, setName] = useState(remembered.name);
@@ -747,6 +1440,8 @@ function PostDetail({
   const [busy, setBusy] = useState(false);
   const [sendError, setSendError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
+  const [newestFirst, setNewestFirst] = useState(true);
+  const commentRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -759,7 +1454,13 @@ function PostDetail({
           return;
         }
         if (!r.post) throw new Error("That post is not here any more.");
-        setData({ post: r.post, comments: r.comments ?? [], events: r.events ?? [], duplicates: r.duplicates ?? 0 });
+        setData({
+          post: r.post,
+          comments: r.comments ?? [],
+          events: r.events ?? [],
+          duplicates: r.duplicates ?? [],
+          voters: r.voters ?? { count: r.post.vote_count, names: [] },
+        });
       })
       .catch((e) => {
         if (!cancelled) setError(e instanceof Error ? e.message : "Could not load that post.");
@@ -770,7 +1471,7 @@ function PostDetail({
     };
   }, [api, number, onRedirect, attempt]);
 
-  const load = useCallback(() => {
+  const retry = useCallback(() => {
     setError(null);
     setAttempt((a) => a + 1);
   }, []);
@@ -801,96 +1502,158 @@ function PostDetail({
     }
   }
 
-  return (
-    <div className="mx-auto w-full max-w-3xl">
-      <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground">
-        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M15 18l-6-6 6-6" />
-        </svg>
-        All feedback
-      </button>
+  function replyTo(who: string | null) {
+    setBody((b) => (b ? b : `${who ? `${who} ` : ""}`));
+    commentRef.current?.focus();
+  }
 
-      {error ? (
-        <div className="mt-4">
-          <ErrorNote message={error} onRetry={load} />
-        </div>
-      ) : !data ? (
-        <div className="mt-4">
-          <Skeleton rows={1} />
-        </div>
-      ) : (
-        <>
-          <article className="mt-4 flex gap-4">
-            <VoteButton api={api} post={data.post} size="lg" />
+  // Comments and status changes read as one story, in the order the reader picked.
+  const feed = useMemo(() => {
+    if (!data) return [] as { at: string; node: React.ReactNode; key: string }[];
+    const rows: { at: string; node: React.ReactNode; key: string }[] = [];
+    for (const c of data.comments) {
+      rows.push({
+        at: c.created_at,
+        key: `c-${c.id}`,
+        node: (
+          <div className="flex gap-3">
+            <Avatar name={c.author_name} size={24} />
             <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2 text-[12px] text-muted-foreground">
-                <StatusPill status={data.post.status} size="md" />
-                <span>{CATEGORIES.find((c) => c.value === data.post.category)?.label}</span>
+              <p className="text-[13px] font-semibold">
+                {c.author_name || "Anonymous"}
+                {c.is_official ? <span className="ml-2 align-middle"><MakerBadge /></span> : null}
+              </p>
+              <p className="mt-1 whitespace-pre-wrap text-[14px] leading-relaxed">{c.body}</p>
+              <p className="mt-1.5 flex items-center gap-2 text-[12px] text-muted-foreground">
+                <time dateTime={c.created_at}>{shortDate(c.created_at)}</time>
                 <span aria-hidden>&middot;</span>
-                <span>#{data.post.number}</span>
-              </div>
-              <h1 className="mt-2.5 text-2xl font-semibold leading-tight tracking-tight">{data.post.title}</h1>
-              <div className="mt-3 flex items-center gap-2 text-[12px] text-muted-foreground">
-                <Avatar name={data.post.author_name} />
-                <span className="font-medium">{data.post.author_name || "Anonymous"}</span>
-                {data.post.is_official ? <MakerBadge /> : null}
-                <span aria-hidden>&middot;</span>
-                <time dateTime={data.post.created_at}>{timeAgo(data.post.created_at)}</time>
-              </div>
-              {data.post.body ? <div className="mt-4 whitespace-pre-wrap text-[15px] leading-relaxed text-muted-foreground">{data.post.body}</div> : null}
-              {data.duplicates > 0 ? (
-                <p className="mt-4 rounded-md border border-border bg-card px-3 py-2 text-[12px] text-muted-foreground">
-                  {data.duplicates} other {data.duplicates === 1 ? "post" : "posts"} asking for the same thing {data.duplicates === 1 ? "was" : "were"} folded in here.
-                </p>
-              ) : null}
+                <button type="button" onClick={() => replyTo(c.author_name)} className="hover:underline">
+                  Reply
+                </button>
+              </p>
             </div>
-          </article>
+          </div>
+        ),
+      });
+    }
+    for (const ev of data.events) {
+      rows.push({
+        at: ev.created_at,
+        key: `e-${ev.id}`,
+        node: (
+          <div className="flex items-center gap-3">
+            <Avatar name={appName} size={24} />
+            <p className="flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground">
+              <span className="font-semibold text-foreground">{appName}</span>
+              <span>updated the status to</span>
+              <StatusPill status={ev.to_status} />
+              <span aria-hidden>&middot;</span>
+              <time dateTime={ev.created_at}>{shortDate(ev.created_at)}</time>
+            </p>
+          </div>
+        ),
+      });
+    }
+    for (const d of data.duplicates) {
+      rows.push({
+        at: d.created_at,
+        key: `d-${d.id}`,
+        node: (
+          <div className="flex gap-3">
+            <Avatar name={appName} size={24} />
+            <div className="min-w-0 flex-1">
+              <p className="text-[13px] text-muted-foreground">
+                <span className="font-semibold text-foreground">{appName}</span> merged in a post:
+              </p>
+              <div className="mt-2 rounded-lg border border-border p-3">
+                <p className="text-[14px] font-medium">{d.title}</p>
+                {d.body ? <p className="mt-1 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">{d.body}</p> : null}
+                <p className="mt-2 flex items-center gap-2 text-[12px] text-muted-foreground">
+                  <Avatar name={d.author_name} size={18} />
+                  {d.author_name || "Anonymous"}
+                  <span aria-hidden>&middot;</span>
+                  <time dateTime={d.created_at}>{shortDate(d.created_at)}</time>
+                </p>
+              </div>
+            </div>
+          </div>
+        ),
+      });
+    }
+    rows.sort((a, b) => (newestFirst ? +new Date(b.at) - +new Date(a.at) : +new Date(a.at) - +new Date(b.at)));
+    return rows;
+  }, [data, newestFirst, appName]);
 
-          {data.events.length > 0 ? (
-            <section className="mt-8" aria-label="Status history">
-              <h2 className="text-[13px] font-medium text-muted-foreground">Progress</h2>
-              <ol className="mt-3 space-y-2.5 border-l border-border pl-4">
-                {data.events.map((ev) => (
-                  <li key={ev.id} className="relative text-[13px]">
-                    <span className="absolute -left-[21px] top-1.5 h-2 w-2 rounded-full bg-primary" />
-                    Moved to <strong className="font-semibold">{STATUS_LABEL[ev.to_status]}</strong>
-                    <span className="ml-2 text-[12px] text-muted-foreground">{shortDate(ev.created_at)}</span>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          ) : null}
+  return (
+    <div className="md:grid md:grid-cols-[220px_1fr] md:gap-8">
+      <aside className="mb-6 md:mb-0">
+        <button type="button" onClick={onBack} className="mb-4 inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground">
+          <Icon path={ICONS.chevronLeft} className="h-3.5 w-3.5" />
+          All feedback
+        </button>
+        {data ? (
+          <div className="rounded-[10px] border border-border p-4">
+            <h2 className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Voters</h2>
+            {data.voters.names.length === 0 ? (
+              <p className="mt-3 text-[13px] text-muted-foreground">{data.voters.count > 0 ? `${data.voters.count} so far` : "Be the first to vote"}</p>
+            ) : (
+              <>
+                <ul className="mt-3 space-y-2.5">
+                  {data.voters.names.map((n) => (
+                    <li key={n} className="flex items-center gap-2.5 text-[13px]">
+                      <Avatar name={n} size={22} />
+                      <span className="truncate">{n}</span>
+                    </li>
+                  ))}
+                </ul>
+                {data.voters.count > data.voters.names.length ? (
+                  <p className="mt-3 text-[13px] text-muted-foreground">and {data.voters.count - data.voters.names.length} more...</p>
+                ) : null}
+              </>
+            )}
+          </div>
+        ) : null}
+      </aside>
 
-          <section className="mt-8" aria-label="Comments">
-            <h2 className="text-[13px] font-medium text-muted-foreground">
-              {data.comments.length === 0 ? "No comments yet" : `${data.comments.length} ${data.comments.length === 1 ? "comment" : "comments"}`}
-            </h2>
-            {data.comments.length > 0 ? (
-              <ul className="mt-3 space-y-3">
-                {data.comments.map((c) => (
-                  <li key={c.id} className={`rounded-lg border p-3.5 ${c.is_official ? "border-primary/40 bg-primary/5" : "border-border bg-card"}`}>
-                    <div className="flex items-center gap-2 text-[12px]">
-                      <Avatar name={c.author_name} />
-                      <span className="font-medium">{c.author_name || "Anonymous"}</span>
-                      {c.is_official ? <MakerBadge /> : null}
-                      <span className="text-muted-foreground" aria-hidden>&middot;</span>
-                      <time className="text-muted-foreground" dateTime={c.created_at}>{timeAgo(c.created_at)}</time>
-                    </div>
-                    <p className="mt-2 whitespace-pre-wrap text-[14px] leading-relaxed text-muted-foreground">{c.body}</p>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+      <div className="min-w-0">
+        {error ? (
+          <ErrorNote message={error} onRetry={retry} />
+        ) : !data ? (
+          <Skeleton rows={1} />
+        ) : (
+          <>
+            <article className="flex gap-4">
+              <VotePill api={api} post={data.post} size="lg" />
+              <div className="min-w-0 flex-1">
+                <h1 className="text-[20px] font-semibold leading-snug tracking-tight">{data.post.title}</h1>
+                <p className="mt-1.5 flex flex-wrap items-center gap-2 text-[12px] font-semibold uppercase tracking-wide" style={{ color: STATUS_TONE[data.post.status].dot }}>
+                  {STATUS_LABEL[data.post.status]}
+                  <span className="font-normal normal-case tracking-normal text-muted-foreground">
+                    {categoryLabel(data.post.category)} . #{data.post.number}
+                  </span>
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-[13px]">
+                  <Avatar name={data.post.author_name} size={24} />
+                  <span className="font-semibold">{data.post.author_name || "Anonymous"}</span>
+                  {data.post.is_official ? <MakerBadge /> : null}
+                </div>
+                {data.post.body ? <div className="mt-3 whitespace-pre-wrap text-[15px] leading-7">{data.post.body}</div> : null}
+                <p className="mt-4 text-[12px] text-muted-foreground">{shortDate(data.post.created_at)}</p>
+              </div>
+            </article>
 
-            <form onSubmit={send} className="mt-4">
-              <label htmlFor="fb-comment" className="sr-only">Add a comment</label>
+            <form onSubmit={send} className="mt-8">
+              <label htmlFor="fb-comment" className="sr-only">
+                Leave a comment
+              </label>
               <textarea
                 id="fb-comment"
+                ref={commentRef}
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 rows={body ? 4 : 2}
                 maxLength={4000}
-                placeholder="Add something the post is missing: how often this hits you, what you do instead."
+                placeholder="Leave a comment"
                 className={input}
               />
               {body ? (
@@ -911,380 +1674,652 @@ function PostDetail({
                   </button>
                 </div>
               ) : null}
-              {sendError ? <div className="mt-2"><ErrorNote message={sendError} /></div> : null}
+              {sendError ? (
+                <div className="mt-2">
+                  <ErrorNote message={sendError} />
+                </div>
+              ) : null}
             </form>
-          </section>
-        </>
-      )}
+
+            <section className="mt-8" aria-label="Activity feed">
+              <div className="flex items-center justify-between gap-3 border-b border-border pb-2">
+                <h2 className="text-[14px] text-muted-foreground">Activity feed</h2>
+                <div className="flex items-center gap-1.5 text-[13px] text-muted-foreground">
+                  <span className="hidden sm:inline">Sort by</span>
+                  <Menu
+                    label="Sort the activity feed"
+                    trigger={(open) => (
+                      <span className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 text-[13px] font-medium text-foreground">
+                        {newestFirst ? "Newest first" : "Oldest first"}
+                        <Icon path={open ? ICONS.chevronUp : ICONS.chevronDown} className="h-3.5 w-3.5" />
+                      </span>
+                    )}
+                  >
+                    {(close) => (
+                      <div className="w-44">
+                        <MenuItem
+                          active={newestFirst}
+                          onClick={() => {
+                            setNewestFirst(true);
+                            close();
+                          }}
+                        >
+                          Newest first
+                        </MenuItem>
+                        <MenuItem
+                          active={!newestFirst}
+                          onClick={() => {
+                            setNewestFirst(false);
+                            close();
+                          }}
+                        >
+                          Oldest first
+                        </MenuItem>
+                      </div>
+                    )}
+                  </Menu>
+                </div>
+              </div>
+              {feed.length === 0 ? (
+                <p className="py-8 text-center text-[13px] text-muted-foreground">Nothing has happened here yet. Say something and it will.</p>
+              ) : (
+                <ul className="mt-4 space-y-6">
+                  {feed.map((row) => (
+                    <li key={row.key}>{row.node}</li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          </>
+        )}
+      </div>
     </div>
   );
 }
 
-// ---------- roadmap + changelog ----------
+// ---------- changelog tab ----------
 
-function Roadmap({ api, onOpen }: { api: Api; onOpen: (n: number) => void }) {
-  const [posts, setPosts] = useState<Post[] | null>(null);
+function ChangelogTab({ api, appName, onOpen, entryId }: { api: Api; appName: string; onOpen: (n: number) => void; entryId: string | null }) {
+  const [items, setItems] = useState<ChangelogItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
-  useEffect(() => {
-    let cancelled = false;
-    api
-      .roadmap()
-      .then((r) => {
-        if (!cancelled) setPosts(r.posts);
-      })
-      .catch((e) => {
-        if (!cancelled) setError(e instanceof Error ? e.message : "Could not load.");
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [api, attempt]);
-  const load = useCallback(() => {
-    setError(null);
-    setAttempt((a) => a + 1);
-  }, []);
-
-  if (error) return <ErrorNote message={error} onRetry={load} />;
-  if (!posts) return <Skeleton rows={3} />;
-  if (posts.length === 0) return <Empty title="Nothing on the roadmap yet" body="Once feedback gets picked up, it shows here as planned, in progress and shipped." />;
-
-  return (
-    <div className="grid gap-4 lg:grid-cols-3">
-      {ROADMAP.map((col) => {
-        const items = posts.filter((p) => p.status === col.status);
-        return (
-          <section key={col.status} aria-label={STATUS_LABEL[col.status]}>
-            <header className="flex items-baseline gap-2 px-0.5 pb-2.5">
-              <h2 className="text-[13px] font-semibold">{STATUS_LABEL[col.status]}</h2>
-              <span className="rounded-full bg-muted px-1.5 text-[11px] tabular-nums text-muted-foreground">{items.length}</span>
-              <span className="ml-auto text-[11px] text-muted-foreground">{col.blurb}</span>
-            </header>
-            {items.length === 0 ? (
-              <p className="rounded-lg border border-dashed border-border px-3 py-8 text-center text-[12px] text-muted-foreground">Nothing here yet</p>
-            ) : (
-              <ul className="space-y-2">
-                {items.map((p) => (
-                  <li key={p.id} className="relative flex gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-foreground/25">
-                    <div className="relative z-10">
-                      <VoteButton api={api} post={p} />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-[14px] font-medium leading-snug">
-                        <button type="button" onClick={() => onOpen(p.number)} className="text-left after:absolute after:inset-0 hover:underline">
-                          {p.title}
-                        </button>
-                      </h3>
-                      <p className="mt-1.5 text-[11px] text-muted-foreground">
-                        {CATEGORIES.find((c) => c.value === p.category)?.label}
-                        {p.comment_count > 0 ? ` · ${p.comment_count} comments` : ""}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        );
-      })}
-    </div>
-  );
-}
-
-function Changelog({ api, appName, onOpen }: { api: Api; appName: string; onOpen: (n: number) => void }) {
-  const [posts, setPosts] = useState<Post[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [attempt, setAttempt] = useState(0);
-  useEffect(() => {
-    let cancelled = false;
-    api
-      .changelog()
-      .then((r) => {
-        if (!cancelled) setPosts(r.posts);
-      })
-      .catch((e) => {
-        if (!cancelled) setError(e instanceof Error ? e.message : "Could not load.");
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [api, attempt]);
-  const load = useCallback(() => {
-    setError(null);
-    setAttempt((a) => a + 1);
-  }, []);
-
-  if (error) return <ErrorNote message={error} onRetry={load} />;
-  if (!posts) return <Skeleton rows={3} />;
-  if (posts.length === 0) return <Empty title="Nothing shipped from this board yet" body="When a request goes live, it lands here with the date it shipped." />;
-
-  const groups = new Map<string, Post[]>();
-  for (const p of posts) {
-    const k = p.shipped_at ? new Date(p.shipped_at).toLocaleDateString("en-GB", { month: "long", year: "numeric" }) : "Earlier";
-    groups.set(k, [...(groups.get(k) ?? []), p]);
-  }
-
-  return (
-    <div className="mx-auto max-w-3xl space-y-10">
-      <p className="text-[15px] leading-relaxed text-muted-foreground">Everything asked for here that is now live in {appName}.</p>
-      {[...groups.entries()].map(([month, items]) => (
-        <section key={month}>
-          <h2 className="text-[12px] font-semibold uppercase tracking-wide text-muted-foreground">{month}</h2>
-          <ul className="mt-3 space-y-2.5 border-l border-border pl-5">
-            {items.map((p) => (
-              <li key={p.id} className="relative">
-                <span className="absolute -left-[23px] top-2 h-2 w-2 rounded-full bg-emerald-500" />
-                <button type="button" onClick={() => onOpen(p.number)} className="block w-full rounded-lg border border-border bg-card p-3.5 text-left transition-colors hover:border-foreground/25">
-                  <h3 className="text-[14px] font-medium">{p.title}</h3>
-                  <p className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
-                    <span>{shortDate(p.shipped_at)}</span>
-                    <span aria-hidden>&middot;</span>
-                    <span>{CATEGORIES.find((c) => c.value === p.category)?.label}</span>
-                    <span aria-hidden>&middot;</span>
-                    <span className="tabular-nums">{p.vote_count} votes</span>
-                  </p>
-                  {p.body ? <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{p.body}</p> : null}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-// ---------- the board ----------
-
-export function FeedbackBoard({
-  apiUrl,
-  boardKey,
-  appName,
-  identity,
-  className = "",
-}: {
-  apiUrl: string;
-  boardKey: string;
-  appName: string;
-  identity?: FeedbackIdentity;
-  className?: string;
-}) {
-  const api = useMemo(() => new Api(apiUrl.replace(/\/$/, ""), boardKey, voterId(identity)), [apiUrl, boardKey, identity?.id]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const [view, setView] = useState<View>(() => {
-    if (typeof window === "undefined") return { kind: "list" };
-    const sp = new URLSearchParams(window.location.search);
-    const n = Number(sp.get("post"));
-    if (Number.isInteger(n) && n > 0) return { kind: "post", number: n };
-    const tab = sp.get("tab");
-    if (tab === "roadmap" || tab === "changelog") return { kind: tab };
-    return { kind: "list" };
-  });
-  const [sort, setSort] = useState<Sort>("trending");
-  const [status, setStatus] = useState<Status | "all">("all");
-  const [category, setCategory] = useState<Category | "all">("all");
+  const [type, setType] = useState<ChangeType | "all">("all");
   const [q, setQ] = useState("");
-  const [posts, setPosts] = useState<Post[] | null>(null);
-  const [notifies, setNotifies] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [submitOpen, setSubmitOpen] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
-
-  // Hosts can show a "New" marker on their nav entry until the board has been opened
-  // once; this is the flag they read (see feedbackSeenKey).
-  useEffect(() => {
-    storage(feedbackSeenKey(boardKey), "1");
-  }, [boardKey]);
-
-  // Mirror the view into the URL so a post can be shared inside the app and the back
-  // button behaves, without depending on the host's router.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const url = new URL(window.location.href);
-    url.searchParams.delete("post");
-    url.searchParams.delete("tab");
-    if (view.kind === "post") url.searchParams.set("post", String(view.number));
-    else if (view.kind !== "list") url.searchParams.set("tab", view.kind);
-    window.history.replaceState(window.history.state, "", url.toString());
-  }, [view]);
+  const [shown, setShown] = useState(PAGE);
+  const [subscribeOpen, setSubscribeOpen] = useState(false);
+  const [subEmail, setSubEmail] = useState("");
+  const [subDone, setSubDone] = useState(false);
+  const [subError, setSubError] = useState<string | null>(null);
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
-    if (view.kind !== "list") return;
     let cancelled = false;
     const t = window.setTimeout(() => {
       api
-        .list({ sort, status, category, q })
+        .changelog({ type, q })
         .then((r) => {
           if (!cancelled) {
-            setPosts(r.posts);
-            setNotifies(!!r.board?.notifies);
+            setItems(r.items);
+            setShown(PAGE);
             setError(null);
           }
         })
         .catch((e) => {
-          if (!cancelled) setError(e instanceof Error ? e.message : "Could not load feedback.");
+          if (!cancelled) setError(e instanceof Error ? e.message : "Could not load the changelog.");
         });
     }, q ? 300 : 0);
     return () => {
       cancelled = true;
       window.clearTimeout(t);
     };
-  }, [api, view.kind, sort, status, category, q, reloadKey]);
+  }, [api, type, q, attempt]);
 
-  const openPost = useCallback((n: number) => setView({ kind: "post", number: n }), []);
-  const backToList = useCallback(() => {
-    setView({ kind: "list" });
-    setReloadKey((k) => k + 1);
+  // A link straight to one entry should land on it, not at the top of the list.
+  useEffect(() => {
+    if (!entryId || !items) return;
+    const el = document.getElementById(entryId);
+    if (el) el.scrollIntoView({ block: "center" });
+  }, [entryId, items]);
+
+  const retry = useCallback(() => {
+    setError(null);
+    setAttempt((a) => a + 1);
   }, []);
 
-  const filtered = status !== "all" || category !== "all" || q.trim() !== "";
-  const tabs: { kind: View["kind"]; label: string }[] = [
-    { kind: "list", label: "Feedback" },
-    { kind: "roadmap", label: "Roadmap" },
-    { kind: "changelog", label: "Changelog" },
-  ];
-  const activeTab = view.kind === "post" ? "list" : view.kind;
+  async function subscribe(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!EMAIL_RE.test(subEmail)) {
+      setSubError("That email address does not look right.");
+      return;
+    }
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
+    try {
+      await api.subscribe(subEmail, website);
+      setSubDone(true);
+      setSubError(null);
+    } catch (err) {
+      setSubError(err instanceof Error ? err.message : "Could not sign you up.");
+    }
+  }
+
+  async function like(item: ChangelogItem) {
+    if (item.source !== "entry") return;
+    setItems((list) =>
+      (list ?? []).map((i) => (i.id === item.id ? { ...i, liked: !i.liked, likes: i.likes + (i.liked ? -1 : 1) } : i))
+    );
+    try {
+      const r = await api.like(item.id);
+      setItems((list) => (list ?? []).map((i) => (i.id === item.id ? { ...i, liked: r.liked, likes: r.count } : i)));
+    } catch {
+      setItems((list) => (list ?? []).map((i) => (i.id === item.id ? { ...i, liked: item.liked, likes: item.likes } : i)));
+    }
+  }
+
+  function copyLink(id: string) {
+    const url = `${window.location.origin}${window.location.pathname}?tab=changelog#${id}`;
+    navigator.clipboard?.writeText(url).then(
+      () => {
+        setCopied(id);
+        window.setTimeout(() => setCopied(null), 1600);
+      },
+      () => setCopied(null)
+    );
+  }
+
+  const page = (items ?? []).slice(0, shown);
 
   return (
-    <div className={`text-foreground ${className}`}>
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight">Feedback</h1>
-          <p className="mt-1 max-w-2xl text-[14px] leading-relaxed text-muted-foreground">
-            Ask for what you need in {appName}, see what everyone else has asked for, and vote so the most wanted things get built first.
-          </p>
-        </div>
-        <button type="button" onClick={() => setSubmitOpen(true)} className={btn.primary}>
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden>
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-          Give feedback
+    <div className="mx-auto max-w-3xl">
+      <h1 className="text-[32px] font-bold tracking-tight">Changelog</h1>
+      <p className="mt-1 text-[14px] text-muted-foreground">Follow up on the latest improvements and updates in {appName}.</p>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <a href={api.rssUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground">
+          <Icon path={ICONS.link} className="h-3.5 w-3.5" />
+          RSS
+        </a>
+        <button
+          type="button"
+          onClick={() => setSubscribeOpen((o) => !o)}
+          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground"
+        >
+          <Icon path={ICONS.mail} className="h-3.5 w-3.5" />
+          Subscribe
         </button>
-      </div>
-
-      <nav aria-label="Board sections" className="mt-5 flex gap-1 border-b border-border">
-        {tabs.map((t) => (
-          <button
-            key={t.kind}
-            type="button"
-            onClick={() => setView({ kind: t.kind } as View)}
-            className={`relative -mb-px px-3 py-2.5 text-[13px] font-medium transition-colors ${
-              activeTab === t.kind ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {t.label}
-            {activeTab === t.kind ? <span className="absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-primary" /> : null}
-          </button>
-        ))}
-      </nav>
-
-      <div className="mt-6">
-        {view.kind === "post" ? (
-          <PostDetail key={view.number} api={api} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
-        ) : view.kind === "roadmap" ? (
-          <Roadmap api={api} onOpen={openPost} />
-        ) : view.kind === "changelog" ? (
-          <Changelog api={api} appName={appName} onOpen={openPost} />
-        ) : (
-          <>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div role="tablist" aria-label="Sort posts" className="flex shrink-0 gap-0.5 rounded-md border border-border bg-card p-0.5">
-                {(["trending", "top", "new"] as Sort[]).map((s) => (
-                  <button
-                    key={s}
-                    role="tab"
-                    aria-selected={sort === s}
-                    onClick={() => setSort(s)}
-                    className={`h-8 rounded px-3 text-[13px] font-medium transition-colors ${
-                      sort === s ? "bg-secondary text-secondary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {s === "trending" ? "Trending" : s === "top" ? "Top" : "New"}
-                  </button>
-                ))}
-              </div>
-              <div className="relative flex-1">
-                <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M20 20l-3.5-3.5" />
-                </svg>
-                <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search what people have asked for" aria-label="Search posts" className={`${input} h-9 pl-9`} />
-              </div>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value as Category | "all")}
-                aria-label="Filter by type"
-                className="h-9 shrink-0 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        <div className="relative ml-auto w-full sm:w-52">
+          <Icon path={ICONS.search} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search entries..." aria-label="Search the changelog" className={`${input} h-9 pl-9`} />
+        </div>
+        <Menu
+          label="Filter the changelog"
+          trigger={() => (
+            <span className={btn.outline}>
+              <Icon path={ICONS.filter} className="h-4 w-4" />
+              Filters
+            </span>
+          )}
+        >
+          {(close) => (
+            <div className="w-48">
+              <MenuItem
+                active={type === "all"}
+                onClick={() => {
+                  setType("all");
+                  close();
+                }}
               >
-                <option value="all">All types</option>
-                {CATEGORIES.map((c) => (
-                  <option key={c.value} value={c.value}>{c.label}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="-mx-4 mt-3 flex gap-1.5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
-              <Chip active={status === "all"} onClick={() => setStatus("all")}>All</Chip>
-              {(Object.keys(STATUS_LABEL) as Status[]).map((s) => (
-                <Chip key={s} active={status === s} onClick={() => setStatus(s)}>{STATUS_LABEL[s]}</Chip>
+                Everything
+              </MenuItem>
+              {CHANGE_TYPES.map((t) => (
+                <MenuItem
+                  key={t.value}
+                  active={type === t.value}
+                  onClick={() => {
+                    setType(t.value);
+                    close();
+                  }}
+                >
+                  {t.label}
+                </MenuItem>
               ))}
             </div>
+          )}
+        </Menu>
+      </div>
 
-            <div className="mt-5">
-              {error ? (
-                <ErrorNote message={error} onRetry={() => { setError(null); setReloadKey((k) => k + 1); }} />
-              ) : !posts ? (
-                <Skeleton />
-              ) : posts.length === 0 ? (
-                filtered ? (
-                  <Empty
-                    title="Nothing matches that"
-                    body="Try a different status, type or search term."
-                    action={
-                      <button type="button" className={btn.outline} onClick={() => { setStatus("all"); setCategory("all"); setQ(""); }}>
-                        Clear the filters
-                      </button>
-                    }
-                  />
-                ) : (
-                  <Empty
-                    title="Nothing here yet"
-                    body={`Be the first to say what ${appName} should do next. It takes about twenty seconds.`}
-                    action={
-                      <button type="button" className={btn.primary} onClick={() => setSubmitOpen(true)}>
-                        Post the first idea
-                      </button>
-                    }
-                  />
-                )
-              ) : (
-                <>
-                  <p className="mb-2.5 text-[12px] text-muted-foreground">
-                    {posts.length} {posts.length === 1 ? "post" : "posts"}{filtered ? " matching" : ""}
-                  </p>
-                  <ul className="space-y-2">
-                    {posts.map((p) => (
-                      <PostCard key={p.id} api={api} post={p} onOpen={openPost} />
-                    ))}
-                  </ul>
-                </>
-              )}
-            </div>
+      {subscribeOpen ? (
+        <form onSubmit={subscribe} className="mt-3 rounded-[10px] border border-border p-4">
+          {subDone ? (
+            <p className="text-[13px] text-muted-foreground">You will get an email when something ships.</p>
+          ) : (
+            <>
+              <p className="text-[13px] font-medium">Hear about it by email</p>
+              <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+                <input
+                  type="email"
+                  value={subEmail}
+                  onChange={(e) => setSubEmail(e.target.value)}
+                  placeholder="you@work.com"
+                  aria-label="Your email"
+                  className={`${input} h-9 flex-1`}
+                />
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0" />
+                <button type="submit" className={btn.primary}>
+                  Subscribe
+                </button>
+              </div>
+              {subError ? (
+                <div className="mt-2">
+                  <ErrorNote message={subError} />
+                </div>
+              ) : null}
+            </>
+          )}
+        </form>
+      ) : null}
+
+      <div className="mt-6">
+        {error ? (
+          <ErrorNote message={error} onRetry={retry} />
+        ) : !items ? (
+          <Skeleton rows={3} />
+        ) : page.length === 0 ? (
+          <Empty
+            title={q || type !== "all" ? "Nothing matches that" : "Nothing has shipped here yet"}
+            body={q || type !== "all" ? "Try another filter or search term." : `When something changes in ${appName}, it lands here with the date.`}
+          />
+        ) : (
+          <>
+            <ul className="divide-y divide-border">
+              {page.map((item) => {
+                const isCollapsed = collapsed.has(item.id);
+                return (
+                  <li key={item.id} id={item.id} className="py-6 first:pt-0 sm:grid sm:grid-cols-[140px_1fr] sm:gap-6">
+                    <p className="text-[14px] text-muted-foreground">{longDate(item.date)}</p>
+                    <div className="mt-2 min-w-0 sm:mt-0">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <TypePill type={item.type} />
+                          <h2 className="mt-2 text-[20px] font-semibold leading-snug">{item.title}</h2>
+                        </div>
+                        <button
+                          type="button"
+                          aria-label={isCollapsed ? "Show the detail" : "Hide the detail"}
+                          onClick={() =>
+                            setCollapsed((c) => {
+                              const next = new Set(c);
+                              if (next.has(item.id)) next.delete(item.id);
+                              else next.add(item.id);
+                              return next;
+                            })
+                          }
+                          className="shrink-0 rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+                        >
+                          <Icon path={isCollapsed ? ICONS.chevronDown : ICONS.chevronUp} className="h-4 w-4" />
+                        </button>
+                      </div>
+
+                      {!isCollapsed && item.body ? (
+                        <div className="mt-3 space-y-3 text-[15px] leading-7">
+                          {paragraphs(item.body).map((b, i) =>
+                            b.kind === "p" ? (
+                              <p key={i}>{b.text}</p>
+                            ) : (
+                              <ul key={i} className="list-disc space-y-1 pl-5">
+                                {b.items.map((li, j) => (
+                                  <li key={j}>{li}</li>
+                                ))}
+                              </ul>
+                            )
+                          )}
+                        </div>
+                      ) : null}
+
+                      <div className="mt-4 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
+                        {item.source === "entry" ? (
+                          <button
+                            type="button"
+                            onClick={() => like(item)}
+                            aria-pressed={item.liked}
+                            className={`inline-flex items-center gap-1.5 transition-colors hover:text-foreground ${item.liked ? "text-primary" : ""}`}
+                          >
+                            <Icon path={ICONS.heart} className="h-4 w-4" filled={item.liked} />
+                            {item.likes} {item.likes === 1 ? "like" : "likes"}
+                          </button>
+                        ) : null}
+                        {item.postNumber ? (
+                          <button type="button" onClick={() => onOpen(item.postNumber!)} className="hover:text-foreground hover:underline">
+                            Open the request
+                          </button>
+                        ) : null}
+                        <button type="button" onClick={() => copyLink(item.id)} className="inline-flex items-center gap-1.5 hover:text-foreground">
+                          <Icon path={ICONS.link} className="h-3.5 w-3.5" />
+                          {copied === item.id ? "Link copied" : "Copy link"}
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            {items.length > shown ? (
+              <div className="pt-4 text-center">
+                <button type="button" onClick={() => setShown((s) => s + PAGE)} className={btn.outline}>
+                  Load more
+                </button>
+              </div>
+            ) : null}
           </>
         )}
       </div>
+    </div>
+  );
+}
 
-      <SubmitDialog
-        api={api}
-        boardKey={boardKey}
-        appName={appName}
-        identity={identity}
-        notifies={notifies}
-        open={submitOpen}
-        onClose={() => setSubmitOpen(false)}
-        onCreated={() => setReloadKey((k) => k + 1)}
-        onOpenPost={openPost}
-      />
+// ---------- contact ----------
+
+function ContactDialog({
+  api,
+  appName,
+  board,
+  identity,
+  onClose,
+}: {
+  api: Api;
+  appName: string;
+  board: BoardInfo | null;
+  identity?: FeedbackIdentity;
+  onClose: () => void;
+}) {
+  const remembered = useMemo(() => {
+    if (identity?.id) return { name: identity.name ?? "", email: identity.email ?? "" };
+    try {
+      const id = JSON.parse(storage("fb_identity") ?? "{}");
+      return { name: String(id.name ?? ""), email: String(id.email ?? "") };
+    } catch {
+      return { name: "", email: "" };
+    }
+  }, [identity?.id, identity?.name, identity?.email]);
+
+  const [message, setMessage] = useState(() => storage("fb_support_draft") ?? "");
+  const [name, setName] = useState(remembered.name);
+  const [email, setEmail] = useState(remembered.email);
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  useEffect(() => {
+    storage("fb_support_draft", message || null);
+  }, [message]);
+
+  async function send(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (email && !EMAIL_RE.test(email)) {
+      setError("That email address does not look right.");
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    const website = String(new FormData(e.currentTarget).get("website") ?? "");
+    try {
+      await api.support({ message, name, email, page: typeof window === "undefined" ? "" : window.location.pathname, website });
+      storage("fb_support_draft", null);
+      if (!identity?.id) storage("fb_identity", JSON.stringify({ name, email }));
+      setDone(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send that.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-sm sm:p-6"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div role="dialog" aria-modal="true" aria-label={`Contact the ${appName} team`} className="my-auto w-full max-w-lg rounded-xl border border-border bg-background text-foreground shadow-2xl">
+        {done ? (
+          <div className="p-6 text-center">
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
+              <Icon path={ICONS.check} className="h-5 w-5" />
+            </div>
+            <h2 className="mt-4 text-lg font-semibold">Sent</h2>
+            <p className="mx-auto mt-1.5 max-w-sm text-sm text-muted-foreground">
+              A person reads every message.{email ? " We reply to the address you left." : " Leave an email next time and we can reply."}
+            </p>
+            <button type="button" onClick={onClose} className={`${btn.primary} mt-6`}>
+              Close
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={send}>
+            <header className="flex items-start justify-between gap-4 border-b border-border p-5">
+              <div>
+                <h2 className="text-[15px] font-semibold">Contact us</h2>
+                <p className="mt-0.5 text-[13px] text-muted-foreground">
+                  Tell us what happened or what you need. A person reads every message.
+                  {board?.assistant ? " The assistant in the app answers faster for anything it already knows." : ""}
+                </p>
+              </div>
+              <button type="button" onClick={onClose} aria-label="Close" className="-m-1 rounded-md p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground">
+                <Icon path={ICONS.close} className="h-4 w-4" />
+              </button>
+            </header>
+            <div className="space-y-3 p-5">
+              <label htmlFor="fb-support" className="sr-only">
+                Your message
+              </label>
+              <textarea
+                id="fb-support"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={5}
+                maxLength={4000}
+                placeholder="What is going on?"
+                className={input}
+                autoFocus
+              />
+              {identity?.id ? (
+                <p className="text-[12px] text-muted-foreground">
+                  Sending as <span className="font-medium text-foreground">{name || email || "you"}</span>
+                </p>
+              ) : (
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} placeholder="Your name (optional)" aria-label="Your name" className={`${input} h-9`} />
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={120} placeholder="Email, so we can reply" aria-label="Your email" className={`${input} h-9`} />
+                </div>
+              )}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0" />
+              {error ? <ErrorNote message={error} /> : null}
+            </div>
+            <footer className="flex items-center justify-end gap-2 border-t border-border p-4">
+              <button type="button" onClick={onClose} className={btn.ghost}>
+                Cancel
+              </button>
+              <button type="submit" disabled={busy || message.trim().length < 2} className={btn.primary}>
+                {busy ? "Sending..." : "Send"}
+              </button>
+            </footer>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ---------- the page ----------
+
+export function FeedbackBoard({
+  apiUrl,
+  boardKey,
+  appName,
+  identity,
+  homeUrl,
+  chrome = true,
+  className = "",
+}: {
+  apiUrl: string;
+  boardKey: string;
+  appName: string;
+  identity?: FeedbackIdentity;
+  /** Where the product's own home is, for the logo link. */
+  homeUrl?: string;
+  /** False when the host app already draws a header around this. */
+  chrome?: boolean;
+  className?: string;
+}) {
+  const api = useMemo(() => new Api(apiUrl.replace(/\/$/, ""), boardKey, voterId(identity)), [apiUrl, boardKey, identity?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [view, setView] = useState<View>({ kind: "roadmap" });
+  const [board, setBoard] = useState<BoardInfo | null>(null);
+  const [summary, setSummary] = useState<Summary | null>(null);
+  const [sort, setSort] = useState<Sort>("trending");
+  const [status, setStatus] = useState<ListStatus>("all");
+  const [category, setCategory] = useState<Category | "all">("all");
+  const [q, setQ] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [entryId, setEntryId] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Take the tab, post, filters and entry anchor out of the URL once, before the first
+  // paint, so a shared link opens on what it points at without a visible jump.
+  useBrowserLayoutEffect(() => {
+    const url = readUrl();
+    if (url) {
+      setView(url.view);
+      setStatus(url.status);
+      setCategory(url.category);
+      setEntryId(url.entryId);
+    }
+    setReady(true);
+  }, []);
+
+  // Hosts can show a "New" marker on their nav entry until the page has been opened once.
+  useEffect(() => {
+    storage(feedbackSeenKey(boardKey), "1");
+  }, [boardKey]);
+
+  useEffect(() => {
+    let cancelled = false;
+    api
+      .board()
+      .then((r) => {
+        if (cancelled) return;
+        setBoard(r.board);
+        setSummary({ counts: r.counts, byStatus: r.byStatus, total: r.total });
+      })
+      .catch(() => {
+        /* the tabs still work without the summary */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [api, reloadKey]);
+
+  // Mirror the view into the URL so a tab or a post can be shared, and the back button
+  // behaves, without depending on the host's router.
+  useEffect(() => {
+    if (typeof window === "undefined" || !ready) return;
+    const url = new URL(window.location.href);
+    url.searchParams.delete("post");
+    url.searchParams.delete("tab");
+    url.searchParams.delete("status");
+    url.searchParams.delete("category");
+    if (view.kind === "post") url.searchParams.set("post", String(view.number));
+    else {
+      url.searchParams.set("tab", view.kind);
+      if (view.kind === "feedback") {
+        if (status !== "all") url.searchParams.set("status", status);
+        if (category !== "all") url.searchParams.set("category", category);
+      }
+    }
+    window.history.replaceState(window.history.state, "", url.toString());
+  }, [view, status, category, ready]);
+
+  const openPost = useCallback((n: number) => setView({ kind: "post", number: n }), []);
+  const backToList = useCallback(() => {
+    setView({ kind: "feedback" });
+    setReloadKey((k) => k + 1);
+  }, []);
+  const reload = useCallback(() => setReloadKey((k) => k + 1), []);
+
+  const goSearch = useCallback(() => {
+    setView({ kind: "feedback" });
+    window.setTimeout(() => searchRef.current?.focus(), 60);
+  }, []);
+
+  const pickCategory = useCallback((c: Category | "all") => {
+    setCategory(c);
+    setView({ kind: "feedback" });
+  }, []);
+
+  const tab: Tab = view.kind === "post" ? "feedback" : view.kind;
+
+  return (
+    <div className={`min-h-full bg-background text-foreground ${className}`}>
+      {chrome ? (
+        <TopBar
+          appName={appName}
+          tab={tab}
+          identity={identity}
+          homeUrl={homeUrl}
+          onTab={(t) => setView({ kind: t })}
+          onSearch={goSearch}
+          onContact={() => setContactOpen(true)}
+        />
+      ) : null}
+
+      <main className="mx-auto w-full max-w-5xl px-4 py-8">
+        {view.kind === "post" ? (
+          <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
+        ) : view.kind === "roadmap" ? (
+          <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} />
+        ) : view.kind === "changelog" ? (
+          <ChangelogTab api={api} appName={appName} onOpen={openPost} entryId={entryId} />
+        ) : (
+          <FeedbackTab
+            api={api}
+            boardKey={boardKey}
+            appName={appName}
+            board={board}
+            summary={summary}
+            identity={identity}
+            sort={sort}
+            status={status}
+            category={category}
+            q={q}
+            searchRef={searchRef}
+            onSort={setSort}
+            onStatus={setStatus}
+            onCategory={setCategory}
+            onQ={setQ}
+            onOpen={openPost}
+            reloadKey={reloadKey}
+            onReload={reload}
+          />
+        )}
+      </main>
+
+      {contactOpen ? <ContactDialog api={api} appName={appName} board={board} identity={identity} onClose={() => setContactOpen(false)} /> : null}
     </div>
   );
 }
