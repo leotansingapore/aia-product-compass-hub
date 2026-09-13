@@ -9,9 +9,13 @@ import {
   recoverFromStaleChunk,
   resetStaleChunkRecovery,
 } from './utils/staleChunkRecovery'
+import { bootErrorReporting } from './lib/sentry-boot'
 
 resetStaleChunkRecovery()
 installStaleChunkRecovery()
+// Listeners first, so a throw during render is held for Sentry; the SDK itself
+// arrives after load.
+bootErrorReporting()
 
 // A password-recovery link can land the recovery session on ANY route: Supabase
 // parses and strips the token from the URL asynchronously, so a page reading

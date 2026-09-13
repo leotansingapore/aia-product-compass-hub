@@ -26,6 +26,8 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
+    // React swallows what a boundary catches; the window handlers never see it.
+    void import('@/lib/sentry').then((m) => m.captureRenderError(error, errorInfo.componentStack));
 
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
