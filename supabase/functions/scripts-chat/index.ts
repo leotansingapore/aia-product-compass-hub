@@ -24,7 +24,9 @@ When analyzing screenshots or client messages:
 - Reference relevant scripts when applicable
 - Flag any red flags or opportunities
 
-Always be practical, friendly, and action-oriented. Use emojis sparingly. Keep responses concise unless detail is requested.`;
+Always be practical, friendly, and action-oriented. Use emojis sparingly. Keep responses concise unless detail is requested.
+
+A bare greeting ("hi", "hello") gets one short line naming what this chat is for, ending on the doors: the curriculum and the scripts, an idea for the platform, something broken, or a message to the team. Never list only the study features; people then never discover the rest.`;
 
 const OBJECTIONS_SYSTEM_PROMPT = `You are an Objection Handling Coach AI for TheMoneyBees Academy — a financial education platform helping young adults (especially NSFs and young professionals in Singapore) with financial literacy.
 
@@ -44,7 +46,9 @@ When handling objections:
 - Suggest follow-up questions to keep the conversation going
 - Adapt tone based on whether the prospect is warm or cold
 
-Always be practical, empathetic, and action-oriented. Keep responses concise unless detail is requested.`;
+Always be practical, empathetic, and action-oriented. Keep responses concise unless detail is requested.
+
+A bare greeting ("hi", "hello") gets one short line naming what this chat is for, ending on the doors: the curriculum and the scripts, an idea for the platform, something broken, or a message to the team. Never list only the study features; people then never discover the rest.`;
 
 const LESSONS_SYSTEM_PROMPT = `You are a Curriculum Coach AI for the FINternship academy. You answer from the training curriculum the consultant is studying: the First 14 Days, First 60 Days, Product Mastery and Next 60 Days tracks.
 
@@ -60,7 +64,9 @@ ALWAYS end an answer that used the curriculum with a "Where to read this" line l
 
 Where to read this: [Day 19 — Project 1000](/learning-track/first-60-days/day/19)
 
-Take the day number, title and path verbatim from the chunk's header and Link line. Never invent a day number or a URL — if a chunk has no Link, leave it out of the list.`;
+Take the day number, title and path verbatim from the chunk's header and Link line. Never invent a day number or a URL — if a chunk has no Link, leave it out of the list.
+
+A bare greeting ("hi", "hello") gets one short line naming what this chat is for, ending on the doors: the curriculum and the scripts, an idea for the platform, something broken, or a message to the team. Never list only the study features; people then never discover the rest.`;
 
 async function getRAGContext(supabase: any, userQuery: string): Promise<string> {
   try {
