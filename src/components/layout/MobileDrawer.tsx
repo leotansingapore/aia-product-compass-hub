@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive, Pencil } from "lucide-react";
+import { Menu, X, LogOut, Bookmark, GraduationCap, MessageCircle, HelpCircle, Users, TrendingUp, Archive, Pencil, MessageSquarePlus } from "lucide-react";
+import { feedbackIsNew } from "@/components/feedback/config";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -38,7 +39,9 @@ export function MobileDrawer() {
     canSalesPlaybooks && { name: "Sales Playbooks", href: "/library/playbooks", icon: TrendingUp },
     can(FEATURES.CONCEPT_CARDS) && { name: "Concept Cards", href: "/concept-cards", icon: Pencil, indent: true },
     can(FEATURES.CASE_VAULT) && { name: "Case Vault", href: "/case-vault", icon: Archive, indent: true },
-  ].filter(Boolean) as { name: string; href: string; icon: any; indent?: boolean }[];
+    // The public feedback board: post, see what others asked for, vote.
+    { name: "Feedback", href: "/feedback", icon: MessageSquarePlus, isNew: feedbackIsNew() },
+  ].filter(Boolean) as { name: string; href: string; icon: any; indent?: boolean; isNew?: boolean }[];
 
   const handleLinkClick = () => {
     setOpen(false);
@@ -148,6 +151,9 @@ export function MobileDrawer() {
                     >
                       <item.icon className="h-4 w-4 shrink-0" />
                       <span>{item.name}</span>
+                      {item.isNew && (
+                        <span className="ml-auto rounded-full bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">New</span>
+                      )}
                     </NavLink>
                   ))}
                 </div>

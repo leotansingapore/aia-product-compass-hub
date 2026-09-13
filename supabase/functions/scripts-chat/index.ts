@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -304,7 +305,7 @@ serve(async (req) => {
         getCurriculumContext(supabase, userQuery, 12),
         getRAGContext(supabase, userQuery),
       ]);
-      systemPrompt = basePrompt + lessons + scripts;
+      systemPrompt = basePrompt + lessons + scripts + FEEDBACK_DOORS_PROMPT;
     } else {
       // Scripts/objections lead with their own sources, topped up with a few
       // curriculum chunks so answers can point back at the lesson that teaches
@@ -314,7 +315,7 @@ serve(async (req) => {
         ? await getObjectionsContext(supabase, userQuery)
         : "";
       const lessonTopUp = await getCurriculumContext(supabase, userQuery, 4);
-      systemPrompt = basePrompt + ragContext + objectionsContext + lessonTopUp;
+      systemPrompt = basePrompt + ragContext + objectionsContext + lessonTopUp + FEEDBACK_DOORS_PROMPT;
     }
 
     const useOwnKey = !!OPENAI_API_KEY;

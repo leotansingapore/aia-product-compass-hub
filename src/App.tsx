@@ -70,6 +70,7 @@ const ManageProductVideos = lazyWithRetry(() => import("./pages/ManageProductVid
 const ScriptsDatabase = lazyWithRetry(() => import("./pages/ScriptsDatabase"));
 const ScriptsCourse = lazyWithRetry(() => import("./pages/ScriptsCourse"));
 const Changelog = lazyWithRetry(() => import("./pages/Changelog"));
+const Feedback = lazyWithRetry(() => import("./pages/Feedback"));
 const ServicingPage = lazyWithRetry(() => import("./pages/ServicingPage"));
 const Playbooks = lazyWithRetry(() => import("./pages/Playbooks"));
 const PlaybookDetail = lazyWithRetry(() => import("./pages/PlaybookDetail"));
@@ -233,6 +234,7 @@ const App = () => (
                       <Route path="tools/content-studio" element={<ContentStudio />} />
                     </Route>
                     <Route path="/changelog" element={<RequireAuth><Changelog /></RequireAuth>} />
+                    <Route path="/feedback" element={<RequireAuth><Feedback /></RequireAuth>} />
                     <Route path="/scripts" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/course" element={<RequireAuth><RequireTier feature="scripts"><ScriptsCourse /></RequireTier></RequireAuth>} />
                     <Route path="/scripts/:scriptId" element={<RequireAuth><RequireTier feature="scripts"><ScriptsDatabase /></RequireTier></RequireAuth>} />

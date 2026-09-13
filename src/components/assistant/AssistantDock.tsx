@@ -22,6 +22,8 @@ import { cn } from "@/lib/utils";
 import { streamAiChat, type AiChatMessage } from "@/lib/aiChatStream";
 import { useAllProducts, useProductBySlugOrId } from "@/hooks/useProducts";
 import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { parseDoors, stripDoors } from "@/lib/feedbackDoors";
+import { DoorCards } from "@/components/feedback/DoorCards";
 
 type ModeId = "ask" | "lessons" | "objections" | "product" | "roleplay";
 
@@ -293,6 +295,8 @@ export function AssistantDock() {
 
   // Signed-out visitors get the marketing page, not an assistant.
   if (!user) return null;
+  const userMeta = (user.user_metadata ?? {}) as { full_name?: string; name?: string };
+  const userName = userMeta.full_name ?? userMeta.name ?? user.email?.split("@")[0] ?? null;
 
   const onCmfas = location.pathname.startsWith("/cmfas");
 
@@ -475,7 +479,21 @@ export function AssistantDock() {
                   >
                     {m.role === "assistant" ? (
                       <div className="prose prose-xs dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_li]:my-0.5">
-                        <ReactMarkdown>{m.content}</ReactMarkdown>
+                        {/* The two doors to the maker ([[feedback:...]] / [[support:...]])
+                            are stripped from the prose and rendered as cards the learner
+                            confirms, once the answer has finished streaming. */}
+                        <ReactMarkdown>{stripDoors(m.content)}</ReactMarkdown>
+                        {!(busy && i === messages.length - 1) && (() => {
+                          const doors = parseDoors(m.content);
+                          return doors.length ? (
+                            <DoorCards
+                              doors={doors}
+                              scope={`${mode}:${i}:${doors.map((d) => (d.kind === "feedback" ? d.title : d.message)).join("|").slice(0, 80)}`}
+                              identity={{ id: user.id, name: userName, email: user.email ?? null }}
+                              onNavigate={(href) => { setOpen(false); navigate(href); }}
+                            />
+                          ) : null;
+                        })()}
                       </div>
                     ) : (
                       m.content

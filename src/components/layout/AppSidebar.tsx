@@ -30,7 +30,9 @@ import {
   Trophy,
   Wrench,
 
+  MessageSquarePlus,
 } from "lucide-react";
+import { feedbackIsNew } from "@/components/feedback/config";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { prefetchHandlers } from "@/utils/routePrefetch";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -91,6 +93,8 @@ import { toast } from "@/hooks/use-toast";
 
 const allResourceItems = [
   { title: "Changelog", url: "/changelog", icon: Sparkles, sectionId: "changelog" },
+  // The public feedback board: post, see what others asked for, vote.
+  { title: "Feedback", url: "/feedback", icon: MessageSquarePlus, sectionId: "feedback" },
 ];
 
 /** Sub-component that fetches and renders products for a single category */
@@ -434,6 +438,9 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
                       <NavLink to={item.url} {...prefetchHandlers(item.url)} className={getNavClassName(item.url)}>
                         <item.icon className="h-4 w-4" />
                         {!isCollapsed && <span>{item.title}</span>}
+                        {!isCollapsed && item.url === "/feedback" && feedbackIsNew() && (
+                          <span className="ml-auto rounded-full bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">New</span>
+                        )}
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

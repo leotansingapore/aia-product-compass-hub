@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { FEEDBACK_DOORS_PROMPT } from "../_shared/feedback-doors.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -257,7 +258,7 @@ ${chunkContext || "No specific knowledge chunks found for this query. Use the pr
 ## IMPORTANT
 - Never make up product features, numbers, or charges that aren't in your knowledge base
 - Always ground answers in the training material provided above
-- If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets${modeInstructions[activeMode] || modeInstructions.knowledge}`;
+- If a question requires specific numerical data (e.g., exact fund performance), recommend checking the latest AIA factsheets${modeInstructions[activeMode] || modeInstructions.knowledge}${FEEDBACK_DOORS_PROMPT}`;
 
     // Conversation history management: keep only last N messages to prevent token bloat
     const userMessages = messages.filter((m: any) => m.role !== "system");
