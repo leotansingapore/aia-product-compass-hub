@@ -50,10 +50,17 @@ export function useUserTier() {
     if (query.data !== undefined) previousTierRef.current = query.data;
   }, [query.data]);
 
+  // ~10 components call this hook at once. Newer supabase-js returns the SAME
+  // channel for a repeated topic, so a shared `user-tier-<id>` name makes the
+  // second `.on()` throw "cannot add postgres_changes callbacks after
+  // subscribe()" and crashes the page, and one unmount's removeChannel would
+  // drop everyone's subscription. A per-instance suffix keeps them separate.
+  const channelSuffixRef = useRef(Math.random().toString(36).slice(2, 10));
+
   useEffect(() => {
     if (!user?.id) return;
     const channel = supabase
-      .channel(`user-tier-${user.id}`)
+      .channel(`user-tier-${user.id}-${channelSuffixRef.current}`)
       .on(
         'postgres_changes',
         {
