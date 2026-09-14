@@ -135,14 +135,20 @@ export function useDeleteSubmissionFile(userId: string | undefined) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (params: { fileId: string; storagePath: string | null; itemId: string }) => {
+      // Delete the row first, with `.select("id")`. RLS only allows removing
+      // files while the submission is pending or changes_requested, and a
+      // blocked delete returns error === null with zero rows. Removing storage
+      // first would leave a reviewed submission pointing at a deleted file.
+      const { data: deleted, error } = await supabase
+        .from("learning_track_submission_files")
+        .delete()
+        .eq("id", params.fileId)
+        .select("id");
+      if (error) throw error;
+      if (!deleted?.length) throw new Error("File was not removed");
       if (params.storagePath) {
         await supabase.storage.from("learning-track-submissions").remove([params.storagePath]);
       }
-      const { error } = await supabase
-        .from("learning_track_submission_files")
-        .delete()
-        .eq("id", params.fileId);
-      if (error) throw error;
     },
     onSettled: (_d, _e, vars) => {
       qc.invalidateQueries({ queryKey: ["learning-track-submission", userId, vars.itemId] });
