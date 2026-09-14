@@ -1,7 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
 
 // Set via env: E2E_USER_EMAIL / E2E_USER_PASSWORD before running.
-// Real creds never live in this file.
+// Real creds never live in this file. The default demo user is on the Explorer
+// tier, which locks Pre-RNF and Post-RNF — point these at a Papers-taker+ or
+// admin account (e.g. admin@demo.com) for the track pages to render.
 const RECRUIT = {
   email: process.env.E2E_USER_EMAIL ?? "user@demo.com",
   password: process.env.E2E_USER_PASSWORD ?? "demo123456",
@@ -19,27 +21,27 @@ async function signIn(page: Page, email: string, password: string) {
 }
 
 test.describe("Learning Track — recruit flow", () => {
-  test("loads pre-RNF page with phases rendered from Supabase", async ({ page }) => {
+  test("loads the Pre-RNF checklist", async ({ page }) => {
     await signIn(page, RECRUIT.email, RECRUIT.password);
 
     await page.goto("/learning-track/pre-rnf");
     await expect(page.getByTestId("pre-rnf-page")).toBeVisible({ timeout: 15_000 });
 
-    // At least one phase section heading should appear
-    await expect(page.locator("section h2").first()).toBeVisible();
+    // Checklist and Recommended order are two views of the same progress.
+    await expect(page.getByRole("tab", { name: "Checklist" })).toBeVisible();
+    await expect(page.getByRole("tab", { name: "Recommended order" })).toBeVisible();
 
-    // The header tab strip is visible
-    await expect(page.getByRole("link", { name: "Pre-RNF Training" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Post-RNF Training" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Resources" })).toBeVisible();
+    // The header track links are visible
+    await expect(page.getByRole("link", { name: /Pre-RNF Training/ }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /Post-RNF Training/ }).first()).toBeVisible();
   });
 
-  test("loads post-RNF page with phases rendered from Supabase", async ({ page }) => {
+  test("loads the Post-RNF hub", async ({ page }) => {
     await signIn(page, RECRUIT.email, RECRUIT.password);
 
     await page.goto("/learning-track/post-rnf");
     await expect(page.getByTestId("post-rnf-page")).toBeVisible({ timeout: 15_000 });
-    await expect(page.locator("section h2").first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Assignments" }).first()).toBeVisible();
   });
 
   test("loads resource hub", async ({ page }) => {
@@ -50,18 +52,18 @@ test.describe("Learning Track — recruit flow", () => {
     await expect(page.locator('input[type="search"]')).toBeVisible();
   });
 
-  test("URL-driven navigation between subtabs works", async ({ page }) => {
+  test("header links switch between Pre-RNF and Post-RNF", async ({ page }) => {
     await signIn(page, RECRUIT.email, RECRUIT.password);
 
     await page.goto("/learning-track/pre-rnf");
     await expect(page.getByTestId("pre-rnf-page")).toBeVisible({ timeout: 15_000 });
 
-    await page.getByRole("link", { name: "Post-RNF Training" }).click();
+    await page.getByRole("link", { name: /Post-RNF Training/ }).first().click();
     await expect(page).toHaveURL(/\/learning-track\/post-rnf/);
     await expect(page.getByTestId("post-rnf-page")).toBeVisible();
 
-    await page.getByRole("link", { name: "Resources" }).click();
-    await expect(page).toHaveURL(/\/learning-track\/resources/);
-    await expect(page.getByTestId("resources-page")).toBeVisible();
+    await page.getByRole("link", { name: /Pre-RNF Training/ }).first().click();
+    await expect(page).toHaveURL(/\/learning-track\/pre-rnf/);
+    await expect(page.getByTestId("pre-rnf-page")).toBeVisible();
   });
 });
