@@ -62,10 +62,12 @@ type Duplicate = { id: string; number: number; title: string; body: string; auth
 
 type ChangelogItem = {
   id: string;
+  slug: string | null;
   date: string;
   type: ChangeType;
   title: string;
   body: string;
+  image: { url: string; alt: string } | null;
   postNumber: number | null;
   likes: number;
   liked: boolean;
@@ -223,7 +225,7 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 // string is applied in a layout effect, which runs before the browser paints.
 const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-type UrlState = { view: View; status: ListStatus; category: Category | "all"; entryId: string | null };
+type UrlState = { view: View; status: ListStatus; category: Category | "all"; entryId: string | null; entrySlug: string | null };
 
 function readUrl(): UrlState | null {
   if (typeof window === "undefined") return null;
@@ -243,6 +245,7 @@ function readUrl(): UrlState | null {
     status: (LIST_FILTERS.find((f) => f.value === s)?.value ?? "all") as ListStatus,
     category: (CATEGORIES.find((x) => x.value === c)?.value ?? "all") as Category | "all",
     entryId: window.location.hash.slice(1) || null,
+    entrySlug: sp.get("entry"),
   };
 }
 
@@ -1790,12 +1793,16 @@ function ChangelogTab({
   board,
   onOpen,
   entryId,
+  openSlug,
+  onOpenEntry,
 }: {
   api: Api;
   appName: string;
   board: BoardInfo | null;
   onOpen: (n: number) => void;
   entryId: string | null;
+  openSlug: string | null;
+  onOpenEntry: (slug: string | null) => void;
 }) {
   const [items, setItems] = useState<ChangelogItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -1874,7 +1881,10 @@ function ChangelogTab({
   }
 
   function copyLink(id: string) {
-    const url = `${window.location.origin}${window.location.pathname}?tab=changelog#${id}`;
+    const item = (items ?? []).find((i) => i.id === id);
+    const url = item?.slug
+      ? `${window.location.origin}${window.location.pathname}?tab=changelog&entry=${item.slug}`
+      : `${window.location.origin}${window.location.pathname}?tab=changelog#${id}`;
     navigator.clipboard?.writeText(url).then(
       () => {
         setCopied(id);
@@ -1885,6 +1895,26 @@ function ChangelogTab({
   }
 
   const page = (items ?? []).slice(0, shown);
+  const open = openSlug ? (items ?? []).find((i) => i.slug === openSlug) : null;
+
+  // One entry, on its own, at its own address.
+  if (openSlug) {
+    if (!items) return <Skeleton rows={2} />;
+    if (!open) {
+      return (
+        <Empty
+          title="That entry is not here"
+          body="It may have been taken down, or the link may be wrong."
+          action={
+            <button type="button" className={btn.outline} onClick={() => onOpenEntry(null)}>
+              Back to changelog
+            </button>
+          }
+        />
+      );
+    }
+    return <ChangelogArticle item={open} appName={appName} onBack={() => onOpenEntry(null)} onOpen={onOpen} onLike={like} />;
+  }
 
   return (
     <div>
@@ -2002,7 +2032,15 @@ function ChangelogTab({
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <TypePill type={item.type} />
-                          <h2 className="mt-2 text-[20px] font-semibold leading-snug">{item.title}</h2>
+                          <h2 className="mt-2 text-[20px] font-semibold leading-snug">
+                            {item.slug ? (
+                              <button type="button" onClick={() => onOpenEntry(item.slug)} className="text-left hover:underline">
+                                {item.title}
+                              </button>
+                            ) : (
+                              item.title
+                            )}
+                          </h2>
                         </div>
                         <button
                           type="button"
@@ -2020,6 +2058,18 @@ function ChangelogTab({
                           <Icon path={isCollapsed ? ICONS.chevronDown : ICONS.chevronUp} className="h-4 w-4" />
                         </button>
                       </div>
+
+                      {!isCollapsed && item.image ? (
+                        <button type="button" onClick={() => onOpenEntry(item.slug)} className="mt-3 block w-full">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={item.image.url}
+                            alt={item.image.alt}
+                            loading="lazy"
+                            className="w-full rounded-[10px] border border-border object-cover"
+                          />
+                        </button>
+                      ) : null}
 
                       {!isCollapsed && item.body ? (
                         <div className="mt-3 space-y-3 text-[15px] leading-7">
@@ -2074,6 +2124,105 @@ function ChangelogTab({
           </>
         )}
       </div>
+    </div>
+  );
+}
+
+/** One entry on its own page, the way the reference gives every change an address. */
+function ChangelogArticle({
+  item,
+  appName,
+  onBack,
+  onOpen,
+  onLike,
+}: {
+  item: ChangelogItem;
+  appName: string;
+  onBack: () => void;
+  onOpen: (n: number) => void;
+  onLike: (i: ChangelogItem) => void;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  function copyLink() {
+    const url = `${window.location.origin}${window.location.pathname}?tab=changelog&entry=${item.slug ?? ""}`;
+    navigator.clipboard?.writeText(url).then(
+      () => {
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1600);
+      },
+      () => setCopied(false)
+    );
+  }
+
+  return (
+    <div className="md:grid md:grid-cols-[292px_1fr] md:gap-8">
+      <aside className="mb-6 md:mb-0">
+        <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground">
+          <Icon path={ICONS.chevronLeft} className="h-3.5 w-3.5" />
+          Back to changelog
+        </button>
+      </aside>
+
+      <article className="min-w-0">
+        <p className="text-[14px] text-muted-foreground">{longDate(item.date)}</p>
+        <div className="mt-2">
+          <TypePill type={item.type} />
+        </div>
+        <h1 className="mt-2 text-[20px] font-semibold leading-snug">{item.title}</h1>
+
+        {item.image ? (
+          // A plain img on purpose: this file is copied verbatim into seventeen Vite apps
+          // where next/image does not exist.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.image.url}
+            alt={item.image.alt}
+            loading="lazy"
+            className="mt-4 w-full rounded-[10px] border border-border object-cover"
+          />
+        ) : null}
+
+        {item.body ? (
+          <div className="mt-4 space-y-3 text-[15px] leading-7">
+            {paragraphs(item.body).map((b, i) =>
+              b.kind === "p" ? (
+                <p key={i}>{b.text}</p>
+              ) : (
+                <ul key={i} className="list-disc space-y-1 pl-5">
+                  {b.items.map((li, j) => (
+                    <li key={j}>{li}</li>
+                  ))}
+                </ul>
+              )
+            )}
+          </div>
+        ) : null}
+
+        <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-border pt-4 text-[13px] text-muted-foreground">
+          {item.source === "entry" ? (
+            <button
+              type="button"
+              onClick={() => onLike(item)}
+              aria-pressed={item.liked}
+              className={`inline-flex items-center gap-1.5 transition-colors hover:text-foreground ${item.liked ? "text-primary" : ""}`}
+            >
+              <Icon path={ICONS.heart} className="h-4 w-4" filled={item.liked} />
+              {item.likes} {item.likes === 1 ? "like" : "likes"}
+            </button>
+          ) : null}
+          {item.postNumber ? (
+            <button type="button" onClick={() => onOpen(item.postNumber!)} className="hover:text-foreground hover:underline">
+              Open the request that asked for this
+            </button>
+          ) : null}
+          <button type="button" onClick={copyLink} className="inline-flex items-center gap-1.5 hover:text-foreground">
+            <Icon path={ICONS.link} className="h-3.5 w-3.5" />
+            {copied ? "Link copied" : "Copy link"}
+          </button>
+          <span className="ml-auto">In {appName}</span>
+        </div>
+      </article>
     </div>
   );
 }
@@ -2258,6 +2407,7 @@ export function FeedbackBoard({
   const [reloadKey, setReloadKey] = useState(0);
   const [contactOpen, setContactOpen] = useState(false);
   const [entryId, setEntryId] = useState<string | null>(null);
+  const [entrySlug, setEntrySlug] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -2270,6 +2420,7 @@ export function FeedbackBoard({
       setStatus(url.status);
       setCategory(url.category);
       setEntryId(url.entryId);
+      setEntrySlug(url.entrySlug);
     }
     setReady(true);
   }, []);
@@ -2286,11 +2437,11 @@ export function FeedbackBoard({
     if (!chrome || typeof document === "undefined") return;
     const before = document.title;
     const part = view.kind === "post" ? "Feedback" : view.kind === "roadmap" ? "Roadmap" : view.kind === "changelog" ? "Changelog" : "Feedback";
-    document.title = `${part} - ${appName}`;
+    document.title = view.kind === "changelog" && entrySlug ? `${entrySlug.replace(/-/g, " ")} - ${appName} changelog` : `${part} - ${appName}`;
     return () => {
       document.title = before;
     };
-  }, [chrome, appName, view.kind]);
+  }, [chrome, appName, view.kind, entrySlug]);
 
   useEffect(() => {
     let cancelled = false;
@@ -2318,16 +2469,18 @@ export function FeedbackBoard({
     url.searchParams.delete("tab");
     url.searchParams.delete("status");
     url.searchParams.delete("category");
+    url.searchParams.delete("entry");
     if (view.kind === "post") url.searchParams.set("post", String(view.number));
     else {
       url.searchParams.set("tab", view.kind);
+      if (view.kind === "changelog" && entrySlug) url.searchParams.set("entry", entrySlug);
       if (view.kind === "feedback") {
         if (status !== "all") url.searchParams.set("status", status);
         if (category !== "all") url.searchParams.set("category", category);
       }
     }
     window.history.replaceState(window.history.state, "", url.toString());
-  }, [view, status, category, ready]);
+  }, [view, status, category, entrySlug, ready]);
 
   const openPost = useCallback((n: number) => setView({ kind: "post", number: n }), []);
   const backToList = useCallback(() => {
@@ -2368,7 +2521,18 @@ export function FeedbackBoard({
         ) : view.kind === "roadmap" ? (
           <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} />
         ) : view.kind === "changelog" ? (
-          <ChangelogTab api={api} appName={appName} board={board} onOpen={openPost} entryId={entryId} />
+          <ChangelogTab
+            api={api}
+            appName={appName}
+            board={board}
+            onOpen={openPost}
+            entryId={entryId}
+            openSlug={entrySlug}
+            onOpenEntry={(slug) => {
+              setEntrySlug(slug);
+              window.scrollTo({ top: 0 });
+            }}
+          />
         ) : (
           <FeedbackTab
             api={api}
