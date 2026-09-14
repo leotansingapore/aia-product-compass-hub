@@ -584,7 +584,7 @@ function VotePill({
         aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
         title={state.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
-          lg ? "w-14 py-2.5" : "w-9 py-2"
+          lg ? "w-14 py-2" : "w-9 py-1.5"
         } ${
           state.voted
             ? "border-primary bg-primary/10 text-foreground"
@@ -632,7 +632,7 @@ function TopBar({
   ];
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-4 md:px-0">
+      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-3.5 md:px-0">
         {(() => {
           const mark = (
             <>
@@ -657,7 +657,7 @@ function TopBar({
               <span className="max-w-[10rem] truncate">{identity.name || identity.email}</span>
             </span>
           ) : null}
-          <button type="button" onClick={onContact} className={btn.outline}>
+          <button type="button" onClick={onContact} className={`${btn.outline} h-8 px-3`}>
             Contact us
           </button>
         </div>
@@ -776,7 +776,7 @@ function RoadmapTab({
         <Menu
           label="Filter the roadmap"
           trigger={() => (
-            <span className={`${btn.outline} h-8`}>
+            <span className="inline-flex h-8 items-center justify-center gap-2 rounded-md border border-border bg-background px-3 text-[14px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground">
               <Icon path={ICONS.filter} className="h-4 w-4" />
               Filters
             </span>
