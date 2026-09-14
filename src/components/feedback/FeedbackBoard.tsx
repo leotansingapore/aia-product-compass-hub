@@ -68,6 +68,7 @@ type ChangelogItem = {
   title: string;
   body: string;
   image: { url: string; alt: string } | null;
+  docs: { url: string; title: string | null } | null;
   postNumber: number | null;
   likes: number;
   liked: boolean;
@@ -380,6 +381,9 @@ const ICONS = {
   check: "M20 6L9 17l-5-5",
   plus: "M12 5v14M5 12h14",
   mail: "M4 4h16v16H4zM4 6l8 6 8-6",
+  arrowLeft: "M19 12H5M11 18l-6-6 6-6",
+  facebook: "M14 8h2V5h-2.5C11 5 10 6.6 10 8.8V11H8v3h2v7h3v-7h2.4l.6-3H13V9c0-.6.4-1 1-1z",
+  x: "M4 4l16 16M20 4L4 20",
 };
 
 function StatusPill({ status, size = "sm" }: { status: Status; size?: "sm" | "md" }) {
@@ -1817,7 +1821,6 @@ function ChangelogTab({
   const [subDone, setSubDone] = useState(false);
   const [subError, setSubError] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
-  const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -1882,19 +1885,7 @@ function ChangelogTab({
     }
   }
 
-  function copyLink(id: string) {
-    const item = (items ?? []).find((i) => i.id === id);
-    const url = item?.slug
-      ? `${window.location.origin}${window.location.pathname}?tab=changelog&entry=${item.slug}`
-      : `${window.location.origin}${window.location.pathname}?tab=changelog#${id}`;
-    navigator.clipboard?.writeText(url).then(
-      () => {
-        setCopied(id);
-        window.setTimeout(() => setCopied(null), 1600);
-      },
-      () => setCopied(null)
-    );
-  }
+
 
   const page = (items ?? []).slice(0, shown);
   const open = openSlug ? (items ?? []).find((i) => i.slug === openSlug) : null;
@@ -2064,54 +2055,20 @@ function ChangelogTab({
                       </div>
 
                       {!isCollapsed && item.image ? (
-                        <button type="button" onClick={() => onOpenEntry(item.slug)} className="mt-3 block w-full">
+                        <button type="button" onClick={() => onOpenEntry(item.slug)} className="mt-2 block w-full" aria-label={`Open ${item.title}`}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={item.image.url}
-                            alt={item.image.alt}
-                            loading="lazy"
-                            className="w-full rounded-[10px] border border-border object-cover"
-                          />
+                          <img src={item.image.url} alt={item.image.alt} loading="lazy" className="w-full object-cover" />
                         </button>
                       ) : null}
 
-                      {!isCollapsed && item.body ? (
-                        <div className="mt-3 space-y-3 text-[15px] leading-7">
-                          {paragraphs(item.body).map((b, i) =>
-                            b.kind === "p" ? (
-                              <p key={i}>{b.text}</p>
-                            ) : (
-                              <ul key={i} className="list-disc space-y-1 pl-5">
-                                {b.items.map((li, j) => (
-                                  <li key={j}>{li}</li>
-                                ))}
-                              </ul>
-                            )
-                          )}
+                      {!isCollapsed && (item.body || item.docs || item.postNumber) ? (
+                        <div className="mt-4">
+                          <EntryBody item={item} onOpen={onOpen} />
                         </div>
                       ) : null}
 
-                      <div className="mt-4 flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-                        {item.source === "entry" ? (
-                          <button
-                            type="button"
-                            onClick={() => like(item)}
-                            aria-pressed={item.liked}
-                            className={`inline-flex items-center gap-1.5 transition-colors hover:text-foreground ${item.liked ? "text-primary" : ""}`}
-                          >
-                            <Icon path={ICONS.heart} className="h-4 w-4" filled={item.liked} />
-                            {item.likes} {item.likes === 1 ? "like" : "likes"}
-                          </button>
-                        ) : null}
-                        {item.postNumber ? (
-                          <button type="button" onClick={() => onOpen(item.postNumber!)} className="hover:text-foreground hover:underline">
-                            Open the request
-                          </button>
-                        ) : null}
-                        <button type="button" onClick={() => copyLink(item.id)} className="inline-flex items-center gap-1.5 hover:text-foreground">
-                          <Icon path={ICONS.link} className="h-3.5 w-3.5" />
-                          {copied === item.id ? "Link copied" : "Copy link"}
-                        </button>
+                      <div className="mt-6">
+                        <EntryFooter item={item} onLike={like} />
                       </div>
                     </div>
                   </li>
@@ -2132,7 +2089,105 @@ function ChangelogTab({
   );
 }
 
-/** One entry on its own page, the way the reference gives every change an address. */
+/** What the entry says, laid out the way the reference lays it out: the write-up, then
+ *  "Learn more" to the product's own help article, then the request that asked for it. */
+function EntryBody({ item, onOpen }: { item: ChangelogItem; onOpen: (n: number) => void }) {
+  return (
+    <div className="space-y-[15px] text-[14px] leading-[1.6]">
+      {paragraphs(item.body).map((b, i) =>
+        b.kind === "p" ? (
+          <p key={i}>{b.text}</p>
+        ) : (
+          <ul key={i} className="list-disc space-y-1 pl-5">
+            {b.items.map((li, j) => (
+              <li key={j}>{li}</li>
+            ))}
+          </ul>
+        )
+      )}
+      {item.docs ? (
+        <p>
+          <a href={item.docs.url} target="_blank" rel="noreferrer" className="text-primary underline underline-offset-2 hover:opacity-80">
+            Learn more
+          </a>
+        </p>
+      ) : null}
+      {item.postNumber ? (
+        <p>
+          <button type="button" onClick={() => onOpen(item.postNumber!)} className="text-primary underline underline-offset-2 hover:opacity-80">
+            See the request that asked for this
+          </button>
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/** Likes on the left, the three share buttons on the right, as the reference draws them. */
+function EntryFooter({ item, onLike }: { item: ChangelogItem; onLike: (i: ChangelogItem) => void }) {
+  const [copied, setCopied] = useState(false);
+  const square =
+    "inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:text-foreground";
+
+  const address = () => {
+    const base = `${window.location.origin}${window.location.pathname}?tab=changelog`;
+    return item.slug ? `${base}&entry=${item.slug}` : `${base}#${item.id}`;
+  };
+
+  function copyLink() {
+    navigator.clipboard?.writeText(address()).then(
+      () => {
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1600);
+      },
+      () => setCopied(false)
+    );
+  }
+
+  function share(to: "facebook" | "x") {
+    const u = encodeURIComponent(address());
+    const url =
+      to === "facebook"
+        ? `https://www.facebook.com/sharer/sharer.php?u=${u}`
+        : `https://twitter.com/intent/tweet?url=${u}&text=${encodeURIComponent(item.title)}`;
+    window.open(url, "_blank", "noopener,noreferrer,width=600,height=520");
+  }
+
+  return (
+    <div className="flex items-center justify-between gap-3">
+      {item.source === "entry" ? (
+        <button
+          type="button"
+          onClick={() => onLike(item)}
+          aria-pressed={item.liked}
+          aria-label={item.liked ? "Take back your like" : "Like this"}
+          className="inline-flex items-center gap-2.5 text-[14px]"
+        >
+          <span className={`${square} ${item.liked ? "border-primary text-primary" : ""}`}>
+            <Icon path={ICONS.heart} className="h-4 w-4" filled={item.liked} />
+          </span>
+          {item.likes} {item.likes === 1 ? "like" : "likes"}
+        </button>
+      ) : (
+        <span />
+      )}
+      <div className="flex items-center gap-2">
+        <button type="button" onClick={copyLink} aria-label={copied ? "Link copied" : "Copy link"} title={copied ? "Link copied" : "Copy link"} className={`${square} ${copied ? "border-primary text-primary" : ""}`}>
+          <Icon path={copied ? ICONS.check : ICONS.link} className="h-4 w-4" />
+        </button>
+        <button type="button" onClick={() => share("facebook")} aria-label="Share on Facebook" title="Share on Facebook" className={square}>
+          <Icon path={ICONS.facebook} className="h-4 w-4" filled />
+        </button>
+        <button type="button" onClick={() => share("x")} aria-label="Share on X" title="Share on X" className={square}>
+          <Icon path={ICONS.x} className="h-3.5 w-3.5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/** One entry on its own page: the rail, the grey back button, and the entry in the
+ *  628px column, measured off the reference's own entry page. */
 function ChangelogArticle({
   item,
   appName,
@@ -2148,8 +2203,6 @@ function ChangelogArticle({
   onOpen: (n: number) => void;
   onLike: (i: ChangelogItem) => void;
 }) {
-  const [copied, setCopied] = useState(false);
-
   // This page has a name of its own, so the browser tab and a shared bookmark say what
   // the change was rather than repeating the section.
   useEffect(() => {
@@ -2161,83 +2214,38 @@ function ChangelogArticle({
     };
   }, [chrome, appName, item.title]);
 
-  function copyLink() {
-    const url = `${window.location.origin}${window.location.pathname}?tab=changelog&entry=${item.slug ?? ""}`;
-    navigator.clipboard?.writeText(url).then(
-      () => {
-        setCopied(true);
-        window.setTimeout(() => setCopied(false), 1600);
-      },
-      () => setCopied(false)
-    );
-  }
-
   return (
-    <div className="md:grid md:grid-cols-[292px_1fr] md:gap-8">
+    <div className="md:grid md:grid-cols-[300px_1fr] md:gap-8">
       <aside className="mb-6 md:mb-0">
-        <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground">
-          <Icon path={ICONS.chevronLeft} className="h-3.5 w-3.5" />
+        <button
+          type="button"
+          onClick={onBack}
+          className="flex h-[38px] w-full items-center gap-2 rounded-md bg-muted px-3 text-left text-[14px] transition-colors hover:bg-muted/70"
+        >
+          <Icon path={ICONS.arrowLeft} className="h-4 w-4" />
           Back to changelog
         </button>
       </aside>
 
       <article className="min-w-0">
-        <p className="text-[14px] text-muted-foreground">{longDate(item.date)}</p>
-        <div className="mt-2">
-          <TypePill type={item.type} />
-        </div>
+        <TypePill type={item.type} />
         <h1 className="mt-2 text-[20px] font-semibold leading-snug">{item.title}</h1>
 
         {item.image ? (
           // A plain img on purpose: this file is copied verbatim into seventeen Vite apps
           // where next/image does not exist.
           // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.image.url}
-            alt={item.image.alt}
-            loading="lazy"
-            className="mt-4 w-full rounded-[10px] border border-border object-cover"
-          />
+          <img src={item.image.url} alt={item.image.alt} loading="lazy" className="mt-2 w-full object-cover" />
         ) : null}
 
-        {item.body ? (
-          <div className="mt-4 space-y-3 text-[15px] leading-7">
-            {paragraphs(item.body).map((b, i) =>
-              b.kind === "p" ? (
-                <p key={i}>{b.text}</p>
-              ) : (
-                <ul key={i} className="list-disc space-y-1 pl-5">
-                  {b.items.map((li, j) => (
-                    <li key={j}>{li}</li>
-                  ))}
-                </ul>
-              )
-            )}
+        {item.body || item.docs || item.postNumber ? (
+          <div className="mt-4">
+            <EntryBody item={item} onOpen={onOpen} />
           </div>
         ) : null}
 
-        <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-border pt-4 text-[13px] text-muted-foreground">
-          {item.source === "entry" ? (
-            <button
-              type="button"
-              onClick={() => onLike(item)}
-              aria-pressed={item.liked}
-              className={`inline-flex items-center gap-1.5 transition-colors hover:text-foreground ${item.liked ? "text-primary" : ""}`}
-            >
-              <Icon path={ICONS.heart} className="h-4 w-4" filled={item.liked} />
-              {item.likes} {item.likes === 1 ? "like" : "likes"}
-            </button>
-          ) : null}
-          {item.postNumber ? (
-            <button type="button" onClick={() => onOpen(item.postNumber!)} className="hover:text-foreground hover:underline">
-              Open the request that asked for this
-            </button>
-          ) : null}
-          <button type="button" onClick={copyLink} className="inline-flex items-center gap-1.5 hover:text-foreground">
-            <Icon path={ICONS.link} className="h-3.5 w-3.5" />
-            {copied ? "Link copied" : "Copy link"}
-          </button>
-          <span className="ml-auto">In {appName}</span>
+        <div className="mt-8">
+          <EntryFooter item={item} onLike={onLike} />
         </div>
       </article>
     </div>
