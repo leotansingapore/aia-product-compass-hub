@@ -3969,7 +3969,7 @@ export default function ScriptsDatabase() {
     }
     setShowSuggestions(false);
     setSelectedSuggestion(-1);
-  }, [navigate]);
+  }, [navigate, dbScripts]);
 
   const handleSearchKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
