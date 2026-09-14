@@ -584,7 +584,7 @@ function VotePill({
         aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
         title={state.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
-          lg ? "w-14 py-2.5" : "w-11 py-2.5"
+          lg ? "w-14 py-2.5" : "w-9 py-2"
         } ${
           state.voted
             ? "border-primary bg-primary/10 text-foreground"
@@ -632,7 +632,7 @@ function TopBar({
   ];
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-4">
+      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-4 md:px-0">
         {(() => {
           const mark = (
             <>
@@ -662,7 +662,7 @@ function TopBar({
           </button>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4">
+      <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4 md:px-0">
         <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 sm:gap-5">
           {tabs.map((t) => (
             <button
@@ -670,7 +670,7 @@ function TopBar({
               type="button"
               aria-current={tab === t.key ? "page" : undefined}
               onClick={() => onTab(t.key)}
-              className={`relative -mb-px flex items-center gap-1.5 whitespace-nowrap px-2 py-3 text-[13px] font-medium transition-colors sm:text-[14px] ${
+              className={`relative -mb-px flex items-center gap-1.5 whitespace-nowrap px-2 py-2.5 text-[13px] font-medium transition-colors sm:text-[14px] ${
                 tab === t.key ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -683,7 +683,7 @@ function TopBar({
         <button
           type="button"
           onClick={onSearch}
-          className="flex shrink-0 items-center gap-1.5 px-2 py-3 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-[14px]"
+          className="flex shrink-0 items-center gap-1.5 px-2 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-[14px]"
         >
           <Icon path={ICONS.search} className="h-4 w-4" />
           <span className="hidden sm:inline">Search</span>
@@ -761,7 +761,7 @@ function RoadmapTab({
                 key={c.value}
                 type="button"
                 onClick={() => onCategory(c.value)}
-                className="flex h-12 w-full items-center justify-between gap-6 rounded-[10px] border border-border bg-background px-4 text-left transition-colors hover:border-primary sm:w-[307px]"
+                className="flex h-12 w-full items-center justify-between gap-6 rounded-[10px] border border-border bg-background px-4 text-left text-[14px] transition-colors hover:border-primary sm:w-[307px]"
               >
                 <span className="truncate text-[14px] font-medium">{c.plural}</span>
                 <span className="shrink-0 text-[13px] tabular-nums text-muted-foreground">{summary?.counts[c.value] ?? 0}</span>
@@ -776,7 +776,7 @@ function RoadmapTab({
         <Menu
           label="Filter the roadmap"
           trigger={() => (
-            <span className={btn.outline}>
+            <span className={`${btn.outline} h-8`}>
               <Icon path={ICONS.filter} className="h-4 w-4" />
               Filters
             </span>
@@ -806,7 +806,7 @@ function RoadmapTab({
           <ErrorNote message={error} onRetry={retry} />
         </div>
       ) : !posts ? (
-        <div className="mt-4 grid gap-6 md:grid-cols-3">
+        <div className="mt-4 grid gap-5 md:grid-cols-3">
           {ROADMAP_COLUMNS.map((c) => (
             <div key={c.status} className="rounded-[10px] border border-border">
               <Skeleton rows={2} />
@@ -826,7 +826,7 @@ function RoadmapTab({
           />
         </div>
       ) : (
-        <div className="mt-4 grid gap-6 md:grid-cols-3">
+        <div className="mt-4 grid gap-5 md:grid-cols-3">
           {ROADMAP_COLUMNS.map((col) => {
             const items = shown.filter((p) => p.status === col.status);
             return (
@@ -835,7 +835,7 @@ function RoadmapTab({
                 aria-label={STATUS_LABEL[col.status]}
                 className={`flex flex-col overflow-hidden rounded-[10px] border border-border ${columnHeight}`}
               >
-                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-muted/40 px-4">
+                <header className="flex h-[45px] shrink-0 items-center gap-2 border-b border-border bg-muted/40 px-4">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: STATUS_TONE[col.status].dot }} />
                   <h3 className="text-[14px] font-semibold">{STATUS_LABEL[col.status]}</h3>
                   <span className="sr-only">{col.blurb}</span>
@@ -2362,7 +2362,7 @@ export function FeedbackBoard({
         />
       ) : null}
 
-      <main className="mx-auto w-full max-w-[960px] px-4 py-8">
+      <main className="mx-auto w-full max-w-[960px] px-4 py-8 md:px-0">
         {view.kind === "post" ? (
           <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
         ) : view.kind === "roadmap" ? (
