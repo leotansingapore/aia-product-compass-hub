@@ -240,10 +240,14 @@ export function usePlaybookItems(playbookId: string | null) {
           .from('script_playbook_items')
           .update({ sort_order: item.sort_order })
           .eq('id', item.id)
+          .select('id')
       );
       const results = await Promise.all(promises);
       const error = results.find(r => r.error);
       if (error?.error) throw error.error;
+      // RLS can filter an update to zero rows with error === null; throwing
+      // here lets onError roll the optimistic order back.
+      if (results.some(r => !r.data?.length)) throw new Error('Reorder was not saved');
     },
     // Optimistic: apply the new order to the cache immediately so cards don't
     // snap back to their old position while the writes are in flight.

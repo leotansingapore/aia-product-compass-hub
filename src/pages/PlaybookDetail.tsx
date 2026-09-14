@@ -661,8 +661,8 @@ export default function PlaybookDetail() {
   const handleRenameSection = async (itemId: string, label: string, level?: number) => {
     const existing = items.find(i => i.id === itemId);
     const existingLevel = (existing?.custom_content as any)?.level || 1;
-    const { error } = await supabase.from("script_playbook_items").update({ custom_content: { label, level: level ?? existingLevel } } as any).eq("id", itemId);
-    if (error) { toast.error("Failed to update section"); return; }
+    const { data: renamed, error } = await supabase.from("script_playbook_items").update({ custom_content: { label, level: level ?? existingLevel } } as any).eq("id", itemId).select("id");
+    if (error || !renamed?.length) { toast.error("Failed to update section"); return; }
     queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
   };
 

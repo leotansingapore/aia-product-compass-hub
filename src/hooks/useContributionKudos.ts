@@ -35,11 +35,14 @@ export function useContributionKudos(scriptId: string) {
       if (!userId) throw new Error('Not authenticated');
       const entry = kudosMap[contributionId];
       if (entry?.userGave && entry.userKudoId) {
-        const { error } = await supabase
+        // `.select('id')`: RLS can filter the delete to zero rows with error === null.
+        const { data: removed, error } = await supabase
           .from('contribution_kudos' as any)
           .delete()
-          .eq('id', entry.userKudoId);
+          .eq('id', entry.userKudoId)
+          .select('id');
         if (error) throw error;
+        if (!removed?.length) throw new Error('Kudos was not removed');
       } else {
         const { error } = await supabase
           .from('contribution_kudos' as any)

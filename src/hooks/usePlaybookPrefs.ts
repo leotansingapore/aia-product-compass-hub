@@ -39,11 +39,14 @@ export function usePlaybookPrefs() {
       if (!user) throw new Error('Not authenticated');
       const existing = getPref(playbookId);
       if (existing) {
-        const { error } = await supabase
+        // `.select('id')`: RLS can filter the update to zero rows with error === null.
+        const { data: updated, error } = await supabase
           .from('playbook_user_prefs' as any)
           .update({ ...patch, updated_at: new Date().toISOString() })
-          .eq('id', existing.id);
+          .eq('id', existing.id)
+          .select('id');
         if (error) throw error;
+        if (!updated?.length) throw new Error('Preference was not saved');
       } else {
         const { error } = await supabase
           .from('playbook_user_prefs' as any)
