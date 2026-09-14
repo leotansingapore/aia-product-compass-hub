@@ -319,9 +319,12 @@ function CourseEditor({
       requires_submission: false,
       hidden_resources: ["module"],
     });
-    if (!error) {
-      qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
+    if (error) {
+      // Keep the typed title and the input open so the admin can retry.
+      toast.error(`Couldn't add module: ${error.message}`);
+      return;
     }
+    qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     setNewModuleTitle("");
     setAddingModule(false);
   };
@@ -337,7 +340,10 @@ function CourseEditor({
       .insert({ phase_id: phase.id, title: "Untitled lesson", order_index: maxOrder + 1, requires_submission: false })
       .select("id")
       .single();
-    if (error || !data) return;
+    if (error || !data) {
+      toast.error(`Couldn't add lesson: ${error?.message ?? "no row was created"}`);
+      return;
+    }
 
     // 2. Reorder: place the new lesson right after the target module's last lesson
     const ordered = [...phase.items].sort((a, b) => a.order_index - b.order_index);
@@ -397,7 +403,10 @@ function CourseEditor({
         })
         .select("id")
         .single();
-      if (error || !data) return;
+      if (error || !data) {
+        toast.error(`Couldn't add page: ${error?.message ?? "no row was created"}`);
+        return;
+      }
 
       await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
       setActiveLessonId(data.id);
