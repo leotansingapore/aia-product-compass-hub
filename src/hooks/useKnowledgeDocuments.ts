@@ -98,8 +98,11 @@ export function useKnowledgeDocuments() {
     // Delete the DB row first. If this fails we still have the storage file,
     // but the user-visible state is consistent. If we deleted storage first
     // and the DB delete failed, the row would still reference a missing file.
-    const { error } = await supabase.from('knowledge_documents').delete().eq('id', id);
-    if (error) {
+    // `.select('id')`: an RLS-blocked delete returns error === null with zero
+    // rows. Treat that as a failure, or the storage cleanup below would remove
+    // the file of a row that still exists.
+    const { data: deleted, error } = await supabase.from('knowledge_documents').delete().eq('id', id).select('id');
+    if (error || !deleted?.length) {
       toast.error('Failed to delete document');
       console.error(error);
       return false;

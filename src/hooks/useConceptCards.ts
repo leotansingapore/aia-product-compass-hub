@@ -100,8 +100,10 @@ export function useConceptCardsMutations() {
   };
 
   const updateCard = async (id: string, updates: Partial<Omit<ConceptCard, 'id' | 'created_at' | 'updated_at'>>) => {
-    const { error } = await supabase.from('concept_cards').update(updates).eq('id', id);
-    if (error) { toast.error('Failed to update card'); console.error(error); return false; }
+    // `.select('id')` on update/delete: RLS can filter the write to zero rows
+    // with error === null, so an empty result is a failure.
+    const { data: updated, error } = await supabase.from('concept_cards').update(updates).eq('id', id).select('id');
+    if (error || !updated?.length) { toast.error('Failed to update card'); console.error(error); return false; }
     toast.success('Card updated');
     return true;
   };
@@ -113,8 +115,8 @@ export function useConceptCardsMutations() {
       .select('image_url, original_image_url, image_urls')
       .eq('id', id)
       .maybeSingle();
-    const { error } = await supabase.from('concept_cards').delete().eq('id', id);
-    if (error) { toast.error('Failed to delete card'); console.error(error); return false; }
+    const { data: deleted, error } = await supabase.from('concept_cards').delete().eq('id', id).select('id');
+    if (error || !deleted?.length) { toast.error('Failed to delete card'); console.error(error); return false; }
     toast.success('Card deleted');
     if (card) {
       // Best-effort: remove the card's files from storage; never block deletion.

@@ -122,7 +122,8 @@ export function DescribeAndBindDialog({
     return supabase
       .from("concept_cards")
       .update({ image_urls: newUrls, image_url: newLegacy })
-      .eq("id", card.id);
+      .eq("id", card.id)
+      .select("id");
   };
 
   // Reset state when a new photo opens.
@@ -231,27 +232,30 @@ export function DescribeAndBindDialog({
       : selectedCard.image_url ? [selectedCard.image_url] : [];
     if (!existing.includes(photoUrl)) {
       const newUrls = [...existing, photoUrl];
-      const { error } = await supabase
+      // `.select("id")` on every card/tag write in this dialog: RLS can filter
+      // an update/delete to zero rows with error === null.
+      const { data: bound, error } = await supabase
         .from("concept_cards")
         .update({
           image_urls: newUrls,
           image_url: selectedCard.image_url ?? newUrls[0],
         })
-        .eq("id", selectedCard.id);
-      if (error) {
+        .eq("id", selectedCard.id)
+        .select("id");
+      if (error || !bound?.length) {
         setBusy(false);
-        toast.error("Failed to bind", { description: error.message });
+        toast.error("Failed to bind", { description: error?.message ?? "The card wasn't updated — you may not have permission." });
         return;
       }
     }
 
     // If this was a reassign from another card, strip the URL there.
     if (sourceCard && sourceCard.id !== selectedCard.id) {
-      const { error } = await removeFromCard(sourceCard, photoUrl);
-      if (error) {
+      const { data: unbound, error } = await removeFromCard(sourceCard, photoUrl);
+      if (error || !unbound?.length) {
         setBusy(false);
         toast.error(`Bound to new card, but couldn't unbind from "${sourceCard.title}"`, {
-          description: error.message,
+          description: error?.message ?? "The card wasn't updated — you may not have permission.",
         });
         return;
       }
@@ -299,13 +303,16 @@ export function DescribeAndBindDialog({
 
   const handleUntagCaseStudy = async (rowId: string) => {
     setBusy(true);
-    const { error } = await (supabase as any)
+    const { data: removed, error } = await (supabase as any)
       .from("photo_case_tags")
       .delete()
-      .eq("id", rowId);
+      .eq("id", rowId)
+      .select("id");
     setBusy(false);
-    if (error) {
-      toast.error("Failed to remove case tag", { description: error.message });
+    if (error || !removed?.length) {
+      toast.error("Failed to remove case tag", {
+        description: error?.message ?? "The tag wasn't removed — you may not have permission.",
+      });
       return;
     }
     setExistingCaseTags((prev) => prev.filter((t) => t.id !== rowId));
@@ -350,11 +357,11 @@ export function DescribeAndBindDialog({
 
     // If this was a reassign from another card, strip the URL there.
     if (sourceCard) {
-      const { error: rmErr } = await removeFromCard(sourceCard, photoUrl);
-      if (rmErr) {
+      const { data: unbound, error: rmErr } = await removeFromCard(sourceCard, photoUrl);
+      if (rmErr || !unbound?.length) {
         setBusy(false);
         toast.error(`Created new card, but couldn't unbind from "${sourceCard.title}"`, {
-          description: rmErr.message,
+          description: rmErr?.message ?? "The card wasn't updated — you may not have permission.",
         });
         return;
       }
@@ -395,13 +402,16 @@ export function DescribeAndBindDialog({
       const newUrls = (c.image_urls ?? []).filter((u) => u !== photoUrl);
       const newLegacy =
         c.image_url === photoUrl ? newUrls[0] ?? null : c.image_url;
-      const { error: updErr } = await supabase
+      // An empty result here would otherwise delete the photo below while this
+      // card still points at it.
+      const { data: stripped, error: updErr } = await supabase
         .from("concept_cards")
         .update({ image_urls: newUrls, image_url: newLegacy })
-        .eq("id", c.id);
-      if (updErr) {
+        .eq("id", c.id)
+        .select("id");
+      if (updErr || !stripped?.length) {
         toast.error(`Failed to strip URL from card "${c.title}"`, {
-          description: updErr.message,
+          description: updErr?.message ?? "The card wasn't updated — you may not have permission.",
         });
         setBusy(false);
         return;
