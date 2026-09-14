@@ -97,7 +97,7 @@ After implementation, run a **3-step verification pipeline** — no user needed:
 4. **Only mark task done** after all 3 gates pass (build + Playwright + QA agent).
 
 ### `[AUTO-DB]` — Needs database migration
-Skip in autonomous mode. Describe the needed DB changes and notify user for Lovable handoff.
+Skip in autonomous mode. Describe the needed DB changes and notify the user. Migrations are applied directly (see DATABASE WORKFLOW at the top), which needs the Supabase Management API token that lives on Leo's machine.
 
 ## AUTONOMOUS MODE
 
@@ -113,9 +113,13 @@ When user says **"run batch tasks"** or **"autonomous mode"**:
 
 ---
 
-## SUPABASE SYNC
+## PACKAGES & LOCAL SETUP
 
-See `SUPABASE.md` for pending database changes. When user says "check supabase" → scan `supabase/migrations/` against pending items in SUPABASE.md, move completed items with date.
+- **bun is the package manager.** `bun.lock` is canonical and is what Vercel installs. Install with `bun install --frozen-lockfile`.
+- **Do not use `npm install`.** It ignores `bun.lock` and resolves newer versions. On 2026-09-15 it pulled `@supabase/supabase-js` 2.116 instead of the pinned 2.56, which crashed every signed-in page locally while production was fine. Never commit a `package-lock.json`.
+- **Windows:** stop any running dev server before `bun install`. A dev server holding files in `node_modules` made bun hang at full CPU after it had finished installing.
+- **Unit tests:** `npx vitest run`. **Browser tests:** `npx playwright test` (expects the dev server on http://localhost:8080).
+- **Browser test accounts:** the default `user@demo.com` is on the Explorer tier, so Pre-RNF, Post-RNF, question banks and playbooks show a lock screen. Run tier-gated specs with `E2E_USER_EMAIL=admin@demo.com` (password in `src/config/authConfig.ts`).
 
 ---
 
@@ -125,9 +129,9 @@ See `SUPABASE.md` for pending database changes. When user says "check supabase" 
 
 **Built with:** React 18 + TypeScript, Vite, Tailwind CSS, shadcn/ui, TanStack Query, Supabase, React Hook Form, Zod, Recharts, CodeMirror, DnD Kit
 **AI services:** OpenAI Assistants API (product chat), Tavus API (roleplay video avatars)
-**AI builder:** Lovable (lovable.dev) handles database migrations and config files
+**Deploys:** Vercel, git-connected (a push to `main` deploys). Lovable was the original AI builder and was retired on 2026-07-19.
 
-**Commands:** `npm run dev` | `npm run build` | `npm run lint`
+**Commands:** `bun install --frozen-lockfile` | `npm run dev` | `npm run build` | `npm run lint` | `npx vitest run` | `npx playwright test`
 
 **User Roles:** `user` (default) · `admin` · `master_admin` (superuser)
 
@@ -307,7 +311,7 @@ Genuine optimistic updates DO exist for drag-reorder in
 
 ### Migration Rules
 
-**All database changes handled by Lovable.** Never manually edit the database or create SQL files. Describe needs → Lovable generates migration → user approves → `types.ts` auto-updates.
+Follow **DATABASE WORKFLOW** at the top of this file: write `supabase/migrations/<UTC-timestamp>_<slug>.sql`, apply it via the Supabase Management API or MCP, then commit. Regenerate `src/integrations/supabase/types.ts` after schema changes instead of hand-editing it.
 
 ### Key Tables (39 total)
 
@@ -342,7 +346,7 @@ Genuine optimistic updates DO exist for drag-reorder in
 
 ---
 
-## Lovable Integration
+## Protected Files
 
 ### Files NOT to Modify
 
@@ -351,11 +355,11 @@ Genuine optimistic updates DO exist for drag-reorder in
 - `src/lib/utils.ts`
 - Config files: `vite.config.ts`, `tailwind.config.ts`, `tsconfig*.json`, `eslint.config.js`, `components.json`
 
-Always `git pull origin main` before editing — Lovable may have pushed changes. On merge conflicts with config files, prefer Lovable's version.
+Always `git pull origin main` before editing: Leo, other Claude sessions and the shared feedback-dock sync push often. On merge conflicts in these config files, keep the version already on `main` unless your change is specifically to that file.
 
 ## graphify
 
-This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+graphify can build a knowledge graph of this repo at `graphify-out/` (not committed; run `/graphify` to generate it). When that folder exists:
 
 Rules:
 - For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
