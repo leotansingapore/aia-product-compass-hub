@@ -131,8 +131,10 @@ export function InlineImageEditor({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); }
-      if ((e.metaKey || e.ctrlKey) && e.key === 'y') { e.preventDefault(); redo(); }
+      // Shift (or Caps Lock) reports e.key as "Z"/"Y", so compare lowercase or Cmd/Ctrl+Shift+Z never redoes.
+      const key = e.key.toLowerCase();
+      if ((e.metaKey || e.ctrlKey) && key === 'z') { e.preventDefault(); if (e.shiftKey) redo(); else undo(); }
+      if ((e.metaKey || e.ctrlKey) && key === 'y') { e.preventDefault(); redo(); }
       if (e.key === 'Escape') {
         setTextInput(null); setTextValue('');
         selRectRef.current = null; setSelRect(null); selImageDataRef.current = null; selectPhaseRef.current = 'idle';
