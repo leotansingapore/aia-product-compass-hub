@@ -79,14 +79,18 @@ export function PersonalNotes({ productId }: PersonalNotesProps) {
     setSaveStatus('saving');
     try {
       if (noteId) {
-        await supabase.from('user_notes').update({ content: stored }).eq('id', noteId);
+        // `.select('id')`: RLS can filter the update to zero rows with
+        // error === null, so an empty result must not show "saved".
+        const { data: saved, error } = await supabase.from('user_notes').update({ content: stored }).eq('id', noteId).select('id');
+        if (error || !saved?.length) throw error ?? new Error('Note was not saved');
       } else {
-        const { data } = await supabase
+        const { data, error } = await supabase
           .from('user_notes')
           .insert({ user_id: user.id, product_id: productId, content: stored, order: 0 })
           .select()
           .single();
-        if (data) setNoteId(data.id);
+        if (error) throw error;
+        setNoteId(data.id);
       }
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus('idle'), 2000);

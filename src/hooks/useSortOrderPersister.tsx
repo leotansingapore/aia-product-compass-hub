@@ -19,13 +19,16 @@ export function useSortOrderPersister(table: "categories" | "products") {
         supabase
           .from(table)
           .update({ sort_order: (i + 1) * 10 })
-          .eq("id", id),
+          .eq("id", id)
+          .select("id"),
       );
       const results = await Promise.all(updates);
       const firstError = results.find((r) => r.error)?.error;
-      if (firstError) {
+      // RLS can filter an update to zero rows with error === null.
+      const unsaved = results.filter((r) => !r.error && !r.data?.length).length;
+      if (firstError || unsaved > 0) {
         toast.error("Failed to save order");
-        console.error(`[sort-order:${table}]`, firstError);
+        console.error(`[sort-order:${table}]`, firstError ?? `${unsaved} row(s) not updated`);
         return;
       }
       toast.success("Order saved");

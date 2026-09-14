@@ -333,11 +333,14 @@ export function CategoryTreeEditor() {
     try {
       // Apply updates sequentially so any trigger error surfaces per-row.
       for (const r of dirty) {
-        const { error } = await supabase
+        // `.select("id")`: RLS can filter the update to zero rows with error === null.
+        const { data: saved, error } = await supabase
           .from("categories")
           .update({ parent_id: r.parent_id, sort_order: r.sort_order })
-          .eq("id", r.id);
+          .eq("id", r.id)
+          .select("id");
         if (error) throw new Error(`${r.name}: ${error.message}`);
+        if (!saved?.length) throw new Error(`${r.name}: not saved — you may not have permission`);
       }
       toast.success(`Saved ${dirty.length} change${dirty.length !== 1 ? "s" : ""}`);
       await refetch();

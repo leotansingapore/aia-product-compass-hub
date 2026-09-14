@@ -215,12 +215,14 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
   const handleRenameCategory = async () => {
     if (!editingCategory || !newCategoryName.trim()) return;
     
-    const { error } = await supabase
+    // `.select('id')`: RLS can filter the update to zero rows with error === null.
+    const { data: renamed, error } = await supabase
       .from('categories')
       .update({ name: newCategoryName.trim() })
-      .eq('id', editingCategory.id);
+      .eq('id', editingCategory.id)
+      .select('id');
 
-    if (error) {
+    if (error || !renamed?.length) {
       toast({ title: "Error", description: "Failed to rename category", variant: "destructive" });
     } else {
       invalidateCategoriesCache();
@@ -254,12 +256,13 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
       .delete()
       .eq('category_id', deletingCategory.id);
 
-    const { error } = await supabase
+    const { data: deletedCategory, error } = await supabase
       .from('categories')
       .delete()
-      .eq('id', deletingCategory.id);
+      .eq('id', deletingCategory.id)
+      .select('id');
 
-    if (error) {
+    if (error || !deletedCategory?.length) {
       toast({ title: "Error", description: "Failed to delete category", variant: "destructive" });
     } else {
       invalidateCategoriesCache();

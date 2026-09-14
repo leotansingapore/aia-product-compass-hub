@@ -28,11 +28,14 @@ export function LeaderboardVisibilityToggle({
     const next = !value;
     setSaving(true);
     try {
-      const { error } = await supabase
+      // `.select("id")`: RLS can filter the update to zero rows with error === null.
+      const { data: updated, error } = await supabase
         .from("profiles")
         .update({ show_in_leaderboard: next })
-        .eq("user_id", userId);
+        .eq("user_id", userId)
+        .select("id");
       if (error) throw error;
+      if (!updated?.length) throw new Error("The profile wasn't updated — you may not have permission.");
       setValue(next);
       onChange?.(next);
       toast({

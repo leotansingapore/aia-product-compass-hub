@@ -59,14 +59,20 @@ export function useNotes(productId: string) {
       }));
 
       // Batch update using Promise.all
-      await Promise.all(
+      // `.select('id')`: RLS can filter an update to zero rows with
+      // error === null, so check every row actually changed.
+      const results = await Promise.all(
         updates.map(({ id, order }) =>
           supabase
             .from('user_notes')
             .update({ order })
             .eq('id', id)
+            .select('id')
         )
       );
+      if (results.some((r) => r.error || !r.data?.length)) {
+        throw new Error('Note order was not saved');
+      }
 
       // Update local state with new order
       setNotes(reorderedNotes.map((note, index) => ({ ...note, order: index })));
@@ -186,12 +192,14 @@ export function useNotes(productId: string) {
   // Delete note
   const deleteNote = async (noteId: string) => {
     try {
-      const { error } = await supabase
+      const { data: deleted, error } = await supabase
         .from('user_notes')
         .delete()
-        .eq('id', noteId);
+        .eq('id', noteId)
+        .select('id');
 
       if (error) throw error;
+      if (!deleted?.length) throw new Error('Note was not deleted');
       
       setNotes(prev => prev.filter(note => note.id !== noteId));
       toast({
