@@ -8,6 +8,14 @@ import type { ParsedItem } from "@/lib/parseLearningItemsMarkdown";
 
 // ---- Phase mutations ----
 
+/**
+ * RLS can filter an update/delete to zero rows while returning error === null,
+ * so an error-only check reports success for a change that never happened.
+ */
+function assertRowsChanged(rows: { id: string }[] | null, label: string) {
+  if (!rows?.length) throw new Error(`${label} was not changed — you may not have permission.`);
+}
+
 export function useCreatePhase() {
   const qc = useQueryClient();
   return useMutation({
@@ -146,11 +154,13 @@ export function useUpdatePhase() {
       published_at?: string | null;
       prerequisite_phase_id?: string | null;
     }) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_phases")
         .update(fields)
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Phase");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
@@ -170,11 +180,13 @@ export function useMoveItemToPhase() {
         .order("order_index", { ascending: false })
         .limit(1);
       const nextOrder = (existing?.[0]?.order_index ?? -1) + 1;
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_items")
         .update({ phase_id: targetPhaseId, order_index: nextOrder })
-        .eq("id", itemId);
+        .eq("id", itemId)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Item");
     },
     onSuccess: () => {
       toast.success("Item moved to new phase");
@@ -188,11 +200,13 @@ export function useDeletePhase() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_phases")
         .delete()
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Phase");
     },
     onSuccess: () => {
       toast.success("Phase deleted");
@@ -297,11 +311,13 @@ export function useUpdateItem() {
       published_at?: string | null;
       prerequisite_item_ids?: string[] | null;
     }) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_items")
         .update(fields)
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Item");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
@@ -314,11 +330,13 @@ export function useDeleteItem() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_items")
         .delete()
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Item");
     },
     onSuccess: () => {
       toast.success("Item deleted");
@@ -625,11 +643,13 @@ export function useUpdateContentBlock() {
     mutationFn: async ({ id, ...fields }: {
       id: string; title?: string | null; body?: string | null; url?: string | null;
     }) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_content_blocks")
         .update(fields)
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Content block");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
@@ -642,11 +662,13 @@ export function useDeleteContentBlock() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data: changed, error } = await supabase
         .from("learning_track_content_blocks")
         .delete()
-        .eq("id", id);
+        .eq("id", id)
+        .select("id");
       if (error) throw error;
+      assertRowsChanged(changed, "Content block");
     },
     onSuccess: () => {
       toast.success("Content block removed");

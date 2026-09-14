@@ -89,10 +89,14 @@ export async function saveWorksheet(
 ): Promise<string> {
   const submission_text = JSON.stringify(values);
   if (existingId) {
-    const { error } = await (supabase.from as any)("assignment_submissions")
+    // `.select("id")`: RLS can filter the update to zero rows with
+    // error === null, so an empty result must not show "Worksheet saved".
+    const { data: saved, error } = await (supabase.from as any)("assignment_submissions")
       .update({ submission_text, submitted_at: new Date().toISOString() })
-      .eq("id", existingId);
+      .eq("id", existingId)
+      .select("id");
     if (error) throw error;
+    if (!saved?.length) throw new Error("Worksheet was not saved");
     return existingId;
   }
   const { data, error } = await (supabase.from as any)("assignment_submissions")

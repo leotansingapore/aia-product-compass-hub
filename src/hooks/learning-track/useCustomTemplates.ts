@@ -136,8 +136,10 @@ export function useDeleteCustomTemplate() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from("learning_track_templates").delete().eq("id", id);
+      // `.select("id")`: RLS can filter the delete to zero rows with error === null.
+      const { data: deleted, error } = await supabase.from("learning_track_templates").delete().eq("id", id).select("id");
       if (error) throw error;
+      if (!deleted?.length) throw new Error("Template was not deleted");
     },
     onSuccess: () => {
       toast.success("Template deleted");

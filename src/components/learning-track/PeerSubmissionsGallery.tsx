@@ -360,12 +360,14 @@ export default function PeerSubmissionsGallery({
   const toggleHidden = async (row: PeerRow) => {
     const next = !row.hidden_from_gallery;
     setBusyId(row.id);
-    const { error } = await (supabase.from as any)("assignment_submissions")
+    // `.select("id")`: RLS can filter the update to zero rows with error === null.
+    const { data: updated, error } = await (supabase.from as any)("assignment_submissions")
       .update({ hidden_from_gallery: next })
-      .eq("id", row.id);
+      .eq("id", row.id)
+      .select("id");
     setBusyId(null);
-    if (error) {
-      toast.error(`Couldn't update: ${error.message}`);
+    if (error || !updated?.length) {
+      toast.error(`Couldn't update: ${error?.message ?? "you may not have permission"}`);
       return;
     }
     toast.success(next ? "Hidden from cohort" : "Shown to cohort");

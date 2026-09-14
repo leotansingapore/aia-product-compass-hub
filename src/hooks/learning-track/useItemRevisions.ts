@@ -63,7 +63,10 @@ export function useRevertItemRevision() {
 
       // Update the item in place (do NOT change phase_id or order_index to
       // avoid unique-constraint collisions; users can reorder afterwards).
-      const { error: itemErr } = await supabase
+      // `.select("id")`: RLS can filter the update to zero rows with
+      // error === null. Stop before the block replace below wipes the content
+      // of an item we couldn't actually revert.
+      const { data: reverted, error: itemErr } = await supabase
         .from("learning_track_items")
         .update({
           title: s.title,
@@ -73,8 +76,10 @@ export function useRevertItemRevision() {
           requires_submission: s.requires_submission,
           hidden_resources: s.hidden_resources,
         })
-        .eq("id", revision.item_id);
+        .eq("id", revision.item_id)
+        .select("id");
       if (itemErr) throw itemErr;
+      if (!reverted?.length) throw new Error("Lesson was not reverted");
 
       // Replace content blocks wholesale.
       const { error: delErr } = await supabase

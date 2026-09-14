@@ -84,11 +84,14 @@ export function AdminLessonEditor({ item, trackPhases, onBack, hideBackButton }:
 
     try {
       if (blockIdRef.current) {
-        const { error } = await supabase
+        // `.select("id")`: RLS can filter the update to zero rows with error === null.
+        const { data: saved, error } = await supabase
           .from("learning_track_content_blocks")
           .update({ body: markdown })
-          .eq("id", blockIdRef.current);
+          .eq("id", blockIdRef.current)
+          .select("id");
         if (error) throw error;
+        if (!saved?.length) throw new Error("Lesson was not saved");
       } else {
         const maxOrder =
           item.content_blocks?.reduce((m, b) => Math.max(m, b.order_index), -1) ?? -1;

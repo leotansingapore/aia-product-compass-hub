@@ -717,10 +717,14 @@ function SubmittedSummary({
     if (!window.confirm("Delete this submission? This can't be undone.")) return;
     setDeleting(true);
     try {
-      const { error } = await (supabase.from as any)("assignment_submissions")
+      // `.select("id")`: an RLS-blocked delete returns error === null with zero
+      // rows. Stop before removing the file of a submission that still exists.
+      const { data: deleted, error } = await (supabase.from as any)("assignment_submissions")
         .delete()
-        .eq("id", submission.id);
+        .eq("id", submission.id)
+        .select("id");
       if (error) throw error;
+      if (!deleted?.length) throw new Error("Submission was not deleted");
       // Best-effort cleanup of the uploaded file so it doesn't linger in storage.
       if (submission.file_url) {
         const path = assignmentStoragePath(submission.file_url);
