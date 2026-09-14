@@ -175,7 +175,7 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
       { title: "Team Progress", url: "/team-progress", icon: Users, dataAttr: undefined, sectionId: "admin-panel" },
       { title: "Admin Panel", url: "/admin", icon: Shield, dataAttr: undefined, sectionId: "admin-panel" },
     ] : []),
-  ], [isMasterAdmin, hasRole]);
+  ], [isAdminUser]);
 
   // The tier check is the only gate here — `usePermissions.canAccessSection`
   // returns true for every authenticated user, so including it only obscured
