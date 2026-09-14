@@ -2127,7 +2127,8 @@ function EntryBody({ item, onOpen }: { item: ChangelogItem; onOpen: (n: number) 
 function EntryFooter({ item, onLike }: { item: ChangelogItem; onLike: (i: ChangelogItem) => void }) {
   const [copied, setCopied] = useState(false);
   const square =
-    "inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:text-foreground";
+    // 6px stated outright: rounded-md follows each app's --radius, which is 10px in some.
+    "inline-flex h-8 w-8 items-center justify-center rounded-[6px] border border-border bg-background text-muted-foreground transition-colors hover:text-foreground";
 
   const address = () => {
     const base = `${window.location.origin}${window.location.pathname}?tab=changelog`;
@@ -2220,7 +2221,7 @@ function ChangelogArticle({
         <button
           type="button"
           onClick={onBack}
-          className="flex h-[38px] w-full items-center gap-2 rounded-md bg-muted px-3 text-left text-[14px] transition-colors hover:bg-muted/70"
+          className="flex h-[38px] w-full items-center gap-2 rounded-[6px] bg-muted px-3 text-left text-[14px] transition-colors hover:bg-muted/70"
         >
           <Icon path={ICONS.arrowLeft} className="h-4 w-4" />
           Back to changelog
