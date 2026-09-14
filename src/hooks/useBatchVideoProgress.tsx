@@ -16,7 +16,8 @@ export function useBatchVideoProgress(productIds: string[], videoCountsByProduct
   const [progressMap, setProgressMap] = useState<Record<string, ProductProgress>>({});
   const { user } = useAuth();
 
-  const stableIds = useMemo(() => productIds.sort().join(','), [productIds]);
+  // Sort a copy: `.sort()` mutates in place, and callers pass their own memoized array.
+  const stableIds = useMemo(() => [...productIds].sort().join(','), [productIds]);
 
   useEffect(() => {
     if (!user || productIds.length === 0) return;
