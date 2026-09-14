@@ -123,19 +123,6 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
     return { masteredInBank, progressPercent };
   }, [studyBank, progressByQuestion]);
 
-  if (bankError) {
-    return (
-      <PageLayout title={`${productTitle} Study Bank | FINternship`} description="Error loading study questions">
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-lg font-semibold text-destructive">Failed to load study questions</p>
-            <p className="text-sm text-muted-foreground mt-2">{bankError instanceof Error ? bankError.message : 'Unknown error'}</p>
-          </div>
-        </div>
-      </PageLayout>
-    );
-  }
-
   // Restore session from localStorage on mount (only once, when questions load)
   useEffect(() => {
     if (activeQuestions) return; // Already have active questions, don't restore
@@ -215,6 +202,21 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
       setSelectedMode(urlMode);
     }
   }, [searchParams]);
+
+  // Keep this below every hook: the first render runs while the bank is still
+  // loading (no error), so an earlier return would change the hook count and crash.
+  if (bankError) {
+    return (
+      <PageLayout title={`${productTitle} Study Bank | FINternship`} description="Error loading study questions">
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-lg font-semibold text-destructive">Failed to load study questions</p>
+            <p className="text-sm text-muted-foreground mt-2">{bankError instanceof Error ? bankError.message : 'Unknown error'}</p>
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
 
   const startQuiz = (size: QuizSize, category: CategoryFilter, mode: StudyMode) => {
     const modePool =
