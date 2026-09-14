@@ -18,12 +18,16 @@ export function useUserActions() {
     
     setUserLoading(user.id, 'approve');
     try {
-      const { error } = await supabase
+      // `.select('id')`: RLS can filter the update to zero rows with
+      // error === null, so an empty result is a failure.
+      const { data: approved, error } = await supabase
         .from('user_approval_requests')
         .update({ status: 'approved', reviewed_at: new Date().toISOString() })
-        .eq('id', user.approval_request_id);
+        .eq('id', user.approval_request_id)
+        .select('id');
 
       if (error) throw error;
+      if (!approved?.length) throw new Error('Approval request was not updated');
 
       toast({
         title: '✅ User Approved',
@@ -49,7 +53,7 @@ export function useUserActions() {
     
     setUserLoading(user.id, 'reject');
     try {
-      const { error } = await supabase
+      const { data: rejected, error } = await supabase
         .from('user_approval_requests')
         .update({
           status: 'rejected',
@@ -57,9 +61,11 @@ export function useUserActions() {
           reviewed_by: (await supabase.auth.getUser()).data.user?.id,
           notes: 'Request rejected by admin'
         })
-        .eq('id', user.approval_request_id);
+        .eq('id', user.approval_request_id)
+        .select('id');
 
       if (error) throw error;
+      if (!rejected?.length) throw new Error('Approval request was not updated');
 
       toast({
         title: 'Request Rejected',

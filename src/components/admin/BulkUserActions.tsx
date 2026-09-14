@@ -91,12 +91,16 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
         if (!user.approval_request_id) continue;
         
         try {
-          const { error } = await supabase
+          // `.select('id')`: RLS can filter the update to zero rows with
+          // error === null, so only count rows that actually changed.
+          const { data: approved, error } = await supabase
             .from('user_approval_requests')
             .update({ status: 'approved', reviewed_at: new Date().toISOString() })
-            .eq('id', user.approval_request_id);
+            .eq('id', user.approval_request_id)
+            .select('id');
 
           if (error) throw error;
+          if (!approved?.length) throw new Error('Approval request was not updated');
           successCount++;
         } catch (error) {
           console.error(`Error approving user ${user.email}:`, error);
@@ -128,7 +132,7 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
     try {
       const userIds = pendingUsers.map(u => u.approval_request_id).filter(Boolean);
       
-      const { error } = await supabase
+      const { data: rejected, error } = await supabase
         .from('user_approval_requests')
         .update({
           status: 'rejected',
@@ -136,13 +140,18 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           reviewed_by: (await supabase.auth.getUser()).data.user?.id,
           notes: 'Bulk rejected by admin'
         })
-        .in('id', userIds);
+        .in('id', userIds)
+        .select('id');
 
       if (error) throw error;
 
+      // Count the rows that actually changed, not the ones we asked for.
+      const rejectedCount = rejected?.length ?? 0;
+      const failedCount = userIds.length - rejectedCount;
       toast({
         title: 'Bulk Rejection Complete',
-        description: `Rejected ${pendingUsers.length} approval requests`,
+        description: `Rejected ${rejectedCount} approval requests${failedCount > 0 ? `, ${failedCount} failed` : ''}`,
+        variant: failedCount > 0 ? "destructive" : "default",
       });
 
       onActionComplete();
