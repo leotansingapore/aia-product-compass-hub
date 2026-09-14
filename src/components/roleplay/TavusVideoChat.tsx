@@ -240,7 +240,7 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
       setConversationUrl(conversationUrl);
 
       // Update the session with the Tavus conversation ID and recording status
-      const { error: updateError } = await supabase
+      const { data: linkedSession, error: updateError } = await supabase
         .from('roleplay_sessions')
         .update({ 
           tavus_conversation_id: conversationData.conversation_id,
@@ -248,10 +248,12 @@ export function TavusVideoChat({ scenario }: TavusVideoChatProps) {
           recording_started_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         })
-        .eq('id', sessionData);
+        .eq('id', sessionData)
+        .select('id');
 
-      if (updateError) {
-        console.error('Failed to update session with conversation ID:', updateError);
+      // RLS can filter the update to zero rows with error === null.
+      if (updateError || !linkedSession?.length) {
+        console.error('Failed to update session with conversation ID:', updateError ?? 'no session row was updated');
       }
 
       return conversationData;

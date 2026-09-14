@@ -278,7 +278,14 @@ export default function PitchAnalysisPage({ embedded = false }: { embedded?: boo
         setAnalysis(parseAnalysis(record));
         analysisId = record.id;
       } else {
-        await supabase.from("pitch_analyses").update({ status: "pending" }).eq("id", analysisId);
+        // `.select("id")`: RLS can filter the update to zero rows with error === null.
+        const { data: reset, error: resetError } = await supabase
+          .from("pitch_analyses")
+          .update({ status: "pending" })
+          .eq("id", analysisId)
+          .select("id");
+        if (resetError) throw resetError;
+        if (!reset?.length) throw new Error("Couldn't restart this analysis — it may have been removed.");
         setAnalysis(prev => prev ? { ...prev, status: "pending" } : prev);
       }
 
