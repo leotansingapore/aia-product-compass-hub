@@ -271,10 +271,22 @@ What this repo actually requires for any Supabase write:
 1. Update local state only AFTER the write confirms.
 2. Append `.select('id')` to every UPDATE and DELETE and treat an EMPTY result
    as a failure. A write that RLS filters to zero rows returns `error === null`,
-   so an error-only check reports success for a change that never happened. This
-   exact bug was found and fixed across playbooks, scripts, admin, product and
-   bookmark surfaces during the 2026-08-02 audit. (INSERTs are not affected —
-   a blocked insert raises 42501.)
+   so an error-only check reports success for a change that never happened.
+   (INSERTs are not affected — a blocked insert raises 42501.)
+
+   CORRECTED 2026-09-15: this used to say the 2026-08-02 audit fixed the bug
+   "across playbooks, scripts, admin, product and bookmark surfaces". It only
+   fixed some (module/category edits in ProductCategory, CMFAS publish,
+   bookmarks, avatar, suspension). A 2026-09-15 sweep found 83 unchecked
+   UPDATE/DELETE calls, including playbooks, scripts, objections, sign-up and
+   tier approvals, notes, concept cards and learning-track writes, and fixed
+   every one that sits behind a success toast or "saved" state. Still
+   deliberately unchecked: background reorders (learning-track module
+   normalizer, playbook and learning-track drag reorder), delete-then-insert
+   tier/role resets where the old row may not exist, and `useAppStructureSync`
+   (`app_pages` / `app_tabs` / `app_sections` have NO update policy, so those
+   writes already change nothing). Don't trust a surface because a doc says it
+   was audited — grep for `.update(` / `.delete()` without `.select(`.
 3. Never show a success toast before the write is confirmed.
 
 Genuine optimistic updates DO exist for drag-reorder in
