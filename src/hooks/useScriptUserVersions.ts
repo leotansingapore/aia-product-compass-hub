@@ -54,11 +54,15 @@ export function useScriptUserVersions(scriptId: string | null) {
     mutationFn: async ({ id, content, authorName }: { id: string; content: string; authorName?: string }) => {
       const payload: Record<string, string> = { content };
       if (authorName) payload.author_name = authorName;
-      const { error } = await supabase
+      // `.select('id')`: RLS can filter the write to zero rows with
+      // error === null, so an empty result is a failure.
+      const { data: updated, error } = await supabase
         .from('script_user_versions')
         .update(payload)
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!updated?.length) throw new Error('Version was not updated');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['script-user-versions', scriptId] });
@@ -69,11 +73,13 @@ export function useScriptUserVersions(scriptId: string | null) {
 
   const deleteVersion = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data: deleted, error } = await supabase
         .from('script_user_versions')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!deleted?.length) throw new Error('Version was not deleted');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['script-user-versions', scriptId] });

@@ -136,16 +136,18 @@ export function useScriptsMutations() {
     // title/tag edits, merges) never wipe an existing attachment list.
     if (updates.attachments !== undefined) payload.attachments = JSON.parse(JSON.stringify(updates.attachments));
 
-    const { error } = await supabase.from('scripts').update(payload).eq('id', id);
-    if (error) { toast.error('Failed to update script'); console.error(error); throw error; }
+    // `.select('id')` on update/delete: RLS can filter the write to zero rows
+    // with error === null, so an empty result is a failure.
+    const { data: updated, error } = await supabase.from('scripts').update(payload).eq('id', id).select('id');
+    if (error || !updated?.length) { toast.error('Failed to update script'); console.error(error); throw error ?? new Error('Script was not updated'); }
     toast.success('Script updated');
     return true;
   };
 
   const deleteScript = async (id: string) => {
     if (!isAdmin) { toast.error('Admin access required'); throw new Error('Admin access required'); }
-    const { error } = await supabase.from('scripts').delete().eq('id', id);
-    if (error) { toast.error('Failed to delete script'); console.error(error); throw error; }
+    const { data: deleted, error } = await supabase.from('scripts').delete().eq('id', id).select('id');
+    if (error || !deleted?.length) { toast.error('Failed to delete script'); console.error(error); throw error ?? new Error('Script was not deleted'); }
     toast.success('Script deleted');
     return true;
   };

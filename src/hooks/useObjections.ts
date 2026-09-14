@@ -122,16 +122,18 @@ export function useObjectionMutations() {
     if (updates.tags !== undefined) payload.tags = updates.tags;
     if (updates.sort_order !== undefined) payload.sort_order = updates.sort_order;
 
-    const { error } = await supabase.from('objection_entries').update(payload).eq('id', id);
-    if (error) { toast.error('Failed to update'); console.error(error); return false; }
+    // `.select('id')` on update/delete: RLS can filter the write to zero rows
+    // with error === null, so an empty result is a failure.
+    const { data: updated, error } = await supabase.from('objection_entries').update(payload).eq('id', id).select('id');
+    if (error || !updated?.length) { toast.error('Failed to update'); console.error(error); return false; }
     toast.success('Updated');
     return true;
   };
 
   const deleteEntry = async (id: string) => {
     if (!isAdmin) { toast.error('Admin access required'); return false; }
-    const { error } = await supabase.from('objection_entries').delete().eq('id', id);
-    if (error) { toast.error('Failed to delete'); console.error(error); return false; }
+    const { data: deleted, error } = await supabase.from('objection_entries').delete().eq('id', id).select('id');
+    if (error || !deleted?.length) { toast.error('Failed to delete'); console.error(error); return false; }
     toast.success('Deleted');
     return true;
   };
@@ -148,15 +150,15 @@ export function useObjectionMutations() {
   };
 
   const updateResponse = async (id: string, content: string) => {
-    const { error } = await supabase.from('objection_responses').update({ content }).eq('id', id);
-    if (error) { toast.error('Failed to update response'); console.error(error); return false; }
+    const { data: updated, error } = await supabase.from('objection_responses').update({ content }).eq('id', id).select('id');
+    if (error || !updated?.length) { toast.error('Failed to update response'); console.error(error); return false; }
     toast.success('Response updated');
     return true;
   };
 
   const deleteResponse = async (id: string) => {
-    const { error } = await supabase.from('objection_responses').delete().eq('id', id);
-    if (error) { toast.error('Failed to delete response'); console.error(error); return false; }
+    const { data: deleted, error } = await supabase.from('objection_responses').delete().eq('id', id).select('id');
+    if (error || !deleted?.length) { toast.error('Failed to delete response'); console.error(error); return false; }
     toast.success('Response deleted');
     return true;
   };
