@@ -25,6 +25,15 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
   const completed = checkCompleted(item.id);
   const isLocked = !!lockResult?.locked;
 
+  // Learner list queries skip content_blocks to stay small — fetch them per
+  // item when the panel opens. Admin-mode queries return blocks inline.
+  // Called before the locked/folder early returns so the hook count stays the
+  // same when this panel switches between lessons without remounting.
+  const needsFetch = !item.content_blocks || item.content_blocks.length === 0;
+  const blocksQuery = useItemContentBlocks(item.id, {
+    enabled: needsFetch && !isLocked && !isModuleFolder(item),
+  });
+
   const handleToggleComplete = () => {
     const next: ItemStatus = completed ? "not_started" : "completed";
     setStatus.mutate({ itemId: item.id, status: next }, {
@@ -65,10 +74,6 @@ export function LessonContentPanel({ item, lockResult, onComplete }: LessonConte
     );
   }
 
-  // Learner list queries skip content_blocks to stay small — fetch them per
-  // item when the panel opens. Admin-mode queries return blocks inline.
-  const needsFetch = !item.content_blocks || item.content_blocks.length === 0;
-  const blocksQuery = useItemContentBlocks(item.id, { enabled: needsFetch });
   const effectiveBlocks =
     needsFetch ? blocksQuery.data ?? [] : item.content_blocks ?? [];
 
