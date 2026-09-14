@@ -584,7 +584,7 @@ function VotePill({
         aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
         title={state.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
-          lg ? "w-14 py-2" : "w-9 py-1.5"
+          lg ? "w-14 py-2" : "w-9 py-1"
         } ${
           state.voted
             ? "border-primary bg-primary/10 text-foreground"
@@ -632,7 +632,7 @@ function TopBar({
   ];
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-3.5 md:px-0">
+      <div className="mx-auto flex w-full max-w-[960px] items-center gap-3 px-4 md:h-[59px] md:px-0 py-3 md:py-0">
         {(() => {
           const mark = (
             <>
@@ -662,7 +662,7 @@ function TopBar({
           </button>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4 md:px-0">
+      <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4 md:h-[42px] md:px-0">
         <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 sm:gap-5">
           {tabs.map((t) => (
             <button
@@ -670,7 +670,7 @@ function TopBar({
               type="button"
               aria-current={tab === t.key ? "page" : undefined}
               onClick={() => onTab(t.key)}
-              className={`relative -mb-px flex items-center gap-1.5 whitespace-nowrap px-2 py-2.5 text-[13px] font-medium transition-colors sm:text-[14px] ${
+              className={`relative -mb-px flex h-full items-center gap-1.5 whitespace-nowrap px-2 py-2.5 text-[13px] font-medium transition-colors md:py-0 sm:text-[14px] ${
                 tab === t.key ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -683,7 +683,7 @@ function TopBar({
         <button
           type="button"
           onClick={onSearch}
-          className="flex shrink-0 items-center gap-1.5 px-2 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground sm:text-[14px]"
+          className="flex h-full shrink-0 items-center gap-1.5 px-2 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground md:py-0 sm:text-[14px]"
         >
           <Icon path={ICONS.search} className="h-4 w-4" />
           <span className="hidden sm:inline">Search</span>
@@ -771,7 +771,7 @@ function RoadmapTab({
         </>
       ) : null}
 
-      <div className={`${withPosts.length > 0 ? "mt-8" : ""} flex items-center justify-between gap-3`}>
+      <div className={`${withPosts.length > 0 ? "mt-7" : ""} flex items-center justify-between gap-3`}>
         <h2 className="text-[16px] font-semibold">Roadmap</h2>
         <Menu
           label="Filter the roadmap"
