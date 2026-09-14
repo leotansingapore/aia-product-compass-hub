@@ -741,6 +741,11 @@ function RoadmapTab({
 
   const shown = (posts ?? []).filter((p) => !hidden.has(p.category));
   const withPosts = CATEGORIES.filter((c) => (summary?.counts[c.value] ?? 0) > 0);
+  // A full board wants columns that hold the fold, the way the reference has them. A
+  // board with two cards in it does not: three tall empty boxes read as broken, where
+  // three short ones read as early.
+  const fullest = Math.max(0, ...ROADMAP_COLUMNS.map((c) => shown.filter((p) => p.status === c.status).length));
+  const columnHeight = fullest >= 3 ? "min-h-[280px] md:min-h-[468px]" : "min-h-[180px]";
 
   return (
     <>
@@ -828,7 +833,7 @@ function RoadmapTab({
               <section
                 key={col.status}
                 aria-label={STATUS_LABEL[col.status]}
-                className="flex min-h-[280px] flex-col overflow-hidden rounded-[10px] border border-border md:min-h-[468px]"
+                className={`flex flex-col overflow-hidden rounded-[10px] border border-border ${columnHeight}`}
               >
                 <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-muted/40 px-4">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: STATUS_TONE[col.status].dot }} />
