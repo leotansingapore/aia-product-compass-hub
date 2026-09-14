@@ -1794,6 +1794,7 @@ function ChangelogTab({
   onOpen,
   entryId,
   openSlug,
+  chrome,
   onOpenEntry,
 }: {
   api: Api;
@@ -1802,6 +1803,7 @@ function ChangelogTab({
   onOpen: (n: number) => void;
   entryId: string | null;
   openSlug: string | null;
+  chrome: boolean;
   onOpenEntry: (slug: string | null) => void;
 }) {
   const [items, setItems] = useState<ChangelogItem[] | null>(null);
@@ -1913,7 +1915,9 @@ function ChangelogTab({
         />
       );
     }
-    return <ChangelogArticle item={open} appName={appName} onBack={() => onOpenEntry(null)} onOpen={onOpen} onLike={like} />;
+    return (
+      <ChangelogArticle item={open} appName={appName} chrome={chrome} onBack={() => onOpenEntry(null)} onOpen={onOpen} onLike={like} />
+    );
   }
 
   return (
@@ -2132,17 +2136,30 @@ function ChangelogTab({
 function ChangelogArticle({
   item,
   appName,
+  chrome,
   onBack,
   onOpen,
   onLike,
 }: {
   item: ChangelogItem;
   appName: string;
+  chrome: boolean;
   onBack: () => void;
   onOpen: (n: number) => void;
   onLike: (i: ChangelogItem) => void;
 }) {
   const [copied, setCopied] = useState(false);
+
+  // This page has a name of its own, so the browser tab and a shared bookmark say what
+  // the change was rather than repeating the section.
+  useEffect(() => {
+    if (!chrome || typeof document === "undefined") return;
+    const before = document.title;
+    document.title = `${item.title} - ${appName}`;
+    return () => {
+      document.title = before;
+    };
+  }, [chrome, appName, item.title]);
 
   function copyLink() {
     const url = `${window.location.origin}${window.location.pathname}?tab=changelog&entry=${item.slug ?? ""}`;
@@ -2437,7 +2454,9 @@ export function FeedbackBoard({
     if (!chrome || typeof document === "undefined") return;
     const before = document.title;
     const part = view.kind === "post" ? "Feedback" : view.kind === "roadmap" ? "Roadmap" : view.kind === "changelog" ? "Changelog" : "Feedback";
-    document.title = view.kind === "changelog" && entrySlug ? `${entrySlug.replace(/-/g, " ")} - ${appName} changelog` : `${part} - ${appName}`;
+    // An open entry names the tab itself, from its real title.
+    if (view.kind === "changelog" && entrySlug) return;
+    document.title = `${part} - ${appName}`;
     return () => {
       document.title = before;
     };
@@ -2528,6 +2547,7 @@ export function FeedbackBoard({
             onOpen={openPost}
             entryId={entryId}
             openSlug={entrySlug}
+            chrome={chrome}
             onOpenEntry={(slug) => {
               setEntrySlug(slug);
               window.scrollTo({ top: 0 });
