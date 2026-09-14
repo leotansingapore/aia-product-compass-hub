@@ -92,6 +92,8 @@ export const FEATURE_CATALOG: FeatureDef[] = [
   // --- Community and account ----------------------------------------------------------
   { key: 'leaderboard', label: 'Leaderboard', area: 'Community', match: at('/leaderboard') },
   { key: 'team_progress', label: 'Team progress', area: 'Community', match: at('/team-progress') },
+  { key: 'feedback', label: 'Feedback board', area: 'Community', match: at('/feedback') },
+  { key: 'roadmap', label: 'Roadmap', area: 'Community', match: at('/roadmap') },
   { key: 'bookmarks', label: 'Bookmarks', area: 'Account', match: at('/bookmarks') },
   { key: 'my_account', label: 'My account', area: 'Account', match: at('/my-account') },
   { key: 'how_to_use', label: 'How to use', area: 'Account', match: at('/how-to-use') },
