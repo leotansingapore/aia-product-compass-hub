@@ -162,15 +162,20 @@ export function useAdminTierRequests(statusFilter: TierRequestStatus | 'all' = '
       if (insErr) throw insErr;
 
       // 2. Mark request approved
-      const { error: updErr } = await (supabase.from(TABLE as never) as any)
+      // `.select('id')`: an RLS-blocked update returns error === null with zero
+      // rows, so an error-only check would email the user about a change that
+      // never landed.
+      const { data: approved, error: updErr } = await (supabase.from(TABLE as never) as any)
         .update({
           status: 'approved',
           reviewed_at: new Date().toISOString(),
           reviewer_id: admin?.id ?? null,
           admin_note: adminNote?.trim() || null,
         })
-        .eq('id', request.id);
+        .eq('id', request.id)
+        .select('id');
       if (updErr) throw updErr;
+      if (!approved?.length) throw new Error("The request wasn't updated — you may not have permission.");
 
       // 3. Email the user via edge function (best-effort — don't fail the whole flow if this fails)
       try {
@@ -203,15 +208,17 @@ export function useAdminTierRequests(statusFilter: TierRequestStatus | 'all' = '
 
   const rejectMutation = useMutation({
     mutationFn: async ({ request, adminNote }: { request: TierUpgradeRequest; adminNote?: string }) => {
-      const { error } = await (supabase.from(TABLE as never) as any)
+      const { data: rejected, error } = await (supabase.from(TABLE as never) as any)
         .update({
           status: 'rejected',
           reviewed_at: new Date().toISOString(),
           reviewer_id: admin?.id ?? null,
           admin_note: adminNote?.trim() || null,
         })
-        .eq('id', request.id);
+        .eq('id', request.id)
+        .select('id');
       if (error) throw error;
+      if (!rejected?.length) throw new Error("The request wasn't updated — you may not have permission.");
 
       try {
         await supabase.functions.invoke('notify-tier-change', {
