@@ -30,6 +30,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { toast } from "sonner";
 import {
   useCreateItem,
   useDeleteItem,
@@ -276,11 +277,15 @@ function CourseEditor({
       if (prev !== nxt) hrPatches.push({ id: item.id, hidden_resources: nextHr });
     }
     if (hrPatches.length > 0) {
-      await Promise.all(
+      // `.select("id")`: RLS can filter an update to zero rows with error === null.
+      const patchResults = await Promise.all(
         hrPatches.map((p) =>
-          supabase.from("learning_track_items").update({ hidden_resources: p.hidden_resources }).eq("id", p.id),
+          supabase.from("learning_track_items").update({ hidden_resources: p.hidden_resources }).eq("id", p.id).select("id"),
         ),
       );
+      if (patchResults.some((r) => r.error || !r.data?.length)) {
+        toast.error("Moved, but some lessons didn't update their module — refresh and try again");
+      }
     }
     await qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
   };
@@ -357,12 +362,16 @@ function CourseEditor({
     // Batch update all order_indexes
     const updates = reordered.map((item, idx) => ({ id: item.id, order_index: idx }));
     // Use individual updates to avoid unique constraint issues
+    let reorderFailed = false;
     for (let i = 0; i < updates.length; i++) {
-      await supabase.from("learning_track_items").update({ order_index: 10000 + i }).eq("id", updates[i].id);
+      const { data: moved, error: moveErr } = await supabase.from("learning_track_items").update({ order_index: 10000 + i }).eq("id", updates[i].id).select("id");
+      if (moveErr || !moved?.length) reorderFailed = true;
     }
     for (let i = 0; i < updates.length; i++) {
-      await supabase.from("learning_track_items").update({ order_index: i }).eq("id", updates[i].id);
+      const { data: moved, error: moveErr } = await supabase.from("learning_track_items").update({ order_index: i }).eq("id", updates[i].id).select("id");
+      if (moveErr || !moved?.length) reorderFailed = true;
     }
+    if (reorderFailed) toast.error("Lesson added, but it couldn't be placed inside the module");
 
     qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
     setActiveLessonId(data.id);
@@ -798,7 +807,8 @@ function SidebarModuleHeader({
             <Plus className="h-3.5 w-3.5 mr-2" /> Add lesson
           </DropdownMenuItem>
           <DropdownMenuItem onClick={async () => {
-            await supabase.from("learning_track_items").update({ hidden_resources: [] }).eq("id", item.id);
+            const { data: converted, error: convertError } = await supabase.from("learning_track_items").update({ hidden_resources: [] }).eq("id", item.id).select("id");
+            if (convertError || !converted?.length) toast.error("Couldn't convert to lesson");
             qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
           }}>
             <FileText className="h-3.5 w-3.5 mr-2" /> Convert to lesson
@@ -895,7 +905,8 @@ function SidebarLesson({
           )}
           {isOrphan && (
             <DropdownMenuItem onClick={async () => {
-              await supabase.from("learning_track_items").update({ hidden_resources: ["module"] }).eq("id", item.id);
+              const { data: converted, error: convertError } = await supabase.from("learning_track_items").update({ hidden_resources: ["module"] }).eq("id", item.id).select("id");
+              if (convertError || !converted?.length) toast.error("Couldn't convert to module");
               qc.invalidateQueries({ queryKey: ["learning-track-phases"] });
             }}>
               <Folder className="h-3.5 w-3.5 mr-2" /> Convert to module
