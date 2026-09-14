@@ -111,11 +111,14 @@ export function UserManagementSection() {
 
   const handleUserRoleUpdate = async (userId: string, newRoles: string[]) => {
     try {
-      // First, remove all existing roles for this user
-      await supabase
+      // First, remove all existing roles for this user. Zero deleted rows is
+      // fine (the user may have had no roles), but an error must stop here so
+      // the insert below can't stack new roles on top of the old ones.
+      const { error: deleteError } = await supabase
         .from('user_roles')
         .delete()
         .eq('user_id', userId);
+      if (deleteError) throw deleteError;
 
       // Then add the new roles
       if (newRoles.length > 0) {
@@ -124,9 +127,10 @@ export function UserManagementSection() {
           role: role,
         }));
 
-        await supabase
+        const { error: insertError } = await supabase
           .from('user_roles')
           .insert(roleInserts);
+        if (insertError) throw insertError;
       }
 
       // Update local state

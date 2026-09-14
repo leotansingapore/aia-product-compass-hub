@@ -272,12 +272,15 @@ export function useUserActions() {
   const updateUserRole = async (user: UnifiedUser, newRole: string) => {
     setUserLoading(user.id, 'role');
     try {
-      // Delete existing roles
-      await supabase
+      // Delete existing roles. Zero deleted rows is fine (the user may have had
+      // no role), but an error must stop here so the insert below can't leave
+      // the user holding both the old and the new role.
+      const { error: deleteError } = await supabase
         .from('user_roles')
         .delete()
         .eq('user_id', user.id);
-      
+      if (deleteError) throw deleteError;
+
       // Insert the new role
       const { error } = await supabase
         .from('user_roles')
