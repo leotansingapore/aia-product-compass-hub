@@ -302,7 +302,7 @@ class Api {
   detail(n: number) {
     return this.call<{
       post?: Post; comments?: Comment[]; events?: StatusEvent[]; duplicates?: Duplicate[];
-      voters?: { count: number; names: string[] }; redirect?: number;
+      voters?: { votes: number; names: string[]; total: number }; redirect?: number;
     }>(`/posts/${n}`);
   }
   create(b: { title: string; body: string; category: Category; name: string; email: string; website: string }) {
@@ -584,7 +584,7 @@ function VotePill({
         aria-label={`${state.voted ? "Remove your vote from" : "Vote for"} this post. ${state.count} ${state.count === 1 ? "vote" : "votes"} so far.`}
         title={state.voted ? "Remove your vote" : "Vote for this"}
         className={`flex flex-col items-center justify-center gap-0.5 rounded-md border transition-all active:scale-[0.96] ${
-          lg ? "w-14 py-2.5" : "w-10 py-2"
+          lg ? "w-14 py-2.5" : "w-11 py-2.5"
         } ${
           state.voted
             ? "border-primary bg-primary/10 text-foreground"
@@ -633,12 +633,23 @@ function TopBar({
   return (
     <header className="border-b border-border">
       <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-3 px-4 py-4">
-        <a href={homeUrl ?? "#"} className="flex min-w-0 items-center gap-2.5" aria-label={homeUrl ? `Back to ${appName}` : appName}>
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary text-[13px] font-bold text-primary-foreground">
-            {appName.trim()[0]?.toUpperCase() ?? "A"}
-          </span>
-          <span className="truncate text-[19px] font-semibold tracking-tight">{appName}</span>
-        </a>
+        {(() => {
+          const mark = (
+            <>
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary text-[13px] font-bold text-primary-foreground">
+                {appName.trim()[0]?.toUpperCase() ?? "A"}
+              </span>
+              <span className="truncate text-[19px] font-semibold tracking-tight">{appName}</span>
+            </>
+          );
+          return homeUrl ? (
+            <a href={homeUrl} className="flex min-w-0 items-center gap-2.5" aria-label={`Back to ${appName}`}>
+              {mark}
+            </a>
+          ) : (
+            <span className="flex min-w-0 items-center gap-2.5">{mark}</span>
+          );
+        })()}
         <div className="ml-auto flex items-center gap-2">
           {identity?.name || identity?.email ? (
             <span className="hidden items-center gap-2 text-[13px] text-muted-foreground sm:flex">
@@ -768,7 +779,7 @@ function RoadmapTab({
               </div>
               {CATEGORIES.map((c) => (
                 <label key={c.value} className="flex cursor-pointer items-center gap-2.5 px-3 py-2 text-[13px] hover:bg-accent hover:text-accent-foreground">
-                  <input type="checkbox" checked={!hidden.has(c.value)} onChange={() => toggle(c.value)} className="h-4 w-4 accent-[var(--primary)]" />
+                  <input type="checkbox" checked={!hidden.has(c.value)} onChange={() => toggle(c.value)} className="h-4 w-4" />
                   {c.plural}
                 </label>
               ))}
@@ -788,6 +799,18 @@ function RoadmapTab({
               <Skeleton rows={2} />
             </div>
           ))}
+        </div>
+      ) : shown.length === 0 ? (
+        <div className="mt-4 rounded-[10px] border border-border">
+          <Empty
+            title="Nothing is on the roadmap yet"
+            body={`Once a request gets picked up it shows here, on its way from under review to being built. Ask for something and it starts in the Feedback tab.`}
+            action={
+              <button type="button" className={btn.primary} onClick={() => onCategory("feature")}>
+                Ask for something
+              </button>
+            }
+          />
         </div>
       ) : (
         <div className="mt-4 grid gap-6 md:grid-cols-3">
@@ -1431,7 +1454,7 @@ function PostView({
   }, [identity?.id, identity?.name, identity?.email]);
 
   const [data, setData] = useState<{
-    post: Post; comments: Comment[]; events: StatusEvent[]; duplicates: Duplicate[]; voters: { count: number; names: string[] };
+    post: Post; comments: Comment[]; events: StatusEvent[]; duplicates: Duplicate[]; voters: { votes: number; names: string[]; total: number };
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [body, setBody] = useState(() => storage(draftKey) ?? "");
@@ -1459,7 +1482,7 @@ function PostView({
           comments: r.comments ?? [],
           events: r.events ?? [],
           duplicates: r.duplicates ?? [],
-          voters: r.voters ?? { count: r.post.vote_count, names: [] },
+          voters: r.voters ?? { votes: r.post.vote_count, names: [], total: 0 },
         });
       })
       .catch((e) => {
@@ -1591,13 +1614,18 @@ function PostView({
           <Icon path={ICONS.chevronLeft} className="h-3.5 w-3.5" />
           All feedback
         </button>
+        {/* Votes are anonymous by design (the token is HMAC'd per board), so this cannot
+            be the list of voters the reference portal shows. It gives the tally, and
+            separately the people who put their name to something. */}
         {data ? (
           <div className="rounded-[10px] border border-border p-4">
-            <h2 className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Voters</h2>
-            {data.voters.names.length === 0 ? (
-              <p className="mt-3 text-[13px] text-muted-foreground">{data.voters.count > 0 ? `${data.voters.count} so far` : "Be the first to vote"}</p>
-            ) : (
+            <p className="text-[20px] font-semibold tabular-nums">{data.voters.votes}</p>
+            <p className="text-[13px] text-muted-foreground">{data.voters.votes === 1 ? "vote" : "votes"}</p>
+            {data.voters.names.length > 0 ? (
               <>
+                <h2 className="mt-4 border-t border-border pt-4 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  Who spoke up
+                </h2>
                 <ul className="mt-3 space-y-2.5">
                   {data.voters.names.map((n) => (
                     <li key={n} className="flex items-center gap-2.5 text-[13px]">
@@ -1606,11 +1634,11 @@ function PostView({
                     </li>
                   ))}
                 </ul>
-                {data.voters.count > data.voters.names.length ? (
-                  <p className="mt-3 text-[13px] text-muted-foreground">and {data.voters.count - data.voters.names.length} more...</p>
+                {data.voters.total > data.voters.names.length ? (
+                  <p className="mt-3 text-[13px] text-muted-foreground">and {data.voters.total - data.voters.names.length} more...</p>
                 ) : null}
               </>
-            )}
+            ) : null}
           </div>
         ) : null}
       </aside>
@@ -1739,7 +1767,19 @@ function PostView({
 
 // ---------- changelog tab ----------
 
-function ChangelogTab({ api, appName, onOpen, entryId }: { api: Api; appName: string; onOpen: (n: number) => void; entryId: string | null }) {
+function ChangelogTab({
+  api,
+  appName,
+  board,
+  onOpen,
+  entryId,
+}: {
+  api: Api;
+  appName: string;
+  board: BoardInfo | null;
+  onOpen: (n: number) => void;
+  entryId: string | null;
+}) {
   const [items, setItems] = useState<ChangelogItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -1839,14 +1879,18 @@ function ChangelogTab({ api, appName, onOpen, entryId }: { api: Api; appName: st
           <Icon path={ICONS.link} className="h-3.5 w-3.5" />
           RSS
         </a>
-        <button
-          type="button"
-          onClick={() => setSubscribeOpen((o) => !o)}
-          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground"
-        >
-          <Icon path={ICONS.mail} className="h-3.5 w-3.5" />
-          Subscribe
-        </button>
+        {/* Only where the product has a verified sender. Taking an email address and
+            never writing is worse than not offering. */}
+        {board?.notifies ? (
+          <button
+            type="button"
+            onClick={() => setSubscribeOpen((o) => !o)}
+            className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground"
+          >
+            <Icon path={ICONS.mail} className="h-3.5 w-3.5" />
+            Subscribe
+          </button>
+        ) : null}
         <div className="relative ml-auto w-full sm:w-52">
           <Icon path={ICONS.search} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search entries..." aria-label="Search the changelog" className={`${input} h-9 pl-9`} />
@@ -2218,6 +2262,19 @@ export function FeedbackBoard({
     storage(feedbackSeenKey(boardKey), "1");
   }, [boardKey]);
 
+  // Standalone, this IS the page, and it is one people are sent links to: give the tab
+  // and the bookmark a name that says which product and which part. Embedded in an app's
+  // own chrome (chrome={false}) the host owns the title, so leave it alone.
+  useEffect(() => {
+    if (!chrome || typeof document === "undefined") return;
+    const before = document.title;
+    const part = view.kind === "post" ? "Feedback" : view.kind === "roadmap" ? "Roadmap" : view.kind === "changelog" ? "Changelog" : "Feedback";
+    document.title = `${part} - ${appName}`;
+    return () => {
+      document.title = before;
+    };
+  }, [chrome, appName, view.kind]);
+
   useEffect(() => {
     let cancelled = false;
     api
@@ -2294,7 +2351,7 @@ export function FeedbackBoard({
         ) : view.kind === "roadmap" ? (
           <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} />
         ) : view.kind === "changelog" ? (
-          <ChangelogTab api={api} appName={appName} onOpen={openPost} entryId={entryId} />
+          <ChangelogTab api={api} appName={appName} board={board} onOpen={openPost} entryId={entryId} />
         ) : (
           <FeedbackTab
             api={api}
