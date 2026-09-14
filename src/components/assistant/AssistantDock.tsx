@@ -1,414 +1,562 @@
-"use client";
-
-/**
- * AssistantDock - the in-app assistant for products that do not have one of their own.
- *
- * A floating button opens a chat panel. The assistant answers from the app's own
- * knowledge on the feedback service, and every action it offers is a chip the person
- * taps: post to the feedback board, send a message to the team, or open a page. It never
- * claims to have done something itself.
- *
- *   <AssistantDock apiUrl="https://leotan-feedback.vercel.app/api/v1" boardKey="fb_..."
- *                  appName="FourLens" identity={{ id, name, email }} navigate={(p) => router.push(p)} />
- *
- * Self-contained like FeedbackBoard: React + Tailwind on the shadcn tokens. `navigate`
- * is optional; without it "Open /path" does a full page load.
- * Source of truth: github.com/leotansingapore/feedback-board/client/AssistantDock.tsx
- */
-
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Bot,
+  X,
+  Send,
+  Loader2,
+  MessageSquarePlus,
+  ScrollText,
+  Shield,
+  BookOpen,
+  GraduationCap,
+  Users,
+  Trash2,
+} from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { FeedbackModal } from "@/components/FeedbackButton";
+import { cn } from "@/lib/utils";
+import { streamAiChat, type AiChatMessage } from "@/lib/aiChatStream";
+import { useAllProducts, useProductBySlugOrId } from "@/hooks/useProducts";
+import { useSimplifiedAuth } from "@/hooks/useSimplifiedAuth";
+import { parseDoors, stripDoors } from "@/lib/feedbackDoors";
+import { DoorCards } from "@/components/feedback/DoorCards";
 
-export type AssistantIdentity = { id: string; name?: string | null; email?: string | null };
+type ModeId = "ask" | "lessons" | "objections" | "product" | "roleplay";
 
-type Action =
-  | { type: "feedback"; category: "feature" | "improvement" | "bug" | "question"; title: string; body: string; label: string }
-  | { type: "support"; message: string; label: string }
-  | { type: "go"; path: string; label: string };
-
-type Msg = {
-  role: "user" | "assistant";
-  text: string;
-  id?: string | null;            // assistant_events id, for thumbs
-  actions?: Action[];
-  done?: Record<number, string>; // action index -> outcome line
-  rating?: 1 | -1;
-  error?: boolean;
+type Mode = {
+  id: ModeId;
+  label: string;
+  icon: typeof Bot;
+  blurb: string;
+  prompts: string[];
 };
 
-function storage(key: string, value?: string | null) {
-  try {
-    if (value === undefined) return localStorage.getItem(key);
-    if (value === null) localStorage.removeItem(key);
-    else localStorage.setItem(key, value);
-  } catch {
-    /* blocked storage */
-  }
-  return null;
-}
-
-function voterId(identity?: AssistantIdentity) {
-  if (identity?.id) return identity.id;
-  let t = storage("fb_voter");
-  if (!t) {
-    t = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
-    storage("fb_voter", t);
-  }
-  return t;
-}
-
-const btn = {
-  primary:
-    "inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-3.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50",
-  chip:
-    "inline-flex min-h-8 items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-left text-[12px] font-medium text-foreground transition-colors hover:bg-primary/20 disabled:pointer-events-none disabled:opacity-60",
-  icon: "inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
-};
-
-/** The four things people come to a product team with, offered before they have to
- *  think of the words. Tapping one sends that sentence, so the assistant replies in
- *  the same chat and attaches the button that actually posts it. */
-const OPENERS: { id: string; label: string; text: string }[] = [
-  { id: "bug", label: "Something is broken", text: "Something is broken and I want to report it:" },
-  { id: "feature", label: "Ask for a feature", text: "I would like to ask for a feature:" },
-  { id: "improve", label: "Suggest an improvement", text: "I have an idea to improve something:" },
-  { id: "question", label: "Ask a question", text: "I have a question about how this works:" },
+const MODES: readonly Mode[] = [
+  {
+    id: "ask",
+    label: "Scripts",
+    icon: ScrollText,
+    blurb: "Openers, follow-ups and what to say next.",
+    prompts: [
+      "Which script should I use for a cold call to an NSF?",
+      "Give me a second follow-up for someone who hasn't replied",
+      "What's a good opening text for warm market outreach?",
+    ],
+  },
+  {
+    id: "lessons",
+    label: "Lessons",
+    icon: GraduationCap,
+    blurb: "Ask anything from the curriculum — it answers from the lessons and links the day.",
+    prompts: [
+      // Wording matches the curriculum: the shipped day files teach Project
+      // 1000, not the Project 100 of the older source decks.
+      "What is Project 1000 and how do I build my list?",
+      "Explain the four assurances of this career",
+      "How should I run a fact-find on a first appointment?",
+    ],
+  },
+  {
+    id: "objections",
+    label: "Objections",
+    icon: Shield,
+    blurb: "Work through a real objection line by line.",
+    prompts: [
+      "They said they need to check with their spouse first",
+      "The client says insurance is a waste of money",
+      "They told me they already have enough coverage",
+    ],
+  },
+  {
+    id: "product",
+    label: "Product",
+    icon: BookOpen,
+    blurb: "Ask about a specific plan's features and rules.",
+    prompts: [
+      "What does this plan actually cover?",
+      "Who is this plan NOT a good fit for?",
+      "How would I explain this to a first-time buyer?",
+    ],
+  },
+  {
+    id: "roleplay",
+    label: "Roleplay",
+    icon: Users,
+    blurb: "Practise live on video with an AI client.",
+    prompts: [],
+  },
 ];
 
-export function AssistantDock({
-  apiUrl,
-  boardKey,
-  appName,
-  identity,
-  navigate,
-  position = "bottom-right",
-  offsetY = 20,
-  offsetX = 20,
-  mobileOffsetY,
-  mobileBreakpoint = 768,
-  label = "Ask",
-}: {
-  apiUrl: string;
-  boardKey: string;
-  appName: string;
-  identity?: AssistantIdentity;
-  navigate?: (path: string) => void;
-  position?: "bottom-right" | "bottom-left";
-  offsetY?: number;
-  offsetX?: number;
-  /** Bottom offset below mobileBreakpoint, for apps with a mobile bottom nav. Defaults to offsetY. */
-  mobileOffsetY?: number;
-  /** Width in px under which mobileOffsetY applies. */
-  mobileBreakpoint?: number;
-  label?: string;
-}) {
-  const base = apiUrl.replace(/\/$/, "");
-  const voter = useMemo(() => voterId(identity), [identity?.id]); // eslint-disable-line react-hooks/exhaustive-deps
-  const threadKey = `fb_asst_${boardKey.slice(-8)}`;
+type Msg = { role: "user" | "assistant"; content: string };
+type Threads = Record<ModeId, Msg[]>;
+
+const EMPTY_THREADS: Threads = { ask: [], lessons: [], objections: [], product: [], roleplay: [] };
+const STORAGE_KEY = "assistant-dock-threads";
+
+function loadThreads(): Threads {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return EMPTY_THREADS;
+    const parsed = JSON.parse(raw);
+    return { ...EMPTY_THREADS, ...parsed };
+  } catch {
+    return EMPTY_THREADS;
+  }
+}
+
+/** Pull a product slug/id out of /product/:slugOrId[/...] so the dock can
+ *  scope Product mode to whatever the user is already looking at. */
+function productSlugFromPath(pathname: string): string {
+  const m = pathname.match(/^\/product\/([^/]+)/);
+  return m ? m[1] : "";
+}
+
+export function AssistantDock() {
+  const { user } = useSimplifiedAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Msg[]>(() => {
-    try {
-      const saved = storage(threadKey);
-      return saved ? (JSON.parse(saved) as Msg[]).slice(-20) : [];
-    } catch {
-      return [];
-    }
-  });
-  const [draft, setDraft] = useState(() => storage(`${threadKey}_draft`) ?? "");
+  const [mode, setMode] = useState<ModeId>("ask");
+  const [threads, setThreads] = useState<Threads>(EMPTY_THREADS);
+  const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
-  /** The board's own path in this app, read from the service (which derives it from
-   *  boards.feedback_url) so the dock never hardcodes a route. Fetched when the dock
-   *  first opens, so "See what others asked for" is there before anyone has typed. */
-  const [feedbackPath, setFeedbackPath] = useState<string | null>(null);
-  const threadId = useMemo(() => storage(`${threadKey}_id`) ?? (() => { const id = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`; storage(`${threadKey}_id`, id); return id; })(), [threadKey]);
-  const listRef = useRef<HTMLDivElement>(null);
+  const [selectedProductId, setSelectedProductId] = useState("");
+  // The standalone floating Feedback button was retired in favour of this
+  // dock — one launcher in the corner instead of two. Feedback lives in the
+  // panel header so desktop keeps a route to it (mobile also has the entry in
+  // MobileBottomNav).
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  const abortRef = useRef<AbortController | null>(null);
+  /** Throttles how often a streaming answer is checkpointed to localStorage. */
+  const lastStreamPersistRef = useRef(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const [narrow, setNarrow] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${mobileBreakpoint - 1}px)`);
-    const apply = () => setNarrow(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, [mobileBreakpoint]);
-  const bottom = narrow && mobileOffsetY !== undefined ? mobileOffsetY : offsetY;
+
+  // Both hooks return named keys (`product` / `allProducts`), not react-query's
+  // raw `data` — destructuring `data` here silently left the picker empty.
+  const routeSlug = productSlugFromPath(location.pathname);
+  const { product: routeProduct } = useProductBySlugOrId(routeSlug);
+  const { allProducts } = useAllProducts();
 
   useEffect(() => {
-    storage(threadKey, JSON.stringify(messages.slice(-20)));
-  }, [messages, threadKey]);
+    setThreads(loadThreads());
+  }, []);
+
+  // Scope Product mode to the product page the user is on, without clobbering
+  // a pick they made by hand.
   useEffect(() => {
-    storage(`${threadKey}_draft`, draft || null);
-  }, [draft, threadKey]);
+    if (routeProduct?.id) setSelectedProductId(routeProduct.id);
+  }, [routeProduct?.id]);
+
+  const messages = threads[mode] ?? [];
+  const activeMode = MODES.find((m) => m.id === mode)!;
+
+  // Always derive from the latest state. Taking `threads` from the render
+  // closure meant a click that landed after a streamed reply wrote back the
+  // pre-stream snapshot — which is why Clear appeared to do nothing.
+  const persist = useCallback((update: (prev: Threads) => Threads) => {
+    setThreads((prev) => {
+      const next = update(prev);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // Private mode / quota: the thread still works for this session.
+      }
+      return next;
+    });
+  }, []);
+
   useEffect(() => {
     if (!open) return;
-    listRef.current?.scrollTo({ top: listRef.current.scrollHeight });
-    const t = window.setTimeout(() => inputRef.current?.focus(), 80);
-    return () => window.clearTimeout(t);
-  }, [open, messages.length, busy]);
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [threads, open, mode, busy]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const headers = useMemo(
-    () => ({ "Content-Type": "application/json", "X-Board-Key": boardKey, "X-Voter": voter }),
-    [boardKey, voter]
-  );
+  useEffect(() => () => abortRef.current?.abort(), []);
 
-  // The board's own route in this app, so "See what others asked for" is offered from
-  // the moment the dock opens rather than after the first answer.
-  useEffect(() => {
-    if (!open || feedbackPath) return;
-    let alive = true;
-    fetch(`${base}/posts?sort=new`, { headers })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (alive && d?.board?.feedbackPath) setFeedbackPath(d.board.feedbackPath); })
-      .catch(() => { /* the chip simply stays hidden */ });
-    return () => { alive = false; };
-  }, [open, feedbackPath, base, headers]);
+  const send = useCallback(
+    async (raw: string) => {
+      const text = raw.trim();
+      if (!text || busy) return;
 
-  const send = useCallback(async (seed?: string) => {
-    const text = (seed ?? draft).trim();
-    if (!text || busy) return;
-    setDraft("");
-    const next: Msg[] = [...messages, { role: "user", text }];
-    setMessages(next);
-    setBusy(true);
-    try {
-      const res = await fetch(`${base}/assistant/chat`, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          messages: next.slice(-12).map((m) => ({ role: m.role, text: m.text })),
-          page: typeof window !== "undefined" ? window.location.pathname : null,
-          thread: threadId,
-          identity: identity ? { name: identity.name ?? null } : null,
-        }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { id?: string; text?: string; actions?: Action[]; feedbackPath?: string | null; error?: string };
-      if (data.feedbackPath) setFeedbackPath(data.feedbackPath);
-      if (!res.ok) throw new Error(data.error || "The assistant is not answering right now.");
-      setMessages((m) => [...m, { role: "assistant", text: data.text || "", id: data.id ?? null, actions: data.actions ?? [] }]);
-    } catch (e) {
-      setMessages((m) => [...m, { role: "assistant", text: e instanceof Error ? e.message : "Something went wrong.", error: true }]);
-    } finally {
-      setBusy(false);
-    }
-  }, [draft, busy, messages, base, headers, threadId, identity]);
-
-  const runAction = useCallback(
-    async (mi: number, ai: number, a: Action) => {
-      const mark = (line: string) =>
-        setMessages((m) => m.map((x, i) => (i === mi ? { ...x, done: { ...(x.done ?? {}), [ai]: line } } : x)));
-      if (a.type === "go") {
-        // Belt and braces with the server: only a same-origin path ever navigates.
-        if (!/^\/(?![\/\\])/.test(a.path) || /[:\\]/.test(a.path)) return;
-        if (navigate) navigate(a.path);
-        else window.location.assign(a.path);
-        setOpen(false);
+      if (mode === "product" && !selectedProductId) {
+        toast.error("Pick a product first so the answer is grounded in the right plan.");
         return;
       }
-      mark("Working...");
+
+      const base = threads[mode] ?? [];
+      const withUser: Msg[] = [...base, { role: "user", content: text }];
+      persist((prev) => ({ ...prev, [mode]: withUser }));
+      setInput("");
+      setBusy(true);
+
+      const controller = new AbortController();
+      abortRef.current = controller;
+      // Reset so this answer's first delta always checkpoints, rather than
+      // being throttled by the previous answer's timestamp.
+      lastStreamPersistRef.current = 0;
+
+      let acc = "";
       try {
-        if (a.type === "feedback") {
-          const res = await fetch(`${base}/posts`, {
-            method: "POST",
-            headers,
-            body: JSON.stringify({ title: a.title, body: a.body, category: a.category, name: identity?.name ?? "", email: identity?.email ?? "", website: "" }),
-          });
-          const d = (await res.json().catch(() => ({}))) as { number?: number; error?: string };
-          if (!res.ok || typeof d.number !== "number") throw new Error(d.error || "The board did not accept that.");
-          mark(`Posted to the feedback board as #${d.number}.`);
-        } else {
-          const res = await fetch(`${base}/support`, {
-            method: "POST",
-            headers,
-            body: JSON.stringify({ message: a.message, name: identity?.name ?? "", email: identity?.email ?? "", page: window.location.pathname, website: "" }),
-          });
-          const d = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; replyTo?: string | null };
-          if (!res.ok || !d.ok) throw new Error(d.error || "Could not send that.");
-          mark(d.replyTo ? `Sent. The reply will come to ${d.replyTo}.` : "Sent to the team.");
-        }
-      } catch (e) {
-        mark(`That did not work: ${e instanceof Error ? e.message : "try again"}`);
+        const apiMessages: AiChatMessage[] = withUser.map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
+        const fn = mode === "product" ? "product-knowledge-chat" : "scripts-chat";
+        const body =
+          mode === "product"
+            ? { productId: selectedProductId, mode: "knowledge" }
+            : { mode: mode === "objections" ? "objections" : mode === "lessons" ? "lessons" : "scripts" };
+
+        await streamAiChat({
+          fn,
+          messages: apiMessages,
+          body,
+          signal: controller.signal,
+          onDelta: (delta) => {
+            acc += delta;
+            const next: Msg[] = [...withUser, { role: "assistant", content: acc }];
+            // Checkpoint the partial answer to storage as it streams, at most
+            // once a second. A plain setThreads here keeps the text in React
+            // state only, so reloading or closing the tab mid-answer left the
+            // question in the thread with the reply gone — the learner saw
+            // their own message hanging with no response. Throttled because a
+            // token-rate localStorage write would serialise the whole store
+            // dozens of times a second.
+            const now = Date.now();
+            if (now - lastStreamPersistRef.current > 1000) {
+              lastStreamPersistRef.current = now;
+              persist((prev) => ({ ...prev, [mode]: next }));
+            } else {
+              setThreads((prev) => ({ ...prev, [mode]: next }));
+            }
+          },
+        });
+
+        persist((prev) => ({
+          ...prev,
+          [mode]: acc
+            ? [...withUser, { role: "assistant" as const, content: acc }]
+            : withUser,
+        }));
+      } catch (err) {
+        if ((err as Error)?.name === "AbortError") return;
+        toast.error("The assistant couldn't answer just now. Try again.");
+        persist((prev) => ({ ...prev, [mode]: base }));
+      } finally {
+        setBusy(false);
+        abortRef.current = null;
       }
     },
-    [base, headers, identity, navigate]
+    [busy, mode, persist, selectedProductId, threads],
   );
 
-  const rate = useCallback(
-    async (mi: number, rating: 1 | -1) => {
-      const msg = messages[mi];
-      if (!msg?.id) return;
-      const next = msg.rating === rating ? 0 : rating;
-      setMessages((m) => m.map((x, i) => (i === mi ? { ...x, rating: next === 0 ? undefined : (next as 1 | -1) } : x)));
-      await fetch(`${base}/assistant/rate`, { method: "POST", headers, body: JSON.stringify({ id: msg.id, rating: next }) }).catch(() => {});
+  const clearThread = useCallback(() => {
+    persist((prev) => ({ ...prev, [mode]: [] }));
+  }, [mode, persist]);
+
+  // Lessons answers cite days and cheat sheets as markdown links. ReactMarkdown
+  // renders those as plain anchors, which would hard-navigate and reload the
+  // whole SPA; route them instead and close the dock so the learner lands on
+  // the page they clicked.
+  const onMessagesClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const anchor = (e.target as HTMLElement).closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+      // Leave external links, mailto/tel and modified clicks (new tab) alone.
+      if (!href.startsWith("/") || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      setOpen(false);
+      navigate(href);
     },
-    [messages, base, headers]
+    [navigate],
   );
 
-  const reset = () => {
-    setMessages([]);
-    storage(`${threadKey}_id`, null);
-  };
+  const productName = useMemo(() => {
+    if (!selectedProductId) return "";
+    return allProducts?.find((p) => p.id === selectedProductId)?.title ?? "";
+  }, [allProducts, selectedProductId]);
 
-  const side = position === "bottom-left" ? { left: offsetX } : { right: offsetX };
+  // Signed-out visitors get the marketing page, not an assistant.
+  if (!user) return null;
+  const userMeta = (user.user_metadata ?? {}) as { full_name?: string; name?: string };
+  const userName = userMeta.full_name ?? userMeta.name ?? user.email?.split("@")[0] ?? null;
 
-  return (
-    <>
-      {!open ? (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label={`Ask the ${appName} assistant`}
-          style={{ position: "fixed", bottom, zIndex: 60, ...side }}
-          className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5 active:translate-y-0"
-        >
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2A8.38 8.38 0 0 1 4 11.5a8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z" />
-          </svg>
-          {label}
-        </button>
-      ) : null}
+  const onCmfas = location.pathname.startsWith("/cmfas");
 
-      {open ? (
-        <div
-          role="dialog"
-          aria-label={`${appName} assistant`}
-          style={{ position: "fixed", bottom, zIndex: 60, ...side }}
-          className="flex h-[min(640px,calc(100dvh-32px))] w-[min(400px,calc(100vw-32px))] flex-col overflow-hidden rounded-2xl border border-border bg-background text-foreground shadow-2xl"
-        >
-          <header className="flex items-center gap-2 border-b border-border px-3 py-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/15 text-primary">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" />
-              </svg>
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold">Assistant</p>
-              <p className="truncate text-[11px] text-muted-foreground">How {appName} works, an idea, a problem, or a word to the team</p>
-            </div>
-            {messages.length > 0 ? (
-              <button type="button" onClick={reset} title="New chat" aria-label="New chat" className={btn.icon}>
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden><path d="M12 5v14M5 12h14" /></svg>
-              </button>
-            ) : null}
-            <button type="button" onClick={() => setOpen(false)} aria-label="Close" className={btn.icon}>
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden><path d="M18 6L6 18M6 6l12 12" /></svg>
+  const launcher = (
+    <button
+      type="button"
+      onClick={() => {
+        setOpen((v) => !v);
+        setTimeout(() => inputRef.current?.focus(), 120);
+      }}
+      aria-label={open ? "Close AI assistant" : "Open AI assistant"}
+      aria-expanded={open}
+      className={cn(
+        "fixed z-[9995] flex items-center justify-center rounded-full shadow-lg transition-all",
+        "bg-primary text-primary-foreground hover:brightness-110 focus:outline-none",
+        "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+        "h-14 w-14 right-4 md:right-6",
+        // Mobile always clears MobileBottomNav. On desktop the dock now owns
+        // the bottom-right corner the Feedback button used to hold — except on
+        // /cmfas, where CMFASHubChatFAB already sits at sm:bottom-8 and the two
+        // would overlap, so the dock stacks above it there.
+        onCmfas ? "bottom-24 md:bottom-24" : "bottom-24 md:bottom-6",
+      )}
+    >
+      {open ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
+    </button>
+  );
+
+  const panel = open && (
+    <div
+      role="dialog"
+      aria-label="AI assistant"
+      className={cn(
+        "fixed z-[9994] flex flex-col overflow-hidden rounded-xl border bg-background shadow-2xl",
+        "inset-x-3 bottom-40 top-16",
+        // The panel sits directly above its launcher, so it follows the same
+        // /cmfas offset rule — otherwise it would cover its own close button.
+        onCmfas
+          ? "sm:inset-x-auto sm:top-auto sm:right-6 sm:bottom-40 sm:h-[560px] sm:w-[400px]"
+          : "sm:inset-x-auto sm:top-auto sm:right-6 sm:bottom-24 sm:h-[560px] sm:w-[400px]",
+      )}
+    >
+      <div className="flex items-center justify-between gap-2 border-b px-3 py-2">
+        <div className="flex min-w-0 items-center gap-2">
+          <Bot className="h-4 w-4 shrink-0 text-primary" />
+          <span className="truncate text-sm font-semibold">AI assistant</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setFeedbackOpen(true)}
+            aria-label="Send feedback"
+            title="Send feedback"
+            className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <MessageSquarePlus className="h-3.5 w-3.5" />
+          </button>
+          {messages.length > 0 && (
+            <button
+              type="button"
+              onClick={clearThread}
+              aria-label="Clear this conversation"
+              className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              <Trash2 className="h-3.5 w-3.5" />
             </button>
-          </header>
+          )}
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close AI assistant"
+            className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
 
-          <div ref={listRef} className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
-            {messages.length === 0 ? (
-              // One chat, every channel. The four openers are the point of this dock: a
-              // person who would never hunt for a feedback form will tap "Something is
-              // broken". Each one just types its sentence and sends, so the answer is a
-              // real conversation, not a form -- and the assistant hands back the button
-              // that posts it or reaches the team.
-              <div className="space-y-3">
-                <div className="rounded-xl bg-muted/60 px-3 py-3 text-[13px] leading-relaxed text-muted-foreground">
-                  Ask how anything in {appName} works, or use this to reach the team. Whatever you pick, you see the exact message before anything is sent.
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {OPENERS.map((o) => (
-                    <button
-                      key={o.label}
-                      type="button"
-                      // Seeds the box and focuses it: the person finishes the sentence in
-                      // their own words. Sending the stub alone would make the assistant
-                      // ask "what is broken?", which is a question they already answered
-                      // by tapping.
-                      onClick={() => { setDraft(o.text + " "); inputRef.current?.focus(); }}
-                      className={btn.chip}
-                      data-testid={`assistant-opener-${o.id}`}
-                    >
-                      {o.label}
-                    </button>
-                  ))}
-                  {feedbackPath ? (
-                    <button type="button" onClick={() => { setOpen(false); navigate?.(feedbackPath); }} className={btn.chip} data-testid="assistant-opener-board">
-                      See what others asked for
-                    </button>
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
-            {messages.map((m, mi) =>
-              m.role === "user" ? (
-                <div key={mi} className="flex justify-end">
-                  <div className="max-w-[85%] whitespace-pre-wrap rounded-2xl rounded-br-md bg-primary px-3 py-2 text-[13px] leading-relaxed text-primary-foreground">{m.text}</div>
-                </div>
-              ) : (
-                <div key={mi} className="flex flex-col items-start gap-2">
-                  <div className={`max-w-[92%] whitespace-pre-wrap rounded-2xl rounded-bl-md px-3 py-2 text-[13px] leading-relaxed ${m.error ? "bg-destructive/10 text-destructive" : "bg-muted text-foreground"}`}>{m.text}</div>
-                  {m.actions && m.actions.length > 0 ? (
-                    <div className="flex max-w-[92%] flex-wrap gap-1.5">
-                      {m.actions.map((a, ai) => {
-                        const outcome = m.done?.[ai];
-                        return outcome ? (
-                          <span key={ai} className="rounded-full bg-emerald-500/15 px-3 py-1 text-[12px] text-emerald-700 dark:text-emerald-300">{outcome}</span>
-                        ) : (
-                          <button key={ai} type="button" onClick={() => void runAction(mi, ai, a)} className={btn.chip}>
-                            {a.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                  {m.id && !m.error ? (
-                    <div className="flex items-center gap-1 pl-1">
-                      <button type="button" aria-label="Helpful" aria-pressed={m.rating === 1} onClick={() => void rate(mi, 1)} className={`${btn.icon} h-6 w-6 ${m.rating === 1 ? "text-primary" : ""}`}>
-                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.3a2 2 0 0 0 2-1.7l1.4-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" /></svg>
-                      </button>
-                      <button type="button" aria-label="Not helpful" aria-pressed={m.rating === -1} onClick={() => void rate(mi, -1)} className={`${btn.icon} h-6 w-6 ${m.rating === -1 ? "text-primary" : ""}`}>
-                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.7a2 2 0 0 0-2 1.7l-1.4 9a2 2 0 0 0 2 2.3H10zM17 2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3" /></svg>
-                      </button>
-                    </div>
-                  ) : null}
-                </div>
-              )
+      <div
+        role="tablist"
+        aria-label="Assistant modes"
+        className="flex shrink-0 gap-1 overflow-x-auto border-b bg-muted/30 px-2 py-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {MODES.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            role="tab"
+            aria-selected={mode === id}
+            onClick={() => setMode(id)}
+            className={cn(
+              "flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors",
+              mode === id
+                ? "bg-primary text-primary-foreground"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
-            {busy ? (
-              <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
-                <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-muted-foreground/40 border-t-transparent" aria-hidden />
-                thinking...
+          >
+            <Icon className="h-3.5 w-3.5" />
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {mode === "roleplay" ? (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
+          <Users className="h-8 w-8 text-primary" />
+          <p className="text-sm text-muted-foreground">
+            Roleplay runs as a live video conversation with an AI client, so it opens in
+            its own room rather than this panel.
+          </p>
+          <Button
+            onClick={() => {
+              setOpen(false);
+              navigate("/roleplay");
+            }}
+          >
+            Open roleplay
+          </Button>
+        </div>
+      ) : (
+        <>
+          {mode === "product" && (
+            <div className="shrink-0 border-b px-3 py-2">
+              <label
+                htmlFor="assistant-product"
+                className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground"
+              >
+                Answering about
+              </label>
+              <select
+                id="assistant-product"
+                value={selectedProductId}
+                onChange={(e) => setSelectedProductId(e.target.value)}
+                className="mt-1 w-full rounded-md border bg-background px-2 py-1.5 text-xs"
+              >
+                <option value="">Select a product…</option>
+                {(allProducts ?? []).map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div
+            ref={scrollRef}
+            onClick={onMessagesClick}
+            className="flex-1 overflow-y-auto px-3 py-3"
+          >
+            {messages.length === 0 ? (
+              <div className="flex flex-col gap-2">
+                <p className="text-xs text-muted-foreground">{activeMode.blurb}</p>
+                {mode === "product" && productName && (
+                  <p className="text-xs text-muted-foreground">
+                    Scoped to <span className="font-medium text-foreground">{productName}</span>.
+                  </p>
+                )}
+                {activeMode.prompts.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => send(p)}
+                    className="rounded-lg border bg-muted/30 px-3 py-2 text-left text-xs hover:bg-muted"
+                  >
+                    {p}
+                  </button>
+                ))}
               </div>
-            ) : null}
+            ) : (
+              <div className="flex flex-col gap-3">
+                {messages.map((m, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      "max-w-[92%] rounded-lg px-3 py-2 text-xs",
+                      m.role === "user"
+                        ? "ml-auto bg-primary text-primary-foreground"
+                        : "bg-muted",
+                    )}
+                  >
+                    {m.role === "assistant" ? (
+                      <div className="prose prose-xs dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_li]:my-0.5">
+                        {/* The two doors to the maker ([[feedback:...]] / [[support:...]])
+                            are stripped from the prose and rendered as cards the learner
+                            confirms, once the answer has finished streaming. */}
+                        <ReactMarkdown>{stripDoors(m.content)}</ReactMarkdown>
+                        {!(busy && i === messages.length - 1) && (() => {
+                          const doors = parseDoors(m.content);
+                          return doors.length ? (
+                            <DoorCards
+                              doors={doors}
+                              scope={`${mode}:${i}:${doors.map((d) => (d.kind === "feedback" ? d.title : d.message)).join("|").slice(0, 80)}`}
+                              identity={{ id: user.id, name: userName, email: user.email ?? null }}
+                              onNavigate={(href) => { setOpen(false); navigate(href); }}
+                            />
+                          ) : null;
+                        })()}
+                      </div>
+                    ) : (
+                      m.content
+                    )}
+                  </div>
+                ))}
+                {busy && messages[messages.length - 1]?.role === "user" && (
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" /> Thinking…
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              void send();
-            }}
-            className="flex items-end gap-2 border-t border-border p-2.5"
-          >
-            <textarea
-              ref={inputRef}
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  void send();
-                }
-              }}
-              rows={1}
-              maxLength={6000}
-              placeholder="Ask anything about the app..."
-              aria-label="Message"
-              className="max-h-32 min-h-9 flex-1 resize-none rounded-md border border-border bg-background px-3 py-2 text-[13px] placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            />
-            <button type="submit" disabled={busy || !draft.trim()} className={`${btn.primary} h-9 px-3`} aria-label="Send">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" /></svg>
-            </button>
-          </form>
-        </div>
-      ) : null}
-    </>
+          <div className="shrink-0 border-t p-2">
+            <div className="flex items-end gap-2">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    send(input);
+                  }
+                }}
+                rows={1}
+                placeholder={`Ask the ${activeMode.label.toLowerCase()} assistant…`}
+                aria-label="Message the assistant"
+                className="max-h-28 min-h-[36px] flex-1 resize-none rounded-md border bg-background px-2.5 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <Button
+                size="icon"
+                className="h-9 w-9 shrink-0"
+                disabled={busy || !input.trim()}
+                onClick={() => send(input)}
+                aria-label="Send message"
+              >
+                {busy ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Send className="h-4 w-4" />
+                )}
+              </Button>
+            </div>
+            <p className="mt-1.5 px-0.5 text-[10px] leading-tight text-muted-foreground">
+              AI answers can be wrong. Verify against the product summary before using
+              anything with a client. Never paste NRIC or bank details.
+            </p>
+          </div>
+        </>
+      )}
+    </div>
+  );
+
+  return createPortal(
+    <>
+      {launcher}
+      {panel}
+      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
+    </>,
+    document.body,
   );
 }
 
