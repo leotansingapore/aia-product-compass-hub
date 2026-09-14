@@ -632,7 +632,7 @@ function TopBar({
   ];
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-3 px-4 py-4">
+      <div className="mx-auto flex w-full max-w-[960px] flex-wrap items-center gap-3 px-4 py-4">
         {(() => {
           const mark = (
             <>
@@ -662,7 +662,7 @@ function TopBar({
           </button>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-5xl items-center gap-1 px-2 sm:gap-5 sm:px-4">
+      <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4">
         <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 sm:gap-5">
           {tabs.map((t) => (
             <button
@@ -740,25 +740,33 @@ function RoadmapTab({
     });
 
   const shown = (posts ?? []).filter((p) => !hidden.has(p.category));
+  const withPosts = CATEGORIES.filter((c) => (summary?.counts[c.value] ?? 0) > 0);
 
   return (
     <>
-      <h1 className="text-[16px] font-bold">Boards</h1>
-      <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {CATEGORIES.map((c) => (
-          <button
-            key={c.value}
-            type="button"
-            onClick={() => onCategory(c.value)}
-            className="flex h-12 items-center justify-between gap-3 rounded-[10px] border border-border bg-background px-4 text-left transition-colors hover:border-primary"
-          >
-            <span className="truncate text-[14px] font-medium">{c.plural}</span>
-            <span className="shrink-0 text-[13px] tabular-nums text-muted-foreground">{summary?.counts[c.value] ?? 0}</span>
-          </button>
-        ))}
-      </div>
+      {/* Only what people have actually asked for. A row of cards reading zero is the
+          worst use of the top of the page, and the reference shows one card because it
+          has one board, not because the row should stretch. */}
+      {withPosts.length > 0 ? (
+        <>
+          <h1 className="text-[16px] font-bold">Boards</h1>
+          <div className="mt-3 flex flex-wrap gap-4">
+            {withPosts.map((c) => (
+              <button
+                key={c.value}
+                type="button"
+                onClick={() => onCategory(c.value)}
+                className="flex h-12 w-full items-center justify-between gap-6 rounded-[10px] border border-border bg-background px-4 text-left transition-colors hover:border-primary sm:w-[307px]"
+              >
+                <span className="truncate text-[14px] font-medium">{c.plural}</span>
+                <span className="shrink-0 text-[13px] tabular-nums text-muted-foreground">{summary?.counts[c.value] ?? 0}</span>
+              </button>
+            ))}
+          </div>
+        </>
+      ) : null}
 
-      <div className="mt-8 flex items-center justify-between gap-3">
+      <div className={`${withPosts.length > 0 ? "mt-8" : ""} flex items-center justify-between gap-3`}>
         <h2 className="text-[16px] font-semibold">Roadmap</h2>
         <Menu
           label="Filter the roadmap"
@@ -817,25 +825,29 @@ function RoadmapTab({
           {ROADMAP_COLUMNS.map((col) => {
             const items = shown.filter((p) => p.status === col.status);
             return (
-              <section key={col.status} aria-label={STATUS_LABEL[col.status]} className="overflow-hidden rounded-[10px] border border-border">
-                <header className="flex h-12 items-center gap-2 border-b border-border bg-muted/40 px-4">
+              <section
+                key={col.status}
+                aria-label={STATUS_LABEL[col.status]}
+                className="flex min-h-[280px] flex-col overflow-hidden rounded-[10px] border border-border md:min-h-[468px]"
+              >
+                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-muted/40 px-4">
                   <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: STATUS_TONE[col.status].dot }} />
                   <h3 className="text-[14px] font-semibold">{STATUS_LABEL[col.status]}</h3>
-                  <span className="ml-auto text-[12px] tabular-nums text-muted-foreground" title={col.blurb}>
-                    {items.length}
-                  </span>
+                  <span className="sr-only">{col.blurb}</span>
                 </header>
                 {items.length === 0 ? (
-                  <p className="px-4 py-10 text-center text-[13px] text-muted-foreground">Nothing here yet</p>
+                  <p className="flex flex-1 items-center justify-center px-4 py-10 text-center text-[13px] text-muted-foreground">
+                    Nothing here yet
+                  </p>
                 ) : (
-                  <ul className="max-h-[560px] space-y-4 overflow-y-auto p-4">
+                  <ul className="flex-1 space-y-4 overflow-y-auto p-4">
                     {items.map((p) => (
                       <li key={p.id} className="relative flex items-start gap-4">
                         <div className="relative z-10">
                           <VotePill api={api} post={p} />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-[15px] leading-snug">
+                          <h4 className="text-[16px] leading-snug">
                             <button type="button" onClick={() => onOpen(p.number)} className="text-left after:absolute after:inset-0 hover:underline">
                               {p.title}
                             </button>
@@ -1212,7 +1224,7 @@ function FeedbackTab({
   const filtered = status !== "all" || category !== "all" || q.trim() !== "";
 
   return (
-    <div className="md:grid md:grid-cols-[240px_1fr] md:gap-8">
+    <div className="md:grid md:grid-cols-[292px_1fr] md:gap-8">
       <aside className="mb-6 md:mb-0">
         <h2 className="px-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Boards</h2>
         <ul className="mt-2 space-y-0.5">
@@ -1870,7 +1882,7 @@ function ChangelogTab({
   const page = (items ?? []).slice(0, shown);
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div>
       <h1 className="text-[32px] font-bold tracking-tight">Changelog</h1>
       <p className="mt-1 text-[14px] text-muted-foreground">Follow up on the latest improvements and updates in {appName}.</p>
 
@@ -1979,7 +1991,7 @@ function ChangelogTab({
               {page.map((item) => {
                 const isCollapsed = collapsed.has(item.id);
                 return (
-                  <li key={item.id} id={item.id} className="py-6 first:pt-0 sm:grid sm:grid-cols-[140px_1fr] sm:gap-6">
+                  <li key={item.id} id={item.id} className="py-6 first:pt-0 sm:grid sm:grid-cols-[180px_1fr] sm:gap-6">
                     <p className="text-[14px] text-muted-foreground">{longDate(item.date)}</p>
                     <div className="mt-2 min-w-0 sm:mt-0">
                       <div className="flex items-start justify-between gap-3">
@@ -2345,7 +2357,7 @@ export function FeedbackBoard({
         />
       ) : null}
 
-      <main className="mx-auto w-full max-w-5xl px-4 py-8">
+      <main className="mx-auto w-full max-w-[960px] px-4 py-8">
         {view.kind === "post" ? (
           <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
         ) : view.kind === "roadmap" ? (
