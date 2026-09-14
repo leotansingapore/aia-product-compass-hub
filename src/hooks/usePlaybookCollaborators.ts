@@ -99,11 +99,15 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
   // Remove collaborator
   const removeCollaborator = useMutation({
     mutationFn: async (collaboratorId: string) => {
-      const { error } = await supabase
+      // `.select('id')` on update/delete: RLS can filter the write to zero rows
+      // with error === null, so an empty result is a failure.
+      const { data: removed, error } = await supabase
         .from('playbook_collaborators' as any)
         .delete()
-        .eq('id', collaboratorId);
+        .eq('id', collaboratorId)
+        .select('id');
       if (error) throw error;
+      if (!removed?.length) throw new Error('Edit access was not removed');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-collaborators', playbookId] });
@@ -122,11 +126,13 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
       const name = p?.display_name || `${p?.first_name || ''} ${p?.last_name || ''}`.trim() || user.email?.split('@')[0] || 'Unknown';
 
       if (myRequest?.status === 'rejected') {
-        const { error } = await supabase
+        const { data: resent, error } = await supabase
           .from('playbook_edit_requests' as any)
           .update({ status: 'pending', reviewed_at: null, reviewed_by: null, requester_name: name, requester_email: user.email })
-          .eq('id', myRequest.id);
+          .eq('id', myRequest.id)
+          .select('id');
         if (error) throw error;
+        if (!resent?.length) throw new Error('Could not re-send your request');
         return;
       }
 
@@ -161,11 +167,13 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
         .then(() => null); // ignore errors (duplicate = already has access)
 
       // Update request status
-      const { error } = await supabase
+      const { data: approved, error } = await supabase
         .from('playbook_edit_requests' as any)
         .update({ status: 'approved', reviewed_at: new Date().toISOString(), reviewed_by: user.id })
-        .eq('id', request.id);
+        .eq('id', request.id)
+        .select('id');
       if (error) throw error;
+      if (!approved?.length) throw new Error('Request was not approved');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-edit-requests', playbookId] });
@@ -179,11 +187,13 @@ export function usePlaybookCollaborators(playbookId: string | null | undefined) 
   const rejectRequest = useMutation({
     mutationFn: async (requestId: string) => {
       if (!user) throw new Error('Not authenticated');
-      const { error } = await supabase
+      const { data: rejected, error } = await supabase
         .from('playbook_edit_requests' as any)
         .update({ status: 'rejected', reviewed_at: new Date().toISOString(), reviewed_by: user.id })
-        .eq('id', requestId);
+        .eq('id', requestId)
+        .select('id');
       if (error) throw error;
+      if (!rejected?.length) throw new Error('Request was not rejected');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-edit-requests', playbookId] });

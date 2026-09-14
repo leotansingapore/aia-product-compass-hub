@@ -205,11 +205,14 @@ export default function PublicPlaybookView() {
     const item = itemsWithData.find(i => i.id === itemId);
     if (!item?.script) return;
     const updated = buildEditedCustomContent((item as any).custom_content, item.script as any, versionIdx, newContent);
-    const { error } = await supabase
+    // `.select('id')`: if the owner turned off editing, RLS filters this update
+    // to zero rows with error === null — report that instead of "saved".
+    const { data: saved, error } = await supabase
       .from('script_playbook_items')
       .update({ custom_content: updated } as any)
-      .eq('id', itemId);
-    if (error) { toast.error('Failed to save edit'); return; }
+      .eq('id', itemId)
+      .select('id');
+    if (error || !saved?.length) { toast.error('Failed to save edit'); return; }
     toast.success('Edit saved to this playbook');
     setEditingItem(null);
     queryClient.invalidateQueries({ queryKey: ['public-playbook-items', playbook?.id] });

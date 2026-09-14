@@ -102,11 +102,15 @@ export function usePlaybooks() {
 
   const updatePlaybook = useMutation({
     mutationFn: async ({ id, title, description }: { id: string; title: string; description?: string }) => {
-      const { error } = await supabase
+      // `.select('id')` on update/delete: RLS can filter the write to zero rows
+      // with error === null, so an empty result is a failure.
+      const { data: updated, error } = await supabase
         .from('script_playbooks')
         .update({ title, description: description || null })
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!updated?.length) throw new Error('Playbook was not updated');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbooks'] });
@@ -117,11 +121,13 @@ export function usePlaybooks() {
 
   const deletePlaybook = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data: deleted, error } = await supabase
         .from('script_playbooks')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .select('id');
       if (error) throw error;
+      if (!deleted?.length) throw new Error('Playbook was not deleted');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbooks'] });
@@ -211,11 +217,13 @@ export function usePlaybookItems(playbookId: string | null) {
 
   const removeItem = useMutation({
     mutationFn: async (itemId: string) => {
-      const { error } = await supabase
+      const { data: removed, error } = await supabase
         .from('script_playbook_items')
         .delete()
-        .eq('id', itemId);
+        .eq('id', itemId)
+        .select('id');
       if (error) throw error;
+      if (!removed?.length) throw new Error('Item was not removed');
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playbook-items', playbookId] });

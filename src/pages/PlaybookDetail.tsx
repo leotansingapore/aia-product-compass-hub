@@ -771,8 +771,9 @@ export default function PlaybookDetail() {
     // that's what's displayed, so that's what the user is editing.
     if (resolved.hasLocalEdits) {
       const updated = buildEditedCustomContent(item.custom_content, item.script, versionIdx, content);
-      const { error } = await supabase.from("script_playbook_items").update({ custom_content: updated } as any).eq("id", item.id);
-      if (error) { toast.error("Failed to save edit"); throw error; }
+      // `.select("id")`: RLS can filter the update to zero rows with error === null.
+      const { data: saved, error } = await supabase.from("script_playbook_items").update({ custom_content: updated } as any).eq("id", item.id).select("id");
+      if (error || !saved?.length) { toast.error("Failed to save edit"); throw error ?? new Error("Edit was not saved"); }
       toast.success("Edit saved to this playbook");
       queryClient.invalidateQueries({ queryKey: ["playbook-items", playbookId] });
       return;
@@ -957,7 +958,7 @@ export default function PlaybookDetail() {
                       </div>
                       <div className="flex items-center justify-between mb-3">
                         <div><Label className="text-sm">Allow editing</Label><p className="text-xs text-muted-foreground">Viewers can edit scripts in this playbook</p></div>
-                        <Switch checked={!!(playbook as any).allow_public_edit} onCheckedChange={async (checked) => { await supabase.from("script_playbooks").update({ allow_public_edit: checked } as any).eq("id", playbook!.id); queryClient.invalidateQueries({ queryKey: ["playbooks"] }); toast.success(checked ? "Editing enabled for viewers" : "Editing disabled"); }} />
+                        <Switch checked={!!(playbook as any).allow_public_edit} onCheckedChange={async (checked) => { const { data: saved, error } = await supabase.from("script_playbooks").update({ allow_public_edit: checked } as any).eq("id", playbook!.id).select("id"); if (error || !saved?.length) { toast.error("Couldn't change editing access"); return; } queryClient.invalidateQueries({ queryKey: ["playbooks"] }); toast.success(checked ? "Editing enabled for viewers" : "Editing disabled"); }} />
                       </div>
                       {(playbook as any).allow_public_edit && (
                         <div className="space-y-1">
