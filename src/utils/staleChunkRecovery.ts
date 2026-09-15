@@ -127,4 +127,12 @@ export function installStaleChunkRecovery(): void {
   window.addEventListener("unhandledrejection", (event) => {
     handleErrorLike(event.reason);
   });
+
+  // Vite dispatches this when a production import() fails. Never call
+  // preventDefault here: Vite then swallows the rejection and the import
+  // RESOLVES to undefined, so lazyWithRetry has nothing to retry and React.lazy
+  // crashes reading `undefined.default`. Letting it reject keeps the retry path.
+  window.addEventListener("vite:preloadError", (event) => {
+    handleErrorLike((event as Event & { payload?: unknown }).payload);
+  });
 }

@@ -104,3 +104,69 @@ describe("lazyWithRetry recovery path", () => {
     expect(calls).toBe(2);
   });
 });
+
+/**
+ * Regression: PRODUCT-COMPASS-HUB-2 on /auth -
+ * "Cannot read properties of undefined (reading 'default')".
+ *
+ * Vite 5.4 wraps every production import() in __vitePreload, which ends in
+ * `baseModule().catch(handlePreloadError)`. That handler dispatches
+ * `vite:preloadError` and rethrows only if nobody called preventDefault. The
+ * global listener did call it, so a failed chunk fetch RESOLVED to undefined:
+ * lazyWithRetry never saw a rejection to retry, and React.lazy read
+ * `undefined.default` on render.
+ */
+describe("vite:preloadError listener", () => {
+  beforeEach(() => {
+    vi.resetModules();
+    sessionStorage.clear();
+  });
+
+  it("lets a failed chunk import reach lazyWithRetry instead of resolving to undefined", async () => {
+    const { installStaleChunkRecovery } = await import("./staleChunkRecovery");
+    const { lazyWithRetry } = await import("./lazyWithRetry");
+    installStaleChunkRecovery();
+
+    // Same shape as Vite 5.4.10's __vitePreload tail.
+    const vitePreload = <M>(baseModule: () => Promise<M>) =>
+      baseModule().catch((err: unknown) => {
+        const e = new Event("vite:preloadError", { cancelable: true }) as Event & {
+          payload?: unknown;
+        };
+        e.payload = err;
+        window.dispatchEvent(e);
+        if (!e.defaultPrevented) throw err;
+      });
+
+    const Component = () => null;
+    let calls = 0;
+    const factory = () =>
+      vitePreload(() => {
+        calls += 1;
+        return calls === 1
+          ? Promise.reject(
+              new TypeError(
+                "Failed to fetch dynamically imported module: https://academy.finternship.com/assets/SimplifiedAuth.js",
+              ),
+            )
+          : Promise.resolve({ default: Component });
+      }) as Promise<{ default: typeof Component }>;
+
+    const Lazy = lazyWithRetry(factory) as unknown as {
+      _payload: unknown;
+      _init: (p: unknown) => unknown;
+    };
+    // Render once (suspends), wait for the import chain, then render again the
+    // way React does when the thenable settles.
+    let rendered: unknown;
+    try {
+      rendered = Lazy._init(Lazy._payload);
+    } catch (thenable) {
+      await (thenable as Promise<unknown>).catch(() => {});
+      rendered = Lazy._init(Lazy._payload);
+    }
+
+    expect(rendered).toBe(Component);
+    expect(calls).toBe(2);
+  });
+});

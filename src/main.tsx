@@ -5,8 +5,6 @@ import { supabase } from './integrations/supabase/client'
 import { RuntimeErrorOverlay } from './components/RuntimeErrorOverlay'
 import {
   installStaleChunkRecovery,
-  isStaleChunkError,
-  recoverFromStaleChunk,
   resetStaleChunkRecovery,
 } from './utils/staleChunkRecovery'
 import { bootErrorReporting } from './lib/sentry-boot'
@@ -28,22 +26,6 @@ if (typeof window !== 'undefined') {
     if (event === 'PASSWORD_RECOVERY' && !window.location.pathname.startsWith('/reset-password')) {
       window.location.assign('/reset-password')
     }
-  })
-}
-
-if (typeof window !== 'undefined') {
-  window.addEventListener('vite:preloadError', (event) => {
-    const preloadEvent = event as Event & {
-      payload?: unknown
-      error?: unknown
-      preventDefault?: () => void
-    }
-
-    const reason = preloadEvent.payload ?? preloadEvent.error ?? event
-    if (!isStaleChunkError(reason)) return
-
-    preloadEvent.preventDefault?.()
-    recoverFromStaleChunk()
   })
 }
 
