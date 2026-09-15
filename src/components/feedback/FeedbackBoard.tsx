@@ -112,12 +112,12 @@ const STATUS_LABEL: Record<Status, string> = {
 // Dot and pill colours read from the reference portal. They hold up on a light or a dark
 // background, which the shadcn tokens alone cannot promise for a status.
 const STATUS_TONE: Record<Status, { dot: string; pill: string }> = {
-  open: { dot: "#9a9a9a", pill: "bg-muted text-muted-foreground" },
-  under_review: { dot: "#85b5b5", pill: "bg-teal-500/15 text-teal-700 dark:text-teal-300" },
-  planned: { dot: "#1fa0ff", pill: "bg-sky-500/15 text-sky-700 dark:text-sky-300" },
-  in_progress: { dot: "#c17aff", pill: "bg-violet-500/15 text-violet-700 dark:text-violet-300" },
-  shipped: { dot: "#34c759", pill: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300" },
-  declined: { dot: "#9a9a9a", pill: "bg-muted text-muted-foreground" },
+  open: { dot: "#9a9a9a", pill: "bg-muted text-foreground" },
+  under_review: { dot: "#85b5b5", pill: "bg-teal-500/15 text-teal-800 dark:text-teal-300" },
+  planned: { dot: "#1fa0ff", pill: "bg-sky-500/15 text-sky-800 dark:text-sky-300" },
+  in_progress: { dot: "#c17aff", pill: "bg-violet-500/15 text-violet-800 dark:text-violet-300" },
+  shipped: { dot: "#34c759", pill: "bg-emerald-500/15 text-emerald-800 dark:text-emerald-300" },
+  declined: { dot: "#9a9a9a", pill: "bg-muted text-foreground" },
 };
 
 const ROADMAP_COLUMNS: { status: Status; blurb: string }[] = [
@@ -137,10 +137,10 @@ const LIST_FILTERS: { value: ListStatus; label: string }[] = [
 ];
 
 const CHANGE_TYPES: { value: ChangeType; label: string; pill: string }[] = [
-  { value: "new", label: "New", pill: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300" },
-  { value: "improved", label: "Improved", pill: "bg-sky-500/15 text-sky-700 dark:text-sky-300" },
-  { value: "fixed", label: "Fixed", pill: "bg-amber-500/15 text-amber-700 dark:text-amber-300" },
-  { value: "removed", label: "Removed", pill: "bg-red-500/15 text-red-700 dark:text-red-300" },
+  { value: "new", label: "New", pill: "bg-emerald-500/15 text-emerald-800 dark:text-emerald-300" },
+  { value: "improved", label: "Improved", pill: "bg-sky-500/15 text-sky-800 dark:text-sky-300" },
+  { value: "fixed", label: "Fixed", pill: "bg-amber-500/15 text-amber-800 dark:text-amber-300" },
+  { value: "removed", label: "Removed", pill: "bg-red-500/15 text-red-800 dark:text-red-300" },
 ];
 
 const PAGE = 20;
@@ -408,7 +408,7 @@ function TypePill({ type }: { type: ChangeType }) {
 }
 
 function MakerBadge() {
-  return <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">Maker</span>;
+  return <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-foreground">Maker</span>;
 }
 
 function Avatar({ name, size = 20 }: { name: string | null; size?: number }) {
@@ -1003,7 +1003,7 @@ function CreateCard({
     return (
       <div className="rounded-[10px] border border-emerald-500/40 bg-emerald-500/5 p-4">
         <div className="flex items-start gap-3">
-          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
+          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">
             <Icon path={ICONS.check} className="h-4 w-4" />
           </span>
           <div className="min-w-0 flex-1">
@@ -1050,7 +1050,7 @@ function CreateCard({
             {similar.length > 0 ? (
               <div className="rounded-md border border-amber-500/30 bg-amber-500/10 p-3">
                 <p className="text-[12px] font-medium text-amber-800 dark:text-amber-200">Someone may have asked for this already</p>
-                <p className="mt-0.5 text-[11px] text-amber-800/70 dark:text-amber-200/70">Voting on one of these counts for more than a second post.</p>
+                <p className="mt-0.5 text-[11px] text-amber-800 dark:text-amber-200">Voting on one of these counts for more than a second post.</p>
                 <ul className="mt-2.5 space-y-1.5">
                   {similar.map((p) => (
                     <li key={p.id} className="flex items-center gap-2.5 rounded-md bg-background p-2">
@@ -2374,7 +2374,7 @@ function ContactDialog({
       <div role="dialog" aria-modal="true" aria-label={`Contact the ${appName} team`} className="my-auto w-full max-w-lg rounded-xl border border-border bg-background text-foreground shadow-2xl">
         {done ? (
           <div className="p-6 text-center">
-            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-300">
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300">
               <Icon path={ICONS.check} className="h-5 w-5" />
             </div>
             <h2 className="mt-4 text-lg font-semibold">Sent</h2>
