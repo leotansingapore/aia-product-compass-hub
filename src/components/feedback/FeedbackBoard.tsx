@@ -68,6 +68,8 @@ type ChangelogItem = {
   title: string;
   body: string;
   image: { url: string; alt: string } | null;
+  /** Absent from an older API; present, the picture is its poster. */
+  video?: { url: string } | null;
   docs: { url: string; title: string | null } | null;
   postNumber: number | null;
   likes: number;
@@ -384,6 +386,7 @@ const ICONS = {
   arrowLeft: "M19 12H5M11 18l-6-6 6-6",
   facebook: "M14 8h2V5h-2.5C11 5 10 6.6 10 8.8V11H8v3h2v7h3v-7h2.4l.6-3H13V9c0-.6.4-1 1-1z",
   x: "M4 4l16 16M20 4L4 20",
+  play: "M8 5v14l11-7z",
 };
 
 function StatusPill({ status, size = "sm" }: { status: Status; size?: "sm" | "md" }) {
@@ -2054,12 +2057,7 @@ function ChangelogTab({
                         </button>
                       </div>
 
-                      {!isCollapsed && item.image ? (
-                        <button type="button" onClick={() => onOpenEntry(item.slug)} className="mt-2 block w-full" aria-label={`Open ${item.title}`}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={item.image.url} alt={item.image.alt} loading="lazy" className="w-full object-cover" />
-                        </button>
-                      ) : null}
+                      {!isCollapsed ? <EntryMedia item={item} className="mt-2" onOpenPicture={() => onOpenEntry(item.slug)} /> : null}
 
                       {!isCollapsed && (item.body || item.docs || item.postNumber) ? (
                         <div className="mt-4">
@@ -2091,6 +2089,54 @@ function ChangelogTab({
 
 /** What the entry says, laid out the way the reference lays it out: the write-up, then
  *  "Learn more" to the product's own help article, then the request that asked for it. */
+/**
+ * The entry's picture. When the change also has a clip, the picture is its poster and the
+ * play button swaps the clip in where the picture was, so the reader stays on the entry.
+ * A plain img on purpose: this file is copied verbatim into Vite apps where next/image
+ * does not exist.
+ */
+function EntryMedia({ item, className = "", onOpenPicture }: { item: ChangelogItem; className?: string; onOpenPicture?: () => void }) {
+  const [playing, setPlaying] = useState(false);
+  if (!item.image) return null;
+  // eslint-disable-next-line @next/next/no-img-element
+  const picture = <img src={item.image.url} alt={item.image.alt} loading="lazy" className="w-full object-cover" />;
+
+  if (item.video && playing) {
+    return (
+      <video
+        src={item.video.url}
+        poster={item.image.url}
+        controls
+        autoPlay
+        muted
+        playsInline
+        aria-label={`Clip: ${item.title}`}
+        className={`block w-full bg-black ${className}`}
+      />
+    );
+  }
+  if (item.video) {
+    return (
+      <button type="button" onClick={() => setPlaying(true)} className={`group relative block w-full ${className}`} aria-label={`Play the clip: ${item.title}`}>
+        {picture}
+        <span className="absolute inset-0 grid place-items-center">
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-black/65 text-white shadow-lg transition-transform group-hover:scale-105 group-focus-visible:ring-2 group-focus-visible:ring-ring">
+            <Icon path={ICONS.play} filled className="ml-0.5 h-6 w-6" />
+          </span>
+        </span>
+      </button>
+    );
+  }
+  if (onOpenPicture) {
+    return (
+      <button type="button" onClick={onOpenPicture} className={`block w-full ${className}`} aria-label={`Open ${item.title}`}>
+        {picture}
+      </button>
+    );
+  }
+  return <div className={className}>{picture}</div>;
+}
+
 function EntryBody({ item, onOpen }: { item: ChangelogItem; onOpen: (n: number) => void }) {
   return (
     <div className="space-y-[15px] text-[14px] leading-[1.6]">
@@ -2232,12 +2278,7 @@ function ChangelogArticle({
         <TypePill type={item.type} />
         <h1 className="mt-2 text-[20px] font-semibold leading-snug">{item.title}</h1>
 
-        {item.image ? (
-          // A plain img on purpose: this file is copied verbatim into seventeen Vite apps
-          // where next/image does not exist.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={item.image.url} alt={item.image.alt} loading="lazy" className="mt-2 w-full object-cover" />
-        ) : null}
+        <EntryMedia item={item} className="mt-2" />
 
         {item.body || item.docs || item.postNumber ? (
           <div className="mt-4">
