@@ -68,8 +68,9 @@ type ChangelogItem = {
   title: string;
   body: string;
   image: { url: string; alt: string } | null;
-  /** Absent from an older API; present, the picture is its poster. */
-  video?: { url: string } | null;
+  /** Absent from an older API. `poster` is the frame the clip ends on, square when the clip is;
+   *  without one, the entry's picture stands in. */
+  video?: { url: string; poster?: string | null } | null;
   docs: { url: string; title: string | null } | null;
   postNumber: number | null;
   likes: number;
@@ -356,7 +357,7 @@ const btn = {
 };
 
 const input =
-  "w-full rounded-md border border-border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "w-full rounded-md border border-border bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 function Icon({ path, className = "h-4 w-4", filled = false }: { path: string; className?: string; filled?: boolean }) {
   return (
@@ -387,6 +388,7 @@ const ICONS = {
   facebook: "M14 8h2V5h-2.5C11 5 10 6.6 10 8.8V11H8v3h2v7h3v-7h2.4l.6-3H13V9c0-.6.4-1 1-1z",
   x: "M4 4l16 16M20 4L4 20",
   play: "M8 5v14l11-7z",
+  book: "M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z",
 };
 
 function StatusPill({ status, size = "sm" }: { status: Status; size?: "sm" | "md" }) {
@@ -623,6 +625,7 @@ function TopBar({
   tab,
   identity,
   homeUrl,
+  helpUrl,
   onTab,
   onSearch,
   onContact,
@@ -631,6 +634,7 @@ function TopBar({
   tab: Tab;
   identity?: FeedbackIdentity;
   homeUrl?: string;
+  helpUrl?: string;
   onTab: (t: Tab) => void;
   onSearch: () => void;
   onContact: () => void;
@@ -689,6 +693,17 @@ function TopBar({
               {tab === t.key ? <span className="absolute inset-x-1 -bottom-px h-0.5 rounded-full bg-primary" /> : null}
             </button>
           ))}
+          {helpUrl ? (
+            // The help centre is its own site, so this tab leaves the page instead of
+            // switching the view; it is never the current one.
+            <a
+              href={helpUrl}
+              className="relative -mb-px flex h-full items-center gap-1.5 whitespace-nowrap px-2 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground md:py-0 sm:text-[14px]"
+            >
+              <Icon path={ICONS.book} className="h-4 w-4" />
+              Help
+            </a>
+          ) : null}
         </nav>
         <button
           type="button"
@@ -2098,26 +2113,39 @@ function ChangelogTab({
 function EntryMedia({ item, className = "", onOpenPicture }: { item: ChangelogItem; className?: string; onOpenPicture?: () => void }) {
   const [playing, setPlaying] = useState(false);
   if (!item.image) return null;
+  // A square clip ends on the square picture. Showing the wide cover before it plays and the
+  // square clip after changed both the shape and the composition mid-click, so when the clip
+  // carries its own poster, that poster is what stands in for it both before and after.
+  const poster = item.video?.poster ?? item.image.url;
+  const square = Boolean(item.video?.poster);
+  const frame = square ? "mx-auto aspect-square w-full max-w-md" : "w-full";
   // eslint-disable-next-line @next/next/no-img-element
-  const picture = <img src={item.image.url} alt={item.image.alt} loading="lazy" className="w-full object-cover" />;
+  const picture = (
+    <img
+      src={poster}
+      alt={item.image.alt}
+      loading="lazy"
+      className={`object-cover ${square ? "h-full w-full" : "w-full"}`}
+    />
+  );
 
   if (item.video && playing) {
     return (
       <video
         src={item.video.url}
-        poster={item.image.url}
+        poster={poster}
         controls
         autoPlay
         muted
         playsInline
         aria-label={`Clip: ${item.title}`}
-        className={`block w-full bg-black ${className}`}
+        className={`block bg-black ${frame} ${className}`}
       />
     );
   }
   if (item.video) {
     return (
-      <button type="button" onClick={() => setPlaying(true)} className={`group relative block w-full ${className}`} aria-label={`Play the clip: ${item.title}`}>
+      <button type="button" onClick={() => setPlaying(true)} className={`group relative block ${frame} ${className}`} aria-label={`Play the clip: ${item.title}`}>
         {picture}
         <span className="absolute inset-0 grid place-items-center">
           <span className="grid h-14 w-14 place-items-center rounded-full bg-black/65 text-white shadow-lg transition-transform group-hover:scale-105 group-focus-visible:ring-2 group-focus-visible:ring-ring">
@@ -2449,6 +2477,7 @@ export function FeedbackBoard({
   appName,
   identity,
   homeUrl,
+  helpUrl,
   chrome = true,
   className = "",
 }: {
@@ -2458,6 +2487,8 @@ export function FeedbackBoard({
   identity?: FeedbackIdentity;
   /** Where the product's own home is, for the logo link. */
   homeUrl?: string;
+  /** The product's help centre; when set, the top bar carries a Help tab that links out to it. */
+  helpUrl?: string;
   /** False when the host app already draws a header around this. */
   chrome?: boolean;
   className?: string;
@@ -2578,6 +2609,7 @@ export function FeedbackBoard({
           tab={tab}
           identity={identity}
           homeUrl={homeUrl}
+          helpUrl={helpUrl}
           onTab={(t) => setView({ kind: t })}
           onSearch={goSearch}
           onContact={() => setContactOpen(true)}
