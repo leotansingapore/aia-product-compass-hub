@@ -137,11 +137,11 @@ const LIST_FILTERS: { value: ListStatus; label: string }[] = [
   { value: "declined", label: "Not planned" },
 ];
 
-const CHANGE_TYPES: { value: ChangeType; label: string; pill: string }[] = [
-  { value: "new", label: "New", pill: "bg-emerald-500/15 text-emerald-800 dark:text-emerald-300" },
-  { value: "improved", label: "Improved", pill: "bg-sky-500/15 text-sky-800 dark:text-sky-300" },
-  { value: "fixed", label: "Fixed", pill: "bg-amber-500/15 text-amber-800 dark:text-amber-300" },
-  { value: "removed", label: "Removed", pill: "bg-red-500/15 text-red-800 dark:text-red-300" },
+const CHANGE_TYPES: { value: ChangeType; label: string; pill: string; dot: string }[] = [
+  { value: "new", label: "New", pill: "bg-emerald-500/15 text-emerald-800 dark:text-emerald-300", dot: "bg-emerald-500" },
+  { value: "improved", label: "Improved", pill: "bg-sky-500/15 text-sky-800 dark:text-sky-300", dot: "bg-sky-500" },
+  { value: "fixed", label: "Fixed", pill: "bg-amber-500/15 text-amber-800 dark:text-amber-300", dot: "bg-amber-500" },
+  { value: "removed", label: "Removed", pill: "bg-red-500/15 text-red-800 dark:text-red-300", dot: "bg-red-500" },
 ];
 
 const PAGE = 20;
@@ -677,7 +677,7 @@ function TopBar({
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-[960px] items-center gap-1 px-2 sm:gap-5 sm:px-4 md:h-[42px] md:px-0">
-        <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 sm:gap-5">
+        <nav aria-label="Sections" className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] sm:gap-5">
           {tabs.map((t) => (
             <button
               key={t.key}
@@ -720,16 +720,120 @@ function TopBar({
 
 // ---------- roadmap tab ----------
 
+/**
+ * "Got an idea?" with one button, the way AnnounceKit keeps it in view beside its feed
+ * (Leo, 2026-09-19: "how the submit a feature request is sticky"). Sticky is the rail's
+ * job, not the card's, so the same card also sits in a plain row on the roadmap.
+ */
+function IdeaCard({ onRequest, row = false }: { onRequest: () => void; row?: boolean }) {
+  if (row) {
+    return (
+      <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Icon path={ICONS.bulb} className="h-5 w-5" />
+          </span>
+          <div>
+            <p className="text-[15px] font-semibold">Got an idea?</p>
+            <p className="text-[13px] text-muted-foreground">Ask for it here, and vote on what gets built next.</p>
+          </div>
+        </div>
+        <button type="button" onClick={onRequest} className={`${btn.primary} shrink-0`}>
+          Request a feature
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-xl border border-border bg-card p-5">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <Icon path={ICONS.bulb} className="h-5 w-5" />
+      </span>
+      <h3 className="mt-3 text-[15px] font-semibold">Got an idea?</h3>
+      <p className="mt-1 text-[13px] leading-snug text-muted-foreground">Ask for it here, and vote on what gets built next.</p>
+      <button type="button" onClick={onRequest} className={`${btn.primary} mt-4 w-full`}>
+        Request a feature
+      </button>
+    </div>
+  );
+}
+
+/** The same create card the feedback tab shows, in a dialog, so a reader on the changelog
+ *  or the roadmap can ask without leaving the page. The draft survives a close. */
+function RequestDialog({
+  api,
+  boardKey,
+  appName,
+  identity,
+  notifies,
+  onClose,
+  onCreated,
+  onOpenPost,
+}: {
+  api: Api;
+  boardKey: string;
+  appName: string;
+  identity?: FeedbackIdentity;
+  notifies: boolean;
+  onClose: () => void;
+  onCreated: (n: number) => void;
+  onOpenPost: (n: number) => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-sm sm:p-6"
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div role="dialog" aria-modal="true" aria-label="Request a feature" className="my-auto w-full max-w-xl rounded-xl border border-border bg-background text-foreground shadow-2xl">
+        <header className="flex items-center justify-between gap-4 border-b border-border px-5 py-4">
+          <h2 className="text-[15px] font-semibold">Request a feature</h2>
+          <button type="button" onClick={onClose} aria-label="Close" className="rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground">
+            <Icon path={ICONS.close} className="h-4 w-4" />
+          </button>
+        </header>
+        <div className="p-4">
+          <CreateCard
+            api={api}
+            boardKey={boardKey}
+            appName={appName}
+            identity={identity}
+            notifies={notifies}
+            category="all"
+            expanded
+            onCancel={onClose}
+            onCreated={onCreated}
+            onOpenPost={(n) => {
+              onClose();
+              onOpenPost(n);
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function RoadmapTab({
   api,
   summary,
   onOpen,
   onCategory,
+  onRequest,
 }: {
   api: Api;
   summary: Summary | null;
   onOpen: (n: number) => void;
   onCategory: (c: Category) => void;
+  onRequest: () => void;
 }) {
   const [posts, setPosts] = useState<Post[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -774,6 +878,9 @@ function RoadmapTab({
 
   return (
     <>
+      <div className="mb-6">
+        <IdeaCard onRequest={onRequest} row />
+      </div>
       {/* Only what people have actually asked for. A row of cards reading zero is the
           worst use of the top of the page, and the reference shows one card because it
           has one board, not because the row should stretch. */}
@@ -935,6 +1042,8 @@ function CreateCard({
   category,
   onCreated,
   onOpenPost,
+  expanded,
+  onCancel,
 }: {
   api: Api;
   boardKey: string;
@@ -944,10 +1053,12 @@ function CreateCard({
   category: Category | "all";
   onCreated: (n: number) => void;
   onOpenPost: (n: number) => void;
+  expanded?: boolean;
+  onCancel?: () => void;
 }) {
   const draftKey = `fb_draft_${boardKey.slice(-8)}`;
   const [draft, setDraft] = useState<Draft>(() => restoreDraft(draftKey, identity));
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(!!expanded);
   const [similar, setSimilar] = useState<Post[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -1056,6 +1167,7 @@ function CreateCard({
             setOpen(true);
           }}
           maxLength={160}
+          autoFocus={!!expanded}
           placeholder="Short, descriptive title"
           className="w-full bg-transparent text-[16px] placeholder:text-muted-foreground focus-visible:outline-none"
         />
@@ -1155,7 +1267,14 @@ function CreateCard({
 
       {open ? (
         <footer className="flex items-center justify-end gap-2 border-t border-border bg-muted/40 px-4 py-3">
-          <button type="button" onClick={reset} className={btn.ghost}>
+          <button
+            type="button"
+            onClick={() => {
+              reset();
+              onCancel?.();
+            }}
+            className={btn.ghost}
+          >
             Cancel
           </button>
           <button type="submit" disabled={busy || draft.title.trim().length < 4} className={btn.primary}>
@@ -1818,6 +1937,7 @@ function ChangelogTab({
   openSlug,
   chrome,
   onOpenEntry,
+  onRequest,
 }: {
   api: Api;
   appName: string;
@@ -1827,6 +1947,7 @@ function ChangelogTab({
   openSlug: string | null;
   chrome: boolean;
   onOpenEntry: (slug: string | null) => void;
+  onRequest: () => void;
 }) {
   const [items, setItems] = useState<ChangelogItem[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -1908,6 +2029,26 @@ function ChangelogTab({
   const page = (items ?? []).slice(0, shown);
   const open = openSlug ? (items ?? []).find((i) => i.slug === openSlug) : null;
 
+  // The feed reads under month headings, and the rail lists the months so a reader can
+  // jump; a month past the page loaded so far is shown first, then scrolled to.
+  const monthOf = (d: string) => ({ key: d.slice(0, 7), label: `${MONTHS[Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}` });
+  const months = (items ?? []).reduce<{ key: string; label: string; first: number }[]>((acc, it, i) => {
+    const m = monthOf(it.date);
+    if (!acc.some((x) => x.key === m.key)) acc.push({ ...m, first: i });
+    return acc;
+  }, []);
+  const groups = page.reduce<{ key: string; label: string; items: ChangelogItem[] }[]>((acc, it) => {
+    const m = monthOf(it.date);
+    const last = acc[acc.length - 1];
+    if (last && last.key === m.key) last.items.push(it);
+    else acc.push({ ...m, items: [it] });
+    return acc;
+  }, []);
+  function jump(m: { key: string; first: number }) {
+    if (m.first >= shown) setShown(Math.ceil((m.first + 1) / PAGE) * PAGE);
+    window.setTimeout(() => document.getElementById(`month-${m.key}`)?.scrollIntoView({ block: "start", behavior: "smooth" }), 60);
+  }
+
   // One entry, on its own, at its own address.
   if (openSlug) {
     if (!items) return <Skeleton rows={2} />;
@@ -1929,12 +2070,59 @@ function ChangelogTab({
     );
   }
 
-  return (
-    <div>
-      <h1 className="text-[32px] font-bold tracking-tight">Changelog</h1>
-      <p className="mt-1 text-[14px] text-muted-foreground">Follow up on the latest improvements and updates in {appName}.</p>
+  const rail = (
+    <aside className="flex flex-col gap-4 lg:sticky lg:top-4">
+      <div className="lg:hidden">
+        <IdeaCard onRequest={onRequest} row />
+      </div>
+      <div className="hidden lg:block">
+        <IdeaCard onRequest={onRequest} />
+      </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-3">
+      <div className="relative">
+        <Icon path={ICONS.search} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search updates..." aria-label="Search the changelog" className={`${input} h-10 pl-9`} />
+      </div>
+
+      <div>
+        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Labels</p>
+        <div className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-1" role="group" aria-label="Filter by kind of change">
+          {[{ value: "all" as const, label: "Everything", dot: "bg-muted-foreground" }, ...CHANGE_TYPES].map((t) => {
+            const active = type === t.value;
+            return (
+              <button
+                key={t.value}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setType(active && t.value !== "all" ? "all" : t.value)}
+                className={`inline-flex h-9 items-center gap-2.5 rounded-md border px-3 text-left text-[13px] transition-colors ${
+                  active ? "border-primary/40 bg-primary/10 font-medium text-primary" : "border-border bg-background hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                <span className={`h-2 w-2 shrink-0 rounded-full ${t.dot}`} aria-hidden />
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {months.length > 1 ? (
+        <div className="hidden lg:block">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Jump to month</p>
+          <ul className="max-h-[38vh] space-y-0.5 overflow-y-auto">
+            {months.map((m) => (
+              <li key={m.key}>
+                <button type="button" onClick={() => jump(m)} className="block w-full rounded px-2 py-1 text-left text-[13px] text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+                  {m.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 lg:flex-col lg:items-start">
         <a href={api.rssUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground">
           <Icon path={ICONS.link} className="h-3.5 w-3.5" />
           RSS
@@ -1948,58 +2136,19 @@ function ChangelogTab({
             className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground"
           >
             <Icon path={ICONS.mail} className="h-3.5 w-3.5" />
-            Subscribe
+            Get updates by email
           </button>
         ) : null}
-        <div className="relative ml-auto w-full sm:w-52">
-          <Icon path={ICONS.search} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search entries..." aria-label="Search the changelog" className={`${input} h-9 pl-9`} />
-        </div>
-        <Menu
-          label="Filter the changelog"
-          trigger={() => (
-            <span className={btn.outline}>
-              <Icon path={ICONS.filter} className="h-4 w-4" />
-              Filters
-            </span>
-          )}
-        >
-          {(close) => (
-            <div className="w-48">
-              <MenuItem
-                active={type === "all"}
-                onClick={() => {
-                  setType("all");
-                  close();
-                }}
-              >
-                Everything
-              </MenuItem>
-              {CHANGE_TYPES.map((t) => (
-                <MenuItem
-                  key={t.value}
-                  active={type === t.value}
-                  onClick={() => {
-                    setType(t.value);
-                    close();
-                  }}
-                >
-                  {t.label}
-                </MenuItem>
-              ))}
-            </div>
-          )}
-        </Menu>
       </div>
 
       {subscribeOpen ? (
-        <form onSubmit={subscribe} className="mt-3 rounded-[10px] border border-border p-4">
+        <form onSubmit={subscribe} className="rounded-[10px] border border-border p-4">
           {subDone ? (
             <p className="text-[13px] text-muted-foreground">You will get an email when something ships.</p>
           ) : (
             <>
               <p className="text-[13px] font-medium">Hear about it by email</p>
-              <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+              <div className="mt-2 flex flex-col gap-2">
                 <input
                   type="email"
                   value={subEmail}
@@ -2022,81 +2171,101 @@ function ChangelogTab({
           )}
         </form>
       ) : null}
+    </aside>
+  );
 
-      <div className="mt-6">
-        {error ? (
-          <ErrorNote message={error} onRetry={retry} />
-        ) : !items ? (
-          <Skeleton rows={3} />
-        ) : page.length === 0 ? (
-          <Empty
-            title={q || type !== "all" ? "Nothing matches that" : "Nothing has shipped here yet"}
-            body={q || type !== "all" ? "Try another filter or search term." : `When something changes in ${appName}, it lands here with the date.`}
-          />
-        ) : (
-          <>
-            <ul className="divide-y divide-border">
-              {page.map((item) => {
-                const isCollapsed = collapsed.has(item.id);
-                return (
-                  <li key={item.id} id={item.id} className="py-6 first:pt-0 sm:grid sm:grid-cols-[180px_1fr] sm:gap-6">
-                    <p className="text-[14px] text-muted-foreground">{longDate(item.date)}</p>
-                    <div className="mt-2 min-w-0 sm:mt-0">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0">
-                          <TypePill type={item.type} />
-                          <h2 className="mt-2 text-[20px] font-semibold leading-snug">
-                            {item.slug ? (
-                              <button type="button" onClick={() => onOpenEntry(item.slug)} className="text-left hover:underline">
-                                {item.title}
-                              </button>
-                            ) : (
-                              item.title
-                            )}
-                          </h2>
-                        </div>
-                        <button
-                          type="button"
-                          aria-label={isCollapsed ? "Show the detail" : "Hide the detail"}
-                          onClick={() =>
-                            setCollapsed((c) => {
-                              const next = new Set(c);
-                              if (next.has(item.id)) next.delete(item.id);
-                              else next.add(item.id);
-                              return next;
-                            })
-                          }
-                          className="shrink-0 rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
-                        >
-                          <Icon path={isCollapsed ? ICONS.chevronDown : ICONS.chevronUp} className="h-4 w-4" />
-                        </button>
-                      </div>
+  return (
+    <div>
+      <h1 className="text-[32px] font-bold tracking-tight">Changelog</h1>
+      <p className="mt-1 text-[14px] text-muted-foreground">Follow up on the latest improvements and updates in {appName}.</p>
 
-                      {!isCollapsed ? <EntryMedia item={item} className="mt-2" onOpenPicture={() => onOpenEntry(item.slug)} /> : null}
+      <div className="mt-6 lg:grid lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start lg:gap-8">
+        {rail}
 
-                      {!isCollapsed && (item.body || item.docs || item.postNumber) ? (
-                        <div className="mt-4">
-                          <EntryBody item={item} onOpen={onOpen} />
-                        </div>
-                      ) : null}
+        <div className="mt-6 min-w-0 lg:mt-0">
+          {error ? (
+            <ErrorNote message={error} onRetry={retry} />
+          ) : !items ? (
+            <Skeleton rows={3} />
+          ) : page.length === 0 ? (
+            <Empty
+              title={q || type !== "all" ? "Nothing matches that" : "Nothing has shipped here yet"}
+              body={q || type !== "all" ? "Try another filter or search term." : `When something changes in ${appName}, it lands here with the date.`}
+            />
+          ) : (
+            <>
+              {groups.map((g) => (
+                <section key={g.key} className="mb-8 last:mb-0">
+                  <h2 id={`month-${g.key}`} className="scroll-mt-4 text-[18px] font-bold tracking-tight">
+                    {g.label}
+                  </h2>
+                  <ul className="mt-3 divide-y divide-border">
+                    {g.items.map((item) => {
+                      const isCollapsed = collapsed.has(item.id);
+                      return (
+                        <li key={item.id} id={item.id} className="py-6 first:pt-0">
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <TypePill type={item.type} />
+                                <time dateTime={item.date} className="text-[13px] text-muted-foreground">
+                                  {longDate(item.date)}
+                                </time>
+                              </div>
+                              <h3 className="mt-2 text-[20px] font-semibold leading-snug">
+                                {item.slug ? (
+                                  <button type="button" onClick={() => onOpenEntry(item.slug)} className="text-left hover:underline">
+                                    {item.title}
+                                  </button>
+                                ) : (
+                                  item.title
+                                )}
+                              </h3>
+                            </div>
+                            <button
+                              type="button"
+                              aria-label={isCollapsed ? "Show the detail" : "Hide the detail"}
+                              onClick={() =>
+                                setCollapsed((c) => {
+                                  const next = new Set(c);
+                                  if (next.has(item.id)) next.delete(item.id);
+                                  else next.add(item.id);
+                                  return next;
+                                })
+                              }
+                              className="shrink-0 rounded p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+                            >
+                              <Icon path={isCollapsed ? ICONS.chevronDown : ICONS.chevronUp} className="h-4 w-4" />
+                            </button>
+                          </div>
 
-                      <div className="mt-6">
-                        <EntryFooter item={item} onLike={like} />
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            {items.length > shown ? (
-              <div className="pt-4 text-center">
-                <button type="button" onClick={() => setShown((s) => s + PAGE)} className={btn.outline}>
-                  Load more
-                </button>
-              </div>
-            ) : null}
-          </>
-        )}
+                          {!isCollapsed ? <EntryMedia item={item} className="mt-3" onOpenPicture={() => onOpenEntry(item.slug)} /> : null}
+
+                          {!isCollapsed && (item.body || item.docs || item.postNumber) ? (
+                            <div className="mt-4">
+                              <EntryBody item={item} onOpen={onOpen} />
+                            </div>
+                          ) : null}
+
+                          <div className="mt-6">
+                            <EntryFooter item={item} onLike={like} />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+              {items.length > shown ? (
+                <div className="pt-4 text-center">
+                  <button type="button" onClick={() => setShown((s) => s + PAGE)} className={btn.outline}>
+                    Load more
+                  </button>
+                </div>
+              ) : null}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -2600,6 +2769,31 @@ export function FeedbackBoard({
   }, []);
 
   const tab: Tab = view.kind === "post" ? "feedback" : view.kind;
+  const [requestOpen, setRequestOpen] = useState(false);
+  const closeRequest = useCallback(() => setRequestOpen(false), []);
+
+  // The changelog's rail is position: sticky. Several hosts set overflow-x: hidden on BOTH
+  // html and body (ActivityTracker does); once html carries a non-visible overflow, body's
+  // value no longer propagates to the viewport and body becomes its own scroll container,
+  // one as tall as its content, so it never scrolls and nothing inside it can stick. When
+  // that is the shape of the host, body's overflow goes back to visible for as long as the
+  // board is mounted; html still clips sideways. A body that really scrolls is left alone.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const html = document.documentElement;
+    const body = document.body;
+    const h = getComputedStyle(html);
+    const b = getComputedStyle(body);
+    const nonVisible = (v: string) => v !== "visible";
+    if (!(nonVisible(h.overflowX) || nonVisible(h.overflowY))) return;
+    if (!(nonVisible(b.overflowX) || nonVisible(b.overflowY))) return;
+    if (body.scrollHeight > body.clientHeight + 1) return;
+    const prev = body.style.overflow;
+    body.style.overflow = "visible";
+    return () => {
+      body.style.overflow = prev;
+    };
+  }, []);
 
   return (
     <div className={`min-h-full bg-background text-foreground ${className}`}>
@@ -2620,7 +2814,7 @@ export function FeedbackBoard({
         {view.kind === "post" ? (
           <PostView key={view.number} api={api} appName={appName} number={view.number} identity={identity} onBack={backToList} onRedirect={openPost} />
         ) : view.kind === "roadmap" ? (
-          <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} />
+          <RoadmapTab api={api} summary={summary} onOpen={openPost} onCategory={pickCategory} onRequest={() => setRequestOpen(true)} />
         ) : view.kind === "changelog" ? (
           <ChangelogTab
             api={api}
@@ -2634,6 +2828,7 @@ export function FeedbackBoard({
               setEntrySlug(slug);
               window.scrollTo({ top: 0 });
             }}
+            onRequest={() => setRequestOpen(true)}
           />
         ) : (
           <FeedbackTab
@@ -2660,6 +2855,18 @@ export function FeedbackBoard({
       </main>
 
       {contactOpen ? <ContactDialog api={api} appName={appName} board={board} identity={identity} onClose={() => setContactOpen(false)} /> : null}
+      {requestOpen ? (
+        <RequestDialog
+          api={api}
+          boardKey={boardKey}
+          appName={appName}
+          identity={identity}
+          notifies={!!board?.notifies}
+          onClose={closeRequest}
+          onCreated={reload}
+          onOpenPost={openPost}
+        />
+      ) : null}
     </div>
   );
 }
