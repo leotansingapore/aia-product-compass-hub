@@ -152,9 +152,6 @@ export default function Next60DaysAssignments() {
             <h1 className="text-2xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
               {countLabel(assignments.length)} deliverables to turn the first 60 days of your real business into a compounding practice.
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Each assignment integrates multiple weeks of the module. Link back to day material any time.
-            </p>
           </div>
           <div className="hidden sm:block rounded-full bg-background/80 backdrop-blur px-4 py-2 border text-center shrink-0">
             <div className="text-2xl font-serif font-bold tabular-nums text-foreground">

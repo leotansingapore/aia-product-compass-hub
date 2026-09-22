@@ -247,9 +247,6 @@ export default function First60DaysAssignments() {
             <h1 className="text-xl sm:text-3xl font-serif font-bold leading-tight text-foreground">
               {countLabel(assignments.length)} deliverables to prove you're ready for the field.
             </h1>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Each assignment turns study into a practical artifact. Link back to the day material any time.
-            </p>
           </div>
           <div className="hidden sm:block rounded-full bg-background/80 backdrop-blur px-4 py-2 border text-center shrink-0">
             <div className="text-2xl font-serif font-bold tabular-nums text-foreground">

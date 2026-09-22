@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { InfoTip } from "@/components/InfoTip";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,13 +43,12 @@ export default function First60DaysReferences() {
         <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary mb-2">
           <BookOpen className="h-3 w-3" /> Reference library
         </div>
-        <h1 className="font-serif text-xl sm:text-3xl font-semibold leading-tight tracking-tight">
+        <h1 className="flex items-center gap-1.5 font-serif text-xl sm:text-3xl font-semibold leading-tight tracking-tight">
           Source scripts &amp; conviction references
+          <InfoTip label="About source scripts and conviction references">
+            Full-text sources the day lessons draw from.
+          </InfoTip>
         </h1>
-        <p className="text-sm text-muted-foreground mt-2">
-          The full-text references the day lessons draw from. Read any of them end to end whenever you
-          want the complete source behind a lesson.
-        </p>
       </div>
 
       {items === null ? (

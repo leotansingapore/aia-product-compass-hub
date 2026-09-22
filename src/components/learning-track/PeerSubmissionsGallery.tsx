@@ -431,7 +431,7 @@ export default function PeerSubmissionsGallery({
 
       {rows.length === 0 ? (
         <p className="rounded-xl border border-dashed bg-muted/20 p-6 text-center text-sm text-muted-foreground">
-          You're one of the first to share here. Check back soon to see what your teammates put on theirs.
+          No one else has shared yet.
         </p>
       ) : (
         <div

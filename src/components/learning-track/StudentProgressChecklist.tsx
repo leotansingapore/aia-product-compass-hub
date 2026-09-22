@@ -331,9 +331,6 @@ export default function StudentProgressChecklist() {
             <h2 className="mt-1 font-serif text-lg font-bold leading-tight sm:text-2xl">
               Everything you need to clear, in one checklist.
             </h2>
-            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-              Each item ticks itself the moment you finish the real work — nothing to mark off by hand.
-            </p>
           </div>
           <div className="shrink-0 rounded-full border bg-background/80 px-4 py-2 text-center backdrop-blur">
             <div className="text-2xl font-serif font-bold tabular-nums">{overallPct}%</div>

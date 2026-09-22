@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { InfoTip } from "@/components/InfoTip";
 import { createPortal } from "react-dom";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -65,13 +66,12 @@ function readDraft(userId: string | undefined, slug: string): WorksheetValues | 
 function WorksheetHub() {
   return (
     <div className="mx-auto max-w-3xl space-y-5 p-4 sm:p-6">
-      <div>
-        <h1 className="font-serif text-2xl font-bold">Business Plan worksheets</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Fill these in here, save them, and export a PDF any time. They're the in-app version of the
-          two downloadable templates — a second option if you'd rather type than print.
-        </p>
-      </div>
+      <h1 className="flex items-center gap-1.5 font-serif text-2xl font-bold">
+        Business Plan worksheets
+        <InfoTip label="About Business Plan worksheets">
+          The in-app version of the two printable templates.
+        </InfoTip>
+      </h1>
       <div className="grid gap-3 sm:grid-cols-2">
         {WORKSHEET_SLUGS.map((slug) => (
           <Link key={slug} to={`/learning-track/pre-rnf/worksheets/${slug}`} className="group">

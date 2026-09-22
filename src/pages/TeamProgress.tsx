@@ -290,12 +290,8 @@ export default function TeamProgress() {
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 ring-1 ring-primary/20">
             <Users className="h-5 w-5 text-primary" />
           </div>
-          <div className="min-w-0 flex-1 space-y-1">
+          <div className="min-w-0 flex-1">
             <h1 className="font-serif text-2xl font-bold tracking-tight">Team Progress</h1>
-            <p className="text-sm text-muted-foreground">
-              Every consultant's learning activity in one place — day tracks, assignments,
-              trainings and question bank. Click a row for the full drill-down.
-            </p>
           </div>
         </div>
         <div className="mt-3 flex flex-wrap gap-1.5">

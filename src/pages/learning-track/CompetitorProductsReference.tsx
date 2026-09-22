@@ -812,8 +812,6 @@ export default function CompetitorProductsReference() {
         <h1 className="text-xl sm:text-2xl font-semibold leading-tight">Singapore Competitor Product Inventory</h1>
         <p className="text-xs sm:text-sm text-muted-foreground max-w-3xl">
           Current retail life and health policies sold by the major insurers in Singapore.
-          Browse to look up a name, or switch to flashcards to drill yourself on which insurer
-          sells what.
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex rounded-lg border overflow-hidden text-sm">
@@ -915,9 +913,8 @@ export default function CompetitorProductsReference() {
       <>
       {/* Always-visible brand-prefix lookup — the fastest tool in the doc. */}
       <div className="rounded-lg border bg-card overflow-hidden">
-        <div className="px-3 sm:px-4 py-2.5 border-b bg-muted/40 flex items-center justify-between gap-2">
+        <div className="px-3 sm:px-4 py-2.5 border-b bg-muted/40">
           <p className="text-xs font-semibold uppercase tracking-wide">Brand-prefix lookup</p>
-          <p className="text-[11px] text-muted-foreground italic hidden sm:block">Hearing a prefix? Find the insurer in one glance.</p>
         </div>
         <table className="w-full text-sm">
           <thead className="text-xs text-muted-foreground bg-muted/20">
