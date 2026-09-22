@@ -117,9 +117,6 @@ export const ConversationTranscript = ({ sessionId }: ConversationTranscriptProp
           <MessageSquare className="h-5 w-5" />
           Conversation Transcript
         </CardTitle>
-        <p className="text-sm text-muted-foreground mt-1">
-          Complete conversation flow with timestamps
-        </p>
       </CardHeader>
       <CardContent className="px-2 sm:px-6">
         <ScrollArea className="h-[500px] w-full pr-4">

@@ -4,7 +4,6 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { BrandedPageHeader } from '@/components/layout/BrandedPageHeader';
 import { RoleplayDiagnostics } from '@/components/roleplay/RoleplayDiagnostics';
 import { RoleplayScenarioCard } from '@/components/roleplay/RoleplayScenarioCard';
-import { RoleplayGuide } from '@/components/roleplay/RoleplayGuide';
 import { useRoleplay } from '@/hooks/useRoleplay';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MessageCircle, Video, ArrowLeft, Loader2 } from 'lucide-react';
@@ -120,7 +119,6 @@ export default function Roleplay() {
                 />
               ))}
             </div>
-            <RoleplayGuide />
           </TabsContent>
 
           <TabsContent value="pitch-analysis">

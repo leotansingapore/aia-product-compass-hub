@@ -403,16 +403,11 @@ export default function PitchAnalysisPage({ embedded = false }: { embedded?: boo
             <div className="h-11 w-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
               <Video className="h-5 w-5 text-primary" />
             </div>
-            <div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <h1 className="text-xl sm:text-2xl font-bold text-foreground">Pitch Analysis</h1>
-                <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 text-[10px]">
-                  Pro Achiever
-                </Badge>
-              </div>
-              <p className="text-sm text-muted-foreground mt-0.5">
-                Submit a Loom or YouTube recording of your pitch — our AI will score it against the Pro Achiever knowledge base.
-              </p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground">Pitch Analysis</h1>
+              <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 text-[10px]">
+                Pro Achiever
+              </Badge>
             </div>
           </div>
         </div>
@@ -653,7 +648,6 @@ export default function PitchAnalysisPage({ embedded = false }: { embedded?: boo
                 <CardContent className="pt-10 pb-10 text-center space-y-2">
                   <History className="h-10 w-10 text-muted-foreground/40 mx-auto" />
                   <p className="font-medium text-muted-foreground">No analyses yet</p>
-                  <p className="text-sm text-muted-foreground">Complete your first pitch analysis to see your history here.</p>
                   <Button variant="outline" size="sm" className="mt-2" onClick={() => setActiveTab("new")}>
                     <Sparkles className="h-3.5 w-3.5 mr-1.5" /> Start an Analysis
                   </Button>
@@ -897,7 +891,6 @@ function AnalysisResults({
           expanded={expandedSection === "missed"}
           onToggle={toggleSection}
         >
-          <p className="text-xs text-muted-foreground mb-3">Product knowledge that should have been mentioned but wasn't covered in the pitch.</p>
           <ul className="space-y-2">
             {analysis.missed_key_points.map((p, i) => (
               <li key={i} className="flex gap-2.5 text-sm">

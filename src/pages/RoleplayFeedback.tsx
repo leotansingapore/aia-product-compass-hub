@@ -428,10 +428,6 @@ const RoleplayFeedback = () => {
               <span>~{estimatedTime}s estimated</span>
             </div>
           </div>
-          
-          <p className="text-micro text-muted-foreground mt-4">
-            Our AI is providing comprehensive analysis of your roleplay performance
-          </p>
         </div>
       </div>
     );
@@ -671,10 +667,7 @@ const RoleplayFeedback = () => {
             <ArrowLeft className="h-4 w-4" />
             Back to Scenarios
           </Button>
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold">Roleplay Feedback</h1>
-            <p className="text-sm sm:text-base text-muted-foreground">Your performance analysis and coaching insights</p>
-          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold">Roleplay Feedback</h1>
         </div>
         <Button onClick={() => navigate('/roleplay')} className="gap-2 min-h-[44px] w-full sm:w-auto">
           <RefreshCw className="h-4 w-4" />
