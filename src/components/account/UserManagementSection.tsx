@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -246,9 +246,6 @@ export function UserManagementSection() {
             <Users className="h-4 w-4 sm:h-5 sm:w-5" />
             User Management
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">
-            Manage user accounts and roles
-          </CardDescription>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 sm:mb-6">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { SecurityForm } from "./SecurityForm";
@@ -40,9 +40,6 @@ export function SecuritySection() {
             </div>
             Security Settings
           </CardTitle>
-          <CardDescription className="text-base leading-relaxed">
-            Manage your account security and authentication
-          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
@@ -50,12 +47,7 @@ export function SecuritySection() {
             <Card className="border-0 shadow-sm bg-muted/30">
               <CardContent className="p-6">
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <h4 className="text-lg font-bold">Password</h4>
-                    <p className="text-base text-muted-foreground leading-relaxed">
-                      Change your account password
-                    </p>
-                  </div>
+                  <h4 className="text-lg font-bold">Password</h4>
                   <Button 
                     variant="default" 
                     onClick={() => setChangingPassword(true)}
@@ -81,20 +73,12 @@ export function SecuritySection() {
             </div>
             Session Management
           </CardTitle>
-          <CardDescription className="text-base leading-relaxed">
-            Manage your active sessions
-          </CardDescription>
         </CardHeader>
         <CardContent>
           <Card className="border-0 shadow-sm bg-muted/30">
             <CardContent className="p-6">
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <h4 className="text-lg font-bold">Current Session</h4>
-                  <p className="text-base text-muted-foreground">
-                    You are currently signed in
-                  </p>
-                </div>
+                <h4 className="text-lg font-bold">Current Session</h4>
                 <Button 
                   variant="outline" 
                   onClick={signOut}
