@@ -120,10 +120,7 @@ function FlowListView({ flows, onSelect, onCreateNew, onCreateFromTemplate, onDe
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <Workflow className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold text-lg mb-1">Build your first sales flow</h3>
-              <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-6">
-                Create visual flowcharts for your prospecting and sales processes. Map out every step from first contact to closing.
-              </p>
+              <h3 className="font-semibold text-lg mb-6">Build your first sales flow</h3>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
                 <Button onClick={onCreateNew} className="gap-1.5">
                   <Plus className="h-4 w-4" /> Create from scratch
@@ -566,10 +563,7 @@ export default function ScriptFlows() {
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center p-6 text-center gap-3">
             <FileText className="h-10 w-10 text-muted-foreground/30" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">No script linked</p>
-              <p className="text-xs text-muted-foreground/70 mt-1">Tap "Edit node" to link a script to this node.</p>
-            </div>
+            <p className="text-sm font-medium text-muted-foreground">No script linked</p>
             <Button size="sm" variant="outline" onClick={() => { setEditingNode(previewingNode); setMobilePreviewOpen(false); }}>
               Link a script
             </Button>

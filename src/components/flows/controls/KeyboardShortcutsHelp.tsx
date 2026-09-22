@@ -3,7 +3,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from '@/components/ui/dialog';
 
 interface KeyboardShortcutsHelpProps {
@@ -35,12 +34,9 @@ function Kbd({ children }: { children: React.ReactNode }) {
 export function KeyboardShortcutsHelp({ open, onOpenChange }: KeyboardShortcutsHelpProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm">
+      <DialogContent className="max-w-sm" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Keyboard Shortcuts</DialogTitle>
-          <DialogDescription>
-            Available shortcuts for the flow builder.
-          </DialogDescription>
         </DialogHeader>
         <div className="space-y-0.5 mt-2">
           {SHORTCUTS.map(({ keys, description }) => (
