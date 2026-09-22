@@ -227,14 +227,9 @@ export function ProductChatbots({
             </div>
 
             {/* Title */}
-            <div className="space-y-1">
-              <h3 className="text-base font-semibold text-foreground">
-                {chatbot2Name}
-              </h3>
-              <p className="text-xs text-muted-foreground leading-snug">
-                Additional AI support for specialized queries
-              </p>
-            </div>
+            <h3 className="text-base font-semibold text-foreground">
+              {chatbot2Name}
+            </h3>
 
             {/* Button */}
             {chatbot2Link ? (
@@ -277,14 +272,9 @@ export function ProductChatbots({
             </div>
 
             {/* Title */}
-            <div className="space-y-1">
-              <h3 className="text-base font-semibold text-foreground">
-                {chatbot3Name}
-              </h3>
-              <p className="text-xs text-muted-foreground leading-snug">
-                Expert guidance and advanced product insights
-              </p>
-            </div>
+            <h3 className="text-base font-semibold text-foreground">
+              {chatbot3Name}
+            </h3>
 
             {/* Button */}
             {chatbot3Link ? (

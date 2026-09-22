@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { QuizProgress } from "@/components/quiz/QuizProgress";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
 import { QuizExplanation } from "@/components/quiz/QuizExplanation";
@@ -41,9 +41,6 @@ export function ProductQuiz({ questions, productId }: ProductQuizProps) {
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
           <span>🧠</span> Knowledge Quiz
         </CardTitle>
-        <CardDescription className="text-xs sm:text-sm">
-          Test your product knowledge with this interactive quiz
-        </CardDescription>
         <QuizProgress
           currentQuestion={currentQuestion}
           totalQuestions={questions.length}

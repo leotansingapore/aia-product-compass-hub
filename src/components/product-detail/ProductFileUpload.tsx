@@ -238,9 +238,8 @@ export function ProductFileUpload({
           <DialogHeader>
             <DialogTitle>Name this file</DialogTitle>
             <DialogDescription>
-              Give this file a descriptive name so users know what it contains.
               {pendingFile && (
-                <span className="block mt-1 text-xs font-mono text-muted-foreground truncate">
+                <span className="block text-xs font-mono text-muted-foreground truncate">
                   {pendingFile.name} · {formatFileSize(pendingFile.size)}
                 </span>
               )}

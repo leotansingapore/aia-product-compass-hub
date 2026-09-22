@@ -12,7 +12,6 @@ import {
   ChevronRight,
   Clock,
   FileText,
-  Lightbulb,
   Link2,
   List,
   NotebookPen,
@@ -239,7 +238,6 @@ export function ProductModuleCourseLayout({
     () => processedVideos.reduce((sum, v) => sum + (v.duration || 0), 0),
     [processedVideos]
   );
-  const isFirstVisit = completedCount === 0 && processedVideos.length > 0;
   const navigate = useNavigate();
 
   const handleToggleComplete = useCallback(
@@ -453,19 +451,6 @@ export function ProductModuleCourseLayout({
         </div>
       )}
 
-      {/* First-visit guidance */}
-      {isFirstVisit && (
-        <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 space-y-1.5">
-          <div className="flex items-center gap-1.5 text-xs font-medium text-primary">
-            <Lightbulb className="h-3.5 w-3.5" />
-            Getting started
-          </div>
-          <p className="text-[11px] leading-relaxed text-muted-foreground">
-            Work through the lessons in order. Mark each one complete as you go -- your progress is saved automatically.
-          </p>
-        </div>
-      )}
-
       {/* Lesson list */}
       <VideosByCategory
         videos={processedVideos}
@@ -573,7 +558,6 @@ export function ProductModuleCourseLayout({
     completedCount,
     courseProgressPct,
     totalDuration,
-    isFirstVisit,
     onSelectVideoFromOutline,
     getVideoProgress,
     handleToggleComplete,
@@ -710,9 +694,7 @@ export function ProductModuleCourseLayout({
           </p>
         </div>
       ) : processedVideos.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          No training lessons yet. When lessons are added, you can learn here and track progress.
-        </p>
+        <p className="text-sm text-muted-foreground">No training lessons yet.</p>
       ) : null}
     </>
   );

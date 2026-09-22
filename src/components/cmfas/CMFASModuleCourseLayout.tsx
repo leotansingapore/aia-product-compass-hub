@@ -384,9 +384,7 @@ export function CMFASModuleCourseLayout({
           </CardContent>
         </Card>
       ) : processedVideos.length === 0 ? (
-        <p className="text-sm text-muted-foreground">
-          No lessons yet. When lessons are added, you can learn here and track progress from the outline.
-        </p>
+        <p className="text-sm text-muted-foreground">No lessons yet.</p>
       ) : null}
     </>
   );

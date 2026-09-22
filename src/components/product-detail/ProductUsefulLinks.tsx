@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EditableLinks } from "@/components/EditableLinks";
 import { FolderBasedUsefulLinks } from "@/components/product-detail/FolderBasedUsefulLinks";
 import { ProductFileUpload, type ProductFile } from "@/components/product-detail/ProductFileUpload";
@@ -169,9 +169,6 @@ export function ProductUsefulLinks({ links, onUpdate, productId }: ProductUseful
           <CardTitle className="flex items-center gap-2 text-sm sm:text-base md:text-lg">
             <span>🔗</span> Resources
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">
-            Links, documents, and files for this product
-          </CardDescription>
         </CardHeader>
         <CardContent className="p-3 sm:p-4 md:p-6 pt-0 space-y-4">
           {/* Links section */}
