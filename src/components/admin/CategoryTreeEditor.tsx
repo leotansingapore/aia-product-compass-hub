@@ -363,8 +363,7 @@ export function CategoryTreeEditor() {
     <div className="space-y-4">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm text-muted-foreground">
-          Drag the handle to reorder within a group. Use <em>Move</em> to change
-          parent. Strict 2-level hierarchy.
+          Drag reorders within a group only. Strict 2-level hierarchy.
         </div>
         <div className="flex items-center gap-2">
           {dirtyCount > 0 && (

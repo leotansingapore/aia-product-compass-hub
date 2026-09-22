@@ -605,7 +605,6 @@ const AppSidebar = memo(function AppSidebar({ onProfileClick }: { onProfileClick
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Create New Category</DialogTitle>
-            <p className="text-sm text-muted-foreground">Add a new product category to organize your content.</p>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">

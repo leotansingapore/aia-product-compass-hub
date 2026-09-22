@@ -30,9 +30,7 @@ export function ItemHistoryDialog({ open, onClose, itemId, itemTitle }: Props) {
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Version history — {itemTitle}</DialogTitle>
-          <p className="text-sm text-muted-foreground">
-            Each edit to an item is snapshotted automatically. Click a snapshot to revert.
-          </p>
+          <p className="text-sm text-muted-foreground">Click a snapshot to revert.</p>
         </DialogHeader>
 
         <div className="max-h-96 overflow-y-auto space-y-2">

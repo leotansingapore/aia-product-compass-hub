@@ -494,7 +494,7 @@ export default function CMFASExams() {
               <SheetHeader className="text-left">
                 <SheetTitle>Create new module</SheetTitle>
                 <SheetDescription>
-                  Add a CMFAS module. You can add videos, quizzes, and content on the next screen.
+                  You can add videos, quizzes, and content on the next screen.
                 </SheetDescription>
               </SheetHeader>
               <CreateModuleForm

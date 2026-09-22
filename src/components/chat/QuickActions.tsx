@@ -166,12 +166,6 @@ export function QuickActions({
         </div>
 
         {content}
-
-        <div className="mt-4 px-3">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            These are suggested questions to help you get started. You can also type your own question below.
-          </p>
-        </div>
       </div>
     </aside>
   );

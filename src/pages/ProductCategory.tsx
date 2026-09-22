@@ -612,8 +612,7 @@ export default function ProductCategory() {
               <SheetHeader className="text-left">
                 <SheetTitle>Create new module</SheetTitle>
                 <SheetDescription>
-                  Add a module to {category.name}. You can add training content
-                  after creating it.
+                  You can add training content after creating it.
                 </SheetDescription>
               </SheetHeader>
               <CreateModuleForm

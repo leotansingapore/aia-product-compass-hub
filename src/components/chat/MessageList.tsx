@@ -130,9 +130,6 @@ export const MessageList = forwardRef<MessageListHandle, MessageListProps>(
                     <Loader2 className="h-8 w-8 text-muted-foreground animate-spin" />
                   </div>
                   <h3 className="text-lg font-medium text-foreground">Ready to help!</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Ask me anything or use the quick questions to get started.
-                  </p>
                 </div>
               </div>
             ) : (
