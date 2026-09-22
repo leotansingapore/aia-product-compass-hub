@@ -105,9 +105,7 @@ export function KnowledgeManagement() {
             <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
           </div>
         ) : documents.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-4">
-            No knowledge documents uploaded yet. Upload files or sync scripts to build the AI's knowledge base.
-          </p>
+          <p className="text-sm text-muted-foreground text-center py-4">No knowledge documents uploaded yet.</p>
         ) : (
           <div className="space-y-2">
             {documents.map((doc) => {

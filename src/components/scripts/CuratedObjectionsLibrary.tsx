@@ -485,7 +485,7 @@ export function CuratedObjectionsLibrary({
               <div className="flex-1 min-w-0">
                 <span>Curriculum-anchored objection library</span>
                 <p className="text-xs sm:text-sm text-muted-foreground font-sans font-normal mt-0.5">
-                  {total} objection scripts — every one tagged to one of the 3 ARQ frameworks. Drill, master, and practise live in roleplay.
+                  {total} objection scripts
                 </p>
               </div>
               {open ? (

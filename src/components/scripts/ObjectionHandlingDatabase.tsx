@@ -465,13 +465,10 @@ function ObjectionScriptsSection({
     // scroll-mt clears the sticky app header (57px mobile, 48px from md up),
     // which otherwise covers the heading we just scrolled to.
     <div className="mt-10 scroll-mt-[72px] md:scroll-mt-16" ref={sectionRef}>
-      <div className="flex items-center gap-3 mb-1">
+      <div className="flex items-center gap-3 mb-4">
         <h2 className="text-lg font-semibold">Objection Scripts & FAQ</h2>
         <Badge variant="secondary" className="text-[10px]">{scripts.length}</Badge>
       </div>
-      <p className="text-sm text-muted-foreground mb-4">
-        Full word-for-word scripts for specific objections — including the free-course FAQ answers for telemarketers.
-      </p>
 
       {/* No search box here on purpose. This section used to carry its own,
           4,600px below the library's — two boxes over two different corpora,
