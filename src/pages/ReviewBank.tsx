@@ -109,13 +109,7 @@ export default function ReviewBank() {
           </Button>
 
           <div className="flex items-start justify-between gap-3 flex-wrap mb-5">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1">Review Bank</h1>
-              <p className="text-muted-foreground text-sm max-w-2xl">
-                Every question you missed in a simulation lands here, plus anything you flag or mark unsure.
-                Drill them until they stick.
-              </p>
-            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Review Bank</h1>
             {filtered.length > 0 && (
               <Button onClick={() => setPracticeItems(filtered)} className="gap-1.5">
                 <Dumbbell className="h-4 w-4" /> Practice {filtered.length}

@@ -196,11 +196,7 @@ export default function ProductExam() {
           {mode === 'intro' && (
             <>
               {backButton}
-              <h1 className="text-2xl sm:text-3xl font-bold mb-2">{title} — Product Exam</h1>
-              <p className="text-muted-foreground mb-4">
-                {questions.length} questions across product facts, sales angles, and objection handling.
-                Choose how you want to take it.
-              </p>
+              <h1 className="text-2xl sm:text-3xl font-bold mb-4">{title} — Product Exam</h1>
               <div className="flex flex-wrap gap-2 mb-6">
                 <Badge variant="secondary" className="flex items-center gap-1"><Brain className="h-3 w-3" />{factCount} Product Facts</Badge>
                 <Badge variant="secondary" className="flex items-center gap-1"><Target className="h-3 w-3" />{salesCount} Sales Angles</Badge>
@@ -215,8 +211,7 @@ export default function ProductExam() {
                       <h2 className="font-semibold">Simulation</h2>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3 flex-1">
-                      Exam conditions: a {durationMin}-minute timer, answers hidden until you submit, and a {PASS_MARK}% pass mark.
-                      Your score is recorded and missed questions go to your Review Bank.
+                      Answers stay hidden until you submit. Your score is recorded and missed questions go to your Review Bank.
                     </p>
                     <ul className="text-xs text-muted-foreground space-y-1 mb-4">
                       <li className="flex items-center gap-1.5"><Clock className="h-3 w-3" /> {durationMin} min · {questions.length} questions</li>
@@ -233,8 +228,7 @@ export default function ProductExam() {
                       <h2 className="font-semibold">Practice</h2>
                     </div>
                     <p className="text-sm text-muted-foreground mb-3 flex-1">
-                      No timer. Get instant feedback and a teaching explanation after every question — best for
-                      learning the material before you sit the simulation.
+                      A teaching explanation after every question.
                     </p>
                     <ul className="text-xs text-muted-foreground space-y-1 mb-4">
                       <li className="flex items-center gap-1.5"><BookOpen className="h-3 w-3" /> Untimed · instant feedback</li>

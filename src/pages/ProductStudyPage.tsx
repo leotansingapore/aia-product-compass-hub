@@ -2,7 +2,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { InfoTip } from '@/components/InfoTip';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { PageLayout } from '@/components/layout/PageLayout';
@@ -338,8 +339,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
               <div className="mb-6">
                 <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">{productTitle} — Study Bank</h1>
                 <p className="text-muted-foreground text-sm sm:text-base max-w-2xl leading-relaxed">
-                  Low-pressure practice for advisors-in-training. {studyBank.length} questions with instant feedback—
-                  separate from the scored exam, so you can learn without pressure.
+                  {studyBank.length} questions with instant feedback. Not scored.
                 </p>
               </div>
 
@@ -359,7 +359,12 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                 className="rounded-lg border bg-card p-4 shadow-sm mb-4"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <p className="text-sm font-medium">Your Mastery</p>
+                  <p className="flex items-center gap-1 text-sm font-medium">
+                    Your Mastery
+                    <InfoTip label="About Your Mastery">
+                      Mastered means {QUESTION_MASTERY_STREAK} correct in a row; one correct fills half.
+                    </InfoTip>
+                  </p>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <Cloud className="h-3 w-3" aria-hidden />
                     <span>Auto-saved</span>
@@ -376,10 +381,7 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
                     {studyBankMastery.progressPercent}%
                   </span>
                 </div>
-                <Progress value={studyBankMastery.progressPercent} className="h-2 mb-3" />
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Mastery is {QUESTION_MASTERY_STREAK} correct in a row per question. The bar fills with partial credit (one correct ≈ halfway for that question).
-                </p>
+                <Progress value={studyBankMastery.progressPercent} className="h-2" />
               </div>
 
               {freshPool && freshPool.length === 0 && !selectedMode && (
@@ -397,9 +399,6 @@ export function ProductStudyPage({ productSlug, productTitle, backRoute, backLab
               <Card className="shadow-sm border-border/80">
                 <CardHeader className="pb-3 px-4 pt-4 sm:px-5 sm:pt-5">
                   <CardTitle className="text-base font-semibold">Start studying</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">
-                    Pick a mode, category, and number of questions, then hit Start.
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 sm:px-5 sm:pb-5 space-y-3">
                   <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:gap-3">

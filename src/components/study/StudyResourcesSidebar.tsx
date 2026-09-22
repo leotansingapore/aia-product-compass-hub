@@ -63,9 +63,6 @@ export function StudyResourcesSidebar({ productSlug }: StudyResourcesSidebarProp
           <FileText className="h-4 w-4 text-primary" />
           Resources
         </h3>
-        <p className="text-[11px] text-muted-foreground mt-0.5">
-          Quick reference materials
-        </p>
       </div>
       <div className="p-2 space-y-0.5">
         {links.map((link, i) => (

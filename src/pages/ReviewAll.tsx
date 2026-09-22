@@ -109,13 +109,7 @@ export default function ReviewAll() {
           </Button>
 
           <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1">All Questions &amp; Answers</h1>
-              <p className="text-muted-foreground text-sm max-w-2xl">
-                The complete question bank across every product — for revision, printing, or a quick reference
-                before a client meeting. {all.length} questions in total.
-              </p>
-            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">All Questions &amp; Answers</h1>
             <Button variant="outline" className="gap-1.5" onClick={() => window.print()} title="Opens the print dialog — choose 'Save as PDF' as the destination to download">
               <Printer className="h-4 w-4" /> Print / Save as PDF
             </Button>

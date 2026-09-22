@@ -115,7 +115,6 @@ export function QuizSummary({ score, totalQuestions, questions, selectedAnswers,
               </span>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">Use Prev to revisit and re-read explanations.</p>
         </div>
       )}
 

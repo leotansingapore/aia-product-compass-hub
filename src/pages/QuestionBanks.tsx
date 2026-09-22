@@ -91,13 +91,7 @@ export default function QuestionBanks() {
     <PageLayout title="Question Banks | FINternship" description="Master every AIA product — study, simulate exams, and track your progress.">
       <div className="max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-8 animate-fade-in">
         <div className="flex items-start justify-between gap-3 flex-wrap mb-5">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-1">Question Banks</h1>
-            <p className="text-muted-foreground text-sm max-w-2xl">
-              Build product mastery and pitch confidence. Study with instant feedback, sit timed simulation exams,
-              and drill the questions you miss.
-            </p>
-          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Question Banks</h1>
           <div className="flex gap-2">
             <Button variant="outline" className="gap-1.5" onClick={() => navigate('/review-bank')}>
               <BookOpen className="h-4 w-4" /> Review Bank
