@@ -132,12 +132,6 @@ export function WelcomeModal() {
               </Card>
             ))}
           </div>
-          
-          <div className="text-center p-4 rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
-            <p className="text-sm text-muted-foreground">
-              Join thousands of financial advisors who are already using our platform to excel in their careers
-            </p>
-          </div>
         </div>
       )
     },

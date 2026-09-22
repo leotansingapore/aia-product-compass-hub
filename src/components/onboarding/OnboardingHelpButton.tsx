@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { useOnboarding } from '@/hooks/useOnboarding';
@@ -101,9 +101,6 @@ export function OnboardingHelpButton() {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <CardDescription>
-              Select the tour that best fits your needs
-            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {tourOptions
@@ -158,9 +155,6 @@ export function OnboardingHelpButton() {
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <CardDescription>
-              Get guided assistance to master the platform
-            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Progress Section */}
