@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -477,7 +477,6 @@ export function QuizScoresPanel() {
               <Brain className="h-5 w-5" />
               Quiz Scores
             </CardTitle>
-            <CardDescription>Click any row to see per-product breakdowns</CardDescription>
           </CardHeader>
           <CardContent className="p-0">
             <Table>

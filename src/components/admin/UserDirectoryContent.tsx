@@ -1,5 +1,5 @@
 import { Users } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { EnhancedUserFilters } from "./EnhancedUserFilters";
 import { BulkUserActions } from "./BulkUserActions";
@@ -60,9 +60,6 @@ export function UserDirectoryContent({
           <Users className="h-5 w-5" />
           All Users ({users.length})
         </CardTitle>
-        <CardDescription>
-          Complete user lifecycle management from registration to activation
-        </CardDescription>
       </CardHeader>
       
       <CardContent>

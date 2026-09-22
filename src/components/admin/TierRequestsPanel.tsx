@@ -268,9 +268,6 @@ export function TierRequestsPanel() {
               <>
                 <Clock className="h-10 w-10 mx-auto mb-3 text-muted-foreground opacity-30" />
                 <p className="font-medium">No pending requests</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  You&rsquo;ll see user tier-upgrade requests here when they come in.
-                </p>
               </>
             ) : (
               <>

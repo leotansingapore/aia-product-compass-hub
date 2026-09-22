@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
@@ -374,9 +374,6 @@ export function BulkUserActions({ selectedUserIds, selectedUsers, onActionComple
           <Users className="h-4 w-4" />
           Bulk Actions ({selectedUsers.length} selected)
         </CardTitle>
-        <CardDescription>
-          Perform actions on multiple users at once
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2">

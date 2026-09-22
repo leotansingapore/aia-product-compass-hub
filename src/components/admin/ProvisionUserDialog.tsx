@@ -164,9 +164,6 @@ export function ProvisionUserDialog({ user, open, onOpenChange, onSuccess }: Pro
                 })}
               </SelectContent>
             </Select>
-            <p className="text-micro text-muted-foreground mt-1">
-              Select the initial access level for this user
-            </p>
           </div>
 
           <div>

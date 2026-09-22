@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -111,9 +111,6 @@ export function CreateUserForm() {
           <UserPlus className="h-5 w-5" />
           Create User Account
         </CardTitle>
-        <CardDescription>
-          Create a new user account with email, password, and access tier. Optionally mirrors to growing-age-calculator.
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

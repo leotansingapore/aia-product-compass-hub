@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { InfoTip } from '@/components/InfoTip';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -488,10 +489,10 @@ export function StudyProgressPanel() {
               <CardTitle className="text-sm flex items-center gap-2">
                 <BookOpen className="h-4 w-4" />
                 Engagement by Product
+                <InfoTip label="About Engagement by Product">
+                  Average mastery across the learners who studied each product.
+                </InfoTip>
               </CardTitle>
-              <CardDescription className="text-xs">
-                Average mastery % across users who've studied each product
-              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               {productEngagement.map((p) => (
@@ -519,7 +520,6 @@ export function StudyProgressPanel() {
                 <Trophy className="h-4 w-4 text-amber-500" />
                 Top Performers
               </CardTitle>
-              <CardDescription className="text-xs">Highest mastery %</CardDescription>
             </CardHeader>
             <CardContent>
               {topPerformers.length === 0 ? (
