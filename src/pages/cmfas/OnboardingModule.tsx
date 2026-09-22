@@ -69,7 +69,6 @@ const OnboardingModule = () => {
                   <h2 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-cyan-800 bg-clip-text text-transparent">
                     Getting started
                   </h2>
-                  <p className="text-sm md:text-lg text-muted-foreground">Essential onboarding steps and setup guide</p>
                 </div>
               </div>
 

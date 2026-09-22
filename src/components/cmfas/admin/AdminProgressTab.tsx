@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { InfoTip } from '@/components/InfoTip';
 import { ArrowLeft, CheckCircle2, Circle, ImageIcon, Loader2, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -295,13 +296,12 @@ export function AdminProgressTab() {
 
   return (
     <div className="space-y-5">
-      <div>
-        <h2 className="font-serif text-2xl font-bold">Learner CMFAS progress</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Every non-admin learner in the app — their Study Desk progress, sub-slide answers,
-          screenshot uploads, and per-paper video completion. Click a row for the full trail.
-        </p>
-      </div>
+      <h2 className="flex items-center gap-1.5 font-serif text-2xl font-bold">
+        Learner CMFAS progress
+        <InfoTip label="About learner CMFAS progress">
+          Lists every non-admin learner. Click a row for the full trail.
+        </InfoTip>
+      </h2>
 
       <div className="flex flex-wrap items-center gap-2">
         {FILTERS.map((f) => (
@@ -522,10 +522,12 @@ function LearnerDetail({
 
       {/* Per-paper video progress */}
       <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
-        <h3 className="font-serif text-lg font-bold">Per-paper video progress</h3>
-        <p className="mt-0.5 text-xs text-muted-foreground">
-          Videos each paper's module marked complete via <code>video_progress</code>.
-        </p>
+        <h3 className="flex items-center gap-1.5 font-serif text-lg font-bold">
+          Per-paper video progress
+          <InfoTip label="About per-paper video progress">
+            Lessons marked complete in each paper's module.
+          </InfoTip>
+        </h3>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {PAPERS.map((paper) => {
             const p = learner.paperProgress[paper.id];

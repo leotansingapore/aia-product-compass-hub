@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { InfoTip } from '@/components/InfoTip';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useProductUpdate } from '@/hooks/useProductUpdate';
@@ -53,13 +54,12 @@ export function AdminExamResourcesTab() {
 
   return (
     <div className="space-y-5">
-      <div>
-        <h2 className="font-serif text-2xl font-bold">Exam resources per paper</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          External links learners see inside each paper's module page — study guides, MAS
-          regulations, past-paper mocks, and the paper's custom GPT chatbot link.
-        </p>
-      </div>
+      <h2 className="flex items-center gap-1.5 font-serif text-2xl font-bold">
+        Exam resources per paper
+        <InfoTip label="About exam resources per paper">
+          Learners see these links inside each paper's module page.
+        </InfoTip>
+      </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {PAPERS.map((paper) => (
           <button

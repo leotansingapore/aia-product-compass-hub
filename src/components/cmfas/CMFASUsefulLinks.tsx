@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { EditableLinks } from "@/components/EditableLinks";
 import type { UsefulLink } from "@/hooks/useProducts";
@@ -16,8 +16,6 @@ interface CMFASUsefulLinksProps {
   onUpdate: (field: string, value: any) => Promise<void>;
   /** Hub listing uses calmer chrome + collapsible; module pages use `default`. */
   variant?: "default" | "hub";
-  /** Overrides CardDescription (e.g. hub vs per-module copy). */
-  description?: string;
   /** When `variant="hub"`, set false if the hub uses tabs (no nested collapsible). Default true. */
   hubCollapsible?: boolean;
   /** Visible `h2` in hub layout (avoid duplicating the tab label “Exam resources”). */
@@ -26,14 +24,10 @@ interface CMFASUsefulLinksProps {
   sectionHeadingId?: string;
 }
 
-const DEFAULT_DESCRIPTION =
-  "Study materials, resources, and references for this CMFAS module";
-
 export function CMFASUsefulLinks({
   links,
   onUpdate,
   variant = "default",
-  description,
   hubCollapsible = true,
   sectionHeading = HUB_SECTION_HEADING_DEFAULT,
   sectionHeadingId = "cmf-resources-heading",
@@ -45,9 +39,6 @@ export function CMFASUsefulLinks({
   useEffect(() => {
     setResourcesOpen(!isMobile);
   }, [isMobile]);
-
-  const cardDescription =
-    description ?? DEFAULT_DESCRIPTION;
 
   const hubLinksBody = (
     <div className="rounded-lg border border-border bg-muted/20 p-3 sm:p-4">
@@ -66,8 +57,7 @@ export function CMFASUsefulLinks({
         aria-labelledby={sectionHeadingId}
         className="border bg-card shadow-sm"
       >
-        <CardHeader className="space-y-3 pb-3 sm:pb-4">
-          <p className="text-sm leading-relaxed text-muted-foreground">{cardDescription}</p>
+        <CardHeader className="pb-3 sm:pb-4">
           <h2
             id={sectionHeadingId}
             className="flex scroll-mt-4 items-center gap-2 text-base font-semibold text-foreground sm:text-lg"
@@ -107,7 +97,6 @@ export function CMFASUsefulLinks({
                 aria-hidden
               />
             </CollapsibleTrigger>
-            <p className="text-sm text-muted-foreground">{cardDescription}</p>
           </CardHeader>
           <CollapsibleContent>
             <CardContent className="pt-0">{hubLinksBody}</CardContent>
@@ -128,9 +117,6 @@ export function CMFASUsefulLinks({
             </span>
           </div>
         </CardTitle>
-        <CardDescription className="text-base text-muted-foreground/80 mt-2">
-          {cardDescription}
-        </CardDescription>
       </CardHeader>
       <CardContent className="pt-0">
         <div className="bg-muted/30 rounded-xl p-4 border border-muted">

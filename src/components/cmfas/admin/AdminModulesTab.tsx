@@ -20,13 +20,7 @@ const PAPERS = [
 export function AdminModulesTab() {
   return (
     <div className="space-y-5">
-      <div>
-        <h2 className="font-serif text-2xl font-bold">The four CMFAS papers</h2>
-        <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Pick a paper to edit its lessons. You'll land in the same rich editor used for every
-          other product — add, edit, reorder, embed Loom / YouTube videos, write rich content.
-        </p>
-      </div>
+      <h2 className="font-serif text-2xl font-bold">The four CMFAS papers</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {PAPERS.map((paper) => {
           const productId = moduleIdToProductId[paper.id];
@@ -51,9 +45,6 @@ export function AdminModulesTab() {
                   </h3>
                   <p className="mt-0.5 line-clamp-1 text-xs text-muted-foreground">
                     {paper.tagline}
-                  </p>
-                  <p className="mt-2 text-[11px] text-muted-foreground/70">
-                    Opens the rich lesson editor.
                   </p>
                 </div>
                 <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground/70 transition-transform group-hover:translate-x-0.5" aria-hidden />
