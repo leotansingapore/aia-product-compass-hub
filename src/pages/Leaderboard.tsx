@@ -507,12 +507,8 @@ export default function Leaderboard() {
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/15 ring-1 ring-amber-500/20">
             <Trophy className="h-5 w-5 text-amber-500" />
           </div>
-          <div className="min-w-0 flex-1 space-y-1">
+          <div className="min-w-0 flex-1">
             <h1 className="text-2xl font-bold font-serif tracking-tight">Leaderboard</h1>
-            <p className="text-sm text-muted-foreground">
-              Show up, stack points, climb the ranks. Consistency wins — we break ties on
-              distinct days active.
-            </p>
           </div>
           {admin && (
             <Button asChild variant="outline" size="sm" className="shrink-0 gap-1.5">

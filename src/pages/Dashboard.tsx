@@ -55,12 +55,9 @@ const Dashboard = memo(() => {
         <div className="absolute -bottom-10 -left-16 w-48 h-48 rounded-full bg-gradient-to-tr from-accent/10 to-primary/10 blur-3xl pointer-events-none" />
 
         <div className="relative px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 min-w-0">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif tracking-tight mb-2 break-words">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif tracking-tight mb-6 break-words">
             Welcome back, {greeting}
           </h1>
-          <p className="text-muted-foreground text-sm sm:text-base mb-6 max-w-xl">
-            Pick up where you left off or explore something new.
-          </p>
 
           {!hasQuery && <LearningTrackHeroCard />}
 

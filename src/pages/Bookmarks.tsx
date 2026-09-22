@@ -105,10 +105,7 @@ export default function Bookmarks() {
         ) : bookmarkedProducts.length === 0 ? (
           <div className="text-center py-12">
             <BookmarkX className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-            <h2 className="text-xl font-semibold mb-2">No bookmarks yet</h2>
-            <p className="text-muted-foreground mb-6">
-              Save your favorite products to quickly access them later
-            </p>
+            <h2 className="text-xl font-semibold mb-6">No bookmarks yet</h2>
             <Button 
               onClick={() => navigate('/')}
               variant="outline"

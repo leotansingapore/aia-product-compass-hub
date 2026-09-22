@@ -50,14 +50,9 @@ export function AdminFeedbackAlert() {
   return (
     <div className="relative rounded-lg border border-destructive/30 bg-destructive/5 p-4 flex items-center gap-3">
       <MessageSquareWarning className="h-5 w-5 text-destructive shrink-0" />
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-foreground">
-          {pendingCount} pending feedback {pendingCount === 1 ? "submission" : "submissions"}
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Review and respond to user feedback in the admin panel.
-        </p>
-      </div>
+      <p className="flex-1 min-w-0 text-sm font-medium text-foreground">
+        {pendingCount} pending feedback {pendingCount === 1 ? "submission" : "submissions"}
+      </p>
       <Button
         size="sm"
         variant="outline"
