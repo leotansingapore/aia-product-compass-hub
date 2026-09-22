@@ -915,7 +915,6 @@ export default function ScriptFlows() {
         tone="dark"
         showOnMobile
         title="Script Flows"
-        subtitle="Build visual flowcharts for your sales and prospecting processes"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Flows" }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

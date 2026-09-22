@@ -4164,7 +4164,6 @@ export default function ScriptsDatabase() {
         tone="dark"
         showOnMobile
         title="Scripts & Objections"
-        subtitle="Reference scripts, objection handling, and team knowledge base"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Scripts & Objections" }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

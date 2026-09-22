@@ -78,7 +78,6 @@ export default function Library() {
       <BrandedPageHeader
         title="Library"
         titlePrefix="📚 "
-        subtitle="Product categories, question banks, cheat sheets, sales playbooks, and the tools hub — all in one place."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Library" },

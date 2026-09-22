@@ -446,7 +446,6 @@ export default function ConceptCardsPage() {
         tone="dark"
         showOnMobile
         title="Concept Cards"
-        subtitle="Visual concept drawings as flashcards — tap or press Enter to flip and reveal the drawing"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Concept Cards' }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

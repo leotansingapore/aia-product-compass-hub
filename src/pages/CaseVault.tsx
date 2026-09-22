@@ -183,7 +183,6 @@ export default function CaseVaultPage() {
         tone="dark"
         showOnMobile
         title="Case Vault"
-        subtitle="Real-prospect receipts across all 7 AIA products. Filter by product or play, click any card to open the full case page."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Case Vault" }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

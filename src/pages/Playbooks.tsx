@@ -249,7 +249,6 @@ export default function Playbooks() {
         tone="dark"
         showOnMobile
         title="Script Playbooks"
-        subtitle="Create curated collections of scripts for different scenarios"
         headerTabs={<ScriptsHubHeaderTabs />}
       />
 

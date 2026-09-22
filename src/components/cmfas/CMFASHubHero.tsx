@@ -402,7 +402,7 @@ export const CMFASHubHero = memo(function CMFASHubHero({
 
 export interface CMFASModuleHeaderProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   breadcrumbs: BreadcrumbItemType[];
   className?: string;
 }

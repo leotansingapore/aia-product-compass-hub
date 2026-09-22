@@ -38,7 +38,6 @@ const OnboardingModule = () => {
       <header role="banner">
         <CMFASModuleHeader
           title="CMFAS Onboarding"
-          subtitle="Essential setup steps to begin your certification journey"
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "CMFAS Exams", href: "/cmfas-exams" },

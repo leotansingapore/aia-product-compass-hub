@@ -78,7 +78,6 @@ export default function MyAccount() {
       >
         <BrandedPageHeader
           title="👤 My Account"
-          subtitle="Manage your profile and security settings"
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "My Account" }

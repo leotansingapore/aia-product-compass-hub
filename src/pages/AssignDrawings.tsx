@@ -431,7 +431,7 @@ export default function AssignDrawingsPage() {
         tone="dark"
         showOnMobile
         title="Assign drawings"
-        subtitle={`Pick a concept card on the left, then click a photo on the right to assign. ${missingCount} card${missingCount === 1 ? "" : "s"} still missing an image.`}
+        subtitle={`${missingCount} card${missingCount === 1 ? "" : "s"} still missing an image.`}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Admin", href: "/admin" },

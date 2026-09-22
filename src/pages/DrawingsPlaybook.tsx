@@ -371,7 +371,6 @@ export default function DrawingsPlaybookPage() {
         tone="dark"
         showOnMobile
         title="Drawings Playbook"
-        subtitle="Every diagram an FC needs in an appointment — structure, script, when to use it."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Drawings Playbook" }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

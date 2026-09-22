@@ -890,7 +890,6 @@ export default function ServicingPage() {
         tone="dark"
         showOnMobile
         title="Servicing Templates"
-        subtitle="Text templates for client communication and policy servicing"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Servicing" }]}
         headerTabs={<ScriptsHubHeaderTabs />}
       />

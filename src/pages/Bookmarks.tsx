@@ -84,7 +84,6 @@ export default function Bookmarks() {
       >
       <BrandedPageHeader
         title="📚 My Bookmarks"
-        subtitle="Your saved products and resources"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "My Bookmarks" }

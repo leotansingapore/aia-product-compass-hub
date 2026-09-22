@@ -94,7 +94,6 @@ export default function AIAssistant() {
         <div className="flex flex-col h-full">
           <BrandedPageHeader
             title={`🤖 ${product.title} - AI Assistant`}
-            subtitle="Get instant answers about features, benefits, and sales tips"
             breadcrumbs={breadcrumbs}
             className="flex-shrink-0"
           />

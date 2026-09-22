@@ -104,7 +104,6 @@ export default function ScriptsCourse() {
         tone="dark"
         showOnMobile
         title="Scripts Fundamentals"
-        subtitle="The tips & best practices behind every script — read this before you start calling and texting"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Scripts & Objections", href: "/scripts" },

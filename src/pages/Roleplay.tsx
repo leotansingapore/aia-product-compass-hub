@@ -82,7 +82,6 @@ export default function Roleplay() {
         tone="dark"
         showOnMobile
         title="🎭 AI Roleplay Training"
-        subtitle="Practice your sales skills, objection handling, and client consultation with AI-powered video avatars"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Roleplay Training" }

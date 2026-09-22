@@ -120,7 +120,7 @@ function Section({
 }: {
   icon: typeof GraduationCap;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   done: number;
   total: number;
   rows: Row[];
@@ -149,7 +149,7 @@ function Section({
               {done}/{total}
             </span>
           </div>
-          <p className="truncate text-xs text-muted-foreground">{subtitle}</p>
+          {subtitle && <p className="truncate text-xs text-muted-foreground">{subtitle}</p>}
           <Progress value={pct} className="mt-2 h-1.5" />
         </div>
         <ChevronDown
@@ -355,7 +355,6 @@ export default function StudentProgressChecklist() {
       <Section
         icon={ClipboardList}
         title="Assignments"
-        subtitle="Turn the study into artifacts that prove you're field-ready."
         done={asg.done}
         total={asg.total}
         rows={asg.rows}
