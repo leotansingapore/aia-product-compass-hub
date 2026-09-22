@@ -891,7 +891,6 @@ export default function PlaybookDetail() {
                       <Label className="text-sm">Editors</Label>
                       {collaborators.length > 0 && <span className="text-xs text-muted-foreground">({collaborators.length})</span>}
                     </div>
-                    <p className="text-xs text-muted-foreground mb-2">Grant specific users edit access to this playbook.</p>
                     <div className="relative mb-2">
                       <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                       <Input placeholder="Search by name or email…" value={collaboratorSearch} onChange={e => handleUserSearch(e.target.value)} className="h-8 pl-8 text-xs" />
@@ -1157,8 +1156,7 @@ export default function PlaybookDetail() {
               <div className="rounded-full bg-muted w-14 h-14 mx-auto flex items-center justify-center mb-4">
                 <Plus className="h-7 w-7 text-muted-foreground" />
               </div>
-              <p className="font-medium mb-1">This playbook is empty</p>
-              <p className="text-muted-foreground text-sm mb-5">Add scripts, objection handlers, or section headers to build your playbook.</p>
+              <p className="font-medium mb-5">This playbook is empty</p>
               {isOwner && (
                 <div className="flex gap-2 justify-center flex-wrap">
                   <Button onClick={() => setAddDialogOpen(true)} className="gap-1.5"><Plus className="h-4 w-4" /> Add Scripts & Objections</Button>

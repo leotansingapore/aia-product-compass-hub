@@ -341,11 +341,10 @@ export default function Playbooks() {
 
           {/* Discover (others) */}
           <TabsContent value="others">
-            <p className="text-xs text-muted-foreground mb-4">Playbooks created by other team members. Use the <strong>...</strong> menu to favourite or hide any of these.</p>
             {othersPlaybooks.length === 0 ? (
               <EmptyState message={hiddenFromOthers > 0
-                ? "No playbooks from others to show — you've hidden them all. Check the Hidden tab to bring them back."
-                : "No one else has shared a playbook yet. Playbooks created by other team members will show up here."} />
+                ? "You've hidden every playbook from others."
+                : "No one else has shared a playbook yet."} />
             ) : filteredOthers.length === 0 ? (
               <EmptyState icon={Search} message={`No playbooks matching "${search}"`} />
             ) : (
@@ -357,7 +356,6 @@ export default function Playbooks() {
 
           {/* Hidden */}
           <TabsContent value="hidden">
-            <p className="text-xs text-muted-foreground mb-4">These playbooks are hidden from your other tabs. Use the <strong>...</strong> menu to unhide them.</p>
             {filteredHidden.length === 0 && search ? (
               <EmptyState icon={Search} message={`No hidden playbooks matching "${search}"`} />
             ) : (
