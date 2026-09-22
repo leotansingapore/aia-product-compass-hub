@@ -19,7 +19,6 @@ import {
   GraduationCap,
   ExternalLink,
   ArrowRight,
-  Wrench,
   Lock,
   type LucideIcon,
 } from "lucide-react";
@@ -45,7 +44,6 @@ interface Tool {
 interface ToolGroup {
   id: string;
   title: string;
-  blurb: string;
   tools: Tool[];
 }
 
@@ -53,7 +51,6 @@ const TOOL_GROUPS: ToolGroup[] = [
   {
     id: "content-and-leadgen",
     title: "Content and lead-gen",
-    blurb: "Find prospects and produce the content that brings them in.",
     tools: [
       {
         id: "content-studio",
@@ -86,7 +83,6 @@ const TOOL_GROUPS: ToolGroup[] = [
   {
     id: "practice-and-presenting",
     title: "Practice and presenting",
-    blurb: "Rehearse the conversations you'll have on appointments.",
     tools: [
       {
         id: "day-53-practice-deck",
@@ -120,7 +116,6 @@ const TOOL_GROUPS: ToolGroup[] = [
   {
     id: "study",
     title: "Study",
-    blurb: "Pass the exam, then keep the knowledge sharp.",
     tools: [
       {
         id: "cmfas-chatbot",
@@ -241,28 +236,11 @@ function ToolCard({ tool }: { tool: Tool }) {
 export function ToolsHub() {
   return (
     <div className="space-y-8">
-      <div className="flex items-start gap-3 rounded-xl border bg-card p-4 sm:p-5">
-        <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/20 sm:flex">
-          <Wrench className="h-5 w-5" aria-hidden />
-        </div>
-        <div className="text-sm leading-relaxed text-muted-foreground">
-          <p className="font-medium text-foreground">
-            The apps that make your week easier.
-          </p>
-          <p className="mt-1">
-            Bookmark them. Use them weekly. Tier-gated tools open only when your access tier unlocks them.
-          </p>
-        </div>
-      </div>
-
       {TOOL_GROUPS.map((group) => (
         <section key={group.id} className="space-y-4">
-          <header className="space-y-1">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              {group.title}
-            </h2>
-            <p className="text-sm text-muted-foreground">{group.blurb}</p>
-          </header>
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
+            {group.title}
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {group.tools.map((tool) => (
               <ToolCard key={tool.id} tool={tool} />

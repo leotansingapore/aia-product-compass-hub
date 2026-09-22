@@ -63,9 +63,7 @@ export function CheatSheetsList() {
   return (
     <div className="space-y-8">
       <p className="max-w-2xl text-sm text-muted-foreground">
-        {totalCount} one-page reference cards distilled from the full curriculum. Open the cheat
-        sheet for what you are about to do, not what you finished learning - frameworks,
-        scripts, and numbers worth screenshotting before a call, fact-find, or pitch.
+        {totalCount} one-page reference cards.
       </p>
 
       {/* Search pinned below the app header.

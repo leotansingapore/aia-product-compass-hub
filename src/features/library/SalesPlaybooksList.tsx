@@ -16,7 +16,6 @@ import {
   Pencil,
   FolderOpen,
   ArrowRight,
-  Sparkles,
   Lock,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -129,27 +128,6 @@ export function SalesPlaybooksList() {
 
   return (
     <div>
-      <div className="mb-6 rounded-2xl border bg-muted/40 p-4 md:p-5">
-        <div className="flex items-start gap-3">
-          <div className="rounded-full bg-primary/10 p-2 shrink-0">
-            <Sparkles className="h-4 w-4 text-primary" />
-          </div>
-          <div>
-            <div className="text-sm font-semibold mb-1">
-              Pick the asset that matches your moment
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Heading into a cold call or got pushback last meeting? Open{" "}
-              <strong>Scripts &amp; Objection Handling</strong>. Need to draw
-              the decoupling math on paper? <strong>Concept Cards</strong>.
-              Want a real receipt to show the prospect what's possible?{" "}
-              <strong>Case Vault</strong>. Every tab below is a full standalone
-              page — click in, find what you need, copy it, ship it.
-            </p>
-          </div>
-        </div>
-      </div>
-
       <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {sections.map((s) => {
           const Icon = s.icon;
