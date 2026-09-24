@@ -172,7 +172,7 @@ function createTurndown(TurndownServiceCtor: typeof TurndownService, gfm: any) {
 }
 
 // Convert markdown to HTML using marked
-function mdToHtml(md: string): string {
+export function mdToHtml(md: string): string {
   if (!md) return '';
   try {
     // Strip lone `>` lines used as visual spacers — they produce empty blockquotes
@@ -199,6 +199,18 @@ function mdToHtml(md: string): string {
           return `<div data-type="inline-video" data-src="${url}">video</div>`;
         }
         return _m;
+      }
+    );
+
+    // A bare video URL on its own line (how recap lessons store their hero video) is autolinked by
+    // marked as <p><a href="url">url</a></p>. Show it as the player, not a plain link.
+    result = result.replace(
+      /<p>\s*<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>\s*<\/p>/gi,
+      (_m, url, text) => {
+        if (text.trim() !== url) return _m;
+        const info = detectVideoEmbed(url.replace(/&amp;/g, '&'));
+        if (!info.isVideo || !info.embedUrl) return _m;
+        return `<div data-type="video-embed" data-src="${url}" data-embed-url="${info.embedUrl}" data-platform="${info.platform}">${info.platform}</div>`;
       }
     );
 
