@@ -1,8 +1,8 @@
 ---
 week: 8
 day: 46
-title: "Choosing the Right Angle for This Prospect"
-big_idea: "You don't pick the angle in the pitch — you picked it in the Fact-Find. If the angle feels wrong, go back and re-listen."
+title: "Choosing the right angle for this prospect"
+big_idea: "You choose the angle in the fact-find, before the pitch starts. If it feels wrong, go back and listen again."
 kpi_link: "Week 8 KPI — 1 live pitch delivered; recorded + self-reviewed"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-03-18-sales-angles]]"
@@ -11,211 +11,225 @@ duration_minutes: 20
 tags: [next-60-days, week-8, new-fc, sales-angles, diagnostic, matching]
 ---
 
-# Day 46 — Choosing the Right Angle
+# Day 46: Choosing the right angle
 
-> **The one idea for today:** You don't pick the angle in the pitch — you picked it in the Fact-Find. If the angle feels wrong, go back and re-listen.
+> **The one idea for today:** You choose the angle in the fact-find, before the pitch starts. If it feels wrong, go back and listen again.
 
-By the time you close today you'll diagnose the right primary angle from Fact-Find signals (questions they ask, language they use, life stage), use the life-stage × DISC matrix to pre-pick angles before the pitch meeting, and switch angles mid-pitch when you realise you misread the prospect — without losing the meeting.
-
----
-
-## Where angle-matching actually happens
-
-The angle is not chosen *during* the pitch. It's chosen *during the Fact-Find* — based on what the prospect told you about what matters.
-
-If you walk out of a Fact-Find thinking *"I'm not sure which angle fits"*, you didn't listen hard enough. The prospect told you. You didn't capture.
-
-The work of today is two things:
-1. Knowing what signals to listen for during Fact-Find
-2. Knowing how to pre-map angles before the meeting based on life stage and DISC
-
-Both shift the angle decision from a moment of improvisation to a deliberate diagnostic.
+By the end of today you'll be able to pick the primary angle from what the prospect said in the fact-find (the questions they asked, the words they used, their life stage), use the life-stage and DISC matrix to make a first guess before the meeting, and change angle mid-pitch without losing the meeting when you realise you read them wrong.
 
 ---
 
-## The Fact-Find signals — what to listen for
+## Where the angle gets chosen
 
-Each angle broadcasts itself through specific language. Train your ear to catch these:
+You don't pick the angle halfway through the pitch. You pick it from the fact-find, based on what the prospect told you matters to them.
+
+If you leave a fact-find unsure which angle fits, you missed something. The prospect almost certainly told you, and you didn't write it down.
+
+Today covers two things:
+1. The signals to listen for in the fact-find
+2. How to make a first guess before the meeting from life stage and DISC
+
+Together they turn the angle from a guess on the spot into a decision you can explain.
+
+---
+
+## Fact-find signals
+
+Each angle shows up in the prospect's language. Train your ear for these.
 
 ### Wealth signals
 - *"What's the expected return?"*
 - *"How does this compare to [benchmark]?"*
 - *"I'm looking to grow my portfolio."*
-- *"I've been putting money in [index fund, FD, crypto]."*
-- They mention specific return rates, percentages, compounding
-- They have clear surplus income they're deploying
+- *"I've been putting money into [index funds, fixed deposits, crypto]."*
+- They mention return rates, percentages or compounding
+- They clearly have spare income they're putting to work
 
 ### Risk signals
 - *"I want peace of mind."*
 - *"What if something happens to me?"*
-- *"My dad had a stroke / my aunt got cancer…"*
-- *"I can't afford to be without coverage."*
-- They describe a specific family member's health event
-- They have dependants and carry the income
+- *"My dad had a stroke" or "my aunt got cancer..."*
+- *"I can't afford to be without cover."*
+- They describe a family member's illness in detail
+- They have dependants and are the main earner
 
 ### Legacy signals
-- *"When I'm gone…"*
+- *"When I'm gone..."*
 - *"I want to make sure my kids are okay."*
-- *"I've built this up — I don't want it lost."*
+- *"I've built this up and I don't want it lost."*
 - *"My estate is getting complicated."*
-- They talk about kids / grandkids unprompted
-- They're past 45–50 with stable assets
+- They bring up kids or grandkids without being asked
+- They're past 45 or 50 with stable assets
 
 ### Lifestyle signals
-- *"I want to [specific experience / goal]."*
+- *"I want to [specific experience or goal]."*
 - *"I've always wanted to [X]."*
 - *"I work to live, not live to work."*
 - *"Money's for enjoying life."*
-- They mention a specific dream, trip, or goal
-- They care more about what the money *enables* than what it *is*
+- They mention a specific dream, trip or goal
+- They care more about what the money makes possible than the money itself
 
-**The listening discipline:** on your iPad or notebook, keep a 4-column tally — W / R / L / LS — and put a check next to each one every time the prospect drops a signal. By end of Fact-Find, whichever column has the most checks is likely your primary angle.
+A simple way to keep track: on your iPad or notebook, keep a 4-column tally (W, R, L, LS) and tick a column each time the prospect gives a signal. At the end of the fact-find, the column with the most ticks is probably your primary angle.
 
 ---
 
-## The life-stage × DISC matrix (pre-pitch map)
+## The life-stage and DISC matrix
 
-If you have life-stage info + DISC profile before the Fact-Find, you can *pre-pick* probable angles. You'll still validate in the meeting, but the pre-map saves 30 minutes of open-ended probing.
+If you know the prospect's life stage and have a DISC read before the meeting, you can make a first guess at the angle. You still check it in the meeting, but you start with a hypothesis, so there's less open-ended probing.
+
+DISC comes from William Moulton Marston's 1928 model of four behaviour patterns. It's a conversation aid, not a validated personality test, so treat every read as a guess.
 
 | Life stage | D | I | S | C |
 |---|---|---|---|---|
-| **Young professional (22-30)** | Wealth | Lifestyle | Risk | Wealth |
-| **Newly married / BTO stage** | Lifestyle | Lifestyle | Risk | Risk |
-| **New parent (30-40)** | Risk | Risk | Risk | Risk |
-| **Mid-career (35-50)** | Wealth | Lifestyle | Risk | Wealth |
-| **Pre-retirement (50+)** | Legacy | Lifestyle | Legacy | Legacy |
-| **HNW / business owner** | Wealth | Wealth | Legacy | Legacy |
-| **Retiree** | Legacy | Lifestyle | Legacy | Risk |
+| Young professional (22-30) | Wealth | Lifestyle | Risk | Wealth |
+| Newly married, BTO stage | Lifestyle | Lifestyle | Risk | Risk |
+| New parent (30-40) | Risk | Risk | Risk | Risk |
+| Mid-career (35-50) | Wealth | Lifestyle | Risk | Wealth |
+| Pre-retirement (50+) | Legacy | Lifestyle | Legacy | Legacy |
+| Wealthy client or business owner | Wealth | Wealth | Legacy | Legacy |
+| Retiree | Legacy | Lifestyle | Legacy | Risk |
 
-Not universal, but directionally correct. Patterns that hold:
+This is a rule of thumb from experience in the field. A few patterns come up often:
 
-- **New parents default to Risk** regardless of profile — the kid overrides everything
-- **Pre-retirees default to Legacy or Lifestyle** — the accumulation phase is behind them
-- **C profiles lean Wealth or Legacy** — analytical thinkers prefer quantifiable frames
-- **I profiles lean Lifestyle** — they buy on feel and experience
+- New parents usually lead with Risk whatever their profile, because the kid comes first
+- Pre-retirees usually lead with Legacy or Lifestyle, since their building-up years are mostly behind them
+- C profiles lean to Wealth or Legacy, because they like frames they can put numbers on
+- I profiles lean to Lifestyle, because they buy on feel and experience
 
-**Use the matrix as a hypothesis**, not a rule. Validate with actual Fact-Find signals.
-
----
-
-## Secondary angle — what to tail with
-
-After you've identified the primary, the secondary is usually the closest compatible angle. Compatibility pattern:
-
-![Secondary angle — what to tail with: Wealth; Lifestyle; Risk; Legacy](/next-60-days/images/n60-day-46-m0.webp)
-
-- **Wealth ↔ Lifestyle** — accumulation that funds specific experiences
-- **Risk ↔ Legacy** — protection today that passes on tomorrow
-- **Wealth ↔ Legacy** — accumulation that passes to heirs
-- **Risk ↔ Lifestyle** — protection that preserves the lifestyle you've built
-
-**The mismatch to avoid:** leading with Wealth and tailing with Risk (or vice-versa). These are opposing motivations — *grow the pile* vs *protect the pile*. Switching between them mid-pitch feels contradictory, as though you haven't decided what the pitch is about. Keep the primary and secondary in the same half (accumulation / protection).
+Use the matrix as a starting guess and let the fact-find signals decide.
 
 ---
 
-## Switching angles mid-pitch
+## Choosing the secondary angle
 
-Sometimes you start pitching the wrong angle and realise it halfway. Signs:
+Once you have the primary, the secondary is usually the angle that sits most comfortably next to it.
 
-- Prospect's energy dropped 5 minutes in
-- They're asking questions from a completely different angle (*"but what happens if…"*)
-- They seem polite but disengaged
-- They're hedging rather than engaging
+![Choosing the secondary angle: Wealth; Lifestyle; Risk; Legacy](/next-60-days/images/n60-day-46-m0.webp)
 
-**The rescue:** stop pitching, ask a clarifying question, switch.
+Think of the four angles in two halves. Wealth and Lifestyle are the growing-and-using half, while Risk and Legacy are the protecting-and-passing-on half. The strongest pairs sit in the same half:
 
-> *"Let me pause a second — I want to make sure I'm pitching this the right way. When you think about this plan in your life — is the main thing it's doing for you [angle A] or more about [angle B]?"*
+- Wealth and Lifestyle: growth that pays for specific experiences
+- Risk and Legacy: protection now that passes on later
 
-Once they answer, restart the pitch from the right angle. Losing 3 minutes to an angle switch is fine. Losing 20 minutes to the wrong angle is not.
+Two pairs cross the halves and still work well enough:
 
-**Don't pretend the switch didn't happen.** Prospects respect the honesty — *"I was pitching one frame, you're showing me a different frame is more relevant, let me adjust."* That's advisor-thinking, not pitch-reciting.
+- Wealth and Legacy: growth that ends up with your heirs
+- Risk and Lifestyle: protection that keeps the lifestyle you've built
 
----
-
-## The danger of over-indexing on one angle
-
-Some FCs become obsessed with one angle — usually the one that matches their own motivator.
-
-- A Wealth-oriented FC (young C profile, high saver) pitches every prospect on compounding math
-- A Risk-oriented FC (someone who had a family CI event) pitches every prospect on worst-case protection
-
-Both miss most prospects. The discipline isn't choosing a favourite angle — it's *listening to which angle the prospect needs* and flexing.
-
-**Self-check:** look at your last 5 pitches. Did you pitch more than 3 of them with the same angle? If yes, you're over-indexing on your own motivator, not the prospect's.
+The pair to avoid is Wealth with Risk. One says "grow the pile" and the other says "don't lose it". Switching between them mid-pitch sounds as if you haven't decided what the pitch is about.
 
 ---
 
-## Double-check before you pitch
+## Changing angle mid-pitch
 
-Before you finalise your pitch construction, run this check:
+Sometimes you realise halfway through that you're on the wrong angle. The signs:
 
-1. **What primary angle am I pitching?** (Wealth / Risk / Legacy / Lifestyle)
-2. **What 2+ specific Fact-Find signals support this angle?** (quote them)
-3. **What secondary angle am I tailing with?** (must be compatible, not opposite)
-4. **What hot-button callback am I using?** (tied to the primary angle)
-5. **What profile-matched close am I using?** (D/I/S/C close from Day 38)
+- Their energy dropped a few minutes in
+- Their questions come from a different angle entirely (*"but what happens if..."*)
+- They're polite but switched off
+- They're hedging instead of engaging
 
-If all 5 answer cleanly, the pitch is built. If any answer is vague, go back to the Fact-Find data before pitching.
+The fix is to stop, ask and switch:
+
+> *"Can I pause for a second? I want to make sure I'm explaining this the right way. When you think about what this plan would do in your life, is it mainly about [angle A], or more about [angle B]?"*
+
+When they answer, restart from the right angle. Losing 3 minutes to a switch is fine, and it beats spending 20 minutes on the wrong one.
+
+Be open about the change: *"I was looking at this one way, and you've shown me another way matters more to you, so let me adjust."* Prospects tend to respect that. It shows you're listening to them and not reciting a script.
+
+---
+
+## Leaning on one angle too much
+
+Some FCs end up using the same angle for everyone, usually the one that matches their own motivation.
+
+- A Wealth-minded FC (say a young C profile who saves hard) pitches compounding to everyone
+- An FC whose family went through a critical illness pitches worst-case protection to everyone
+
+Both miss most prospects. Keep listening for the angle this prospect needs and adjust to it.
+
+Check yourself: look at your last 5 pitches. If 4 or more used the same primary angle, your own motivation is probably steering your read of the prospect.
+
+---
+
+## Check before you pitch
+
+Before you finalise the pitch, answer these five:
+
+1. What primary angle am I using? (Wealth, Risk, Legacy or Lifestyle)
+2. Which 2 or more fact-find signals support it? (Quote them.)
+3. What secondary angle am I pairing it with? (It must not be the opposite one.)
+4. What hot-button callback am I using? (Tied to the primary angle.)
+5. Which profile-matched close am I using? (The D, I, S or C close from Day 38.)
+
+If you can answer all five clearly, the pitch is ready. If any answer is vague, go back to your fact-find notes first.
+
+---
+
+## Sources
+
+- [William Moulton Marston - Wikipedia](https://en.wikipedia.org/wiki/William_Moulton_Marston) - his *Emotions of Normal People* (1928) set out the four behaviour types that DISC tools are built on
+- [Financial advisory process - MoneySense](https://www.moneysense.gov.sg/financial-advisory-process/) - your adviser has to explain why a plan suits your situation, which is why the angle comes from the fact-find and not from the product
 
 ---
 
 ## Quiz
 
 **Q1. The angle decision is made:**
-- A) In the middle of the pitch, based on how the prospect's responding
-- B) During the Fact-Find, based on signals the prospect gave you ✓
-- C) In the pre-pitch planning, based on the product you want to sell
+- A) In the middle of the pitch, based on how the prospect is responding
+- B) During the fact-find, based on the signals the prospect gave you ✓
+- C) In pre-pitch planning, based on the product you want to sell
 - D) Based on your own preferred angle
 
-**Why:** The Fact-Find is where the prospect told you what matters. If you walk out unsure which angle fits, you didn't listen hard enough. Picking the angle during the pitch is improvisation — it produces generic pitches because you're not working from real data. The W/R/L/LS signal tally during the Fact-Find is the diagnostic tool that makes the angle choice deterministic, not vibes-based.
+**Why:** The fact-find is where the prospect told you what matters. Picking the angle during the pitch means improvising, and improvised pitches come out generic. The W/R/L/LS tally gives you something concrete to decide from.
 
-**Q2. Primary angle *Wealth* is most naturally paired with which secondary?**
+**Q2. Which secondary angle pairs most naturally with a Wealth primary?**
 - A) Risk
 - B) Lifestyle ✓
-- C) Opposite — pick whichever
+- C) Opposite, so pick whichever
 - D) Doesn't matter
 
-**Why:** Wealth and Lifestyle are both *accumulation-side* motivators — grow the pile, use the pile. They reinforce each other without contradiction. Wealth and Risk are *opposite-side* motivators (growth vs protection) — leading with one and tailing with the other feels contradictory. The compatibility pattern is W↔LS, R↔L, W↔L, R↔LS. Stay in the same half of the grid.
+**Why:** Wealth and Lifestyle sit in the same half: grow the pile, then use it. They support each other. Wealth and Risk pull in opposite directions (growth against protection), so pairing them sounds contradictory.
 
-**Q3. You're 10 minutes into a Wealth-angle pitch and the prospect's energy visibly dropped. The right move is:**
-- A) Push through — the data is compelling
-- B) Pause, ask *"is the main thing this plan is doing for you about the returns, or more about something else?"*, and switch if they indicate a different angle ✓
+**Q3. You're 10 minutes into a Wealth-angle pitch and the prospect's energy has clearly dropped. The right move is:**
+- A) Push through, because the numbers are compelling
+- B) Pause, ask *"is this mainly about the returns for you, or more about something else?"*, and switch if they point to a different angle ✓
 - C) Apologise and reschedule
 - D) Switch products
 
-**Why:** A 10-minute angle mismatch is recoverable. A 30-minute one usually isn't — by then the prospect has mentally checked out. The honest pause + question is the rescue: it signals advisor-thinking (not pitch-reciting), gets you the real motivator directly, and lets you restart from the right angle. Prospects respect the recalibration; it actually *builds* trust rather than hurting it.
+**Why:** A 10-minute mismatch is easy to recover from, but after 30 minutes the prospect has usually switched off. Pausing to ask gets you the real motivation straight from them and lets you restart properly. Most prospects see the check as a sign that you're listening.
 
-**Q4. The W/R/L/LS tally column on your notepad is used to:**
-- A) Show off your system to the prospect
-- B) Check off every signal the prospect gives; the column with the most checks by end of Fact-Find is likely the primary angle ✓
-- C) Impress your mentor
-- D) Rate the prospect
+**Q4. The W/R/L/LS tally on your notepad is for:**
+- A) Showing off your system to the prospect
+- B) Ticking each signal the prospect gives, so the column with the most ticks at the end points to the primary angle ✓
+- C) Impressing your mentor
+- D) Rating the prospect
 
-**Why:** Angle-picking from memory produces bias — you remember what confirms your hypothesis and forget what didn't. A visible tally forces objectivity. By end of a 45-min Fact-Find, if Risk has 7 checks and Wealth has 1, the primary angle is Risk regardless of what you thought going in. The tally turns angle-picking from vibes-based to data-based.
+**Why:** Memory is biased. You remember what fits your first guess and forget what doesn't. A tally keeps you honest: if Risk has 7 ticks and Wealth has 1 after a 45-minute fact-find, the primary angle is Risk, whatever you expected going in.
 
-**Q5. The compatibility pattern says secondary angle should pair with primary on the same "half":**
+**Q5. The strongest primary-and-secondary pairs come from:**
 - A) Wealth + Risk
 - B) Legacy + Lifestyle
-- C) Accumulation-side (Wealth ↔ Lifestyle) or Protection-side (Risk ↔ Legacy) — same half of the grid ✓
+- C) The same half: the growing side (Wealth with Lifestyle) or the protecting side (Risk with Legacy) ✓
 - D) Any combination is fine
 
-**Why:** Wealth and Lifestyle both live in the accumulation/using half (grow the pile → use the pile). Risk and Legacy both live in the protection/passing half (protect the pile → pass the pile on). Pairing within a half reinforces; pairing across halves contradicts. Wealth (grow!) + Risk (don't lose!) sends mixed signals — the prospect can't tell what the pitch is fundamentally about.
+**Why:** Wealth and Lifestyle both belong to growing and using the pile. Risk and Legacy both belong to protecting it and passing it on. Pairs from the same half reinforce each other. Wealth with Risk sends mixed signals, and the prospect can't tell what the pitch is really about.
 
-**Q6. A FC looks at their last 5 pitches and notices 4 of them used Wealth as the primary angle. The self-diagnosis should be:**
-- A) Wealth is universally the best angle
-- B) They're over-indexing on their own motivator rather than the prospect's — their own preference is leaking into how they read every prospect ✓
+**Q6. An FC looks at their last 5 pitches and sees that 4 used Wealth as the primary angle. What's the most likely explanation?**
+- A) Wealth is the best angle for everyone
+- B) Their own motivation is shaping how they read every prospect ✓
 - C) All their prospects were C profiles
 - D) The matrix is wrong
 
-**Why:** Over-indexing is the most common angle-mistake for experienced FCs. A Wealth-oriented FC (often a young C-profile themselves) sees Wealth signals everywhere because they *resonate* with them — while missing Risk, Legacy, or Lifestyle signals that were equally present. The fix is auditing your own pattern: if >60% of pitches use the same angle, you're pitching from your lens, not theirs.
+**Why:** A Wealth-minded FC notices Wealth signals because those signals mean something to them, and misses the Risk, Legacy or Lifestyle signals that were just as present. If most of your pitches use the same angle, you're probably pitching from your point of view instead of the prospect's.
 
-**Q7. The 5-point double-check before delivering a pitch includes:**
-- A) Primary angle + 2+ supporting signals + secondary angle + hot-button callback + profile-matched close ✓
+**Q7. The 5-point check before a pitch covers:**
+- A) Primary angle + 2 or more supporting signals + secondary angle + hot-button callback + profile-matched close ✓
 - B) Product, price, promotion, place, people
 - C) Opening, middle, close, summary, follow-up
 - D) DISC + tonality + body + volume + pace
 
-**Why:** The 5-point check operationalises the pre-pitch work: (1) name the primary angle, (2) cite 2+ Fact-Find signals that support it, (3) name the compatible secondary, (4) specify the hot-button callback, (5) specify the profile-matched close technique. If any of the 5 is vague, the pitch isn't ready — more Fact-Find data needed. The check turns pitch construction from instinct into a repeatable diagnostic.
+**Why:** Each point makes you name something specific: the angle, the evidence for it, the pairing, the callback and the close. If any one is vague, you need more from the fact-find before you're ready to pitch.
 
 ---
 

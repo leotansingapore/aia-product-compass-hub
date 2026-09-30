@@ -1,8 +1,8 @@
 ---
 week: 8
 day: 45
-title: "Sales Angles — Wealth, Risk, Legacy, Lifestyle"
-big_idea: "Four angles cover almost every prospect's motivation. Pick the one that fits what they actually care about — and the pitch writes itself."
+title: "Sales angles: wealth, risk, legacy, lifestyle"
+big_idea: "Four angles cover almost every prospect's motivation. Pick the one that matches what this person cares about and the pitch gets much easier to write."
 kpi_link: "Week 8 KPI — 1 live pitch delivered; recorded + self-reviewed"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-03-18-sales-angles]]"
@@ -11,27 +11,26 @@ duration_minutes: 20
 tags: [next-60-days, week-8, new-fc, sales-angles, framing, pitch]
 ---
 
-# Day 45 — The 4 Sales Angles
+# Day 45: The 4 sales angles
 
-> **The one idea for today:** Four angles cover almost every prospect's motivation. Pick the one that fits what they actually care about — and the pitch writes itself.
+> **The one idea for today:** Four angles cover almost every prospect's motivation. Pick the one that matches what this person cares about and the pitch gets much easier to write.
 
-By the time you close today you'll name the 4 sales angles (Wealth, Risk, Legacy, Lifestyle) and what each prospect type responds to, match any prospect to 1 primary angle + 1 secondary angle based on their hot buttons and life stage, and frame the same AIA product through 4 different angles depending on who you're talking to.
+By the end of today you'll be able to name the 4 sales angles (Wealth, Risk, Legacy, Lifestyle) and the kind of prospect each one suits, match any prospect to a primary and a secondary angle from their hot buttons and life stage, and present the same AIA plan four different ways depending on who's across the table.
 
 ---
 
-## Why angles matter
+## Why the angle matters
 
-Same product. Same client demographics. Same price. Two FCs pitch the same plan — one closes, one doesn't.
+Two FCs pitch the same plan to similar clients at the same price. One closes and one doesn't. Often the difference is the angle: the motivation the pitch was built around.
 
-The difference is often the *angle* — the motivational frame the pitch hung from.
+A retirement plan can be pitched four ways:
 
-A retirement plan can be pitched as:
-- **Wealth** — *"this compounds at 6% annualised over 25 years, giving you $1.8M at retirement"*
-- **Risk** — *"this protects you from outliving your savings — the payout continues no matter how long you live"*
-- **Legacy** — *"when you're gone, the remaining balance passes to your kids tax-free"*
-- **Lifestyle** — *"this funds the 3-month Europe trip with your wife you've been talking about for 5 years"*
+- Wealth: *"Here's how the projected value builds over 25 years, what's guaranteed and what isn't."*
+- Risk: *"This is about not outliving your savings. Here's the income floor you'd have."*
+- Legacy: *"Here's what goes to your kids if you're not around, and how the nomination gets it to them."*
+- Lifestyle: *"This is the plan for the three-month Europe trip with your wife you've been talking about for 5 years."*
 
-All four are true. Only *one* activates the specific prospect in front of you. Matching the angle to the prospect is the single highest-leverage adjustment in pitch construction.
+All four can be true of the same plan, but usually only one gets this prospect leaning forward.
 
 ---
 
@@ -39,154 +38,162 @@ All four are true. Only *one* activates the specific prospect in front of you. M
 
 ![The 4 angles side by side: Wealth (grow the pile); Risk (protect the pile); Legacy (pass the pile on); Lifestyle (use the pile)](/next-60-days/images/n60-day-45-m0.webp)
 
-| Angle | Core motivator | Prospect archetype |
+| Angle | What drives them | Who it often fits |
 |---|---|---|
-| **Wealth** | Accumulation, growth, compounding | Young professional, entrepreneur, analytical saver |
-| **Risk** | Protection, peace of mind, worst-case safety | New parents, sole breadwinners, health-conscious |
-| **Legacy** | Passing on, family continuity, heirs | HNW, older clients, family-oriented |
-| **Lifestyle** | Experiences, quality of life, specific dreams | Mid-career, goal-driven, experience-over-things |
+| Wealth | Growth, accumulation, compounding | Young professionals, business owners, analytical savers |
+| Risk | Protection, peace of mind, a safety net for the worst case | New parents, sole breadwinners, people who've watched a relative fall ill |
+| Legacy | Passing things on, family continuity | Older clients, wealthier clients, strongly family-focused people |
+| Lifestyle | Experiences, quality of life, a specific dream | Mid-career people with a clear goal |
 
-Most prospects have a **primary angle** (the #1 motivator) and a **secondary angle** (the supporting motivator). The pitch leads with primary, reinforces with secondary.
-
----
-
-## Angle 1 — Wealth
-
-**Core pitch language:**
-- *"Compound at X% annualised over Y years gets you to $Z."*
-- *"The math works — every $1 you put in becomes $3.50 in 25 years."*
-- *"Here's the growth curve. Here's the break-even point. Here's the 10-year, 20-year, 30-year outcome."*
-
-**Who it fits:**
-- Young professionals with high income, no dependants
-- Entrepreneurs comfortable with numbers
-- Analytical savers (often C profile)
-- Anyone who thinks in multiples and returns
-
-**Hot-button signals:**
-- They ask *"what's the expected return?"* early
-- They pull out a calculator or run the math in their head
-- They compare your number to a specific benchmark (STI, S&P, fixed deposit rate)
-- They say things like *"efficient," "compounding," "optimised"*
-
-**AIA products that lead with Wealth:**
-- Pro Achiever Elite (ILP-based accumulation)
-- Platinum Wealth Venture (HNW wealth building)
-- Elite Adventurer (growth-oriented ILP)
-
-**Pitch opener (Wealth):**
-> *"Let me show you the math. If we put $500/month into this structure for 25 years, here's what happens year by year. At 7% net of fees, you're at $380K by year 25. The interesting thing isn't the 25-year number — it's what happens from year 15 to year 25, when compounding actually kicks in. Watch this curve."*
+Most prospects have a primary angle (what matters most) and a secondary angle (what backs it up). Lead with the primary and use the secondary to reinforce it.
 
 ---
 
-## Angle 2 — Risk
+## Angle 1: Wealth
 
-**Core pitch language:**
-- *"Here's what happens without this coverage."*
-- *"Imagine the worst-case scenario — here's how this plan responds."*
-- *"This is the floor. No matter what happens, this is the minimum outcome for your family."*
+Language that fits:
+- *"Here's the benefit illustration year by year. This column is guaranteed, and this one is projected."*
+- *"Here's the year the surrender value passes what you've paid in."*
+- *"At the higher illustrated rate it projects to [figure from the illustration]. At the lower rate, [figure]. Neither is guaranteed."*
 
-**Who it fits:**
+Who it fits:
+- Young professionals with a good income and no dependants
+- Business owners who are comfortable with numbers
+- Analytical savers (often a C profile)
+- Anyone who thinks in returns and multiples
+
+Signals to listen for:
+- They ask *"what's the expected return?"* early on
+- They pull out a calculator or do the maths in their head
+- They compare your number with something specific (the STI, the S&P 500, a fixed deposit rate)
+- They use words like *"efficient,"* *"compounding,"* *"optimised"*
+
+AIA plans that lead with Wealth:
+- AIA Pro Achiever 3.0, a regular-premium investment-linked plan (ILP)
+- AIA Platinum Wealth Venture 2.0, an ILP with a 5-year premium term
+
+Two rules before you use this angle. You need CMFAS M9 and M9A to recommend an ILP, whose value rises and falls with its funds. And for a participating (par) plan, the illustration uses two rates capped under Life Insurance Association (LIA) guidelines, currently 4.25% and 3.00% a year, neither of them guaranteed.
+
+Opener (Wealth):
+> *"Let me walk you through the numbers. If we put $500 a month in for 25 years, this page shows the projected value year by year at two rates, a higher one and a lower one, and neither is guaranteed. Look at years 15 to 25 in particular. That's where the gap between what you've paid in and the projected value starts to widen. Do you want to go through it line by line?"*
+
+---
+
+## Angle 2: Risk
+
+Language that fits:
+- *"Here's what happens to your family's finances without this cover."*
+- *"Let's look at the worst case, and what this plan does in it."*
+- *"This is the floor. Whatever happens, this is the minimum your family would have."*
+
+Who it fits:
 - New parents
 - Sole breadwinners
-- People with sick parents or siblings who've seen what under-insurance looks like
-- S profiles (safety-first default)
+- People with a sick parent or sibling who've seen what being underinsured looks like
+- S profiles, who tend to put safety first
 
-**Hot-button signals:**
-- They mention a family member's health event or financial stress
+Signals to listen for:
+- They mention a family member's illness or money troubles
 - They talk about *"peace of mind,"* *"sleeping better,"* *"not worrying"*
-- They ask about claim scenarios, payout timelines, worst-case numbers
-- They have young kids and lean forward when you mention protection
+- They ask about claims, how fast payouts come, and worst-case numbers
+- They have young kids and lean in when you mention protection
 
-**AIA products that lead with Risk:**
-- AIA Beyond Critical Care
-- AIA Diamond Heritage / Absolute Critical Cover
-- AIA Pro Lifetime Protector II
-- AIA HealthShield Gold Max (IP shield)
+AIA plans that lead with Risk:
+- AIA Beyond Critical Care (major-stage critical illness cover, with a premium refund at the end of the term)
+- AIA Absolute Critical Cover (multi-stage critical illness and other conditions)
+- AIA Pro Lifetime Protector (II) (whole life cover for death, disability and multi-stage critical illness)
+- AIA HealthShield Gold Max (an Integrated Shield Plan that sits on top of MediShield Life)
 
-**Pitch opener (Risk):**
-> *"Let's start with the worst case. If you were diagnosed with a serious CI in the next 3 years, here's what your family's financial situation would look like under your current setup — and what it looks like with the coverage we're discussing. This isn't a fear pitch. It's just the arithmetic of two scenarios, side by side."*
+Opener (Risk):
+> *"Let's start with the worst case. If you were diagnosed with a serious critical illness in the next 3 years, here's what your family's finances would look like with what you have now, and here's what they'd look like with the cover we're discussing. I'm not trying to scare you. It's just two scenarios side by side, so you can see the difference. Which one would you rather your family be in?"*
 
 ---
 
-## Angle 3 — Legacy
+## Angle 3: Legacy
 
-**Core pitch language:**
-- *"When you're gone, here's what passes to your kids / spouse / heirs."*
-- *"This is about the generation after yours."*
-- *"The plan has to outlive you — let's make sure it does."*
+Language that fits:
+- *"If you're not around, here's what goes to your kids, your spouse or whoever you choose."*
+- *"This part is about the next generation."*
+- *"This plan is built to outlast you, so let's make sure it goes where you want."*
 
-**Who it fits:**
-- HNW clients
-- Older parents / grandparents
-- Business owners with family succession concerns
-- Anyone with family-oriented values at the surface of every answer
+Who it fits:
+- Wealthier clients
+- Older parents and grandparents
+- Business owners thinking about succession
+- Anyone whose answers keep coming back to family
 
-**Hot-button signals:**
+Signals to listen for:
 - They talk about *"my kids,"* *"what happens when I'm not here,"* *"my estate"*
-- They mention property, business, or concentrated assets that need structuring
-- They're past 45–50 with financial stability already in place
-- They ask about trusts, beneficiaries, tax implications of death
+- They mention property, a business or other large assets that need planning
+- They're past 45 or 50 and already financially stable
+- They ask about beneficiaries, nominations, trusts or what happens on death
 
-**AIA products that lead with Legacy:**
-- Platinum Indexed Legacy
-- Pro Lifetime Protector II (permanent life with cash value)
-- Whole-life structures with large face values
+AIA plans that lead with Legacy:
+- AIA Platinum Indexed Legacy (III), a US-dollar indexed universal life plan aimed at wealthier clients
+- AIA Pro Lifetime Protector (II), whole life cover with an investment component
+- Whole life plans with a large sum assured
 
-**Pitch opener (Legacy):**
-> *"When we started this conversation, you mentioned your two kids. What I want to show you is what this plan does when you're 80 vs when you pass. Two different moments, two different uses. Let's look at the second one first — because that's the one most advisors skip."*
+Two facts you can use. Singapore has had no estate duty on deaths since 15 February 2008, and a policy nomination directs the payout to the people your client names. Wills, trusts and assets overseas are specialist work, so refer those on.
+
+Opener (Legacy):
+> *"When we started, you mentioned your two kids. I'd like to show you what this plan does at two different points: when you're 80, and when you pass on. They're two different uses of the same plan. Would it be all right to start with the second one? It's the one people tend to put off thinking about."*
 
 ---
 
-## Angle 4 — Lifestyle
+## Angle 4: Lifestyle
 
-**Core pitch language:**
-- *"This funds [specific experience they mentioned]."*
-- *"Here's the payment structure for the specific thing you want to do."*
-- *"The plan exists to enable the life — not the other way around."*
+Language that fits:
+- *"This pays for [the specific thing they told you about]."*
+- *"Here's how the payments line up with what you want to do."*
+- *"The plan is there to pay for the life you want."*
 
-**Who it fits:**
+Who it fits:
 - Mid-career professionals with specific goals
-- Experience-over-things people
-- Prospects who mentioned a specific dream (Europe trip, early retirement, a second home, a sabbatical)
-- I profiles — they buy on the *feel* of the lifestyle
+- People who'd rather spend on experiences than things
+- Prospects who've mentioned a particular dream (the Europe trip, early retirement, a sabbatical)
+- I profiles, who buy on how the future feels
 
-**Hot-button signals:**
-- They mention a specific experience or goal unprompted
-- They light up when talking about *what they'd do* if money weren't a constraint
-- They have disposable income but aren't optimising for accumulation
-- They care more about *what they'll do with the money* than what the money does
+Signals to listen for:
+- They bring up a specific goal without being asked
+- They light up when you ask what they'd do if money weren't a problem
+- They have spare income but aren't focused on building a pile
+- They care more about what the money will do for them than about the money itself
 
-**AIA products that lead with Lifestyle:**
-- Platinum Retirement Elite (retirement income structured around lifestyle needs)
-- Elite Adventurer (mid-career wealth with flexibility)
-- Annuity-style products that fund specific outcomes
+AIA plans that lead with Lifestyle:
+- AIA Platinum Retirement Elite, an ILP where you choose a target monthly retirement income and retirement age (the income depends on fund performance and isn't guaranteed)
+- CPF LIFE, which is the floor every Lifestyle pitch for an older prospect should start from
 
-**Pitch opener (Lifestyle):**
-> *"You mentioned earlier you'd love to do that 3-month trip around Europe with your wife — and you've been saying 'next year' for 5 years. Here's what I want to show you. This isn't about retirement in general. It's about the specific trip. Let me show you the $X/month that gets you on that plane within the next 2 years."*
+Opener (Lifestyle):
+> *"Earlier you said you'd love to do that three-month trip around Europe with your wife, and that you've been saying 'next year' for 5 years. Forget retirement in general for a minute. Here's roughly what it would take each month to get you both on that plane within 2 years. Doable?"*
 
-**Pre-retiree variant — CPF-floor framing.** For a 50–60 prospect with their CPF position established in Fact-Find, the Lifestyle pitch lands harder when the CPF *floor* is named explicitly — because then the gap between the floor and the desired lifestyle is the precise size of the product:
+With a prospect aged 50 to 60, name their CPF LIFE payout as the floor. The gap between that floor and the life they described is what you're planning for. Take their own figure from the CPF Retirement Payout Planner. As a reference point, CPF estimates that someone turning 55 in 2026 who sets aside the Full Retirement Sum of $220,400 gets about $1,780 a month from 65 on the Standard Plan, and that's an estimate, not a fixed amount.
 
-> *"At 65 your CPF LIFE will pay you about $1,600/mo guaranteed for life — that's the floor. Your target is $4,500/mo to live the way you described. So the gap is $2,900/mo, every month from 65 onward, growing with inflation. This plan is what closes that specific gap. It's not 'retirement insurance' — it's the $2,900/mo machine."*
+> *"Based on your CPF estimate, CPF LIFE would pay you about $1,780 a month from 65, for life. That's your floor. You said you'd need about $4,500 a month to live the way you described, so the gap is about $2,700 a month, and more if prices keep rising. What we need to work out is how much of that gap you want covered by something guaranteed, and how much you're comfortable leaving to something that can grow but isn't guaranteed. How does that sound as a starting point?"*
 
-Naming the CPF floor signals you've done the work. Most pre-retirees have never had an advisor quote their floor at all — let alone use it to size the gap. That single move differentiates you.
+Naming the floor shows you've done your homework.
 
 ---
 
-## The primary + secondary angle pattern
+## Pairing a primary and a secondary angle
 
-Most prospects have 1 primary + 1 secondary angle. Lead with primary, reinforce with secondary.
+| Prospect | Primary + secondary | How the pitch runs |
+|---|---|---|
+| New parent, 34, young kids | Risk + Legacy | Lead with protection against the worst case, then add *"and this also sets up something for the kids' education"* |
+| Well-paid professional, 29 | Wealth + Lifestyle | Lead with the illustration, then add *"and here's what that could make possible at 40"* |
+| Parent, 55, stable career | Legacy + Risk | Lead with what goes to the family, then add *"and it protects your retirement income along the way"* |
+| Mid-career with a clear goal, 42 | Lifestyle + Wealth | Lead with the goal, then add *"and here's the accumulation that gets you there"* |
 
-**Examples:**
+Pick both from the fact-find. Then the primary becomes the frame of the pitch, with the secondary backing it up.
 
-| Prospect | Primary | Secondary | Pitch shape |
-|---|---|---|---|
-| New parent, 34, young kids | Risk | Legacy | Lead with protection against worst case; tail with *"and this also sets up the kids' education fund"* |
-| Young HNW professional, 29 | Wealth | Lifestyle | Lead with compounding math; tail with *"and here's what that enables at 40"* |
-| Older parent, 55, stable career | Legacy | Risk | Lead with what passes to heirs; tail with *"and along the way it protects your retirement income"* |
-| Mid-career goal-driven, 42 | Lifestyle | Wealth | Lead with the specific dream; tail with *"and the underlying accumulation math supports it"* |
+---
 
-**The skill:** identify primary + secondary from the Fact-Find, then structure the pitch so primary is the frame and secondary is the reinforcement. A pitch that hits both angles feels *complete* to the prospect — addressing their main motivation and their backup concern.
+## Sources
+
+- [CPF LIFE payouts: how much can I get every month? - CPF Board](https://www.cpf.gov.sg/service/article/how-much-cpf-payouts-can-i-get-every-month) - 2026 estimates of about $950, $1,780 and $3,440 a month from 65 for the Basic, Full and Enhanced Retirement Sums
+- [What is the CPF retirement sum? - CPF Board](https://www.cpf.gov.sg/member/infohub/educational-resources/what-is-the-cpf-retirement-sum) - 2026 retirement sums of $110,200 (Basic), $220,400 (Full) and $440,800 (Enhanced)
+- [Illustrated investment rate of return for par policies - Life Insurance Association Singapore](https://www.lia.org.sg/tools-and-resources/illustrated-investment-rate-of-return-for-par-policies/) - the 4.25% and 3.00% illustration rates for SGD par policies, and that neither is guaranteed
+- [Estate duty - IRAS](https://www.iras.gov.sg/taxes/other-taxes/estate-duty/estate-duty) - estate duty was removed for deaths on or after 15 February 2008
+- [AIA Platinum Retirement Elite - AIA Singapore](https://www.aia.com.sg/en/our-products/save-and-invest/investment-linked/aia-platinum-retirement-elite) - an ILP where the client picks a target monthly income and retirement age
 
 ---
 
@@ -198,55 +205,55 @@ Most prospects have 1 primary + 1 secondary angle. Lead with primary, reinforce 
 - C) Open, explore, explain, close
 - D) Features, benefits, advantages, proof
 
-**Why:** Wealth (grow the pile) appeals to accumulators. Risk (protect the pile) appeals to protectors. Legacy (pass the pile on) appeals to heirs-first thinkers. Lifestyle (use the pile) appeals to experience-seekers. Every prospect's primary motivation fits roughly into one of these four. The skill is identifying which one lives at the top of *their* stack, not which one lives at the top of *yours*.
+**Why:** Wealth (grow the pile) suits accumulators. Risk (protect the pile) suits protectors, Legacy (pass it on) suits people who think about their heirs first, and Lifestyle (use the pile) suits people chasing an experience. The job is to find which one sits at the top of the prospect's list, not yours.
 
-**Q2. A 34-year-old new parent with young kids most likely responds best to which primary angle?**
+**Q2. Which primary angle usually suits a 34-year-old new parent with young kids best?**
 - A) Wealth
 - B) Risk (with Legacy as secondary) ✓
 - C) Lifestyle
 - D) Legacy alone
 
-**Why:** New parents with young kids default to *protection* as the dominant motivator — what happens if I'm not here to provide? Risk is the primary angle. Legacy (*what passes to the kids*) is the natural secondary because it reinforces the same "family-first" motivator from a different direction. Wealth and Lifestyle can come later once the protection floor is established.
+**Why:** New parents usually think first about protection: what happens if I'm not here to provide? Legacy is the natural secondary because it comes from the same family-first place. Wealth and Lifestyle can come later, once the protection is in place.
 
-**Q3. A pitch uses the *primary + secondary* angle pattern because:**
+**Q3. Why pair a primary angle with a secondary one?**
 - A) It makes the pitch longer
-- B) Most prospects have a #1 motivator plus a supporting motivator; hitting both feels *complete* and addresses their main concern + backup concern ✓
+- B) Most prospects have a main motivation and a supporting one, and covering both makes the pitch feel complete ✓
 - C) It confuses the prospect so they agree faster
 - D) Regulators require it
 
-**Why:** Real prospects rarely have a single pure motivation. A new parent is Risk-first but also cares about Legacy. A HNW entrepreneur is Wealth-first but also about Lifestyle. Leading with primary + reinforcing with secondary is how you structure a pitch that *feels* complete — it addresses both the top-of-mind concern and the one-click-down concern without confusing the frame.
+**Why:** People rarely have a single motivation. A new parent is Risk first but also cares about Legacy, and a wealthy business owner may be Wealth first with Lifestyle close behind. Leading with one and reinforcing with the other covers both concerns without muddling the frame.
 
-**Q4. Hot-button signals for the Wealth angle include:**
+**Q4. Which of these signals points to the Wealth angle?**
 - A) *"I want peace of mind"*
-- B) *"What's the expected return?"* + mentions specific benchmarks or return rates + pulls out a calculator ✓
-- C) *"When I'm gone…"*
+- B) *"What's the expected return?"*, comparisons with specific benchmarks, and doing the maths on the spot ✓
+- C) *"When I'm gone..."*
 - D) *"I've always wanted to do a 3-month Europe trip"*
 
-**Why:** Each answer signals a different angle. A = Risk (peace of mind). C = Legacy (when I'm gone). D = Lifestyle (specific experience). B is Wealth — return-rate language, benchmark comparisons, and math-doing all signal accumulation-motivation. Reading these signals early in the Fact-Find lets you pre-map the pitch angle before the recommendation meeting.
+**Why:** A points to Risk, C to Legacy and D to Lifestyle. Return questions, benchmark comparisons and on-the-spot maths all point to Wealth. Spot them early in the fact-find and you can plan the angle before the recommendation meeting.
 
-**Q5. A pitch for a 55-year-old pre-retiree with stable assets most naturally leads with:**
-- A) Wealth — compounding math
-- B) Risk — worst-case protection
-- C) Legacy or Lifestyle — their accumulation phase is behind them, focus shifts to passing on or using ✓
+**Q5. A pitch to a 55-year-old pre-retiree with stable assets most naturally leads with:**
+- A) Wealth, with a long compounding curve
+- B) Risk, with worst-case protection
+- C) Legacy or Lifestyle, because the building-up years are mostly behind them and the focus moves to passing money on or using it ✓
 - D) Cold outreach scripts
 
-**Why:** Pre-retirees have moved past accumulation. Leading with Wealth ("compound at 6%") assumes 25 years of runway they don't have. Leading with Risk is over-indexed when their financial stability is already built. The natural leads are Legacy (what passes to heirs) or Lifestyle (specific retirement uses of the money). Life-stage × DISC matrix gives the starting hypothesis; Fact-Find signals confirm.
+**Why:** A 25-year compounding curve assumes time they don't have, and Risk is less pressing once the finances are stable. Legacy (what goes to the family) or Lifestyle (what the money pays for in retirement) are the natural leads. The life-stage and DISC matrix gives you a first guess, and the fact-find confirms it.
 
-**Q6. The "Pitch opener (Lifestyle)" example ties to a specific hot button: *"You mentioned earlier you'd love to do that 3-month trip around Europe with your wife…"*. Why tie the opener this way?**
+**Q6. The Lifestyle opener starts with *"Earlier you said you'd love to do that three-month trip around Europe with your wife..."*. Why open like that?**
 - A) Lifestyle pitches require specific examples
-- B) Specific callbacks to a hot button they surfaced activate the emotional buying circuitry and personalise the pitch — generic "retirement" talk doesn't ✓
+- B) Calling back to something they told you makes the pitch personal and connects to what they actually want, which general retirement talk doesn't ✓
 - C) All openers should be this long
-- D) European travel is a universal motivator
+- D) European travel motivates everyone
 
-**Why:** Generic Lifestyle pitches ("retirement is about enjoying life") don't activate hot buttons. Specific callback to the actual thing they said they want ("the 3-month Europe trip with your wife you've been saying *next year* for 5 years") does. That's a hot-button + angle combined — the personalisation is what makes the pitch feel custom-built rather than generic. If the prospect never mentioned a specific dream, don't fake-specific; surface a real one first.
+**Why:** "Retirement is about enjoying life" doesn't connect with anyone. Calling back the exact trip they've been putting off for 5 years does. If the prospect never mentioned a specific goal, don't invent one. Find a real one first.
 
-**Q7. A pitch mistakenly leads with Wealth for a new parent who should have been Risk-primary. What's the likely pitch outcome?**
-- A) Strong close — parents like wealth-growth
-- B) Flatline — parent is scanning for *"what about my kids if something happens?"* and you're talking 25-year compounding curves ✓
-- C) Same result regardless
-- D) Prospect asks to refocus on compounding
+**Q7. An FC leads with Wealth for a new parent who should have been Risk-first. What's the likely outcome?**
+- A) A strong close, because parents like growth
+- B) The pitch goes flat. The parent is wondering what happens to the kids if something goes wrong, and you're showing a 25-year growth chart ✓
+- C) Same result either way
+- D) The prospect asks to focus on compounding
 
-**Why:** Angle mismatches produce flatlines. A new parent's top-of-mind concern is Risk (protection). A Wealth-angle pitch addresses a motivation they don't yet have ("I'm not thinking about growth — I'm thinking about what happens if I'm gone"). The parent nods politely through the compounding talk, doesn't say yes, and you can't figure out why. The angle mismatch is the hidden leak.
+**Why:** A wrong angle makes the pitch go flat. The parent nods politely through the growth chart, doesn't say yes, and unless you check the angle you won't know why.
 
 ---
 

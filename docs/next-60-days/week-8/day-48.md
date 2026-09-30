@@ -1,8 +1,8 @@
 ---
 week: 8
 day: 48
-title: "Practice — 1 Live Pitch on Camera, Self-Reviewed"
-big_idea: "One live pitch. Fully integrated. On tape. This is where Weeks 1–8 converge into one recording."
+title: "Practice: 1 live pitch on camera, self-reviewed"
+big_idea: "One live pitch, fully integrated, on tape. Everything from Weeks 1 to 8 goes into one recording."
 kpi_link: "Week 8 KPI — 1 live pitch delivered; recorded + self-reviewed"
 practice_submission: loom
 primary_sources:
@@ -15,214 +15,221 @@ duration_minutes: 45
 tags: [next-60-days, week-8, new-fc, practice, pitch, loom, recorded]
 ---
 
-# Day 48 — Practice: 1 Live Pitch on Camera
+# Day 48: Practice, 1 live pitch on camera
 
-> **The one idea for today:** One live pitch. Fully integrated. On tape. This is where Weeks 1–8 converge into one recording.
+> **The one idea for today:** One live pitch, fully integrated, on tape. Everything from Weeks 1 to 8 goes into one recording.
 
-By the time you close today you'll have delivered one full pitch — to a real prospect or as a recorded simulation — integrating everything from Weeks 1–8; self-reviewed the recording across 8 dimensions (Intent / Tonality / DISC match / Hot button / Angle / Feature-to-benefit / Close / Silence discipline); and submitted the recorded pitch + 8-dimension self-review + Loom reflection. Those three artefacts unlock Week 9.
+By the end of today you'll have delivered one full pitch that uses everything from Weeks 1 to 8, to a real prospect or as a recorded simulation. You'll have scored the recording on 8 dimensions (intent, tonality, DISC match, hot button, angle, feature-to-benefit, close, silence) and submitted three things: the recording, the self-review and a Loom reflection. Those three open Week 9.
 
 ---
 
 ## The bar today
 
-Week 7 practised 3 pitches across 3 profiles. Week 8 is the *one pitch, fully integrated.* Less breadth, more depth. Every technique from Weeks 1–8 visible in a single recording.
+In Week 7 you did 3 pitches across 3 profiles. This week it's one pitch with everything in it, so there's less breadth and more depth. Every technique from Weeks 1 to 8 should show up somewhere in the recording.
 
-**The pitch is live-to-a-prospect if possible.** If not, a recorded 10-minute simulation with a mentor or roleplay partner. Either way — **recorded**. You cannot self-review what you cannot re-watch.
+Pitch a real prospect if you can. If not, record a 10-minute simulation with your mentor or a roleplay partner. Either way it has to be recorded, because you can't review what you can't watch back.
 
-Target length: **8–15 minutes.** Short enough to watch back critically, long enough to demonstrate the full pitch flow (intent → Fact-Find signal → angle → product → hot-button callback → close).
+Aim for 8 to 15 minutes. That's short enough to watch back properly and long enough to show the whole flow: intent statement, fact-find signal, angle, product, hot-button callback, close.
 
 ---
 
 ## The 8-dimension self-review
 
-Watch the recording twice. First for the story, second for the craft. Rate 1–5 on each dimension:
+Watch the recording twice, first for the flow of the whole pitch and then for the detail. Score each dimension from 1 to 5.
 
-### 1 · Intent statement (Day 7–8)
-Did you open with a structured intent statement including a pattern interrupt? Did it feel scripted or natural?
+### 1 · Intent statement (Days 7 to 8)
+Did you open with a structured intent statement with a pattern interrupt in it? Did it sound scripted or natural?
 
 ### 2 · Tonality (Day 5)
-Did you use the right tonality for load-bearing sentences — Certainty on the framing, Reason on the close, Empathy on hot-button moments?
+Did you use the right tone on the sentences that carry the most weight: certainty when you framed the problem, reason on the close, empathy at the hot-button moments?
 
-### 3 · DISC match (Week 6–7)
-Did your pace, energy, and content choice match the prospect's profile? If you were talking to a C, was the pitch data-led? If S, was it assurance-led?
+### 3 · DISC match (Weeks 6 to 7)
+Did your pace, energy and content suit the prospect's profile? With a C, was the pitch built on data? With an S, did it give them reassurance?
 
-### 4 · Hot button callback (Day 40)
-Did you explicitly quote something the prospect said earlier? *"When I was putting this together, I kept coming back to what you said about [X]."*
+### 4 · Hot-button callback (Day 40)
+Did you quote something the prospect said earlier? For example: *"When I was putting this together, I kept coming back to what you said about [X]."*
 
-### 5 · Angle clarity (Day 45–46)
-Can you name the primary angle of the pitch (W/R/L/LS) and the secondary? Were they visible in the recording?
+### 5 · Angle clarity (Days 45 to 46)
+Can you name the primary angle (W, R, L or LS) and the secondary? Could you see both in the recording?
 
 ### 6 · Feature-to-benefit (Day 47)
-Did every feature translate to a personal benefit tied to their hot button? Or did you feature-dump?
+Did every feature turn into a personal benefit tied to their hot button, or did you read out features?
 
-### 7 · Close technique (Day 38)
-Was the close technique profile-matched — Assumptive for D, Reassurance for I, Procedural for S/C? Did you book the specific next step on both calendars?
+### 7 · Close (Day 38)
+Did the close suit the profile: assumptive for a D, reassurance for an I, procedural for an S or C? Did you both put the specific next step in your calendars?
 
-### 8 · Silence discipline (Day 44)
-Did you hold 5–10 seconds of silence after loaded questions? Or did you fill the pauses?
+### 8 · Silence (Day 44)
+Did you hold 5 to 10 seconds of silence after loaded questions, or did you fill the pauses?
 
-**Self-score table:**
+Self-score table:
 
-| Dimension | Score (1–5) | Evidence |
+| Dimension | Score (1-5) | Evidence |
 |---|---|---|
 | Intent statement | | |
 | Tonality | | |
 | DISC match | | |
-| Hot button callback | | |
+| Hot-button callback | | |
 | Angle clarity | | |
 | Feature-to-benefit | | |
 | Close | | |
 | Silence | | |
-| **Total /40** | | |
+| Total /40 | | |
 
-**Scoring interpretation:**
-- 34+ — pitch is ready for real-world cases; minor polish
-- 27–33 — competent; 1–2 dimensions need targeted work
-- <27 — foundational gap; use Week 9's momentum to re-record
+What the total means:
+- 34 and above: ready for real cases, with some polishing
+- 27 to 33: competent, with 1 or 2 dimensions that need work
+- Below 27: a gap in the foundations, so use Week 9 to re-record
 
-**Nobody scores 40 on their first recorded integration pitch.** Being honest about the 3 lowest dimensions is the whole point.
+Nobody scores 40 on their first integrated pitch. The point is to be honest about your 3 lowest dimensions.
 
 ---
 
-## Live delivery vs recorded simulation
+## Live pitch or recorded simulation
 
-### Live delivery to a prospect
-- Record from your phone propped discreetly to the side (with their consent) or audio-only
-- Or take notes during, record a 10-minute debrief on video *immediately after* — what you did, where you adjusted, what worked, what didn't
-- Either counts
+### Live, with a prospect
+- Ask the prospect's permission before you record anything, and record openly, never hidden. A recording of an identifiable person is their personal data under the PDPA, so tell them what it's for (your own training review with your mentor), keep it secure and delete it once you've reviewed it. Check your office's policy on recording client meetings too.
+- If they'd rather not be recorded, that's fine. Take notes during the meeting, then record a 10-minute video debrief straight afterwards covering what you did, where you adjusted, and what worked and what didn't.
+- Either way counts.
 
 ### Recorded simulation
-- You + mentor or senior FC as the roleplay prospect
-- Pre-agree the profile (D/I/S/C) and a plausible hot button
-- 8–15 minutes, continuous, one take
-- Record on Loom or phone camera
+- You plus your mentor or a senior FC playing the prospect
+- Agree the profile (D, I, S or C) and a believable hot button beforehand
+- 8 to 15 minutes, continuous, one take
+- Record on Loom or your phone
 
-**Live is preferred; simulation is legitimate.** The key is that it's *continuous* — a single take, not stitched together. Continuous forces you to handle the off-script moments.
+A live pitch is better, but a simulation is fine. What matters is that it's continuous: one take, nothing stitched together, because that forces you to handle the moments that go off script.
 
 ---
 
 ## Recording setup
 
-- **Camera at eye level** — tripod or stack of books, not handheld
-- **Good light on your face** — window light works
-- **Quiet environment**
-- **Wear what you'd wear to an actual pitch** — the physical habit matters
-- **Have your actual pitch materials open** — iPad, concept illustrations, notepad
+- Camera at eye level, on a tripod or a stack of books, not handheld
+- Good light on your face (a window works)
+- A quiet room
+- Wear what you'd wear to a real pitch, because the habit matters
+- Have your real pitch materials open: iPad, concept visuals, notepad
 
-Treat the setup like a real pitch. If the roleplay feels different from a real meeting, the tape won't teach you what the real meeting would.
+Set it up like a real meeting. If the roleplay feels different from the real thing, the tape won't teach you what the real meeting would.
 
 ---
 
-## Submission format
+## What to submit
 
-Three artefacts:
+Three things.
 
-### Artefact 1 — The recording
-Loom link or Google Drive video link. Shareable with your mentor.
+### 1. The recording
+A Loom or Google Drive link your mentor can open. If it's a real client meeting, share it only with your mentor, and delete it once you've both reviewed it.
 
-### Artefact 2 — The 8-dimension self-review
-One page (Notion, Google Doc). Scores, evidence, and a 2-sentence note per dimension.
+### 2. The 8-dimension self-review
+One page (Notion or a Google Doc) with your scores, the evidence and a 2-sentence note for each dimension.
 
-### Artefact 3 — Loom reflection (3–5 min)
-Short meta-reflection answering:
+### 3. The Loom reflection (3 to 5 minutes)
+A short reflection that answers:
 1. Which 3 dimensions scored lowest?
-2. What specifically will you change for your next real pitch?
-3. Going into Week 9 (The Close) — what foundation does this pitch need to support?
+2. What exactly will you change in your next real pitch?
+3. Going into Week 9 (the close), what does this pitch need to hold up?
 
 ### Mentor review
-Book a **20-minute** mentor review this week. The longest of the practice-day reviews. The mentor watches the recording with you, gives live feedback on delivery, and specifically critiques:
-1. Did the pitch *integrate* the Weeks 1–8 stack, or did parts feel detached?
-2. Where would the prospect have been most likely to close or drop off?
+Book a 20-minute review with your mentor this week, the longest of the practice-day reviews. Your mentor watches the recording with you, gives feedback on your delivery, and looks at two things in particular:
+1. Did the pitch bring Weeks 1 to 8 together, or did some parts feel bolted on?
+2. Where was the prospect most likely to say yes, or to drop off?
 
 ---
 
 ## Using this recording in Week 9
 
-Week 9 is The Close — which builds on whatever pitch foundation this Day-48 recording revealed. Specifically:
+Week 9 is about the close, and it builds on whatever this recording shows about your pitch:
 
-- If your pitch had a weak close, Week 9 Day 49–51 (closing techniques) will be the most relevant to you
-- If your pitch surfaced objections you struggled with, Week 9 Day 52–53 (objection handling) is where you focus
-- If your pitch hit the close but the prospect said *"let me think"*, Week 9's Iceberg work will matter most
+- If your close was weak, Days 49 to 51 (closing techniques) will help most
+- If objections tripped you up, focus on Days 52 to 53 (objection handling)
+- If you got to the close and the prospect said *"let me think about it"*, the Iceberg work in Week 9 matters most
 
-**Note which 2–3 Week-9 lessons you want to lean hardest into** — based on what this Day-48 recording exposed. Personalised prioritisation beats linear reading.
+Note the 2 or 3 Week 9 lessons you want to spend the most time on, based on what this recording showed you. That's a better use of the week than reading straight through.
 
 ---
 
-## Week 8 KPI — the unlock gate
+## Week 8 KPI: what opens Week 9
 
-Week 9 unlocks when you have all four:
+Week 9 opens when you have all four:
 
-- [ ] **1 recorded pitch** — 8–15 min, continuous, live or simulation
-- [ ] **8-dimension self-review completed** — honest scores with 2-sentence evidence per dimension
-- [ ] **Loom reflection** — 3 lowest scores + Week-9 priorities
-- [ ] **20-min mentor review booked**
+- [ ] 1 recorded pitch: 8 to 15 minutes, continuous, live or simulated
+- [ ] The 8-dimension self-review, with honest scores and 2 sentences of evidence for each
+- [ ] The Loom reflection: your 3 lowest scores and your Week 9 priorities
+- [ ] A 20-minute mentor review, booked
 
-If the recording quality is bad (audio issues, cut off, etc.), re-record before submitting. One clean tape beats three messy ones.
+If the recording is poor (bad audio, cut off), re-record before you submit. One clean take is worth more than three messy ones.
+
+---
+
+## Sources
+
+- [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - an identifiable image of a person is personal data, and collecting it needs consent for a stated purpose
+- [Wait Times: Slowing Down May Be a Way of Speeding Up - Mary Budd Rowe, Journal of Teacher Education, via ERIC](https://eric.ed.gov/?id=EJ333700) - the research behind the silence dimension: longer pauses after a question get fuller answers
 
 ---
 
 ## Quiz
 
-**Q1. The 8-dimension self-review after your pitch recording is designed to:**
-- A) Generate a pass/fail grade
-- B) Surface the 2–3 dimensions where your pitch is weakest, so Week 9 and beyond can target them ✓
-- C) Build your portfolio for future advisors to see
-- D) Validate that you remembered everything from Weeks 1–8
+**Q1. The 8-dimension self-review is there to:**
+- A) Give you a pass or fail
+- B) Show the 2 or 3 dimensions where your pitch is weakest, so Week 9 and after can focus on them ✓
+- C) Build a portfolio for future advisors
+- D) Check you remembered everything from Weeks 1 to 8
 
-**Why:** Perfect pitches don't exist on a first integration tape — nobody scores 40/40. The review's actual job is *prioritising your training direction*. If DISC match is 2/5 but feature-to-benefit is 4/5, you know where to spend next week's energy. The scoring isn't about grades; it's about diagnosing.
+**Why:** No first integrated pitch scores 40. The review tells you where to put your effort next. If DISC match is 2 out of 5 and feature-to-benefit is 4 out of 5, you know which one to work on next week.
 
-**Q2. The continuous-take rule matters because:**
-- A) It's more cinematic
-- B) A continuous pitch forces you to handle off-script moments — which is the real-world skill, not the ability to stitch polished segments ✓
+**Q2. Why does the take have to be continuous?**
+- A) It looks more cinematic
+- B) It forces you to handle the moments that go off script, which is the real skill, instead of stitching together polished pieces ✓
 - C) Loom requires it
-- D) It shortens the pitch
+- D) It makes the pitch shorter
 
-**Why:** The skill being tested is *integration under live conditions* — recovering from mistakes, handling silence, responding to unexpected prospect moves, transitioning between sections. Stitched segments let you re-record individual parts until each one is polished, which trains the wrong skill. A continuous 10-minute take is the minimum honest integration test.
+**Why:** The test is whether you can put it all together live. That means you recover from mistakes, hold the silences, deal with whatever the prospect throws at you and move between sections without a break. Re-recording pieces until each one is perfect trains a different skill.
 
-**Q3. The Week-9 priorities from this Day-48 recording are derived by:**
-- A) Starting Week 9 linearly on Day 49
-- B) Noting which 2–3 pitch dimensions scored lowest and prioritising the Week-9 lessons that address those specific gaps ✓
-- C) Asking your mentor what to focus on
-- D) Closing the case first
+**Q3. How do you work out your Week 9 priorities from this recording?**
+- A) Just start Week 9 at Day 49 and go in order
+- B) Note the 2 or 3 dimensions that scored lowest, then focus on the Week 9 lessons that address those gaps ✓
+- C) Ask your mentor what to focus on
+- D) Close the case first
 
-**Why:** The curriculum works linearly for structure, but the *emphasis* should personalise. A pitch where closing was strong but objection handling was weak will benefit more from Day 52–53 than from Day 49–51. A pitch that stalled at objection-*surfacing* will benefit from the Iceberg work. Using the Day-48 self-review as the diagnostic turns Week 9 into targeted work instead of linear content.
+**Why:** The lessons run in order, but where you put your weight should depend on you. A pitch with a strong close and weak objection handling gets more from Days 52 to 53 than from Days 49 to 51. A pitch that stalled before any objection came up needs the Iceberg work.
 
-**Q4. The 8 dimensions of the pitch self-review include all of these EXCEPT:**
+**Q4. The 8 dimensions of the self-review include all of these EXCEPT:**
 - A) Intent statement
 - B) Tonality
 - C) DISC match
-- D) Prospect's closing ratio ✓
+- D) The prospect's closing ratio ✓
 
-**Why:** The 8 dimensions are: Intent, Tonality, DISC match, Hot button callback, Angle clarity, Feature-to-benefit, Close technique, Silence discipline. Prospect's closing ratio (D) isn't a pitch-delivery dimension — it's an outcome metric. The self-review grades your *execution*, not their *response*. Outcomes compound from execution; grading outcomes too early conflates what you did with how the prospect happened to respond.
+**Why:** The 8 dimensions are intent, tonality, DISC match, hot-button callback, angle clarity, feature-to-benefit, close and silence. A closing ratio is an outcome, and the self-review is about your delivery, so it scores what you did rather than how one prospect happened to respond on the day.
 
-**Q5. Honest self-review scoring (most FCs score in the 27–33 range on a first integration pitch) means:**
+**Q5. You honestly score your first integrated pitch at 30 out of 40. What does that mean?**
 - A) You failed the gate
-- B) The pitch is competent with 1–2 dimensions needing targeted work — which is exactly the diagnostic Week 9 uses ✓
-- C) Immediate re-recording is required
+- B) The pitch is competent, with 1 or 2 dimensions that need focused work, which is exactly what Week 9 uses ✓
+- C) You must re-record immediately
 - D) You're not ready for real clients
 
-**Why:** Perfection on a first integration tape doesn't exist. 27–33/40 is the honest range — you're demonstrating integration competence with specific weak dimensions that Week 9's closing content can target. Scoring 40/40 would signal either a perfect pitch (unlikely) or lack of honest self-assessment (more likely). The range is the range; the point is the diagnostic.
+**Why:** 27 to 33 is the competent band: the pieces are working together, with specific weak spots for Week 9 to target. A 40 on a first attempt usually means the scoring wasn't honest.
 
-**Q6. Target length for the Day-48 recording is:**
+**Q6. The target length for the Day 48 recording is:**
 - A) Under 3 minutes
-- B) 8–15 minutes — short enough to re-watch critically, long enough to show full flow (intent → signal → angle → product → callback → close) ✓
+- B) 8 to 15 minutes, which is short enough to review properly and long enough to show the whole flow ✓
 - C) Exactly 60 minutes
 - D) As long as possible
 
-**Why:** Under 8 minutes skips too much of the pitch arc — you can't demonstrate feature-to-benefit + hot-button callback + close in 3 minutes without cramming. Over 15 minutes becomes unwatchable in self-review (you'd re-watch once and never again). 8–15 minutes is the range where the whole pitch fits *and* self-review is sustainable for the rest of the week.
+**Why:** Under 8 minutes you can't fit in feature-to-benefit, the hot-button callback and the close without cramming. Over 15 minutes, you'll watch it once and never again, and reviewing it properly is the point.
 
-**Q7. The continuous-take requirement (single take, no editing) exists because:**
-- A) Editing isn't allowed for compliance
-- B) A continuous pitch forces you to handle off-script moments — recover from mistakes, handle silence, transition between sections — which IS the real-world skill ✓
-- C) Stitched recordings look unprofessional
+**Q7. The single-take rule (no editing) exists because:**
+- A) Editing isn't allowed for compliance reasons
+- B) A continuous pitch makes you recover from mistakes, hold silences and move between sections, which is the real skill ✓
+- C) Edited recordings look unprofessional
 - D) Editing software isn't available
 
-**Why:** Real pitches are continuous. If you train by stitching re-recorded segments until each is polished, you practise the wrong skill — you become good at isolated moments, not integrated delivery under live conditions. Continuous takes force the integration muscle: you make a mistake, recover, continue. The fluency in recovery is what separates a polished-but-fragile pitch from a resilient-under-pressure one.
+**Why:** Real pitches happen in one go. If you practise by re-recording segments until each is perfect, you get good at isolated moments and not at the whole meeting. In a continuous take you make a mistake, recover and carry on, and that recovery is what holds up in front of a real prospect.
 
 ---
 
 ## Related
 
 - Previous: [[day-47|Day 47 — Analyzing Products + Crafting the Pitch]]
-- Next: Week 9 unlocks after recording + self-review + submission — [[../week-9/day-49|Day 49 — Closing I: The Trial Close]]
+- Next: Week 9 opens after the recording, self-review and submission: [[../week-9/day-49|Day 49 — Closing I: The Trial Close]]
 - Week 8 overview: [[README|Week 8 — The Pitch]]

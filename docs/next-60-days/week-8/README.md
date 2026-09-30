@@ -1,52 +1,57 @@
 ---
 week: 8
-title: "Week 8 — The Pitch"
+title: "Week 8: The pitch"
 kpi: "1 live pitch delivered; recorded + self-reviewed"
 unlocks: "week-9"
 tags: [next-60-days, week-8, week-overview]
 ---
 
-# Week 8 — The Pitch
+# Week 8: The pitch
 
-*From diagnostic to recommendation.*
+*This week takes you from the fact-find to the recommendation: better questions, the right angle for the person, and one full pitch on tape.*
 
 ---
 
 ## Week 8 KPI
 
-> **1 live pitch delivered. Recorded + 8-dimension self-reviewed.**
+> 1 live pitch delivered, recorded and self-reviewed on the 8 dimensions.
 
-Week 9 unlocks when the recording + self-review + Day-48 Loom reflection + 20-min mentor review are in.
+Week 9 opens once the recording, the self-review, the Day 48 Loom reflection and a 20-minute mentor review are in.
 
 ---
 
 ## The 6 days
 
 - [ ] [[day-43|Day 43 — Asking the Right Questions I: The Power Question]]
-  *6 Golden Rules (keyword, possibilities, contrast, options, non-committal, expert quoting). 3-point checklist. Converting statements to questions.*
+  *The 6 golden rules for questions, the 3-point checklist, and turning your usual statements into questions.*
 
 - [ ] [[day-44|Day 44 — Asking the Right Questions II: Silence as a Tool]]
-  *The 10-second silence window. Productive vs dead silence. The discovery funnel (generic → specific → emotional → actionable). The *"how come?"* family.*
+  *How to hold the pause after a question, tell thinking from checked-out silence, and chain questions into a discovery funnel.*
 
 - [ ] [[day-45|Day 45 — Sales Angles: Wealth, Risk, Legacy, Lifestyle]]
-  *The 4 angles, pitch language and AIA products for each, primary + secondary pairing pattern.*
+  *The 4 angles, the language and the AIA plans that fit each one, and how to pair a primary angle with a secondary.*
 
 - [ ] [[day-46|Day 46 — Choosing the Right Angle for This Prospect]]
-  *Fact-Find signals for each angle. The life-stage × DISC matrix. How to switch angles mid-pitch without losing the meeting.*
+  *Fact-find signals for each angle, a life-stage and DISC matrix, and how to change angle mid-pitch without losing the meeting.*
 
 - [ ] [[day-47|Day 47 — Analyzing Products + Crafting the Pitch]]
-  *4-step method (Understanding · Benchmarking · Meeting Needs · Crafting). Feature → generic benefit → personal benefit. Pitch discipline rules. Taboo phrases.*
+  *A 4-step method for studying any plan, turning features into personal benefits, and the phrases to drop from your pitch.*
 
 - [ ] [[day-48|Day 48 — Practice: 1 Live Pitch on Camera, Self-Reviewed]]
-  *One full integration pitch, continuous take, 8–15 minutes. 8-dimension self-review. Loom + 20-min mentor review.*
+  *One continuous 8 to 15 minute pitch, scored on 8 dimensions, then a Loom and a mentor review.*
 
 ---
 
 ## Unlock rule for Week 9
 
-Week 9 unlocks when you (1) record one continuous 8–15 minute pitch (live-to-prospect or simulation), (2) complete the 8-dimension self-review with honest scores + evidence, (3) record the Day-48 Loom reflection naming your 3 lowest scores and Week-9 priorities, and (4) book a 20-minute mentor tape review.
+Week 9 opens when you have:
 
-The continuous-take rule is non-negotiable — no stitched segments.
+1. recorded one continuous 8 to 15 minute pitch, either to a real prospect (with their consent) or as a simulation
+2. completed the 8-dimension self-review with honest scores and evidence
+3. recorded the Day 48 Loom reflection naming your 3 lowest scores and your Week 9 priorities
+4. booked a 20-minute tape review with your mentor
+
+The take has to be continuous. Stitched segments don't count.
 
 ---
 
@@ -54,17 +59,17 @@ The continuous-take rule is non-negotiable — no stitched segments.
 
 Three prompts:
 
-1. **Which 3 of the 8 dimensions scored lowest?** Those are your Week-9 targeted focus.
-2. **If you pitched a real prospect — where did the meeting almost tip into a yes, and what specifically moved them?** That moment is worth dissecting.
-3. **If you recorded a simulation — what would have been different in a live meeting?** Honest answer.
+1. Which 3 of the 8 dimensions scored lowest? Those are what you work on in Week 9.
+2. If you pitched a real prospect, where did the meeting come closest to a yes, and what moved them there?
+3. If you recorded a simulation, what would have gone differently with a real person across the table? Be honest.
 
 ---
 
 ## What's coming in Week 9
 
-**The Close.** Week 8 built the pitch. Week 9 is where careers are made — trial closes, assumptive / choice / urgency closes, emotional vs logical closing, the 3 Magic Questions for objections, and the top 10 objections with word-for-word scripts. By Saturday you'll have 5 objection drills recorded and ideally your first case closed.
+The close. Week 9 is about asking for the decision: trial closes, assumptive and choice closes, how to mention a real deadline without inventing pressure, the 3 magic questions for objections, and scripts for the 10 objections you'll hear most. By Saturday you'll have 5 objection drills recorded, and maybe your first case closed.
 
-**Week 9 KPI:** 5 objection drills recorded; first case closed.
+Week 9 KPI: 5 objection drills recorded; first case closed.
 
 ---
 
