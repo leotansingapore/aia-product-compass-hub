@@ -1,8 +1,8 @@
 ---
 week: 9
 day: 53
-title: "Top 10 Objections + Scripts"
-big_idea: "Ten objections cover 90% of what you'll hear in Year 1. Memorise them. Internalise the responses. Deliver in your voice."
+title: "Top 10 objections and scripts"
+big_idea: "A short list of objections makes up most of what you'll hear in Year 1. Learn them, learn the responses, then say them in your own voice."
 kpi_link: "Week 9 KPI — 5 objection drills recorded; first case closed"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-11-22-3-magic-questions-on-objection-handling]]"
@@ -11,329 +11,379 @@ duration_minutes: 25
 tags: [next-60-days, week-9, new-fc, objections, scripts, top-10]
 ---
 
-# Day 53 — Top 10 Objections + Scripts
+# Day 53: Top 10 objections and scripts
 
-> **The one idea for today:** Ten objections cover 90% of what you'll hear in Year 1. Memorise them. Internalise the responses. Deliver in your voice.
+> The one idea for today: a short list of objections makes up most of what you'll hear in Year 1. Learn them, learn the responses, then say them in your own voice.
 
-By the time you close today you'll recognise all 10 most common objections and know what each really means beneath the surface, deliver a word-for-word response framework for each — then adapt to your own voice — and pick the right technique for each objection (ART, Iceberg, or Magic Questions) based on whether it's clear or ambiguous.
+By the end of today you'll be able to:
+
+- recognise the ten objections new FCs hear most, and what each usually means underneath
+- give a response to each, starting from the wording here and then making it your own
+- pick the right technique for each one: ART when the objection is clear, Iceberg or the magic questions when it's vague
 
 ---
 
 ## The 10 objections
 
-These cover ~90% of what you'll hear in your first 60–90 days:
+These are the ones you'll hear again and again in your first few months:
 
 1. *"Too expensive / can't afford it"*
 2. *"I already have an advisor / coverage"*
 3. *"Let me think about it"*
 4. *"I need to discuss with my spouse / parents"*
 5. *"I'm not interested"*
-6. *"It's a bad time — getting married / buying house / just had a baby"*
+6. *"It's a bad time. Getting married / buying a house / just had a baby"*
 7. *"I'll do it myself / I invest on my own"*
 8. *"Insurance is a scam"*
-9. *"I'm young / healthy — I don't need it"*
+9. *"I'm young and healthy, I don't need it"*
 10. *"Can you email me the details? I'll look at it."*
 
-For each: what it usually means, the right technique, and a response you can make your own.
+For each one you'll find what it usually means, the technique to use, and a response to adapt.
 
 ---
 
-## Objection 1 — *"Too expensive / can't afford it"*
+## Objection 1: *"Too expensive / can't afford it"*
 
 ### What it usually means
-- **Literal:** the monthly amount genuinely stretches cashflow
-- **Hidden:** value hasn't landed — they don't see why it's worth this amount
-- **Hidden:** comparing to a different category (DIY investing, cheaper Medishield)
+
+- Taken literally, the monthly amount really does stretch their cash flow.
+- Underneath, the value may not have landed, so they can't see why it's worth that much.
+- They may be comparing it with something else, such as MediShield Life or their company's group cover.
 
 ### Technique
-Magic Q2 first — *"suppose the premium was exactly where you wanted, would you move forward?"* Diagnoses whether price is the real objection.
 
-### Response (if real)
-> *"Totally fair — the monthly is real. Let me offer two options: we can either (a) scale the coverage to fit the budget you're comfortable with today, or (b) look at a staggered structure where we start lower and step up as your income grows. Which feels closer to where you are?"*
+Start with magic question 2: *"Suppose the premium was exactly where you wanted it. Would you go ahead?"* That tells you whether price is the real objection.
 
-### Response (if decoy — value hasn't landed)
-> *"Let me re-share something. The plan isn't $X/month — it's [specific benefit] for $X/month. Let me walk through the comparison we did earlier. In the scenario we discussed, here's what that $X delivers…"* (re-anchor value, not defend price)
+### Response if price is real
+
+> *"Totally fair, the monthly amount is real money. There are two ways we can go. We can size the cover to a budget you're comfortable with today, or start smaller now and add more as your income grows. Adding cover later may need fresh underwriting, so I'll show you what that involves. Which feels closer to where you are?"*
+
+### Response if it's a decoy and the value hasn't landed
+
+> *"Let me go back over one thing. What you're paying for is [the specific benefit], and that costs [the premium] a month. Let's look again at the scenario we talked about earlier and what the plan would pay in it..."* (Rebuild the value instead of defending the price.)
 
 ---
 
-## Objection 2 — *"I already have an advisor / coverage"*
+## Objection 2: *"I already have an advisor / coverage"*
 
 ### What it usually means
-- **Literal:** they have someone they're happy with
-- **Hidden:** they're not actually happy but don't want to say so
-- **Hidden:** polite deflection — they don't want to engage at all
+
+- Taken literally, they have someone they're happy with.
+- Underneath, they may not be happy but don't want to say so.
+- Or it's a polite way of not engaging at all.
 
 ### Technique
-ART — Acknowledge, Relate, Turn-around.
+
+ART: acknowledge, relate, turn around (Day 40).
 
 ### Response
-> *"Completely makes sense — honestly I'd be surprised if you didn't. Most of my clients had an advisor when we first met. I'm not here to replace anyone — most of my conversations end up being a second set of eyes, not a switch.*
+
+> *"That makes complete sense, and honestly I'd be surprised if you didn't. Most people I talk to already have someone. I'm not here to replace anyone, and a lot of the time what I do is just a second pair of eyes.*
 >
-> *Would you be open to a 30-minute conversation where we just look at your current portfolio for gaps? Even if the answer at the end is 'everything's fine, stay with your guy,' at least you'll know that for certain."*
+> *Would you be open to a 30-minute chat where we look at what you have for any gaps? Even if the answer at the end is 'everything's fine, stay with your current adviser', at least you'll know for sure."*
 
-The reframe: position as *adding perspective*, not *replacing*.
+The aim is to add a perspective. Never run down the other adviser. If a review ever points towards replacing a policy, that happens only inside a full fact-find, with the switching disclosure and a clear comparison of what they'd lose and gain.
 
 ---
 
-## Objection 3 — *"Let me think about it"*
+## Objection 3: *"Let me think about it"*
 
-### What it usually means (4 possibilities)
-- Profile habit — C's overthink, S's avoid committing
-- Don't see the need clearly
-- Need to discuss with someone
-- Hidden concern you haven't addressed
+### What it usually means (four possibilities)
+
+- A profile habit: C profiles overthink and S profiles avoid committing
+- They don't see the need clearly
+- They need to talk to someone first
+- There's a hidden concern you haven't dealt with
 
 ### Technique
-Full 3 Magic Questions sequence (Day 52).
+
+The full 3 magic questions sequence (Day 52).
 
 ### Response
-> *"Of course — take the time. Before you do, let me ask just one thing: is there anything specific giving you pause, or is it more a general wanting-to-sit-with-it feeling?"*
 
-Route the answer through the Iceberg framework (Day 37).
+> *"Of course, take the time. Before you do, can I ask one thing? Is there something specific giving you pause, or is it more a general feeling that you want to sit with it?"*
+
+Take the answer through the Iceberg approach (Day 40).
 
 ---
 
-## Objection 4 — *"I need to discuss with my spouse / parents"*
+## Objection 4: *"I need to discuss with my spouse / parents"*
 
 ### What it usually means
-- **Literal:** genuine joint-decision dynamic
-- **Hidden:** deflection — they've mentally decided no and are using the spouse as buffer
-- **Hidden:** they're actually asking for time
+
+- Taken literally, they make these decisions together.
+- Underneath, they may have decided no and are using the spouse as a buffer.
+- Or they're really asking for time.
 
 ### Technique
-ART + offer to join the spouse conversation.
+
+ART, plus an offer to join the conversation with their spouse.
 
 ### Response
-> *"Absolutely right — a decision this size should involve both of you. Two options — either I join when you discuss it so I can answer any questions directly in 15 minutes, or you discuss it first and we catch up Thursday. Which works better?"*
 
-The offer to join is the diagnostic. If they accept — it's a real spouse-consult. If they refuse — it might be a deflection; use Magic Q2 to test.
+> *"That's absolutely right, a decision like this should involve both of you. There are two ways to do it. I can join when you talk it over and answer any questions directly in 15 minutes, or the two of you discuss it first and we catch up on Thursday. Which works better?"*
+
+The offer to join is your diagnostic. If they take it up, it's a genuine joint decision. If they turn it down, it may be a way of putting you off, so test it with magic question 2.
 
 ---
 
-## Objection 5 — *"I'm not interested"*
+## Objection 5: *"I'm not interested"*
 
 ### What it usually means
-- **Literal:** they're genuinely not — hard no
-- **Hidden:** they haven't seen it yet so they can't be *actually* interested or not
-- **Hidden:** defensive reflex before hearing the content
+
+- Taken literally, they really aren't, and it's a hard no.
+- They haven't heard what it is yet, so they can't really be interested or not.
+- It's a defensive reflex before they've heard anything.
 
 ### Technique
-ART — acknowledge then reframe.
+
+ART: acknowledge, then reframe.
 
 ### Response
-> *"Totally fair — honestly, it'd be weird if you were interested in something you haven't really heard yet. Let me share what it is in 30 seconds, and you can judge for yourself at the end. Worst case, you've heard an idea. Sound fair?"*
 
-If they still decline after the 30-second version — accept the hard no. Move on gracefully.
+> *"Totally fair, and honestly it'd be strange to be interested in something you haven't heard about yet. Can I tell you what it is in 30 seconds and let you decide at the end? Worst case, you've heard an idea."*
+
+If they still say no after the 30-second version, that's a hard no. Accept it graciously and move on.
 
 ---
 
-## Objection 6 — *"Bad time — getting married / buying house / just had a baby"*
+## Objection 6: *"Bad time. Getting married / buying a house / just had a baby"*
 
 ### What it usually means
-- **Literal:** genuine financial pressure right now
-- **Hidden:** exactly the opposite — this is when coverage matters *most*
+
+- Taken literally, money is tight right now.
+- Underneath, this is often exactly when cover matters most.
 
 ### Technique
-Reframe the timing *as the reason to act*.
+
+Reframe the timing as the reason to act.
 
 ### Response
-> *"Honestly — these are the moments I most want people to be covered. Right now your cashflow is tight, you're taking on more responsibility, and the people depending on you just grew by one. That's the exact stage where not having the right structure hits hardest if something goes wrong.*
+
+> *"I get it, there's a lot going on. Honestly, these are the moments I most want people to have cover. Your cash flow is tight, you're taking on more responsibility, and there's now one more person depending on you. That's when a gap in cover hurts most if something goes wrong.*
 >
-> *Let me propose a middle path — we start with a coverage level that fits your current cashflow, not the full amount. We get you protected, and when the honeymoon/house/baby dust settles, we revisit and top up. Make sense?"*
+> *What if we meet in the middle? We start with a smaller level of cover that fits your cash flow now. Once AIA accepts the application, you've got something in place, and when things settle after the wedding, the house or the baby, we review it and top up if you want. Does that make sense?"*
 
 ---
 
-## Objection 7 — *"I'll do it myself / I invest on my own"*
+## Objection 7: *"I'll do it myself / I invest on my own"*
 
 ### What it usually means
-- **Literal:** they have a self-directed investment setup they're confident in
-- **Hidden:** they don't actually have protection — they're talking about investing, and conflating the two
+
+- Taken literally, they run their own investments and feel confident about it.
+- Underneath, they may have no protection at all, and they're treating investing and protection as the same thing.
 
 ### Technique
-Separate the two categories. Protection and investment are different jobs.
+
+Separate the two. Protection and investment do different jobs.
 
 ### Response
-> *"Love that — self-directed investing is great when you know what you're doing. Quick clarification though — what we're discussing isn't really investment. It's protection. The two often get lumped together but they solve different problems. Even excellent self-directed investors generally have protection products because the downside scenarios don't care about your portfolio performance. Can I show you quickly where the gap usually is?"*
+
+> *"That's great, and plenty of people manage their own investments well. Can I clarify one thing, though? What we're talking about is protection. People often lump it in with investing, but the two solve different problems. A portfolio can do very well and still not pay you anything if you're diagnosed with a critical illness at 35 and can't work for two years. Can I quickly show you where the gap usually is?"*
 
 ---
 
-## Objection 8 — *"Insurance is a scam"*
+## Objection 8: *"Insurance is a scam"*
 
 ### What it usually means
-- They had a bad experience — theirs or a family member's
-- They've read something online that generalises from one case
-- Defensive reflex
+
+- They, or someone in the family, had a bad experience.
+- They read something online that generalises from one case.
+- It's a defensive reflex.
 
 ### Technique
-ART — with extra empathy on Acknowledge, and curiosity on Relate.
+
+ART, with extra empathy on the acknowledge step and genuine curiosity on the relate step.
 
 ### Response
-> *"I hear that — and honestly, there's a reason people say that. What's the specific experience that shaped that view? Was it yours, or someone you know?"*
 
-Listen to the story. Validate their experience. Then:
+> *"I hear you, and honestly, there's a reason people say that. What happened that made you feel that way? Was it you, or someone you know?"*
 
-> *"That's a real story, and you're not wrong that bad experiences exist in this industry. What I'd offer is — the way I work is explicitly structured to not do that. Can I walk you through how my process handles exactly the thing you just described?"*
+Listen to the story and take it seriously. Then:
 
-Direct, specific, acknowledges their pain without arguing.
+> *"That's a real story, and you're right that bad experiences happen in this industry. What I can tell you is how I work, which is built to avoid exactly what you just described. Can I walk you through it? And if there's ever a dispute about a claim, there's also FIDReC, an independent body that handles disputes between consumers and financial institutions."*
+
+This is direct and specific. It takes their experience seriously without arguing.
 
 ---
 
-## Objection 9 — *"I'm young / healthy — I don't need it"*
+## Objection 9: *"I'm young and healthy, I don't need it"*
 
 ### What it usually means
-- **Literal:** optimistic assumption about future health
-- **Hidden:** cost sensitivity dressed up as confidence
-- **Hidden:** genuine young-and-healthy discount-rate thinking
+
+- Taken literally, they're optimistic about their future health.
+- Underneath, it may be about cost, dressed up as confidence, or they genuinely think insurance is a problem for later in life.
 
 ### Technique
-Reframe with math — young and healthy is when it's *cheapest*, not when it's *unnecessary*.
+
+Reframe with real numbers. Being young and healthy is usually when cover costs least.
 
 ### Response
-> *"Totally understand — and you're right that the probability of needing it this year is low. But here's the arithmetic: locking in coverage now at your age and health profile is also when it's cheapest you'll ever get. If you wait 10 years and something changes medically, the cost jumps 3–5x for the same coverage. The question isn't *'do I need this in 2026?'* — it's *'do I want to buy the 30-year version now, or the 20-year version later at triple the price?'*"*
+
+> *"Totally understand, and you're right that the chance of needing it this year is low. The catch is that premiums are based on your age and health when you apply. This is the quote at your age today, and this is the same cover at 10 years older, from compareFIRST. And if your health changes before then, the insurer might charge more, exclude that condition or decline the application. So the real question isn't whether you need it this year. It's whether you'd rather lock in cover while you're young and healthy, or take your chances later."*
+
+Always show the two actual quotes. Don't guess at a multiple like "three times the price".
 
 ---
 
-## Objection 10 — *"Email me the details, I'll look at it"*
+## Objection 10: *"Email me the details, I'll look at it"*
 
 ### What it usually means
-- **Almost always a deferral** — rarely a real reading intent
-- **Hidden:** they're politely ending the meeting
+
+- Usually it's a way of putting you off, and they don't really plan to read it.
+- Underneath, they may be politely ending the meeting.
 
 ### Technique
-Honest reframe — documents don't close, conversations do.
+
+Be honest: documents on their own rarely lead to a decision, conversations do.
 
 ### Response
-> *"Happy to send documentation — but I'll be honest, plans like these don't really land well in email. What looks like a simple spec sheet is actually a tailored recommendation for your specific situation, and without the conversation around it, the document reads as generic. What usually works better is a short 20-minute follow-up where I walk you through it — I can send a 1-page summary as the starting point for that conversation. Can we book 20 minutes Thursday?"*
 
-If they insist on email-only — send a tight 1-pager and book the follow-up for a week later. Treat it as a Follow-up Close (Day 38) situation.
+> *"Happy to send it over. To be honest, though, these plans don't come across well by email. What looks like a simple product sheet is a recommendation built around your situation, and without the conversation around it, it reads as generic. What usually works better is a short 20-minute call where I walk you through it. I'll send you a one-page summary to start from. Could we book 20 minutes on Thursday?"*
+
+If they only want the email, send a tight one-pager and book a follow-up for about a week later. Treat it as a follow-up close (Day 41).
 
 ---
 
 ## Choosing the technique
 
-| Objection | Primary technique |
+| Objection | Main technique |
 |---|---|
-| *"Too expensive"* | Magic Q2 first, then ART or scale-to-budget |
+| *"Too expensive"* | Magic question 2 first, then ART or resize to budget |
 | *"I have an advisor"* | ART |
-| *"Let me think"* | Full 3 Magic Questions + Iceberg |
-| *"Discuss with spouse"* | ART + offer to join |
-| *"Not interested"* | ART (30-second version offer) |
-| *"Bad time"* | Reframe timing as reason to act |
-| *"I do it myself"* | Separate protection vs investment categories |
-| *"Insurance is a scam"* | ART with heavy Acknowledge, surface their story |
-| *"I'm young / healthy"* | Reframe with math — cheapest stage |
-| *"Email me"* | Honest reframe + book follow-up |
+| *"Let me think"* | All 3 magic questions, plus Iceberg |
+| *"Discuss with spouse"* | ART plus the offer to join |
+| *"Not interested"* | ART, offering the 30-second version |
+| *"Bad time"* | Reframe the timing as the reason to act |
+| *"I do it myself"* | Separate protection from investment |
+| *"Insurance is a scam"* | ART with a strong acknowledge, and ask for their story |
+| *"I'm young and healthy"* | Show the two real quotes, now and later |
+| *"Email me"* | Be honest, and book the follow-up |
 
 ---
+
+## Objection-handling library
+
+The ten objections above are the common Year 1 cases. These Academy scripts map onto each one. Practise them out loud, then make them yours.
+
+### Objection families at a glance
+
+| Family | Objections covered today | Academy scripts |
+|---|---|---|
+| Push-away or "not interested" | #5 Not interested | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
+| "I already have someone" | #2 Already have an advisor or coverage | "Already have an advisor" objection script |
+| Format or channel pushback | #10 Email me; video off on Zoom | Video-Off objection (Zoom); Texting EQ 4-step framework |
+| Cost of delay, time or money | #3 Let me think; #6 Bad time; #9 I'm young and healthy | Cost of Delay (Pre-Retirees) |
+| Recruitment | Not covered today, for recruitment leads only | Recruitment objection handling (telemarketer angle) |
+
+### Objection: "not interested in insurance"
+
+Use it when the objection is #5 above. It has two angles: redirect to planning, or pivot to investing.
+
+[[objection-not-interested-in-insurance|Objection — "Not Interested in Insurance"]]
+
+### "Already have an advisor" objection script
+
+Use it when the objection is #2 above. Position yourself as a second pair of eyes on what they already have.
+
+[[already-have-an-advisor-objection-script|"Already Have an Advisor" — Objection Script]]
+
+### Texting EQ: 4-step objection handling framework
+
+Use it when the objection comes in writing. The four steps are to acknowledge it casually, find common ground, offer a different perspective, then give a safety valve.
+
+[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
+
+### Objection handling: cost of delay (pre-retirees)
+
+Use it when the objection is #3 (let me think) or #6 (bad time) and the prospect is in their 40s or 50s. The idea is that waiting costs either time or money.
+
+[[objection-handling-cost-of-delay-time-vs-money-pre-retirees|Objection Handling — Cost of Delay (Time vs Money) - Pre-Retirees]]
+
+### Objection handling: young adults (all objections)
+
+Use it when the prospect is a young adult and you're hearing lighter versions of #5, #6 and #10.
+
+[[objection-handling-young-adults-all-objections|Objection Handling — Young Adults (All Objections)]]
+
+### Objection handling: NSF (all objections)
+
+Use it when the lead came in through an NSF intake.
+
+[[objection-handling-nsf-all-objections|Objection Handling — NSF (All Objections)]]
+
+### Handling video-off objections (Zoom)
+
+Use it when the prospect wants to keep their video off for a Zoom fact-find.
+
+[[handling-video-off-objections-zoom|Handling Video-Off Objections (Zoom)]]
+
+---
+
+## Sources
+
+- [compareFIRST - MAS, LIA and MoneySENSE](https://www.comparefirst.sg/) - compare premiums for the same cover at different ages, and compare plans across insurers
+- [LIA Code of Life Insurance Practice (December 2021) - Life Insurance Association Singapore](https://www.lia.org.sg/media/3208/lia_colip_english_dec2021.pdf) - an application can be accepted, counter-offered or declined, and cover depends on that decision
+- [Financial Industry Disputes Resolution Centre (FIDReC)](https://www.fidrec.com.sg/) - the independent body for disputes between consumers and financial institutions
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - customers should get suitable advice and clear, accurate information
 
 ## Quiz
 
 **Q1. *"Too expensive"* is most often:**
-- A) Always a literal cashflow issue
-- B) Either a real cashflow issue OR a decoy for "value hasn't landed" — the 3 Magic Questions distinguish which ✓
+- A) Always a real cash-flow problem
+- B) Either a real cash-flow problem or a decoy for "the value hasn't landed", and the magic questions tell you which ✓
 - C) A sign to offer a discount
 - D) A reason to walk away
 
-**Why:** *"Too expensive"* is one of the most commonly *decoyed* objections. Half the time it's real; the other half it's a more polite way of saying *"I don't see why this is worth it."* Magic Q2 — *"suppose the premium was exactly where you wanted it, would you move forward?"* — distinguishes. If yes, scale the plan to fit budget. If no, the real issue is value; re-anchor there instead of defending price.
+**Why:** *"Too expensive"* is one of the objections most often used as a decoy. Sometimes it's real, and sometimes it's a politer way of saying *"I don't see why this is worth it."* Magic question 2 (*"suppose the premium was exactly where you wanted it, would you go ahead?"*) tells you which. If yes, resize the plan to their budget. If no, the issue is value, so rebuild that instead of defending the price.
 
-**Q2. *"I already have an advisor"* — the strongest reframe is:**
-- A) *"Mine is better than yours"*
-- B) *"I'm not here to replace — most of my conversations are a second set of eyes, not a switch"* ✓
+**Q2. For *"I already have an advisor"*, the strongest reframe is:**
+- A) *"I'm better than your current adviser"*
+- B) *"I'm not here to replace anyone. A lot of the time I'm just a second pair of eyes"* ✓
 - C) *"How's it going with them?"*
 - D) *"I can match their rates"*
 
-**Why:** Competing directly against an existing advisor triggers defensive loyalty and damages relationships. Positioning as *second opinion* or *adding perspective* lowers the emotional cost of engaging — the prospect doesn't have to betray anyone to meet with you. Most prospects end up keeping their existing advisor and also working with you, which is fine; some switch entirely once they see the value difference. Either is better than the hard-compete posture that gets you blocked.
+**Why:** Competing head-on with an existing adviser makes people defensive and loyal. Offering a second opinion lowers the cost of talking to you, because the prospect doesn't have to drop anyone. Many will keep their current adviser, and that's fine. If replacing a policy ever comes up, it's a regulated recommendation that needs a full fact-find and the switching disclosure, never a quick suggestion.
 
 **Q3. A prospect says *"Email me the details, I'll look at it."* The right response is:**
 - A) Send a detailed proposal by tomorrow
-- B) Send a tight 1-pager AND book a 20-min follow-up meeting to walk through it ✓
-- C) Decline — they're not serious
+- B) Send a tight one-pager and book a 20-minute follow-up to walk through it ✓
+- C) Decline, because they're not serious
 - D) Tell them you don't send documents
 
-**Why:** Pure-email responses almost never close. Documents read generic without the conversation framing them. But refusing to send anything damages trust. The middle path — send a 1-pager as the *starting point for a follow-up conversation* — preserves the relationship while protecting the pitch. If they still refuse the follow-up meeting after receiving the document, treat it as a Follow-up Close situation (Day 38) and re-anchor in 7–14 days.
+**Why:** An email on its own rarely leads to a decision, because the document reads as generic without the conversation around it. Refusing to send anything damages trust, though. The middle path is a one-pager as the starting point for a follow-up. If they won't book the follow-up after receiving it, treat it as a follow-up close (Day 41) and check in again within 7 to 14 days.
 
-**Q4. A prospect says *"bad time — we just had a baby."* The best reframe is:**
-- A) *"Of course, let's wait 6 months"*
-- B) The timing makes the coverage more important, not less — propose a scaled-down starter plan that fits current cashflow, with a plan to top up later ✓
+**Q4. A prospect says *"bad time, we just had a baby."* The best reframe is:**
+- A) *"Of course, let's wait six months"*
+- B) The timing makes cover more important, so suggest starting with a smaller plan that fits their cash flow now and reviewing it later ✓
 - C) Offer a discount
-- D) Accept and move on
+- D) Accept it and move on
 
-**Why:** The "bad time" objection for life events usually ignores that the life event itself is what makes coverage urgent — tighter cashflow + growing dependants + growing responsibility = exactly when the gap hurts most if something happens. The reframe offers a middle path: lower coverage now that fits budget, review and top up when the dust settles. Waiting 6 months (A) abandons both sides of the opportunity. Discount (C) commoditises.
+**Why:** The life event is usually the reason cover matters now. Money is tight, someone new depends on them, and a gap hurts most at exactly this stage. The middle path is less cover now, sized to the budget, with a review once things settle. Waiting six months (A) leaves the gap open, and a discount (C) turns it into haggling.
 
-**Q5. *"Insurance is a scam"* — the right technique is:**
-- A) Argue statistics to prove them wrong
-- B) ART with heavy Acknowledge — ask what shaped that view, listen to the story, then explain how your process specifically avoids that experience ✓
+**Q5. For *"insurance is a scam"*, the right technique is:**
+- A) Argue with statistics to prove them wrong
+- B) ART with a strong acknowledge: ask what shaped that view, listen to the story, then explain how your process avoids that experience ✓
 - C) Walk away
 - D) Tell them they're wrong
 
-**Why:** Strong opinions form from strong experiences — a bad claim, a family member burned. Arguing statistics against lived experience fails. ART works because it validates their experience first (*"there's a reason people say that"*), surfaces the actual story, then positions your process as the specific counter to what they went through. Direct, honest, non-argumentative. Most *"scam"* prospects soften significantly when they feel heard.
+**Why:** Strong opinions usually come from strong experiences, such as a rejected claim or a relative who got burned, and statistics don't beat lived experience. ART works because it takes their experience seriously first (*"there's a reason people say that"*), gets the actual story, and then shows how your process deals with what happened to them. Most people soften once they feel heard.
 
-**Q6. The 10 objections in Day 53 cover roughly:**
-- A) 10% of what you'll hear in Year 1
-- B) 50%
-- C) 90% ✓
-- D) 100%
+**Q6. What does Day 53's list of ten objections give you?**
+- A) A guaranteed answer to every objection you'll ever hear
+- B) The objections new FCs hear most often, so you can prepare responses before you need them ✓
+- C) Scripts to recite word for word
+- D) A replacement for the diagnostic questions
 
-**Why:** Real objection distribution is heavy-tailed — the top 10 objections cover ~90% of everything a new FC hears. Preparing word-for-word responses + technique selection for all 10 (even if you don't drill all 10) gives you near-coverage of your Year-1 objection surface. The remaining 10% is edge cases you'll learn by encountering them. 10 well-prepared responses > 50 half-prepared ones.
+**Why:** The list covers the objections that come up again and again in a new FC's first months, so preparing for them covers most of your early meetings. You'll still meet ones that aren't on it and learn those as they come. The scripts are a starting point to make your own, and you still diagnose with the magic questions before you respond.
 
-**Q7. For *"I'm young / healthy — I don't need it"*, the right reframe is:**
+**Q7. For *"I'm young and healthy, I don't need it"*, the right reframe is:**
 - A) Scare them with statistics
-- B) Math reframe — locking in coverage now at current age + health is the cheapest you'll ever get; waiting 10 years means 3–5× the price for the same thing if health changes ✓
+- B) Show two real quotes, at today's age and ten years older, and explain that premiums depend on age and health when you apply ✓
 - C) Show product features
-- D) Reduce the coverage amount
+- D) Reduce the amount of cover
 
-**Why:** Young + healthy prospects are optimistic about their future health — which is natural but misunderstands the premium math. The reframe converts the objection into a timing question: *"do you want the 30-year version now, or the 20-year version later at triple the price?"* Specific math on their actual demographic beats generic fear-of-disease language (A). This one lands particularly well on C profiles who respect the math and young D profiles who respect the efficiency argument.
-
----
-
-## Objection-Handling Library
-
-The 10 objections above are the most common Year-1 cases. Here are the canonical Academy scripts that map onto each. Practise them out loud, then make them yours.
-
-### Objection taxonomy at a glance
-
-| Family | Day-53 objections covered | Academy scripts |
-|---|---|---|
-| **Push-away / "not interested"** | #5 Not interested | "Not interested in insurance"; Young Adults all-objections; NSF all-objections |
-| **"I already have someone"** | #2 Already have advisor / coverage | "Already have an advisor" objection script |
-| **Format / channel pushback** | #10 Email me; video-off Zoom | Video-Off objection (Zoom); Texting EQ 4-step framework |
-| **Cost-of-delay / time vs money** | #3 Let me think; #6 Bad time; #9 I'm young/healthy | Cost of Delay (Pre-Retirees) |
-| **Recruitment-specific** | (Day 53 doesn't cover - for recruitment leads only) | Recruitment objection handling (telemarketer angle) |
-
-### Objection - "Not Interested in Insurance"
-**Use this when** the objection lands as #5 above. Two angles - redirect to planning, pivot to investing.
-
-[[objection-not-interested-in-insurance|Objection — "Not Interested in Insurance"]]
-
-### "Already Have an Advisor" Objection Script
-**Use this when** the objection lands as #2 above. Position yourself as a complement, not a replacement.
-
-[[already-have-an-advisor-objection-script|"Already Have an Advisor" — Objection Script]]
-
-### Texting EQ - 4-Step Objection Handling Framework
-**Use this when** the objection arrives in writing. The 4 beats: acknowledge casually, common ground, different perspective, safety valve.
-
-[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
-
-### Objection Handling - Cost of Delay (Pre-Retirees)
-**Use this when** the objection lands as #3 (Let me think) or #6 (Bad time) and the prospect is in their 40s-50s. The binary: time or money, you're paying either way.
-
-[[objection-handling-cost-of-delay-time-vs-money-pre-retirees|Objection Handling — Cost of Delay (Time vs Money) - Pre-Retirees]]
-
-### Objection Handling - Young Adults (All Objections)
-**Use this when** the prospect is a young adult and you're hearing the lighter versions of #5, #6, #10.
-
-[[objection-handling-young-adults-all-objections|Objection Handling — Young Adults (All Objections)]]
-
-### Objection Handling - NSF (All Objections)
-**Use this when** the lead came through an NSF intake.
-
-[[objection-handling-nsf-all-objections|Objection Handling — NSF (All Objections)]]
-
-### Handling Video-Off Objections (Zoom)
-**Use this when** the prospect insists on keeping their video off for a Zoom Fact-Find.
-
-[[handling-video-off-objections-zoom|Handling Video-Off Objections (Zoom)]]
+**Why:** Young, healthy prospects are naturally optimistic about their health, but they often don't realise premiums are set by age and health at the time of application. Two real quotes from compareFIRST make the point with their own numbers, and a health change before then could mean a higher premium, an exclusion or a decline. Real figures work better than fear (A) and better than a made-up multiple. C profiles in particular respect the numbers.
 
 ---
 

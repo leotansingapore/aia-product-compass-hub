@@ -1,52 +1,57 @@
 ---
 week: 9
-title: "Week 9 — The Close"
+title: "Week 9: The close"
 kpi: "5 objection drills recorded; first case closed"
 unlocks: "week-10"
 tags: [next-60-days, week-9, week-overview]
 ---
 
-# Week 9 — The Close
+# Week 9: The close
 
-*Where careers are made. Don't hesitate.*
+This week you learn to ask for the decision and to handle what people say when you do.
 
 ---
 
 ## Week 9 KPI
 
-> **5 objection drills recorded. First case closed (bonus, not required).**
+> 5 objection drills recorded. A first closed case counts as a bonus.
 
-Week 10 unlocks when the 5 drills + objection log + Day-54 Loom + 20-min mentor review are in.
+Week 10 unlocks once your 5 drills, objection log, Day 54 Loom and a booked 20-minute mentor review are all in.
 
 ---
 
 ## The 6 days
 
 - [ ] [[day-49|Day 49 — Closing I: Trial Close + Paper-Flip Social Proof]]
-  *Trial closing throughout the meeting. The paper-flip social proof close. 6 influence principles stacked. Main close structures.*
+  *Small trial closes through the meeting, a social-proof close that stays honest, Cialdini's principles, and three ways to ask for the decision.*
 
 - [ ] [[day-50|Day 50 — Closing II: Assumptive, Choice, Urgency]]
-  *The 3 mid-tier close structures. Profile-matching for each. The ethical rule on urgency. Stacking closes across one meeting.*
+  *Three closes, which profiles each suits, and the rule that urgency has to be real.*
 
 - [ ] [[day-51|Day 51 — Closing III: Emotional vs Logical]]
-  *Decisions are emotional, justifications are logical. Two-part close (emotion + logic). Sequence A vs B. *"What's holding you back?"* question.*
+  *Emotion moves the decision and logic backs it. The two-part close, sequence A vs B, and the "what's holding you back?" question.*
 
 - [ ] [[day-52|Day 52 — The 3 Magic Questions]]
-  *Q1 *"anything else?"* · Q2 *"suppose that wasn't a concern?"* · Q3 *"what would need to be true?"*. Diagnostic sequence. Hard no vs soft no vs hidden concern.*
+  *"Anything else?", "Suppose that wasn't a concern?" and "What would need to be true?". How to tell a hard no from a soft no from a hidden concern.*
 
 - [ ] [[day-53|Day 53 — Top 10 Objections + Scripts]]
-  *The 10 objections covering 90% of Year-1 meetings. What each usually means. Response frameworks + technique selection per objection.*
+  *The ten objections new FCs hear most, what each usually means, and a response for each.*
 
 - [ ] [[day-54|Day 54 — Practice: 5 Objection Drills]]
-  *5 × 2-minute drills on camera. Diagnostic + response + re-close each. Self-review rubric. First-case documentation if applicable. 20-min mentor review.*
+  *Five 2-minute drills on camera: diagnose, respond, re-close. Self-review rubric, first-case notes if you closed one, and a 20-minute mentor review.*
 
 ---
 
 ## Unlock rule for Week 10
 
-Week 10 unlocks when you (1) record 5 objection drills (2 min each, continuous, different objections — include your weakest), (2) submit the objection log with technique + self-score per drill, (3) record the Day-54 Loom reflection, and (4) book a 20-min mentor tape review.
+Week 10 unlocks when you:
 
-**Bonus artefact:** first-case documentation if you close this week.
+1. Record 5 objection drills (2 minutes each, one continuous take each). Use five different objections and include your weakest.
+2. Submit the objection log with the technique and your self-score for each drill.
+3. Record the Day 54 Loom reflection.
+4. Book a 20-minute tape review with your mentor.
+
+Bonus: first-case notes if you close this week. Keep client names and details out of them.
 
 ---
 
@@ -54,17 +59,17 @@ Week 10 unlocks when you (1) record 5 objection drills (2 min each, continuous, 
 
 Three prompts:
 
-1. **Which drill scored lowest?** That objection is your priority to drill live next week.
-2. **Which technique did you most reflexively reach for?** Which did you *skip* even when it fit?
-3. **What's your Month-2 pipeline look like?** Week 10 is after-sales and graduation — if you have a signed case or one about to sign, onboarding starts Monday.
+1. Which drill scored lowest? That's the objection you drill live next week.
+2. Which technique do you reach for without thinking? Which one did you skip even when it fit?
+3. What does your Month 2 pipeline look like? Week 10 covers after-sales and graduation, so onboarding starts Monday for any case that's signed or about to sign.
 
 ---
 
 ## What's coming in Week 10
 
-**After the Close + Graduation.** Week 9 ends with signed cases (or close to it). Week 10 is about *what happens next* — policy restructuring, after-sales onboarding, building moments with clients, and writing the 12-month plan that turns Year-1 momentum into a compounding business. Day 60 is graduation.
+After the close, and graduation. Week 10 covers policy restructuring, after-sales onboarding, keeping in touch with clients, and a 12-month plan for the rest of Year 1. Day 60 is graduation.
 
-**Week 10 KPI:** Onboarding checklist live; touchpoint calendar built; Year-1 plan written.
+Week 10 KPI: onboarding checklist live, touchpoint calendar built, Year 1 plan written.
 
 ---
 

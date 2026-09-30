@@ -1,8 +1,8 @@
 ---
 week: 9
 day: 49
-title: "Closing I — The Trial Close + Paper-Flip Social Proof"
-big_idea: "You don't close at the end. You close in small commitments throughout — and confirm social proof with something the prospect can physically see."
+title: "Closing I: the trial close and paper-flip social proof"
+big_idea: "You close in small agreements all through the meeting, so the final ask is a confirmation. Any social proof you show has to be true, anonymised and something the prospect can see."
 kpi_link: "Week 9 KPI — 5 objection drills recorded; first case closed"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-07-08-closing]]"
@@ -11,203 +11,230 @@ duration_minutes: 20
 tags: [next-60-days, week-9, new-fc, closing, trial-close, social-proof]
 ---
 
-# Day 49 — Closing I: The Trial Close
+# Day 49: Closing I, the trial close
 
-> **The one idea for today:** You don't close at the end. You close in small commitments throughout — and confirm social proof with something the prospect can physically see.
+> The one idea for today: you close in small agreements all through the meeting, so the final ask is a confirmation. Any social proof you show has to be true, anonymised and something the prospect can see.
 
-By the time you close today you'll deploy trial closes throughout the meeting (not just at the end), so the final close is a confirmation, not a surprise; run the paper-flip social-proof close — a physical ritual that turns consensus into something tangible; and know when to reach for a trial close (testing temperature) versus a main close (asking for commitment).
+By the end of today you'll know how to:
+
+- use trial closes through the whole meeting, so the final close doesn't land as a surprise
+- run the paper-flip social-proof close in a version that's honest and protects other clients' privacy
+- tell when you're testing the temperature (trial close) and when you're asking for the decision (main close)
 
 ---
 
 ## Why most new FCs close too late
 
-A new FC's typical pitch flow:
+A new FC's meeting usually runs like this:
 
-1. Warm up (15 min)
-2. Fact-Find (25 min)
-3. Present (20 min)
+1. Warm-up (15 min)
+2. Fact-find (25 min)
+3. Presentation (20 min)
 4. Close (5 min)
 
-The close is a single moment at minute 65. By that point, the prospect has absorbed 60 minutes of information without being asked for any small agreements along the way. When the close lands, they feel the full weight of the decision at once — which triggers hesitation.
+The close happens once, at minute 65, after the prospect has sat through an hour of information without being asked to agree to anything along the way. The whole decision lands on them at once, and that's when people hesitate.
 
-**The fix is trial closing throughout.** Small yes/agreement moments scattered across the 60 minutes. Each one is a tiny commitment. By the time the main close arrives, the prospect has already agreed to the underlying shape of the decision 5–7 times. The final yes is a confirmation, not a decision.
+The fix is trial closing. You scatter small agreements across the meeting, and each one is a tiny commitment. By the time you ask for the decision, they've already said yes to its shape several times, so the last yes feels like the next step.
 
 ---
 
 ## What a trial close looks like
 
-A trial close is a **temperature check** — a question that asks *"if you decided to do this, would [X] work?"* without asking them to actually move forward yet.
+A trial close checks the temperature. It asks *"if you went ahead, would this part work for you?"* without asking them to go ahead yet.
 
-Examples across different pitch moments:
+Examples from different points in the meeting:
 
-### Mid-Fact-Find
-> *"If we were to put something in place to address this — would you see it sitting more in the monthly range of $300, $500, or $800?"*
+### During the fact-find
+> *"If we did put something in place for this, what monthly range feels comfortable: around $300, $500 or $800?"*
 
-### Mid-pitch
-> *"Looking at this coverage structure — does the 20-year term feel right for your stage, or would you prefer something shorter?"*
+### During the presentation
+> *"Looking at this structure, does a 20-year term feel right for your stage, or would you prefer something shorter?"*
 
-### Post-recommendation
-> *"If this all made sense and we moved on it — would you want the start date to be end of this month, or start of next?"*
+### After the recommendation
+> *"If this all makes sense, would you want to submit the application this month or next?"*
 
-### Pre-close
-> *"Before we get into the final details — is there anything that still feels unclear that we should address first?"*
+### Just before the close
+> *"Before we get into the final details, is there anything that still feels unclear?"*
 
-Each one is a yes/agreement question that *assumes forward motion* without asking for commitment. The prospect's answer gives you data:
-- **Clean answer** = they're tracking with the flow
-- **Hesitation** = there's a hidden concern to surface (Iceberg)
-- **Push-back** = they're not convinced on the underlying point — go back and reinforce
+Each question assumes the conversation is moving forward without asking for a commitment. The answer tells you where they are:
 
-**The rule:** 3–5 trial closes per pitch. Too few = they hit the main close cold. Too many = the meeting feels interrogative.
+- A clean answer means they're following you.
+- Hesitation means there's a concern they haven't said out loud, and the Iceberg questions from Day 40 will help you find it.
+- Push-back means they're not convinced on the point underneath, so go back and cover it again.
+
+Aim for 3 to 5 trial closes in a meeting. Fewer and they hit the main close cold. More and it starts to feel like an interrogation.
 
 ---
 
 ## The paper-flip social-proof close
 
-A physical ritual that turns abstract consensus into something the prospect can see.
+This close turns "other people like you have done this" into something the prospect can see on the table.
 
-**Setup:** bring a stack of paper sheets — one for each real client you've worked with (or with your mentor's permission, one per client in your team's recent book). Each sheet has the client's first name, first letter of surname, and case type written on it.
+### Setup
 
-**Delivery** (during the close):
+Bring a small stack of sheets, one per real case. Each sheet shows only a life stage and the need that was covered, for example *"Nurse, early 30s, hospital and critical illness cover before starting a family"*. No names, no initials, no employer, no dates. Nothing a prospect could use to work out who it is.
 
-> *"Let me show you something. I've been doing this for a while, and I have dozens of clients who've bought into the same structure we're talking about. For example — this client A, she referred this client B. B got the plan, then referred all her work friends. B referred C, C got the plan and referred D, D got the plan and referred E…*
+If you've just started and have no cases of your own, don't borrow a stack and present it as yours. With your mentor's permission you can use your team's recent cases, and you say plainly that they're the team's. Only put a sheet in the stack if the case really happened, and never show a figure for how a client's policy has performed.
+
+### Delivery
+
+This comes after the main close, once they're leaning yes:
+
+> *"Can I show you something? These are cases from our team over the past year. No names, of course. This one was a nurse in her early thirties who wanted her hospital cover sorted before she started a family. She introduced two of her colleagues (flip), and one of them was a teacher who'd just bought her first flat (flip). This one was a young dad who wanted his income covered while the kids are small (flip)...*
 >
-> *(keep flipping papers as you name each link)*
+> *(keep flipping as you name each life stage)*
 >
-> *And it keeps going on (flip) and on (flip) and on. All of them in the same structure we're discussing. Because they liked the returns, the flexibility, and the peace of mind — enough to recommend it to their friends. I stay with them for years.*
->
-> *Until this very last client — (showing the last sheet) — who referred her entire project team to me. And out of that whole team, almost all of them now have the plan."*
+> *Different jobs and different ages, but each of them started with the same conversation we've just had about what they needed covered."*
 
-**Why it works:**
-- **Consensus** — the prospect sees that dozens of people resembling them already said yes
-- **Physical anchor** — paper stack makes the claim concrete, not abstract
-- **Sustained attention** — the flipping keeps their eyes tracking
-- **Status lift** — the last "important" client raises the perceived tier
+Stop there. Don't add "they all loved the returns" or "almost all of them bought the plan". Those are claims about outcomes you can't stand behind, and a return claim is a misrepresentation even when you say it casually.
 
-**This close follows a main close, not precedes it.** It reinforces the decision the prospect is about to make, rather than being the decision itself.
+### Why it works
 
----
+- The prospect sees that people at a similar stage made the same kind of decision.
+- The stack of paper makes the point concrete.
+- Flipping the sheets keeps their attention on the table.
 
-## Why it works — the 6 influence principles stacked
+### Where it goes wrong
 
-The paper-flip close works because it triggers multiple classic influence principles simultaneously:
+- Names, initials or details that identify a real client. That's another client's personal data, and PDPA doesn't let you share it for your own marketing.
+- Inventing cases, or saying "dozens" when you have four.
+- Talking about returns, payouts or other clients' results. Financial marketing restricts testimonials and past results because they suggest an outcome nobody can promise.
 
-| Principle | How it appears in the close |
-|---|---|
-| **Consensus** | *"Dozens of clients bought the same structure"* |
-| **Liking** | The warm, personal framing of each client |
-| **Authority** | The sustained reference to your track record |
-| **Social proof** | The visible paper stack |
-| **Consistency** | Each flip reinforces the decision they're leaning toward |
-| **Scarcity** | Optional — *"this was last quarter's closes; the structure stays the same"* |
-
-The paper-flip close works because *multiple* principles fire together, not just one. Scripts that use only one principle (pure social proof, or pure authority) convert at lower rates.
+This close follows the main close. It backs up a decision the prospect is already leaning towards. It isn't the decision itself.
 
 ---
 
-## The main close language
+## The influence principles behind it
 
-The trial closes built small agreements. The main close cashes them in.
+Robert Cialdini's research on persuasion names seven principles: reciprocity, commitment and consistency, social proof, authority, liking, scarcity, and unity (added in his 2016 book *Pre-Suasion*). The paper-flip close uses a few of them together.
 
-Three sentence structures for the main close:
+| Principle | How it shows up | Where the line is |
+|---|---|---|
+| Social proof | The visible stack of real cases | Only real, anonymised cases |
+| Liking and unity | People at the prospect's own life stage | Describe the stage, never the person |
+| Commitment and consistency | Each case ties back to the needs they gave you | Use their words from the fact-find |
+| Authority | The team's actual experience | Never claim a track record you don't have |
+| Scarcity | Leave it out | Deadlines are too easy to fake (see Day 50) |
 
-### Structure 1 — The summary close
-> *"Based on everything we've talked about — your priorities around [X], the structure that fits your cashflow, the coverage that hits what matters most to you — I believe this fits. Shall we start the application?"*
-
-### Structure 2 — The assumptive close
-> *"Great — I'll take care of the application now. Before I do, just one thing: would you prefer the first premium on credit card or bank transfer?"*
-
-### Structure 3 — The choice close
-> *"We've looked at Plan A and Plan B. Both work for your situation. Which one feels right — A or B?"*
-
-**Match to profile:**
-- **D** — Assumptive close (they respect decisive momentum)
-- **I** — Summary close (they want to hear the story before committing)
-- **S** — Choice close (gives them control without pressure)
-- **C** — Summary close with data recap (they want to see the logic)
+Reciprocity sits earlier in the process, in the free fact-find and review work you've already done for them, so you don't need it here.
 
 ---
 
-## Handling the in-between — *"I need a moment to think"*
+## The main close
 
-Sometimes the prospect responds to the main close with *"can I have a moment?"*
+The trial closes collected small agreements. The main close asks for the decision.
 
-**Bad:** keep talking. Fill the silence. Re-pitch.
-**Good:** *"Of course. Take your time."* Then physically step back — look at your iPad, organise paperwork, give them space.
+Three ways to phrase it:
 
-The moment is often where the decision happens. 10–30 seconds of silence from you gives them space to actually decide rather than defending against more information. If they come back with a yes, you've got it. If they come back with a specific concern, you address it. If they come back with another *"let me think"* — that's a deferred decision; handle it with the Follow-up close from Day 38.
+### Structure 1: the summary close
+> *"Based on everything we've covered (your priority on [X], a premium that fits your budget, and cover for what matters most to you), I think this plan fits. You'll also have 14 days after you receive the policy to review it and cancel for a refund if it isn't right. Shall we start the application?"*
+
+### Structure 2: the assumptive close
+> *"Great, let's do the application now. For the first premium, would you prefer card or GIRO? It goes straight to AIA."*
+
+Premiums are paid to AIA, never to you personally, and FCs aren't allowed to collect cash for AIA.
+
+### Structure 3: the choice close
+> *"We looked at Plan A and Plan B, and both work for your situation. Which one feels right to you?"*
+
+Match the close to the profile (DISC, from William Moulton Marston's 1928 model):
+
+- D: assumptive, because they like decisive momentum
+- I: summary, because they want to hear the story before they commit
+- S: choice, because it gives them control without pressure
+- C: summary with the numbers recapped, because they want to see the logic
 
 ---
 
-## The trial-close-to-main-close ratio
+## When they say *"I need a moment to think"*
 
-Rough benchmark for a healthy 60-minute pitch:
+Sometimes the answer to the main close is *"can I have a moment?"*
 
-- **3–5 trial closes** throughout
-- **1 main close** at the end
-- **Paper-flip social-proof close** after the main close, as reinforcement
-- **Follow-up close** only if the main close didn't land
+The wrong move is to keep talking, fill the silence and pitch again.
 
-That's the structural shape. A pitch with only a main close at minute 60 is the new-FC default — it converts at low rates because the prospect hits the decision cold. A pitch with 4 trial closes throughout warms them into the decision gradually.
+The right move is *"Of course, take your time."* Then step back. Look at your iPad or tidy your papers, and give them space.
+
+That pause is often where they actually decide, and ten to thirty seconds of quiet from you lets them think instead of fending off more information. A yes means you're done. A specific concern is something you can deal with there and then. Another *"let me think"* means the decision has been deferred, so use the follow-up close from Day 41 and book a date before you leave. And a second no is an answer: accept it and keep the relationship.
 
 ---
+
+## Trial closes and main close in one meeting
+
+A healthy 60-minute meeting looks roughly like this:
+
+- 3 to 5 trial closes along the way
+- 1 main close at the end
+- the paper-flip close after the main close, to back it up
+- a follow-up close only if the main close didn't land
+
+A meeting with only one close at minute 60 is the new-FC default, and the prospect meets the decision cold. With four trial closes spread through it, they get used to the decision a bit at a time.
+
+---
+
+## Sources
+
+- [The 7 principles of persuasion - Influence at Work (Robert Cialdini)](https://www.influenceatwork.com/7-principles-of-persuasion/) - the principles named in today's table, including unity
+- [Advisory Guidelines on the PDPA for Selected Topics (revised May 2024) - PDPC](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-selected-topics/advisory-guidelines-on-the-pdpa-for-selected-topics-(revised-may-2024).pdf) - what counts as personal data, which is why case sheets carry no names or identifying details
+- [Tips on insurance products - Life Insurance Association Singapore](https://www.lia.org.sg/consumers/choosing-right/tips-on-insurance-products/) - the 14-day free-look period, counted from receipt of the policy document
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - customers should get suitable advice and clear information that doesn't mislead
 
 ## Quiz
 
 **Q1. A trial close is:**
 - A) The final close at the end of the meeting
-- B) A temperature check throughout the meeting — *"if you decided to do this, would [X] work?"* ✓
+- B) A temperature check during the meeting: *"if you went ahead, would [X] work?"* ✓
 - C) A practice close with your mentor
 - D) A backup in case the main close fails
 
-**Why:** Trial closes test the temperature without asking for commitment. *"Would the monthly range be $300, $500, or $800?"* is a trial close — it gets you data on whether the prospect is tracking, without being the actual decision moment. 3–5 trial closes scattered through the meeting warm the prospect into the decision, so the main close is a confirmation rather than a surprise.
+**Why:** A trial close tests the temperature without asking for a commitment. *"What monthly range feels comfortable: $300, $500 or $800?"* tells you whether the prospect is following you, and it isn't the decision itself. Three to five of them through the meeting mean the main close confirms something they've already been agreeing to.
 
 **Q2. The paper-flip social-proof close works because:**
 - A) Paper is intimidating
-- B) It triggers multiple influence principles at once — consensus, social proof, consistency, authority — via a physical ritual the prospect can see ✓
+- B) It shows real, anonymised cases the prospect can see, which brings in social proof, liking and consistency together ✓
 - C) It fills meeting time
 - D) It's a compliance requirement
 
-**Why:** Pure verbal social proof (*"many clients bought this"*) triggers only one principle weakly. The physical paper stack triggers consensus (you can see the volume), social proof (named clients), consistency (each flip reinforces the pattern), and authority (your track record). Multiple principles firing together convert at higher rates than any single principle alone.
+**Why:** Saying "lots of clients buy this" is weak and hard to check. A stack of real cases, each described by life stage only, is concrete. The prospect sees people like them (social proof and liking), and each case links back to the needs they gave you (consistency). It only works if every sheet is a real case with no identifying details.
 
-**Q3. After delivering the main close, if the prospect says *"let me think for a moment,"* the right move is:**
-- A) Keep talking and re-pitch
-- B) *"Of course."* Then physically step back, organise paperwork, give them 10–30 seconds of space ✓
+**Q3. After the main close, the prospect says *"let me think for a moment."* The right move is:**
+- A) Keep talking and pitch again
+- B) *"Of course."* Then step back, tidy your papers and give them 10 to 30 seconds of quiet ✓
 - C) Ask an objection question
 - D) Pack up and leave
 
-**Why:** The moment of the decision needs silence to happen. Filling the silence with more information pulls the prospect out of decision-mode and back into information-mode — which they've already absorbed. Stepping back physically signals *"I trust you to decide."* Most of the time, the yes comes within 30 seconds if you let it. If they come back with a specific concern, address it; if they come back with another vague *"let me think,"* it's a deferred decision and you use the Follow-up close.
+**Why:** The decision needs quiet to happen, and more information pulls them back out of deciding. Stepping back shows you trust them. A specific concern gets dealt with on the spot, while another vague *"let me think"* means the decision has been deferred and you book a follow-up.
 
-**Q4. The healthy trial-close-to-main-close ratio for a 60-min pitch is:**
-- A) 10 trial closes + 1 main close
-- B) 3–5 trial closes + 1 main close + 1 reinforcement (e.g. paper-flip) ✓
-- C) 0 trial closes + 1 final close
-- D) All trial, no main
+**Q4. The healthy mix of closes in a 60-minute meeting is:**
+- A) 10 trial closes and 1 main close
+- B) 3 to 5 trial closes, 1 main close and 1 reinforcement such as the paper-flip ✓
+- C) No trial closes and 1 final close
+- D) All trial closes and no main close
 
-**Why:** 3–5 trial closes warm the prospect into the decision without interrogative-ness. A single main close at minute 60 means the prospect hits the decision cold. 10 trial closes feels like cross-examination. The sweet spot — 3–5 scattered across key moments — is where trial closing is a natural feature of the conversation rather than a detectable technique.
+**Why:** Three to five trial closes warm the prospect up without feeling like questioning. A single close at minute 60 means they meet the decision cold. Ten trial closes feels like a cross-examination.
 
-**Q5. The paper-flip close should be delivered:**
+**Q5. When should the paper-flip close be used?**
 - A) Before the main close, as the pitch
-- B) After the main close, as reinforcement of the decision they're about to make ✓
+- B) After the main close, to back up the decision they're leaning towards ✓
 - C) Instead of the main close
-- D) At the end of the Fact-Find
+- D) At the end of the fact-find
 
-**Why:** The paper-flip close isn't the decision moment — it's the *reinforcement* moment. It validates a decision the prospect is leaning toward, not creates one from nothing. Delivering it before the main close loads consensus onto an undecided prospect, which can feel like pressure. Delivering it after confirms they're in good company, which cements the yes.
+**Why:** The paper-flip reinforces a decision. It doesn't create one. Used before the main close, it puts social pressure on someone who hasn't decided. Used after, it tells them they're making the same kind of choice people like them have made.
 
-**Q6. The 6 influence principles that fire simultaneously in a paper-flip close include all of these EXCEPT:**
-- A) Consensus
-- B) Social proof
-- C) Fear of missing out / urgency (always present)
-- D) The principle *"only use for HNW prospects"* ✓
+**Q6. Which of these is NOT one of Cialdini's principles of persuasion?**
+- A) Social proof
+- B) Reciprocity
+- C) Scarcity
+- D) "Only use it with high-net-worth prospects" ✓
 
-**Why:** A, B, C (with scarcity as optional) are real — consensus, liking, authority, social proof, consistency, scarcity. D isn't a principle; it's a misconception. The paper-flip close works across prospect segments, not just HNW. The power comes from stacking principles simultaneously, not from targeting wealth tiers specifically.
+**Why:** Cialdini's principles are reciprocity, commitment and consistency, social proof, authority, liking and scarcity, with unity added in 2016. Scarcity is on the list, but it's the easiest one to fake, so leave it out unless a real deadline exists. D is a misconception, and the paper-flip works across prospect segments.
 
-**Q7. A main close like *"Shall we start the application?"* fits which profile best?**
-- A) D (decisive)
+**Q7. A direct main close like *"Shall we start the application?"* fits which profile best?**
+- A) D (decisive) ✓
 - B) I
 - C) S
 - D) C
 
-**Why:** The direct Assumptive main close (*"shall we start?"*) matches D's decisive momentum. I's might need a warmer summary before it. S's often prefer a Choice Close for a sense of control. C's usually prefer a Procedural Close with a documented next step. Matching the main-close structure to profile is the difference between close rate 30% and 50% — same pitch, different result.
+**Why:** A direct, assumptive ask suits a D, who likes decisive momentum. An I usually wants a warm summary first, an S tends to prefer the choice close because it leaves them in control, and a C usually wants the procedural close from Day 41, where every next step is laid out in order.
 
 ---
 
