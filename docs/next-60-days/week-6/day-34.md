@@ -1,8 +1,8 @@
 ---
 week: 6
 day: 34
-title: "S Profile — Steady, Supportive, Patient"
-big_idea: "With an S, trust builds slowly and commitment needs permission. Rush them and you lose them."
+title: "S profile: steady, supportive, patient"
+big_idea: "With an S, trust builds slowly and a yes needs permission. Rush them and you lose them."
 kpi_link: "Week 6 KPI — 4-profile self-assessment + 4 recorded roleplays"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-07-22-disc-personality-profiling]]"
@@ -12,164 +12,172 @@ duration_minutes: 20
 tags: [next-60-days, week-6, new-fc, disc, s-profile]
 ---
 
-# Day 34 — S Profile
+# Day 34: The S profile
 
-> **The one idea for today:** With an S, trust builds slowly and commitment needs permission. Rush them and you lose them.
+> **The one idea for today:** With an S, trust builds slowly and a yes needs permission. Rush them and you lose them.
 
-By the time you close today you'll spot an S profile (often the hardest to read because they volunteer the least), engage an S with the 4 behaviours that land (empathy, patience, encouragement, assurance) and avoid pressure tactics that feel normal with D's, and close an S through permission-giving language and the visualisation technique — without assuming their budget or risk limits for them.
+By the end of today you'll be able to spot a likely S, often the hardest profile to read because they tell you the least. You'll know the 4 behaviours that work with an S (empathy, patience, encouragement and reassurance) and why pressure that seems normal with a D backfires here. And you'll be able to close an S with permission-giving language and an honest visualisation, without deciding their budget or risk limits for them.
 
 ---
 
-## What the S is actually looking for
+## What the S is looking for
 
-An S sits down across from you thinking:
+An S sits down across from you wondering:
 
 1. *"Is this person kind?"*
 2. *"Am I going to be pressured?"*
-3. *"Is my family / my people going to be okay?"*
+3. *"Will my family be okay?"*
 
-Unlike the D (who wants outcomes) or the I (who wants connection), the S wants *safety.* Both emotional safety (you won't push) and material safety (their loved ones are covered if something happens).
+A D wants results and an I wants connection. An S wants to feel safe, in two ways: safe from being pushed, and sure their loved ones are covered if something happens.
 
-**The S is the most common profile in most advisors' books — especially among older, family-oriented, risk-averse prospects.** They also have the highest close rate if you match the register. And the lowest close rate if you don't.
+Many family-minded, careful prospects fit this profile. Match their style and an S can be a very loyal client. Miss it and they'll quietly disappear.
 
 ---
 
-## How to spot an S — the 5-signal scan
+## How to spot an S: the 5-signal scan
 
-S's are the hardest to spot because they *volunteer the least*. You have to read subtle signals:
+S's are the hardest to spot because they volunteer the least, so you have to read quieter signals:
 
 | Signal | S tells |
 |---|---|
-| **Body** | Slouches, takes up little space, often sits in corner, places handbag on lap, avoids eye contact |
-| **Pace** | Slow, soft-spoken, long pauses, comfortable with silence |
-| **Questions** | Permission-seeking: *"Is that okay?"* *"Don't push me okay?"* *"Can you give me some breathing space?"* |
-| **Words** | *"Anything lah, can one."* *"Don't push me."* *"Harmony."* *"Work-life balance."* *"I don't think I'm ready for this."* |
-| **Dressing** | Plain, no-makeup, simple hairstyle, minimal accessories. Comfortable over fashionable. |
+| Body | Sits back, takes up little space, often picks the corner seat, bag on lap, avoids long eye contact |
+| Pace | Slow and soft-spoken, long pauses, comfortable with silence |
+| Questions | Asking for permission: *"Is that okay?"* *"Don't push me okay?"* *"Can you give me some breathing space?"* |
+| Words | *"Anything lah, can one."* *"Don't push me."* *"Harmony."* *"Work-life balance."* *"I don't think I'm ready for this."* |
+| Dressing | Plain and comfortable, simple hair, few accessories (the weakest signal on its own) |
 
-**The giveaway test:** ask them an open question and see if they ask you a clarifying sub-question before answering. S's typically want to know *what kind of answer you're looking for* before committing to one. That deference is the tell.
+A useful test: ask an open question and see whether they check what you mean before answering. An S often wants to know what kind of answer you're looking for before they commit to one, and that deference gives them away.
 
 ---
 
-## The 4 engagement behaviours that land
+## The 4 behaviours that work
 
-### 1 · Make them feel comfortable — show empathy, care for their interest
+### 1. Make them comfortable: show empathy and care about their interests
 
-S's are scanning for *are you safe.* Slow down. Soften your voice half a notch. Open with genuine interest in them as a person — their family, their pace of life, what they love about their work.
+An S is checking whether you're safe. Slow down and soften your voice a little. Start with real interest in them as a person: their family, their pace of life, what they enjoy about their work.
 
-A warm-up of 10–15 minutes of honest conversation *before* the agenda is normal for an S. Rushing past it makes them wary for the rest of the meeting.
+With an S, 10 to 15 minutes of honest conversation before the agenda is normal. Rush past it and they'll stay wary for the rest of the meeting.
 
-### 2 · Be patient, soft-spoken, considerate
+### 2. Be patient, soft-spoken and considerate
 
-The S's pace is slower than yours. Match it.
+An S moves slower than you do, so match their pace.
 
-- When they pause, *don't fill the silence*. Let them think.
-- When they answer a question slowly, don't rush to the next one.
-- When they're quiet, don't assume they've checked out. They're often the most engaged profile — they just show it less.
+- When they pause, let them think and resist filling the silence.
+- When they answer slowly, wait before you ask the next question.
+- When they're quiet, don't assume they've switched off. They're often paying close attention and just showing it less.
 
-If you're a natural D or I, this will feel painfully slow. Hold the pace. The trust you build in those silences is real.
+If you're a natural D or I, this will feel painfully slow. Hold the pace anyway, because those silences are where an S starts to trust you.
 
-### 3 · Give encouragement and guidance
+### 3. Encourage and guide them
 
-S's doubt themselves. They second-guess financial decisions. They defer to *"what would be sensible"* more than what they actually need.
+An S doubts themselves and second-guesses money decisions. They lean towards *"what would be sensible"* more than what they actually need.
 
-Your job is to *gently encourage.* 
+So encourage them, gently:
 
-> *"What you've described to me — wanting to make sure your family is protected, wanting to plan ahead rather than hope — that's actually really responsible thinking. Not everyone does that."*
+> *"What you've told me, wanting your family protected and wanting to plan ahead instead of hoping for the best, is really responsible thinking. Not everyone does that."*
 
-Real, earned encouragement builds their confidence to act. Without it, they stay stuck in *"I'm not ready."*
+Honest encouragement gives them the confidence to act. Without it, they stay stuck at *"I'm not ready."*
 
-### 4 · Give assurance — lots of it
+### 4. Reassure them, often
 
-Unlike D's (who want options) or I's (who want stories), S's want *assurance.* Assurance that:
+A D wants options and an I wants stories. An S wants reassurance that:
 
-- The plan won't strain their cashflow
-- They can change their mind
-- You'll walk them through every step
-- If something goes wrong, you'll fix it
+- The plan won't strain their cash flow
+- They can change their mind (insurers give a 14-day free-look period from the day the policy document arrives, so explain how it works)
+- You'll take them through every step
+- You'll help sort things out if something goes wrong
 
-Repeat these assurances throughout the meeting. Once isn't enough. Three times isn't overkill.
+Repeat these through the meeting. Once isn't enough, and three times isn't too many.
 
 ---
 
 ## The 4 mistakes that lose an S
 
-### 1 · Pressure tactics
-The *"if you don't decide today…"* close works on D's. On an S, it feels like an attack and triggers the *"don't push me"* reflex. The S who felt pushed will usually agree on the spot just to end the discomfort — and then ghost you for 6 weeks and never come back.
+### 1. Pressure tactics
+*"If you don't decide today..."* might move a D. To an S it feels like an attack and sets off the *"don't push me"* reflex. An S who feels pushed will often agree on the spot just to end the discomfort, then go quiet for weeks and never come back.
 
-Any urgency language needs to come with an escape hatch: *"There's no rush — but if it's useful, the promotional rate ends Friday."* Not *"sign today or miss out."*
+Only mention a deadline if it's real, and give them room: *"There's no rush. Just so you know, the current premium rate applies until Friday."* Never say *"sign today or miss out."*
 
-### 2 · Speed
-An S meeting that should be 90 minutes in 45 minutes leaves them dizzy. They feel they didn't get to *process.* Processing matters for the S — they need internal time to warm up to the idea before they can say yes.
+### 2. Speed
+Squeeze a 90-minute S meeting into 45 minutes and they leave dizzy. They need time to take things in and warm up to an idea before they can say yes.
 
-If you're running out of time, reschedule the second half rather than compress. *"Let me take what we've covered and come back next Thursday — we've got more to look at and I don't want to rush it."*
+If you're running out of time, split the meeting in two: *"Let me take what we've covered and come back next Thursday. There's more to look at and I don't want to rush it."*
 
-### 3 · Assumed yes
-With an S, silence ≠ agreement. They nod, they smile, they agree to keep harmony. Then they don't sign.
+### 3. Assuming a yes
+With an S, silence doesn't mean agreement. They nod, smile and agree to keep the peace, then don't sign.
 
-Check understanding actively: *"Does this feel like the right shape for you, or is there something that's not quite sitting right?"* — you *must* give them permission to say no, or the real disagreement won't surface until after you've left.
+Check actively: *"Does this feel right for you, or is something not quite sitting well?"* You have to give them permission to say no, or the real concern won't come out until after you've left.
 
-### 4 · Assuming their budget or risk tolerance for them
-This is the S blind spot from the other side: *you* assuming what they can or can't afford. *"This might be a bit much for them"* — so you pitch the smaller plan. And they end up under-covered because you pre-limited their options based on their quiet demeanour.
+### 4. Deciding their budget for them
+This is the same blind spot from your side. You look at a quiet, modest person, think *"this might be too much for them"* and pitch the smaller plan. They end up under-covered because you limited their options based on their manner.
 
-**S's are often more financially capable than they signal.** Present the proper plan. Let *them* tell you what needs trimming, not the other way around.
+An S's quiet manner tells you very little about what they can afford. Base the recommendation on the fact-find: their income, their commitments and the budget they gave you. Present the plan those numbers support, and let them tell you what to trim.
 
 ---
 
-## The visualisation technique — for closing ethically
+## The visualisation technique, used honestly
 
-S's have a specific internal block: they know planning matters, but the *urgency* doesn't feel real. They tell themselves they'll do it *next year* for years.
+Many S's know planning matters but don't feel any urgency. They tell themselves they'll do it next year, for years.
 
-A technique that works *ethically* (not pushy, not fear-mongering):
+This technique helps without pushing or scaring them:
 
-> *"Let me ask you to picture something for a moment. Take your spouse / kids / parents — whoever you're planning for. Imagine it's 2 years from now, and something serious has happened — a stroke, a CI diagnosis, an accident. In that world, what's the financial situation they'd be in with your current coverage?"*
+> *"Can I ask you to picture something for a moment? Think of your spouse, kids or parents, whoever you're planning for. Imagine it's 2 years from now and something serious has happened: a stroke, a critical illness diagnosis, an accident. With the cover you have today, what would their finances look like?"*
 
-Give them 20 seconds of silence to actually picture it. Don't rush.
+Give them 20 seconds of silence to actually picture it.
 
 Then:
 
-> *"And now picture the same situation with the plan we've been looking at in place. What changes about how they'd cope?"*
+> *"Now picture the same situation with the plan we've been looking at in place. What changes about how they'd cope?"*
 
-The visualisation bridges *logical-I-should-plan* and *emotional-I-need-to-plan.* Once the S actually sees the difference, the urgency becomes real.
+The picture connects "I know I should plan" with "I actually want to plan." Once an S sees the difference, the urgency feels real.
 
-**Ethical rule:** only use this if the coverage gap is real. Manufacturing fear where there's no gap is manipulation, not ethical selling.
+The ethical rule: only use this when the fact-find shows a real gap, and keep the numbers honest. Creating fear where there's no gap, or exaggerating what could happen, is manipulation.
 
 ---
 
-## Common S objections — and the register that lands
+## Common S objections and how to answer
 
 ### *"I need to discuss with my spouse / family."*
-S's genuinely want family alignment. This is real.
-**Bad:** press them to decide alone.
-**Good:** *"Absolutely right — they should be part of this. Would it be easier if I joined when you bring it up? I can cover the details in 20 minutes so you don't have to re-explain. Or if you'd rather discuss privately first, happy to get on a call with you both on Saturday."* Both options keep momentum, neither pressures.
+An S genuinely wants the family on board, so take it at face value.
+Weak: press them to decide alone.
+Better: *"Absolutely, they should be part of this. Would it be easier if I came along when you bring it up? I can go through the details in 20 minutes so you don't have to re-explain. Or if you'd rather talk privately first, I'm happy to get on a call with you both on Saturday."* Both options keep things moving and neither applies pressure.
 
 ### *"I'm not ready."*
-Classic S deflection. Usually means *"I need more assurance."*
-**Bad:** push *"why not?"*
-**Good:** *"Got it — no rush at all. Can I ask: what would feeling *ready* look like for you? Is it the monthly amount, more time to think, or something specific about the plan itself? I want to make sure we're not missing anything."* Gentle surface of the real block.
+A classic S response, and it usually means *"I need more reassurance."*
+Weak: push with *"why not?"*
+Better: *"Got it, no rush at all. Can I ask what feeling ready would look like for you? Is it the monthly amount, more time to think, or something about the plan itself? I want to make sure we haven't missed anything."* This gently brings out the real concern.
 
 ### *"Can I take some time to think?"*
-**Bad:** *"Of course, take your time!"* (= eternal limbo)
-**Good:** *"Of course — totally fair. Let's set a time to revisit rather than leaving it open. Thursday 7pm or Saturday 10am — which works better for a 15-min follow-up?"* Honours their need for time, prevents the decision from drifting.
+Weak: *"Of course, take your time!"* (and it drifts forever)
+Better: *"Of course, that's fair. Let's set a time to pick it up again instead of leaving it open. Thursday 7pm or Saturday 10am, which works better for a 15-minute follow-up?"* They get the time they asked for, and the decision doesn't drift.
 
 ---
 
-## The S-tailored pitch — same plan, different framing
+## The S pitch: same plan, different framing
 
-Same recommendation ($500K CI + $500/month accumulation). For an S, the opener is reassurance-first.
+Same recommendation as the rest of the week: $500K CI cover plus a $500-a-month savings plan. For an S, you open with reassurance.
 
-### S opening — 90 seconds
+### S opening (90 seconds)
 
-> *"Before we look at anything specific, I want to repeat what I said at the start — there's no rush on any of this. This is about you seeing what fits, not me pushing anything. Based on what you shared, I'm going to suggest we look at CI coverage of around $500K and a small monthly savings piece. We'll go through each slowly, and at any point if it doesn't feel right, we stop and adjust. Does that sound okay as a way to walk through it?"*
+> *"Before we look at anything specific, I want to repeat what I said at the start: there's no rush on any of this. This is about you seeing what fits, and I won't push you into anything. Based on what you've shared, I'd suggest we look at critical illness cover of around $500K and a small monthly savings plan, and we'll go through each one slowly. If anything doesn't feel right at any point, we stop and adjust, okay?"*
 
-Permission-seeking. Reassurance-led. Walk-through pace. Explicit permission to say no — that's what makes them comfortable enough to say yes later.
+You ask permission, you lead with reassurance and you walk through it slowly. Saying out loud that they can say no is what makes them comfortable enough to say yes later.
 
-### S close — Procedural + soft Reassurance
+### S close: procedural with gentle reassurance
 
-> *"Here's how the next steps work — first we do X, then Y, then Z. I'll walk you through each. At any point, if something feels off, we pause. This is our best-reviewed plan for families at your stage — but only worth doing if you're comfortable. Shall we start with step one together?"*
+> *"Here's how the next steps work. First we do X, then Y, then Z, and I'll take you through each one. If anything feels off, we pause. Plenty of families at your stage choose this setup, but it's only worth doing if you're comfortable with it. Shall we start with step one together?"*
 
-**Why it fits:** Procedural gives them structure (safety). Reassurance confirms they won't be pushed. The *"together"* language keeps you in the walk-through role, not the closer role.
+This fits because the steps give them structure, which feels safe, and the reassurance tells them they won't be pushed. The word *"together"* keeps you in the role of guide.
 
-**Never use:** Assumptive close. On an S, *"credit card or bank transfer?"* reads as pressure. They'll fake-agree to restore harmony, then ghost for 6 weeks. The fastest way to lose an S that was about to close.
+Never use an assumptive close with an S, who will hear *"credit card or bank transfer?"* as pressure. They'll pretend to agree to keep the peace and then disappear for weeks, which is the quickest way to lose an S who was about to say yes.
+
+---
+
+## Sources
+
+- [Guidelines on Fair Dealing, FSG-G04 - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - MAS expects recommendations to suit the customer's circumstances and forbids pressure selling, which is why the plan comes from the fact-find and never from a guess about their budget
+- [Tips on insurance products - Life Insurance Association Singapore](https://www.lia.org.sg/consumers/choosing-right/tips-on-insurance-products/) - the 14-day free-look period, counted from receipt of the policy document, and the charges that can still apply
+- [Emotions of Normal People - William Moulton Marston (1928), Internet Archive](https://archive.org/details/emotionsofnormal0000mars) - the book behind DISC, where the S pattern was first described under the label "Submission"
 
 ---
 
@@ -177,59 +185,59 @@ Permission-seeking. Reassurance-led. Walk-through pace. Explicit permission to s
 
 **Q1. The hardest part about spotting an S profile is:**
 - A) They look like D's
-- B) They volunteer the least — you have to read subtle cues ✓
+- B) They volunteer the least, so you have to read quiet signals ✓
 - C) They dress exactly like C's
 - D) They don't exist in financial services
 
-**Why:** D's announce themselves with speed. I's announce themselves with volume. C's announce themselves with analytical questions. S's are the profile that *doesn't* announce — quiet, deferring, polite. You have to watch for what's *not* happening — long silences they're comfortable with, questions they hedge, answers that trail into *"anything lah."* Missing an S and treating them like a D is the most common miss-sell.
+**Why:** D's show themselves with speed, I's with volume and C's with analytical questions. An S is quiet, deferring and polite, so you have to notice what isn't happening: long silences they're comfortable with, hedged questions, answers that trail off into *"anything lah."* Treating an S like a D is one of the most common misreads.
 
-**Q2. Pressure tactics fail on S profiles because:**
+**Q2. Pressure tactics fail with an S because:**
 - A) They're immune to FOMO
-- B) *"Don't push me"* is a core trigger — pressure causes either defensive withdrawal or a face-saving fake-yes that unwinds within 48 hours ✓
+- B) *"Don't push me"* is a core trigger; pressure leads to either quiet withdrawal or a polite fake yes that falls apart within days ✓
 - C) They don't have money
 - D) They never decide at meetings
 
-**Why:** D's respond to urgency because it aligns with their decisiveness. S's interpret the same language as *attack*. The typical response to pressure: agree on the spot to restore harmony, then ghost for weeks and never return calls. Either outcome loses the sale. Any urgency with an S needs a built-in escape hatch (*"there's no rush, but if it's useful…"*) — never ultimatum-style.
+**Why:** A D may respond to urgency because they like to decide fast. An S hears the same words as an attack and usually agrees on the spot to keep the peace, then goes quiet for weeks, and you've lost them either way. If a real deadline exists, state it with room to breathe (*"there's no rush, but just so you know..."*), and never as an ultimatum.
 
 **Q3. An S says *"I'm not ready."* The best next step is:**
 - A) Explain why now is the right time
-- B) Agree, take the meeting off the calendar
-- C) Gently surface what *ready* would look like — monthly amount, more time, or a specific concern — then honour whatever surfaces ✓
+- B) Agree and take the meeting off the calendar
+- C) Gently ask what *ready* would look like (the monthly amount, more time, a specific concern) and respect whatever comes up ✓
 - D) Refer them to a different advisor
 
-**Why:** *"Not ready"* is usually a stand-in for a specific concern the S hasn't articulated — or a need for more assurance before they can say yes. Pushing past it (A) triggers withdrawal. Giving up (B, D) abandons a likely future client. The correct move is *gentle surface* — ask what would make them feel ready, honour whatever they say (usually a small issue like a specific month or a spouse consultation), and re-anchor the next step with a soft date.
+**Why:** *"Not ready"* usually stands in for a concern the S hasn't put into words, or a need for more reassurance. Pushing past it (A) makes them withdraw, and giving up (B, D) walks away from a likely future client. Ask gently what would make them feel ready, respect the answer (often something small like timing or talking to their spouse) and agree a soft date for the next step.
 
-**Q4. With an S, when they pause, the correct move is:**
+**Q4. With an S, when they pause, the best move is:**
 - A) Fill the silence with another question
-- B) Don't fill the silence — let them think; their pauses are engagement, not disengagement ✓
+- B) Leave the silence and let them think; their pauses mean they're engaged ✓
 - C) Assume they've checked out
 - D) Move to the next section
 
-**Why:** S's process internally. Long pauses are them thinking, not them disengaging. Filling the silence (A) robs them of the processing time they need. Assuming disengagement (C) leads to rushing past the moment where they'd actually say yes. Matching their pace means tolerating silence — which feels wrong for D's and I's but is the move that builds S trust.
+**Why:** An S thinks things through internally, so a long pause usually means they're working it out. Filling the silence (A) takes away the thinking time they need. Assuming they've switched off (C) makes you rush past the moment they might have said yes. Matching their pace means sitting with silence, which feels wrong to D's and I's and builds trust with an S.
 
-**Q5. Assuming an S's budget or risk tolerance for them (and pitching a smaller plan than you'd normally recommend) is:**
-- A) Respectful — they seem modest
-- B) The S blind spot from the other side — S's are often more financially capable than they signal; present the proper plan and let *them* trim ✓
+**Q5. Guessing an S's budget from how modest they seem, and pitching a smaller plan than the fact-find supports, is:**
+- A) Respectful, because they seem modest
+- B) Your blind spot; a quiet manner says little about what they can afford, so recommend what the fact-find supports and let them trim ✓
 - C) Safe
 - D) Required by compliance
 
-**Why:** S's signal modesty through appearance and tone (plain clothes, quiet demeanour). New FCs mistake this for budget constraints and pre-limit the recommendation. That under-covers them, and later they either find out through life events that they weren't protected enough, or their real capacity never gets surfaced. Let the S tell you what needs trimming — don't decide for them.
+**Why:** An S can come across as modest through plain clothes and a quiet voice, and new FCs mistake that for a tight budget. The client ends up under-covered, and may only find out when something happens. Build the recommendation from their income, commitments and stated budget, then let them decide what to trim.
 
-**Q6. The visualisation technique for S closing goes:**
+**Q6. The visualisation technique for closing an S goes:**
 - A) Describe the product features in vivid detail
-- B) *"Picture your spouse / kids / parents in 2 years with a serious event — what's the financial situation with your current coverage? Now picture the same scenario with the plan we've been looking at"* ✓
+- B) *"Picture your spouse, kids or parents 2 years from now after a serious event. What would their finances look like with your current cover? Now picture the same situation with the plan we've been looking at"* ✓
 - C) Promise them specific returns
 - D) Compare yourself to other advisors
 
-**Why:** S's know planning matters but don't *feel* the urgency — they defer to *"next year"* for years. The visualisation bridges logical-I-should to emotional-I-need. By asking them to picture both the without-plan and with-plan scenarios in vivid specifics, the gap becomes experiential, not theoretical. Ethical rule: only use when the coverage gap is real — manufacturing fear where there's no gap is manipulation.
+**Why:** An S often knows planning matters but doesn't feel the urgency, so they keep putting it off. Picturing both situations, without the plan and with it, makes the gap feel real. Use it only when the fact-find shows a real gap, and keep the numbers honest. Creating fear where there's no gap is manipulation, and promising returns (C) is a misrepresentation.
 
-**Q7. An S says *"Can I take some time to think?"*. The better close is:**
-- A) *"Of course, take your time!"* (leads to eternal limbo)
-- B) *"Of course — let's set a time to revisit rather than leaving it open. Thursday 7pm or Saturday 10am — which works better for a 15-min follow-up?"* ✓
+**Q7. An S asks *"Can I take some time to think?"*. The better reply is:**
+- A) *"Of course, take your time!"* (and it drifts forever)
+- B) *"Of course, let's set a time to pick it up again instead of leaving it open. Thursday 7pm or Saturday 10am, which works better for a 15-minute follow-up?"* ✓
 - C) *"Sign today or you'll lose the rate"*
 - D) *"I'll follow up next month"*
 
-**Why:** S's genuinely do need time. Granting it without a structured next step (A) lets the decision drift into forever. Pressuring against the need (C) triggers the withdrawal reflex. Waiting a month (D) lets the urgency fade. B honours the need for time AND anchors a specific revisit, so the decision gets resolved in a timeframe that matches the S's pace without evaporating.
+**Why:** An S genuinely needs time. Giving it with no next step (A) lets the decision drift, pressuring them (C) makes them withdraw, and waiting a month (D) lets the urgency fade. B gives them the time and fixes a date to come back to it, at a pace that suits an S.
 
 ---
 

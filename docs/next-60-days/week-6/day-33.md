@@ -1,8 +1,8 @@
 ---
 week: 6
 day: 33
-title: "I Profile — Influencing, Social, Expressive"
-big_idea: "With an I, the meeting *is* the relationship. Lead with warmth, then earn the work."
+title: "I profile: influencing, social, expressive"
+big_idea: "With an I, the relationship comes first. Lead with warmth, then turn it into a firm next step."
 kpi_link: "Week 6 KPI — 4-profile self-assessment + 4 recorded roleplays"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-07-22-disc-personality-profiling]]"
@@ -11,206 +11,217 @@ duration_minutes: 20
 tags: [next-60-days, week-6, new-fc, disc, i-profile]
 ---
 
-# Day 33 — I Profile
+# Day 33: The I profile
 
-> **The one idea for today:** With an I, the meeting *is* the relationship. Lead with warmth, then earn the work.
+> **The one idea for today:** With an I, the relationship comes first. Lead with warmth, then turn it into a firm next step.
 
-By the time you close today you'll spot an I profile from body language, pace, and word choice within 3 minutes, engage an I with the 4 behaviours that land (presentable, interesting, compliments, make them feel special) and avoid the 4 that flatline, and pitch an I through stories and emotion — then convert the feel-good into a concrete commitment before the meeting ends.
+By the end of today you'll be able to spot a likely I from body language, pace and word choice, and you'll know the 4 behaviours that work with one and the 4 mistakes that lose one. You'll also know how to pitch through a story and turn the good feeling into a firm commitment before they leave.
 
 ---
 
-## What the I is actually looking for
+## What the I is looking for
 
-An I sits down in front of you thinking:
+An I sits down across from you wondering:
 
 1. *"Do I like this person?"*
-2. *"Am I having a good time?"*
+2. *"Am I enjoying this?"*
 3. *"Do they find me interesting?"*
 
-Notice what's *not* on that list: *"is this efficient?"* or *"is this technically correct?"* The I doesn't buy from competence alone. They buy from *connection*.
+Efficiency and technical accuracy aren't on that list. An I buys from people they feel connected to, so competence on its own won't win them over.
 
-This creates a trap for new FCs. I's love the meeting, laugh at your jokes, compliment you, and *don't sign anything.* The feel-good is real — but unless you convert the warmth into a specific commitment before they leave, it evaporates within 48 hours as they move on to the next fun thing.
+That's a trap for new FCs. An I enjoys the meeting, laughs at your jokes, compliments you and then doesn't sign. The good feeling is real, but unless you turn it into a specific commitment before they leave, it fades within a few days as they move on to the next thing.
 
-**The I's pattern:** high meeting energy + low follow-through. Your job is to bridge the two.
+The I's pattern is high energy in the meeting and weak follow-through afterwards. Your job is to close that gap.
 
 ---
 
-## How to spot an I — the 5-signal scan
+## How to spot an I: the 5-signal scan
 
 | Signal | I tells |
 |---|---|
-| **Body** | Lots of hand gestures, animated expressions, big laughs. *You'll hear them before you see them.* |
-| **Pace** | Fast — talks a lot, interrupts a little, never lets silence sit |
-| **Questions** | Emotion-related: *"How did you feel about that?"* *"What's that like for you?"* |
-| **Words** | *"Her story is truly inspiring!"* *"Exclusive."* *"Let's not get into unnecessary conflicts."* *"Trust me lah."* |
-| **Dressing** | Bright colours, fashion-forward, coloured hair, accessories. Cares a lot about looking good. |
+| Body | Lots of hand gestures, animated face, big laugh. You'll often hear them before you see them. |
+| Pace | Fast: talks a lot, interrupts a little, never lets a silence sit |
+| Questions | About feelings and people: *"How did you feel about that?"* *"What's that like for you?"* |
+| Words | *"Her story is so inspiring!"* *"Exclusive."* *"Let's not get into unnecessary conflict."* *"Trust me lah."* |
+| Dressing | Bright colours, fashionable, maybe coloured hair or statement accessories (the weakest signal on its own) |
 
-Combine 3+ signals and you're with an I. Match their energy — smile more, gesture more, speak a little faster.
+When 3 or more line up, you're probably with an I. Match their energy: smile more, gesture more, speak a bit faster.
 
 ---
 
-## The 4 engagement behaviours that land
+## The 4 behaviours that work
 
-### 1 · Be presentable
-Of all 4 profiles, I's judge your appearance most. Iron the shirt. Clean shoes. Good haircut. Subtly well-presented. This isn't vanity — it's a *language* the I reads to decide if you're someone they want to be seen with.
+### 1. Look presentable
+In this course's model, an I pays the most attention to how you look. Iron the shirt, clean your shoes, get a decent haircut. An I reads your appearance to decide whether you're someone they'd be happy to be seen with.
 
-### 2 · Be interesting — tell stories, have a sense of humour
-I's respond to *narrative*. A dry walkthrough of coverage options bores them. A story about a client who faced a similar situation and what happened *sells* them.
+### 2. Be interesting: tell stories, have a sense of humour
+A dry walk-through of coverage options bores an I, while a true story about someone in a similar situation holds their attention.
 
-Bad: *"CareShield Life supplements cover long-term disability. Let's look at the options…"*
-Good: *"I had a client last year — 42 years old, two kids — had a stroke out of nowhere. Came back to me 8 months later and said 'thank god we had that long-term disability piece in place' because it carried his family through the recovery. That's why when I look at your plan, I keep coming back to this one coverage area…"*
+Weak: *"CareShield Life pays a monthly amount if you can't do 3 of the 6 daily activities, and a supplement raises that payout. Let's look at the options..."*
+Better (only if it really happened): *"My uncle had a stroke at 52, out of nowhere. He was off work for eight months. What kept the family going was the critical illness payout he'd bought years earlier, because it paid the mortgage while he recovered. That's why, when I look at your plan, I keep coming back to this one area..."*
 
-Same information. Completely different response from an I.
+Only tell true stories. Most new FCs don't have client stories yet, so use one from family, friends or your mentor, and say whose it is. Never invent a client, and never share details that could identify a real one without their permission.
 
-### 3 · Make them feel you like them — give real "wow" compliments
-I's thrive on being liked. Pay *observation-based* compliments, not flattery.
+### 3. Show you like them with real compliments
+An I wants to be liked. Compliment something you actually noticed and skip the flattery.
 
-Bad: *"You're so smart!"*
-Good: *"The way you handled that situation with your team earlier — you genuinely read the room before speaking. That's not common."*
+Weak: *"You're so smart!"*
+Better: *"The way you handled your team earlier, you read the room before you spoke. Not many people do that."*
 
-The second one is specific, honest, earned. I's feel the difference.
+The second one is specific and honest, and an I can tell the difference.
 
-### 4 · Make them happy and feel special
-Treat the I like the most important person in the room — because to them, that's the baseline they expect. A thank-you card after the meeting. A text the next day referencing a specific thing they said. Small, personal, no business-in-disguise.
+### 4. Make them feel special
+Treat the I as the most important person in the room, because that's what they expect. Send a thank-you card after the meeting, or a text the next day that mentions something specific they said. Keep it small and personal, with no sales message tucked inside.
 
 ---
 
 ## The 4 mistakes that lose an I
 
-### 1 · Data-led pitches
-Spreadsheets, tables, detailed projections — the I tunes out within 30 seconds. They don't care about *the math*; they care about *what it feels like to have the thing.* Save the math for the C profile.
+### 1. Data-led pitches
+Spreadsheets, tables and detailed projections lose an I within about 30 seconds. They care about what it feels like to have the cover and much less about the maths behind it. Keep the maths for the C profile, and have the benefit illustration ready for when they ask.
 
-### 2 · Criticising their choices
-I's take criticism *personally* — especially about money, past purchases, or old advisors. *"That plan you bought in 2019 wasn't ideal"* lands as *"you made a dumb decision"* — which, to an I, is an attack on their self-image.
+### 2. Criticising their choices
+An I takes criticism personally, especially about money, past purchases or old advisors. *"That plan you bought in 2019 wasn't ideal"* sounds to them like *"you made a dumb decision"*, which hurts how they see themselves.
 
-Reframe: *"That plan worked for the version of you in 2019 — you had different priorities then. Today's situation is different, so let's look at what fits now."*
+Try instead: *"That plan made sense for you in 2019, when your priorities were different. Things have changed, so let's look at what fits now."*
 
-### 3 · Sitting in silence
-Silence terrifies an I. If you go quiet to think or check your notes, the I will fill the silence — often by going off-topic. Keep low-level conversation flowing even while you're looking at documents.
+### 3. Sitting in silence
+An I hates silence. If you go quiet to think or check your notes, they'll fill the gap, often by going off-topic. Keep some light conversation going even while you look at documents.
 
-### 4 · Letting the feel-good meeting end without a specific commitment
-This is the #1 trap. The meeting feels amazing. You both laugh. You promise to "follow up soon." You leave.
+### 4. Letting a good meeting end without a specific commitment
+This is the biggest trap. The meeting goes brilliantly and you both laugh a lot. You promise to "follow up soon" and leave.
 
-Five days later they've forgotten everything except that they liked you. The sale doesn't happen.
+Five days later they remember that they liked you and very little else, and the sale doesn't happen.
 
-**The fix:** end every I meeting with a *specific next step tied to a specific date*.
+The fix is to end every I meeting with a specific next step on a specific date.
 
-> *"This has been great. Based on what we talked about, I'll put together the proposal and we'll meet again Thursday at 7pm to walk through it. Sound good? Fair?"*
+> *"This has been great. Based on what we talked about, I'll put the proposal together and we'll meet again Thursday at 7pm to go through it. Does that work for you?"*
 
-Book it on both calendars *before* they leave. Do NOT accept *"I'll let you know when I'm free."* That's how I-meetings die.
-
----
-
-## I-profile blind spots
-
-Five patterns I's bring into the meeting:
-
-1. **They take things too personally.** Critiques of past choices land hard. Soft-framing everything is worth the effort.
-2. **They jump to conclusions.** You say *"most people in your stage should have critical illness coverage."* They hear *"I don't have enough."* Check understanding often.
-3. **They make everything about themselves.** You share a story; they immediately share a bigger story. Let them. Don't compete.
-4. **They have a strong need to look good.** When they hesitate, it's often because they're worried how the commitment looks — to their spouse, their friends, their future self. Address the looks-good concern, not just the math.
-5. **They complete your sentences.** Annoying, but harmless. Don't correct.
+Put it in both calendars before they leave. If they say *"I'll let you know when I'm free"*, offer two specific times instead, because an open-ended "later" is how I meetings quietly die.
 
 ---
 
-## Common I objections — and the register that lands
+## I blind spots
+
+Five habits an I brings into the meeting:
+
+1. They take things personally. Criticism of past choices hurts, so soften how you frame it.
+2. They jump to conclusions. You say *"most people at your stage should have critical illness cover"* and they hear *"I don't have enough."* Check what they understood.
+3. They make things about themselves. You tell a story and they tell a bigger one. Let them, there's no need to compete.
+4. They care a lot about how things look. When they hesitate, it's often because they're worried how the decision looks to their spouse, their friends or their future self. Deal with that worry as well as the numbers.
+5. They finish your sentences. Mildly annoying and harmless, so don't correct them.
+
+---
+
+## Common I objections and how to answer
 
 ### *"I need to ask my spouse / sibling / friend."*
-I's genuinely consult their social circle more than other profiles.
-**Bad:** pressure them to decide alone.
-**Good:** *"Makes total sense — this is a big decision and they should be part of it. Would it help if I joined the call and walked them through it in 15 minutes? Happy to answer their questions directly so you don't have to re-explain."* Gets you a second meeting with the influencer and keeps the momentum.
+An I really does check with the people around them more than other profiles do.
+Weak: pressure them to decide alone.
+Better: *"That makes sense. It's a big decision and they should be part of it. Would it help if I joined a call and went through it with them in 15 minutes? I can answer their questions directly so you don't have to re-explain."* You get a meeting with the person they listen to, and the momentum holds.
 
 ### *"Let me think about it."*
-The I rarely means *"let me analyse."* They usually mean *"I feel unsure and I want to not-commit right now."*
-**Bad:** list the rational reasons why they should decide.
-**Good:** *"Totally fair. What's feeling off? Is it the monthly amount, the commitment length, or something about the process?"* Emotional check-in first, facts second. If they name a concrete issue, you address it. If they can't name it, the issue is feel-good decay — go straight to *"should we grab 20 minutes on Thursday to revisit?"*
+An I rarely means they'll go away and analyse it. Usually they feel unsure and don't want to commit right now.
+Weak: list the logical reasons they should decide.
+Better: *"Totally fair. Which part doesn't feel right yet? Is it the monthly amount, how long you'd be paying, or something about the process?"* Ask how they feel first and bring in facts after. If they name something concrete, deal with it. If they can't, the good feeling is fading, so suggest *"shall we take 20 minutes on Thursday to look at it again?"*
 
-### *"This is so cool, I love this idea!"* (the too-easy agreement)
-I's enthuse before they commit. *"Love it"* is not yes.
-**Bad:** accept the enthusiasm as a close.
-**Good:** *"Glad it resonates. What do you need from me to get this moving — should we aim to have it in place by end of next week?"* Convert the emotion to a date.
+### *"This is so cool, I love this idea!"* (agreement that comes too easily)
+An I gets excited before they commit. *"Love it"* doesn't mean yes.
+Weak: treat the excitement as a close.
+Better: *"Glad you like it. What do you need from me to get this moving? Shall we aim to have it in place by the end of next week?"* Turn the excitement into a date.
 
 ---
 
-## The I-tailored pitch — same plan, different framing
+## The I pitch: same plan, different framing
 
-Same recommendation ($500K CI + $500/month accumulation). For an I, the opener is story-first.
+The recommendation hasn't changed from the rest of the week ($500K CI cover plus a $500-a-month savings plan), but for an I you open with a story.
 
-### I opening — 90 seconds
+### I opening (90 seconds)
 
-> *"Before I walk through the plan — let me tell you about a client I met last year. Same stage as you, two young kids. He'd been putting this off for 3 years. Then his brother-in-law had a stroke at 42. Same week, he called me and said 'let's do it now.' Not because of the stroke exactly — because he realised the person he was protecting wasn't a hypothetical wife; it was his actual wife, sitting next to him at the hospital.*
+The story below is a template, so replace it with something that really happened to someone you know:
+
+> *"Before I go through the plan, let me tell you about a friend of mine. Same stage as you, two young kids. He'd been putting this off for three years. Then his brother-in-law had a stroke at 42, and that same week he called me and said, 'let's sort it out now.' It wasn't the stroke itself, he told me. Sitting in that hospital, he realised the family he was protecting was his actual wife and kids, and they were depending on him.*
 >
-> *That's why when I looked at your situation, I kept coming back to CI. Let me show you what that looks like for you…"*
+> *That's why, when I looked at your situation, I kept coming back to CI. Let me show you what that looks like for you..."*
 
-Emotional frame first. Named protagonist. Recommendation emerges from the story.
+Feelings come first, there's a real person at the centre, and the recommendation grows out of the story.
 
-### I close — Reassurance (with social proof)
+### I close: reassurance
 
-> *"Alan, this is our best-selling savings plan — particularly strong among clients at your stage who have many options. They still choose this. Let's take the first step today."*
+> *"Alan, you're not the only parent who's worried about this. A lot of families at your stage ask me about exactly this kind of setup. Let's take the first step today and book Thursday to finish the paperwork."*
 
-**Why it fits:** I's respond to social proof + feeling liked. Reassurance language confirms the emotional high without asking them to think hard. Pair with a specific next date so the warmth doesn't evaporate in 48 hours.
+This fits because an I likes to know others have made the same choice, and likes to feel you're on their side. Reassurance keeps the good feeling going without asking them to think hard. Pair it with a specific date so the warmth doesn't fade.
 
-**Never use:** Procedural (too dry — they tune out mid-walkthrough). Careful with Assumptive (only after a clear verbal yes; too early feels like pressure even to I's).
+Keep the reassurance true. Don't call something "our best-selling plan" or "the best plan out there" unless you can show the figures behind it, because that's an unsupported claim under MAS fair dealing expectations.
+
+Avoid procedural closes with an I (too dry, they tune out halfway). Be careful with assumptive closes too. Use one only after a clear verbal yes, because even an I feels pressured if it comes too early.
+
+---
+
+## Sources
+
+- [CareShield Life - CPF Board](https://www.cpf.gov.sg/careshieldlife) - payouts start when you can't do 3 of the 6 activities of daily living, and private supplements can raise the payout
+- [Guidelines on Fair Dealing, FSG-G04 - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - MAS expects clear, accurate information and suitable advice, which rules out made-up stories and unsupported "best plan" claims
 
 ---
 
 ## Quiz
 
-**Q1. With an I profile, the #1 trap is:**
+**Q1. With an I profile, the biggest trap is:**
 - A) Boring them with data
-- B) Letting the feel-good meeting end without a specific commitment tied to a specific date ✓
+- B) Letting a feel-good meeting end without a specific commitment on a specific date ✓
 - C) Not smiling enough
 - D) Being too casual
 
-**Why:** I meetings feel fantastic. Jokes land, compliments flow, they say *"love this idea!"* — and then nothing happens. The emotional high fades within 48 hours and they move on to the next shiny thing. The only countermeasure is *converting warmth into a calendar booking before they leave*. Not *"I'll follow up soon"* — a specific date on both calendars. That's the discipline that actually closes I sales.
+**Why:** I meetings feel great, they say *"love this idea!"*, and then nothing happens because the feeling fades within days. Turn the warmth into a booking with a specific date in both calendars before they leave. *"I'll follow up soon"* doesn't count.
 
-**Q2. Compared to other profiles, I's respond to pitches best when you lead with:**
+**Q2. Compared with other profiles, an I responds best to a pitch that leads with:**
 - A) Data tables and projections
 - B) Detailed product specifications
-- C) Stories — a protagonist, a situation, what happened, what changed ✓
+- C) Stories: a person, a situation, what happened, what changed ✓
 - D) Risk analyses and worst-case scenarios
 
-**Why:** I's engage emotionally before logically. A story activates their empathy and imagination, which is the buying circuitry for them. Data and specifications (A and B) are C-profile moves; worst-case scenarios (D) are D-profile moves. Stories followed by a brief *"and here's how this applies to you"* is the I sequence.
+**Why:** An I engages with feelings before logic, and a story gets their empathy and imagination going. Data and specs (A and B) are C-profile moves, and worst-case scenarios (D) are D-profile moves. For an I, tell a true story, then show how it applies to them.
 
-**Q3. An I says *"Let me think about it."* The most likely underlying cause is:**
+**Q3. An I says *"Let me think about it."* The most likely reason is:**
 - A) They're analysing the numbers
-- B) They feel unsure and want to not-commit right now — rarely a rational analysis ✓
+- B) They feel unsure and don't want to commit right now; it's rarely a logical analysis ✓
 - C) They need to consult a spreadsheet
 - D) They're testing you
 
-**Why:** I's buy on feel. *"Let me think"* from an I almost never means *"let me run the numbers"* — that'd be a C response. It usually means they feel unsure and want to stall. The fix is an emotional check-in (*"what's feeling off?"*) rather than more data. If the emotional issue surfaces, you handle it. If they can't name one, it's feel-good decay — reschedule for 48–72 hours out before it evaporates entirely.
+**Why:** An I buys on feel, so *"let me think"* rarely means running the numbers (that's a C response). Usually they feel unsure and want to put it off. Ask how they feel (*"which part doesn't feel right yet?"*) before offering more data, and if they can't name anything, book a follow-up 2 or 3 days out before the feeling fades.
 
-**Q4. I's judge your appearance more than any other profile. The implication is:**
+**Q4. An I pays more attention to your appearance than other profiles. What that means for you:**
 - A) Wear expensive suits only
-- B) Iron the shirt, clean shoes, good haircut — being well-presented is a language the I reads to decide whether to be seen with you ✓
+- B) Iron the shirt, clean your shoes, get a decent haircut; an I reads your appearance to decide whether to be seen with you ✓
 - C) Dress casually to match their energy
 - D) Appearance doesn't matter if you're good
 
-**Why:** I's don't consciously analyse your outfit — but they subconsciously register it as a signal about whether you're a *person they want associated with them*. Social-proof is their currency. A wrinkled shirt or scruffy shoes reads as *"not someone I'd introduce to my friends"* — which kills the referral pipeline even if the pitch lands. This isn't about expense; it's about subtle presentability.
+**Why:** An I notices whether you look like someone they'd want to be associated with. A creased shirt or scuffed shoes can say *"not someone I'd introduce to my friends"*, which hurts referrals even when the pitch goes well. Looking neat costs very little.
 
 **Q5. With an I prospect, *"trust me lah, this is the best plan out there"* would:**
-- A) Land beautifully — I's respond to confidence
-- B) Fail — *"trust me"* phrases trigger the I's *"over-promise, under-deliver"* flag and drop credibility ✓
+- A) Land well, because an I responds to confidence
+- B) Backfire; *"trust me"* sets off the I's own "over-promise, under-deliver" alarm, and "best plan" is a claim you can't back up ✓
 - C) Be neutral
 - D) Work only with male I's
 
-**Why:** I's are actually the profile most likely to recognise over-promising because they themselves have the tendency (*"over-promise, under-deliver"* is on the I weakness list). Hearing the pattern in someone else triggers their self-recognition reflex and they trust you less. The fix is the same content delivered with observation-based evidence: *"here's what I've seen for clients in similar situations"*, not *"trust me"*.
+**Why:** An I is often the quickest to spot over-promising, because it's on their own list of weaknesses. When they hear it from you, they trust you less. "The best plan out there" is also an unsupported claim you shouldn't make to anyone. Say what you've actually seen, for example *"here's what this plan does for a family in your situation"*.
 
-**Q6. An I says *"This is so cool, I love this idea!"*. The correct next move is:**
-- A) Accept the enthusiasm as a close
-- B) *"Glad it resonates. What do you need from me to get this moving — should we aim to have it in place by end of next week?"* — convert emotion to a date ✓
+**Q6. An I says *"This is so cool, I love this idea!"*. The best next move is:**
+- A) Treat the excitement as a close
+- B) *"Glad you like it. What do you need from me to get this moving? Shall we aim to have it in place by the end of next week?"* Turn the excitement into a date ✓
 - C) Send them more information later
 - D) Ask for the signature now
 
-**Why:** *"Love it"* is not yes. I's enthuse *before* they commit. Without converting the emotion to a specific next-step commitment, the I loses the high within hours and moves on. B does the conversion naturally: honours their enthusiasm, then anchors a concrete timeline. *"Should we aim for end of next week"* is a gentle close that keeps the warmth while creating commitment.
+**Why:** An I gets excited before they commit, and without a specific next step the feeling fades fast. B respects the excitement and fixes a timeline, a gentle close that keeps things warm and still gets a commitment.
 
-**Q7. Criticising an I's past choices (old policies, previous advisor) tends to:**
-- A) Wake them up — they respect honesty
-- B) Land as a personal attack because I's take criticism personally — the fix is reframing the past as a "different version of you" ✓
+**Q7. Criticising an I's past choices (old policies, a previous advisor) tends to:**
+- A) Wake them up, because they respect honesty
+- B) Feel like a personal attack, because an I takes criticism personally; describe the old plan as right for who they were then ✓
 - C) Be necessary for the pitch
 - D) Have no effect
 
-**Why:** I's have a strong self-image, and their past purchases are part of that image. *"That plan wasn't ideal"* lands as *"you made a dumb decision"* — which injures the image. The reframe — *"that plan worked for the 2019 version of you — today's situation is different"* — preserves the self-image while still clearing the way to restructure. Same content, opposite received experience.
+**Why:** An I's past purchases are part of how they see themselves, so *"that plan wasn't ideal"* sounds like *"you made a dumb decision"*. Saying *"that plan made sense in 2019, and things have changed since"* protects their self-image and still lets you review the plan. You give the same information and they hear it completely differently.
 
 ---
 

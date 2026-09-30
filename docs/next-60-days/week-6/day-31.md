@@ -1,8 +1,8 @@
 ---
 week: 6
 day: 31
-title: "DISC — Four Profiles + the 5-Minute Speed-Read"
-big_idea: "Stop selling the way *you* buy. You have 5 minutes to profile before the meeting commits to a pace — after that you're married to whatever assumption you walked in with."
+title: "DISC: four profiles and the 5-minute speed-read"
+big_idea: "Stop selling the way *you* buy. You get about 5 minutes to read the prospect before the meeting settles into a pace, and after that you're stuck with whatever you assumed walking in."
 kpi_link: "Week 6 KPI — 4-profile self-assessment + 4 recorded roleplays"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-07-22-disc-personality-profiling]]"
@@ -11,242 +11,258 @@ duration_minutes: 20
 tags: [next-60-days, week-6, new-fc, disc, personality, profiles]
 ---
 
-# Day 31 — DISC + 5-Minute Speed-Read
+# Day 31: DISC and the 5-minute speed-read
 
-> **The one idea for today:** Stop selling the way *you* buy. And get your read in 5 minutes — because that's the window before the meeting locks its pace.
+> **The one idea for today:** Stop selling the way *you* buy, and make your read in the first 5 minutes, before the meeting settles into a pace.
 
-By the time you close today you'll name the 4 DISC profiles (Dominance, Influence, Steadiness, Conscientiousness) and the 2–3 traits that define each, understand the 2 axes behind DISC (**Thinker vs Feeler** and **Fast/Extrovert vs Slow/Introvert**), and self-assess your own dominant profile — because selling *your* way is the trap, and knowing your default is the first defence.
+By the end of today you'll be able to name the 4 DISC profiles (Dominance, Influence, Steadiness, Conscientiousness) and the traits behind each. You'll know the 2 axes this course uses to sort them, Thinker vs Feeler and Fast vs Slow, and you'll have a first guess at your own default. That last part matters most, because your default is the style you'll push on everyone else if you don't catch it.
 
 ---
 
 ## Why this matters now
 
-You've spent 5 weeks on voice, scripts, and volume. The reason the close rate still moves slowly is that every prospect is a different type of person — and you've been delivering the same voice to all of them.
+You've spent 5 weeks on voice, scripts and volume. One reason your close rate still moves slowly is that you're giving every prospect the same delivery, and they're all different people.
 
-DISC is the framework that tells you, in the first 2–3 minutes of a meeting, *what kind of person you're talking to*. Once you know, you can:
+DISC gives you a quick guess, in the first few minutes, about how the person across the table likes to be spoken to. With that guess you can adjust four things:
 
-- **Adjust your pacing** — slow down for S, speed up for D
-- **Adjust the information** — facts for C, stories for I
-- **Adjust the close** — options for D, reassurance for S
-- **Adjust the follow-up** — a D will tell you to get to the point; an S will need warm-up
+- Pacing: slow down for an S, speed up for a D
+- Information: facts for a C, stories for an I
+- The close: options for a D, reassurance for an S
+- Follow-up: a D wants you to get to the point, an S needs a warm-up first
 
-**The objective isn't to be an amateur psychologist.** It's to match the register of the prospect in front of you, so the same good advice actually lands.
+You don't need to play psychologist. The aim is to match the prospect's style so the same good advice actually lands.
 
 ---
 
-## The bigger frame DISC sits inside — the 3 Cs of Communication
+## Where DISC comes from, and what it isn't
 
-DISC is the *Convince* layer of a wider communication model. Before we go deep on profiling for the rest of the week, it's worth seeing where DISC fits in the full picture.
+DISC traces back to William Moulton Marston, a psychologist who described four patterns of emotional behaviour in his 1928 book *Emotions of Normal People*. His labels were Dominance, Inducement, Submission and Compliance. Marston never built a test. Industrial psychologists turned his model into questionnaires from the 1940s onwards, and the commercial versions sold today took shape in the 1970s. That's also when the letters picked up the friendlier names you'll see in this course.
+
+Be honest with yourself and with clients about what it is. DISC is a conversation aid that helps you notice style and adjust your delivery. It isn't a validated personality test in the way the Big Five model is, and there's little peer-reviewed evidence that DISC predicts behaviour or buying decisions. Its own publisher doesn't recommend it for hiring. So never tell a client "you're a C" as if it were a diagnosis, and never let a profile guess override what the fact-find tells you.
+
+The Thinker/Feeler and Fast/Slow axes below are this course's teaching shorthand. They map loosely onto the two axes in Marston's model, but they aren't his wording.
+
+---
+
+## The bigger frame: the 3 Cs of communication
+
+DISC sits inside a wider communication model. Before you spend the week on profiling, see where it fits.
 
 | Layer | Sub-skills | What it does |
 |---|---|---|
-| **Connect** (5) | Smile · pay a sincere compliment · ask about *them* · listen attentively · acknowledge what they said | Drops the prospect's guard. The first 2 minutes of every meeting. |
-| **Convince** (1) | Match their logic — DISC | Adjusts how the same content lands across four very different brains. The whole of Week 6. |
-| **Comfort** (4) | Tonality (warm, not flat) · pace (slightly faster than conversational) · body language (open) · choice of words (no jargon) | Keeps them open across the next 30+ minutes. |
+| Connect (5) | Smile, give a sincere compliment, ask about *them*, listen properly, acknowledge what they said | Lowers the prospect's guard. The first 2 minutes of every meeting. |
+| Convince (1) | Match their logic, using DISC | The same content has to land with four very different people, and this layer is how. All of Week 6. |
+| Comfort (4) | Warm tone, pace slightly faster than conversational, open body language, plain words with no jargon | Keeps them open for the next 30+ minutes. |
 
-**The order matters.** New FCs jump straight to *Convince* (the substance) before they've done *Connect* (the warm-up). The prospect feels rushed and shuts down. Conversely, advisors who do *Connect* well but never get to a real *Convince* feel pleasant but never close.
+Order matters. New FCs tend to jump straight to Convince before they've done Connect, and the prospect feels rushed and shuts down. The opposite happens too: advisors who are great at Connect but never get to a real Convince have pleasant meetings and don't close.
 
-Today's lesson is the *Convince* layer. The *Connect* and *Comfort* layers — particularly the sincere-compliment 4-rule below — are what make Convince actually land.
+Today is about Convince. Connect and Comfort, especially the compliment rules below, are what let it land.
 
-### The sincere-compliment 4-rule (Connect sub-skill #2)
+### The sincere compliment: 4 rules (Connect sub-skill 2)
 
-Almost every meeting opens with a compliment. Most new FCs get it wrong because they over-rehearse, and the line comes out generic. Four rules:
+Almost every meeting opens with a compliment, and new FCs usually get it wrong because they over-rehearse it until it comes out generic.
 
-1. **Sincere — don't rush it.** A compliment fired off in the first three seconds reads as scripted. Slow down. Make it the third or fourth thing you say, not the first.
-2. **Compliment the subject, not the object.** Bad: *"Wow, your house is so nice."* Good: *"You really put a lot of thought into how you set up the place — it shows."* The first compliments the *thing*; the second compliments *them*.
-3. **Personalised, not generic.** Cut *"quite friendly"*, *"approachable"*, *"easygoing"* — these read as filler. Use something only this person would recognise: *"You handled the [specific situation] way better than I would've."*
-4. **Profile-tailored** *(this is where DISC comes in)*. D and DC profiles want recognition of *what they did* (results, decisions, calls they made). I and IS profiles want recognition of *who they are* (energy, warmth, the kind of friend they are). S profiles want recognition of *consistency* (showing up, being there, dependability). C profiles want recognition of *thinking* (the rigour, the analysis, the care taken).
+1. Don't rush it. A compliment in the first three seconds sounds scripted, so make it the third or fourth thing you say.
+2. Compliment the person. *"Wow, your house is so nice"* praises a thing. *"You really thought about how to set up this place, it shows"* praises them.
+3. Make it personal. Drop *"quite friendly"*, *"approachable"* and *"easygoing"*, which sound like filler. Say something only this person would recognise: *"You handled the [specific situation] way better than I would've."*
+4. Fit it to the profile. This is where DISC comes in. D and DC profiles like recognition of what they did: results, decisions, calls they made. I and IS profiles like recognition of who they are, such as their energy, warmth or the kind of friend they are. S profiles like recognition of consistency and dependability. C profiles like recognition of their thinking and the care they took.
 
-A sincere, personalised, profile-tailored compliment in the first 30 seconds drops the prospect's guard more than any script line will. Skip it and the meeting starts with the prospect on guard, which makes everything in Days 32-35 less effective.
+A sincere, personal compliment that fits the profile, given early, does more to lower someone's guard than any scripted line. Skip it and the prospect stays guarded, and everything in Days 32 to 35 gets harder.
 
-### The 5 Steps to Build Rapport — the full Connect ritual
+### The 5 steps to build rapport
 
 Connect runs in this order in every first meeting:
 
-1. **Eye contact + smile** — non-verbal warmth before any words
-2. **Pay the compliment** (using the 4 rules above)
-3. **Ask about *them*** — open-ended, hot-button-seeking. Their work, their family, what's been on their mind
-4. **Listen attentively** — no interrupting. The silence after they finish is where trust lands
-5. **Acknowledge** — paraphrase / clarify / compliment the intent / words of empathy. *"What I'm hearing is..."*, *"That's actually really considered — most people at your stage haven't thought that far ahead"*, *"I can see why that's been weighing on you"*
+1. Eye contact and a smile, so there's warmth before you say anything
+2. The compliment, using the 4 rules above
+3. Ask about them with open questions that surface what they care about: their work, their family, what's been on their mind
+4. Listen without interrupting, and let the pause after they finish sit for a moment
+5. Acknowledge what they said by paraphrasing, clarifying, crediting their intent or showing empathy. *"What I'm hearing is..."*, *"That's quite considered, most people at your stage haven't thought that far ahead"*, *"I can see why that's been weighing on you"*
 
-Most new FCs skip step 5 — they hear, nod, and move to the next question. **Acknowledgement is what makes the prospect feel heard, which is what opens them up for the rest of the meeting.** No acknowledgement means no real Connect, no matter how well steps 1-4 went.
+Most new FCs skip step 5. They hear the answer, nod and move to the next question. Acknowledging is what makes the prospect feel heard, and a prospect who feels heard opens up for the rest of the meeting. Steps 1 to 4 done well still don't count as Connect if you skip it.
 
-> **Where this goes deeper:** the cushioning move — the habit of opening any longer response with an acknowledgement before the content — is the same Connect skill applied to objection handling and disagreement. Day 40 (Objection Turnaround) covers cushioning as the habit that runs underneath every reframe.
+> **Where this goes deeper:** cushioning, the habit of opening any longer reply with an acknowledgement before your point, is the same Connect skill applied to objections and disagreement. Day 40 (Objection Turnaround) covers it properly.
 
 ---
 
-## The 2 axes behind DISC
+## The 2 axes this course uses
 
-The 4 profiles aren't random — they come from 2 underlying dimensions:
+The 4 profiles sit on 2 dimensions:
 
-![The 2 axes behind DISC: D · Dominance (Thinker + Fast); I · Influence (Feeler + Fast); S · Steadiness (Feeler + Slow); C · Conscientiousness (Thinker + Slow)](/next-60-days/images/n60-day-31-m0.webp)
+![The 2 axes behind DISC: D, Dominance (Thinker and Fast); I, Influence (Feeler and Fast); S, Steadiness (Feeler and Slow); C, Conscientiousness (Thinker and Slow)](/next-60-days/images/n60-day-31-m0.webp)
 
-| | **Thinker (facts, logic)** | **Feeler (emotion, people)** |
+| | Thinker (facts, logic) | Feeler (emotion, people) |
 |---|---|---|
-| **Fast / Extrovert** | **D** — Dominance | **I** — Influence |
-| **Slow / Introvert** | **C** — Conscientiousness | **S** — Steadiness |
+| Fast / outgoing | D, Dominance | I, Influence |
+| Slow / reserved | C, Conscientiousness | S, Steadiness |
 
-Read the quadrant. If someone's quick + facts-driven, they're D. Quick + emotion-driven, they're I. Slow + emotion-driven, they're S. Slow + facts-driven, they're C.
+Someone quick who leans on facts is probably a D, and someone equally quick who leans on people is probably an I. On the slower side, a people person tends to be an S, while a facts person tends to be a C.
 
-This matters because once you know where a prospect sits on both axes, you already know a lot about how they'll buy.
+Once you've placed a prospect on both axes, you have a decent first guess at how they'll want to hear a recommendation.
 
 ---
 
 ## The 4 profiles at a glance
 
-### D — Dominance
-**Thinker + Fast.** Decisive, results-driven, impatient.
-- **Strengths:** Sees the big picture. Extremely focused. Excellent at delegation. Embraces challenges. Takes ownership. Strong tenacity.
-- **Weaknesses:** Impatient. Domineering. Little tolerance for incompetence. Confrontational. *My way or the highway.*
-- **Famous archetypes:** The startup founder. The army officer. The Type-A executive.
+These are tendencies, and most people show a mix. Use them to guess, then let the person correct you.
 
-### I — Influence
-**Feeler + Fast.** Social, optimistic, story-driven.
-- **Strengths:** Convincing. Generous. Likable. Makes friends easily. Great storyteller. Adventurous. Brings joy.
-- **Weaknesses:** Emotional. Over-promise, under-deliver. Easily distracted. Self-centred. Poor time management.
-- **Famous archetypes:** The salesperson. The performer. The social butterfly.
+### D: Dominance
+Thinker and fast. Decisive, results-driven, impatient.
+- Strengths: sees the big picture, very focused, delegates well, likes a challenge, takes ownership, doesn't give up
+- Weaknesses: impatient, domineering, little tolerance for incompetence, confrontational, *my way or the highway*
+- Typical examples: the startup founder, the army officer, the hard-driving executive
 
-### S — Steadiness
-**Feeler + Slow.** Harmonious, patient, loyal.
-- **Strengths:** Easygoing. Patient. Considerate. Strong empathy. Self-sacrificing. Tolerant. Forgiving. Calm.
-- **Weaknesses:** Lacks confidence. Procrastinates. Comfort zone. Follower mentality. Avoids heavy responsibility. Overly sensitive.
-- **Famous archetypes:** The loyal family member. The team player. The peacemaker.
+### I: Influence
+Feeler and fast. Social, optimistic, loves a story.
+- Strengths: persuasive, generous, likable, makes friends easily, tells a great story, adventurous, fun to be around
+- Weaknesses: emotional, over-promises and under-delivers, easily distracted, self-centred, poor with time
+- Typical examples: the salesperson, the performer, the social butterfly
 
-### C — Conscientiousness
-**Thinker + Slow.** Analytical, precise, skeptical.
-- **Strengths:** Disciplined. Logical. Responsible. Honest. Systematic. Organised. Under-promises and over-delivers.
-- **Weaknesses:** Analysis paralysis. Skeptical (misses opportunities). Needs to be correct. Pessimistic. Micro-manager. Oblivious to others' emotions.
-- **Famous archetypes:** The engineer. The accountant. The meticulous researcher.
+### S: Steadiness
+Feeler and slow. Values harmony, patient, loyal.
+- Strengths: easygoing, patient, considerate, empathetic, puts others first, tolerant, forgiving, calm
+- Weaknesses: lacks confidence, procrastinates, stays in the comfort zone, follows rather than leads, avoids heavy responsibility, sensitive
+- Typical examples: the loyal family member, the team player, the peacemaker
+
+### C: Conscientiousness
+Thinker and slow. Analytical, precise, sceptical.
+- Strengths: disciplined, logical, responsible, honest, systematic, organised, under-promises and over-delivers
+- Weaknesses: analysis paralysis, sceptical enough to miss chances, needs to be right, pessimistic, micro-manages, misses other people's emotions
+- Typical examples: the engineer, the accountant, the careful researcher
 
 ---
 
-## The 5-minute speed-read — and the 6 signals
+## The 5-minute speed-read and the 6 signals
 
-Every meeting has a pacing window. You and the prospect are both, mostly unconsciously, calibrating: *how fast do we talk, how formal is this, how structured is the agenda?* That calibration locks in the first 5 minutes. Attempts to shift it later feel jarring — if you profiled correctly upfront, the meeting runs smoothly; if you didn't, you fight the pace for the next 55 minutes.
+Every meeting settles into a pace. You and the prospect are both working out, mostly without noticing, how fast to talk, how formal to be and how structured the agenda is. That settles in the first 5 minutes, and changing it later feels jarring. Read the person well at the start and the meeting runs smoothly. Misread them and you spend the next 55 minutes fighting the pace.
 
-**The discipline: commit to a profile assessment by minute 5.** You can revise it later, but you need a working hypothesis early enough to actually *use* it.
+So commit to a working guess by minute 5. You can change it later if the person surprises you; what matters is having one early enough to use.
 
 ### The 6-signal rapid scan
 
-In those first 5 minutes, actively notice:
+In those first 5 minutes, watch for:
 
-![The 6-signal rapid scan: Body language; Pace; Questions they ask; Word choice; Dressing; Right questions you ask](/next-60-days/images/n60-day-31-m1.webp)
+![The 6-signal rapid scan: body language, pace, questions they ask, word choice, dressing, and the questions you ask](/next-60-days/images/n60-day-31-m1.webp)
 
-1. **Body language and facial expressions** — D stands up straight, walks fast; I gestures a lot; C frowns when thinking; S slouches and takes up little space.
-2. **Tonality and pace** — D is fast and direct; I is animated; C is measured; S is quiet and soft.
-3. **Questions they ask** — D asks bottom-line questions; I asks emotion-related questions; C asks process-related *why* questions; S asks permission-seeking questions.
-4. **Choice of words** — D: *"cut to the chase"*; I: *"her story was inspiring!"*; C: *"let's look at track record"*; S: *"anything lah, can one."*
-5. **Dressing** — D: red or black (power); I: bright, fashionable, colourful hair; C: blue or black (practical); S: plain, no make-up.
-6. **The right questions *you* ask** — sometimes you have to probe. *"When you've made financial decisions in the past, did you research heavily first or go with gut?"* The answer tells you a lot.
+1. Body language and facial expressions. D stands straight and walks fast. I gestures a lot. C frowns when thinking. S sits back and takes up little space.
+2. Tone and pace. D is fast and direct, I is animated, C is measured, S is quiet and soft.
+3. The questions they ask. D asks bottom-line questions, I asks about feelings and people, C asks *why* and *how* questions about process, S asks for permission.
+4. Word choice. D: *"cut to the chase"*. I: *"her story was so inspiring!"* C: *"let's look at the track record"*. S: *"anything lah, can one."*
+5. Dressing. D often goes for strong, sharp clothes, I for bright and fashionable, C for plain and practical, S for simple and comfortable. This is the weakest signal of the six. Culture, job and budget shape clothes far more than personality does, so never decide on dress alone.
+6. The questions *you* ask. Sometimes you have to probe: *"When you've made big money decisions before, did you research a lot first or go with your gut?"* The answer tells you plenty.
 
-### The 3-signals-commit rule
+### The 3-signal rule
 
-> **3 signals agreeing = commit to the profile.**
+> **3 signals pointing the same way = commit to the profile.**
 
-No single signal is definitive. Waiting for all 6 to align burns the pacing window. Not committing means you fight the pace for 55 minutes. 3-signal commit is the speed / accuracy sweet spot — enough to act on, easy to revise if a later signal contradicts.
-
-Combine 3–4 signals and you'll land on the right profile ~80% of the time by the end of the first 5 minutes.
+No single signal settles it. Waiting for all 6 to agree burns the 5 minutes, and never committing leaves you fighting the pace all meeting. Three is enough to act on and easy to revise if a later signal disagrees. Treat it as a working guess you'll keep checking, never as a verdict.
 
 ---
 
-## When the speed-read isn't enough — profiling questions
+## When the speed-read isn't enough: profiling questions
 
-The 5-minute speed-read works most of the time. When it doesn't — usually because the prospect is reserved, on a phone call, or being deliberately vague — fall back to **profiling questions**. Three rules:
+The speed-read works most of the time. When it doesn't, usually because the prospect is reserved, on the phone or deliberately vague, fall back on profiling questions. Three rules:
 
-**Rule 1: Read the *reasoning*, not the *answer*.** When you ask *"if you were an animal, which would you be?"* — the animal name itself tells you almost nothing. The reasoning behind it tells you everything. *"A lion, because I'm in charge"* is D. *"A lion, because I'm protective of my family"* is S. Same answer, different profiles.
+Rule 1: read the reasoning behind the answer. Ask *"if you were an animal, which would you be?"* and the animal itself tells you very little. Why they picked it tells you a lot. *"A lion, because I'm in charge"* sounds D. *"A lion, because I'm protective of my family"* sounds S. Same animal, different profiles.
 
-**Rule 2: Use *"best describes you"*, not *"do you like"*.** *"Do you like attention?"* gets a socially-desirable answer ("not really"). *"Which best describes you in a group — leading, energising, supporting, or analysing?"* forces a self-honest pick.
+Rule 2: ask what "best describes you". *"Do you like attention?"* gets the polite answer ("not really"). *"In a group, which describes you best: leading, energising, supporting or analysing?"* gets a more honest pick.
 
-**Rule 3: Frame the options as four — one per profile — not as a binary.** Binaries push the prospect toward whichever option sounds better in the moment. Four-option questions force them to pick the one that genuinely fits.
+Rule 3: offer four options, one per profile. A yes/no or either/or question pushes people toward whichever answer sounds better in the moment. Four options make them pick the one that fits.
 
 ### Three profiling questions that work
 
-**Animal question:**
-> "If you were an animal, which would you be — and why?"
+Animal question:
+> "If you were an animal, which would you be, and why?"
 
 Common patterns:
-- *Lion / eagle / tiger* + reasoning about leadership, results → **D**
-- *Dolphin / parrot / butterfly* + reasoning about social, fun, expressive → **I**
-- *Dog / elephant / golden retriever* + reasoning about loyalty, family, steady → **S**
-- *Owl / fox* + reasoning about thinking, observing, careful → **C**
+- *Lion, eagle, tiger*, with reasons about leading or results: D
+- *Dolphin, parrot, butterfly*, with reasons about fun and people: I
+- *Dog, elephant, golden retriever*, with reasons about loyalty and family: S
+- *Owl, fox*, with reasons about thinking and watching carefully: C
 
-**Colour question:**
-> "What's your favourite colour, and what does it represent for you?"
+Colour question:
+> "What's your favourite colour, and what does it mean to you?"
 
-Patterns: red/black (power, decisive — D), yellow/orange (warmth, energy — I), green/blue (calm, dependable — S), grey/navy (sophistication, precision — C). Reasoning matters more than the colour itself.
+Loose patterns: red or black for power and decisiveness (D), yellow or orange for warmth and energy (I), green or blue for calm and dependability (S), grey or navy for precision (C). The reason matters much more than the colour.
 
-**Scenario question:**
+Scenario question:
 > "If your team had to deliver a big project in two weeks, what role would you naturally take?"
 
-- *"I'd take charge and assign roles"* → D
-- *"I'd rally the team and keep morale up"* → I
-- *"I'd support whoever's leading and make sure no one's overwhelmed"* → S
-- *"I'd build the plan and make sure we're not missing anything"* → C
+- *"I'd take charge and assign roles"*: D
+- *"I'd rally the team and keep morale up"*: I
+- *"I'd support whoever's leading and make sure no one's overwhelmed"*: S
+- *"I'd build the plan and make sure we're not missing anything"*: C
 
-**The principle:** people answer profiling questions honestly because they're not loaded. Use 2-3 of these in casual conversation (not in sequence — that reads as a survey) and triangulate with the visual signals from the speed-read. The combined read is reliable to 90%+ even on reserved prospects.
-
----
-
-## The 2 fine-line distinctions you'll get wrong early
-
-Two pairs are easy to confuse:
-
-### D vs C — both strong-headed and insistent
-
-Both stubborn. The difference is *why.*
-
-- **D insists** because they want the *result* — bottom line, objective, outcome
-- **C insists** because they stand on *principle* — correctness, fairness, process
-
-Practical test: offer them a shortcut that compromises principle to hit the result. D will take it; C won't.
-
-Secondary difference: **D needs to be in charge; C needs to be in control.** Subtle but important — D leads teams, C builds systems.
-
-### I vs S — both emotional and empathetic
-
-Both warm. The difference is *how they express it.*
-
-- **I shows it** — bigger smile, more expressive, will tell you their feelings
-- **S hides it** — reserved smile, doesn't volunteer emotion, you have to ask
-
-Practical test: tell them a mildly sad story. I will react visibly and share their own similar story. S will nod quietly and maybe say *"oh… that's hard."*
+People answer these fairly openly because nothing obvious rides on the answer. Use 2 or 3 of them in normal conversation, spread out so it doesn't feel like a survey, and check them against what you saw in the speed-read. Two independent reads that agree give you a much better guess than either one alone.
 
 ---
 
-## Your own profile — the biggest blind spot
+## The 2 pairs you'll mix up early
 
-The #1 reason advisors miss-sell is they sell the way *they* buy.
+### D vs C: both stubborn
 
-- A D-profile FC walks into every meeting assuming the prospect wants *results fast*. When the prospect is S, the pace terrifies them and they shut down.
-- An I-profile FC wants to tell stories and connect emotionally. When the prospect is C, the stories feel fluffy and unserious, and the C tunes out waiting for facts.
+Both dig in. The difference is why.
 
-**You are biased by your own default profile.** The first work of DISC is knowing your own — so you can consciously counter-program when the prospect isn't the same type.
+- D insists because they want the result
+- C insists because they're standing on principle, whether that's being correct, being fair or following the process
 
-Quick self-test (honest answers):
-- When you buy something big, do you decide **fast or slow**?
-- When you decide, do you weigh **emotion or facts** more heavily?
-- In a group, are you the one **talking or the one listening**?
-- Under stress, do you **take charge or defer**?
+A practical test: offer a shortcut that hits the result but bends the rules. D will take it. C won't.
+
+A second difference: D needs to be in charge, C needs to be in control. D leads teams, C builds systems.
+
+### I vs S: both warm and empathetic
+
+Both care about people. The difference is how much they show it.
+
+- I shows it: bigger smile, more expressive, tells you how they feel
+- S keeps it in: a smaller smile, doesn't volunteer feelings, you have to ask
+
+A practical test: tell them a mildly sad story. The I reacts visibly and shares a similar story of their own. The S nods quietly and might say *"oh... that's hard."*
+
+---
+
+## Your own profile is your biggest blind spot
+
+A very common reason advisors lose a meeting they should have won is that they sell the way they themselves like to buy.
+
+- A D-profile FC walks into every meeting assuming the prospect wants results, fast. If the prospect is an S, that pace frightens them and they shut down.
+- An I-profile FC wants to tell stories and connect. If the prospect is a C, the stories feel fluffy, and the C tunes out waiting for facts.
+
+Your own default biases you. The first job with DISC is to know yours, so you can deliberately adjust when the prospect is different.
+
+Quick self-test (answer honestly):
+- When you buy something big, do you decide fast or slow?
+- When you decide, do you weigh emotion or facts more?
+- In a group, are you the one talking or the one listening?
+- Under stress, do you take charge or defer?
 
 Rough mapping:
-- Fast + emotion + talking + take charge = **I** (with some D)
-- Fast + facts + take charge + less talking = **D**
-- Slow + emotion + listening + defer = **S**
-- Slow + facts + listening + take charge over detail = **C**
+- Fast, emotion, talking, takes charge: I (with some D)
+- Fast, facts, takes charge, talks less: D
+- Slow, emotion, listening, defers: S
+- Slow, facts, listening, takes charge of the detail: C
 
-Most people are a dominant profile + a secondary. You'll see yours over the week.
+Most people have a main style and a secondary one. You'll see yours more clearly as the week goes on.
+
+---
+
+## Sources
+
+- [Emotions of Normal People - William Moulton Marston (1928), Internet Archive](https://archive.org/details/emotionsofnormal0000mars) - the original book where Marston described Dominance, Inducement, Submission and Compliance
+- [From Marston to the present: the history of DiSC - Wiley Everything DiSC](https://www.everythingdisc.com/EverythingDiSC/media/SiteFiles/Assets/History/Everything-DiSC-resources-historyofdisc-timeline.pdf) - the publisher's own timeline: Marston built no test, Clarke's questionnaires came in the 1940s and 50s, the first commercial profile in the 1970s
+- [Comparing correlations between four-quadrant and five-factor personality assessments - Jones and Hartley, American Journal of Business Education (2013)](https://files.eric.ed.gov/fulltext/EJ1054970.pdf) - finds DISC scores overlap with the Big Five and notes how little validation research DISC has
 
 ---
 
 ## Quiz
 
-**Q1. The 2 axes underlying DISC are:**
+**Q1. The 2 axes this course uses to sort the DISC profiles are:**
 - A) Confidence / humility and openness / closedness
-- B) Thinker vs Feeler, and Fast/Extrovert vs Slow/Introvert ✓
+- B) Thinker vs Feeler, and Fast/outgoing vs Slow/reserved ✓
 - C) Competence / warmth and dominance / submission
 - D) Extroversion / introversion and agreeableness / disagreeableness
 
-**Why:** D and C are both Thinkers; I and S are both Feelers. D and I are both Fast / Extroverts; S and C are both Slow / Introverts. The 4 profiles are the 4 quadrants of these two axes. Knowing the axes helps you pattern-match faster than memorising 4 separate profile cards.
+**Why:** D and C are Thinkers, I and S are Feelers. D and I are Fast, S and C are Slow. Each profile is one quadrant of the two axes. Remembering the axes lets you place someone faster than memorising 4 separate profile cards.
 
 **Q2. D and C are both strong-headed and insistent. The difference is:**
 - A) D is male, C is female
@@ -254,23 +270,23 @@ Most people are a dominant profile + a secondary. You'll see yours over the week
 - C) D insists louder; C insists more quietly
 - D) They're actually the same thing
 
-**Why:** Both profiles dig in under pressure — but they dig in on different things. D cares about the *outcome* (hit the number, win the deal, move forward). C cares about the *principle* (correctness, fairness, process). A shortcut that hits the result but compromises the principle: D takes it, C refuses. This distinction matters a lot in the close — you pitch results to D and rigor to C.
+**Why:** Both dig in under pressure, on different things. D cares about the outcome and getting it done, while C cares whether it's correct, fair and done by the book. Offer a shortcut that gets the result but bends the rules, and D takes it while C refuses. It matters at the close, where you pitch results to a D and rigour to a C.
 
-**Q3. The #1 reason advisors miss-sell is:**
+**Q3. A common reason advisors lose meetings they should have won is:**
 - A) Product knowledge gaps
 - B) Weak objection handling
-- C) They sell the way *they* buy, instead of the way the *prospect* buys ✓
+- C) They sell the way *they* like to buy, instead of the way the *prospect* buys ✓
 - D) Not enough closing technique
 
-**Why:** Every advisor has a default DISC profile, which shapes their selling style. If the prospect shares the profile, things flow naturally. If the prospect is the *opposite* profile, the advisor's default feels alien — a fast D feels pushy to an S, a story-driven I feels flighty to a C. Knowing your own default is the prerequisite to counter-programming when the prospect is different — which is what turns a 30% close rate into 50%+.
+**Why:** Every advisor has a default style, and things flow easily with prospects who share it. With the opposite type, your default feels foreign to them: a fast D feels pushy to an S, a story-driven I feels flighty to a C. Knowing your own default is what lets you adjust when the prospect is different.
 
-**Q4. I and S profiles are both emotional and empathetic. The practical test that distinguishes them:**
+**Q4. I and S profiles are both warm and empathetic. The practical test that tells them apart:**
 - A) I is male, S is female
-- B) Tell them a mildly sad story — I reacts visibly and shares their own similar story; S nods quietly and maybe says *"oh… that's hard"* ✓
+- B) Tell them a mildly sad story: the I reacts visibly and shares a similar story; the S nods quietly and might say *"oh... that's hard"* ✓
 - C) I cries more easily
 - D) S never shares emotion
 
-**Why:** Both are Feelers (same axis). The difference is *expressiveness*. I *shows* it — bigger smile, more expressive, volunteers feelings. S *hides* it — reserved smile, doesn't volunteer, you have to ask. Same emotion underneath, different external channel. A mildly sad story surfaces the expressiveness gap immediately — I reciprocates out loud; S holds it quieter.
+**Why:** Both are Feelers. The difference is how much they show. The I shows it with a bigger smile and volunteers feelings, while the S keeps it in and you have to ask. A mildly sad story brings that gap out straight away.
 
 **Q5. One signal you're with a D in the first 5 minutes:**
 - A) They laugh at your first joke
@@ -278,23 +294,23 @@ Most people are a dominant profile + a secondary. You'll see yours over the week
 - C) They sit quietly with arms crossed
 - D) They take detailed notes
 
-**Why:** D's announce themselves with bottom-line questions fast. I's laugh and tell stories (A). S's sit quietly (C). C's take detailed notes (D). Each profile has a signature opening move — the D's is *"let's cut to it"* in one form or another, usually within the first 2 minutes. That question alone is enough to flip you into D-mode.
+**Why:** D's tend to show themselves early with bottom-line questions. Laughing and telling stories (A) points to an I, sitting quietly (C) to an S, detailed notes (D) to a C. A quick *"let's cut to it"* in some form is the D's usual opening move, and it's a strong reason to switch into D mode, alongside two other signals.
 
-**Q6. A C-profile prospect asks *"what if [specific edge case]?"*. The correct move is:**
+**Q6. A C-profile prospect asks *"what if [specific edge case]?"*. The right move is:**
 - A) *"That's unlikely to happen"*
-- B) Walk them through exactly what happens in that scenario, with the policy document open; if you don't know, *"I'll email the exact clause by Monday"* and deliver ✓
+- B) Walk them through exactly what happens in that scenario with the policy document open; if you don't know, say *"I'll email you the exact clause by Monday"* and do it ✓
 - C) Dismiss the question as overthinking
 - D) Answer vaguely to keep momentum
 
-**Why:** C's love edge cases — not to trap you, but because they genuinely want to understand the downside. Dismissing the question damages trust. The correct move is precision: answer with the clause, or honestly defer with a specific delivery date. Delivering the promised email by Monday is exactly what *earns* the C's trust. Vague answers (D) are what loses them.
+**Why:** C's ask about edge cases because they want to understand the downside, and they aren't trying to trap you. Brushing the question off costs you trust. Answer precisely from the clause, or say honestly that you'll check and give a date. Sending that email by Monday is what earns a C's trust, and a vague answer (D) is what loses it.
 
-**Q7. If you're a fast-paced D yourself and the prospect is an S, what's your first-move adjustment?**
+**Q7. If you're a fast-paced D yourself and the prospect is an S, what's your first adjustment?**
 - A) Speed up to show expertise
-- B) Slow your pace by ~20%, leave silence after their answers, and don't rush to the next question ✓
-- C) Pivot to a C-profile approach
+- B) Slow your pace by about 20%, leave silence after their answers, and don't rush to the next question ✓
+- C) Switch to a C-profile approach
 - D) Hand the meeting to a colleague
 
-**Why:** Matching pace is the most load-bearing adjustment across profiles. A D-paced delivery to an S feels like pressure; an S doesn't need more information, they need more *permission*. Slowing down by 15–20%, extending pauses, and giving them time to think is what makes the S feel safe enough to actually engage. This counter-programming is exactly the Week 7 training ground.
+**Why:** Pace is the adjustment that matters most across profiles. At D speed an S feels pressured. What they're missing is permission, and more information won't supply it. An S engages once they feel safe, and slowing down, pausing longer and giving them time to think gets them there. You'll practise this live in Week 7.
 
 ---
 

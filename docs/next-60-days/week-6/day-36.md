@@ -1,8 +1,8 @@
 ---
 week: 6
 day: 36
-title: "Practice — Roleplay All 4 Profiles on Camera"
-big_idea: "Knowing the profiles in your head is easy. Adapting your voice in 3 minutes live is the hard part. This week proves you can."
+title: "Practice: roleplay all 4 profiles on camera"
+big_idea: "Knowing the profiles in your head is easy. Changing your delivery live, within 3 minutes, is the hard part, and this week you show you can."
 kpi_link: "Week 6 KPI — 4-profile self-assessment + 4 recorded roleplays"
 practice_submission: loom
 primary_sources:
@@ -15,134 +15,141 @@ duration_minutes: 45
 tags: [next-60-days, week-6, new-fc, practice, disc, roleplay, loom]
 ---
 
-# Day 36 — Practice: 4 Profile Roleplays
+# Day 36: Practice with 4 profile roleplays
 
-> **The one idea for today:** Knowing the profiles in your head is easy. Adapting your voice in 3 minutes live is the hard part. This week proves you can.
+> **The one idea for today:** Knowing the profiles in your head is easy. Changing your delivery live, within 3 minutes, is the hard part, and this week you show you can.
 
-By the time you close today you'll have delivered 4 recorded roleplays — one for each DISC profile — using a different pace, tone, and emphasis per profile; submitted a 4-profile self-assessment that names your primary + secondary profile and your 2 biggest counter-programming gaps; and submitted the roleplay links + self-assessment + Loom reflection. Those three artefacts unlock Week 7.
+By the end of today you'll have recorded 4 roleplays, one per DISC profile, each with its own pace, tone and emphasis. You'll also have written a self-assessment naming your main and secondary profile and your 2 biggest adjustment gaps, and recorded a short Loom reflection. Those three pieces unlock Week 7.
 
 ---
 
 ## The bar today
 
-You've learned 4 profiles. Today you prove you can *actually shift* between them — not in theory, on camera.
+You've learned 4 profiles. Today you show, on camera, that you can actually switch between them.
 
-The reason this week is on tape: it's the only way to see if your delivery actually matched the profile you intended. In your head, you *know* the D opener should be faster. On tape, you'll hear whether you actually cut 30% off your pacing or barely changed at all.
+The camera matters because it's the only way to check whether your delivery matched the profile you had in mind. In your head you know the D opener should be faster. On tape you'll hear whether you really cut 30% off your pace or barely changed at all.
 
-**Most new FCs who do this exercise are shocked by how little their delivery changes across profiles.** That's the point — the tape reveals the gap, and the gap is what Week 7 trains you to close.
+Many new FCs are surprised by how little their delivery changes from one profile to the next. That's useful to find out. The tape shows you the gap, and Week 7 trains you to close it.
 
 ---
 
-## The 4 roleplays — same scenario, 4 deliveries
+## The 4 roleplays: same scenario, 4 deliveries
 
-Same underlying situation, 4 different prospects:
+The situation stays the same and the prospect changes:
 
-> **Scenario:** You're at the opening of a first Fact-Find. You've just sat down. Small talk is done. You're about to deliver your intent statement, 90-second pitch, and transition to the first Fact-Find question.
+> **Scenario:** You're at the start of a first fact-find. You've just sat down and the small talk is done. You're about to give your intent statement and your 90-second pitch, then move to the first fact-find question.
 
-Record 4 versions. 90 seconds each. Different prospect profile each time.
+Record 4 versions, 90 seconds each, with a different prospect profile each time.
 
-Each roleplay uses the profile-tailored opener + matched close from §7 of that profile's day (D32/33/34/35). The purpose of practice is to see whether your voice *and* your close technique both shift across profiles — not just the voice.
+Each roleplay uses the opening and close from that profile's day (Days 32 to 35). You're checking whether your close changes across profiles as well as your voice.
 
-### Roleplay 1 — D prospect
-- Pace: **fast** (15–20% faster than your default)
-- Opener: bottom-line first (Day 32 §7). *"Based on what you shared — here's my recommendation. Three decisions: A, B, C. Which one?"*
-- Close hint: **Assumptive** — *"Credit card or bank transfer?"*
+### Roleplay 1: D prospect
+- Pace: fast (15 to 20% faster than your default)
+- Opener: bottom line first (Day 32). *"Based on what you've shared, here's my recommendation. You've got three choices: A, B or C. Which one?"*
+- Close: assumptive. *"GIRO or credit card?"*
 
-### Roleplay 2 — I prospect
-- Pace: **matched to their high-energy** default
-- Opener: story-led (Day 33 §7). *"Before I walk through the plan — let me tell you about a client I met last year…"*
-- Close hint: **Reassurance** with social proof. *"This is our best-selling plan among clients at your stage."*
+### Roleplay 2: I prospect
+- Pace: match their high energy
+- Opener: a true story (Day 33). *"Before I go through the plan, let me tell you about a friend of mine..."* Use something that really happened, and say whose story it is.
+- Close: reassurance. *"You're not the only parent worried about this. A lot of families at your stage ask me about this kind of setup."*
 
-### Roleplay 3 — S prospect
-- Pace: **slow** (15–20% slower than your default). Longer pauses.
-- Opener: reassurance-first (Day 34 §7). *"There's no rush on any of this. Let me suggest we look at… we'll go slowly."*
-- Close hint: **Procedural + soft Reassurance.** *"Shall we start with step one together?"* Never Assumptive on an S.
+### Roleplay 3: S prospect
+- Pace: slow (15 to 20% slower than your default), with longer pauses
+- Opener: reassurance first (Day 34). *"There's no rush on any of this. I'd suggest we look at... and we'll go slowly."*
+- Close: procedural with gentle reassurance. *"Shall we start with step one together?"* Never assumptive with an S.
 
-### Roleplay 4 — C prospect
-- Pace: **measured**, deliberate
-- Opener: structured agenda (Day 35 §7). *"Here's the agenda for 45 minutes — I've flagged two assumptions upfront…"*
-- Close hint: **Procedural + Follow-up**. *"Let's book Thursday 7pm for the decision — here's what I'll send over by then."*
+### Roleplay 4: C prospect
+- Pace: measured and deliberate
+- Opener: a clear agenda (Day 35). *"Here's the plan for the next 45 minutes. I've flagged two assumptions upfront..."*
+- Close: procedural with a follow-up. *"Let's book next Thursday at 7pm to decide. Here's what I'll send you before then."*
 
 ---
 
 ## Recording setup
 
-- **Phone on a tripod at eye level.** Or laptop webcam, well-lit. Don't shoot handheld.
-- **Decent light on your face.** Window light works.
-- **Quiet environment.** Pick one room, close the door.
-- **4 separate takes, each about 90 seconds.**
-- **Label each file clearly** — `day-36-roleplay-D.mov`, `-I.mov`, `-S.mov`, `-C.mov`.
+- Phone on a tripod at eye level, or a laptop webcam. Don't hold the phone.
+- Decent light on your face. Window light works.
+- A quiet room with the door closed.
+- 4 separate takes, each about 90 seconds.
+- A clear file name for each: `day-36-roleplay-D.mov`, `-I.mov`, `-S.mov`, `-C.mov`.
 
-Each take, start with *"Roleplay for [profile]"* on camera so the file is clearly labelled even if the filename gets lost.
+Start each take by saying *"Roleplay for [profile]"* on camera, so the video is labelled even if the file name gets lost.
 
 ---
 
-## Self-review — the *"did you actually shift?"* test
+## Self-review: did you actually change?
 
-After recording all 4, watch them back in this order: D → I → S → C.
+After recording all 4, watch them in this order: D, I, S, C.
 
-For each, rate 1–5:
+Rate each one from 1 to 5:
 
 | Dimension | D | I | S | C |
 |---|---|---|---|---|
-| **Pace match** (did I speed up / slow down?) | | | | |
-| **Energy match** (did my animation / calm fit?) | | | | |
-| **Content match** (did I lead with the right thing?) | | | | |
-| **Transition** (did it feel like one person *choosing* to adapt, or a different person entirely?) | | | | |
+| Pace match (did I speed up or slow down?) | | | | |
+| Energy match (did my energy or calm fit?) | | | | |
+| Content match (did I lead with the right thing?) | | | | |
+| Transition (did it look like me choosing to adapt, or like a different person?) | | | | |
 
-Your own scoring is the data. If you rated yourself 3+ on all dimensions for all 4 profiles, the muscle is there. If any profile scored <3, that's Week 7's focus.
+These scores are the data. If you gave yourself 3 or more on every line for all 4 profiles, you've got the basics. Any profile that scored below 3 is your focus in Week 7.
 
-**Most new FCs find their *own primary profile's roleplay* gets the highest score** — they're natively that version. Their *opposite-profile roleplay* scores lowest because counter-programming is the hardest skill.
+Most new FCs find the roleplay for their own main profile scores highest, because that's how they naturally talk. The roleplay for their opposite profile usually scores lowest, because adjusting that far is the hardest skill.
 
 ---
 
-## Self-assessment — the 4-profile audit
+## Self-assessment: the 4-profile audit
 
-Beyond the 4 roleplays, submit a written self-assessment. One paragraph each:
+Alongside the 4 roleplays, submit a short written self-assessment, one paragraph for each part:
 
-### 1 · My primary profile
+### 1. My main profile
 *"My default is [D/I/S/C], with a secondary of [X]."*
-Name it. Explain how you arrived at it.
+Name it and explain how you got there.
 
-### 2 · My counter-programming gap
-*"When I'm with a [opposite profile], I tend to default to [behaviour that doesn't fit]. Specifically…"*
+### 2. My adjustment gap
+*"When I'm with a [opposite profile], I tend to fall back on [behaviour that doesn't fit]. Specifically..."*
 
-### 3 · My 2 biggest adjustments for Week 7
-Two specific behavioural changes you'll practice in live meetings next week. Not *"be more empathetic"* — *"with S prospects, sit in silence for 3+ seconds after they answer before I speak again."*
+### 3. My 2 biggest adjustments for Week 7
+Two specific changes in behaviour you'll practise in real meetings next week. *"Be more empathetic"* is too vague. Aim for something like *"with S prospects, stay silent for at least 3 seconds after they answer before I speak again."*
 
 ---
 
-## Submission format
+## What to submit
 
-Three artefacts:
+Three pieces:
 
-### Artefact 1 — 4 roleplay videos
-Upload to Loom or Google Drive. One link per roleplay. Shared link accessible to your mentor.
+### 1. Four roleplay videos
+Upload to Loom or Google Drive, one link per roleplay, shared so your mentor can open them.
 
-### Artefact 2 — Self-assessment
-One page (Notion, Google Doc). Primary profile + gap + 2 adjustments.
+### 2. Self-assessment
+One page in Notion or a Google Doc: your main profile, your gap and your 2 adjustments.
 
-### Artefact 3 — Loom reflection (3–5 min)
+### 3. Loom reflection (3 to 5 minutes)
 Record a short Loom answering:
-1. Which of the 4 roleplays was hardest? Why?
-2. Which DISC profile do you currently *miss* most often with real prospects?
-3. What's your Week 7 adjustment to notice + match profiles faster in live meetings?
+1. Which of the 4 roleplays was hardest, and why?
+2. Which DISC profile do you currently miss most often with real prospects?
+3. What will you change in Week 7 to spot and match profiles faster in real meetings?
 
 ### Mentor review
-Book a 15-minute mentor check-in before Sunday ends. This one is longer because the mentor watches all 4 tapes with you and gives live feedback on the most mismatched.
+Book a 15-minute session with your mentor before the end of Sunday. It's longer than usual because your mentor watches all 4 videos with you and gives live feedback on the one that missed the mark most.
 
 ---
 
-## Week 6 KPI — the unlock gate
+## Week 6 KPI: what unlocks Week 7
 
 Week 7 unlocks when you have all four:
 
-- [ ] **4 recorded roleplays** — one per profile, 90 sec each, visible on camera
-- [ ] **4-profile self-assessment submitted** — primary + gap + 2 adjustments
-- [ ] **Loom reflection recorded**
-- [ ] **15-min mentor review booked** (longer than usual — the mentor watches tapes live)
+- [ ] 4 recorded roleplays, one per profile, 90 seconds each, on camera
+- [ ] The self-assessment submitted: main profile, gap and 2 adjustments
+- [ ] The Loom reflection recorded
+- [ ] A 15-minute mentor review booked (longer than usual, because your mentor watches the videos with you)
 
-If you're short at Sunday 6pm, focus on hitting 4 real tapes rather than perfect ones. The recording *exists* matters more than the recording being polished.
+If Sunday 6pm arrives and you're short, get 4 real videos done before you polish anything. A rough recording that exists is worth more than a perfect one that doesn't.
+
+---
+
+## Sources
+
+- [Comparing correlations between four-quadrant and five-factor personality assessments - Jones and Hartley, American Journal of Business Education (2013)](https://files.eric.ed.gov/fulltext/EJ1054970.pdf) - DISC overlaps with the Big Five but has little validation research of its own, so treat your profile scores as a practice aid
+- [Guidelines on Fair Dealing, FSG-G04 - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - why the roleplay closes avoid "best-selling" claims and made-up client stories
 
 ---
 
@@ -150,59 +157,59 @@ If you're short at Sunday 6pm, focus on hitting 4 real tapes rather than perfect
 
 **Q1. The purpose of recording 4 profile roleplays is:**
 - A) To grade you
-- B) To let you see whether your delivery actually shifted across profiles — which is almost always smaller than you think in your head ✓
+- B) To let you see whether your delivery actually changed across profiles, which is usually less than you think ✓
 - C) To build a performance reel
 - D) To test your memory of the profiles
 
-**Why:** The gap between *"I know how D differs from S"* in theory and *"my delivery actually shifts"* in practice is the skill Week 6 builds. You can only close the gap if you can *see* it — and the only way to see your own delivery is on tape. Most advisors are shocked how little their tonality changes across profiles in their first recording. That shock is the unlock.
+**Why:** Week 6 is about the gap between knowing how a D differs from an S and actually delivering differently. You can only close that gap once you see it, and a recording is the only way to see your own delivery. Many advisors are surprised by how little their tone changes in their first recording, and seeing that is where improvement starts.
 
-**Q2. Your own primary profile will typically:**
-- A) Score lowest on its matching roleplay — because you overdo it
-- B) Score highest on its matching roleplay — because it's your native delivery ✓
+**Q2. Your own main profile will typically:**
+- A) Score lowest on its matching roleplay, because you overdo it
+- B) Score highest on its matching roleplay, because it's how you naturally talk ✓
 - C) Have no effect on the exercise
 - D) Make you worse at all 4 profiles
 
-**Why:** The profile you *are* is the one you deliver most naturally. An I-profile FC will knock the I roleplay out of the park — and then struggle with C because slow, data-driven delivery is foreign. Knowing your own primary tells you *which 3 counter-programs to train*. The easiest roleplay is the one you can skip practice on; the hardest is the one you prioritise.
+**Why:** The profile you are is the one you deliver most naturally. An I-profile FC will do the I roleplay well and then struggle with the C, because slow, data-led delivery feels foreign. Knowing your own main profile tells you which 3 adjustments to train. The easiest roleplay needs little practice, and the hardest one gets priority.
 
 **Q3. Week 7 unlocks when you submit:**
 - A) A closed case
-- B) 4 roleplay videos + self-assessment + Loom reflection + booked mentor review ✓
+- B) 4 roleplay videos, the self-assessment, the Loom reflection and a booked mentor review ✓
 - C) A single long presentation
 - D) A written test on DISC theory
 
-**Why:** The gate is output-based. It measures whether you actually did the work on camera and on paper — not whether you've closed business. Closed cases aren't expected yet; Week 6 is skill-building. The mentor review is longer than other weeks because it's the only week where the mentor watches footage with you and gives live feedback on delivery — which is the fastest way to correct gaps.
+**Why:** The gate is about output: did you do the work on camera and on paper. It doesn't depend on closing business, and nobody expects closed cases yet, because Week 6 is about building skill. The mentor review is longer this week because it's the first time your mentor watches footage with you and gives live feedback on your delivery.
 
-**Q4. The 4-dimension self-review scoring (pace / energy / content / transition) is best done:**
+**Q4. The 4-part self-review (pace, energy, content, transition) is best done:**
 - A) A week later so you can see it fresh
-- B) Same-day, after all 4 tapes are recorded — fresh recall of what you intended vs what you delivered ✓
+- B) The same day, after all 4 videos are recorded, while you still remember what you intended ✓
 - C) Only by your mentor
-- D) Before you record, not after
+- D) Before you record
 
-**Why:** The gap between intention and delivery fades fast. Reviewing same-day means you remember what you were *trying* to do, so you can score the delivery honestly against it. A week later you've forgotten the intent and the scoring becomes generic. The mentor's review supplements — it doesn't replace your own rating, because your own eyes catching the gap is what makes Week 7's adjustments stick.
+**Why:** You forget what you intended quickly. Reviewing the same day means you remember what you were trying to do and can score your delivery honestly against it. A week later the intent has faded and your scores get vague. Your mentor's review adds to yours, and catching the gap with your own eyes is what makes the Week 7 changes stick.
 
-**Q5. "Most new FCs find their *own primary profile's* roleplay gets the highest score, and their *opposite-profile* roleplay scores lowest." The implication for Week 7 prep is:**
-- A) Skip all 4 profiles — they balance out
-- B) Prioritise practising your opposite profile (where counter-programming is hardest) in live Week-7 meetings ✓
-- C) Only practise your primary
-- D) Retake the 4 roleplays until they're even
+**Q5. "Most new FCs find their own main profile's roleplay scores highest and their opposite profile's scores lowest." What does that mean for Week 7?**
+- A) Skip all 4 profiles, because they balance out
+- B) Put most of your practice into your opposite profile, where adjusting is hardest, in real Week 7 meetings ✓
+- C) Only practise your main profile
+- D) Redo the 4 roleplays until the scores are even
 
-**Why:** Your native delivery doesn't need work; its opposite does. An I-profile FC's D-roleplay scored 2/5 means D-profile prospects get your weakest delivery. Week 7's job is to surface situations where the opposite profile shows up and consciously counter-program in-meeting. The roleplay identifies *which* counter-programming is hardest; Week 7 builds it.
+**Why:** Your natural delivery doesn't need much work, and its opposite does. If an I-profile FC scored 2 out of 5 on the D roleplay, D prospects are getting that FC's weakest delivery. In Week 7 you look out for your opposite profile in real meetings and adjust on purpose. The roleplays show you which adjustment is hardest, and Week 7 builds it.
 
-**Q6. Each roleplay starts with: *"Roleplay for [profile]"* on camera before the 90-second delivery. Why?**
+**Q6. Each roleplay starts with you saying *"Roleplay for [profile]"* on camera before the 90 seconds. Why?**
 - A) For file-naming convenience
-- B) So the tape is clearly labeled even if the filename is lost, and so your mentor knows which profile you intended (vs which you accidentally delivered) ✓
+- B) So the video is labelled even if the file name is lost, and so your mentor knows which profile you intended, whatever you actually delivered ✓
 - C) Required by the platform
 - D) For legal reasons
 
-**Why:** The label on tape preserves *intention*. Sometimes you record a D-profile roleplay and the mentor thinks *"that was actually an I-profile delivery"* — the gap is instructive. Without the declared intent, the mentor can't tell if the mismatch was a labeling slip or a delivery slip. Naming the profile on camera makes the diagnostic work.
+**Why:** Saying the profile on camera records what you intended. Sometimes you record a D roleplay and your mentor thinks it came across as an I, and that gap is exactly what you want to learn from. Without the label, your mentor can't tell whether it was a labelling mistake or a delivery mistake.
 
-**Q7. If you hit Sunday 6pm with only 3 of 4 roleplays recorded, the principle is:**
-- A) Skip the fourth — mentor will waive it
-- B) Focus on hitting the 4th real tape rather than polishing the first 3 — the recording *existing* matters more than being polished ✓
+**Q7. If you reach Sunday 6pm with only 3 of the 4 roleplays recorded, the principle is:**
+- A) Skip the fourth, your mentor will let it go
+- B) Record a real 4th video before polishing the first 3; a recording that exists matters more than a polished one ✓
 - C) Extend the deadline to Monday
 - D) Drop the whole week and restart
 
-**Why:** The gate is existence, not quality. A clumsy 4th roleplay tells you more than 3 polished ones plus a missing 4th. Polish is Month-2 work; the Week-6 gate is about *completing the rep on every profile*. If you're short, ship the 4th take raw before Sunday 6pm — the unpolished tape is still the input Week 7 uses to adjust.
+**Why:** The gate checks that the work exists. A clumsy 4th roleplay teaches you more than 3 polished ones and a gap, and polish can come later. This week is about doing the rep for every profile, so record the 4th take as it comes before Sunday 6pm. It's still what Week 7 builds on.
 
 ---
 
