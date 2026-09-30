@@ -1,7 +1,7 @@
 ---
 id: n60-assignment-02
 order: 2
-title: "Content & DM Output Pack — 3 Posts + 5 DM Conversations"
+title: "Content and DM output pack: 3 posts + 5 DM conversations"
 short: "Ship 3 feed posts answering different silent questions + open 5 real DM conversations with real exchanges."
 icon: clipboard
 deliverable: "Screenshot pack + short Loom reflection"
@@ -12,69 +12,77 @@ related_days: [13, 14, 15, 16, 17, 18]
 status_key: "n60-assignment-02-content-dm-pack"
 ---
 
-# Assignment 2 — Content & DM Output Pack
+# Assignment 2: Content and DM output pack
 
-> **What you're producing:** 3 shipped feed posts (each answering a different silent question from Day 13's Q1–Q5) + 5 substantive DM conversations with real prospects. Pull + push in the same week.
+> **What you're producing:** 3 shipped feed posts, each answering a different silent question from Day 13 (Q1 to Q5), and 5 real DM conversations with prospects. You're pulling people in and reaching out in the same week.
 
 ## Why this matters
 
-Week 3 is the first time content (pull) and conversation (push) run simultaneously. If you only ship posts, you're hoping. If you only DM, you're pushing without proof. Both together is the full rep — and running them in parallel once a week is the rhythm that sustains for the next 50 weeks of your business.
+Week 3 is the first time you run content (people come to you) and conversations (you go to them) side by side. Posts on their own leave you hoping someone gets in touch. DMs on their own mean you're reaching out with nothing to back you up. Doing both every week is the routine you'll keep for the rest of your first year.
 
 ## Prepare from these days
 
-- [Day 13 — The 5 Silent Questions](../../next-60-days/week-3/day-13.md) — the content-pillar map
-- [Day 14 — Testimonials That Actually Convert](../../next-60-days/week-3/day-14.md) — pre-during-post format + new-FC workarounds
-- [Day 15 — Digital Pipeline Hygiene](../../next-60-days/week-3/day-15.md) — the 4 surfaces, weekly 30-min ritual
-- [Day 16 — The DM Funnel](../../next-60-days/week-3/day-16.md) — 11 texting rules, the 6-step objection reply
-- [Day 17 — CRAB Framework](../../next-60-days/week-3/day-17.md) — re-engagement of blue-ticked prospects
-- [Day 18 — Practice: 3 Posts + 5 DMs](../../next-60-days/week-3/day-18.md) — the gate this assignment submits against
+- [Day 13: The 5 silent questions](../../next-60-days/week-3/day-13.md), the content pillar map
+- [Day 14: Testimonials that actually convert](../../next-60-days/week-3/day-14.md), the pre-during-post format and what to post before your first close
+- [Day 15: Digital pipeline hygiene](../../next-60-days/week-3/day-15.md), the 4 lead surfaces and the weekly 30-minute routine
+- [Day 16: The DM funnel](../../next-60-days/week-3/day-16.md), the 11 texting rules and the 6-step objection reply
+- [Day 17: CRAB framework](../../next-60-days/week-3/day-17.md), for re-engaging prospects who blue-ticked you
+- [Day 18: Practice, 3 posts and 5 DMs](../../next-60-days/week-3/day-18.md), the gate this assignment is submitted against
 
-## The 3 posts — what counts
+## The 3 posts: what counts
 
-Each post must answer a *different* silent question from Day 13. The minimum mix:
+Each post has to answer a *different* silent question from Day 13. The minimum mix:
 
 | Post | Must answer | Format |
 |---|---|---|
-| **Post 1** | **Q5** — easy to approach | Offer post with a DM keyword CTA |
-| **Post 2** | **Q1 or Q3** — social proof OR origin story | Pre-during-post testimonial OR 60-sec origin reel |
-| **Post 3** | **Q2 or Q4** — expertise OR get along | Educational carousel OR PPVV lifestyle post |
+| Post 1 | Q5: easy to approach | Offer post with a DM keyword CTA |
+| Post 2 | Q1 or Q3: social proof or origin story | Pre-during-post testimonial or 60-sec origin reel |
+| Post 3 | Q2 or Q4: expertise or get along | Educational carousel or PPVV lifestyle post |
 
-**What doesn't count:** 24-hour stories (must be feed), reposts of others' content, posts with no CTA or call-to-action.
+These don't count: stories (they disappear after 24 hours, so it has to be a feed post), reposts of other people's content, and posts with no call to action.
 
-## The 5 DM conversations — what counts
+Your posts are advertising, so put each one through your firm's approval process before it goes live.
 
-A DM "counts as opened" when:
+## The 5 DM conversations: what counts
 
-1. You sent a message following all 3 non-negotiables (link back + reason to meet + easy question), AND
-2. They replied with something substantive (3+ bubbles back and forth), OR
-3. If blue-ticked, you sent a CRAB follow-up this week and closed the loop either way
+A DM counts as opened when:
 
-**Doesn't count:** one-way messages (still pending), mentor/peer chats, automated *"happy birthday"* + single *"thanks!"*.
+1. Your message followed all 3 non-negotiables (link back, reason to meet, easy question), AND
+2. They replied with something real (3+ bubbles back and forth), OR
+3. They blue-ticked you, you sent a CRAB follow-up this week, and you closed the loop either way
+
+These don't count: one-way messages that are still pending, chats with mentors or peers, and an automated *"happy birthday"* that got a single *"thanks!"*.
 
 ## Submission format
 
-Upload one file (PDF, Google Doc link, or ZIP) containing:
+Upload one file (PDF, Google Doc link or ZIP) with three sections.
 
-**Section 1 — 3 posts**
-- Screenshot of each shipped post (or a link to the live post)
-- Label each with the silent question it answers (Q1 / Q2 / Q3 / Q4 / Q5)
+**Section 1: 3 posts**
+- A screenshot of each shipped post, or a link to the live post
+- A label on each with the silent question it answers (Q1 / Q2 / Q3 / Q4 / Q5)
 
-**Section 2 — 5 DM conversations**
-- Screenshot of each DM (names/faces redacted)
-- One-line note per screenshot: opener type (hook / value drop / CRAB / offer-post reply) + outcome (replied, booked, scheduled follow-up)
+**Section 2: 5 DM conversations**
+- A screenshot of each DM, with names and faces redacted
+- One line per screenshot with the opener type (hook, value drop, CRAB or offer-post reply) and the outcome (replied, booked, follow-up scheduled)
 
-**Section 3 — Loom reflection (3–5 min)**
-Answer: (1) Which post performed best, why? (2) Which opener worked best for your warm market? (3) What's your v3 fix for Week 4?
+**Section 3: Loom reflection (3 to 5 min)**
+Answer three questions: (1) Which post did best, and why? (2) Which opener worked best with your warm market? (3) What will your v3 fix in Week 4?
 
-## The anti-pattern to avoid
+## The mistake to avoid
 
-*"I posted 3 times and sent 5 DMs but none converted so I failed."*
+*"I posted 3 times and sent 5 DMs but none converted, so I failed."*
 
-You didn't fail. Week 3's gate is **output + quality of reps**, not **outcomes**. Nobody closes from Week-3 output by design — Week 3 is designed to prove you can ship content and open conversations repeatedly. Outcomes follow reps; reps don't follow outcomes.
+You didn't fail. Week 3 is judged on output and the quality of your reps, and results come later. Nobody is expected to close from Week 3 output. The week exists to show you can ship content and open conversations again and again, and results come from doing that for months.
 
 ## The mentor check
 
-Book a 10-min mentor review this week. Your mentor critiques two things only:
+Book a 10-minute mentor review this week. Your mentor looks at two things only:
 
-1. Are your posts answering *different* silent questions, or all Q2 (expertise)?
-2. Are your DMs following all 3 non-negotiables, or still opening with *"hey how are you?"*
+1. Do your posts answer *different* silent questions, or are they all Q2 (expertise)?
+2. Do your DMs follow all 3 non-negotiables, or are you still opening with *"hey how are you?"*
+
+## Sources
+
+- [Guidelines on Standards of Conduct for Digital Advertising Activities (25 September 2025) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-standards-of-conduct-for-digital-advertising-activities) - representatives' social media posts are digital advertising that their firm has to oversee
+- [Personal Data Protection Act - Personal Data Protection Commission Singapore](https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act) - the law on handling personal data, the reason DM screenshots are redacted before you submit them
+- [When does my Instagram story disappear? - Instagram Help Center](https://help.instagram.com/1729008150678239/) - stories disappear after 24 hours, which is why only feed posts count

@@ -1,8 +1,8 @@
 ---
 week: 3
 day: 17
-title: "CRAB Framework — Handling Blue Ticks"
-big_idea: "A blue tick is not a rejection. It's usually a scheduling problem dressed up as silence. CRAB is the move that gets the calendar back."
+title: "CRAB framework: handling blue ticks"
+big_idea: "A blue tick usually means a scheduling problem that looks like silence, and seldom a rejection. CRAB is how you get back on their calendar."
 kpi_link: "Week 3 KPI — 3 posts shipped; 5 DMs opened"
 primary_sources:
   - "[[../_source-articles/crab-framework-blue-ticks]]"
@@ -11,156 +11,177 @@ duration_minutes: 20
 tags: [next-60-days, week-3, new-fc, crab, blue-ticks, follow-up, messaging]
 ---
 
-# Day 17 — CRAB: Handling Blue Ticks
+# Day 17: CRAB, handling blue ticks
 
-> **The one idea for today:** A blue tick is not a rejection. It's usually a scheduling problem dressed up as silence. CRAB is the move that gets the calendar back.
+> **The one idea for today:** A blue tick usually means a scheduling problem that looks like silence, and seldom a rejection. CRAB is how you get back on their calendar.
 
-By the time you close today you'll run the CRAB structure (Care → Reason → Alleviate → Book) on any prospect who's gone quiet, know when CRAB fits (blue-ticked, rescheduled once or twice, went silent after positive interest) and when it doesn't (hard-no, never responded to first message), and swap out open-ended *"when works?"* for the ABC booking format — 2–3 specific slots with A/B/C reply labels.
+By the end of today you'll be able to run CRAB (Care, Reason, Alleviate, Book) on a prospect who's gone quiet, and you'll know when it doesn't fit. You'll also replace the open *"when works?"* with the ABC booking format: 2 or 3 specific slots they answer with A, B or C.
 
 ---
 
 ## Why the default follow-up fails
 
-The new-FC blue-tick reflex:
+This is what most new FCs send after a blue tick:
 
-> *"Hey — just bumping this up. Let me know when you're free!"*
+> *"Hey, just bumping this up. Let me know when you're free!"*
 
-That fails for three reasons:
+It fails for three reasons:
 
-- **No Care** — it's entirely about *your* need to book, not *their* situation
-- **No Reason** — nothing new for them to engage with
-- **No Alleviation** — *"when you're free"* puts the entire scheduling burden on them
+- There's no care in it. It's about your need to book, with nothing about their situation.
+- There's no reason to reply, because it gives them nothing new.
+- It doesn't make anything easier. *"When you're free"* leaves all the scheduling to them.
 
-A blue tick is not disinterest 80% of the time. It's a person who read your message, couldn't immediately answer, scrolled on, and never came back. Your follow-up has to acknowledge that reality — not just repeat the ask.
+Two blue ticks on WhatsApp only mean the message was read. Often the person read it at a bad moment, couldn't answer straight away, scrolled on and forgot. Your follow-up has to allow for that, and repeating the ask doesn't.
 
 ---
 
 ## The CRAB structure
 
-![The CRAB structure: C · Care (about them); R · Reason (for them); A · Alleviate (friction); B · Book (specific slots)](/next-60-days/images/n60-day-17-m0.webp)
+![The CRAB structure: C Care (about them), R Reason (for them), A Alleviate (friction), B Book (specific slots)](/next-60-days/images/n60-day-17-m0.webp)
 
-Four beats. Each does a specific job.
+There are four beats, and each has its own job.
 
-### C — Care
-Show the message is about *them*, not you.
+### C: Care
 
-- Acknowledge their *season of life* — new job, new baby, travel, a stressful month
-- Reference something specific you already know about them
-- Avoid pushy / transactional language
+Show that the message is about them.
 
-> *"I know you've just started the new role — hope the first few weeks haven't been too chaotic."*
-> *"Congrats again on the promotion 🎉 — that must come with a lot of moving pieces."*
+- Acknowledge what's going on in their life: a new job, a new baby, travel, a stressful month
+- Mention something specific you already know about them
+- Leave out anything that sounds pushy or transactional
 
-### R — Reason
-Give them a compelling reason *for them* to reply.
+> *"I know you've just started the new role, hope the first few weeks haven't been too chaotic."*
+>
+> *"Congrats again on the promotion! That must come with a lot of moving pieces."*
 
-- Tie to a benefit they already expressed interest in — or one you know fits their life stage
-- Use what they said to you previously to make it relevant
-- Frame it as *what's in it for them*, not *what's in it for you*
+### R: Reason
+
+Give them a reason to reply that's about their benefit.
+
+- Tie it to something they already said they were interested in, or something that fits their life stage
+- Use what they told you before to make it relevant
+- Frame it around what they get out of it
 
 > *"If we sort this out in the next few weeks, it'll take the financial-planning thing off your plate while you settle into the role."*
-> *"This'll help us make sure we don't miss the window to implement before your wedding."*
+>
+> *"This'll help us make sure we don't miss the window to get things in place before your wedding."*
 
-### A — Alleviate
-Reduce the friction of actually saying yes.
+### A: Alleviate
 
-- Remove the need for them to *check their calendar* or *think about logistics*
-- Offer flexibility — office, Zoom, after work, lunch
-- Pre-empt the time/effort/travel objection
+Make it easier to say yes.
+
+- Save them from checking their calendar or working out logistics
+- Offer options: their office, Zoom, after work, lunch
+- Answer the time, effort or travel objection before they raise it
 
 > *"Happy to swing by your office during lunch, or we can do it over Zoom if your week's packed."*
-> *"Totally fine if it's a 30-min call — I know this week is going to be tight."*
+>
+> *"Totally fine if it's a 30-min call. I know this week is going to be tight."*
 
-### B — Book
-The CTA. 2–3 specific slots. Minimal effort to reply.
+### B: Book
 
-- 2–3 specific date/time combinations
-- Format so they reply *"A"* / *"B"* / *"C"*
-- Never leave it open-ended
+This is the call to action: 2 or 3 specific slots, set up so replying takes almost no effort.
+
+- Give 2 or 3 specific dates and times
+- Label them so they can reply *"A"*, *"B"* or *"C"*
+- Don't leave it open-ended
 
 > *"Would any of these work?*
-> *(A) Tue 23 Jan @ 12pm*
-> *(B) Wed 24 Jan @ 6pm*
-> *(C) Mon 27 Jan @ 6pm*
 >
-> *Just reply A, B, or C and I'll take care of the rest."*
+> *(A) Thu 23 Jan, 12pm*
+>
+> *(B) Fri 24 Jan, 6pm*
+>
+> *(C) Mon 3 Feb, 6pm*
+>
+> *Just reply A, B or C and I'll take care of the rest."*
 
 ---
 
-## A full CRAB message, end to end
+## A full CRAB message, start to finish
 
-> *"Hey Kelly — just bumping this up.*
+> *"Hey Kelly, just bumping this up.*
 >
-> *I know the last few weeks have been busy with the new promotion — congrats again by the way 🎉*  — **Care**
+> *I know the last few weeks have been busy with the new promotion. Congrats again, by the way!* (Care)
 >
-> *I was thinking: if we wrap up the planning piece this month, it'll clear your mental space to focus on the new role, and we can move forward on what you mentioned earlier about your CI coverage.*  — **Reason**
+> *I was thinking, if we wrap up the planning piece this month, it'll clear some headspace for the new role, and we can move on what you mentioned earlier about your CI coverage.* (Reason)
 >
-> *Totally flexible on format — I can swing by your office during lunch, or we can do this over Zoom if your week is packed.*  — **Alleviate**
+> *Totally flexible on format. I can swing by your office during lunch, or we can do this over Zoom if your week is packed.* (Alleviate)
 >
-> *Would any of these work?*  — **Book**
-> *(A) Thu 23 Jan @ 12pm*
-> *(B) Fri 24 Jan @ 6pm*
-> *(C) Mon 27 Jan @ 6pm*
+> *Would any of these work?* (Book)
 >
-> *Just reply A, B, or C and I'll handle the rest 🙏"*
+> *(A) Thu 23 Jan, 12pm*
+>
+> *(B) Fri 24 Jan, 6pm*
+>
+> *(C) Mon 3 Feb, 6pm*
+>
+> *Just reply A, B or C and I'll handle the rest."*
 
-Notice the length. Four beats, four short bubbles if you split it. The full message reads in about 20 seconds. The reply takes 2 seconds — *"B"*. That's the whole design.
+Look at the length. Split up, it's four short bubbles that take about 20 seconds to read, and the whole design is that the reply takes 2 seconds: *"B"*.
 
 ---
 
-## Why ABC booking outperforms open-ended *"when works?"*
+## Why ABC booking beats an open *"when works?"*
 
-Compare:
+Compare the two:
 
-> *"When works for you?"* — requires the prospect to open their calendar, think across 14 days, weigh mornings vs evenings, choose a format, type out a date, and hope you agree.
+> *"When works for you?"* The prospect has to open their calendar, look across two weeks, weigh mornings against evenings, pick a format, type out a date and hope it suits you.
 
-> *"(A) Tue 12pm / (B) Wed 6pm / (C) Mon 6pm — just reply A, B, or C"* — requires the prospect to read three lines and type one letter.
+> *"(A) Thu 12pm / (B) Fri 6pm / (C) Mon 6pm, just reply A, B or C."* The prospect reads three lines and types one letter.
 
-A single-letter reply has near-zero cognitive cost. Open-ended *"when works?"* has double-digit cognitive cost. That's the reply-rate gap.
+One letter costs almost nothing to send. An open question makes them do the planning, so fewer people reply. Design research calls this Hick's law: the more options someone weighs, the longer they take to decide.
 
-**Pro tips on the three slots:**
-- Offer **one weekday lunch, one weekday evening, one unusual slot** — diversity increases the chance one works
-- Make at least one slot **more than a week out** — gives them a *"later is fine"* option, reduces pressure
-- Never offer *"next week sometime"* — specificity is the whole point
+Tips for choosing the three slots:
+
+- Offer one weekday lunch, one weekday evening and one slot at an unusual time, so there's a better chance one fits
+- Make at least one slot more than a week away, so *"later is fine"* is an option and the ask feels lighter
+- Never offer *"next week sometime"*, because the slots only work when they're specific
 
 ---
 
-## When CRAB fits — and when it doesn't
+## When CRAB fits, and when it doesn't
 
 | Situation | Use CRAB? |
 |---|---|
-| Blue-ticked after initial positive interest | ✅ Yes |
-| Rescheduled once or twice | ✅ Yes |
-| Went silent after a warm exchange | ✅ Yes |
-| Said *"not interested"* clearly | ❌ No — use the 6-step objection reply (Day 16) instead |
-| Never responded to your first message | ❌ No — you haven't earned a *"just bumping this up"* yet |
-| Bounced 3+ of your follow-ups already | ❌ No — time to space the touches way out or close the file |
+| Blue-ticked after showing interest | Yes |
+| Rescheduled once or twice | Yes |
+| Went quiet after a warm exchange | Yes |
+| Said *"not interested"* clearly | No. Use the 6-step objection reply from Day 16 |
+| Never replied to your first message | No. You haven't earned a *"just bumping this up"* yet |
+| Ignored 3 or more of your follow-ups already | No. Space your touches far apart or close the file |
 
-**The rule:** CRAB works when there's already been a warm exchange. It's a re-engagement tool, not an opener and not a rescue from a hard no.
+CRAB works when there's already been a warm exchange. Use it to re-engage someone. It won't open a cold conversation or rescue a clear no.
 
 ---
 
-## Rhythm — don't spam
+## Rhythm: don't spam
 
-Four discipline rules around CRAB:
+Four rules for using CRAB:
 
-- **Personalise every send** — no copy-paste. Reference a specific past detail (their new role, the wedding, the house move)
-- **Warm but professional** — not robotic, not over-familiar. You're helping a busy adult, not flirting
-- **Use CRAB after *one* ignored follow-up** — not five. Two failed CRABs means the prospect isn't ready, not that you need a third
-- **3–5 day gap minimum** before any follow-up variation to a non-reply
+- Personalise every message, with no copy-paste. Mention a specific detail, like their new role, the wedding or the house move.
+- Keep it warm and professional. You're helping a busy adult, so don't be robotic and don't get over-familiar.
+- Send CRAB after one ignored follow-up, not five. If two CRABs go unanswered, the prospect isn't ready, and a third won't change that.
+- Wait at least 3 to 5 days before any new follow-up to someone who hasn't replied.
 
-The advisors who burn their warm market are the ones who CRAB every 48 hours. Don't.
+The advisors who burn through their warm market are the ones who send CRAB every 48 hours.
 
 ---
 
 ## What to track
 
-Two numbers to log per CRAB you send:
+Log two numbers for each CRAB you send:
 
-- **Response rate** — did they reply within 48 hours?
-- **Conversion rate** — of replies, what % resulted in a booked appointment?
+- Response rate: did they reply within 48 hours?
+- Booking rate: of the people who replied, what percentage booked an appointment?
 
-Healthy CRAB numbers in month 1–2 look roughly like: **40–60% response, 50–70% booking from replies.** Lower than that means either (a) your *Care* is generic, (b) your *Reason* isn't strong for them, or (c) your booking slots are all this week and too tight. Diagnose and retry.
+As a rough target for months 1 and 2, aim for replies from 40 to 60% of the people you CRAB and bookings from 50 to 70% of those who reply. These are our mentors' working targets and not research figures. If you're well below them, the likely causes are (a) generic Care, (b) a Reason that doesn't matter to them, or (c) slots that are all this week and too tight. Work out which one it is and try again.
+
+---
+
+## Sources
+
+- [How to check read receipts - WhatsApp Help Center](https://faq.whatsapp.com/665923838265756/?cms_platform=web) - two blue check marks mean the recipient has read your message, which tells you nothing about whether they meant to answer
+- [Hick's law: designing long menu lists - Nielsen Norman Group](https://www.nngroup.com/videos/hicks-law-long-menus/) - more choices mean a slower decision, the idea behind replacing "when works?" with three labelled slots
 
 ---
 
@@ -172,84 +193,89 @@ Healthy CRAB numbers in month 1–2 look roughly like: **40–60% response, 50�
 - C) Care, Reason, Alleviate, Book ✓
 - D) Contact, Recognise, Approach, Begin
 
-**Why:** Each letter is a specific move. Care (make it about them). Reason (give them a benefit). Alleviate (reduce friction). Book (specific slots). Missing any beat breaks the flow — skip Care and it sounds transactional, skip Alleviate and they delay replying, skip Book and you're back to *"when works?"*
+**Why:** Each letter is one move. Care makes it about them, Reason gives them a benefit, Alleviate makes it easier, and Book offers specific slots. Drop one and it falls apart: without Care it sounds transactional, without Alleviate they put off replying, and without Book you're back to *"when works?"*.
 
-**Q2. The ABC booking format outperforms *"when works for you?"* because:**
+**Q2. The ABC booking format works better than *"when works for you?"* because:**
 - A) It sounds more professional
-- B) It reduces the cognitive cost of replying from high to near-zero ✓
+- B) It turns replying from real effort into almost none ✓
 - C) It makes you seem more organised
 - D) It forces a commitment
 
-**Why:** Open-ended asks require calendar-checking, cross-referencing 14 days, weighing morning vs evening, typing a date — all cognitive load. A/B/C requires reading 3 lines and typing one letter. Reply rate scales inversely with cognitive cost. The format wins because the math of *"will I do this now?"* shifts from effortful to trivial.
+**Why:** To answer an open question they have to check a calendar, look across two weeks, weigh morning against evening and type a date. A/B/C means reading 3 lines and typing one letter. The less effort a reply takes, the more likely they are to send it right away.
 
 **Q3. A prospect said *"not interested"* clearly after your first message. Should you send CRAB?**
-- A) Yes — it might change their mind
-- B) Yes — the framework works for all silences
-- C) No — CRAB is for re-engaging *warm* silences, not overcoming hard nos ✓
-- D) Yes — but wait 3 months first
+- A) Yes, it might change their mind
+- B) Yes, the framework works for all silences
+- C) No. CRAB is for re-engaging people who were warm and went quiet, and it won't overcome a clear no ✓
+- D) Yes, but wait 3 months first
 
-**Why:** CRAB is a re-engagement tool for prospects who were warm and went quiet. A hard *"not interested"* is a different situation — it needs the 6-step objection reply from Day 16, which reframes the objection itself. Sending CRAB after a hard no ignores what they told you, and crosses the line from *persistent* to *annoying*.
+**Why:** CRAB is for prospects who were warm and then went quiet. A clear *"not interested"* is a different situation and needs the 6-step objection reply from Day 16, which deals with the objection itself. Sending CRAB after a clear no ignores what they told you, and it moves you from persistent to annoying.
 
-**Q4. A blue tick is described in Day 17 as:**
+**Q4. Day 17 describes a blue tick as:**
 - A) A clear rejection
-- B) Usually a scheduling problem dressed up as silence — read but not actioned ✓
+- B) Usually a scheduling problem that looks like silence: read, but not acted on ✓
 - C) Spam from the prospect
 - D) A sign to close the file permanently
 
-**Why:** ~80% of blue ticks aren't rejection. They're real people who read your message at a bad moment, had no immediate answer, scrolled on, and never came back. Treating blue ticks as rejection ends pipelines prematurely; treating them as scheduling problems (which CRAB is designed for) reopens them. The diagnosis determines whether the next move is re-engagement or graceful exit.
+**Why:** A blue tick only tells you the message was read. Often the person read it at a bad moment, had no answer ready, scrolled on and never came back. If you treat every blue tick as a rejection, you end conversations too early. Treat it as a scheduling problem, which is what CRAB is built for, and many of them open up again.
 
 **Q5. In the ABC booking move, one of the three slots should be:**
 - A) This weekend
 - B) Within 24 hours
-- C) More than a week out — giving the prospect a "later is fine" option reduces pressure ✓
+- C) More than a week out, so "later is fine" is an option and there's less pressure ✓
 - D) Next year
 
-**Why:** All three slots in the current week feels like pressure — each option is a near-term commitment. One slot more than a week out gives a psychological "later is fine" option that's often easier to say yes to than any this-week slot. Far-out slots also signal you've got a full calendar, which improves positioning (the "detached" signal from Day 9).
+**Why:** Three slots in the current week feel like pressure, because every option is a near-term commitment. A slot more than a week away gives them a "later is fine" option, which is often easier to accept. A slot that far out also hints that your calendar is busy, which helps your positioning (the detachment point from Day 9).
 
 **Q6. How often should you send CRAB to the same prospect?**
 - A) Every 48 hours until they reply
-- B) After one ignored follow-up, with a 3–5 day gap; two failed CRABs means space the touches way out ✓
+- B) After one ignored follow-up, with a 3 to 5 day gap; if two CRABs go unanswered, space your touches far apart ✓
 - C) Once, then never follow up again
-- D) Daily — persistence pays
+- D) Daily, because persistence pays
 
-**Why:** CRAB is a precision tool, not a spam hammer. One ignored follow-up → CRAB once. Second ignored CRAB → the prospect isn't ready right now; space the next touch by weeks, not days. Every-48-hours CRAB burns the relationship past repair. The advisors who light their warm market on fire are always the ones who mistake persistence for pressure.
+**Why:** Use CRAB sparingly. After one ignored follow-up, send CRAB once. If that's ignored too, the prospect isn't ready, so wait weeks before the next touch. A CRAB every 48 hours damages the relationship past repair. Advisors who wreck their warm market are usually the ones who confuse persistence with pressure.
 
-**Q7. Healthy CRAB numbers in month 1–2 are roughly:**
+**Q7. The rough CRAB targets this lesson gives for months 1 and 2 are:**
 - A) 90% response, 90% booking
-- B) 40–60% response, 50–70% booking from replies ✓
+- B) 40 to 60% response, 50 to 70% booking from replies ✓
 - C) 10% response, 10% booking
 - D) Response rate doesn't matter; only booking does
 
-**Why:** A 40–60% response rate is realistic because real people have busy lives and CRAB doesn't convert every silence. Below 40% usually means the *Care* is generic or the booking slots are all too tight; diagnose and retry. Booking from replies (50–70%) is higher because once the prospect replied, they've already decided to re-engage — you just need the slots to work.
+**Why:** These are working targets from our mentors and not research figures. A 40 to 60% response rate allows for the fact that people are busy and CRAB won't revive every silence. Below 40% usually means generic Care or slots that are all too tight, so work out which and try again. The booking rate from replies runs higher because someone who replies has already decided to re-engage, and the slots just have to suit them.
 
 ---
 
-## Scripts Library
+## Scripts library
 
-Here are the canonical scripts for blue-ticks, ghosting, and follow-up nudges. Practise them out loud, then make them yours.
+Below are the canonical scripts for blue ticks, ghosting and follow-up nudges. Practise them out loud, then make them your own.
 
-### Warm Market - Handling Ghosting & Non-Replies
-**Use this when** a warm contact has gone quiet after agreeing to meet, or hasn't replied to your follow-up. Three angles: playful bump, take the ball back, gentle re-engage.
+### Warm market: handling ghosting and non-replies
+
+Use this when a warm contact has gone quiet after agreeing to meet, or hasn't answered your follow-up. It has three angles: a playful bump, taking the ball back, and a gentle re-engage.
 
 [[warm-market-handling-ghosting-and-non-replies|Warm Market — Handling Ghosting & Non-Replies]]
 
-### No-Reply Nudge (Day 1 / Day 3 / Day 7)
-**Use this when** a digital lead has gone cold after the initial reply. Three nudges, spaced - then nurture.
+### No-reply nudge (day 1, day 3, day 7)
+
+Use this when a digital lead has gone cold after their first reply. Send three spaced nudges, then move them to nurture.
 
 [[no-reply-nudge-young-adults-day-1-day-3-day-7|No-Reply Nudge — Young Adults (Day 1 / Day 3 / Day 7)]]
 
-### Reminder Follow-Up (Gentle / Persistent / Final)
-**Use this when** an appointment has been booked but the prospect has gone quiet 24-48 hours before. Three escalation tones.
+### Reminder follow-up (gentle, persistent, final)
+
+Use this when an appointment is booked but the prospect has gone quiet 24 to 48 hours before it. It gives you a gentle, a persistent and a final version.
 
 [[reminder-follow-up-young-adults-gentle-persistent-final|Reminder Follow-Up — Young Adults (Gentle / Persistent / Final)]]
 
-### Follow-Up Nudge (All Angles)
-**Use this when** none of the above worked and you want to try a different angle - resource drop, life-event check-in, or a casual catch-up framing.
+### Follow-up nudge (all angles)
+
+Use this when none of the above has worked and you want a different angle: a resource drop, a life-event check-in or a casual catch-up.
 
 [[follow-up-nudge-young-adults-all-angles|Follow-Up Nudge — Young Adults (All Angles)]]
 
-### Texting EQ - 4-Step Objection Handling Framework
-**Use this when** the blue-tick eventually replies with an objection. Acknowledge casually, common ground, different perspective, safety valve.
+### Texting EQ: 4-step objection handling framework
+
+Use this when the blue tick finally replies with an objection. The steps are acknowledge casually, common ground, different perspective and safety valve.
 
 [[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
 

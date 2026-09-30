@@ -1,8 +1,8 @@
 ---
 week: 3
 day: 15
-title: "Digital Pipeline Hygiene — Where Leads Actually Live"
-big_idea: "Your pipeline is bigger than your CRM. Most of your real leads live inside the apps you already open 30 times a day — you just haven't counted them."
+title: "Digital pipeline hygiene: where leads actually live"
+big_idea: "Your pipeline is bigger than your CRM. Most of your real leads are sitting in the apps you already open 30 times a day, and you just haven't counted them."
 kpi_link: "Week 3 KPI — 3 posts shipped; 5 DMs opened"
 primary_sources:
   - "[[../_source-holos-decks/personal-branding]]"
@@ -12,134 +12,149 @@ duration_minutes: 20
 tags: [next-60-days, week-3, new-fc, pipeline, hygiene, stories, instagram]
 ---
 
-# Day 15 — Digital Pipeline Hygiene
+# Day 15: Digital pipeline hygiene
 
-> **The one idea for today:** Your pipeline is bigger than your CRM. Most of your real leads live inside the apps you already open 30 times a day — you just haven't counted them.
+> **The one idea for today:** Your pipeline is bigger than your CRM. Most of your real leads are sitting in the apps you already open 30 times a day, and you just haven't counted them.
 
-By the time you close today you'll map your 4 digital lead surfaces (followers, story viewers, post engagers, DM history) and know what each is telling you, have a weekly 30-minute hygiene ritual (clean-up, follow-back, engage-first, DM bump) that keeps the pipeline fed, and spot which surface is underused for *you* — the one where leads are hiding without being counted.
+By the end of today you'll have mapped your 4 digital lead surfaces (followers, story viewers, post engagers and DM history) and know what each one tells you. You'll have a 30-minute weekly routine that keeps the pipeline fed, and you'll know which surface you're neglecting, the one where leads sit uncounted.
 
 ---
 
 ## Why most new FCs underestimate their pipeline
 
-Ask a new FC how many leads are in their pipeline. They'll name maybe 8–12 people — the ones they've explicitly discussed the business with.
+Ask a new FC how many leads they have and they'll name 8 to 12 people, the ones they've already talked business with.
 
-That number is wrong by an order of magnitude. The *real* pipeline is every person who follows you, every person who viewed your last story, every person who liked your last post, and every person you've had a DM with in the last year. That's often 300–1,500 people. You just haven't counted them because you haven't been thinking of them as leads.
+The real number is much bigger. It includes everyone who follows you, everyone who watched your last story, everyone who liked your last post and everyone you've messaged in the past year. For most people that's several hundred names. You haven't counted them because you haven't thought of them as leads.
 
-The hygiene work is turning that invisible surface into something you can *see*, so you can work it systematically rather than hoping the DMs show up.
+Hygiene means making those people visible, so you can work through them on purpose and stop waiting for DMs to turn up.
 
 ---
 
 ## The 4 digital lead surfaces
 
-![The 4 digital lead surfaces: 1 · Followers (people who opted in); 2 · Story viewers (active attention); 3 · Post engagers (likes, saves, comments); 4 · DM history (every warm touch)](/next-60-days/images/n60-day-15-m0.webp)
+![The 4 digital lead surfaces: 1 Followers (people who opted in), 2 Story viewers (active attention), 3 Post engagers (likes, saves, comments), 4 DM history (every warm touch)](/next-60-days/images/n60-day-15-m0.webp)
 
-Each surface tells you something different:
+Each one tells you something different:
 
-| Surface | What it signals | Action |
+| Surface | What it tells you | What to do |
 |---|---|---|
-| **Followers** | Baseline permission — they've said *"I want to see your content"* | Keep the bar high. Unfollow / remove accounts that don't match your niche (see Section 4). |
-| **Story viewers** | Real-time attention — who was paying attention *this week* | Check the viewer list on your last story every morning. Names that appear repeatedly are your hottest list. |
-| **Post engagers** | Topic-level interest — they cared about *this specific* insight | Reply to every comment within 24 hours. DM the savers if the post was high-signal. |
-| **DM history** | Direct relationships — warmest surface you have | Audit monthly. Who did you text 6 months ago and never follow up on? |
+| Followers | They've agreed to see your content | Keep the list relevant. Remove bots and dead accounts (see the clean-up below). |
+| Story viewers | Who paid attention this week | Check the viewer list on your latest story every morning. Names that keep appearing are your hottest leads. |
+| Post engagers | They cared about this particular topic | Reply to every comment within 24 hours. If the post was a strong one, DM the people who saved it. |
+| DM history | Your direct relationships, the warmest surface you have | Go through it monthly. Who did you text 6 months ago and never follow up with? |
 
-The hygiene job is making a weekly ritual of moving through all four.
-
----
-
-## Stories — the trust machine
-
-Posts get discovery. Stories build trust. That's the split.
-
-Why: the average follower views 30–40% of your stories in a given week. That's the slot where you're actually *being seen by the same people repeatedly*. Repetition is what builds trust — not depth of insight on one post.
-
-**The 3-stories-a-day rhythm** from Day 11 is the output. The hygiene rhythm is the *input* — who are you watching back, replying to, engaging with?
-
-### The story-viewer review (5 min / day)
-
-Every morning, open your last story, tap the viewer list:
-
-1. **Top 20–30 names** — repeat viewers across the last week. These are your hot list. Screenshot monthly.
-2. **New faces** — accounts you don't recognise. Click through. Do they fit your niche? If yes, follow back. If no, move on.
-3. **Notable absences** — people you expected to see who didn't show. Not a red flag (they might be muted you, or genuinely busy), but worth noting if it's a pattern.
-
-Five minutes. Done daily, this gives you real-time data on who's paying attention.
+The hygiene job is going through all four every week.
 
 ---
 
-## The pre-growth clean-up
+## Stories: where trust gets built
 
-Before you try to grow the profile, prune it. A bloated follower list with low engagement tells the algorithm you're not worth pushing.
+Posts are how new people find you. Stories are where people who already follow you get used to you.
 
-### What to unfollow
+Instagram ranks stories mainly on viewing history, engagement and closeness, so the people who watch your stories keep seeing them near the front of their tray. You end up in front of the same people many times a week. Psychologist Robert Zajonc showed in 1968 that repeated exposure to something makes people like it more, and that familiarity is what stories give you. One brilliant post won't do the same.
 
-- **Inactive accounts** — haven't posted in 3+ months
-- **Uninspiring accounts** — content you scroll past every time
-- **Irrelevant accounts** — no overlap with your niche, your audience, or your interests
+The 3-stories-a-day rhythm from Day 11 is what you put out. Hygiene is the other side: whose stories you watch back, who you reply to and who you engage with.
 
-Use IG's built-in **"Least interacted with"** list (Settings → Following → Least Interacted With) to find candidates.
+### The story-viewer review (5 min a day)
 
-### Who to keep / follow back
+Every morning, open your latest story and tap the viewer list:
+
+1. Top 20 to 30 names. These are people who've watched repeatedly over the past week, and they're your hot list. Screenshot it once a month.
+2. New faces. For accounts you don't recognise, tap through and check whether they fit your niche. If they do, follow back. If not, move on.
+3. Missing names. Notice people you expected to see who didn't show up. It isn't a red flag, since they may have muted you or be busy, but note it if it keeps happening.
+
+It takes five minutes, and done daily it tells you who's paying attention right now.
+
+---
+
+## The clean-up
+
+Before you try to grow the profile, tidy two lists: who you follow and who follows you.
+
+### Who you follow
+
+Your feed shows you what your following list is full of. If it's inactive or irrelevant accounts, that's where your scrolling and commenting time goes, and not on the niche people you want to notice you. Unfollow:
+
+- Accounts that haven't posted in 3+ months
+- Accounts you scroll past every time
+- Accounts with no overlap with your niche, your audience or your interests
+
+Instagram sorts this for you. On your profile, tap Following and open the "Least interacted with" category.
+
+Keep, or follow back:
 
 - Accounts in your target niche
-- Active, engaged accounts (posts, stories, comments)
-- People you'd want to have a conversation with
+- Active accounts that post, share stories and comment
+- People you'd actually want a conversation with
 
-**Rule of thumb:** healthy follower-to-following ratio for an advisor profile is roughly 2:1 to 5:1. Follow back selectively, not reflexively.
+Follow back selectively, not by reflex.
+
+### Who follows you
+
+Remove bots and deactivated accounts. Instagram's head, Adam Mosseri, has said inactive followers don't reduce your reach, because they weren't seeing your posts anyway. They do make your numbers misleading, since engagement rates get worked out against a follower count that includes people who never look. A clean list gives you an honest read on whether your content is landing.
 
 ---
 
-## The 30-minute weekly hygiene ritual
+## The 30-minute weekly hygiene routine
 
-Once a week, block 30 minutes. Do this in one sitting, not spread across the week:
+Block 30 minutes once a week and do it all in one sitting:
 
 | Block | Time | Action |
 |---|---:|---|
-| **1 · Profile audit** | 5 min | Re-score the 6 profile elements (Day 10). Any weakened? Fix. |
-| **2 · Story viewer sweep** | 5 min | Screenshot top 30 viewers. Note 3 names to DM this week. |
-| **3 · Engage 30 accounts** | 10 min | Engage 30 competitors' / niche accounts' recent posts with meaningful comments. Not likes — *comments*. |
-| **4 · DM bump** | 10 min | Scroll your DM list. Re-open any conversation from 2+ weeks ago that needs a follow-up or a value drop (see Day 16). |
+| 1. Profile audit | 5 min | Re-score the 6 profile elements from Day 10. If one has slipped, fix it. |
+| 2. Story viewer sweep | 5 min | Screenshot your top 30 viewers. Pick 3 names to DM this week. |
+| 3. Engage 30 accounts | 10 min | Leave real comments (likes don't count) on recent posts from 30 accounts in your niche. |
+| 4. DM bump | 10 min | Scroll your DM list. Reopen any conversation older than 2 weeks that needs a follow-up or a value drop (see Day 16). |
 
-That's it. 30 minutes. The thing that separates advisors who get leads from their digital pipeline and advisors who don't is *doing this every week*, not just when you feel like it.
+Advisors who get leads from their digital pipeline do this every week, whether they feel like it or not. The ones who don't get leads do it when they remember.
 
 ---
 
 ## The "DM worth sending" test
 
-Before you hit *send* on a DM, the 3-check test:
+Before you hit send on a DM, check three things:
 
-1. **Does this link back to something specific?** *"Saw you posted about your move to the new place — congrats!"* passes. *"Hope you're well!"* fails.
-2. **Does it give value or ask for it?** The strongest DMs give — a video, a resource, a thought — and ask nothing in return. *"Just saw this and thought of you"* passes. *"Can we meet?"* fails on first contact.
-3. **Does it end with an easy-to-answer question?** *"Are you still at Singtel?"* passes. *"Thoughts?"* fails.
+1. Does it link back to something specific? *"Saw you posted about your move to the new place, congrats!"* passes. *"Hope you're well!"* fails.
+2. Does it give something or ask for something? The best DMs give a video, a resource or a thought and ask nothing back. *"Just saw this and thought of you"* passes. *"Can we meet?"* fails as a first message.
+3. Does it end with a question that's easy to answer? *"Are you still at Singtel?"* passes. *"Thoughts?"* fails.
 
-If it fails any of the three, rewrite before sending.
+If it fails any of the three, rewrite it before sending.
 
 ---
 
-## The underutilised-surface diagnostic
+## The underused-surface diagnostic
 
-Different FCs underuse different surfaces. Diagnose yours:
+Different FCs neglect different surfaces. Find yours:
 
-| Symptom | Underused surface | Fix |
+| Symptom | Neglected surface | Fix |
 |---|---|---|
 | *"My posts get views but no one DMs."* | Q5 offer posts (Day 13) | Add a DM keyword CTA to one post this week |
-| *"I don't know who's actually watching my content."* | Story-viewer review | Start the 5-min daily check |
-| *"I have 400 followers but engagement is dead."* | Clean-up | Unfollow 50–100 accounts this week |
-| *"I haven't talked to most of my warm-market in months."* | DM history | Pull 10 names from your DM list; send one value-first bump to each this week |
+| *"I don't know who's actually watching my content."* | Story-viewer review | Start the 5-minute daily check |
+| *"I have 400 followers but engagement is dead."* | Clean-up | Unfollow 50 to 100 dead or irrelevant accounts and spend that time commenting in your niche |
+| *"I haven't talked to most of my warm market in months."* | DM history | Pull 10 names from your DM list and send each one a value-first message this week |
 
-**Pick one symptom. Fix one surface.** Don't try to fix all four in Week 3.
+Pick one symptom and fix that one surface. Don't try to fix all four in Week 3.
 
 ---
 
-## Team operations — your marketing assets
+## Team operations: your marketing assets
 
-Parallel to the digital hygiene above: get your branding assets provisioned so the team can build marketing collateral and landing pages around *your* profile.
+Alongside the hygiene work, get your branding assets set up so the team can build marketing material and landing pages around your profile.
 
-- **Upload your photos** to [the photos folder](https://nsgukkz32942.sg.larksuite.com/wiki/ZUWrwdapni64IckzuJ0lshSrgYf). AI-generated headshots are fine if you don't have professional shots yet.
-- **Pin [the marketing-kits doc](https://nsgukkz32942.sg.larksuite.com/wiki/SeSZwNfIviIf5Akg42olF9kPgnh)** to your Lark left sidebar — the retrieval point for every commonly-used kit.
-- **Duplicate team decks**, add your face/branding (DIY or through your allocated designer on Canva), store finals in [the marketing-kits base](https://nsgukkz32942.sg.larksuite.com/wiki/N7B5wRUZViIIQrkB3v5lb5KNggd).
+- Upload your photos to [the photos folder](https://nsgukkz32942.sg.larksuite.com/wiki/ZUWrwdapni64IckzuJ0lshSrgYf). AI-generated headshots are fine if you don't have professional shots yet.
+- Pin [the marketing-kits doc](https://nsgukkz32942.sg.larksuite.com/wiki/SeSZwNfIviIf5Akg42olF9kPgnh) to your Lark left sidebar. It's where every commonly used kit lives.
+- Duplicate the team decks, add your face and branding (yourself or through your allocated designer on Canva) and store the finals in [the marketing-kits base](https://nsgukkz32942.sg.larksuite.com/wiki/N7B5wRUZViIIQrkB3v5lb5KNggd).
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §4c.
+
+---
+
+## Sources
+
+- [Instagram ranking explained - Instagram](https://about.instagram.com/blog/announcements/instagram-ranking-explained) - Stories are ranked on viewing history, engagement history and closeness; Feed on your activity and interaction history, with no mention of follower count
+- [Attitudinal effects of mere exposure - Robert B. Zajonc, Journal of Personality and Social Psychology (1968)](https://web.mit.edu/curhan/www/docs/Articles/biases/9_J_Personality_Social_Psychology_1_(Zajonc).pdf) - repeated exposure to something makes people like it more, the idea behind showing up in stories daily
+- [Instagram adds 'Least interacted with' and 'Most shown in feed' listings - Social Media Today (February 2020)](https://www.socialmediatoday.com/news/instagram-adds-new-listings-of-least-interacted-with-and-most-shown-in-f/571870/) - where to find the list of accounts you rarely engage with
+- [Adam Mosseri speaks out on why users are losing followers - Geo News (May 2026)](https://www.geo.tv/latest/663568-adam-mosseri-instagram-lead-speaks-out-on-why-users-are-losing-followers) - Mosseri: removing inactive accounts "won't actually affect how many people you reach"
 
 ---
 
@@ -151,55 +166,55 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 - C) IG, TikTok, LinkedIn, WhatsApp
 - D) Likes, comments, shares, saves
 
-**Why:** Each of the four surfaces tells you something different — baseline permission, real-time attention, topic-level interest, warm relationship. They stack. Most new FCs only count the DM history; the other three surfaces are the invisible pipeline sitting unworked.
+**Why:** Each surface tells you something different: followers have agreed to see you, story viewers are paying attention now, post engagers care about a topic, and DM history is your warm relationships. Most new FCs only count DM history, so the other three sit there unworked.
 
-**Q2. The weekly 30-minute hygiene ritual is best done:**
+**Q2. The weekly 30-minute hygiene routine is best done:**
 - A) Spread across the week, 5 minutes a day
 - B) In one sitting, once a week ✓
 - C) Once a month
 - D) Only when engagement drops
 
-**Why:** Spreading creates context-switching costs and makes you skip blocks. One sitting makes the ritual habitual and protects it in your calendar. The 5-min daily story-viewer review is separate — that's the only hygiene activity that benefits from daily cadence.
+**Why:** Spread across the week, you keep switching in and out of it and start skipping blocks. One sitting is easier to protect in your calendar and turns into a habit faster. The 5-minute daily story-viewer review is separate, because it's the one hygiene task that's worth doing every day.
 
 **Q3. A new FC with 400 followers and almost no engagement should probably start by:**
 - A) Posting more aggressively
 - B) Running paid ads
-- C) Cleaning up — unfollow inactive / irrelevant accounts so the engagement ratio rises ✓
+- C) Cleaning up: unfollow inactive and irrelevant accounts, clear out dead followers and put that time into commenting in their niche ✓
 - D) Moving to TikTok
 
-**Why:** A bloated follower list with low engagement signals the algorithm to stop pushing your content, which depresses engagement further. Cleanup is the unlock: remove dead weight, the ratio improves, the algorithm starts pushing again. More posts into a cold audience amplifies the problem, not fixes it.
+**Why:** Instagram ranks posts on what each viewer interacts with, so reach comes from real engagement with the right people. Cleaning up points your own scrolling and comments at niche accounts, which is how they start to notice you, and removing dead followers makes your engagement numbers honest again. Posting more into the wrong audience doesn't fix any of that.
 
-**Q4. "Stories are the trust machine" — Day 15's pairing of surface-to-job claims that:**
+**Q4. "Stories are where trust gets built." Day 15's split between posts and stories is:**
 - A) Posts build trust; stories build discovery
-- B) Posts build discovery; stories build trust (repeated viewings by the same people) ✓
+- B) Posts build discovery; stories build trust, through repeated viewing by the same people ✓
 - C) Posts and stories do the same job
 - D) Stories are not worth investing in
 
-**Why:** Posts reach cold viewers (discovery). Stories reach the same followers repeatedly (30–40% view rate). Repetition is the trust-building mechanism — the same person seeing you in small ways across many days builds the felt-sense of familiarity that posts can't replicate. The 5-min daily story-viewer review is where new FCs find their hottest list hiding in plain sight.
+**Why:** Posts are how new people find you. Stories go to people who already follow you, and Instagram puts the accounts someone watches most at the front of their tray. Seeing you in small ways across many days makes you familiar, which one post can't do. The daily story-viewer review is where new FCs find their hottest list.
 
 **Q5. The "DM worth sending" 3-check test asks:**
-- A) Does it have an emoji? Is it under 100 words? Does it use hashtags?
-- B) Does it link back to something specific? Does it give value or ask for it? Does it end with an easy-to-answer question? ✓
-- C) Is it sent in the morning? Does it have a photo? Does it mention your company?
-- D) Is it translated? Is it spellchecked? Is it formatted?
+- A) Whether it has an emoji, stays under 100 words and uses hashtags
+- B) Whether it links back to something specific, gives value before asking for anything, and ends with an easy-to-answer question ✓
+- C) Whether it goes out in the morning, includes a photo and mentions your company
+- D) Whether it has been translated, spellchecked and formatted
 
-**Why:** These three checks catch the most common warm-market DM failure modes — generic opener ("Hope you're well!"), asking before giving, and closed-ended or impossible-to-answer questions. A DM that fails any of the three gets blue-ticked. The test is a pre-send gate to catch the mistake before it lands in someone's inbox.
+**Why:** The three checks catch the usual warm-market DM mistakes: a generic opener ("Hope you're well!"), asking before giving, and a question that's closed or hard to answer. A DM that fails any of them tends to get blue-ticked. Run the test before you send.
 
 **Q6. A new FC sees this symptom: "I have 400 followers but engagement is dead." The Day 15 diagnosis is:**
 - A) They should delete the account and start fresh
-- B) Follower cleanup — unfollow 50–100 inactive / irrelevant accounts so the engagement ratio lifts ✓
+- B) Clean-up: unfollow 50 to 100 inactive or irrelevant accounts and spend that time engaging in their niche ✓
 - C) They need to post 10x a day
 - D) They need paid ads
 
-**Why:** A bloated follower list signals the algorithm that your content doesn't earn engagement from its current audience, which depresses reach further, which depresses engagement further — a doom loop. Cleanup is the contrarian unlock: fewer, more engaged followers lifts the ratio, the algorithm starts pushing content again, and the loop reverses. Posting harder into a dead audience just digs the hole.
+**Why:** Dead engagement usually means your content and your attention are going to the wrong people. The clean-up redirects your own time to niche accounts, whose owners then notice you, and it strips out dead weight so your numbers reflect real interest. Posting harder into an audience that isn't watching just digs the hole deeper.
 
-**Q7. The "underutilised-surface diagnostic" rule is:**
+**Q7. The underused-surface diagnostic rule is:**
 - A) Fix all four surfaces in parallel
-- B) Pick one symptom, fix one surface — don't try to fix all four in Week 3 ✓
+- B) Pick one symptom and fix one surface; don't try to fix all four in Week 3 ✓
 - C) Fix posts first, always
 - D) Ignore the diagnostic, just post more
 
-**Why:** One surface at a time concentrates attention on the weakest link instead of spreading thin. Trying to fix follower count, story engagement, post conversion, and DM history all in the same week produces surface-level changes across four fronts and compounding behaviour on none. The single-surface rule is why the 30-min weekly block is feasible — one focused loop, not four parallel campaigns.
+**Why:** Working on one surface keeps your attention on the weakest link. Try to fix followers, story engagement, post conversion and DM history in the same week and you'll make small changes on all four and build a habit on none. That's also why the weekly block fits in 30 minutes.
 
 ---
 
