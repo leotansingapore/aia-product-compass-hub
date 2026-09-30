@@ -1,5 +1,5 @@
 ---
-title: "Next 60 Days - Week 6: Reading People - DISC Complete - Cheat Sheet"
+title: "Next 60 Days - Week 6: Reading people with DISC - Cheat Sheet"
 course: next-60-days
 type: cheatsheet
 week: 6
@@ -8,135 +8,125 @@ audience: "Newly-licensed FCs in first 60 days post-license"
 tags: [next-60-days, week-6, cheatsheet, disc, profiles, pitch-tailoring]
 ---
 
-# Week 6: Reading People - DISC Complete - Cheat Sheet
+# Week 6: Reading people with DISC - cheat sheet
 
-> **The one idea:** Stop selling the way *you* buy. You get 5 minutes to read the room - after that, the pitch lives or dies on whatever assumption you walked in with.
+> **The one idea:** Stop selling the way *you* buy. You get about 5 minutes to read the prospect before the meeting settles into a pace, and after that you're stuck with whatever you assumed walking in.
 
-> **Week 6 KPI:** 4-profile self-assessment + 4 recorded tailored-pitch roleplays.
+> **Week 6 KPI:** 4-profile self-assessment + 4 recorded roleplays, each showing that profile's opener and matching close.
+
+DISC is a conversation aid built on William Moulton Marston's 1928 model of four behaviour patterns. It isn't a validated personality test and there's little evidence it predicts buying decisions. Treat every read as a guess you keep checking, never tell a client "you're a C", and never let a profile guess override the fact-find.
 
 ---
 
-## The DISC table - the screenshot of the week
+## The DISC table
 
-The 4 profiles sit on 2 axes: **Thinker vs Feeler** and **Fast/Extrovert vs Slow/Introvert**.
+This course sorts the 4 profiles on 2 axes of its own: Thinker vs Feeler, and Fast vs Slow. They map loosely onto Marston's model. Most people show a mix.
 
-|  | **Thinker (facts, logic)** | **Feeler (emotion, people)** |
+|  | Thinker (facts, logic) | Feeler (emotion, people) |
 |---|---|---|
-| **Fast / Extrovert** | **D** - Dominance | **I** - Influence |
-| **Slow / Introvert** | **C** - Conscientiousness | **S** - Steadiness |
+| Fast / outgoing | D, Dominance | I, Influence |
+| Slow / reserved | C, Conscientiousness | S, Steadiness |
 
-### Per profile - tell, words, pitch tweak, close
+### Per profile: tells, words, pitch and close
 
-| Profile | Body / pace | Words they say | Pitch tweak | Close that fits |
+| Profile | Body and pace | Words they say | Pitch tweak | Close that fits |
 |---|---|---|---|---|
-| **D** Dominance | Straight posture, fast walk, direct eye contact, fast and direct talk | *"Cut to the chase."* *"What's the ROI?"* *"Let's move."* *"Don't waste time."* | Bottom-line first, options not ultimatums, give worst case + best case + base case | **Assumptive** - *"Credit card or bank transfer?"* |
-| **I** Influence | Lots of gestures, animated face, big laughs, fast and warm talk | *"Truly inspiring!"* *"Exclusive."* *"Trust me lah."* | Story-first, observation-based compliments, well-presented appearance matters | **Reassurance + social proof** - tie to a specific next date before they leave |
-| **S** Steadiness | Slouches, takes little space, soft voice, long pauses | *"Anything lah, can one."* *"Don't push me."* *"I'm not ready for this."* | Slow pace, lots of assurance, permission-giving language, visualisation when the gap is real | **Procedural + soft Reassurance** - *"Shall we start with step one together?"* |
-| **C** Conscientiousness | Frowns when thinking, poker face, long deliberate pauses | *"Too good to be true."* *"Let's see past track record."* *"I need to compare."* | Structure-first, lead with worst case, every claim backed by data, comparison table ready | **Procedural + Follow-up** - book the next meeting 7-14 days out |
+| D | Stands straight, walks fast, direct eye contact, talks fast | *"Cut to the chase."* *"What's the return?"* *"Skip the details."* | Bottom line first, options instead of ultimatums, both illustrated rates plus the guaranteed values and the downside | Assumptive, only after a clear yes: *"GIRO or credit card?"* |
+| I | Big gestures, animated face, big laugh, never lets silence sit | *"Her story is so inspiring!"* *"Exclusive."* *"Trust me lah."* | True stories only (say whose), specific compliments, look presentable | Reassurance tied to a specific next date before they leave |
+| S | Sits back, takes little space, soft voice, long pauses | *"Anything lah, can one."* *"Don't push me."* *"I'm not ready for this."* | Slow pace, repeated reassurance, permission to say no, visualisation only when the fact-find shows a real gap | Procedural with gentle reassurance: *"Shall we start with step one together?"* |
+| C | Frowns when thinking, straight face, long pause before answering | *"Too good to be true."* *"Let's look at the track record."* *"I need to compare."* | Agenda first, start with the downside, every claim backed by a figure, compareFIRST for comparisons | Procedural with a follow-up booked 7 to 14 days out |
 
-> **The one mismatch that destroys deals:** Assumptive close on an S or C. S fake-agrees and ghosts in 48 hours; C re-analyses from zero and disqualifies you.
-
----
-
-## The 5-minute speed-read - the 6-signal scan
-
-Every meeting locks its pace in the first 5 minutes. You need a working hypothesis by minute 5. Scan for these 6 signals - **3 agreeing = commit to the profile.**
-
-1. **Body language** - D stands straight; I gestures a lot; S slouches; C frowns when thinking.
-2. **Tonality / pace** - D fast and direct; I animated; S quiet and soft; C measured.
-3. **Questions they ask** - D bottom-line; I emotion-related; S permission-seeking; C process-related *why*.
-4. **Choice of words** - see the words row in the table above.
-5. **Dressing** - D red/black power colours; I bright/fashionable; S plain/no-makeup; C blue/black practical.
-6. **Right questions you ask** - *"When you've made financial decisions in the past, did you research heavily first or go with gut?"* The answer tells you a lot.
-
-Combine 3-4 signals and you land the right profile ~80% of the time by minute 5.
+> The mismatch to avoid: an assumptive close on an S or a C. An S pretends to agree to keep the peace, then disappears for weeks. A C goes back to analysing from scratch, which can lose the deal for good.
 
 ---
 
-## Profiling questions - when the speed-read isn't enough
+## The 5-minute speed-read: 6 signals
 
-Three rules: read the *reasoning* not the *answer*; use *"best describes you"* not *"do you like"*; frame as four options not binary.
+Commit to a working guess by minute 5. When 3 signals point the same way, commit to the profile.
 
-- **Animal** - *"If you were an animal, which would you be, and why?"* Lion/eagle + leadership = D. Dolphin/parrot + fun = I. Dog/elephant + loyalty = S. Owl/fox + observing = C.
-- **Colour** - red/black (D), yellow/orange (I), green/blue (S), grey/navy (C). Reasoning matters more than colour.
-- **Scenario** - *"Big project in two weeks - what role would you naturally take?"* Take charge = D, rally morale = I, support whoever leads = S, build the plan = C.
+1. Body language: D stands straight, I gestures a lot, S sits back, C frowns when thinking.
+2. Tone and pace: D fast and direct, I animated, S quiet and soft, C measured.
+3. Questions they ask: D bottom-line, I about feelings and people, S asking permission, C *why* and *how* about process.
+4. Word choice: see the table above.
+5. Dressing: D sharp, I bright and fashionable, S simple and comfortable, C plain and practical. This is the weakest signal, because culture, job and budget shape clothes more than personality. Never decide on dress alone.
+6. The questions you ask: *"When you've made big money decisions before, did you research a lot first or go with your gut?"*
 
-Use 2-3 in casual conversation - not in sequence. Combined read is reliable to 90%+.
-
----
-
-## The 2 fine-line distinctions you'll get wrong early
-
-**D vs C - both strong-headed.** D insists because they want the *result*. C insists because they stand on *principle*. Practical test: offer a shortcut that compromises principle to hit the result. D takes it; C won't.
-
-**I vs S - both emotional.** I *shows* it (bigger smile, volunteers feelings). S *hides* it (reserved smile, you have to ask). Practical test: tell a mildly sad story. I reacts visibly and shares their own. S nods quietly and maybe says *"oh... that's hard."*
+Waiting for all 6 burns the window. Three is enough to act on and easy to revise.
 
 ---
 
-## Your own profile - the biggest blind spot
+## Profiling questions, when the speed-read isn't enough
 
-The #1 reason advisors miss-sell is they sell the way *they* buy. A D-profile FC pitches every prospect on speed and outcomes. An I-profile FC tells stories to a C and watches them tune out.
+Three rules: read the reasoning behind the answer, ask what "best describes you", and offer four options instead of yes/no.
 
-Quick self-test:
-- Buy something big - decide **fast or slow**?
-- Weigh **emotion or facts** more heavily?
-- In a group - **talking or listening**?
-- Under stress - **take charge or defer**?
+- Animal: *"If you were an animal, which would you be, and why?"* A lion "because I'm in charge" sounds D; a lion "because I protect my family" sounds S.
+- Colour: red or black (D), yellow or orange (I), green or blue (S), grey or navy (C). The reason matters much more than the colour.
+- Scenario: *"Big project in two weeks, what role would you naturally take?"* Take charge (D), rally morale (I), support whoever leads (S), build the plan (C).
 
-Fast + facts + take charge = **D**. Fast + emotion + talking = **I** (often with some D). Slow + emotion + listening = **S**. Slow + facts + listening = **C**.
-
-Knowing your own default is the prerequisite to counter-programming when the prospect is different - which is what moves a 30% close rate to 50%+.
+Use 2 or 3, spread through normal conversation, and check them against the speed-read.
 
 ---
 
-## The 3 Cs of communication - where DISC fits
+## The 2 pairs you'll mix up early
 
-DISC is the **Convince** layer. Skip *Connect* (warm-up) and the prospect shuts down before you get to convince.
+D vs C, both stubborn. D insists on the result; C insists on principle. Offer a shortcut that hits the result but bends the rules: D takes it, C won't.
 
-| Layer | Sub-skills | What it does |
-|---|---|---|
-| **Connect** (5) | Smile, sincere compliment, ask about them, listen, acknowledge | Drops the prospect's guard. First 2 minutes. |
-| **Convince** (1) | Match their logic via DISC | Adjusts how the same content lands across 4 different brains. |
-| **Comfort** (4) | Warm tonality, slightly faster pace, open body, no jargon | Keeps them open across the next 30+ minutes. |
-
-**The sincere-compliment 4-rule:** sincere not rushed, compliment the subject not the object, personalised not generic, profile-tailored. D and DC want recognition of *what they did*. I and IS want recognition of *who they are*. S wants consistency. C wants thinking rigour.
+I vs S, both warm. I shows it; S keeps it in. Tell a mildly sad story: the I reacts and shares one of their own, the S nods and says *"oh... that's hard."*
 
 ---
 
-## The pacing adjustment by profile
+## Your own profile is your blind spot
 
-If you're a fast-paced D yourself and the prospect is an S - the most load-bearing single move is:
+A very common reason advisors lose a meeting they should have won is selling the way they like to buy. A D-profile FC rushes an S; an I-profile FC tells stories to a C who is waiting for facts.
 
-> **Slow your pace by ~20%, leave silence after their answers, don't rush to the next question.**
+Quick self-test: do you decide fast or slow, on emotion or facts, do you talk or listen in a group, and do you take charge or defer under stress?
 
-A D-paced delivery to an S feels like pressure. Holding silence builds the trust that lets them say yes. Matching pace beats every script trick across profiles.
+- Fast, emotion, talking, takes charge: I (with some D)
+- Fast, facts, takes charge, talks less: D
+- Slow, emotion, listening, defers: S
+- Slow, facts, listening, takes charge of the detail: C
 
 ---
 
-## Common failure modes
+## The 3 Cs: where DISC fits
 
-- **Skipping Connect** - leading with *Convince* before warm-up. Prospect feels rushed; the 30 remaining minutes are a fight.
-- **Waiting for all 6 signals to agree** - burns the pacing window. Commit at 3 signals; revise later if needed.
-- **Selling your own profile** - the D-FC who pitches everyone on bottom-line speed and confuses why S prospects "go cold". Audit your last 5 pitches - if 3+ used the same energy, you're over-indexing on yourself.
-- **Re-pitching after a D has said yes** - re-pitching unsells the decision. Move straight to logistics.
-- **Filling silence with an S** - their pauses are engagement, not disengagement. Let them think.
-- **Improvising a fact for a C** - if you don't know the answer, *"I'll email the exact clause by Monday"* and deliver builds more trust than any improvised answer.
-- **Generic compliments** - *"quite friendly"* / *"approachable"* / *"easygoing"* are filler. Use something only this person would recognise.
+DISC is the Convince layer. Skip Connect and the prospect feels rushed and shuts down.
+
+| Layer | What it does |
+|---|---|
+| Connect (5): eye contact and smile, compliment, ask about them, listen, acknowledge | Lowers their guard in the first 2 minutes. Most new FCs skip acknowledging. |
+| Convince (1): match their logic via DISC | Lets the same content land with four different people |
+| Comfort (4): warm tone, pace slightly faster than conversational, open body, no jargon | Keeps them open for the next 30+ minutes |
+
+The compliment: don't rush it, praise the person instead of their things, make it specific, and fit it to the profile. D and DC like recognition of what they did, I and IS of who they are, S of consistency, C of their thinking.
+
+---
+
+## Pace, and the mistakes that cost meetings
+
+If you're a fast D and the prospect is an S, slow your pace by about 20%, leave silence after their answers and don't rush the next question. Pace is the adjustment that matters most across profiles.
+
+- Leading with Convince before Connect.
+- Waiting for all 6 signals to agree.
+- Re-pitching after a D has said *"okay, let's do it"*. Move to the next step.
+- Filling an S's silence. Their pauses are engagement.
+- Sizing an S's plan down because they seem modest. Use the fact-find numbers.
+- Improvising a fact for a C. Say *"I'll email you the exact clause by Monday"*, then send it.
+- Calling anything "our best-selling plan" or "the best plan" without figures to show. Under MAS fair dealing expectations that's an unsupported claim.
 
 ---
 
 ## Numbers worth memorising
 
-- **5 minutes** - the pacing-window before the meeting locks. Commit to a profile by minute 5.
-- **3 signals agreeing** = commit. Waiting for 6 = burned window.
-- **80%** profile accuracy by end of minute 5 with 3-4 visual signals. 90%+ with profiling questions added.
-- **2-3 minutes** - the D's time-to-patience. If competence + efficiency aren't established by minute 3, they check out.
-- **20%** - the pace slowdown when you're a D-or-I matching an S.
-- **48 hours** - the window an S spends fake-agreeing before they ghost when you misuse Assumptive.
-- **7-14 days** - the right follow-up window for a C close.
+- 5 minutes to commit to a working guess; 3 agreeing signals to commit
+- 2 to 3 minutes for a D to see competence and pace before checking out
+- About 20% slower when you match an S
+- 3.00% and 4.25%: the LIA illustration rates on a participating plan, neither guaranteed
+- 14 days: the free-look period from the day the policy document arrives
+- 7 to 14 days: the follow-up window for a C, who usually decides at the second or third meeting
 
 ---
 
 ## Sources
 
-Full essays in [[../../next-60-days/week-6/day-31|Day 31 - DISC + 5-Minute Speed-Read]], [[../../next-60-days/week-6/day-32|Day 32 - D Profile]], [[../../next-60-days/week-6/day-33|Day 33 - I Profile]], [[../../next-60-days/week-6/day-34|Day 34 - S Profile]], [[../../next-60-days/week-6/day-35|Day 35 - C Profile]], [[../../next-60-days/week-6/day-36|Day 36 - Practice]]. Practice gate: 4 recorded tailored-pitch roleplays across all 4 profiles.
+Full lessons in [[../../next-60-days/week-6/day-31|Day 31 - DISC + 5-Minute Speed-Read]], [[../../next-60-days/week-6/day-32|Day 32 - D Profile]], [[../../next-60-days/week-6/day-33|Day 33 - I Profile]], [[../../next-60-days/week-6/day-34|Day 34 - S Profile]], [[../../next-60-days/week-6/day-35|Day 35 - C Profile]], [[../../next-60-days/week-6/day-36|Day 36 - Practice]]. Practice gate: 4 recorded 90-second roleplays, one per profile, each with the opener and matching close.

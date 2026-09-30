@@ -1,5 +1,5 @@
 ---
-title: "Next 60 Days - Week 7: Hot Buttons + Pitch Mechanics - Cheat Sheet"
+title: "Next 60 Days - Week 7: Hot buttons and pitch mechanics - Cheat Sheet"
 course: next-60-days
 type: cheatsheet
 week: 7
@@ -8,206 +8,153 @@ audience: "Newly-licensed FCs in first 60 days post-license"
 tags: [next-60-days, week-7, cheatsheet, hot-buttons, pitch-mechanics, closing, objections]
 ---
 
-# Week 7: Hot Buttons + Pitch Mechanics - Cheat Sheet
+# Week 7: Hot buttons and pitch mechanics - cheat sheet
 
-> **The one idea:** People decide with emotion and justify with logic. Find the hot button first - the rest is translation. Then pair it with confident language and a profile-matched close.
+> **The one idea:** People decide with emotion and justify with logic. Find the hot button first, then translate the plan into it, handle the objection with the right tool and use the close that suits the profile.
 
 > **Week 7 KPI:** 3 pitches delivered - 3 different DISC types, 3 different hot buttons.
 
 ---
 
-## Hot buttons - the taxonomy + the 4 signals
+## Hot buttons: 7 categories and 4 signals
 
-A hot button is something that matters deeply and is the real motivation behind a decision. It's not what they *say* matters - it's what their **energy changes around**.
-
-### The 7 categories
+A hot button is something that matters deeply to a person and is often the real reason behind their decision. It isn't what they say matters. It's the topic their energy changes around.
 
 | Category | What it looks like |
 |---|---|
-| **Loved ones** | Spouse, kids, parents. *"I don't want my kids struggling like I did."* |
-| **Dreams / Goals** | Early retirement, specific lifestyle, house, business. *"By 50 I want to be done."* |
-| **Pride / Hobby / Skill** | Identity-level investment - being known as responsible, a parent, a professional. |
-| **Faith / Values** | Belief system, ethical obligations, stewardship, integrity, independence. |
-| **Needs vs Reality** | Gap between *what they should have* and *what they actually have*. |
-| **Bad Experiences / Fear** | Past financial disasters, a friend under-insured, *"never again."* |
+| Loved ones | Spouse, kids, parents. The most common. *"I don't want my kids to struggle the way I did."* |
+| Dreams and goals | Early retirement, travel, a house, a business. *"By 50 I want to be done working."* |
+| Pride, hobby, skill | Who they see themselves as: the responsible planner, the parent, the professional |
+| Faith and religion | Duty to family, tithing, stewardship |
+| Needs versus reality | The gap between what they should have and what they have |
+| Values and beliefs | Integrity, independence, freedom |
+| Bad experiences and fear | A parent's bankruptcy, a friend who was under-insured. *"Never again."* |
 
-Most prospects have 2-3 *live* hot buttons. Find those - don't catalogue all 7.
+Most prospects have 2 or 3 live hot buttons. Find those and build the pitch around them.
 
-### The 4 observable signals that a hot button just fired
+When one fires, 2 or 3 of these change at once: gaze (the most reliable of the four), emotion and energy, body language, tone and pace. Learn their baseline in the first 5 to 10 minutes, or you won't notice the change.
 
-When a hot button hits, 2-3 of these shift simultaneously:
-
-1. **Gaze / eyes** - they look away or lock eye contact intensely. Single most reliable tell.
-2. **Emotion / energy** - voice slows or catches, smile shifts, energy deviates from baseline.
-3. **Body language** - lean forward or back, cross arms, touch face. Posture shift.
-4. **Tonality / pacing** - pitch drops, slows down, *"mm..."* instead of answering.
-
-**Rule:** calibrate baseline in the first 5-10 minutes. You can't notice deviation if you don't know neutral.
+When a hot button comes up, slow down and ask one clarifying question: *"That thing you just said about your dad's stroke. Can you tell me more?"* Then note it with an `[HB]` mark on your firm's approved device, so you can call it back in the pitch.
 
 ---
 
-## DISC x Hot Button x Angle - the pitch matrix
+## The 6 sales hot-button questions
 
-Pair the profile read with the emotional trigger and the angle.
+Use them late in the Fact-Find, once you've built rapport.
 
-| Profile | Loss aversion strength | Hot button delivery | Pitch angle |
-|---|---|---|---|
-| **D** | Medium - respects worst-case math | Bottom-line callback, *"here's the gap, here's the fix"* | Wealth or Risk - whichever maps to their stated outcome |
-| **I** | Lower - responds more to positive visualisation | Story with named protagonist, them as subject | Lifestyle - tied to specific dream they surfaced |
-| **S** | Highest - safety-first default | Soft visualisation, *"picture your family in 2 years if..."* | Risk + Legacy - protection that passes on |
-| **C** | Medium-high - if data-backed | Numeric callback, *"$X covers Y years vs $Z covers W years"* | Wealth or Legacy - quantifiable frames |
+1. *"Suppose we never got you started on financial planning. What are the worst implications you can imagine for your future self?"*
+2. *"If we manage to achieve all the financial goals we've set, how would you picture your dream retirement?"*
+3. *"What are the top 3 things that matter most to you when choosing who to work with as an adviser?"*
+4. *"Who would you be most worried about if you were gone early one day?"* Usually the strongest. Let the silence after it sit.
+5. *"What's the worst experience you've had with financial planning or a financial adviser?"* Listen, and never run the other adviser down.
+6. *"What do you think is the most important part of any good financial plan?"*
 
-**Mapping hot button to product:** start from a hot button they surfaced, name the specific product element that addresses it, paint the concrete difference with numbers. *"$500K CI covers 8 years of your family's current lifestyle; $250K covers 3 years"* - that's the gap their comment was about.
-
----
-
-## 6 sales hot-button questions
-
-Use late in the Fact-Find, not at the start. They need 30+ min of rapport to land:
-
-1. *"Suppose we never got you started on financial planning - what are the worst implications you can imagine for your future self?"*
-2. *"If we manage to achieve all your financial goals, how would you envision your dream retirement looking?"*
-3. *"What are the top 3 things that matter most to you when considering who to work with as an advisor?"*
-4. *"Who would you be most worried about if you were prematurely gone one day?"* - the killer one
-5. *"What's the worst experience you've had with financial planning or a financial advisor?"*
-6. *"What do you think is the most critical component of every great portfolio?"*
-
-**After asking #4 - hold 20+ seconds of silence.** The silence is the hot button firing.
+Skip *"what are your financial goals?"* It gets a rehearsed list with no feeling behind it.
 
 ---
 
-## The 3-part framework + 4-step execution
+## Mapping and the callback
 
-```
-Gather Intel  ->  Preparation  ->  Presentation
-```
+Start from the hot button, never from the product. The callback has three parts: quote them, connect the product with their own numbers, show the concrete difference.
 
-**Step skipped most:** Preparation. 30-60 minutes between Fact-Find and Presentation mapping hot buttons to product elements + pre-planning callbacks + anticipating objections.
+> *"You spend about $80K a year, so $250K of CI cover covers roughly 3 years of your family's current life. $500K covers about 6."*
 
-**The 4-step execution inside Presentation:**
-
-1. **Framing** - *"Today I'll walk through what I've put together..."*
-2. **More framing** - re-anchor hot buttons: *"Remember you said the thing that worried you most was [X]? That's what I've built the plan around."*
-3. **Apply technique** - Visualisation (below).
-4. **Motivate to action** - acknowledge + reframe fear to agency + direct ask: *"That's why we can act today - what we can do is remove the 'what if' from that picture. Should we set it up?"*
+Every figure comes from their Fact-Find and your firm's approved illustration. Never round a gap up to make a bigger case.
 
 ---
 
-## The Visualisation technique
+## Pain-before-gain: 3 parts, 4 steps
 
-Put the prospect as protagonist in a concrete future scenario tied to their hot button. **Loss aversion is ~2x stronger than gain orientation** - showing what they'd lose moves most people more than showing what they'd gain.
+People feel a loss about twice as strongly as an equal gain (a 2024 meta-analysis put it at about 1.96). Loss framing tends to move S and C profiles most; some I profiles respond more to a positive picture.
 
-**Future projection:** *"Imagine 20 years from now. You're 58. Your daughter's starting her career. Something happens - a serious CI event. What does the next 5 years look like in your current setup?"* Then 20 seconds of silence.
+Parts: gather intel, then preparation (30 to 60 minutes, the step new FCs skip), then presentation.
 
-**Past callback (stronger - use carefully):** *"Remember you told me about your dad's stroke? Picture that, but it's you. Your wife is in the position your mum was in. What would that stretch look like for her?"*
+Inside the presentation:
 
-**Pre-retiree quantitative variant:** *"You said you'd want to take $100K out of CPF at 55 to help your son. The math: $100K out today = roughly $112K less in your retirement stack at 60. That $12K is the difference between the trip you wanted and the trip you settle for."*
+1. Framing: *"Today I'll start with your biggest gap, then the recommendation, then alternatives."*
+2. More framing: *"Remember you said the thing that worried you most was [X]? That's what I built the plan around."*
+3. Visualisation (below).
+4. Motivate to action: *"That's why I'm recommending we go ahead. The fear isn't the reason. What we set up today takes the 'what if' out of that picture. Shall we set it up?"* If they want time, book the follow-up. MoneySense tells consumers they're never obliged to decide on the spot.
 
-**Ethical rules:** scenario must be plausible for *this* prospect; your solution must actually address the loss painted. Break either rule and it's manipulation.
+### Visualisation, used honestly
+
+- Future projection: *"Imagine 20 years from now. You're 58. Then something happens, a serious critical illness. What do the next 5 years look like with your current setup?"* Then stay quiet.
+- Past callback: *"Remember your dad's stroke? Picture that, but it's you."* Only if they raised it and you have the rapport.
+- Pre-retiree numbers: $100K taken from CPF at 55, left in the Ordinary Account at the 2.5% floor, would be about $113K by 60. That $13K is the trip they wanted versus the trip they settle for. Use their real balances, check the current rate on the CPF Board site, and leave the decision with them.
+
+Two rules. The scenario must be plausible for this person, and your plan must actually solve the loss you painted. Fail either and you're manufacturing fear.
 
 ---
 
-## Confidence language - the 70% rule
+## Confident language
 
-> When salespeople demonstrate confidence and ask assertively, prospects say yes **~70%** of the time. Hedged language closes at half that.
+Sales trainer Jeb Blount says prospects say yes about 70% of the time when you ask with confidence. It's his rule of thumb from watching sales teams, not a controlled study.
 
-### Passive -> Assumptive swap (rehearse these)
-
-| Passive (weak) | Assumptive (strong) |
+| Hedged | Direct |
 |---|---|
 | *"Is this a good time?"* | *"The reason I'm calling is..."* |
-| *"Would you maybe want to consider..."* | *"What we're doing next is..."* |
 | *"What do you think?"* | *"Why don't we go ahead and set that up?"* |
-| *"Maybe we could meet sometime..."* | *"Tuesday 7pm or Thursday 11am - which works?"* |
-| *"I was just wondering if..."* | *"Quick question -..."* |
-| *"We could perhaps consider adding..."* | *"I'd add X here. The reason is [Y]."* |
+| *"Maybe we could meet sometime next week..."* | *"Tuesday 7pm or Thursday 11am, which works?"* |
+| *"We could perhaps consider adding..."* | *"I'd add X here, because [Y]."* |
+| *"I'm sorry to bother you..."* | *"[Name], I've got something worth 3 minutes of your time."* |
 
-**Power of Because:** *"Can I have 15 minutes, **because** I'd like to understand your current setup?"* The word activates compliance circuitry even when the reason is weak.
+The word "because": in Langer's 1978 photocopier study, an empty reason worked for a small request but did nothing for a large one, where only a real reason helped. Buying a policy is a large ask, so give real reasons: *"Would you sign here, because that gets your application to underwriting this week?"*
 
-**The Assumptive Position** (posture, not tactic): *"What I'm asking for is going to happen. My job is to make it easy."* Your language is a readout of your belief - assumptive language can't sit on top of hopeful belief without leaking.
+Cover normally starts once AIA accepts the application and the policy is in force. Never tell a client that signing starts their cover.
 
----
-
-## The 4 closes x DISC matrix
-
-| Profile | Assumptive | Procedural | Reassurance | Follow-up |
-|---|:---:|:---:|:---:|:---:|
-| **D** | Best | Maybe | Keep short | Rarely needed |
-| **I** | After warm yes | Too dry | Best (social proof) | Decay risk - close fast |
-| **S** | Feels like pressure | Great | Great | Honest fit |
-| **C** | Feels pushy | Best | Only if data-backed | Default for C |
-
-The single deal-destroyer: **Assumptive on S or C.**
+The Assumptive Position: *"What I'm asking for is going to happen. My job is to make it easy."* It shapes how you prepare. It never means skipping the needs analysis or treating a hesitant client as agreed.
 
 ---
 
-## Objection turnaround - 3 tools, 1 engine
+## The 4 closes by profile
 
-| Class | Example | Tool |
+| Profile | Works well | Avoid |
 |---|---|---|
-| **Reflex / brush-off** (first 30 sec) | *"I'm busy."* *"Not interested."* *"Just email me."* | **Anchor-Disrupt-Ask** |
-| **Clear objection** (stated reasoning) | *"Too expensive."* *"NTUC is cheaper."* | **ART** (Acknowledge-Relate-Turnaround) |
-| **Ambiguous** (could mean many things) | *"Let me think about it."* *"I'm not sure."* | **Iceberg** (clarify-acknowledge-redirect) |
+| D | Assumptive (best), a short Reassurance, Procedural if they trust the process | Follow-up rarely needed |
+| I | Reassurance (best), Assumptive after a warm yes | Procedural is too dry; a Follow-up only within days |
+| S | Procedural, Reassurance, Follow-up | Assumptive feels like pressure |
+| C | Procedural (best), Follow-up (the default), Reassurance only with numbers | Assumptive feels pushy |
 
-**Cushion runs underneath all three.** Before any *"however"* or *"but"* or *"actually"* - one short acknowledgement: *"That makes complete sense"* / *"Honestly fair"* / *"I appreciate you sharing that"* / *"I'd probably feel the same."*
+The mismatch that kills deals is Assumptive on an S or C. The S agrees to keep the peace and backs out within 48 hours; the C goes back to analysing from scratch.
 
-Profile-tune cushion length: D - short and crisp. I - warmer. S - longest. C - validates their analysis.
+- Procedural: application, underwriting, policy issued. Payment by GIRO, card or a cheque to AIA Singapore Private Limited, never to you. AIA doesn't allow representatives to collect cash.
+- Reassurance: tie it to their reason and the 14-day free-look after they receive the policy. Check affordability properly, and never call a plan the best, most popular or a bestseller without published figures.
+- Follow-up: book the date before they leave, follow up within 3 days, open with *"Are we good to go ahead?"* and still answer every question they have.
 
----
-
-## When objections keep moving - looping + the 3 Certainties
-
-If you rebut *"too expensive"* cleanly and then they hit *"need to speak to wife"* then *"want to compare more"* - **the stated objections were never the real problem.** Underlying uncertainty hasn't moved.
-
-Before a prospect can buy, three certainties must each sit at 9 or 10:
-
-1. **The product is right for them** - weak pitch lowers this
-2. **You are trustworthy and competent** - poor rapport, scripted delivery lower this
-3. **The company behind the product is reliable** - no social proof, no claims history lowers this
-
-**Loop:** stop rebutting, step back into mini-presentation mode, rebuild certainty on all three, re-ask. **Max 3 loops** per call. After 3, schedule a follow-up - don't grind.
+Before any close, walk through benefits, risks, costs and what happens if they stop paying or surrender early.
 
 ---
 
-## *"I need to think about it"* - 4 meanings
+## Objection turnaround: 3 tools
 
-1. **Profile habit** - C overthinks; S avoids committing
-2. **Don't see the need** - you haven't established enough pain
-3. **Need to discuss with someone** - usually spouse
-4. **Hidden concern you haven't addressed**
+Cushion first, always. Before any *"however"*, *"but"* or *"actually"*, one short acknowledgement: *"That's totally fair"*, *"I hear you, and..."*. D gets it short, I warmer, S longest, C by respecting their thinking.
 
-Step 1 of Iceberg is distinguishing which. *"If I may ask - is there something specific holding you back? The monthly amount, the commitment length, or something about the plan itself?"*
+| Kind | Example | Tool |
+|---|---|---|
+| Reflex (first 30 seconds) | *"I'm busy."* *"Just email me."* | Anchor-Disrupt-Ask, under 15 seconds |
+| Clear | *"Too expensive."* *"Another insurer's premium is lower."* | ART: Acknowledge, Relate, Turn around with a question |
+| Ambiguous | *"Let me think about it."* | Iceberg: clarify, resolve the real concern, return to hot buttons |
 
-For C: offer the data they need + a structured follow-up.
-For S: soften and assure + a soft follow-up date.
+One Anchor-Disrupt-Ask per brush-off. After a clear second no, thank them and end warmly; DNC and consent rules still apply. In ART, compare only what's in the other insurer's published documents or the policy the prospect shows you.
 
----
+Looping: if new objections keep coming after clean answers, the uncertainty underneath hasn't moved. Jordan Belfort's three certainties (product, you, the firm) each need to sit near 9 or 10. Step back into a short presentation, rebuild all three using only facts from AIA's published materials, and ask again. At most 3 loops, then book a follow-up.
 
-## Common failure modes
-
-- **Asking *"what are your financial goals?"*** - gets canned answers with no emotional heat. Use specific-memory questions instead.
-- **Surfacing a hot button and moving on** - hot buttons are doors, not data. Slow down + one clarifying question + 20 seconds of silence.
-- **Hot buttons surfaced but not captured** - no callback in the pitch = generic pitch. iPad notes with a `*` marker fixes this.
-- **Manufacturing fear where the gap isn't real** - visualisation works only on plausible scenarios with a real solution.
-- **Defaulting to Assumptive close because it feels confident** - half your prospects aren't D profiles.
-- **Hedging in front of a D** - *"maybe"* and *"it depends"* read as incompetence. Recommend first, then caveat.
-- **Filling silence with an I prospect during the close** - their *"love it!"* is not yes. Convert to a calendar date before they leave.
+*"I need to think about it"* means one of 4 things: profile habit (C analyses, S avoids committing), no need seen, someone else to consult, or an unspoken concern. Ask: *"Is it the monthly amount, the commitment length, or something about the plan itself?"* Give a C the data and a booked meeting; reassure an S and set a time.
 
 ---
 
 ## Numbers worth memorising
 
-- **~2x** - loss aversion vs gain orientation strength.
-- **70%** - close rate with confident, assertive language. Hedged = ~35%.
-- **3-5 trial closes** per pitch + 1 main close + 1 reinforcement.
-- **3 loops max** when rebuttals aren't moving the sale.
-- **9-10 / 10** - where Product + You + Firm certainty must sit before any main close.
-- **20 seconds** of silence after a heavy hot-button question. Most new FCs fill it at 2-3 sec.
-- **30-60 minutes** of Preparation between Fact-Find and Presentation - the step skipped most.
-- **48 hours** - the I-prospect's feel-good decay window. Book the next date before they leave.
+- About 2x: how much more a loss weighs than an equal gain (1.96 in the 2024 meta-analysis)
+- 70%: Blount's rule of thumb for confident asks
+- 3 loops at most, then a follow-up
+- 9 or 10 out of 10 on product, you and the firm before any close
+- 30 to 60 minutes of preparation between Fact-Find and presentation
+- 3 days: the longest gap before a follow-up
+- 14 days: the free-look period after the client receives the policy
 
 ---
 
 ## Sources
 
-Full essays in [[../../next-60-days/week-7/day-37|Day 37 - Hot Buttons I]], [[../../next-60-days/week-7/day-38|Day 38 - Hot Buttons II: Surfacing]], [[../../next-60-days/week-7/day-39|Day 39 - Pain-Before-Gain Framing]], [[../../next-60-days/week-7/day-40|Day 40 - Objection Turnaround]], [[../../next-60-days/week-7/day-41|Day 41 - Pitch Mechanics + 4 Closes]], [[../../next-60-days/week-7/day-42|Day 42 - Practice: 3 Pitches]]. Practice gate: 3 pitches across 3 DISC types and 3 different hot buttons.
+Full lessons in [[../../next-60-days/week-7/day-37|Day 37 - Hot Buttons I]], [[../../next-60-days/week-7/day-38|Day 38 - Hot Buttons II: Surfacing]], [[../../next-60-days/week-7/day-39|Day 39 - Pain-Before-Gain Framing]], [[../../next-60-days/week-7/day-40|Day 40 - Objection Turnaround]], [[../../next-60-days/week-7/day-41|Day 41 - Pitch Mechanics + 4 Closes]], [[../../next-60-days/week-7/day-42|Day 42 - Practice: 3 Pitches]]. Practice gate: 3 pitches across 3 DISC types and 3 different hot buttons.

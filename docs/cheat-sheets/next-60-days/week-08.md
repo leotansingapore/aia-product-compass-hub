@@ -1,5 +1,5 @@
 ---
-title: "Next 60 Days - Week 8: The Pitch - Cheat Sheet"
+title: "Next 60 Days - Week 8: The pitch - Cheat Sheet"
 course: next-60-days
 type: cheatsheet
 week: 8
@@ -8,194 +8,141 @@ audience: "Newly-licensed FCs in first 60 days post-license"
 tags: [next-60-days, week-8, cheatsheet, pitch, right-questions, sales-angles, product-analysis]
 ---
 
-# Week 8: The Pitch - Cheat Sheet
+# Week 8: The pitch - cheat sheet
 
-> **The one idea:** A feature is what the product does. A benefit is what it does *for them*. The pitch is all benefit, zero feature-dump - structured into 6 phases, anchored in their words, closed with a question.
+> **The one idea:** A feature is what the product does. A benefit is what it does for them. Choose the angle in the fact-find, ask questions instead of making statements, and build the pitch from benefits tied to what they told you.
 
-> **Week 8 KPI:** 1 live pitch delivered; recorded + self-reviewed.
-
----
-
-## The 6-phase pitch structure - the screenshot of the week
-
-A full meeting runs through 6 phases, in order. Each phase has a job. Skip the order and you stall.
-
-| # | Phase | Job | Time |
-|---|---|---|---|
-| **1** | **Connect / opener** | Drop their guard. Sincere compliment, ask about them, listen, acknowledge. 5 rapport steps. | 5-15 min |
-| **2** | **Right-question Fact-Find** | Surface 2-3 hot buttons + decision criteria + tally W/R/L/LS angle signals. | 25-35 min |
-| **3** | **Straight-line transition** | *"Based on everything you've shared, this is a perfect fit for you. Let me tell you why."* Ties rec to their words. | 30 sec |
-| **4** | **Tell-Show-Prove** | Recommendation -> concept diagram -> hot-button callback with specific numbers + claims math. | 10-15 min |
-| **5** | **Trial closes throughout + Main close** | 3-5 temperature checks scattered. Then profile-matched main close. | 5-10 min |
-| **6** | **Paper-flip reinforcement / next-step lock** | Social proof after the yes. Or specific calendar date if deferred. | 3-5 min |
+> **Week 8 KPI:** 1 live pitch delivered; recorded + self-reviewed on 8 dimensions.
 
 ---
 
-## Right-question grammar - the 6 Golden Rules
+## The 8-dimension self-review
 
-> Making a hundred statements is never as powerful as asking one right question. People defend statements other people make. They own conclusions they reach themselves.
+Your Day 48 pitch (8 to 15 minutes, one continuous take) is scored 1 to 5 on each:
 
-1. **Echo their keyword** in your next question - *"You said insurance is a scam. Why do you think it's a scam?"*
-2. **Offer logical possibilities** when they hedge - *"Is it the monthly commitment, or something else?"*
-3. **Use contrast + impactful word choices** - *"Wouldn't you agree we don't have many years we can afford to waste?"*
-4. **Use 2 distinctive contrasting options** - *"Financially burdened by hospital bills, or transfer the risk for a small fraction?"* The correct answer is obvious; they pick it.
-5. **Non-committal words** (*may*, *might*, *possibility*) outperform committal (*must*, *will*, *should*) - lowers pressure, raises real yeses.
-6. **Quote respectable experts with differing views** - *"Would you agree investment bankers know investing? Then why would they hold ILPs in their own portfolios?"*
+| Dimension | What you're checking |
+|---|---|
+| Intent statement | Structured, with a pattern interrupt, natural and unscripted |
+| Tonality | Certainty on the problem, reason on the close, empathy on the hot button |
+| DISC match | Pace, energy and content fit the profile |
+| Hot-button callback | You quoted something they said earlier |
+| Angle clarity | You can name the primary and secondary angle and see both on tape |
+| Feature-to-benefit | Every feature became a personal benefit |
+| Close | Profile-matched, with a specific next step in both calendars |
+| Silence | 5 to 10 seconds held after loaded questions |
 
-### The 3-point checklist - test every question before asking
-
-1. **Does it lead to my objective?**
-2. **Is it specific?** (forces a specific answer, not a hedge)
-3. **Is it logical and indisputable?** (they can't disagree without sounding unreasonable)
-
----
-
-## Silence as a tool - the 10-second sequence
-
-The skill isn't asking good questions. It's asking them and shutting up long enough for the question to do its work.
-
-```
-0-2 sec  register the question
-2-5 sec  mental search
-5-8 sec  specific image forms
-8-10 sec emotion activates
-```
-
-**Interrupt before second 8 and you cut the emotion.** You get a generic surface answer instead of the real one. Most new FCs bail at second 2-3.
-
-**Drill:** count *"1 Mississippi, 2 Mississippi..."* in your head after every loaded question. Hold to 8-10. Train for 2 weeks - the habit compounds across every Fact-Find for the rest of your career.
-
-**Productive silence** - eyes moving, slight facial change, breathing shifts. Hold.
-**Dead silence** - eyes glazed, body closed off, flat expression. Rescue: *"Am I going too deep? Want me to come back to that after we cover some basics?"*
+34 or more out of 40: ready for real cases. 27 to 33: competent with 1 or 2 gaps. Below 27: re-record in Week 9. Nobody scores 40 first time; name your 3 lowest.
 
 ---
 
-## The discovery funnel - chained questions
+## Right questions: the 6 golden rules
 
-One question rarely hits the real hot button. Chain them: generic -> specific -> emotional -> actionable.
+People push back on a statement you make, but they hold on to a conclusion they reached themselves, so ask.
 
-1. *"What does retirement look like for you?"* -> *"Travel, family time, the usual."*
-2. *"When you picture travel - what specifically?"* -> *"3-month trip around Europe with my wife. We talked about it 5 years ago."*
-3. *"What's kept that from happening?"* -> *"Money. We keep saying next year."*
-4. *"If the math worked out - if you knew you'd have X per month - how soon would you go?"* -> *"Next year. We're not getting younger."*
+1. Echo their keyword: *"You said you don't believe in insurance. May I know the reason?"*
+2. Offer possible answers when they hedge: *"Is it the monthly commitment, or something else?"*
+3. Use contrast and words with weight: *"Wouldn't you agree we don't have many years we can afford to waste?"*
+4. Give two clear options: *"Would you rather pay a large hospital bill from your own savings, or pass that risk to an insurer for a much smaller regular premium?"* If they pick the first, find out why.
+5. Use non-committal words (*may*, *might*, *possibility*) over *must*, *will*, *should*. Light wording gets more honest yeses.
+6. Bring in a neutral, real source and represent it accurately. MoneySense's ILP guide says term insurance may give more cover for less if protection is all someone wants. Only recommend an ILP if you hold CMFAS M9 and M9A.
 
-The **fourth-layer answer** is what you build the pitch around. The first answer (generic) would have produced a generic pitch.
+The 3-point checklist before you ask: does it lead to my objective, is it specific, is it logical and hard to dispute?
+
+Turn statements into questions. *"This is the best plan for you"* becomes *"Of the options we've looked at, which gives you the trade-off you want between cover, cost and flexibility?"* "Best plan" is a claim you can't back up.
+
+When they ask *"why should I work with you?"*, never borrow a track record. Inventing client numbers or a retention record is misrepresentation. Say you're new, show how you work (everything in writing, guaranteed and non-guaranteed shown separately, compareFIRST open to check), and ask what they'd need to see.
 
 ---
 
-## The 4 sales angles - what each prospect actually wants
+## Silence and the discovery funnel
 
-| Angle | Core motivator | Prospect archetype | Lead language |
-|---|---|---|---|
-| **Wealth** | Grow the pile | Young pro, entrepreneur, analytical saver | *"Compound at X% over Y years gets you to $Z. Here's the curve."* |
-| **Risk** | Protect the pile | New parents, sole breadwinner, health-conscious | *"Here's the worst case. Here's how this responds."* |
-| **Legacy** | Pass the pile on | HNW, older clients, family-oriented | *"When you're gone, here's what passes to your kids."* |
-| **Lifestyle** | Use the pile | Mid-career, goal-driven, experience-over-things | *"This funds the 3-month trip you mentioned."* |
+Hold 5 to 10 seconds after a loaded question. A rough coaching model (not lab-timed): 0 to 2 seconds they register it, 2 to 5 they search, 5 to 8 a picture forms, 8 to 10 the feeling lands. Mary Budd Rowe's wait-time research found that pausing 3 seconds or more gets longer, more considered answers.
 
-### Primary + secondary - compatibility pattern
+If their eyes are moving and they're still or leaning in, they're thinking, so hold. If their eyes glaze over, the phone comes out or they lean away, you've lost them and should offer a way out: *"Am I going too deep? Happy to come back to that after we cover some basics."*
 
-- **Wealth <-> Lifestyle** (both accumulation-side)
-- **Risk <-> Legacy** (both protection-side)
-- **Wealth <-> Legacy** (works)
-- **Risk <-> Lifestyle** (works)
+Drill: count silently to 8 or 10 after every loaded question for 2 weeks. Expect to crack at about 4 at first.
 
-**Mismatch that contradicts:** Wealth (grow!) + Risk (don't lose!) in the same pitch. Stay in the same half of the grid.
+Chain questions from generic to specific to felt to actionable:
 
-### Life-stage x DISC pre-pitch map
+1. *"What does retirement look like for you?"* Travel, grandkids, the usual.
+2. *"When you picture the travel, what is it?"* Three months around Europe with my wife.
+3. *"What's kept that from happening?"* Money. We keep saying next year.
+4. *"If the numbers worked, how soon would you go?"* Next year.
+
+The fourth answer is the one you build the pitch around, and you keep the chain going with *"Tell me more"*, *"What do you mean by [their word]?"*, *"How come?"* and *"And what else?"*
+
+---
+
+## The 4 sales angles
+
+| Angle | What drives them | AIA plans that lead with it |
+|---|---|---|
+| Wealth | Growth, compounding | AIA Pro Achiever 3.0, AIA Platinum Wealth Venture 2.0 (both ILPs) |
+| Risk | Protection, a safety net for the worst case | AIA Beyond Critical Care, AIA Absolute Critical Cover, AIA Pro Lifetime Protector (II), AIA HealthShield Gold Max |
+| Legacy | Passing things on | AIA Platinum Indexed Legacy (III), AIA Pro Lifetime Protector (II), whole life with a large sum assured |
+| Lifestyle | A specific dream | AIA Platinum Retirement Elite (income not guaranteed), on top of the CPF LIFE floor |
+
+- Wealth language uses the benefit illustration: guaranteed column, projected column. A par plan illustrates at 4.25% and 3.00% under LIA guidelines, and neither is guaranteed.
+- Legacy: Singapore has had no estate duty on deaths since 15 February 2008, and a nomination directs the payout. Refer wills, trusts and overseas assets to specialists.
+- Lifestyle for 50 to 60: name the CPF LIFE floor from their own CPF Retirement Payout Planner figure. As a reference, CPF estimates about $1,780 a month from 65 on the Standard Plan for someone turning 55 in 2026 with the Full Retirement Sum of $220,400. It's an estimate. The gap between that floor and the life they described is what you plan for, split into guaranteed and non-guaranteed money.
+
+Pairs: Wealth with Lifestyle and Risk with Legacy sit in the same half and pair best. Wealth with Legacy and Risk with Lifestyle work. Avoid Wealth with Risk: "grow the pile" and "don't lose it" in one pitch sounds undecided.
+
+---
+
+## Choosing the angle
+
+Choose it in the fact-find. Keep a W / R / L / LS tally and tick a column per signal: *"What's the expected return?"* (W), *"I want peace of mind"* (R), *"When I'm gone..."* (L), *"I've always wanted to..."* (LS). The biggest column is probably your primary.
+
+A first guess from life stage and DISC (DISC is a conversation aid, not a validated test):
 
 | Life stage | D | I | S | C |
 |---|---|---|---|---|
-| **Young professional (22-30)** | Wealth | Lifestyle | Risk | Wealth |
-| **New parent (30-40)** | Risk | Risk | Risk | Risk |
-| **Mid-career (35-50)** | Wealth | Lifestyle | Risk | Wealth |
-| **Pre-retirement (50+)** | Legacy | Lifestyle | Legacy | Legacy |
-| **HNW / business owner** | Wealth | Wealth | Legacy | Legacy |
+| Young professional (22-30) | Wealth | Lifestyle | Risk | Wealth |
+| Newly married, BTO stage | Lifestyle | Lifestyle | Risk | Risk |
+| New parent (30-40) | Risk | Risk | Risk | Risk |
+| Mid-career (35-50) | Wealth | Lifestyle | Risk | Wealth |
+| Pre-retirement (50+) | Legacy | Lifestyle | Legacy | Legacy |
+| Wealthy client or business owner | Wealth | Wealth | Legacy | Legacy |
+| Retiree | Legacy | Lifestyle | Legacy | Risk |
 
-Use as hypothesis, validate with Fact-Find signals. New parents default to Risk regardless of profile.
+Wrong angle mid-pitch (energy drops, questions from another angle)? Pause and ask: *"Is this mainly about [A], or more about [B]?"* Three minutes lost beats twenty on the wrong one.
 
----
-
-## The W/R/L/LS tally - angle picking from data, not vibes
-
-On your iPad/notepad, keep 4 columns - W / R / L / LS. Tick each one every time the prospect drops a signal (*"peace of mind"* = R; *"3-month Europe trip"* = LS; *"when I'm gone"* = L; *"compound at 7%"* = W). End of Fact-Find, whichever column has the most ticks is your primary.
-
-If you walk out unsure which angle fits, you didn't listen hard enough.
+Before you pitch, answer five: primary angle, 2+ fact-find signals (quoted), a compatible secondary, the hot-button callback, the profile-matched close.
 
 ---
 
-## Features to benefits - the 3-level translation
+## Product analysis and the pitch
 
-Run every product feature through *"which means... which means for you..."*:
+Four steps: understand how the plan works, benchmark it (similar AIA plans, other insurers on compareFIRST using published facts only, and doing it yourself), match it to their needs, write the pitch.
+
+Translate every feature with *"which means... which means for you..."*:
 
 | Feature | Which means... | Which means for you... |
 |---|---|---|
-| 20-year level term | Premium never increases for 20 years | Your monthly budget stays predictable even if your health changes |
-| Waiver of premium on TPD | If permanently disabled, future premiums waived | You don't lose the coverage when you most need it - when you can't work |
-| 3x multiplier for early-stage CI | Triple payout for early CI | A mild stroke at 52 like your dad's pays $1M instead of $500K - the difference between Ruth stopping work 2 years vs being forced back immediately |
+| 20-year level term, guaranteed premiums | The premium stays the same for 20 years | Your budget stays predictable even if your health changes |
+| Waiver of premium on total and permanent disability | Future premiums are waived if you're permanently disabled | You keep the cover at the point you can't work |
+| Multi-stage critical illness cover | It can pay at early and intermediate stages | A mild stroke or early cancer you recover from can still lead to a claim |
 
-**Level 1** (feature-dump) is the new-FC default. **Level 2** (generic benefit) is journeyman. **Level 3** (personal benefit + their hot button + concrete numbers) is the Week-8 discipline. The third column is the pitch language to memorise - 25 translations across your top 5 products by Month 2.
+Aim for 25 translations (top 5 features of your top 5 plans) by Month 2, each checked against the current product summary.
 
----
+Say "when" about owning the plan and "if" about any projected number. Keep guaranteed and projected figures apart every time.
 
-## The 5-point pre-pitch check
-
-Before delivering, answer all 5 cleanly. Any vague answer = back to Fact-Find data.
-
-1. **Primary angle?** (W / R / L / LS)
-2. **2+ specific Fact-Find signals supporting it?** (quote them)
-3. **Compatible secondary angle?**
-4. **Hot-button callback** tied to the primary angle?
-5. **Profile-matched close** (D Assumptive / I Reassurance / S Procedural / C Procedural + Follow-up)?
-
----
-
-## Diagnostic close question stems
-
-These get the prospect to arrive at the recommendation themselves:
-
-- *"If you had to choose - would you rather be financially burdened by hospital bills that wipe out your life savings, or transfer that risk for a small fraction of the cost?"*
-- *"For you to feel confident saying yes - what would need to be true? What would you need to see?"*
-- *"Suppose [stated concern] wasn't a concern - would you move forward, or is there something else underneath?"*
-- *"Based on everything we've talked about - your priorities around [X], the structure that fits your cashflow, the coverage that hits what matters most - I believe this fits. Shall we start the application?"*
-
----
-
-## The taboo phrases - delete from your vocabulary
-
-- *"I'm not trying to sell you anything"* - triggers the pushy filter; only sellers say it
-- *"Trust me"* - begging for trust is the fastest way to lose it
-- *"You should buy this"* - lecturing; use questions instead
-- *"If I may be honest..."* - suggests you haven't been
-- *"Everyone needs this"* - generic when specificity is the whole point
-
-Plus *"if"* - replace with *"when"*: *"In 10 years, **when** we've had this plan running, you'll have $200K..."* creates the mental image of ownership.
+Drop these: *"I'm not trying to sell you anything"*, *"Trust me"*, *"You should buy this"*, *"If I may be honest..."*, *"Everyone needs this"*. Drop anything you couldn't defend to compliance too: "guaranteed" about a projection, "the best plan", "last chance" with no real deadline.
 
 ---
 
 ## Common failure modes
 
-- **Filling silence at second 2-3** after a loaded question - cuts the emotion before it activates.
-- **Picking the angle during the pitch** instead of during the Fact-Find - produces generic pitches.
-- **Pitching from your own preferred angle** (the Wealth-FC who pitches every prospect on compounding math) - audit last 5 pitches; if 3+ used the same angle, you're over-indexing.
-- **Wealth + Risk in the same pitch** - opposing motivations; the prospect can't tell what the pitch is about.
-- **Stopping at Level 2 (generic benefit)** - the close happens at Level 3.
-- **Skipping the straight-line transition** before the main close - makes the close feel abrupt even when certainty is otherwise strong.
-- **Saying *"if"* instead of *"when"*** - leaves the prospect mentally on the fence.
-
----
-
-## Numbers worth memorising
-
-- **8-10 seconds** - hold silence after a loaded question. Most new FCs bail at 2-3.
-- **3-point checklist** - leads to objective, specific, logical/indisputable. Every question passes all 3.
-- **4 sales angles** - Wealth, Risk, Legacy, Lifestyle. Primary + secondary in the same half.
-- **3 levels of feature translation** - Feature -> Generic benefit -> Personal benefit with their hot button and specific numbers.
-- **5-point pre-pitch check** - angle / signals / secondary / callback / close.
-- **6 phases of the pitch** - Connect / Fact-Find / Transition / Tell-Show-Prove / Trial+Main close / Reinforcement.
-- **70%** - close rate when belief and language align (the 70% rule from Day 41).
+- Filling the pause after a loaded question.
+- Picking the angle during the pitch instead of in the fact-find.
+- Pitching your own favourite angle. If 4 of your last 5 pitches used the same primary, your motivation is steering your read.
+- Wealth and Risk in the same pitch.
+- Stopping at the generic benefit.
+- Recording a live prospect without their clear consent. It's their personal data under the PDPA; delete it after review.
 
 ---
 
 ## Sources
 
-Full essays in [[../../next-60-days/week-8/day-43|Day 43 - Right Questions I: 6 Golden Rules]], [[../../next-60-days/week-8/day-44|Day 44 - Right Questions II: Silence]], [[../../next-60-days/week-8/day-45|Day 45 - The 4 Sales Angles]], [[../../next-60-days/week-8/day-46|Day 46 - Choosing the Angle]], [[../../next-60-days/week-8/day-47|Day 47 - Analyzing Products + Crafting Pitch]], [[../../next-60-days/week-8/day-48|Day 48 - Practice: Live Pitch on Camera]]. Practice gate: 1 live pitch (8-15 min, continuous) recorded + 8-dimension self-review.
+Full lessons in [[../../next-60-days/week-8/day-43|Day 43 - Right Questions I: 6 Golden Rules]], [[../../next-60-days/week-8/day-44|Day 44 - Right Questions II: Silence]], [[../../next-60-days/week-8/day-45|Day 45 - The 4 Sales Angles]], [[../../next-60-days/week-8/day-46|Day 46 - Choosing the Angle]], [[../../next-60-days/week-8/day-47|Day 47 - Analyzing Products + Crafting Pitch]], [[../../next-60-days/week-8/day-48|Day 48 - Practice: Live Pitch on Camera]]. Practice gate: 1 continuous 8 to 15 minute pitch, the 8-dimension self-review, a Loom reflection and a 20-minute mentor review.

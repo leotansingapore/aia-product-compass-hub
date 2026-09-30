@@ -1,5 +1,5 @@
 ---
-title: "Next 60 Days - Week 10: After the Close + Graduation - Cheat Sheet"
+title: "Next 60 Days - Week 10: After the close and graduation - Cheat Sheet"
 course: next-60-days
 type: cheatsheet
 week: 10
@@ -8,250 +8,140 @@ audience: "Newly-licensed FCs in first 60 days post-license"
 tags: [next-60-days, week-10, cheatsheet, onboarding, touchpoints, year-1-plan, graduation]
 ---
 
-# Week 10: After the Close + Graduation - Cheat Sheet
+# Week 10: After the close and graduation - cheat sheet
 
-> **The one idea:** The signed case is the start line, not the finish line. The 90 days after the close decide whether they refer you or forget you - so the systems that run those 90 days get built before the first case closes.
+> **The one idea:** The signed case is the start line. The 90 days after the close decide whether a client refers you or forgets you, so build the onboarding system before your first client.
 
-> **Week 10 KPI:** Onboarding checklist live; touchpoint calendar built; Year-1 plan written.
+> **Week 10 KPI:** Onboarding checklist live; touchpoint calendar built; signed 12-month plan.
 
 ---
 
-## The onboarding checklist - first 90 days post-close
+## Restructuring: when it serves the client
 
-Build it once, runs automatically for every new client. The signed case is paperwork; this is what turns it into a referring relationship.
+A legitimate restructure meets at least one of 5 objectives in a way you can measure (better coverage, lower cost, updated benefits, better suitability, more value from cash value already built), and one that meets none of them is churning.
 
-### Week 1 (Day 1-7)
-- [ ] Handwritten thank-you note from *you* (not the automated company welcome email)
-- [ ] Confirm submitted paperwork went through - email or text
-- [ ] Schedule the Day-30 check-in meeting before week 1 ends
+Check every existing policy on 4 factors before recommending anything: premium, sum assured, cash value (surrender value today and later), benefits.
 
-### Week 2-4 (Day 8-30)
-- [ ] Send one *useful* piece of content unrelated to the sale
-- [ ] Proactively communicate policy milestones (delivery, first premium confirmation)
-- [ ] Confirm they know how to reach you with questions
+The cash-value trap: *"you save $420 a month"* while the client gives up part of $40K of cash value is churning.
 
-### Day 30 - first review (15 min)
-- [ ] Confirm policy is live and they understand what they bought
-- [ ] Ask about any life changes in the last 30 days
-- [ ] **First referral ask** - FACT Method, low-key, with genuine warmth
+- MAS Notice FAA-N16 bars recommending a switch that leaves the client worse off, and you must disclose in writing any fees or charges they'd bear by switching.
+- Under the LIA replacement standards, if a regular-premium policy is surrendered within 12 months before or after a new one is bought, the commission on the new policy is clawed back unless the insurer's review finds the switch wasn't detrimental.
+- Before any surrender: work out the loss, compare it with premium savings over 10 to 20 years, put your commission in the picture, and show the client every number.
+
+Often the right move is to supplement and keep the old policy. Add multi-claim CI first (AIA Ultimate Critical Cover allows unlimited major-stage claims, with cover resetting to 100% twelve months after the last claim; early and intermediate stage claims have their own limits, so check the wording). A whole-life CI rider is usually accelerated, so a CI claim cuts the death cover. For an old whole-life, the safer path is usually to make it paid-up and top up the cover alongside it. Any projection on a par policy uses the LIA rates of 3.00% and 4.25%, neither guaranteed.
+
+---
+
+## The onboarding checklist: first 90 days
+
+Week 1 (days 1 to 7)
+- [ ] A thank-you note from you, handwritten if you can. The insurer's automated welcome email doesn't count.
+- [ ] Confirm the paperwork went through
+- [ ] Book the Day-30 check-in
+
+Weeks 2 to 4
+- [ ] One useful thing unrelated to the sale
+- [ ] Tell them about milestones before they ask (policy document arriving, first premium)
+- [ ] Make sure they know how to reach you
+
+Day 30 review (15 minutes)
+- [ ] Policy in force, and they understand what they bought
+- [ ] Any life changes this month
+- [ ] First referral ask, FACT Method, light and warm
 - [ ] Book the Day-90 review
 
-### Day 30-90
-- [ ] Two more value-drop touches
-- [ ] Birthday / anniversary / life-event acknowledgments
-- [ ] Reply within 3-4 hours to any message
+Days 30 to 90
+- [ ] Two more useful touches, plus any birthday or life event
+- [ ] Reply to any message within 3 to 4 hours
 
-### Day 90 - second review (30 min)
-- [ ] Portfolio check-in - anything changed?
-- [ ] Any gaps surfaced since the first meeting?
-- [ ] **Second referral ask** - now they've had 90 days of post-sale experience
-- [ ] Set the Q2 review cadence
+Day 90 review (30 minutes)
+- [ ] Anything changed, any new gaps
+- [ ] Second referral ask, more direct now
+- [ ] Set the review rhythm for the year
 
 ---
 
-## The 3 critical touchpoints - what each one does
+## The 3 touchpoints
 
-```
-Day 7 (reassurance)  ->  Day 30 (reinforcement)  ->  Day 90 (integration)
-```
-
-| Touch | Purpose | Format |
+| Touch | Purpose | What happens |
 |---|---|---|
-| **Day 7** | Resolve buyer's remorse (peaks Day 3-7) | Short, warm, *non-sales* text: *"Policy confirmed and live. If anything comes up, I'm a text away. Proud of you for making this move - I'll check in properly end of the month."* |
-| **Day 30** | Make value real, first referral ask | 15-min meeting. Walk through policy, answer questions, close with light referral ask. |
-| **Day 90** | Convert customer to ambassador candidate | 30-min meeting. Broader check-in. Sharper referral ask. Set Q2-Q4 cadence. |
+| Day 7 | Reassurance | A short, warm text. Many people have second thoughts in the first week or two. |
+| Day 30 | Make it real | A 15-minute check-in with no selling, then a light referral ask |
+| Day 90 | Long-term client | A 30-minute wider review, a more direct referral ask, and the year's rhythm set |
 
-**Silence during Day 1-90 is interpreted as *"once he got the sale, he stopped caring."*** Referrals die before they're asked.
+Day 7 sits inside the free-look period: 14 days from when the client receives the policy document to cancel for a refund of premiums, less some costs such as medical examination fees. Answer their doubts honestly and never talk them out of it.
+
+> *"Hi [name], quick one - your policy is confirmed and in force. AIA will send you the policy document, and you've got 14 days from receiving it to read through everything. If anything doesn't sit right, just tell me and we'll go through it together. I'll check in properly at the end of the month."*
+
+On a hard case (an underwriting query, a difficult claim), be the fighter through complete, honest paperwork, never by pushing for a result the terms don't support. If a claim is still declined after the insurer's review, the client can go to FIDReC within six months of the final reply, and mediation there is free.
 
 ---
 
-## The yearly touchpoint calendar - 4 types
-
-```
-Review (scheduled)    Value (useful content)    Celebration (milestones)    Reach-out (life events)
-```
+## The yearly touchpoint calendar
 
 | Type | Cadence | Example |
 |---|---|---|
-| **Review** | 1-2 per year minimum (quarterly for A-tier) | Annual policy review meeting |
-| **Value** | 4-6 per year, personalised | *"Saw this article on [thing relevant to them] - thought you'd find it useful"* |
-| **Celebration** | 2-4 per year, as-they-happen | Birthdays, promotions, new baby, new house, graduation |
-| **Reach-out** | 1-3 per year, responsive | They mentioned a parent's illness 6 weeks ago - you check in. Highest-compound touches. |
+| Review | 1 to 2 a year, quarterly for A-tier | Mid-year check-in, year-end review |
+| Value | 4 to 6 a year, picked for the person | *"Saw this article on X and thought of you"* |
+| Celebration | 2 to 4 a year, as they happen | Birthday, new baby, promotion, new home |
+| Reach-out | 1 to 3 a year, responsive | Following up on a parent's illness they mentioned |
+
+A B-tier client gets about 7 touches a year across all four types. Double it for A-tier. C-tier gets a quarterly broadcast plus a reach-out for major events.
+
+Make it happen with reminders: 5 value touches a month, birthdays 7 days ahead, 2 or 3 personal details noted in the CRM after every Fact-Find, and a quarterly check that every A-tier client heard from you in the last 30 days. Those notes are personal data under the PDPA, so record only what the client told you, keep it in AIA's approved systems and never share it with another client.
+
+Small gestures follow four rules: specific to something they said, small (under $50 and 30 minutes, within AIA's gifts policy), no sales attached, genuine.
+
+When an A-tier client goes quiet, use the 8-Step Recovery conversation: set your objective, state your intention, find what matters to them, acknowledge their strengths, talk about them, recognise what they've done, raise any real issue only then, and hand them the next step. Keep it for people you already know, because it doesn't work on a new prospect.
 
 ---
 
-## Touchpoint cadence by client tier (and NSF vs working adult)
+## The weekly rhythm
 
-A-tier deserves roughly **2x** the relational investment of B-tier. Tier from Day 3's ABC system.
+A top-producer week runs about 45 to 50 productive hours: roughly 50% new business, 35% relationships and referrals, 15% systems. Keep systems under 20%; above that you're usually hiding from calls.
 
-### B-tier client - representative yearly cadence (~7 touchpoints)
-
-| Month | Touchpoint | Type |
-|---|---|---|
-| Jan | New Year message - personalised | Celebration |
-| Feb | *"Saw this article on X - thought of you"* | Value |
-| Mar | Client's birthday - thoughtful message + small gesture | Celebration |
-| Jun | Half-year portfolio check-in (30 min) | Review |
-| Aug | Follow-up on [thing they mentioned] | Reach-out |
-| Oct | Useful content drop - year-end planning piece | Value |
-| Dec | Year-end review (60 min) + holiday message | Review + Celebration |
-
-A-tier doubles to ~14 touchpoints. C-tier stays at 3-4 quarterly broadcasts + ad-hoc on major events.
-
-### NSF prospect / new client - additional anchors to set day one
-
-After the first Fact-Find, set calendar reminders for life:
-
-- **Birthday** - annual, forever
-- **POP** - one-off
-- **ORD** - one-off, ~2 years from enlistment
-- **Uni entry** - August after ORD
-- **University semesters** - twice yearly x 4 years
-- **Graduation** - May year 4
-
-Title format: *"Wish [message] - [name] - [number] - [your initials]"*. All-day events. Birthdays recur yearly forever; semester wishes yearly x 4. Share to mentor.
-
-### Working adult swap
-
-- **Work anniversary** - annual
-- **Policy review window** - 11 months post-purchase
-- **Life-event radar** - engagement, kid, parent diagnosis, promotion, mortgage
+- A Monday 3-hour calling block with no admin or email, after checking any number that hasn't given consent against the DNC Registry.
+- Protected meeting grid, 3 to 4 meetings a day Tuesday to Thursday.
+- Friday review of the CAR scorecard and target list, with next week's three big moves set before the onboarding touches go out.
+- Onboarding checklist running for every client.
+- Sunday 30-minute prep.
 
 ---
 
-## The Year-1 plan structure - the one-page document
+## The 12-month plan
 
-Sign it. Put a photo on your phone wallpaper. Read it every Monday morning before the calling block. This is your promise to yourself for the next 12 months.
+> Annual FYC = appointments/week x close rate x case size x 48 working weeks
 
-### 1. Year-1 FYC target (single number)
+Start from your Day-59 actuals and stretch each lever: appointments and case size about 20 to 30% higher, close rate 5 to 10 percentage points higher. To check it's realistic, multiply your 60-day FYC by six for a "nothing changes" baseline. A target more than about double that needs a second look lever by lever. It's a goal you commit to, not a forecast, and commission is never guaranteed.
 
-Formula:
-> **Annual FYC = Appointments/week x Close rate x Case size x 48 working weeks**
+| Quarter | Focus |
+|---|---|
+| Q1 (months 3 to 5) | Consolidate: keep the rhythm, close 3 to 5 more cases, fill the Day-59 gaps, tag your first 20 clients A, B or C |
+| Q2 (months 6 to 8) | Scale: double weekly appointments, run a first client event, grow case size, write your own cumulative FYC checkpoint |
+| Q3 (months 9 to 11) | Deepen: A-tier and referrals, a second event, the Year-2 pipeline, your next checkpoint |
+| Q4 (month 12) | Finish: close out the pipeline, review Year 1 honestly, set Year 2 from your actual trend |
 
-Honest calibration:
-- 60-day FYC $5K -> Year-1 target $60-80K (not $200K)
-- 60-day FYC $15K -> Year-1 target $120-160K
-- 60-day FYC $25K+ -> conversation shifts from growth to sustainability
-
-Take your 60-day actuals + 20-30% on each lever (appointments, close rate, case size).
-
-### 2. Quarterly milestones (4 lines, themed)
-
-| Quarter | Theme | What's happening |
-|---|---|---|
-| **Q1 (Months 3-5)** | Consolidate the foundation | Sustain Week-10 rhythm. Close 3-5 more cases. Fill Day-59 diagnostic gaps. First 20 A/B/C clients in system. |
-| **Q2 (Months 6-8)** | Scale the engine | Double weekly appointments. Run first client event. Level up case size. ~30% cumulative target. |
-| **Q3 (Months 9-11)** | Deepen the book | A-client deepening + referral compounding. Second client event. Year-2 prospect pipeline. ~60-70% cumulative. |
-| **Q4 (Month 12)** | Close strong + plan Year 2 | Q4 typically produces 30-40% of annual FYC if pipeline is healthy. Review Year-1 KPIs honestly. |
-
-### 3. Weekly rhythm - 5 non-negotiables
-
-- Monday 3-hour calling block - protected, no admin, no email
-- Protected meeting grid - 3-4 meetings Tue-Thu, flexible Fri-Sat
-- Friday weekly review - CAR scorecard, target list update, next week's 3 big moves
-- Onboarding checklist runs automatically - Day 7 / 30 / 90 for every new client
-- Sunday 30-min prep - pipeline scan, target list, calendar block verification
-
-### 4. Systems committed - 3 live by Day 60
-
-1. **Strategic Target List** - 20+ names per month, ABC/123 tagged, monthly comb
-2. **Onboarding checklist** - automated CRM reminders, every new client enters Day 1
-3. **Touchpoint calendar** - 4 types, tiered cadence, birthday/milestone reminders set
-
-### 5. Mentor + community rhythm
-
-- **Weekly mentor check-in** - 15-30 min, accountability + tactical feedback
-- **Monthly peer roleplay session** - 2-3 other FCs, record/review/feedback
-- **Quarterly senior-advisor session** - someone 5+ years ahead, perspective + network
-
-### 6. The *one thing* from Day 59
-
-The single weakest metric from your 60-day diagnostic + the specific intervention to fix it in Month 3.
-
-### 7. Signature + date
+The one-page plan: FYC target, quarterly milestones, the five weekly habits, three systems (Strategic Target List of 20+ names a month, onboarding checklist, touchpoint calendar), a weekly mentor check-in, a monthly peer roleplay, a quarterly senior-adviser session, your one thing from Day 59, then signature and date. Photo on your lock screen, read every Monday before calling.
 
 ---
 
-## Referral seed from new clients - the FACT-style ask at Day 30
+## One more call
 
-The Day-30 meeting is when the first referral ask lands. The structure: **F**avour, **A**ngle, **C**onnect, **T**imeline.
-
-> *"Quick favour - now that we've got you set up, is there anyone in your circle who's also at a stage where they should be looking at this? Not asking for a hard intro - just if anyone comes to mind for a 30-min coffee, I'd appreciate the warm hand-off. No pressure to think of someone right now - if it lands later in the week, just send their name."*
-
-Day-30 timing is deliberate. Earlier = premature (they don't have post-sale experience yet). Later = momentum dies.
-
----
-
-## Going the extra mile - the 4-rule compound
-
-Specific small acts that get talked about for years:
-
-1. **Specific** - tied to something *they* said, not generic template
-2. **Small** - under $50 and under 30 minutes of effort
-3. **Personal** - recognisably about *them*, not a wrapped pitch
-4. **Zero sales attached**
-
-Examples that compound:
-- Client mentioned daughter's piano recital in 6 weeks -> text *"good luck to her today"* on the day
-- Client mentioned aging parent -> send relevant article on elder care, un-salesy
-- Client mentioned stress at work -> *"how's the project going? hope the intense phase is past"* 2 weeks later
-
-**Compound math:** 20 A-clients x 2 thoughtful moments/year = 40 moments. If 25% produce a referral, that's 10 warm referrals from moments alone - before any explicit ask.
-
----
-
-## The graduation reflection - what you actually built
-
-You spent 60 days building what most advisors haphazardly assemble over 3-5 years:
-
-- **Voice** - intent statement, story, tonality, positioning
-- **Content engine** - posts, stories, DM funnel, CRAB follow-ups
-- **Prospecting system** - Market Temperature, Survey, warm outreach, pipeline board
-- **Referral flywheel** - FACT Method, 10-Name script, CAR diagnostic
-- **People-reading stack** - DISC recognition, hot-button activation, pitch tailoring
-- **Pitch craft** - right questions, silence discipline, sales angles, product analysis
-- **Close toolkit** - trial / Assumptive / Choice / Urgency / two-part / Follow-up + top-10 objections
-- **After-sales system** - onboarding checklist, touchpoint calendar, extra-mile discipline
-
-The work from here is **executing**, not learning more. Every Monday calling block. Every Friday review. Every Day-30 touchpoint. Every referral ask.
-
----
-
-## The enduring mantra - *one more call*
-
-When the Monday calling block's 3 hours are up - one more call. When the last dial gave you a brutal no - one more call before your nervous system decides to quit. The last call of any block is the cheapest call you'll ever make.
-
-Compound math: 1 extra call/day x 250 working days = 250 extra dials/year x 20-year career = ~34 extra lifetime cases from one daily habit.
+When the block ends, make one more call. One extra a day over 250 working days is 250 a year. At around 150 calls per case (use your own Day-59 ratio), that's close to 2 extra cases a year and about 34 over a 20-year career.
 
 ---
 
 ## Common failure modes
 
-- **Treating the signed case as endpoint** - silence in Day 1-90 = *"once he got the sale, he stopped caring"*. Referrals die.
-- **Building onboarding after the first close** - too late; you're in admin rush. Build it before client #1.
-- **Forgetting captured personal details** - if it's not in CRM with a date tag, you won't remember the recital. Capture during Fact-Find, not after.
-- **Sending the same gift to every client** - template-driven gestures kill the moment. Specific beats expensive.
-- **Restructuring without running cash-value math** - the cash-value trap. New commission + lost surrender value = churning, even if unintentional.
-- **Over-aspirational Year-1 targets** - 10x your 60-day run-rate produces burnout. 20-30% on each lever produces compound discipline.
-- **Skipping the weekly mentor check-in** - top producers almost universally credit an accountability rhythm from Year 1.
-- **Reading more / doing less in Year 1** - the comfortable work. Compound growth comes from running what you already have.
-
----
-
-## Numbers worth memorising
-
-- **Day 7 / 30 / 90** - the 3 critical touchpoints post-close.
-- **3-4 hours** - response time to any client message.
-- **15 min / 30 min** - Day-30 and Day-90 review lengths.
-- **B-tier cadence** - ~7 touchpoints/year across 4 types. A-tier doubles (~14). C-tier quarterly (~4).
-- **The 4-rule** for extra-mile gestures: specific, small (<$50, <30min), personal, zero sales.
-- **48 working weeks/year** - the Year-1 FYC formula multiplier (2 weeks holiday + buffer).
-- **30-40%** of annual FYC typically comes in Q4 with healthy pipeline.
-- **3 systems** to commit by Day 60: Strategic Target List + Onboarding checklist + Touchpoint calendar.
-- **1 extra call/day** = ~34 extra lifetime cases.
+- Going silent after the close. Clients read it as *"once he got the sale, he stopped caring."*
+- Building onboarding after the first close instead of before.
+- Personal details that never made it into the CRM, so the recital gets forgotten.
+- Restructuring on premium alone without the cash-value maths.
+- A Year-1 target far above your own run rate. Stretch each lever instead.
+- Systems work spreading past 20% of the week.
 
 ---
 
 ## Sources
 
-Full essays in [[../../next-60-days/week-10/day-55|Day 55 - Policy Restructuring]], [[../../next-60-days/week-10/day-56|Day 56 - After Sales: Onboarding]], [[../../next-60-days/week-10/day-57|Day 57 - Building Moments: Touch-Point Calendar]], [[../../next-60-days/week-10/day-58|Day 58 - How a Top Producer Runs a Week]], [[../../next-60-days/week-10/day-59|Day 59 - Reviewing Your 60-Day Numbers]], [[../../next-60-days/week-10/day-60|Day 60 - Graduation: 12-Month Plan]]. Practice gate: onboarding checklist live + touchpoint calendar built + signed Year-1 plan.
+Full lessons in [[../../next-60-days/week-10/day-55|Day 55 - Policy Restructuring]], [[../../next-60-days/week-10/day-56|Day 56 - After Sales: Onboarding]], [[../../next-60-days/week-10/day-57|Day 57 - Building Moments: Touch-Point Calendar]], [[../../next-60-days/week-10/day-58|Day 58 - How a Top Producer Runs a Week]], [[../../next-60-days/week-10/day-59|Day 59 - Reviewing Your 60-Day Numbers]], [[../../next-60-days/week-10/day-60|Day 60 - Graduation: 12-Month Plan]]. Final gate: onboarding checklist live, touchpoint calendar built, signed 12-month plan, and a 30-minute mentor check-in.
