@@ -1,8 +1,8 @@
 ---
 week: 10
 day: 60
-title: "Graduation — The 12-Month Plan"
-big_idea: "Day 60 isn't the finish line — it's the start line. The question now is: what are you going to build in the next 10 months?"
+title: "Graduation: the 12-month plan"
+big_idea: "Day 60 is a start line. The question now is what you're going to build over the next 10 months."
 kpi_link: "Week 10 KPI — onboarding checklist live; touchpoint calendar built; Year-1 plan written"
 primary_sources:
   - "[[../week-1/day-01]]"
@@ -13,11 +13,11 @@ duration_minutes: 45
 tags: [next-60-days, week-10, new-fc, graduation, year-1-plan, 12-month]
 ---
 
-# Day 60 — Graduation: The 12-Month Plan
+# Day 60: Graduation and the 12-month plan
 
-> **The one idea for today:** Day 60 isn't the finish line — it's the start line. The question now is: what are you going to build in the next 10 months?
+> **The one idea for today:** Day 60 is a start line. The question now is what you're going to build over the next 10 months.
 
-By the time you close today you'll have written your Year-1 FYC target + the quarterly milestones that get you there, committed to the weekly rhythm that sustains the next 10 months without burnout, and graduated from the module — with a signed 12-month plan, a shipped onboarding system, and a ready-to-execute touchpoint calendar.
+By the end of today you'll have written your Year-1 FYC target and the quarterly milestones that lead to it. You'll have committed to a weekly rhythm you can keep up for 10 months without burning out, and you'll finish the module with a signed 12-month plan, a working onboarding system and a touchpoint calendar ready to use.
 
 ---
 
@@ -26,230 +26,233 @@ By the time you close today you'll have written your Year-1 FYC target + the qua
 Take one look back before you look forward.
 
 Over 60 days you built:
-- **Your voice** — intent statement, story, tonality, positioning
-- **Your content engine** — posts, stories, DM funnel, CRAB follow-ups
-- **Your prospecting system** — Market Temperature, Market Survey, warm outreach, pipeline board
-- **Your referral flywheel** — FACT Method, 10-Name script, CAR diagnostic
-- **Your people-reading stack** — DISC recognition, hot-button activation, pitch tailoring
-- **Your pitch craft** — right questions, silence discipline, sales angles, product analysis
-- **Your close toolkit** — trial / assumptive / choice / urgency / two-part / follow-up closes + top-10 objections
-- **Your after-sales system** — onboarding checklist, touchpoint calendar, extra-mile discipline
+- Your voice: intent statement, story, tonality, positioning
+- Your content engine: posts, stories, the DM funnel, CRAB follow-ups
+- Your prospecting system: Market Temperature, Market Survey, warm outreach, the pipeline board
+- Your referral flywheel: the FACT Method, the 10-Name ask, the CAR diagnostic
+- Your people-reading toolkit: DISC, hot buttons, tailoring the pitch
+- Your pitch: the right questions, silence, sales angles, product analysis
+- Your closing toolkit: trial, assumptive, choice, urgency, two-part and follow-up closes, plus the top 10 objections
+- Your after-sales system: the onboarding checklist, the touchpoint calendar, the extra mile
 
-**That's the foundation.** Most advisors build these skills haphazardly over 3–5 years. You front-loaded the system in 60 days.
+That's the foundation, and you put the whole system in place in 60 days.
 
-The question Day 60 answers: how do you sustain this into a 12-month compound business?
+Today's question is how you keep it running for a full year.
 
 ---
 
 ## The 12-month FYC target
 
-Your Year-1 target is specific, math-based, and slightly ambitious without being delusional.
+Your Year-1 target should be specific, based on your own numbers, and a stretch without being fantasy.
 
-### The formula (revisit Day 2)
+### The formula (from Day 2)
 
 > **Annual FYC = Appointments/week × Close rate × Case size × 48 working weeks**
 
-Plug your Day-59 actuals and Year-1 stretch numbers:
+Day 2 used 52 weeks to keep the maths simple. Use 48 here to allow for leave and sick days.
 
-- **Appointments/week target:** ___ (your 60-day actual was ___; target +20–30% for Year 1)
-- **Close rate target:** __% (your 60-day actual was __%; target +5–10 percentage points)
-- **Case size target:** $___ (your 60-day actual was $___; target +20–30%)
-- **Working weeks:** 48 (2 weeks holiday, some reserve for sick days)
+Plug in your Day-59 actuals and your Year-1 stretch:
+
+- Appointments a week: ___ (your 60-day actual was ___; aim about 20 to 30% higher)
+- Close rate: __% (your 60-day actual was __%; aim 5 to 10 percentage points higher)
+- Case size: $___ (your 60-day actual was $___; aim about 20 to 30% higher)
+- Working weeks: 48
 
 **Year-1 FYC target:** $___
 
-### Honest calibration
+### Check it's realistic
 
-- **If your 60-day FYC is $5K**, realistic Year-1 target is $60–$80K (not $200K)
-- **If your 60-day FYC is $15K**, realistic Year-1 target is $120–$160K
-- **If your 60-day FYC is $25K+**, the conversation is about *sustainability*, not *growth*
+Straight-line your 60-day FYC over a year first: multiply it by six. That's your "nothing changes" baseline. Your first two months included a slow start, so a target above that baseline is reasonable. A target that comes out at more than about double it needs a second look: go through each lever and ask whether you can really see yourself hitting those numbers every week. And when the 60-day numbers are already strong, the harder question is how to keep that pace for 12 months.
 
-Over-aspirational targets produce burnout and disengagement. Slightly stretching but believable targets produce discipline and compounding.
+This is a goal you're committing to work towards. It isn't a forecast, and commission income is never guaranteed. Set it far too high and it tends to end in burnout. A number that stretches you but still feels believable is one you'll keep working towards.
 
 ---
 
 ## Quarterly milestones
 
-Break the 12 months into 4 quarters. Each has a focus.
+Split the year into four quarters, each with one focus.
 
-### Q1 (Month 3–5) — consolidate the foundation
-- Sustain weekly rhythm from Day 58
-- Close 3–5 more cases
-- Fill any gaps surfaced by Day-59 diagnostic
-- First 20 A/B/C-tier clients established in your system
+### Q1 (months 3 to 5): consolidate the foundation
+- Keep the weekly rhythm from Day 58
+- Close another 3 to 5 cases
+- Fill the gaps the Day-59 diagnosis found
+- Get your first 20 clients tagged A, B or C in your system
 
-### Q2 (Month 6–8) — scale the engine
-- Double weekly appointments from current baseline
-- Run your first client event (Day 29's events-as-referral-accelerant)
-- Level up case size via better Fact-Finding / hot-button work
-- Reach ~30% of annual target cumulatively
+### Q2 (months 6 to 8): scale the engine
+- Double your weekly appointments from your current baseline
+- Run your first client event (the referral events from Day 29)
+- Grow your case size through better Fact-Finds and hot-button work
+- Write down the cumulative FYC you want to have reached by the end of Month 8
 
-### Q3 (Month 9–11) — deepen the book
-- Focus on A-client deepening + referral compounding
-- Second client event
-- Start Year-2 prospect pipeline (referred prospects from first 30 clients)
-- Reach ~60–70% of annual target cumulatively
+### Q3 (months 9 to 11): deepen the book
+- Spend more time on A-tier clients and on referrals
+- Run a second client event
+- Start building the Year-2 pipeline from people your first clients refer
+- Write down your cumulative FYC checkpoint for the end of Month 11
 
-### Q4 (Month 12) — close strong + plan Year 2
-- Q4 typically produces 30–40% of annual FYC if pipeline is healthy
-- Start Year-2 planning in mid-Month 12
-- Review first-year KPIs honestly
-- Recalibrate Year-2 target based on compound trajectory
+### Q4 (month 12): finish strong and plan Year 2
+- Close out the pipeline you've built
+- Start Year-2 planning in the middle of Month 12
+- Review your first-year numbers honestly
+- Set the Year-2 target from your actual trend
 
-Each quarter has a theme. Thematic focus compounds faster than trying to do everything at once.
-
----
-
-## The weekly rhythm — non-negotiables
-
-Day 58's schedule, committed to for 12 months:
-
-- [ ] **Monday 3-hour calling block** — protected, phone on, no admin, no email
-- [ ] **Protected meeting grid** — 3–4 meetings per day Tue–Thu, flexible Fri–Sat
-- [ ] **Friday weekly review** — CAR scorecard, target list update, next-week's 3 big moves
-- [ ] **Onboarding checklist runs automatically** — Day 7 / 30 / 90 touchpoints for every client
-- [ ] **Sunday 30-min prep** — pipeline scan, target list, calendar block verification
-
-These 5 rhythms are the operating system. Everything else adapts around them.
+One theme per quarter moves you further than trying to do everything at once.
 
 ---
 
-## Systems commitments — build once, use forever
+## The weekly rhythm: non-negotiables
 
-Three systems to formally commit to today:
+This is Day 58's schedule, committed to for 12 months:
 
-### 1 · Strategic Target List (Day 23)
-- Running list of 20+ names per month
-- ABC / 1-2-3 tagging
-- Trigger + approach per name
-- Monthly (ideally weekly) comb
+- [ ] Monday 3-hour calling block: protected, phone on for calls, no admin, no email
+- [ ] Protected meeting grid: 3 to 4 meetings a day Tuesday to Thursday, flexible on Friday and Saturday
+- [ ] Friday weekly review: CAR scorecard, target list update, next week's three big moves
+- [ ] Onboarding checklist running for every client: Day-7, Day-30 and Day-90 touchpoints
+- [ ] Sunday 30-minute prep: pipeline scan, target list, calendar check
 
-### 2 · Onboarding checklist (Day 56)
-- Day-7 / Day-30 / Day-90 touchpoints automated via CRM reminders
-- Every new client enters the system the day they sign
-
-### 3 · Touchpoint calendar (Day 57)
-- 4 types (Review / Value / Celebration / Reach-out)
-- 6–8 touches per year for B-tier, double for A-tier
-- Calendar reminders for birthdays, milestones
-
-**Build all 3 today if not already built.** The systems compound because they're *automatic* — they run whether you're motivated that day or not.
+These five habits are your operating system. Everything else fits around them.
 
 ---
 
-## The mentor + community rhythm
+## Systems to commit to
 
-Year 1 is too hard to do alone. Formal rhythms:
+Three systems to commit to formally today.
 
-- **Weekly mentor check-in** — 15–30 min. Accountability + tactical feedback.
-- **Monthly peer roleplay session** — with 2–3 other new FCs. Record, review, feedback.
-- **Quarterly senior-advisor session** — with someone 5+ years ahead of you. Perspective + network introductions.
+### 1. Strategic Target List (Day 23)
+- A running list of at least 20 names a month
+- Each tagged A/B/C or 1/2/3
+- A trigger and an approach for each name
+- Gone through monthly, ideally weekly
 
-These aren't optional. Top producers who came up from $0 almost universally credit an accountability rhythm from Year 1.
+### 2. Onboarding checklist (Day 56)
+- Day-7, Day-30 and Day-90 touchpoints set up as CRM reminders
+- Every new client goes into the system on the day they sign
+
+### 3. Touchpoint calendar (Day 57)
+- Four types: Review, Value, Celebration, Reach-out
+- 6 to 8 touches a year for B-tier clients, double for A-tier
+- Calendar reminders for birthdays and milestones
+
+Build all three today if you haven't yet. They work because they run whether or not you feel motivated that day.
+
+---
+
+## The mentor and peer rhythm
+
+Year 1 is too hard to do alone. Set up three regular sessions:
+
+- Weekly mentor check-in: 15 to 30 minutes of accountability and practical feedback
+- Monthly peer roleplay: with 2 or 3 other new FCs, recorded, reviewed and discussed
+- Quarterly session with a senior adviser: someone at least 5 years ahead of you, for perspective and introductions
+
+Treat these as fixed. Ask the senior advisers on your team how they got through Year 1, and most will name someone who held them to account.
 
 ---
 
 ## The 12-month plan document
 
-Write your Year-1 plan as a one-page document. Include:
+Write your Year-1 plan on one page. It covers:
 
-1. **Your Year-1 FYC target** — single number
-2. **Quarterly milestones** — 4 lines, one per quarter
-3. **Weekly rhythm** — 5 non-negotiables
-4. **Systems committed** — 3 systems live
-5. **Mentor + community rhythm** — 3 cadences
-6. **The *one thing*** from Day-59 — your Month-3 focus area
-7. **Signature + date**
+1. Your Year-1 FYC target: a single number
+2. Quarterly milestones: one line per quarter
+3. Weekly rhythm: the five non-negotiables
+4. Systems committed: all three running
+5. Mentor and peer rhythm: the three sessions
+6. Your one thing from Day 59: your Month-3 focus
+7. Signature and date
 
-Sign it. Put a photo on your phone wallpaper. Read it every Monday morning before the calling block. This document is your promise to yourself for the next 12 months.
+Sign it, put a photo of it on your phone's lock screen, and read it every Monday morning before your calling block. It's the promise you're making to yourself for the next 12 months.
 
 ---
 
 ## Graduation
 
-You've now completed the 60-day module.
+You've now finished the 60-day module.
 
-What you have at this moment that you didn't have 60 days ago:
+Here's what you have today that you didn't have 60 days ago:
 
-- A voice — your intent statement, your story, your story, your tonality, your frame
-- A pipeline — real warm-market names, a Strategic Target List, referred contacts
-- A pitch — tested through 60+ prospecting touches, refined through roleplays and live meetings
-- A close — with techniques matched to profiles and objection drills in your reflex
-- An after-sales system — onboarding ready before the first case closes
-- A plan — 12 months mapped, quarterly milestones, weekly rhythm
+- A voice: your intent statement, your story, your tonality, your frame
+- A pipeline: real warm-market names, a Strategic Target List, referred contacts
+- A pitch: tested through dozens of prospecting conversations and sharpened in roleplays and real meetings
+- A close: techniques matched to profiles, and objection drills you can run without thinking
+- An after-sales system: onboarding ready before your first case closes
+- A plan: 12 months mapped, with quarterly milestones and a weekly rhythm
 
-Most advisors reach this level of structure somewhere in Year 3. You're here in Month 2.
+**From here, the work is running the plan.** Every Monday calling block, every weekly review, every referral ask and every Day-30 touchpoint for the next 10 months counts for more than another course would.
 
-**The work now is executing the plan.** Not learning more. Not optimising. *Executing.* Every day for the next 10 months. Every weekly review. Every Monday calling block. Every referral ask. Every Day-30 touchpoint.
-
-The next level is a graduation of a different kind — earned by execution, not coursework. See you at Month 12.
+The next milestone comes from doing the work. See you at Month 12.
 
 ---
 
-## The enduring mantra — *"one more call"*
+## The habit to keep: one more call
 
-Everything in this module collapses to three words that top producers say aloud to themselves, every single day they work:
+Everything in this module comes down to three words that top producers say to themselves every working day:
 
 > **"One more call."**
 
-Not a motivational slogan. An *operating rule.*
+Treat it as an operating rule you follow every day.
 
-### What it means literally
+### What it means in practice
 
-- When the Monday calling block's 3 hours are up and you're done — make one more call.
-- When the Friday review says you hit the weekly target — make one more call.
-- When the last dial gave you a clean close — make one more call before going home.
-- When the last dial gave you a brutal no — make one more call before your nervous system decides to quit.
+- The Monday calling block's three hours are up: make one more call.
+- Friday's review says you've hit the weekly target: make one more.
+- Your last call ended in a clean close? Make one more before you go home.
+- And if it ended in a hard no, make one more before your nerves talk you out of the next one.
 
-The last call of any block is the cheapest call you'll ever make — your warmup cost is sunk, your confidence is loaded, you're already at the desk. Top producers take that free call. Average producers leave it on the table.
+The last call of any block is the cheapest one you'll make. You're warmed up, you're already at the desk, and the hard part of starting is behind you. Top producers take that call.
 
-**The compound math.** 1 extra call / day × 250 working days = 250 extra annual dials ≈ 1.7 extra cases / year × 20-year career = **~34 extra lifetime cases from one daily habit.**
+**The maths.** One extra call a day over 250 working days is 250 extra calls a year. If it takes you around 150 calls to close a case (use your own ratio from Day 59), that's close to 2 extra cases a year, and about 34 over a 20-year career, from one daily habit.
 
-### The closing identity question
+### The question for the back of the page
 
-Before you sign the 12-month plan in §7, write this on the back of the page:
+Before you sign your 12-month plan, write this on the back:
 
 > ***"How badly do I want it?"***
 
-The plan in front of you will test that answer — not on the easy weeks, but on the 10pm-Wednesday moments in Month 3, Month 7, Month 11. Your answer today determines whether you pick up the phone in those moments.
+The plan will test your answer on the hard weeks, like 10pm on a Wednesday in Month 3, Month 7 or Month 11, much more than on the easy ones. Your answer today affects whether you pick up the phone in those moments.
 
-If the honest answer is *"not sure yet,"* that's fine — revisit at Month 6. But the question goes on the page either way. The question is the anchor.
+If the honest answer is *"not sure yet,"* that's fine. Come back to it at Month 6. Write the question on the page either way.
 
-### One final thing
+### One last thing
 
-The work from here is simple. Not easy. *Simple.*
+What you do from here is simple, though it won't be easy.
 
-Every Monday morning, open the wallpaper photo of the signed plan. Make the call. At the end of the block, make one more. Run the Friday review. Rest on Sunday. Repeat for 10 more months.
+Every Monday morning, look at the photo of your signed plan and start calling. At the end of the block, make one more. Run the Friday review, rest on Sunday, and repeat for the next 10 months.
 
-That's Year 1. That's how compound advisory careers start. That's the whole thing.
+That's Year 1, and it's how long advisory careers start.
 
 ---
+
+## Sources
+
+- [Building a practically useful theory of goal setting and task motivation - Locke and Latham, American Psychologist (2002), via ERIC](https://eric.ed.gov/?id=EJ654871) - specific, difficult goals lead to higher performance than vague ones, especially with feedback and commitment
+- [Implementation intentions: strong effects of simple plans - Peter Gollwitzer, American Psychologist (1999)](https://www.socmot.uni-konstanz.de/publications/implementation-intentions-strong-effects-simple-plans) - plans that fix when and where you'll act, like a Monday calling block, raise follow-through
 
 ## Quiz
 
 **Q1. The purpose of Day 60 is:**
 - A) To conclude the module and stop the work
-- B) To mark the transition from *learning* to *executing* — signing a 12-month plan and committing to the rhythms that sustain compound growth ✓
+- B) To mark the transition from *learning* to *executing*: signing a 12-month plan and committing to the rhythms that sustain compound growth ✓
 - C) To pass a final test
 - D) To get a certification
 
-**Why:** The module's 60 days built the *foundation*. The next 10 months build the *business*. Day 60 is the pivot — where the work shifts from *understanding the system* to *running the system every week*. No more modules to learn, no more content to absorb. Just execution, weekly rhythms, and compound improvement over 10 months.
+**Why:** The first 60 days built the foundation, and the next 10 months build the business. Day 60 is where the work shifts from understanding the system to running it every week, with no new modules to get through.
 
 **Q2. Year-1 FYC targets should be:**
-- A) Maximally aspirational — shoot for 10x your 60-day run rate
+- A) Maximally aspirational: shoot for 10x your 60-day run rate
 - B) Conservative enough to guarantee you hit them
-- C) Slightly stretched but believable — your 60-day actuals + 20–30% on each of the 3 levers (appointments, close rate, case size) ✓
+- C) Slightly stretched but believable: your 60-day actuals + 20 to 30% on each of the 3 levers (appointments, close rate, case size) ✓
 - D) Whatever your mentor recommends without question
 
-**Why:** Over-aspirational targets (A) produce burnout and disengagement when the gap stays wide. Under-aspirational targets (B) don't force compound discipline. The right target is *slightly stretching* — plausible given your real 60-day data, requires sustained discipline to hit, but not delusional. That calibration produces the best 12-month trajectory.
+**Why:** Targets that are far too high (A) lead to burnout and giving up when the gap never closes. Targets that are too safe (B) never push you. The right target is a stretch: believable given your real 60-day numbers and reachable with steady work every week.
 
 **Q3. The single most important output of Day 60 is:**
 - A) A perfect recording of the final pitch
-- B) A signed 12-month plan document with FYC target, quarterly milestones, weekly rhythm, and systems — read every Monday morning ✓
+- B) A signed 12-month plan document with FYC target, quarterly milestones, weekly rhythm, and systems, read every Monday morning ✓
 - C) A completion certificate
 - D) A review of all 60 days
 
-**Why:** The signed plan is the *commitment artefact* that makes the next 10 months different from the default drift. Without it, even advisors who absorbed the content tend to fall back into ad-hoc rhythms. The physical document — signed, dated, photographed, read weekly — is what encodes the commitment into something external to willpower. The execution over 10 months is what produces the Year-1 result; the document is what keeps the execution on track.
+**Why:** The signed plan is what stops the next 10 months from sliding back into whatever happens each day. Advisers who understood the content still drift without one. Signed, dated, photographed and read every week, it puts your commitment somewhere outside your own willpower. The weekly work produces the Year-1 result, and the plan keeps that work on track.
 
 **Q4. The 4 quarterly milestones for Year 1 are:**
 - A) Q1 close all 50 cases, Q2 rest, Q3 study more, Q4 plan Year 2
@@ -257,31 +260,31 @@ That's Year 1. That's how compound advisory careers start. That's the whole thin
 - C) Each quarter is the same activity
 - D) There are no quarterly milestones
 
-**Why:** Thematic quarters compound better than trying to do everything at once. Q1 (consolidate) focuses on sustaining the Week-10 rhythm + closing 3–5 cases to lock in the first-case experience. Q2 (scale) doubles the engine. Q3 (deepen) shifts toward A-client deepening and referral compounding. Q4 (close strong) leverages Q4's natural peak-closure behaviour while planning Year 2. Each quarter has a specific focus, which is why thematic quarters produce more compound progress than unfocused 12-month grinds.
+**Why:** One theme per quarter gets you further than trying to do everything at once. Q1 keeps the Week-10 rhythm going and closes 3 to 5 more cases. Q2 scales up appointments. Q3 turns to A-tier clients and referrals. Q4 closes out the pipeline and plans Year 2.
 
 **Q5. The 5 weekly non-negotiables include all of these EXCEPT:**
 - A) Monday 3-hour calling block
-- B) Protected meeting grid Tue–Thu
+- B) Protected meeting grid Tue to Thu
 - C) Friday weekly review
 - D) Daily social media posting ✓
 
-**Why:** A, B, C (plus the onboarding checklist running automatically and Sunday 30-min prep) are the 5 invariants of the Week-10 rhythm. Daily social posting is a Week-3 tactic — not a weekly non-negotiable because content cadence varies by stage and platform. The 5 non-negotiables are the *operating system* of a sustainable advisory practice; content pace flexes around the OS, not in it.
+**Why:** A, B and C, plus the onboarding checklist and the Sunday prep, are the five fixed parts of the week. Daily posting was a Week-3 tactic, and how often you post depends on your stage and platform, so it isn't one of the five. The five are the operating system, and content fits around them.
 
-**Q6. "Your year is about executing, not learning" — meaning:**
+**Q6. "Your year is about executing, not learning" means:**
 - A) Stop reading books
 - B) The module's content is internalised; Year 1's gain comes from running the system every week, not from absorbing more frameworks ✓
 - C) Avoid all new ideas
 - D) Skip mentor sessions
 
-**Why:** The temptation in Year 1 is to find more modules, more frameworks, more "one weird trick" content to consume. That's the comfortable work (Day 58 failure 3). The real Year-1 compound growth comes from *running* what you already have — the Monday calling block, the FACT Method referral ask, the onboarding checklist, the touchpoint calendar. Every time these fire on schedule for 50 weeks, the book compounds. Reading more and doing less produces flat Year 1.
+**Why:** The temptation in Year 1 is to look for more courses, more frameworks and more tricks. That's the comfortable work from Day 58, failure 3. Year-1 growth comes from running what you already have: the Monday calling block, the FACT Method referral ask, the onboarding checklist, the touchpoint calendar. Keep the daily 15 minutes of reading from Day 58, but don't let learning take the place of doing.
 
 **Q7. The Month-3 *"one thing"* from Day 59, the quarterly milestones, and the signed 12-month plan all answer the same question:**
 - A) How to impress the mentor
-- B) What specifically to do next — the plan makes the invisible next 10 months visible and committed ✓
+- B) What specifically to do next, because the plan makes the invisible next 10 months visible and committed ✓
 - C) How to pass the module
 - D) What to tell the family
 
-**Why:** Without the specific commitments, Month 3 + the full 12 months become vague ("I'll work hard"). The one-thing focus, the quarterly themes, and the signed plan together make the next 10 months *concrete* — each week's behaviour is derivable from the plan. That's the difference between Year 1 FCs who compound and Year 1 FCs who drift: the compounders have the specifics written down and signed; the drifters have intentions without commitment artefacts.
+**Why:** Without specific commitments, the next 12 months turn into *"I'll work hard."* The one thing, the quarterly themes and the signed plan make them concrete, so each week's work follows from the plan. Advisers who keep growing tend to have the specifics written down and signed, while the ones who drift have good intentions and nothing on paper.
 
 ---
 

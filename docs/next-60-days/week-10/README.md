@@ -1,14 +1,14 @@
 ---
 week: 10
-title: "Week 10 — After the Close + Graduation"
+title: "Week 10: after the close, and graduation"
 kpi: "Onboarding checklist live; touchpoint calendar built; Year-1 plan written"
 unlocks: null
 tags: [next-60-days, week-10, week-overview, graduation]
 ---
 
-# Week 10 — After the Close + Graduation
+# Week 10: after the close, and graduation
 
-*Onboarding, moments, and the 12-month plan.*
+*Onboarding, moments and the 12-month plan.*
 
 ---
 
@@ -16,70 +16,78 @@ tags: [next-60-days, week-10, week-overview, graduation]
 
 > **Onboarding checklist live. Touchpoint calendar built. Signed 12-month plan.**
 
-This is the module's final week. There is no Week 11 — what comes next is *execution* of the Year-1 plan you sign on Day 60.
+This is the last week of the module, and there's no Week 11. After Day 60 you run the Year-1 plan you sign that day.
 
 ---
 
 ## The 6 days
 
 - [ ] [[day-55|Day 55 — Policy Restructuring: When and Ethics]]
-  *5 objectives of legitimate restructuring. The 4 factors to check on existing policies. The cash-value trap. When restructure serves the client vs you.*
+  *The 5 objectives of a legitimate restructure, the 4 factors to check on existing policies, the cash-value trap, and how to tell whether a restructure serves the client or only you.*
 
 - [ ] [[day-56|Day 56 — After Sales: Onboarding Your First Client]]
-  *The onboarding checklist. Day-7 / Day-30 / Day-90 rhythm. The *fighter* posture on hard cases. Extra-mile gestures that compound.*
+  *The onboarding checklist, the Day-7, Day-30 and Day-90 rhythm, the free-look period, the fighter posture on hard cases, and small gestures clients remember.*
 
 - [ ] [[day-57|Day 57 — Building Moments: The Touch-Point Calendar]]
-  *Clients remember moments, not policies. 4 touchpoint types (Review / Value / Celebration / Reach-out). Yearly cadence. Extra-mile patterns.*
+  *Why clients remember moments more than policies, the 4 touchpoint types (Review, Value, Celebration, Reach-out), a yearly cadence, and the 8-Step Recovery conversation.*
 
 - [ ] [[day-58|Day 58 — How a Top Producer Runs a Week]]
-  *The 3-category split (new business / relationship / systems at ~50/35/15%). Monday calling day. Protected meeting grid. Failure modes.*
+  *The three-way split of the week (new business, relationships, systems at roughly 50/35/15%), Monday calling day, the protected meeting grid, and where new FCs' weeks break down.*
 
 - [ ] [[day-59|Day 59 — Your First $X FYC: Reviewing Your Numbers]]
-  *Pull the 60-day numbers honestly. CAR diagnostic on the full window. The 4 honest self-questions. Pick the *one thing* for Month 3.*
+  *Pull your 60-day numbers honestly, run the CAR diagnostic over the whole window, ask yourself four honest questions, and pick the one thing for Month 3.*
 
 - [ ] [[day-60|Day 60 — Graduation: The 12-Month Plan]]
-  *Year-1 FYC target. Quarterly milestones. Weekly rhythm non-negotiables. The signed 12-month plan document. Graduation.*
+  *Your Year-1 FYC target, quarterly milestones, the weekly non-negotiables, the signed 12-month plan, and graduation.*
 
 ---
 
 ## The final gate
 
-Day 60 unlocks no next week — it's the end of the module. But you submit three final artefacts:
+Day 60 doesn't unlock another week, because it's the end of the module. You do submit three final pieces:
 
-- [ ] **Onboarding checklist live** — in your CRM or Notion, ready for the first client
-- [ ] **Touchpoint calendar built** — 6–8 touches/year template + calendar reminders set
-- [ ] **Signed 12-month plan** — FYC target, quarterly milestones, weekly rhythm, *one thing*, signature, date
+- [ ] Onboarding checklist live in your CRM or Notion, ready for your first client
+- [ ] Touchpoint calendar built: a template of 6 to 8 touches a year, with calendar reminders set
+- [ ] Signed 12-month plan: FYC target, quarterly milestones, weekly rhythm, your one thing, signature and date
 
-Send to your mentor. Book the final 30-min mentor check-in — the one where you walk through your 12-month plan together and commit out loud.
-
----
-
-## Sunday — no more module reviews
-
-Starting next Sunday, the weekly review is no longer module-driven. It's execution-driven:
-
-1. **Pull your CAR numbers this week.** Did you hit the weekly rhythm?
-2. **Did the onboarding touchpoints happen?** Any client who missed a scheduled touch?
-3. **What's this week's *one thing*?** Tied to the Month-3 focus from Day 59.
-
-Same cadence. Different content. This is Year 1 operating mode.
+Send them to your mentor and book a final 30-minute check-in to walk through your 12-month plan together and commit to it out loud.
 
 ---
 
-## What's coming — Year 1 execution
+## Sundays from now on
 
-This module built the foundation. Year 1 builds the *business*. Month 3–12 is:
+From next Sunday the weekly review follows your own work instead of the module:
 
-- Execution of the weekly rhythm every week
-- Filling the pipeline on the Strategic Target List every Monday
-- Running the onboarding checklist for every new client
-- Quarterly milestone check-ins against your 12-month plan
-- Monthly mentor reviews
-- Quarterly senior-advisor sessions
+1. **Pull this week's CAR numbers.** Did you keep the weekly rhythm?
+2. **Did the onboarding touchpoints happen?** Did any client miss a scheduled touch?
+3. **What's this week's one thing?** Tie it to the Month-3 focus you chose on Day 59.
 
-**No more modules. No more content. Just execution.**
+Same time slot, different content. This is how Year 1 runs.
+
+---
+
+## What comes next: Year 1
+
+This module built the foundation, and Year 1 builds the business. From Month 3 to Month 12 that means:
+
+- running the weekly rhythm every week
+- filling the pipeline from the Strategic Target List every Monday
+- running the onboarding checklist for every new client
+- checking progress against your 12-month plan every quarter
+- a review with your mentor every month
+- a session with a senior adviser every quarter
+
+There are no more modules after this. The rest of the year is doing the work.
 
 See you at the 12-month review.
+
+---
+
+## Sources
+
+- [LIA Standards for Distributors on Deterrence of Undesirable Switching: Replacement of Policies (LIA MU 49/25, amended 21 April 2025) - Life Insurance Association Singapore](https://www.lia.org.sg/media/4525/amended-lia-standards-for-distributors-on-deterrence-of-undesirable-switching-replacement-of-policies-1.pdf) - the replacement rules behind Day 55
+- [Tips on insurance products - Life Insurance Association Singapore](https://www.lia.org.sg/consumers/choosing-right/tips-on-insurance-products/) - the 14-day free-look period covered in Day 56
+- [Building a practically useful theory of goal setting and task motivation - Locke and Latham, American Psychologist (2002), via ERIC](https://eric.ed.gov/?id=EJ654871) - why the Day 60 plan uses specific targets
 
 ---
 

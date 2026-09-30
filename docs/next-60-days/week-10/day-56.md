@@ -1,8 +1,8 @@
 ---
 week: 10
 day: 56
-title: "After Sales — Onboarding Your First Client"
-big_idea: "The 90 days after the close decide whether they refer you or forget you. Build the onboarding system before you have the first client."
+title: "After sales: onboarding your first client"
+big_idea: "The 90 days after the close decide whether a client refers you or forgets you. Build the onboarding system before you have your first client."
 kpi_link: "Week 10 KPI — onboarding checklist live; touchpoint calendar built; Year-1 plan written"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-10-28-after-sales]]"
@@ -12,243 +12,255 @@ duration_minutes: 20
 tags: [next-60-days, week-10, new-fc, after-sales, onboarding, client-experience]
 ---
 
-# Day 56 — After Sales: Onboarding
+# Day 56: After sales and onboarding
 
-> **The one idea for today:** The 90 days after the close decide whether they refer you or forget you. Build the onboarding system before you have the first client.
+> **The one idea for today:** The 90 days after the close decide whether a client refers you or forgets you. Build the onboarding system before you have your first client.
 
-By the time you close today you'll build an onboarding checklist that runs the first 90 days post-close systematically (not ad hoc), structure the 3 onboarding touchpoints (Day 7 / Day 30 / Day 90) with a specific purpose for each, and lock in the post-sales ritual that turns clients into ambassadors.
+By the end of today you'll have an onboarding checklist that runs the first 90 days after a close the same way every time. You'll know what each of the three onboarding touchpoints (Day 7, Day 30, Day 90) is for, and you'll have the after-sales habits that turn clients into people who recommend you.
 
 ---
 
 ## Why after-sales decides the pipeline
 
-Most new FCs treat the signed case as the endpoint. Paperwork done, case logged, moving on to the next prospect.
+Most new FCs treat the signed case as the end of the job. The paperwork's in, the case is logged, and they move on to the next prospect.
 
-That's the Year-1 mistake that breaks the referral flywheel before it turns.
+That habit kills referrals in Year 1 before they ever start.
 
-The client just made a significant financial commitment based on trust in *you*. They're slightly anxious for the first few weeks. If you go silent — which is the default if you don't have a system — they interpret the silence as *"once he got the sale, he stopped caring."* Referrals die before they're asked.
+Your client has just made a big financial commitment because they trust you, and they'll feel a bit unsure for the first few weeks. If you go quiet, which is what happens when there's no system, they read it as *"once he got the sale, he stopped caring."* The referrals you hoped for never come, because you never earned the right to ask.
 
-**The 90 days after close are when the client decides whether you're the advisor they tell their friends about.** Not during the pitch. After.
+The client decides whether you're the adviser they tell their friends about in the 90 days after the close, much more than during the pitch.
 
 ---
 
 ## The onboarding checklist
 
-One-page checklist. Runs automatically for every new client. Build it once, use it every time.
+Keep it to one page and run it for every new client. You build it once.
 
-### Week 1 (Day 1–7 post-close)
-- [ ] Send a *thank-you* note — handwritten if feasible, otherwise a personalised email. Not the automated *"welcome to [company]"* email. From *you*.
-- [ ] Confirm all submitted paperwork went through. Email or text update.
-- [ ] Schedule the Day-30 check-in meeting before this week ends.
+### Week 1 (days 1 to 7 after the close)
+- [ ] Send a thank-you note from you, handwritten if you can, otherwise a personal message. The insurer's automated welcome email doesn't count.
+- [ ] Confirm the submitted paperwork has gone through, and tell them by text or email.
+- [ ] Book the Day-30 check-in before the week is out.
 
-### Week 2–4 (Day 8–30)
-- [ ] Send one *useful* piece of content unrelated to the sale — a relevant article, a short video, an insight. Shows you're still thinking about them.
-- [ ] Proactively communicate any policy milestones (policy delivery, first premium confirmation).
-- [ ] Make sure they know how to contact you if they have questions.
+### Weeks 2 to 4 (days 8 to 30)
+- [ ] Send one useful thing that has nothing to do with the sale: an article, a short video, something relevant to what they told you.
+- [ ] Tell them about policy milestones before they have to ask, such as the policy document arriving and the first premium going through.
+- [ ] Make sure they know how to reach you with questions.
 
-### Day 30 — first review meeting (15 minutes)
-- [ ] Confirm policy is live and they understand what they bought
-- [ ] Ask about any life changes in the last 30 days
-- [ ] First referral ask — FACT Method, low-key, with genuine warmth
+### Day 30: first review (15 minutes)
+- [ ] Confirm the policy is in force and that they understand what they bought
+- [ ] Ask about any changes in their life over the past month
+- [ ] First referral ask, using the FACT Method, kept light and warm
 - [ ] Book the Day-90 review
 
-### Day 30–90
-- [ ] Two more value-drop touches — articles, videos, thoughtful messages
-- [ ] Birthday / anniversary / life-event acknowledgment if any arise
-- [ ] Stay responsive — reply within 3–4 hours to any message
+### Days 30 to 90
+- [ ] Two more useful touches: articles, videos, a thoughtful message
+- [ ] Acknowledge a birthday, anniversary or life event if one comes up
+- [ ] Stay responsive: reply to any message within 3 to 4 hours
 
-### Day 90 — second review meeting (30 minutes)
-- [ ] Portfolio check-in — anything changed on their side?
-- [ ] Any gaps that've surfaced since the first meeting?
-- [ ] Second referral ask — now that they've had 90 days of post-sale experience
-- [ ] Set the Quarter 2 review cadence
+### Day 90: second review (30 minutes)
+- [ ] Check in on the portfolio and on anything that's changed for them
+- [ ] Look for gaps that have come up since the first meeting
+- [ ] Second referral ask, now that they've seen 90 days of how you work
+- [ ] Set the review rhythm for the rest of the year
 
 ---
 
 ## The 3-touchpoint rhythm
 
-Within the checklist, 3 specific touchpoints do the heaviest lifting:
+Inside the checklist, three touchpoints do most of the work.
 
 ![The 3-touchpoint rhythm: Day 7 (reassurance); Day 30 (reinforcement); Day 90 (integration)](/next-60-days/images/n60-day-56-m0.webp)
 
-### Day 7 — reassurance
-Purpose: confirm they made a good decision.
+### Day 7: reassurance
+The purpose is to help them feel settled about the decision.
 
-Clients often go through *buyer's remorse* around Day 3–7 — *"did I really need this?"*, *"was that the right plan?"* If you don't touch them during that window, they stew in the doubt. If you do — with warmth and competence — the doubt resolves.
+Many people have second thoughts in the first week or two: *"did I really need this?"*, *"was that the right plan?"* Left alone, they stew on it. A warm, competent message from you in that window usually settles it.
 
-Touch: text / email. Short. Warm. Tangible. *"Hey — just wanted to let you know the policy is confirmed and live. If anything comes up over the next few weeks, I'm a text away. Proud of you for making this move — I'll check in properly end of the month."*
+This also sits inside the free-look period. In Singapore every life policy comes with 14 days, counted from when the client receives the policy document, to review it and cancel for a refund of premiums, less some costs such as medical examination fees. The Day-7 touch is there to answer questions and make sure they understand what they bought. If they're having real doubts, go through them honestly. Never talk them out of using the free-look period, because that right exists for them.
 
-### Day 30 — reinforcement
-Purpose: make the value of what they bought real.
+Send it by text or email, and keep it short and warm:
 
-Meet for 15 minutes. Not a sales meeting — a check-in. Review the policy, answer any questions, confirm they know what they have and what it does. End with a light referral ask.
+> *"Hi [name], quick one - your policy is confirmed and in force. AIA will send you the policy document, and you've got 14 days from receiving it to read through everything. If anything doesn't sit right or doesn't make sense, just tell me and we'll go through it together. I'll check in properly at the end of the month, and drop me a note anytime before that."*
 
-The Day-30 meeting is where clients either *get* what they bought or feel like they signed for something abstract. Your job: make it concrete.
+### Day 30: reinforcement
+The purpose is to make what they bought feel real.
 
-### Day 90 — integration
-Purpose: turn a customer into a repeat / referring client.
+Meet for 15 minutes. It's a check-in, so don't sell. Go through the policy, answer questions and make sure they know what they have and what it does for them, then finish with a light referral ask.
 
-Meet for 30 minutes. Broader check-in. Life changes? New priorities? Any gaps? The referral ask here is sharper — they've had 90 days of your post-sale behaviour to judge.
+At Day 30 a client either understands what they bought or feels they signed up for something abstract. Your job is to make it concrete.
 
-This is also where you set the Q2–Q4 cadence. Quarterly touchpoints, annual review, ad-hoc life-event responses. The *client relationship* is established here, not at the close.
+### Day 90: integration
+The purpose is to turn a one-off buyer into a long-term client who refers.
 
----
+Meet for 30 minutes and take a wider view. Ask about changes in their life, new priorities and any gaps. The referral ask can be more direct here, because they've had 90 days to see how you behave after the sale.
 
-## The *fighter* posture (callback from Day 26)
-
-Week 5 Day 26 introduced the 3 versions on a hard case. That applies now.
-
-When a client hits a difficult moment in the first 90 days — a claim that's hard to process, an underwriting issue, a question about their coverage that requires real effort — this is the moment that decides whether they become an ambassador.
-
-**V1 (Easy Out):** *"Sorry, looks like it won't work out."*
-**V2 (Optimistic Shrug):** *"We can try but no promises."*
-**V3 (The Fighter):** *"I'll use every relationship and bit of experience I have to push this through. No guarantees, but I'll do my best."*
-
-V3 is what builds ambassadors. Clients remember *exactly* how you handled the one hard moment. They tell that story to friends for years.
-
-**Build the muscle of V3 now**, before you have the first hard case. The mindset is: *"my client's problem is my problem."* When that posture is automatic, ambassadors follow.
+This is also where you set the rhythm for the rest of the year, with regular touchpoints, an annual review and quick responses when life events happen, which is where the long-term relationship really begins.
 
 ---
 
-## Going the extra mile — small acts with outsized compound
+## The fighter posture (from Day 26)
 
-Specific, thoughtful, non-transactional gestures — not lavish, not scheduled, but *noticed*. A few real-world patterns:
+Day 26 covered three ways to respond to a hard case. The same idea applies after the sale.
 
-- A client mentions a kid's birthday during the Fact-Find → send a small gift or card on the day
-- A client mentions stress at work → a thoughtful text 2 weeks later — *"how's the project going? hope the intense phase is past."*
-- A client mentions an aging parent → send a relevant article on elder care planning, un-salesy
+When a client hits a difficult moment in the first 90 days, such as an underwriting query, a claim that isn't straightforward, or a coverage question that takes real work to answer, how you respond decides whether they end up recommending you.
 
-**The rule of small gestures:**
-1. **Specific** — tied to something *they* said, not a generic template
-2. **Small** — under $50 and under 30 minutes of effort
-3. **Zero sales attached** — purely relational, not a wrapped pitch
-4. **Genuine** — you actually care about the thing you're acknowledging
+V1 (easy out): *"Sorry, looks like it won't work out."*
 
-Done consistently, small gestures accumulate into a reputation. The FC who remembered your daughter's birthday gets referred to every parent in the referrer's circle — not because of the birthday itself but because the birthday signalled *"this person actually pays attention."*
+V2 (optimistic shrug): *"We can try, but no promises."*
+
+V3 (the fighter): *"I'll make sure AIA has everything it needs to assess this properly: every document, every medical report, all of it disclosed. If the answer isn't what we hoped, I'll go through the reasons with you and help you ask for a review. I can't promise the outcome, but I'll do everything I can."*
+
+The fight in V3 happens through complete, honest paperwork. You never push for a result the policy terms don't support, and you never leave anything off a form. If a claim is still declined after the insurer's own review, the client can take the dispute to FIDReC (the Financial Industry Disputes Resolution Centre) within six months of the insurer's final reply, and mediation there costs them nothing. Knowing that route, and walking them through it, is part of standing by them.
+
+Clients remember exactly how you handled the one hard moment, and they tell that story for years.
+
+Build the V3 habit now, before your first hard case. The mindset is *"my client's problem is my problem."* Once that's automatic, recommendations follow.
 
 ---
 
-## Resourcefulness — your professional network
+## Going the extra mile: small gestures
 
-Your value to the client isn't only the policy you sold. It's the *network* around you.
+These are specific, thoughtful and non-transactional. They don't need to be lavish or scheduled, but the client notices them. A few real patterns:
 
-A client asks you for a specialist recommendation. You have one. That's leverage.
-A client asks for a reliable contractor. You have one. That's leverage.
-A client asks for a specific professional service. You have a vetted name. That's leverage.
+- A client mentions a child's birthday during the Fact-Find, and you send a card or small gift on the day.
+- A client mentions stress at work, and two weeks later you text: *"How's the project going? Hope the intense phase is over."*
+- A client mentions an ageing parent, and you send a useful article on eldercare planning with no pitch attached.
 
-**Build your referral network actively:**
-- When you encounter excellent professionals in adjacent fields (lawyers, accountants, specialists, contractors, mortgage brokers), note them
-- Stay in light contact — they eventually become your referral sources, and you become theirs
-- When you refer a client to them, *tell the client what your standard is*: *"I only refer to people I'd use myself"*
+The rule of small gestures:
+1. Specific: tied to something they told you, never a template
+2. Small: under $50 and under 30 minutes, and within AIA's gifts policy
+3. No sales attached: purely about the relationship
+4. Genuine: you actually care about the thing you're acknowledging
 
-Your network is an extension of your value proposition. Clients who feel they can come to you for recommendations in any domain stay clients much longer — and refer much more.
+Done consistently, small gestures build a reputation. The FC who remembered a daughter's birthday gets recommended to the other parents in that client's circle. The birthday itself isn't the reason. It told the client *"this person pays attention."*
+
+---
+
+## Resourcefulness: your professional network
+
+What you offer a client goes beyond the policy you sold. The people you know are part of it.
+
+When a client needs a specialist, a reliable contractor or another professional and you can give them a name you've vetted, you've solved a problem they'd otherwise spend weeks on.
+
+Build that network on purpose:
+- When you meet an excellent professional in a neighbouring field (lawyers, accountants, doctors, contractors, mortgage brokers), make a note of them.
+- Keep in light contact, and over time they may refer people to you and you to them.
+- When you refer a client, tell them your standard: *"I only recommend people I'd use myself."*
+- Don't take payment for these introductions. The client should know your only interest is a good outcome for them.
+
+Clients who can come to you for a good name in any area tend to stay longer and think of you first.
 
 ---
 
 ## The onboarding system as a brand
 
-Your after-sales system is as much a brand signal as your posts or your pitch. Two FCs who pitched identical plans can have wildly different 5-year outcomes based purely on whether their after-sales was structured or not.
+Your after-sales system says as much about you as your posts or your pitch do. Two FCs who sold identical plans can end up with very different books five years later, and the difference is whether their after-sales had a structure.
 
-- **Structured after-sales** → clients feel cared for → clients refer → referrals compound → Year 5 book is 60% referrals
-- **Unstructured / silent after-sales** → clients feel forgotten → clients don't refer → Year 5 book is 10% referrals, 90% outbound effort
+- Structured after-sales: clients feel looked after, they refer, and over the years more of your new business comes from referrals.
+- Silent after-sales: clients feel forgotten, they don't refer, and you're still doing almost all your prospecting from cold five years in.
 
-Same work. Same plans. Entirely different careers.
-
-Build the system this week — before you have your first client — and it runs automatically for the next 30 years.
+Build the system this week, before your first client, and it will run for the rest of your career.
 
 ---
+
+## Sources
+
+- [Tips on insurance products - Life Insurance Association Singapore](https://www.lia.org.sg/consumers/choosing-right/tips-on-insurance-products/) - the 14-day free-look period, counted from receipt of the policy document
+- [Consumer's guide to life insurance disputes - FIDReC](https://www.fidrec.com.sg/knowledgebase/article/KA-01259/en-us) - contact the insurer first, then FIDReC within six months of the final reply, with free mediation
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - the fair dealing outcomes, including customers receiving quality advice and after-sales service
+- [Referral programs and customer value - Journal of Marketing (Schmitt, Skiera and Van den Bulte, 2011)](https://faculty.wharton.upenn.edu/wp-content/uploads/2012/04/Schmitt-Skiera-vandenBulte-2011-Referral-Programs-Customer-Value.pdf) - in a study of about 10,000 bank customers, referred customers stayed longer and were worth at least 16% more
 
 ## Quiz
 
 **Q1. The 90 days after the close matter because:**
 - A) That's when compliance issues arise
-- B) That's the window where the client decides whether you're the advisor they tell their friends about — referrals are earned or lost here ✓
+- B) That's the window where the client decides whether you're the advisor they tell their friends about, so referrals are earned or lost here ✓
 - C) That's when the first premium hits
 - D) Clients rarely change their minds after that
 
-**Why:** The signed case is a starting line, not a finish line. New FCs treat it as an endpoint, which is why their Year-2 book is 90% outbound effort instead of 30%. The client's experience over the first 90 days — specifically whether you're attentive, useful, responsive, and proactive — decides if they become an ambassador. Silence during those 90 days is interpreted as *"once the sale closed, he stopped caring."*
+**Why:** The signed case is where the relationship starts. New FCs who treat it as the end go quiet, and the client reads the silence as *"once the sale closed, he stopped caring."* Whether you're attentive, useful, responsive and proactive in those 90 days decides whether they recommend you.
 
 **Q2. The purpose of the Day-7 touchpoint is:**
 - A) Ask for referrals
-- B) Resolve buyer's remorse — confirm they made a good decision, with warmth and competence ✓
+- B) Resolve buyer's remorse: confirm they made a good decision, with warmth and competence ✓
 - C) Cross-sell additional products
 - D) Send the policy documents
 
-**Why:** Most clients go through a wave of mild doubt between Day 3–7 — *"did I really need that?"* If you don't touch them, the doubt compounds. A short, warm, *non-sales* check-in resolves it. Referral asks are for Day 30+; policy documents are system-driven; cross-sell isn't appropriate this early. The Day-7 touch exists to make them feel *cared for*, which is the foundation for everything that follows.
+**Why:** Plenty of clients have second thoughts in the first week or two. A short, warm check-in with no selling answers their questions and settles most of those doubts. It falls inside the 14-day free-look period, so if the doubts are real, you go through them honestly rather than argue. Referral asks come at Day 30 and later, the insurer sends the policy documents, and cross-selling this early is out of place.
 
-**Q3. A client hits a difficult moment in Month 2 — a claim that looks likely to be declined. The ambassador-building response is:**
+**Q3. A client hits a difficult moment in Month 2: a claim that looks likely to be declined. The ambassador-building response is:**
 - A) *"Sorry, looks like it won't work out."*
 - B) *"We can try but no promises."*
-- C) *"I'll use every relationship and bit of experience I have to push this through. No guarantees, but I'll do my best."* ✓
+- C) *"I'll make sure AIA has every document and report it needs, all fully disclosed, and if the answer disappoints we'll look at a review together. No guarantees, but I'll do my best."* ✓
 - D) Refer them to a different advisor
 
-**Why:** This is the *fighter* posture — V3 from Day 26. Clients remember *exactly* how you handled the hardest moment, and they tell that story for years. V1 abandons; V2 is uninspiring and forgettable; D actively breaks the relationship. V3 — committing maximum effort without overpromising the outcome — is the move that makes clients tell their friends *"she actually went to bat for me."* That's how ambassadors are made, and it always happens in the hard moments, not the easy ones.
+**Why:** This is the fighter posture, V3 from Day 26. V1 abandons the client, V2 is flat and forgettable, and D breaks the relationship. V3 commits your full effort without promising a result, and the effort goes into complete, honest paperwork. If the insurer still declines, you explain the reasons and the route to FIDReC. Clients remember who stood by them in the hard moment.
 
 **Q4. The 3 onboarding touchpoint moments are Day 7, Day 30, Day 90. The specific purpose of each is:**
 - A) Day 7 referral ask, Day 30 upsell, Day 90 review
 - B) Day 7 reassurance (resolve buyer's remorse), Day 30 reinforcement (make value real) + first referral ask, Day 90 integration (turn client into referring relationship) ✓
 - C) Day 7 paperwork, Day 30 paperwork, Day 90 paperwork
-- D) All three are the same — welfare checks
+- D) All three are the same, just welfare checks
 
-**Why:** Each touchpoint solves a different psychological moment. Day 7: buyer's remorse peaks. Day 30: abstract policy becomes concrete, and the client has enough experience of you to give a first referral. Day 90: the relationship shifts from *customer* to *client + ambassador candidate*, with the sharper referral ask. Treating all three as the same (C, D) collapses the sequence's compound effect.
+**Why:** Each touchpoint meets a different moment. At Day 7 the doubts are fresh, and by Day 30 the policy can be made concrete and the client has seen enough of you to give a first referral. At Day 90 the relationship moves from customer to long-term client, and the referral ask can be more direct. Treating all three the same (C or D) loses that sequence.
 
 **Q5. The onboarding system should be built:**
 - A) After you close your first 5 cases
-- B) Before you have your first client — the system runs automatically once in place, and it's too late to design it under time pressure after the first close ✓
+- B) Before you have your first client, because the system runs automatically once in place, and it's too late to design it under time pressure after the first close ✓
 - C) Only for HNW clients
 - D) Only after 6 months of experience
 
-**Why:** After the first close, you're in the emotional rush of the win + dealing with admin + trying to onboard while also chasing the next prospect. Not the ideal moment to design a system. Building the onboarding checklist, Day-7 text template, and Day-30 agenda *before* you need them means the first client receives the same thoughtful experience as the 50th. The system is a brand signal.
+**Why:** Right after your first close you're riding the win, doing the admin and chasing the next prospect, which is a bad time to design anything. If the checklist, the Day-7 message and the Day-30 agenda are ready beforehand, your first client gets the same care as your fiftieth.
 
 **Q6. A client mentions during Fact-Find that their daughter has a piano recital in 6 weeks. The right extra-mile move is:**
-- A) Send a large bouquet the day of — grand gesture
-- B) Remember it, send a short "good luck to her today" text the day of the recital — specific, small, personal, zero-sales ✓
+- A) Send a large bouquet the day of as a grand gesture
+- B) Remember it, send a short "good luck to her today" text the day of the recital: specific, small, personal, zero-sales ✓
 - C) Offer to attend the recital
 - D) Buy concert tickets as a gift
 
-**Why:** The rule: specific (tied to what they said) + small (under $50, under 30 min of effort) + personal (recognisably about them) + zero-sales-attached. A short text on the right day hits all four. Grand gestures (A, D) read as transactional. Attending (C) crosses into personal territory that most clients don't want. The text is cheap, specific, noticed, and compounds.
+**Why:** The rule is specific (tied to what they said), small (under $50 and 30 minutes), personal and with no sales attached. A short text on the right day meets all four. Big gestures (A and D) feel transactional, and turning up in person (C) goes further into their private life than most clients want.
 
 **Q7. Your professional network (specialists, lawyers, contractors, mortgage brokers) adds value to your client relationship because:**
-- A) It doesn't — clients only care about insurance
-- B) Clients who come to you for recommendations across domains stay clients much longer and refer much more — network is an extension of your value proposition ✓
+- A) It doesn't, because clients only care about insurance
+- B) Clients who come to you for recommendations across domains stay clients much longer and refer much more, and the network is an extension of your value proposition ✓
 - C) You get kickbacks
 - D) It's required by MAS
 
-**Why:** The transactional view ("I sell insurance, I don't recommend contractors") misses the broader relationship play. A client who came to you for insurance and then got a great doctor referral, a vetted contractor, a reliable mortgage broker — that client has 3× the engagement surface with you. They think of you first for everything adjacent, and they refer 3× as often. Building the network actively (1 new professional relationship per quarter) compounds faster than any other relationship investment.
+**Why:** "I sell insurance, I don't recommend contractors" misses what clients value. A client who came to you for insurance and also got a good doctor, a reliable contractor or a solid mortgage broker has more reasons to stay in touch, and thinks of you first when a friend needs help. Add about one new professional contact a quarter, and never take payment for an introduction.
 
 ---
 
-## Scripts Library
+## Scripts library
 
-Here are the canonical onboarding, post-meeting, and second-meeting scripts that turn a fresh close into the start of a referral flywheel. Practise them out loud, then make them yours.
+These are the onboarding, post-meeting and second-meeting scripts that help a fresh close turn into referrals. Practise them out loud, then adjust them to your own voice.
 
-### Post-Meeting - Client Resources & Referral
-**Use this when** sending the Day 7 thank-you-and-resources message. Bundles a value drop with the soft referral seed.
+### Post-meeting: client resources and referral
+**Use this when** you send the Day-7 thank-you and resources message. It pairs something useful with a soft referral seed.
 
 [[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
 
-### Post-Zoom Follow-Up - Young Adults After Consultation
-**Use this when** the consultation just ended on Zoom and you want the immediate-after-call message to land warm.
+### Post-Zoom follow-up: young adults after a consultation
+**Use this when** a consultation has just ended on Zoom and you want the follow-up message to land warmly.
 
 [[post-zoom-follow-up-young-adults-after-consultation|Post-Zoom Follow-Up — Young Adults After Consultation]]
 
-### Reminder - 2nd Meeting (All Versions)
-**Use this when** the Day 30 / Day 90 review is on the calendar and you want it to actually happen. Multiple tones depending on relationship temperature.
+### Reminder: second meeting (all versions)
+**Use this when** the Day-30 or Day-90 review is in the calendar and you want it to actually happen. There are versions for different levels of closeness.
 
 [[reminder-2nd-meeting-all-versions|Reminder — 2nd Meeting (All Versions)]]
 
-### Setting Catch-Up Calls Script
-**Use this when** the Day 90 review has passed and you're now into the steady-state catch-up cadence (quarterly, biannual, annual).
+### Setting catch-up calls
+**Use this when** the Day-90 review is done and you've moved to the regular catch-up rhythm (quarterly, twice a year or yearly).
 
 [[setting-catch-up-calls-script|Setting Catch Up Calls Script]]
 
-### Policy Inforce / Incepted Text
-**Use this when** the policy has just gone live - the "your protection is now in place" milestone text that confirms the client made a good decision.
+### Policy in force text
+**Use this when** the policy has just started: the "your cover is now in place" message.
 
 [[policy-inforce-incepted-text|Policy Inforce / Incepted Text]]
 
-### AIA Claims Milestone & Referral Request
-**Use this when** a claim eventually gets paid out for this client. Highest-trust moment in the cycle.
+### AIA claims milestone and referral request
+**Use this when** a claim for this client has been paid. It's the moment of highest trust in the whole relationship, so keep any referral ask gentle.
 
 [[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
 

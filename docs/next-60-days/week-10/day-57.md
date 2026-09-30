@@ -1,8 +1,8 @@
 ---
 week: 10
 day: 57
-title: "Building Moments — The Touch-Point Calendar"
-big_idea: "Clients remember the moments, not the policy. Build the calendar that makes sure the moments actually happen."
+title: "Building moments: the touchpoint calendar"
+big_idea: "Clients remember the moments more than the policy. Build the calendar that makes sure the moments happen."
 kpi_link: "Week 10 KPI — onboarding checklist live; touchpoint calendar built; Year-1 plan written"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-11-11-how-to-build-moments]]"
@@ -11,185 +11,188 @@ duration_minutes: 20
 tags: [next-60-days, week-10, new-fc, moments, touchpoints, client-experience]
 ---
 
-# Day 57 — Building Moments
+# Day 57: Building moments
 
-> **The one idea for today:** Clients remember the moments, not the policy. Build the calendar that makes sure the moments actually happen.
+> **The one idea for today:** Clients remember the moments more than the policy. Build the calendar that makes sure the moments happen.
 
-By the time you close today you'll design a yearly touchpoint calendar (4–6 scheduled touchpoints plus 3–5 ad-hoc moments per client), sort touchpoints into 4 types (Review · Value · Celebration · Reach-out) and know what each is for, and build the moments that compound — small, specific, memorable acts that get talked about.
+By the end of today you'll have a yearly touchpoint calendar for each client, with 4 to 6 scheduled touches plus 3 to 5 unplanned ones. You'll know the four types of touchpoint (Review, Value, Celebration, Reach-out) and what each is for, and you'll know how to create the small, specific gestures that clients talk about.
 
 ---
 
 ## Why moments matter more than policies
 
-Ask any satisfied client *"what do you like about your advisor?"* and listen to the answer.
+Ask a happy client what they like about their adviser, then listen.
 
-They almost never say *"her underwriting expertise"* or *"his product selection."* They say:
+They rarely mention underwriting knowledge or product selection. You'll hear things like:
 - *"She remembered my daughter's birthday."*
-- *"He got me in touch with a doctor during a health scare."*
-- *"She checked in when my mum was in hospital — no sales agenda."*
+- *"He put me in touch with a good doctor when I had a health scare."*
+- *"She checked in when my mum was in hospital, and there was no sales angle."*
 - *"He noticed I'd lost weight and sent a note."*
 
-**Clients remember the moments.** The policy is the reason they engaged; the moments are the reason they stay, refer, and defend you.
+The policy is why they first sat down with you. The moments are why they stay, refer you and speak up for you. Psychology backs this up: Daniel Kahneman's work on the peak-end rule found that people judge an experience mostly by its most intense moment and how it ended, with little weight on how long it lasted. Chip and Dan Heath built a whole book, *The Power of Moments*, on the same idea.
 
-Year-1 FCs often treat moments as *nice to have* — side-quests to the main work of selling. The truth is the opposite: moments are the main work of retention and referrals. Sales without moments produces churn. Sales with moments produces compounding businesses.
+Year-1 FCs often treat moments as a nice extra alongside the real work of selling. It's closer to the other way round. For retention and referrals, the moments are the work. An adviser who sells without them keeps losing clients, and one who sells with them builds a book that grows by itself.
 
 ---
 
-## The 4 types of touchpoints
+## The 4 types of touchpoint
 
-Touchpoints split into 4 categories. A good yearly cadence uses all 4.
+Touchpoints fall into four types, and a good year uses all of them.
 
 ![The 4 types of touchpoints: Review (scheduled); Value (useful content); Celebration (birthdays, milestones); Reach-out (responsive to life events)](/next-60-days/images/n60-day-57-m0.webp)
 
-### Review touchpoints — scheduled
-Portfolio reviews. Annual check-ins. Formal business meetings where you look at the client's plan and discuss changes.
+### Review touchpoints: scheduled
+Portfolio reviews, annual check-ins, and formal meetings where you go through the client's plan and talk about changes.
 
-**Cadence:** 1–2 per year minimum. Quarterly for A-clients (Day 3's ABC tiers).
+Cadence: at least once or twice a year, and quarterly for A-tier clients (the ABC tiers from Day 3).
 
-### Value touchpoints — useful content
-Articles, videos, insights, research summaries shared with the client because you genuinely think they'll find it useful. Zero sales agenda.
+### Value touchpoints: useful content
+Articles, videos and short summaries you send because you think this particular client will find them useful, with no sales angle.
 
-**Cadence:** 4–6 per year. Light touches. Not a newsletter broadcast — personalised to what you know about them.
+Cadence: 4 to 6 a year. Keep them light and pick them for the person. A newsletter blast doesn't count.
 
-### Celebration touchpoints — birthdays, milestones
-Birthday, anniversary, promotion, new baby, new house, graduation, achievement. Acknowledged personally.
+### Celebration touchpoints: birthdays and milestones
+Birthdays, anniversaries, promotions, a new baby, a new home, a graduation, acknowledged personally.
 
-**Cadence:** as-they-happen. 2–4 per year per client typically.
+Cadence: as they happen, usually 2 to 4 a year per client.
 
-### Reach-out touchpoints — responsive to life events
-They mentioned a parent's illness — you follow up a week later. Their industry had layoffs — you check in. They're moving — you ask how settling in is going.
+### Reach-out touchpoints: responding to life events
+They mentioned a parent's illness, so you follow up a week later. Their industry has had layoffs, so you check in. They've moved house, so you ask how they're settling in.
 
-**Cadence:** as-situations-arise. 1–3 per year. These are the highest-compound touches because they're the least expected.
+Cadence: as things come up, 1 to 3 a year. These often mean the most because nobody expects them.
 
 ---
 
 ## A sample yearly cadence
 
-For a B-tier client (bread-and-butter), a typical yearly cadence might look like:
+For a B-tier client (the core of most books), a year might look like this:
 
 | Month | Touchpoint | Type |
 |---|---|---|
-| Jan | New Year message — personalised | Celebration |
-| Feb | *"here's a relevant article on X I thought of you for"* | Value |
-| Mar | Client's birthday — thoughtful message + small gesture | Celebration |
-| Jun | Half-year portfolio check-in (30 min) | Review |
-| Aug | Follow-up on [thing they mentioned] | Reach-out |
-| Oct | Useful content drop — year-end planning piece | Value |
-| Dec | Year-end review (60 min) + holiday message | Review + Celebration |
+| Jan | Personal New Year message | Celebration |
+| Feb | *"Saw this article on X and thought of you"* | Value |
+| Mar | Client's birthday: a thoughtful message and a small gesture | Celebration |
+| Jun | Mid-year portfolio check-in (30 min) | Review |
+| Aug | Follow-up on something they mentioned | Reach-out |
+| Oct | Useful year-end planning piece | Value |
+| Dec | Year-end review (60 min) and a holiday message | Review + Celebration |
 
-~7 touchpoints for the year, spread across all 4 types. Plus ad-hoc reach-outs when life events happen.
+That's about 7 touches across all four types, plus reach-outs whenever life events happen.
 
-For an A-tier client, double the frequency. For C-tier, quarterly broadcasts with ad-hoc reach-out only for major events.
-
----
-
-## Competency + extra mile — the two sides of moments
-
-Competence is the *baseline*. Extra mile is what makes moments memorable.
-
-### Example 1 — competency alone
-Client's policy delivery arrives. You email them to confirm it's with them. *Done competently.* They'll appreciate it and forget it within a week.
-
-### Example 2 — competency + extra mile
-Client's policy delivery arrives. You email to confirm. You also include a short video summary of the policy in 2 minutes so they understand what they bought without reading 40 pages. You mention their daughter's upcoming recital (which they mentioned during Fact-Find) and wish her luck. *Memorable.* They'll tell a friend about it.
-
-**The extra mile is almost always small.** A 5-minute extra effort. A detail that shows you were listening. A personal touch beyond the transaction. The cost is low; the compound is high.
+For A-tier clients, double it. For C-tier clients, a quarterly broadcast plus a reach-out for major events is enough.
 
 ---
 
-## Going the extra mile — real examples
+## Competence and the extra mile
 
-Specific stories of what the extra mile looks like in practice:
+Competence is the baseline. The extra mile is what makes a moment stick.
 
-### Example — the sambal and the toy
-A real-estate agent learned during a house sale that her client's mum loved a specific homemade sambal chili. Also learned the client's daughter was 5. After the deal closed, she dropped off a jar of homemade sambal + a small toy for the daughter. Total cost: ~$20. That family referred her to every person they knew for the next 10 years.
+### Example 1: competence alone
+The client's policy document arrives, and you email to confirm they have it. That's done properly. They'll appreciate it and forget it within a week.
 
-### Example — the medical specialist
-A client mentioned their sister was seeing a specialist they didn't fully trust. The FC happened to know a top specialist in that field personally. He made the introduction. The client got better care. The family referred 6 more clients over the following 2 years.
+### Example 2: competence plus the extra mile
+The policy document arrives and you email to confirm. You also attach a two-minute video walking through the policy so they don't have to read 40 pages, and you wish their daughter luck at the recital they mentioned during the Fact-Find. That one they'll remember, and they may tell a friend about it.
 
-### Example — the gate kit
-An FC learned a client was flying alone with 2 kids for the first time. Packed a small kit: snacks, activities, a thank-you card. Delivered to the gate. One moment. That client's husband told that story at every dinner party for years.
-
-**Common pattern:**
-- **Specific** — tied to something the client said, not generic
-- **Small** — under $50 and under 30 min of effort
-- **Personal** — recognisably about *them*, not a template
-- **Zero sales attached** — purely relational
+The extra mile is almost always small: five extra minutes, a detail that shows you were listening, a personal touch that goes past the transaction. It costs little, and people remember it for a long time.
 
 ---
 
-## The calendar — your execution system
+## Going the extra mile: what it looks like
 
-You will not remember to do these things without a system.
+Three illustrations of the kind of gesture that works:
 
-Build a simple calendar reminder structure:
+### The sambal and the toy
+A property agent found out during a sale that her client's mum loved a particular homemade sambal chilli, and that the client had a five-year-old daughter. After the deal closed she dropped off a jar of homemade sambal and a small toy for the girl, about $20 in total. The family kept recommending her for years afterwards.
 
-- **Monthly recurring reminder:** *"Who needs a value touch this month?"* Pick 5 clients.
-- **On every client's birthday:** automatic 7-day advance reminder. Prep the birthday touch.
-- **Post every Fact-Find:** log 2–3 personal details (family, interests, stressors) into your CRM with date tags for future reference.
-- **Quarterly:** review all A-clients. Have they been touched in the last 30 days? If not, who needs a reach-out?
+### The medical specialist
+A client mentioned that their sister was seeing a specialist she didn't fully trust. The FC knew a well-regarded specialist in that field and offered an introduction. He didn't give any medical opinion himself. He just put two people in touch, and the family remembered who had helped.
 
-The system is what makes this work at scale. Without it, you'll do 3 thoughtful things in the first month and then forget when you get busy.
+### The travel kit
+An FC learned that a client was about to fly alone with two young kids for the first time. The night before, she dropped a small kit at their home: snacks, a few activities for the flight and a card. It was one moment, and the client's family still brings it up.
 
----
-
-## The compound math
-
-One thoughtful gesture to one A-tier client generates (on average):
-- Higher retention probability
-- 1–3 referrals over the following 2 years
-- A dinner-party anecdote that reaches an average of 8 other potential prospects
-
-Scale that across 20 A-clients × 2 thoughtful moments per year = 40 moments annually. If 25% produce a referral, that's 10 warm referrals from moments alone — before any explicit ask.
-
-**The math of moments:** low-cost inputs produce disproportionately high outputs over multi-year time horizons. The FCs who compound hardest in Year 5–10 are almost always the ones who built a moments habit in Year 1.
+**What they have in common:**
+- Specific: tied to something the client said
+- Small: under $50 and under 30 minutes, and within AIA's gifts policy
+- Personal: clearly about them and nobody else
+- No sales attached
 
 ---
 
-## When a client relationship cools — the 8-Step recovery conversation
+## The calendar: making it happen
 
-Every FC ends up with the same problem eventually: an A-tier client goes quiet. Premium lapses, a referral promise never materialises, replies get shorter, calls don't get returned. The relationship hasn't *broken* — it's drifted. Pretending nothing happened (the most common move) lets it drift further. Calling to *"check in"* with no real agenda (the second most common) reads as transactional fishing.
+You won't remember to do any of this without a system.
 
-The **8-Step Recovery framework** is the script. It's designed for someone you already know — a team-mate, a long-time client, a strained friend — and it works because every step is structured around *them*, not your agenda.
+Set up a few simple reminders:
 
-| # | Step | What it sounds like |
-|---|---|---|
-| 1 | **Set the objective** (internal — for you, before the meeting) | What's the *one thing* you want them to feel by the end? Heard? Reassured? Understood? Don't go in without this. |
-| 2 | **State your intention** | *"I wanted to catch up properly — not about anything specific. I noticed it's been a while and I value the relationship more than the next conversation."* |
-| 3 | **Surface their hot button** | Ask what's been going on for *them* — work, family, health, money. Listen for what their energy changes around. Don't lead with your topic. |
-| 4 | **Acknowledge their strengths** | What they're handling well. Specific. *"You navigated [the thing] way better than most people would have."* |
-| 5 | **You-you-you** | Three sentences that are about *them*, not you. *"You've always been the one in your circle who thinks about these things long-term. You're the kind of client who actually reads what I send. And you've referred two people in the past who became real clients."* |
-| 6 | **Recognise + praise + reward (where appropriate)** | If they've done something tangible (introduced someone, hit a goal), name it. Recognition is the relationship glue most FCs forget to apply. |
-| 7 | **Constructive feedback (only if needed)** | If there's a real issue — premium lapse, missed payment, behaviour pattern — name it after steps 1-6 have built the cushion. *"One thing I wanted to flag, since I'd rather you hear it from me…"* |
-| 8 | **Empower** | End on the next thing they have control over. *"What would feel most useful from me over the next few months?"* — and then deliver on whatever they say. |
+- **Monthly:** *"Who needs a value touch this month?"* Pick 5 clients.
+- **Birthdays:** an automatic reminder 7 days before each client's birthday, so you can prepare.
+- **After every Fact-Find:** note 2 or 3 personal details the client chose to share (family, interests, what's worrying them) in your CRM with dates.
+- **Quarterly:** go through your A-tier clients. Has each one heard from you in the past 30 days? If not, who needs a reach-out?
 
-**Where it lands:** premium-lapse calls, *"the client stopped replying"* situations, the renewal-year touchpoint with a tier-A client who's gone quiet, the conversation where you have to flag bad news (an underwriting decline, a claim being slow). It's also the script for the rare moment when a *team-mate* is struggling — a struggling junior FC is the same shape of conversation as a strained client.
+Those notes are personal data, so handle them under the PDPA. Record only what the client told you, keep it in AIA's approved systems, use it to look after that client, and never pass one client's details to another. If a client asks what you hold about them, you should be able to show them.
 
-**What it isn't:** an opener for cold or warm prospecting. The 8 Steps assume the relationship already exists. For a brand-new contact, see Day 22's warm market opener instead.
-
-**One note on origin:** the framework was originally written for *coaching* a struggling team-mate, not handling a client — which is why every step is so person-centred and so light on agenda. The structure transfers cleanly to client recovery; the cushioning underneath is the same.
-
-The compound effect: one well-handled 8-Step recovery conversation often produces more goodwill than 5 cold check-ins. A client who feels *heard* during a difficult moment becomes a 20-year client and a referral source. A client who feels managed during a difficult moment becomes a polite churn statistic.
+Without this system you'll do three thoughtful things in your first month and then forget once you get busy.
 
 ---
+
+## The maths of moments
+
+Here's an illustration. Say you have 20 A-tier clients and create 2 thoughtful moments for each of them a year, which makes 40 moments. If 1 in 4 of those led to a referral, that would be 10 warm referrals a year before you've made a single direct ask. Your own numbers will differ, but the inputs are cheap and the returns build up over years.
+
+Each moment also makes it more likely the client stays with you, and a client who stays keeps referring.
+
+---
+
+## When a relationship cools: the 8-Step Recovery conversation
+
+Sooner or later every FC has the same problem: an A-tier client goes quiet. A premium lapses, a promised referral never comes, replies get shorter, calls go unreturned. The relationship hasn't broken, but it has drifted. Pretending nothing happened, which is the most common response, lets it drift further. Calling to "check in" with no real reason, the second most common, feels like fishing.
+
+The **8-Step Recovery framework** gives you a structure. It's built for someone you already know, such as a teammate, a long-standing client or a friend where things have got awkward, and it works because every step is about them and not your agenda.
+
+| Step | What it sounds like |
+|---|---|
+| 1. Set the objective (for you, before the meeting) | What's the one thing you want them to feel by the end: heard, reassured, understood? Don't go in without it. |
+| 2. State your intention | *"I wanted to catch up properly, nothing specific. It's been a while, and I value the relationship more than whatever we talk about next."* |
+| 3. Find what matters to them | Ask what's been going on for them: work, family, health, money. Notice where their energy changes. Don't lead with your topic. |
+| 4. Acknowledge their strengths | Name something they're handling well, specifically. *"You handled [the thing] far better than most people would have."* |
+| 5. You, you, you | Three sentences about them, not you. *"You've always been the one in your circle who thinks long-term. You actually read what I send."* Add a third only if it's true, for example *"And the two friends you introduced both became clients."* |
+| 6. Recognise, praise, reward (where it fits) | If they've done something concrete, such as introducing someone or hitting a goal, say so. Most FCs forget this part. |
+| 7. Constructive feedback (only if needed) | If there's a real issue, such as a lapsed premium or a missed payment, raise it only after steps 1 to 6 have built some goodwill. *"One thing I wanted to mention, because I'd rather you hear it from me..."* |
+| 8. Hand them the next step | End on the next thing they control. *"What would be most useful from me over the next few months?"* Then deliver what they ask for. |
+
+**Where it fits:** calls about a lapsed premium, the client who stopped replying, the annual touch with an A-tier client who's gone quiet, and conversations where you have to deliver bad news, like an underwriting decline or a slow claim. It also works when a teammate is struggling, because a junior FC having a hard time needs the same kind of conversation as a client who has drifted.
+
+**Where it doesn't fit:** prospecting, warm or cold. The 8 Steps assume a relationship already exists. For a new contact, use the warm-market approach from Day 20.
+
+**A note on where it comes from:** the framework was first written for coaching a struggling teammate, not for handling clients. That's why every step centres on the person and keeps your agenda light. It carries over to client recovery well, because it rests on the same idea of acknowledging someone before you say anything hard.
+
+One well-handled recovery conversation often rebuilds more goodwill than five routine check-ins. A client who feels heard in a difficult moment can stay with you for twenty years and keep sending people your way. A client who feels managed quietly leaves.
+
+---
+
+## Sources
+
+- [When more pain is preferred to less: adding a better end - Kahneman, Fredrickson, Schreiber and Redelmeier, Psychological Science (1993)](https://www.ius.uzh.ch/dam/jcr:9ac245ec-ce2c-46a6-a620-77bf34f05d61/Kahneman%20et%20al.%20When%20More%20Pain%20is%20Preferred%20to%20Less.pdf) - the study behind the peak-end rule: memories of an experience are dominated by its worst or best moment and its end
+- [The Power of Moments - Chip Heath and Dan Heath](https://heathbrothers.com/books/the-power-of-moments/) - why a few specific moments shape how people remember a relationship
+- [Advisory Guidelines on Key Concepts in the PDPA (revised 29 April 2026) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - consent, purpose and care obligations for personal details you record about clients
 
 ## Quiz
 
 **Q1. Clients mostly remember their advisor for:**
 - A) Underwriting expertise and product selection
-- B) The moments — birthdays remembered, specific help in hard times, thoughtful gestures ✓
+- B) The moments: birthdays remembered, specific help in hard times, thoughtful gestures ✓
 - C) Low fees
 - D) Fast paperwork
 
-**Why:** Ask satisfied clients what they like about their advisor and they almost never cite technical capability — they cite relational moments. Moments are what they tell friends about, what they remember years later, and what drives referrals. Technical work is baseline expected; moments are the differentiator. New FCs often treat moments as side-quests; experienced FCs treat them as the core product.
+**Why:** Ask happy clients what they like about their adviser and they rarely mention technical skill. They talk about moments, and those are what they tell friends about and remember years later. Clients expect the technical work to be done well, so it doesn't set you apart. The moments do.
 
 **Q2. The 4 types of touchpoints are:**
-- A) Sales · cross-sell · upsell · referral
-- B) Review · Value · Celebration · Reach-out ✓
-- C) Email · text · call · meeting
-- D) Monthly · quarterly · annual · ad-hoc
+- A) Sales, cross-sell, upsell, referral
+- B) Review, Value, Celebration, Reach-out ✓
+- C) Email, text, call, meeting
+- D) Monthly, quarterly, annual, ad-hoc
 
-**Why:** The 4 types describe *what the touchpoint does* — scheduled business review, useful-content drop, acknowledgment of life event, responsive follow-up on something they shared. All 4 should appear in a healthy yearly cadence. A client who only gets Review touchpoints (formal meetings) feels like a transaction; a client who gets all 4 feels like a person.
+**Why:** The four types describe what each touch does: a scheduled review, something useful to read, acknowledging a life event, and following up on something they told you. A healthy year includes all four. A client who only ever gets formal reviews feels like a transaction, and one who gets all four feels like a person.
 
 **Q3. The common pattern of effective "extra mile" gestures is:**
 - A) Expensive and elaborate
@@ -197,7 +200,7 @@ The compound effect: one well-handled 8-Step recovery conversation often produce
 - C) Scheduled monthly
 - D) The same for every client
 
-**Why:** Lavish gestures feel transactional (*"what do they want in return?"*). Small thoughtful gestures tied to something specific the client said feel *seen*. Generic gestures (the same gift for every client) feel template-driven, which kills the moment. The compound math of moments works because small + specific + personal is both affordable (you can do many) and emotionally high-impact (each one is remembered).
+**Why:** Lavish gestures make people wonder what you want back. A small gesture tied to something they said makes them feel seen. The same gift for every client feels like a template and loses the effect. Small and specific also means you can afford to do it often.
 
 **Q4. A realistic yearly cadence for a B-tier client is:**
 - A) 1 touchpoint per year (annual review only)
@@ -205,7 +208,7 @@ The compound effect: one well-handled 8-Step recovery conversation often produce
 - C) 1 touchpoint per week
 - D) Only when they call you
 
-**Why:** 1 touchpoint per year reads as *"you only matter once a year"* — referrals die. 1 per week is overkill and burns the client out. ~6–8 per year, spread across 4 types, is the sweet spot: enough to keep the relationship warm, not so much it feels like harassment, and varied enough to hit different emotional registers (formal review, useful content, acknowledgment, responsive care).
+**Why:** One touch a year tells the client they matter once a year, and referrals dry up. One a week is too much and wears them out. Around 6 to 8 a year across the four types keeps the relationship warm without crowding them, and the mix covers formal reviews, useful content, celebrations and care when something happens.
 
 **Q5. For A-tier clients, you should:**
 - A) Same cadence as B-tier
@@ -213,23 +216,23 @@ The compound effect: one well-handled 8-Step recovery conversation often produce
 - C) Only review annually
 - D) Touch them monthly
 
-**Why:** The ABC tier system from Day 3 exists because client value varies ~17× between A and C. Proportional attention means A-tier gets roughly double the relational investment. Monthly (D) is too rigid — tier the cadence based on what each client *actually needs* and how much they compound into the book. A-tier reaches toward 14–16 touchpoints; C-tier stays at 3–4 quarterly broadcasts.
+**Why:** Day 3 put an A-tier review at about $420 of expected revenue against about $25 for a C-tier touch, so attention should follow value. A-tier clients get roughly double the B-tier cadence, around 14 to 16 touches a year, while C-tier stays at 3 or 4 quarterly broadcasts. A fixed monthly rule (D) ignores what each client actually needs.
 
 **Q6. Capturing personal details in the CRM during Fact-Find is for:**
 - A) Decoration
-- B) Enabling specific, personal touchpoints later — you can't remember every client's daughter's recital 6 weeks out without the capture ✓
+- B) Enabling specific, personal touchpoints later, since you can't remember every client's daughter's recital 6 weeks out without the capture ✓
 - C) Legal compliance
 - D) Impressing your mentor
 
-**Why:** The difference between *"hope I remember"* and *"the system reminds me"* is the difference between 3 thoughtful moments per year and 30. Capture the detail + date + relevant context in the CRM during Fact-Find. Set the reminder for the appropriate date. Scale moments across 20+ clients without relying on memory. Systems beat willpower at this scale; willpower runs out by client 5.
+**Why:** Relying on memory gets you a handful of thoughtful moments a year, and a reminder system gets you dozens. Note the detail and the date during the Fact-Find and set the reminder, and you can keep this up across 20 or more clients. Record only what the client chose to share and use it only to look after them, as the PDPA expects.
 
 **Q7. The compound math of moments means:**
 - A) 40 touchpoints per year produce 40 new clients
-- B) Small, specific, personal moments across years produce disproportionate referral and retention outputs — FCs who build the moments habit in Year 1 compound hardest by Year 5–10 ✓
+- B) Small, specific, personal moments across years produce disproportionate referral and retention outputs over the years, which is why the habit is worth building in Year 1 ✓
 - C) Every touchpoint guarantees a referral
 - D) Only HNW clients refer from moments
 
-**Why:** Moments don't guarantee linear outcomes — they compound non-linearly over time. One thoughtful touch to an A-client might produce 0 referrals that quarter and 3 referrals the following year when the client ran into a friend facing a similar situation and recalled *"my advisor is the one who remembered my mother's illness."* Year-1 moments work is an investment in Year 3–10 compounding, which is why new FCs who skip it plateau in Year 2–3.
+**Why:** Moments don't pay back in a straight line. One thoughtful touch might lead to no referrals this quarter and three next year, when the client meets a friend in a similar situation and remembers *"my adviser was the one who checked in when my mum was ill."* The work you put into moments in Year 1 pays off over the years after.
 
 ---
 
