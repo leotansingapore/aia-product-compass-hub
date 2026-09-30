@@ -19,24 +19,29 @@ form_fields:
   - "Anything still blocking you? (optional)|textarea|Only if something's stuck - what's left, or who you need to chase. Leave blank if you're all set.|3"
 ---
 
-> **The gist.** Before you start cold lead-gen, get your infrastructure in place once: a business line, your leads, the prospecting docs, and daily tracking. An hour of setup now saves you stalling on day one - you don't want to be hunting for a lead list or setting up WhatsApp Business mid-session. Work through the five items, then confirm each in the form.
+> **The gist.** Before you start cold lead-gen, set up everything you'll need once: a business line, your leads, the prospecting docs and daily tracking. An hour now means you won't be hunting for a lead list or installing WhatsApp Business halfway through your first calling session. Work through the five items, then tick each one in the form.
 
 This is a one-time setup. Do it before your first cold-calling block.
 
 ## The checklist
 
-**1. Business line + WhatsApp Business.** Get a dedicated business number and set up WhatsApp Business on the same phone. Ideally a second phone so you can dial two lines at once.
+1. Business line and WhatsApp Business. Get a dedicated business number and set up WhatsApp Business on the same phone. A second phone is ideal, so you can dial two lines at once.
 
-**2. Ask Leo for cold leads.** Unlimited for your first 3 months - just ask. Don't ration them; the whole point is volume.
+2. Ask Leo for cold leads. They're unlimited for your first 3 months, so just ask, and don't ration them. You need the volume.
 
-**3. Complete the [SMA checklist](https://nsgukkz32942.sg.larksuite.com/wiki/WZiRwAtHgipbzfklv0ClplaMgzb).** Do this before you run any ads.
+3. Complete the [SMA checklist](https://nsgukkz32942.sg.larksuite.com/wiki/WZiRwAtHgipbzfklv0ClplaMgzb). Do this before you run any ads.
 
-**4. Pin the [prospecting doc](https://nsgukkz32942.sg.larksuite.com/wiki/OTW3wipXSi0y8nkU5l3llk3Vgrb)** to your Lark sidebar so it's one click away while you dial.
+4. Pin the [prospecting doc](https://nsgukkz32942.sg.larksuite.com/wiki/OTW3wipXSi0y8nkU5l3llk3Vgrb) to your Lark sidebar so it's one click away while you dial.
 
-**5. Set up daily tracking.** Bookmark [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard) and log your numbers every day. The number you don't track is the number that quietly drops.
+5. Set up daily tracking. Bookmark [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard) and log your numbers every day. A number you don't track tends to slip without you noticing.
 
 Full walkthrough: [Leo's prospecting daily Loom](https://www.loom.com/share/744a0b57822a464dbf6f98301ef1b6fb).
 
 ## Submission
 
-Work through the items, then tick each one in the form below as you complete it. You can submit as you go and come back to tick the rest - it resubmits. Once they're all ticked, you're ready to start dialling at volume.
+Tick each item in the form below as you finish it. You can submit as you go and come back for the rest, since the form resubmits. Once everything is ticked, you're ready to start dialling at volume.
+
+## Sources
+
+- [WhatsApp Business app - WhatsApp](https://business.whatsapp.com/products/business-app) - official page for the free WhatsApp Business app you set up on your business line
+- [Do Not Call Registry and your business - PDPC](https://www.pdpc.gov.sg/overview-of-pdpa/do-not-call-registry/business-owner/do-not-call-registry-and-your-business) - the PDPA rules on checking the DNC Registry before marketing calls and messages to Singapore numbers

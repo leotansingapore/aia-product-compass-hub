@@ -1,8 +1,8 @@
 ---
 week: 1
 day: 5
-title: "Tonality & Salesmanship — How You Say It"
-big_idea: "Sales is the transfer of emotions. Tonality is how emotion transfers."
+title: "Tonality and salesmanship: how you say it"
+big_idea: "Sales is the transfer of emotions, and tonality is how the emotion gets across."
 kpi_link: "Week 1 KPI — 90-day scorecard signed; intent statement v1 recorded"
 primary_sources:
   - "[[../_source-holos-decks/tonality-salesmanship]]"
@@ -11,166 +11,165 @@ duration_minutes: 20
 tags: [next-60-days, week-1, new-fc, tonality, communication]
 ---
 
-# Day 5 — Tonality & Salesmanship
+# Day 5: Tonality and salesmanship
 
-> **The one idea for today:** Sales is the transfer of emotions. Tonality is how emotion transfers.
+> **The one idea for today:** sales is the transfer of emotions, and tonality is how the emotion gets across.
 
-By the time you close today you'll know the 6 tonalities (Surprise, Empathy, Certainty, Urgency, Doubt, Reason) and when each one fits, you'll have run the Tritonal Closing Pattern (Certainty → Sincerity → Reason) through a real close, and you'll have drilled your intent statement in 3 reads — flat, certainty-heavy, and naturally varied — and picked the strongest.
-
----
-
-## The misconception new advisors carry
-
-Most new FCs spend all their prep time on *what* to say. Scripts, rebuttals, closing lines. Almost none on *how* to say it.
-
-This is backwards. Two advisors can deliver the same words and get opposite outcomes. The difference isn't the script — it's the tone.
-
-Two beliefs hold people back from working on tonality:
-- *"Tonality comes with talent."* It doesn't. It's a trainable skill, like any other sales muscle.
-- *"Changing my tone makes me sound fake."* The opposite. Flat, default delivery is what sounds fake — because it signals you're reading, not relating.
-
-The fix is learning which tone fits which moment, then practising until it stops being a choice and starts being a reflex.
+By the end of today you'll know the 6 tonalities (surprise, empathy, certainty, urgency, doubt, reason) and when each one fits. You'll have run the Tritonal Closing Pattern (certainty, then sincerity, then reason) through a real close. And you'll have read your intent statement three ways (flat, heavy on certainty, and naturally varied) and picked the strongest.
 
 ---
 
-## Why tone carries most of the message
+## The mistake new advisors make
 
-Rough weighting from communication research: what people remember from an interaction comes much more from *how* something was said than from *what* was said. Body language and tonality dominate; the words themselves are a fraction.
+Most new FCs prepare by writing scripts, rebuttals and closes, and hardly any of that time goes on how the words will sound.
 
-**The working split:**
-- **~10%** of impact = the words you choose.
-- **~45%** = tonality (pitch, pace, volume, inflection).
-- **~45%** = body language (face, posture, eye contact).
+That's the wrong way round. Two advisors can say the same words and get opposite results, and the difference is usually the tone.
 
-On the **phone or an audio call**, body language disappears — and its 45% collapses into tonality. On the phone, **tonality carries roughly 90% of the message.** The prospect is building a mental image of who you are entirely from how you sound.
+Two beliefs stop people working on it:
+- *"Tonality comes with talent."* It's a trainable skill like any other part of selling.
+- *"Changing my tone makes me sound fake."* Flat, default delivery is what sounds fake, because it tells the listener you're reading from a script.
 
-This is why flat, scripted phone delivery fails instantly — and why tonally-rich delivery can close a prospect who has never seen your face.
+The fix is to learn which tone fits which moment, then practise until you stop having to choose.
 
-You can't fix that by writing better scripts. You fix it by learning to use your voice.
+---
+
+## How much the tone carries
+
+You'll often hear that only 7% of a message is the words, 38% is tone of voice and 55% is body language. That comes from Albert Mehrabian's experiments at UCLA in the 1960s, and it gets misquoted constantly. Mehrabian tested single words spoken about feelings (like or dislike), and he says himself that the ratios don't apply unless someone is talking about their feelings or attitudes.
+
+The part that does carry over is narrower and more useful: when your words and your tone don't match, people believe the tone. If you say *"I really think this plan suits you"* in a flat, rushed voice, the prospect hears doubt.
+
+On the phone the prospect can't see your face, so your voice is doing all the work that your face and posture would do in person. They build their picture of you from how you sound. That's why flat, scripted phone delivery loses people fast, and why an advisor with good control of their voice can book a prospect who has never met them.
+
+Better scripts won't fix a flat voice. Practising your tone will.
 
 ---
 
 ## The 6 tonalities
 
-Six recognisable tones. Each has a job. You'll recognise all of them once named — you use some unconsciously already.
+There are six tones you'll recognise once they're named. You already use some of them without thinking.
 
 | Tonality | When to use | Example |
 |---|---|---|
-| **1 · Surprise** | Hot-button discovery, rapport | *Low:* "Oh! Software engineer?" (tell-me-more) · *High:* "Huh, really?!" (bro for real?) |
-| **2 · Empathy / Sincerity** | Cushioning a real concern | *"I understand. You're probably feeling a bit hesitant — this is the first big financial commitment you've made."* |
-| **3 · Certainty** | Framing, intent statements, closing | *"Insurance takes precedence over investments, and it's non-negotiable."* |
-| **4 · Urgency** | Start of a phone call | *"Hello hello? Eh, Grace — are you at home now??"* (breaks the default pattern) |
-| **5 · Doubt / Ridicule** | Create uncertainty around an objection | *"Honestly, if I'd been your advisor for the last five years processing every claim properly, you probably wouldn't be saying 'let me think about it' right now — right?"* |
-| **6 · Reason** | The tone a prospect can't say no to | *"End of the day, whether you engage my services or not is entirely up to you. Fair?"* |
+| 1. Surprise | Finding hot buttons, building rapport | *Low:* "Oh! Software engineer?" (tell me more) *High:* "Huh, really?!" (bro, for real?) |
+| 2. Empathy / sincerity | Cushioning a real concern | *"I understand. You're probably feeling a bit hesitant, since this is the first big financial commitment you've made."* |
+| 3. Certainty | Framing, intent statements and the close | *"Insurance takes precedence over investments, and it's non-negotiable."* |
+| 4. Urgency | Start of a phone call | *"Hello hello? Eh, Grace, are you at home now??"* (breaks the default pattern) |
+| 5. Doubt / ridicule | Creating doubt around an objection | *"Honestly, if I'd been your advisor for the last five years and handled every claim properly, you probably wouldn't be saying 'let me think about it' right now, right?"* |
+| 6. Reason | The tone a prospect finds hard to say no to | *"Whether you engage my services or not is entirely up to you. Fair?"* |
 
 ---
 
 ## Two tonalities to get right first
 
-New FCs in Week 1 don't need all six. They need two cold:
+In Week 1 you don't need all six. You need two you can do in your sleep.
 
-### Tonality of Certainty
+### Tonality of certainty
 
-Used for your intent statement, for framing the meeting agenda, for the close. Conviction without volume — you don't speak louder, you speak steadier. Every sentence ends where it started, no upward lilt at the end.
+Use it for your intent statement, for setting the meeting agenda and for the close. It's conviction without volume: you speak steadier, not louder, and each sentence finishes level, with no lift at the end.
 
 Wrong: *"So, um, what we can do is maybe go through your cashflow and, you know, talk about insurance? If that works?"*
-Right: *"Here's how we'll move forward. We'll go through your cashflow, your emergency fund, your insurance, and your longer-term goals. Insurance comes before investments — that one is non-negotiable."*
+Right: *"Here's how we'll move forward. We'll go through your cashflow, your emergency fund, your insurance and your longer-term goals. Insurance comes before investments, and that one is non-negotiable."*
 
-**Caveat:** over-use flattens everything. Certainty is for the load-bearing sentences, not every sentence. Treat it like cooking beef — too long on the fire and the whole conversation dries out.
+A warning: too much certainty flattens everything. Save it for the sentences that carry the weight. Think of it like cooking beef, where too long on the fire dries the whole thing out.
 
-### Tonality of Reason
+### Tonality of reason
 
-The one that's hard to say no to. Ends on *"Fair?"* or uses *"probably"* as a softener.
+This is the one people find hard to say no to. It ends on *"Fair?"*, or softens with *"probably"*.
 
 *"Being friends doesn't mean we have to do business together. Whether you engage my services or not is entirely up to you. **Fair?**"*
 
-The prospect can't reasonably disagree. You've given them the out, and now they're free to stay in the conversation without feeling cornered.
+It's hard to disagree with. You've given the prospect a way out, so they can stay in the conversation without feeling cornered.
 
 ---
 
-## Three advanced tonal techniques — layer on top of the six
+## Three advanced techniques on top of the six
 
-Once the six core tonalities are landing in drills, add these three micro-tools. Each one is narrow, specific, and does something the six cannot.
+Once the six core tones are working in your drills, add these three, each of which does one narrow job the six can't. All three come from the Straight Line sales system that Jordan Belfort describes in his 2017 book *Way of the Wolf*.
 
-### 1 · Phrasing declaratives as questions (the opener)
+### 1. Phrasing statements as questions (the opener)
 
-Most openers are three flat declarations stacked together — and the prospect hears *"another sales call"* before the third sentence lands.
+Most openers stack three flat statements, and by the third one the prospect has decided it's another sales call.
 
-Wrong (declarative): *"Hi, I'm [name], calling from [firm]. How are you today?"*
-Right (phrased as questions): *"Hey — it's [name]? Calling from [firm]? How are you today?"*
+Wrong (statements): *"Hi, I'm [name], calling from [firm]. How are you today?"*
+Right (as questions): *"Hey, it's [name]? Calling from [firm]? How are you today?"*
 
-Each sentence ends with a slight upward lilt. The prospect's brain hears *"do I know this person? have I heard of this firm?"* — and starts searching instead of rejecting. By the time they're done searching, you're already into your second line.
+Each sentence ends with a slight lift. The prospect starts wondering whether they know you or have heard of the firm, and while they're searching their memory they aren't rejecting you. By the time they stop, you're into your second line.
 
-**When to use:** cold-call openers, cold-DM video intros, first 4 seconds of any new prospect conversation. **Never** use this tone once you're past the open — in the middle of a close, upward lilts signal doubt and kill certainty.
+Use it for cold-call openers, cold-DM video intros and the first few seconds of any new conversation. Don't use it after the opening. In the middle of a close, a lift at the end of your sentences sounds like doubt.
 
-### 2 · Money-Aside tonality (removing price friction mid-pitch)
+### 2. The money-aside tone (taking price off the table mid-pitch)
 
-During qualification and pitching, the prospect's mind silently locks onto price — and they stop engaging with whether the *idea* fits.
+During qualification and pitching, the prospect's mind quietly locks onto price, and they stop thinking about whether the idea fits them.
 
-The fix: drop a money-aside frame.
+To get them back, set money aside for a moment:
 
-> *"Now — money aside for a moment — does the idea itself make sense to you? Do you like what I'm describing?"*
+> *"Now, money aside for a moment, does the idea itself make sense to you? Do you like what I'm describing?"*
 
-The tonality is light, almost conspiratorial: *we both know money matters, but let's park that for 30 seconds so you can tell me honestly what you think of the concept.* It gives the prospect permission to engage emotionally without committing financially.
+Keep the tone light, almost like you're letting them in on something. You both know money matters, but you're parking it for 30 seconds so they can tell you honestly what they think of the idea. They get to react to it without committing to spend anything.
 
-**When to use:** mid-pitch, when you sense the prospect has mentally jumped to "how much?" before you've finished framing the value.
+Use it mid-pitch, when you sense the prospect has jumped to "how much?" before you've finished explaining the value.
 
-### 3 · Mystery and intrigue (the pattern-interrupt hook)
+### 3. Mystery and intrigue (the hook that pulls attention back)
 
-A half-step below urgency but longer-lasting. Lowered voice, slower pace, implied *there's-something-you'll-want-to-hear*.
+This sits a notch below urgency and lasts longer: you drop your voice and slow down as if there's something they'll want to hear.
 
-> *"Now, John — the reason for the call today…"*
-> *"Before we go further — there's something I want you to look at first…"*
+> *"Now, John, the reason for the call today..."*
+> *"Before we go further, there's something I want you to look at first..."*
 
-Mystery buys you 15–30 seconds of undivided attention in the middle of a meeting when attention is drifting. Don't overuse — two or three times per meeting, maximum.
-
-**When to use:** when a prospect's attention is wandering, or to open a sensitive topic (a claim story, a market downturn case study, a hard question about their dependents) without the topic landing as cold.
+When a meeting starts to drift it buys you 15-30 seconds of full attention, so save it for moments when the prospect's mind wanders or when you need to raise something sensitive (a claim story, a market downturn, a hard question about their dependents) without it landing cold. Two or three times a meeting is the limit.
 
 ---
 
-## Active listening — the tonal skill that isn't tonality
+## Active listening: the tone skill people forget
 
-You're asking great intelligence-gathering questions. The prospect is answering. What are you doing while they answer?
+You're asking good fact-finding questions and the prospect is answering. What are you doing while they talk?
 
-**Wrong:** *"Uh-huh. Mhm. Uh-huh."* (flat, same pitch, same pace — the prospect hears "box-ticking")
+Wrong: *"Uh-huh. Mhm. Uh-huh."* Same pitch, same pace, and the prospect hears you ticking boxes.
 
-**Right:**
-- *"Mhm — yeah, I can imagine."*
-- *"Oh wow — I'm sorry to hear that. When did that happen?"*
+Right:
+- *"Mhm, yeah, I can imagine."*
+- *"Oh wow, I'm sorry to hear that. When did that happen?"*
 - *"Really? That's actually pretty impressive."*
-- *"Yeah — a lot of people in your position feel the same way."*
+- *"Yeah, a lot of people in your position feel the same way."*
 
-Match the tonality to what they just said. Grief → slower, lower, sincere. Achievement → warmer, slightly surprised. Worry → steady, empathetic.
+Match your tone to what they just said. Grief gets slower, lower and sincere. An achievement gets warmer and a little surprised. Worry gets steady and kind.
 
-You are not agreeing or evaluating. You are **signalling that you heard them and it landed**. Do this correctly and by the time they've answered your third question, they are in deep rapport — and they will tell you things they wouldn't tell a family member.
+You aren't agreeing or judging. You're showing that you heard them and that it registered. Get this right and by the third question they'll be relaxed with you, often telling you things they haven't told their family.
 
-**The drill:** record a 10-minute roleplay as the listener only. Count how many of your "uh-huh"s were flat vs. tonally matched. Under 70% matched is a failing grade.
-
----
-
-## The Tritonal Closing Pattern
-
-Three tonalities strung together for a signature close:
-
-![The Tritonal Closing Pattern: Certainty (the plan); Sincerity (empathy); Reason (the 'fair?')](/next-60-days/images/n60-day-05-m0.webp)
-
-**Example delivery:**
-
-> *"As long as you follow the plan we've put together here" — **Certainty** — "and I genuinely believe this is what I'd do for my own family in your position" — **Sincerity** — "getting you to where you want to be is just a matter of time. Any further questions? **Fair?**"* — **Reason**
-
-Three tones in one close. Felt-certainty, shared-humanity, low-pressure out. That combination is what taste like professional closing.
+The drill: record a 10-minute roleplay where you only listen. Count how many of your "uh-huh"s were flat and how many matched what was said. If fewer than 70% matched, do it again.
 
 ---
 
-## The drill — don't practise the words, practise the intonation
+## The tritonal closing pattern
 
-The mistake most new FCs make is re-memorising the script. The fix is re-reading the same script in different tonalities until the intonation becomes automatic.
+Three tones in a row make a strong close:
 
-Pick the intent statement or the close. Read it ten times. The first five times, don't even focus on the words — focus on where your voice rises and falls. The next five, match the tonality to the moment.
+![The Tritonal Closing Pattern: certainty (the plan); sincerity (empathy); reason (the 'fair?')](/next-60-days/images/n60-day-05-m0.webp)
 
-It will feel awkward. It's supposed to. Until you've done 50 reps, tonality is a conscious choice. After 50, it's a reflex.
+Example:
+
+> *"As long as you follow the plan we've put together here"* (certainty) *"and I genuinely believe this is what I'd do for my own family in your position"* (sincerity) *"getting you to where you want to be is just a matter of time. Any further questions? **Fair?**"* (reason)
+
+The certainty says you believe in the plan, the sincerity says you'd do it yourself, and the reason gives them a low-pressure way out. Together they sound like an experienced advisor closing.
 
 ---
+
+## The drill: practise the intonation, not the words
+
+Most new FCs respond to a weak close by memorising the script again, when what helps is reading the same script in different tones until the intonation comes on its own.
+
+Take your intent statement or your close and read it ten times. On the first five, ignore the words and listen to where your voice rises and falls, then on the next five match the tone to each moment.
+
+Expect it to feel awkward. For roughly the first 50 reps you'll be choosing each tone on purpose, and somewhere after that it starts happening without you thinking about it.
+
+---
+
+## Sources
+
+- [Silent Messages: a wealth of information about nonverbal communication - Albert Mehrabian](https://www.kaaj.com/psych/smorder.html) - Mehrabian's own page on the 7-38-55 finding, stating it only applies to messages about feelings and attitudes
+- [Albert Mehrabian - Wikipedia](https://en.wikipedia.org/wiki/Albert_Mehrabian) - summary of the original experiments and their limits (single words, lab setting, incongruent messages)
+- [Way of the Wolf - Simon and Schuster](https://www.simonandschuster.com/books/Way-of-the-Wolf/Jordan-Belfort/9781501164286) - publisher page for Jordan Belfort's book, the source of the statements-as-questions, money-aside and mystery tones
 
 ## Quiz
 
@@ -180,7 +179,7 @@ It will feel awkward. It's supposed to. Until you've done 50 reps, tonality is a
 - C) Emotional prospects buy more
 - D) Empathy closes faster than logic
 
-**Why:** The research point the deck leans on is that body language and tonality dominate what a listener actually remembers. "Transfer of emotions" is the compact version of that — the emotional weight your tone carries is the primary vehicle, not the word choice. A, C, D are not wrong in isolation but miss the central claim.
+**Why:** When your words and your tone point different ways, listeners go with the tone, and that's the part of Mehrabian's research that holds up. "Transfer of emotions" is the short version: your tone carries the feeling, and the words ride on it. A, C and D aren't wrong on their own but miss the main point.
 
 **Q2. Your prospect raises a real concern: "I'm not sure I can commit this much monthly." Which tonality fits the cushion?**
 - A) Tonality of Certainty
@@ -188,7 +187,7 @@ It will feel awkward. It's supposed to. Until you've done 50 reps, tonality is a
 - C) Tonality of Doubt / Ridicule
 - D) Tonality of Urgency
 
-**Why:** A genuine concern needs to be met with genuine empathy before anything else. Certainty at this moment feels cold; Doubt mocks the prospect's legitimate hesitation; Urgency is a phone-open tool, wrong stage. Empathy validates first — *"I completely understand, this is a real commitment"* — then you earn the right to reframe.
+**Why:** A genuine concern needs genuine empathy first. Certainty here feels cold, doubt mocks a fair hesitation, and urgency belongs at the start of a call. Acknowledge it first (*"I completely understand, this is a real commitment"*) and then you've earned the right to reframe.
 
 **Q3. The Tritonal Closing Pattern strings three tonalities in what order?**
 - A) Empathy → Certainty → Reason
@@ -196,39 +195,39 @@ It will feel awkward. It's supposed to. Until you've done 50 reps, tonality is a
 - C) Reason → Certainty → Empathy
 - D) Urgency → Certainty → Reason
 
-**Why:** Certainty establishes the plan ("as long as you follow this…"), Sincerity shares the humanity ("this is what I'd do for my own family"), Reason gives the prospect their out ("fair?"). Reordering breaks the emotional arc — you can't lead with the out, and you can't close on certainty because that lands as pressure.
+**Why:** Certainty sets out the plan ("as long as you follow this..."), sincerity shows you mean it ("this is what I'd do for my own family"), and reason gives the prospect their way out ("fair?"). Change the order and it stops working: you can't open with the way out, and ending on certainty feels like pressure.
 
 **Q4. The Tonality of Reason (the "fair?" tonality) works because:**
 - A) It's louder than other tones
-- B) It's structured so the prospect can't reasonably disagree — and feels free to stay in the conversation without being cornered ✓
+- B) It's structured so the prospect can't reasonably disagree, and feels free to stay in the conversation without being cornered ✓
 - C) It triggers urgency
 - D) It uses formal language
 
-**Why:** *"Whether you engage my services or not is entirely up to you — fair?"* is hard to say no to because saying no means disagreeing with *"you get to decide"* — a weird thing to disagree with. The out is real, the frame is kind. The prospect stays in dialogue instead of tightening up.
+**Why:** *"Whether you engage my services or not is entirely up to you. Fair?"* is hard to say no to, because saying no means disagreeing with "you get to decide". The way out is real and the framing is kind, so the prospect keeps talking instead of tensing up.
 
 **Q5. Which tonality specifically fits the start of a phone call, to break the default polite-rejection pattern?**
 - A) Certainty
 - B) Empathy
-- C) Urgency (*"Hello hello? Eh, Grace — are you at home now??"*) ✓
+- C) Urgency (*"Hello hello? Eh, Grace, are you at home now??"*) ✓
 - D) Reason
 
-**Why:** Urgency at the phone-open pattern-interrupts. Most cold prospects hear "hello this is [name] calling from..." and are already preparing their exit. A slightly elevated urgency that sounds like a real friend with something to say breaks the script and earns a 10-second window. Later in the call, urgency burns trust — it's a phone-open tool only.
+**Why:** Most cold prospects hear "hello, this is [name] calling from..." and start planning their exit. A little urgency, the way a friend sounds when they have news, breaks that pattern and buys you about 10 seconds, but use it later in the call and it costs you trust.
 
 **Q6. The warning on Tonality of Certainty is:**
 - A) Never use it
 - B) Use it only when you're angry
-- C) Over-use flattens everything — treat it like cooking beef; too long on the fire and the whole conversation dries out ✓
+- C) Overuse flattens everything. Like beef left too long on the fire, the whole conversation dries out ✓
 - D) It only works on male prospects
 
-**Why:** Certainty is for load-bearing sentences — the intent statement, the agenda frame, the close. If every sentence lands with the same declarative weight, the prospect starts hearing a lecture. Vary tonality around certainty so the certain sentences stand out. Monotone certainty becomes indistinguishable from monotone doubt after 30 seconds.
+**Why:** Certainty is for the sentences that carry the weight: the intent statement, the agenda and the close. If every sentence has the same heavy tone, the prospect feels lectured. Vary your tone around it so the certain sentences stand out.
 
 **Q7. "Tonality comes with talent." This module treats this claim as:**
 - A) True for natural-born salespeople
 - B) Mostly true with some exceptions
-- C) A trainable skill like any other sales muscle — 50 reps turn conscious tonal choice into reflex ✓
-- D) Irrelevant — scripts matter more than tone
+- C) Wrong: tonality is a trainable skill, and about 50 reps turn a deliberate choice of tone into a habit ✓
+- D) Irrelevant, because scripts matter more than tone
 
-**Why:** If tonality were talent, the worst-delivered pitch on Monday would still be the worst-delivered pitch on Friday. It isn't — people who drill the reps get measurably better in weeks. Treating tonality as talent is a permission slip for not practicing; treating it as reps moves it into the same category as any other skill you've already mastered before.
+**Why:** If tone were pure talent, the worst pitch on Monday would still be the worst on Friday. People who drill it improve within weeks. Calling it talent is an excuse not to practise.
 
 ---
 

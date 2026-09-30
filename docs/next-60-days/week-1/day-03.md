@@ -1,8 +1,8 @@
 ---
 week: 1
 day: 3
-title: "Your 90-Day Scorecard — KPIs + Revenue Math"
-big_idea: "The scorecard is not a planner. It's a promise. Three numbers, one page, signed."
+title: "Your 90-day scorecard: KPIs and revenue math"
+big_idea: "The scorecard is a promise you sign. Three numbers, one page."
 kpi_link: "Week 1 KPI — 90-day scorecard signed; intent statement v1 recorded"
 see_also:
   - "[[../../first-60-days/week-5/day-27]]"
@@ -15,19 +15,19 @@ duration_minutes: 20
 tags: [next-60-days, week-1, new-fc, scorecard, kpi, math]
 ---
 
-# Day 3 — Your 90-Day Scorecard
+# Day 3: Your 90-day scorecard
 
-> **The one idea for today:** The scorecard is not a planner. It's a promise. Three numbers, one page, signed.
+> **The one idea for today:** the scorecard is a promise you sign. Three numbers, one page.
 
-By the time you close today you'll have built a signed weekly CAR scorecard (Calls / Appointments / Referrals) with a Friday review cadence, tagged every lead and client with the ABC and 1/2/3 segmentation, and learned how to diagnose which CAR link to fix first when weekly numbers drop — one lever, not three.
+By the end of today you'll have a signed weekly CAR scorecard (calls, appointments, referrals) with a Friday review slot in your calendar. You'll know how to tag leads and clients with the ABC and 1/2/3 systems, and when the weekly numbers drop you'll know how to pick the one CAR link to fix first.
 
 ---
 
-## Yesterday vs. today
+## Yesterday and today
 
-Yesterday you saw the math: FYC = Appointments × Close rate × Case size. Three levers. One of them — appointments — moves today.
+Yesterday you saw the math: FYC = appointments x close rate x case size. Of the three levers, appointments is the one you can move now.
 
-Today you turn the math into an artifact. A one-page scorecard that tracks the levers week by week, forces you to look at the number every Friday, and makes next week's drop-off impossible to hide.
+Today the math goes onto one page. The scorecard tracks the levers week by week and puts the number in front of you every Friday, so a drop can't hide.
 
 ---
 
@@ -37,105 +37,103 @@ Three weekly numbers and one monthly number:
 
 | Metric | What it is | Cadence |
 |---|---|---|
-| **C — Calls** | Actual dials or messages sent to warm-market prospects | Daily / weekly |
-| **A — Appointments** | Qualified first-meetings booked with a time, place, and Fact-Find agenda | Weekly |
-| **R — Referrals** | Names received from existing conversations this week | Weekly |
-| **FYC** | First-year commission closed this month | Monthly |
+| C: calls | Dials made or messages sent to warm-market prospects | Daily and weekly |
+| A: appointments | Qualified first meetings booked with a time, place and Fact-Find agenda | Weekly |
+| R: referrals | Names you received from conversations this week | Weekly |
+| FYC | First-year commission closed this month | Monthly |
 
-These four are called the **CAR + FYC scorecard.** CAR tells you whether the input is flowing. FYC tells you whether the input is paying.
+Together these are the **CAR + FYC scorecard**. CAR shows whether work is going in. FYC shows whether it's paying.
 
 ---
 
 ## The CAR diagnostic
 
-Each of C / A / R is a bottleneck for the others.
+Each of C, A and R limits the others.
 
-![The CAR diagnostic: Calls; Appointments; Referrals](/next-60-days/images/n60-day-03-m0.webp)
+![The CAR diagnostic: calls, appointments, referrals](/next-60-days/images/n60-day-03-m0.webp)
 
-| Broken link | Downstream effect |
+| Broken link | What it causes |
 |---|---|
-| **Not enough calls** | → fewer appointments → fewer referrals → fewer leads to call |
-| **Calls happening, few appointments** | → your script or targeting is weak |
-| **Appointments happening, no referrals** | → you're not asking at the right moment |
+| Not enough calls | Fewer appointments, so fewer referrals, so fewer people to call |
+| Calls happening, few appointments | Your script or your targeting is weak |
+| Appointments happening, no referrals | You aren't asking, or you're asking at the wrong moment |
 
-**Diagnostic rule for every Friday review:** find the weakest of C, A, or R this week. Fix that one. Don't try to fix all three.
+The rule for every Friday review: find the weakest of C, A and R this week and fix that one. Leave the other two alone.
+
+Do the review in one 30-minute sitting. Spread over the week in five-minute slices, it tends to get postponed until it disappears.
 
 ---
 
-## Two segmentations you'll track over time
+## Two ways to tag people over time
 
-You have zero clients today. That will change. The scorecard is built with the next 12 months in mind, not just this Friday.
+You have no clients today, but you will. The scorecard is built for the next 12 months, so set up the tags now.
 
-### ABC — your future client book
+### ABC: your future client book
 
-Once you start closing cases, each client falls into one of three tiers:
+Once you start closing, each client falls into one of three tiers:
 
 | Tier | Definition | What they mean |
 |---|---|---|
-| **A** | Strong relationship AND strong buying power. Treats you as a financial confidant. Refers. | **The future.** You want more of these. |
-| **B** | Strong buying power OR strong relationship — not both. | **The present.** Your bread and butter. |
-| **C** | Transacted once. No relationship momentum. No referrals. | **The past.** Maintain with broadcast, low-effort. |
+| A | Strong relationship and strong buying power. Treats you as a financial confidant and refers. | The future. You want more of these. |
+| B | Strong buying power or a strong relationship, but not both. | The present, and your bread and butter. |
+| C | Bought once. No relationship building and no referrals. | The past. Keep in touch through broadcasts, with little effort. |
 
-> A represents the future. B represents the present. C represents the past.
+Your time is limited. In Year 2 you'll decide which A clients to invest in and which C clients to let drift. In Year 1 you're collecting the data for that decision.
 
-This distinction matters because your time is finite. Year 2 you'll decide which A-clients to double down on and which C-clients to let drift. Year 1 you're just collecting data.
+### 1/2/3: prospects you haven't closed yet
 
-### 1 / 2 / 3 — the prospects you haven't closed yet
-
-For every new prospect in your pipeline, tag them on the scorecard:
+Tag every new prospect in your pipeline:
 
 | Tier | Description |
 |---|---|
-| **1 — Hot** | Fresh opt-ins, nurtured, warm-market. High conviction. |
-| **2 — Warm** | Active referrals (a client introduced them). Relationship via the referrer. |
-| **3 — Cold** | They know you but haven't kept in touch. Awkward both directions. |
+| 1: hot | Fresh opt-ins, nurtured leads and warm market. High conviction. |
+| 2: warm | Active referrals a client introduced. The relationship runs through the referrer. |
+| 3: cold | They know you but you've lost touch, and it feels awkward both ways. |
 
-Your first 60 days will mostly be tier 1 and tier 2. Tier 3 opens up when you've built something worth reconnecting for.
+Your first 60 days will be mostly tier 1 and tier 2. Tier 3 becomes worth your time once you've built something worth reconnecting over.
 
 ---
 
-## Revenue-per-appointment — the number that forces triage
+## Revenue per appointment: the number that sets priorities
 
-Here's the math that reshapes your calendar:
+This table changes how you fill your calendar:
 
 | Segment | Meetup % | Close % | Avg case | Revenue / review appt |
 |---|---:|---:|---:|---:|
-| **A-client** | 40% | 70% | $1,500 | **~$420** |
-| **B-client** | 50% | 60% | $1,000 | ~$300 |
-| **C-client** | 10% | 50% | $500 | ~$25 |
+| A-client | 40% | 70% | $1,500 | **~$420** |
+| B-client | 50% | 60% | $1,000 | ~$300 |
+| C-client | 10% | 50% | $500 | ~$25 |
 
-These are Year-2 numbers for an FC who's grown their book. But the point lands now: **an A-client review is worth 17× a C-client touchpoint.**
-
-If you miss a week of A-client reviews this year, you didn't just lose a check-in — you lost ~$420 per missed slot. Multiply that by your A-tier count and the math gets honest fast.
+These are illustrative Year-2 figures for an FC who already has a book of clients, but the ratio is worth learning now: at $420 against $25, an A-client review is worth about 17 times a C-client touchpoint. So when you let a week of A-client reviews slide, every empty slot has cost you roughly $420 in expected revenue, and that adds up quickly across all your A clients.
 
 ---
 
 ## The scorecard is signed
 
-The Week-1 KPI says *signed,* not *filled.*
+The Week 1 KPI says *signed*, and filling it in isn't the same thing.
 
-Filling is private. Signing is a commitment. The signature goes at the bottom of the page, under a line that reads:
+Filling it in is private. A signature is a commitment someone else can hold you to. Sign at the bottom, under this line:
 
 > *"I commit to reviewing this scorecard every Friday and reporting my CAR numbers to my mentor. If the number falls, I will not hide it. I will name the weakest link and fix it first."*
 
-Sign it. Show it to your mentor. Put a photo of the signed page on your phone wallpaper. The scorecard is only a scorecard if there's a witness.
+Then show it to your mentor and put a photo of the signed page on your phone wallpaper. A scorecard nobody else has seen is easy to quietly ignore.
 
 ---
 
-## Team operations — spin up the tools and the business plan
+## Team operations: set up the tools and the business plan
 
-The scorecard is a number-tracker. It sits on top of a toolchain — Lark for docs + tasks, Lark Base for the CRM. Set both up this week so the Friday review has a home.
+The scorecard sits on top of your tools: Lark for docs and tasks, Lark Base for your CRM. Set both up this week so the Friday review has somewhere to live.
 
-**Lark provisioning** (~30 min):
-- [Join 100% MDRT Team on Lark](https://nsgukkz32942.sg.larksuite.com/invite/2475o5zzfclg1?join=1&team_name=100%25+MDRT+Team) — invite code `WPMMPELG`. Install Lark **Desktop + Mobile**.
-- Open and pin [the access-checklist doc](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe) to your left sidebar. Secure access to every resource it lists (we walk through each in coaching calls).
-- Create a Lark task list with sections (ad-hoc + recurring). 15-min "brain scan" — dump everything in. Habit: **capture constantly, process in a focused session each day.** Optional primers: [GTD intro](https://www.youtube.com/watch?v=7M6bIeVbCqA), [Lark task 2-min guide](https://youtu.be/HtBTAnWH3vk).
+Lark setup (about 30 minutes):
+- [Join 100% MDRT Team on Lark](https://nsgukkz32942.sg.larksuite.com/invite/2475o5zzfclg1?join=1&team_name=100%25+MDRT+Team) with invite code `WPMMPELG`. Install Lark on desktop and mobile.
+- Open [the access-checklist doc](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe) and pin it to your left sidebar. Get access to every resource it lists (we walk through each one in coaching calls).
+- Create a Lark task list with sections for ad-hoc and recurring tasks, then spend 15 minutes dumping everything on your mind into it. The habit to build: capture things as they come up, then process them in one focused session a day. Optional primers: [GTD intro](https://www.youtube.com/watch?v=7M6bIeVbCqA), [Lark task 2-min guide](https://youtu.be/HtBTAnWH3vk).
 
-**CRM (Lark Base)** — ask Leo to spin up your CRM ([access here once created](https://nsgukkz32942.sg.larksuite.com/base/AKOwbIgCJajwpdsZxtmluiF7gZd?table=tblK1Q35uvwAe4pU&view=vew7AogXqL)). While you wait, watch [Lark Base intro (2 min)](https://youtu.be/KH2h4kxc_4c) and [the CRM Loom tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/KwYfw7WRxiH6pskbm2tlHCOXgie). Habit: **every lead sorted by stage**.
+CRM (Lark Base): ask Leo to set up your CRM ([access here once it's created](https://nsgukkz32942.sg.larksuite.com/base/AKOwbIgCJajwpdsZxtmluiF7gZd?table=tblK1Q35uvwAe4pU&view=vew7AogXqL)). While you wait, watch the [Lark Base intro (2 min)](https://youtu.be/KH2h4kxc_4c) and [the CRM Loom tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/KwYfw7WRxiH6pskbm2tlHCOXgie). The habit: every lead sorted by stage.
 
-**Business plan doc** (this week — not today):
-- [Instructions in Lark](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe) · [Sample Canva deck](https://www.canva.com/design/DAG1v21ulvQ/) (duplicate and edit).
-- Upload to [the examples folder](https://drive.google.com/drive/folders/CyXsfQiuPlRA1udutA0lpbPxggf), send to your onboarding GC for feedback.
+Business plan doc (this week, but not today):
+- [Instructions in Lark](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe) and the [sample Canva deck](https://www.canva.com/design/DAG1v21ulvQ/) (duplicate it and edit).
+- Upload yours to [the examples folder](https://drive.google.com/drive/folders/CyXsfQiuPlRA1udutA0lpbPxggf) and send it to your onboarding GC for feedback.
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §3a–3b.
 
@@ -143,19 +141,24 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 
 ## The 3 P's that kill prospecting
 
-Once the scorecard is signed, the math is simple. But three mental patterns stop the math from happening. Watch for them in the first two weeks — they're diagnostic.
+Jeb Blount names three habits in *Fanatical Prospecting* that stop salespeople from picking up the phone. Watch for them in your first two weeks, because they explain most missed numbers.
 
-| P | What it looks like | Why it's deadly | Disruption |
-|---|---|---|---|
-| **Procrastination** | *"I'll start calling after I set up the CRM / finish this article / have my morning coffee."* | Small slips in self-discipline compound into dry pipelines | Commit to *one* call before anything else |
-| **Perfectionism** | *"I'll call when I've rehearsed the opener 20 more times."* | Correlated with fear of failure — imperfect action beats perfect inaction | Dial the imperfect version. Refine from feedback, not rehearsal |
-| **Paralysis from analysis** | *"What if they ask X? What if they object with Y? I should study objections more first."* | Endless "what if" loops are disguised avoidance | Disrupt with a single focus — **just make one call** |
+| P | What it sounds like | How to break it |
+|---|---|---|
+| Procrastination | *"I'll start calling after I set up the CRM, finish this article, have my coffee."* Small slips add up to an empty pipeline. | Make one call before you do anything else. |
+| Perfectionism | *"I'll call once I've rehearsed the opener 20 more times."* Usually fear of failure underneath. | Dial with the imperfect version and improve it from real feedback. |
+| Paralysis from analysis | *"What if they ask X? What if they object with Y? I should study objections first."* Endless what-ifs are avoidance. | Pick one thing to focus on: make one call. |
 
-**Your Friday review catches these.** If CAR numbers dropped this week, ask: *which of the 3 P's showed up?* Not *"was I unlucky"* or *"was the market bad"* — those are rarely the cause in Week 1–8.
+Your Friday review is where these show up. If your CAR numbers dropped, ask which of the 3 P's got in the way. In Weeks 1-8, bad luck and a bad market are rarely the real cause.
 
-The diagnostic is almost always one of the three. Name which one. Then next week, your mentor asks you about it by name.
+Name the P. Next week your mentor will ask you about it by name.
 
 ---
+
+## Sources
+
+- [Fanatical Prospecting - Jeb Blount](https://jebblount.com/product/fanatical-prospecting/) - the author's page for the book the 3 P's come from
+- [Commitment devices - Annual Review of Economics (Bryan, Karlan and Nelson, 2010)](https://www.annualreviews.org/doi/10.1146/annurev.economics.102308.124324) - evidence on soft commitments such as a signed pledge shown to another person
 
 ## Quiz
 
@@ -165,31 +168,31 @@ The diagnostic is almost always one of the three. Name which one. Then next week
 - C) Close, Analyze, Refer
 - D) Contact, Arrange, Reconnect
 
-**Why:** Calls feed Appointments. Appointments feed Referrals. Referrals feed back to Calls. It's a self-regenerating loop once all three are running. Revenue lives downstream as FYC; it's what the loop produces, not what the loop tracks.
+**Why:** Calls lead to appointments, appointments lead to referrals, and referrals give you more people to call. Once all three are running the loop feeds itself. Revenue comes out the other end as FYC; it's what the loop produces, and CAR tracks the inputs.
 
 **Q2. An A-tier client review is worth ~$420 in expected revenue. A C-tier touchpoint is worth ~$25. What's the practical consequence for how you spend your time?**
-- A) Spend equal time across tiers — relationships matter
+- A) Spend equal time across tiers, because relationships matter
 - B) Prioritize A-tier reviews; maintain C-tier with broadcast, low-effort touches ✓
 - C) Drop C-tier clients entirely
 - D) Only work with A-tier from the start
 
-**Why:** A-tier are ~17× more valuable per touchpoint than C-tier. Your time is finite. Equal allocation would bury you in low-value work. But C-tier still deserves maintenance — a quarterly broadcast, a newsletter, a birthday wish — because some C-tier re-activate into A-tier over years. Dropping them entirely or only working with A-tier (option D) forgoes that compounding.
+**Why:** An A-tier review is worth about 17 times a C-tier touchpoint, and your time is limited, so equal time would bury you in low-value work. C-tier clients still get a quarterly broadcast, a newsletter or a birthday message, because some of them turn into A-tier clients over the years. Dropping them, or working only with A-tier, gives that up.
 
 **Q3. Your Friday review shows: Calls on target, Appointments on target, Referrals at zero. Which lever do you fix first?**
-- A) Calls — make more of them
-- B) Appointments — book more
-- C) Referrals — the zero is the diagnostic signal ✓
+- A) Calls, by making more of them
+- B) Appointments, by booking more
+- C) Referrals, because the zero is the diagnostic signal ✓
 - D) Wait and see if referrals catch up next week
 
-**Why:** The CAR diagnostic rule is: fix the weakest link. Calls and appointments are healthy; the gap is at the ask stage. That tells you your appointments aren't ending with a referral ask, or the ask is weak. Doubling down on C or A (A or B) won't fix R — only fixing the ask does.
+**Why:** The CAR rule is to fix the weakest link. Calls and appointments are healthy, so the problem is the ask: your meetings aren't ending with a referral request, or the request is weak. More calls or appointments won't fix that. Only a better ask will.
 
-**Q4. The Week-1 KPI says "scorecard signed" — why signed rather than just filled?**
+**Q4. The Week-1 KPI says "scorecard signed". Why signed rather than just filled?**
 - A) Legal compliance requirement
-- B) A signature transforms private intention into public commitment — filling is a planner, signing is a promise ✓
+- B) A signature turns a private intention into a promise another person can see ✓
 - C) To prove the document is yours
 - D) The scorecard must be notarised by your mentor
 
-**Why:** Filling in a tracker is a solo exercise. Signing it — and showing the signature to your mentor — changes the psychology. The week's numbers stop being something you can quietly miss and start being something you named out loud. The signature is the commitment device.
+**Why:** Filling in a tracker is something you do alone. Signing it and showing your mentor means the week's numbers are no longer something you can quietly miss, because you've said them to someone. The signature is what makes it a commitment.
 
 **Q5. The 1 / 2 / 3 tier system tags prospects (not clients) as:**
 - A) 1 = A-client, 2 = B-client, 3 = C-client
@@ -197,23 +200,23 @@ The diagnostic is almost always one of the three. Name which one. Then next week
 - C) Priority ranks for the week
 - D) Days until they'll sign
 
-**Why:** A/B/C covers your existing client book — people you've already transacted with. 1/2/3 covers the prospects you haven't closed yet. Tier-1 and Tier-2 are where most of your Week-4 outreach lands. Tier-3 opens up later when you've built something worth reconnecting for.
+**Why:** ABC covers clients you've already done business with. 1/2/3 covers prospects you haven't closed. Most of your Week 4 outreach goes to tier 1 and tier 2, and tier 3 becomes worth it later, once you have something worth reconnecting over.
 
-**Q6. The Friday review is "non-negotiable" — 30 minutes, one sitting. What breaks when you spread it across the week?**
-- A) You never do it — context-switching costs + the false security that "I can catch up later" push it off the calendar entirely ✓
+**Q6. The Friday review is "non-negotiable": 30 minutes, one sitting. What breaks when you spread it across the week?**
+- A) You stop doing it: switching between tasks and telling yourself "I can catch up later" push it off the calendar entirely ✓
 - B) The math changes
 - C) Your mentor loses visibility
 - D) The scorecard deletes itself
 
-**Why:** Weekly reviews that live in 5-min slices become weekly reviews you postpone. One sitting makes the ritual habitual — a protected block in the calendar. The review is also more diagnostic in one sitting because you see all three CAR numbers in the same state of mind.
+**Why:** A weekly review done in five-minute slices becomes one you keep postponing. One protected block makes it a habit. You also diagnose better in one sitting, because you see all three CAR numbers side by side.
 
-**Q7. The Day 3 scorecard is described as "only a scorecard if there's a witness." What does the witness unlock?**
+**Q7. Day 3 says a scorecard nobody else has seen is easy to ignore. What does showing it to a witness add?**
 - A) A mentor's permission to advance
-- B) Accountability — numbers you've only shown yourself are easier to fudge than numbers another person has seen ✓
+- B) Accountability: numbers only you have seen are easier to fudge than numbers another person has seen ✓
 - C) Legal compliance
 - D) Additional cold leads
 
-**Why:** A private commitment has one voter. A witnessed commitment has two. Most new FCs can rationalise a missed call target to themselves; fewer can rationalise it to a mentor who saw the signed scorecard last week. The witness is not there to grade — they're there to keep the number true.
+**Why:** Most new FCs can talk themselves out of a missed call target. It's much harder to explain it away to a mentor who saw your signed scorecard last week. The witness isn't there to grade you. They're there to keep the number honest.
 
 ---
 

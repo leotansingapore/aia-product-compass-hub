@@ -1,8 +1,8 @@
 ---
 week: 1
 day: 6
-title: "Practice — Record Your 90-Second Intro"
-big_idea: "This is the first practice that goes on tape. The recording is the commitment."
+title: "Practice: record your 90-second intro"
+big_idea: "This is the first practice that goes on tape, and the recording is your commitment."
 kpi_link: "Week 1 KPI — 90-day scorecard signed; intent statement v1 recorded"
 practice_submission: loom
 primary_sources:
@@ -13,74 +13,74 @@ duration_minutes: 45
 tags: [next-60-days, week-1, new-fc, practice, intro, loom]
 ---
 
-# Day 6 — Practice: The 90-Second Intro
+# Day 6: Practice, the 90-second intro
 
-> **The one idea for today:** This is the first practice that goes on tape. The recording is the commitment.
+> **The one idea for today:** this is the first practice that goes on tape, and the recording is your commitment.
 
-By the time you close today you'll have your 90-second intro structured in 4 beats (Who / Story teaser / What you help with / Easy next step — 15/20/30/25 seconds), three takes recorded and self-rated on tonal shifts and body-language congruence (audio-on + muted passes), and a Loom link submitted with a 10-minute mentor review booked. Those two artefacts unlock Week 2.
+By the end of today your 90-second intro will have 4 beats: who you are, a story teaser, what you help with and an easy next step (roughly 15, 20, 30 and 25 seconds). You'll record three takes and rate each one twice, once with sound for tone and once muted for body language. Then you'll submit a Loom link and book a 10-minute mentor review, and those two things open Week 2.
 
 ---
 
 ## What today is
 
-Everything this week built toward a single artifact: a 90-second introduction you can send to anyone in your warm market this weekend and have it *open* the conversation instead of close it.
+The whole week has been building toward one recording: a 90-second intro you could send to anyone in your warm market this weekend that starts a conversation and doesn't end one.
 
-You've already done the pieces.
-- **Day 1** — the 4-part story frame
-- **Day 2 / Day 3** — the math and the scorecard so you know the size of what you're building
-- **Day 4** — your story written and read aloud
-- **Day 5** — the tonality to deliver it
+You've already done the pieces:
+- Day 1: the 4-part story frame
+- Days 2 and 3: the math and the scorecard, so you know the size of what you're building
+- Day 4: your story, written and read aloud
+- Day 5: the tone to deliver it in
 
-Today you combine them, record 3 takes, submit the best one, and log your Week 1 KPI. Week 2 unlocks when the submission + KPI are in.
+Today you put them together, record 3 takes, submit the best one and log your Week 1 KPI. Week 2 opens once the submission and KPI are in.
 
 ---
 
 ## The 90-second structure
 
-Four beats. Roughly:
+Four beats, roughly:
 
-![The 90-second structure: 1 · Who you are ~15 sec; 2 · Story teaser ~20 sec; 3 · What you do ~30 sec; 4 · Easy next step ~25 sec](/next-60-days/images/n60-day-06-m0.webp)
+![The 90-second structure: 1, who you are, about 15 sec; 2, story teaser, about 20 sec; 3, what you do, about 30 sec; 4, easy next step, about 25 sec](/next-60-days/images/n60-day-06-m0.webp)
 
-**1 · Who you are + new role (~15 sec).** Name, your new role as an FC, and one-sentence context for why this is a real career change rather than a side-hustle. Not a pitch — just orientation.
+1. Who you are and your new role (about 15 seconds). Your name, your new role as an FC and one sentence on why this is a real career change and not a side hustle. You're orienting them, so don't pitch.
 
-**2 · Story teaser (~20 sec).** A compressed version of your Day-4 story. You're not telling the whole thing — you're dropping the hook. The villain and the guide, in one or two sentences. Enough to make the prospect feel *why* you care. Save the full story for the meeting.
+2. Story teaser (about 20 seconds). A compressed version of your Day 4 story. Give them the villain and the guide in a sentence or two, enough that they feel why you care, and save the full story for the meeting.
 
-**3 · What you help people with (~30 sec).** Frame it around the person you're speaking to, not your process. *"I help people like you [state the audience] do [state the outcome] without [state the common objection]."* Concrete, specific, no jargon.
+3. What you help people with (about 30 seconds). Frame it around the person you're talking to. *"I help people like you [the audience] do [the outcome] without [the common worry]."* Keep it concrete and specific, with no jargon.
 
-**4 · The easy next step (~25 sec).** Low-pressure. *"If you're open to a 30-minute chat I'd love to show you what I mean — you decide if it's useful. Worst case you get one good idea out of it. Fair?"* Give them the out. Make yes easy.
+4. The easy next step (about 25 seconds). Keep the pressure low. *"If you're open to a 30-minute chat I'd love to show you what I mean, and you decide if it's useful. Worst case you get one good idea out of it. Fair?"* Give them the way out so saying yes is easy.
 
 ---
 
-## The non-negotiables for the recording
+## Rules for the recording
 
-- **Film yourself on camera, not just audio.** You're going to watch this back, so your expressions and energy need to be on it.
-- **Good light, clean background, no earphones visible.** Phone on a tripod or leaning against a stack of books at eye level. Not handheld.
-- **No script in front of you.** You know the beats. If you stumble, start again. Stumbling is fine — reading is not.
-- **Three takes.** Watch each one back before starting the next. You'll catch yourself in the act.
+- Film yourself on camera. Audio alone isn't enough, because you'll be watching your expressions and energy back.
+- Use good light and a clean background, and keep earphones out of shot. Put the phone on a tripod or lean it on a stack of books at eye level. Don't hold it.
+- Keep the script out of sight. You know the beats. Stumbling is fine and you can start again, but reading isn't.
+- Record three takes, and watch each one back before you start the next. You'll catch yourself in the act.
 
 ---
 
 ## Pre-record prep sheet
 
-Before you hit record, write these four lines on a sticky note *next to* the camera (not in front of it):
+Before you hit record, write these four lines on a sticky note and put it *beside* the camera, not in front of it:
 
-1. Who you are — one sentence
-2. Story hook — one sentence
-3. What you help people with — one line
-4. The close — one line (ends on *"Fair?"* or similar)
+1. Who you are, in one sentence
+2. Your story hook, in one sentence
+3. What you help people with, in one line
+4. Your close, in one line (ending on *"Fair?"* or similar)
 
-The sticky note is for glance-level recall, not reading. If you need more than a glance, you haven't internalised it enough — go back to Day 4 and compress.
+The note is there for a quick glance. If you need more than a glance, you haven't absorbed the beats yet, so go back to Day 4 and cut the story down.
 
 ---
 
-## How to self-rate each take
+## How to rate each take
 
-Watch each take with the audio on, then **mute and watch it again**. You're checking two things:
+Watch each take with the sound on, then mute it and watch it again. You're checking two things:
 
-- **With audio:** did the tonality shift between sections, or did everything sound the same? If it all had the same energy, your delivery was flat. Re-record.
-- **Muted:** do your face and hands tell a congruent story? If your face is flat while your hands wave, or vice versa, it reads as rehearsed. Your body should match the emotional arc of the words.
+- With sound: did your tone change between sections? If everything had the same energy, your delivery was flat and you should record again.
+- Muted: do your face and hands match what you're saying? A flat face with busy hands, or the other way round, looks rehearsed. Your body should follow the feeling of the words.
 
-If both passes feel right, that's your submission take.
+After each take, pick one thing to fix and record the next take with that fix in mind. A full list of corrections is too much to hold in your head while you record. If both passes look right, that's your submission.
 
 ---
 
@@ -88,25 +88,30 @@ If both passes feel right, that's your submission take.
 
 **Paste your Loom URL here:** _________________________________
 
-**Your mentor will not critique the pitch — they will critique two things:**
-1. Did your tonality match the emotional arc, or was it flat?
-2. Did you close with a *genuine* easy-out, or did it still feel like a push?
+Your mentor won't critique the pitch itself. They'll look at two things:
+1. Did your tone follow the feeling of the story, or was it flat?
+2. Did your close give a genuine easy way out, or did it still feel like a push?
 
-That's the entire feedback loop for this submission. Book the 10-minute check-in with your mentor before Sunday ends.
+Nothing else gets reviewed this time. Book the 10-minute check-in with your mentor before Sunday ends.
+
+---
+
+## Week 1 KPI: what opens Week 2
+
+Week 2 opens when you have all three:
+
+- [ ] Signed scorecard (Day 3, the one-page weekly tracker with your signature)
+- [ ] Intent statement v1 recorded (this Loom counts if beats 3 and 4 were clear)
+- [ ] Loom link submitted above and mentor review booked
+
+If any of the three is missing at 9pm on Sunday, use Sunday to finish it. Week 2 opens automatically once all three are logged, whatever day it is.
 
 ---
 
-## Week 1 KPI — the unlock gate
+## Sources
 
-Week 2 unlocks when you have all three:
-
-- [ ] **Signed scorecard** (Day 3 — the one-page weekly tracker with your signature)
-- [ ] **Intent statement v1 recorded** (this Loom video counts if beats 3 and 4 were clear)
-- [ ] **Loom link submitted above + mentor review booked**
-
-If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlock is automatic — Week 2 opens when the three items are logged, not when the calendar flips.
-
----
+- [Video feedback in education and training - Educational Psychology Review (Fukkink, Trienekens and Kramer, 2011)](https://link.springer.com/article/10.1007/s10648-010-9144-5) - meta-analysis of 33 studies: reviewing video of yourself measurably improves interaction skills
+- [Silent Messages - Albert Mehrabian](https://www.kaaj.com/psych/smorder.html) - when words and tone or expression don't match, listeners trust the tone and expression, which is what the muted pass checks
 
 ## Quiz
 
@@ -116,7 +121,7 @@ If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlo
 - C) Pitch → Features → Benefits → Close
 - D) Hook → Value → Proof → Ask
 
-**Why:** Who-first orients the listener — they need to know who's talking before they can care about the story. Story second creates the emotional weight. What-you-help-with translates that weight into relevance. The easy next step gives them a low-stakes way to say yes. Reordering breaks the arc.
+**Why:** Starting with who you are orients the listener, since they need to know who's talking before they'll care about the story. The story gives it emotional weight, what you help with makes that weight relevant to them, and the easy next step gives them a low-stakes way to say yes. Change the order and it stops flowing.
 
 **Q2. When you watch Take 1 back with the audio muted, what are you checking for?**
 - A) Whether you said the words correctly
@@ -124,15 +129,15 @@ If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlo
 - C) Whether your lighting and background look professional
 - D) Whether the video is 90 seconds exactly
 
-**Why:** Audio-on tells you about tonality. Muted tells you about body congruence. If your face is flat while your story is meant to be felt, the prospect sees the mismatch even if they don't name it. Both passes catch different failure modes.
+**Why:** The pass with sound tells you about tone. The muted pass tells you whether your body matches it. If your face is blank while you tell a story meant to be felt, the prospect notices the mismatch even if they can't say what it is.
 
-**Q3. A mentee submits her Loom. The pitch is word-perfect, the script is clean, but the mentor's feedback says it still felt like a pitch. The most likely cause is:**
+**Q3. A mentee submits her Loom. The pitch is word-perfect and the script is clean, but the mentor says it still felt like a pitch. The most likely cause is:**
 - A) The content was wrong
-- B) The close didn't give a genuine easy-out — it still had the pressure of a yes-question ✓
+- B) The close didn't give a genuine easy-out and still carried the pressure of a yes-or-no question ✓
 - C) The 90 seconds ran over
 - D) The lighting was bad
 
-**Why:** The close is where pressure sneaks in. A "*would you be open to a meeting?*" without the genuine out (the *"fair?"* or *"worst case you get one good idea"* style) reads as a push no matter how polished the rest was. Word-perfect + still-feels-like-a-pitch almost always traces to the final beat.
+**Why:** The close is where pressure sneaks in. *"Would you be open to a meeting?"* without a real way out (a *"fair?"* or *"worst case you get one good idea"*) feels like a push however polished the rest is. When a word-perfect intro still feels like a pitch, the last beat is almost always why.
 
 **Q4. Watching Take 1 back, the rule is:**
 - A) Critique every mistake and re-record from scratch
@@ -140,15 +145,15 @@ If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlo
 - C) Redo it until it's perfect
 - D) Submit only Take 1 so it feels natural
 
-**Why:** One-note-per-take is the fix. A full critique of Take 1 produces a mental list too long to execute on Take 2 — you overload and freeze. One note per pass compounds across three takes into a meaningfully tighter delivery, without the paralysis.
+**Why:** A full critique of Take 1 gives you a list too long to act on in Take 2, and you freeze. One note per take, over three takes, tightens the delivery without the overload.
 
 **Q5. The sticky note with the 4 beats should be placed:**
 - A) In front of the camera, readable
-- B) Next to the camera — glance-level recall, not reading ✓
+- B) Next to the camera, for a quick glance and not for reading ✓
 - C) On the back wall
 - D) In your hand
 
-**Why:** If it's in front of the camera you read it, and the recording becomes "an FC reading a script" — which is exactly what a prospect doesn't need to see. Beside the camera means you can glance if panic hits but you're still looking through the lens. If you need more than a glance, you haven't internalised the beats — go back to Day 4.
+**Why:** Put it in front of the camera and you'll read it, and the recording becomes an FC reading a script, which is the last thing a prospect wants to watch. Beside the camera, you can glance at it if you panic and still be looking through the lens. If you need more than a glance, go back to Day 4.
 
 **Q6. The mentor on this practice day is specifically critiquing:**
 - A) Whether the pitch content was polished
@@ -156,7 +161,7 @@ If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlo
 - C) Whether your lighting was professional
 - D) Whether you stayed under 90 seconds
 
-**Why:** Content fidelity was Day 4's job. Day 6's mentor critique is narrow on purpose: tonal match and close authenticity. Two failure modes most new FCs hit on their first warm-market video — and two fixes that compound into every subsequent delivery.
+**Why:** Day 4 covered the content. Day 6's review is narrow on purpose: does your tone match the story, and is the close's way out real? Most new FCs trip on those two in their first warm-market video, and fixing them helps every intro you give after this.
 
 **Q7. Week 2 unlocks when:**
 - A) The calendar rolls to Monday
@@ -164,7 +169,7 @@ If you're missing any of the three at Sunday 9pm, use Sunday to finish. The unlo
 - C) The practice day's Loom has been watched by 3 peers
 - D) You've read every Day 1-6 again
 
-**Why:** The unlock is behavioural, not temporal. Week 1's KPI isn't "survive Week 1" — it's three concrete artifacts (signature + Loom + mentor booked). Week 2 waits until those are in. This is the first unlock gate the learner hits; the pattern repeats every week for the next 10.
+**Why:** The gate depends on what you've done, not what day it is. Week 1's KPI is three concrete things (signature, Loom, mentor booked), and Week 2 waits until they're in. This is the first gate, and the same pattern repeats every week for the next 10.
 
 ---
 

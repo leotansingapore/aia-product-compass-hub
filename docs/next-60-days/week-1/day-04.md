@@ -1,8 +1,8 @@
 ---
 week: 1
 day: 4
-title: "Your Story — First Real Draft"
-big_idea: "Rough beats polished. Honest beats rehearsed. The story only works if you were actually there."
+title: "Your story: first real draft"
+big_idea: "Rough beats polished and honest beats rehearsed. The story only works if you were actually there."
 kpi_link: "Week 1 KPI — 90-day scorecard signed; intent statement v1 recorded"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-01-15-your-story]]"
@@ -12,93 +12,98 @@ duration_minutes: 20
 tags: [next-60-days, week-1, new-fc, story, vulnerability]
 ---
 
-# Day 4 — Your Story, First Real Draft
+# Day 4: Your story, first real draft
 
-> **The one idea for today:** Rough beats polished. Honest beats rehearsed. The story only works if you were actually there.
+> **The one idea for today:** rough beats polished and honest beats rehearsed. The story only works if you were actually there.
 
-By the time you close today you'll have v1 of your 4-part story written with feeling in the villain section (not just the facts), you'll spot the vulnerability-vs-performance failure mode (smooth delivery reads as insincere), and you'll have marked the flat spots in your read-aloud — those are the parts you rewrite tomorrow.
+By the end of today you'll have v1 of your 4-part story, with the feeling written into the villain section as well as the facts. You'll know why a very smooth delivery can come across as insincere, and you'll have found the flat spots in your read-aloud so you know what to rewrite tomorrow.
 
 ---
 
 ## Where we are
 
-Day 1 introduced the 4-part frame: **Life today → Villain → Guide → Growth.** You wrote a v0 then — rough shape, maybe one sentence per part.
+On Day 1 you met the 4-part frame (life today, villain, guide, growth) and wrote a rough v0, probably one sentence per part, mostly for yourself.
 
-Today you write the real draft. Same 4 parts, more honestly told. Tomorrow you'll work on *how* to say it (tonality). Saturday you record a 90-second version for real.
-
-The v0 was for you. The v1 is for the next stranger who meets you.
+Today's draft uses the same 4 parts, told more honestly, and it's for the next stranger you meet. Tomorrow you'll work on how to say it (tonality), and on Saturday you'll record a 90-second version.
 
 ---
 
-## The skill today is vulnerability, not performance
+## Today's skill is honesty
 
-Most new advisors try to *perform* their story — smooth delivery, clean sentences, no awkward pauses. They think that's what professional sounds like.
+Most new advisors try to perform their story, with smooth delivery, clean sentences and no awkward pauses, because they think that's what professional sounds like.
 
-It isn't. Prospects have heard polished pitches their whole lives. The ones who land hire advisors whose story felt *real* — the kind you can't rehearse into being.
+Prospects have heard polished pitches their whole lives. What gets their attention is a story that feels real, and you can't rehearse your way to that.
 
-Here's the anti-pattern to watch for. A new advisor rehearses his story into a silk delivery — no stumbles, perfect pauses, well-timed emotion. When he delivers it to the mentor group, everyone agrees: technically flawless. And also: nobody believed him. The smoothness *itself* was the problem. It signalled performance, not presence.
+Here's what to avoid. A new advisor rehearses his story until it's silky: no stumbles, perfect pauses, emotion on cue. When he tells it to the mentor group, everyone agrees it was technically flawless, and nobody believed him. The smoothness was the problem, because it made him sound like he was performing.
 
-> **A real story has texture. A rehearsed one is flat.**
+> A real story has texture. A rehearsed one is flat.
 
-The texture comes from letting yourself feel the thing again as you say it — not from rehearsing the feeling. That's the whole difference between a story that opens a prospect up and one that closes them down.
+The texture comes from letting yourself feel the thing again while you say it. Rehearsing the feeling doesn't produce it. That difference decides whether a story opens a prospect up or shuts them down.
 
 ---
 
 ## What makes each part land
 
-Quick review of the 4 parts, with what breaks each one:
+A quick review of the 4 parts and what breaks each one:
 
-**1. Life today — what breaks it:** starting with humblebrag. *"I'm comfortable now — I can travel, I bought a place, I can take care of my parents."* This sounds like a boast unless the next 30 seconds shows the hole it's hiding. Keep "life today" short. One or two sentences. Just enough to set up the contrast.
+1. Life today breaks when it opens with a humblebrag. *"I'm comfortable now. I can travel, I bought a place, I can take care of my parents."* That sounds like boasting unless the next 30 seconds show what it's covering. Keep this part to one or two sentences, enough to set up the contrast.
 
-**2. The villain — what breaks it:** telling it as a fact, not a feeling. *"My family didn't have much money"* is a fact. The version that lands is the same circumstance with the weight attached — the walk home you took the long way to avoid the fight about money, the shame of pulling out a packed lunch when everyone else bought food, the specific moment you realised you couldn't ask for the thing you wanted.
+2. The villain breaks when it's told as a fact. *"My family didn't have much money"* is a fact. The version that lands carries the weight: the long walk home to avoid the fight about money, the shame of opening a packed lunch when everyone else bought food, the moment you realised you couldn't ask for what you wanted.
 
-**3. The guide — what breaks it:** skipping it. New advisors sometimes jump from villain straight to growth — *"and that's why I do this now."* The guide is the pivot that made change possible. Without it, the listener can't feel how you got from A to B. The guide might be a person, an event, a realisation, a mentor who asked the question that reframed everything.
+3. The guide breaks when it's skipped. New advisors sometimes jump from villain to growth: *"and that's why I do this now."* The guide is what made the change possible, and without it the listener can't see how you got from A to B. It might be a person, an event, a realisation or a mentor who asked the question that changed how you saw things.
 
-**4. Growth — what breaks it:** over-claiming. *"I became a completely different person."* The strongest growth sections are specific and small — *"I started saving again. I stopped flinching when my parents called about money. I learned that planning is the difference between anxiety and choice."* Concrete beats grand every time.
+4. Growth breaks when it over-claims. *"I became a completely different person"* invites doubt. The strongest growth sections are specific and small: *"I started saving again. I stopped flinching when my parents called about money. I learned that planning is the difference between anxiety and choice."*
 
 ---
 
 ## A worked example (to calibrate, not copy)
 
-The source transcript has a version that goes something like:
+The source transcript has a version that goes roughly like this:
 
-> *"You see me today — I went to decent schools, I'm comfortable, I can do what I want. Why am I selling insurance?*
+> *"You see me today, I went to decent schools, I'm comfortable, I can do what I want. Why am I selling insurance?*
 >
-> *I didn't come from a financially secure background. I was on financial assistance my whole schooling life. A lot of my trips, my food, my clothes were subsidised. The jacket in this photo isn't mine — it's my father's, and it's 20 years old. I ate one packet of Milo nugget for lunch most days in secondary school. I didn't take a single taxi until I was in the army.*
+> *I didn't come from a financially secure background. I was on financial assistance my whole schooling life. A lot of my trips, my food, my clothes were subsidised. The jacket in this photo isn't mine, it's my father's, and it's 20 years old. I ate one packet of Milo nugget for lunch most days in secondary school. I didn't take a single taxi until I was in the army.*
 >
-> *Working this hard for every dollar taught me what money is worth. And when I started meeting prospects, I realised — the advisor who understands the true value of your money should be the one who had to earn every cent of their own first.*
+> *Working this hard for every dollar taught me what money is worth. And when I started meeting prospects, I realised the advisor who understands the true value of your money should be the one who had to earn every cent of their own first.*
 >
-> *So that's why you should put your money with me. Because I know what every single dollar is for — I had to, to get here."*
+> *So that's why you should put your money with me. Because I know what every single dollar is for. I had to, to get here."*
 
-Four parts, clean. Not memorised, not performed. It lands because the specifics (the Milo nugget, the 20-year jacket, the army) are small enough to be true and concrete enough to be felt.
+All four parts are there, and it doesn't sound memorised. It works because the details (the Milo nugget, the 20-year-old jacket, the first taxi in the army) are small enough to be believable and concrete enough to picture.
 
-Yours will sound different. It has to. But the structure is the same.
+Yours will sound different, and it should. The structure stays the same.
 
 ---
 
 ## The drill
 
-This is the writing-heavy day of Week 1. Read time is short; worksheet time is ~30 minutes.
+This is the writing-heavy day of Week 1. The reading is short and the worksheet takes about 30 minutes.
 
-![The drill: Write v1 20 min; Read aloud 5 min; Listen back 5 min; Mark flat spots 5 min](/next-60-days/images/n60-day-04-m0.webp)
+![The drill: write v1, 20 min; read aloud, 5 min; listen back, 5 min; mark flat spots, 5 min](/next-60-days/images/n60-day-04-m0.webp)
 
-**Write, then read aloud before you judge it.** Your ear catches what your eye doesn't. The lines that sound fine on paper but flatten when spoken are the ones to rewrite first.
+Write it, then read it aloud before you judge it. Your ear catches things your eye misses. Rewrite first the lines that look fine on paper but go flat when you say them.
+
+When you listen back, mark two spots: where your voice flattened (usually the part you're still holding back on) and where you caught yourself feeling something (the part that lands). Rewrite the first and keep the second.
 
 ---
 
-## Team operations — your motivation artefacts
+## Team operations: your motivation artefacts
 
-Your story is voice — what you *tell* prospects. Your vision board and pledge sheet are visuals — what you *look at* when the week drags and you need to remember why you signed up. Two separate deliverables this week:
+Your story is what you tell prospects. Your vision board and pledge sheet are what you look at when the week drags and you need to remember why you signed up. They're two separate deliverables this week:
 
-- **Vision Board** — [walkthrough Loom](https://www.loom.com/share/3dbda27b81f24a089e766702348c3076). [Canva template](https://www.canva.com/design/DAGomVn0YWE/). Create yours, share to the onboarding GC. Batch review happens on a team call ~1–2 months after onboarding submission.
-- **Pledge Sheet Part 1** — [walkthrough Loom](https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b). Download [the pledge sheet](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe), fill, submit to the onboarding GC.
-- **Pledge Sheet Part 2** — [walkthrough Loom](https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f).
+- Vision board: [walkthrough Loom](https://www.loom.com/share/3dbda27b81f24a089e766702348c3076) and [Canva template](https://www.canva.com/design/DAGomVn0YWE/). Make yours and share it in the onboarding GC. The team reviews them together on a call about 1-2 months after you submit.
+- Pledge sheet part 1: [walkthrough Loom](https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b). Download [the pledge sheet](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe), fill it in and submit it to the onboarding GC.
+- Pledge sheet part 2: [walkthrough Loom](https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f).
 
-Pair these with your story: the story is external, the board + pledge are internal.
+Do these alongside your story. The story faces outward, and the board and pledge are for you.
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §3c–3e.
 
 ---
+
+## Sources
+
+- [Joseph Campbell and the hero's journey - Joseph Campbell Foundation](https://www.jcf.org/learn/joseph-campbell-heros-journey) - the classic story arc of ordeal, helper and return that the 4-part frame compresses
+- [The role of transportation in the persuasiveness of public narratives - Journal of Personality and Social Psychology (Green and Brock, 2000)](https://researchconnect.buffalo.edu/en/publications/the-role-of-transportation-in-the-persuasiveness-of-public-narrat/) - listeners absorbed in a story are more persuaded by it and notice fewer false notes
 
 ## Quiz
 
@@ -108,7 +113,7 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 - C) Guide → Villain → Growth → Life today
 - D) Villain → Guide → Growth → Life today
 
-**Why:** Starting with "life today" creates the contrast that makes the villain feel weightier. Leading with the villain forces the listener into discomfort before they've had a reason to trust you. The guide and growth must come after the villain, because both are resolutions to it.
+**Why:** Opening with life today sets up the contrast that gives the villain its weight. Opening with the villain puts the listener in discomfort before they have a reason to trust you. The guide and growth come after the villain because both resolve it.
 
 **Q2. The single biggest failure mode in a first-draft story is:**
 - A) Making it too long
@@ -116,47 +121,47 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 - C) Telling the villain as a fact instead of a feeling ✓
 - D) Skipping the growth section
 
-**Why:** "My parents had no money" is information. It doesn't move the listener. The version that moves — *"I used to avoid going home because of the fights about money"* — has the same fact inside a feeling. The feeling is what lowers the prospect's guard. Length, frameworks, and growth are real problems but they're secondary to the factual-vs-felt issue.
+**Why:** "My parents had no money" is information and doesn't move anyone. *"I used to avoid going home because of the fights about money"* has the same fact inside a feeling, and the feeling is what lowers the prospect's guard. Length, frameworks and a weak growth section are real problems, but smaller ones.
 
-**Q3. A mentee rehearses her story into a silk delivery — smooth, well-timed, emotionally paced. The mentor group agrees: technically flawless, not believable. What's the core issue?**
+**Q3. A mentee rehearses her story until it's silky: smooth, well-timed, emotionally paced. The mentor group agrees it was technically flawless and not believable. What's the core issue?**
 - A) The content was wrong
-- B) The delivery was too polished — smoothness itself signalled performance, not presence ✓
+- B) The delivery was too polished, and the smoothness itself made it sound like a performance ✓
 - C) She used the wrong framework
 - D) She didn't speak loudly enough
 
-**Why:** Prospects can tell the difference between felt and rehearsed. A story that's been polished into silk reads as performance. The fix isn't more rehearsal — it's less. Let yourself feel the thing again as you tell it. Texture beats smoothness every time.
+**Why:** Listeners tend to notice when a story has been polished until nothing in it feels live. More rehearsal won't fix that. Less will, as long as she lets herself feel the thing again while she tells it.
 
-**Q4. "Life today" — the first beat — most commonly breaks because:**
+**Q4. "Life today", the first beat, most commonly breaks because:**
 - A) It's too short
-- B) It leads with humblebrag without setting up the contrast in the next 30 seconds ✓
+- B) It leads with a humblebrag without setting up the contrast in the next 30 seconds ✓
 - C) It discusses work too much
 - D) It mentions specific products
 
-**Why:** Starting with "I'm comfortable now — travel, own a place, take care of my parents" is fine *if* the next 30 seconds shows the hole it's hiding. Without the contrast, it reads as a boast. "Life today" is orientation, not a victory lap — keep it short, and make sure the villain lands hard right after.
+**Why:** "I'm comfortable now: travel, own a place, take care of my parents" is fine if the next 30 seconds show what it's hiding. Without the contrast it's a boast. Life today is there to orient the listener, so keep it short and let the villain land hard straight after.
 
 **Q5. The "growth" section fails when:**
 - A) It's specific and small
-- B) It's over-claimed — "I became a completely different person" ✓
+- B) It's over-claimed: "I became a completely different person" ✓
 - C) It references your mentor
 - D) It mentions career milestones
 
-**Why:** Grand growth claims invite skepticism. Specific, small growth — "I started saving again, I stopped flinching when my parents called about money, I learned planning is the difference between anxiety and choice" — is concrete enough to be credible and to do the emotional work. The rule is specific > grand.
+**Why:** Grand claims invite doubt. Small, specific growth ("I started saving again, I stopped flinching when my parents called about money, I learned planning is the difference between anxiety and choice") is believable and does the emotional work.
 
 **Q6. The Day 4 recording drill asks you to listen back and mark two things. What are they?**
 - A) Pace and volume
-- B) The spot where your voice flattened (that's what you're still hiding from) and the spot where you caught yourself feeling something (that's what lands) ✓
+- B) The spot where your voice flattened (what you're still hiding from) and the spot where you caught yourself feeling something (what lands) ✓
 - C) Filler words ("um", "like") and clarity
 - D) Length and the number of pauses
 
-**Why:** Flattening signals avoidance — that's the section you rewrite. Feeling signals landing — that's the section you preserve. Marking both after one listen gives you a surgical edit list instead of a "make it better" wander.
+**Why:** A flat spot usually means you're avoiding something, so that's the section to rewrite. A spot where you felt something is landing, so keep it. Note both after one listen and you have a short, specific edit list.
 
 **Q7. Why does Day 4 warn specifically against silk-smooth delivery?**
 - A) Smooth delivery sounds amateurish
 - B) Prospects can't hear smooth speech on Zoom
-- C) Smoothness itself signals performance over presence — prospects subconsciously filter polished-feeling stories as rehearsed, even when the content is true ✓
+- C) Smoothness itself signals performance: listeners tend to hear a very polished story as rehearsed, even when the content is true ✓
 - D) Smooth delivery is too fast
 
-**Why:** The brain registers a difference between *felt* and *performed* even when listeners can't articulate it. Over-rehearsal flattens texture, and texture is the marker of a real moment being re-experienced. The fix isn't more rehearsal — it's less, with more feeling.
+**Why:** People often can't say why a story felt off, but they notice when it's been rehearsed flat. Over-rehearsal strips out the small hesitations and changes of pace that come from actually remembering something. Rehearse less and feel it more.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: n60-assignment-01
 order: 1
-title: "90-Second Intent Statement — 3 Live Deliveries"
+title: "90-second intent statement: 3 live deliveries"
 short: "Deliver your intent statement to 3 real prospects (live or phone) and submit the log + 1 Loom reflection."
 icon: video
 deliverable: "3 delivery logs + 1 Loom reflection"
@@ -21,56 +21,61 @@ form_fields:
   - "Loom reflection link|text|3–5 min video answering: which delivery landed best, what's your v3 fix, what unlocked for you."
 ---
 
-# Assignment 1 — 90-Second Intent Statement: 3 Live Deliveries
+# Assignment 1: 90-second intent statement, 3 live deliveries
 
-> **What you're producing:** 3 intent-statement deliveries to real prospects (not mentors, not peers), logged in 3-line form + 1 Loom reflection. This is where Week 2's voice work becomes real.
+> **What you're producing:** 3 intent-statement deliveries to real prospects (mentors and peers don't count), each logged in 3 lines, plus 1 Loom reflection. This is where the voice work from Week 2 meets real people.
 
 ## Why this matters
 
-You can record a perfect 90-second intro in front of your camera and still freeze when a real person responds differently than expected. Live delivery is the only rep that builds the tonality muscle that survives a prospect's unpredictable energy. 3 deliveries, 3 different prospects, structure visible in each one.
+You can record a perfect 90-second intro alone in front of your camera and still freeze when a real person reacts in a way you didn't expect. Delivering it live is the only practice that builds a tone that holds up against a prospect's mood. So: 3 deliveries to 3 different prospects, with the structure audible in each.
 
 ## Prepare from these days
 
-- [Day 1 — Day 1 of Your Real Career](../../next-60-days/week-1/day-01.md) — the silent question and the 4-part story
-- [Day 4 — Your Story, First Real Draft](../../next-60-days/week-1/day-04.md) — the villain-as-feeling discipline
-- [Day 5 — Tonality & Salesmanship](../../next-60-days/week-1/day-05.md) — the Certainty + Reason close for the intent statement
-- [Day 6 — Practice: 90-Second Intro](../../next-60-days/week-1/day-06.md) — the 4-beat structure and sticky-note discipline
-- [Day 7 — The Intent Statement (Framework)](../../next-60-days/week-2/day-07.md) — hook / impression / pattern interrupt / buy-in
-- [Day 8 — Your Pattern Interrupt](../../next-60-days/week-2/day-08.md) — tailored "what do you do?" + swap test
-- [Day 12 — Practice: Deliver to 3 Prospects](../../next-60-days/week-2/day-12.md) — the log format this assignment submits against
+- [Day 1: Day 1 of Your Real Career](../../next-60-days/week-1/day-01.md): the silent question and the 4-part story
+- [Day 4: Your Story, First Real Draft](../../next-60-days/week-1/day-04.md): telling the villain as a feeling
+- [Day 5: Tonality & Salesmanship](../../next-60-days/week-1/day-05.md): the certainty and reason close for the intent statement
+- [Day 6: Practice: 90-Second Intro](../../next-60-days/week-1/day-06.md): the 4-beat structure and the sticky note
+- [Day 7: The Intent Statement (Framework)](../../next-60-days/week-2/day-07.md): hook, impression, pattern interrupt, buy-in
+- [Day 8: Your Pattern Interrupt](../../next-60-days/week-2/day-08.md): a tailored answer to "what do you do?" and the swap test
+- [Day 12: Practice: Deliver to 3 Prospects](../../next-60-days/week-2/day-12.md): the log format this assignment uses
 
 ## Who counts as a "real prospect"
 
-- You know their name; they know yours
-- You would genuinely want to close them if fit is right
-- They are NOT your mentor, peer, or someone whose job is to listen to you practise
+- You know their name and they know yours
+- You'd genuinely want them as a client if the fit is right
+- They aren't your mentor, a peer, or anyone whose job is to listen to you practise
 
-**Counts:** a warm-market friend you haven't yet opened the advisor conversation with · a semi-warm contact you're reactivating · someone who replied to a post or DM · a referred name you haven't called yet.
+These count: a warm-market friend you haven't yet talked to as an advisor, a semi-warm contact you're getting back in touch with, someone who replied to a post or DM, or a referred name you haven't called yet.
 
-**Doesn't count:** any mentor / peer roleplay · a group-chat post with no individual response · a mass-BCC WhatsApp.
+These don't: any roleplay with a mentor or peer, a group-chat post nobody answered individually, or a mass-BCC WhatsApp.
 
-## The pre-delivery prep (5 min per delivery)
+## Prep before each delivery (5 minutes)
 
-1. Re-read your v2 intent statement once (not 10 times — one).
-2. Picture the specific prospect. Which of the 5 tailored *"what do you do?"* answers fits?
-3. Pick your tonality mode. Which sentence is Certainty? Which is the Reason close (*"fair?"*).
-4. Decide the format: phone, voice note, in-person. Plan before you dial.
+1. Read your v2 intent statement one time only. Rereading it ten times just makes you stiffer.
+2. Picture this prospect. Which of the 5 tailored answers to *"what do you do?"* fits them?
+3. Choose your tones. Which sentence gets certainty, and where does the reason close (*"fair?"*) go?
+4. Decide on phone, voice note or in person before you dial.
 
-## The 4 in-moment checks (rate yourself after each)
+## The 4 checks (rate yourself after each delivery)
 
-1. Did the hook land — did they stop scrolling / pause the other thing they were doing?
-2. Did the pattern interrupt register — pause, *"hmm"*, a question back?
-3. Did buy-in land cleanly — a real *"yes that sounds fair"*, not just *"mm-hmm"*?
-4. Did your tone match the Day-5 drill — or did you rush the close because you were nervous?
+1. Did the hook land? Did they stop scrolling or put down whatever they were doing?
+2. Did the pattern interrupt register: a pause, a *"hmm"*, a question back?
+3. Did you get clean buy-in, a real *"yes, that sounds fair"* and not just *"mm-hmm"*?
+4. Did your tone match the Day 5 drill, or did nerves make you rush the close?
 
-You don't need all 4 on delivery 1. You should be hitting 3/4 by delivery 3.
+You don't need all 4 on the first delivery. By the third you should be getting 3 out of 4.
 
 ## Submission
 
-Fill in the form below — 3 deliveries × (prospect + what landed) + the weakest ingredient + a Loom reflection link (3–5 min on which delivery worked best, what's your v3 fix).
+Fill in the form below: prospect and what landed for each of the 3 deliveries, the ingredient that needs most work, and a Loom reflection link (3-5 minutes on which delivery worked best and what your v3 fix is).
 
-**Log each delivery same-day.** Memory fades by tomorrow.
+Log each delivery the same day. By tomorrow you'll have forgotten what they actually said.
 
 ## The point
 
-Most new FCs practise the intent statement to perfection in a mirror and never deliver it to a single real prospect in the first 60 days. This assignment forces the reps that actually build the career-grade muscle — delivering to real people who don't care about your practice schedule and react however they react.
+Plenty of new FCs rehearse the intent statement in the mirror until it's perfect and then go through their first 60 days without saying it to a single real prospect. This assignment makes you do the reps that count, with people who don't care about your practice schedule and react however they like.
+
+## Sources
+
+- [Replication and analysis of Ebbinghaus' forgetting curve - PLOS ONE (Murre and Dros, 2015)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0120644) - memory for new material drops steeply within the first day, which is why you log the same day
+- [Video feedback in education and training - Educational Psychology Review (Fukkink, Trienekens and Kramer, 2011)](https://link.springer.com/article/10.1007/s10648-010-9144-5) - meta-analysis showing that reviewing recordings of yourself improves interaction skills, the idea behind the Loom reflection
