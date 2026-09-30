@@ -1,7 +1,7 @@
 ---
 week: 2
 day: 10
-title: "Personal Branding P1 — Profile as Compound Asset"
+title: "Personal branding P1: your profile as a compound asset"
 big_idea: "Your profile is working 24/7 whether you are or not. Make it earn the trust before you have to."
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
@@ -13,150 +13,158 @@ duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, personal-branding, instagram, profile]
 ---
 
-# Day 10 — Profile as Compound Asset
+# Day 10: Your profile as a compound asset
 
 > **The one idea for today:** Your profile is working 24/7 whether you are or not. Make it earn the trust before you have to.
 
-By the time you close today you'll have scored your IG profile across 6 elements (picture, name, category, bio, link, highlights) and spotted which one to fix first, rewritten your bio using the Why / What / How structure in under 30 minutes, and picked either Authority or Social positioning based on your stage and temperament.
+By the end of today you'll have scored your IG profile on 6 elements and found the one to fix first, rewritten your bio with the Why / What / How structure, and picked Authority or Social positioning.
 
 ---
 
-## Why the profile is a compound asset
+## Why the profile compounds
 
-Most new FCs think of social media as a *broadcast* channel — they post something, they hope it reaches someone. That's not where the money is.
+Most new FCs treat social media as a broadcast channel: post something and hope it reaches someone. The money isn't there.
 
-The real value of a strong profile is **asymmetric trust-building that compounds while you sleep.** Every person you prospect, every referral someone hands you, every warm-market person you text — they will look up your profile before they reply. Your profile decides whether they reply.
-
-Think about it this way: you spend an hour today fixing your bio. Over the next year, somewhere between 200 and 2,000 prospects will see it. Each of those viewings is a silent trust decision. A good bio earns trust in one viewing. A bad one burns it.
-
-That's compound math. One hour of fix → 200+ trust wins. Fastest ROI in your whole prospecting stack.
+Everyone you prospect, every referral you're handed and every warm contact you text will look you up before they reply, and what they see affects whether they do. Spend an hour on your bio today and, over the next year, a few hundred people will probably make a quick trust call based on it while you're somewhere else. That hour keeps paying off for as long as the bio stays up.
 
 ---
 
-## The KLR framework — what your profile is trying to do
+## The KLR framework: what your profile is trying to do
 
-Every strong personal brand in financial services builds three signals simultaneously:
+A strong personal brand in financial services builds three signals at once:
 
-![The KLR framework — what your profile is trying to do: Known (people know what you do); Loved (people like you as a person); Respected (people respect you as a professional)](/next-60-days/images/n60-day-10-m0.webp)
+![The KLR framework: Known (people know what you do); Loved (people like you as a person); Respected (people respect you as a professional)](/next-60-days/images/n60-day-10-m0.webp)
 
-| Signal | What it looks like | Channel |
+| Signal | What people think | Where it comes from |
 |---|---|---|
-| **Known** | *"Oh, she's an advisor."* | Profile name + category + bio |
-| **Loved** | *"She seems like a real person."* | Stories — personality, interests, life |
-| **Respected** | *"She knows her stuff."* | Posts — frameworks, client wins, insights |
+| Known | *"Oh, she's an advisor."* | Profile name, category and bio |
+| Loved | *"She seems like a real person."* | Stories: personality, interests, life |
+| Respected | *"She knows her stuff."* | Posts: frameworks, client wins, insights |
 
-A profile that hits all three reads as a *human professional*. Missing one of three is where profiles fail:
+A profile with all three reads as a real person who's also a professional. Most weak profiles are missing one:
 
-- **Known + Loved but not Respected** = *"fun person, but would I trust her with my money?"*
-- **Known + Respected but not Loved** = *"competent but robotic. I'd rather work with someone warmer."*
-- **Loved + Respected but not Known** = *"I like her content, but what does she actually do?"*
+- Known and Loved, not Respected: *"Fun person, but would I trust her with my money?"*
+- Known and Respected, not Loved: *"Competent but robotic. I'd rather work with someone warmer."*
+- Loved and Respected, not Known: *"I like her content, but what does she actually do?"*
 
-All three signals matter. Today is about the **Known** foundation — the profile. Tomorrow covers **Loved** (stories) and **Respected** (content).
+Today is about Known, which is the profile itself. Tomorrow covers Loved (stories) and Respected (content).
 
 ---
 
 ## The 6 profile elements
 
-Six fields. Each has a job.
+Each field has a job.
 
-| Element | Purpose | Do | Don't |
-|---|---|---|---|
-| **Profile picture** | Instant recognition | Professional faceshot or candid, smile visible, brand-colour background. Tools like pfpmaker.com help. | Cartoon, group shot, or anything that hides your face |
-| **Profile name** | Searchability | Your real name. If taken, add "real" / "official" (e.g., `TheRealJunHong`) | Symbols, numbers, repeated letters, or long nonsense handles |
-| **Category** | Labelling | *Financial services* / *Insurance agent* / *Public figure* | Blogshop, anything irrelevant |
-| **Bio** | Who / what / how, in 150 chars | See Section 4 | Leave empty, or use the same generic line as every other advisor |
-| **Link** | Single CTA | Telegram channel, YouTube, or lead-magnet download | Junk links with no value |
-| **Highlights** | Always-on proof | Client wins, behind-the-scenes, FAQs, testimonials | Random old stories, nothing curated |
+| Element | Do | Don't |
+|---|---|---|
+| Profile picture (recognition) | A professional headshot or a candid shot, smile visible, plain or brand-colour background. A free tool like pfpmaker.com can help. | A cartoon, a group shot, or anything that hides your face |
+| Profile name (searchability) | Your real name. If it's taken, add "real" or "official" (e.g. `TheRealJunHong`) | Symbols, numbers, repeated letters or long nonsense handles |
+| Category (labelling) | *Financial service*, *Insurance agent* or *Public figure* | Blogshop, or anything unrelated |
+| Bio (who, what, how in 150 characters) | See the next section | Leaving it empty, or using the same line as every other advisor |
+| Link (one call to action) | Telegram channel, YouTube, or a free download | Junk links with nothing useful behind them |
+| Highlights (proof that stays up) | Client wins, behind-the-scenes, FAQs, testimonials | Random old stories with no thought behind them |
 
-**Diagnostic.** Open your profile right now. Score each element 1–5 against the *Do* column. Whichever scores lowest — that's the element you fix tonight.
+Open your profile now and score each element from 1 to 5 against the *Do* column. Fix the lowest one tonight.
 
 ---
 
-## The Why / What / How bio structure
+## The Why / What / How bio
 
-A bio has roughly 150 characters. That's 2–3 lines of text. Burn them on three jobs, in order:
+Instagram gives you 150 characters for a bio, about 2 or 3 lines. Use them for three things, in this order.
 
-**Why you should follow me (credibility):**
-- *"Made 28 claims in 2021. 89 clients protected. $3.5M AUM to date."*
-- If you have no results yet (you won't for Week 2–3 — that's normal), replace results with *specificity*: *"Working with late-20s professionals in tech navigating their first big financial decisions."*
+Why follow you (credibility):
 
-**What results you can get (promise):**
-- *"I help millennials get $2,000/month passive income without spending more than 5 mins a week."*
-- The "without [common objection]" half is what makes it stick. It handles the fear before they voice it.
+- An experienced FC might write: *"28 claims handled in 2021. 89 clients protected."* Only use figures you can back up.
+- You won't have results in Week 2 or 3, and that's normal. Use specificity instead: *"Working with late-20s professionals in tech making their first big financial decisions."*
 
-**How you can get it (CTA):**
-- *"Click the link below to download my free Financial Reset checklist."*
-- If you don't have a lead magnet yet, the CTA can simply be a Telegram channel or a booking link. Either beats nothing.
+What they get (the promise):
 
-**Worked example:**
+- *"I help young parents get their family's cover sorted in one sitting, without a drawer full of policies they don't understand."*
+- The "without [common worry]" part is what sticks, because it answers the fear before they voice it.
+- Don't promise a return, an income figure or a timeline. MAS guidelines on digital advertising, issued in September 2025, apply to financial marketing on social media, and a bio counts.
 
-> **Jenny Tan**
+How to get it (the call to action):
+
+- *"Tap the link below for my free Financial Reset checklist."*
+- If you don't have a free download yet, point to a Telegram channel or a booking link.
+
+Worked example:
+
+> Jenny Tan
+>
 > Financial Consultant, AIA
 >
-> Helping late-20s professionals in tech build their first structured financial plan — without ten confusing policies.
+> Helping late-20s professionals in tech build their first structured financial plan, without ten confusing policies.
 >
-> 🔗 Free 5-min financial reset quiz ↓
+> Free 5-min financial reset quiz below
 
-Three lines. Who. What. How. No jargon. No *"holistic financial planning."* No *"passionate about helping clients achieve their dreams."*
+That's three lines covering who, what and how. There's no jargon, no *"holistic financial planning"* and no *"passionate about helping clients achieve their dreams."*
 
 ---
 
-## Authority vs Social — pick one
+## Authority or Social: pick one
 
-There are two proven approaches. Pick the one that fits your stage.
+There are two approaches that work. Pick the one that fits where you are.
 
-| | **Authority** | **Social** |
+| | Authority | Social |
 |---|---|---|
-| **Built on** | Topic or market | Interest or identity |
-| **Bio states** | Profession + who you help | Interest / identity (and profession in the category field) |
-| **Pros** | Easier to create sales conversations — people know why they're following you | Easier to grow the page — people know *you*, then discover what you do |
-| **Cons** | Harder to grow the page | Harder to create sales conversations |
-| **Who it fits** | FCs with a clear niche or strong framework | FCs with a strong personality, hobby, or community base |
+| Built on | A topic or market | An interest or identity |
+| What the bio says | Your profession and who you help | Your interest or identity (profession goes in the category field) |
+| Upside | Easier to start sales conversations, because people know why they follow you | Easier to grow, because people get to know you first and then find out what you do |
+| Downside | Harder to grow | Harder to start sales conversations |
+| Suits | FCs with a clear niche or a strong framework | FCs with a big personality, a hobby or a community behind them |
 
-Most Week-2 FCs should start **Authority** if they have a clear niche in mind, or **Social** if they don't yet — grow the audience first, monetise the relationships later.
+In Week 2, start with Authority if you already have a niche in mind. If you don't, go Social: grow the audience first and turn relationships into clients later.
 
-### Optional: the named framework
+### Optional: a named framework
 
-A named framework inside the bio gives you a *memorable shorthand* for what you do. Examples:
+A named framework in your bio gives people an easy way to remember what you do. For example:
 
-- **P.I.S.A** — Protect · Income · Scale · Assets
-- **F.A.T** — Foundation · Accelerate · Transfer
+- P.I.S.A: Protect, Income, Scale, Assets
+- F.A.T: Foundation, Accelerate, Transfer
 
-If you use one, put it in the bio. It makes the *What* line sharper and the *How* feel more credible. Don't invent a framework just to have one — but if your existing process has 3–4 clear phases, naming them pays.
+If you have one, put it in the bio. It sharpens the *What* line and makes the *How* more believable. Don't make one up just to have one, but if the way you already work has 3 or 4 clear phases, it's worth naming them.
 
 ---
 
 ## The 30-day goal
 
-A benchmark for a serious IG profile in Month 1:
+The source course sets this benchmark for a serious IG profile in its first month:
 
 | Metric | Target | Driven by |
 |---|---:|---|
-| Followers | 1,000 | Positioning + clean-up + consistent content |
-| Conversations | 100 | Engagement strategy + stories |
+| Followers | 1,000 | Positioning, clean-up and regular content |
+| Conversations | 100 | Engagement and stories |
 | Sales | 10 | DM funnel |
 
-For a Week-2 FC this is aspirational. You are nowhere near 1,000 followers yet. That's fine — the point isn't to hit 1,000 this month; it's to know which direction you're pointing.
+In Week 2 this is a stretch target. You don't need 1,000 followers this month, only to know which direction you're heading.
 
-The leading indicator you *can* move this week is simpler: **does your profile make a cold viewer stay on it for 20 seconds, or do they bounce in 3?** A good bio, clean highlights, and a real-person profile pic is what gets you to 20.
+The number you can move this week is simpler. When a stranger lands on your profile, do they stay for 20 seconds or leave after 3? A good bio, tidy highlights and a real photo of you are what keep them there.
 
 ---
 
-## The 5 Levers of Familiarity
+## The 5 levers of familiarity
 
-The profile is *one* of five levers for being remembered. Strong profiles don't sell by themselves — they combine with the other 4 to compound trust over months. Understanding all 5 stops you from over-investing in any single lever.
+Your profile is one of five ways people come to remember you, and it won't sell on its own. Knowing all five keeps you from pouring everything into one.
 
-| Lever | What it builds | Where it lives in your week |
+| Lever | What it builds | Where it sits in your week |
 |---|---|---|
-| 1 · **Persistent daily prospecting** | One-to-one touches — calls, DMs, voice notes | Day 19/20/22 work |
-| 2 · **Referrals** | Borrowed trust — customer / personal / professional | Week 5's full curriculum |
-| 3 · **Networking** | Showing up at events + chambers + communities | *"Nobody cares about you; they want to talk about themselves"* |
-| 4 · **Company + brand familiarity** | AIA's brand + team reputation you can point to | Team credentials, office presence |
-| 5 · **Personal branding** | Profile, content, speaking, volunteering — owned assets | Today (profile) + Day 11 (stories/content) |
+| 1. Persistent daily prospecting | One-to-one touches: calls, DMs, voice notes | Days 19, 20 and 22 |
+| 2. Referrals | Borrowed trust from customers, friends and professional contacts | All of Week 5 |
+| 3. Networking | Showing up at events, chambers and communities | *"Nobody cares about you; they want to talk about themselves"* |
+| 4. Company and brand familiarity | AIA's name and your team's reputation | Team credentials, office presence |
+| 5. Personal branding | Things you own: profile, content, talks, volunteer work | Today (profile) and Day 11 (stories and content) |
 
-**The compound.** A prospect who has seen your profile (5), heard about you from a friend (2), *and* received your DM (1) replies at ~10× the rate of someone touched through only one lever.
+Psychologists call the pull of familiarity the mere exposure effect (Robert Zajonc, 1968): the more often people come across something, the more they tend to like it. A prospect who has seen your profile (5), heard about you from a friend (2) and got your DM (1) is much warmer than someone who has only had one of those.
 
-**Where new FCs break:** they spend Week 2 on profile obsession (lever 5 only) while ignoring 1, 2, 3. The profile polishes; the pipeline stays empty. Profile is necessary, not sufficient — **1 of 5, not 5 of 5.**
+Here's where new FCs go wrong. They spend Week 2 polishing their profile (lever 5) and ignore levers 1, 2 and 3. The profile looks great and the pipeline stays empty. You need a good profile, but it's one lever out of five.
+
+---
+
+## Sources
+
+- [Guidelines on Standards of Conduct for Digital Advertising Activities (25 September 2025) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-standards-of-conduct-for-digital-advertising-activities) - covers financial institutions and their marketers advertising on social media
+- [First impressions: making up your mind after a 100-ms exposure to a face - Willis and Todorov, Psychological Science (2006)](https://collaborate.princeton.edu/en/publications/first-impressions-making-up-your-mind-after-a-100-ms-exposure-to-/) - people judge trustworthiness and competence from a face almost instantly, which is why the profile photo matters
 
 ---
 
@@ -168,7 +176,7 @@ The profile is *one* of five levers for being remembered. Strong profiles don't 
 - C) Kind, Likeable, Reliable
 - D) Kept, Linked, Registered
 
-**Why:** Known = people know what you do (profile fundamentals). Loved = people like you as a person (stories). Respected = people see you as a professional (content). Missing any one makes the profile feel incomplete — fun but untrustworthy, competent but cold, etc.
+**Why:** Known comes from the profile, Loved from stories and Respected from your posts. Miss one and the profile feels off, either fun but not trustworthy or competent but cold.
 
 **Q2. The Why / What / How bio structure uses each line for:**
 - A) Greeting / introduction / sign-off
@@ -176,47 +184,47 @@ The profile is *one* of five levers for being remembered. Strong profiles don't 
 - C) Name / title / company
 - D) Hashtags / mentions / link
 
-**Why:** Why = credentials or niche specificity that earns the follow. What = the concrete outcome you help with, with the common objection handled. How = the single CTA (link, channel, lead magnet). 150 characters is tight — every line has to do a job.
+**Why:** Why earns the follow, What names the outcome and answers the common worry, and How gives one call to action. With only 150 characters, each line needs a job.
 
-**Q3. A new FC with strong interest in fitness, no niche chosen yet, and 80 followers should probably position their profile as:**
-- A) Authority — pick a client niche and go hard
-- B) Social — lead with fitness, build the audience, convert relationships later ✓
-- C) Generic financial planning — to keep options open
+**Q3. A new FC who loves fitness, hasn't chosen a niche and has 80 followers should probably position their profile as:**
+- A) Authority: pick a client niche and go hard
+- B) Social: lead with fitness, build the audience, turn relationships into clients later ✓
+- C) Generic financial planning, to keep options open
 - D) Don't post until they have 1,000 followers
 
-**Why:** Authority positioning is easier to convert but harder to grow. At 80 followers with no niche yet, growth is the bottleneck. Lead with the interest (fitness), grow the audience, then introduce the profession naturally once the relationships are established. C is the path that actively fails — generic positioning is what option B is trying to avoid. D reverses cause and effect.
+**Why:** Authority converts more easily but grows slowly, and at 80 followers with no niche, growth is the problem to solve. Lead with fitness and bring in the profession once the relationships are there. C fails outright because it's generic, and D gets cause and effect backwards.
 
-**Q4. The 6 profile elements (where you score 1–5 for each) are:**
+**Q4. The 6 profile elements (each scored 1 to 5) are:**
 - A) Followers, following, posts, bio, link, name
 - B) Profile picture, name, category, bio, link, highlights ✓
 - C) Feed, reels, stories, IGTV, guides, live
 - D) Username, password, email, phone, address, DOB
 
-**Why:** These are the permanent fields a cold viewer sees in the first 3 seconds on your profile. Picture (recognition), name (searchability), category (labelling), bio (who/what/how), link (one CTA), highlights (always-on proof). Score them 1–5 each and fix the lowest first — that's the Day 10 move.
+**Why:** These are the fixed fields a stranger sees in the first few seconds on your profile. Score each from 1 to 5 and fix the lowest first.
 
-**Q5. Missing the *Respected* signal of KLR means your profile reads as:**
+**Q5. If your profile is missing the *Respected* signal, it reads as:**
 - A) Boring but safe
 - B) "Fun person, but would I trust her with my money?" ✓
 - C) "Competent but robotic"
 - D) Invisible
 
-**Why:** Loved without Respected is the classic new-FC failure — warm content, lots of personality, no frameworks or client wins visible. Prospects like the person but don't see the professional, so they never convert. Respected without Loved is the opposite failure ("competent but robotic"). Both signals need to coexist for a profile to convert at all.
+**Why:** This is the classic new-FC gap: warm content and plenty of personality, but no frameworks or client wins on show. Prospects like the person and can't see the professional, so they never become clients. "Competent but robotic" is the opposite gap, Respected without Loved.
 
-**Q6. The key difference between Authority and Social positioning is:**
+**Q6. The main difference between Authority and Social positioning is:**
 - A) Authority is better, Social is outdated
 - B) Authority is easier to convert to sales but harder to grow; Social is easier to grow but harder to convert ✓
 - C) Authority is for men, Social is for women
 - D) There's no difference
 
-**Why:** Authority says *"follow me because of what I do"* — high-intent audience, small. Social says *"follow me because of who I am"* — broad audience, softer intent. A new FC with a clear niche should go Authority; a new FC with a strong personality but no niche yet should go Social and grow the audience before monetising. Pick one based on your stage.
+**Why:** Authority says *"follow me for what I do"*, which gets you a small audience that's ready to talk. Social says *"follow me for who I am"*, which gets you a broad audience that's less ready. Choose based on whether you have a niche yet.
 
-**Q7. A new FC fixes their profile picture to a clear faceshot with a smile. Why does this single change have compounding returns?**
+**Q7. A new FC changes their profile picture to a clear headshot with a smile. Why does this one change keep paying off?**
 - A) It makes the profile prettier
-- B) Every person prospected, referred, or warm-messaged over the next year looks up the profile before replying — one fix × 200–2,000 viewings is asymmetric ROI ✓
+- B) Everyone prospected, referred or messaged over the next year looks at the profile before replying, so one fix gets seen hundreds of times ✓
 - C) Instagram's algorithm boosts profiles with faces
 - D) Photographers charge for this
 
-**Why:** The compound math is the whole point of Day 10. One hour of work on a field that will be viewed hundreds to thousands of times creates ROI that no other single activity in your week matches. The algorithm angle (C) isn't false but isn't the driver — human trust judgments are.
+**Why:** One hour spent on a field hundreds of people will look at pays back more than almost anything else you could do that week. Whatever the algorithm does (C), what matters is the trust call each person makes when they see your face.
 
 ---
 

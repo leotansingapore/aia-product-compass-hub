@@ -1,7 +1,7 @@
 ---
 week: 2
 day: 11
-title: "Personal Branding P2 — Content + Stories Rhythm"
+title: "Personal branding P2: content and stories rhythm"
 big_idea: "Feed earns leads. Stories earn trust. Inbox earns sales. One engine, three surfaces."
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
@@ -12,187 +12,195 @@ duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, content, stories, rsp, ppvv, instagram]
 ---
 
-# Day 11 — Content + Stories Rhythm
+# Day 11: Content and stories rhythm
 
 > **The one idea for today:** Feed earns leads. Stories earn trust. Inbox earns sales. One engine, three surfaces.
 
-By the time you close today you'll turn one insight into three posts using the RSP method (Relatable · Simple · Provoking), plan a week of stories on the PPVV + 5-types rhythm instead of staring at a blank screen at 9pm, and know exactly what each of the three surfaces — feed, stories, inbox — is for.
+By the end of today you'll be able to turn one insight into three posts, you'll have a week of stories planned so you're not staring at a blank screen at 9pm, and you'll know what the feed, stories and inbox are each for.
 
 ---
 
 ## The three-surface model
 
-Every good IG strategy runs the same loop. The surfaces do different jobs:
+A good IG setup runs the same loop every time, and each surface has its own job:
 
-![The three-surface model: Feed (posts, reels); Leads; Stories (daily); Trust; Inbox (DMs); Sales](/next-60-days/images/n60-day-11-m0.webp)
+![The three-surface model: Feed (posts, reels) earns leads; Stories (daily) earn trust; Inbox (DMs) earns sales](/next-60-days/images/n60-day-11-m0.webp)
 
-- **Feed** is your portfolio. Permanent posts that a cold viewer scrolls to decide if you're worth following. Fewer, heavier pieces.
-- **Stories** is your reality TV. Daily, disposable, personal. This is where 80% of your actual follower attention lives — and where trust builds.
-- **Inbox** is where sales actually happen. The DM is the handoff from trust to conversation.
+- Feed is your portfolio. These are the permanent posts a stranger scrolls through to decide whether to follow you. Post fewer, better pieces.
+- Stories are your reality TV: daily, short-lived and personal. Your followers see you here most often, so this is where trust builds.
+- Inbox is where sales happen. The DM is where trust turns into a conversation.
 
-New FCs blow time on the feed because it feels like "content." But **stories are where your follower attention actually lives** — posts enhance the landing page; stories build the relationship. Ratio to aim for: **1 post a week, 3 stories a day.**
-
----
-
-## The RSP method — one insight, three pieces of content
-
-The biggest content blocker for new FCs isn't ideas — it's *reuse*. One strong insight should produce three posts, not one.
-
-Every insight gets filtered through three screens:
-
-### R — Relatable
-Does this connect to what your audience is dealing with *right now?* 
-
-| Audience | What matters NOW |
-|---|---|
-| Students / new grads | Uncertain job market |
-| Working singles | Long HDB wait, high rent |
-| Married | Cost-of-living inflation |
-| Married with kids | Childcare, schooling, protection |
-| Pre-retirees | Healthcare inflation, retirement adequacy |
-
-Start with *where their head already is*. Content that's relatable gets read; content that isn't gets scrolled past.
-
-### S — Simple
-One point per post. Simple words. If a 16-year-old cousin wouldn't get it, rewrite it.
-
-### P — Provoking
-Challenge a belief they currently hold.
-
-| Current belief | Provoking counter |
-|---|---|
-| *"I don't need an advisor — I can read."* | *"60%+ of self-directed Singaporeans are under-covered."* |
-| *"Crypto is a good investment."* | *"85% of retail investors lose money in crypto."* |
-| *"Insurance is about death."* | *"90% of claims paid out in 2023 were for living benefits — not death."* |
-
-Provoking doesn't mean combative. It means *reframing*. The reader sees the topic differently after reading your post than they did before.
+New FCs pour their time into the feed because it feels like "content," though followers spend more of their attention on stories. Aim for 1 post a week and 3 stories a day.
 
 ---
 
-## The multiplier — 1 insight → 3 posts
+## The RSP method: one insight, three pieces of content
 
-One RSP-filtered insight gives you three post formats:
+New FCs usually have enough ideas, but they rarely reuse them, and one good insight should give you three posts. Run each insight through the three filters below.
 
-### Format 1 — One-Liner
-**Structure:** one-liner quote or question → 2 sentences of what it means to you.
+### R: Relatable
+
+Does it connect to what your audience is dealing with right now?
+
+| Audience | What's on their mind now |
+|---|---|
+| Students and new grads | An uncertain job market |
+| Working singles | The long wait for an HDB flat, high rent |
+| Married | Cost of living going up |
+| Married with kids | Childcare, school, protection |
+| Pre-retirees | Healthcare costs, whether their retirement money will last |
+
+Start from where their head already is. People read what feels relevant and scroll past the rest.
+
+### S: Simple
+
+One point per post, in plain words. If your 16-year-old cousin wouldn't get it, rewrite it.
+
+### P: Provoking
+
+Challenge something they currently believe.
+
+| What they believe | A provoking counter (with a real source) |
+|---|---|
+| *"I don't need an advisor, I can read."* | *"Reading about cover isn't the same as having enough. In 2022 working adults in Singapore had only about a quarter of their critical illness needs covered (LIA Protection Gap Study)."* |
+| *"Crypto is a good investment."* | *"The Bank for International Settlements found that most retail crypto app users had likely lost money on bitcoin between 2015 and 2022."* |
+| *"Insurance is about dying."* |  *"Singapore's biggest protection gap is for critical illness, which pays out while you're alive: 74%, against 21% for death cover (LIA, 2022)."* |
+
+Provoking doesn't mean picking a fight. You're giving them a new angle, so they see the topic differently after reading your post. Any number you post needs a source you can name, and it has to be current.
+
+---
+
+## The multiplier: 1 insight, 3 posts
+
+One insight that passes RSP gives you three post formats.
+
+### Format 1: one-liner
+
+Structure: a one-line quote or question, then 2 sentences on what it means to you.
 
 Example:
+
 > *"Did you know you could spend on what you want and still have enough for retirement?*
 >
-> *I grew up thinking there was never enough. It's demoralising — but thankfully there's a way out."*
+> *I grew up thinking there was never enough. It wears you down, but thankfully there's a way out."*
 
-### Format 2 — Tips
-**Structure:** one-liner → brief context → 3 practical tips.
+### Format 2: tips
 
-### Format 3 — Story
-**Structure:** one-liner → share a specific negative experience → consequence → possibility → 3 tips → closing advice.
+Structure: a one-liner, brief context, then 3 practical tips.
 
-Same underlying idea. Three formats. Three audience segments reached. This is the content engine — not inventing three new ideas, but multiplying one.
+### Format 3: story
+
+Structure: a one-liner, a specific bad experience, what it cost, what's possible, 3 tips, and closing advice.
+
+Each format reaches a different reader, so one idea does the work of three.
 
 ---
 
 ## The 4 content types (feed)
 
-Posts split into four categories. Each does a different job:
+Posts fall into four types, and each has its own job:
 
-| Type | Best for | Format cue |
+| Type | Best for | Format |
 |---|---|---|
-| **Useful** | Authority positioning | Carousel, <10 images, slide 9 = summary, slide 10 = CTA. 60-second reels that solve one problem. |
-| **Funny** | Social positioning | Memes, GIFs. Insider jokes for social; express-their-pain jokes for authority. |
-| **Relatable** | Either | Story-based. Share emotion. Common ground + a touch of vulnerability. |
-| **Inspiring** | Authority | Wins, testimonials, David-vs-Goliath, victim-to-victor arcs. |
+| Useful | Authority positioning | Carousels (Instagram has allowed up to 20 slides since 2024, but 10 is plenty: slide 9 sums up, slide 10 is the call to action). Short reels that solve one problem. |
+| Funny | Social positioning | Memes and GIFs: insider jokes for Social, and for Authority, jokes about the everyday money pains your clients know too well. |
+| Relatable | Either | Stories with feeling. |
+| Inspiring | Authority | Wins, testimonials, underdog and comeback stories, the kind that show someone getting from a bad spot to a better one. |
 
-Mix them. A week of only Useful posts reads like a textbook; a week of only Funny reads like a teenager's page. Aim for **2 Useful, 1 Relatable or Inspiring, 1 Funny across 4 weeks** — not per week.
+Mix them. A run of only Useful posts reads like a textbook, and only Funny reads like a teenager's page. Over 4 weeks (not per week), aim for 2 Useful, 1 Relatable or Inspiring, and 1 Funny.
 
 ---
 
-## Stories — the PPVV + 5-types rhythm
+## Stories: the PPVV and 5-types rhythm
 
-Stories are where new FCs freeze. *"What do I even post?"* Here's the rhythm that prevents that.
+Stories are where new FCs freeze up and ask *"What do I even post?"* This rhythm gets you past that.
 
-### PPVV — the personality-share spine
+### PPVV: sharing your personality
 
 | Letter | What you share |
 |---|---|
-| **P**assion | Your interests — music, food, a side hobby |
-| **P**ain | Your challenges — what you're wrestling with, honestly |
-| **V**alues | What you care about — family, integrity, long-term thinking |
-| **V**ision | Your goals and progress toward them |
+| P: Passion | Your interests: music, food, a side hobby |
+| P: Pain | What you're struggling with, honestly |
+| V: Values | What you care about: family, integrity, thinking long term |
+| V: Vision | Your goals, and your progress toward them |
 
-Rotate through PPVV across the week. Prospects want to work with a *person*, not a company uniform. PPVV is the spine of the *Loved* signal from yesterday.
+Rotate through PPVV over the week. Prospects want to work with a person, and a company uniform doesn't give them one. PPVV is where yesterday's *Loved* signal comes from.
 
 ### 5 types of stories
 
-Any given story fits into one of five types:
+Every story fits one of five types:
 
-1. **YOU: PPVV** — Passion / Pain / Values / Vision
-2. **Gratitude** — thanks, compliments, wins, losses, lessons
-3. **Ask Questions** — use the *Questions* or *Poll* sticker
-4. **Share Stories** — happen to fit one of 8 emotional registers (surprising, funny, frustrating, upsetting, happy, inspiring, embarrassing, grateful)
-5. **Work Life** — behind-the-scenes, teach something small, people you work with
+1. You (PPVV): passion, pain, values, vision
+2. Gratitude: thanks, compliments, wins, losses, lessons
+3. Ask questions: use the Questions or Poll sticker
+4. Share stories: something surprising, funny, frustrating, upsetting, happy, inspiring, embarrassing or that you're grateful for
+5. Work life: behind the scenes, teaching something small, the people you work with
 
 ### Weekly stories calendar (3 stories a day)
 
 | Day | Story 1 | Story 2 | Story 3 |
 |---|---|---|---|
-| **Mon** | Gratitude — person | Work Life — BTS / teach | Share story |
-| **Tue** | Ask Qn (poll) | YOU — Pain | Gratitude — experience |
-| **Wed** | Gratitude — compliment | Work Life — BTS / teach | Share story |
-| **Thu** | Ask Qn (poll) | YOU — Passion | Gratitude — loss / lesson |
-| **Fri** | Gratitude — win | Work Life — BTS / teach | Share story |
-| **Sat** | Ask Qn (poll) | Work Life — people | Gratitude — lesson |
-| **Sun** | Gratitude — self | YOU — Value | YOU — Vision |
+| Mon | Gratitude: person | Work life: BTS or teach | Share a story |
+| Tue | Ask (poll) | You: pain | Gratitude: experience |
+| Wed | Gratitude: compliment | Work life: BTS or teach | Share a story |
+| Thu | Ask (poll) | You: passion | Gratitude: loss or lesson |
+| Fri | Gratitude: win | Work life: BTS or teach | Share a story |
+| Sat | Ask (poll) | Work life: people | Gratitude: lesson |
+| Sun | Gratitude: self | You: values | You: vision |
 
-**The move:** don't design each day from scratch. Copy this calendar. Fill the slots as they happen. Most of these are spontaneous — a photo of what you're doing, a question you're curious about, a work-related moment. Plan less, share more.
+Don't plan each day from scratch. Copy this calendar and fill the slots as things happen. Most of these will be spontaneous: a photo of what you're doing, a question you're curious about, a moment at work. Plan less and share more.
 
 ---
 
-## Story-selling — the 6-box sequence
+## Story-selling: the 7-slide sequence
 
-After 4+ weeks of non-sales stories, you earn the right to sell a soft pitch. Here's the structure:
+After 4 or more weeks of stories that aren't selling anything, you've earned the right to a soft pitch. It runs over 7 slides:
 
-```
-┌─────┬──────────┬─────┬─────┬─────┬─────┬─────┬─────┐
-│ 1   │ wait 3-6h│ 2   │ 3   │ 4   │ 5   │ 6   │ 7   │
-│Poll │          │Story│Story│Story│Teach│Proof│ CTA │
-└─────┴──────────┴─────┴─────┴─────┴─────┴─────┴─────┘
-```
+1. Poll: a question close to the problem. *"Ever had a bill arrive at the worst possible moment?"* Wait a few hours before the next slide so people have time to vote.
+2. Story, part 1: set the scene.
+3. Story, part 2: what went wrong, one beat per slide, the way you'd tell it to a friend.
+4. Story, part 3: how it ended.
+5. Teach or tease: one insight, with an "agree? / no?" poll.
+6. Social proof: a DM screenshot or testimonial, shared with permission.
+7. Call to action: a DM sticker, like *"Who wants the full playbook?"* or *"Who needs help reviewing their coverage? Me / Maybe later."*
 
-1. **Poll** — a problem-adjacent question. *"Ever had a bill arrive at the worst possible moment?"* Wait 3–6 hours so poll results boost reach.
-2. **Story 1–3** — tell what happened, one beat per slide.
-3. **Teach or tease** — one insight with an "agree? / no?" poll.
-4. **Social proof** — a DM screenshot or testimonial.
-5. **CTA** — a DM sticker: *"Who wants the full playbook?"* or *"Who needs help reviewing their coverage? — Me / Maybe later."*
+Don't run story-selling before week 4 of posting. Three things have to be planted first, without any selling: who you help, what problem you solve, and that people want your time. Skip that and the pitch lands cold.
 
-**Do not run story-selling before week 4 of posting.** The 3 seeds (*who you help, what problem you solve, you're in demand*) need to be planted non-commercially first. Otherwise the pitch lands cold.
+---
+
+## Sources
+
+- [Protection Gap Study 2022 media release - Life Insurance Association, Singapore (8 September 2023)](https://www.lia.org.sg/media/3972/lia-pgs-2022-press-release_final_8-sep-2023.pdf) - economically active residents had a 21% mortality protection gap and a 74% critical illness protection gap in 2022
+- [Crypto shocks and retail losses, BIS Bulletin No 69 - Bank for International Settlements (February 2023)](https://www.bis.org/publications/bulletin-69-crypto-shocks-and-retail-losses) - a majority of crypto app users in nearly all economies likely lost money on bitcoin, August 2015 to December 2022
+- [Instagram expands carousels to 20 frames - Social Media Today (August 2024)](https://www.socialmediatoday.com/news/instagram-expands-carousels-to-20-frames/723792/) - the carousel limit went from 10 to 20 slides
 
 ---
 
 ## Quiz
 
 **Q1. The RSP method stands for:**
-- A) Research · Strategy · Publish
-- B) Relatable · Simple · Provoking ✓
-- C) Reach · Signal · Post
-- D) Read · Summarise · Publish
+- A) Research, Strategy, Publish
+- B) Relatable, Simple, Provoking ✓
+- C) Reach, Signal, Post
+- D) Read, Summarise, Publish
 
-**Why:** Relatable makes the content meet the reader where they are. Simple makes it digestible — one point, plain words. Provoking makes it memorable — the reader sees the topic differently after. Missing any one dimension weakens the post.
+**Why:** Relatable meets the reader where they are, Simple keeps it to one plain point, and Provoking makes it stick because the reader sees the topic differently afterwards.
 
 **Q2. The three surfaces of an IG strategy do different jobs. Which pairing is correct?**
-- A) Feed → sales, Stories → leads, Inbox → trust
-- B) Feed → leads, Stories → trust, Inbox → sales ✓
-- C) Feed → trust, Stories → sales, Inbox → leads
+- A) Feed: sales, Stories: leads, Inbox: trust
+- B) Feed: leads, Stories: trust, Inbox: sales ✓
+- C) Feed: trust, Stories: sales, Inbox: leads
 - D) All three do the same job
 
-**Why:** Feed is your permanent landing page — cold viewers discover you there. Stories are where daily attention lives and trust compounds. Inbox is where the actual sales conversation happens. Confusing the jobs is the most common new-FC mistake — they pitch in the feed, which kills discovery, or small-talk in the inbox, which wastes the sales moment.
+**Why:** The feed is your permanent shop window, where strangers find you. Stories are where people see you daily and trust builds, and the inbox is where the sales conversation happens. New FCs often pitch in the feed, which puts new followers off, or make small talk in the inbox and miss the moment.
 
-**Q3. The PPVV framework for sharing personality across stories is:**
+**Q3. The PPVV framework for sharing personality in stories is:**
 - A) Passion, Pain, Values, Vision ✓
 - B) Plans, Products, Value, Variety
 - C) People, Process, Proof, Pitch
 - D) Personal, Professional, Promotional, Public
 
-**Why:** PPVV is the spine of the *Loved* signal in KLR. Passion = interests, Pain = what you're wrestling with (honest, not manufactured), Values = what you care about, Vision = goals and progress. Rotating through these across the week gives prospects a whole person, not just a profession.
+**Why:** PPVV is where the *Loved* signal in KLR comes from. Rotating through your interests, honest struggles, values and goals shows prospects a whole person behind the job title.
 
 **Q4. The ratio Day 11 recommends between feed posts and stories is:**
 - A) 3 posts a week, 1 story a day
@@ -200,7 +208,7 @@ After 4+ weeks of non-sales stories, you earn the right to sell a soft pitch. He
 - C) Only post once a day, nothing else
 - D) Equal amounts
 
-**Why:** Stories are where ~80% of your follower attention actually lives — daily, low-stakes, trust-building. Posts are your portfolio — permanent, heavier, discovery-level. The 1:21 ratio (1 post + 21 stories across the week) matches where attention actually goes. New FCs default to inverting this because posts feel like "content" — they burn time in the wrong place.
+**Why:** Stories are where followers see you day to day and posts are your permanent portfolio, so one post and 21 stories a week puts your effort where people's attention goes. New FCs often flip it because posts feel like "real content."
 
 **Q5. The 4 content types for feed posts are:**
 - A) Text, image, video, audio
@@ -208,23 +216,23 @@ After 4+ weeks of non-sales stories, you earn the right to sell a soft pitch. He
 - C) Educational, Emotional, Entertaining, Experiential
 - D) Dawn, day, dusk, night
 
-**Why:** Each type does a different psychological job. Useful builds Respected. Funny builds Loved. Relatable builds connection. Inspiring builds aspiration. A feed that's only Useful reads like a textbook; only Funny reads like a teen's profile. Mix across 4 weeks: 2 Useful, 1 Relatable/Inspiring, 1 Funny.
+**Why:** Useful builds Respected and Funny builds Loved. Relatable builds connection, and Inspiring gives people something to aim for. A feed that's only Useful reads like a textbook, and only Funny reads like a teenager's page. Over 4 weeks: 2 Useful, 1 Relatable or Inspiring, 1 Funny.
 
-**Q6. The RSP multiplier — turning one insight into three posts — means:**
+**Q6. The RSP multiplier, turning one insight into three posts, means:**
 - A) Writing three new insights each week
-- B) Passing one insight through three formats (one-liner, tips, story) to reach different audience segments from a single idea ✓
+- B) Running one insight through three formats (one-liner, tips, story) to reach different readers from a single idea ✓
 - C) Reposting the same content three times
 - D) Splitting a long post into three shorter ones
 
-**Why:** The content bottleneck is rarely idea generation — it's reuse. One good insight has enough depth to support three different framings (quick one-liner, practical tips list, longer story arc). Each framing reaches a slightly different reader mood. The multiplier stretches your idea bank without asking you to generate three fresh ideas every week.
+**Why:** One good insight can carry a quick one-liner, a tips list and a longer story, and each catches a reader in a different mood. You get three posts without needing three fresh ideas.
 
-**Q7. "Do not run story-selling before week 4 of posting." Why?**
+**Q7. "Don't run story-selling before week 4 of posting." Why?**
 - A) Instagram's algorithm penalises early sales posts
-- B) The 3 seeds (who you help, what problem you solve, you're in demand) need non-commercial planting first — otherwise the pitch lands cold ✓
+- B) Three things (who you help, what problem you solve, that people want your time) need to be planted without selling first, or the pitch lands cold ✓
 - C) Most advisors quit before week 4
 - D) Polls don't work until you have 1,000 followers
 
-**Why:** Story-selling works because the audience already knows what you do, trusts you slightly, and has seen you in demand — the sales ask feels like a natural next step. Without those non-commercial foundations, the sales story reads as a salesperson who suddenly started selling. The 4-week delay is the earning period for the sell.
+**Why:** Story-selling works when the audience already knows what you do, trusts you a little and has seen that people want your time, so the ask feels like the obvious next step. Without that groundwork you look like a salesperson who suddenly started selling.
 
 ---
 

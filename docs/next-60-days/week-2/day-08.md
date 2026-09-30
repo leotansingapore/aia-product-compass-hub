@@ -1,8 +1,8 @@
 ---
 week: 2
 day: 8
-title: "The Intent Statement — Your Pattern Interrupt"
-big_idea: "The pattern interrupt is the one line that turns your opener from script to signature. Today you write yours."
+title: "The intent statement: your pattern interrupt"
+big_idea: "The pattern interrupt is the line that makes your opener sound like you, and today you write it."
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-03-11-intent-statement]]"
@@ -11,121 +11,131 @@ duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, intent-statement, pattern-interrupt, what-do-you-do]
 ---
 
-# Day 8 — Your Pattern Interrupt
+# Day 8: Your pattern interrupt
 
-> **The one idea for today:** The pattern interrupt is the one line that turns your opener from script to signature. Today you write yours.
+> **The one idea for today:** The pattern interrupt is the line that makes your opener sound like you, and today you write it.
 
-By the time you close today you'll have a "what do you do?" answer tailored for 5 prospect profiles (business owners, young professionals, C-suite, parents, pre-retirees), a v2 of your intent statement with a pattern interrupt in your actual voice, and a swap test to catch anything that could be said by 10 other FCs.
+By the end of today you'll have a "what do you do?" answer for 5 prospect profiles, v2 of your intent statement with a pattern interrupt in your own voice, and a swap test that catches lines 10 other FCs could say word for word.
 
 ---
 
-## Why the pattern interrupt carries the whole statement
+## Why the pattern interrupt matters most
 
-Yesterday you learned the 4 ingredients. Three of them (hook, impression, buy-in) do structural work. The **pattern interrupt** is what makes the prospect actually remember you.
+Of yesterday's 4 ingredients, the hook, impression and buy-in hold the statement together. The pattern interrupt is the part the prospect remembers.
 
-Prospects have sat through many openers before yours. They have a mental script for what an advisor says. If you say anything inside that script, they stop listening before you finish — their brain has already filled in the next sentence.
+Most prospects have heard advisors open before and know roughly what comes next. Say something inside that script and they tune out halfway through your sentence, because they've already guessed the ending.
 
-A pattern interrupt says something they were *not* expecting. *"Not every one of my company's products is the best fit for you"* — no one expects that from an advisor. *"I genuinely only want you to work with me if the value you get is more than what I take"* — no one expects that either.
+A pattern interrupt says something they weren't expecting. Nobody expects an advisor to say *"Not every one of my company's products is the best fit for you,"* or *"I genuinely only want you to work with me if the value you get is more than what I take."*
 
-The interrupt suspends their assumption. For the next 10–20 seconds, they're listening *to you* instead of the script in their head. That's the window where an intent statement actually lands.
+For a moment they stop running the script in their head and listen, and that's when the rest of your intent statement gets through.
 
 ---
 
 ## Three pattern-interrupt archetypes
 
-You don't invent one from scratch. Pick one of three proven archetypes and adapt it.
+You don't have to invent one. Pick one of these three and adapt it.
 
-### Archetype A — The objectivity interrupt
+### Archetype A: the objectivity interrupt
 
 > *"Not every one of my company's products is going to be the best fit for you. If I find something is better solved elsewhere, I'll be honest about it."*
 
-**Why it lands:** Advisors are expected to defend their company's products. Saying the opposite breaks the pattern and signals integrity.
+Why it works: prospects expect an advisor to defend the company's products. When you say the opposite, it breaks the pattern and tells them you're straight with people.
 
-### Archetype B — The transparent-commercial interrupt
+### Archetype B: the transparent-commercial interrupt
 
 > *"As much as I'd love your business, I only want you to work with me if the value you get is more than the value I'm getting. That's the deal."*
 
-**Why it lands:** Prospects are conditioned to suspect hidden commercial motive. Naming it openly dissolves that suspicion.
+Why it works: prospects assume there's a hidden sales motive. Saying it out loud takes the suspicion away.
 
-### Archetype C — The selection interrupt
+### Archetype C: the selection interrupt
 
-> *"I don't work with everyone — I'm selective about who I partner with, because I'm doing this for the long run. So today is as much me finding out if we're a fit as it is you finding out about me."*
+> *"I don't work with everyone. I'm selective about who I partner with, because I'm doing this for the long run. So today is as much me finding out if we're a fit as it is you finding out about me."*
 
-**Why it lands:** Positions you as chooser, not beggar. Works best for FCs with a clear audience niche.
+Why it works: you become the one choosing. It suits FCs who already have a clear audience niche.
 
-**Pick one archetype.** Week 1 was long enough to know your voice; Week 2 is where you commit.
+Pick one and commit to it this week.
 
 ---
 
-## Tailoring by profile — the 5-profile answer
+## Tailoring by profile: the 5-profile answer
 
-The intent statement frames the meeting. But the very first question you'll get — often before the meeting even starts — is:
+The intent statement frames the meeting. The first question you'll actually get, often before the meeting starts, is:
 
 > *"So, what do you actually do?"*
 
-Your answer has to land in 10 seconds and hit *their* hot button. Here are five tailored answers, one for each common prospect profile:
+You have about 10 seconds, and the answer has to hit what they care about. Here's one for each common profile:
 
 | Profile | Answer |
 |---|---|
-| **Business owners** | *"I help business owners find the inefficiencies in their portfolios, so more of their resources and time go back into their business."* |
-| **Young professionals** | *"I help young professionals set up a structured financial system and automate their investing, so they can focus on their careers."* |
-| **C-suite / HNW** | *"I help high-net-worth clients optimize the inefficiencies in their portfolios and structure their legacy for the next generation."* |
-| **Parents** | *"I help parents secure their family's risk protection and grow their wealth 10–15% year on year, so their kids get a head start and they get their time back."* |
-| **Pre-retirees** | *"I help affluent individuals secure their desired retirement lifestyle 5 to 10 years earlier than planned."* |
+| Business owners | *"I help business owners find the inefficiencies in their portfolios, so more of their money and time go back into the business."* |
+| Young professionals | *"I help young professionals set up a structured financial system and automate their investing, so they can focus on their careers."* |
+| C-suite / HNW | *"I help high-net-worth clients tidy up the inefficiencies in their portfolios and plan their legacy for the next generation."* |
+| Parents | *"I help parents get their family's protection sorted and build a plan to grow their savings, so their kids get a head start and they get their weekends back."* |
+| Pre-retirees | *"I help people in their 50s work out what retirement lifestyle they want and how early they can realistically get there."* |
 
-**The structure:** *"I help [who] do [what outcome] so [why it matters]."* That's the whole formula.
+The formula is *"I help [who] do [what outcome] so [why it matters]."*
 
-Notice what these don't do: they don't mention products, don't mention your company, don't mention "holistic financial planning." They name the audience, the outcome, and the consequence — in one breath.
+None of them mentions a product, your company or "holistic financial planning."
 
----
-
-## Principles for writing your own
-
-Four principles for crafting yours:
-
-- **Be upfront but creative** — not clever or cheesy. Clever reads as trying too hard.
-- **Connect with their hot button** — the outcome you name has to be the one *they* care about, not the one you find easiest to sell.
-- **Leverage your track record, or your passion if new** — if you don't have results yet, lead with specificity (the niche you've chosen) instead.
-- **Speak sincerely — never sound memorised** — the "what do you do?" answer should sound like you've been asked this a hundred times and answered the same way each time *because you mean it*, not because you rehearsed it.
+A note on promises. Don't put a return figure or a retirement date in your answer. You can't guarantee either, and a line like "grow your wealth 10% a year" is exactly the kind of promise MoneySense tells consumers to be wary of.
 
 ---
 
-## When the prospect won't shut up — the smooth-interjection move
+## Writing your own
 
-Pattern interrupts assume the prospect gives you the floor. Sometimes they don't. You're at coffee, the prospect is on a 20-minute monologue about work, and there's no natural opening to drop the intent statement. Forcing it ("OK, anyway — what I do is…") burns the rapport you spent the first hour building.
+Four rules:
 
-The move is the *"smooth interjection"*. Two principles:
+- Be upfront and a little creative, but don't try to be clever. Clever sounds like you're trying too hard.
+- Name the outcome they care about. The one that's easiest for you to sell doesn't count.
+- Use your track record if you have one. If you're new, use your passion and a specific niche.
+- Sound sincere. The answer should sound like you've been asked a hundred times and given the same answer each time because you mean it.
 
-**1. Find the bridge first.** Listen for the moment in their monologue that intersects with what you do — a money decision they had to make, a colleague's situation, a life event coming up. The interjection rides the bridge, not against it.
+---
 
-**2. Use a non-committal lead-in.** Phrases that signal *"I want to add something"* without interrupting:
+## When the prospect won't stop talking: the smooth interjection
 
-- *"That's actually really interesting — reminds me of…"*
-- *"Funny you mention that — most of the people I work with…"*
-- *"Hmm — could there be a possibility that's connected to something I do?"*
-- *"That's actually one of the things I help people figure out — would you like me to share?"*
+Sometimes the prospect never gives you the floor. You're at coffee, they've been talking about work for 20 minutes, and there's no gap for your intent statement. Forcing it ("OK, anyway, what I do is...") throws away the rapport you've built.
 
-The last one is the cleanest: it asks permission before you take the floor. Permission-based interjections almost never get refused.
+Use a smooth interjection. It has two parts.
 
-**Worked example.** Prospect (D-profile, in monologue mode) is venting about a colleague who got passed over for promotion despite being the strongest performer.
+First, find the bridge. Listen for the moment in their story that touches what you do (a money decision, a colleague's situation, a life event coming up) and build your interjection on it.
 
-Bad: *"Yeah, that sucks. Anyway, what I do is help people plan their finances…"*
+Second, use a soft lead-in. These phrases tell them you'd like to add something without cutting them off:
 
-Smooth: *"That's actually really common — and it's connected to something I help people work through. The way most senior professionals I work with frame it: career decisions get made on a 5-year horizon, but financial decisions made today either give them the option to take the next risk, or trap them in the current job. Could there be a possibility that's something worth looking at for you, even briefly?"*
+- *"That's actually really interesting, reminds me of..."*
+- *"Funny you mention that. Most of the people I work with..."*
+- *"Hmm, could there be a possibility that's connected to something I do?"*
+- *"That's actually one of the things I help people figure out. Would you like me to share?"*
 
-The interjection rode the bridge (career risk → financial flexibility), used a permission-based lead-in (*"could there be a possibility…"*), and turned the prospect's monologue into the on-ramp.
+The last one works best because you ask permission first, and people rarely say no to that.
+
+Worked example. The prospect (D-profile, in full flow) is venting about a colleague who was passed over for promotion despite being the strongest performer.
+
+Clumsy: *"Yeah, that sucks. Anyway, what I do is help people plan their finances..."*
+
+Smooth: *"That's actually really common, and it's connected to something I help people work through. The way most senior professionals I work with see it, career decisions get made on a 5-year horizon, but the money decisions you make today either give you the option to take the next risk or keep you stuck in the current job. Could there be a possibility that's something worth looking at for you, even briefly?"*
+
+It used the bridge (career risk leads to financial flexibility) and asked permission (*"could there be a possibility..."*), so their story became your way in.
 
 ---
 
 ## The "does this sound like anyone else?" test
 
-Before you commit to your v2, run this test:
+Before you lock in v2, run this test:
 
-> Read your intent statement + your "what do you do?" answer aloud. Then ask yourself: *could I swap my name with 10 other AIA FCs and the script would still work?*
+> Read your intent statement and your "what do you do?" answer out loud. Then ask yourself: *could 10 other AIA FCs put their name on this and it would still work?*
 
-If yes, it isn't yours yet. The whole point of a pattern interrupt is that it's *unusual* — if your version is swappable, it's still the generic script.
+If yes, it isn't yours yet. A pattern interrupt only works if it's unusual, and a line anyone could swap in is still the generic script.
 
-The fix is almost always specificity. Pick a narrower audience. Name a sharper outcome. Pick a more concrete pattern interrupt. *"I help busy dads in their late 30s work out if their $300/month in old policies is actually covering them"* is harder to swap than *"I help families with their financial planning."*
+The fix is nearly always to get more specific. Narrow the audience, sharpen the outcome, or make the interrupt more concrete. *"I help busy dads in their late 30s work out if their $300/month in old policies is actually covering them"* is much harder to swap than *"I help families with their financial planning."*
+
+---
+
+## Sources
+
+- [The Persuasion Knowledge Model - Friestad and Wright, Journal of Consumer Research (1994)](https://academic.oup.com/jcr/article/21/1/1/1797990) - people learn what sales tactics look like and use that knowledge to put their guard up
+- [How to spot an investment scam - MoneySense](https://www.moneysense.gov.sg/how-to-spot-an-investment-scam/) - consumers are told to be wary of promised high returns, which is why your answer names an outcome and leaves out the figure
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - the suitability standard behind the objectivity interrupt
 
 ---
 
@@ -137,7 +147,7 @@ The fix is almost always specificity. Pick a narrower audience. Name a sharper o
 - C) *"I help [who] do [what outcome] so [why it matters]."* ✓
 - D) *"I specialise in wealth accumulation and protection strategies."*
 
-**Why:** The formula names the audience (specificity), the outcome (hot-button relevance), and the consequence (why it matters). A and D are task-oriented or jargon-heavy; B is generic. The formula forces you to choose an audience and commit to an outcome — which is what makes it memorable.
+**Why:** It names the audience, the outcome they care about and why it matters. A is task-oriented, D is jargon and B is generic.
 
 **Q2. The "does this sound like anyone else?" test is designed to catch:**
 - A) Grammar errors
@@ -145,47 +155,47 @@ The fix is almost always specificity. Pick a narrower audience. Name a sharper o
 - C) Whether your pattern interrupt is too long
 - D) Whether your tonality matches the script
 
-**Why:** A pattern interrupt only works if it's unusual. If your statement could be said by 10 other FCs with the same effect, it isn't an interrupt — it's the generic script. The test forces you to find specificity: narrower audience, sharper outcome, more concrete line.
+**Why:** A pattern interrupt only works if it's unusual. If 10 other FCs could say your line and get the same effect, it's still the generic script.
 
 **Q3. Your prospect is a 42-year-old parent with two primary-school kids. Which tailored "what do you do?" answer fits best?**
-- A) *"I help high-net-worth clients structure their legacy for the next generation."*
+- A) *"I help high-net-worth clients plan their legacy for the next generation."*
 - B) *"I help business owners find inefficiencies in their portfolios."*
-- C) *"I help parents secure their family's risk protection and grow their wealth 10–15% year on year, so their kids get a head start and they get their time back."* ✓
-- D) *"I help affluent individuals retire 5 to 10 years earlier than planned."*
+- C) *"I help parents get their family's protection sorted and build a plan to grow their savings, so their kids get a head start and they get their weekends back."* ✓
+- D) *"I help people in their 50s work out how early they can realistically retire."*
 
-**Why:** Each answer targets a different hot button. A parent with young kids cares about family protection and their children's future — that's their non-negotiable emotional need right now. Legacy, business efficiency, and early retirement are not what's top-of-mind at this life stage. Matching the hot button is the whole point of tailoring.
+**Why:** A parent with young kids is thinking about protecting the family and the children's future. Legacy, business efficiency and early retirement aren't top of mind at this stage.
 
-**Q4. Which pattern-interrupt archetype positions you as the chooser rather than the seeker?**
+**Q4. Which pattern-interrupt archetype positions you as the one choosing, instead of the one asking?**
 - A) Objectivity interrupt
 - B) Transparent-commercial interrupt
-- C) Selection interrupt ("I don't work with everyone — I'm selective...") ✓
+- C) Selection interrupt ("I don't work with everyone. I'm selective...") ✓
 - D) Credential interrupt
 
-**Why:** The selection interrupt signals you've got a waiting list of prospects and you're deciding as much as they are. Works best for FCs with a clear niche — it fails for FCs who are obviously hungry and under-booked, because the positioning has to match the reality. The objectivity and transparent-commercial interrupts aim at different failure modes (integrity doubt, commercial suspicion).
+**Why:** The selection interrupt says you're deciding as much as they are. It suits FCs with a clear niche, and it falls flat for an FC who is obviously hungry and under-booked, because the line has to match reality. The other two deal with different doubts: whether you're honest, and whether you're only after the sale.
 
-**Q5. "Speak sincerely — never sound memorised" — what does that rule imply about how the "what do you do?" answer should sound?**
+**Q5. "Speak sincerely, never sound memorised." What does that rule mean for how your "what do you do?" answer should sound?**
 - A) It should sound improvised every time
 - B) It should sound like you've been asked this a hundred times and answered the same way each time because you mean it ✓
 - C) It should have new wording each time so it never sounds rehearsed
 - D) It should be read from notes
 
-**Why:** Consistency is fine — even necessary — but the consistency should come from conviction, not rote memorisation. The tell is in the voice: memorised delivery flattens; believed delivery holds energy across the same sentence, the thousandth time. Improvising each time is the opposite problem — you'd never commit to a frame.
+**Why:** Giving the same answer every time is fine if you believe it. A memorised line sounds flat, and one you believe still has energy the hundredth time. Improvising every time means you never commit to anything.
 
-**Q6. A new FC with no results yet writes: "I help late-20s professionals in tech navigate their first big financial decisions." What's this doing instead of citing results?**
+**Q6. A new FC with no results yet writes: "I help late-20s professionals in tech make their first big financial decisions." What is this doing instead of citing results?**
 - A) Making up credentials
-- B) Replacing results with specificity — naming a sharp niche earns the follow when numbers can't ✓
+- B) Replacing results with specificity: a sharp niche earns attention when you don't have numbers yet ✓
 - C) Pretending to be more experienced
 - D) Using industry jargon
 
-**Why:** Specificity is the Week-2 FC's substitute for track record. A narrow, real audience description ("late-20s professionals in tech with their first big financial decisions") beats a generic line even if the FC has zero clients — because it signals *"I know exactly who I'm talking to"*, which is what most prospects actually want.
+**Why:** In Week 2 a specific niche does the job a track record would. It tells the prospect you know exactly who you're talking to, even if you have zero clients.
 
-**Q7. After running the swap test, you realise your v2 could be delivered by 10 other FCs. The fix is almost always:**
+**Q7. After the swap test, you realise 10 other FCs could deliver your v2. The fix is nearly always:**
 - A) Adding more words
-- B) Specificity — narrower audience, sharper outcome, more concrete pattern interrupt ✓
+- B) Specificity: narrower audience, sharper outcome, more concrete pattern interrupt ✓
 - C) Changing the buy-in question
 - D) Translating to a different language
 
-**Why:** Swappability signals generality. *"I help families with financial planning"* is swappable because "families" and "financial planning" are categories anyone could use. *"I help busy dads in their late 30s check if their $300/month in old policies is actually covering them"* isn't swappable — it names a specific life stage, a specific number, a specific doubt. Specificity is the only real unlock.
+**Why:** A swappable line is a general one. *"I help families with financial planning"* uses categories anyone could claim. *"I help busy dads in their late 30s check if their $300/month in old policies is actually covering them"* names a life stage, a number and a specific worry, so nobody else can borrow it.
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 week: 2
 day: 7
-title: "The Intent Statement — Framework"
-big_idea: "The first 60 seconds decide the next 60 minutes. An intent statement is how you engineer that opening instead of hoping for it."
+title: "The intent statement: framework"
+big_idea: "The first minute of a meeting shapes how the prospect hears the rest of it. An intent statement lets you plan that minute instead of leaving it to chance."
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-03-11-intent-statement]]"
@@ -11,25 +11,25 @@ duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, intent-statement, framework, pattern-interrupt]
 ---
 
-# Day 7 — The Intent Statement (Framework)
+# Day 7: The intent statement (framework)
 
-> **The one idea for today:** The first 60 seconds decide the next 60 minutes. An intent statement is how you engineer that opening instead of hoping for it.
+> **The one idea for today:** The first minute of a meeting shapes how the prospect hears the rest of it. An intent statement lets you plan that minute instead of leaving it to chance.
 
-By the time you close today you'll know the 4 ingredients of a good intent statement (hook, clear impression, pattern interrupt, buy-in), you'll apply the Lady's Skirt principle (long enough to cover the essentials, short enough to stay interesting), and you'll spot which of the 4 traps (task-oriented, jargon, generic, too long) is weakening your current opener.
+By the end of today you'll know the 4 ingredients of a good intent statement, the Lady's Skirt rule for length, and which of the 4 common traps is weakening the opener you use now.
 
 ---
 
-## What an intent statement actually is
+## What an intent statement is
 
-An intent statement is the first structured thing you say to a new prospect after the small talk ends. It is not a pitch. It is an *opener* — a short, deliberate sentence or two that sets the impression you want the person to carry for the rest of the meeting.
+It's the first planned thing you say to a new prospect once the small talk ends. In a sentence or two, before any product comes up, it sets the impression you want them to hold for the rest of the meeting.
 
-The impression is up to you. You choose in advance which version of advisor you want them to feel they're meeting:
+You decide that impression in advance. Which advisor do you want them to feel they're sitting with?
 
-- The *objective and unbiased* advisor
-- The *sincere, for-the-people* advisor
-- The *extremely competent, always gets it done* advisor
+- Objective and unbiased
+- Sincere, and clearly on the client's side
+- So competent that whatever the client needs gets done, however messy the paperwork
 
-Pick one. Commit. The intent statement is the tool that plants it.
+Pick one. The intent statement plants it, so every line in it should point the same way.
 
 ---
 
@@ -37,77 +37,87 @@ Pick one. Commit. The intent statement is the tool that plants it.
 
 Every good intent statement has four parts:
 
-![The 4 ingredients: 1 · Strong hook; 2 · Clear impression; 3 · Pattern interrupt; 4 · Buy-in](/next-60-days/images/n60-day-07-m0.webp)
+![The 4 ingredients: 1 Strong hook; 2 Clear impression; 3 Pattern interrupt; 4 Buy-in](/next-60-days/images/n60-day-07-m0.webp)
 
-**1 · Strong opening hook.** The first sentence is an introduction, not a product line. Like the first paragraph of an essay — if it doesn't pull the listener in, the next nine sentences don't matter.
+1. Strong opening hook. Your first sentence introduces you and names no product. Like an essay's first paragraph, if it doesn't pull them in, they won't hear the next nine sentences.
 
-**2 · A clear impression you want to leave.** Don't try to be all three versions of advisor. Pick one. "Objective" is the most common starting choice for new FCs — it's believable, low-pressure, and hard to argue with.
+2. A clear impression. You can't be all three advisors at once, so choose. Most new FCs start with "objective" because it's believable, low-pressure and hard to argue with.
 
-**3 · A pattern interrupt.** Something they didn't expect to hear from an advisor. Most prospects have a script in their head for what an advisor says — break it. *"Not every one of my company's products will be the best fit for you"* breaks it. *"I genuinely only want you to work with me if the value you get is more than the value I take"* breaks it. More on this tomorrow.
+3. A pattern interrupt. Prospects carry a script for what an advisor says next. This line breaks it. *"Not every one of my company's products will be the best fit for you"* does that. So does *"I genuinely only want you to work with me if the value you get is more than the value I take."* The term comes from neuro-linguistic programming (Richard Bandler and John Grinder, 1970s). Tomorrow is all about this ingredient.
 
-**4 · Buy-in.** End with *"does that sound fair?"* or *"does that sound good?"* or similar. You're not asking for a commitment — you're asking them to *agree to the frame.* Once they say yes, you've set the rules of the meeting.
+4. Buy-in. Finish with *"Does that sound fair?"*, *"Does that sound good?"* or something close. You're asking them to agree to how the meeting will run, and once they say yes, those are the rules for the session.
 
 ---
 
 ## A worked example
 
-Here's the classic four-ingredient version, delivered verbatim:
+Here's the classic version with all four ingredients, word for word:
 
-> *"Good morning — before we get started with our session today, I'm sure you'd like to know a little more about who you might eventually be working with. So I want to put something on the table upfront: having been in this industry for some time, I know for a fact that not every one of my company's products is always going to be the best fit for you. You have my word that if, across the course of our conversation, we find that there are areas of your portfolio better solved by another provider, I will be objective and honest with you about that. However, if we uncover areas my company can effectively implement and solve for, I'll do my best to help you there. **Does that sound fair?**"*
+> *"Good morning. Before we get started with our session today, I'm sure you'd like to know a little more about who you might eventually be working with. So I want to put something on the table upfront: having been in this industry for some time, I know for a fact that not every one of my company's products is always going to be the best fit for you. You have my word that if, across the course of our conversation, we find that there are areas of your portfolio better solved by another provider, I will be objective and honest with you about that. However, if we uncover areas my company can effectively implement and solve for, I'll do my best to help you there. Does that sound fair?"*
 
-Unpack it against the four ingredients:
+Here's where each ingredient sits:
 
-| Ingredient | Where it lives in the script |
+| Ingredient | Where it is in the script |
 |---|---|
-| **Hook** | *"I want to put something on the table upfront"* |
-| **Impression** | Objective advisor — *"I'll be honest… better solved by another provider"* |
-| **Pattern interrupt** | *"Not every one of my company's products is going to be the best fit"* |
-| **Buy-in** | *"Does that sound fair?"* |
+| Hook | *"I want to put something on the table upfront"* |
+| Impression | Objective advisor: *"I will be objective and honest... better solved by another provider"* |
+| Pattern interrupt | *"Not every one of my company's products is always going to be the best fit"* |
+| Buy-in | *"Does that sound fair?"* |
 
-Every element has a job. Remove any one and the statement weakens.
+Take any one of these out and the statement gets weaker.
 
 ---
 
-## The Lady's Skirt principle
+## The Lady's Skirt rule
 
-A strong intent statement obeys the **Lady's Skirt theory:**
+A good intent statement follows the Lady's Skirt rule:
 
 > *"Long enough to cover the essentials; short enough to be interesting."*
 
-Too short, and it sounds like a line you rehearsed. Too long, and you lose the room before you've earned it. Aim for ~30–45 seconds spoken — three or four sentences max.
+Too short sounds rehearsed. Too long and you lose them before you've earned their attention. Aim for 30 to 45 seconds spoken, which is three or four sentences at most.
 
-**Teaser variants that follow the same principle:**
-- *"Many people overlook one critical aspect of retirement planning that costs them thousands — want to know what it is?"*
-- *"There's a strategy some of my clients use that shortened their retirement timeline by 5–10 years. It's not what most people expect."*
+Teasers work on the same rule:
 
-The pattern: name the surprising thing → invite curiosity → don't reveal the answer until they ask.
+- *"There's one thing most people miss when they plan for retirement, and it usually costs them more than they realise. Want to know what it is?"*
+- *"A few of my clients changed one habit that moved their retirement plans forward. It's probably not what you'd guess."*
+
+Name something surprising, let them get curious, and hold the answer until they ask.
 
 ---
 
 ## The 4 traps to avoid
 
-New FCs almost always fall into one of these four:
+Nearly every new FC falls into at least one of these:
 
 | Trap | What it sounds like | Why it fails |
 |---|---|---|
-| **Task-oriented** | *"I help you review your insurance portfolio and recommend products."* | Prospects don't care about your process — they care about the benefit |
-| **Industry jargon** | *"I specialise in holistic wealth accumulation and risk mitigation strategies."* | Jargon alienates. The prospect stops listening. |
-| **Generic / vague** | *"I help people with their financial planning."* | Blends in with every other advisor they've met |
-| **Too long** | Three paragraphs explaining your approach | Loses punch. They stop tracking by sentence two. |
+| Task-oriented | *"I help you review your insurance portfolio and recommend products."* | Prospects care about what they get out of it. Your process doesn't interest them. |
+| Industry jargon | *"I specialise in holistic wealth accumulation and risk mitigation strategies."* | Jargon puts people off, and they stop listening. |
+| Generic or vague | *"I help people with their financial planning."* | Every other advisor they've met has said the same thing. |
+| Too long | Three paragraphs about your approach | They've stopped following you by the second sentence. |
 
-**Diagnostic question:** read your current intent statement aloud. Which of these four traps does it fall into? Fix that one first, tomorrow.
+Read your current intent statement out loud and ask which of these four traps it falls into. Fix that one first, tomorrow.
 
 ---
 
 ## When to use it
 
-Use the intent statement **as early as possible** in the first appointment — right after the small-talk settles, before you open the CST or fact-find. For a phone appointment-setting call, you can use a shorter version in the call itself.
+Use it as early as you can in the first appointment. The right moment is when the small talk settles, before you open the CST or the fact-find. On a phone call to set an appointment, you can use a shorter version.
 
-**When NOT to use it:**
-- On a cold call where there's no established intent to meet yet (you'd have to explain who you are first)
-- In the middle of a meeting already underway (the moment is past)
+Don't use it:
 
-The rule: it belongs at the top of the frame, not inside it.
+- On a cold call where nobody has agreed to meet yet. You'd have to explain who you are first.
+- Halfway through a meeting that's already under way. By then the moment has passed.
+
+It goes at the start of the meeting, before the prospect has settled on their own read of you.
+
+---
+
+## Sources
+
+- [First impressions: making up your mind after a 100-ms exposure to a face - Willis and Todorov, Psychological Science (2006)](https://collaborate.princeton.edu/en/publications/first-impressions-making-up-your-mind-after-a-100-ms-exposure-to-/) - people judge trustworthiness and competence within a fraction of a second, and more time mostly adds confidence
+- [The Persuasion Knowledge Model - Friestad and Wright, Journal of Consumer Research (1994)](https://academic.oup.com/jcr/article/21/1/1/1797990) - consumers learn the usual sales tactics and use that knowledge to resist them, which is the "script" a pattern interrupt breaks
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - MAS expects advice that fits the customer, which is what the objective-advisor promise commits you to
 
 ---
 
@@ -119,31 +129,31 @@ The rule: it belongs at the top of the frame, not inside it.
 - C) Introduction, credentials, products, ask
 - D) Smile, compliment, question, pitch
 
-**Why:** Without a hook, the rest isn't heard. Without a clear impression, you sound like every other advisor. Without a pattern interrupt, their sales-resistance stays up. Without buy-in, they haven't agreed to the frame. All four do different jobs.
+**Why:** Without a hook nobody hears the rest, and without a clear impression you sound like every other advisor. Skip the pattern interrupt and their guard stays up. Skip buy-in and they haven't agreed to how the meeting will run.
 
-**Q2. The "Lady's Skirt" theory says a good intent statement is:**
+**Q2. The "Lady's Skirt" rule says a good intent statement is:**
 - A) Long enough to explain everything, short enough to remember
 - B) Long enough to cover the essentials, short enough to be interesting ✓
 - C) Exactly 60 seconds
 - D) As short as possible
 
-**Why:** Too short and you sound underprepared or scripted. Too long and the listener disengages before the pattern interrupt lands. The sweet spot is roughly 30–45 seconds spoken — three or four tight sentences.
+**Why:** Too short and you sound underprepared or scripted. Too long and the listener drifts off before the pattern interrupt arrives. Aim for about 30 to 45 seconds spoken, three or four tight sentences.
 
-**Q3. Which of these openers falls into the "generic / vague" trap?**
+**Q3. Which of these openers falls into the "generic or vague" trap?**
 - A) *"Not every one of my company's products will be the best fit for you."*
 - B) *"I help people with their financial planning."* ✓
 - C) *"I specialise in helping parents grow wealth while covering their family's risks."*
 - D) *"Before we start, I want to put something on the table upfront."*
 
-**Why:** Option B could be said by any advisor anywhere. It carries no impression, no pattern interrupt, and no hook. A, C, and D each commit to a specific frame — generic is the absence of a frame, not a bad frame.
+**Why:** Any advisor anywhere could say B. It has no hook, impression or pattern interrupt, while A, C and D each commit to something specific.
 
 **Q4. The intent statement works best delivered:**
 - A) Anytime during the meeting
-- B) As early as possible — right after small talk settles, before the CST/fact-find opens ✓
+- B) As early as possible, right after small talk settles and before the CST or fact-find opens ✓
 - C) At the close, to reset the frame
-- D) Never — it's a gimmick
+- D) Never, it's a gimmick
 
-**Why:** The intent statement's job is to plant the impression you want carried through the rest of the meeting. If you wait, the prospect forms their own impression from your small talk and your first few fact-find questions. The top of the frame is when the prospect is most open to being told what shape this meeting takes.
+**Why:** If you wait, the prospect builds their own impression from your small talk and first fact-find questions. At the start they're still open to being told how the meeting will go.
 
 **Q5. When is the intent statement *not* appropriate?**
 - A) With any warm-market prospect
@@ -151,7 +161,7 @@ The rule: it belongs at the top of the frame, not inside it.
 - C) At a first meeting with a C-profile client
 - D) With prospects younger than 30
 
-**Why:** Cold context has no "meeting frame" to set yet — you'd have to explain who you are before the intent statement had meaning. Mid-meeting is past the moment — the impression has already formed. The intent statement belongs at the *top of the frame*, not inside it and not before it.
+**Why:** On a cold call nobody has agreed to meet, so there's nothing to frame and you'd have to explain who you are first. By mid-meeting they've already made up their mind about you, so it's too late.
 
 **Q6. The pattern interrupt in the worked example is:**
 - A) "Good morning"
@@ -159,15 +169,15 @@ The rule: it belongs at the top of the frame, not inside it.
 - C) "Does that sound fair?"
 - D) "Having been in this industry for some time"
 
-**Why:** Advisors are expected to defend their company's products. The line *"not every one of my products is going to be the best fit"* breaks the mental script the prospect has been running — their sales-resistance suspends for 10–20 seconds. That's the window where the impression actually lands.
+**Why:** Prospects expect an advisor to defend their company's products. Hearing one say the opposite breaks the script they've been running in their head, and for a moment their guard drops. That's when the impression you chose gets through.
 
 **Q7. The "task-oriented" trap fails because:**
 - A) It's too short
-- B) Prospects don't care about your process — they care about the benefit to them ✓
+- B) Prospects don't care about your process, they care about the benefit to them ✓
 - C) It uses too much jargon
 - D) It isn't delivered with enough certainty
 
-**Why:** *"I help you review your insurance portfolio and recommend products"* describes what you do to the portfolio. The prospect is listening for what happens to *them* — their time back, their family protected, their plan working. Task-oriented openers miss the emotional transfer and blend in with every other advisor.
+**Why:** *"I help you review your insurance portfolio and recommend products"* describes what you do to a portfolio. The prospect wants to hear what happens to them: time back, a protected family, a plan that works.
 
 ---
 

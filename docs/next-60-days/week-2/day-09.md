@@ -1,7 +1,7 @@
 ---
 week: 2
 day: 9
-title: "Positioning — The Objective Advisor"
+title: "Positioning: the objective advisor"
 big_idea: "Branding is how people think of you before they meet you. Positioning is how they think of you after."
 kpi_link: "Week 2 KPI — intent statement v2 delivered to 3 real people"
 primary_sources:
@@ -10,130 +10,135 @@ duration_minutes: 20
 tags: [next-60-days, week-2, new-fc, positioning, framing, detachment]
 ---
 
-# Day 9 — Positioning: The Objective Advisor
+# Day 9: Positioning, the objective advisor
 
 > **The one idea for today:** Branding is how people think of you before they meet you. Positioning is how they think of you after.
 
-By the time you close today you'll know the difference between branding (pre-meeting perception) and positioning (in-meeting behaviour) and which one moves today, you'll have the 3 highest-leverage positioning moves in your kit (framing, calling the elephant, detachment from outcome), and you'll know how to read when sales resistance has gone up — and which move defuses it fastest.
+By the end of today you'll know how branding differs from positioning and which one you can change this week. You'll have the three positioning moves that matter most early on, and you'll know which one to use when sales resistance starts rising.
 
 ---
 
 ## Branding vs positioning
 
-These two words get used interchangeably — they shouldn't.
-
 | | Branding | Positioning |
 |---|---|---|
-| **When it forms** | Before the meeting | During & after the meeting |
-| **Channel** | Social media, referrals, intro | Your conduct in the room |
-| **Controlled by** | What you publish, who refers you | How you frame, ask, listen, close |
-| **Moves on** | Weeks to years | Every single appointment |
+| When it forms | Before the meeting | During and after the meeting |
+| Channel | Social media, referrals, intros | How you behave in the room |
+| You control it through | What you publish, who refers you | How you frame, ask, listen, close |
+| How fast it moves | Weeks to years | Every appointment |
 
-Week 2's Days 10–11 are about branding. Today is about positioning — the behaviours that shape what the prospect thinks of you *after* they've met you. Same prospect, same story, same suit — but how you conduct yourself in the room decides whether they leave thinking *"another advisor"* or *"that one was different."*
+Days 10 and 11 cover branding. Today is positioning: with the same prospect, story and suit, how you handle the room decides whether they leave thinking *"another advisor"* or *"that one was different."*
 
 ---
 
 ## The 7 commandments of positioning
 
-Seven moves that work across any prospect, any product, any stage:
+Seven moves that work with any prospect, product or stage:
 
-![The 7 commandments of positioning: 1 · Always frame; 2 · Verbal + nonverbal; 3 · Curiosity + concern; 4 · Refrain from solutions; 5 · Sharp questions; 6 · Call the elephant; 7 · Detach from outcome](/next-60-days/images/n60-day-09-m0.webp)
+![The 7 commandments of positioning: 1 Always frame; 2 Verbal and nonverbal; 3 Curiosity and concern; 4 Refrain from solutions; 5 Sharp questions; 6 Call the elephant; 7 Detach from outcome](/next-60-days/images/n60-day-09-m0.webp)
 
-All seven matter. Three of them (1, 6, 7) do disproportionate work in your first 60 days. Those are the ones today covers. The rest live in Week 8 — by then you'll have the reps to use them.
-
----
-
-## Commandment 1 — Always be framing
-
-**Framing = telling the prospect what's going to happen before it happens.**
-
-The new-FC failure mode is to dive straight into the CST without telling the prospect what the shape of the meeting is. Their gut goes up immediately — they don't know where this is going, so they start defending.
-
-The fix is to narrate the meeting up front:
-
-> *"Just to give you an idea of what to expect today — we're going to focus on the core principles of financial planning for the first 30 minutes. We won't be looking at any specific products today unless you have questions. After today, I'll go away, build a recommendation based on what you share, and we'll meet again to walk through it. If any of it doesn't make sense, we tweak it. Final step is implementation, when the time's right. Does that sound okay?"*
-
-This does four things at once:
-1. Lowers the gut — they know the route
-2. Tells them you intend to bring this to a close at some point (respectful upfront-ness)
-3. Signals professionalism (*"this person has a system"*)
-4. Gets their buy-in before you've even started
-
-**Sub-rule: never say *"I'm not trying to sell you anything."*** The only people who say that line are the people trying to sell something. It actively raises the gut. If asked *"are you trying to sell me something?"*, the stronger answer is: *"Honestly — of course I'd love the opportunity to work with you if it makes sense. But today is really about finding out whether that even makes sense for both of us."*
+All seven matter, but in your first 60 days three of them (1, 6 and 7) do most of the work, so today covers those. The other four come in Week 8, once you've had more reps.
 
 ---
 
-## Commandment 6 — Call the elephant
+## Commandment 1: always be framing
 
-Whenever you feel an uncomfortable topic in the room that the prospect *also* feels — and neither of you is mentioning — name it first.
+**Framing** means telling the prospect what's going to happen before it happens.
 
-**Scenario.** Your friend mentioned a family member falling sick last week. You want to open the insurance conversation but don't want to seem opportunistic.
+New FCs tend to jump straight into the CST without saying how the meeting will run. The prospect can't see where it's heading, so their guard goes up and they start defending.
 
-**Weak move:** say nothing, hope it comes up naturally.
+Talk them through the meeting at the start:
 
-**Strong move — call the elephant:**
+> *"Just to give you an idea of what to expect today, we're going to focus on the core principles of financial planning for the first 30 minutes. We won't be looking at any specific products today unless you have questions. After today, I'll go away, build a recommendation based on what you share, and we'll meet again to walk through it. If any of it doesn't make sense, we tweak it. Final step is implementation, when the time's right. Does that sound okay?"*
 
-> *"Hey — you shared something with me last week, and there's actually something I wanted to say but I hesitated, because I didn't want to come across as someone taking advantage of the situation. Is there any way I can share this without you feeling I'm being pushy?"*
+That one paragraph does four things:
 
-Then once they say yes:
+1. It lowers their guard, because they know the route.
+2. It tells them upfront that you plan to close at some point, which is respectful.
+3. It shows you have a system, which reads as professional.
+4. It gets their buy-in before you've started.
 
-> *"It was about your family member's situation. I know we haven't talked through your coverage before — I'm not sure if it's because no one's brought it up, or because you haven't looked into it yet. Would it be okay if we had a short conversation about it this week?"*
-
-The same pattern works for objections you can see coming. If the plan has a 10-year premium lock and you know they'll flinch at it, raise it yourself:
-
-> *"One thing you might be thinking is that 10 years is a long lock-up. I get that. Can you think of one good reason we'd require that commitment?"*
-
-**Why it works:** raising the objection yourself signals you've handled it a thousand times. Waiting for them to raise it first puts you on defence.
+One rule inside this one: never say *"I'm not trying to sell you anything."* Salespeople say that line all the time, so it puts the guard up instead of down. If they ask *"are you trying to sell me something?"*, a better answer is: *"Honestly, of course I'd love the opportunity to work with you if it makes sense. But today is really about finding out whether that even makes sense for both of us."*
 
 ---
 
-## Commandment 7 — Detach from outcome
+## Commandment 6: call the elephant
 
-This is the positioning move that takes the longest to develop and has the biggest payoff.
+When there's an awkward topic in the room that you both feel and neither of you is mentioning, say it first. Chris Voss, the former FBI hostage negotiator, teaches a close cousin of this move and calls it the accusation audit: name the negative thing the other person is probably thinking before they say it.
 
-**The principle:**
+Scenario: a friend mentioned last week that a family member fell sick. You want to open the insurance conversation, but you don't want to look opportunistic.
+
+The weak move is to say nothing and hope it comes up.
+
+The strong move is to call the elephant:
+
+> *"Hey, you shared something with me last week, and there's actually something I wanted to say but I hesitated, because I didn't want to come across as someone taking advantage of the situation. Is there any way I can share this without you feeling I'm being pushy?"*
+
+Once they say yes:
+
+> *"It was about your family member's situation. I know we haven't talked through your coverage before. I'm not sure if it's because no one's brought it up, or because you haven't looked into it yet. Would it be okay if we had a short conversation about it this week?"*
+
+It works for objections you can see coming too. If the plan has a 10-year premium term and you know they'll flinch, raise it yourself:
+
+> *"One thing you might be thinking is that 10 years is a long commitment. I get that. Can you think of one good reason we'd ask for it?"*
+
+Raise it first and you sound like someone who has handled it many times, while waiting for them to raise it puts you on the back foot.
+
+---
+
+## Commandment 7: detach from outcome
+
+This one takes the longest to learn and pays off the most.
 
 > *The more you need a prospect, the less likely you are to close them.*
 
-When your entire month's FYC hinges on one appointment, you will carry that desperation into the room. Your voice will tighten. Your pacing will speed up. Your body language will lean in. The prospect will sense it, even if they can't name it — and your positioning collapses.
+When your whole month's FYC hangs on one appointment, you take that desperation into the room. Your voice tightens, you talk faster and you lean in. The prospect picks it up even if they couldn't tell you what it is, and your positioning falls apart.
 
-The fix is structural, not psychological. The only real antidote to desperation is *volume*. When you're sitting 5–7 appointments a week, no single one is load-bearing. You can afford to walk away from a meeting that isn't a fit, because next week there's another.
+You can't think your way out of this. The fix is volume. When you're sitting 5 to 7 appointments a week, no single meeting carries your month, and you can walk away from one that isn't a fit because there's another next week.
 
-Until volume arrives, act as if. When you catch yourself getting attached mid-meeting — voice rising, pushing too hard, repeating the pitch — **let it go mid-sentence.** Lower your voice. Slow the pace. Acknowledge *"ultimately this is entirely up to you"* and mean it. Detachment is not indifference. It's *professional distance* — the same way a doctor doesn't care whether you fill the prescription, because it's not their job to care about that. It's their job to advise well.
+Until you have that volume, act as if you do. When you catch yourself getting attached mid-meeting (voice rising, pushing, repeating the pitch), drop it right there, lower your voice and slow down. Say *"ultimately this is entirely up to you"* and mean it. A good doctor works the same way: their job is to advise you well, and whether you fill the prescription is up to you.
 
-Detached positioning reads as *confident*. Attached positioning reads as *desperate*. Prospects always prefer confident.
+A detached advisor comes across as confident. An attached one comes across as desperate, and prospects go with the confident one.
 
 ---
 
-## When sales resistance is up — the 3-move ladder
+## When sales resistance goes up: the 3-move ladder
 
-Read the room. If sales resistance is up (arms crossed, short answers, breaking eye contact, interrupting you), you have three moves, in order:
+Read the room. If resistance is rising (crossed arms, short answers, less eye contact, cutting you off), you have three moves. Use them in this order:
 
-1. **Frame again.** *"I realise I haven't been clear about what we're doing today. Let me reset — here's what this meeting is."* Re-establishes the route.
-2. **Call the elephant.** *"I sense this might be feeling a bit fast. Is there anything you'd want me to clarify upfront?"*
-3. **Detach.** Visibly lean back. Lower your voice half a notch. *"If this isn't the right time for you, I'd rather you tell me now than us both sit through another hour."* Giving them the genuine out almost always brings them back in.
+1. Frame again. *"I realise I haven't been clear about what we're doing today. Let me reset. Here's what this meeting is."* This puts the route back in front of them.
+2. Call the elephant. *"I sense this might be feeling a bit fast. Is there anything you'd want me to clarify upfront?"*
+3. Detach. Lean back, drop your voice a little, and say: *"If this isn't the right time for you, I'd rather you tell me now than us both sit through another hour."* Offering a real way out often brings people back in.
 
-If all three fail, the meeting is over — end politely and leave the door open. That isn't a positioning failure; it's a fit issue. Those exist, and they're fine.
+If none of the three works, the meeting is over. End it politely and keep the door open. That's a fit problem. Some prospects aren't a fit, and that's fine.
+
+---
+
+## Sources
+
+- [Negotiator concepts that have evolved since Never Split the Difference - The Black Swan Group](https://www.blackswanltd.com/newsletter/expert-negotiator-concepts-that-have-evolved-since-never-split-the-difference-was-published) - Chris Voss's accusation audit: name the other side's likely negative thoughts before they raise them
+- [The Persuasion Knowledge Model - Friestad and Wright, Journal of Consumer Research (1994)](https://academic.oup.com/jcr/article/21/1/1/1797990) - once people recognise a sales tactic they resist it, which is why "I'm not trying to sell you anything" backfires
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - MAS standards for representative conduct and the advisory process that the objective-advisor position rests on
 
 ---
 
 ## Quiz
 
-**Q1. Branding and positioning differ in when they form. Which is true?**
+**Q1. Branding and positioning form at different times. Which is true?**
 - A) Branding forms during the meeting; positioning forms before
 - B) Branding forms before the meeting; positioning forms during and after ✓
 - C) They're the same thing
 - D) Positioning is only for senior advisors
 
-**Why:** Branding is pre-meeting perception (what people think before they meet you — driven by social media, referrals, reputation). Positioning is in-meeting behaviour (how you frame, ask, listen, close). You can move positioning in your next appointment; branding moves on a slower timeline.
+**Why:** Branding is what people think before they meet you, shaped by social media, referrals and reputation. Positioning is how you behave once you're in the room, and you can change it at your next appointment.
 
-**Q2. The phrase *"I'm not trying to sell you anything"* is a positioning mistake because:**
+**Q2. Saying *"I'm not trying to sell you anything"* is a positioning mistake because:**
 - A) It's grammatically incorrect
-- B) Only people trying to sell something ever say it — so it raises the prospect's gut ✓
+- B) Only people trying to sell something ever say it, so it puts the prospect's guard up ✓
 - C) It's too long
 - D) It contradicts your intent statement
 
-**Why:** The line is so overused that prospects associate it directly with being sold to. Saying it triggers defence instead of disarming it. The stronger framing acknowledges the commercial reality upfront: *"of course I'd love to work with you if it makes sense."*
+**Why:** Prospects have heard the line so often that they link it straight to being sold to. A better approach is to admit the commercial side upfront: *"of course I'd love to work with you if it makes sense."*
 
 **Q3. A prospect's resistance is clearly up mid-meeting. The 3-move ladder is:**
 - A) Push harder, switch products, close anyway
@@ -141,39 +146,39 @@ If all three fail, the meeting is over — end politely and leave the door open.
 - C) Lower price, offer a discount, ask for the close
 - D) Change the topic, tell a story, soft-close
 
-**Why:** High resistance is a signal the frame has slipped. Re-frame first (restore the route), call the elephant (name the discomfort), then detach (give them the genuine out). Pushing harder raises resistance further; price moves are the wrong lever this early. If all three fail, it's a fit issue, not a positioning issue.
+**Why:** High resistance means the frame has slipped, so you put the route back, name the discomfort and then offer a real way out. Pushing harder only raises resistance, and talking price this early is the wrong move.
 
-**Q4. The 7 commandments of positioning all matter, but three do disproportionate work in your first 60 days. Which three?**
+**Q4. All 7 commandments matter, but three do most of the work in your first 60 days. Which three?**
 - A) Frame, curiosity, close
 - B) Always frame, call the elephant, detach from outcome ✓
 - C) Sharp questions, refrain from solutions, credentials
 - D) Tonality, urgency, buy-in
 
-**Why:** Framing prevents the gut going up; calling the elephant defuses it when it has already risen; detachment lets both work. The other four (verbal+nonverbal, curiosity+concern, refrain-from-solutions, sharp-questions) are Week-8 moves once the basics are reflex. In the first 60 days you get most of the positioning payoff from these three.
+**Why:** Framing stops the guard going up, calling the elephant brings it down once it has, and detachment makes both of them work. The other four come in Week 8, once the basics are automatic.
 
-**Q5. *"The more you need a prospect, the less likely you are to close them."* The structural antidote to that desperation is:**
+**Q5. *"The more you need a prospect, the less likely you are to close them."* The structural fix for that desperation is:**
 - A) Acting more confidently
-- B) Volume — 5–7 appointments a week so no single one is load-bearing ✓
+- B) Volume: 5 to 7 appointments a week, so no single one carries your month ✓
 - C) Meditation before meetings
 - D) Charging less
 
-**Why:** You can't psychologically *decide* to be detached when your rent depends on this one close — your voice, pace, and body will betray you. The only real antidote is structural: enough appointments in the week that losing one is a shrug, not a crisis. The behavioural fix (acting as if, lowering voice mid-sentence) is a bridge until volume catches up.
+**Why:** When your rent depends on one close, your voice, pace and body give you away no matter what you decide to feel. Enough appointments that losing one hardly matters is what fixes it, and acting as if tides you over until then.
 
-**Q6. Your friend mentioned a family member fell sick last week. You want to open the insurance conversation. The strong move is:**
+**Q6. A friend mentioned a family member fell sick last week. You want to open the insurance conversation. The strong move is:**
 - A) Say nothing and hope it comes up
-- B) Call the elephant — name that you hesitated because you didn't want to seem opportunistic, then ask if there's a way to share without them feeling pushed ✓
+- B) Call the elephant: say you hesitated because you didn't want to seem opportunistic, then ask if you can share without them feeling pushed ✓
 - C) Push straight to an insurance pitch
 - D) Send a brochure
 
-**Why:** Saying nothing lets the awkwardness harden; pushing straight feels predatory; a brochure is cold. Calling the elephant — naming the hesitation explicitly — disarms the thing both of you are already feeling. It reads as integrity, not opportunism, precisely because it acknowledges the risk of opportunism first.
+**Why:** Saying nothing lets the awkwardness set in, pushing straight in feels predatory and a brochure feels cold. When you admit out loud that you were worried about looking opportunistic, you come across as honest.
 
-**Q7. "Detached positioning reads as confident. Attached positioning reads as..."**
+**Q7. "A detached advisor comes across as confident. An attached one comes across as..."**
 - A) Polite
 - B) Professional
-- C) Desperate — and prospects always prefer confident ✓
+- C) Desperate, and prospects go with the confident one ✓
 - D) Focused
 
-**Why:** When you lean in too hard, the prospect's pattern-match fires: *this person needs this more than I do, which means the product is not as good as they're claiming*. The logic is uncharitable but reliable. Detachment reads the opposite way — *this person doesn't need me specifically, they must be dealing with real value*. Same pitch, opposite conversion rate.
+**Why:** When you lean in too hard, the prospect thinks: *this person needs this more than I do, so maybe the product isn't as good as they say.* It's an unfair conclusion, but people draw it all the time. Detachment sends the opposite signal: *this person doesn't need me in particular, so what they're offering must be worth something.*
 
 ---
 
