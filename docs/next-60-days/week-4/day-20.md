@@ -1,8 +1,8 @@
 ---
 week: 4
 day: 20
-title: "Reaching Out Without Feeling Salesy"
-big_idea: "The silence you keep with friends isn't politeness — it's a tax on both sides. Honest outreach is the unlock."
+title: "Reaching out without feeling salesy"
+big_idea: "Staying quiet with friends feels polite, but it costs both of you, and an honest message is the way out of it."
 kpi_link: "Week 4 KPI — 30 outreaches; 5 appointments booked"
 primary_sources:
   - "[[../_source-articles/reaching-out-without-feeling-salesy]]"
@@ -13,288 +13,293 @@ duration_minutes: 20
 tags: [next-60-days, week-4, new-fc, warm-market, outreach, vulnerability, rapport]
 ---
 
-# Day 20 — Reaching Out Without Feeling Salesy
+# Day 20: Reaching out without feeling salesy
 
-> **The one idea for today:** The silence you keep with friends isn't politeness — it's a tax on both sides. Honest outreach is the unlock.
+> **The one idea for today:** Staying quiet with friends feels polite, but it costs both of you, and an honest message is the way out of it.
 
-By the time you close today you'll have a 6-step honest outreach message (connection → honesty → elephant → offer → easy-out → relationship) you can send to any warm-market contact, the 5 Steps to Build Rapport so you run the conversation without sounding like a checklist, and a follow-up rule that swaps *asking again* for *giving value* — the reframe that stops warm market from burning out.
+By the end of today you'll have a 6-step honest message for any warm-market contact, the 5 steps to build rapport so the meeting doesn't feel like a checklist, and a follow-up rule that swaps asking again for giving something useful. That rule is what stops your warm market burning out.
 
 ---
 
 ## Why new FCs stay silent
 
-Most new FCs avoid messaging friends about the business for the same reason they avoided asking anyone to prom — the fear of making things weird.
+Most new FCs avoid messaging friends about the business for the same reason people avoid asking someone out: they're afraid it'll make things weird.
 
-Here's what that silence actually costs:
+Here's what the silence costs:
 
-- **Your friend** — never hears that you do work that could help them, so they find a less-qualified advisor or stay unprotected.
-- **You** — your closest network, the one with the highest conversion odds, stays locked. Month 3 arrives and you're still trying to hit pipeline on strangers.
+- Your friend never hears that you do work that could help them, so they end up with a less qualified advisor or with no cover at all.
+- You lose the part of your network most likely to say yes. Month 3 arrives and you're still trying to build a pipeline from strangers.
 
-Silence isn't neutral. It's an active choice that taxes both sides. The move isn't *"message more aggressively"* — it's *"message more honestly."*
+Keeping quiet is a choice, and both of you pay for it. The answer is to message more honestly. Messaging more aggressively just makes it worse.
 
 ---
 
 ## The 6-step honest message
 
-Every good warm-market text hits six beats in this order:
+A good warm-market text hits six beats, in this order:
 
-![The 6-step honest message: 1 · Real connection; 2 · Honest about why; 3 · Say the awkward thing; 4 · Offer help, not pressure; 5 · Give an easy out; 6 · Relationship close](/next-60-days/images/n60-day-20-m0.webp)
+![The 6-step honest message: 1 Real connection; 2 Honest about why; 3 Say the awkward thing; 4 Offer help without pressure; 5 Give an easy out; 6 Relationship close](/next-60-days/images/n60-day-20-m0.webp)
 
-**1 · Real connection.** Reference *them* first. Their recent trip, their new role, their life stage. Don't jump straight to business.
+**1. Real connection.** Start with them: their recent trip, their new job, where they are in life. Business can wait a few lines.
 
-> *"Hey! Hope Vietnam's been treating you well — saw the travel posts, looked like a blast."*
+> *"Hey! Hope Vietnam's been treating you well, saw the travel posts and it looked like a blast."*
 
-**2 · Honest about why.** Name that you're reaching out for a specific reason. Vulnerability beats polish every time.
+**2. Be honest about why.** Say you're messaging for a specific reason. Admitting you feel a bit awkward works better than sounding polished.
 
-> *"I've been meaning to reach out about something a bit more personal — financial planning. Honestly, I was a little scared to bring it up."*
+> *"I've been meaning to message you about something a bit more personal, financial planning. Honestly, I was a little nervous to bring it up."*
 
-**3 · Say the awkward thing out loud.** The friend is thinking *"wait, is this a sales pitch?"* Name it before they do.
+**3. Say the awkward thing out loud.** Your friend is already wondering *"wait, is this a sales pitch?"* Say it before they do.
 
-> *"I didn't want to make things weird, or seem like I was reaching out just to pitch something."*
+> *"I didn't want to make things weird, or have it seem like I was only messaging to pitch you something."*
 
-**4 · Offer help, not pressure.** Frame as an *invitation*, not a sales call.
+**4. Offer help without pressure.** Make it an invitation they can take or leave.
 
 > *"If you're open to it, I'd be happy to do a quick, no-obligation review of where you're at and share some of what I've been learning."*
 
-**5 · Give them an easy out.** The freedom to say no is what makes yes easy.
+**5. Give them an easy out.** Knowing they can say no is what makes yes easy.
 
-> *"Of course, if it's not something you're keen on right now, I completely understand."*
+> *"And if it's not something you're keen on right now, I completely understand."*
 
-**6 · Relationship close.** End on the friendship, not the business.
+**6. Close on the relationship.** End with the friendship.
 
-> *"Would be nice to catch up properly anyway — it's been way too long. Where are you working now?"*
+> *"Would be nice to catch up properly anyway, it's been way too long. Where are you working now?"*
 
 ---
 
 ## The full sample message
 
-Stitched together, 6 beats in one text:
+All six beats in one text:
 
-> *"Hey Amir —*
+> *"Hey Amir,*
 >
 > *Hope Vietnam's been treating you well. Saw a few of your travel posts, looked like a blast.*
 >
-> *This is a little out of the blue, but I've been meaning to reach out about something a bit personal — financial planning. I'll be honest, I hesitated because I didn't want it to feel like a pitch or make things awkward between us.*
+> *This is a little out of the blue, but I've been meaning to message you about something a bit personal, financial planning. I'll be honest, I hesitated because I didn't want it to feel like a pitch or make things awkward between us.*
 >
-> *But I've been reminding myself — if I genuinely believe in the work I do, and I care about the people in my life, I shouldn't stay quiet.*
+> *But I keep reminding myself that if I believe in the work I do and care about the people in my life, I shouldn't stay quiet about it.*
 >
-> *So — if you're open to it — I'd love to offer a no-pressure, no-obligation review of your current financial setup and share a few ideas that have been helpful for people in your stage. Totally understand if it's not your thing right now, no worries either way.*
+> *So if you're open to it, I'd be happy to do a no-pressure, no-obligation review of your current setup and share a few ideas that have helped people at your stage. Totally understand if it's not your thing right now, no worries either way.*
 >
-> *Would be nice to catch up properly too — it's been too long. Still at Singtel?"*
+> *Would be nice to catch up properly too, it's been too long. Free for kopi one of these weekends? Still at Singtel?"*
 
-Read it. It doesn't sound like a salesperson. It sounds like a friend being honest. That's the bar.
+Read it back. It sounds like a friend being straight with you, which is the standard.
 
 ---
 
 ## Hook openers by life stage
 
-If you're opening without much context, use a life-stage hook:
+If you don't have much context to open with, use a life-stage hook:
 
-| Life stage | Hook opener | What it opens |
+| Life stage | Hook opener | Where it leads |
 |---|---|---|
-| **Working young** | *"By the way — have you started investing yet?"* | *"Want me to show you a crash course on what I've been doing for my own money?"* |
-| **Engaged couple** | *"You two BTO-ing already?"* | BTO planning + household budgeting conversation |
-| **Fresh grad** | *"Graduated already right?"* | *"Have you sorted out your insurance and investing?"* → *"Let me walk you through what I've been doing for my other clients."* |
-| **New parent** | *"Eh — your little one's how old now?"* | Family protection + education savings |
-| **Career mid-point** | *"You're at [company] for how long now?"* | Cashflow planning, tax-efficient savings |
+| Working young | *"By the way, have you started investing yet?"* | *"Want me to show you a quick crash course on how I think about my own money?"* |
+| Engaged couple | *"You two BTO-ing already?"* | BTO planning and a household budget chat |
+| Fresh grad | *"Graduated already right?"* | *"Have you sorted out your insurance and investing? I can walk you through what I usually go through with people at your stage."* |
+| New parent | *"Eh, your little one's how old now?"* | Family protection and education savings |
+| Mid-career | *"You're at [company] for how long now?"* | Cashflow planning and savings |
 
-The opener signals *"I know where you are in life and I have something relevant."* That lands every time, better than a generic *"how's life?"*
+The hook shows you know where they are in life, which beats a generic *"how's life?"*
 
 ---
 
-## The 5 Steps to Build Rapport
+## The 5 steps to build rapport
 
-Once the meeting happens, the quality of rapport decides whether a Fact-Find becomes a client. Five steps, in order:
+Once the meeting happens, rapport decides whether the Fact-Find turns into a client. Five steps, in order:
 
 | # | Step | How to do it |
 |---|---|---|
-| 1 | **Eye contact & smile** | Non-verbal warmth before any words |
-| 2 | **Pay compliments, not flattery** | Observation-based. *"Your desk setup looks great — did you move recently?"* — specific, honest, not generic praise |
-| 3 | **Ask questions about them** | Open-ended. Hot-button-seeking. *"Why"* follow-ups to go deeper |
-| 4 | **Listen attentively** | Active listening. No interrupting. The silence after they finish is where trust lands |
-| 5 | **Acknowledge** | Paraphrase, clarify, compliment intent, empathise |
+| 1 | Eye contact and a smile | Warmth before you say a word |
+| 2 | Compliments without flattery | Base it on something you noticed. *"Your desk setup looks great, did you move recently?"* is specific and honest |
+| 3 | Ask about them | Open questions that look for hot buttons, with *"why"* follow-ups to go deeper |
+| 4 | Listen properly | Don't interrupt. Leave a pause after they finish, because that's often when they add the thing that matters |
+| 5 | Acknowledge | Paraphrase, clarify, compliment the intent, empathise |
 
-Step 5 is the one most new FCs skip — they hear, nod, and move to the next question. Acknowledgment is what makes the prospect feel *heard*, which is what opens them up.
+Step 5 is the one new FCs skip. They hear the answer, nod and go to the next question. Acknowledging is what makes the prospect feel heard, and people who feel heard open up.
 
 ---
 
-## The Art of Acknowledging
+## The art of acknowledging
 
-Four moves inside Step 5. Rotate them — don't lean on just one.
+Rotate these four moves so you don't lean on one. They come from what Carl Rogers and Richard Farson called active listening in 1957.
 
 | Move | How it sounds |
 |---|---|
-| **Paraphrase** | *"So if I'm hearing you right, you're feeling cautious because of the recent restructuring at work…"* |
-| **Clarifying question** | *"When you say you want to retire comfortably — is that more about the freedom, or about being able to support your parents?"* |
-| **Compliment the intent** | *"That's actually really considered — most people at your stage haven't thought that far ahead."* |
-| **Empathy words** | *"I completely understand how that feels — a lot of clients I work with were in exactly that spot."* |
+| Paraphrase | *"So if I'm hearing you right, you're feeling cautious because of the restructuring at work..."* |
+| Clarifying question | *"When you say you want to retire comfortably, is that more about the freedom, or about being able to support your parents?"* |
+| Compliment the intent | *"That's actually really well thought through. Most people at your stage haven't looked that far ahead."* |
+| Empathy words | *"I completely understand how that feels. A lot of people I speak to are in exactly that spot."* |
 
-**Spotting hot buttons** in real time:
-- Do they **elaborate** on a topic without prompting? → that's a hot button
-- Do their **emotions change** — faster speech, leaning forward, brighter eyes? → that's passion
+To spot hot buttons as they happen, watch for two things:
+- If they elaborate on a topic without being prompted, you've found a hot button.
+- If their energy changes (faster speech, leaning forward, brighter eyes), they care about whatever they're describing.
 
-When you spot either, don't move the conversation forward. Go *deeper* on that topic. The hot button is where the close lives.
+When you see either, stay on that topic and go deeper before you move on. The close usually comes from the hot button.
 
 ---
 
-## Follow-up — give value, don't ask again
+## Follow-up: give value instead of asking again
 
-The biggest warm-market mistake: after silence, the follow-up is another *"can we meet?"*
+The most common warm-market mistake is following up a silence with another *"can we meet?"*
 
-That reads as pushing. The reframe: **generosity, not persistence.**
+That reads as pushing. Send something useful instead:
 
-Instead of asking again, *send something useful:*
-
-> *"Hey — just saw this 2-min video I made on the three things I check first in every Fact-Find. Thought it might be useful even if we don't end up meeting."*
+> *"Hey, just made this 2-min video on the three things I check first in every Fact-Find. Thought it might be useful even if we don't end up meeting."*
 
 Formats that work:
-- Short video (you talking to camera, 60–90 seconds)
-- PDF or infographic
-- Carousel post link
-- Case study anonymised
+- A short video of you talking to camera, 60 to 90 seconds
+- A PDF or infographic
+- A link to a carousel post
+- A worked example with made-up numbers (real client stories and testimonials need compliance sign-off before you share them)
 
-Repeated asks trigger the *pushy* filter. Repeated value drops trigger the *generous* filter. Same pipeline, opposite response rate.
+Keep asking and people file you as pushy. Keep sending useful things and they file you as generous, and generous gets replies.
 
 ---
 
-## Team operations — build Project 1000
+## Team operations: build Project 1000
 
-The 6-step message above is the *how*. The list of names you send it to is **Project 1000** — your formal warm-database build, which is this week's team deliverable.
+The 6-step message is how you reach out. Project 1000 is who you send it to: your formal warm-database build, and this week's team deliverable.
 
-- **Download + duplicate [the Warm Database sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit).** Fill with every name you can — mine every WhatsApp group chat (screenshot big member lists into ChatGPT to extract names). The goal is 1000 names, not 20.
-- **Focus on warm/semi-warm, not "hot".** Most of your business will come from **semi-warm** — people you haven't spoken to in years. Most untapped segment.
-- Watch [the Project 1000 walkthrough Loom](https://www.loom.com/share/679b8b0aba404b0d80e8e446314ac51c).
-- Post upcoming friend meetings to the onboarding GC so the team can support on portfolio structure and reach-out angles.
+- Download and duplicate [the Warm Database sheet](https://docs.google.com/spreadsheets/d/1Bm0WQMPWggZ7e4o_MO-yfLxJCVvVgHd1/edit). Add every name you can think of, and go through your WhatsApp groups for people you've forgotten. Type the names in yourself. Don't upload screenshots of group member lists into ChatGPT or other AI tools, because those are other people's phone numbers and you're now collecting them for business, which brings PDPA duties. Aim for 1000 names.
+- Focus on warm and semi-warm rather than hot. For most people on the team, semi-warm (people you haven't spoken to in years) turns out to be the biggest untapped group.
+- Watch [the Project 1000 walkthrough Loom](https://www.loom.com/share/679b8b0aba404b0d80e8e446314ac51c) before you start filling in the sheet.
+- Post upcoming friend meetings in the onboarding group chat so the team can help with portfolio structure and angles for the conversation.
 
 Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §3f.
 
 ---
 
-## The Law of Familiarity — how many touches before they reply
+## The law of familiarity: how many touches before they reply
 
-The 6-step honest message is the *what*. The hidden variable is *how many* — how many touches before a given prospect type responds.
+The other variable is how many times you need to show up before someone replies. Jeb Blount calls this the law of familiarity in *Fanatical Prospecting*: the more familiar people are with you, the more likely they are to reply. It builds on what psychologist Robert Zajonc showed in 1968, that repeated exposure to something makes people like it more. The touch counts below are this team's rough rule of thumb, not research figures:
 
-The Law of Familiarity calibrates that:
-
-| Prospect type | Touches needed | What touches look like |
+| Prospect type | Touches needed | What the touches look like |
 |---|---:|---|
-| **Inactive customer** | 1–3 | Re-engagement message + one value-add + one ask |
-| **Prospect in buying window, familiar with brand** | 1–5 | DM + value drop + soft ask |
-| **Prospect familiar with brand, not in buying window** | 3–10 | Content touches + periodic check-ins |
-| **Warm inbound lead** | 5–12 | Fast-follow sequence — call, text, email, social, voice note |
-| **Prospect with some familiarity** | 5–20 | Multi-format nurture over 6–12 weeks |
-| **Cold prospect, no prior awareness** | 20–50 | Long-horizon sequence + content + events |
+| Lapsed client | 1-3 | A re-engagement message, one useful thing, one ask |
+| Knows you, in a buying window | 1-5 | DM, value drop, soft ask |
+| Knows you, not in a buying window | 3-10 | Content, plus a check-in now and then |
+| Warm inbound lead | 5-12 | Quick follow-up by call, text, email, social and voice note |
+| Some familiarity | 5-20 | Mixed-format nurture over 6 to 12 weeks |
+| Cold, no prior awareness | 20-50 | A long sequence with content and events |
 
-**The expected-rejection reframe (Day 19 §8).** If a warm contact needs 5–12 touches on average, then the 1st DM *not* getting a reply is not rejection — it's *normal*. The 2nd through 4th touches are where conversion math actually lives.
+This ties back to the rejection math on Day 19. If a warm contact takes several touches on average, then silence after your first DM is what usually happens, and touches two to four are where most replies come from.
 
-Most new FCs quit at touch 2 because no one told them touch 1 was never going to be enough.
+A lot of new FCs give up at touch 2 because nobody told them touch 1 was never going to be enough.
 
-### Familiarity is compound, not linear
+### Familiarity builds up
 
-Ten isolated touches across ten different formats land harder than ten identical DMs. Rotate:
+Ten touches in different formats do more than ten identical DMs. Rotate:
 
-- DM → story reply → voice note → value PDF → podcast clip → event invite → personalised check-in
+- DM, story reply, voice note, useful PDF, podcast clip, event invite, personal check-in
 
-Each format signals *"you matter enough for me to tailor"* without you having to say it. That's familiarity *earned*, not requested.
+Each different format shows you took the trouble to tailor it, without you having to say so.
+
+---
+
+## Sources
+
+- [Attitudinal effects of mere exposure - Robert Zajonc, Journal of Personality and Social Psychology (1968)](https://doi.org/10.1037/h0025848) - repeated exposure to something makes people feel more positive about it, the idea under the law of familiarity
+- [Fanatical Prospecting - Jeb Blount](https://www.jebblount.com/product/fanatical-prospecting/) - the author's page for the book that names the law of familiarity
+- [Active Listening - Carl Rogers and Richard Farson, University of Chicago Industrial Relations Center (1957)](https://search.worldcat.org/title/Active-listening/oclc/7022047) - library record for the pamphlet that introduced active listening, the root of the acknowledging moves
+- [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - the consent rules that apply once you collect contacts for business rather than personal use
 
 ---
 
 ## Quiz
 
-**Q1. The 6-step honest outreach message runs in what order?**
-- A) Pitch → ask → close → follow-up → pitch → close
-- B) Real connection → honest about why → say the awkward thing → offer help → easy out → relationship close ✓
-- C) Compliment → value proposition → ask for meeting → close
-- D) Intro → credentials → offer → ask → close → thank
+**Q1. What order does the 6-step honest outreach message run in?**
+- A) Pitch, ask, close, follow-up, pitch, close
+- B) Real connection, honest about why, say the awkward thing, offer help, easy out, relationship close ✓
+- C) Compliment, value proposition, ask for meeting, close
+- D) Intro, credentials, offer, ask, close, thank
 
-**Why:** Starting with *them* (real connection) lowers resistance before business comes up. Saying the awkward thing out loud disarms the "is this a pitch?" worry. The easy-out is what makes *yes* easy — freedom to say no raises conversion, not lowers it. Closing on the relationship reminds them you're a friend first, an advisor second.
+**Why:** Starting with them lowers resistance before business comes up. Saying the awkward thing out loud takes the "is this a pitch?" worry off the table. The easy out makes yes easier, because people say yes more readily when they know no is allowed. Closing on the relationship reminds them you're a friend first and an advisor second.
 
-**Q2. After silence on a first outreach, the stronger follow-up is:**
-- A) Another *"can we meet?"* — persistence wins
-- B) A value drop — send useful content without asking anything back ✓
+**Q2. After silence on a first outreach, the better follow-up is:**
+- A) Another *"can we meet?"*, persistence wins
+- B) A value drop, something useful with no ask attached ✓
 - C) A longer pitch explaining more of your process
 - D) A group message to several friends at once
 
-**Why:** Repeated asks trigger a pushy filter that kills warm-market response rates. Value drops trigger a generous filter instead — same pipeline, opposite response. The reframe is *generosity beats persistence*. Group messages (D) burn even faster because they signal "I'm mass-texting," which destroys the real-connection opener that made outreach work in the first place.
+**Why:** Repeated asks get you filed as pushy, which kills warm-market replies. Value drops get you filed as generous. Group messages (D) are even worse because they show you're mass-texting, which undoes the personal connection the first message was built on.
 
-**Q3. During a Fact-Find, the prospect suddenly leans forward and starts describing her parents' medical bills in detail. The right move is:**
-- A) Politely redirect to the next section of your agenda
-- B) Note it down silently and come back to it later
-- C) Go *deeper* — this is a hot button, and the close lives here ✓
-- D) Change topic to take the emotional pressure off
+**Q3. During a Fact-Find, the prospect leans forward and starts describing her parents' medical bills in detail. The right move is:**
+- A) Politely steer back to the next section of your agenda
+- B) Note it silently and come back to it later
+- C) Go deeper, because this is a hot button and the close usually comes from here ✓
+- D) Change the subject to ease the emotional pressure
 
-**Why:** Hot buttons announce themselves through elaboration and emotional change (faster speech, leaning forward, brighter eyes). The new-FC reflex is to stick to the agenda — *"I still have 6 more questions to ask."* The experienced move is to abandon the agenda for that moment and go deeper on the hot button with clarifying questions and acknowledgment. The agenda can resume; the hot-button moment can't be re-summoned once you've moved past it.
+**Why:** Hot buttons show up as elaboration and a change in energy (faster speech, leaning forward, brighter eyes). The new-FC reflex is to stick to the agenda because there are six more questions to ask. The experienced move is to pause the agenda and go deeper with clarifying questions and acknowledgement. The agenda can pick up again later, but once you move past the hot-button moment you can't get it back.
 
-**Q4. Why does "staying silent" about the business with friends actively cost both sides (not just you)?**
+**Q4. Why does staying silent about the business cost your friends as well as you?**
 - A) Your friend doesn't care either way
-- B) Your friend either finds a less-qualified advisor elsewhere or stays unprotected, and your closest network stays locked ✓
+- B) Your friend either ends up with a less qualified advisor or stays unprotected, and your closest network stays closed to you ✓
 - C) Silence is actually the best strategy
 - D) Friends don't need insurance
 
-**Why:** Silence isn't neutral. The friend who doesn't hear from you finds someone less good (or stays exposed); you lose the highest-conversion-odds segment of your network. Both sides pay a cost. The fix isn't *"message more aggressively"* — it's *"message more honestly"* via the 6-step structure.
+**Why:** The friend who never hears from you finds someone less suited to them, or stays exposed. You lose the part of your network most likely to say yes. The fix is the 6-step structure: more honesty, not more pressure.
 
-**Q5. A 28-year-old friend just got engaged and is looking into BTO. Which life-stage hook opener lands?**
-- A) *"By the way — have you started investing yet?"*
+**Q5. A 28-year-old friend just got engaged and is looking at BTO. Which life-stage hook fits?**
+- A) *"By the way, have you started investing yet?"*
 - B) *"You two BTO-ing already?"* ✓
-- C) *"Eh — your little one's how old now?"*
+- C) *"Eh, your little one's how old now?"*
 - D) *"You're at [company] for how long now?"*
 
-**Why:** Each hook is life-stage-specific. The engaged-couple BTO question opens an immediate, relevant thread — wedding costs, HDB deposit, joint budgeting, insurance overlaps. The others are for working young (no BTO context), new parent (wrong stage), or career mid-point (too transactional). The opener signals *"I know where you are in life."*
+**Why:** Each hook is tied to a life stage. The BTO question opens a relevant thread straight away: wedding costs, the HDB down payment, a joint budget and where their insurance overlaps. The others are for working young (no BTO context), new parents (wrong stage) or mid-career (too transactional).
 
-**Q6. The 5 Steps to Build Rapport are: (1) Eye contact + smile, (2) Compliments not flattery, (3) Ask about them, (4) Listen attentively, (5) Acknowledge. Which step do new FCs most often skip?**
-- A) Step 1 — they avoid eye contact
-- B) Step 2 — they over-compliment
-- C) Step 3 — they talk instead of asking
-- D) Step 5 — they hear, nod, move on to the next question without acknowledging ✓
+**Q6. The 5 steps to build rapport are (1) eye contact and a smile, (2) compliments without flattery, (3) ask about them, (4) listen properly, (5) acknowledge. Which step do new FCs most often skip?**
+- A) Step 1, they avoid eye contact
+- B) Step 2, they over-compliment
+- C) Step 3, they talk instead of asking
+- D) Step 5, they hear the answer, nod and go to the next question without acknowledging it ✓
 
-**Why:** New FCs are usually competent through step 4 (they were trained to ask and listen). Step 5 — acknowledging — is where the rapport actually lands. Without acknowledgment (paraphrase / clarify / compliment intent / empathise), the prospect feels *heard but not understood*, which isn't the same thing. The step most skipped is the step that actually builds trust.
+**Why:** Most new FCs manage steps 1 to 4 because they were trained to ask and listen. Step 5 is where rapport actually forms. Without acknowledgement (paraphrase, clarify, compliment the intent, empathise), the prospect feels heard but not understood. The step people skip is the one that builds trust.
 
-**Q7. "Clarifying question" as an Art of Acknowledging move differs from "paraphrase" because:**
+**Q7. How does a clarifying question differ from a paraphrase?**
 - A) They're the same thing
-- B) Paraphrase restates what they said; clarifying question digs one layer deeper on an unresolved detail ✓
-- C) Paraphrase is for D types, clarifying is for I types
-- D) Paraphrase is easier
+- B) A paraphrase restates what they said; a clarifying question digs one layer deeper into a detail that isn't settled yet ✓
+- C) Paraphrase suits D types, clarification suits I types
+- D) Paraphrase is the easier one to learn
 
-**Why:** Paraphrase says *"so if I'm hearing you right, [restated]"* — it confirms you heard. Clarifying question says *"when you said X, did you mean Y or Z?"* — it probes the specific detail that could become a hot button. Both are acknowledging moves; they do different jobs. Rotating between them keeps you out of the paraphrase-only loop that starts sounding like a checklist after 20 minutes.
+**Why:** A paraphrase (*"so if I'm hearing you right..."*) confirms you heard. A clarifying question (*"when you said X, did you mean Y or Z?"*) probes the detail that might turn out to be a hot button. Both acknowledge, but they do different jobs. Switching between them stops you paraphrasing on a loop.
 
 ---
 
-## 2-Liner Hook (Warm Prospecting Flow)
+## 2-liner hook (warm prospecting flow)
 
-The 6-step honest message above is the long form. The 2-Liner Hook is the short form — same spirit (real connection, honest about why, easy out), compressed into two lines that lead with a resource instead of a meeting ask. Line 1 names what you've been helping friends with. Line 2 offers a guide for their group. The follow-up 1–2 weeks later asks whether they managed to figure out the problem — and that is the appointment opening.
+The 6-step message is the long form. The 2-liner hook is the short form, with the same spirit (real connection, honest about why, easy out) squeezed into two lines that lead with a resource instead of a meeting ask. Line 1 says what you've been helping friends with. Line 2 offers a guide for their situation. When you follow up one to two weeks later, ask whether they managed to sort out the problem, and that's your opening for the appointment.
 
 **Use this when** you've practised the honest-outreach beats and want a lighter, resource-led version for contacts where even the 6-step message feels heavy.
 
-Full flow, script with blanks, worked example, and follow-up phrasing: [[2-liner-hook-warm-prospecting]].
+Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
 
 ---
 
-## Scripts Library
+## Scripts library
 
-Here are the canonical scripts for honest warm-market outreach. Practise them out loud, then make them yours.
+These are the canonical scripts for honest warm-market outreach. Practise them out loud, then make them yours.
 
-### Warm Market - Career Transition Notice
-**Use this when** the contact is from your old career or social circle and hasn't heard you've moved into financial advisory. The longer-form "casual update + soft offer" message.
+### Warm market: career transition notice
+**Use this when** the contact is from your old job or social circle and hasn't heard you've moved into financial advisory, and you want the longer "casual update plus soft offer" version.
 
 [[warm-market-outreach-career-transition-notice|Warm Market Outreach — Career Transition Notice]]
 
-### Warm Market - Introduction Text (New Consultant)
-**Use this when** the contact knows you but doesn't yet know you're an FC. Three angles: direct, seeking-help, and policy-summary.
+### Warm market: introduction text (new consultant)
+**Use this when** the contact knows you but doesn't know yet that you're an FC. It has three angles: direct, asking for help, and the policy summary.
 
 [[warm-market-introduction-text-new-consultant|Warm Market — Introduction Text (New Consultant)]]
 
-### Warm Market - Conversation Openers (by Life Stage)
-**Use this when** you have a specific life moment to anchor the message - BTO, fresh grad, getting married, has been investing.
+### Warm market: conversation openers by life stage
+**Use this when** you have a specific life moment to anchor the message on, such as a BTO, a graduation, a wedding or their first investment.
 
 [[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
 
-### Warm Outreach - Soft Approach (Community / Social Circle)
-**Use this when** the contact is from a shared community - church, uni group, hobby. Lead with a question, not a pitch.
+### Warm outreach: soft approach (community and social circle)
+**Use this when** the contact is from a shared community like church, a uni group or a hobby. Open with a question and keep the pitch out of it.
 
 [[warm-outreach-soft-approach-warm-market-community-contacts|Warm Outreach - Soft Approach (Warm Market / Community Contacts)]]
 
-### Warm Outreach - Curiosity Approach (DIY Investors / Existing FA)
-**Use this when** the contact is hands-on with their own finances or already has an FA. Position yourself as a one-time second opinion, not a replacement.
+### Warm outreach: curiosity approach (DIY investors and people with an FA)
+**Use this when** the contact manages their own money or already has an FA. Offer yourself as a one-time second opinion, with no intention of replacing anyone.
 
 [[warm-outreach-curiosity-approach-diy-investors-existing-fa-contacts|Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)]]
 

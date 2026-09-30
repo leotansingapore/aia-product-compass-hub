@@ -1,7 +1,7 @@
 ---
 id: n60-assignment-03
 order: 3
-title: "Market Survey + Referral Ask Log — 30 Outreaches + 10 FACT Asks"
+title: "Market Survey and referral ask log: 30 outreaches, 10 FACT asks"
 short: "Run 30 warm-market outreaches (Week 4) + 10 structured referral asks (Week 5) and log every one."
 icon: users
 deliverable: "Outreach log + ask log + Friday pipeline screenshots"
@@ -22,72 +22,77 @@ form_fields:
   - "Loom reflection link|text|5 min video on your Week-5 adjustment."
 ---
 
-# Assignment 3 — Market Survey + Referral Ask Log
+# Assignment 3: Market Survey and referral ask log
 
-> **What you're producing:** Two weeks of real warm-market prospecting + referral activity, logged honestly. Week 4 drives 30 outreaches + 5 appointments; Week 5 drives 10 FACT asks + 3 warm referrals. The compound engine starts here.
+> **What you're producing:** two weeks of real warm-market prospecting and referral asks, logged honestly. Week 4 is 30 outreaches and 5 appointments. Week 5 is 10 FACT asks and 3 warm referrals.
 
 ## Why this matters
 
-Weeks 1–3 were voice + content. Week 4 is the first time the engine *runs* — 30 outreaches in a week is the baseline volume a healthy Year-1 practice sustains. Week 5 is where asking for referrals stops being *"I'll get to it"* and becomes ritual. Skipping either week's reps means the Year-2 pipeline starts from zero; running both means it starts compounding on day 31.
+Weeks 1 to 3 were about your voice and your content. Week 4 is the first time you run the full outreach routine, and 30 outreaches a week is the volume this team expects a Year 1 practice to keep up. Week 5 turns asking for referrals from something you'll get round to into a habit. Skip either week and your Year 2 pipeline starts from zero. Do both and referrals start adding to your outreach from day 31.
 
 ## Prepare from these days
 
-### Week 4 — Outreach
-- [Day 19 — Prospecting Mindset: Master Map](../../next-60-days/week-4/day-19.md) — Market Temperature + 10/20/60/10 tiers + rejection math
-- [Day 20 — Reaching Out Without Feeling Salesy](../../next-60-days/week-4/day-20.md) — 6-step honest message + life-stage hooks
-- [Day 21 — Market Survey](../../next-60-days/week-4/day-21.md) — the 4-question phone script
-- [Day 22 — Cold Prospecting + ABCD](../../next-60-days/week-4/day-22.md) — register-switching + ABCD Four Promises
-- [Day 23 — Pipeline Board](../../next-60-days/week-4/day-23.md) — Strategic Target List + Friday review
-- [Day 24 — Practice: 30 Outreaches](../../next-60-days/week-4/day-24.md) — the gate
+### Week 4: outreach
+- [Day 19: Prospecting mindset, the master map](../../next-60-days/week-4/day-19.md), for Market Temperature, the 10/20/60/10 tiers and the rejection math
+- [Day 20: Reaching out without feeling salesy](../../next-60-days/week-4/day-20.md), for the 6-step honest message and life-stage hooks
+- [Day 21: Market Survey](../../next-60-days/week-4/day-21.md), for the 4-question phone script
+- [Day 22: Cold prospecting and ABCD](../../next-60-days/week-4/day-22.md), for switching voices and the ABCD Four Promises
+- [Day 23: Pipeline board](../../next-60-days/week-4/day-23.md), for the Strategic Target List and the Friday review
+- [Day 24: Practice, 30 outreaches](../../next-60-days/week-4/day-24.md), the gate
 
-### Week 5 — Referrals
-- [Day 25 — Why New FCs Under-Ask](../../next-60-days/week-5/day-25.md) — the 4 blocks + compound math
-- [Day 26 — Referral Asking Framework](../../next-60-days/week-5/day-26.md) — referrer's mind + 4 referability principles
-- [Day 27 — Quality of the Ask](../../next-60-days/week-5/day-27.md) — moment + tone + specificity
-- [Day 28 — Scripts Day: FACT Method](../../next-60-days/week-5/day-28.md) — Favour · Angle · Connect · Timeline
-- [Day 29 — Flywheel + CAR Diagnostic](../../next-60-days/week-5/day-29.md) — the 3 behaviours that flip the cycle
-- [Day 30 — Practice: 10 Asks](../../next-60-days/week-5/day-30.md) — the gate
+### Week 5: referrals
+- [Day 25: Why new FCs under-ask](../../next-60-days/week-5/day-25.md), for the 4 blocks and the compound math
+- [Day 26: Referral asking framework](../../next-60-days/week-5/day-26.md), for the referrer's mind and the 4 referability principles
+- [Day 27: Quality of the ask](../../next-60-days/week-5/day-27.md), for moment, tone and specificity
+- [Day 28: Scripts day, the FACT method](../../next-60-days/week-5/day-28.md), for Favour, Angle, Connect, Timeline
+- [Day 29: Flywheel and CAR diagnostic](../../next-60-days/week-5/day-29.md), for the 3 behaviours that turn the cycle around
+- [Day 30: Practice, 10 asks](../../next-60-days/week-5/day-30.md), the gate
 
-## Week 4 — what counts as an outreach
+## Week 4: what counts as an outreach
 
-Must meet all three:
-1. Substantive message (not a like, not a single emoji)
-2. Specific intent — survey, catch-up, value drop, appointment ask, CRAB follow-up
-3. Followed one of this week's scripts — Market Survey, Attraction, 6-step, DM reply, CRAB
+It has to meet all three:
+1. A real message (a like or a single emoji doesn't count)
+2. A clear purpose: a survey, a catch-up, a value drop, an appointment ask or a CRAB follow-up
+3. It followed one of this week's scripts: Market Survey, Attraction, 6-step, DM reply or CRAB
 
-**Target mix:** 8–12 MS calls · 6–8 6-step messages · 2–4 Attraction Script · 3–5 CRAB · 4–6 value drops · 0–5 optional cold.
+Target mix: 8-12 Market Survey calls, 6-8 six-step messages, 2-4 Attraction Script, 3-5 CRAB, 4-6 value drops, and 0-5 optional cold.
 
-**Appointment counts:** confirmed time + place or format + both sides acknowledged. *"Let's meet sometime"* does not count.
+An appointment counts when the time and the place or format are confirmed and both of you have acknowledged it. *"Let's meet sometime"* doesn't count.
 
-## Week 5 — what counts as a FACT ask
+## Week 5: what counts as a FACT ask
 
-Must meet all three:
-1. Spoken aloud (to person / phone). Text asks flatline and don't build tonality.
-2. Used FACT (Favour · Angle · Connect · Timeline) or 10-Name script — not ad-hoc *"anyone come to mind?"*
-3. Included the timeline close — *"Would you be able to check in with them in the next 2 days? I'll follow up Saturday."*
+It has to meet all three:
+1. Spoken aloud, in person or on the phone. Text asks tend to fall flat, and they don't build your tone of voice.
+2. It used FACT (Favour, Angle, Connect, Timeline) or the 10-Name script, rather than an off-the-cuff *"anyone come to mind?"*
+3. It included the timeline close: *"Would you be able to check in with them in the next 2 days? I'll follow up Saturday."*
 
-**Warm referral counts:** Name + contact method + endorsement (client has messaged contact OR agreed to within 48h).
+A warm referral counts when you have a name, a way to contact them, and an endorsement: the client has messaged their friend, or agreed to within 48 hours. The endorsement also keeps you on the right side of the PDPA. Your friend's contact should know their details are being passed to you, so when you first get in touch, mention who introduced you.
 
 ## The honest-count rule
 
-Assignment gates are gameable. Don't game them.
+You could game these gates. Don't.
 
-- Padding outreach = counting likes, *"hey how are you"* without follow-through, bulk-BCC broadcasts
-- Padding asks = text *"anyone come to mind?"* as a throwaway
-- Padding referrals = counting unendorsed names from a 10-Name sheet as warm referrals
+- Padded outreach: counting likes, *"hey how are you"* with nothing after it, bulk-BCC broadcasts
+- Padded asks: a throwaway text saying *"anyone come to mind?"*
+- Padded referrals: counting names from a 10-Name sheet that nobody endorsed as warm referrals
 
-Better honest 6 than padded 10. The muscle matters, not the number.
+An honest 6 beats a padded 10, because the habit is what you're building here.
 
 ## Submission
 
-Fill the form below. Attach the spreadsheet/screenshot log as a file OR paste a Google Drive / Notion link in any textarea.
+Fill in the form below. Attach your spreadsheet or screenshot log as a file, or paste a Google Drive or Notion link into any text box.
 
-**Book 2 mentor reviews this period:** one after Week 4 (outreach critique), one after Week 5 (ask critique). 15 minutes each.
+Book 2 mentor reviews this period: one after Week 4 to go through your outreach, and one after Week 5 to go through your asks. 15 minutes each.
 
-## The first-case-closed bonus
+## If you close your first case
 
-If you close your first case in Week 4 or Week 5, document it in the Loom reflection:
-- Which objection cleared right before the close?
-- What specifically moved them from maybe to yes?
+If you close your first case in Week 4 or Week 5, cover it in the Loom reflection:
+- Which objection did you clear just before the close?
+- What moved them from maybe to yes?
 
-First-case documentation is your highest-value learning artefact — your reflection on *that case* teaches you more than the next 10 combined.
+Your reflection on that first case will teach you more than your next 10 put together.
+
+## Sources
+
+- [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - covers referrals from existing customers and advises telling the referred person who passed on their details
+- [Advisory Guidelines on the Do Not Call Provisions - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - the DNC rules that apply to business calls and messages, including WhatsApp, during your outreach week

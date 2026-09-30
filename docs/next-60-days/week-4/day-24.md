@@ -1,8 +1,8 @@
 ---
 week: 4
 day: 24
-title: "Practice — 30 Outreaches, 5 Appointments Booked"
-big_idea: "Week 4 becomes real when the calendar holds the proof. Five booked slots beat fifty good intentions."
+title: "Practice: 30 outreaches, 5 appointments booked"
+big_idea: "Week 4 counts when the proof is in your calendar. Five booked slots are worth more than fifty good intentions."
 kpi_link: "Week 4 KPI — 30 outreaches; 5 appointments booked"
 practice_submission: loom
 primary_sources:
@@ -15,95 +15,95 @@ duration_minutes: 45
 tags: [next-60-days, week-4, new-fc, practice, outreach, appointments, loom]
 ---
 
-# Day 24 — Practice: 30 Outreaches, 5 Appointments Booked
+# Day 24: Practice, 30 outreaches and 5 appointments booked
 
-> **The one idea for today:** Week 4 becomes real when the calendar holds the proof. Five booked slots beat fifty good intentions.
+> **The one idea for today:** Week 4 counts when the proof is in your calendar. Five booked slots are worth more than fifty good intentions.
 
-By the time you close today you'll have completed 30 outreaches across the week using a mix of Market Survey, Attraction Script, 6-step honest message, and DM follow-ups, booked 5 Fact-Find appointments (confirmed both sides, time, place, format), and submitted the outreach log + Friday pipeline review screenshot + Loom reflection. Those three artefacts unlock Week 5.
+By the end of today you'll have done 30 outreaches across this week's scripts, booked 5 confirmed Fact-Find appointments, and submitted the outreach log, the Friday review screenshot and a Loom reflection. Those three open Week 5.
 
 ---
 
 ## The bar today
 
-Week 1 shipped an intro recording. Week 2 shipped 3 intent-statement deliveries. Week 3 shipped posts + DMs. Week 4 ships **calendar proof**.
+Week 1 you recorded an intro. Week 2 you delivered your intent statement three times. Week 3 you posted and opened DMs. Week 4 you show proof in your calendar.
 
-The 30-outreach number isn't arbitrary. It's the weekly volume that most healthy Year-1 advisors sustain — enough to book 5–7 appointments per week, which is the math from Day 2 that takes you past $58K FYC per year.
+30 is the weekly volume that should give you Day 2's 5 to 7 appointments a week. Day 2's illustration (5 appointments x 30% close x $750 case) comes to about $58,500 FYC a year, but that's only an example of how the numbers combine. Your own results depend on your activity, close rate and case size.
 
-5 booked appointments from 30 outreaches ≈ 17% conversion. That's the bar for Week 4. If you're above 20%, the script is working and you should scale volume. If you're below 15%, the script needs a fix — usually in the opener, not the ask.
+5 booked appointments from 30 outreaches is about 17%, and that's the bar for Week 4. Above 20%, your scripts are working and you should add volume. Below 15%, look at where the no's happen: if people aren't replying, fix the opener, and if they reply but don't book, fix the ask.
 
 ---
 
-## What counts as "an outreach"
+## What counts as an outreach
 
 An outreach counts if it meets all three:
 
-1. **You sent a substantive message** (not a like, not a single-emoji reaction)
-2. **The message had a specific intent** — survey, catch-up, value drop, appointment ask, or CRAB follow-up
-3. **The message followed one of this week's scripts** — Market Survey, Attraction, 6-step honest message, Day-16 texting flow, or CRAB
+1. You sent a real message (a like or a single emoji doesn't count)
+2. The message had a clear purpose: a survey, a catch-up, a value drop, an appointment ask or a CRAB follow-up
+3. It followed one of this week's scripts: Market Survey, Attraction, 6-step honest message, the Day 16 texting flow, or CRAB
 
-**Counts:**
-- Phone call using Market Survey with a Semi-Warm contact
-- 6-step honest message to a Warm contact
-- Attraction Script call to a Hot contact
-- A CRAB follow-up on a blue-ticked prospect from Week 3
-- A value-drop DM responding to a story viewer
-- A cold DM using the Pillar-4 structure (optional, max 5 of 30)
+Counts:
+- A Market Survey call to a Semi-Warm contact
+- A 6-step honest message to a Warm contact
+- An Attraction Script call to a Hot contact
+- A CRAB follow-up to a prospect who blue-ticked you in Week 3
+- A value-drop DM to someone who viewed your story
+- A cold DM using the Pillar 4 structure (optional, 5 of the 30 at most)
 
-**Doesn't count:**
+Doesn't count:
 - Liking someone's post
-- *"Hey how are you?"* with no follow-through
+- *"Hey how are you?"* with nothing after it
 - A bulk-BCC WhatsApp broadcast
-- A message to your mentor or peer asking for feedback
-- Re-sending the same ignored message
+- A message to your mentor or a peer asking for feedback
+- Re-sending the same message they ignored
 
 ---
 
-## What counts as a "booked appointment"
+## What counts as a booked appointment
 
 A booked appointment counts if it meets all three:
 
-1. **Time is confirmed** (specific day + time, not *"next week sometime"*)
-2. **Place or format is confirmed** (office, home, cafe, Zoom — not *"we'll figure it out"*)
-3. **Both sides have acknowledged** the booking (you sent the invite / confirmation; they replied *"yes"* or equivalent)
+1. The time is confirmed: a specific day and time, not *"next week sometime"*
+2. The place or format is confirmed: office, home, cafe or Zoom, not *"we'll figure it out"*
+3. Both of you have acknowledged it: you sent the invite or confirmation, and they replied *"yes"* or something like it
 
-**Counts:**
-- Fact-Find (Educational FHR) with a Semi-Warm contact — confirmed Thu 6pm at her office
-- Warm Up coffee with a Hot contact — confirmed Sat 2pm at Raffles Place Starbucks
-- Zoom call with a lukewarm referral — confirmed Fri 8pm, calendar invite sent
+Counts:
+- A Fact-Find (Educational FHR) with a Semi-Warm contact, confirmed for Thursday 6pm at her office
+- A Warm Up coffee with a Hot contact, confirmed for Saturday 2pm at a cafe in Raffles Place
+- A Zoom call with a lukewarm referral, confirmed for Friday 8pm with a calendar invite sent
 
-**Doesn't count:**
+Doesn't count:
 - *"Let's definitely meet soon"* with no date
-- *"I'll text you next week to confirm"* (until they actually text)
-- A mentor meeting
-- An appointment booked and already cancelled once with no reschedule
+- *"I'll text you next week to confirm"* (until they actually do)
+- A meeting with your mentor
+- An appointment that's already been cancelled once with no new date
 
 ---
 
 ## Where the 30 outreaches come from
 
-If Day 23's Strategic Target List has 20 names, your outreach mix should look roughly:
+If your Day 23 Strategic Target List has 20 names, your mix should look roughly like this:
 
 | Category | Count | Notes |
 |---|---:|---|
-| **Market Survey calls** (Semi-Warm) | 8–12 | Phone calls using the 4-question script |
-| **6-step honest messages** (Warm) | 6–8 | The 6-step text to friends you've avoided messaging |
-| **Attraction Script** (Hot) | 2–4 | Direct openers to close friends and family |
-| **CRAB follow-ups** | 3–5 | Blue-ticked from Week 3 and earlier |
-| **Value drops / DM follow-ups** | 4–6 | Responses to story viewers, post engagers, offer-post replies |
-| **Optional cold** | 0–5 | Niche-specific cold DMs using Pillar-4 structure |
-| **Total** | **30** | |
+| Market Survey calls (Semi-Warm) | 8-12 | Phone calls using the 4-question script |
+| 6-step honest messages (Warm) | 6-8 | The 6-step text to friends you've been avoiding |
+| Attraction Script (Hot) | 2-4 | Direct openers to close friends and family |
+| CRAB follow-ups | 3-5 | People who blue-ticked you in Week 3 or earlier |
+| Value drops / DM follow-ups | 4-6 | Replies to story viewers, people who engaged with posts, replies to your offer post |
+| Optional cold | 0-5 | Niche-specific cold DMs using the Pillar 4 structure |
+| Total | 30 | |
 
-**The mix matters.** 30 outreaches all on one channel (30 cold DMs, say) is a different exercise. The mix above drills every script from the week and keeps the pipeline balanced across rings.
+The mix matters: it makes you practise every script from the week and spreads your pipeline across the rings.
 
 ---
 
-## Submission format
+## What to submit
 
-Three artefacts. Keep it tight.
+Three things. Keep them short.
 
-### Artefact 1 — The outreach log
+### 1. The outreach log
 
-One spreadsheet or Notion page. One row per outreach. Minimum columns:
+Use one spreadsheet or Notion page with one row per outreach and at least these columns:
 
 | Name | Ring | Approach | Sent | Response | Outcome |
 |---|---|---|---|---|---|
@@ -112,116 +112,123 @@ One spreadsheet or Notion page. One row per outreach. Minimum columns:
 | Samantha | Semi-Warm | MS call | Mon 7pm | No, not now | Follow-up Feb |
 | … | … | … | … | … | … |
 
-30 rows. 6 columns. That's the log.
+Thirty rows, six columns.
 
-### Artefact 2 — Friday pipeline review screenshot
+### 2. The Friday pipeline review screenshot
 
-Screenshot or export of your CAR numbers + Strategic Target List status at Friday 6pm:
-- Calls this week (count)
-- Appointments booked (count)
-- Referrals received (count)
-- FYC month-to-date (if any)
-- Next week's target list (new 20 names ready)
+A screenshot or export of your CAR numbers and target list status at 6pm on Friday:
+- Calls this week
+- Appointments booked
+- Referrals received
+- FYC month to date, if any
+- Next week's target list (20 new names ready)
 
-### Artefact 3 — Loom reflection (3–5 minutes)
+### 3. A Loom reflection (3 to 5 minutes)
 
-One Loom answering three questions:
+One Loom that answers three questions:
 
-1. Which approach converted best for *your* pipeline? MS calls, 6-step messages, Attraction Script, CRAB, or value drops?
-2. Where in the outreach did most of your *no*s happen? The opener, the framing, or the appointment ask?
-3. What's your Week-5 adjustment? What do you change before hitting 30 again next week?
+1. Which approach booked the most meetings for you? Market Survey calls, 6-step messages, the Attraction Script, CRAB or value drops?
+2. Where did most of your no's happen: the opener, the framing, or the appointment ask?
+3. What will you change before you do 30 again next week?
 
 ### Mentor review
 
-Book the 10-minute check-in before Sunday ends. Mentor critiques two things only:
+Book the 10-minute check-in before Sunday ends. Your mentor looks at two things only:
 
-1. Were the 30 outreaches real (sent + substantive), or were some padded to hit the number?
-2. Did the 5 booked appointments come from a *mix* of rings, or did you over-rely on one channel?
+1. Were all 30 outreaches real, sent and substantive, or were some padded to reach the number?
+2. Did the 5 appointments come from a mix of rings, or did you lean on one channel?
 
 ---
 
 ## The honest-numbers rule
 
-The Week-4 gate can be gamed. Don't.
+You could fake your way through the Week 4 gate. Don't.
 
-Padding the count — counting likes, counting *"hey how are you"* with no follow-through — defeats the whole point. The number exists so you build the muscle of *actually running the engine weekly*. Fake numbers produce fake confidence, which breaks the moment Week 5 demands similar reps.
+Counting likes, or *"hey how are you"* messages that went nowhere, defeats the point. The number is there so you build the habit of running the routine every week. Fake numbers give you fake confidence, and it falls apart the moment Week 5 asks for the same reps again.
 
-**The discipline:** if you're tempted to count something borderline, don't. Better to hit 24 real outreaches and acknowledge it than hit 30 padded ones and believe the week worked.
+If you're tempted to count something borderline, leave it out. It's better to hit 24 real outreaches and say so than to hit 30 padded ones and believe the week worked.
 
-Week 4's real outcome is not the number. It's *"can I repeat this next week without reading the module?"* That's the skill. 30 real reps build it. Fake reps don't.
+What you're really building this week is the ability to repeat it next week without rereading the module, and only real reps get you there.
 
 ---
 
-## Week 4 KPI — the unlock gate
+## Week 4 KPI: the gate
 
-Week 5 unlocks when you have all four:
+Week 5 opens when you have all four:
 
-- [ ] **30 outreaches logged** — mixed across approaches, every one substantive
-- [ ] **5 Fact-Find appointments booked** — confirmed time, place, format, both sides
-- [ ] **Friday pipeline review screenshot submitted** — CAR numbers + target list status
-- [ ] **Loom reflection recorded + mentor review booked**
+- [ ] 30 outreaches logged, mixed across approaches, every one substantive
+- [ ] 5 Fact-Find appointments booked, each with a confirmed time, place and format that both sides agreed
+- [ ] Friday pipeline review screenshot submitted, with CAR numbers and target list status
+- [ ] Loom reflection recorded and mentor review booked
 
-If you're short at Sunday 6pm, use Sunday to close the gap. Unlock is automatic when all four are logged.
+If you're short at 6pm on Sunday, use Sunday to close the gap. Week 5 opens automatically once all four are logged.
+
+---
+
+## Sources
+
+- [Implementation intentions: strong effects of simple plans - Peter Gollwitzer, American Psychologist (1999)](https://www.socmot.uni-konstanz.de/publications/implementation-intentions-strong-effects-simple-plans) - plans with a set time and place are followed through far more often than vague intentions, the logic behind counting only confirmed bookings
+- [Video feedback in education and training - Educational Psychology Review (Fukkink, Trienekens and Kramer, 2011)](https://link.springer.com/article/10.1007/s10648-010-9144-5) - reviewing recordings of yourself improves interaction skills, the reason for the Loom reflection
 
 ---
 
 ## Quiz
 
-**Q1. A "booked appointment" for the Week-4 gate requires:**
+**Q1. For the Week 4 gate, a booked appointment needs:**
 - A) Anyone saying *"sure, let's meet sometime"*
-- B) Time confirmed + place or format confirmed + both sides acknowledged ✓
-- C) Just a time on your calendar
+- B) A confirmed time, a confirmed place or format, and acknowledgement from both sides ✓
+- C) Just a time in your calendar
 - D) A signed Fact-Find form
 
-**Why:** The gate protects against *"soft-booked"* appointments that never materialise. A vague *"let's meet sometime"* isn't a booking — it's an intention. Both-sides-acknowledged with a specific time and format is the minimum that survives reality. New FCs who count soft bookings hit the gate on paper and have an empty calendar in reality.
+**Why:** The gate guards against soft bookings that never happen. *"Let's meet sometime"* is an intention. A specific time and format that both of you have confirmed is the minimum that tends to survive the week.
 
 **Q2. An outreach mix of 30 cold DMs in one week is:**
-- A) Ideal — volume wins
+- A) Ideal, because volume wins
 - B) Fine as long as the reply rate is above 10%
-- C) Off — the mix should balance warm, semi-warm, and optionally a small cold component ✓
+- C) Off. The mix should be mostly warm and Semi-Warm, with at most a small cold component ✓
 - D) Better than warm outreach
 
-**Why:** Week 4's engine is warm-market-weighted for a reason. Cold conversion is 1/5 to 1/10 of warm for a new FC, and warm contacts also compound through referrals in a way cold doesn't. A 30-cold-DM week is a skill drill, not a pipeline build. The healthy mix is ~75–85% warm + Semi-Warm, ~15% optional cold.
+**Why:** This week leans on the warm market for a reason. For a new FC, cold converts much less often than warm, and warm contacts also lead to referrals. A week of 30 cold DMs is a skills drill that won't build much of a pipeline. The healthy mix is mostly warm and Semi-Warm, with no more than 5 of the 30 cold.
 
-**Q3. Your Friday review shows 30 outreaches sent, 0 appointments booked. The most likely cause is:**
-- A) Your warm market is uniquely unresponsive
-- B) The weakest link is probably the appointment ask — the script converts the conversation, not the opener ✓
+**Q3. Your Friday review shows 30 outreaches sent and 0 appointments booked, and most people did reply. The most likely cause is:**
+- A) Your warm market is unusually unresponsive
+- B) The appointment ask. People are engaging, so the weak point comes after the opener ✓
 - C) You need more cold outreach
 - D) Week 5 will be better
 
-**Why:** 30 outreaches getting 0 bookings almost never means the whole pipeline is dead. It usually means the conversation is *opening* fine (they're replying) but failing at the *ask* — specifically Q4 of the Market Survey, or the appointment-booking beat in the 6-step message. Debug there first. C would scale the wrong script; D is wishful thinking.
+**Why:** 30 outreaches with no bookings rarely means the whole pipeline is dead. If people are replying, the opener is doing its job and the conversation is failing at the ask: Q4 of the Market Survey, or the meeting ask in the 6-step message, so look there first. C would scale up a script that isn't working, and D is wishful thinking.
 
-**Q4. 5 appointments from 30 outreaches = 17% conversion. What does Day 24 say this rate means?**
+**Q4. 5 appointments from 30 outreaches is about 17%. What does Day 24 say that means?**
 - A) You're failing
-- B) You're at the Week-4 bar; above 20% means scale volume, below 15% means fix the script (usually the opener) ✓
+- B) You're at the Week 4 bar. Above 20%, add volume; below 15%, find where the no's happen and fix that part of the script ✓
 - C) The module is broken
 - D) Conversion doesn't matter
 
-**Why:** 17% is the design target, not a failure. Above 20% signals you're converting well — scale volume next week. Below 15% signals something structural is off, usually in the opener or the ask (not the whole pipeline). Using conversion as a diagnostic instead of a grade is how Week-4 survives into Week-5 intact.
+**Why:** 17% is the target. Above 20% means your scripts are converting well, so add volume next week. Below 15% means something in the script needs work: the opener if people aren't replying, the ask if they reply but don't book.
 
-**Q5. Which of these counts as an outreach for the Week-4 gate?**
+**Q5. Which of these counts as an outreach for the Week 4 gate?**
 - A) Liking a post
 - B) A 6-step honest message sent to a Warm contact ✓
 - C) A bulk-BCC WhatsApp broadcast
 - D) A message asking your mentor for feedback
 
-**Why:** Outreach requires substantive, script-following, intent-specific messaging to an actual prospect. Likes aren't messages. Bulk-BCC loses the "link back" rule immediately — the recipient sees they're one of many. Mentor/peer messages are training, not prospecting. The 6-step to a real Warm contact hits all three criteria.
+**Why:** An outreach is a real message, following a script, with a clear purpose, sent to an actual prospect. A like isn't a message at all, and a bulk BCC tells the recipient straight away that they're one of many. Messages to mentors and peers are training, and they aren't prospecting. The 6-step message to a real Warm contact meets all three conditions.
 
-**Q6. The most common Week-4 gate-gaming is counting *"let's definitely meet soon!"* as a booked appointment. Why doesn't it count?**
-- A) Because soft bookings almost never materialise — without a specific time, place, and both-sides acknowledgment, it's an intention, not a booking ✓
+**Q6. The most common way people game the Week 4 gate is counting *"let's definitely meet soon!"* as a booked appointment. Why doesn't it count?**
+- A) Without a specific time, a place and acknowledgement from both sides, it's an intention rather than a booking, and intentions often don't turn into meetings ✓
 - B) Because the system is pedantic
-- C) Because verbal bookings are not legally binding
+- C) Because verbal bookings aren't legally binding
 - D) It does count
 
-**Why:** The gate exists to build the muscle of *earning confirmed slots*, not optimistic intentions. *"Let's meet soon"* has a conversion rate to actual meetings below 30% — counting it pads the number without building the skill. The confirmed-time + format + both-sides rule is the minimum that survives the next 7 days.
+**Why:** The gate is there to build the habit of getting confirmed slots. *"Let's meet soon"* often never turns into a meeting, so counting it inflates the number without building the skill. A confirmed time and format that both sides agreed is the minimum that tends to hold for the next seven days.
 
-**Q7. Day 24 warns: *"padding the count produces fake confidence, which breaks the moment Week 5 demands similar reps."* What's the deeper risk?**
+**Q7. Day 24 warns that padding the count gives you fake confidence, which falls apart when Week 5 asks for the same reps. What's the deeper risk?**
 - A) Your mentor will notice
-- B) You won't be able to repeat the engine next week unprompted — which is the real skill Week 4 is trying to build ✓
+- B) You won't be able to run the routine again next week on your own, which is what Week 4 is meant to teach ✓
 - C) The log looks bad in Obsidian
 - D) Your numbers will look worse next month
 
-**Why:** The number is a proxy for the skill. If the skill isn't built, next week the engine won't run on its own — you'll have to re-read the module to hit 30 again. That's the failure mode to protect against. 24 real reps you remember how to do is better than 30 padded reps you don't.
+**Why:** The number stands in for the skill. If the skill isn't there, the routine won't run by itself next week and you'll have to reread the module to reach 30 again. 24 real reps you know how to repeat are worth more than 30 padded ones you don't.
 
 ---
 

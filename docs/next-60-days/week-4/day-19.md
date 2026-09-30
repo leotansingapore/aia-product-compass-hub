@@ -1,8 +1,8 @@
 ---
 week: 4
 day: 19
-title: "Prospecting Mindset — The Master Map"
-big_idea: "Calendar full, cases pending. No prospecting, no business. This is the week you stop optimising the pitch and start moving the calendar."
+title: "Prospecting mindset: the master map"
+big_idea: "A full calendar with cases pending comes from prospecting, and without it there's no business. This is the week you stop polishing the pitch and start filling the calendar."
 kpi_link: "Week 4 KPI — 30 outreaches; 5 appointments booked"
 primary_sources:
   - "[[../_source-holos-transcripts/2024-02-19-prospecting]]"
@@ -14,167 +14,163 @@ duration_minutes: 20
 tags: [next-60-days, week-4, new-fc, prospecting, mindset, master-map, taxonomy]
 ---
 
-# Day 19 — The Master Map
+# Day 19: The master map
 
-> **The one idea for today:** Calendar full, cases pending. No prospecting, no business. This is the week you stop optimising the pitch and start moving the calendar.
+> **The one idea for today:** A full calendar with cases pending comes from prospecting, and without it there's no business. This is the week you stop polishing the pitch and start filling the calendar.
 
-By the time you close today you'll map any prospect into the 4-ring Market Temperature model (Hot / Warm / Semi-Warm / Cold) and know which activity fits each ring, separate lead generation (farming) from prospecting (hunting) and why you need both, and triage your contact list using the 4 Types of Prospects (10/20/60/10) so you stop burning energy on the bottom 10%.
+By the end of today you'll be able to place any prospect in one of four Market Temperature rings (Hot, Warm, Semi-Warm, Cold), know what to do with each, and explain why you need both lead generation (farming) and prospecting (hunting). You'll also sort your contact list with the 4 types of prospects (10/20/60/10) so you stop spending energy on the bottom 10%.
 
 ---
 
 ## Why Week 4 is the hinge
 
-Weeks 1–3 were the voice work. Intent statement, story, content, DMs. Those all build *demand* — reasons for a prospect to want to meet you.
+Weeks 1 to 3 were voice work: intent statement, story, content, DMs. All of that gives a prospect a reason to want to meet you.
 
-Week 4 builds *volume* — the weekly engine that fills the calendar whether inspiration shows up or not. The math from Day 2 is unavoidable: **FYC = Appointments × Close rate × Case size.** Appointments is the lever new FCs control. Week 4 is about pulling that lever hard, systematically, for the rest of your career.
+Week 4 is about volume: a weekly routine that fills the calendar on good days and flat ones. The Day 2 formula is FYC = appointments x close rate x case size, and appointments is the part a new FC controls. This week you start pulling that lever on a schedule, and you never stop.
 
-The reason it's a hinge: most Year-1 advisors who fail don't fail at closing. They fail at filling the calendar. Volume is the skill they never built.
+In my experience, Year 1 advisors who drop out rarely lack closing skill. Their calendars are empty because they never built the volume habit.
 
 ---
 
-## Market Temperature — the 4-ring model
+## Market Temperature: the 4-ring model
 
-Every prospect sits in one of four concentric rings:
+Picture every prospect sitting in one of four rings around you:
 
-![Market Temperature — the 4-ring model: HOT (parents, siblings, best friends); WARM (friends, ex-colleagues, relatives); SEMI-WARM (secondary-school friends, old contacts, referrals); COLD (strangers — calls, ads, roadshows, cold DMs)](/next-60-days/images/n60-day-19-m0.webp)
+![Market Temperature, the 4-ring model: HOT (parents, siblings, best friends); WARM (friends, ex-colleagues, relatives); SEMI-WARM (secondary-school friends, old contacts, referrals); COLD (strangers reached through calls, ads, roadshows, cold DMs)](/next-60-days/images/n60-day-19-m0.webp)
 
-| Ring | Who | Key characteristic |
+| Ring | Who | What to expect |
 |---|---|---|
-| **Hot** (centre) | Closest to you — parents, siblings, best friends | Easiest to meet. **Exhausts fastest.** |
-| **Warm** | Frequent contact — friends, ex-colleagues, relatives | Second to exhaust. *Most new FCs over-index here.* |
-| **Semi-Warm** | Occasional contact — secondary-school friends, old colleagues, distant relatives, referrals | **The real market.** Least competition. Longest runway. |
-| **Cold** | Strangers | Transactional. Low conversion. Law of large numbers. |
+| Hot (centre) | Parents, siblings, best friends | Easiest to meet, and the first to run out |
+| Warm | Friends, ex-colleagues, relatives you see often | Runs out next. Most new FCs spend too long here |
+| Semi-Warm | Secondary-school friends, old colleagues, distant relatives, referrals | The biggest ring, with the least competition and the longest runway |
+| Cold | Strangers | Transactional and low conversion, so it only works at volume |
 
-**The trap new FCs fall into:** they work Hot + Warm in months 1–3, close a handful, then run out. They panic and either (a) burn the remaining warm market harder, or (b) jump straight to cold. Both fail.
+The usual pattern: a new FC works Hot and Warm in months 1 to 3, closes a handful, runs out of names, then panics and either pushes the remaining warm contacts harder or jumps straight to cold. Both go badly.
 
-**The fix:** Semi-Warm is the ring where long-term pipeline actually lives. Most of your 3-year revenue will come from people you haven't spoken to in 1–5 years. Start reactivating them in Week 4, not Year 2.
+Semi-Warm is where a long-term pipeline lives: people you haven't spoken to in one to five years who would still pick up if you called. Research on "dormant ties" found that reconnecting with contacts you'd lost touch with was as useful as asking current ones, often more so, because they bring fresh information and still trust you (Levin, Walter and Murnighan, 2011). Start reactivating these people in Week 4, not in Year 2.
 
 ---
 
 ## The 3-year commitment
 
-A blunt reality:
+Most new advisors overestimate how consistent they'll be. They start strong on Hot, make a few sales, then stall when they face hundreds of Semi-Warm contacts who don't see the value straight away.
 
-> **Most new advisors overestimate their own consistency. They start strong on Hot, make a few sales, then lose momentum when facing hundreds of Semi-Warm contacts who don't immediately see value.**
+A warm-market practice takes about three years of steady contact to build, not three months.
 
-Building a sustainable warm-market practice takes **3 years of consistent engagement**, not 3 months. That's the timeline.
-
-Rough composition of a typical 500-contact network:
+An illustrative split of a 500-contact network (yours will differ, but the shape usually holds):
 
 | Segment | Size | % |
 |---|---:|---:|
-| **Hot** | ~20 | 4% |
-| **Warm** | ~100 | 20% |
-| **Semi-Warm / Lukewarm** | ~330 | **66%** |
-| **Cold** | ~50 | 10% |
+| Hot | ~20 | 4% |
+| Warm | ~100 | 20% |
+| Semi-Warm / lukewarm | ~330 | 66% |
+| Cold | ~50 | 10% |
 
-**Two-thirds of your opportunity lives in Semi-Warm.** Not in your 20 hottest friends. The mental reframe that matters most in Week 4: *"my real pipeline is the 330 I haven't thought about yet."*
+In this example two-thirds of the opportunity sits in Semi-Warm, well away from your 20 closest friends. The thought to hold on to this week: *"my real pipeline is the 330 people I haven't thought about yet."*
 
 ---
 
 ## Lead generation vs prospecting
 
-These two words get conflated. They're different jobs:
+These get mixed up, but they're different jobs:
 
-| | **Lead generation** | **Prospecting** |
+| | Lead generation | Prospecting |
 |---|---|---|
-| **Definition** | Identifying and attracting potential customers | Qualifying leads — assessing who can convert |
-| **Metaphor** | **Farming** — nurture the base | **Hunting** — actively engage |
-| **Nature** | Strategy | Skill |
-| **Activities** | Campaigns, content, events, IG posts, Telegram channel | Conversations, rapport, qualifying, appointment-setting |
-| **Cadence** | Long-term, compound | Daily, behavioural |
+| What it is | Finding and attracting potential clients | Qualifying leads and working out who can convert |
+| Metaphor | Farming: tend the base | Hunting: go and engage |
+| Nature | Strategy | Skill |
+| Activities | Campaigns, content, events, IG posts, a Telegram channel | Conversations, rapport, qualifying, setting appointments |
+| Cadence | Long-term, builds up over time | Daily habit |
 
-You need both. Content alone (lead gen) = slow burn, no pipeline this quarter. Outreach alone (prospecting) = burns out contacts quickly.
+You need both. Content on its own is slow and won't give you a pipeline this quarter. Outreach on its own wears out your contacts quickly.
 
-Week 3 gave you lead generation (posts, stories, DM funnel). Week 4 gives you prospecting (outreach, surveys, scripts, pipeline board). Top producers run both simultaneously.
-
----
-
-## The 4 Types of Prospects — 10/20/60/10
-
-Not every name on your list is equal. Split them this way:
-
-| Tier | % | Who | Strategy |
-|---|---:|---|---|
-| **1 · Definitely will buy** | 10% | Loyal / family — trust fully already | Relationship maintenance. They'll ask when ready. |
-| **2 · Most likely to support** | 20% | Friends / relatives — inclined already | Leverage personal connection. Warm outreach + relevance. |
-| **3 · Can be converted** | 60% | Anyone — with information + persuasion | **Where the real work is.** Persuasive positioning, handle objections, deliver value. |
-| **4 · Die-die will not buy** | 10% | No intent regardless of what you do | **Avoid wasting resources.** Move on. |
-
-**The biggest time-waste in Year 1:** spending 40% of effort on the bottom 10% ("if I can just convince this one person…"). Those conversations rarely convert and always drain energy.
-
-**The highest leverage move:** spending that energy on the 60% middle instead — the convertible tier. That's where Week 4's 30 outreaches land most profitably.
+Week 3 was lead generation (posts, stories, the DM funnel). Week 4 is prospecting (outreach, surveys, scripts, the pipeline board). Top producers run both at once.
 
 ---
 
-## Activity Matrix — Active / Passive / Hybrid
+## The 4 types of prospects: 10/20/60/10
 
-Prospecting activities split three ways:
+The names on your list aren't equal. Split them like this:
 
-### Active — you reach out
-- Direct outreach (WhatsApp, DM, call)
-- Warm outreach to FB / IG / LinkedIn contacts
-- Offline networking at events, gatherings
-- Active referral asks at end of Fact-Find
+| Tier | Who | What to do |
+|---|---|---|
+| 1. Definitely will buy (10%) | Loyal family who already trust you | Keep the relationship warm. They'll ask when they're ready |
+| 2. Most likely to support (20%) | Friends and relatives already inclined to help | Warm outreach that's relevant to their life |
+| 3. Can be converted (60%) | Anyone, given good information and a good case | Most of your work happens here: position clearly, handle objections, deliver value |
+| 4. Die-die will not buy (10%) | No intention whatever you do | Don't spend your time here. Move on |
 
-### Passive — content pulls them in
-- IG / FB / LinkedIn content (your Week-3 output)
-- Telegram / WhatsApp broadcast lists
-- Email list / nurturing machine
+The biggest time-waster in Year 1 is pouring 40% of your effort into that bottom 10% ("if I can just convince this one person..."). Those conversations rarely convert and they always drain you.
+
+Put that energy into the middle 60% instead. That's where most of this week's 30 outreaches should go.
+
+---
+
+## Activity matrix: active, passive, hybrid
+
+Prospecting activities fall into three groups.
+
+### Active: you make the first move
+- Direct outreach by WhatsApp, DM or call
+- Warm outreach to Facebook, IG or LinkedIn contacts
+- Networking at events and gatherings
+- Referral asks at the end of a Fact-Find
+
+### Passive: content brings them to you
+- IG, Facebook and LinkedIn content (your Week 3 output)
+- Telegram or WhatsApp broadcast lists
+- An email list
 - Client check-ins
 
-### Hybrid — content + targeted outreach
-- Bridging messages — *"saw you watched my story on CI — want to chat?"*
-- Poll → DM pattern — someone voted on your poll, you reach out to the voters
+### Hybrid: content plus targeted outreach
+- Bridging messages: *"Saw you watched my story on CI, want to chat about it?"*
+- Poll then DM: someone votes on your poll and you message the people who voted
 
-**Where top producers live:** Hybrid. Passive alone is too slow in Year 1; Active alone burns out the contact list. Hybrid uses content to warm people up so the outreach already has context.
+Top producers spend most of their time in hybrid. Passive on its own is too slow in Year 1, and active on its own wears out your list. Hybrid uses content to warm people up, so when you message them there's already some context.
 
-For Week 4's 30 outreaches, aim for a mix: ~20 Active (direct outreach), ~10 Hybrid (responding to story viewers, offer-post replies, engagement on your posts from last week).
-
----
-
-## The database *is* the asset
-
-Most new FCs treat their contact list as a lookup tool — *"who do I know?"* That's wrong framing.
-
-**Your contact list is the single most valuable asset in your business.** Treat it like one.
-
-Minimum discipline:
-- Every name you'd ever reapproach goes in a list (spreadsheet, Notion, CRM — any tool, just one)
-- Every list entry gets an **ABC / 1-2-3 tag** (from Day 3)
-- Every list entry gets a **last-contact date**
-- Every list entry eventually gets a **trigger + script variant** — the specific reason + angle you'd use to reach out
-
-If you don't have this list by Day 23, you don't have a business yet. You have a hobby with appointments.
+For this week's 30 outreaches, aim for about 20 active (direct outreach) and about 10 hybrid (story viewers, replies to your offer post, people who engaged with last week's posts).
 
 ---
 
-## The rejection math — reframe before you dial
+## Your contact list is the asset
 
-The Day-2 math said you need 5–7 appointments a week. The Day-21 Market Survey script gives you the tool. Between them sits the unsolved thing — *hearing no*.
+Most new FCs treat their contact list as a phone book. Treat it as the most valuable thing your business owns.
 
-Week 4's volume produces a small number of bookings and a much larger number of rejections. If those rejections land as judgment — *they don't like me, I'm bad at this, this career isn't for me* — the engine breaks before it compounds.
+The minimum:
+- Every name you'd ever approach again goes into one list, in one tool (spreadsheet, Notion or CRM)
+- Every entry gets an ABC or 1-2-3 tag (from Day 3)
+- Every entry gets a last-contact date
+- Every entry eventually gets a trigger and a script variant (why you'd reach out now, and with what angle)
 
-The reframe is math, not mindset. In the real world, outbound prospecting calls book at roughly **1 in 20**. Every booked appointment comes with **19 no's attached** — polite no's, ghosts, *"let me think about it"*, *"not now"*, no-answers. Those 19 aren't the enemy. They're the ticket price. Each one is about **5 cents of the dollar** you need to earn that single booking.
+If you don't have this list by Day 23, what you have is a hobby with some appointments in it.
 
-When you sit for a 20-call block, expect:
+---
 
-| Outcome | Count | What it actually is |
+## The rejection math: reframe before you dial
+
+Day 2 said you need 5 to 7 appointments a week, and Day 21 gives you the Market Survey script to get them. Between the two sits hearing no, over and over.
+
+This week brings a few bookings and a lot of rejections. If each one lands as a verdict on you (*they don't like me, I'm bad at this*), you'll stop before the numbers can work.
+
+So look at the numbers first. The working assumption on this team is that warm and semi-warm calls book at roughly 1 in 20. Each booking comes with about 19 no's attached: polite no's, ghosts, *"let me think about it"*, *"not now"* and calls nobody answers. Those 19 are what the booking costs. Each one pays about 5 cents of the dollar.
+
+In a 20-call block, expect something like:
+
+| Outcome | Count | What it means |
 |---|---:|---|
-| **Booking** | ~1 | The yes you showed up for |
-| **Polite no / not-now** | ~12 | Normal market friction |
-| **Ghost / no-answer** | ~5 | Try again next cycle |
-| **Hang-up / hostile** | ~2 | Proof you're actually dialling |
+| Booking | ~1 | The yes you sat down for |
+| Polite no / not now | ~12 | Normal friction |
+| Ghost / no answer | ~5 | Try again next cycle |
+| Hang-up / rude | ~2 | You're dialling enough to meet the grumpy ones |
 
-That's a **successful call-block**, not a failed one.
+That block went well.
 
-The most common Week-4 quit moment is dial #3 or #4 — three no's in a row and the FC puts down the phone *"to regroup."* The regroup never happens. The block dies at 4 dials with zero bookings instead of continuing to 20 with one.
+The most common place to quit in Week 4 is dial three or four. Three no's in a row and the FC puts the phone down "to regroup", and the regroup never comes. The block ends at 4 dials and no bookings, when it would have reached 20 dials and one.
 
-### The weekly math — no softer floor exists
+### The weekly math
 
-To hit 5–7 appointments a week at a 1-in-20 book rate, you need roughly:
+At 1 in 20, here's what 5 to 7 appointments a week works out to:
 
-![The weekly math — no softer floor exists: Weekly target 5–7 appointments; 100–140 calls a week; 20–28 calls per day × 5 days; Protected calling block (2–3 hrs/day)](/next-60-days/images/n60-day-19-m1.webp)
+![The weekly math: weekly target 5-7 appointments; 100-140 calls a week; 20-28 calls per day x 5 days; a protected calling block of 2-3 hours a day](/next-60-days/images/n60-day-19-m1.webp)
 
 | Appointments / week | Calls / week | Calls / day (5-day) |
 |---:|---:|---:|
@@ -182,151 +178,158 @@ To hit 5–7 appointments a week at a 1-in-20 book rate, you need roughly:
 | 6 | 120 | 24 |
 | 7 | 140 | 28 |
 
-That's not a typo. That's the honest floor. Anyone telling you it's easier hasn't done the math.
+Your own rate will move as your scripts and list improve, but plan on these numbers until your log shows otherwise.
 
-**The drill.** Before you dial, write the expected math on a sticky note next to the phone:
+The drill: before you dial, write the math on a sticky note next to the phone.
 
-> *"Today: 20 dials → 1 appointment → 19 no's. The 19 aren't failure. They're the ticket price."*
+> *"Today: 20 dials, 1 appointment, 19 no's. The 19 are the price of the one."*
 
-Glance at it every time a no comes in. The sticky note is between you and the 10pm-Wednesday fog creeping in three hours early.
+Look at it every time a no comes in, especially on a Wednesday night when you start wondering why you're doing this.
 
 ---
 
-## Love rejections — the per-close math
+## Love rejections: the math per close
 
-The rejection math above is the *per-block* view: 20 dials → 1 appointment → 19 no's. Zoom out to the *per-close* arc and the numbers compound harder. Appointments cancel, prospects ghost, first meetings don't close — all of that has to be priced into the funnel.
+Follow a prospect all the way to a signed case and the numbers stack up further, because appointments cancel, people ghost and first meetings don't always close.
 
-| Stage | Ratio | Why it compounds |
+| Stage | Ratio | Why |
 |---|---|---|
-| **Dials → appointments booked** | 20 : 1 | From the block math above |
-| **Booked → actually held** | ~1.5 : 1 | Cancellations, no-shows, reschedules |
-| **Held → closed** | ~3 : 1 | Realistic first-meeting close rate for a new FC |
-| **Net: dials → 1 close** | **~90–150 : 1** | The end-to-end truth |
+| Dials to appointments booked | 20 : 1 | The block math above |
+| Booked to actually held | ~1.5 : 1 | Cancellations, no-shows, reschedules |
+| Held to closed | ~3 : 1 | A realistic first-meeting close rate for a new FC |
+| Net: dials to 1 close | ~90-150 : 1 | End to end |
 
-**Roughly 100+ rejections per sale is the baseline — not the anomaly.**
+On these illustrative ratios, roughly 100 or more rejections per sale is normal.
 
-Two mindsets process that number very differently.
+Two mindsets handle that number very differently.
 
 ### Scarcity mindset
-Every no is an obstacle. Every no shrinks the remaining pool. The 149 rejections feel like a wall getting closer. Advisors with this mindset quit between dial 8 and dial 15 — the first time a short streak of no's lands.
+Every no feels like an obstacle, and every no seems to shrink the pool. The pile of rejections feels like a wall closing in. Advisors who think this way tend to quit somewhere between dial 8 and dial 15, the first time a run of no's hits.
 
-### Abundant mindset
-Every no is *data* — this person wasn't it; the next one might be. The pool isn't shrinking; it's renewing (30-Day Rule + Law of Replacement — Day 2 §7). The 149 rejections are the *cost* of the yes, the way rent is the cost of a flat. Advisors with this mindset finish the block.
+### Abundance mindset
+Stephen Covey called this the abundance mentality in *The 7 Habits of Highly Effective People*. Every no tells you something: this person wasn't the one, and the next might be. The pool isn't shrinking, it's refilling (the 30-Day Rule and the Law of Replacement from Day 2, both from Jeb Blount's *Fanatical Prospecting*). The rejections are what the yes costs, the same way rent is what a flat costs. Advisors who think this way finish the block.
 
 ### The telemarketer who quit
 
-A senior advisor shared this: he sat next to a telemarketer in the office. One hour, one call, she poured emotion into convincing a skeptical prospect about a product. The prospect said no. She looked crushed.
+A senior advisor on the team shared this. He sat next to a telemarketer in the office. One day she spent a whole hour on a single sceptical prospect and put everything she had into the call. The prospect said no, and she looked crushed.
 
-A few weeks later she was gone. She'd been giving 100% emotional investment to every dial — which meant every rejection landed as personal failure. The math said 149 no's per yes. Her nervous system couldn't carry that.
+A few weeks later she'd left. She had put everything she had into every call, so every rejection felt like a personal failure. With that many no's per yes, nobody can carry that.
 
-**The fix was never more effort.** It was *emotional detachment* — loving the rejection because it proves the law of large numbers is still running.
+More effort wouldn't have fixed it. She needed enough distance from each call to see a no as proof the numbers were still running.
 
 ### The reframe
 
-- Count **rejections**, not appointments. Aim for a *high* number. A day with 8 no's is a good day.
-- Every *no* moves you closer to the next *yes*.
-- There is ripe fruit on the tree. You just haven't reached this week's fruit yet.
+- Count rejections as well as appointments, and aim for a high number. A day with 8 no's is a good day.
+- Every no moves you one step closer to the next yes.
+- There's ripe fruit on the tree, and this week's is still a branch or two higher than you've reached so far.
 
-**The drill.** Add a second line to your sticky note: *"Today's rejections are the ticket price. The more I collect, the closer I am."* At 10:47pm Wednesday, when the 6th no of the day lands, that line is what keeps the phone in your hand.
+The drill: add a second line to your sticky note. *"Today's rejections are the price. The more I collect, the closer I am."* Late on Wednesday night, when the sixth no of the day lands, that line is what keeps the phone in your hand.
+
+---
+
+## Sources
+
+- [Dormant ties: the value of reconnecting - Levin, Walter and Murnighan, Organization Science (2011)](https://business.gwu.edu/sites/g/files/zaxdzs5326/files/15_FP.SP_Walter.J_15levin_2011a.pdf) - reconnected old contacts gave advice as useful as current contacts, the basis for working the Semi-Warm ring
+- [Fanatical Prospecting - Jeb Blount](https://www.jebblount.com/product/fanatical-prospecting/) - the author's page for the book behind the 30-Day Rule and the Law of Replacement
 
 ---
 
 ## Quiz
 
-**Q1. The Market Temperature ring where most new FCs under-invest and most long-term pipeline actually lives is:**
-- A) Hot — family and best friends
-- B) Warm — friends and ex-colleagues seen regularly
-- C) Semi-Warm — people not spoken to in 1–5 years ✓
-- D) Cold — strangers
+**Q1. The Market Temperature ring where most new FCs under-invest, and where most long-term pipeline lives, is:**
+- A) Hot: family and best friends
+- B) Warm: friends and ex-colleagues you see regularly
+- C) Semi-Warm: people you haven't spoken to in 1-5 years ✓
+- D) Cold: strangers
 
-**Why:** Hot exhausts fastest (~4% of contacts). Warm comes next (~20%). Semi-Warm is ~66% of a typical network — the lukewarm middle. Most new FCs ignore it because it feels awkward to reach out. That awkwardness is exactly why the competition isn't there. Semi-Warm is the 3-year pipeline that sustains Year 2 and beyond.
+**Why:** Hot runs out first (about 4% of contacts in the example), then Warm (about 20%). Semi-Warm is about 66% of a typical network, the lukewarm middle. Most new FCs skip it because reaching out feels awkward, which is exactly why few other advisors are there. It's the pipeline that carries you through Year 2 and beyond.
 
 **Q2. Lead generation and prospecting differ because:**
 - A) Lead gen is for juniors, prospecting is for seniors
-- B) Lead gen is farming (nurture the base); prospecting is hunting (active qualification) ✓
+- B) Lead gen is farming (tending the base); prospecting is hunting (actively qualifying) ✓
 - C) They're the same thing
-- D) Lead gen is B2B; prospecting is B2C
+- D) One is for B2B sales, the other for B2C
 
-**Why:** Lead gen is strategy — campaigns, content, events that attract interest over time. Prospecting is skill — conversations, rapport, qualifying, booking. You need both: content alone is too slow, outreach alone burns out contacts. Top producers run them simultaneously so every outreach already has some warmth behind it.
+**Why:** Lead generation is strategy: campaigns, content and events that attract interest over time. Prospecting is skill, the conversations where you build rapport, qualify people and book them in. Content alone is too slow and outreach alone wears out your contacts. Top producers run both, so every outreach already has some warmth behind it.
 
-**Q3. A new FC is spending ~40% of their prospecting energy trying to convince one skeptical family member who's repeatedly said *"no, never."* The highest-leverage correction is:**
-- A) Try harder — family will convert eventually
+**Q3. A new FC is spending about 40% of their prospecting energy on one sceptical family member who keeps saying *"no, never."* The best correction is:**
+- A) Try harder, family will come round eventually
 - B) Offer a discount or special deal to break through
-- C) Redirect that energy to the 60% *convertible* tier — the middle-ground prospects who just need information and persuasion ✓
+- C) Move that energy to the 60% convertible tier, the people who just need information and a good case ✓
 - D) Cold-call 50 strangers instead
 
-**Why:** The 10/20/60/10 split tells you the bottom 10% (*"die-die will not buy"*) is a trap — energy spent there almost never converts and always drains. The 60% middle is where most revenue actually comes from, and the work there is tractable (information + persuasion). D overcorrects by abandoning the warm asset entirely. The correction is triage — move energy from the worst-odds tier to the best-odds-per-effort tier.
+**Why:** The 10/20/60/10 split marks the bottom 10% (*"die-die will not buy"*) as a trap. Time spent there almost never converts and always drains you. The middle 60% is where most business comes from, and the work there is doable. D overcorrects by abandoning your warm contacts altogether. The fix is to move energy from the worst odds to the best odds for the effort.
 
-**Q4. The Activity Matrix splits prospecting activities into Active, Passive, and Hybrid. Top producers mostly live in:**
+**Q4. The Activity Matrix splits prospecting into Active, Passive and Hybrid. Top producers mostly work in:**
 - A) Active only
 - B) Passive only
-- C) Hybrid — content warms people up, outreach has context ✓
-- D) They rotate randomly
+- C) Hybrid, where content warms people up so outreach has context ✓
+- D) They rotate at random
 
-**Why:** Passive alone (content only) is too slow in Year 1 — pipeline takes 6+ months. Active alone (outreach only) burns the contact list in 2–3 months. Hybrid is the synthesis — posts + stories create warmth, then targeted outreach to people who engaged means the conversation already has context. Week-3 output becomes Week-4 fuel.
+**Why:** Content alone is too slow to build a Year 1 pipeline, and outreach alone burns through the contact list. Hybrid combines them: posts and stories create some warmth, then you message the people who engaged, so the conversation already has a starting point. Week 3's output becomes Week 4's fuel.
 
-**Q5. Rough composition of a typical 500-contact network:**
+**Q5. The illustrative split of a 500-contact network in this lesson is:**
 - A) 50% Hot, 30% Warm, 15% Semi-Warm, 5% Cold
 - B) 4% Hot, 20% Warm, 66% Semi-Warm, 10% Cold ✓
-- C) Equal 25% each
-- D) Semi-Warm is rare — most people are Hot or Cold
+- C) 25% each
+- D) Semi-Warm is rare, most people are Hot or Cold
 
-**Why:** Semi-Warm is the largest segment (~66%) — people you haven't spoken to in 1–5 years but who'd still remember you. Most new FCs focus on the smallest rings (Hot ~4%, Warm ~20%) because those feel safest, then burn through them in months. The real runway is in the two-thirds of the network they haven't reached for yet.
+**Why:** Semi-Warm is the largest segment in the example (about 66%): people you haven't spoken to in 1-5 years who would still remember you. Most new FCs stick to the smallest rings because they feel safest, then run through them in months.
 
-**Q6. Day 19 says "Your contact list is the single most valuable asset in your business." The minimum discipline to treat it that way is:**
+**Q6. Day 19 says your contact list is the most valuable asset in your business. The minimum discipline to treat it that way is:**
 - A) Save all contacts to Apple Contacts
-- B) Every name gets ABC/123 tag + last-contact date + trigger + script variant, in ONE tool ✓
+- B) Every name gets an ABC/123 tag, a last-contact date, a trigger and a script variant, all in ONE tool ✓
 - C) Check LinkedIn weekly
-- D) Print the list quarterly
+- D) Print the list every quarter
 
-**Why:** Treating the list as an asset means it's usable without your memory — a new person could look at it and know who to call, why, and with what angle. Without tags, dates, triggers, and scripts, it's just a lookup tool. The discipline makes the list survive your own inconsistency: when week 10 energy dips, the list still tells you what to do.
+**Why:** A list you treat as an asset works without your memory. Someone else could read it and know who to call, why, and with what angle. Without tags, dates, triggers and scripts it's just a phone book. When your energy dips in week 10, the list still tells you what to do.
 
-**Q7. The "rejection math" rule for Week 4 says: of 20 outbound calls, you expect roughly:**
-- A) 5–7 appointments — calls convert at least that well
-- B) 1 appointment and ~19 no's / not-now's / no-answers — the 19 aren't failure, they're the ticket price ✓
+**Q7. The rejection math for Week 4 says that out of 20 warm or semi-warm calls you should expect roughly:**
+- A) 5-7 appointments, calls convert at least that well
+- B) 1 appointment and about 19 no's, not-nows and no-answers. The 19 aren't failure, they're the price ✓
 - C) 10 appointments if you're good enough
-- D) The math is unknowable
+- D) The math can't be known
 
-**Why:** Expecting 25–30% conversion is the fantasy that kills Week-4 engines after 3 rejections. The honest floor is 1-in-20 — a booking every ~20 dials. That reframes the 19 no's as the normal cost of earning the 1 yes. To hit 5–7 bookings a week you need 100–140 dials a week (20–28/day). The sticky-note math is what keeps the call block alive past the third rejection — which is exactly where Week-4 engines die.
-
----
-
-## 2-Liner Hook (Warm Prospecting Flow)
-
-For the Warm and Semi-Warm rings of the Master Map, the 2-Liner Hook is the lightest opener you can use. Two lines via text or DM: line 1 names what you've been helping friends/clients with and asks if you can help them too, line 2 offers a useful resource for their group. If they say yes, you send the resource, wait 1–2 weeks, then follow up by asking whether they managed to figure out the problem. The follow-up is the appointment door.
-
-**Use this when** you've triaged your list into the 4 rings and want to activate Warm and Semi-Warm contacts without making the first move feel like a sales call.
-
-Full flow, script with blanks, worked example, and follow-up phrasing: [[2-liner-hook-warm-prospecting]].
+**Why:** Expecting 25-30% conversion is the fantasy that makes people quit after three rejections. The working assumption is about 1 in 20, a booking every 20 or so dials, so the 19 no's are the normal cost of the one yes. 5-7 bookings a week then means 100-140 dials, or 20-28 a day. The sticky note gets you past the third rejection, where most Week 4 routines die.
 
 ---
 
-## Scripts Library
+## 2-liner hook (warm prospecting flow)
 
-Here are the canonical mindset and tip scripts that anchor a sustainable prospecting habit. Practise them out loud, then make them yours.
+For the Warm and Semi-Warm rings, the 2-liner hook is the lightest opener you have. It's two lines by text or DM. Line 1 says what you've been helping friends or clients with and asks if you can help them too. Line 2 offers a useful resource for their situation. If they say yes, send the resource, wait one to two weeks, then follow up and ask whether they managed to sort out the problem. That follow-up is where the appointment comes from.
 
-### Warm Market - Outreach Flow (Step-by-Step)
-**Use this when** you want a no-pressure way to plant the seed and earn a future yes - works for any of the 4 rings, especially Semi-Warm.
+**Use this when** you've sorted your list into the 4 rings and want to start on Warm and Semi-Warm contacts without the first message feeling like a sales call.
+
+Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
+
+---
+
+## Scripts library
+
+These are the canonical mindset and tip scripts behind a prospecting habit that lasts. Practise them out loud, then make them yours.
+
+### Warm market: outreach flow (step by step)
+**Use this when** you want a no-pressure way to plant the seed for a later yes. It works for any of the 4 rings, especially Semi-Warm.
 
 [[warm-market-outreach-flow-step-by-step|Warm Market — Outreach Flow (Step-by-Step)]]
 
-### Warm Market Outreach - Tips & Mindset
-**Use this when** the awkwardness creeps in before a warm-market call or text. Read this first, then dial.
+### Warm market outreach: tips and mindset
+**Use this when** the awkwardness creeps in before a warm-market call or text. Read this, then dial.
 
 [[warm-market-outreach-tips-and-mindset|Warm Market Outreach — Tips & Mindset]]
 
-### Warm Market - What NOT to Do
-**Use this when** you're tempted to lead with the product or "we have an ILP that can help you" - the fastest way to put guards up.
+### Warm market: what not to do
+**Use this when** you're tempted to open with the product ("we have an ILP that can help you"), which is the fastest way to put someone's guard up.
 
 [[warm-market-what-not-to-do|Warm Market — What NOT to Do]]
 
-### General Calling Tips & Tonality
-**Use this when** you're about to start a calling block. Smile, slow down 10-15%, lead with warmth.
+### General calling tips and tonality
+**Use this when** you're about to start a calling block. Smile, slow down by 10-15%, and open warmly.
 
 [[general-calling-tips-and-tonality|General Calling Tips & Tonality]]
 
-### FYC Formula - Calling Rate & Activity Math
-**Use this when** the math feels abstract. The numbers translate every dial into expected FYC.
+### FYC formula: calling rate and activity math
+**Use this when** the math feels abstract. It turns every dial into expected FYC.
 
 [[fyc-formula-calling-rate-and-activity-math|FYC Formula — Calling Rate & Activity Math]]
 
