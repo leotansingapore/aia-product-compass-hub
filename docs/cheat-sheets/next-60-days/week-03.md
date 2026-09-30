@@ -10,25 +10,25 @@ tags: [next-60-days, week-3, cheatsheet, content, dm-funnel, crab, testimonials,
 
 # Week 3: Your Voice II - Content & Digital Trust - Cheat Sheet
 
-> **The one idea:** Feed earns leads. Stories earn trust. Inbox earns sales. The DMs you want never come unless your content has already answered the 5 silent questions cold prospects run before replying.
+> **The one idea:** feed earns leads, stories earn trust, inbox earns sales. Strangers DM you only after your content has answered the 5 silent questions they run on your profile.
 
 > **Week 3 KPI:** 3 posts shipped; 5 DM conversations opened.
 
-## The 5 silent questions - one pillar per question
-
-Every cold prospect runs a checklist before DMing. Most of it is unconscious. All of it needs an answer on your feed.
+## The 5 silent questions: one pillar each
 
 | # | Silent question | Pillar | Format |
 |---|---|---|---|
-| **Q1** | Can I trust others value your work? | Testimonials | Pre-during-post case study |
-| **Q2** | Do you actually know your stuff? | Educational | Breakdown, carousel, short reel |
-| **Q3** | Why are you doing this? | Origin story | 60-sec reel - villain + guide beats from Day 4 |
-| **Q4** | Will we get along? | Lifestyle / PPVV | Personal, stories-heavy |
-| **Q5** | How do I approach you without feeling awkward? | Offer post | Soft CTA with DM keyword |
+| Q1 | Can I trust that others value your work? | Testimonial | Pre-during-post case study |
+| Q2 | Do you actually know your stuff? | Educational | Breakdown, carousel, short reel |
+| Q3 | Why are you doing this? | Origin story | 60-sec reel from your Day 4 villain and guide |
+| Q4 | Will we get along? | Lifestyle / PPVV | Personal, stories-heavy |
+| Q5 | How do I approach you without feeling awkward? | Offer post | Soft CTA with a DM keyword |
 
-**Diagnostic:** open your IG. Audit the last 10 posts. Which questions are you answering? Most new FCs answer Q2 eight times and Q1/Q3/Q4/Q5 once between them - that's why no DMs land.
+Audit your last 10 posts. Most new FCs find Q2 eight times and Q1, Q3, Q4 and Q5 about once between them, which is why the DMs aren't coming.
 
-## The 3-surface model
+**Your posts count as advertising.** MAS's digital advertising guidelines put them under your firm's oversight, so run posts and testimonials through your firm's approval process before they go live.
+
+## The 3 surfaces
 
 ```
 Feed -> Leads
@@ -36,73 +36,69 @@ Stories -> Trust
 Inbox -> Sales
 ```
 
-- **Feed:** permanent portfolio. Cold viewer's landing page. Fewer, heavier pieces.
-- **Stories:** daily, disposable. 30-40% of your followers view each one. Where attention actually lives.
-- **Inbox:** where the sale happens.
+- Feed: the permanent portfolio a stranger scrolls to decide whether to follow. Fewer, better pieces.
+- Stories: daily and short-lived. Followers see you here most often, and repeated exposure builds liking (Zajonc, 1968).
+- Inbox: where the sale happens.
 
-**Target ratio:** **1 post / week, 3 stories / day** (1:21 across the week).
+Rhythm: 1 post a week, 3 stories a day.
 
-## RSP method - one insight, three posts
-
-Multiplier - not idea generation. One RSP-filtered insight produces three post formats.
+## RSP: one insight, three posts
 
 | Filter | Question | How |
 |---|---|---|
-| **R - Relatable** | Does this connect to where their head already is? | Match audience life stage: students -> uncertain job market, parents -> childcare cost, pre-retiree -> healthcare inflation |
-| **S - Simple** | Would a 16-year-old cousin get it? | One point per post, plain words |
-| **P - Provoking** | Does it reframe a belief they hold? | *"90% of claims paid in 2023 were living benefits, not death."* |
+| R: Relatable | Does it connect to where their head already is? | Students: job market. Parents: childcare, protection. Pre-retirees: healthcare costs. |
+| S: Simple | Would your 16-year-old cousin get it? | One point per post, plain words |
+| P: Provoking | Does it challenge a belief they hold? | *"Singapore's biggest protection gap is critical illness, which pays out while you're alive: 74%, against 21% for death cover (LIA, 2022)."* |
 
-**3 formats from one insight:** one-liner / tips list / story arc.
+Any number you post needs a source you can name, and it has to be current. One insight gives three formats: one-liner, tips, story.
 
-## Testimonials that convert - pre-during-post
+## Testimonials: pre-during-post
 
 ```
-BEFORE (specific situation) -> DURING (verb list, what got done) -> AFTER (concrete new state)
+BEFORE (specific situation) -> DURING (what you did together) -> AFTER (concrete new state)
 ```
 
-**Asking the client:** never ask for *"a testimonial"*. Ask three structured questions:
-1. *"What was the situation when we first started - what was confusing or keeping you up?"*
-2. *"What did we actually do together - what's one thing we changed?"*
-3. *"Three months in, what's different now - how does it feel?"*
+Don't ask for "a testimonial". Ask three questions:
+1. *"When we first started, what was the situation with your finances? What was frustrating or confusing, or keeping you up at night?"*
+2. *"What did we actually do together? What's one thing we changed or figured out?"*
+3. *"Three months in, what's different now, and how does it feel?"*
 
-Stitch the answers. Ask permission to edit + post. Almost all clients say yes.
+Stitch the answers and ask if you can edit for length and post. Most clients agree when the questions were specific. Get their consent in writing if you can (PDPA), then send it through firm approval.
 
-**No closed cases yet (Week-3 reality):** legitimate options are (a) live case-in-progress, anonymised, *"here's what we worked through this week"*, (b) mentor's case with their and client's permission, or (c) training case framed honestly. Never fabricate. Faked testimonials burn the warm market the moment anyone notices.
+No closed cases yet: (a) a live case-in-progress with names removed, (b) your mentor's case with their and their client's permission, clearly attributed, or (c) a training case framed as one and never claimed as yours. Never fake a testimonial. Once someone notices, your warm market is gone.
 
-## DM funnel - 3 non-negotiable rules
-
-Every text you send obeys all three:
+## DM funnel: 3 non-negotiable rules
 
 | # | Rule | Example |
 |---|---|---|
-| **1** | **Link back** to prior conversation - no random openers | *"Hey - you were saying you work in Tanjong Pagar right? Which side?"* |
-| **2** | **Create a reason to meet** - give, don't demand | *"Been meaning to show you what I've been working on..."* |
-| **3** | **End with an easy-to-answer question** | *"Still WFH these days or mostly office?"* |
+| 1 | Link back to the last conversation | *"Hey, you were saying you work in Tanjong Pagar right? Which side?"* |
+| 2 | Give a reason to meet: offer, don't demand | *"Been meaning to show you what I've been working on."* |
+| 3 | End with an easy question | *"Still WFH these days or mostly office?"* |
 
-**The other 8 texting rules:** make them feel SAFE about the chat, common ground, actively follow up (90% don't reply first time), reply within 3-4hrs, be casual (no jargon), warm up with 2-3 touchpoints, never use *"free"* (use specific 30-min ask), 2 time options not open.
+The other eight: make them feel safe, find common ground, follow up actively (most people won't reply to the first text), reply within 3-4 hours, keep it casual, warm up with 2-3 touchpoints, ask for a specific 30 minutes instead of "free", offer 2 options instead of an open question.
 
-## The 6-step objection response
+## The 6-step objection reply
 
-Run this on the 6 most common DM objections: *"not interested"*, *"will let you know"*, *"have an advisor already"*, *"all good"*, *"not looking to invest"*, *"bad timing - married / BTO / kid"*.
+For the six you'll hear most: *"not interested"*, *"I'll let you know"*, *"I have an advisor"*, *"all good"*, *"not looking to invest"*, *"bad time: married / house / kid"*.
 
 ```
 1. Acknowledge casually -> 2. Common ground -> 3. Different perspective ->
 4. Make them feel safe -> 5. Easy question -> 6. Personal warmth
 ```
 
-**Worked example for *"I already have an advisor"*:**
-1. *"Hahaha yeah - honestly if you didn't I'd be surprised."*
-2. *"Most people I meet also have an existing advisor. They meet me for a second set of eyes, not a replacement."*
-3. *"What I do is slightly different - I look at the portfolio from a returns/efficiency angle. Most people find 10-15% gaps."*
-4. *"Sometimes the conclusion is keep everything as-is. You decide what's useful after you see it."*
-5. *"Are you around CBD on weekdays or WFH-heavy?"*
-6. *"Haven't caught up in ages - nice to see you regardless."*
+Worked example for *"I already have an advisor"*:
+1. *"Hahaha yeah, honestly if you didn't, I'd be surprised."*
+2. *"Most of the people I end up meeting already have an advisor too. They usually meet me for a second pair of eyes, not a replacement."*
+3. *"What I do is a bit different. I lay everything out side by side, what you're covered for and what you're paying, so you can see how it fits together."*
+4. *"Sometimes the conclusion is just 'keep everything as it is', which is totally fine. You decide what's useful after you see it."*
+5. *"Are you usually around CBD on weekdays, or mostly WFH?"*
+6. *"Haven't caught up in ages anyway. Would be nice to see you whatever happens with this!"*
 
-**3 moves to lift the *yes* odds:** push the date 1-2 months out / postpone the *scheduling*, not the meeting (*"I'll text you in Feb to pick a day"*) / show-don't-tell (next text is a value drop, not another ask).
+Still soft? Push the date 1-2 months out, postpone the scheduling (*"I'll text you in February to pick a day?"*), or make your next text a value drop instead of another ask (reciprocity).
 
-## CRAB - re-engaging blue ticks
+## CRAB: re-engaging blue ticks
 
-A blue tick is usually a scheduling problem, not a rejection. ~80% of blue ticks read, scrolled on, never came back.
+Two blue ticks only mean the message was read. Often it was read at a bad moment and forgotten, so treat it as a scheduling problem.
 
 ```
 Care -> Reason -> Alleviate -> Book (A/B/C)
@@ -110,35 +106,33 @@ Care -> Reason -> Alleviate -> Book (A/B/C)
 
 | Beat | Job |
 |---|---|
-| **C - Care** | Show the message is about THEM - acknowledge their season of life |
-| **R - Reason** | Give them a compelling reason for THEM to reply - tie to a benefit |
-| **A - Alleviate** | Reduce friction - office, Zoom, lunch slot, pre-empt the time objection |
-| **B - Book** | 2-3 specific slots, reply *"A / B / C"* - one slot >1 week out |
+| C: Care | Make it about them: acknowledge what's going on in their life |
+| R: Reason | A reason to reply that's about their benefit |
+| A: Alleviate | Remove friction: office, Zoom, lunch, a 30-min call |
+| B: Book | 2-3 specific slots, reply *"A / B / C"*, at least one more than a week out |
 
-**ABC > *"when works?"*:** open-ended asks require calendar-checking + decision-weighing + typing. A/B/C is reading 3 lines + typing 1 letter. Reply rate scales inversely with cognitive cost.
+An open *"when works?"* makes them do the planning. Three labelled slots cost one letter to answer (Hick's law: more options, slower decisions).
 
-**When CRAB fits:** blue-ticked after warm interest, rescheduled 1-2x, went silent after positive exchange. **When it doesn't:** hard *"not interested"* (use the 6-step), never responded to first message, bounced 3+ follow-ups already.
+Use CRAB after a warm exchange: blue-ticked after interest, rescheduled once or twice, quiet after a good chat. Don't use it on a clear no (use the 6-step), on someone who never replied to your first message, or after 3+ ignored follow-ups.
 
-**Rhythm:** one ignored follow-up -> CRAB once. Second failed CRAB -> space out by weeks, not days. 3-5 day minimum gap.
+Send CRAB after one ignored follow-up. If two CRABs go unanswered, a third won't help. Wait at least 3-5 days between follow-ups.
 
 ## Numbers worth memorising
 
-- **1 post / week, 3 stories / day** - the target rhythm.
-- **30-40%** of followers view each story. Repetition is the trust mechanism.
-- **5-10x** higher conversion on offer posts (DM keyword) vs no-CTA posts.
-- **40-60% response, 50-70% booking from replies** - healthy CRAB numbers in month 1-2.
-- **20-second decision window** - good profile keeps a cold viewer; bad bounces in 3 seconds.
+- 1 post a week, 3 stories a day.
+- CRAB targets for months 1-2 (the mentors' own working figures): 40-60% reply, 50-70% of those book.
+- Weekly hygiene routine: 30 minutes. Story-viewer check: 5 minutes a day.
 
 ## Common failure modes
 
-- **3 expertise posts, zero Q1/Q3/Q4/Q5.** Most common new-FC content failure. Spread across at least 3 silent questions.
-- **Compliment-style testimonials (*"Jenny is amazing!"*)** instead of pre-during-post arcs with movement.
-- **Faking testimonials.** Burns the warm market instantly. Use live case-in-progress instead.
-- **Posting more into a dead audience.** When 400 followers + low engagement signals the algorithm to stop pushing, the fix is cleanup (unfollow 50-100 dead accounts), not volume.
-- **Spam-CRABbing every 48 hours.** Burns the relationship past repair. One CRAB after one ignored follow-up - then space out.
-- **Sending CRAB on a hard *"not interested."*** Wrong tool. Use the 6-step objection reply instead.
-- **Repeated *"can we meet?"* asks** trigger the pushy filter. Repeated value drops trigger the generous filter. Same pipeline, opposite response rate.
-- **Hitting *send* on *"hope you're well!"*** Fails the 3-rule test. Replace with specific context (*"still at Singtel?"*).
+- Three expertise posts and nothing for Q1, Q3, Q4 or Q5.
+- Compliment testimonials (*"Jenny is amazing!"*) with no before, during and after.
+- Posting testimonials without the client's consent or firm approval.
+- 400 followers and dead engagement: unfollow 50-100 dead or irrelevant accounts and spend that time commenting in your niche. Removing inactive followers doesn't cut your reach. It gives you honest numbers.
+- Sending CRAB every 48 hours.
+- Sending CRAB on a clear *"not interested."*
+- Repeating *"can we meet?"* when a value drop would work.
+- Opening with *"hope you're well!"* Use something specific: *"still at Singtel?"*
 
 ## Sources
 

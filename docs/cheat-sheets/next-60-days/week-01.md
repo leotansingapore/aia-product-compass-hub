@@ -10,27 +10,31 @@ tags: [next-60-days, week-1, cheatsheet, story, activity-math, scorecard, tonali
 
 # Week 1: Reset & Activate - Cheat Sheet
 
-> **The one idea:** Your story, your math, and your scorecard are the three artefacts that decide whether Year 1 compounds or stalls. Build all three this week.
+> **The one idea:** this week you build three things you'll use every day after it: your story, your activity math and a signed scorecard.
 
 > **Week 1 KPI:** 90-day scorecard signed; intent statement v1 recorded.
 
-## The FYC formula - the only equation that matters
+## The FYC formula
 
 ```
 FYC = Appointments x Close rate x Case size
 ```
 
-| Lever | Starter range (new FC) | Year 2-3 range | Why |
-|---|---|---|---|
-| **Close rate** | 20-40% of qualified FHRs | 40-60% | Skill compounds over months of reps |
-| **Case size** | $500-$1,000 FYC | $1,000-$1,500 | Grows with prospect quality + confidence |
-| **Appointments / week** | 5-7 | 7-10 | Pure behaviour - controllable TODAY |
+These are the team's own planning figures.
 
-**The only lever you control this week:** appointments. Close rate and case size move on a months-to-years timeline.
+| Lever | New FC | Year 2-3 |
+|---|---|---|
+| Close rate | 20-40% of qualified Fact-Finds | 40-60% |
+| Case size | $500-$1,000 FYC | $1,000-$1,500 FYC |
+| Appointments / week | 5-7 | 7-10 |
 
-**Inverse math example.** Want $30K FYC in 6 months? $30,000 / 26 weeks = $1,154/wk needed. At 30% close, $750 case: **5.1 appointments/week** is the honest floor. Pad to **6-7/week** for cancellations.
+Close rate grows with reps over weeks. Case size grows with experience over months. Appointments are behaviour, so they're the lever you can move today.
 
-**The 23K trap.** Two more appointments a week at the same close rate + case size = ~**$23,400 extra FYC/year**. No new skill required. Just two more calls that land.
+Inverse math: $30,000 FYC in 6 months is about $1,154 a week. At 30% close and a $750 case that's 5.1 appointments a week as the floor. Aim for 6-7 to cover cancellations and ghosting.
+
+Two more meetings a week (7 instead of 5) at the same close rate and case size add about $23,400 FYC a year.
+
+Count only qualified first meetings booked with a time, a place and a Fact-Find agenda. Messages sent and maybes don't count.
 
 ## The 4-part story frame
 
@@ -38,83 +42,73 @@ FYC = Appointments x Close rate x Case size
 Life today -> Villain -> Guide -> Growth
 ```
 
-| Beat | What it does | Most common failure |
+| Beat | What it does | How it breaks |
 |---|---|---|
-| **1. Life today** | Sets up the contrast - keep to 1-2 sentences | Leading with humblebrag without showing the hole |
-| **2. Villain** | The feeling, not the fact | "My parents had no money" is fact - "I walked the long way home to avoid the fight about money" is feeling |
-| **3. Guide** | The pivot - person, moment, or realisation that changed your trajectory | Skipping it - leaves the listener wondering how you got from A to B |
-| **4. Growth** | Concrete and small > grand. *"I started saving again. I stopped flinching when my parents called about money."* | Over-claiming - *"I became a completely different person"* |
+| 1. Life today | One or two sentences that set up the contrast | Opens with a humblebrag the next 30 seconds never explains |
+| 2. Villain | What was hard, told with the feeling | Told as a fact. "My parents didn't have much money" is information. Staying out till closing so you don't have to hear the fight about money is the feeling. |
+| 3. Guide | The person or moment that changed your direction | Skipped, so the listener can't see how you got from A to B |
+| 4. Growth | Who you became, kept specific and small | Over-claimed: "I became a completely different person" |
 
-**Vulnerability is the skill, not performance.** Silk-smooth delivery reads as rehearsed. Texture comes from feeling the thing again as you say it.
+A silk-smooth delivery sounds rehearsed. The texture comes from feeling the thing again as you say it.
 
-**No traumatic past required.** Build the story around a specific moment money felt fragile, an uninsured claim near you, or the mentor who reshaped your defaults. Craft > raw suffering.
+You don't need a traumatic past. The moment money felt fragile, an uninsured claim near you or a mentor who changed your thinking all work. Honesty matters more than hardship.
 
-## The 90-day scorecard - CAR + FYC
+## The 90-day scorecard: CAR + FYC
 
 | Metric | What it tracks | Cadence |
 |---|---|---|
-| **C - Calls** | Dials or messages to warm-market prospects | Daily / weekly |
-| **A - Appointments** | Qualified FHRs booked - time, place, agenda confirmed | Weekly |
-| **R - Referrals** | Warm names received this week | Weekly |
-| **FYC** | First-year commission closed | Monthly |
+| C: calls | Dials or messages to warm-market prospects | Daily and weekly |
+| A: appointments | Qualified first meetings: time, place, Fact-Find agenda | Weekly |
+| R: referrals | Names received from conversations this week | Weekly |
+| FYC | First-year commission closed | Monthly |
 
-**CAR is a loop.** Referrals feed next week's Calls. If R is zero for 6 weeks, you're in slow-cycle mode and Year 2 starts from zero.
+Friday review, 30 minutes in one sitting: find the weakest of C, A and R and fix that one only.
 
-**Friday diagnostic rule.** Find the single weakest of C / A / R. Fix that one next week. Do NOT scatter-shot all three.
+| Weak link | What it means |
+|---|---|
+| Calls low | Fewer appointments, fewer referrals, fewer people to call |
+| Calls fine, appointments low | Your script or your targeting is weak |
+| Appointments fine, referrals at zero | You aren't asking, or you're asking at the wrong moment |
 
-| Weak link | Likely cause | Fix |
-|---|---|---|
-| Calls low | You didn't pick up the phone | More reps. No script fix. |
-| Calls healthy, Appts low | Opener / targeting is off | Drill Market Survey Q4 or 6-step text |
-| Appts healthy, Refs at zero | Not asking at the ask moment | Fix the ask itself (Week 5 territory) |
+ABC tags clients: A = strong relationship and buying power, B = one of the two, C = bought once, kept warm through broadcasts. 1/2/3 tags prospects: 1 = hot (fresh opt-ins, nurtured leads, warm market), 2 = warm (active referrals), 3 = cold (they know you, but you've lost touch).
 
-**ABC / 123 segmentation:**
-- **A** = strong relationship + buying power (the future, ~$420/review)
-- **B** = either, not both (the present, ~$300/review)
-- **C** = transacted once, low momentum (the past, ~$25/touchpoint)
-- **1** = hot / fresh opt-ins
-- **2** = warm / active referrals
-- **3** = cold / they know you but no momentum
+In the lesson's illustrative Year-2 figures an A-client review is worth about $420 and a C-client touchpoint about $25, roughly 17 times apart. Your time goes to A clients first.
 
-An A-client review is worth ~17x a C-client touchpoint. Time triage flows from this number.
+Sign the scorecard, show it to your mentor and put a photo of it on your phone wallpaper. A scorecard nobody else has seen is easy to ignore.
 
-**Signed, not filled.** The Week-1 KPI is a signature at the bottom of the page. Show it to your mentor. Put a photo on your wallpaper.
-
-## The 6 tonalities - and the two to get right first
+## The 6 tonalities
 
 | Tonality | When |
 |---|---|
-| **1. Surprise** | Hot-button discovery, rapport |
-| **2. Empathy** | Cushioning a real concern |
-| **3. Certainty** | Intent statement, framing, closing |
-| **4. Urgency** | Start of a phone call (pattern interrupt) |
-| **5. Doubt / Ridicule** | Create uncertainty around an objection |
-| **6. Reason** | The tone the prospect can't say no to (*"fair?"*) |
+| 1. Surprise | Finding hot buttons, rapport |
+| 2. Empathy / sincerity | Cushioning a real concern |
+| 3. Certainty | Intent statement, agenda, close |
+| 4. Urgency | Start of a phone call |
+| 5. Doubt / ridicule | Creating doubt around an objection |
+| 6. Reason | Ending on "Fair?" so the prospect can stay in without feeling cornered |
 
-**On the phone, tonality carries ~90% of the message.** Body language drops out; its 45% collapses into voice.
+Get certainty and reason right first. Certainty means a steadier voice that finishes level. Overused, it flattens everything.
 
-**Tritonal Closing Pattern:** Certainty (the plan) -> Sincerity (the empathy) -> Reason (the *"fair?"*).
+The 7-38-55 split is a misreading of Mehrabian, whose ratios only apply to people talking about feelings. What holds up: when your words and your tone don't match, people believe the tone. On the phone your voice does the work your face and posture would do in person.
 
-**The drill:** read your intent statement 10 times. First 5: ignore words, focus on intonation. Next 5: match tone to moment. 50 reps = reflex.
+Tritonal close: certainty (the plan), then sincerity (you'd do it for your own family), then reason ("Fair?").
+
+The drill: read your intent statement 10 times. First 5, ignore the words and listen to the rise and fall. Next 5, match the tone to each moment. For roughly the first 50 reps you choose each tone on purpose, then it starts to come on its own.
 
 ## Numbers worth memorising
 
-- **20 dials -> 1 appointment -> 19 no's.** The 19 are the ticket price, not failure.
-- **100-140 calls/week** to hit 5-7 appointments/week.
-- **1 close = ~3 shown = ~9 set = ~180 pick-ups = ~900 dials** end-to-end.
-- **~100+ rejections per sale** is the baseline, not the anomaly.
-- **30-Day Rule:** prospecting in any 30-day window pays off for the next 90 days.
-- **Word-of-mouth weighting:** 10% words / 45% tone / 45% body. On phone: ~90% tone.
+- 30-Day Rule (Jeb Blount): prospecting in any 30-day window pays off over the next 90 days.
+- Law of Replacement: add new prospects faster than you use them up. At 30% close, 10 leads give 3 clients and 7 passes.
+- 90-second intro: who you are (15s), story teaser (20s), what you help with (30s), easy next step (25s).
 
 ## Common failure modes
 
-- **Optimising the pitch deck before booking volume.** Close rate and case size move on month-timelines. Pick up the phone first.
-- **Counting "messages sent" instead of appointments booked.** Only confirmed first-meetings (time + place + agenda) feed the FYC formula.
-- **Telling the villain as a fact.** Same circumstance, no feeling - the prospect's guard stays up.
-- **Silk-smooth story delivery.** Smoothness = performance. Texture comes from re-feeling, not rehearsing.
-- **Filling the scorecard but never signing it.** Private intention vs witnessed commitment.
-- **Trying to fix all three CAR links at once.** Pick one. Fix it next week.
-- **The 3 P's that kill prospecting:** Procrastination (*"I'll call after the CRM is set up"*), Perfectionism (*"after 20 more rehearsals"*), Paralysis from analysis (*"what if they object with Y?"*). Disrupt with one call before anything else.
+- Polishing the deck and the closes before you have booking volume. Pick up the phone first.
+- Counting messages sent instead of appointments booked.
+- Telling the villain as a fact.
+- Filling in the scorecard but never signing it or showing anyone.
+- Trying to fix all three CAR links at once.
+- The 3 P's: procrastination ("I'll call after the CRM is set up"), perfectionism ("after 20 more rehearsals"), paralysis from analysis ("what if they object with Y?"). Make one call before anything else.
 
 ## Sources
 
@@ -122,5 +116,5 @@ An A-client review is worth ~17x a C-client touchpoint. Time triage flows from t
 [[../../next-60-days/week-1/day-02|Day 2 - The Activity Math]] - FYC formula, starter ranges, 30-Day Rule, Law of Replacement
 [[../../next-60-days/week-1/day-03|Day 3 - Your 90-Day Scorecard]] - CAR + FYC, ABC/123, revenue-per-appointment, 3 P's
 [[../../next-60-days/week-1/day-04|Day 4 - Your Story (First Draft)]] - what breaks each part, vulnerability vs performance
-[[../../next-60-days/week-1/day-05|Day 5 - Tonality & Salesmanship]] - 6 tonalities, Tritonal Closing, phone math
+[[../../next-60-days/week-1/day-05|Day 5 - Tonality & Salesmanship]] - 6 tonalities, Tritonal Closing, what Mehrabian actually found
 [[../../next-60-days/week-1/day-06|Day 6 - Practice: 90-Second Intro]] - 15/20/30/25 second structure, self-rate audio + muted

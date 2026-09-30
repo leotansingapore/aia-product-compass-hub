@@ -10,40 +10,44 @@ tags: [next-60-days, week-5, cheatsheet, referrals, fact-method, car-flywheel, s
 
 # Week 5: Referrals From Day One - Cheat Sheet
 
-> **The one idea:** The referral ask is not a favour to you. It is a favour to your client's friend who isn't yet getting helped. Asking once per case in Year 1 is what builds the Year-5 business that runs without outbound.
+> **The one idea:** the referral ask is a favour to your client's friend who hasn't been helped yet. A practice that runs mostly on referrals in Year 5 is built by deciding in Year 1 that you ask every time.
 
 > **Week 5 KPI:** 10 referral asks made; 3 referrals received.
 
-## The compound math - why Year 1 referrals matter
+## The compound math
 
-| Path | Year 1 | Year 2 baseline (before any new outreach) |
+Round numbers, for illustration only:
+
+| Path | Year 1 | Start of Year 2, before any new outreach |
 |---|---:|---|
-| **Ask every case** (10 closes x ~3 referrals x 40% convert) | 10 closes | **~12 cases from referrals alone** |
-| **Don't ask** | 10 closes | 0 - Year 2 starts from outbound only |
+| Ask every case (10 closes x ~3 warm names x 40% convert) | 10 closes | About 12 cases from referrals |
+| Never ask | 10 closes | Nothing in the referral column |
 
-The gap between the two advisors is not talent. It is whether they asked in Year 1.
+Talent doesn't separate these two advisors. Asking does.
 
-## The 4 mental blocks - and the reframes
+## The 4 mental blocks
 
 | Block | Reframe |
 |---|---|
-| **1. "I'm asking for a favour."** | You're offering a favour TO THE FRIEND. The client is the bridge. |
-| **2. "I haven't earned it yet."** | The moment you delivered a real outcome IS the proof. Asking 6 months later, the feeling has faded. |
-| **3. "They'll think I'm desperate."** | Desperation is a tone, not an action. With Certainty tonality at the right moment, the same words sound professional. |
-| **4. "I don't want to seem pushy."** (Singapore reality) | If the client has to INITIATE, you lose 90% of the revenue. Not pushy. **Responsible.** |
+| 1. "I'm asking for a favour." | You're offering something to the client's friend. Your client makes the introduction. |
+| 2. "I haven't earned it yet." | The outcome you just delivered is the proof. Six months later the feeling has faded. |
+| 3. "They'll think I'm desperate." | Desperation is in how you say it, and the same line said with certainty at a natural point sounds professional. |
+| 4. "I don't want to seem pushy." | Real in Singapore. Wait for the client to start it and most referrals never happen, so owning the ask is the responsible thing. |
 
-**Singapore truth:** local culture rarely recommends service professionals at dinner the way US/AU cultures do. Passive referrals don't arrive on their own. The advisor has to own the ask actively.
+Singaporean clients rarely refer on their own, even when delighted. "My work will speak for itself" mostly doesn't arrive.
 
 ## Quality referrals vs cold leads in disguise
 
 | | Quality referral | Cold lead in disguise |
 |---|---|---|
-| **Context** | Client personally endorsed you | Name handed over with no context |
-| **Opener** | *"Hi, Amir said you might be open to a chat..."* | Treated as a cold DM, often blocked |
-| **Conversion** | ~40% to FHR | ~5% to FHR |
-| **Relationship risk** | Low | High - friend may feel Amir sold their number |
+| What happened | Client recommended you and the friend agreed to hear from you | Client handed over a name, no recommendation |
+| Opener | *"Hi, Amir said you might be open to a chat..."* | Treated as a cold DM, often blocked |
+| Rough rule of thumb | Many book a Fact-Find | Very few book |
+| Relationship risk | Low | High: it feels like Amir gave their number away |
 
-**Better 3 warmly-endorsed names than 20 unendorsed numbers.** A 10-Name script batch is *cold leads* until the client picks 3 and offers personal intros.
+Get the recommendation, even if it costs you 15 of 20 names.
+
+**A friend's contact details need that friend's consent (PDPA).** The referrer checks with the friend first, and you confirm it when you first get in touch. Calling or texting a Singapore number without clear consent? Check the DNC Registry first.
 
 ## The 3 levers of a quality ask
 
@@ -51,128 +55,109 @@ The gap between the two advisors is not talent. It is whether they asked in Year
 Moment + Tone + Specificity = whether the ask lands
 ```
 
-The bottleneck is rarely *what* to say. The 3 context levers decide whether the same 5 sentences produce 3 warm names or zero.
-
 | Lever | Wrong | Right |
 |---|---|---|
-| **Moment** | Right after the close (greedy), over text days later (cold), in thank-you note (manipulative) | **Admin paperwork window** during the close - 5-10 min of dead time used productively |
-| **Tone** | Trailing voice, rushed, eye contact drops -> prospect mirrors with *"let me think"* | **Reason tone** - calm, steady, same pace as the rest of the meeting (Day 5 Reason) |
-| **Specificity** | *"Anyone you know?"* -> dead question, prospect scans whole contact list, comes up empty | Named demographic + life stage -> cues a specific memory (*"Aaron just had a kid"*) |
+| Moment | Right after the signature (greedy), over text days later (cold), inside the thank-you (manipulative) | The 5-10 minute admin paperwork window at the close |
+| Tone | Trailing or rushed, eye contact drops | Calm reason tone, same voice and pace as the rest of the meeting (Day 5) |
+| Specificity | *"Anyone you know?"* brings up nobody | An age group and life stage brings up a person (Tulving and Pearlstone: category cues raise recall) |
 
-**Signs the ask landed:** they pause, tilt their head, name a person, ask a clarifying question, commit to action. **Signs it flatlined:** vague nod, change topic quickly, *"I don't really know anyone like that"* without pausing first.
+Landed: they pause, name someone, ask a clarifying question or commit to act. Fell flat: a vague *"sure, let me think"*, a quick change of subject. A flat ask is nearly always specificity, so ask again from a narrower angle instead of pushing.
 
-When it flatlines, the fix is **narrower angle**, not pushing harder.
+## The FACT ask
 
-## The FACT Method - quality referral ask
-
-For end of a Fact-Find or proposal meeting. Yields 1-3 named, endorsed referrals.
+For the end of a Fact-Find or proposal meeting. Usually 1-3 named, recommended referrals.
 
 ```
 Favour -> Angle -> Connect -> Timeline
 ```
 
-**Beats - worked:**
-- **F - Favour:** *"Before we wrap, I'd like to ask a quick favour..."*
-- **A - Angle:** *"...do you happen to know someone in their late 40s or 50s, getting closer to retirement and worried about sustaining their lifestyle?"*
-- **C - Connect:** *"...I specialise in helping people like that. Would you be open to connecting us - ideally with a short intro text so it doesn't feel cold?"*
-- **T - Timeline:** *"...could you check in with them in the next 2 days? I'll follow up with you Saturday to see where we are."*
+- F: *"Amir, before we wrap up, can I ask you a quick favour?"*
+- A: *"Do you happen to know someone who's getting closer to retirement, in their late 40s or 50s, and might be worried about keeping up their lifestyle after they stop working?"*
+- C: *"Retirement planning is a big part of what I help people with. Would you be open to connecting us, ideally with a short intro text so it doesn't feel cold?"*
+- T: *"Could you check with them in the next 2 days whether they're open to a chat? I'll follow up with you on Saturday to see where we are."*
 
-**Order matters.** Angle BEFORE Connect - the specific angle triggers the specific memory. Swap them and the ask becomes generic.
-
-**The 4 angles - rotate based on who you're asking:**
+Angle comes before Connect, because the angle brings a person to mind.
 
 | Angle | Filter |
 |---|---|
-| **Specific Needs** | *"Late 40s-50s, getting closer to retirement, worried about sustaining their lifestyle"* |
-| **Demographics (Young Pros)** | *"30s-40s working professional who's just started a family"* |
-| **Compliment-based** | *"Around your age - late 20s to early 30s - with the same sense of responsibility you have"* |
-| **New Parents** | *"Just had a kid, or expecting their first"* |
+| Specific needs | Late 40s-50s, getting closer to retirement, worried about their lifestyle |
+| Young professionals | 30s-40s, just started a family, thinking about financial security |
+| Compliment-based | Around your age, late 20s to early 30s, with the same sense of responsibility and ambition |
+| New parents | Just had a baby or expecting their first |
 
-## The 10-Name Social-Proof Script - volume ask during admin
+Only say what's true for you. Two months in, "a big part of what I help people with" is honest and "I specialise in retirement" may not be. Overstating your track record is a fair dealing problem.
 
-Different moment, different tool. Runs during 5-10 min admin paperwork window at the close.
+## The 10-Name script: the volume ask during admin
 
-**Setup.** Client just signed. *"Give me a few minutes to process some admin. You don't need to do anything - just sit tight."* Open laptop, click things.
+Setup, once the client has signed: *"Give me a few minutes, I just need to process some admin. You don't need to do anything, just sit tight."*
 
-**Then casually:** *"Right - while I'm doing this, let me tell you what most of my clients do with this quiet stretch. Almost 100% of the time they end up writing 10+ names on this sheet. Not because I ask hard - they just know the people they care about would benefit from the same conversation. They write down BMT mates, platoon mates, uni friends, poly classmates, work colleagues. 10 here, 20 there. So while I'm doing this for you, feel free to write down at least 10 names. You have my word I'll do my best to help each of them."*
+Then casually: *"While I'm doing this, here's something a lot of people do with these few minutes. They think of the friends who'd get something out of the same conversation we just had, and they jot down their names: BMT mates, uni friends, colleagues. Some people write 5, some write 20. Feel free to write down as many names as come to mind, just names, no numbers needed. Afterwards we'll go through them together, and for anyone you think would be open to it, you can check with them first before I get in touch."*
 
-**Why it works (4 stacks in one moment):**
-- **Consensus** - *"almost 100%"* normalises
-- **Reciprocity** - you're doing admin FOR them right now
-- **Time arbitrage** - paperwork window is dead time used productively
-- **Specificity anchoring** - *"10, 20, 15"* raises their reference number
+It works through social proof (*"a lot of people do this"*), reciprocity (you're doing admin for them), dead time put to use, and anchoring (*"some write 20"*).
 
-**Follow-up math from a 10-name sheet:** ~2-3 actual warm referrals + 3-4 cold leads + 2-3 *"don't talk to X"* exclusions.
+The source version claims clients write 10 names *"100% of the time"*. Unless that's literally true of your clients, don't say it.
 
-## The social-proof bridge - coaching the client's intro text
+A 10-name sheet often breaks down as 2-3 people your client will recommend after you talk it through, 3-4 names with no context (don't contact them unless your client introduces you) and 2-3 *"actually, don't talk to X"*.
 
-Hand them a template they can copy-paste. Most gratefully do, because they didn't know what to say.
+## The client's intro text
 
-> *"Hey [friend], hope you're well. Quick one - I wanted to share something useful. You know how we all have financial advisors? I met my current FC, [your name], who took the time to look at my whole picture - not just sell me something. Pointed out a few gaps my previous advisors never did. Even if you feel satisfied with your current setup, might be worth a quick conversation. They offer a fresh perspective. If interested, happy to connect you two - just let me know."*
+Give them a template to adapt:
 
-**Why it works:**
-- Respects existing advisor (no replacement pressure)
-- Frames meeting as adding perspective
-- Low-commitment hook (*"if you're interested"*)
+> *"Hey [friend's name], hope you're well! Quick one. I met [your name], a financial consultant, who took the time to go through my whole situation with me and helped me spot a few gaps I hadn't noticed. Even if you're happy with your current setup, it might be worth a quick chat for a second opinion, no obligation at all. If you're interested, I'm happy to connect you two. Just let me know."*
 
-## CAR flywheel - the 3 behaviours that flip the cycle
+It respects the friend's current adviser, and the friend's reply is their OK for you to get in touch. Keep it about your client's own experience: no lines knocking other advisers and no promised results.
+
+## The CAR flywheel
 
 ```
-Calls -> Appointments -> Referrals -> Calls (loop)
+Calls -> Appointments -> Referrals -> Calls
 ```
 
 | State | What drives next week's pipeline |
 |---|---|
-| **Slow cycle** (default for new FC) | 100% outbound - if you stop dialling, pipeline stops |
-| **Self-regenerating** | Referrals from last quarter feed this quarter - the flip takes 12-24 months |
-
-**3 behaviours that flip the cycle:**
+| Slow cycle (every new FC starts here) | Your own outbound. Stop calling and the pipeline stops. |
+| Self-regenerating | Last quarter's referrals feed this quarter. The shift happens over a year or two. |
 
 | # | Behaviour | What it does |
 |---|---|---|
-| **1** | **Ask every time** | FACT at every FHR. 10-Name at every close. No exceptions. Skip 20% and the flywheel never turns. |
-| **2** | **Follow through within 48 hours** | Reach out to the referred name within 48h or the warm intro cools. *"Hi - [client] mentioned we should chat. Thursday or Saturday?"* |
-| **3** | **Close the loop back to the referrer** | Text within an hour of the meeting: *"Just met Aaron, really appreciate the intro. We'll probably do a proper session next month."* Most advisors skip this - which is why their referral engine stays single-use. |
+| 1 | Ask every time | FACT at every Fact-Find, 10-Name at every close. Regularly skip it and the flywheel barely moves. |
+| 2 | Follow through within 48 hours | Contact the friend who agreed to hear from you before the intro cools: *"Hi Aaron, [client] mentioned you're open to a chat. Would Thursday or Saturday work?"* |
+| 3 | Close the loop with the referrer | *"Hey Amir, met Aaron yesterday. Thanks so much for the intro."* Say nothing about what you discussed or whether he bought. That's his data. |
 
-**CAR diagnostic for Friday review:**
+| Weak link | Fix |
+|---|---|
+| Calls and appointments fine, referrals at zero | The ask: you aren't asking, or it falls flat |
+| Calls fine, appointments low | Script or targeting: Market Survey Q4, your opener |
+| Calls low | Block calling time and pick up the phone |
 
-| Weak link | Cause | Fix |
-|---|---|---|
-| Calls + Appts healthy, **Refs zero** | Not asking, or ask is flatlining | Fix the ask (moment, tone, angle) |
-| Calls healthy, **Appts low** | Opener / targeting | Drill Market Survey Q4 |
-| **Calls low** | Didn't pick up the phone | More reps. No script fix. |
+Systems over motivation: a CRM reminder for every new referral, a text to the referrer within an hour of the meeting, a Friday check that every closed case got an ask.
 
-**Systems > motivation:** CRM reminder for every new referral, post-meeting ritual to text the referrer, Friday review to check ask was attempted on every case.
+## Events for shy clients
 
-## When direct asking won't work - events as alternative
+> *"Hey, I'm running a small 30-minute session next month on retirement planning for people in their 40s and 50s. If there's anyone in your life who might find it useful, feel free to forward the invite. No pressure either way."*
 
-Some clients can't bring themselves to recommend directly. Lower the social cost:
-
-> *"I'm doing a small 30-min session next month on retirement planning for 40s-50s. If anyone in your life might find it useful, feel free to forward. No pressure either way."*
-
-Forwarding an event invite is easier than recommending an advisor. The friend self-selects. Plan B, not default.
+Forwarding an invite is easier than recommending an adviser. A forwarded invite is digital advertising, so get the invite and content through compliance first, and collect attendees' details with their consent. Plan B, and usually a second-quarter plan.
 
 ## Numbers worth memorising
 
-- **30% conversion** (10 asks -> 3 referrals) - the Week 5 baseline. Above 40% scale; below 20% fix moment/tone/angle.
-- **2-day check-in + Saturday follow-up** - the FACT Timeline close.
-- **48-hour outreach window** before the warm intro cools.
-- **1-hour close-the-loop text** to the referrer after the meeting ends.
-- **80%** of soft referral commitments evaporate without a timeline anchor.
-- **10 hours calling/week x 1 appt/hr x 40% close x $800-$1,000 = $3,200-$4,000/wk** when CAR is healthy.
-- **17 years vs MDRT** - the senior who never asked hit MDRT 3x by outbound alone; once he started asking with structure, multiple MDRTs in a row.
+- 10 asks, 3 referrals: 30% is a healthy start. Above 40%, your moments and script are working. Below 20%, fix moment, tone or angle.
+- 2-day check with the friend, Saturday follow-up with the referrer.
+- 48 hours to contact a referred friend. 1 hour to thank the referrer.
+- Without a timeline, most soft commitments fade (Gollwitzer on implementation intentions).
+- Illustrative flywheel: 10 calling hours x 1 appointment an hour x 40% close x $800-$1,000 = $3,200-$4,000 a week, though most new FCs start well below this.
+- From the source deck: an advisor with 17 years in qualified for MDRT three times on outbound alone, then several years running once he asked on every case.
 
 ## Common failure modes
 
-- **Asking *"anyone you know?"*** Dead question. Cues nothing. Replace with named demographic + life stage.
-- **Asking over text instead of spoken.** Fails specificity, fails tonality. Spoken aloud is the muscle being built.
-- **Counting 18 unendorsed names from the 10-Name sheet as warm referrals.** They're cold leads until the client picks 3 and offers personal intros.
-- **Skipping the close-the-loop text to the referrer.** Single-use vs compound. Most advisors skip - which is why most referral engines stay single-use.
-- **Waiting until you have closed cases to start asking.** Any warm coffee or FHR is a legitimate ask moment. *"I'm just getting started building my book - know anyone in X stage?"* works pre-close.
-- **Asking right after the signature** - reads as greedy. Use the admin paperwork window instead.
-- **No timeline close on the ask.** *"Let me know whenever"* evaporates. Anchor 2-day check-in + Saturday follow-up.
-- **Padding the ask count to hit 10.** 6 real FACT-structured asks > 10 throwaway *"let me know if anyone comes to mind"* texts. The muscle compounds; the padding doesn't.
-- **Relying on motivation for the 3 flywheel behaviours.** CRM reminders + post-meeting rituals + Friday review do the work motivation won't.
+- *"Anyone you know?"* Give an age group and life stage.
+- Asking by text. Spoken aloud is what counts and what trains your tone.
+- Counting unendorsed 10-Name names as warm referrals.
+- Taking a friend's phone number before the friend has agreed.
+- Telling the referrer what the friend discussed or bought.
+- Waiting for closed cases before asking. Anyone who's had a real Fact-Find or conversation with you is fair to ask.
+- Asking right after the signature.
+- No timeline close. *"Let me know whenever"* fades.
+- Padding to 10. Six real FACT asks beat 10 throwaways.
 
 ## Sources
 
