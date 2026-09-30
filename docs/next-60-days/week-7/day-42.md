@@ -1,8 +1,8 @@
 ---
 week: 7
 day: 42
-title: "Practice — 3 Pitches, 3 Profiles, 3 Hot Buttons"
-big_idea: "This week's proof is three full pitches, each one tailored to a different profile and activated on a different hot button. Same product, three versions."
+title: "Practice: 3 pitches, 3 profiles, 3 hot buttons"
+big_idea: "This week's proof is three full pitches, each tailored to a different profile and built on a different hot button. The product can stay the same all three times."
 kpi_link: "Week 7 KPI — 3 pitches delivered — 3 different DISC types, 3 different hot buttons"
 practice_submission: loom
 primary_sources:
@@ -15,176 +15,190 @@ duration_minutes: 45
 tags: [next-60-days, week-7, new-fc, practice, pitch, disc, hot-buttons, loom]
 ---
 
-# Day 42 — Practice: 3 Pitches
+# Day 42: Practice, 3 pitches
 
-> **The one idea for today:** This week's proof is three full pitches, each one tailored to a different profile and activated on a different hot button. Same product, three versions.
+> **The one idea for today:** This week's proof is three full pitches, each tailored to a different profile and built on a different hot button. The product can stay the same all three times.
 
-By the time you close today you'll have delivered 3 full pitches this week — 3 different DISC profiles × 3 different hot buttons — captured each as either a live delivery (to a real prospect) or a recorded 5-minute Loom simulation, and submitted the pitch log + 3 video links + Loom reflection. Those four artefacts unlock Week 8.
+By the end of today you'll have delivered 3 full pitches this week, across 3 different DISC profiles and 3 different hot buttons. Each one is either a live delivery to a real prospect or a recorded 5-minute Loom simulation. You'll submit the pitch log, the 3 video links, your self-scores and a Loom reflection, and that opens Week 8.
 
 ---
 
 ## The bar today
 
-Weeks 6–7 built the people-reading stack. Today is the integration check: can you actually *run* a pitch that adapts to profile + hits a real hot button + closes cleanly?
+Week 6 built your people-reading, and this week added hot buttons, objections and closes. Today checks whether you can put it together: a pitch that adapts to the profile, uses a real hot button and closes cleanly.
 
-**3 pitches. 3 different DISC profiles. 3 different hot buttons.** Each pitch uses the Day-41 4-step execution. Each captures the callback on a specific hot button. Each closes with a profile-matched technique.
+That means 3 pitches, 3 different DISC profiles and 3 different hot buttons. Each follows the Day 39 steps, calls back a specific hot button, and closes with a technique that suits the profile.
 
-If all 3 are live pitches to real prospects, ideal. If you don't have 3 prospects ready for a full pitch this week, mix: 1–2 live + 1–2 recorded simulations. Both count.
+Three live pitches to real prospects is ideal. If you don't have 3 prospects ready for a full pitch this week, mix 1 or 2 live with 1 or 2 recorded simulations, and both kinds count.
 
 ---
 
-## The matrix — what you're filling in
+## The matrix you're filling in
 
 By Saturday you need:
 
-| # | Profile | Hot button | Delivery |
-|---|---|---|---|
-| 1 | D / I / S / C | Loved ones / Dreams / Pride / Faith / Needs / Values / Fear | Live or 5-min Loom simulation |
-| 2 | Different profile | Different hot button category | Same |
-| 3 | Different profile | Different hot button category | Same |
+| Profile | Hot button | Delivery |
+|---|---|---|
+| Pitch 1: D, I, S or C | Loved ones, dreams, pride, faith, needs, values or fear | Live, or a 5-minute Loom simulation |
+| Pitch 2: a different profile | A different hot-button category | Either |
+| Pitch 3: a different profile | A different hot-button category | Either |
 
-**No two pitches share both profile AND hot button.** You're stretching across the matrix, not repeating the same pitch 3 times.
-
----
-
-## Each pitch — what to include
-
-Each pitch should demonstrate:
-
-### 1 · Profile-matched opening (Day 32-35 §7 of each profile day)
-- **D:** bottom line in sentence one
-- **I:** story-led, warm, animated
-- **S:** slow, permission-seeking, assurance-first
-- **C:** structured agenda, assumptions named
-
-### 2 · Hot-button callback (Day 38)
-At least one explicit reference to something the prospect said. *"When I was putting this together, I kept coming back to what you said about [X]…"*
-
-### 3 · Visualisation or pain-before-gain framing (Day 39)
-One clear *"imagine if…"* question or past-callback that ties the hot button to a concrete scenario.
-
-### 4 · Profile-matched close (Day 41)
-- **D:** Assumptive
-- **I:** Reassurance / warm Assumptive
-- **S:** Procedural + soft Reassurance
-- **C:** Procedural + Follow-up
-
-If any element is missing, the pitch counts as a partial — which is useful feedback, but doesn't count toward the 3.
+No two pitches can share a profile or a hot button. You're stretching across the matrix, not giving the same pitch 3 times.
 
 ---
 
-## Live delivery vs simulation
+## What each pitch has to include
+
+### 1. An opening that suits the profile (section 7 of each profile day, Days 32 to 35)
+
+- D: the bottom line in the first sentence
+- I: story-led, warm, animated
+- S: slow, asking permission, reassurance first
+- C: a structured agenda with your assumptions stated
+
+### 2. A hot-button callback (Day 38)
+
+At least one explicit reference to something the prospect said. *"When I was putting this together, I kept coming back to what you said about [X]..."*
+
+### 3. Visualisation or pain-before-gain framing (Day 39)
+
+One clear *"imagine if..."* question or past callback that ties the hot button to a concrete scenario.
+
+### 4. A close that suits the profile (Day 41)
+
+- D: Assumptive
+- I: Reassurance, or a warm Assumptive
+- S: Procedural with gentle Reassurance
+- C: Procedural and Follow-up
+
+A pitch missing any of these counts as partial. That's useful feedback, but it doesn't count towards the 3.
+
+---
+
+## Live delivery or simulation
 
 ### Live delivery
-- A real prospect in an actual Fact-Find-to-proposal meeting
-- Full pitch, 5–15 minutes, with their real responses
-- Capture via: note-taking immediately after, and a 2-min Loom reflection summarising what happened
+
+- A real prospect in a real Fact-Find-to-proposal meeting.
+- The full pitch, 5 to 15 minutes, with their real responses.
+- Capture it with notes straight after, plus a 2-minute Loom reflection on what happened. Don't record the meeting itself unless the prospect has clearly agreed to it.
 
 ### Recorded simulation
-- You on camera, alone or with a mentor as roleplay prospect
-- 5-minute condensed pitch
-- Pretend-prospect is a specific profile + hot button you've pre-decided
-- Capture via: the Loom recording itself
 
-**Both count.** Live is more valuable but simulation is legitimate practice — especially if you don't have enough real prospects this week at the pitch stage.
+- You on camera, alone or with your mentor playing the prospect.
+- A 5-minute condensed pitch.
+- Decide the pretend prospect's profile and hot button beforehand.
+- The Loom recording is the capture.
+
+Both count. Live teaches you more, but simulation is proper practice, especially if you don't have enough real prospects at the pitch stage this week.
 
 ---
 
-## Submission format
+## What to submit
 
-Four artefacts. Keep it tight.
+Four things. Keep them tight.
 
-### Artefact 1 — The pitch log
+### 1. The pitch log
 
-One table, 3 rows:
+The log has one row per pitch. Use first names or initials only, since this goes to your mentor.
 
-| # | Prospect name | Profile identified | Hot button used | Delivery (live/sim) | Outcome |
-|---|---|---|---|---|---|
-| 1 | Amir | S | Loved ones (dad's stroke) | Live | Moved to Fact-Find 2 Thursday |
-| 2 | Kelly | D | Dreams (retire at 50) | Sim Loom | Practice — mentor feedback received |
-| 3 | Samantha | C | Needs vs reality (gap analysis) | Live | Follow-up Thursday for decision |
+| Prospect and profile | Hot button and delivery | Outcome |
+|---|---|---|
+| A., S profile | Loved ones (dad's stroke), live | Second Fact-Find booked for Thursday |
+| K., D profile | Dreams (retire at 50), simulation Loom | Practice, mentor feedback received |
+| S., C profile | Needs versus reality (gap analysis), live | Follow-up on Thursday for her decision |
 
-### Artefact 2 — 3 Loom links
-If live, each is a 2-min reflection immediately after. If sim, the simulation recording itself.
+### 2. Three Loom links
 
-### Artefact 3 — Self-review scoring
-For each pitch, score 1–5 on:
+For a live pitch, the 2-minute reflection you recorded straight after. For a simulation, the recording itself.
 
-- Profile match (did opening / pace / close fit the profile?)
-- Hot button callback (did you explicitly quote them?)
-- Visualisation (did you use a concrete *"imagine"* scenario?)
-- Close (did you book a specific next step?)
+### 3. Self-scores
 
-### Artefact 4 — Day-42 Loom reflection (3–5 min)
-One meta-reflection:
-1. Which pitch was the cleanest match of profile + hot button?
-2. Which profile did you find hardest to match?
-3. What's your Week 8 focus as you move into pitch-construction (asking the right questions, sales angles, product craft)?
+Score each pitch from 1 to 5 on:
+
+- Profile match: did the opening, pace and close fit the profile?
+- Hot-button callback: did you quote them directly?
+- Visualisation: did you use a concrete *"imagine"* scenario?
+- Close: did you book a specific next step?
+
+### 4. A Day 42 Loom reflection (3 to 5 minutes)
+
+In one short recording, answer these three questions:
+
+1. Which pitch matched profile and hot button most cleanly?
+2. Which profile was hardest to match?
+3. What will you focus on in Week 8 as you move into building the pitch (the right questions, the sales angles and product analysis)?
 
 ### Mentor review
-Book a 15-min mentor check-in. Mentor watches the 3 Loom recordings with you and critiques two things:
 
-1. Did the pitch *actually* adapt across the 3 different profiles, or did the same underlying delivery leak through?
-2. Did the hot-button callbacks feel personal, or did they sound generic?
+Book a 15-minute check-in. Your mentor watches the 3 Looms with you and critiques two things:
 
----
-
-## The integration this week is testing
-
-Weeks 1–7 have layered:
-
-1. **Voice and story** (Week 1)
-2. **Intent statement** (Week 2)
-3. **Content + DMs** (Week 3)
-4. **Prospecting volume** (Week 4)
-5. **Referrals** (Week 5)
-6. **DISC recognition** (Week 6)
-7. **DISC tailoring + hot buttons** (Week 7)
-
-Day 42 is the first full-integration check. Every element has to be working for the pitch to land — story (for I), structure (for C), hot-button callback (for depth), close technique (for commitment).
-
-If 2 of 3 pitches are clean, Week 7 graduated. If only 1 out of 3 felt integrated, Week 8 doubles down on the pitch-construction mechanics — which is exactly what it does.
+1. Did the pitch really change across the 3 profiles, or did the same delivery show through?
+2. Did the hot-button callbacks feel personal or generic?
 
 ---
 
-## Week 7 KPI — the unlock gate
+## What this week is testing
 
-Week 8 unlocks when you have all four:
+Weeks 1 to 7 have built up in layers:
 
-- [ ] **3 pitches delivered** — 3 different profiles × 3 different hot buttons
-- [ ] **Pitch log submitted** — 3 rows with profile, hot button, outcome
-- [ ] **Loom recordings of each** (or live-delivery reflection if real)
-- [ ] **Day-42 Loom reflection + 15-min mentor review booked**
+1. Voice and story (Week 1)
+2. Intent statement (Week 2)
+3. Content and DMs (Week 3)
+4. Prospecting volume (Week 4)
+5. Referrals (Week 5)
+6. DISC recognition and tailoring (Week 6)
+7. Hot buttons, objections and closes (Week 7)
 
-If one of the 3 is a mismatch (same profile, or no clear hot button), back-fill with a simulation by Sunday.
+Day 42 is the first time you test all of it together, and every layer has to work for the pitch to land: story for the I, structure for the C, the hot-button callback for depth, and the close for commitment.
+
+If 2 of your 3 pitches are clean, you've passed Week 7. If only 1 felt integrated, Week 8 goes deeper on how to build a pitch, which is exactly what it's for.
 
 ---
+
+## Week 7 KPI: the gate
+
+Week 8 opens when you have all four:
+
+- [ ] 3 pitches delivered, across 3 different profiles and 3 different hot buttons
+- [ ] Pitch log submitted: 3 rows with profile, hot button and outcome
+- [ ] A Loom for each (or a live-delivery reflection if it was a real prospect)
+- [ ] Day 42 Loom reflection done and a 15-minute mentor review booked
+
+If one of the 3 doesn't qualify (a repeated profile, or no clear hot button), back-fill it with a simulation by Sunday.
+
+---
+
+## Sources
+
+- [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - collecting and using someone's personal data, including a recording of them, needs their consent
+- [Financial advisory process - MoneySense](https://www.moneysense.gov.sg/financial-advisory-process/) - the standard your live pitches are held to: a fact-find first, a reasonable basis for the recommendation, and no pressure to sign on the spot
 
 ## Quiz
 
 **Q1. The 3 pitches for this gate must vary:**
-- A) Only the profile — same hot button across all 3
-- B) Only the hot button — same profile across all 3
+- A) Only the profile, with the same hot button across all 3
+- B) Only the hot button, with the same profile across all 3
 - C) Both profile AND hot button across all 3 ✓
 - D) Neither is strictly required
 
-**Why:** The gate is testing whether you can integrate across the matrix. 3 pitches with the same profile doesn't test DISC adaptation. 3 pitches with the same hot button doesn't test hot-button range. Varying both forces you to stretch — which is the point of a practice day. You're building flexibility, not repetition.
+**Why:** The gate tests whether you can combine the pieces across the matrix. Three pitches to the same profile don't test DISC adaptation, and three on the same hot button don't test your range. Varying both makes you stretch, which is the point of a practice day.
 
 **Q2. A recorded simulation with a mentor roleplay counts for the gate as long as it:**
-- A) Doesn't count — only live deliveries are valid
+- A) Doesn't count, only live deliveries are valid
 - B) Includes all 4 elements (profile-matched opening, hot-button callback, visualisation, profile-matched close) in a 5-minute recording ✓
 - C) Is over 10 minutes
 - D) Is mentor-approved in advance
 
-**Why:** Simulations count because the skill being practised is integration — and integration can be practised without a live prospect. The requirement is that all 4 elements are visible in the recording. A sim that's just the opening doesn't count; a sim that hits all 4 integration points in 5 minutes does. Live is preferred when possible but not required for all 3.
+**Why:** The skill being practised is putting the pieces together, and you can practise that without a live prospect. What matters is that all 4 elements show up in the recording. A simulation that's only the opening doesn't count. One that hits all 4 in 5 minutes does. Live is better when you can, but not required for all 3.
 
 **Q3. After Week 7, the missing piece for most new FCs is:**
 - A) DISC recognition speed
 - B) Hot-button activation
-- C) Pitch construction mechanics — asking the right questions, sales angles, product craft ✓
+- C) Building the pitch: the right questions, the sales angles and product analysis ✓
 - D) Closing technique
 
-**Why:** Week 7 integrates DISC + hot buttons, which handles *how to pitch*. Week 8 addresses *what to pitch* — the upstream question-asking that uncovers the information you'll build the pitch around, the 4 sales angles (wealth/risk/legacy/lifestyle) that frame the recommendation, and the product-craft that turns insights into a specific plan. Closing (D) is Week 9. Without Week-8 construction mechanics, the hot-button pitches land shallow because the fact-find wasn't deep enough.
+**Why:** Week 7 covers how to pitch. Week 8 covers what to pitch: the questions that surface the information you build the pitch on, the 4 sales angles (wealth, risk, legacy, lifestyle) that frame the recommendation, and reading the product closely enough to turn what you learned into a specific plan. Closing in depth (D) is Week 9. Without Week 8, hot-button pitches stay shallow because the Fact-Find wasn't deep enough.
 
 **Q4. Each pitch must demonstrate 4 specific integrations:**
 - A) Opening, middle, close, summary
@@ -192,23 +206,23 @@ If one of the 3 is a mismatch (same profile, or no clear hot button), back-fill 
 - C) Features, benefits, price, guarantee
 - D) Introduction, pitch, objection-handling, thank-you
 
-**Why:** The 4 integrations are exactly what Weeks 6–7 built. Opening matches the profile (D/I/S/C entry point from Day 38). Callback quotes the hot button explicitly (Day 40). Visualisation ties the hot button to a concrete future scenario (Day 41). Close matches profile (Day 38 matrix). A pitch missing any of the four counts as partial — it's not a full-integration rep.
+**Why:** These four are what Weeks 6 and 7 built: an opening that matches the profile (Days 32 to 35), a callback that quotes the hot button (Day 38), a visualisation that ties it to a concrete scenario (Day 39), and a close that matches the profile (Day 41). A pitch missing any of them is partial.
 
 **Q5. A pitch where profile is D and hot button is "Dreams/Goals (retire at 50)". The opening should:**
 - A) Start with a warm story about a client who retired early
-- B) Open bottom-line: *"Based on what you shared — you want to be done at 50 — here's the plan that does it. Three decisions for you today: A/B/C"* ✓
+- B) Open bottom-line: *"Based on what you shared, you want to be done at 50, and here's the plan built for that. Three decisions for you today: A, B, C"* ✓
 - C) Walk slowly through assurances about the plan
 - D) Present a structured agenda first
 
-**Why:** D's get bottom-line entry. Warm stories (A) are I opens. Slow assurances (C) are S opens. Structured agendas (D) are C opens. The hot button (retire at 50) gets named in sentence 1 of the bottom-line: *"you want to be done at 50."* Profile match + hot-button callback in the same opener = a D-pitch that opens with momentum.
+**Why:** A D gets the bottom line first. A warm story (A) is an I opening, slow reassurance (C) is an S opening, and a structured agenda (D) is a C opening. The hot button (retire at 50) goes into the first sentence, so the profile match and the callback land together and the pitch opens with momentum.
 
-**Q6. "No two pitches share both profile AND hot button" — why this rule?**
+**Q6. "No two pitches share both profile AND hot button". Why this rule?**
 - A) It's a paperwork requirement
-- B) You're stretching across the matrix, not repeating — 3 pitches with the same profile would test one skill; 3 different combinations force integration breadth ✓
+- B) You're stretching across the matrix, not repeating. 3 pitches with the same profile would test one skill, while 3 different combinations test your breadth ✓
 - C) Same profile across multiple pitches is confusing
 - D) It's about legal compliance
 
-**Why:** The gate is a breadth test. Same profile × 3 hot buttons would demonstrate you can hit multiple hot buttons, but only on one profile. Same hot button × 3 profiles would demonstrate profile-adapt, but only on one emotional motivator. Varying both forces the integration muscle. After 3 pitches varying across both axes, you've proven you can recombine the elements — which is what real pitching requires.
+**Why:** The gate tests breadth. The same profile with 3 hot buttons shows range on one profile only, and the same hot button with 3 profiles shows adaptation on one motivator only. Varying both proves you can recombine the pieces, which is what real pitching needs.
 
 **Q7. If one of your 3 pitches is a mismatch (same profile, or no clear hot button), the gate says:**
 - A) Pass anyway
@@ -216,7 +230,7 @@ If one of the 3 is a mismatch (same profile, or no clear hot button), back-fill 
 - C) Week 8 stays locked forever
 - D) Drop the whole exercise
 
-**Why:** The honest count rule from Week 4/5 applies here too. A mismatch isn't a failure — it's an acknowledgment that one of the 3 reps didn't meet spec, and the fix is a back-fill (live if possible, sim if needed). Stretching "same profile twice" into "3 valid pitches" on paper violates the gate and weakens the skill-build. One clean sim > one padded live.
+**Why:** The honest-count rule from Weeks 4 and 5 applies. A mismatch isn't a failure, it just means one rep didn't meet the spec, and the fix is a back-fill (live if you can, simulation if not). Counting a repeated profile as valid on paper weakens the skill you're building. One clean simulation beats one padded live pitch.
 
 ---
 

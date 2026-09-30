@@ -1,52 +1,58 @@
 ---
 week: 7
-title: "Week 7 — Hot Buttons + Pitch Mechanics"
+title: "Week 7: Hot buttons and pitch mechanics"
 kpi: "3 pitches delivered — 3 different DISC types, 3 different hot buttons"
 unlocks: "week-8"
 tags: [next-60-days, week-7, week-overview]
 ---
 
-# Week 7 — Hot Buttons + Pitch Mechanics
+# Week 7: Hot buttons and pitch mechanics
 
-*Pair the profile read with the emotional trigger + the objection toolkit + the matched close.*
+*Put the profile read together with the prospect's hot button, then handle the objection and use the close that suits them.*
 
 ---
 
 ## Week 7 KPI
 
-> **3 pitches delivered — 3 different DISC types, 3 different hot buttons.**
+> 3 pitches delivered: 3 different DISC types, 3 different hot buttons.
 
-Week 8 unlocks when the 3 pitches + log + Looms + Day-42 reflection + mentor review are in.
+Week 8 unlocks once the 3 pitches, the pitch log, the Looms, the Day 42 reflection and the mentor review are in.
 
 ---
 
 ## The 6 days
 
 - [ ] [[day-37|Day 37 — Hot Buttons I: What Actually Drives Buying]]
-  *Hot button definition. Emotion drives decisions, logic justifies. 7 categories. The 4 observable signals (gaze / emotion / body / tonality).*
+  *What a hot button is. Emotion drives the decision and logic justifies it. The 7 categories, and the 4 signals you can see when one fires (gaze, emotion, body, tone).*
 
 - [ ] [[day-38|Day 38 — Hot Buttons II: Mapping Value to Emotion]]
-  *9 social + 6 sales hot-button questions. Hot-button → product benefit mapping. The callback technique. Capture discipline.*
+  *9 social and 6 sales questions that bring hot buttons up. Matching each hot button to a product benefit. The callback. Writing them down as you hear them.*
 
 - [ ] [[day-39|Day 39 — Hot Buttons III: Pain-Before-Gain Framing]]
-  *3-part framework (Gather Intel / Preparation / Presentation). 4-step execution. Visualisation technique. Ethical rules.*
+  *The 3 parts (gather intel, prepare, present), the 4 steps inside the presentation, the visualisation technique and the rules that keep it honest.*
 
 - [ ] [[day-40|Day 40 — Objection Turnaround: Anchor-Disrupt-Ask + ART + Iceberg]]
-  *Three objection classes (reflex / clear / ambiguous). Anchor-Disrupt-Ask for brush-offs. ART for clear objections. Iceberg for ambiguous. *"I need to think"* — 4 meanings.*
+  *Three kinds of objection (reflex, clear, ambiguous) and a tool for each: Anchor-Disrupt-Ask for brush-offs, ART for clear objections, Iceberg for vague ones. The 4 things "I need to think about it" can mean.*
 
 - [ ] [[day-41|Day 41 — Pitch Mechanics: Confidence + the 4 Closes]]
-  *70% rule — assertive vs hedged language. Passive → assumptive swap. Power of "because". Assumptive Position. The 4 closes (Assumptive / Procedural / Reassurance / Follow-up) + profile × close compatibility matrix.*
+  *The 70% rule on asking assertively. Swapping hedged phrases for direct ones. What "because" does to a request. The Assumptive Position. The 4 closes (Assumptive, Procedural, Reassurance, Follow-up) and which profile each one suits.*
 
 - [ ] [[day-42|Day 42 — Practice: 3 Pitches, 3 Profiles, 3 Hot Buttons]]
-  *First full-integration test. Pitch log + 3 Loom recordings + self-scoring + reflection + 15-min mentor review.*
+  *First full integration test: pitch log, 3 Looms, self-scoring, reflection, 15-minute mentor review.*
 
 ---
 
 ## Unlock rule for Week 8
 
-Week 8 unlocks when you (1) deliver 3 pitches across 3 different DISC profiles and 3 different hot buttons, (2) submit the pitch log with profile/hot-button/outcome per pitch, (3) provide 3 Loom recordings or live-delivery reflections, (4) record the Day-42 meta-reflection, and (5) book a 15-min mentor tape review.
+Week 8 unlocks when you have:
 
-Same profile twice or same hot button twice = one of the three needs to back-fill.
+1. delivered 3 pitches across 3 different DISC profiles and 3 different hot buttons
+2. submitted the pitch log with profile, hot button and outcome for each pitch
+3. sent 3 Loom recordings or live-delivery reflections
+4. recorded the Day 42 reflection
+5. booked a 15-minute tape review with your mentor
+
+If two pitches share a profile or a hot button, back-fill one of them.
 
 ---
 
@@ -54,28 +60,33 @@ Same profile twice or same hot button twice = one of the three needs to back-fil
 
 Three prompts:
 
-1. **Which profile did you find hardest to pitch to?** That's the priority counter-program this month.
-2. **Which hot-button category did you most naturally surface?** That's a strength; different prospects will need different categories.
-3. **Where's the pitch weakest — opening, questioning, visualisation, objection-turnaround, or close?** That shapes Week 8.
+1. Which profile was hardest to pitch to? Make that your practice priority this month.
+2. Which hot-button category came up most easily for you? That's a strength, but other prospects will need other categories.
+3. Where is your pitch weakest: the opening, the questions, the visualisation, the objection turnaround or the close? Your answer shapes Week 8.
 
 ---
 
 ## What's new in Week 7
 
-With DISC consolidated into Week 6 (speed-read + tailored opener/close now living in the profile days themselves), Week 7 frees 2 days for harder work:
+DISC now lives entirely in Week 6, which frees two days here:
 
-- **Day 40 — Objection Turnaround.** Anchor-Disrupt-Ask + ART + Iceberg — full tool coverage in one day.
-- **Day 41 — Pitch Mechanics.** Confidence language + Assumptive Position + the 4 closes + profile × close matrix. Previously spread across Week 6 tailoring + Week 9 closing; now a single integration day.
+- Day 40, objection turnaround: Anchor-Disrupt-Ask, ART and Iceberg in one day.
+- Day 41, pitch mechanics: confident language, the Assumptive Position, the 4 closes and which profile each close suits. This used to be split between Week 6 and Week 9.
 
 ---
 
 ## What's coming in Week 8
 
-**The Pitch.** Weeks 6–7 taught you how to match profile + hot button in delivery. Week 8 teaches the *upstream work* — the right questions to ask during Fact-Find (so you surface the data worth pitching), the 4 sales angles (wealth / risk / legacy / lifestyle) that frame any recommendation, and the product craft that turns insights into a specific plan.
+Week 8 is the pitch itself, one step earlier than delivery: the Fact-Find questions that give you something worth pitching, the 4 sales angles (wealth, risk, legacy, lifestyle), and reading a product closely enough to turn what you learned into a specific plan.
 
-**Week 8 KPI:** 1 live pitch delivered; recorded + self-reviewed.
+Week 8 KPI: 1 live pitch delivered, recorded and self-reviewed.
 
 ---
+
+## Sources
+
+- [Meta-analysis of empirical estimates of loss aversion - Journal of Economic Literature (Brown, Imai, Vieider and Camerer, 2024)](https://doi.org/10.1257/jel.20221698) - pooled estimate of about 1.96: losses weigh roughly twice as much as equal gains, the idea behind Day 39
+- [Financial advisory process - MoneySense](https://www.moneysense.gov.sg/financial-advisory-process/) - a recommendation needs a fact-find and a reasonable basis, and the client should never feel pressured to sign on the spot
 
 ## Related
 
