@@ -11,7 +11,7 @@ duration_minutes: 20
 tags: [next-60-days, week-6, new-fc, disc, c-profile]
 ---
 
-# Day 35: The C profile
+# Day 35: C profile
 
 > **The one idea for today:** With a C, skip the story and bring numbers you can defend line by line. Every claim has to survive a close look.
 
