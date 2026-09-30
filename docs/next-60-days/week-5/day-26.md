@@ -1,8 +1,8 @@
 ---
 week: 5
 day: 26
-title: "The Referral Asking Framework"
-big_idea: "A good ask understands the referrer's mind first — when they refer, what they feel, whether they know how."
+title: "The referral asking framework"
+big_idea: "Before you design the ask, understand the referrer: when they refer, what they feel when they do, and whether they know how."
 kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-holos-decks/referral-asking]]"
@@ -11,224 +11,233 @@ duration_minutes: 20
 tags: [next-60-days, week-5, new-fc, referrals, framework, ambassadors]
 ---
 
-# Day 26 — The Referral Asking Framework
+# Day 26: The referral asking framework
 
-> **The one idea for today:** A good ask understands the referrer's mind first — when they refer, what they feel, whether they know how.
+> **The one idea for today:** Before you design the ask, understand the referrer: when they refer, what they feel when they do, and whether they know how.
 
-By the time you close today you'll know what's actually happening in the referrer's mind in the moment they'd refer (or not), apply the 4 principles that make you referable — so that when the moment comes, the client *can* refer even when culture doesn't train them to — and spot the gap between competence (necessary) and extraordinary competence (the bar for ambassadors).
+By the end of today you'll know what goes on in a client's head at the moment they would refer you, or decide not to. You'll know the 4 principles that make you referable, so a client can recommend you even though the culture doesn't push them to. And you'll see the gap between being competent, which every client expects, and being extraordinarily competent, which is what turns clients into ambassadors.
 
 ---
 
 ## Understanding the mind of a referrer
 
-Before you design an ask, you have to understand what's happening on the other side of it. Three questions:
+Before you design an ask, understand what's happening on the other side of it. Three questions help.
 
 ### When do people refer?
 
-Not after every good meeting. Not even after every great one. People refer when **a friend explicitly brings up a problem they know you solve** — and in that moment they remember you. That's it.
+It isn't after every good meeting, or even every great one. People refer when a friend brings up a problem they know you solve, and in that moment they remember you.
 
-If they don't have that trigger, even a happy client mostly won't refer. Not because they're ungrateful, but because their life doesn't route through you often enough for the trigger to fire.
+Without that trigger, even a happy client mostly won't refer. They aren't ungrateful. Their life just doesn't bring you to mind often enough.
 
-**Implication:** you need to *create* triggers. Tell the client specifically what problems you solve, which demographics of friends are a fit, and how to introduce you. If you don't, you're hoping their friends happen to bring up financial planning — which they usually don't.
+So you need to create the triggers. Tell the client what problems you solve, which friends would be a good fit and how to introduce you. Otherwise you're hoping their friends happen to bring up financial planning, which they rarely do.
 
-### What emotions are they feeling when they refer?
+### What are they feeling when they refer?
 
-Three, usually stacked:
-- **Safety** — they believe you'll treat their friend well (if you won't, the referral costs them the friendship)
-- **Pride** — they like looking like the person-with-the-guy. Introducing a professional signals status.
-- **Reciprocity** — they want to give something back because you gave them value
+Usually three things at once:
 
-The reverse of each emotion kills the referral. **Unsafe** (they worry you'll push their friend into something bad) = no referral. **Unproud** (you're adequate but not remarkable) = no referral. **Un-owed** (they didn't feel you did anything special) = no referral.
+- Safety: they believe you'll treat their friend well. If you won't, the referral costs them the friendship.
+- Pride: they like being the one who knows a good person. Introducing a professional they trust makes them look good.
+- Reciprocity: you gave them something of value and they want to give something back. Robert Cialdini lists this among his principles of influence.
 
-### Will people TAKE ACTION immediately when they're referred?
+Take away any one and the referral dies. A client who worries you'll push their friend into something unsuitable keeps quiet. If you were adequate but forgettable, there's nothing to be proud of, and nothing to repay when nothing you did felt special.
 
-Mostly no. A referral conversation happens, the friend says *"interesting,"* and then the week goes on. The referral is *soft* by default — it needs either:
-- The referring client to actively send a text / message on your behalf, **or**
-- You to reach out first using the endorsement
+### Will referred friends act straight away?
 
-Without one of those two, 80% of referrals evaporate.
+Mostly no. Your client mentions you, the friend says *"interesting"*, and the week carries on. A referral is soft by default and needs one of two things:
+
+- the client sends a text or message on your behalf, or
+- you contact the friend first, mentioning the client's recommendation, once the friend has agreed to hear from you
+
+Without one of those, most referrals fade away.
 
 ---
 
 ## The 5 reframe questions
 
-Before you ask, run your own book through 5 honest questions:
+Before you ask, put your own client base through 5 honest questions.
 
-| Question | Honest self-check |
+| Question | Honest answer |
 |---|---|
-| **Do my clients *need* to refer me?** | No. Their life is fine with or without referring. You have to make it happen. |
-| **Do my clients *know how* to refer me?** | Usually no. They don't know what to say, which friends fit, or what to introduce. |
-| **Do my clients know *all the things* I can do?** | No. Most only know what you did for *them*. |
-| **Do my clients know what I want from them?** | Often no. They assume a vague *"tell friends about me"* when you want specific introductions. |
-| **Will clients automatically refer with an impactful testimonial, in a convincing manner, making it their mission to get me 10 referrals?** | No. That's fantasy. |
+| Do my clients need to refer me? | No. Their life is fine either way, so you have to make it happen. |
+| Do my clients know how to refer me? | Usually not. They don't know what to say, which friends fit or how to introduce you. |
+| Do my clients know everything I can do? | No. Most only know what you did for them. |
+| Do my clients know what I want from them? | Often not. They assume you mean a vague *"tell friends about me"* when you want specific introductions. |
+| Will they refer me on their own, with a glowing testimonial, and make it their mission to get me 10 referrals? | No. That's a fantasy. |
 
-The answers to all five are mostly *no* for most advisors. Which is fine — the framework compensates for all of them. The ask has to do the work, not the client's imagined proactivity.
+For most advisors the answer to all five is mostly no, and that's fine. The ask does the work the client was never going to do on their own.
 
 ---
 
 ## Making yourself referable
 
-Your ask's success rate is capped by how referable you actually are. If you're a 6/10 advisor, no script in the world will produce a 9/10 referral rate.
+How referable you are sets a ceiling on your ask. If you're a 6/10 advisor, no script will get you a 9/10 referral rate.
 
-Four principles that make you referable — **no questions asked**:
+Four principles make you referable.
 
-### Principle 1 — Don't be *competent.* Be *extraordinarily competent.*
+### Principle 1: Be extraordinarily competent
 
-Competence is the floor. It's what clients expect. Nobody refers their *competent* advisor — they refer their extraordinary one.
+Competence is the floor, and clients expect it. Nobody tells their friends about an adviser who was merely competent.
 
-Extraordinary shows up in specific moments: a difficult claim, a messy portfolio cleanup, a situation where most advisors would say *"nothing we can do."* How you handle those moments decides whether you become the person they introduce at dinner parties.
+The extraordinary part shows up in specific moments: a difficult claim, a messy set of old policies to sort out, a situation where most advisors would say there's nothing they can do. How you handle those moments decides whether you become the person they introduce to friends.
 
-### Principle 2 — Make them like you AND trust you very much
+### Principle 2: Make them like you and trust you
 
-Both words matter. *Like* without *trust* = fun advisor, no referrals (the friend's money is serious). *Trust* without *like* = respected advisor, no referrals (they wouldn't inflict you on a friend). You need both.
+You need both. A client who likes you but doesn't trust you sees a fun adviser, and won't hand over a friend's money. A client who trusts you but doesn't like you respects you, and won't put a friend through meeting you.
 
-Warmth + competence + transparent communication = liked + trusted. Missing any one of the three and the referral engine stalls.
+You earn both with warmth, competence and being straight with people about what things cost and what they don't cover. Lose one of those and the referrals stop.
 
-### Principle 3 — Be generous in all aspects — give and care
+### Principle 3: Be generous
 
-Generosity shows up in small moments: the gift when a client has a baby, the text when their parent is ill, the thoughtful follow-up after a life event. None of these are about the business. All of them are what makes a client actively *want* to refer you.
+Generosity shows up in small moments: a small gift when a client has a baby, a text when their parent is ill, a thoughtful follow-up after a big life event. None of it is about business, and all of it makes a client want to recommend you. Keep gifts small and within your firm's gift policy.
 
-Generosity compounds. One unexpected thoughtful gesture gets talked about for years. Ten gestures across 10 clients = 100 conversations about you.
+One unexpected, thoughtful gesture can get talked about for years.
 
-### Principle 4 — Brilliant after-sales service
+### Principle 4: Brilliant after-sales service
 
-The period *after* the sale is where most advisors go quiet. That's the window where referrals are either earned or lost. A client who gets 0 follow-up in the 90 days post-sale sees you as a transaction. A client who gets structured, value-adding follow-up sees you as a partner.
+After the sale is where most advisors go quiet, and it's the window where referrals are won or lost. A client who hears nothing from you in the 90 days after buying sees you as a transaction. A client who gets regular, useful follow-up sees you as someone on their side.
 
-Week 10 covers the after-sales system. Even before you have your first client, know: after-sales is a first-class activity, not a nice-to-have.
+Week 10 covers the after-sales system. Even before your first client, treat after-sales as part of the job from day one.
 
 ---
 
 ## The 3 versions on a hard case
 
-A client's case is difficult. Underwriting is tight. You have three possible postures — only one makes ambassadors:
+A client's case is difficult and underwriting looks tight. You can take one of three positions, and only one of them makes ambassadors.
 
-| Version | Response | Client impact |
+| Version | What you say | How the client feels |
 |---|---|---|
-| **V1 · Easy out** | *"It probably won't go through, let's not proceed."* | Client feels abandoned |
-| **V2 · Optimistic shrug** | *"No harm applying, but don't expect much."* | Client feels uninspired |
-| **V3 · The fighter** | *"I'll use every bit of experience and relationships I have to push this through. No promises, but I'll do my absolute best."* | Client feels seen and defended |
+| V1, easy out | *"It probably won't go through, let's not proceed."* | Abandoned |
+| V2, optimistic shrug | *"No harm applying, but don't expect much."* | Uninspired |
+| V3, the fighter | *"I'll put in the strongest application I can, with full disclosure and every medical report that helps your case. If the terms come back with a loading or exclusion, I'll see whether we can ask for a review. I can't promise the outcome, but I'll do my absolute best."* | Seen and defended |
 
-> **Clients want advisors who will fight for them like family.** V3 is how ambassadors are made.
+> Clients want an adviser who will fight for them like family. V3 is how ambassadors are made.
 
-V1 and V2 are where most advisors live — they're *safe*. Safe doesn't make ambassadors. Ambassadors are made when a client saw you go to bat for them and remembers every time they see their friends.
+Most advisors sit in V1 or V2 because those feel safe. Clients become ambassadors after watching you fight for them, and they remember it every time a friend brings up insurance.
 
----
-
-## Going the extra mile — small acts that compound
-
-Extraordinary competence shows up in small acts that cost almost nothing but get talked about forever. A few examples of the pattern:
-
-- A real-estate agent learned her client's daughter loved sambal. She sent homemade chili + a small toy for the daughter after the house deal closed. The family told *every friend they had* about that advisor.
-- An FC learned a client was seeing a specialist they didn't trust. Used his personal network to introduce them to a better specialist. That client referred 4 people in the next 6 months.
-- An FC realised a client was flying alone with 2 kids for the first time. Packed a little survival kit (snacks, small activities, thank-you card) delivered to the gate. One moment. Talked about for years.
-
-Small. Specific. Personal. *Uncontrived*. That's the shape of extra-mile acts that build ambassadors.
+Fighting never means shading the truth. Everything the insurer asks about goes on the form, accurately. A non-disclosure can let the insurer void the policy or reject a claim later, which is the worst outcome you could hand a client. You fight with complete paperwork and supporting medical evidence. If terms come back with a loading or exclusion, the LIA's underwriting guide says fresh medical evidence can be sent in for the insurer to reassess.
 
 ---
 
-## Coaching clients for referrals — articulate their strengths for them
+## Going the extra mile: small acts people remember
 
-Even with a great ask, clients often don't know *what to say* about you. The ask has to also give them the words.
+Extraordinary competence often shows up in small acts that cost almost nothing and get retold for years. A few examples of the pattern:
 
-Try this language in the ask:
+- A property agent learned her client's daughter loved sambal. After the house deal closed, she sent a jar of homemade chilli and a small toy for the daughter. The family told everyone they knew about her.
+- An FC learned a client was seeing a specialist they didn't trust, and used his own network to introduce them to one they felt better about. That client referred 4 people over the next 6 months.
+- An FC found out a client would be flying alone with 2 kids for the first time, and put together a small kit with snacks, a few activities and a card for them to take on the trip. They still talk about it.
 
-> *"Here's what's been useful for most of my clients: instead of just saying 'you should meet my FC,' they introduce me by naming the specific thing I helped with. So for you, it might be 'she sorted out the mess of old policies I didn't understand.' Something specific. Does that feel natural to say?"*
-
-You're not scripting their words. You're giving them a template. Most will adapt it — the ones who don't will at least remember that *specific > vague* when they do mention you.
+What these have in common: they're small, specific and personal, and none of them feel staged.
 
 ---
+
+## Coaching clients for referrals: give them the words
+
+Even after a great ask, clients often don't know what to say about you. Your ask should give them the words.
+
+Try this in the ask:
+
+> *"Here's what's worked for a lot of people: instead of just saying 'you should meet my FC', they mention the specific thing I helped with. For you, it might be 'she sorted out the mess of old policies I didn't understand.' Something specific. Does that feel natural to say?"*
+
+You aren't writing a script for them. You're offering a template. Most will adapt it, and even the ones who don't will remember that something specific works better than something vague when they do mention you.
+
+---
+
+## Sources
+
+- [The 7 principles of persuasion - Influence at Work (Robert Cialdini)](https://www.influenceatwork.com/7-principles-of-persuasion/) - reciprocity (people give back after receiving first) and liking, two of the feelings behind a referral
+- [LIA guide to medical underwriting for life insurance (April 2024) - Life Insurance Association Singapore](https://www.lia.org.sg/media/4295/lia-guide-to-medical-underwriting-for-life-insurance-english-apr-2024-v30.pdf) - applicants must disclose material facts truthfully, non-disclosure can void a policy, and fresh medical evidence can be sent for reassessment
 
 ## Quiz
 
-**Q1. The three emotions a referrer stacks at the moment of referring are:**
+**Q1. The three feelings a referrer has at the moment of referring are:**
 - A) Pride, safety, reciprocity ✓
 - B) Urgency, fear, excitement
 - C) Guilt, obligation, recognition
 - D) Curiosity, trust, ownership
 
-**Why:** Safety says *"I can send my friend to this person"* — the absence of it kills every referral. Pride says *"I like looking like the person-with-the-advisor."* Reciprocity says *"they did something for me, I want to balance the ledger."* All three have to be in the green for a referral to move from intention to introduction.
+**Why:** Safety is *"I can send my friend to this person"*, and without it no referral happens. Pride is *"I like being the one who knows a good adviser."* Reciprocity is *"they did something for me and I want to even it up."* All three need to be there before an intention to refer becomes an actual introduction.
 
 **Q2. The 4 principles that make you referable include all of the following EXCEPT:**
-- A) Don't be competent — be extraordinarily competent
+- A) Be extraordinarily competent, since competence alone is only the floor
 - B) Make them like AND trust you very much
 - C) Be generous in all aspects
 - D) Always close on the spot ✓
 
-**Why:** A, B, C are the posture that makes ambassadors. D is unrelated — closing technique matters for the case itself, but doesn't affect referability. Referability is earned in how you show up across the whole relationship, not in how you close a single sale.
+**Why:** A, B and C are how you show up across the whole relationship, and that's what makes ambassadors. D is about closing a single case and has nothing to do with whether a client recommends you.
 
-**Q3. A client's case is difficult. Which posture makes ambassadors?**
-- A) V1 — *"It probably won't go through, let's not proceed."*
-- B) V2 — *"No harm applying, but don't expect much."*
-- C) V3 — *"I'll use every bit of experience and relationship I have to push this through. No promises, but I'll do my absolute best."* ✓
+**Q3. A client's case is difficult. Which position makes ambassadors?**
+- A) V1: *"It probably won't go through, let's not proceed."*
+- B) V2: *"No harm applying, but don't expect much."*
+- C) V3: *"I'll put in the strongest application I can, with full disclosure and every medical report that helps. I can't promise the outcome, but I'll do my absolute best."* ✓
 - D) All three are fine
 
-**Why:** V1 abandons. V2 is uninspiring. V3 is *the fighter* — the client walks away feeling defended. Ambassadors aren't made in easy cases; they're made in moments where the client saw you go to bat for them with no guarantee of outcome. The "absolute best" without overpromising is the exact tone — commitment with integrity.
+**Why:** V1 abandons the client and V2 leaves them flat. V3 is the fighter. The client leaves feeling defended, because you've committed your effort without promising a result, and the fight happens through complete, honest paperwork with nothing left off the form.
 
-**Q4. "Will people TAKE ACTION immediately when they're referred?" Day 26 answers:**
-- A) Yes — warm referrals convert within the week
-- B) Mostly no — 80% of referrals evaporate without either active forwarding by the referrer or proactive outreach from you using the endorsement ✓
+**Q4. "Will referred friends act straight away?" Day 26 answers:**
+- A) Yes, warm referrals convert within the week
+- B) Mostly no: without the referrer messaging the friend, or you contacting them with the referrer's recommendation, most referrals fade away ✓
 - C) Only if you offer a discount
 - D) Only HNW referrals convert
 
-**Why:** A referral conversation usually ends with *"interesting, I'll think about it"* and then the friend's week continues. The referral is *soft* by default. You need either the referrer to actively text them, or you to reach out first citing the endorsement. Without one of those two, 80% of warm introductions never become meetings. That's why Day 29's "follow through within 48 hours" behaviour is so load-bearing.
+**Why:** A referral conversation usually ends with *"interesting, I'll think about it"* and the friend's week carries on. Referrals are soft by default. Either the referrer messages the friend, or you get in touch first, mentioning the recommendation, once the friend is happy to hear from you. That's why Day 29's 48-hour follow-through matters so much.
 
-**Q5. Of the 5 reframe questions ("Do my clients *need* to refer me? Do they *know how*? Do they know *all the things* I can do? Do they know what I want from them? Will they automatically refer with an impactful testimonial?") — the honest answer is:**
-- A) Yes to all five for most advisors
-- B) No to mostly all five — which is why the ask has to do the work, not the client's imagined proactivity ✓
+**Q5. The 5 reframe questions ask whether clients need to refer you, know how, know all you can do, know what you want from them, and will refer you on their own with a strong testimonial. For most advisors the honest answer is:**
+- A) Yes to all five
+- B) Mostly no to all five, which is why the ask has to supply what the client won't do alone ✓
 - C) Depends on the client
 - D) Yes for HNW, no for middle-market
 
-**Why:** The reframe questions are a reality check. Most clients (a) don't need to refer, (b) don't know how, (c) don't know all the things you can do, (d) don't know what you want, (e) won't automatically produce impactful testimonials. The framework compensates for all of that — the ask has to supply the structure the client's own proactivity won't.
+**Why:** The questions are a reality check. Most clients don't need to refer, don't know how, don't know all you do, don't know what you want and won't write you a glowing testimonial unprompted. The framework covers all of that: your ask provides the structure the client won't come up with.
 
-**Q6. The "extra mile" pattern — sambal + toy for the client's daughter, specialist introduction, gate-side survival kit — all share:**
+**Q6. The extra-mile examples (sambal and a toy for the client's daughter, a specialist introduction, a travel kit for a solo flight with kids) all share:**
 - A) They cost a lot of money
-- B) They're specific, personal, uncontrived, and get talked about for years ✓
+- B) They're small, specific, personal and unforced, and they get retold for years ✓
 - C) They're product-related gestures
 - D) They're mandatory for every client
 
-**Why:** Extra-mile acts compound because they're small, specific, personal, and unforced. Product-related gestures read as transactional ("here's a branded gift"). Expensive gestures read as bought ("he paid for this, he's trying to sell me"). Small, personal, thoughtful moves like knowing the daughter loved sambal — those get re-told at dinner parties, which is where ambassadors are formed in Singapore's indirect-recommendation culture.
+**Why:** Small personal gestures get retold because they're unforced. A branded gift reads as a sales move. An expensive one reads as trying to buy loyalty. Knowing the daughter loves sambal is the kind of detail that gets repeated to friends, and in a culture where people recommend indirectly, that retelling is how ambassadors form.
 
-**Q7. Day 26 suggests coaching clients on *what to say* when referring. The specific template is:**
+**Q7. Day 26 suggests coaching clients on what to say when they refer. The suggested template is:**
 - A) *"Tell your friends I'm the best FC in Singapore"*
-- B) *"Instead of 'you should meet my FC,' name the specific thing I helped with — e.g., 'she sorted out the mess of old policies I didn't understand'"* ✓
+- B) *"Instead of 'you should meet my FC', name the specific thing I helped with, e.g. 'she sorted out the mess of old policies I didn't understand'"* ✓
 - C) *"Just say they should DM me on Instagram"*
 - D) *"Let them know I charge less than other FCs"*
 
-**Why:** *Specific beats vague* — just like in referral asks, the client's *recommendation* lands better when it names a concrete outcome the friend can imagine needing. *"The advisor who sorted out my old policies"* is remembered; *"my FC"* is forgotten. Giving the client the language (not scripting word-for-word) raises the average referral conversion without feeling pushy.
+**Why:** A specific recommendation names an outcome the friend can picture needing. *"The adviser who sorted out my old policies"* sticks, and *"my FC"* doesn't. Giving the client a template to adapt, without writing their words for them, makes their recommendation land better without feeling pushy. A and D are also the unsupported "best" and "cheaper than" claims you should never put in a client's mouth.
 
 ---
 
-## Scripts Library
+## Scripts library
 
-Here are the canonical scripts for asking, the post-meeting referral text, and the post-claim moment - the highest-conversion ask in the cycle. Practise them out loud, then make them yours.
+These are the canonical scripts for the ask, the post-meeting referral text and the post-claim moment. Practise them out loud, then make them your own.
 
-### Referral Request - Young Adults
-**Use this when** you've just delivered value to a young-adult client (post-FHR, post-policy, post-investment review). The script that names the demographic and asks for specific names.
+### Referral request for young adults
+Use this when you've just helped a young-adult client (after a financial review, a new policy or an investment review). The script names the age group and asks for specific names.
 
 [[referral-request-young-adults|Referral Request — Young Adults]]
 
-### AIA Claims Milestone & Referral Request
-**Use this when** a claim has just been paid out for a client. This is the highest-trust moment in the entire client lifecycle - the referral conversion rate is multiples of any other ask.
+### AIA claims milestone and referral request
+Use this when a claim has just been paid to a client. It's one of the moments when a client trusts you most.
 
 [[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
 
-### Post-Meeting - Client Resources & Referral
-**Use this when** a meeting has just ended and the client is in the "thank you" headspace. Bundles a value drop with the soft referral seed.
+### Post-meeting client resources and referral
+Use this when a meeting has just ended and the client is still in a thankful mood. It pairs something useful with a gentle referral seed.
 
 [[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
 
-### Namecard Referral Text
-**Use this when** the client offers to introduce you and asks "what should I send them?" - hand them this exact text to forward.
+### Namecard referral text
+Use this when the client offers to introduce you and asks what they should send. Give them this text to forward.
 
 [[namecard-referral-text|Namecard Referral Text]]
 
-### Referral Text - Lead to Friends (Skool Community Sign-Up)
-**Use this when** the lead has joined a community/group and you want them to invite friends in.
+### Referral text from a lead to friends (community sign-up)
+Use this when a lead has joined a community group and you'd like them to invite friends.
 
 [[referral-text-lead-to-friends-skool-community-sign-up|Referral Text — Lead to Friends (Skool Community Sign-Up)]]
 
-### Consultant Text to Referee (Referral)
-**Use this when** the client has just made the intro and you're sending the first message to the referred prospect within the 24-hour borrowed-trust window.
+### Your first text to the referred friend
+Use this when the client has just made the intro and you're sending your first message to the referred friend while the introduction is fresh.
 
 [[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
 

@@ -1,8 +1,8 @@
 ---
 week: 5
 day: 29
-title: "The Flywheel + the CAR Diagnostic"
-big_idea: "The sales cycle is either slow or self-regenerating. Today you learn how to move from one to the other — and how to diagnose which bottleneck is blocking the flip."
+title: "The flywheel and the CAR diagnostic"
+big_idea: "Your sales cycle is either slow or self-regenerating. Today you learn how to move from one to the other, and how to find the bottleneck that's stopping you."
 kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-articles/social-proof-scripts-and-sales-cycle]]"
@@ -12,200 +12,217 @@ duration_minutes: 20
 tags: [next-60-days, week-5, new-fc, flywheel, car, sales-cycle, systems]
 ---
 
-# Day 29 — The Flywheel + CAR Diagnostic
+# Day 29: The flywheel and the CAR diagnostic
 
-> **The one idea for today:** The sales cycle is either slow or self-regenerating. Today you learn how to move from one to the other — and how to diagnose which bottleneck is blocking the flip.
+> **The one idea for today:** Your sales cycle is either slow or self-regenerating. Today you learn how to move from one to the other, and how to find the bottleneck that's stopping you.
 
-By the time you close today you'll tell apart the slow sales cycle (outbound effort) from the self-regenerating one (referrals feed next week's pipeline), diagnose using the CAR framework (Calling · Appointments · Referrals) which of the three is your weakest link today, and commit to the 3 behaviours that flip the cycle from slow to regenerating within 6–12 months.
+By the end of today you'll be able to tell the slow sales cycle (everything comes from your own outbound effort) from the self-regenerating one (referrals feed next week's pipeline). You'll use the CAR framework (Calls, Appointments, Referrals) to find which of the three is your weakest link right now. And you'll commit to the 3 behaviours that, kept up over the next year or two, move you from the slow cycle to the regenerating one.
 
 ---
 
 ## Two states of the sales cycle
 
-Every advisor's business lives in one of two states:
+Every adviser's practice is in one of two states:
 
 | State | What drives next week's pipeline |
 |---|---|
-| **Slow sales cycle** | Outbound effort. You wake up, you dial, you email, you DM. If you stop, pipeline stops. |
-| **Self-regenerating** | Referrals from last quarter feed this quarter's pipeline automatically. You still dial — but the base level isn't zero when you pause. |
+| Slow sales cycle | Your outbound effort: every morning you call, email and DM, and the day you stop, the pipeline stops with you. |
+| Self-regenerating | Referrals from last quarter feed this quarter. You still call, but when you pause, the pipeline doesn't drop to zero. |
 
-**Every new FC starts in the slow cycle.** That's not a failure state — it's the default. The question is whether you can flip within 12 months or stay stuck in slow mode for 5 years.
+Every new FC starts in the slow cycle. That's the default, and there's nothing wrong with it. The question is whether you start moving out of it in your first year or stay there for five.
 
-The flip isn't a lightning moment. It's a gradient. Your pipeline moves from *"100% from my own outbound"* toward *"30% outbound + 70% referrals"* over 12–24 months. The FACT Method and 10-Name script from yesterday are the specific tools; CAR is the weekly diagnostic that tells you whether the flip is happening.
-
----
-
-## The CAR framework — revisited with referrals integrated
-
-![The CAR framework — revisited with referrals integrated: Calls; Appointments; Referrals](/next-60-days/images/n60-day-29-m0.webp)
-
-Three metrics. Circular. Self-regenerating when all three are healthy.
-
-- **C — Calls** — outreach volume. Phone calls, DMs, texts, Market Surveys.
-- **A — Appointments** — Fact-Finds booked (not *"will meet soon"* — confirmed).
-- **R — Referrals** — warm names received, endorsed, this week.
-
-The loop: **Referrals feed next week's Calls.** If R is zero for 6 weeks in a row, C becomes entirely outbound (slow cycle). If R is 2–3 per week for 6 weeks, C starts to get a *warm* component on top of outbound (flip is underway).
+The change happens gradually. Over a year or two, the share of your pipeline that comes from referrals grows while the share you have to find yourself shrinks. Yesterday's FACT Method and 10-Name script are the tools. CAR is the weekly check that tells you whether it's happening.
 
 ---
 
-## CAR diagnostic — the 3 bottlenecks
+## The CAR framework, now with referrals built in
 
-Week-to-week, one of the three is always weakest. Find it. Fix it. Don't scatter-shot.
+![The CAR framework with referrals built in: Calls; Appointments; Referrals](/next-60-days/images/n60-day-29-m0.webp)
 
-| Bottleneck | Cascade downstream | Fix |
+Three numbers in a loop. When all three are healthy, the loop feeds itself.
+
+- C for Calls: your outreach volume, counting phone calls, DMs, texts and Market Surveys
+- A for Appointments: Fact-Finds with a confirmed date and time (*"will meet soon"* doesn't count)
+- R for Referrals: warm names you received this week, each one recommended by the referrer and happy to hear from you
+
+Referrals become next week's calls. If R is zero for 6 weeks running, all your calls are outbound and you stay in the slow cycle. If R is 2 to 3 a week for 6 weeks, your calls start to include warm names on top of the outbound, and things are starting to shift.
+
+---
+
+## CAR diagnostic: the 3 bottlenecks
+
+Each week, one of the three is weakest. Find it and fix that one.
+
+| Bottleneck | What it knocks on | Fix |
 |---|---|---|
-| **Few Calls** | Fewer Appointments → Fewer Referrals → Fewer Leads to call | Volume discipline. Block calling time. No script fix needed; just pick up the phone. |
-| **Calls healthy, Appointments low** | Fewer Referrals → Fewer Leads | Script / targeting. Review Market Survey Q4 delivery. Audit the opener. |
-| **Calls + Appointments healthy, Referrals zero** | Next week you'll have to re-start from outbound. Slow cycle stays slow. | The ask itself — either you're not asking, or the ask is flatlining (Day 27). |
+| Few calls | Fewer appointments, then fewer referrals, then fewer names to call | Volume. Block out calling time and pick up the phone. The script isn't the issue. |
+| Calls fine, appointments low | Fewer referrals, then fewer names | Script or targeting. Review how you deliver Market Survey Q4 and check your opener. |
+| Calls and appointments fine, referrals at zero | Next week you start from outbound again and stay in the slow cycle | The ask. Either you aren't asking, or the ask is falling flat (Day 27). |
 
-**The rule of the weekly review:** pick the single weakest link. Fix that one link next week. Trying to fix all three at once spreads effort and fixes none.
+In your weekly review, pick the single weakest link and fix it the following week. Try to fix all three at once and you spread yourself too thin to fix any.
 
 ---
 
-## The math when the flywheel starts turning
+## The math once the flywheel turns
 
-Rough numbers when CAR is healthy:
+The table below shows how the pieces multiply. The numbers are round ones picked for teaching. It isn't a forecast of what you'll earn, and most new FCs start well below it, especially on appointments per hour.
 
-| Metric | Value |
+| Input | Illustrative value |
 |---|---:|
 | Hours spent calling per week | 10 |
 | Appointments booked per calling hour | 1 |
 | Closing ratio | 40% |
-| Avg case size | $800–$1,000 |
-| **Weekly income** | **$3,200–$4,000** |
+| Average commission per case | $800 to $1,000 |
+| Weekly commission in this example | $3,200 to $4,000 |
 
-Once all three links are humming, weekly income becomes a function of *hours dialed × closing ratio × case size*. No mystery, no magic — just discipline applied to a working loop.
+Once all three CAR links are working, your income comes down to hours calling x appointments per hour x closing ratio x commission per case. Plug in your own numbers from your scorecard, and expect them to move as your skills grow.
 
-**The trap:** new FCs see these numbers and optimise the wrong variable. They try to raise case size before they've stabilised Calls. Or they push closing ratio before they have enough Appointments to practice on. **Stabilise Calls first. Then Appointments. Then ask for Referrals on every one. Then close.** That order.
-
----
-
-## Events as a systemic referral accelerant
-
-Direct asks work. Events add *volume* to the referral engine for shy clients who can't or won't recommend directly.
-
-**The mechanics:**
-- Run a small 30-minute talk or workshop quarterly on a relevant topic (retirement, new parents, business owners)
-- Invite your client base
-- Tell them: *"feel free to forward to anyone you think would find it useful"*
-- Count how many forwards + attendees
-- Follow up individually with attendees who engaged
-
-Small, quarterly, niche-specific events can generate 10–20 net new leads per run. Not a replacement for the 1:1 ask — a complement. The ask handles quality, events handle volume.
-
-**Note on Week-5 expectations.** Most new FCs don't run events in month 2. This is for Quarter 2 planning — put a placeholder in the calendar now, run it when the book supports 10 invitees.
+The trap is working on the wrong number first. New FCs see a table like this and try to raise case size before their calls are steady, or chase a better closing ratio before they have enough appointments to practise on. Get calls steady first, then appointments. Then ask for referrals at every one, and work on closing last.
 
 ---
 
-## The 3 behaviours that flip the cycle
+## Events as a way to add referral volume
 
-Three behaviours, compound over 12 months. Get all three in place by Week 6.
+Direct asks work. Events add volume, especially from shy clients who won't recommend you directly.
 
-### Behaviour 1 — Ask every time
-Every Fact-Find ends with the FACT Method ask. Every closed case uses the 10-Name script. No exceptions. If you skip the ask on even 20% of cases, the flywheel never turns.
+How it works:
 
-### Behaviour 2 — Follow through within 48 hours
-When a client sends a referral, reach out to the referred name within 48 hours. Any longer and the warm introduction cools. *"Hi Aaron — [client name] mentioned you two had spoken. Happy to jump on a quick call whenever suits — Thursday or Saturday work?"*
+- Run a small 30-minute talk or workshop each quarter on a topic that fits your clients (retirement, new parents, business owners)
+- Invite your clients
+- Tell them: *"Feel free to forward this to anyone you think would find it useful"*
+- Track how many people it was forwarded to and how many came
+- Follow up one to one with attendees who showed interest and agreed to be contacted
 
-### Behaviour 3 — Close the loop back to the referrer
-After you've met the referred prospect, text the referrer back. *"Hey Amir — just met Aaron yesterday, really appreciate the intro. He's in a great spot, we'll probably do a proper planning session next month. Thanks again."*
+A small, focused event can bring you a handful of new people to talk to each time. It adds to the one-to-one ask without replacing it: the ask brings quality, and events bring volume.
 
-This closes the social loop — the referrer feels acknowledged, which massively increases the chance they refer again. Most advisors skip this step, which is exactly why their referral engine stays single-use instead of compound.
+Two rules before you run one. Get the invite and the slides approved through your firm's compliance process, since a forwarded invite counts as advertising. And collect attendees' contact details with their consent, with a clear line on the sign-up about how you'll follow up.
+
+A note on timing: most new FCs don't run events in month 2. Treat this as planning for your second quarter. Put a placeholder in your calendar now and run the event once you have enough clients to invite 10 people.
+
+---
+
+## The 3 behaviours that turn the flywheel
+
+These three add up over the next 12 months. Aim to have all three in place by Week 6.
+
+### Behaviour 1: Ask every time
+
+Every Fact-Find ends with the FACT Method ask. Every closed case gets the 10-Name script. If you regularly skip the ask, the flywheel barely moves.
+
+### Behaviour 2: Follow through within 48 hours
+
+When a client introduces someone who has agreed to hear from you, contact them within 48 hours. Leave it longer and the introduction goes cold. *"Hi Aaron, [client name] mentioned you two had spoken and that you're open to a chat. Happy to do a quick call whenever suits you. Would Thursday or Saturday work?"*
+
+If you're calling or texting a Singapore number and you don't have that person's clear consent to hear from you, check it against the Do Not Call Registry first.
+
+### Behaviour 3: Close the loop with the referrer
+
+After you've met the referred friend, text the referrer. *"Hey Amir, met Aaron yesterday. Thanks so much for the intro, really appreciate you thinking of me."*
+
+Thank them, and say nothing about what you discussed or whether Aaron bought anything. Aaron's finances are his, and passing his details on to Amir without his agreement breaks both client confidentiality and the PDPA.
+
+The referrer feels their intro mattered, which makes them far more likely to do it again. Many advisers skip this step, so each client refers once and then stops.
 
 ---
 
 ## Systems before motivation
 
-A quiet truth about the flywheel: motivation doesn't sustain any of the three behaviours. Systems do.
+Motivation won't keep any of these behaviours going. Systems will.
 
-- **CRM reminder** for every new referral → 48-hour outreach
-- **Post-meeting ritual** — always text the referrer within an hour of the meeting ending
-- **Weekly Friday review** — check that every case closed in the week had a referral ask attempted
+- A CRM reminder for every new referral, so you get in touch within 48 hours
+- A habit of texting the referrer within an hour of the meeting ending
+- A Friday review where you check that every case closed that week had a referral ask
 
-Motivation is fickle. Systems aren't. If you're still relying on *"I'll ask when I remember,"* you won't. Build the system.
+Peter Gollwitzer's research on implementation intentions found that people follow through far more often when they've decided in advance exactly when and where they'll act. A reminder that fires at a set time is that decision made for you. If your plan is to ask *"when I remember"*, you won't. Build the system.
 
 ---
 
-## The Year-1 survivorship cut — why most who quit would have made it
+## The Year 1 survivorship cut: why many who quit could have made it
 
-Weeks 1–4 taught you the outbound engine. Week 5 is about flipping it into a self-regenerating one. That flip is a 12–24 month arc. Which means for most of your first year, you're running pure outbound — and outbound is exhausting.
+Weeks 1 to 4 taught you outbound. Week 5 is about turning it into something that regenerates, and that takes a year or two. So for most of your first year you're running mainly on outbound, which is tiring.
 
-The advisors who quit in Year 1 almost never quit because of the work. They quit because of the *feeling* of the work — months of effort that haven't yet produced compound returns. The flywheel is spinning but quietly. The results haven't stacked yet. It looks to them like nothing is happening, because compounding is invisible until it isn't.
+Advisers who quit in Year 1 often quit because of how the work feels more than because of the work. They've put in months of effort that haven't paid off yet. The flywheel is turning, but quietly, so it looks as though nothing is happening. Compounding stays hard to see until the results start stacking up.
 
-**The survivorship cut runs on three distinctions.**
+Three habits separate advisers who stay from advisers who quit.
 
-| What survivors do | What quitters do |
+| Advisers who stay | Advisers who quit |
 |---|---|
-| Trust the math when the mirror doesn't show it yet | Trust the mirror over the math |
-| Count input (asks delivered, outreaches sent) | Count output (cases closed, income received) |
-| Measure themselves against their Week-1 self | Measure themselves against a Year-5 advisor |
+| Trust the numbers even when they can't see results yet | Trust how they feel over the numbers |
+| Count inputs: asks delivered, outreach sent | Count outputs: cases closed, income received |
+| Compare themselves with their Week 1 self | Compare themselves with a Year 5 adviser |
 
-None of the three require talent. They require a small, boring, unfashionable discipline: *believe the math this month, and the mirror will catch up by Month 9.*
+None of these need talent. They need a small, boring discipline: trust your input numbers this month, because results lag behind inputs by months.
 
-**The drill.** In the front of your notebook, write two numbers each Sunday: (a) how many asks / outreaches you did last week, (b) how many your Week-1 self did. If (a) > (b), the engine is compounding. Income will catch up.
+The drill: every Sunday, write two numbers at the front of your notebook. First, how many asks and outreaches you did last week. Second, how many your Week 1 self did. If the first number is higher, you're building the habits that pay off later.
 
-Most quitters would not have quit if they'd run this one-minute check every Sunday for 6 months. The check is the immune system for the 10pm-Wednesday fog becoming a month-long fog.
+This one-minute check helps stop a bad Wednesday night from turning into a bad month. Take the numbers to your mentor if they've been flat for a few weeks running.
 
 ---
+
+## Sources
+
+- [Advisory Guidelines on Key Concepts in the PDPA (revised 29 April 2026) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - consent for collecting, using and disclosing personal data, including a referred friend's details and what you tell the referrer
+- [Advisory Guidelines on the Do Not Call Provisions (revised 1 February 2021) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - check the DNC Register before a marketing call or text unless you hold clear and unambiguous consent
+- [Guidelines on Standards of Conduct for Digital Advertising Activities (25 September 2025) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-standards-of-conduct-for-digital-advertising-activities) - covers financial institutions and their marketers when they advertise on digital media, such as a forwarded event invite
+- [Implementation intentions: strong effects of simple plans - American Psychologist (Gollwitzer, 1999)](https://www.socmot.uni-konstanz.de/publications/implementation-intentions-strong-effects-simple-plans) - deciding in advance when and where you'll act raises follow-through, the case for reminders over motivation
 
 ## Quiz
 
-**Q1. The key difference between a slow sales cycle and a self-regenerating one is:**
+**Q1. The main difference between a slow sales cycle and a self-regenerating one is:**
 - A) The slow cycle is inefficient; the fast cycle is efficient
 - B) In the slow cycle, next week's pipeline comes entirely from your outbound; in the self-regenerating cycle, last quarter's referrals feed this week's pipeline ✓
 - C) Slow = less money; regenerating = more money
 - D) They're the same thing
 
-**Why:** The distinction is *what drives next week's pipeline*. Slow cycle: if you stop dialing, pipeline stops. Self-regenerating: if you stop dialing, pipeline slows but doesn't hit zero — because referrals from earlier quarters are still flowing in. The flip takes 12–24 months to fully materialise, and it happens through the 3 behaviours (ask / follow through / close the loop), not through working harder.
+**Why:** The difference is what drives next week's pipeline. In the slow cycle, stop calling and the pipeline stops. In the self-regenerating cycle, stop calling and the pipeline slows but doesn't hit zero, because referrals from earlier quarters keep coming. The change takes a year or two and comes from the 3 behaviours (ask, follow through, close the loop), more than from simply working harder.
 
-**Q2. Your Week-5 review shows: Calls 35 (healthy), Appointments 6 (healthy), Referrals 0. Which link do you fix in Week 6?**
-- A) Calls — make more
-- B) Appointments — book more
-- C) Referrals — the zero is the diagnostic signal ✓
+**Q2. Your Week 5 review shows: Calls 35 (healthy), Appointments 6 (healthy), Referrals 0. Which link do you fix in Week 6?**
+- A) Calls, make more
+- B) Appointments, book more
+- C) Referrals, because the zero is the signal ✓
 - D) Wait and see
 
-**Why:** CAR diagnostic rule: fix the weakest link. Calls and Appointments are both in a good range — the breakdown is at the referral stage. That tells you either (a) you're not asking on every Fact-Find, or (b) the ask is flatlining (Day 27 specificity / tone issue). Doubling down on Calls or Appointments won't fix R; only fixing the ask does.
+**Why:** The CAR rule is to fix the weakest link. Calls and appointments are both in a good range, so the problem is at the referral stage. Either you aren't asking at every Fact-Find, or the ask is falling flat on specificity or tone (Day 27). More calls or appointments won't fix R. Only fixing the ask will.
 
-**Q3. The third of the 3 flywheel-flipping behaviours (closing the loop back to the referrer) matters because:**
+**Q3. The third flywheel behaviour (closing the loop with the referrer) matters because:**
 - A) It's polite
-- B) It makes the referrer feel acknowledged, which massively raises the chance they refer again — turning a single-use referral into a compound one ✓
+- B) The referrer feels their intro mattered, which makes them much more likely to refer again, so one referral can become many ✓
 - C) It's required by compliance
 - D) It helps with follow-up paperwork
 
-**Why:** Most advisors reach out to the referred name and then go silent on the original referrer. That's why their referral engine stays single-use — each client might refer once, but doesn't build a *"I've referred her 3 times, she always takes care of my people"* relationship. Closing the loop is the compound move. One sentence of follow-up earns you 10 future referrals across the client's life.
+**Why:** Many advisers contact the referred friend and then go quiet on the person who referred them. Their referrals stay one-off: each client refers once and stops. Closing the loop builds the feeling of *"I've sent her three people and she looks after all of them."* Keep the message to a thank-you, with nothing about what the friend discussed or bought.
 
-**Q4. The 3 behaviours that flip the cycle from slow to self-regenerating are:**
+**Q4. The 3 behaviours that move you from the slow cycle to the self-regenerating one are:**
 - A) Call more, close harder, follow up longer
-- B) Ask every time, follow through within 48 hours, close the loop back to the referrer ✓
+- B) Ask every time, follow through within 48 hours, close the loop with the referrer ✓
 - C) Track metrics, hire assistants, automate follow-up
 - D) Only work with HNW clients
 
-**Why:** Ask-every-time is the input. Follow-through-in-48h preserves the warm introduction before it cools. Close-the-loop is what turns a single referral into ongoing compound behaviour from the referrer. Skipping any one of the three breaks the flywheel: skip the ask → no names; delay follow-through → name evaporates; skip the loop-close → referrer never refers again.
+**Why:** Asking every time is the input. Following through within 48 hours catches the introduction before it goes cold. Closing the loop is what makes a referrer refer again. Skip any one and the flywheel stalls: no ask means no names, slow follow-through means the name goes cold, and no thank-you means the referrer stops referring.
 
-**Q5. "Motivation doesn't sustain any of the three behaviours. Systems do." What's an example of a system that sustains Behaviour 2 (48-hour follow-through)?**
+**Q5. "Motivation won't keep any of these behaviours going. Systems will." What's an example of a system for Behaviour 2 (48-hour follow-through)?**
 - A) Telling yourself to work harder
-- B) A CRM reminder triggered when a new referral name is logged → pings you within 48h ✓
+- B) A CRM reminder that fires within 48 hours when you log a new referral ✓
 - C) Hiring a VA to remind you
 - D) Writing the name on your hand
 
-**Why:** Motivation comes and goes — Wednesday evening you feel like reaching out, Thursday morning you don't. A CRM reminder (or Notion / Apple Reminders / any tool) executes regardless of your mood. The first time the ping fires and you reach out because the system told you to, you realise: this is how compounding advisors run their back office. It's not discipline. It's triggers.
+**Why:** Motivation comes and goes. On Wednesday evening you feel like making the call, and by Thursday morning you don't. A CRM reminder (or Notion, Apple Reminders or any tool) fires whatever your mood. It's the practical version of Gollwitzer's finding that deciding in advance when you'll act beats relying on willpower.
 
-**Q6. The Year-1 survivorship cut says the key distinction between survivors and quitters is:**
+**Q6. The Year 1 survivorship cut says the main difference between advisers who stay and advisers who quit is:**
 - A) Talent
 - B) Hours worked
-- C) Trusting the math when the mirror doesn't show it yet — measuring input vs your Week-1 self, not output vs a Year-5 advisor ✓
+- C) Trusting the numbers before the results show, counting inputs and comparing yourself with your Week 1 self, never with a Year 5 adviser ✓
 - D) Luck with early clients
 
-**Why:** Compounding is invisible until it isn't. Year-1 input (asks, outreaches, referrals-attempted) compounds into Year-2 output (cases, income). But Year-1 learners can only see Year-1 output — which looks small against a Year-5 advisor's book. The survivorship cut is: count input, measure against your own starting line, trust that Month 9 catches up with Month 3. Quitters reverse all three.
+**Why:** Compounding is hard to see early on. Year 1 inputs (asks, outreach, referral attempts) turn into later outputs (cases, income), but in Year 1 you can only see Year 1 output, which looks small next to a Year 5 adviser's book. Count inputs, measure against your own starting point and give the results time. Advisers who quit tend to do the opposite on all three.
 
-**Q7. The "close-the-loop" text after meeting a referred prospect is best sent:**
-- A) A week later, after you've figured out next steps
-- B) Within an hour of the meeting ending — the referrer should hear about it before the evening ✓
-- C) Only if the referred prospect closes
-- D) Never — the referrer doesn't need to know
+**Q7. The close-the-loop text after meeting a referred friend is best sent:**
+- A) A week later, once you've worked out next steps
+- B) Within an hour of the meeting ending, so the referrer hears the same day ✓
+- C) Only if the referred friend buys
+- D) Never, the referrer doesn't need to know
 
-**Why:** Immediacy is the signal. A same-day text (*"just met Aaron, really appreciate the intro, we'll probably do a proper session next month"*) tells the referrer their intro mattered and was taken seriously. A week-later update reads as an afterthought. Waiting until close burns the loop — most advisors do this, which is why their referral engine stays single-use. Tell the referrer *before* you know the outcome; that's what earns the next referral.
+**Why:** Speed is the signal. A same-day thank-you (*"met Aaron yesterday, really appreciate the intro"*) tells the referrer their introduction was taken seriously, while a week-later update reads as an afterthought. Waiting until the friend buys (C) means most referrers never hear back, and it also ties your thanks to details about the friend that aren't yours to share.
 
 ---
 

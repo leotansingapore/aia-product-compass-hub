@@ -1,8 +1,8 @@
 ---
 week: 5
 day: 28
-title: "The Scripts Day — FACT Method + 10-Name Ask + Coaching the Client"
-big_idea: "Today is all scripts — word-for-word. Memorise two, internalise them, deliver both live before Sunday."
+title: "The scripts day: FACT Method, 10-Name ask and coaching the client"
+big_idea: "Today is all scripts, word for word. Learn two, make them sound like you, and deliver both live before Sunday."
 kpi_link: "Week 5 KPI — 10 referral asks made; 3 referrals received"
 primary_sources:
   - "[[../_source-holos-decks/referral-asking]]"
@@ -12,148 +12,174 @@ duration_minutes: 25
 tags: [next-60-days, week-5, new-fc, referrals, scripts, fact-method]
 ---
 
-# Day 28 — The Scripts Day
+# Day 28: The scripts day
 
-> **The one idea for today:** Today is all scripts — word-for-word. Memorise two, internalise them, deliver both live before Sunday.
+> **The one idea for today:** Today is all scripts, word for word. Learn two, make them sound like you, and deliver both live before Sunday.
 
-By the time you close today you'll deliver the FACT Method ask (Favour · Angle · Connect · Timeline) for 4 different prospect angles (retirement, young professionals, compliment-based, new parents), run the 10-Name Social-Proof script during admin paperwork (the version that produces ≥10 names almost every time), and coach the client on a sample referral text they can send on your behalf — so the intro doesn't rely on *their* phrasing.
+By the end of today you'll be able to deliver the FACT Method ask (Favour, Angle, Connect, Timeline) with 4 different angles: retirement, young professionals, compliment-based and new parents. You'll run the 10-Name script during the admin paperwork at a close, and you'll know how to handle the names it produces properly. And you'll give your client a sample text to send their friend, so the intro doesn't depend on them finding the words.
 
 ---
 
 ## Two scripts, two moments
 
-Two scripts matter today, each designed for a different moment:
+Each of today's two scripts is built for a different moment.
 
-| Script | Moment | Expected output |
+| Script | Moment | What you usually get |
 |---|---|---|
-| **FACT Method** | End of a Fact-Find or proposal meeting | 1–3 warm referrals, named + endorsed |
-| **10-Name Social-Proof** | During admin-paperwork window at the close | 10+ names (some warm, some cold) as a batch |
+| FACT Method | End of a Fact-Find or proposal meeting | 1 to 3 warm referrals, named and recommended |
+| 10-Name script | The admin paperwork window at the close | A longer list of names, some warm and some not |
 
-Different tools for different moments. FACT is the *quality* ask — small number, high conversion. 10-Name is the *volume* ask — larger batch, converts via follow-through. Top producers run both.
+FACT is the quality ask: a few names, and a high share of them become meetings. The 10-Name script is the volume ask, and top producers use it alongside FACT because a bigger batch gives them more people to discuss with the client afterwards.
 
 ---
 
-## The FACT Method
+## How the FACT Method works
 
-**F**avour → **A**ngle → **C**onnect → **T**imeline
+Favour, then Angle, then Connect, then Timeline.
 
 ![The FACT Method: F · Favour (the framing); A · Angle (who); C · Connect (the ask); T · Timeline (locked)](/next-60-days/images/n60-day-28-m0.webp)
 
-Four beats. The order matters. Angle comes before Connect because a specific angle triggers specific memory; swapping the order makes the ask generic again.
+Four beats, and the order matters. The angle comes before the connect because a specific angle brings a specific person to mind. Swap them and the ask turns generic again.
 
-### F — Favour
-Frame the question as a small favour, not a routine ask:
+### F: Favour
 
-> *"Amir, before we wrap, I'd like to ask a quick favour…"*
+Frame it as a small favour:
 
-### A — Angle
-The specific demographic / life stage / personality type:
+> *"Amir, before we wrap up, can I ask you a quick favour?"*
 
-> *"…do you happen to know someone who's getting closer to retirement — late 40s or 50s — and might be worried about sustaining their lifestyle post-retirement?"*
+### A: Angle
 
-### C — Connect
-The specific ask — *connect us*, not *give me a name*:
+Name the specific age group, life stage or type of person:
 
-> *"…I specialise in helping people like that plan their retirement. Would you be open to connecting us — ideally with a short intro text so it doesn't feel cold?"*
+> *"Do you happen to know someone who's getting closer to retirement, in their late 40s or 50s, and might be worried about keeping up their lifestyle after they stop working?"*
 
-### T — Timeline
-Lock the next move with a date:
+### C: Connect
 
-> *"…would it be okay if you could check in with them in the next 2 days? I'll follow up with you Saturday to see where we are."*
+Ask them to connect you, which is different from asking for a name:
 
----
+> *"Retirement planning is a big part of what I help people with. Would you be open to connecting us, ideally with a short intro text so it doesn't feel cold?"*
 
-## The 4 Angles — word-for-word
+### T: Timeline
 
-Rotate the angle based on who you're asking. Four proven angles:
+Lock in the next step with a date:
 
-### Angle 1 — Specific Needs (Retirement)
-> *"Samantha, before you head out, I'd like to ask a quick favour. Do you happen to know someone who's getting closer to retirement — late 40s or 50s — and might be worried about sustaining their lifestyle after they stop working? I specialise in helping people like them plan for retirement, and I'd love a short conversation even if they're not sure yet. Would it be okay if you could check in with them in the next 2 days? I'll follow up with you Saturday."*
-
-### Angle 2 — Demographics (Young Professionals)
-> *"Tom, quick favour before we wrap — do you happen to know anyone in their 30s or 40s, a working professional who's just started a family and is starting to think about financial security for them? That's the exact stage I do most of my work in. Happy to chat with them, no pressure. Could you check in with them over the next 2 days? I'll text you Saturday to see where we are."*
-
-### Angle 3 — Compliment-based (Personal Connection)
-> *"Rachel — can I ask you a favour? Do you know anyone around your age — late 20s to early 30s — who has the same strong sense of responsibility and ambition that you have? Those are the people I love working with. If you think of anyone, would you be open to connecting us in the next couple of days? I'll check in with you Saturday."*
-
-### Angle 4 — Demographics (New Parents)
-> *"Linda, one last thing — do you happen to know any new parents in your circle? People who've just had a kid, or expecting their first? That's the life stage I'm doing a lot of work in right now. Happy to chat even if they're just starting to think about it. Could you check in with them in the next 2 days? I'll text you Saturday."*
-
-**Pattern across all four:**
-- Favour framing → specific angle → connect us → 2-day check-in + Saturday follow-up
-- Never *"anyone you know?"*. Always a filter.
+> *"Could you check with them in the next 2 days whether they're open to a chat? I'll follow up with you on Saturday to see where we are."*
 
 ---
 
-## The 10-Name Social-Proof Script
+## The 4 angles, word for word
 
-Different moment, different script. This one runs during the **5–10 minute admin-paperwork window** at the end of a closed case.
+Change the angle to suit the person you're asking. Here are four.
 
-**Setup.** The client has just signed. You say *"give me a few minutes, I just need to process some admin — you don't need to do anything, just sit tight."* Open your laptop, start clicking things.
+### Angle 1: Specific needs (retirement)
 
-**Then, casually:**
+> *"Samantha, before you head off, can I ask you a quick favour? Do you happen to know someone who's getting closer to retirement, late 40s or 50s, and might be worried about keeping up their lifestyle after they stop working? Retirement planning is a big part of what I do, and I'm happy to have a short chat with them even if they're not sure yet. Could you check with them in the next 2 days whether they'd be open to it? I'll follow up with you on Saturday."*
 
-> *"Right — so while I'm doing this, let me tell you what most of my clients do with this quiet stretch. Genuinely, almost 100% of the time, they end up writing down at least 10 names on this sheet. Not because I ask them hard — they just know the people they care about would benefit from the same conversation. They like me, they trust me, and they want to help their friends.*
->
-> *They write down their BMT mates, platoon mates, uni friends, poly classmates, work colleagues — anyone they know, even not-super-close ones. They just spam and write as much as they can. 10 on this side, 10 on that side, 10 here — in fact they usually write more. 20, 20, 15, 20. Because they feel it's pretty useful for the people in their life.*
->
-> *So while I'm doing this for you, feel free to write down at least 10 or more names. You have my word I'll do my best to help each of them."*
+### Angle 2: Demographics (young professionals)
 
-Hand them the sheet and a pen. Go back to admin.
+> *"Tom, quick favour before we wrap up. Do you happen to know anyone in their 30s or 40s, a working professional who's just started a family and is starting to think about their financial security? That's the stage I do most of my work with. Happy to chat with them, no pressure. Could you check with them over the next 2 days whether they're open to it? I'll text you Saturday to see where we are."*
 
-**Why it works:**
-- **Consensus** — *"almost 100% of the time"* normalises the behaviour
-- **Reciprocity** — you're doing admin *for them* right now
-- **Time arbitrage** — productive use of otherwise-dead paperwork minutes
-- **Specificity anchoring** — *"20, 20, 15, 20"* raises their reference anchor
-- **Permission-lowered close** — *"feel free… you have my word"* not *"you must"*
+### Angle 3: Compliment-based (personal connection)
 
-**Follow-up math.** A 10-name sheet typically yields:
-- 2–3 actual warm referrals (endorsed by the client after conversation)
-- 3–4 cold leads (names with no context — treat these as cold market)
-- 2–3 *"actually don't talk to X"* names (exclusions)
+> *"Rachel, can I ask you a favour? Do you know anyone around your age, late 20s to early 30s, who has the same strong sense of responsibility and ambition you have? Those are the people I really enjoy working with. If someone comes to mind, would you be open to connecting us in the next couple of days, once they're okay with it? I'll check in with you Saturday."*
 
-The 10-name script *primes* the referral conversation — you still have to follow up with the client to get real endorsements on the warm names. The FACT Method is better for warm quality; 10-Name is better for volume surface.
+### Angle 4: Demographics (new parents)
+
+> *"Linda, one last thing. Do you happen to know any new parents in your circle, people who've just had a baby or are expecting their first? That's a life stage I'm doing a lot of work with right now. Happy to chat even if they're only starting to think about it. Could you check with them in the next 2 days whether they'd like a chat? I'll text you Saturday."*
+
+All four follow the same pattern: favour framing, a specific angle, *"connect us"*, a 2-day check with the friend and a Saturday follow-up. None of them fall back on *"anyone you know?"*, because every one gives the client a filter.
+
+Only say what's true for you. If you're two months in, *"retirement planning is a big part of what I help people with"* is honest, while *"I specialise in retirement"* may not be yet. Overstating your track record is a fair dealing problem.
 
 ---
 
-## Coaching the client — a sample text they can send
+## The 10-Name script
 
-Even with a great ask, the client may not know *what to say* to their friend. Give them a template they can adapt or copy-paste:
+A different moment needs a different script. This one runs during the 5 to 10 minute admin paperwork window at the end of a closed case.
 
-> *"Hey [friend's name], hope you're well! Quick one — I wanted to share something that's been really useful for me recently.*
+Setup: the client has just signed. You say *"Give me a few minutes, I just need to process some admin. You don't need to do anything, just sit tight."* Open your laptop and start working.
+
+Then, casually:
+
+> *"While I'm doing this, here's something a lot of people do with these few minutes. They think of the friends who'd get something out of the same conversation we just had, and they jot down their names. BMT mates, platoon mates, uni friends, poly classmates, colleagues, even people they're not super close to. Some people write 5, some write 20.*
 >
-> *You know how we all have financial advisors at some point? I used to have a couple myself, but I met my current FC, [your name], who actually took the time to look at my whole picture — not just sell me something. He/she pointed out a few gaps I'd missed that my previous advisors never did.*
->
-> *Even if you feel satisfied with your current setup, it might be worth having a quick conversation with [your name]. They offer a fresh perspective and might catch something worth thinking about.*
->
-> *If you're interested, I'd be happy to connect you two — just let me know."*
+> *So while I'm doing this for you, feel free to write down as many names as come to mind, just names, no numbers needed. Afterwards we'll go through them together, and for anyone you think would be open to it, you can check with them first before I get in touch. You have my word I'll do my best to help each of them."*
 
-**Why this works:**
-- **Respects their existing advisor** — the friend doesn't have to *leave* anyone
-- **Frames the meeting as *adding* a perspective** — not replacing
-- **Low-commitment hook** — *"if you're interested"* is an easy yes
+Hand them the sheet and a pen, and go back to the admin.
 
-Send this template to your client after they've agreed to refer. *"Here's a version other clients have sent — feel free to adapt to your voice."* Most clients gratefully copy-paste because they didn't want to figure out what to say.
+Why it works:
+
+- Social proof: *"a lot of people do this"* makes it feel normal. Robert Cialdini describes this as people looking to what others do when they're unsure.
+- Reciprocity: you're doing admin for them right now.
+- Good use of time: those paperwork minutes would otherwise be spent in silence while you click through forms.
+- Anchoring: *"some write 20"* sets a higher reference point for how many names is normal. Tversky and Kahneman showed in 1974 how a number people hear first pulls their estimates toward it.
+- A gentle close: *"feel free"* and *"you have my word"*, never *"you must"*.
+
+Keep the consensus line honest. The source version of this script says clients write 10 names *"100% of the time"*. Unless that's literally true of your own clients, don't say it. Inventing it misleads the client you just signed.
+
+Names only, at this stage, is deliberate. Under the PDPA, you should collect a friend's phone number or email from your client only once that friend has agreed to share it with you for this purpose. The PDPC's own example is a referral programme: the consultant checks with the referring customer that the friend was told and agreed, and confirms it again when first contacting the friend. The sheet is a list of people to discuss, and contact details come after your client has checked with each friend.
+
+Following up the sheet. A 10-name sheet often breaks down roughly like this:
+
+- 2 or 3 people your client is happy to recommend after you talk it through
+- 3 or 4 names with no real context, which you don't contact unless your client introduces you
+- 2 or 3 *"actually, don't talk to X"* names
+
+The 10-Name script only starts the referral conversation. The follow-up talk with the client is where you find out who they'll recommend and who has agreed to hear from you.
 
 ---
 
-## When direct asking doesn't work — events as an alternative
+## Coaching the client: a text they can send
 
-Some clients genuinely can't bring themselves to send a direct message. Culture, personality, awkwardness with specific friends — the reason varies.
+Even after a great ask, the client may not know what to say to their friend. Give them a template they can adapt or copy:
 
-**The workaround:** invite them (and implicitly their contacts) to an event. A talk, a small workshop, a casual gathering.
+> *"Hey [friend's name], hope you're well! Quick one. I wanted to share something that's been useful for me recently.*
+>
+> *I met [your name], a financial consultant, who took the time to go through my whole situation with me and helped me spot a few gaps I hadn't noticed.*
+>
+> *Even if you're happy with your current setup, it might be worth a quick chat with [your name] for a second opinion. No obligation at all.*
+>
+> *If you're interested, I'm happy to connect you two. Just let me know."*
 
-> *"Hey — I'm doing a small 30-minute session next month on retirement planning for people in their 40s–50s. If there's anyone in your life you think might find it useful, feel free to forward the invite. No pressure either way."*
+Why this works:
 
-Why events work for shy ambassadors:
-- **Lower social cost** — forwarding a 30-minute talk is easier than recommending an advisor
-- **The friend self-selects** — they attend if interested
-- **You meet them in a group setting** — no one-on-one pressure
+- It respects the friend's existing adviser, so the friend doesn't have to leave anyone
+- It frames the meeting as a second opinion, with no talk of replacing anyone
+- *"If you're interested"* is an easy yes, and the friend's reply is their OK for you to get in touch
 
-Events aren't the primary tool. They're the plan B when direct asks consistently don't work with a specific client.
+Send the template to your client after they've agreed to refer. *"Here's a version other people have sent. Feel free to change it so it sounds like you."*
+
+Keep the template about your client's own experience. Don't add lines that knock other advisers (*"my previous agents never did this"*) or promise results. Words you drafted for a client to forward still come from you.
 
 ---
+
+## When direct asking doesn't work: events
+
+Some clients can't bring themselves to message a friend directly. It might be culture, personality or awkwardness with a particular friend.
+
+The workaround is to invite them, and through them their friends, to an event: a talk, a small workshop or a casual get-together.
+
+> *"Hey, I'm running a small 30-minute session next month on retirement planning for people in their 40s and 50s. If there's anyone in your life who might find it useful, feel free to forward the invite. No pressure either way."*
+
+Why events work for shy clients:
+
+- Forwarding a 30-minute talk is a smaller ask than recommending an adviser
+- The friend decides for themselves whether to come
+- You meet them in a group, with no one-on-one pressure
+
+Before any invite goes out, run it and the session content through your firm's compliance approval. An invite forwarded on WhatsApp or posted on social media is digital advertising, and MAS's guidelines on it apply to financial firms and the people who market for them.
+
+Events aren't your main tool. They're plan B for when direct asks keep not working with a particular client.
+
+---
+
+## Sources
+
+- [The 7 principles of persuasion - Influence at Work (Robert Cialdini)](https://www.influenceatwork.com/7-principles-of-persuasion/) - reciprocity and social proof, two of the reasons the 10-Name script works
+- [Advisory Guidelines on Key Concepts in the PDPA (revised 29 April 2026) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - the referral example: check the referrer told the friend and got their consent, and confirm it when you first make contact
+- [Advisory Guidelines on the Do Not Call Provisions (revised 1 February 2021) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - check the DNC Register before a marketing call or text unless you hold clear and unambiguous consent
+- [Guidelines on Standards of Conduct for Digital Advertising Activities (25 September 2025) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-standards-of-conduct-for-digital-advertising-activities) - covers financial institutions and their marketers advertising on digital media, including event invites
+- [Guidelines on Fair Dealing (revised 30 May 2024) - Monetary Authority of Singapore](https://www.mas.gov.sg/regulation/guidelines/guidelines-on-fair-dealing---board-and-senior-management-responsibilities-for-delivering-fair-dealing-outcomes-to-customers) - customers should get clear, accurate information, which rules out claims about clients or experience you can't back up
 
 ## Quiz
 
@@ -163,84 +189,84 @@ Events aren't the primary tool. They're the plan B when direct asks consistently
 - C) Focused, Accurate, Credible, Tested
 - D) Family, Associates, Colleagues, Teammates
 
-**Why:** Each letter is a specific beat of the ask. Favour frames it as a small request, not a routine one. Angle is the specific demographic / life stage (the filter that triggers specific memory). Connect is the *connect-us* ask, not *give-me-a-name*. Timeline locks the next move so the referral doesn't evaporate. Swapping the order breaks the flow — Angle must come before Connect to cue the specific memory.
+**Why:** Each letter is one beat of the ask. Favour frames it as a small request. Angle is the specific age group or life stage, the filter that brings a person to mind. Connect asks them to introduce you, which is more than handing over a name. Timeline locks in the next step so the referral doesn't fade. The angle has to come before the connect, or the ask goes generic.
 
-**Q2. The 10-Name Social-Proof script works at the admin-paperwork moment because:**
+**Q2. The 10-Name script works in the admin paperwork window because:**
 - A) The client can't escape during paperwork
 - B) It's the end of the meeting, so the ask has to happen then
-- C) Consensus + reciprocity + time arbitrage + specificity anchoring all stack in that moment ✓
+- C) Social proof, reciprocity, good use of dead time and anchoring all come together in that moment ✓
 - D) The paperwork is intimidating, so they'll agree to anything
 
-**Why:** Consensus — *"almost 100% of clients do this"* normalises the behaviour. Reciprocity — you're doing admin *for them* right now, so a balancing act feels natural. Time arbitrage — the paperwork window is dead time, so you're converting it to productive time *for both*. Specificity anchoring — *"20, 20, 15, 20"* raises the reference anchor for how many names is normal. All four stack in one moment.
+**Why:** Social proof: *"a lot of people do this"* makes it feel normal, as long as it's true. Reciprocity: you're doing admin for them right now, so giving something back feels natural. The paperwork window is dead time, so you're making it useful for both of you. Anchoring: *"some write 20"* raises what feels like a normal number of names. All four work together in one moment.
 
-**Q3. A client struggles to refer directly to friends. The best workaround is:**
+**Q3. A client struggles to refer friends directly. The best workaround is:**
 - A) Pressure them harder
 - B) Drop the referral ask with that client entirely
-- C) Invite them to forward an event or small workshop you're running — lower social cost than a direct recommendation ✓
+- C) Invite them to forward an event or small workshop you're running, which is a smaller social ask than a direct recommendation ✓
 - D) Ask a different client for more names
 
-**Why:** Some clients can't do direct recommendation — cultural, personal, or specific-to-the-friendship reasons. Pressuring them damages the relationship. Dropping the ask loses the referrer entirely. The workaround is *lower the social cost*: forwarding an event invite is easier than recommending an advisor, and the friend self-selects whether to attend. Events are plan-B, not the default — but they exist for exactly this reason.
+**Why:** Some clients can't recommend people directly, for cultural or personal reasons or because of the particular friendship. Pressure damages the relationship, and dropping the ask loses a potential referrer. The workaround lowers the social cost: forwarding an event invite is easier than recommending an adviser, and the friend decides whether to come. Events are plan B, and the invite goes through compliance first.
 
-**Q4. Day 28 uses both FACT Method and 10-Name Social-Proof. The key difference between them is:**
+**Q4. Day 28 uses both the FACT Method and the 10-Name script. The main difference is:**
 - A) FACT is for cold prospects; 10-Name is for warm
-- B) FACT is the *quality* ask (small number, high conversion, end of Fact-Find); 10-Name is the *volume* ask (larger batch, during admin paperwork) ✓
+- B) FACT is the quality ask (a few names, high conversion, end of Fact-Find); 10-Name is the volume ask (a bigger list, during admin paperwork) ✓
 - C) FACT is for juniors; 10-Name is for seniors
 - D) They produce identical outcomes
 
-**Why:** Different tools for different moments. FACT at the end of a warm conversation produces 1–3 named, endorsed referrals. 10-Name at the admin window produces a batch of 10–20 names (mixed warmth) that you then surface individual warm ones from. Top producers run both — quality for the converted pipeline, volume for the surface area.
+**Why:** They're tools for different moments, and top producers use both. FACT at the end of a warm conversation produces 1 to 3 named friends the client will recommend. The 10-Name script at the admin window produces a longer list of mixed warmth, which you go through with the client to find the people they'll introduce.
 
-**Q5. A client writes 18 names on the 10-Name admin sheet. Which of these is the correct next move?**
-- A) Call all 18 cold, citing the client's name
-- B) Follow up with the client: *"out of these 18, which 3 do you know best? Can I get a personal intro from you?"* ✓
-- C) Ignore the list — 10-Name scripts rarely produce usable names
+**Q5. A client writes 18 names on the 10-Name sheet. Which is the right next move?**
+- A) Call all 18 cold, mentioning the client's name
+- B) Follow up with the client: *"Out of these 18, which 3 do you know best? Could you check with them first, and then introduce me?"* ✓
+- C) Ignore the list, since 10-Name scripts rarely produce usable names
 - D) Post the list to your team for them to divide up
 
-**Why:** 18 names without endorsement are cold leads (with the added relationship risk that cold-calling them may damage the referrer's standing). The real warm referrals come from the *follow-up conversation* where you ask the client to pick 3 and offer to make personal introductions. That's where the 10-Name script converts from volume to quality. Calling all 18 cold (A) burns the referrer.
+**Why:** 18 names with no recommendation are cold leads, and calling them cold can damage your client's standing with their friends. Those friends also never agreed to be contacted, which is a PDPA problem, and so is sharing the list with your team (D). The real warm referrals come from the follow-up, where the client picks a few, checks with them and makes the introduction.
 
-**Q6. The client-coaching text template ("Even if you feel satisfied with your current setup, it might be worth having a quick conversation...") works because:**
+**Q6. The client text template (*"Even if you're happy with your current setup, it might be worth a quick chat for a second opinion"*) works because:**
 - A) It aggressively asks for the friend's business
-- B) It respects the friend's existing advisor, frames your meeting as *adding* a perspective not replacing, and uses a low-commitment hook ✓
+- B) It respects the friend's existing adviser, frames the meeting as a second opinion with no talk of replacing anyone, and uses an easy, no-obligation hook ✓
 - C) It undercuts competitors on price
 - D) It's translated into multiple languages
 
-**Why:** The template solves a specific problem — most friends already have an advisor and feel uncomfortable "changing." Framing your meeting as an *additional perspective*, not a replacement, removes the emotional friction of disloyalty. *"If you're interested"* as the close makes yes easy. The template is handed to the referring client so they don't have to invent wording — most gratefully copy-paste it.
+**Why:** Most friends already have an adviser and feel disloyal about changing. Framing your meeting as a second opinion removes that discomfort, and *"if you're interested"* makes yes easy. The client gets wording they don't have to invent, and because it talks only about their own experience, it doesn't knock anyone else.
 
-**Q7. FACT Method's "T — Timeline" beat typically closes with:**
+**Q7. The FACT Method's "T: Timeline" beat usually closes with:**
 - A) *"Let me know whenever you get a chance"*
-- B) *"Would it be okay if you could check in with them in the next 2 days? I'll follow up with you Saturday to see where we are"* ✓
-- C) *"No rush at all — take your time"*
+- B) *"Could you check with them in the next 2 days whether they're open to a chat? I'll follow up with you Saturday to see where we are"* ✓
+- C) *"No rush at all, take your time"*
 - D) *"I'll wait to hear from you"*
 
-**Why:** Vague timelines (A, C, D) produce soft commitments that evaporate. The FACT close specifies the next action ("check in with them"), the window (2 days), and owns the follow-up (I'll text Saturday). Three anchor moves in one sentence. Without them, the referral is an intention; with them, it's a structured process that either converts or surfaces the *no* quickly.
+**Why:** Vague timelines (A, C, D) produce soft promises that fade. The FACT close names the next step (check with them), the window (2 days) and who follows up (you, on Saturday). With it, the referral becomes a process that either gets you a meeting or a quick no. It also means the friend agrees before you ever get in touch.
 
 ---
 
-## Scripts Library
+## Scripts library
 
-Here are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them yours.
+These are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them your own.
 
-### Referral Request - Young Adults
-**Use this when** the FACT close lands and you need the verbatim ask. Specifically tuned for young-adult clients.
+### Referral request for young adults
+Use this with young-adult clients when the FACT close lands and you want the word-for-word ask.
 
 [[referral-request-young-adults|Referral Request — Young Adults]]
 
-### AIA Claims Milestone & Referral Request
-**Use this when** a claim has just been paid out - this is the highest-trust moment to ask, and the conversion rate is multiples of any other ask.
+### AIA claims milestone and referral request
+Use this when a claim has just been paid out. It's one of the moments when a client trusts you most.
 
 [[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
 
-### Namecard Referral Text
-**Use this when** the client offers to introduce someone and asks "what should I send?" - hand them this exact text.
+### Namecard referral text
+Use this when the client offers to introduce someone and asks what to send. Give them this text.
 
 [[namecard-referral-text|Namecard Referral Text]]
 
-### Consultant Text to Referee (Referral)
-**Use this when** the intro just happened and you're sending the first message to the referred prospect within the 24-hour borrowed-trust window.
+### Your first text to the referred friend
+Use this when the intro has just happened, the friend has said they're happy to hear from you, and you're sending your first message while it's fresh.
 
 [[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
 
-### Post-Meeting - Client Resources & Referral
-**Use this when** the meeting is wrapping up and you want a soft, value-bundled referral seed to land while the goodwill is fresh.
+### Post-meeting client resources and referral
+Use this when the meeting is wrapping up and you want a gentle referral seed, paired with something useful, while the goodwill is fresh.
 
 [[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
 
