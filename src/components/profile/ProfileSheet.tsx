@@ -207,7 +207,7 @@ export function ProfileSheet({ open, onOpenChange }: ProfileSheetProps) {
       supabase.from('roleplay_feedback').select('overall_score, session_id').order('overall_score', { ascending: false }).limit(1),
       supabase.from('learning_track_items').select('id', { count: 'exact', head: true }),
       supabase.from('learning_track_progress').select('id', { count: 'exact', head: true })
-        .eq('user_id', profile?.id ?? '')
+        .eq('user_id', user.id)
         .eq('status', 'completed'),
       // Video completion: how many videos has this user completed?
       supabase.from('video_progress').select('id', { count: 'exact', head: true })
