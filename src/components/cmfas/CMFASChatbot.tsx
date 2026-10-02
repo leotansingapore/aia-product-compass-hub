@@ -79,6 +79,8 @@ Feel free to ask me anything or use one of the quick starters above to get going
       });
 
       if (error) throw error;
+      // An empty reply used to crash the whole page; show the retry toast instead.
+      if (typeof data?.message !== "string" || !data.message) throw new Error("Empty tutor reply");
 
       const assistantMessage: SharedChatMessage = {
         id: `assistant-${Date.now()}`,
