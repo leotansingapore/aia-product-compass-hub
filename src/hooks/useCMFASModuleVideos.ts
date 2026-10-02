@@ -39,10 +39,9 @@ export function useCMFASModuleVideos(moduleId: string): UseCMFASModuleVideosResu
           .from('products')
           .select('training_videos')
           .eq('id', productId)
-          .single();
+          .maybeSingle(); // no row is normal: the module then uses its static videos
 
-        if (dbError && dbError.code !== 'PGRST116') {
-          // PGRST116 = not found, which is OK (will use fallback)
+        if (dbError) {
           console.error('Error loading CMFAS module videos from database:', dbError);
         }
 
