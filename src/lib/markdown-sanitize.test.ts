@@ -85,6 +85,17 @@ describe("markdownSanitizeSchema", () => {
     expect(html).toMatch(/<iframe[^>]*src="https:\/\/www\.loom\.com\/embed\/abc123"/);
   });
 
+  it("keeps crossorigin, playsinline and srclang on recap videos so captions load", async () => {
+    const html = await renderToSafeHtml(
+      '<video src="https://example.supabase.co/functions/v1/recap-video-proxy?key=week-1" controls playsinline crossorigin="anonymous">\n' +
+        '<track kind="subtitles" srclang="en" label="English" default src="https://example.supabase.co/functions/v1/recap-video-proxy?key=week-1.vtt" />\n' +
+        "</video>",
+    );
+    expect(html).toContain('crossorigin="anonymous"');
+    expect(html).toContain("playsinline");
+    expect(html).toContain('srclang="en"');
+  });
+
   it("preserves normal markdown link", async () => {
     const html = await renderToSafeHtml("[Click me](https://example.com)");
     expect(html).toMatch(/<a[^>]*href="https:\/\/example\.com"/);

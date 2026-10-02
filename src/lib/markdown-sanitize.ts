@@ -73,12 +73,15 @@ export const markdownSanitizeSchema: Schema = {
       'rel',
     ],
     mark: ['className', 'class'],
+    // rehype-sanitize matches hast property names (camelCase), not HTML
+    // attribute spellings; 'crossorigin' here silently stripped the attribute
+    // and the recap videos lost their captions.
     video: [
       'src',
       'controls',
-      'playsinline',
+      'playsInline',
       'preload',
-      'crossorigin',
+      'crossOrigin',
       'poster',
       'muted',
       'loop',
@@ -87,8 +90,8 @@ export const markdownSanitizeSchema: Schema = {
       'height',
       'style',
     ],
-    source: ['src', 'type', 'media', 'srcset', 'sizes'],
-    track: ['kind', 'src', 'srclang', 'label', 'default'],
+    source: ['src', 'type', 'media', 'srcSet', 'sizes'],
+    track: ['kind', 'src', 'srcLang', 'label', 'default'],
   },
   tagNames: [
     ...(defaultSchema.tagNames || []),
