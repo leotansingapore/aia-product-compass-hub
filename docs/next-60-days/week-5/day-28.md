@@ -165,6 +165,35 @@ Events are plan B, for when direct asks keep not working with a particular clien
 2. Deliver both live before Sunday, at your next Fact-Find and your next close. Log each toward this week's 10 asks.
 3. Save the client text template on your phone.
 
+## Scripts library
+
+These are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them your own.
+
+### Referral request for young adults
+Use this with young-adult clients when the FACT close lands and you want the word-for-word ask.
+
+[Referral Request - Young Adults](/scripts/11f6fadf-3c59-4e32-8eb9-953ea94db8d5)
+
+### AIA claims milestone and referral request
+Use this when a claim has just been paid out. It's one of the moments when a client trusts you most.
+
+[AIA Claims Milestone & Referral Request](/scripts/ec6a6c21-5021-4c3e-884e-1a16625e927d)
+
+### Namecard referral text
+Use this when the client offers to introduce someone and asks what to send. Give them this text.
+
+[Namecard Referral Text](/scripts/b928a7da-bb07-49dc-a192-a7490db595f2)
+
+### Your first text to the referred friend
+Use this when the intro has just happened, the friend has said they're happy to hear from you, and you're sending your first message while it's fresh.
+
+[Consultant Text to Referee (Referral)](/scripts/078a1e61-fa89-4caf-9a88-a0ab093c4d4e)
+
+### Post-meeting client resources and referral
+Use this when the meeting is wrapping up and you want a gentle referral seed, paired with something useful, while the goodwill is fresh.
+
+[Post-Meeting - Client Resources & Referral](/scripts/03d5f2f6-d71e-423f-8772-97d6ad149d66)
+
 ## Sources
 
 - [The 7 principles of persuasion - Influence at Work (Robert Cialdini)](https://www.influenceatwork.com/7-principles-of-persuasion/) - reciprocity and social proof, two of the reasons the 10-Name script works
@@ -230,35 +259,6 @@ Events are plan B, for when direct asks keep not working with a particular clien
 - D) *"I'll wait to hear from you"*
 
 **Why:** Vague timelines (A, C, D) produce soft promises that fade. The FACT close names the next step (check with them), the window (2 days) and who follows up (you, on Saturday). With it, the referral becomes a process that either gets you a meeting or a quick no. It also means the friend agrees before you ever get in touch.
-
-## Scripts library
-
-These are the canonical referral-ask and post-meeting scripts. Practise them out loud, then make them your own.
-
-### Referral request for young adults
-Use this with young-adult clients when the FACT close lands and you want the word-for-word ask.
-
-[[referral-request-young-adults|Referral Request — Young Adults]]
-
-### AIA claims milestone and referral request
-Use this when a claim has just been paid out. It's one of the moments when a client trusts you most.
-
-[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
-
-### Namecard referral text
-Use this when the client offers to introduce someone and asks what to send. Give them this text.
-
-[[namecard-referral-text|Namecard Referral Text]]
-
-### Your first text to the referred friend
-Use this when the intro has just happened, the friend has said they're happy to hear from you, and you're sending your first message while it's fresh.
-
-[[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
-
-### Post-meeting client resources and referral
-Use this when the meeting is wrapping up and you want a gentle referral seed, paired with something useful, while the goodwill is fresh.
-
-[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
 
 ## Related
 

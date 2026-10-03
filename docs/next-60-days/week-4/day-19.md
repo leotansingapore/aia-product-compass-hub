@@ -197,6 +197,41 @@ Late on Wednesday night, when the sixth no of the day lands, that line keeps the
 3. Put both sticky-note lines by your phone.
 4. Block your calling time and run your first 20-dial block. Count the no's as well as the bookings.
 
+## 2-liner hook (warm prospecting flow)
+
+For the Warm and Semi-Warm rings, the 2-liner hook is the lightest opener you have. It's two lines by text or DM. Line 1 says what you've been helping friends or clients with and asks if you can help them too. Line 2 offers a useful resource for their situation. If they say yes, send the resource, wait one to two weeks, then follow up and ask whether they managed to sort out the problem. That follow-up is where the appointment comes from.
+
+Use this when you've sorted your list into the 4 rings and want to start on Warm and Semi-Warm contacts without the first message feeling like a sales call.
+
+## Scripts library
+
+These are the canonical mindset and tip scripts behind a prospecting habit that lasts. Practise them out loud, then make them yours.
+
+### Warm market: outreach flow (step by step)
+Use this when you want a no-pressure way to plant the seed for a later yes. It works for any of the 4 rings, especially Semi-Warm.
+
+[Warm Market - Outreach Flow (Step-by-Step)](/scripts/d9447bfd-3ee9-4069-8c3d-ff98458b60c2)
+
+### Warm market outreach: tips and mindset
+Use this when the awkwardness creeps in before a warm-market call or text. Read this, then dial.
+
+[Warm Market Outreach - Tips & Mindset](/scripts/594ff804-146c-49ae-aa9a-03136650e856)
+
+### Warm market: what not to do
+Use this when you're tempted to open with the product ("we have an ILP that can help you"), which is the fastest way to put someone's guard up.
+
+[Warm Market - What NOT to Do](/scripts/8cb237a1-d719-4f59-88b3-5ebca081c034)
+
+### General calling tips and tonality
+Use this when you're about to start a calling block. Smile, slow down by 10-15%, and open warmly.
+
+[General Calling Tips & Tonality](/scripts/3d04fd88-cfea-4bb5-8bb6-406098d99d40)
+
+### FYC formula: calling rate and activity math
+Use this when the math feels abstract. It turns every dial into expected FYC.
+
+FYC Formula - Calling Rate & Activity Math
+
 ## Sources
 
 - [Dormant ties: the value of reconnecting - Levin, Walter and Murnighan, Organization Science (2011)](https://business.gwu.edu/sites/g/files/zaxdzs5326/files/15_FP.SP_Walter.J_15levin_2011a.pdf) - reconnected old contacts gave advice as useful as current contacts, the basis for working the Semi-Warm ring
@@ -259,43 +294,6 @@ Late on Wednesday night, when the sixth no of the day lands, that line keeps the
 - D) The math can't be known
 
 **Why:** Expecting 25-30% conversion is the fantasy that makes people quit after three rejections. The working assumption is about 1 in 20, a booking every 20 or so dials, so the 19 no's are the normal cost of the one yes. 5-7 bookings a week then means 100-140 dials, or 20-28 a day. The sticky note gets you past the third rejection, where most Week 4 routines die.
-
-## 2-liner hook (warm prospecting flow)
-
-For the Warm and Semi-Warm rings, the 2-liner hook is the lightest opener you have. It's two lines by text or DM. Line 1 says what you've been helping friends or clients with and asks if you can help them too. Line 2 offers a useful resource for their situation. If they say yes, send the resource, wait one to two weeks, then follow up and ask whether they managed to sort out the problem. That follow-up is where the appointment comes from.
-
-**Use this when** you've sorted your list into the 4 rings and want to start on Warm and Semi-Warm contacts without the first message feeling like a sales call.
-
-Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
-
-## Scripts library
-
-These are the canonical mindset and tip scripts behind a prospecting habit that lasts. Practise them out loud, then make them yours.
-
-### Warm market: outreach flow (step by step)
-**Use this when** you want a no-pressure way to plant the seed for a later yes. It works for any of the 4 rings, especially Semi-Warm.
-
-[[warm-market-outreach-flow-step-by-step|Warm Market — Outreach Flow (Step-by-Step)]]
-
-### Warm market outreach: tips and mindset
-**Use this when** the awkwardness creeps in before a warm-market call or text. Read this, then dial.
-
-[[warm-market-outreach-tips-and-mindset|Warm Market Outreach — Tips & Mindset]]
-
-### Warm market: what not to do
-**Use this when** you're tempted to open with the product ("we have an ILP that can help you"), which is the fastest way to put someone's guard up.
-
-[[warm-market-what-not-to-do|Warm Market — What NOT to Do]]
-
-### General calling tips and tonality
-**Use this when** you're about to start a calling block. Smile, slow down by 10-15%, and open warmly.
-
-[[general-calling-tips-and-tonality|General Calling Tips & Tonality]]
-
-### FYC formula: calling rate and activity math
-**Use this when** the math feels abstract. It turns every dial into expected FYC.
-
-[[fyc-formula-calling-rate-and-activity-math|FYC Formula — Calling Rate & Activity Math]]
 
 ## Related
 

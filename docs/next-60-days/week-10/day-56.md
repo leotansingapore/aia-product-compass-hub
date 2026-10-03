@@ -160,6 +160,40 @@ Build your one-page onboarding checklist now. Right after your first close there
 
 Then write your Day-7 message and your Day-30 agenda.
 
+## Scripts library
+
+These are the onboarding, post-meeting and second-meeting scripts that help a fresh close turn into referrals. Practise them out loud, then adjust them to your own voice.
+
+### Post-meeting: client resources and referral
+Use this when you send the Day-7 thank-you and resources message. It pairs something useful with a soft referral seed.
+
+[Post-Meeting - Client Resources & Referral](/scripts/03d5f2f6-d71e-423f-8772-97d6ad149d66)
+
+### Post-Zoom follow-up: young adults after a consultation
+Use this when a consultation has just ended on Zoom and you want the follow-up message to land warmly.
+
+[Post-Zoom Follow-Up - Young Adults After Consultation](/scripts/4cb8dd9a-cd29-4ad7-8c58-081daaa23ad4)
+
+### Reminder: second meeting (all versions)
+Use this when the Day-30 or Day-90 review is in the calendar and you want it to actually happen. There are versions for different levels of closeness.
+
+[Reminder - 2nd Meeting (All Versions)](/scripts/d3dec7e2-b9a8-4e78-8ae2-1f3d39085257)
+
+### Setting catch-up calls
+Use this when the Day-90 review is done and you've moved to the regular catch-up rhythm (quarterly, twice a year or yearly).
+
+[Setting Catch Up Calls Script](/scripts/53a4c34c-b309-4be1-8a69-4f96078da65f)
+
+### Policy in force text
+Use this when the policy has just started: the "your cover is now in place" message.
+
+[Policy Inforce / Incepted Text](/scripts/03ee03fe-5c15-4755-8487-060a8bd9c6d1)
+
+### AIA claims milestone and referral request
+Use this when a claim for this client has been paid. It's the moment of highest trust in the whole relationship, so keep any referral ask gentle.
+
+[AIA Claims Milestone & Referral Request](/scripts/ec6a6c21-5021-4c3e-884e-1a16625e927d)
+
 ## Sources
 
 - [Tips on insurance products - Life Insurance Association Singapore](https://www.lia.org.sg/consumers/choosing-right/tips-on-insurance-products/) - the 14-day free-look period, counted from receipt of the policy document
@@ -224,40 +258,6 @@ Then write your Day-7 message and your Day-30 agenda.
 - D) It's required by MAS
 
 **Why:** "I sell insurance, I don't recommend contractors" misses what clients value. A client who came to you for insurance and also got a good doctor, a reliable contractor or a solid mortgage broker has more reasons to stay in touch, and thinks of you first when a friend needs help. Add about one new professional contact a quarter, and never take payment for an introduction.
-
-## Scripts library
-
-These are the onboarding, post-meeting and second-meeting scripts that help a fresh close turn into referrals. Practise them out loud, then adjust them to your own voice.
-
-### Post-meeting: client resources and referral
-**Use this when** you send the Day-7 thank-you and resources message. It pairs something useful with a soft referral seed.
-
-[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
-
-### Post-Zoom follow-up: young adults after a consultation
-**Use this when** a consultation has just ended on Zoom and you want the follow-up message to land warmly.
-
-[[post-zoom-follow-up-young-adults-after-consultation|Post-Zoom Follow-Up — Young Adults After Consultation]]
-
-### Reminder: second meeting (all versions)
-**Use this when** the Day-30 or Day-90 review is in the calendar and you want it to actually happen. There are versions for different levels of closeness.
-
-[[reminder-2nd-meeting-all-versions|Reminder — 2nd Meeting (All Versions)]]
-
-### Setting catch-up calls
-**Use this when** the Day-90 review is done and you've moved to the regular catch-up rhythm (quarterly, twice a year or yearly).
-
-[[setting-catch-up-calls-script|Setting Catch Up Calls Script]]
-
-### Policy in force text
-**Use this when** the policy has just started: the "your cover is now in place" message.
-
-[[policy-inforce-incepted-text|Policy Inforce / Incepted Text]]
-
-### AIA claims milestone and referral request
-**Use this when** a claim for this client has been paid. It's the moment of highest trust in the whole relationship, so keep any referral ask gentle.
-
-[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
 
 ## Related
 

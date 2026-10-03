@@ -152,6 +152,40 @@ If you're well below them, the likely cause is generic Care, a Reason that doesn
 3. Send it as short bubbles. A CRAB follow-up on a blue tick counts toward this week's 5 DM conversations.
 4. Log whether they replied within 48 hours and whether they booked.
 
+## Scripts library
+
+Below are the canonical scripts for blue ticks, ghosting and follow-up nudges. Practise them out loud, then make them your own.
+
+### Warm market: handling ghosting and non-replies
+
+Use this when a warm contact has gone quiet after agreeing to meet, or hasn't answered your follow-up. It has three angles: a playful bump, taking the ball back, and a gentle re-engage.
+
+[Warm Market - Handling Ghosting & Non-Replies](/scripts/608a6054-8d8e-4262-9838-5a88bd5d068e)
+
+### No-reply nudge (day 1, day 3, day 7)
+
+Use this when a digital lead has gone cold after their first reply. Send three spaced nudges, then move them to nurture.
+
+[No-Reply Nudge - Young Adults (Day 1 / Day 3 / Day 7)](/scripts/bdeb4745-292a-48ae-8c4f-5a5e2f470cc5)
+
+### Reminder follow-up (gentle, persistent, final)
+
+Use this when an appointment is booked but the prospect has gone quiet 24 to 48 hours before it. It gives you a gentle, a persistent and a final version.
+
+[Reminder Follow-Up - Young Adults (Gentle / Persistent / Final)](/scripts/1b215279-dbc5-43c6-90c0-3287d95b168b)
+
+### Follow-up nudge (all angles)
+
+Use this when none of the above has worked and you want a different angle: a resource drop, a life-event check-in or a casual catch-up.
+
+[Follow-Up Nudge - Young Adults (All Angles)](/scripts/7695d605-017b-40d3-828e-691710927dc1)
+
+### Texting EQ: 4-step objection handling framework
+
+Use this when the blue tick finally replies with an objection. The steps are acknowledge casually, common ground, different perspective and safety valve.
+
+[Texting EQ - 4-Step Objection Handling Framework](/scripts/af86c2b2-72ac-4c55-857a-87541d91ff36)
+
 ## Sources
 
 - [How to check read receipts - WhatsApp Help Center](https://faq.whatsapp.com/665923838265756/?cms_platform=web) - two blue check marks mean the recipient has read your message, which tells you nothing about whether they meant to answer
@@ -214,40 +248,6 @@ If you're well below them, the likely cause is generic Care, a Reason that doesn
 - D) Response rate doesn't matter; only booking does
 
 **Why:** These are working targets from our mentors and not research figures. A 40 to 60% response rate allows for the fact that people are busy and CRAB won't revive every silence. Below 40% usually means generic Care or slots that are all too tight, so work out which and try again. The booking rate from replies runs higher because someone who replies has already decided to re-engage, and the slots just have to suit them.
-
-## Scripts library
-
-Below are the canonical scripts for blue ticks, ghosting and follow-up nudges. Practise them out loud, then make them your own.
-
-### Warm market: handling ghosting and non-replies
-
-Use this when a warm contact has gone quiet after agreeing to meet, or hasn't answered your follow-up. It has three angles: a playful bump, taking the ball back, and a gentle re-engage.
-
-[[warm-market-handling-ghosting-and-non-replies|Warm Market — Handling Ghosting & Non-Replies]]
-
-### No-reply nudge (day 1, day 3, day 7)
-
-Use this when a digital lead has gone cold after their first reply. Send three spaced nudges, then move them to nurture.
-
-[[no-reply-nudge-young-adults-day-1-day-3-day-7|No-Reply Nudge — Young Adults (Day 1 / Day 3 / Day 7)]]
-
-### Reminder follow-up (gentle, persistent, final)
-
-Use this when an appointment is booked but the prospect has gone quiet 24 to 48 hours before it. It gives you a gentle, a persistent and a final version.
-
-[[reminder-follow-up-young-adults-gentle-persistent-final|Reminder Follow-Up — Young Adults (Gentle / Persistent / Final)]]
-
-### Follow-up nudge (all angles)
-
-Use this when none of the above has worked and you want a different angle: a resource drop, a life-event check-in or a casual catch-up.
-
-[[follow-up-nudge-young-adults-all-angles|Follow-Up Nudge — Young Adults (All Angles)]]
-
-### Texting EQ: 4-step objection handling framework
-
-Use this when the blue tick finally replies with an objection. The steps are acknowledge casually, common ground, different perspective and safety valve.
-
-[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
 
 ## Related
 

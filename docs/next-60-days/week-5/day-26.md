@@ -133,6 +133,40 @@ It's a template for them to adapt. Even clients who don't use it will remember t
 2. For each Fact-Find or close so far, write the specific thing you helped with, as the client might say it to a friend. Use those lines in this week's asks.
 3. Plan one small, personal act for a client this week, within your firm's gift policy.
 
+## Scripts library
+
+These are the canonical scripts for the ask, the post-meeting referral text and the post-claim moment. Practise them out loud, then make them your own.
+
+### Referral request for young adults
+Use this when you've just helped a young-adult client (after a financial review, a new policy or an investment review). The script names the age group and asks for specific names.
+
+[Referral Request - Young Adults](/scripts/11f6fadf-3c59-4e32-8eb9-953ea94db8d5)
+
+### AIA claims milestone and referral request
+Use this when a claim has just been paid to a client. It's one of the moments when a client trusts you most.
+
+[AIA Claims Milestone & Referral Request](/scripts/ec6a6c21-5021-4c3e-884e-1a16625e927d)
+
+### Post-meeting client resources and referral
+Use this when a meeting has just ended and the client is still in a thankful mood. It pairs something useful with a gentle referral seed.
+
+[Post-Meeting - Client Resources & Referral](/scripts/03d5f2f6-d71e-423f-8772-97d6ad149d66)
+
+### Namecard referral text
+Use this when the client offers to introduce you and asks what they should send. Give them this text to forward.
+
+[Namecard Referral Text](/scripts/b928a7da-bb07-49dc-a192-a7490db595f2)
+
+### Referral text from a lead to friends (community sign-up)
+Use this when a lead has joined a community group and you'd like them to invite friends.
+
+[Referral Text - Lead to Friends (Skool Community Sign-Up)](/scripts/01b5e7b4-2b85-4d2a-9894-eea916de62a2)
+
+### Your first text to the referred friend
+Use this when the client has just made the intro and you're sending your first message to the referred friend while the introduction is fresh.
+
+[Consultant Text to Referee (Referral)](/scripts/078a1e61-fa89-4caf-9a88-a0ab093c4d4e)
+
 ## Sources
 
 - [The 7 principles of persuasion - Influence at Work (Robert Cialdini)](https://www.influenceatwork.com/7-principles-of-persuasion/) - reciprocity (people give back after receiving first) and liking, two of the feelings behind a referral
@@ -195,40 +229,6 @@ It's a template for them to adapt. Even clients who don't use it will remember t
 - D) *"Let them know I charge less than other FCs"*
 
 **Why:** A specific recommendation names an outcome the friend can picture needing. *"The adviser who sorted out my old policies"* sticks, and *"my FC"* doesn't. Giving the client a template to adapt, without writing their words for them, makes their recommendation land better without feeling pushy. A and D are also the unsupported "best" and "cheaper than" claims you should never put in a client's mouth.
-
-## Scripts library
-
-These are the canonical scripts for the ask, the post-meeting referral text and the post-claim moment. Practise them out loud, then make them your own.
-
-### Referral request for young adults
-Use this when you've just helped a young-adult client (after a financial review, a new policy or an investment review). The script names the age group and asks for specific names.
-
-[[referral-request-young-adults|Referral Request — Young Adults]]
-
-### AIA claims milestone and referral request
-Use this when a claim has just been paid to a client. It's one of the moments when a client trusts you most.
-
-[[aia-claims-milestone-and-referral-request|AIA Claims Milestone & Referral Request]]
-
-### Post-meeting client resources and referral
-Use this when a meeting has just ended and the client is still in a thankful mood. It pairs something useful with a gentle referral seed.
-
-[[post-meeting-client-resources-and-referral|Post-Meeting — Client Resources & Referral]]
-
-### Namecard referral text
-Use this when the client offers to introduce you and asks what they should send. Give them this text to forward.
-
-[[namecard-referral-text|Namecard Referral Text]]
-
-### Referral text from a lead to friends (community sign-up)
-Use this when a lead has joined a community group and you'd like them to invite friends.
-
-[[referral-text-lead-to-friends-skool-community-sign-up|Referral Text — Lead to Friends (Skool Community Sign-Up)]]
-
-### Your first text to the referred friend
-Use this when the client has just made the intro and you're sending your first message to the referred friend while the introduction is fresh.
-
-[[consultant-text-to-referee-referral|Consultant Text to Referee (Referral)]]
 
 ## Related
 

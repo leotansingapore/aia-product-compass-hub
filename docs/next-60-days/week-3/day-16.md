@@ -138,6 +138,46 @@ Never open cold with "How are you?". It sounds deliberate and makes people suspi
 3. Pick one value drop to send in place of a second "can we meet?".
 4. Send the first openers today. Each real back-and-forth counts toward this week's 5 DM conversations.
 
+## 2-liner hook (warm prospecting flow)
+
+A low-pressure opener by text that uses a useful resource to lead to an appointment. In two lines you say what you've been helping friends or clients with and offer them a guide on it. If they say yes, send the resource, wait 1 to 2 weeks, then follow up to ask whether they managed to sort out the problem. That follow-up gets you the appointment without a pitch.
+
+Use this when you've already applied the texting rules and the contact would respond better to a resource than to a meeting ask.
+
+## Scripts library
+
+These are the canonical scripts for this situation. Practise them out loud, then make them your own.
+
+### Texting EQ: the 11 rules for warm outreach
+
+Use this before you send any DM or warm-market text, as a last check. Rules 1, 2 and 3 apply to every text.
+
+[Texting EQ - The 11 Rules for Warm Outreach](/scripts/ca6c6550-3c7f-4ab4-9108-e071c6a6dc2f)
+
+### Texting EQ: 4-step objection handling framework
+
+Use this when an objection lands in your DM (not interested, I have an advisor, not looking right now). The steps are acknowledge, common ground, different perspective and safety valve.
+
+[Texting EQ - 4-Step Objection Handling Framework](/scripts/af86c2b2-72ac-4c55-857a-87541d91ff36)
+
+### Warm market: conversation openers by life stage
+
+Use this when you have a specific life moment to anchor the message, like a BTO, a graduation, a wedding or starting to invest, and pick the opener that fits that moment.
+
+[Warm Market - Conversation Openers (by Life Stage)](/scripts/3d5ec754-df6d-4369-abe1-5e7d2ad0d96f)
+
+### Warm outreach: soft approach (community or social circle)
+
+Use this when the contact is from a shared community like church, a uni group or a hobby. Open with a question and hold the pitch.
+
+[Warm Outreach - Soft Approach (Warm Market / Community Contacts)](/scripts/9d86a8c5-56c1-4cfb-ad88-52c6b70ced07)
+
+### Warm outreach: curiosity approach (DIY investors or existing FA)
+
+Use this when the contact knows their finances or already has an FA. Offer a one-time second opinion and make clear you're not trying to replace anyone.
+
+[Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)](/scripts/8bb51a28-65cc-432f-9f0c-ffec06a3e7e1)
+
 ## Sources
 
 - [Harnessing the science of persuasion - Robert B. Cialdini, Harvard Business Review (October 2001)](https://hbr.org/2001/10/harnessing-the-science-of-persuasion) - reciprocity: people feel obliged to return a favour, the basis for value-first follow-ups
@@ -200,48 +240,6 @@ Never open cold with "How are you?". It sounds deliberate and makes people suspi
 - D) A calendar booking link
 
 **Why:** A value drop has to be quick to take in, something the prospect can look at in 2 minutes without committing to anything. A video, carousel or case study fits. A calendar link is another ask dressed up as value, and a long voice message is a monologue. Ask yourself whether they'd get something from it even if they never meet you. If yes, it's a real value drop.
-
-## 2-liner hook (warm prospecting flow)
-
-A low-pressure opener by text that uses a useful resource to lead to an appointment. In two lines you say what you've been helping friends or clients with and offer them a guide on it. If they say yes, send the resource, wait 1 to 2 weeks, then follow up to ask whether they managed to sort out the problem. That follow-up gets you the appointment without a pitch.
-
-Use this when you've already applied the texting rules and the contact would respond better to a resource than to a meeting ask.
-
-Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
-
-## Scripts library
-
-These are the canonical scripts for this situation. Practise them out loud, then make them your own.
-
-### Texting EQ: the 11 rules for warm outreach
-
-Use this before you send any DM or warm-market text, as a last check. Rules 1, 2 and 3 apply to every text.
-
-[[texting-eq-the-11-rules-for-warm-outreach|Texting EQ — The 11 Rules for Warm Outreach]]
-
-### Texting EQ: 4-step objection handling framework
-
-Use this when an objection lands in your DM (not interested, I have an advisor, not looking right now). The steps are acknowledge, common ground, different perspective and safety valve.
-
-[[texting-eq-4-step-objection-handling-framework|Texting EQ — 4-Step Objection Handling Framework]]
-
-### Warm market: conversation openers by life stage
-
-Use this when you have a specific life moment to anchor the message, like a BTO, a graduation, a wedding or starting to invest, and pick the opener that fits that moment.
-
-[[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
-
-### Warm outreach: soft approach (community or social circle)
-
-Use this when the contact is from a shared community like church, a uni group or a hobby. Open with a question and hold the pitch.
-
-[[warm-outreach-soft-approach-warm-market-community-contacts|Warm Outreach - Soft Approach (Warm Market / Community Contacts)]]
-
-### Warm outreach: curiosity approach (DIY investors or existing FA)
-
-Use this when the contact knows their finances or already has an FA. Offer a one-time second opinion and make clear you're not trying to replace anyone.
-
-[[warm-outreach-curiosity-approach-diy-investors-existing-fa-contacts|Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)]]
 
 ## Related
 

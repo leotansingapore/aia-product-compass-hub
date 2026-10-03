@@ -197,6 +197,40 @@ Run the check the day you receive a new list. Results are only valid for 21 days
 3. Practise the ABCD Four Promises until you can deliver all four, in order, at your next Fact-Find.
 4. Run any cold list through the DNC Registry before you use it.
 
+## Scripts library
+
+These are the canonical cold-market and ABCD scripts. Practise them out loud, then make them yours.
+
+### The ABCD Four Promises (before starting the FHR)
+Use this when you've moved a cold lead into a Fact-Find and need to set the tone in 30 seconds with Assurance, Best Interest, Confidentiality and Full Disclosure.
+
+[The ABCD Four Promises (Before Starting FHR)](/scripts/f7947680-5850-4d82-8b17-494e4dfc8346)
+
+### Cold calling: working adults (all angles)
+Use this when the cold contact is a working professional. It covers several angles in one script: voucher, eBook, qualified lead and callback.
+
+[Cold Calling - Working Adults (All Angles)](/scripts/b782b7bf-48ec-49d8-9652-87e7b3c9476b)
+
+### Cold calling: recruitment (all lead sources)
+Use this when the cold lead came in through a recruitment angle. There are 8 versions for different lead sources.
+
+[Cold Calling - Recruitment (All Lead Sources)](/scripts/be14ec69-5b21-46b0-b031-f9f2c676fba0)
+
+### Initial text: Facebook qualified lead (young adults, non-voucher)
+Use this when a cold lead has DM'd you or replied to a content piece and shown real interest. It qualifies them without sounding like a quiz.
+
+[Initial Text - Facebook Qualified Lead (Young Adults, Non-Voucher)](/scripts/6c299eb0-da74-4712-bbec-8a2ba38114f3)
+
+### Phrasing tips: what to avoid and what to say instead
+Use this when you're writing your own cold-market opener. The list of phrases that kill a conversation, and what to say instead, will save you a lot of dead openers.
+
+[Phrasing Tips - What to Avoid & What to Say Instead](/scripts/c9d6cd76-56f2-438f-9fdc-d3b09151b430)
+
+### General calling tips and tonality
+Use this when you're about to start a cold-call block. Smile, slow down by 10-15%, and open warmly.
+
+[General Calling Tips & Tonality](/scripts/3d04fd88-cfea-4bb5-8bb6-406098d99d40)
+
 ## Sources
 
 - [Advisory Guidelines on the Do Not Call Provisions - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - the three DNC registers, the 21-day validity of check results, and coverage of apps like WhatsApp
@@ -260,40 +294,6 @@ Run the check the day you receive a new list. Results are only valid for 21 days
 - D) 0, cold is never useful
 
 **Why:** For a new FC, cold converts far less often than warm, and warm contacts also lead to referrals. Making cold most of this week's volume swaps a high-converting channel for a low-converting one. Doing 0-5 cold outreaches lets you practise switching voices, which is the point of Day 22, without crowding out the warm-market work that pays.
-
-## Scripts library
-
-These are the canonical cold-market and ABCD scripts. Practise them out loud, then make them yours.
-
-### The ABCD Four Promises (before starting the FHR)
-**Use this when** you've moved a cold lead into a Fact-Find and need to set the tone in 30 seconds with Assurance, Best Interest, Confidentiality and Full Disclosure.
-
-[[the-abcd-four-promises-before-starting-fhr|The ABCD Four Promises (Before Starting FHR)]]
-
-### Cold calling: working adults (all angles)
-**Use this when** the cold contact is a working professional. It covers several angles in one script: voucher, eBook, qualified lead and callback.
-
-[[cold-calling-working-adults-all-angles|Cold Calling — Working Adults (All Angles)]]
-
-### Cold calling: recruitment (all lead sources)
-**Use this when** the cold lead came in through a recruitment angle. There are 8 versions for different lead sources.
-
-[[cold-calling-recruitment-all-lead-sources|Cold Calling — Recruitment (All Lead Sources)]]
-
-### Initial text: Facebook qualified lead (young adults, non-voucher)
-**Use this when** a cold lead has DM'd you or replied to a content piece and shown real interest. It qualifies them without sounding like a quiz.
-
-[[initial-text-facebook-qualified-lead-young-adults-non-voucher|Initial Text — Facebook Qualified Lead (Young Adults, Non-Voucher)]]
-
-### Phrasing tips: what to avoid and what to say instead
-**Use this when** you're writing your own cold-market opener. The list of phrases that kill a conversation, and what to say instead, will save you a lot of dead openers.
-
-[[phrasing-tips-what-to-avoid-and-what-to-say-instead|Phrasing Tips — What to Avoid & What to Say Instead]]
-
-### General calling tips and tonality
-**Use this when** you're about to start a cold-call block. Smile, slow down by 10-15%, and open warmly.
-
-[[general-calling-tips-and-tonality|General Calling Tips & Tonality]]
 
 ## Related
 

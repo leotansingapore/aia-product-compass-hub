@@ -149,6 +149,41 @@ You don't read the script off a page, because that kills rapport in the first 10
 1. Put the 4 questions on a sticky note by your phone, and run the script aloud with your mentor or into a voice memo until you stop stumbling.
 2. Call your Semi-Warm names with the survey and your Hot and Warm names with the Attraction Script. Fix the time and place on every yes before you hang up. Each call counts toward this week's 30 outreaches.
 
+## 2-liner hook (warm prospecting flow)
+
+The Market Survey is the phone-first warm opener. The 2-liner hook is its text-first cousin, for the contact who'd say no to a call but yes to something useful. Line 1 says what you've been helping friends with, and line 2 offers a guide for their situation. Send it, wait one to two weeks after they've had the resource, then ask whether they managed to sort out the problem. Both flows end in the same place: a 30-minute appointment built around their question rather than your product.
+
+Use this when the contact is semi-warm (you haven't spoken in six months or more) or replies to texts faster than they pick up calls, and you have a resource that clearly fits their situation.
+
+## Scripts library
+
+These are the canonical scripts for the Market Survey, plus the texting tools that get you a yes to the call. Practise them out loud, then make them yours.
+
+### Market Survey script (the canonical AIA full call)
+Use this when you're running the survey end to end: opening, agenda, 4 questions, the appointment ask in Q4, the binary close, and the 10-objection block at the end.
+
+[Market Survey Script](/scripts/787863f3-914a-4c71-9f07-76b83a9e0741)
+
+### The ABCD Four Promises (before starting the FHR)
+Use this when the survey turned into a meeting and you want to set the tone in the first 60 seconds with Assurance, Best Interest, Confidentiality and Full Disclosure.
+
+[The ABCD Four Promises (Before Starting FHR)](/scripts/f7947680-5850-4d82-8b17-494e4dfc8346)
+
+### Texting EQ: the 11 rules for warm outreach
+Use this when you have to set up the survey by text first because the contact never picks up. Rules 1, 2 and 3 are non-negotiable.
+
+[Texting EQ - The 11 Rules for Warm Outreach](/scripts/ca6c6550-3c7f-4ab4-9108-e071c6a6dc2f)
+
+### Warm market: outreach flow (step by step)
+Use this when you want a no-pressure 4-step sequence to set up a yes before you even run the survey. It works especially well for Semi-Warm contacts.
+
+[Warm Market - Outreach Flow (Step-by-Step)](/scripts/d9447bfd-3ee9-4069-8c3d-ff98458b60c2)
+
+### Warm market: conversation openers by life stage
+Use this when you have a specific life moment to anchor the survey ask on, such as a BTO, a graduation, a wedding or their first investment.
+
+[Warm Market - Conversation Openers (by Life Stage)](/scripts/3d5ec754-df6d-4369-abe1-5e7d2ad0d96f)
+
 ## Sources
 
 - [Advisory Guidelines on the Do Not Call Provisions - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - only messages sent in a personal or domestic capacity are excluded from the DNC rules, so business calls to friends are not automatically exempt
@@ -211,43 +246,6 @@ You don't read the script off a page, because that kills rapport in the first 10
 - D) Write it out by hand
 
 **Why:** Memorising is the words. Internalising is the purpose. Once you know why each beat is there, you can handle answers that go off script without losing the structure. A prospect might jump ahead at Q2 or object at Q3, and if you know what each question is for you recover naturally. If you've only memorised the words, any detour sinks the call.
-
-## 2-liner hook (warm prospecting flow)
-
-The Market Survey is the phone-first warm opener. The 2-liner hook is its text-first cousin, for the contact who'd say no to a call but yes to something useful. Line 1 says what you've been helping friends with, and line 2 offers a guide for their situation. Send it, wait one to two weeks after they've had the resource, then ask whether they managed to sort out the problem. Both flows end in the same place: a 30-minute appointment built around their question rather than your product.
-
-**Use this when** the contact is semi-warm (you haven't spoken in six months or more) or replies to texts faster than they pick up calls, and you have a resource that clearly fits their situation.
-
-Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
-
-## Scripts library
-
-These are the canonical scripts for the Market Survey, plus the texting tools that get you a yes to the call. Practise them out loud, then make them yours.
-
-### Market Survey script (the canonical AIA full call)
-**Use this when** you're running the survey end to end: opening, agenda, 4 questions, the appointment ask in Q4, the binary close, and the 10-objection block at the end.
-
-[[market-survey-script|Market Survey Script]]
-
-### The ABCD Four Promises (before starting the FHR)
-**Use this when** the survey turned into a meeting and you want to set the tone in the first 60 seconds with Assurance, Best Interest, Confidentiality and Full Disclosure.
-
-[[the-abcd-four-promises-before-starting-fhr|The ABCD Four Promises (Before Starting FHR)]]
-
-### Texting EQ: the 11 rules for warm outreach
-**Use this when** you have to set up the survey by text first because the contact never picks up. Rules 1, 2 and 3 are non-negotiable.
-
-[[texting-eq-the-11-rules-for-warm-outreach|Texting EQ — The 11 Rules for Warm Outreach]]
-
-### Warm market: outreach flow (step by step)
-**Use this when** you want a no-pressure 4-step sequence to set up a yes before you even run the survey. It works especially well for Semi-Warm contacts.
-
-[[warm-market-outreach-flow-step-by-step|Warm Market — Outreach Flow (Step-by-Step)]]
-
-### Warm market: conversation openers by life stage
-**Use this when** you have a specific life moment to anchor the survey ask on, such as a BTO, a graduation, a wedding or their first investment.
-
-[[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
 
 ## Related
 

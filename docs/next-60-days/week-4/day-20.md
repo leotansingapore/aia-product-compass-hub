@@ -175,6 +175,41 @@ Don't upload screenshots of group member lists into ChatGPT or other AI tools. T
 2. Write a 6-step honest message to each warm or semi-warm contact you've been avoiding, and send them as part of this week's 30 outreaches.
 3. Send a value drop to anyone who went quiet on an earlier message.
 
+## 2-liner hook (warm prospecting flow)
+
+The 6-step message is the long form. The 2-liner hook is the short form, with the same spirit (real connection, honest about why, easy out) squeezed into two lines that lead with a resource instead of a meeting ask. Line 1 says what you've been helping friends with. Line 2 offers a guide for their situation. When you follow up one to two weeks later, ask whether they managed to sort out the problem, and that's your opening for the appointment.
+
+Use this when you've practised the honest-outreach beats and want a lighter, resource-led version for contacts where even the 6-step message feels heavy.
+
+## Scripts library
+
+These are the canonical scripts for honest warm-market outreach. Practise them out loud, then make them yours.
+
+### Warm market: career transition notice
+Use this when the contact is from your old job or social circle and hasn't heard you've moved into financial advisory, and you want the longer "casual update plus soft offer" version.
+
+[Warm Market Outreach - Career Transition Notice](/scripts/4a47650f-f2c9-4ef1-8c32-664736c4995b)
+
+### Warm market: introduction text (new consultant)
+Use this when the contact knows you but doesn't know yet that you're an FC. It has three angles: direct, asking for help, and the policy summary.
+
+[Warm Market - Introduction Text (New Consultant)](/scripts/7d9f51bd-5b4e-4ce1-9a96-cf1d6e97a41a)
+
+### Warm market: conversation openers by life stage
+Use this when you have a specific life moment to anchor the message on, such as a BTO, a graduation, a wedding or their first investment.
+
+[Warm Market - Conversation Openers (by Life Stage)](/scripts/3d5ec754-df6d-4369-abe1-5e7d2ad0d96f)
+
+### Warm outreach: soft approach (community and social circle)
+Use this when the contact is from a shared community like church, a uni group or a hobby. Open with a question and keep the pitch out of it.
+
+[Warm Outreach - Soft Approach (Warm Market / Community Contacts)](/scripts/9d86a8c5-56c1-4cfb-ad88-52c6b70ced07)
+
+### Warm outreach: curiosity approach (DIY investors and people with an FA)
+Use this when the contact manages their own money or already has an FA. Offer yourself as a one-time second opinion, with no intention of replacing anyone.
+
+[Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)](/scripts/8bb51a28-65cc-432f-9f0c-ffec06a3e7e1)
+
 ## Sources
 
 - [Attitudinal effects of mere exposure - Robert Zajonc, Journal of Personality and Social Psychology (1968)](https://doi.org/10.1037/h0025848) - repeated exposure to something makes people feel more positive about it, the idea under the law of familiarity
@@ -239,43 +274,6 @@ Don't upload screenshots of group member lists into ChatGPT or other AI tools. T
 - D) Paraphrase is the easier one to learn
 
 **Why:** A paraphrase (*"so if I'm hearing you right..."*) confirms you heard. A clarifying question (*"when you said X, did you mean Y or Z?"*) probes the detail that might turn out to be a hot button. Both acknowledge, but they do different jobs. Switching between them stops you paraphrasing on a loop.
-
-## 2-liner hook (warm prospecting flow)
-
-The 6-step message is the long form. The 2-liner hook is the short form, with the same spirit (real connection, honest about why, easy out) squeezed into two lines that lead with a resource instead of a meeting ask. Line 1 says what you've been helping friends with. Line 2 offers a guide for their situation. When you follow up one to two weeks later, ask whether they managed to sort out the problem, and that's your opening for the appointment.
-
-**Use this when** you've practised the honest-outreach beats and want a lighter, resource-led version for contacts where even the 6-step message feels heavy.
-
-Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
-
-## Scripts library
-
-These are the canonical scripts for honest warm-market outreach. Practise them out loud, then make them yours.
-
-### Warm market: career transition notice
-**Use this when** the contact is from your old job or social circle and hasn't heard you've moved into financial advisory, and you want the longer "casual update plus soft offer" version.
-
-[[warm-market-outreach-career-transition-notice|Warm Market Outreach — Career Transition Notice]]
-
-### Warm market: introduction text (new consultant)
-**Use this when** the contact knows you but doesn't know yet that you're an FC. It has three angles: direct, asking for help, and the policy summary.
-
-[[warm-market-introduction-text-new-consultant|Warm Market — Introduction Text (New Consultant)]]
-
-### Warm market: conversation openers by life stage
-**Use this when** you have a specific life moment to anchor the message on, such as a BTO, a graduation, a wedding or their first investment.
-
-[[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
-
-### Warm outreach: soft approach (community and social circle)
-**Use this when** the contact is from a shared community like church, a uni group or a hobby. Open with a question and keep the pitch out of it.
-
-[[warm-outreach-soft-approach-warm-market-community-contacts|Warm Outreach - Soft Approach (Warm Market / Community Contacts)]]
-
-### Warm outreach: curiosity approach (DIY investors and people with an FA)
-**Use this when** the contact manages their own money or already has an FA. Offer yourself as a one-time second opinion, with no intention of replacing anyone.
-
-[[warm-outreach-curiosity-approach-diy-investors-existing-fa-contacts|Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)]]
 
 ## Related
 
