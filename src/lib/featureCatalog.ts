@@ -51,6 +51,7 @@ export const FEATURE_CATALOG: FeatureDef[] = [
   { key: 'lt_pre_rnf_worksheets', label: 'Track: pre-RNF worksheets', area: 'Track', match: at(`${LT}/pre-rnf/worksheets`) },
   { key: 'lt_pre_rnf', label: 'Track: pre-RNF', area: 'Track', match: at(`${LT}/pre-rnf`) },
   { key: 'lt_post_rnf_assignments', label: 'Track: post-RNF assignments', area: 'Track', match: at(`${LT}/post-rnf/assignments`) },
+  { key: 'lt_post_rnf_aia_training', label: 'Track: AIA training directory', area: 'Track', match: at(`${LT}/post-rnf/aia-training`) },
   { key: 'lt_post_rnf', label: 'Track: post-RNF', area: 'Track', match: at(`${LT}/post-rnf`) },
   { key: 'lt_resources', label: 'Track: resources', area: 'Track', match: at(`${LT}/resources`) },
 

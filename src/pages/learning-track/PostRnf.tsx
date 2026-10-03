@@ -7,12 +7,17 @@ import { cn } from "@/lib/utils";
 // Next60DaysAssignments chunk into the same bundle, and vice versa.
 const Next60Days = lazy(() => import("./Next60Days"));
 const Next60DaysAssignments = lazy(() => import("./Next60DaysAssignments"));
+const AiaTrainingDirectory = lazy(() => import("./AiaTrainingDirectory"));
 
-type PostRnfView = "next60" | "assignments";
+type PostRnfView = "next60" | "assignments" | "aia-training";
 
 export default function PostRnfTrack() {
   const { pathname } = useLocation();
-  const view: PostRnfView = pathname.includes("/assignments") ? "assignments" : "next60";
+  const view: PostRnfView = pathname.includes("/assignments")
+    ? "assignments"
+    : pathname.includes("/aia-training")
+      ? "aia-training"
+      : "next60";
 
   const tabClass = (isActive: boolean) =>
     cn(
@@ -76,6 +81,14 @@ export default function PostRnfTrack() {
           >
             Assignments
           </NavLink>
+          <NavLink
+            role="tab"
+            to="/learning-track/post-rnf/aia-training"
+            aria-selected={view === "aia-training"}
+            className={tabClass(view === "aia-training")}
+          >
+            AIA Training
+          </NavLink>
         </div>
       </div>
 
@@ -86,7 +99,7 @@ export default function PostRnfTrack() {
           </div>
         }
       >
-        {view === "next60" ? <Next60Days /> : <Next60DaysAssignments />}
+        {view === "next60" ? <Next60Days /> : view === "assignments" ? <Next60DaysAssignments /> : <AiaTrainingDirectory />}
       </Suspense>
     </div>
   );
