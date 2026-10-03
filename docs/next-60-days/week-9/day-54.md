@@ -17,59 +17,52 @@ tags: [next-60-days, week-9, new-fc, practice, objections, loom, recorded]
 
 # Day 54: Practice, 5 objection drills
 
-> The one idea for today: handling objections has to be a reflex you can use without thinking. Today's recordings show whether yours is there yet.
+> **Today in one line:** Handling objections has to be a reflex you can use without thinking. Today's recordings show whether yours is there yet.
 
-By the end of today you'll have:
+**What to remember**
 
-- recorded 5 separate 2-minute drills, each handling a different objection with a diagnosis, a response and a re-close
-- used the 3 magic questions, ART and Iceberg in live drills without stopping to work out which one to pick
-- submitted the 5 recordings, your objection log and a Loom reflection, which together open Week 10
-
----
+1. Record 5 two-minute drills on 5 different objections, including the one you handle worst.
+2. Each drill runs in two halves: minute 1 to diagnose, minute 2 to respond and re-close.
+3. Score each drill out of 25. Under 80 of 125 means you re-record your two weakest.
+4. Submit the recordings, your objection log and a Loom reflection, and book a 20-minute mentor review. That opens Week 10.
 
 ## Today's bar
 
-This week's gate is different. The reps aren't live pitches. They're objection drills on camera.
+This week's reps aren't live pitches. They're objection drills on camera.
 
-Why drills and not live meetings? Speed at handling objections comes from repetition. In live meetings you meet one objection at a time, spread over weeks. In a drill session you get 5 objections in 45 minutes, and that volume is what builds the reflex.
+Speed at handling objections comes from repetition. In live meetings you meet one objection at a time, spread over weeks. In a drill session you get 5 objections in 45 minutes, and that volume is what builds the reflex.
 
 The bonus target is your first closed case. Week 9 is when the pipeline you built in Weeks 4 to 8 should start turning into signed cases. If one comes through this week, write it up. If not, the drills are the gate.
 
----
-
 ## The 5 drills
 
-Pick 5 different objections from Day 53's top 10, and cover a range. A suggested set:
+Pick 5 different objections from the top 10 in [Day 53](/learning-track/next-60-days/day/53), and cover a range. A suggested set:
 
-1. *"Too expensive"*
-2. *"Let me think about it"*
-3. *"I have an advisor"*
-4. *"I need to discuss with my spouse"*
+1. "Too expensive"
+2. "Let me think about it"
+3. "I have an advisor"
+4. "I need to discuss with my spouse"
 5. Your weakest, the one you handle worst
 
-Don't pick five easy ones. Include the one that makes you uncomfortable, because that's the rep you need most.
-
----
+Include the one that makes you uncomfortable, because that's the rep you need most. Five easy drills give you false confidence, and an objection you avoid stays your weak spot for years.
 
 ## How each drill runs
 
-Each drill is 2 minutes on camera.
+Each drill is 2 minutes on camera, the same shape you'd use in a live meeting, compressed.
 
-### Minute 1: diagnose
+Minute 1, diagnose:
 
 - The prospect (you or a roleplay partner) gives the objection.
 - You run the right diagnostic: magic question 1 at least, and all three if the objection is vague.
 - You find the real concern.
 
-### Minute 2: respond and re-close
+Minute 2, respond and re-close:
 
 - Use the right technique: ART for a clear objection, Iceberg for a vague one, and the magic questions if you still need them.
 - Give the response in your own words.
 - Close again, either by confirming the decision or by booking a specific next step.
 
-Keep it to 2 minutes. A drill isn't a full pitch, it's one objection rep, and the time limit keeps you on the skill you're training.
-
----
+Keep it to 2 minutes. A drill is one objection rep, and the time limit keeps you on the skill you're training. Longer drills drift into pitching, and shorter ones skip the diagnosis.
 
 ## Recording setup
 
@@ -78,23 +71,19 @@ Keep it to 2 minutes. A drill isn't a full pitch, it's one objection rep, and th
 - Label the files: `day-54-objection-1-price.mov`, `-2-think.mov` and so on.
 - No notes in frame. Deliver from memory. Stumbling is fine and reading isn't.
 
-### With a roleplay partner
+With a roleplay partner:
 
-- It's better than solo, because their objection comes with real, unpredictable energy.
+- It's better than solo, because their objection comes with real, unpredictable energy, the way real prospects bring emotion, sarcasm, follow-up questions and silence.
 - Your mentor, a peer or your spouse all work, as long as they'll play the objection honestly.
 - Agree the 5 objections beforehand so they know what to throw at you.
 - Before you press record, tell them who will watch the video and wait for their OK.
 
-### Solo
+Solo:
 
 - Record yourself giving the objection in character as the prospect, pause, then record your response.
 - It's less realistic, but it makes you deal with your own worst phrasing.
 
-Both count, though a partner is better.
-
-Drills are roleplay only. Never use a real client's name or situation, and never record a real client meeting unless the client has clearly agreed to it first.
-
----
+Both count, though a partner is better. Drills are roleplay only. Never use a real client's name or situation, and never record a real client meeting unless the client has clearly agreed to it first.
 
 ## Self-review rubric
 
@@ -104,13 +93,11 @@ Watch all 5 back and score each one from 1 to 5 on these:
 |---|---|
 | Diagnosis | Did you use magic question 1 before responding, or jump straight to defending? |
 | Technique fit | ART for a clear objection, Iceberg for a vague one, magic questions if needed? |
-| Tone | Did you stay calm and finish on the Reason tone from Day 5, or sound defensive and rushed? |
+| Tone | Did you stay calm and finish on the Reason tone from [Day 5](/learning-track/next-60-days/day/5), or sound defensive and rushed? |
 | Response quality | Did it sound like you, or like a script being recited? |
 | Re-close | Did you finish with a specific next step, or trail off? |
 
-That's up to 25 per drill and 125 across all five. Over 100 is solid. Between 80 and 100 is competent with clear gaps. Under 80 means you re-record at least your two weakest drills.
-
----
+That's up to 25 per drill and 125 across all five. Over 100 is solid. Between 80 and 100 is competent with clear gaps. Under 80 means you re-record at least your two weakest drills, which keeps the good ones and puts the work where it's needed.
 
 ## If you close your first case
 
@@ -118,23 +105,17 @@ If you close your first case this week, write down:
 
 - the last objection before the close, if there was one
 - the technique that cleared it
-- what moved the prospect from *"maybe"* to *"yes"*
+- what moved the prospect from "maybe" to "yes"
 
 Keep the write-up anonymous. Describe the client by life stage only, with no name, NRIC, contact details or health information. Anything that identifies them is their personal data, and it belongs in AIA's systems only.
 
 That write-up is one of the most useful things you'll produce this year, because your first close shows you what actually moves a real prospect.
 
-If you don't close this week:
+If you don't close this week, that's normal for a lot of FCs in Week 9. The gate is the drills, not the close, and Week 10 covers after-sales so you'll be ready when it happens.
 
-- that's normal for a lot of FCs in Week 9
-- the gate is the drills, not the close
-- Week 10 covers after-sales, so you'll be ready when it happens
+## Do this today
 
----
-
-## What to submit
-
-Four things:
+Record the 5 drills, score them, then submit four things.
 
 ### 1. Five drill recordings
 
@@ -153,7 +134,7 @@ Short and anonymous: the objection, what cleared it and what moved the prospect.
 Answer these:
 
 1. Which of the 5 drills was hardest, and why?
-2. Which technique do you reach for without thinking? Which one do you *underuse*?
+2. Which technique do you reach for without thinking? Which one do you underuse?
 3. What will you change about how you handle objections in Week 10 and after?
 
 ### Mentor review
@@ -163,9 +144,7 @@ Book a 20-minute check-in. Your mentor watches the 5 drills with you and gives l
 1. Whether each drill actually used the diagnosis or skipped it
 2. Which response sounded most like you, and which sounded most scripted
 
----
-
-## Week 9 KPI: the gate
+### Week 9 KPI: the gate
 
 Week 10 opens when you have all four:
 
@@ -176,8 +155,6 @@ Week 10 opens when you have all four:
 
 Bonus: your first case closed and written up. Week 10 opens without it, but write it up if it happens.
 
----
-
 ## Sources
 
 - [Advisory Guidelines on the PDPA for Selected Topics (revised May 2024) - PDPC](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-selected-topics/advisory-guidelines-on-the-pdpa-for-selected-topics-(revised-may-2024).pdf) - video and audio recordings of an identifiable person are personal data, which is why you get your partner's agreement and keep client details out
@@ -187,7 +164,7 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q1. Why are the 5 drills deliberately short (2 minutes each)?**
 - A) Loom has a time limit
-- B) The skill is the objection-handling reflex, and short reps build a reflex faster than long meetings ✓
+- B) The skill is the objection-handling reflex, and short reps build a reflex faster than long meetings (correct)
 - C) They're easier to review
 - D) Prospects have short attention spans
 
@@ -195,7 +172,7 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q2. Why does the diagnosis step (magic question 1 at least) matter?**
 - A) It sounds professional
-- B) It makes sure you're answering the real objection and not a decoy ✓
+- B) It makes sure you're answering the real objection and not a decoy (correct)
 - C) It's a compliance requirement
 - D) It's polite
 
@@ -203,7 +180,7 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q3. Your first closed case this week is:**
 - A) Required before Week 10 opens
-- B) A bonus. Write it up carefully and anonymously, because your first close shows you what really moves a prospect ✓
+- B) A bonus. Write it up carefully and anonymously, because your first close shows you what really moves a prospect (correct)
 - C) Irrelevant to Week 9
 - D) The only thing that matters
 
@@ -211,7 +188,7 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q4. The 5th drill should be:**
 - A) The easiest objection, to build confidence
-- B) Your weakest, the one you handle worst ✓
+- B) Your weakest, the one you handle worst (correct)
 - C) A random pick
 - D) Skipped
 
@@ -219,14 +196,14 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q5. A roleplay partner who throws objections with real, unpredictable energy is:**
 - A) Harder to handle
-- B) Closer to a real meeting, and better training than recording solo ✓
+- B) Closer to a real meeting, and better training than recording solo (correct)
 - C) A waste of time
 - D) Only useful for experienced FCs
 
 **Why:** Real prospects don't give objections neatly. They bring emotion, sarcasm, follow-up questions, silence and body language. A partner who plays it with real energy gives you those conditions. Solo recording still counts, because it makes you face your own worst phrasing, but a partner builds a reflex that carries over to live meetings better.
 
 **Q6. The 2-minute drill structure is:**
-- A) Minute 1 diagnose, minute 2 respond and re-close ✓
+- A) Minute 1 diagnose, minute 2 respond and re-close (correct)
 - B) Minute 1 argue, minute 2 close
 - C) No fixed structure
 - D) Both minutes on the response
@@ -235,13 +212,11 @@ Bonus: your first case closed and written up. Week 10 opens without it, but writ
 
 **Q7. If you score under 80 across the 5 drills, you should:**
 - A) Submit anyway, since the volume counts
-- B) Re-record at least your two weakest drills before submitting ✓
+- B) Re-record at least your two weakest drills before submitting (correct)
 - C) Drop out of the module
 - D) Skip Week 10
 
 **Why:** Under 80 out of 125 means at least two drills had gaps big enough to need another rep. Re-recording the two weakest, not all five, keeps the good ones and puts the work where it's needed. Dropping out (C) or skipping (D) abandons the practice altogether, and submitting anyway (A) carries the weak spots into Week 10.
-
----
 
 ## Related
 
