@@ -17,25 +17,22 @@ tags: [next-60-days, week-4, new-fc, pipeline, target-list, weekly-review, car, 
 
 # Day 23: Your pipeline board and weekly review
 
-> **The one idea for today:** Having no appointments wears you out more than having lots of them. An empty calendar drains your energy, and a packed one keeps you moving, even when it's packed imperfectly.
+> **Today in one line:** Having no appointments wears you out more than having lots of them. An empty calendar drains your energy, and a packed one keeps you moving, even when it's packed imperfectly.
 
-By the end of today you'll have a Strategic Target List (20 names a month, each tagged, with a trigger and an approach), you'll know why you need both Current and Recurring Inventory, and you'll have run the 30-minute Friday review with the Day 3 CAR diagnostic.
+**What to remember**
 
----
+1. Keep a Strategic Target List of at least 20 names a month, each with a tag, a trigger, an approach and a last-contact date.
+2. Give about 20% of your weekly prospecting time to Recurring Inventory from day one.
+3. Run a 30-minute review every Friday, and fix the weakest link in your CAR numbers next week.
+4. Keep the calendar full. A packed week, even an imperfect one, keeps your momentum and your income moving.
 
 ## Why most new FCs don't have a pipeline
 
-Ask a new FC to show you their pipeline and you'll usually get one of three answers:
+Ask a new FC to show you their pipeline and you'll usually get one of three answers: "it's in my head", a WhatsApp chat list, or a CRM they haven't updated in two weeks.
 
-1. *"It's in my head."*
-2. A WhatsApp chat list
-3. A CRM they haven't updated in two weeks
+None of these is a pipeline. A **pipeline** is one list that you update every week, with one next action against each name. Without those three things, you just have a contact list.
 
-None of these is a pipeline, which is one list that you update every week, with one next action against each name, and without those three things you just have a contact list.
-
-Year 1 advisors who burn out are usually short of direction, not effort. A working pipeline board answers *"who do I call today?"* in 30 seconds.
-
----
+Year 1 advisors who burn out usually have plenty of effort and too little direction. A working pipeline board answers "who do I call today?" in 30 seconds.
 
 ## The Strategic Target List: 20 names a month
 
@@ -44,40 +41,31 @@ The format is deliberately simple: one sheet, five columns.
 | Column | What goes in |
 |---|---|
 | Name | Prospect or client name |
-| Tag | A / B / C for existing clients, or 1 / 2 / 3 for prospects (the Day 3 system) |
+| Tag | A / B / C for existing clients, or 1 / 2 / 3 for prospects (the [Day 3](/learning-track/next-60-days/day/3) system) |
 | Trigger | The specific reason to contact this person this month: a life event, time since you last spoke, content they engaged with, a referral handoff |
 | Approach | Which script: Market Survey, Attraction, 6-step honest message, value drop, CRAB, cold DM |
 | Last contact | Date of the last real conversation (a LinkedIn like doesn't count) |
 
-Rules:
-- 20 names minimum. Fewer than that and you're aiming too low.
+The rules:
+
+- Put in 20 names minimum. A shorter list shrinks to the few Hot names you know will reply, and they burn out within weeks. Twenty forces in Semi-Warm contacts, across all three prospect tiers.
 - Sort by tier: A clients first, then B, then prospects 1, 2 and 3, so your energy goes where the odds are best.
 - Write a personal trigger and approach for each name, because copy-pasting one message to 20 people defeats the point of the list.
-- Go through it every week. People you've contacted move off and new names move on.
-- If you have more than 20 names ready, start a second list instead of cramming.
-- Rebuild it at least monthly, and weekly if you can.
-
----
+- With more than 20 names ready, start a second list instead of cramming.
+- Rebuild it at least monthly (weekly if you can). Contacted names move off and new ones move on.
 
 ## Current Inventory vs Recurring Inventory
 
-There are two kinds of pipeline and you need both.
+There are two kinds of pipeline, and you need both.
 
 | Type | Analogy | What it is |
 |---|---|---|
 | Current Inventory | Money in the bank | Your existing database of ABC clients and 1/2/3 prospects, whatever's on your books today |
 | Recurring Inventory | A monthly income | The flow of new leads each month from passive referrals, active referrals, marketing, social content, events and collaborations |
 
-The trap: new FCs spend Year 1 on Current Inventory (warm-market reactivation, Market Surveys) and leave Recurring Inventory alone. It works for a while, until the current list runs dry, often somewhere around months 9 to 12, with nothing new coming in behind it.
+The trap: new FCs spend Year 1 on Current Inventory (warm-market reactivation, Market Surveys) and leave Recurring Inventory alone. It works until the current list runs dry, often somewhere around months 9 to 12, with nothing new coming in behind it.
 
-The fix is to set aside about 20% of your weekly prospecting time for Recurring Inventory from the start. That means:
-- Your Week 3 content and stories (passive lead generation)
-- A referral ask at every Fact-Find (active referrals)
-- One new relationship-building activity a month, such as a small event, a collaboration, or getting to know a new community
-
-The target list handles Current Inventory and the 20% budget handles Recurring. Together they keep the pipeline from collapsing at month 9.
-
----
+The fix is to set aside about 20% of your weekly prospecting time for Recurring Inventory from the start. That covers your Week 3 content and stories (passive lead generation) and a referral ask at every Fact-Find (active referrals). Add one new relationship-building activity a month, such as a small event, a collaboration, or getting to know a new community.
 
 ## Pack-the-schedule math
 
@@ -85,82 +73,62 @@ Here's why the list isn't optional:
 
 > Target: 6 first Fact-Find appointments a week x 40 working weeks = 240 appointments a year.
 
-Say you have 50 existing clients and 30% meet you for an annual review: that's 15 appointments, or 2.5 weeks of your year. The other 37.5 weeks have to come from new leads, and a new FC in Week 4 doesn't have 50 clients yet, so for you everything does:
+Say you have 50 existing clients and 30% meet you for an annual review. That's 15 appointments, or 2.5 weeks of your year, so the other 37.5 weeks have to come from new leads.
 
-- Current Inventory (your Project 1000 list and Market Survey calls) fills your next six weeks or so of appointments
-- Recurring Inventory (content, referrals, events) keeps you going after that
+A new FC in Week 4 doesn't have 50 clients yet, so for you, everything does. Current Inventory (your Project 1000 list and Market Survey calls) fills your next six weeks or so of appointments, and Recurring Inventory (content, referrals, events) keeps you going after that.
 
 If 20 names a month turn into Fact-Finds at about 30%, that's roughly 6 Fact-Finds a month. The target is 6 a week, about 24 a month, so a 20-name monthly list is the floor. Refresh it weekly (Block 3 below) and let referrals and content supply the rest.
 
----
-
 ## The Friday 30-minute weekly review
 
-One sitting, 30 minutes, every Friday.
+One sitting, 30 minutes, every Friday, in four blocks.
 
 ![The Friday 30-minute weekly review: 1 CAR numbers (5 min); 2 Diagnose the weakest link (5 min); 3 Target list update (10 min); 4 Next week's 3 big moves (10 min)](/next-60-days/images/n60-day-23-m0.webp)
 
 ### Block 1: CAR numbers (5 min)
 
-Fill in your Day 3 scorecard:
-- Calls made this week
-- Appointments booked this week
-- Referrals received this week
-- FYC closed this month
+CAR stands for calls, appointments and referrals. Fill in your Day 3 scorecard: calls made, appointments booked and referrals received this week, and FYC closed this month.
 
 Write the real numbers, because the gap between what you meant to do and what you actually did is the part you learn from.
 
 ### Block 2: find the weakest link (5 min)
 
-CAR is a loop in which calls lead to appointments, appointments lead to referrals, and referrals give you more people to call. Find the weakest link:
+CAR is a loop. Calls lead to appointments, appointments lead to referrals, and referrals give you more people to call. Find the weakest link:
 
 - Calls on target but appointments low: your script or targeting is off, so drill the Market Survey or the 6-step message.
 - Appointments on target but no referrals: you're not asking at the end of the Fact-Find, so fix the ask.
-- Calls low: the easy one. You didn't pick up the phone enough, and no script will fix that.
+- Calls low: this is the easy one. You didn't pick up the phone enough, and no script will fix that.
 
 Pick the weakest link and fix only that one next week. Trying to fix all three at once fixes none of them.
 
 ### Block 3: update the target list (10 min)
 
 Open the Strategic Target List and:
-- Move the names you contacted this week to a *"contacted"* archive
-- Add new names from this week's content, DMs, stories and referrals
-- Make sure 20 names are ready for next week
-- Re-tag anyone whose status changed (prospect to client, 1 to A, B to A)
+
+- move the names you contacted this week to a "contacted" archive
+- add new names from this week's content, DMs, stories and referrals
+- make sure 20 names are ready for next week
+- re-tag anyone whose status changed (prospect to client, 1 to A, B to A)
 
 ### Block 4: next week's 3 big moves (10 min)
 
-Three specific things to get done next week. Three, rather than a list of 15.
+Pick three specific things to get done next week, rather than a list of 15. For example:
 
-For example:
-- *"Make 3 Market Survey calls on Monday morning"*
-- *"Book a Friday FHR with Kelly using CRAB"*
-- *"Post a client-story post by Wednesday, once compliance has approved it"*
+- "Make 3 Market Survey calls on Monday morning"
+- "Book a Friday FHR with Kelly using [CRAB](/learning-track/next-60-days/day/17)"
+- "Post a client-story post by Wednesday, once compliance has approved it"
 
-Put these in your calendar as time blocks: research on implementation intentions (Gollwitzer, 1999) found that deciding exactly when and where you'll do something makes you far more likely to follow through, so the Friday plan has to be on Monday's calendar.
-
----
+Put these in your calendar as time blocks. Research on implementation intentions (Gollwitzer, 1999) found that deciding exactly when and where you'll do something makes you far more likely to follow through. So the Friday plan has to be on Monday's calendar.
 
 ## Why an empty calendar is more tiring
 
-New FCs dread a week of six back-to-back Fact-Finds because it sounds exhausting. So they relax when the calendar is light.
+New FCs dread a week of six back-to-back Fact-Finds because it sounds exhausting, so they relax when the calendar is light. It works the other way round. Momentum, energy, confidence and income all come from being in motion, so a full calendar keeps all four going even when the leads are imperfect, and an empty week drains them.
 
-That's backwards. The empty calendar is what wears you out. Momentum, energy, confidence and income all come from being in motion, so a full calendar keeps all four going even when the leads are imperfect, and an empty week drains them.
-
-In practice: when you're tempted to skip the pipeline review because *"next week isn't that busy anyway"*, that's the week skipping it will hurt most. Do the review and fill the list. Even if next week's appointments are only half good, they keep your rhythm.
-
----
+The week you're tempted to skip the review because "next week isn't that busy anyway" is the week skipping it hurts most. Do the review and fill the list. Even half-good appointments keep your rhythm.
 
 ## Team operations: log your numbers daily
 
-The target list is your input log. The team activity tracker is your output log, and it feeds the Friday review.
-
-- Log CAR daily at [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard). Don't batch it at the end of the week, because the daily habit keeps the numbers honest.
-- If you're on EPS, the tracker numbers feed the monthly BTS attendance and target reviews.
-
-Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §4b.
-
----
+The target list is your input log. The team activity tracker is your output log, and it feeds the Friday review. Log CAR daily at [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard), because the daily habit keeps the numbers honest in a way end-of-week batching can't. If you're on EPS, the tracker numbers feed the monthly BTS attendance and target reviews.
 
 ## Cold-call KPI ratios: the numbers behind one closed case
 
@@ -174,26 +142,22 @@ If you cold call, track this chain of ratios in its own column under the Calls n
 | Show-up rate | ~1 in 3 (a cautious estimate) | A confirmation message and a reminder of what they'll get before the slot |
 | Close rate | ~1 in 3 of those who show | Conviction, and cushioning before you handle objections |
 
-### What that adds up to
+Chained together:
 
 > 1 closed case = about 3 appointments held = 9 appointments set = 180 pick-ups = 900 dials
 
 At 50 dials an hour, one closed case takes about 18 hours of cold calling. Three hours a day, five days a week (15 hours) gets you a little under one closed case a week from cold alone, before any inbound, referral or warm business on top.
 
-### What this changes about your week
+What this changes about your week:
 
 - Block 2 to 3 hours a day for cold dialling, ideally at the same time every day, so it stops being a daily argument with yourself.
 - Dials are the earliest number on your CAR scorecard. They predict pick-ups, which predict appointments, which predict closes about three weeks later.
-- Two phones can nearly double how many people you reach in an hour without doubling the effort, because the limit becomes how fast you dial rather than how long each call rings.
-- When the ratios slip, check which one. If you're dialling enough but fewer than 5% of pick-ups agree to meet, the opener is the problem. If fewer than 1 in 3 turn up, your confirmation messages are weak. They need different fixes, so don't mix them up.
-
-Source: [[../../first-60-days/_source-supplementary/appointment-setting-product/14-prospecting--kpis-to-hit-for-cold-calling|KPIs to Hit for Cold Calling]] · [[../../first-60-days/_source-supplementary/appointment-setting-product/07-prospecting--important-levers-in-raising-your-sales-outcomes|Important Levers (QO × ASR × SUR × CR × LTV)]].
-
----
+- Two phones can nearly double how many people you reach in an hour, because the limit becomes how fast you dial rather than how long each call rings.
+- When the ratios slip, check which one. Fewer than 5% of pick-ups agreeing to meet means the opener is the problem, and fewer than 1 in 3 turning up means your confirmation messages are weak.
 
 ## The prospecting pyramid: 6 levels
 
-The Strategic Target List tags people as A/B/C or 1/2/3, and the prospecting pyramid from Jeb Blount's *Fanatical Prospecting* adds depth: how far each name has come on the way from unknown to ready to buy.
+The prospecting pyramid from Jeb Blount's *Fanatical Prospecting* adds depth to your A/B/C and 1/2/3 tags. It shows how far each name has come from unknown to ready to buy, which tells you the next move as well as who to call.
 
 ![The prospecting pyramid, 6 levels: Level 6, highly qualified and in a buying window, daily focus; Level 5, hot inbound leads and referrals, same-day response; Level 4, conquest prospects (biggest opportunities), regular touches; Level 3, buying window identified, nurture campaigns; Level 2, contact details verified; Level 1, unknown prospects](/next-60-days/images/n60-day-23-m1.webp)
 
@@ -206,31 +170,26 @@ The Strategic Target List tags people as A/B/C or 1/2/3, and the prospecting pyr
 | 2 | Contact details checked and budget roughly known | Move to Level 3 when a buying window appears |
 | 1 | Unknown prospects (thousands of them at the bottom) | Gather information, qualify, add to the pipeline |
 
-### How this sits on top of ABC/123
+On top of ABC/123, A clients sit at about Level 6 (highest daily priority). B clients and Tier 1 prospects sit at Levels 4-5, C clients and Tier 2 prospects at Levels 2-3, and Tier 3 prospects at Level 1.
 
-- A clients sit at about Level 6 (highest daily priority)
-- B clients and Tier 1 prospects sit at Levels 4-5
-- C clients and Tier 2 prospects sit at Levels 2-3
-- Tier 3 prospects sit at Level 1
+The team's rule of thumb is 60% of your calling block on Levels 5-6, 30% on Levels 3-4 (nurture) and 10% on Levels 1-2 (qualifying). Most new FCs flip this and spend 60% on unqualified Level 1 names because it feels productive.
 
-The pyramid tells you the next move for each name as well as who to call.
+## Do this today
 
-The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to Levels 3-4 (nurture), and 10% to Levels 1-2 (qualifying). Most new FCs flip this and spend 60% on unqualified Level 1 names because it feels productive.
-
----
+1. Build your Strategic Target List: one sheet, the five columns above, at least 20 names sorted by tier, each with its own trigger and approach.
+2. Put the 30-minute Friday review in your calendar as a repeating block.
+3. Log today's calls, appointments and referrals on the tracker, and keep logging them daily.
 
 ## Sources
 
 - [Fanatical Prospecting - Jeb Blount](https://www.jebblount.com/product/fanatical-prospecting/) - the author's page for the book that introduced the prospecting pyramid
 - [Implementation intentions: strong effects of simple plans - Peter Gollwitzer, American Psychologist (1999)](https://www.socmot.uni-konstanz.de/publications/implementation-intentions-strong-effects-simple-plans) - deciding when and where you'll act makes follow-through more likely, the reason the 3 big moves go in the calendar as blocks
 
----
-
 ## Quiz
 
 **Q1. The Strategic Target List is organised by:**
 - A) Whoever comes to mind on Monday morning
-- B) ABC / 1-2-3 tier first, then a personalised trigger and approach for each name ✓
+- B) ABC / 1-2-3 tier first, then a personalised trigger and approach for each name (correct)
 - C) Alphabetical order
 - D) Random order, to avoid bias
 
@@ -238,7 +197,7 @@ The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to L
 
 **Q2. Current Inventory and Recurring Inventory differ because:**
 - A) Current is for new FCs, Recurring is for seniors
-- B) Current is your existing database today; Recurring is the monthly flow of new leads ✓
+- B) Current is your existing database today; Recurring is the monthly flow of new leads (correct)
 - C) One covers cold leads and the other covers warm leads
 - D) There's no difference
 
@@ -247,14 +206,14 @@ The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to L
 **Q3. Friday's review shows calls on target, appointments on target, and zero referrals. What do you fix next week?**
 - A) Make more calls
 - B) Book more appointments
-- C) Fix the referral ask at the end of your Fact-Finds ✓
+- C) Fix the referral ask at the end of your Fact-Finds (correct)
 - D) All three
 
 **Why:** The CAR rule is to fix the weakest link. Calls and appointments are healthy, so the gap is at the ask: your Fact-Finds either aren't ending with a referral ask, or the ask is weak. More calls (A) or more appointments (B) won't produce referrals; only a better ask will. D spreads the effort across all three and ends up fixing none.
 
 **Q4. The Strategic Target List has a minimum of 20 names a month. Why not start smaller?**
 - A) 20 is arbitrary
-- B) With fewer names you over-work Hot contacts, burn them out, then have nothing left. 20 forces you to spread across tiers ✓
+- B) With fewer names you over-work Hot contacts, burn them out, then have nothing left. 20 forces you to spread across tiers (correct)
 - C) You should aim for 100
 - D) 20 is the maximum
 
@@ -262,7 +221,7 @@ The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to L
 
 **Q5. The pack-the-schedule math: 6 first Fact-Find appointments x 40 working weeks = 240 a year. If you have 50 existing clients and 30% meet for annual reviews, where does the rest come from?**
 - A) The same 50 clients, seen several times each
-- B) New leads. Reviews cover about 2.5 weeks; the other 37.5 weeks come from new-lead flow (content, referrals, events, new contacts) ✓
+- B) New leads. Reviews cover about 2.5 weeks; the other 37.5 weeks come from new-lead flow (content, referrals, events, new contacts) (correct)
 - C) Partners sharing leads
 - D) A CRM bug
 
@@ -270,7 +229,7 @@ The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to L
 
 **Q6. The Recurring Inventory budget is:**
 - A) 80% of weekly prospecting time
-- B) About 20% of weekly prospecting time, set aside from day one for content, referral asks and one new relationship-building activity a month ✓
+- B) About 20% of weekly prospecting time, set aside from day one for content, referral asks and one new relationship-building activity a month (correct)
 - C) A once-a-year budget review
 - D) Only relevant after month 12
 
@@ -278,13 +237,11 @@ The team's rule of thumb: 60% of your calling block goes to Levels 5-6, 30% to L
 
 **Q7. The rule "having no appointments wears you out more than having them" means:**
 - A) You should book more appointments than you can handle
-- B) An empty calendar drains momentum, energy, confidence and income, and a full one, even an imperfect one, keeps all four going ✓
+- B) An empty calendar drains momentum, energy, confidence and income, and a full one, even an imperfect one, keeps all four going (correct)
 - C) Appointments are physically draining
 - D) The math doesn't really favour packing the calendar
 
 **Why:** New FCs dread six back-to-back Fact-Finds because it sounds exhausting. But momentum, energy, confidence and income all come from being in motion. A light week is exactly when skipping the review feels safe, and that's when the following week empties out.
-
----
 
 ## Related
 

@@ -14,29 +14,24 @@ tags: [next-60-days, week-4, new-fc, market-survey, phone-script, appointment-se
 
 # Day 21: The warm-market survey call
 
-> **The one idea for today:** The Market Survey is a phone call with an honest reason behind it: four short questions that end in a Fact-Find appointment, with no pitch and no favour to ask.
+> **Today in one line:** The Market Survey is a phone call with an honest reason behind it: four short questions that end in a Fact-Find appointment, with no pitch and no favour to ask.
 
-By the end of today you'll be able to run the 4-question Market Survey from start to finish (opening, three diagnostic questions, the appointment ask, logistics). You'll know the difference between a Warm Up and an Educational Fact Find and what each one is for. And you'll have a three-beat answer (acknowledge, reframe, re-ask) for the five most common phone objections.
+**What to remember**
 
----
+1. Use the Market Survey to call your warm market. Question 4 is always the appointment ask.
+2. Let the answers tell you whether you've booked a Warm Up or an Educational Fact Find.
+3. Answer objections with acknowledge, reframe, re-ask, ending on "would you be free..."
+4. With Hot and Warm contacts, use the Attraction Script.
 
 ## What the survey is
 
-A Market Survey is a 5-minute phone call with 4 questions that gives you a legitimate reason to call every name in your warm market. You say what you do upfront, ask your questions and ask for a meeting at the end, with no pitch and nothing hidden.
+A **Market Survey** is a 5-minute call with 4 questions that gives you a legitimate reason to call every name in your warm market. You say what you do upfront, and question 4 asks for the meeting. No pitch, nothing hidden.
 
-People find it easy to say yes to *"can I ask you 4 quick questions for a survey?"* because everyone knows what a survey is. Once the survey is done, the next step follows on naturally: *"would you be open to meeting for 30 minutes so I can share what I do?"*
+People agree easily to "can I ask you 4 quick questions for a survey?", because everyone knows what a survey is. Five minutes is also an easier yes than asking to meet for an hour. Once it's done, the next step follows naturally: "would you be open to meeting for 30 minutes so I can share what I do?" The answers also show whether this person is ready for a Fact-Find at all.
 
-Why it works:
-- It's honest. You name the business at the start instead of hiding it.
-- It asks for very little. Five minutes of questions is easier to agree to than *"can we meet for an hour?"*
-- The answers tell you whether this person is ready for a Fact-Find at all.
-- Question 4 is the appointment ask, so the bridge is built in.
+Do at least 30 Market Surveys with warm and semi-warm contacts before any cold-market work. They build your script confidence and your first Fact-Find pipeline together.
 
-Do at least 30 Market Surveys with warm and semi-warm contacts before any cold-market work. Those calls build your script confidence and your first Fact-Find pipeline together.
-
-These are business calls to Singapore numbers, so the Do Not Call rules on Day 22 apply to them as well. If you're unsure how that works for a friend's number, ask your compliance team before your first block.
-
----
+These are business calls to Singapore numbers, so the Do Not Call rules on [Day 22](/learning-track/next-60-days/day/22) apply to them as well. If you're unsure how that works for a friend's number, ask your compliance team before your first block.
 
 ## Where it fits: Warm Up vs Educational Fact Find
 
@@ -44,104 +39,104 @@ A Market Survey leads to one of two kinds of meeting:
 
 | Stage | What it is | What the meeting is for |
 |---|---|---|
-| Warm Up | A conversation only, with no iPad and no presentation. You're warming up a relationship with a distant contact who isn't ready to talk about money yet | Building toward an Educational Fact Find later |
+| Warm Up | Conversation only: no iPad, no presentation. You're warming up a distant contact who isn't ready to talk about money yet | Building toward an Educational Fact Find later |
 | Educational Fact Find (FHR) | A financial-planning meeting the prospect has agreed to. You do the Fact-Find, press on the problem and educate | Helping them understand their position, and opening the door to referrals |
 
-The trap: a new FC runs a Market Survey, gets a yes, then turns up with the CST and goes straight into the presentation. If the contact was Semi-Warm, that meeting was a Warm Up and should never have been an FHR. Presenting at a Warm Up burns the contact.
+The trap: a new FC gets a yes on the survey, turns up with the CST and goes straight into the presentation. If the contact was Semi-Warm, that meeting was a Warm Up and should never have been an FHR. Presenting at a Warm Up burns the contact.
 
-Let the survey answers tell you which meeting it is. If they already have a plan and are happy to have it reviewed, it's an FHR. If they've never thought about financial planning and mostly said yes because they'd like to see you, it's a Warm Up.
-
----
+Let the answers decide. If they already have a plan and are happy to have it reviewed, it's an FHR. If they've never thought about financial planning and mostly said yes because they'd like to see you, it's a Warm Up.
 
 ## The 4 questions
 
-Five minutes, four questions. Here's the structure.
+The call runs about five minutes.
 
 ### Opening
-> *"Hi, is this Amir? Amir, it's [your name]. Do you have a moment to talk?"*
+
+> "Hi, is this Amir? Amir, it's [your name]. Do you have a moment to talk?"
 >
-> *"How have you been this period?"* (30 seconds of catching up, not a full chat)
+> "How have you been this period?" (30 seconds of catching up, not a full chat)
 
 ### Agenda
-> *"As you may have heard, I recently got licensed as a financial consultant with AIA. As part of building my practice, I'm doing a quick 5-minute survey with people I know. It's just 4 questions, nothing to buy or sign. Could you help me out?"*
+
+> "As you may have heard, I recently got licensed as a financial consultant with AIA. As part of building my practice, I'm doing a quick 5-minute survey with people I know. It's just 4 questions, nothing to buy or sign. Could you help me out?"
 
 ### Q1: current coverage
-> *"Do you have any insurance policies or financial plans at the moment?"*
->
-> *(If yes: with whom, and roughly what. If no: why not? Common answers are "haven't got around to it", "too expensive" or "don't know where to start".)*
+
+> "Do you have any insurance policies or financial plans at the moment?"
+
+If yes: with whom, and roughly what. If no: why not? Common answers are "haven't got around to it", "too expensive" or "don't know where to start".
 
 ### Q2: last review
-> *"When was the last time you did a review of your policies?"*
+
+> "When was the last time you did a review of your policies?"
 
 ### Q3: how they feel about their current service
-> *"How do you feel about your current advisor's service? Are they responsive, do they explain things clearly, do you get regular reviews?"*
+
+> "How do you feel about your current advisor's service? Are they responsive, do they explain things clearly, do you get regular reviews?"
 
 ### Q4: the appointment ask (the reason for the call)
-> *"Thanks so much. Last question. As a newly licensed FC, one of my priorities is to extend my service to people I know, and you're one of the people I'd really like to work with eventually."*
+
+> "Thanks so much. Last question. As a newly licensed FC, one of my priorities is to extend my service to people I know, and you're one of the people I'd really like to work with eventually."
 >
-> *"May I get in touch for a 30-minute session to share the kind of work I do? You have my assurance I won't ask you to do anything you don't want to, and any future meetings will depend entirely on whether you feel what I'm offering is of value. Is that fair?"*
+> "May I get in touch for a 30-minute session to share the kind of work I do? You have my assurance I won't ask you to do anything you don't want to, and any future meetings will depend entirely on whether you feel what I'm offering is of value. Is that fair?"
 
 ### Logistics
+
 If they say yes, fix the time on the same call:
 
-> *"Would it be easier at your office, your home, or over Zoom?"*
+> "Would it be easier at your office, your home, or over Zoom?"
 >
-> *"Weekdays or weekends?"*
+> "Weekdays or weekends?"
 >
-> *"Could I see you Thursday at 7, or would Saturday at 2 be better?"*
+> "Could I see you Thursday at 7, or would Saturday at 2 be better?"
 
 ### Close
-> *"Really appreciate your help. Is it okay if I keep you posted on anything that might be relevant to you? Could I get your email and date of birth so I can stay in touch properly?"*
+
+> "Really appreciate your help. Is it okay if I keep you posted on anything that might be relevant to you? Could I get your email and date of birth so I can stay in touch properly?"
 
 If they'd rather not share something, don't push. Note down only what they agree to give you.
 
----
-
 ## Objection handlers: acknowledge, reframe, re-ask
 
-Every handler has the same three beats. Acknowledge the objection, reframe it, then ask for the meeting again, always ending with *"would you be free..."*
+Every handler acknowledges the objection, reframes it, then asks for the meeting again, always ending with "would you be free..."
 
 | Objection | Response |
 |---|---|
-| *"Not interested"* | *"Completely understand. It's hard to be interested in something you haven't had a chance to see. Just so you can judge for yourself, would you be free for a short time on Thursday or Saturday?"* |
-| *"Not in the market right now"* | *"Honestly, I'd have been surprised if you said you were in the market for insurance right now. But I've got some ideas that'll be handy when you're ready. Would you be free Thursday or Saturday for just 30 minutes?"* |
-| *"No money"* | *"Completely understandable. What I have in mind isn't about spending more. It's more about making sure what you already have is set up well. You'd be under no obligation. Would you be free..."* |
-| *"Too busy"* | *"I figured you would be, which is exactly why I called ahead instead of dropping by. Would you be free Thursday evening or Saturday?"* |
-| *"What's the idea?"* | *"To explain it properly I'd need to show you a few illustrations, and it doesn't come across the same over the phone. Would you be free Thursday or Saturday for 30 minutes?"* |
+| "Not interested" | "Completely understand. It's hard to be interested in something you haven't had a chance to see. Just so you can judge for yourself, would you be free for a short time on Thursday or Saturday?" |
+| "Not in the market right now" | "Honestly, I'd have been surprised if you said you were in the market for insurance right now. But I've got some ideas that'll be handy when you're ready. Would you be free Thursday or Saturday for just 30 minutes?" |
+| "No money" | "Completely understandable. What I have in mind isn't about spending more. It's more about making sure what you already have is set up well. You'd be under no obligation. Would you be free..." |
+| "Too busy" | "I figured you would be, which is exactly why I called ahead instead of dropping by. Would you be free Thursday evening or Saturday?" |
+| "What's the idea?" | "To explain it properly I'd need to show you a few illustrations, and it doesn't come across the same over the phone. Would you be free Thursday or Saturday for 30 minutes?" |
 
-Don't let an objection end the call. Most objections mean *not yet* or *I don't know what this is*, and each handler's closing *"would you be free..."* turns it back into a yes or no on the meeting.
-
----
+Don't let an objection end the call. Most objections mean "not yet" or "I don't know what this is", and the closing "would you be free..." turns each one back into a yes or no on the meeting.
 
 ## The Attraction Script: an opener for your closest contacts
 
-With Hot and Warm contacts, people you know well, the Market Survey can feel stiff. The Attraction Script gets to the same place (a booked meeting) with a warmer opener.
+With Hot and Warm contacts, people you know well, the Market Survey can feel stiff. The Attraction Script gets to the same booked meeting with a warmer opener.
 
 ### Greeting
-> *"Hey Lucius! How you been?"*
+
+> "Hey Lucius! How you been?"
 
 ### Opening
-> *"I realised we've known each other for ages but I've never properly told you what I do. Do you actually know what I do these days?"*
+
+> "I realised we've known each other for ages but I've never properly told you what I do. Do you actually know what I do these days?"
 >
-> *"Most people think insurance. What I actually do is help people make better decisions with their money so they can reach their goals with more certainty. And honestly, you're the kind of friend I'd love to have as a client, because you're responsible, you plan ahead and you value good advice."*
+> "Most people think insurance. What I actually do is help people make better decisions with their money so they can reach their goals with more certainty. And honestly, you're the kind of friend I'd love to have as a client, because you're responsible, you plan ahead and you value good advice."
 
 ### The disarmer
-> *"Of course, being friends doesn't mean we have to do business together. Totally up to you."*
+
+> "Of course, being friends doesn't mean we have to do business together. Totally up to you."
 
 ### Fix the meeting
-> *"If you're open to it, let's grab coffee next week. Whether you engage my services or not is entirely up to you. Fair?"*
 
-Which one to use:
-- Market Survey for Semi-Warm and lukewarm contacts, where the "4 questions" framing gives you a reason to call
-- Attraction Script for Hot and Warm contacts, where you can say plainly what you do
+> "If you're open to it, let's grab coffee next week. Whether you engage my services or not is entirely up to you. Fair?"
 
-Both end on *"fair?"*, the low-pressure buy-in you practised on Day 5.
-
----
+Use the Market Survey for Semi-Warm and lukewarm contacts, where the "4 questions" framing gives you a reason to call. Use the Attraction Script for Hot and Warm contacts, where you can say plainly what you do. Both end on "fair?", the low-pressure buy-in you practised on [Day 5](/learning-track/next-60-days/day/5).
 
 ## Memorise, internalise, naturalise
 
-You don't read the script off a page. You drill it in three stages:
+You don't read the script off a page, because that kills rapport in the first 10 seconds. You drill it in three stages:
 
 | Stage | What you do |
 |---|---|
@@ -149,30 +144,29 @@ You don't read the script off a page. You drill it in three stages:
 | Internalise | Know why each question is there: Q1 opens discovery, Q2 shows whether a review is overdue, Q3 shows how they feel about their current advisor, and Q4 is the ask, every time. |
 | Naturalise | Put the script down. You know the beats well enough to answer whatever they say and still keep the structure, and the words have become your own. |
 
-Reading off a page kills rapport in the first 10 seconds. Once you've internalised the structure, you keep the beats even when the call goes off script.
+## Do this today
 
----
+1. Put the 4 questions on a sticky note by your phone, and run the script aloud with your mentor or into a voice memo until you stop stumbling.
+2. Call your Semi-Warm names with the survey and your Hot and Warm names with the Attraction Script. Fix the time and place on every yes before you hang up. Each call counts toward this week's 30 outreaches.
 
 ## Sources
 
 - [Advisory Guidelines on the Do Not Call Provisions - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Advisory-Guidelines/Advisory-Guidelines-on-the-DNC-Provisions-1-Feb-2021.pdf) - only messages sent in a personal or domestic capacity are excluded from the DNC rules, so business calls to friends are not automatically exempt
 - [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - consent and purpose rules for collecting details like email and date of birth at the close of the call
 
----
-
 ## Quiz
 
 **Q1. The purpose of the 4-question Market Survey is to:**
 - A) Actually gather market research data
 - B) Pitch AIA products over the phone
-- C) Give you an honest, low-commitment reason to call warm-market contacts that leads naturally into a meeting ask ✓
+- C) Give you an honest, low-commitment reason to call warm-market contacts that leads naturally into a meeting ask (correct)
 - D) Get referrals during the call
 
 **Why:** The survey is a real 4-question call, but its job is to turn *"can we meet?"*, which feels like asking a favour, into *"can I ask you 4 questions?"*, which is easier to agree to. Q4 is always the appointment ask, and the first three give it context. Pitching on the call (B) defeats the whole structure.
 
 **Q2. A Warm Up and an Educational Fact Find differ because:**
 - A) A Warm Up is shorter and an FHR is longer
-- B) A Warm Up is conversation only; an FHR has a financial-planning agenda that the prospect expects ✓
+- B) A Warm Up is conversation only; an FHR has a financial-planning agenda that the prospect expects (correct)
 - C) A Warm Up is for close friends and an FHR is for strangers
 - D) They're the same thing with different names
 
@@ -180,7 +174,7 @@ Reading off a page kills rapport in the first 10 seconds. Once you've internalis
 
 **Q3. The prospect says *"not in the market right now."* The handler should end with:**
 - A) *"No worries, I'll leave you alone then."*
-- B) *"Would you be free Thursday or Saturday for 30 min?"* ✓
+- B) *"Would you be free Thursday or Saturday for 30 min?"* (correct)
 - C) *"When do you think you *will* be in the market?"*
 - D) *"Actually that's why you should meet me."*
 
@@ -188,7 +182,7 @@ Reading off a page kills rapport in the first 10 seconds. Once you've internalis
 
 **Q4. The 4 Market Survey questions run in this order:**
 - A) Products owned, happy with advisor, want to meet, email for records
-- B) Current coverage, last review, feeling about current service, appointment ask ✓
+- B) Current coverage, last review, feeling about current service, appointment ask (correct)
 - C) Price, plan, purpose, partnership
 - D) Who, what, when, where
 
@@ -196,7 +190,7 @@ Reading off a page kills rapport in the first 10 seconds. Once you've internalis
 
 **Q5. After a prospect says yes to Q4, you should:**
 - A) Thank them, hang up and text later to confirm a slot
-- B) Fix the logistics on the same call: format, weekday or weekend, and two specific time options ✓
+- B) Fix the logistics on the same call: format, weekday or weekend, and two specific time options (correct)
 - C) Send them a calendar link
 - D) Ask for their assistant's email
 
@@ -204,7 +198,7 @@ Reading off a page kills rapport in the first 10 seconds. Once you've internalis
 
 **Q6. The prospect asks *"What's the idea?"* What's the Market Survey response?**
 - A) Launch into a full explanation of your process
-- B) *"To explain it properly I'd need to show you a few illustrations, and it doesn't come across the same over the phone. Would you be free Thu or Sat for 30 min?"* ✓
+- B) *"To explain it properly I'd need to show you a few illustrations, and it doesn't come across the same over the phone. Would you be free Thu or Sat for 30 min?"* (correct)
 - C) *"I'll send you a brochure"*
 - D) *"It's something you really need"*
 
@@ -212,13 +206,11 @@ Reading off a page kills rapport in the first 10 seconds. Once you've internalis
 
 **Q7. "Memorise, internalise, naturalise" are three stages of learning the script. "Internalise" means:**
 - A) Read it 50 times
-- B) Know why each question is there: Q1 for discovery, Q2 for the review gap, Q3 for the relationship gap, Q4 for the ask ✓
+- B) Know why each question is there: Q1 for discovery, Q2 for the review gap, Q3 for the relationship gap, Q4 for the ask (correct)
 - C) Record yourself saying it
 - D) Write it out by hand
 
 **Why:** Memorising is the words. Internalising is the purpose. Once you know why each beat is there, you can handle answers that go off script without losing the structure. A prospect might jump ahead at Q2 or object at Q3, and if you know what each question is for you recover naturally. If you've only memorised the words, any detour sinks the call.
-
----
 
 ## 2-liner hook (warm prospecting flow)
 
@@ -227,8 +219,6 @@ The Market Survey is the phone-first warm opener. The 2-liner hook is its text-f
 **Use this when** the contact is semi-warm (you haven't spoken in six months or more) or replies to texts faster than they pick up calls, and you have a resource that clearly fits their situation.
 
 Full flow, script with blanks, worked example and follow-up wording: [[2-liner-hook-warm-prospecting]].
-
----
 
 ## Scripts library
 
@@ -258,8 +248,6 @@ These are the canonical scripts for the Market Survey, plus the texting tools th
 **Use this when** you have a specific life moment to anchor the survey ask on, such as a BTO, a graduation, a wedding or their first investment.
 
 [[warm-market-conversation-openers-by-life-stage|Warm Market — Conversation Openers (by Life Stage)]]
-
----
 
 ## Related
 
