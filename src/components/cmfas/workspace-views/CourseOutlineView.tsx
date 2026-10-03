@@ -98,53 +98,39 @@ const OUTLINE: OutlineSection[] = [
   },
   {
     number: 4,
-    title: 'Rewards for Passing',
-    tagline: 'Real cash for passing fast. Not points.',
-    lessons: [
-      {
-        number: '4.1',
-        id: 'rewards-challenges',
-        title: 'Challenges & Rewards',
-        hint: 'Quick-Pass · First-Time · Refer-A-Friend',
-        href: '/cmfas-exams/rewards',
-      },
-    ],
-  },
-  {
-    number: 5,
     title: 'Exam Syllabus and Format',
     tagline: 'Know what each paper covers and how long you have.',
     lessons: [
       {
-        number: '5.1',
+        number: '4.1',
         id: 'syllabus-overview',
         title: 'CMFAS Exam Guide',
         hint: 'Why the papers exist, MAS oversight, what you get',
         href: '/cmfas-exams/syllabus',
       },
       {
-        number: '5.2',
+        number: '4.2',
         id: 'syllabus-m9',
         title: 'M9 Exam — Life Insurance and ILPs',
         hint: '100 MCQ · 120 min · 70% pass',
         href: '/cmfas-exams/syllabus',
       },
       {
-        number: '5.3',
+        number: '4.3',
         id: 'syllabus-m9a',
         title: 'M9A Exam — Structured Products & Derivatives',
         hint: '50 MCQ · 60 min · 70% pass',
         href: '/cmfas-exams/syllabus',
       },
       {
-        number: '5.4',
+        number: '4.4',
         id: 'syllabus-hi',
         title: 'HI Exam — Health Insurance',
         hint: '50 MCQ · 75 min · 70% pass',
         href: '/cmfas-exams/syllabus',
       },
       {
-        number: '5.5',
+        number: '4.5',
         id: 'syllabus-res5',
         title: 'RES5 Exam — Rules, Ethics & Skills',
         hint: '150 MCQ · 180 min · Part I ≥75% AND Part II ≥80%',
@@ -153,12 +139,12 @@ const OUTLINE: OutlineSection[] = [
     ],
   },
   {
-    number: 6,
+    number: 5,
     title: 'Exam Tutorial',
     tagline: 'Day-by-day lessons per paper.',
     lessons: [
       {
-        number: '6.1',
+        number: '5.1',
         id: 'tutorial-m9',
         title: 'M9 — Life Insurance',
         hint: 'Day 1 Parts 1–3 · Day 2 Parts 1–2',
@@ -166,7 +152,7 @@ const OUTLINE: OutlineSection[] = [
         locked: (ready) => !ready,
       },
       {
-        number: '6.2',
+        number: '5.2',
         id: 'tutorial-m9a',
         title: 'M9A — Life Insurance II',
         hint: 'Day 1 · Day 2 Parts 1–2',
@@ -174,14 +160,14 @@ const OUTLINE: OutlineSection[] = [
         locked: (ready) => !ready,
       },
       {
-        number: '6.3',
+        number: '5.3',
         id: 'tutorial-hi',
         title: 'HI — Health Insurance',
         href: '/cmfas/module/hi',
         locked: (ready) => !ready,
       },
       {
-        number: '6.4',
+        number: '5.4',
         id: 'tutorial-res5',
         title: 'RES5 — Rules, Ethics & Skills',
         hint: 'Day 1 Parts 1–4 · Day 2 Parts 1–5',

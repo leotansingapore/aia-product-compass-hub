@@ -26,22 +26,7 @@ export type SlideContentBlock =
   /** Inline screenshot / illustration. Renders as a responsive `<img>` inside a `<figure>`. */
   | { kind: 'image'; src: string; alt: string; caption?: string }
   /** Inline Loom video embed. `videoId` is the bit after `loom.com/share/` or `loom.com/embed/`. */
-  | { kind: 'loom'; videoId: string; title?: string }
-  /** Illustrated "prize" card used on the Rewards slide. Renders a big icon + headline amount + conditions + notes. */
-  | {
-      kind: 'rewardCard';
-      icon: 'zap' | 'trophy' | 'users' | 'target' | 'award';
-      eyebrow?: string;
-      title: string;
-      /** Big brass-coloured amount (e.g. "S$100", "Up to S$300"). */
-      headlineAmount?: string;
-      /** One-liner sitting under the amount. */
-      tagline?: string;
-      /** Bulleted conditions — rendered in the card body. */
-      conditions?: readonly string[];
-      /** Small grey caveats — rendered below conditions. */
-      notes?: readonly string[];
-    };
+  | { kind: 'loom'; videoId: string; title?: string };
 
 type ReadySlide = {
   section: string;
@@ -123,7 +108,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { kind: 'heading', text: "What's the pass mark?" },
       {
         kind: 'paragraph',
-        text: 'M9, M9A, and HI each need 70%. RES5 has split sections: Part I requires 75% and Part II requires 80%. Every paper is fully MCQ. See [Section 5 — Exam Syllabus & Format](/cmfas-exams/syllabus) for the full breakdown of question count and timing.',
+        text: 'M9, M9A, and HI each need 70%. RES5 has split sections: Part I requires 75% and Part II requires 80%. Every paper is fully MCQ. See [Syllabus & format](/cmfas-exams/syllabus) for the full breakdown of question count and timing.',
       },
 
       { kind: 'heading', text: 'Where are the exams taken?' },
@@ -292,70 +277,8 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
       { label: 'RES5 flashcards', href: 'https://revisely.com/flashcards/decks/1KxDpT' },
     ],
   },
-  'understand-costs-timeline': {
-    section: 'Section 4 · Rewards',
-    slideHeading: 'Challenges & rewards — cash for passing well',
-    paragraphs: [],
-    blocks: [
-      {
-        kind: 'intro',
-        text: 'Three ways to earn cash on top of your base commissions. Stack them if you move fast and bring a friend.',
-      },
-      {
-        kind: 'paragraph',
-        text: 'One important gate: every reward below pays out only after all four exams are cleared and you are contracted as a licensed financial advisor. The papers earn the licence, the licence earns the cheque.',
-      },
-      {
-        kind: 'rewardCard',
-        icon: 'zap',
-        eyebrow: 'Challenge 1 of 3',
-        title: 'Quick Pass Challenge',
-        headlineAmount: 'Up to S$300',
-        tagline: 'Pass every paper in one attempt — with 2-week turnarounds between them.',
-        conditions: [
-          'Pass M9 in one attempt within 2 weeks — S$50.',
-          'Pass M9A within 2 weeks of your first M9 attempt — another S$50.',
-          'Pass HI within 2 weeks of your first M9A attempt — another S$50.',
-          'Pass RES5 within 2 weeks of your first HI attempt — another S$50.',
-          'Pass all 4 within 2 months of joining FINternship — bonus S$100.',
-        ],
-        notes: [
-          'Your FINternship start date is the creation date of your Skool portal account.',
-          'Quick Pass incentives are paid out only after you contract as a financial advisor.',
-        ],
-      },
-      {
-        kind: 'rewardCard',
-        icon: 'trophy',
-        eyebrow: 'Challenge 2 of 3',
-        title: 'Pass First Time Challenge',
-        headlineAmount: 'S$100',
-        tagline: 'Pass all 4 exams on your very first attempt.',
-        conditions: [
-          'No retakes, any paper. One shot each.',
-          'Stackable with the Quick Pass Challenge above.',
-        ],
-      },
-      {
-        kind: 'rewardCard',
-        icon: 'users',
-        eyebrow: 'Challenge 3 of 3',
-        title: 'Refer Your Friend Challenge',
-        headlineAmount: 'S$100 × 2',
-        tagline: 'You and the friend you bring in both get paid.',
-        conditions: [
-          'Your referred friend passes M9 — both of you get S$100 cash.',
-          'Bonus: your friend passes all 4 exams — both of you earn another S$100.',
-        ],
-      },
-      {
-        kind: 'paragraph',
-        text: 'These aren’t abstract incentives — we cut the cheques. Study hard, move fast, bring someone along.',
-      },
-    ],
-  },
   'register-m9-exam': {
-    section: 'Section 5 · Register',
+    section: 'Section 4 · Register',
     slideHeading: 'Register & book the M9 exam',
     paragraphs: [],
     blocks: [
@@ -404,7 +327,7 @@ export const GET_READY_SLIDE: Record<ReadyStepId, ReadySlide> = {
     ],
   },
   'first-practice': {
-    section: 'Section 6 · Practice',
+    section: 'Section 5 · Practice',
     slideHeading: 'First practice set',
     paragraphs: [
       "Do a short block of real practice questions in the bank — for example, ten items — in one sitting. The goal is to break the ice: timer on, work like it's exam day, then review what you got wrong and why.",
@@ -711,26 +634,13 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     verification: [],
   },
 
-  // ── Section 4 · Rewards ──────────────────────────────────────────────────
-  {
-    slideId: 'section-4.rewards',
-    sectionId: 'understand-costs-timeline',
-    indexWithinSection: 1,
-    totalInSection: 1,
-    section: 'Section 4 · Rewards',
-    slideHeading: 'Challenges & rewards — cash for passing well',
-    paragraphs: GET_READY_SLIDE['understand-costs-timeline'].paragraphs,
-    blocks: GET_READY_SLIDE['understand-costs-timeline'].blocks,
-    verification: [],
-  },
-
-  // ── Section 5 · Register M9 ──────────────────────────────────────────────
+  // ── Section 4 · Register M9 ──────────────────────────────────────────────
   {
     slideId: 'section-5.step-1-register-path',
     sectionId: 'register-m9-exam',
     indexWithinSection: 1,
     totalInSection: 3,
-    section: 'Section 5 · Register',
+    section: 'Section 4 · Register',
     slideHeading: 'Pick your registration path',
     eyebrow: 'Step 1 of 3',
     blocks: [
@@ -759,7 +669,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     sectionId: 'register-m9-exam',
     indexWithinSection: 2,
     totalInSection: 3,
-    section: 'Section 5 · Register',
+    section: 'Section 4 · Register',
     slideHeading: 'Book your M9 exam date',
     eyebrow: 'Step 2 of 3',
     blocks: [
@@ -780,7 +690,7 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     sectionId: 'register-m9-exam',
     indexWithinSection: 3,
     totalInSection: 3,
-    section: 'Section 5 · Register',
+    section: 'Section 4 · Register',
     slideHeading: 'Understand costs & our support',
     eyebrow: 'Step 3 of 3',
     blocks: [
@@ -808,13 +718,13 @@ export const GET_READY_SLIDES: readonly SlideEntry[] = [
     verification: [],
   },
 
-  // ── Section 6 · First practice ───────────────────────────────────────────
+  // ── Section 5 · First practice ───────────────────────────────────────────
   {
     slideId: 'section-6.first-practice',
     sectionId: 'first-practice',
     indexWithinSection: 1,
     totalInSection: 1,
-    section: 'Section 6 · Practice',
+    section: 'Section 5 · Practice',
     slideHeading: 'First practice set',
     paragraphs: GET_READY_SLIDE['first-practice'].paragraphs,
     linkResources: GET_READY_SLIDE['first-practice'].linkResources,

@@ -3,18 +3,13 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
   ArrowLeft,
   ArrowRight,
-  Award,
   CheckCircle2,
   ChevronRight,
   ExternalLink,
   Loader2,
   Lock,
-  Target,
-  Trophy,
   Upload,
-  Users,
   X,
-  Zap,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -372,7 +367,7 @@ function StudyDeskSkeleton({
           </p>
         </div>
         <div className="flex min-h-[36px] min-w-0 flex-1 flex-wrap items-center gap-2 sm:justify-end">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {GET_READY_STEPS.map((_, i) => (
             <div key={i} className="flex items-center gap-2">
               {i > 0 && <span className="text-primary/25" aria-hidden>·</span>}
               <Skeleton className="h-9 w-9 rounded-full" />
@@ -899,108 +894,6 @@ export function StudyDeskStepFlow({
                               className="absolute inset-0 h-full w-full"
                             />
                           </div>
-                        );
-                      }
-                      if (block.kind === 'rewardCard') {
-                        const IconCmp =
-                          block.icon === 'zap' ? Zap
-                          : block.icon === 'trophy' ? Trophy
-                          : block.icon === 'users' ? Users
-                          : block.icon === 'target' ? Target
-                          : Award;
-                        return (
-                          <section
-                            key={idx}
-                            className={cn(
-                              'relative overflow-hidden rounded-2xl border-2 p-5 sm:p-6',
-                              'border-primary/35 bg-primary/5',
-                              'shadow-sm',
-                            )}
-                            aria-label={block.title}
-                          >
-                            {/* Decorative brass glow behind the icon */}
-                            <div
-                              className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary/10 blur-3xl"
-                              aria-hidden
-                            />
-                            <div className="relative flex items-start gap-4">
-                              <div
-                                className={cn(
-                                  'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
-                                  'border-primary/45 bg-primary/15 text-primary',
-                                )}
-                              >
-                                <IconCmp className="h-6 w-6" aria-hidden />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                {block.eyebrow && (
-                                  <p
-                                    className={cn(
-                                      'text-[10px] font-bold uppercase tracking-[0.2em]',
-                                      cmfasRoom.brassText,
-                                    )}
-                                  >
-                                    {block.eyebrow}
-                                  </p>
-                                )}
-                                <h3
-                                  className={cn(
-                                    'mt-1 font-serif text-xl font-bold leading-tight tracking-tight sm:text-2xl',
-                                    cmfasRoom.text,
-                                  )}
-                                >
-                                  {block.title}
-                                </h3>
-                                {block.tagline && (
-                                  <p className={cn('mt-2 text-sm leading-snug', cmfasRoom.textMuted)}>
-                                    {block.tagline}
-                                  </p>
-                                )}
-                              </div>
-                              {block.headlineAmount && (
-                                <div className="shrink-0 text-right">
-                                  <p
-                                    className={cn(
-                                      'font-serif text-2xl font-extrabold leading-none tabular-nums sm:text-3xl',
-                                      'text-primary',
-                                    )}
-                                  >
-                                    {block.headlineAmount}
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-                            {block.conditions && block.conditions.length > 0 && (
-                              <ul
-                                className={cn(
-                                  'relative mt-4 space-y-1.5 border-t border-primary/15 pt-4 text-sm leading-[1.55]',
-                                  cmfasRoom.text,
-                                )}
-                              >
-                                {block.conditions.map((c, ci) => (
-                                  <li key={ci} className="flex items-start gap-2">
-                                    <CheckCircle2
-                                      className="mt-0.5 h-4 w-4 shrink-0 text-primary"
-                                      aria-hidden
-                                    />
-                                    <InlineRichText text={c} />
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                            {block.notes && block.notes.length > 0 && (
-                              <ul
-                                className={cn(
-                                  'relative mt-3 space-y-1 text-xs leading-snug',
-                                  cmfasRoom.textFaint,
-                                )}
-                              >
-                                {block.notes.map((n, ni) => (
-                                  <li key={ni}>· {n}</li>
-                                ))}
-                              </ul>
-                            )}
-                          </section>
                         );
                       }
                       if (block.kind === 'table') {

@@ -40,7 +40,6 @@ import { StudyDeskView } from "@/components/cmfas/workspace-views/StudyDeskView"
 import { READY_STEP_IDS } from "@/components/cmfas/workspace-views/getReadyData";
 import { PapersView } from "@/components/cmfas/workspace-views/PapersView";
 import { PracticeView } from "@/components/cmfas/workspace-views/PracticeView";
-import { RewardsView } from "@/components/cmfas/workspace-views/RewardsView";
 import { StudyTipsView } from "@/components/cmfas/workspace-views/StudyTipsView";
 import { SyllabusView } from "@/components/cmfas/workspace-views/SyllabusView";
 import { cmfasRoom } from "@/components/cmfas/cmfasTheme";
@@ -53,16 +52,7 @@ import { useViewMode } from "@/components/admin/AdminViewSwitcher";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
-const WORKSPACE_MODES: WorkspaceMode[] = ["today", "lecture-videos", "practice", "rewards", "study-tips", "syllabus"];
-/** Modes that get their own URL segment under `/cmfas-exams/`. The default
- *  `today` (study desk) lives at the bare `/cmfas-exams` path. */
-const PATH_WORKSPACE_MODES: ReadonlyArray<Exclude<WorkspaceMode, "today">> = [
-  "syllabus",
-  "lecture-videos",
-  "study-tips",
-  "practice",
-  "rewards",
-];
+const WORKSPACE_MODES: WorkspaceMode[] = ["today", "lecture-videos", "practice", "study-tips", "syllabus"];
 
 /** Legacy slug aliases — bookmarks of the old `/cmfas-exams/papers` URL should
  *  still resolve. Looked up before the `isWorkspaceMode` check. */
@@ -106,7 +96,7 @@ export default function CMFASExams() {
    *  nav-rail reorder so the rail and the landing page stay in sync. */
   const defaultWorkspaceMode: WorkspaceMode = readyComplete ? "study-tips" : "today";
   const activeMode: WorkspaceMode = isWorkspaceMode(pathMode) ? pathMode : defaultWorkspaceMode;
-  /** Nav rail bucket — groups the 6 URL modes into 4 (Practice = practice+papers,
+  /** Nav rail bucket — groups the 5 URL modes into 3 (Practice = practice+papers,
    *  Setup = today+syllabus). Sub-tabs inside Practice and Setup select between
    *  the two URLs that map to the same bucket. */
   const activeNavMode: NavMode = URL_TO_NAV_MODE[activeMode];
@@ -287,7 +277,6 @@ export default function CMFASExams() {
   );
 
   const renderActiveView = () => {
-    if (activeMode === "rewards") return <RewardsView />;
     if (activeMode === "study-tips") return <StudyTipsView />;
 
     // Practice bucket — Questions + Videos behind sub-tabs.

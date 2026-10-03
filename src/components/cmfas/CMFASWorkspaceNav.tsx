@@ -1,29 +1,28 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Brain, Lightbulb, Lock, Menu, Settings, Trophy } from 'lucide-react';
+import { Brain, Lightbulb, Lock, Menu, Settings } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
-/** Internal URL-bound modes. Six exist for backward compatibility with
+/** Internal URL-bound modes. Five exist for backward compatibility with
  *  bookmarks, slide deep-links (`/cmfas-exams/today/:slideSlug`), and
  *  in-app hrefs in CourseOutlineView / getReadySlideContent. The nav rail
  *  groups them into 4 buckets via {@link NavMode}. */
-export type WorkspaceMode = 'today' | 'lecture-videos' | 'practice' | 'rewards' | 'study-tips' | 'syllabus';
+export type WorkspaceMode = 'today' | 'lecture-videos' | 'practice' | 'study-tips' | 'syllabus';
 
-/** What the nav rail surfaces. Six URL modes collapse into four buckets:
+/** What the nav rail surfaces. Five URL modes collapse into three buckets:
  *  - `practice` contains [Questions (practice), Lecture videos (lecture-videos)] as sub-tabs
  *  - `setup` contains [Checklist (today), Syllabus (syllabus)] as sub-tabs
- *  - `study-tips` and `rewards` are 1:1 with their URL modes */
-export type NavMode = 'study-tips' | 'practice' | 'rewards' | 'setup';
+ *  - `study-tips` is 1:1 with its URL mode */
+export type NavMode = 'study-tips' | 'practice' | 'setup';
 
 /** Maps URL mode -> nav rail bucket. */
 export const URL_TO_NAV_MODE: Record<WorkspaceMode, NavMode> = {
   'study-tips': 'study-tips',
   practice: 'practice',
   'lecture-videos': 'practice',
-  rewards: 'rewards',
   today: 'setup',
   syllabus: 'setup',
 };
@@ -43,7 +42,7 @@ export interface CMFASWorkspaceNavItems {
 }
 
 /**
- * Four-item ordered nav list — order flips after onboarding.
+ * Three-item ordered nav list — order flips after onboarding.
  *
  * **Setup phase** (Study desk not yet complete): **Setup** leads the rail —
  * the learner's job right now is to finish onboarding (account creation,
@@ -66,7 +65,6 @@ export function buildNavSpec({
 }): CMFASWorkspaceNavItems {
   const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
   const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
-  const rewards: NavItemSpec = { id: 'rewards', label: 'Rewards', icon: Trophy, locked: false };
   const setup: NavItemSpec = {
     id: 'setup',
     label: 'Setup',
@@ -76,9 +74,9 @@ export function buildNavSpec({
   };
 
   if (!readyComplete) {
-    return { items: [setup, studyTips, practice, rewards] };
+    return { items: [setup, studyTips, practice] };
   }
-  return { items: [studyTips, practice, rewards, setup] };
+  return { items: [studyTips, practice, setup] };
 }
 
 /** Top header — branding only; workspace modes live in {@link CMFASWorkspaceFloatingNav}. */
