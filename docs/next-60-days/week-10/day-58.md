@@ -247,7 +247,7 @@ What 62.5 hours a year of professional reading gives you:
 
 **Q7. The Year-5 hunger question *"what keeps me still caring on a Wednesday in Month 59?"* works because:**
 - A) It tests discipline
-- B) It anchors the learner to a specific future moment where their current motivator (fear of failure / novelty) will have faded, so they have to to find a more durable one (correct)
+- B) It anchors the learner to a specific future moment where their current motivator (fear of failure / novelty) will have faded, so they have to find a more durable one (correct)
 - C) It's philosophically interesting
 - D) It predicts income
 
