@@ -14,246 +14,195 @@ tags: [next-60-days, week-7, new-fc, objections, art, iceberg, anchor-disrupt-as
 
 # Day 40: Objection turnaround
 
-> **The one idea for today:** An objection is usually a request for more information or reassurance, not a final no. Three tools cover most of what prospects say.
+> **Today in one line:** Most objections are a prospect asking for more information or more reassurance. Work out which one, then answer that.
 
-By the end of today you'll be able to run Anchor-Disrupt-Ask on a reflex brush-off in under 15 seconds, and tell a clear objection (use ART) from an ambiguous one (use Iceberg) so you don't waste effort on the wrong tool. You'll also break *"I need to think about it"* down into its 4 possible meanings and pick the right response for each.
+**What to remember**
 
----
+1. Acknowledge the objection before you answer it. One short line like "That's totally fair" is enough.
+2. Pick the tool by the kind of objection: a brush-off gets Anchor-Disrupt-Ask, a clear reason gets ART, a vague one gets Iceberg.
+3. "I need to think about it" can mean 4 different things. Ask which one before you respond.
+4. If a new objection appears every time you answer one, loop back and rebuild certainty instead, up to three times in a meeting.
 
-## The three kinds of objection
+## Which tool for which objection
 
-Objections come in three shapes, and each has its own tool.
+| What you hear | Tool |
+|---|---|
+| A brush-off in the first 30 seconds: "I'm busy." "Not interested." "Send me an email." | Anchor-Disrupt-Ask |
+| A clear reason: "Too expensive." "Another insurer's plan is cheaper." | ART |
+| Something vague: "Let me think about it." "I'm not sure." | Iceberg |
+| A new objection after every clean answer | Looping |
 
-| Kind | Example | Tool |
-|---|---|---|
-| Reflex or brush-off (first 30 seconds of a call or opener) | *"I'm busy."* *"Not interested."* *"Send me an email."* | Anchor-Disrupt-Ask |
-| Clear (they give a specific reason) | *"Too expensive."* *"I'm comparing with another insurer and theirs is cheaper."* | ART |
-| Ambiguous (vague, could mean several things) | *"Let me think about it."* *"I'm not sure."* | Iceberg |
+The wrong tool wastes the moment. Run Anchor-Disrupt-Ask on a C who asked a precise question and you sound like a cold-caller. Run ART on "let me think" and you end up arguing with a concern you haven't found yet.
 
-All three map onto First 60 Days Day 44 Framework A (Acknowledge, Question, Reframe). Anchor-Disrupt-Ask is the version that skips the question, ART is the full version, and Iceberg is the version where the question step is the whole dive.
+All three tools are versions of Framework A from [First 60 Days, Day 44](/learning-track/first-60-days/day/44): acknowledge, question, reframe. Each one has a question in it, which is the right-question habit from [First 60 Days, Day 47](/learning-track/first-60-days/day/47).
 
-Use the wrong tool and you waste the moment. Anchor-Disrupt-Ask on a C who just asked a precise question makes you sound like a cold-caller. ART on *"let me think"* means arguing with something you haven't identified yet.
+## Cushion first
 
-> **The engine under all three is asking the right questions.** Anchor-Disrupt-Ask ends in an ask, ART's turnaround is a question, and Iceberg's first step is diagnostic questions. The tools differ in when the question comes, and all three use one. The full right-question material is on First 60 Days [Day 47 - Right Questions](../../first-60-days/week-8/day-47.md), and the question bank for objections is in the [right-question database](../../first-60-days/_source-scripts/right-question-database.md) (Obsidian only).
+A **cushion** is the short acknowledgement you say between the prospect's objection and your answer. It decides whether they hear the rest.
 
----
+When someone objects, they've taken a position for a moment, and they listen for whether you're going to fight them on it. If they hear an argument coming, they dig in before you finish your first sentence. A cushion tells them you heard them, so they relax enough to listen.
 
-## Cushioning: the move under all three tools
+New FCs skip it because they're nervous and want to get their point in. Experienced advisers say it without thinking. The rule is simple: if you're about to say "however", "but" or "actually", a cushion comes first.
 
-Before any of the three tools, there's one move that decides whether it lands: **cushioning**, the moment of acknowledgement between the prospect's objection and your answer.
+Without a cushion:
 
-Without it, the prospect feels argued with. With it, they feel heard, and the same content comes across as advice. New FCs go content-first because they're nervous and want to get their point in. Experienced advisers cushion first without thinking. It's the most broken rule in objection handling and the cheapest to fix.
-
-### Why cushioning works
-
-When a prospect raises an objection, they've taken a position, even if only for a moment. Then they listen to see whether you'll fight them on it. If they sense an argument coming, even half a syllable in, they dig in before you've finished.
-
-A cushion line heads that off. They hear acknowledgement, relax a little, and are actually able to listen to what comes next. Without it, the rest of your script hits a wall.
-
-### The cushion lexicon
-
-Any of these works as the first half-sentence of your answer. Rotate them, because the same line every time becomes a tic.
-
-- *"That makes complete sense"* / *"That's totally fair"*
-- *"Honestly, fair, and..."*
-- *"I appreciate you sharing that"* / *"Appreciate you being upfront"*
-- *"I hear you, and..."*
-- *"You're not the first person to feel that way"*
-- *"Totally respect that"* / *"I get it"*
-- *"That's a real concern, and..."*
-- *"I'd probably feel the same way in your shoes"*
-
-A cushion can also be a sincere compliment on what they said (*"that's actually really considered"*), appreciation of their intention (*"I can see why you're thinking this through"*), empathy (*"that hesitation makes total sense"*), paraphrasing (*"so what I'm hearing is..."*), or owning a misstep (*"that's on me, I should have explained it differently"*). The principle is the same: acknowledge before you reframe.
-
-### The rule
-
-If you're about to say *"however"*, *"but"*, *"actually"* or any other reframe word, a cushion line has to come first. It can be one short sentence. What matters is that the acknowledgement is there.
-
-### Before and after
-
-Before (content first, no cushion):
-
-> Prospect: *"I think it's too expensive."*
+> Prospect: "I think it's too expensive."
 >
-> You: *"Actually, that's exactly why we need to talk about value, not just price..."*
+> You: "Actually, that's exactly why we need to talk about value, not just price..."
 
-After (cushion first, same content):
+With a cushion, same content:
 
-> Prospect: *"I think it's too expensive."*
+> Prospect: "I think it's too expensive."
 >
-> You: *"That's totally fair, and a lot of people feel the same way at first. The thing that surprised me is..."*
+> You: "That's totally fair, and a lot of people feel the same way at first. The thing that surprised me is..."
 
-The cushion at the start decides whether they hear the rest. Use it before every Anchor-Disrupt-Ask, every ART and every Iceberg below.
+Lines that work as a cushion. Rotate them, because the same one every time becomes a tic.
 
-### Tune the cushion to the profile
+- "That makes complete sense." / "That's totally fair."
+- "Honestly, fair, and..."
+- "I appreciate you sharing that." / "Appreciate you being upfront."
+- "I hear you, and..."
+- "You're not the first person to feel that way."
+- "Totally respect that." / "I get it."
+- "That's a real concern, and..."
+- "I'd probably feel the same way in your shoes."
 
-- D: short and crisp. *"Fair"* is enough. Don't linger.
-- I: warmer, with a smile in your voice. *"I really appreciate you saying that, most people don't."*
-- S: the longest. *"That makes complete sense, and I'd probably feel the same way."* Let them feel heard before you reframe.
-- C: respect their thinking. *"That's a really good question, and I want to answer it properly."*
+You can also cushion with a sincere compliment ("that's actually really considered"), by naming their intention ("I can see why you're thinking this through"), with empathy ("that hesitation makes total sense"), by paraphrasing ("so what I'm hearing is...") or by owning a misstep ("that's on me, I should have explained it differently").
 
-The words stay the same. The length and tone change with the profile.
+Adjust the length and tone to the profile:
 
----
+| Profile | Cushion |
+|---|---|
+| D | Short. "Fair." Then move on. |
+| I | Warm, with a smile in your voice. "I really appreciate you saying that, most people don't." |
+| S | The longest. "That makes complete sense, and I'd probably feel the same way." Let them feel heard before you reframe. |
+| C | Respect their thinking. "That's a really good question, and I want to answer it properly." |
 
-## Anchor-Disrupt-Ask: the fast turnaround
+## Anchor-Disrupt-Ask: for brush-offs
 
-Three beats for brush-offs and reflex objections, under 15 seconds from start to finish.
+Use this on reflex objections, the ones people say before they've thought about it. It has three beats and takes under 15 seconds.
 
 ![Anchor-Disrupt-Ask: the fast turnaround: 1 Anchor acknowledge; 2 Disrupt shift the pattern; 3 Ask request the action](/next-60-days/images/n60-day-40-m0.webp)
 
-| Beat | What it does | How it sounds |
-|---|---|---|
-| Anchor | Shows you heard them | *"That's exactly why I called."* *"Got it."* *"Completely understand."* |
-| Disrupt | Breaks the pattern they expect | *"I figured you would be, which is why I'm asking for 4 minutes, not 30."* *"A lot of people say that before they've seen what I do."* |
-| Ask | Asks directly for what you want | *"How about Tuesday 2pm for a 15-minute call?"* *"Can we book the Fact-Find for next Thursday?"* |
+| Beat | What you say |
+|---|---|
+| Anchor: show you heard them | "That's exactly why I called." "Got it." "Completely understand." |
+| Disrupt: say something they don't expect | "I figured you would be, which is why I'm asking for 4 minutes, not 30." "A lot of people say that before they've seen what I do." |
+| Ask: ask for one specific next step | "How about Tuesday 2pm for a 15-minute call?" "Can we book the Fact-Find for next Thursday?" |
 
-Worked examples:
+Three examples, with the beats marked:
 
-> **Prospect:** *"I'm busy."*
-> **You:** *"That's exactly why I called [anchor]. I figured you would be, so I'd rather find a time that suits you [disrupt]. How about Wednesday 3pm? [ask]"*
+> Prospect: "I'm busy."
+>
+> You: "That's exactly why I called (anchor). I figured you would be, so I'd rather find a time that suits you (disrupt). How about Wednesday 3pm? (ask)"
 
-> **Prospect:** *"Not interested."*
-> **You:** *"Completely understand [anchor]. Most people say that before they know what I actually do, and I'd be surprised if you weren't cautious [disrupt]. Can I send you a 2-minute video on how I work, and we talk next week if any of it is useful? [ask]"*
+> Prospect: "Not interested."
+>
+> You: "Completely understand (anchor). Most people say that before they know what I actually do, and I'd be surprised if you weren't cautious (disrupt). Can I send you a 2-minute video on how I work, and we talk next week if any of it is useful? (ask)"
 
-> **Prospect:** *"Just email me the details."*
-> **You:** *"Will do [anchor]. One thing though, the general version usually leaves people with more questions than answers [disrupt]. Could we book 10 minutes so I can send you something that fits your situation? [ask]"*
+> Prospect: "Just email me the details."
+>
+> You: "Will do (anchor). One thing though, the general version usually leaves people with more questions than answers (disrupt). Could we book 10 minutes so I can send you something that fits your situation? (ask)"
 
-One turnaround per brush-off, then respect the answer. If they say no a second time, thank them and end the call warmly. Pushing past a clear second no is pressure, and it burns the relationship. For cold calls and texts, the DNC and consent rules from Week 4 still apply.
+Use one turnaround per brush-off. If they say no a second time, thank them and end the call warmly. Pushing past a clear second no is pressure, and it burns the relationship. For cold calls and texts, the DNC and consent rules from Week 4 still apply.
 
-Write these scripts down and rehearse them until they're yours. When you already know the structure you can listen properly, and that's why a rehearsed line sounds more natural than one you're making up on the spot.
-
----
+Write your versions down and rehearse them until they're yours. When you already know the structure, you can listen properly, so a rehearsed line ends up sounding more natural than one you make up on the spot.
 
 ## ART: for clear objections
 
-When an objection is common, stated outright and comes with a specific reason, use ART.
+Use ART when the prospect gives you a specific reason. The letters are the steps: Acknowledge, Relate, Turn around.
 
 ![ART: for clear objections: A Acknowledge the concern; R Relate similar experience; T Turn around with logical reasoning](/next-60-days/images/n60-day-40-m1.webp)
 
-Worked example.
+> Prospect: "I'm comparing your plan with another insurer's, and theirs has a lower premium."
+>
+> Acknowledge: "That makes complete sense. You'd want to be sure you're making the right decision."
+>
+> Relate: "Plenty of people compare three or four providers before they decide, and they should."
+>
+> Turn around: "Can I ask what you're comparing on? The premium is one part. The other is what each plan actually pays out and when. If we put the two side by side on the things that matter to you, which would you want to look at first?"
 
-*Prospect:* *"I'm comparing your plan with another insurer's, and theirs has a lower premium."*
-
-Acknowledge (empathy):
-
-> *"That makes complete sense. You'd want to be sure you're making the right decision."*
-
-Relate (similar experience):
-
-> *"Plenty of people compare three or four providers before they decide, and they should."*
-
-Turn around (a question back, not a lecture):
-
-> *"Can I ask what you're comparing on? The premium is one part, and the other is what each plan actually pays out and when. If we put the two side by side on the things that matter to you, which would you want to look at first?"*
-
-The question back is what makes ART work. You aren't pitching or running the other plan down. You're inviting them to reason through the comparison on the things they care about. Compare only what's in the other insurer's own published documents or the policy the prospect shows you, and describe it accurately.
+The turnaround is a question. You aren't pitching, and you aren't running down the other plan. You're asking them to reason through the comparison on the things they care about. Compare only what's in the other insurer's own published documents or the policy the prospect shows you, and describe it accurately.
 
 Other clear objections that suit ART:
 
-- *"It's too expensive."*
-- *"We should compare with other providers."*
-- *"I already have coverage through my employer."*
-- *"Premiums keep going up."*
+- "It's too expensive."
+- "We should compare with other providers."
+- "I already have coverage through my employer."
+- "Premiums keep going up."
 
----
+## Iceberg: for vague objections
 
-## Iceberg: for ambiguous objections
-
-When an objection is vague and could mean several things (the classic is *"let me think about it"*), use the Iceberg approach.
+When an objection could mean several things, the real concern is under the surface. Iceberg has three steps.
 
 ![Iceberg: for ambiguous objections: Step 1 Clarify with right questions; Step 2 Acknowledge and help resolve; Step 3 Redirect to hot buttons](/next-60-days/images/n60-day-40-m2.webp)
 
-Step 1: Clarify with right questions. Is it the premium, the commitment, needing to talk to someone, or something they haven't said? Find the real issue before you try to solve it. Run each clarifying question through the [3-point right-question checklist](../../first-60-days/week-8/day-47.md#the-3-point-arq-checklist---is-this-a-right-question) first. Precision matters most here, because a vague question gets a vague answer.
+1. Clarify. Ask until you know the real issue: the premium, the commitment, needing to talk to someone, or something they haven't said. A vague question gets a vague answer, so check each one against the [3-point right-question checklist](/learning-track/first-60-days/day/47#the-3-point-right-question-checklist---is-this-a-right-question) first.
+2. Acknowledge the actual concern, not the words they used, and help resolve it.
+3. Bring them back to the hot buttons from Days 37 to 39, the reasons they were interested in the first place.
 
-Step 2: Acknowledge and help resolve the actual concern, not the surface phrase.
+### "I need to think about it"
 
-Step 3: Bring them back to the hot buttons (Days 37 to 39) that got them interested in the first place.
+This is the most common vague objection. It rarely means they want to go away and analyse. It usually means one of 4 things:
 
-ART handles objections where the real concern is stated. Iceberg handles ones where the real concern sits below the surface. *"Think about it"* rarely means they want to go and analyse.
+1. Profile habit. C profiles overthink by default, and S profiles are wary of committing.
+2. They don't see the need, because you haven't shown them enough of the gap.
+3. They need to talk it over with someone, usually a spouse or parents.
+4. There's a concern you haven't addressed, some gap in your pitch they haven't named.
 
----
+Questions that tell you which one it is:
 
-## When the objection keeps moving: looping
+- "If I may ask, is there something specific holding you back? The monthly amount, how long the commitment is, or something about the plan itself?"
+- "Am I right that you're fairly happy with the plan, and you just like to sit on decisions for a day or two?"
+- "Is it something you'd want to talk through with someone at home first?"
 
-You answer *"too expensive"* cleanly. The prospect nods, says *"makes sense"*, and immediately says *"I need to speak to my wife."* You handle that. Then: *"Actually, maybe I'll compare a bit more."* Then: *"Timing's bad, let me get back to you next month."*
+Each answer leads to a different response, so ask first and respond second.
 
-Every objection got a clean answer and you still didn't close, because the stated objection was never the real problem. Objections often cover for uncertainty. If the prospect is unsure about the product, about you or about the company, they'll keep producing new objections until one sticks, because the uncertainty underneath hasn't moved.
+### When it's a profile habit
 
-### The three certainties
+C and S profiles both often ask for time before deciding, for different reasons.
 
-This idea comes from Jordan Belfort's Straight Line selling system. Before a prospect buys, they need to be close to a 9 or 10 out of 10 on three things:
+A C needs to research, compare and check. Give them what they need to finish: "Here's the comparison, here are the numbers, let's meet Thursday to go through your questions." Don't push.
 
-| What they must be certain of | What drags it down |
+An S is wary of committing and wants reassurance. Slow down: "No rush at all. What would feeling ready look like for you? Let's set a time to talk again so you don't have to carry this decision alone."
+
+Neither responds well to "why not decide today?" The C hears it as sloppy and the S hears it as pressure.
+
+An I who says "let me think" is rarely planning to run numbers. Usually something feels off and they want to stall. Ask about the feeling ("what's not sitting right?") instead of adding data. If they can't name anything, book a follow-up within 48 to 72 hours, before their interest fades.
+
+## Looping: when the objection keeps moving
+
+You answer "too expensive" cleanly. The prospect nods, then says "I need to speak to my wife." You handle that. Then it's "maybe I'll compare a bit more", then "timing's bad, let me get back to you next month."
+
+Every answer was fine and you still didn't close. The stated objections were covering for uncertainty about the product, about you or about the company, and new ones will keep coming until that uncertainty moves.
+
+This idea comes from Jordan Belfort's Straight Line selling system. Before a prospect buys, they need to be close to 9 or 10 out of 10 on three things:
+
+| They need to be sure that | What pulls it down |
 |---|---|
 | The product is right for them | A weak pitch, vague benefits, the wrong angle |
 | You are trustworthy and competent | Poor rapport, a scripted delivery, not really listening |
-| The company behind the product is reliable | Nothing about the firm's track record or how it handles claims |
+| The company behind the product is reliable | Nothing said about the firm's track record or how it handles claims |
 
 If any one of these sits at 5 or below, you can answer every objection perfectly and still not close.
 
-### Looping: rebuilding certainty
-
-When your answers aren't moving things, stop answering objections and loop back into presenting. Rebuild certainty on all three before you ask again.
+So when your answers aren't moving things, stop answering objections. Go back into presenting, rebuild all three, then ask again.
 
 ![Looping: the uncertainty-rebuilder: Objection lands; Acknowledge (don't rebut yet); Loop back into mini-presentation; Rebuild certainty on Product + You + Firm; Re-ask for the order](/next-60-days/images/n60-day-40-m3.webp)
 
-A looping script template:
+A looping script:
 
-> *"I completely hear you on [objection]. Let me take a step back for a second, because I want to be sure this is actually right for you and not just a product I'm pushing. The reason I think it makes sense is [product angle, tied to their hot button]. From what you told me earlier, [link to their situation: certainty #1]. And what you can expect from me is [your actual service commitment: certainty #2]. On the company side, [a fact from AIA's own published materials, such as its claims record or history: certainty #3]. With all that in mind, does the way forward feel clearer?"*
+> "I completely hear you on [objection]. Let me take a step back for a second, because I want to be sure this is actually right for you and not just a product I'm pushing. The reason I think it makes sense is [product angle, tied to their hot button]. From what you told me earlier, [link to their situation: certainty 1]. And what you can expect from me is [your actual service commitment: certainty 2]. On the company side, [a fact from AIA's own published materials, such as its claims record or history: certainty 3]. With all that in mind, does the way forward feel clearer?"
 
-Only use firm facts you can point to in AIA's published materials, and only promise service you'll actually deliver.
+Use only firm facts you can point to in AIA's published materials, and promise only the service you'll actually give.
 
-Loop at most three times in one meeting. If you're still getting new objections after three, they're not ready to decide today. Book a follow-up rather than grind, and protect the relationship.
+Loop at most three times in one meeting. If new objections are still coming after three, they aren't ready to decide today. Book a follow-up instead of grinding, and keep the relationship.
 
-### Which tool when
+## Do this today
 
-| Situation | Tool |
-|---|---|
-| The objection comes up for the first time, specific and clear | ART |
-| The objection comes up for the first time, vague (*"let me think"*) | Iceberg |
-| They keep producing new objections after clean answers | Looping |
-| A brush-off in the first 30 seconds | Anchor-Disrupt-Ask |
-
-You reach for looping when the other tools have been tried and the sale is drifting. It's how you find out what's actually going on.
-
----
-
-## *"I need to think about it"*: the 4 meanings
-
-This is the most common ambiguous objection, and it usually means one of 4 things:
-
-1. Profile habit: C profiles overthink by default, and S profiles are wary of committing.
-2. They don't see the need, because you haven't shown them enough of the gap.
-3. They need to discuss it with someone, usually a spouse or parents.
-4. There's a concern you haven't addressed, some gap in your pitch they haven't named.
-
-Iceberg's first step is working out which one it is. Questions that help:
-
-- *"If I may ask, is there something specific holding you back? The monthly amount, how long the commitment is, or something about the plan itself?"*
-- *"Am I right that you're fairly happy with the plan, and you just like to sit on decisions for a day or two?"*
-- *"Is it something you'd want to talk through with someone at home first?"*
-
-Each answer sends you to a different response. Diagnose first and respond second.
-
----
-
-## The S and C combination
-
-Two of the four DISC profiles very often ask for time before deciding:
-
-- C profiles need to research, compare and verify. It's a genuine need to analyse.
-- S profiles are wary of committing, want harmony, and need reassurance.
-
-With these two, *"think about it"* is often a profile habit rather than a hidden objection. How to respond:
-
-For C, give them the data they need to finish their analysis. *"Here's the comparison, here are the numbers, let's meet Thursday to go through your questions."* Don't pressure them. Make it easy.
-
-For S, soften and reassure. *"No rush at all. What would feeling ready look like for you? Let's set a time to talk again so you don't have to carry this decision alone."*
-
-Neither responds well to *"why not decide today?"* The C hears it as sloppy and the S hears it as pressure, and both switch off.
-
----
+1. Write an Anchor-Disrupt-Ask for the three brush-offs you hear most, in your own words.
+2. Write one cushion line for each DISC profile.
+3. Say them out loud until you can do each one without looking, then use them on this week's calls.
 
 ## Sources
 
@@ -264,7 +213,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q1. Anchor-Disrupt-Ask is best used for:**
 - A) Long technical objections
-- B) Reflex / brush-off objections in the first 30 seconds of a call or opener, like *"I'm busy"*, *"not interested"*, *"just email me"* ✓
+- B) Reflex / brush-off objections in the first 30 seconds of a call or opener, like *"I'm busy"*, *"not interested"*, *"just email me"* (correct)
 - C) Post-pitch objections about price
 - D) Ambiguous *"let me think"* situations
 
@@ -272,7 +221,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q2. In ART, the "T" (Turn around) step ends with:**
 - A) A direct statement of why the prospect is wrong
-- B) A question back that invites the prospect to reason it through, such as asking what they're comparing on ✓
+- B) A question back that invites the prospect to reason it through, such as asking what they're comparing on (correct)
 - C) A price drop
 - D) Silence
 
@@ -280,7 +229,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q3. *"I need to think about it"* is the classic ambiguous objection because it could mean:**
 - A) Only that the price is too high
-- B) 4+ different things: profile habit, no perceived need, needs to discuss, hidden concern ✓
+- B) 4+ different things: profile habit, no perceived need, needs to discuss, hidden concern (correct)
 - C) The prospect wasn't listening
 - D) The deal is dead
 
@@ -289,14 +238,14 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 **Q4. C and S profiles both often ask for time before deciding, but for opposite reasons. The correct responses are:**
 - A) Both get the same response, *"sign today"*
 - B) C gets pressure; S gets facts
-- C) C gets the data they need to complete analysis (*"here's the comparison, let's meet Thursday"*); S gets soft assurance (*"what would feeling ready look like? Let's set a follow-up"*) ✓
+- C) C gets the data they need to complete analysis (*"here's the comparison, let's meet Thursday"*); S gets soft assurance (*"what would feeling ready look like? Let's set a follow-up"*) (correct)
 - D) Both get the same follow-up date with no tailoring
 
 **Why:** C's hold back because they really do need time to research, so give them the comparison and a set follow-up. S's hold back because they're wary of committing, so reassure them and set a follow-up at their pace. Soft reassurance feels vague to a C, and hard data can feel cold to an S.
 
 **Q5. *"I'm comparing your plan with another insurer's, and theirs is cheaper"* is best handled with:**
 - A) Iceberg (ambiguous)
-- B) ART (clear, common, specific) ✓
+- B) ART (clear, common, specific) (correct)
 - C) Silence
 - D) Immediate price match
 
@@ -304,7 +253,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q6. The Disrupt beat in Anchor-Disrupt-Ask does what?**
 - A) Contradicts the prospect directly
-- B) Breaks the pattern the prospect expects, like *"I figured you would be, which is why I'm only asking for 4 minutes"* ✓
+- B) Breaks the pattern the prospect expects, like *"I figured you would be, which is why I'm only asking for 4 minutes"* (correct)
 - C) Repeats their objection back to them
 - D) Changes the topic
 
@@ -312,7 +261,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q7. *"Let me think about it"* from an I-profile prospect most likely means:**
 - A) They need to run the numbers
-- B) They feel unsure and don't want to commit right now, which is rarely about analysis ✓
+- B) They feel unsure and don't want to commit right now, which is rarely about analysis (correct)
 - C) They want to consult a spreadsheet
 - D) They're testing you
 
@@ -320,7 +269,7 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q8. A prospect hits you with *"too expensive"*, then *"need to speak to my wife"*, then *"maybe compare some more"*, then *"bad timing"*, each one after a clean rebuttal. The correct diagnosis is:**
 - A) Four separate objections, so rebut each one in turn
-- B) The stated objections are covering for uncertainty on one or more of the three certainties (product, you, firm), so stop rebutting and loop back into presenting to rebuild certainty ✓
+- B) The stated objections are covering for uncertainty on one or more of the three certainties (product, you, firm), so stop rebutting and loop back into presenting to rebuild certainty (correct)
 - C) The prospect is wasting your time, so end the meeting
 - D) Lower the price
 
@@ -328,13 +277,11 @@ Neither responds well to *"why not decide today?"* The C hears it as sloppy and 
 
 **Q9. The rule of three loops says:**
 - A) Loop forever until they close
-- B) Loop at most three times per meeting; if objections keep coming, schedule a follow-up rather than grind, and protect the relationship ✓
+- B) Loop at most three times per meeting; if objections keep coming, schedule a follow-up rather than grind, and protect the relationship (correct)
 - C) Loop once, then escalate to your manager
 - D) Never loop more than once
 
 **Why:** Each extra loop does less than the one before. Three is usually enough to either close or find out they're not ready today. Past three you're grinding, which is pressure, and it costs you trust. A follow-up keeps the prospect and gives their certainty time to build.
-
----
 
 ## Related
 
