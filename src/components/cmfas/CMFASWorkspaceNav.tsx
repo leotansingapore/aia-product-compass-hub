@@ -1,40 +1,22 @@
-import { useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Brain, Lightbulb, Lock, Menu, Settings } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { BookOpen, Brain, CheckCircle2, Lightbulb, ListChecks, Lock, PlayCircle } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { cmfasRoom } from './cmfasTheme';
 
-/** Internal URL-bound modes. Five exist for backward compatibility with
- *  bookmarks, slide deep-links (`/cmfas-exams/today/:slideSlug`), and
- *  in-app hrefs in CourseOutlineView / getReadySlideContent. The nav rail
- *  groups them into 4 buckets via {@link NavMode}. */
+/** URL-bound workspace modes. Each one is a tab and a path segment under
+ *  `/cmfas-exams/` (the default lives at the bare path). `today` is the
+ *  Get-ready slide flow, which also owns `/cmfas-exams/today/:slideSlug`. */
 export type WorkspaceMode = 'today' | 'lecture-videos' | 'practice' | 'study-tips' | 'syllabus';
 
-/** What the nav rail surfaces. Five URL modes collapse into three buckets:
- *  - `practice` contains [Questions (practice), Lecture videos (lecture-videos)] as sub-tabs
- *  - `setup` contains [Checklist (today), Syllabus (syllabus)] as sub-tabs
- *  - `study-tips` is 1:1 with its URL mode */
-export type NavMode = 'study-tips' | 'practice' | 'setup';
-
-/** Maps URL mode -> nav rail bucket. */
-export const URL_TO_NAV_MODE: Record<WorkspaceMode, NavMode> = {
-  'study-tips': 'study-tips',
-  practice: 'practice',
-  'lecture-videos': 'practice',
-  today: 'setup',
-  syllabus: 'setup',
-};
-
 interface NavItemSpec {
-  id: NavMode;
+  id: WorkspaceMode;
   label: string;
   icon: LucideIcon;
-  /** When true, the item is locked + greyed until Ready is complete. */
+  /** Greyed with a lock until Get ready is complete; a click explains why. */
   locked: boolean;
-  /** Optional badge — e.g. "3/6" on Setup, or a green ✓ once complete. */
-  badge?: string;
+  /** Get-ready progress, shown as "3/5" until complete, then a check. */
+  progress?: { done: number; total: number };
 }
 
 export interface CMFASWorkspaceNavItems {
@@ -42,19 +24,15 @@ export interface CMFASWorkspaceNavItems {
 }
 
 /**
- * Three-item ordered nav list — order flips after onboarding.
+ * Flat tab list. Order flips after onboarding.
  *
- * **Setup phase** (Study desk not yet complete): **Setup** leads the rail —
- * the learner's job right now is to finish onboarding (account creation,
- * resources access, exam booking) and skim the exam format.
+ * **Setup phase** (Get ready not complete): Get ready and Syllabus lead,
+ * because finishing onboarding is the learner's job right now.
  *
- * **Post-onboarding** (Study desk complete): the rail reorders to surface
- * the daily-use items first — **Study tips** and **Practice** are what
- * learners actually open every day. **Setup** drops to the end as a quiet
- * "done" link in case anyone needs to revisit a setup step or the syllabus.
+ * **Post-onboarding**: the daily-use tabs (Study tips, Question bank,
+ * Lecture videos) move to the front and the setup tabs drop to the end.
  *
- * Locks fall on **Practice** (gated by `readyComplete`); the rest are
- * always available.
+ * Question bank and Lecture videos stay locked until Get ready is complete.
  */
 export function buildNavSpec({
   readyProgress,
@@ -63,274 +41,87 @@ export function buildNavSpec({
   readyProgress: { done: number; total: number };
   readyComplete: boolean;
 }): CMFASWorkspaceNavItems {
+  const today: NavItemSpec = { id: 'today', label: 'Get ready', icon: ListChecks, locked: false, progress: readyProgress };
+  const syllabus: NavItemSpec = { id: 'syllabus', label: 'Syllabus & format', icon: BookOpen, locked: false };
   const studyTips: NavItemSpec = { id: 'study-tips', label: 'Study tips', icon: Lightbulb, locked: false };
-  const practice: NavItemSpec = { id: 'practice', label: 'Practice', icon: Brain, locked: !readyComplete };
-  const setup: NavItemSpec = {
-    id: 'setup',
-    label: 'Setup',
-    icon: Settings,
-    locked: false,
-    badge: readyComplete ? '✓' : `${readyProgress.done}/${readyProgress.total}`,
-  };
+  const practice: NavItemSpec = { id: 'practice', label: 'Question bank', icon: Brain, locked: !readyComplete };
+  const videos: NavItemSpec = { id: 'lecture-videos', label: 'Lecture videos', icon: PlayCircle, locked: !readyComplete };
 
   if (!readyComplete) {
-    return { items: [setup, studyTips, practice] };
+    return { items: [today, syllabus, studyTips, practice, videos] };
   }
-  return { items: [studyTips, practice, setup] };
+  return { items: [studyTips, practice, videos, syllabus, today] };
 }
 
-/** Top header — branding only; workspace modes live in {@link CMFASWorkspaceFloatingNav}. */
-export interface CMFASWorkspaceTopBarProps {
-  /**
-   * When `brandingTitle` is set, replaces the default “CMFAS / Exam preparation room”
-   * (e.g. Study desk title).
-   */
-  brandingEyebrow?: string;
-  brandingTitle?: string;
-}
-
-export interface CMFASWorkspaceFloatingNavProps {
+export interface CMFASWorkspaceTabsProps {
   groups: CMFASWorkspaceNavItems;
-  activeMode: NavMode;
-  onModeChange: (mode: NavMode) => void;
-  onLockedClick?: (mode: NavMode) => void;
+  activeMode: WorkspaceMode;
+  onModeChange: (mode: WorkspaceMode) => void;
+  onLockedClick?: (mode: WorkspaceMode) => void;
 }
 
-/** Desktop (lg+): title strip only — mode nav is {@link CMFASWorkspaceFloatingNav}. */
-export function CMFASWorkspaceTopBar({ brandingEyebrow, brandingTitle }: CMFASWorkspaceTopBarProps) {
-  const eye = brandingTitle != null ? (brandingEyebrow ?? 'CMFAS') : 'CMFAS';
-  const line = brandingTitle ?? 'Exam preparation room';
+/** Underline tabs that sit on the workspace header's bottom border. Scrolls
+ *  sideways on narrow screens and keeps the active tab in view. */
+export function CMFASWorkspaceTabs({ groups, activeMode, onModeChange, onLockedClick }: CMFASWorkspaceTabsProps) {
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const active = nav?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!nav || !active) return;
+    const { offsetLeft, offsetWidth } = active;
+    if (offsetLeft < nav.scrollLeft || offsetLeft + offsetWidth > nav.scrollLeft + nav.clientWidth) {
+      nav.scrollLeft = offsetLeft - 16;
+    }
+  }, [activeMode]);
 
   return (
-    <header
-      className={cn(
-        'relative z-20 hidden w-full shrink-0 border-b px-3 py-2.5',
-        'bg-background/90 backdrop-blur-sm',
-        cmfasRoom.brassBorderSoft,
-        'lg:block',
-        'xl:px-5 xl:py-3',
-      )}
-    >
-      <div
-        className={cn(
-          'shrink-0 min-w-0',
-          brandingTitle != null ? 'max-w-[min(100%,20rem)] xl:max-w-md' : 'xl:max-w-[11rem]',
-        )}
-      >
-        <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>{eye}</p>
-        <p
-          className={cn(
-            brandingTitle != null
-              ? 'mt-0.5 font-serif text-base font-bold leading-tight sm:text-lg'
-              : 'truncate text-sm font-semibold',
-            cmfasRoom.text,
-          )}
-        >
-          {line}
-        </p>
-      </div>
-    </header>
-  );
-}
-
-const navTransitionFast = 'duration-100 ease-out';
-
-const primaryBtnClass = (isActive: boolean, locked: boolean) =>
-  cn(
-    'flex h-10 w-full min-w-0 items-center justify-center gap-0 overflow-hidden rounded-xl p-0 text-left text-xs font-medium',
-    navTransitionFast,
-    'transition-[background-color,color,box-shadow]',
-    'group-hover/nav:justify-start group-focus-within/nav:justify-start',
-    isActive
-      ? cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText, 'font-semibold shadow-sm')
-      : locked
-        ? cn(cmfasRoom.dimmedText, 'cursor-not-allowed')
-        : cn(cmfasRoom.textMuted, 'hover:bg-primary/10 hover:text-primary'),
-  );
-
-/** 40×40 hit area; Lucide SVGs often sit off-center in flex — pin with translate for true center. */
-const iconCellClass = 'relative block h-10 w-10 shrink-0 overflow-visible';
-const iconCenteredLg = 'absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2';
-const iconCenteredMd = 'absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2';
-
-const labelRevealClass = cn(
-  'min-w-0 max-w-0 shrink self-center overflow-hidden whitespace-nowrap text-left leading-none opacity-0 transition-[max-width,opacity] ease-out pl-0',
-  navTransitionFast,
-  'group-hover/nav:pl-1 group-hover/nav:max-w-[9rem] group-hover/nav:opacity-100 group-focus-within/nav:pl-1 group-focus-within/nav:max-w-[9rem] group-focus-within/nav:opacity-100 sm:group-hover/nav:max-w-[12rem] sm:group-focus-within/nav:max-w-[12rem]',
-);
-
-const badgeRevealClass = cn(
-  'mr-0 shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold tabular-nums',
-  'max-w-0 overflow-hidden opacity-0 transition-[max-width,opacity] ease-out',
-  navTransitionFast,
-  'group-hover/nav:max-w-[3.5rem] group-hover/nav:opacity-100 group-focus-within/nav:max-w-[3.5rem] group-focus-within/nav:opacity-100',
-);
-
-/** Desktop (lg+): vertical floating rail; icons only, labels on hover or keyboard focus within the rail.
- *  Portaled to `document.body` so `position: fixed` is viewport-stable — `main.page-transition` uses
- *  transform for the fade-in animation, which would otherwise make fixed descendants track the scroller. */
-export function CMFASWorkspaceFloatingNav({
-  groups,
-  activeMode,
-  onModeChange,
-  onLockedClick,
-}: CMFASWorkspaceFloatingNavProps) {
-  const nav = (
     <nav
-      className={cn(
-        'group/nav pointer-events-auto fixed left-3 top-28 z-40 hidden w-14 max-h-[min(calc(100vh-7.5rem),44rem)] flex-col gap-0.5 overflow-y-auto overflow-x-hidden rounded-2xl border p-1.5',
-        'border-border bg-card/90 backdrop-blur-md',
-        'shadow-sm',
-        'transition-[width,background-color,box-shadow] duration-100 ease-out',
-        'hover:w-56 hover:bg-card/95 hover:shadow-md',
-        'focus-within:w-56 focus-within:bg-card/95 focus-within:shadow-md',
-        'lg:flex',
-      )}
-      aria-label="Workspace"
+      ref={navRef}
+      aria-label="Exam prep sections"
+      className="relative -mb-px flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {groups.items.map((item) => {
         const Icon = item.locked ? Lock : item.icon;
         const isActive = activeMode === item.id;
-        const handleClick = () => {
-          if (item.locked) {
-            onLockedClick?.(item.id);
-            return;
-          }
-          onModeChange(item.id);
-        };
+        const complete = item.progress != null && item.progress.done >= item.progress.total;
         return (
           <button
             key={item.id}
             type="button"
-            onClick={handleClick}
+            onClick={() => (item.locked ? onLockedClick?.(item.id) : onModeChange(item.id))}
             aria-current={isActive ? 'page' : undefined}
-            className={primaryBtnClass(isActive, item.locked)}
-            title={item.locked ? 'Locked' : item.label + (item.badge ? ` (${item.badge})` : '')}
-          >
-            <span className={iconCellClass}>
-              <Icon className={iconCenteredLg} aria-hidden />
-            </span>
-            <span className={cn(labelRevealClass, item.locked && 'pointer-events-none', cmfasRoom.text)}>{item.label}</span>
-            {item.badge && (
-              <span
-                className={cn(
-                  badgeRevealClass,
-                  item.badge === '✓'
-                    ? cn(cmfasRoom.positiveBgSoft, cmfasRoom.positiveText)
-                    : cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText),
-                )}
-              >
-                {item.badge}
-              </span>
+            aria-disabled={item.locked || undefined}
+            title={item.locked ? 'Finish Get ready to unlock' : undefined}
+            className={cn(
+              'flex h-11 shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-3 text-sm transition-colors',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset',
+              isActive
+                ? 'border-primary font-semibold text-primary'
+                : item.locked
+                  ? cn('cursor-not-allowed border-transparent', cmfasRoom.dimmedText)
+                  : cn('border-transparent font-medium hover:border-border hover:text-foreground', cmfasRoom.textMuted),
             )}
+          >
+            <Icon className="h-4 w-4 shrink-0" aria-hidden />
+            {item.label}
+            {item.progress &&
+              (complete ? (
+                <CheckCircle2 className={cn('h-4 w-4 shrink-0', cmfasRoom.positiveText)} aria-label="complete" />
+              ) : (
+                <span
+                  className={cn(
+                    'rounded-full px-1.5 py-0.5 text-[11px] font-semibold tabular-nums',
+                    cmfasRoom.brassBgSoft,
+                    cmfasRoom.brassText,
+                  )}
+                >
+                  {item.progress.done}/{item.progress.total}
+                </span>
+              ))}
           </button>
         );
       })}
     </nav>
   );
-
-  return createPortal(nav, document.body);
-}
-
-interface CMFASWorkspaceMobileMenuProps {
-  groups: CMFASWorkspaceNavItems;
-  activeMode: NavMode;
-  onModeChange: (mode: NavMode) => void;
-  onLockedClick?: (mode: NavMode) => void;
-}
-
-/** Mobile/tablet (below lg). Floating hamburger — opens a Sheet listing the same items as the desktop rail.
- *  Portaled to `document.body` for the same reason as {@link CMFASWorkspaceFloatingNav}: `page-transition`
- *  uses transform, which breaks `position: fixed` on descendants. */
-export function CMFASWorkspaceMobileMenu({
-  groups,
-  activeMode,
-  onModeChange,
-  onLockedClick,
-}: CMFASWorkspaceMobileMenuProps) {
-  const [open, setOpen] = useState(false);
-
-  const select = (id: NavMode, locked: boolean) => {
-    if (locked) {
-      onLockedClick?.(id);
-      return;
-    }
-    onModeChange(id);
-    setOpen(false);
-  };
-
-  const renderItem = (item: NavItemSpec) => {
-    const Icon = item.locked ? Lock : item.icon;
-    const isActive = activeMode === item.id;
-    const badge = item.badge;
-    return (
-      <button
-        key={item.id}
-        type="button"
-        onClick={() => select(item.id, item.locked)}
-        aria-current={isActive ? 'page' : undefined}
-        className={cn(
-          'flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm transition-colors',
-          isActive
-            ? cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText, 'font-semibold')
-            : item.locked
-              ? cn(cmfasRoom.dimmedText, 'cursor-not-allowed')
-              : cn(cmfasRoom.textMuted, 'hover:bg-primary/10 hover:text-primary'),
-        )}
-      >
-        <Icon className="h-4 w-4 shrink-0" aria-hidden />
-        <span className="flex-1 truncate">{item.label}</span>
-        {badge && (
-          <span
-            className={cn(
-              'shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold tabular-nums',
-              badge === '✓'
-                ? cn(cmfasRoom.positiveBgSoft, cmfasRoom.positiveText)
-                : cn(cmfasRoom.brassBgSoft, cmfasRoom.brassText),
-            )}
-          >
-            {badge}
-          </span>
-        )}
-      </button>
-    );
-  };
-
-  const menu = (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <button
-          type="button"
-          aria-label="Open CMFAS workspace menu"
-          className={cn(
-            'pointer-events-auto fixed left-3 top-20 z-40 flex h-11 w-11 items-center justify-center rounded-full border lg:hidden',
-            'border-border bg-card/95 backdrop-blur-md',
-            'shadow-md',
-            cmfasRoom.brassText,
-            'hover:bg-card',
-          )}
-        >
-          <Menu className="h-5 w-5" aria-hidden />
-        </button>
-      </SheetTrigger>
-      <SheetContent
-        side="left"
-        className={cn('w-80 border-r p-5', cmfasRoom.canvas, cmfasRoom.text, 'border-primary/25')}
-      >
-        <SheetHeader className="text-left">
-          <p className={cn('text-[10px] font-semibold uppercase tracking-[0.2em]', cmfasRoom.brassText)}>
-            CMFAS
-          </p>
-          <SheetTitle className={cn('font-serif text-lg font-bold', cmfasRoom.text)}>
-            Exam preparation room
-          </SheetTitle>
-        </SheetHeader>
-        <div className="mt-5 flex flex-col gap-1">
-          {groups.items.map((item) => renderItem(item))}
-        </div>
-      </SheetContent>
-    </Sheet>
-  );
-
-  return createPortal(menu, document.body);
 }

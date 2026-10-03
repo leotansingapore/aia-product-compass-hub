@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { EyeOff, MoreVertical, Plus, Settings } from "lucide-react";
+import { ExternalLink, EyeOff, MoreVertical, Plus, Settings } from "lucide-react";
 import { toast } from "sonner";
 
 import { PageLayout, StructuredData } from "@/components/layout/PageLayout";
@@ -27,14 +27,10 @@ import {
 import { LearningTrackJourneyNav } from "@/components/learning-track/LearningTrackJourneyNav";
 import { CMFASWorkspaceBackdrop } from "@/components/cmfas/CMFASWorkspaceBackdrop";
 import {
-  CMFASWorkspaceFloatingNav,
-  CMFASWorkspaceMobileMenu,
-  URL_TO_NAV_MODE,
+  CMFASWorkspaceTabs,
   buildNavSpec,
-  type NavMode,
   type WorkspaceMode,
 } from "@/components/cmfas/CMFASWorkspaceNav";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CMFASHubChatFAB } from "@/components/cmfas/CMFASHubChatFAB";
 import { StudyDeskView } from "@/components/cmfas/workspace-views/StudyDeskView";
 import { READY_STEP_IDS } from "@/components/cmfas/workspace-views/getReadyData";
@@ -96,10 +92,6 @@ export default function CMFASExams() {
    *  nav-rail reorder so the rail and the landing page stay in sync. */
   const defaultWorkspaceMode: WorkspaceMode = readyComplete ? "study-tips" : "today";
   const activeMode: WorkspaceMode = isWorkspaceMode(pathMode) ? pathMode : defaultWorkspaceMode;
-  /** Nav rail bucket — groups the 5 URL modes into 3 (Practice = practice+papers,
-   *  Setup = today+syllabus). Sub-tabs inside Practice and Setup select between
-   *  the two URLs that map to the same bucket. */
-  const activeNavMode: NavMode = URL_TO_NAV_MODE[activeMode];
 
   // Legacy back-compat: bookmarks of `/cmfas-exams?mode=papers` (and friends)
   // land here from before unique URLs existed. Rewrite to the matching
@@ -129,8 +121,7 @@ export default function CMFASExams() {
     }
   }, [searchParams, setSearchParams, navigate, defaultWorkspaceMode]);
 
-  /** Navigate to a URL mode (one of the 6 internal modes). Used by sub-tab
-   *  clicks inside merged views and by legacy in-app links. */
+  /** Navigate to a workspace mode. Used by the tabs and by in-app links. */
   const setMode = useCallback(
     (mode: WorkspaceMode) => {
       const path =
@@ -138,18 +129,6 @@ export default function CMFASExams() {
       navigate(path, { replace: true });
     },
     [navigate, defaultWorkspaceMode],
-  );
-
-  /** Navigate to the canonical URL for a nav-rail bucket. Practice defaults
-   *  to questions (papers/videos lives behind the sub-tab); Setup defaults to
-   *  checklist (today/study-desk; syllabus lives behind the sub-tab). */
-  const setNavMode = useCallback(
-    (mode: NavMode) => {
-      const target: WorkspaceMode =
-        mode === "practice" ? "practice" : mode === "setup" ? "today" : mode;
-      setMode(target);
-    },
-    [setMode],
   );
 
   // Admin: publish-toggle on the CMFAS category ------------------------------
@@ -255,63 +234,19 @@ export default function CMFASExams() {
     );
   }
 
-  /** Sub-tabs surfaced inside the merged Practice and Setup nav buckets.
-   *  Each sub-tab maps to one of the 6 underlying URL modes so deep-links and
-   *  legacy in-app hrefs (e.g. `/cmfas-exams/syllabus`) keep working. */
-  const renderSubTabs = (
-    options: Array<{ value: WorkspaceMode; label: string }>,
-  ) => (
-    <Tabs
-      value={activeMode}
-      onValueChange={(v) => setMode(v as WorkspaceMode)}
-      className="mb-4"
-    >
-      <TabsList className="grid w-full max-w-md grid-cols-2">
-        {options.map((opt) => (
-          <TabsTrigger key={opt.value} value={opt.value}>
-            {opt.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </Tabs>
-  );
-
   const renderActiveView = () => {
-    if (activeMode === "study-tips") return <StudyTipsView />;
-
-    // Practice bucket — Questions + Videos behind sub-tabs.
-    if (activeMode === "practice" || activeMode === "lecture-videos") {
-      return (
-        <>
-          {renderSubTabs([
-            { value: "practice", label: "Question bank" },
-            { value: "lecture-videos", label: "Lecture videos" },
-          ])}
-          {activeMode === "practice" ? <PracticeView /> : <PapersView />}
-        </>
-      );
+    switch (activeMode) {
+      case "study-tips":
+        return <StudyTipsView />;
+      case "practice":
+        return <PracticeView />;
+      case "lecture-videos":
+        return <PapersView />;
+      case "syllabus":
+        return <SyllabusView />;
+      default:
+        return <StudyDeskView onSelectWorkspaceMode={setMode} />;
     }
-
-    // Setup bucket — Checklist (study desk) + Syllabus & format behind sub-tabs.
-    // Note: the Study desk view itself is the linear slide flow and needs to
-    // fill remaining height; we keep the sub-tabs in normal flow above it.
-    if (activeMode === "today" || activeMode === "syllabus") {
-      return (
-        <>
-          {renderSubTabs([
-            { value: "today", label: "Get-ready checklist" },
-            { value: "syllabus", label: "Syllabus & format" },
-          ])}
-          {activeMode === "today" ? (
-            <StudyDeskView onSelectWorkspaceMode={setMode} />
-          ) : (
-            <SyllabusView />
-          )}
-        </>
-      );
-    }
-
-    return <StudyDeskView onSelectWorkspaceMode={setMode} />;
   };
 
   return (
@@ -367,47 +302,85 @@ export default function CMFASExams() {
             </div>
           )}
 
-          {/* Study-strategy banner — the fastest path is drilling questions, not videos/textbooks */}
-          <div
+          {/* Workspace header: study tip, then the section tabs sitting on the bottom border */}
+          <header
             className={cn(
-              "relative z-20 flex flex-wrap items-center justify-between gap-2 border-b px-4 py-2.5",
+              "relative z-20 shrink-0 border-b bg-card/90 backdrop-blur-sm",
               cmfasRoom.brassBorderSoft,
-              "bg-card/90 backdrop-blur-sm",
             )}
           >
-            <p className={cn("text-xs sm:text-sm", cmfasRoom.text)}>
-              <span className="font-semibold">Drill questions, not videos.</span>{" "}
-              <span className={cmfasRoom.textMuted}>
-                The fastest way to pass is to spam practice questions and read the explanation after each one — skip the lecture videos and reading the textbook cover to cover.
-              </span>
-            </p>
-            <a
-              href="https://app.cmfas-exams-prep.com/login"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "shrink-0 rounded-md border px-3 py-1.5 text-xs font-semibold transition-colors",
-                cmfasRoom.brassBorderSoft,
-                "bg-card/80 hover:bg-card",
-              )}
-            >
-              Practise on CMFAS Prep →
-            </a>
-          </div>
+            <div className="mx-auto w-full max-w-[min(100%,80rem)] px-4 sm:px-6 md:px-10">
+              <div className="flex flex-col items-start gap-2 pt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <p className={cn("max-w-[75ch] text-xs leading-relaxed sm:text-sm", cmfasRoom.textMuted)}>
+                  <span className={cn("font-semibold", cmfasRoom.text)}>Drill questions, not videos.</span>{" "}
+                  The fastest way to pass is to spam practice questions and read the explanation after each one — skip the lecture videos and reading the textbook cover to cover.
+                </p>
+                <a
+                  href="https://app.cmfas-exams-prep.com/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-md border px-3 text-xs font-semibold transition-colors",
+                    cmfasRoom.brassBorder,
+                    cmfasRoom.brassText,
+                    "bg-card hover:bg-primary/10",
+                  )}
+                >
+                  Practise on CMFAS Prep
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                </a>
+              </div>
+              <div className="-ml-3 mt-2 flex items-center gap-3">
+                <CMFASWorkspaceTabs
+                  groups={navGroups}
+                  activeMode={activeMode}
+                  onModeChange={setMode}
+                  onLockedClick={handleLockedClick}
+                />
+                {isAdminUser && categoryId && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        // h-11 on mobile (44px WCAG), compact h-8 on sm+.
+                        className={cn("h-11 shrink-0 gap-1.5 touch-manipulation sm:h-8", cmfasRoom.brassBorder, cmfasRoom.text)}
+                      >
+                        <MoreVertical className="h-3.5 w-3.5" />
+                        Admin
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-52 bg-background z-50">
+                      <DropdownMenuItem asChild className="cursor-pointer">
+                        <Link to="/cmfas-exams/manage">
+                          <Settings className="mr-2 h-4 w-4" />
+                          Manage content
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => setCreateModuleOpen(true)}
+                      >
+                        <Plus className="mr-2 h-4 w-4" />
+                        New module
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={handleTogglePublished}
+                      >
+                        {cmfasCategory.published
+                          ? "Unpublish category"
+                          : "Publish category"}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+              </div>
+            </div>
+          </header>
 
           <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden">
-            <CMFASWorkspaceFloatingNav
-              groups={navGroups}
-              activeMode={activeNavMode}
-              onModeChange={setNavMode}
-              onLockedClick={handleLockedClick}
-            />
-            <CMFASWorkspaceMobileMenu
-              groups={navGroups}
-              activeMode={activeNavMode}
-              onModeChange={setNavMode}
-              onLockedClick={handleLockedClick}
-            />
             <main
               className={cn(
                 "relative min-h-0 min-w-0 flex-1",
@@ -419,55 +392,12 @@ export default function CMFASExams() {
               <div
                 className={cn(
                   "relative mx-auto w-full max-w-[min(100%,80rem)]",
-                  "px-4 pt-20 pb-5 sm:px-6 md:px-10 lg:py-8",
+                  "px-4 pt-5 sm:px-6 md:px-10 lg:pt-6",
                   activeMode === "today"
                     ? "flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden pb-6"
                     : "pb-10",
                 )}
               >
-                {/* Admin quick actions */}
-                {isAdminUser && categoryId && (
-                  <div className="absolute right-4 top-4 z-10 sm:right-6 md:right-8">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          // h-11 on mobile (44px WCAG), compact h-8 on sm+.
-                          className={cn("h-11 sm:h-8 gap-1.5 touch-manipulation", cmfasRoom.brassBorder, cmfasRoom.text)}
-                        >
-                          <MoreVertical className="h-3.5 w-3.5" />
-                          Admin
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-52 bg-background z-50">
-                        <DropdownMenuItem asChild className="cursor-pointer">
-                          <Link to="/cmfas-exams/manage">
-                            <Settings className="mr-2 h-4 w-4" />
-                            Manage content
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          className="cursor-pointer"
-                          onClick={() => setCreateModuleOpen(true)}
-                        >
-                          <Plus className="mr-2 h-4 w-4" />
-                          New module
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                          className="cursor-pointer"
-                          onClick={handleTogglePublished}
-                        >
-                          {cmfasCategory.published
-                            ? "Unpublish category"
-                            : "Publish category"}
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                )}
-
                 {renderActiveView()}
               </div>
             </main>

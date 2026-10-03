@@ -512,6 +512,8 @@ export function StudyDeskStepFlow({
 
   const vField = slide.verification[0];
   const formValid = isValid(vField, vState);
+  /** No form and no links: drop the side column and run the actions as a footer bar. */
+  const asideEmpty = !vField && linkResources.length === 0;
 
   /** Legacy back-compat — `?deskSlide=N` from old bookmarks. Rewrite once to
    *  the slug-based URL and strip the param so the address bar matches the
@@ -729,10 +731,11 @@ export function StudyDeskStepFlow({
           'shadow-md',
         )}
       >
-        <div className="flex min-h-0 flex-1 flex-col sm:flex-row lg:min-h-0">
+        <div className={cn('flex min-h-0 flex-1 flex-col lg:min-h-0', !asideEmpty && 'sm:flex-row')}>
           <div
             className={cn(
-              'flex min-h-0 flex-1 flex-col border-b sm:border-b-0 sm:border-r',
+              'flex min-h-0 flex-1 flex-col',
+              !asideEmpty && 'border-b sm:border-b-0 sm:border-r',
               'border-primary/20',
             )}
           >
@@ -1002,11 +1005,12 @@ export function StudyDeskStepFlow({
 
           <aside
             className={cn(
-              'flex w-full shrink-0 flex-col justify-between border-t border-primary/15 sm:w-72 sm:border-l sm:border-t-0 lg:w-80',
+              'flex w-full shrink-0 flex-col justify-between border-t border-primary/15',
+              !asideEmpty && 'sm:w-72 sm:border-l sm:border-t-0 lg:w-80',
               'bg-background/40',
             )}
           >
-            <div className="space-y-4 px-4 py-4 sm:px-5 sm:py-5">
+            <div className={cn('space-y-4 px-4 py-4 sm:px-5 sm:py-5', asideEmpty && 'hidden')}>
               {/* Verification form */}
               {vField && (
                 <div className="space-y-2">
@@ -1055,7 +1059,12 @@ export function StudyDeskStepFlow({
               )}
             </div>
 
-            <div className="mt-auto space-y-2 border-t border-primary/10 px-4 py-3 sm:px-5">
+            <div
+              className={cn(
+                'mt-auto space-y-2 px-4 py-3 sm:px-5',
+                asideEmpty ? 'sm:ml-auto sm:w-80' : 'border-t border-primary/10',
+              )}
+            >
               {!done && slideIndex > 0 && (
                 <Button
                   type="button"
