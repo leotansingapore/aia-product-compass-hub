@@ -13,67 +13,71 @@ tags: [next-60-days, week-8, new-fc, product-analysis, pitch, features-benefits]
 
 # Day 47: Analysing products and writing the pitch
 
-> **The one idea for today:** A feature is what the product does. A benefit is what it does for them. Build the pitch from benefits and keep the feature list for questions.
+> **Today in one line:** A feature is what the product does. A benefit is what it does for them. Build the pitch from benefits and keep the feature list for questions.
 
-By the end of today you'll be able to analyse any AIA plan with a 4-step method (understand, benchmark, match to needs, write the pitch), turn features into benefits for this client with *"what it is, what it does, what it means for you"*, and avoid the three mistakes that sink pitches: reading out features, using phrases that put people off, and hedging everything with "if".
+**What to remember**
 
----
+1. Analyse a plan in 4 steps before you pitch it: understand it, benchmark it, match it to needs, then write the pitch.
+2. Take every feature to the third level: what it is, what it does, and what it means for this prospect.
+3. Say "when" about owning the plan and "if" about any projected number.
+4. Start from the prospect's problem and let the product follow.
 
 ## Why product analysis matters
 
-Many new FCs pitch plans they've barely looked at. They read the brochure, remember 5 features and hope those 5 match what the prospect needs. Most of the time they don't.
+Many new FCs pitch plans they've barely looked at. They read the brochure, remember 5 features and hope those 5 match what the prospect needs, which they mostly don't.
 
-The better way is to understand the plan before you pitch it, compare it honestly with the alternatives, and turn its features into benefits tied to this prospect's needs. There are 4 steps, in order.
+The better way is to understand the plan before you pitch it, compare it honestly with the alternatives, and turn its features into benefits tied to this prospect's needs, in 4 steps.
 
 ![The 4 steps of product analysis: 1 · Understanding (how does it work?); 2 · Benchmarking (vs alternatives?); 3 · Meeting needs (why does the client need this?); 4 · Writing the pitch (how to communicate?)](/next-60-days/images/n60-day-47-m0.webp)
 
----
-
 ## Step 1: Understand how it works
 
-Before you pitch any plan, know the answers to these.
+Know these answers before you pitch.
 
 ### Premium and policy term
+
 - How long do they pay?
 - How long does the cover last?
 - Does the premium stay level, go up or flex? Is it guaranteed, or can the insurer revise it?
 
 ### Cover and payouts
+
 - What's paid out, when, and on what conditions?
 - Anything unusual, like multiple claims, a multiplier, cash payouts or tiered payouts?
 - The exclusions: what isn't covered?
 
 ### Returns and charges
+
 - What's guaranteed, and what's only projected?
 - What are the fees, charges and deductions?
 - How clearly are the costs shown?
 
 ### Flexibility
+
 - Can they withdraw? When, how much, and what does it cost them?
 - Premium holidays: how long, and how many?
 - Can they change the cover up or down, or change the term?
 
-Here's the test. A prospect asks *"what happens to this plan if I'm out of work for 6 months?"* and you answer on the spot, without the policy document. Can't do that yet? Then Step 1 isn't finished.
-
----
+The test: a prospect asks "what happens to this plan if I'm out of work for 6 months?" and you answer on the spot, without the policy document. If you can't do that yet, Step 1 isn't finished.
 
 ## Step 2: Benchmark it against the alternatives
 
-The prospect isn't choosing between this AIA plan and nothing. They're choosing between this plan and:
+The prospect isn't choosing between this AIA plan and nothing. They compare anyway, so bring the comparison yourself. The choice is between this plan and:
 
-- Similar AIA plans
-- Comparable plans from other insurers
-- Doing it themselves (investing on their own, or relying on basic cover)
-
-You need to know all three.
+- similar AIA plans
+- comparable plans from other insurers
+- doing it themselves (investing on their own, or relying on basic cover)
 
 ### Similar AIA plans
+
 Which other AIA plans could do the same job? What do they do differently? Why would you pick this one over its neighbour?
 
 ### Plans from other insurers
+
 Use compareFIRST, the Life Insurance Association's comparison site, for term, whole life and endowment plans. Stick to published facts from product summaries and never run down another insurer. If a prospect wants a comparison, open compareFIRST together.
 
 ### The do-it-yourself option
+
 Without this plan, would they buy an index fund themselves, or just rely on MediShield Life? Show honestly where the plan does more for them than going it alone. Sometimes DIY really is the better fit, and saying so out loud earns you more trust than any feature.
 
 Keep a benchmarking sheet for every plan you pitch:
@@ -86,9 +90,7 @@ Keep a benchmarking sheet for every plan you pitch:
 | Flexibility | Withdrawals, premium holidays, changes to cover | Policy terms |
 | What's different | The one thing this plan does that the others don't | Your own analysis |
 
-When a C profile asks *"how does this compare?"*, you have the sheet. When a D profile asks *"why this one?"*, you point to the last row.
-
----
+When a C profile asks "how does this compare?", you have the sheet. When a D profile asks "why this one?", you point to the last row.
 
 ## Step 3: Match it to their needs
 
@@ -96,17 +98,17 @@ This is where features become benefits: what the product does, turned into what 
 
 ### The three levels
 
-Here's one feature taken through all three levels, using a hypothetical plan that doubles the cover until 65:
+One feature through all three levels, using a hypothetical plan that doubles the cover until 65:
 
-- Feature: *"The cover is multiplied 2x until age 65."*
-- Generic benefit: *"That means a bigger payout if you claim before 65."*
-- Personal benefit, tied to their hot button: *"If you were diagnosed at 52, the age you said your dad had his stroke, the payout to your family would be $1M instead of $500K. That could be the difference between your wife taking 2 years off to look after you and having to go straight back to work."*
+- Feature: "The cover is multiplied 2x until age 65."
+- Generic benefit: "That means a bigger payout if you claim before 65."
+- Personal benefit, tied to their hot button: "If you were diagnosed at 52, the age you said your dad had his stroke, the payout to your family would be $1M instead of $500K. That could be the difference between your wife taking 2 years off to look after you and having to go straight back to work."
 
-A new FC usually stops at the feature. With some experience you get to the generic benefit. This week, aim for the personal benefit every time.
+New FCs stop at the feature, and most experienced ones stop at the generic benefit. This week, aim for the personal benefit every time.
 
 ### Practice
 
-Take any feature and run it through *"which means... which means for you..."*
+Take any feature and run it through "which means... which means for you...":
 
 | Feature | Which means... | Which means for you... |
 |---|---|---|
@@ -114,51 +116,47 @@ Take any feature and run it through *"which means... which means for you..."*
 | Waiver of premium on total and permanent disability | If you're permanently disabled, future premiums are waived | You keep the cover you paid for at the point you can no longer work |
 | Multi-stage critical illness cover | It can pay out at early and intermediate stages, not only the severe stage | A mild stroke or an early cancer you recover from can still lead to a claim |
 
-The third column is your pitch language. Learn the translations for the top 5 features of your top 5 plans. That's 25 to know by heart by Month 2. Always check the feature against the current product summary before you use it.
-
----
+The third column is your pitch language. Learn the translations for the top 5 features of your top 5 plans, which makes 25 to know by heart by Month 2. Always check the feature against the current product summary before you use it.
 
 ## Step 4: Write the pitch
 
-Four rules for the pitch itself.
+Four rules for the pitch.
 
 ### Rule 1: Help them picture owning the plan
 
 Talk as if they already have the plan, while keeping every number honest.
 
-- Weak: *"If you took this up, maybe in 10 years you might have something."*
-- Strong: *"Once this is running, here's what the illustration shows at year 10: [guaranteed figure] guaranteed, and [projected figure] at the higher illustrated rate, which isn't guaranteed. What would you want that money to do for you?"*
+- Weak: "If you took this up, maybe in 10 years you might have something."
+- Strong: "Once this is running, here's what the illustration shows at year 10: [guaranteed figure] guaranteed, and [projected figure] at the higher illustrated rate, which isn't guaranteed. What would you want that money to do for you?"
 
 Say "when" about owning the plan and "if" about any projected number.
 
 ### Rule 2: Keep coming back to what they care about
 
-The hot-button callback (Day 40) is what earns you the right to suggest a plan. Every recommendation should connect to something the prospect already said matters to them.
+The hot-button callback ([Day 38](/learning-track/next-60-days/day/38)) is what earns you the right to suggest a plan. Every recommendation should connect to something the prospect already said matters to them.
 
-- Weak: *"This plan has excellent critical illness coverage."*
-- Strong: *"Remember what you told me about your dad? This plan is built for exactly that stretch, between the diagnosis and getting back on your feet."*
+- Weak: "This plan has excellent critical illness coverage."
+- Strong: "Remember what you told me about your dad? This plan is built for exactly that stretch, between the diagnosis and getting back on your feet."
 
 ### Rule 3: Describe the life the plan pays for
 
 Paint the future so they can see themselves in it, with names, places and years.
 
-- Weak: *"You'll have a comfortable retirement."*
-- Stronger: *"You'll be 62, you and Ruth, finally taking the three-month Europe trip you've been putting off for 5 years."*
-- Strongest, with the CPF numbers: *"Based on your CPF estimate, CPF LIFE pays you about $1,780 a month from 65. The illustration shows this plan adding about $2,200 a month at the higher illustrated rate, less at the lower rate, and that part isn't guaranteed. Add the SRS withdrawals we planned and you're close to the $4,500 a month you mapped out. That covers the Europe trip in year 1, Tokyo in year 3, helping Sarah with her flat in year 5, and a buffer for medical costs the whole way through."*
+- Weak: "You'll have a comfortable retirement."
+- Stronger: "You'll be 62, you and Ruth, finally taking the three-month Europe trip you've been putting off for 5 years."
+- Strongest, with the CPF numbers: "Based on your CPF estimate, CPF LIFE pays you about $1,780 a month from 65. The illustration shows this plan adding about $2,200 a month at the higher illustrated rate, less at the lower rate, and that part isn't guaranteed. Add the SRS withdrawals we planned and you're close to the $4,500 a month you mapped out. That covers the Europe trip in year 1, Tokyo in year 3, helping Sarah with her flat in year 5, and a buffer for medical costs the whole way through."
 
-The third version ties the lifestyle to their actual CPF figure and to moments they told you about in the fact-find. It also keeps guaranteed and projected money apart, which is what makes it honest. Use it when the prospect is 50 or older and their CPF position is on the table.
+The third version ties the lifestyle to their actual CPF figure and to moments they told you about in the fact-find. It keeps guaranteed and projected money apart, which is what makes it honest. Use it when the prospect is 50 or older and their CPF position is on the table.
 
 ### Rule 4: Drop these phrases
 
-- *"I'm not trying to sell you anything."* In a recommendation meeting it isn't true, and prospects know it.
-- *"Trust me."* Asking for trust is the quickest way to lose it.
-- *"You should buy this."* It's a lecture. Ask a question instead (Day 43).
-- *"If I may be honest..."* It suggests you haven't been.
-- *"Everyone needs this."* It's generic, and the whole point is to be specific.
+- "I'm not trying to sell you anything." In a recommendation meeting it isn't true, and prospects know it.
+- "Trust me." Asking for trust is the quickest way to lose it.
+- "You should buy this." It's a lecture. Ask a question instead ([Day 43](/learning-track/next-60-days/day/43)).
+- "If I may be honest..." It suggests you haven't been.
+- "Everyone needs this." It's generic, and the whole point is to be specific.
 
-Also drop anything you couldn't defend to compliance: "guaranteed" about a projected figure, "the best plan", or "last chance" when there's no real deadline.
-
----
+Also drop anything you couldn't defend to compliance: "guaranteed" about a projected figure (that breaks the fair dealing rules), "the best plan", or "last chance" when there's no real deadline.
 
 ## Start from their problem
 
@@ -166,11 +164,9 @@ One idea shapes all four steps:
 
 > Approach each customer with the idea of helping them solve a problem or reach a goal, and let the product follow from that.
 
-Walk in thinking *"I need to sell this plan"* and the prospect feels it. Walk in thinking *"I'm showing this person how to solve the problem they told me about"* and the same plan comes across as help.
+Walk in thinking "I need to sell this plan" and the prospect feels it. Walk in thinking "I'm showing this person how to solve the problem they told me about" and the same plan comes across as help.
 
 Before every pitch, check: what problem is this prospect trying to solve, and how exactly does this plan solve it? If you can't answer in one sentence, go back to Steps 2 and 3.
-
----
 
 ## Concept visuals over brochures
 
@@ -183,13 +179,14 @@ For most pitches, a simple concept visual works better than the brochure:
 
 A 40-page brochure makes people glaze over, while one diagram of their own situation gets them asking questions. Over time, build 2 or 3 concept visuals for each of your top 3 plans.
 
----
+## Do this today
 
-## Team operations: set up the AIA product presenters and core decks
-
-The 4-step method works on any plan. To run it on the plans our team sells, you need logins to the team's illustrator tools and the 4 core decks.
+1. Pick the plan you pitch most. Run it through Steps 1 to 3 and fill in the benchmarking sheet.
+2. Write the "which means for you" line for its top 5 features.
+3. Set up the team tools below.
 
 ### Product presenters (go through each once)
+
 1. [APA: Long-Term Investment Illustrator](https://present.themoneybees.co/long-term-investment-illustrator)
 2. [PLP: Hybrid Investment Plan](https://present.themoneybees.co/hybrid-investment-plan)
 3. [HSG: HealthShield Gold Max Illustrator](https://present.themoneybees.co/healthshield-gold-max-illustrator)
@@ -199,23 +196,22 @@ The 4-step method works on any plan. To run it on the plans our team sells, you 
 The core plans to know by heart: APA, PLP, PWV, HSG, PA, GPP, UCC, SFT.
 
 ### Core decks to get access to and learn
+
 1. [Master Zoom Copy](https://docs.google.com/presentation/d/19J7VoxCXoEhQR6PZr5g9NozK22XDgyeV/edit)
 2. [Retirement Planning Deck](https://docs.google.com/presentation/d/1zJBkSwfQlWoeus1-GqG2GD9SFh5qCToG/edit)
 3. [Basic Medical Insurance: HSG/PA](https://docs.google.com/presentation/d/1t2d9qon3RoK6GWbK_r54-TvIGlFLYCCX/edit)
 4. [Warm Market Deck](https://docs.google.com/presentation/d/1AqdqDC3SsbFAZmVR5ebS00c01Hcp_hll/edit)
 
 ### Policy summary workflow
+
 1. Ask Aira to create a policy-summary template in your [Policy Summaries GC](https://nsgukkz32942.sg.larksuite.com/wiki/Ngepw1tzGi79u4kEEUQlVHwagwg).
 2. Learn from [these tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/SyDgwo8z1iPMgukezzolxHZ2gOP).
 3. Ask a warm contact whether you can review their policy documents. Get their permission in writing, and make sure it covers the team seeing an anonymised copy. Remove their name, NRIC, address and policy numbers before anything goes into a group chat. Then draft a summary and send it to the onboarding GC for review and a portfolio strategy.
 
 ### More ways to learn the products
+
 - [@productsenseibot on Telegram](https://t.me/productsenseibot) for deep dives on any plan
 - [Product sales classroom on Skool](https://www.skool.com/finternship/classroom/7896da20)
-
-Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboarding Steps — First 30 Days]] §4a.
-
----
 
 ## Sources
 
@@ -225,13 +221,11 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 - [AIA Secure Flexi Term - AIA Singapore](https://www.aia.com.sg/en/our-products/life-insurance/term-insurance/aia-secure-flexi-term) - an example of a term plan whose premiums are guaranteed to stay the same for the policy period
 - [Advisory Guidelines on Key Concepts in the PDPA - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - the consent obligation, and why NRIC numbers and similar identifiers need care before you share anything
 
----
-
 ## Quiz
 
 **Q1. The 4-step product analysis method runs:**
 - A) Pitch → Question → Close → Follow-up
-- B) Understanding → Benchmarking → Meeting Needs → Writing the Pitch ✓
+- B) Understanding → Benchmarking → Meeting Needs → Writing the Pitch (correct)
 - C) Demo → Discuss → Decide → Document
 - D) Open → Explore → Explain → Close
 
@@ -240,7 +234,7 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 **Q2. How many levels does it take to get from a feature to a personal benefit?**
 - A) 1: just state the feature
 - B) 2: feature, then generic benefit
-- C) 3: feature, then generic benefit, then a personal benefit tied to their hot button ✓
+- C) 3: feature, then generic benefit, then a personal benefit tied to their hot button (correct)
 - D) 4: feature, benefit, proof, close
 
 **Why:** Reading out the feature is where new FCs start, and the generic benefit is where most stop. The personal benefit connects the feature to something the prospect told you, like the age their dad had his stroke. That's the level that helps them decide.
@@ -249,13 +243,13 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 - A) Help them picture owning the plan
 - B) Keep coming back to what they care about
 - C) Describe the life the plan pays for
-- D) Present projected returns as guaranteed ✓
+- D) Present projected returns as guaranteed (correct)
 
 **Why:** A, B and C are pitch rules. D breaks the rules on fair dealing and destroys trust. Most plans have a guaranteed part and a non-guaranteed part, and you must always show them separately. Overstating returns can cost you both the client and your licence.
 
 **Q4. Why does the 4-step method matter?**
 - A) Compliance requires this order
-- B) Each step prevents a different failure: without Understanding you can't answer questions, without Benchmarking you lose C profiles, without Meeting Needs you read out features, and without Writing the Pitch good content gets delivered badly ✓
+- B) Each step prevents a different failure: without Understanding you can't answer questions, without Benchmarking you lose C profiles, without Meeting Needs you read out features, and without Writing the Pitch good content gets delivered badly (correct)
 - C) It's what competitors do
 - D) It's faster than the alternative
 
@@ -263,7 +257,7 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 
 **Q5. Benchmarking a plan should cover:**
 - A) Only your own products
-- B) Similar AIA plans, comparable plans from other insurers (for example on compareFIRST) and the do-it-yourself alternative ✓
+- B) Similar AIA plans, comparable plans from other insurers (for example on compareFIRST) and the do-it-yourself alternative (correct)
 - C) Only other insurers' plans
 - D) Only the flagship plan
 
@@ -271,7 +265,7 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 
 **Q6. The "which means... which means for you..." formula moves from:**
 - A) Features → features → features
-- B) Feature → generic benefit → personal benefit tied to the prospect's hot button ✓
+- B) Feature → generic benefit → personal benefit tied to the prospect's hot button (correct)
 - C) Price → value → close
 - D) Pitch → objection → close
 
@@ -279,13 +273,11 @@ Full walkthrough: [[../_source-articles/onboarding-steps-first-30-days|Onboardin
 
 **Q7. Which phrases should you drop from a pitch?**
 - A) *"Let's think about this"*
-- B) *"I'm not trying to sell you anything"*, *"trust me"*, *"you should buy this"*, *"if I may be honest..."*, *"everyone needs this"* ✓
+- B) *"I'm not trying to sell you anything"*, *"trust me"*, *"you should buy this"*, *"if I may be honest..."*, *"everyone needs this"* (correct)
 - C) *"Thank you for your time"*
 - D) *"Let me know if you have questions"*
 
 **Why:** Each one backfires in its own way. In a recommendation meeting, "I'm not trying to sell you" isn't true. "Trust me" asks for trust and loses it. "You should buy" lectures, while "if I may be honest" hints that you weren't before, and "everyone needs this" is generic when being specific is the point.
-
----
 
 ## Related
 
