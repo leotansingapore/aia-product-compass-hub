@@ -14,21 +14,20 @@ tags: [next-60-days, week-1, new-fc, story, mindset]
 
 # Day 1: Day 1 of your real career
 
-> **The one idea for today:** facts tell, stories sell. Before you pitch anything, the prospect has already asked: *why should I give you a chance, when five other advisors have messaged me?*
+> **Today in one line:** Facts tell, stories sell. Before you pitch anything, the prospect has already asked: why should I give you a chance, when five other advisors have messaged me?
 
-By the end of today you should be able to explain why a prospect's first silent question is *"why you and not them?"*, draft a v0 of your own story with the 4-part frame (life today, villain, guide, growth), and spot the most common way it fails: telling the villain as a fact when it needs to be told as a feeling.
+**What to remember**
 
----
+1. Each week opens when you log the last week's KPI. By Saturday you need a signed 90-day scorecard and a recorded 90-second intro.
+2. A prospect's first silent question is "why you and not the other five?" Your story is the answer nobody else can copy.
+3. A listener lowers their guard when they feel your villain. Build your story in 4 parts: life today, villain, guide, growth.
+4. On the night you don't feel like dialling, identity makes the call. Keep a reminder of who you've decided to be on your phone wallpaper.
 
 ## What changes today
 
-Yesterday you had a syllabus. Today you have an empty calendar.
+Yesterday you had a syllabus. Today you have an empty calendar. The FINternship is over, you're licensed, and your income is $0 until you close your first case. That's how the career starts for everyone. From here, you run the business yourself.
 
-The FINternship is over and you're licensed. Your income is $0 until you close your first case. That's how the career starts for everyone, and from here the next 60 days are about running the business yourself.
-
-The module is built the same way. Every week has a KPI as well as a quiz. Every practice day (every 6th day) ends with a Loom link you submit. Week N+1 unlocks when you log Week N's KPI, whatever the calendar says, so the course moves at the pace you move.
-
-## The week ahead
+The module runs the same way. Every week has a KPI as well as a quiz, and every practice day (every 6th day) ends with a Loom link you submit. Week N+1 unlocks when you log Week N's KPI, whatever the calendar says.
 
 | Day | What you're doing |
 |---:|---|
@@ -36,76 +35,65 @@ The module is built the same way. Every week has a KPI as well as a quiz. Every 
 | 2 | The activity math: appointments x close rate x case size |
 | 3 | 90-day scorecard and revenue per appointment |
 | 4 | Your story: first real draft |
-| 5 | Tonality: how you *say* it |
+| 5 | Tonality: how you say it |
 | 6 | Practice: record your 90-second intro |
 
-By Saturday you'll have two deliverables: a 90-day scorecard with real numbers on it, and a 90-second intro you've recorded and watched back. The rest of the week supports those two.
-
----
+The week builds to two deliverables by Saturday: a 90-day scorecard with real numbers on it, and a 90-second intro you've recorded and watched back.
 
 ## The silent question
 
-Roy was your secondary-school friend. You haven't seen him in three years. You message him: *"hey bro, want to grab lunch and talk about financial planning?"*
+Roy was your secondary-school friend. You haven't seen him in three years. You message him: "hey bro, want to grab lunch and talk about financial planning?"
 
-What Roy thinks: *why should I say yes to him and not the other five advisors who've already messaged me?*
+Roy thinks: why should I say yes to him and not the other five advisors who've already messaged me? He won't say it. He'll say "sure, let me check my calendar", or he'll leave you on blue ticks. Either way, he asked the question.
 
-He won't say it. He'll say *"sure, let me check my calendar"*, or he'll leave you on blue ticks. Either way he asked the question.
+Your story is the answer. Singapore has more than 20 direct life insurers. From the outside, your product, company, certifications and scripts look much like what the other five have. What they can't copy is what you went through, why you do this job and who you are when nobody's paying you.
 
-Your story is the answer. Your product, your company and your certifications look the same from the outside as what the other five offer. What you went through, why you do this job and who you are when nobody's paying you are things they can't copy.
-
-> *Facts tell, stories sell. If you're up against other FCs, you need a way to win, and your story is the one thing they can't copy.*
-
----
+Product knowledge and a good deck still matter, but they don't break ties. When every advisor sells similar plans, the prospect picks the one they feel they know. Your story is the part of that you control.
 
 ## The 4-part story frame
 
-Origin stories tend to share a shape, whether it's a superhero film or a 90-second warm-market intro. Joseph Campbell mapped the long version in *The Hero with a Thousand Faces* (1949). The frame below is a short version built for a coffee-table conversation.
+Origin stories tend to share a shape, whether it's a superhero film or a 90-second warm-market intro. Joseph Campbell mapped the long version in *The Hero with a Thousand Faces* (1949). This frame is a short version for a coffee-table conversation.
 
 ![The 4-part story frame: 1, life today, where you are now; 2, the villain, what was hard; 3, the guide, what changed you; 4, growth, who you became](/next-60-days/images/n60-day-01-m0.webp)
 
-1. Life today. A short setup of where you are now, so the contrast lands. *"You see me today and I can travel, buy a home, take care of my parents. It wasn't always like this."*
-
-2. The villain. What was hard, the thing you fought against: financial assistance, a sick parent, a failed investment, a house full of arguments. Tell the feeling that came with it. *"I used to eat one packet of Milo nugget for lunch because I couldn't afford anything else. I didn't take a single taxi until I was in the army."*
-
+1. Life today. A short setup of where you are now, so the contrast lands.
+2. The villain. What was hard, the thing you fought against: financial assistance, a sick parent, a failed investment, a house full of arguments. Tell the feeling that came with it.
 3. The guide. The person or event that changed your direction. For some it's a mentor. For others it's a hospitalisation, a first real paycheck or watching a parent struggle with money. For many of you it will be this career.
+4. Growth. Who you became, what you can do now that you couldn't before, and what that means for the person in front of you.
 
-4. Growth. Who you became, what you can do now that you couldn't before, and what that means for the person in front of you. *"I fought for every dollar I have. If someone is going to manage your money, why not the one who knows what every cent is worth?"*
+Here's how three of the parts can sound:
 
-Most first drafts break at step 2 because the villain comes out as a fact. *"My parents didn't have much money"* is information. Attach the feeling and you get: *"I used to avoid going home because my parents always argued about money. I'd rather sit in McDonald's till closing than walk through the door."*
+> Life today: "You see me today and I can travel, buy a home, take care of my parents. It wasn't always like this."
+>
+> Villain: "I used to eat one packet of Milo nugget for lunch because I couldn't afford anything else. I didn't take a single taxi until I was in the army."
+>
+> Growth: "I fought for every dollar I have. If someone is going to manage your money, why not the one who knows what every cent is worth?"
 
-The event is identical. The second version is the one Roy remembers.
+Most first drafts break at step 2, because the villain comes out as a fact. "My parents didn't have much money" is information. Attach the feeling and you get this:
 
----
+> "I used to avoid going home because my parents always argued about money. I'd rather sit in McDonald's till closing than walk through the door."
 
-## Why this is harder than it sounds
+The feeling is what lowers the listener's guard, and it's what Roy will remember.
 
-Most of you will resist step 2, because you've spent years learning to keep it together, hide weakness and not complain. That habit has served you well so far, but in a story it keeps the listener at arm's length.
+### Why this is harder than it sounds
 
-Day 1 asks you to be vulnerable, and to mean it. The story works when the prospect feels the weight of what you went through, and you can't fake that. You also can't hold it back and still expect it to sell.
+Most of you will resist step 2. You've spent years learning to keep it together, hide weakness and not complain. That habit has served you well, but in a story it keeps the listener at arm's length.
 
-Product knowledge is the same across the industry and scripts can be copied. Your story is yours, but it only counts if you're willing to tell it.
+So today asks you to be vulnerable, and mean it. The story works when the prospect feels the weight of what you went through, and you can't fake that or hold it back.
 
-You don't need a traumatic past. Someone who grew up comfortable can build a strong story around the moment money suddenly felt fragile, the first time someone close had an uninsured claim, or the mentor who changed how they thought about wealth. How honestly you tell it matters more than how hard it was.
-
----
+You don't need a traumatic past. If you grew up comfortable, build the story around the moment money suddenly felt fragile. Or the first time someone close had an uninsured claim, or the mentor who changed how you thought about wealth. How honestly you tell it matters more than how hard it was.
 
 ## The 10pm-Wednesday test
 
-Some time in the next 60 days, probably on a Wednesday night around 10:47pm, you won't feel like making the last three dials. The novelty's gone, the day's first rejection is still stinging, and your friends' texts look better than your pipeline.
+Some time in the next 60 days, probably on a Wednesday around 10:47pm, you won't feel like making the last three dials. The novelty's gone, the day's first rejection still stings, and your friends' texts look better than your pipeline.
 
-That's the moment this week is preparing you for.
+Motivation won't get you through it, because it rises and falls with results, sleep and when you last ate. **Identity** will. That's the version of yourself you've told a story about, the one your pledge sheet names and your vision board pictures. You make the call because that's what this version of you does, whether or not tonight feels inspired.
 
-Motivation won't get you through it, because it rises and falls with results, sleep and when you last ate. What gets you through is **identity**: the version of yourself you've already told a story about, the one your pledge sheet names and your vision board pictures. You make the call because that's what this version of you does, whether or not tonight feels inspired.
+Your story is for prospects. The pledge sheet, vision board and scorecard are for you, so put one on your phone wallpaper. You'll unlock your phone dozens of times a day and probably won't open a laptop folder once.
 
-You tell the story to prospects, but the pledge sheet, the vision board and the scorecard are for you to look at when it's 10:47pm on a Wednesday and you're deciding whether to dial.
+### The 7 mindsets that carry you through
 
-**Do this now.** Pick one of them (the signed scorecard photo, the vision board or one line of your story) and make it your phone wallpaper this week. You'll unlock your phone dozens of times today and you probably won't open a folder on your laptop once, so the wallpaper is where you'll actually see it.
-
----
-
-## The 7 mindsets that carry you through
-
-If the 10pm-Wednesday test is about who you are when willpower runs out, these 7 traits describe that person.
+These 7 traits describe the person who makes that call. You choose them each day, and the wallpaper reminds you which one you need tonight.
 
 | # | Mindset | What it looks like at 10:47pm on Wednesday |
 |---|---|---|
@@ -115,11 +103,13 @@ If the 10pm-Wednesday test is about who you are when willpower runs out, these 7
 | 4 | Relentless | You make one more call after the block ends. |
 | 5 | Thirsty for knowledge | 15 minutes of reading a day over 250 working days is about 62 hours a year. |
 | 6 | Systematic and efficient | Monday calling block, Friday review, Sunday prep, every week. |
-| 7 | Adaptive and flexible | *"Adopt, adapt, adept."* Run the script until it breaks, then rewrite the part that broke. |
+| 7 | Adaptive and flexible | "Adopt, adapt, adept." Run the script until it breaks, then rewrite the part that broke. |
 
-You don't have to be born with these. You choose them each day, and the thing on your wallpaper is there to remind you which one you need tonight.
+## Do this today
 
----
+1. Write a v0 of your story: one sentence for each of the 4 parts. It's for you, so rough is fine.
+2. Read your villain sentence. If it's a bare fact, rewrite it with the feeling that came with it.
+3. Make one line of your story your phone wallpaper this week. You can swap in your signed scorecard (Day 3) or vision board (Day 4) once you have them.
 
 ## Sources
 
@@ -131,7 +121,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q1. The prospect's silent question when they see your DM is:**
 - A) "What's the product?"
-- B) "Why should I give you a chance and not the other advisors who've messaged me?" ✓
+- B) "Why should I give you a chance and not the other advisors who've messaged me?" (correct)
 - C) "Is this going to be expensive?"
 - D) "Can I trust AIA as a company?"
 
@@ -139,7 +129,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q2. In the 4-part story frame, the most common failure point is:**
 - A) Starting with "life today", because it feels arrogant
-- B) Telling the villain as a fact rather than a feeling ✓
+- B) Telling the villain as a fact rather than a feeling (correct)
 - C) Skipping the guide
 - D) Making step 4 too long
 
@@ -147,7 +137,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q3. "A prospect buys the person, not the product." In Day 1's framing, this means:**
 - A) Product knowledge is unnecessary
-- B) Your personal story is what lets the prospect choose you over a near-identical competitor ✓
+- B) Your personal story is what lets the prospect choose you over a near-identical competitor (correct)
 - C) You should never discuss product features
 - D) A polished pitch deck doesn't matter
 
@@ -155,7 +145,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q4. The "guide" step in the 4-part story frame is best described as:**
 - A) A hero figure who solves the villain for you
-- B) The person or moment that changed your trajectory so growth became possible ✓
+- B) The person or moment that changed your trajectory so growth became possible (correct)
 - C) A step-by-step financial plan
 - D) Your mentor or team leader
 
@@ -163,7 +153,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q5. You grew up middle-class. No family trauma, no "villain moment" of deprivation. Can you still build a story that lands?**
 - A) No, without adversity the story can't carry weight
-- B) Yes, because honesty matters more than hardship: you can build a strong story around the moment you realised money was fragile, an uninsured claim near you, or a mentor who changed your thinking ✓
+- B) Yes, because honesty matters more than hardship: you can build a strong story around the moment you realised money was fragile, an uninsured claim near you, or a mentor who changed your thinking (correct)
 - C) Only if you invent a story that sounds harder than it was
 - D) Only if you tell someone else's story on their behalf
 
@@ -171,7 +161,7 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q6. In the Day 1 framing, why doesn't product knowledge "break ties" between advisors?**
 - A) Because product knowledge isn't necessary to sell
-- B) Because from the outside the insurers' products look near-identical, so the tie-breaker is who the prospect feels they know ✓
+- B) Because from the outside the insurers' products look near-identical, so the tie-breaker is who the prospect feels they know (correct)
 - C) Because customers ignore product details
 - D) Because AIA's products are different from every competitor's
 
@@ -179,13 +169,11 @@ You don't have to be born with these. You choose them each day, and the thing on
 
 **Q7. The "10pm-Wednesday test" refers to:**
 - A) A mandatory Wednesday-night mentor call
-- B) The moment each week when motivation has faded and identity has to carry you: the last 3 dials you don't feel like making ✓
+- B) The moment each week when motivation has faded and identity has to carry you: the last 3 dials you don't feel like making (correct)
 - C) A productivity framework for evening reviews
 - D) A Lark doc template for weekly reflection
 
 **Why:** Everyone's 10pm Wednesday looks a bit different, but it's the same moment: the novelty has worn off, results haven't built up yet, and what keeps you on the phone is the person you've said you are. The story work prepares you for that moment as much as for the pitch.
-
----
 
 ## Related
 
