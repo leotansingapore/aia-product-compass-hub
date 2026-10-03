@@ -16,11 +16,14 @@ tags: [next-60-days, week-5, new-fc, practice, referrals, loom]
 
 # Day 30: Practice, 10 asks and 3 referrals
 
-> **The one idea for today:** Week 5 is done when you've said 10 asks out loud and 3 warm names are in your book. The flywheel turns one ask at a time.
+> **Today in one line:** Week 5 is done when you've said 10 asks out loud and 3 warm names are in your book.
 
-By the end of today you'll have delivered 10 referral asks this week, a mix of the FACT Method (during a conversation) and the 10-Name script (during admin). You'll have logged 3 warm referrals, each recommended by the referrer and happy to hear from you, as opposed to cold numbers nobody vouched for. And you'll have submitted the ask log and your Loom reflection, which together open Week 6.
+**What to remember**
 
----
+1. An ask counts when you say it out loud, use FACT or the 10-Name script and end with the timeline close.
+2. A warm referral has a name, a way to reach them that the friend agreed to share, and a recommendation.
+3. You can ask before your first closed case. Anyone who's had a real conversation with you is fair to ask.
+4. Six real asks build more skill than 10 padded ones, so report your honest count.
 
 ## The bar today
 
@@ -28,9 +31,7 @@ Week 4 built your outbound habit. Week 5 is about asking, so that Week 6 and bey
 
 The numbers are 10 asks and 3 warm referrals. Three from ten is a 30% hit rate, which is a healthy starting point. Above 40% means your script is working and you're picking good moments to ask. Below 20% means the moment, the tone or the angle needs work.
 
-This gate works differently from earlier weeks. The 10 asks don't all need to produce referrals, because the attempt is the practice. You get better by asking, and the first few asks that go nowhere are part of that.
-
----
+The 10 asks don't all need to produce referrals, because the attempt is the practice. You get better by asking, and the first few asks that go nowhere are part of that.
 
 ## What counts toward the 10 asks
 
@@ -38,42 +39,40 @@ An ask counts if it meets all three:
 
 1. Spoken aloud, to the person, face to face or on a live call. Text doesn't count, because text asks tend to go vague and don't train your tone.
 2. Uses the FACT Method or the 10-Name script. Wording you made up on the spot doesn't count.
-3. Ends with the timeline close: *"Could you check with them in the next 2 days whether they're open to a chat? I'll follow up Saturday."*
+3. Ends with the timeline close: "Could you check with them in the next 2 days whether they're open to a chat? I'll follow up Saturday."
 
 These count:
 
-- The end of a Fact-Find, with FACT and a specific angle
-- The admin paperwork at a close, with the 10-Name script
-- A follow-up coffee with a Week 4 prospect who isn't ready for a Fact-Find yet (ask anyway)
-- A coffee with a warm contact where you explained what you do
+- The end of a Fact-Find, with FACT and a specific angle.
+- The admin paperwork at a close, with the 10-Name script.
+- A follow-up coffee with a Week 4 prospect who isn't ready for a Fact-Find yet (ask anyway).
+- A coffee with a warm contact where you explained what you do.
 
 These don't:
 
-- A WhatsApp message ending *"let me know if anyone comes to mind!"*
-- A conversation with your mentor or a peer
-- *"Anyone you know?"* tossed in at the end of a conversation
-
----
+- A WhatsApp message ending "let me know if anyone comes to mind!"
+- A conversation with your mentor or a peer.
+- "Anyone you know?" tossed in at the end of a conversation.
 
 ## What counts as a warm referral
 
-A referral is warm when you have all three of these:
+A referral is warm when you have all three:
 
-- A name: first and last, or enough context if they go by a nickname
-- A way to reach them (phone, IG or email) that the friend has agreed to share with you
-- A recommendation: the referrer has told the friend about you and the friend has said they're happy to hear from you, or the referrer has committed to ask them within 48 hours
+- A name: first and last, or enough context if they go by a nickname.
+- A way to reach them (phone, IG or email) that the friend has agreed to share with you.
+- A recommendation: the referrer has told the friend about you and the friend has said they're happy to hear from you, or the referrer has committed to ask them within 48 hours.
 
-If the referrer hasn't asked the friend yet, log the name but don't contact them until the friend says yes. When you do get in touch, mention who referred you and check they're okay with hearing from you. That's what the PDPC expects when personal data reaches you through someone else. If you're calling or texting a Singapore number without that person's clear consent, check it against the Do Not Call Registry first.
+If the referrer hasn't asked the friend yet, log the name but wait until the friend says yes before you contact them. When you do get in touch, mention who referred you and check they're okay with hearing from you. That's what the PDPC expects when personal data reaches you through someone else.
+
+If you're calling or texting a Singapore number without that person's clear consent, check it against the Do Not Call Registry first.
 
 These don't count:
 
-- *"Try my cousin, he's in finance"*, with no recommendation and no context
-- A batch of names from the 10-Name script that nobody has vouched for individually, which are cold leads
-- A referral where the client said *"let me think"* and hasn't sent anything
+- "Try my cousin, he's in finance", with no recommendation and no context.
+- A batch of names from the 10-Name script that nobody has vouched for individually, which are cold leads.
+- A referral where the client said "let me think" and hasn't sent anything.
 
-The distinction matters because cold leads count toward Week 4's outreach numbers, while warm referrals are what get the flywheel turning. Week 5 is about warm referrals.
-
----
+Cold leads count toward Week 4's outreach numbers, while warm referrals are what get the flywheel turning. Week 5 is about warm referrals.
 
 ## Where the 10 asks come from
 
@@ -87,20 +86,30 @@ A rough split for a typical Week 5 FC:
 | Warm contacts who've met you but haven't committed yet | 2 to 3 | FACT Method, even before they're clients |
 | Total | 10 | |
 
-A lot of new FCs don't realise you can ask for referrals without any closed clients. Anyone who's had a real Fact-Find or a proper conversation with you is fair to ask. *"I'm just getting started and building my practice. Do you happen to know anyone at X stage?"* works even if the person hasn't bought anything.
+A lot of new FCs don't realise you can ask without any closed clients. Anyone who's had a real Fact-Find or a proper conversation with you is fair to ask, even if they haven't bought anything:
 
----
+> "I'm just getting started and building my practice. Do you happen to know anyone at X stage?"
 
-## Submission format
+## The honest-count rule (again)
+
+This week's gate is easy to game. Anyone can say "anyone you know?" 10 times and call it done.
+
+An ask without the structure doesn't count. Six real FACT asks beat 10 throwaways. You're practising the specific, angled ask with a timeline at the end, and padded asks give you no practice at it.
+
+If you reach 6 real asks by Saturday and can't realistically add 4 more by Sunday, stop there. Write down what you'd need to reach 10 next week (more meetings? a closed case?) and bring it to your mentor review.
+
+## Do this today
+
+Deliver the asks, then submit two artefacts and book your mentor review.
 
 ### Artefact 1: The ask log
 
-One table, 10 rows, with these columns. Use first names or initials only, and keep phone numbers and other personal details out of it.
+One table, 10 rows, with these 6 columns. Use first names or initials only, and keep phone numbers and other personal details out of it.
 
 | Who | When | Script | Angle | Response | Warm referral? |
 |---|---|---|---|---|---|
 | Amir | Mon 7pm | FACT | Young pros | Will check with Aaron and Mei Ling | Yes (2 names) |
-| Kelly | Tue 10am | FACT | New parents | *"Let me think"* | No |
+| Kelly | Tue 10am | FACT | New parents | "Let me think" | No |
 | Samantha | Wed 6pm | 10-Name (admin) | n/a | Wrote 18 names | Follow up: 3 look warm |
 | ... | ... | ... | ... | ... | ... |
 
@@ -119,19 +128,7 @@ Book a 10-minute mentor check-in before Sunday ends. Your mentor looks at two th
 1. Were all 10 asks spoken aloud with the full FACT or 10-Name structure, or did some become texts?
 2. Did each warm referral have a real recommendation and the friend's OK, or were cold names counted as warm?
 
----
-
-## The honest-count rule (again)
-
-This week's gate is easy to game. Anyone can say *"anyone you know?"* 10 times and call it done.
-
-An ask without the structure doesn't count. Six real FACT asks beat 10 throwaways. You're practising the specific, angled ask with a timeline at the end, and padded asks don't give you any practice at it.
-
-If you reach 6 real asks by Saturday and can't realistically add 4 more by Sunday, stop there. Write down what you'd need to reach 10 next week (more meetings? a closed case?) and bring it to your mentor review. That's more useful than 10 padded asks.
-
----
-
-## Week 5 KPI: the gate to Week 6
+### Week 5 KPI: the gate to Week 6
 
 Week 6 opens when you have all four:
 
@@ -142,8 +139,6 @@ Week 6 opens when you have all four:
 
 If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a padded 10 undoes the practice you've been doing.
 
----
-
 ## Sources
 
 - [Advisory Guidelines on Key Concepts in the PDPA (revised 29 April 2026) - Personal Data Protection Commission](https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/advisory-guidelines/ag-on-key-concepts/advisory-guidelines-on-key-concepts-in-the-pdpa-17-may-2022.pdf) - the referral example: check the friend was told and agreed, then confirm it when you first contact them
@@ -153,7 +148,7 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 
 **Q1. An ask counts toward the 10-ask gate only if it:**
 - A) Gets a yes
-- B) Is spoken aloud, uses FACT or 10-Name structure, and includes the timeline close ✓
+- B) Is spoken aloud, uses FACT or 10-Name structure, and includes the timeline close (correct)
 - C) Produces at least one referral
 - D) Happens during a closed case
 
@@ -161,7 +156,7 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 
 **Q2. The right way to treat a batch of 10 names written on the admin sheet is:**
 - A) Count all 10 as warm referrals
-- B) Count them as cold leads until the client recommends specific people and those friends agree to hear from you ✓
+- B) Count them as cold leads until the client recommends specific people and those friends agree to hear from you (correct)
 - C) Ignore them entirely
 - D) Call them in the order they were written
 
@@ -169,7 +164,7 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 
 **Q3. A new FC who has closed 0 cases in Week 5 can still hit the 10-ask gate because:**
 - A) The module lets pre-close FCs skip Week 5
-- B) Every Fact-Find, warm coffee or proper conversation is a fair moment to ask, and you don't need a signed case to ask for referrals ✓
+- B) Every Fact-Find, warm coffee or proper conversation is a fair moment to ask, and you don't need a signed case to ask for referrals (correct)
 - C) Mentor approval substitutes for real asks
 - D) The 10-Name script works without a close
 
@@ -177,7 +172,7 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 
 **Q4. 10 asks producing 3 warm referrals is a 30% hit rate. Day 30 treats this as:**
 - A) A failure, since it should be 100%
-- B) A healthy baseline: above 40% means your script and moments are working (do more), below 20% means fix the moment, tone or angle ✓
+- B) A healthy baseline: above 40% means your script and moments are working (do more), below 20% means fix the moment, tone or angle (correct)
 - C) Irrelevant, since only closed cases matter
 - D) Dependent on the client's mood
 
@@ -186,14 +181,14 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 **Q5. Which of these does NOT count as a valid ask for the gate?**
 - A) FACT Method at the end of a warm coffee
 - B) 10-Name script during admin paperwork at a closed case
-- C) *"Hey, let me know if anyone comes to mind!"* tossed in at the end of a text conversation ✓
+- C) *"Hey, let me know if anyone comes to mind!"* tossed in at the end of a text conversation (correct)
 - D) A follow-up coffee where you run FACT with a specific angle
 
 **Why:** A throwaway text ask fails all three tests. It isn't spoken, so there's no tone practice. It has no FACT or 10-Name structure, so there's no specific angle. And it has no timeline, so it fades straight away. It feels like an ask because it contains the word "anyone", but it's the flat pattern from Day 27. The gate leaves it out so you can't fake the practice.
 
 **Q6. The honest-count rule says *"six real FACT asks beat 10 throwaways."* It exists because:**
 - A) Quality scores better in reviews
-- B) 6 real asks build the actual skill, while 10 fake ones build false confidence that falls apart in Week 6 ✓
+- B) 6 real asks build the actual skill, while 10 fake ones build false confidence that falls apart in Week 6 (correct)
 - C) 6 is the minimum legal requirement
 - D) The mentor prefers smaller numbers
 
@@ -203,11 +198,9 @@ If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a
 - A) A name (first and last, or enough context)
 - B) A way to reach them (phone, IG, email) that the friend agreed to share
 - C) A recommendation: the referrer has told the friend and they're happy to hear from you, or the referrer has committed to ask them within 48 hours
-- D) A signed engagement letter from the referred prospect ✓
+- D) A signed engagement letter from the referred prospect (correct)
 
 **Why:** A, B and C are what make a referral warm. D belongs to the closing stage, and a referral doesn't need to have bought anything, or even met you, to count as warm. The recommendation separates warm from cold: a name and number nobody vouched for is a cold lead however you got it. The 48-hour window keeps the introduction fresh.
-
----
 
 ## Related
 

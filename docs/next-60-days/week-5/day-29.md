@@ -14,11 +14,14 @@ tags: [next-60-days, week-5, new-fc, flywheel, car, sales-cycle, systems]
 
 # Day 29: The flywheel and the CAR diagnostic
 
-> **The one idea for today:** Your sales cycle is either slow or self-regenerating. Today you learn how to move from one to the other, and how to find the bottleneck that's stopping you.
+> **Today in one line:** Your sales cycle is either slow or self-regenerating. Referrals move you from one to the other, and a weekly CAR check finds the bottleneck that's holding you back.
 
-By the end of today you'll be able to tell the slow sales cycle (everything comes from your own outbound effort) from the self-regenerating one (referrals feed next week's pipeline). You'll use the CAR framework (Calls, Appointments, Referrals) to find which of the three is your weakest link right now. And you'll commit to the 3 behaviours that, kept up over the next year or two, move you from the slow cycle to the regenerating one.
+**What to remember**
 
----
+1. Each week, find your weakest CAR link (Calls, Appointments or Referrals) and fix that one first.
+2. Build the numbers in order: steady calls, then appointments, then a referral ask at every one, then closing.
+3. Ask every time, follow through within 48 hours and thank the referrer, with reminders that fire whatever your mood.
+4. Count your inputs every Sunday and compare them with your Week 1 self.
 
 ## Two states of the sales cycle
 
@@ -29,43 +32,35 @@ Every adviser's practice is in one of two states:
 | Slow sales cycle | Your outbound effort: every morning you call, email and DM, and the day you stop, the pipeline stops with you. |
 | Self-regenerating | Referrals from last quarter feed this quarter. You still call, but when you pause, the pipeline doesn't drop to zero. |
 
-Every new FC starts in the slow cycle. That's the default, and there's nothing wrong with it. The question is whether you start moving out of it in your first year or stay there for five.
+Every new FC starts in the slow cycle, and there's nothing wrong with that. The question is whether you start moving out of it in your first year or stay there for five.
 
-The change happens gradually. Over a year or two, the share of your pipeline that comes from referrals grows while the share you have to find yourself shrinks. Yesterday's FACT Method and 10-Name script are the tools. CAR is the weekly check that tells you whether it's happening.
-
----
+Over a year or two, the share of your pipeline that comes from referrals grows, and the share you have to find yourself shrinks. Yesterday's FACT Method and 10-Name script are the tools. CAR is the weekly check that tells you whether it's happening.
 
 ## The CAR framework, now with referrals built in
 
+CAR is three numbers in a loop. When all three are healthy, the loop feeds itself.
+
 ![The CAR framework with referrals built in: Calls; Appointments; Referrals](/next-60-days/images/n60-day-29-m0.webp)
 
-Three numbers in a loop. When all three are healthy, the loop feeds itself.
+- C for Calls: your outreach volume, counting phone calls, DMs, texts and Market Surveys.
+- A for Appointments: Fact-Finds with a confirmed date and time. "Will meet soon" doesn't count.
+- R for Referrals: warm names you received this week, each one recommended by the referrer and happy to hear from you.
 
-- C for Calls: your outreach volume, counting phone calls, DMs, texts and Market Surveys
-- A for Appointments: Fact-Finds with a confirmed date and time (*"will meet soon"* doesn't count)
-- R for Referrals: warm names you received this week, each one recommended by the referrer and happy to hear from you
-
-Referrals become next week's calls. If R is zero for 6 weeks running, all your calls are outbound and you stay in the slow cycle. If R is 2 to 3 a week for 6 weeks, your calls start to include warm names on top of the outbound, and things are starting to shift.
-
----
+Referrals become next week's calls. If R is zero for 6 weeks running, all your calls are outbound and you stay in the slow cycle. If R is 2 to 3 a week for 6 weeks, your calls start to include warm names, and things begin to shift.
 
 ## CAR diagnostic: the 3 bottlenecks
-
-Each week, one of the three is weakest. Find it and fix that one.
 
 | Bottleneck | What it knocks on | Fix |
 |---|---|---|
 | Few calls | Fewer appointments, then fewer referrals, then fewer names to call | Volume. Block out calling time and pick up the phone. The script isn't the issue. |
 | Calls fine, appointments low | Fewer referrals, then fewer names | Script or targeting. Review how you deliver Market Survey Q4 and check your opener. |
-| Calls and appointments fine, referrals at zero | Next week you start from outbound again and stay in the slow cycle | The ask. Either you aren't asking, or the ask is falling flat (Day 27). |
+| Calls and appointments fine, referrals at zero | Next week you start from outbound again and stay in the slow cycle | The ask. Either you aren't asking, or the ask is falling flat ([Day 27](/learning-track/next-60-days/day/27)). |
 
-In your weekly review, pick the single weakest link and fix it the following week. Try to fix all three at once and you spread yourself too thin to fix any.
-
----
+In your weekly review, pick the single weakest link and fix it the following week. If you try to fix all three at once, you spread yourself too thin to fix any.
 
 ## The math once the flywheel turns
 
-The table below shows how the pieces multiply. The numbers are round ones picked for teaching. It isn't a forecast of what you'll earn, and most new FCs start well below it, especially on appointments per hour.
+The numbers below are round ones picked for teaching. It isn't a forecast of what you'll earn, and most new FCs start well below it, especially on appointments per hour.
 
 | Input | Illustrative value |
 |---|---:|
@@ -79,28 +74,6 @@ Once all three CAR links are working, your income comes down to hours calling x 
 
 The trap is working on the wrong number first. New FCs see a table like this and try to raise case size before their calls are steady, or chase a better closing ratio before they have enough appointments to practise on. Get calls steady first, then appointments. Then ask for referrals at every one, and work on closing last.
 
----
-
-## Events as a way to add referral volume
-
-Direct asks work. Events add volume, especially from shy clients who won't recommend you directly.
-
-How it works:
-
-- Run a small 30-minute talk or workshop each quarter on a topic that fits your clients (retirement, new parents, business owners)
-- Invite your clients
-- Tell them: *"Feel free to forward this to anyone you think would find it useful"*
-- Track how many people it was forwarded to and how many came
-- Follow up one to one with attendees who showed interest and agreed to be contacted
-
-A small, focused event can bring you a handful of new people to talk to each time. It adds to the one-to-one ask without replacing it: the ask brings quality, and events bring volume.
-
-Two rules before you run one. Get the invite and the slides approved through your firm's compliance process, since a forwarded invite counts as advertising. And collect attendees' contact details with their consent, with a clear line on the sign-up about how you'll follow up.
-
-A note on timing: most new FCs don't run events in month 2. Treat this as planning for your second quarter. Put a placeholder in your calendar now and run the event once you have enough clients to invite 10 people.
-
----
-
 ## The 3 behaviours that turn the flywheel
 
 These three add up over the next 12 months. Aim to have all three in place by Week 6.
@@ -111,39 +84,39 @@ Every Fact-Find ends with the FACT Method ask. Every closed case gets the 10-Nam
 
 ### Behaviour 2: Follow through within 48 hours
 
-When a client introduces someone who has agreed to hear from you, contact them within 48 hours. Leave it longer and the introduction goes cold. *"Hi Aaron, [client name] mentioned you two had spoken and that you're open to a chat. Happy to do a quick call whenever suits you. Would Thursday or Saturday work?"*
+When a client introduces someone who has agreed to hear from you, contact them within 48 hours. Leave it longer and the introduction goes cold.
 
-If you're calling or texting a Singapore number and you don't have that person's clear consent to hear from you, check it against the Do Not Call Registry first.
+> "Hi Aaron, [client name] mentioned you two had spoken and that you're open to a chat. Happy to do a quick call whenever suits you. Would Thursday or Saturday work?"
+
+Without that person's clear consent to hear from you, check a Singapore number against the Do Not Call Registry before you call or text.
 
 ### Behaviour 3: Close the loop with the referrer
 
-After you've met the referred friend, text the referrer. *"Hey Amir, met Aaron yesterday. Thanks so much for the intro, really appreciate you thinking of me."*
+After you've met the referred friend, text the referrer:
+
+> "Hey Amir, just met Aaron. Thanks so much for the intro, really appreciate you thinking of me."
 
 Thank them, and say nothing about what you discussed or whether Aaron bought anything. Aaron's finances are his, and passing his details on to Amir without his agreement breaks both client confidentiality and the PDPA.
 
 The referrer feels their intro mattered, which makes them far more likely to do it again. Many advisers skip this step, so each client refers once and then stops.
 
----
+### Systems before motivation
 
-## Systems before motivation
+Motivation comes and goes, so it won't keep these behaviours going. Systems will:
 
-Motivation won't keep any of these behaviours going. Systems will.
+- A CRM reminder for every new referral, so you get in touch within 48 hours.
+- A habit of texting the referrer within an hour of the meeting ending.
+- A Friday review where you check that every case closed that week had a referral ask.
 
-- A CRM reminder for every new referral, so you get in touch within 48 hours
-- A habit of texting the referrer within an hour of the meeting ending
-- A Friday review where you check that every case closed that week had a referral ask
-
-Peter Gollwitzer's research on implementation intentions found that people follow through far more often when they've decided in advance exactly when and where they'll act. A reminder that fires at a set time is that decision made for you. If your plan is to ask *"when I remember"*, you won't. Build the system.
-
----
+Peter Gollwitzer's research on implementation intentions found that people follow through far more often when they've decided in advance exactly when and where they'll act. A reminder that fires at a set time is that decision made for you. If your plan is to ask "when I remember", you won't.
 
 ## The Year 1 survivorship cut: why many who quit could have made it
 
-Weeks 1 to 4 taught you outbound. Week 5 is about turning it into something that regenerates, and that takes a year or two. So for most of your first year you're running mainly on outbound, which is tiring.
+Weeks 1 to 4 taught you outbound. Turning it into something that regenerates takes a year or two, so for most of your first year you run mainly on outbound, which is tiring.
 
-Advisers who quit in Year 1 often quit because of how the work feels more than because of the work. They've put in months of effort that haven't paid off yet. The flywheel is turning, but quietly, so it looks as though nothing is happening. Compounding stays hard to see until the results start stacking up.
+Advisers who quit in Year 1 often quit because of how the work feels more than because of the work. They've put in months of effort that haven't paid off yet. The flywheel is turning quietly, so it looks as though nothing is happening, and compounding stays hard to see until the results start stacking up.
 
-Three habits separate advisers who stay from advisers who quit.
+Three habits separate advisers who stay from advisers who quit:
 
 | Advisers who stay | Advisers who quit |
 |---|---|
@@ -151,13 +124,29 @@ Three habits separate advisers who stay from advisers who quit.
 | Count inputs: asks delivered, outreach sent | Count outputs: cases closed, income received |
 | Compare themselves with their Week 1 self | Compare themselves with a Year 5 adviser |
 
-None of these need talent. They need a small, boring discipline: trust your input numbers this month, because results lag behind inputs by months.
+None of these need talent. They need a small, boring discipline: trust your input numbers this month, because results lag behind inputs by months. The one-minute Sunday drill below helps stop a bad Wednesday night from turning into a bad month.
 
-The drill: every Sunday, write two numbers at the front of your notebook. First, how many asks and outreaches you did last week. Second, how many your Week 1 self did. If the first number is higher, you're building the habits that pay off later.
+## Events as a way to add referral volume
 
-This one-minute check helps stop a bad Wednesday night from turning into a bad month. Take the numbers to your mentor if they've been flat for a few weeks running.
+Direct asks work. Events add volume, especially from shy clients who won't recommend you directly.
 
----
+- Run a small 30-minute talk or workshop each quarter on a topic that fits your clients (retirement, new parents, business owners).
+- Invite your clients.
+- Tell them: "Feel free to forward this to anyone you think would find it useful."
+- Track how many people it was forwarded to and how many came.
+- Follow up one to one with attendees who showed interest and agreed to be contacted.
+
+A small, focused event can bring a handful of new people each time. It adds to the one-to-one ask: the ask brings quality, and events bring volume.
+
+Two rules before you run one. Get the invite and the slides approved through your firm's compliance process, since a forwarded invite counts as advertising. And collect attendees' contact details with their consent, with a clear line on the sign-up about how you'll follow up.
+
+Most new FCs don't run events in month 2, so treat this as planning for your second quarter. Put a placeholder in your calendar now, and run the event once you have enough clients to invite 10 people.
+
+## Do this today
+
+1. Write down this week's CAR numbers, circle the weakest link and note one fix for next week.
+2. Set a CRM reminder to fire within 48 hours of logging any new referral.
+3. Start the Sunday drill. Every Sunday, write two numbers at the front of your notebook: how many asks and outreaches you did last week, and how many your Week 1 self did. If the first number is higher, you're building the habits that pay off later. If the numbers have been flat for a few weeks running, take them to your mentor.
 
 ## Sources
 
@@ -170,7 +159,7 @@ This one-minute check helps stop a bad Wednesday night from turning into a bad m
 
 **Q1. The main difference between a slow sales cycle and a self-regenerating one is:**
 - A) The slow cycle is inefficient; the fast cycle is efficient
-- B) In the slow cycle, next week's pipeline comes entirely from your outbound; in the self-regenerating cycle, last quarter's referrals feed this week's pipeline ✓
+- B) In the slow cycle, next week's pipeline comes entirely from your outbound; in the self-regenerating cycle, last quarter's referrals feed this week's pipeline (correct)
 - C) Slow = less money; regenerating = more money
 - D) They're the same thing
 
@@ -179,14 +168,14 @@ This one-minute check helps stop a bad Wednesday night from turning into a bad m
 **Q2. Your Week 5 review shows: Calls 35 (healthy), Appointments 6 (healthy), Referrals 0. Which link do you fix in Week 6?**
 - A) Calls, make more
 - B) Appointments, book more
-- C) Referrals, because the zero is the signal ✓
+- C) Referrals, because the zero is the signal (correct)
 - D) Wait and see
 
 **Why:** The CAR rule is to fix the weakest link. Calls and appointments are both in a good range, so the problem is at the referral stage. Either you aren't asking at every Fact-Find, or the ask is falling flat on specificity or tone (Day 27). More calls or appointments won't fix R. Only fixing the ask will.
 
 **Q3. The third flywheel behaviour (closing the loop with the referrer) matters because:**
 - A) It's polite
-- B) The referrer feels their intro mattered, which makes them much more likely to refer again, so one referral can become many ✓
+- B) The referrer feels their intro mattered, which makes them much more likely to refer again, so one referral can become many (correct)
 - C) It's required by compliance
 - D) It helps with follow-up paperwork
 
@@ -194,7 +183,7 @@ This one-minute check helps stop a bad Wednesday night from turning into a bad m
 
 **Q4. The 3 behaviours that move you from the slow cycle to the self-regenerating one are:**
 - A) Call more, close harder, follow up longer
-- B) Ask every time, follow through within 48 hours, close the loop with the referrer ✓
+- B) Ask every time, follow through within 48 hours, close the loop with the referrer (correct)
 - C) Track metrics, hire assistants, automate follow-up
 - D) Only work with HNW clients
 
@@ -202,7 +191,7 @@ This one-minute check helps stop a bad Wednesday night from turning into a bad m
 
 **Q5. "Motivation won't keep any of these behaviours going. Systems will." What's an example of a system for Behaviour 2 (48-hour follow-through)?**
 - A) Telling yourself to work harder
-- B) A CRM reminder that fires within 48 hours when you log a new referral ✓
+- B) A CRM reminder that fires within 48 hours when you log a new referral (correct)
 - C) Hiring a VA to remind you
 - D) Writing the name on your hand
 
@@ -211,20 +200,18 @@ This one-minute check helps stop a bad Wednesday night from turning into a bad m
 **Q6. The Year 1 survivorship cut says the main difference between advisers who stay and advisers who quit is:**
 - A) Talent
 - B) Hours worked
-- C) Trusting the numbers before the results show, counting inputs and comparing yourself with your Week 1 self, never with a Year 5 adviser ✓
+- C) Trusting the numbers before the results show, counting inputs and comparing yourself with your Week 1 self, never with a Year 5 adviser (correct)
 - D) Luck with early clients
 
 **Why:** Compounding is hard to see early on. Year 1 inputs (asks, outreach, referral attempts) turn into later outputs (cases, income), but in Year 1 you can only see Year 1 output, which looks small next to a Year 5 adviser's book. Count inputs, measure against your own starting point and give the results time. Advisers who quit tend to do the opposite on all three.
 
 **Q7. The close-the-loop text after meeting a referred friend is best sent:**
 - A) A week later, once you've worked out next steps
-- B) Within an hour of the meeting ending, so the referrer hears the same day ✓
+- B) Within an hour of the meeting ending, so the referrer hears the same day (correct)
 - C) Only if the referred friend buys
 - D) Never, the referrer doesn't need to know
 
-**Why:** Speed is the signal. A same-day thank-you (*"met Aaron yesterday, really appreciate the intro"*) tells the referrer their introduction was taken seriously, while a week-later update reads as an afterthought. Waiting until the friend buys (C) means most referrers never hear back, and it also ties your thanks to details about the friend that aren't yours to share.
-
----
+**Why:** Speed is the signal. A same-day thank-you (*"just met Aaron, really appreciate the intro"*) tells the referrer their introduction was taken seriously, while a week-later update reads as an afterthought. Waiting until the friend buys (C) means most referrers never hear back, and it also ties your thanks to details about the friend that aren't yours to share.
 
 ## Related
 
