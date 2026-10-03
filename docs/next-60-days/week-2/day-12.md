@@ -15,86 +15,67 @@ tags: [next-60-days, week-2, new-fc, practice, intent-statement, loom]
 
 # Day 12: Practice, deliver your intent statement to 3 prospects
 
-> **The one idea for today:** An intent statement doesn't exist until you've said it to a real person. This is where Week 2 gets real.
+> **Today in one line:** An intent statement doesn't exist until you've said it to a real person.
 
-By the end of today you'll have delivered your v2 intent statement to 3 actual prospects (mentors and peers don't count), rated each delivery on 4 points, and submitted a 3-line log per delivery plus 1 Loom reflection. The log and the Loom are what open Week 3.
+**What to remember**
 
----
+1. Deliver your v2 to 3 people you know, who know you, and who you'd want as clients.
+2. Warm up for 5 minutes before each delivery.
+3. Aim to hit 3 of the 4 checks by delivery 3.
+4. Log each delivery in three lines, and submit the log and a Loom.
 
 ## The bar today
 
 In my experience, new advisors who struggle in their first year rarely have a bad pitch. More often they have a decent pitch they didn't say to enough people.
 
-The easy mistake in this module is to keep learning and never deliver. In Week 1 you recorded an intro for a camera and your mentor. This week it's three deliveries to three real prospects, with a real person reacting on the other side and no roleplay, peer practice or mentor warm-up.
-
----
+The easy mistake in this module is to keep learning and never deliver. In Week 1 you recorded an intro for a camera and your mentor. This week a real person reacts, three times over.
 
 ## Who counts as a real prospect
 
-Anyone you'd genuinely want to do a fact-find with in the next 60 days. The test:
+Anyone you'd want to do a fact-find with in the next 60 days. You know their name, they know yours, and you'd want them as a client if the fit was right. These count:
 
-- You know their name.
-- They know yours.
-- You'd want them as a client if the fit was right.
+- A friend you haven't yet had the advisor conversation with.
+- A warm-market contact you're getting back in touch with.
+- Someone who replied to a DM or post this week.
+- A referral a client gave you that you haven't called yet.
 
-These count:
-
-- A friend you haven't yet had the advisor conversation with
-- A warm-market contact you're getting back in touch with
-- Someone who replied to a DM or post this week
-- A referral a client gave you that you haven't called yet
-
-These don't:
-
-- Your mentor
-- A classmate or peer
-- Anyone whose job is to listen to you practise
-
-The difference is what's at stake. A mentor won't react the way a prospect does, and you need a real reaction to know whether your v2 works.
-
----
+Your mentor, a classmate or peer, and anyone whose job is to listen to you practise don't count. They listen for technique, and you need a real reaction to know whether v2 works.
 
 ## Before each delivery
 
-Take 5 minutes before each of the three:
+Take 5 minutes before each one:
 
-1. Re-read your v2 once. Don't rehearse it.
-2. Picture this specific prospect. Which profile are they, and which of your 5 "what do you do?" answers fits them?
-3. Pick your tonality. You've had the Certainty and Reason training (Day 5). Which key sentence gets Certainty? Which line ends on the Reason tone with *"fair?"*
-4. Decide how you'll deliver it: phone, WhatsApp voice note or in person. Each one comes across differently, so choose before you dial.
-
----
+1. Re-read your v2 once, without rehearsing it, which only tenses you up.
+2. Picture this prospect. Which profile are they, and which of your 5 "what do you do?" answers fits them?
+3. Pick your tonality from the Day 5 Certainty and Reason training. Which key sentence gets Certainty? Which line ends on the Reason tone with "fair?"
+4. Decide the format: phone, WhatsApp voice note or in person. Each comes across differently, so choose before you dial.
 
 ## During each delivery
 
-Delivery 1, 2 and 3 will feel different, and that's expected. Notice four things:
+Each delivery will feel different. Notice four things:
 
 - Did the hook land? Did they stop scrolling or put down what they were doing?
-- Did the pattern interrupt register? Look for a pause, a *"hmm"*, a *"huh, that's different"*, or a question back.
-- Did you get buy-in? Did they actually say *"yes, that sounds fair,"* or just a polite *"mm-hmm"*?
+- Did the pattern interrupt register? Look for a pause, a "hmm", a "huh, that's different", or a question back.
+- Did you get buy-in? Did they actually say "yes, that sounds fair," or just a polite "mm-hmm"?
 - Did your tone match your Day 5 drill, or did you rush the close because you were nervous?
 
-You don't need all four on delivery 1. By delivery 3 you should be getting 3 out of 4.
-
----
+You don't need all four on delivery 1. By delivery 3 you should be getting 3 out of 4. The fourth comes with more reps.
 
 ## After each delivery: the 3-line log
 
-Right after each delivery, write three lines in the same note:
+Right after each delivery, add three lines to one note:
 
-1. Who and the context. *"Called Amir, former colleague. First time back in touch in 8 months."*
-2. What landed and what didn't. *"Hook landed, pattern interrupt got a laugh, he said 'that's a first.' Buy-in not clean, he said 'okay, let's see' instead of 'fair.'"*
-3. One thing to fix next time. *"Slow down between the interrupt and the buy-in ask. I rushed it."*
+1. Who and the context: "Called Amir, former colleague. First time back in touch in 8 months."
 
-Three lines for each of three deliveries gives you a nine-line log, and that's your submission. Keep it to nine lines.
+2. What landed and what didn't: "Hook landed, pattern interrupt got a laugh, he said 'that's a first.' Buy-in not clean, he said 'okay, let's see' instead of 'fair.'"
 
----
+3. One thing to fix next time: "Slow down between the interrupt and the buy-in ask. I rushed it."
+
+Three deliveries at three lines each gives you a nine-line log. That's your submission, so keep it to nine lines.
 
 ## What you submit
 
-### The 3-line log
-
-Paste the log below, or link to a Google Doc or Notion page:
+Paste your 3-line log below, or link to a Google Doc or Notion page:
 
 ```
 DELIVERY 1 - [who + context]
@@ -112,53 +93,51 @@ DELIVERY 3 - [who + context]
 
 ### The Loom reflection (3 to 5 minutes)
 
-Record a short Loom answering three questions:
+Your Loom answers three questions:
 
 1. Which of the 3 deliveries worked best, and why?
 2. Which of the 4 ingredients (hook, impression, pattern interrupt, buy-in) needs the most work?
 3. What will your v3 fix?
 
-Your mentor won't critique the content. They'll check two things only:
+Your mentor won't critique the content, and checks two things only:
 
 1. Did you actually deliver to 3 real prospects, as opposed to roleplay?
 2. Did the buy-in land cleanly at least once out of three?
-
-Book the 10-minute mentor review before Sunday ends.
-
----
 
 ## Week 2 KPI: the unlock gate
 
 Week 3 opens when you have all three:
 
-- [ ] Intent statement v2 drafted (Day 8 worksheet)
+- [ ] Intent statement v2 drafted (written on Day 8)
 - [ ] 3 real deliveries logged (the 9-line log above)
 - [ ] Loom reflection submitted and mentor review booked
 
-If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 unlocks automatically once all three are logged.
+If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 opens automatically once all three are logged.
 
----
+## Do this today
+
+1. Pick your 3 prospects and set a time with each.
+2. Write your three log lines straight after each delivery.
+3. After the third, record the Loom, submit it with the log, and book the 10-minute mentor review before Sunday ends.
 
 ## Sources
 
 - [The role of deliberate practice in the acquisition of expert performance - Ericsson, Krampe and Tesch-Romer, Psychological Review (1993)](https://graphics8.nytimes.com/images/blogs/freakonomics/pdf/DeliberatePractice(PsychologicalReview).pdf) - improvement comes from repeated attempts with immediate feedback, which is why you log and fix after every delivery
 - [The making of an expert - Ericsson, Prietula and Cokely, Harvard Business Review (2007)](https://hbr.org/2007/07/the-making-of-an-expert) - expertise comes from sustained, coached practice on what you can't yet do well
 
----
-
 ## Quiz
 
 **Q1. A "real prospect" for Day 12 delivery is best defined as:**
 - A) Your mentor, because they can give feedback
 - B) A peer in the same cohort, because they know what to listen for
-- C) Someone you know, who knows you, and who you'd actually want to close if the fit was right ✓
+- C) Someone you know, who knows you, and who you'd actually want to close if the fit was right (correct)
 - D) Anyone you can get on a call
 
 **Why:** Day 12 tests your v2 against a real reaction. Mentors and peers listen for technique, while a prospect decides whether your opening is worth their attention. This week, that reaction is the feedback that counts.
 
 **Q2. After each delivery, the 3-line log captures:**
 - A) Everything the prospect said, verbatim
-- B) Who and context, what landed or didn't, one fix for next time ✓
+- B) Who and context, what landed or didn't, one fix for next time (correct)
 - C) A full debrief with your mentor
 - D) A transcript of the call
 
@@ -166,7 +145,7 @@ If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 unlock
 
 **Q3. Week 3 unlocks when you have:**
 - A) Delivered to 3 real prospects, whether or not logged
-- B) Intent statement v2, 3 real deliveries logged, Loom reflection submitted and mentor review booked ✓
+- B) Intent statement v2, 3 real deliveries logged, Loom reflection submitted and mentor review booked (correct)
 - C) A good Loom
 - D) At least one prospect saying yes to a full fact-find
 
@@ -174,7 +153,7 @@ If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 unlock
 
 **Q4. Before each delivery, the 5-minute warm-up includes:**
 - A) Rehearsing the whole statement 10 times
-- B) Re-reading v2 once, picturing the specific prospect, picking your tonality, deciding the format ✓
+- B) Re-reading v2 once, picturing the specific prospect, picking your tonality, deciding the format (correct)
 - C) Reading your entire Week 2 notes
 - D) Calling your mentor first
 
@@ -184,13 +163,13 @@ If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 unlock
 - A) Did the hook land?
 - B) Did the pattern interrupt register?
 - C) Did you secure buy-in?
-- D) Did you hit 150 words exactly ✓
+- D) Did you hit 150 words exactly (correct)
 
 **Why:** All four checks look at how the prospect reacted: a pause at the hook, a reaction to the interrupt, a clear yes to buy-in, and whether your tone matched. Length hardly matters next to that.
 
 **Q6. The mentor on Day 12 critiques two things only:**
 - A) Whether you memorised the script perfectly, and whether your Loom was under 5 min
-- B) Whether you actually delivered to 3 real prospects (vs roleplay), and whether buy-in landed cleanly on at least one ✓
+- B) Whether you actually delivered to 3 real prospects (vs roleplay), and whether buy-in landed cleanly on at least one (correct)
 - C) Whether your pattern interrupt was clever
 - D) Whether your writing was grammatically correct
 
@@ -198,13 +177,11 @@ If you're one delivery short at 6pm on Sunday, get it done by 9pm. Week 3 unlock
 
 **Q7. "You should be hitting 3 of 4 in-moment checks by delivery 3." Why 3 of 4 and not 4 of 4?**
 - A) Because 4 is unreasonable at any stage
-- B) Because delivery 3 is still early practice. 3 of 4 is an honest first bar, and 4 of 4 comes with more reps ✓
+- B) Because delivery 3 is still early practice. 3 of 4 is an honest first bar, and 4 of 4 comes with more reps (correct)
 - C) Because mentors always grade on a curve
 - D) Because buy-in is optional
 
 **Why:** If you expect perfection by delivery 3, people either fudge their logs or give up before Sunday. Three out of four is demanding but doable, and it still makes you improve from one delivery to the next. The fourth check usually comes in Week 3 as your tonality gets more practice.
-
----
 
 ## Related
 
