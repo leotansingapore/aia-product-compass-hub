@@ -104,3 +104,19 @@ describe("chipTitle", () => {
     expect(chipTitle("Leads Gen Series: Appointment Booster")).toBe("Leads Gen Series");
   });
 });
+
+import { nextDates } from "./sessions";
+
+describe("nextDates", () => {
+  it("gives the next real session day, else open now, else TBC", () => {
+    const next = nextDates(directory, "2026-10-04");
+    expect(next.get("propel-to-professional-planning")).toEqual({ kind: "date", date: "2026-10-20" });
+    expect(next.get("core-modules-2026")).toEqual({ kind: "open" });
+    expect(next.get("shield-updates")).toEqual({ kind: "open" });
+    // Leaders' Lunch and Learn was TBC for July, which is past.
+    expect(next.has("leaders-lunch-and-learn")).toBe(false);
+    expect(nextDates(directory, "2026-06-01").get("leaders-lunch-and-learn")).toEqual({ kind: "tbc" });
+    // Nothing after the schedule year.
+    expect(nextDates(directory, "2027-01-05").size).toBe(0);
+  });
+});

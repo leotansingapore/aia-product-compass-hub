@@ -150,3 +150,21 @@ export function chipTitle(title: string): string {
   if (acronym) return acronym[1];
   return title.split(/,\s|:\s/)[0];
 }
+
+export type NextDate = { kind: "date"; date: string } | { kind: "open" } | { kind: "tbc" };
+
+/**
+ * What a contents line shows on the right: the next dated session on or after
+ * today, else "open now" for a self-paced window covering this month, else
+ * TBC. Courses with nothing ahead are left out.
+ */
+export function nextDates(dir: Directory, todayIso: string): Map<string, NextDate> {
+  const { events, windows, tbc } = buildCalendar(dir);
+  const out = new Map<string, NextDate>();
+  for (const e of events) if (e.date >= todayIso && !out.has(e.course.id)) out.set(e.course.id, { kind: "date", date: e.date });
+  const inYear = todayIso.startsWith(String(dir.scheduleYear));
+  const month = Number(todayIso.slice(5, 7));
+  for (const w of windows) if (inYear && month >= w.from && month <= w.to && !out.has(w.course.id)) out.set(w.course.id, { kind: "open" });
+  for (const t of tbc) if (inYear && t.month >= month && !out.has(t.course.id)) out.set(t.course.id, { kind: "tbc" });
+  return out;
+}

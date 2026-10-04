@@ -1,33 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useEffect, useMemo, useRef, type Dispatch, type SetStateAction } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowDown, ArrowRight, ArrowUpRight, CalendarDays, ChevronDown, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Loader2, Lock, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { InfoTip } from "@/components/InfoTip";
-import { RequirementBadge, TAG } from "@/components/aia-training/RequirementBadge";
 import { CopyLinkButton } from "@/components/aia-training/CopyLinkButton";
 import AiaTrainingOverview from "./AiaTrainingOverview";
 import AiaTrainingCalendar from "./AiaTrainingCalendar";
-import {
-  EMPTY_FILTERS,
-  MONTHS,
-  filterCourses,
-  hasActiveFilters,
-  nextSession,
-  type Course,
-  type Directory,
-  type Filters,
-  type Roadmap,
-  type Section,
-  type SortKey,
-  type StageFilter,
-} from "@/features/aia-training-directory/filter";
+import AiaTrainingContents from "./AiaTrainingContents";
+import type { Directory, Filters } from "@/features/aia-training-directory/filter";
 import {
   BASE,
   UPCOMING_URL,
@@ -40,22 +22,6 @@ import {
 } from "@/features/aia-training-directory/links";
 import { ROADMAP_META, roadmapTarget, splitTags, type Tag } from "@/features/aia-training-directory/roadmaps";
 
-const STAGES: { value: StageFilter; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "new", label: "New consultants" },
-  { value: "experienced", label: "Experienced" },
-  { value: "leaders", label: "Leaders" },
-];
-
-const SORTS: { value: SortKey; label: string }[] = [
-  { value: "catalogue", label: "Catalogue order" },
-  { value: "next", label: "Next session" },
-  { value: "cpd", label: "Most CPD hours" },
-  { value: "az", label: "A to Z" },
-];
-
-const FORMAT_LABEL = { classroom: "Classroom", virtual: "Virtual", elearning: "eLearning" } as const;
-
 function useDirectory() {
   return useQuery({
     queryKey: ["aia-training-directory"],
@@ -67,187 +33,6 @@ function useDirectory() {
     staleTime: 60 * 60_000,
     retry: 1,
   });
-}
-
-function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
-        active ? "border-primary bg-primary text-primary-foreground" : "bg-background text-muted-foreground hover:text-foreground",
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-
-function CourseRow({
-  course,
-  dir,
-  section,
-  showSection,
-  linked = false,
-}: {
-  course: Course;
-  dir: Directory;
-  section?: Section;
-  showSection: boolean;
-  /** Opened from a deep link: starts expanded and stays outlined so the reader can see where they landed. */
-  linked?: boolean;
-}) {
-  const today = new Date();
-  const next = nextSession(course, dir.scheduleYear, today);
-  const thisMonth = today.getFullYear() === dir.scheduleYear ? today.getMonth() + 1 : 0;
-  // Controlled so a second deep link opens its course even when the list is already on screen.
-  const [open, setOpen] = useState(linked);
-  useEffect(() => {
-    if (linked) setOpen(true);
-  }, [linked]);
-  const meta = [
-    showSection && section ? section.title : null,
-    course.duration,
-    course.cpd ? `CPD hours: ${course.cpd}` : null,
-  ]
-    .filter(Boolean)
-    // Read as short sentences rather than a pipe-separated table row.
-    .map((m) => ((m as string).endsWith(".") ? m : `${m}.`));
-
-  return (
-    <Collapsible
-      id={`aia-course-${course.id}`}
-      open={open}
-      onOpenChange={setOpen}
-      className={cn("scroll-mt-24 rounded-xl border bg-card", linked && "ring-2 ring-primary/30")}
-    >
-      <CollapsibleTrigger className="group flex w-full items-start gap-3 p-4 text-left">
-        <div className="min-w-0 flex-1 space-y-1.5">
-          <p className="font-semibold leading-snug">{course.title}</p>
-          <div className="flex flex-wrap items-center gap-1.5">
-            <RequirementBadge course={course} />
-            {next && (
-              <Badge variant="secondary" className={cn(TAG, "gap-1")}>
-                <CalendarDays className="h-3 w-3" />
-                Next: {MONTHS[Math.max(next.month, thisMonth) - 1]}
-              </Badge>
-            )}
-          </div>
-          {meta.length > 0 && <p className="text-xs text-muted-foreground line-clamp-2">{meta.join(" ")}</p>}
-        </div>
-        <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
-      </CollapsibleTrigger>
-      <CollapsibleContent className="space-y-4 border-t px-4 pb-4 pt-3 text-sm">
-        <div className="-mb-2 -mt-1 flex justify-end">
-          <CopyLinkButton path={courseUrl(course.id)} label={`Copy a link to ${course.title}`} />
-        </div>
-        {course.summary.split("\n\n").map((p, i) => (
-          <p key={i} className="leading-relaxed break-words">
-            {p}
-          </p>
-        ))}
-
-        {(course.formats?.length || course.duration || course.cpd) && (
-          <dl className="grid gap-x-4 gap-y-1 text-xs sm:grid-cols-[auto_1fr]">
-            {course.formats?.length ? (
-              <>
-                <dt className="font-semibold">Format</dt>
-                <dd className="text-muted-foreground">{course.formats.map((f) => FORMAT_LABEL[f]).join(", ")}</dd>
-              </>
-            ) : null}
-            {course.duration && (
-              <>
-                <dt className="font-semibold">Duration</dt>
-                <dd className="text-muted-foreground">{course.duration}</dd>
-              </>
-            )}
-            {course.cpd && (
-              <>
-                <dt className="font-semibold">CPD hours</dt>
-                <dd className="text-muted-foreground">{course.cpd}</dd>
-              </>
-            )}
-            {course.eligibility && (
-              <>
-                <dt className="font-semibold">Who it's for</dt>
-                <dd className="text-muted-foreground">{course.eligibility}</dd>
-              </>
-            )}
-            {course.access && (
-              <>
-                <dt className="font-semibold">Where to find it</dt>
-                <dd className="text-muted-foreground">{course.access}</dd>
-              </>
-            )}
-          </dl>
-        )}
-
-        {course.outcomes?.length ? (
-          <div>
-            <h4 className="mb-1 font-semibold">By the end you can</h4>
-            <ul className="list-disc space-y-0.5 pl-5 text-muted-foreground">
-              {course.outcomes.map((o) => (
-                <li key={o}>{o}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
-        {course.topics?.map((t) => (
-          <div key={t.heading}>
-            <h4 className="mb-1 font-semibold">{t.heading}</h4>
-            <ul className="list-disc space-y-0.5 pl-5 text-muted-foreground">
-              {t.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        {course.notes?.length ? (
-          <div>
-            <h4 className="mb-1 font-semibold">Before you sign up</h4>
-            <ul className="list-disc space-y-0.5 pl-5 text-muted-foreground">
-              {course.notes.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
-
-        {(course.schedule?.length || course.scheduleNote) && (
-          <div>
-            <h4 className="mb-1 font-semibold">{dir.scheduleYear} dates</h4>
-            {course.scheduleNote && <p className="text-muted-foreground">{course.scheduleNote}</p>}
-            {course.schedule?.length ? (
-              <ul className="divide-y rounded-lg border text-xs">
-                {course.schedule.map((s) => {
-                  const past = (s.endMonth ?? s.month) < thisMonth;
-                  const current = s === next;
-                  return (
-                    <li
-                      key={`${s.month}-${s.when}`}
-                      className={cn("flex gap-3 px-3 py-2", past && "text-muted-foreground/60", current && "bg-primary/5 font-medium")}
-                    >
-                      <span className="w-8 shrink-0 font-semibold">{MONTHS[s.month - 1]}</span>
-                      <span className="min-w-0 break-words">{s.when}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : null}
-            {course.schedule?.length ? (
-              <p className="mt-1.5 text-xs text-muted-foreground">
-                {dir.scheduleKey}. {dir.scheduleNote}
-              </p>
-            ) : null}
-          </div>
-        )}
-      </CollapsibleContent>
-    </Collapsible>
-  );
 }
 
 const lane = (i: number) => `var(--lane-${i + 1})`;
@@ -440,166 +225,19 @@ function RoadmapsView({ dir, selectedId }: { dir: Directory; selectedId?: string
   );
 }
 
-function CoursesView({
-  dir,
-  filters,
-  setFilters,
-  linkedCourse,
-  linkedSection,
-}: {
-  dir: Directory;
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
-  linkedCourse?: string;
-  linkedSection?: string;
-}) {
-  // A deep link lands scrolled to its course or section. Keyed on the target,
-  // so typing in search (which rewrites the query string) never re-scrolls.
-  const target = linkedCourse ? `aia-course-${linkedCourse}` : linkedSection ? `aia-sec-${linkedSection}` : null;
-  useEffect(() => {
-    if (!target) return;
-    const id = window.requestAnimationFrame(() =>
-      document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" }),
-    );
-    return () => window.cancelAnimationFrame(id);
-  }, [target]);
-  const set = (patch: Partial<Filters>) => setFilters((f) => ({ ...f, ...patch }));
-  const results = useMemo(() => filterCourses(dir, filters, new Date()), [dir, filters]);
-  const sectionById = useMemo(() => new Map(dir.sections.map((s) => [s.id, s])), [dir]);
-  const grouped = filters.sort === "catalogue";
-
-  return (
-    <div className="space-y-4">
-      <div className="space-y-3">
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="search"
-            value={filters.query}
-            onChange={(e) => set({ query: e.target.value })}
-            placeholder="Search by course, topic or skill"
-            aria-label="Search the training directory"
-            className="pl-9 pr-9"
-          />
-          {filters.query && (
-            <button
-              type="button"
-              onClick={() => set({ query: "" })}
-              aria-label="Clear search"
-              className="absolute right-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground hover:text-foreground"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
-        </div>
-
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Career stage">
-          {STAGES.map((s) => (
-            <Chip key={s.value} active={filters.stage === s.value} onClick={() => set({ stage: s.value })}>
-              {s.label}
-            </Chip>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Course type">
-          <span className="inline-flex items-center">
-            <Chip active={filters.mandatory} onClick={() => set({ mandatory: !filters.mandatory })}>
-              Mandatory
-            </Chip>
-            <InfoTip label="About mandatory courses">{dir.legend.mandatory}</InfoTip>
-          </span>
-          <span className="inline-flex items-center">
-            <Chip active={filters.essential} onClick={() => set({ essential: !filters.essential })}>
-              Essential
-            </Chip>
-            <InfoTip label="About essential courses">{dir.legend.essential}</InfoTip>
-          </span>
-          <Chip active={filters.isNew} onClick={() => set({ isNew: !filters.isNew })}>
-            New for {dir.scheduleYear}
-          </Chip>
-          <Chip active={filters.upcoming} onClick={() => set({ upcoming: !filters.upcoming })}>
-            Still running this year
-          </Chip>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            {results.length} {results.length === 1 ? "course" : "courses"}
-            {hasActiveFilters(filters) && (
-              <>
-                {" | "}
-                <button
-                  type="button"
-                  onClick={() => setFilters({ ...EMPTY_FILTERS, sort: filters.sort })}
-                  className="font-medium text-primary underline-offset-2 hover:underline"
-                >
-                  Clear filters
-                </button>
-              </>
-            )}
-          </p>
-          <Select value={filters.sort} onValueChange={(v) => set({ sort: v as SortKey })}>
-            <SelectTrigger className="h-9 w-[170px] shrink-0 text-xs" aria-label="Sort courses">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {SORTS.map((s) => (
-                <SelectItem key={s.value} value={s.value}>
-                  {s.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {results.length === 0 ? (
-        <div className="rounded-xl border bg-muted/20 py-10 text-center">
-          <p className="font-medium">No courses match those filters</p>
-          <Button variant="link" onClick={() => setFilters(EMPTY_FILTERS)}>
-            Clear filters
-          </Button>
-        </div>
-      ) : grouped ? (
-        dir.sections
-          .map((section) => ({ section, items: results.filter((c) => c.section === section.id) }))
-          .filter((g) => g.items.length > 0)
-          .map(({ section, items }) => (
-            <section key={section.id} className="scroll-mt-24 space-y-2" aria-labelledby={`aia-sec-${section.id}`}>
-              <h3 id={`aia-sec-${section.id}`} className="flex scroll-mt-24 flex-wrap items-baseline gap-x-2 pt-3">
-                <span className="font-serif text-base font-bold">{section.title}</span>
-                <span className="text-xs text-muted-foreground">
-                  {section.code}, {items.length} {items.length === 1 ? "course" : "courses"}
-                </span>
-              </h3>
-              {items.map((c) => (
-                <CourseRow key={c.id} course={c} dir={dir} section={section} showSection={false} linked={c.id === linkedCourse} />
-              ))}
-            </section>
-          ))
-      ) : (
-        <div className="space-y-2">
-          {results.map((c) => (
-            <CourseRow key={c.id} course={c} dir={dir} section={sectionById.get(c.section)} showSection linked={c.id === linkedCourse} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function AiaTrainingDirectory() {
   const { data: dir, isLoading, isError, error, refetch, isFetching } = useDirectory();
   // Everything the reader sees comes from the URL, so any state can be shared:
   //   /aia-training                       overview
-  //   /aia-training/courses?q=&stage=...  filtered list (section=02c scrolls to a section)
-  //   /aia-training/courses/:courseId     that course, opened
+  //   /aia-training/courses?q=&stage=...  the contents index (section=02c scrolls to a section)
+  //   /aia-training/courses/:courseId     that course's popup over the contents
   //   /aia-training/calendar?month=YYYY-MM&q=&stage=  the calendar
   //   /aia-training/roadmaps/:roadmapId   one roadmap
   const { view: viewParam, itemId } = useParams<{ view?: string; itemId?: string }>();
   const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
-  const { search } = useLocation();
+  const location = useLocation();
+  const { search } = location;
   const view = viewParam === "courses" || viewParam === "roadmaps" || viewParam === "calendar" ? viewParam : "overview";
   const filters = useMemo(() => filtersFromParams(params), [params]);
   const setFilters = useCallback<Dispatch<SetStateAction<Filters>>>(
@@ -619,11 +257,26 @@ export default function AiaTrainingDirectory() {
   // chip): bring the tab back into view, unless a deep link will scroll itself.
   const linkedSection = view === "courses" ? params.get("section") ?? undefined : undefined;
   const linkedCourse = view === "courses" ? itemId : undefined;
+  // Keyed on the view only: opening or closing a course popup must not move the page.
   useEffect(() => {
-    if (linkedCourse || linkedSection) return;
+    if (linkedSection) return;
     const el = top.current;
     if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
-  }, [view, itemId, linkedCourse, linkedSection]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view]);
+
+  // Course popups: opening from the contents pushes a history entry (so Back closes it),
+  // stepping replaces it, and closing a popup that came from a shared link stays on the page.
+  const searchWithoutSection = (() => {
+    const p = new URLSearchParams(search);
+    p.delete("section");
+    const q = p.toString();
+    return q ? `?${q}` : "";
+  })();
+  const openedFromContents = Boolean((location.state as { fromContents?: boolean } | null)?.fromContents);
+  const openCourse = (id: string) => navigate({ pathname: courseUrl(id), search: searchWithoutSection }, { state: { fromContents: true } });
+  const stepCourse = (id: string) => navigate({ pathname: courseUrl(id), search }, { replace: true, state: location.state });
+  const closeCourse = () => (openedFromContents ? navigate(-1) : navigate({ pathname: coursesUrl(), search }, { replace: true }));
 
   if (isLoading) {
     return (
@@ -724,12 +377,7 @@ export default function AiaTrainingDirectory() {
 
       <div role="tablist" aria-label="Directory views" className="flex gap-5 border-b text-sm font-semibold sm:gap-6">
         {viewTab("overview", "Overview")}
-        {viewTab(
-          "courses",
-          <>
-            Courses<span className="hidden sm:inline"> ({dir.courses.length})</span>
-          </>,
-        )}
+        {viewTab("courses", "Contents")}
         {viewTab("calendar", "Calendar")}
         {viewTab(
           "roadmaps",
@@ -746,12 +394,15 @@ export default function AiaTrainingDirectory() {
           onSeeUpcoming={() => navigate(UPCOMING_URL)}
         />
       ) : view === "courses" ? (
-        <CoursesView
+        <AiaTrainingContents
           dir={dir}
           filters={filters}
           setFilters={setFilters}
-          linkedCourse={linkedCourse}
+          openCourseId={linkedCourse}
           linkedSection={linkedSection}
+          onOpenCourse={openCourse}
+          onStepCourse={stepCourse}
+          onCloseCourse={closeCourse}
         />
       ) : view === "calendar" ? (
         <AiaTrainingCalendar
