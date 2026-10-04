@@ -265,7 +265,7 @@ function YearHeatmap({ dir, onSeeUpcoming }: { dir: Directory; onSeeUpcoming: ()
                         "h-5 rounded-[3px] transition-shadow",
                         !n && "bg-muted",
                         m + 1 < thisMonth && "opacity-40",
-                        m + 1 === month && "ring-2 ring-foreground/70",
+                        m + 1 === month && "ring-[1.5px] ring-foreground/50",
                       )}
                       style={n ? { background: `var(--heat-${Math.min(n, 5)})` } : undefined}
                     />
