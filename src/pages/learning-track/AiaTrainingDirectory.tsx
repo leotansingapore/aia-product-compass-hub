@@ -39,7 +39,7 @@ const SORTS: { value: SortKey; label: string }[] = [
   { value: "az", label: "A to Z" },
 ];
 
-const TAG = "px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide";
+const TAG = "px-2 py-0.5 text-xs font-medium";
 
 const FORMAT_LABEL = { classroom: "Classroom", virtual: "Virtual", elearning: "eLearning" } as const;
 
@@ -95,10 +95,13 @@ function CourseRow({ course, dir, section, showSection }: { course: Course; dir:
   const next = nextSession(course, dir.scheduleYear, today);
   const thisMonth = today.getFullYear() === dir.scheduleYear ? today.getMonth() + 1 : 0;
   const meta = [
-    showSection && section ? `${section.code} ${section.title}` : null,
+    showSection && section ? section.title : null,
     course.duration,
-    course.cpd ? `CPD ${course.cpd}` : null,
-  ].filter(Boolean);
+    course.cpd ? `CPD hours: ${course.cpd}` : null,
+  ]
+    .filter(Boolean)
+    // Read as short sentences rather than a pipe-separated table row.
+    .map((m) => ((m as string).endsWith(".") ? m : `${m}.`));
 
   return (
     <Collapsible className="rounded-xl border bg-card">
@@ -114,7 +117,7 @@ function CourseRow({ course, dir, section, showSection }: { course: Course; dir:
               </Badge>
             )}
           </div>
-          {meta.length > 0 && <p className="text-xs text-muted-foreground line-clamp-2">{meta.join(" | ")}</p>}
+          {meta.length > 0 && <p className="text-xs text-muted-foreground line-clamp-2">{meta.join(" ")}</p>}
         </div>
         <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
       </CollapsibleTrigger>
@@ -237,7 +240,7 @@ function RoadmapCard({ roadmap }: { roadmap: Roadmap }) {
         {roadmap.columns.map((col) => (
           <div key={col.heading} className="space-y-2 rounded-xl bg-muted/40 p-3 text-sm">
             <div>
-              {col.period && <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">{col.period}</p>}
+              {col.period && <p className="text-xs font-semibold text-primary">{col.period}</p>}
               <p className="font-semibold leading-snug">{col.heading}</p>
               {col.focus && <p className="text-xs italic text-muted-foreground">{col.focus}</p>}
             </div>
@@ -298,7 +301,7 @@ function CoursesView({
             type="search"
             value={filters.query}
             onChange={(e) => set({ query: e.target.value })}
-            placeholder="Search courses, topics, CPD, iLearn..."
+            placeholder="Search by course, topic or skill"
             aria-label="Search the training directory"
             className="pl-9 pr-9"
           />
@@ -339,7 +342,7 @@ function CoursesView({
             New for {dir.scheduleYear}
           </Chip>
           <Chip active={filters.upcoming} onClick={() => set({ upcoming: !filters.upcoming })}>
-            Sessions ahead
+            Still running this year
           </Chip>
         </div>
 
@@ -376,7 +379,7 @@ function CoursesView({
 
       {results.length === 0 ? (
         <div className="rounded-xl border bg-muted/20 py-10 text-center">
-          <p className="font-medium">No courses match</p>
+          <p className="font-medium">No courses match those filters</p>
           <Button variant="link" onClick={() => setFilters(EMPTY_FILTERS)}>
             Clear filters
           </Button>
@@ -387,10 +390,11 @@ function CoursesView({
           .filter((g) => g.items.length > 0)
           .map(({ section, items }) => (
             <section key={section.id} className="scroll-mt-24 space-y-2" aria-labelledby={`aia-sec-${section.id}`}>
-              <h3 id={`aia-sec-${section.id}`} className="flex items-baseline gap-2 pt-2 text-sm font-bold">
-                <span className="text-primary">{section.code}</span>
-                <span>{section.title}</span>
-                <span className="text-xs font-normal text-muted-foreground">{items.length}</span>
+              <h3 id={`aia-sec-${section.id}`} className="flex flex-wrap items-baseline gap-x-2 pt-3">
+                <span className="font-serif text-base font-bold">{section.title}</span>
+                <span className="text-xs text-muted-foreground">
+                  {section.code}, {items.length} {items.length === 1 ? "course" : "courses"}
+                </span>
               </h3>
               {items.map((c) => (
                 <CourseRow key={c.id} course={c} dir={dir} section={section} showSection={false} />
@@ -466,8 +470,8 @@ export default function AiaTrainingDirectory() {
       <div className="space-y-1">
         <h2 className="font-serif text-xl font-bold">AIA Training Directory {dir.scheduleYear}</h2>
         <p className="text-xs text-muted-foreground">{dir.source}</p>
-        <p className="flex items-start gap-1.5 text-xs font-medium text-amber-700 dark:text-amber-400">
-          <Lock className="mt-0.5 h-3 w-3 shrink-0" />
+        <p className="flex items-start gap-1.5 text-xs text-muted-foreground">
+          <Lock className="mt-0.5 h-3 w-3 shrink-0 text-amber-600 dark:text-amber-400" />
           {dir.notice}
         </p>
       </div>
