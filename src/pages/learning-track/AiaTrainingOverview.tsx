@@ -217,7 +217,7 @@ function YearHeatmap({ dir, onSeeUpcoming }: { dir: Directory; onSeeUpcoming: ()
       <table className="w-full table-fixed border-separate" style={{ borderSpacing: 2 }}>
         <caption className="sr-only">Courses running each month in {dir.scheduleYear}, by programme area</caption>
         <colgroup>
-          <col className="w-[3.25rem] sm:w-44" />
+          <col className="w-[3.25rem] sm:w-56" />
         </colgroup>
         <thead>
           <tr>
