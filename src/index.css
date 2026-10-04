@@ -709,3 +709,32 @@
     animation: cmfas-study-spin 30s linear infinite reverse;
   }
 }
+
+/* AIA Training Directory overview: career-path and heatmap colours.
+   Validated with the dataviz palette script against the card surfaces
+   (#ffffff light, #020817 dark): lanes as a categorical set in this order,
+   heat as an ordinal ramp. Change a value only after re-running it. */
+.aia-viz {
+  --lane-1: #2a78d6;
+  --lane-2: #eb6834;
+  --lane-3: #1baf7a;
+  --lane-4: #eda100;
+  --lane-5: #e87ba4;
+  --heat-1: #86b6ef;
+  --heat-2: #5598e7;
+  --heat-3: #2a78d6;
+  --heat-4: #1c5cab;
+  --heat-5: #104281;
+}
+.dark .aia-viz {
+  --lane-1: #3987e5;
+  --lane-2: #d95926;
+  --lane-3: #199e70;
+  --lane-4: #c98500;
+  --lane-5: #d55181;
+  --heat-1: #184f95;
+  --heat-2: #256abf;
+  --heat-3: #3987e5;
+  --heat-4: #6da7ec;
+  --heat-5: #9ec5f4;
+}

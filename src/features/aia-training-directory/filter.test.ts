@@ -107,3 +107,53 @@ describe("catalogue stays out of the browser bundle", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+import { LANES, MAP_ROWS, cpdFloor, laneSegments, monthMatrix, sessionsInMonth } from "./overview";
+
+describe("overview map and heatmap", () => {
+  it("puts every catalogue section on exactly one line and one station", () => {
+    const onLines = LANES.flatMap((l) => [...l.sections]);
+    expect([...onLines].sort()).toEqual(directory.sections.map((s) => s.id).sort());
+    const stationSections = MAP_ROWS.flatMap((r) => (r.kind === "station" ? [r.section] : []));
+    expect(stationSections.sort()).toEqual([...onLines].sort());
+  });
+
+  it("draws unbroken lines: Foundation into the interchange, the rest out of it", () => {
+    const seg = laneSegments(MAP_ROWS);
+    const hub = MAP_ROWS.findIndex((r) => r.kind === "interchange");
+    // Foundation enters the interchange from above and stops there.
+    expect(seg[hub][0]).toEqual({ top: true, bottom: false });
+    // Every other line leaves it downward and nothing draws above it.
+    for (let lane = 1; lane < LANES.length; lane++) {
+      expect(seg[hub][lane]).toEqual({ top: false, bottom: true });
+      expect(seg.slice(0, hub).every((row) => !row[lane].top && !row[lane].bottom)).toBe(true);
+    }
+    // No gaps: wherever a row draws a bottom half, the next row draws a top half.
+    for (let r = 0; r < seg.length - 1; r++) {
+      seg[r].forEach((s, lane) => expect(s.bottom).toBe(seg[r + 1][lane].top));
+    }
+    // Lines end at their last station.
+    expect(seg[seg.length - 1].every((s) => !s.bottom)).toBe(true);
+  });
+
+  it("counts a self-paced window in every month it is open", () => {
+    const rows = monthMatrix(directory);
+    const pre = rows.find((r) => r.section.id === "02a")!;
+    // The four CMFAS tutorials run monthly; #CMFASCanPass1 is self-paced with no dates.
+    expect(pre.months.map((m) => m.length)).toEqual(Array(12).fill(4));
+    const prof = rows.find((r) => r.section.id === "03c")!;
+    expect(prof.months[11].map((c) => c.id)).toContain("core-modules-2026");
+    expect(prof.months[3].map((c) => c.id)).not.toContain("core-modules-2026");
+    // Sections with no dates (Health Academy, MDRT) are left out.
+    expect(rows.some((r) => ["03d", "03f"].includes(r.section.id))).toBe(false);
+    expect(sessionsInMonth(directory, 10).find((s) => s.course.id === "propel-to-professional-planning")?.entry.when).toBe(
+      "20 and 21 Oct",
+    );
+  });
+
+  it("never overstates the CPD total", () => {
+    const total = directory.courses.reduce((s, c) => s + (c.cpdHours ?? 0), 0);
+    expect(cpdFloor(directory)).toBeLessThanOrEqual(total);
+    expect(cpdFloor(directory) % 50).toBe(0);
+  });
+});

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CalendarDays, ChevronDown, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InfoTip } from "@/components/InfoTip";
+import AiaTrainingOverview from "./AiaTrainingOverview";
 import {
   EMPTY_FILTERS,
   MONTHS,
@@ -264,8 +265,25 @@ function RoadmapCard({ roadmap }: { roadmap: Roadmap }) {
   );
 }
 
-function CoursesView({ dir }: { dir: Directory }) {
-  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+function CoursesView({
+  dir,
+  filters,
+  setFilters,
+  jumpTo,
+  onJumped,
+}: {
+  dir: Directory;
+  filters: Filters;
+  setFilters: Dispatch<SetStateAction<Filters>>;
+  jumpTo: string | null;
+  onJumped: () => void;
+}) {
+  // A station tapped on the Overview lands here scrolled to its section.
+  useEffect(() => {
+    if (!jumpTo) return;
+    document.getElementById(`aia-sec-${jumpTo}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    onJumped();
+  }, [jumpTo, onJumped]);
   const set = (patch: Partial<Filters>) => setFilters((f) => ({ ...f, ...patch }));
   const results = useMemo(() => filterCourses(dir, filters, new Date()), [dir, filters]);
   const sectionById = useMemo(() => new Map(dir.sections.map((s) => [s.id, s])), [dir]);
@@ -368,7 +386,7 @@ function CoursesView({ dir }: { dir: Directory }) {
           .map((section) => ({ section, items: results.filter((c) => c.section === section.id) }))
           .filter((g) => g.items.length > 0)
           .map(({ section, items }) => (
-            <section key={section.id} className="space-y-2" aria-labelledby={`aia-sec-${section.id}`}>
+            <section key={section.id} className="scroll-mt-24 space-y-2" aria-labelledby={`aia-sec-${section.id}`}>
               <h3 id={`aia-sec-${section.id}`} className="flex items-baseline gap-2 pt-2 text-sm font-bold">
                 <span className="text-primary">{section.code}</span>
                 <span>{section.title}</span>
@@ -392,7 +410,11 @@ function CoursesView({ dir }: { dir: Directory }) {
 
 export default function AiaTrainingDirectory() {
   const { data: dir, isLoading, isError, error, refetch, isFetching } = useDirectory();
-  const [view, setView] = useState<"courses" | "roadmaps">("courses");
+  const [view, setView] = useState<"overview" | "courses" | "roadmaps">("overview");
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const [jumpTo, setJumpTo] = useState<string | null>(null);
+  const top = useRef<HTMLDivElement>(null);
+  const clearJump = useCallback(() => setJumpTo(null), []);
 
   if (isLoading) {
     return (
@@ -440,7 +462,7 @@ export default function AiaTrainingDirectory() {
   );
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4" data-testid="aia-training-directory">
+    <div ref={top} className="mx-auto max-w-3xl scroll-mt-24 space-y-4" data-testid="aia-training-directory">
       <div className="space-y-1">
         <h2 className="font-serif text-xl font-bold">AIA Training Directory {dir.scheduleYear}</h2>
         <p className="text-xs text-muted-foreground">{dir.source}</p>
@@ -451,12 +473,27 @@ export default function AiaTrainingDirectory() {
       </div>
 
       <div role="tablist" aria-label="Directory views" className="inline-flex rounded-full border bg-muted/50 p-1 text-xs font-semibold">
+        {viewTab("overview", "Overview")}
         {viewTab("courses", `Courses (${dir.courses.length})`)}
         {viewTab("roadmaps", `Roadmaps (${dir.roadmaps.length})`)}
       </div>
 
-      {view === "courses" ? (
-        <CoursesView dir={dir} />
+      {view === "overview" ? (
+        <AiaTrainingOverview
+          dir={dir}
+          onOpenSection={(id) => {
+            setFilters(EMPTY_FILTERS);
+            setJumpTo(id);
+            setView("courses");
+          }}
+          onSeeUpcoming={() => {
+            setFilters({ ...EMPTY_FILTERS, upcoming: true, sort: "next" });
+            setView("courses");
+            top.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        />
+      ) : view === "courses" ? (
+        <CoursesView dir={dir} filters={filters} setFilters={setFilters} jumpTo={jumpTo} onJumped={clearJump} />
       ) : (
         <div className="space-y-4">
           {dir.roadmaps.map((r) => (
