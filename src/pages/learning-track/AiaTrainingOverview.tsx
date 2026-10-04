@@ -107,7 +107,7 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
 
             {row.kind === "stage" && (
               <div className="py-2 pl-2">
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">{row.label}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary">{row.label}</p>
                 <p className="text-xs text-muted-foreground">{row.note}</p>
               </div>
             )}
@@ -120,7 +120,7 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
                   style={{ left: laneX(0) - 9, width: laneX(LANES.length - 1) - laneX(0) + 18, top: DOT_Y - 9, height: 18 }}
                 />
                 <div className="pb-3 pl-2 pt-2.5">
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">{row.label}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-primary">{row.label}</p>
                   <p className="text-sm font-semibold">Choose your path</p>
                   <p className="text-xs text-muted-foreground">{row.note}</p>
                 </div>
@@ -231,7 +231,7 @@ function YearHeatmap({ dir, onSeeUpcoming }: { dir: Directory; onSeeUpcoming: ()
                 abbr={MONTH_NAMES[m]}
                 onClick={() => pick(m + 1)}
                 className={cn(
-                  "cursor-pointer pb-1 text-[10px] font-medium",
+                  "cursor-pointer pb-1 text-xs font-medium",
                   m + 1 === month ? "text-foreground" : "text-muted-foreground",
                   m + 1 === thisMonth && "font-bold",
                 )}
