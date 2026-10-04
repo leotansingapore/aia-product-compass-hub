@@ -285,6 +285,8 @@ const App = () => (
                       <Route path="post-rnf/assignments" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/assignments/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/aia-training" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/aia-training/:view" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
+                      <Route path="post-rnf/aia-training/:view/:itemId" element={<RequireTier feature="post-rnf-track"><LearningTrackPostRnf /></RequireTier>} />
                       <Route path="post-rnf/:itemId" element={<Navigate to="/learning-track/post-rnf/next-60-days" replace />} />
                       <Route path="resources" element={<RequireTier feature="pre-rnf-track"><LearningTrackResources /></RequireTier>} />
                       <Route path="resources/competitor-products" element={<RequireTier feature="pre-rnf-track"><LearningTrackCompetitorProducts /></RequireTier>} />

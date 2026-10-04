@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import { CalendarDays, ChevronDown, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, CalendarDays, ChevronDown, Link2, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +26,18 @@ import {
   type SortKey,
   type StageFilter,
 } from "@/features/aia-training-directory/filter";
+import {
+  BASE,
+  UPCOMING_URL,
+  absolute,
+  courseUrl,
+  coursesUrl,
+  filtersFromParams,
+  filtersToParams,
+  roadmapUrl,
+  sectionUrl,
+} from "@/features/aia-training-directory/links";
+import { ROADMAP_META, roadmapTarget, splitTags, type Tag } from "@/features/aia-training-directory/roadmaps";
 
 const STAGES: { value: StageFilter; label: string }[] = [
   { value: "all", label: "All" },
@@ -54,6 +68,24 @@ function useDirectory() {
     staleTime: 60 * 60_000,
     retry: 1,
   });
+}
+
+async function copyLink(path: string) {
+  try {
+    await navigator.clipboard.writeText(absolute(path));
+    toast.success("Link copied");
+  } catch {
+    toast.error("Couldn't copy the link. Please try again.");
+  }
+}
+
+function CopyLinkButton({ path, label }: { path: string; label: string }) {
+  return (
+    <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-muted-foreground" onClick={() => copyLink(path)} aria-label={label}>
+      <Link2 className="h-4 w-4" />
+      Copy link
+    </Button>
+  );
 }
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
@@ -90,10 +122,28 @@ function RequirementBadge({ course }: { course: Course }) {
   );
 }
 
-function CourseRow({ course, dir, section, showSection }: { course: Course; dir: Directory; section?: Section; showSection: boolean }) {
+function CourseRow({
+  course,
+  dir,
+  section,
+  showSection,
+  linked = false,
+}: {
+  course: Course;
+  dir: Directory;
+  section?: Section;
+  showSection: boolean;
+  /** Opened from a deep link: starts expanded and stays outlined so the reader can see where they landed. */
+  linked?: boolean;
+}) {
   const today = new Date();
   const next = nextSession(course, dir.scheduleYear, today);
   const thisMonth = today.getFullYear() === dir.scheduleYear ? today.getMonth() + 1 : 0;
+  // Controlled so a second deep link opens its course even when the list is already on screen.
+  const [open, setOpen] = useState(linked);
+  useEffect(() => {
+    if (linked) setOpen(true);
+  }, [linked]);
   const meta = [
     showSection && section ? section.title : null,
     course.duration,
@@ -104,7 +154,12 @@ function CourseRow({ course, dir, section, showSection }: { course: Course; dir:
     .map((m) => ((m as string).endsWith(".") ? m : `${m}.`));
 
   return (
-    <Collapsible className="rounded-xl border bg-card">
+    <Collapsible
+      id={`aia-course-${course.id}`}
+      open={open}
+      onOpenChange={setOpen}
+      className={cn("scroll-mt-24 rounded-xl border bg-card", linked && "ring-2 ring-primary/30")}
+    >
       <CollapsibleTrigger className="group flex w-full items-start gap-3 p-4 text-left">
         <div className="min-w-0 flex-1 space-y-1.5">
           <p className="font-semibold leading-snug">{course.title}</p>
@@ -122,6 +177,9 @@ function CourseRow({ course, dir, section, showSection }: { course: Course; dir:
         <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
       </CollapsibleTrigger>
       <CollapsibleContent className="space-y-4 border-t px-4 pb-4 pt-3 text-sm">
+        <div className="-mb-2 -mt-1 flex justify-end">
+          <CopyLinkButton path={courseUrl(course.id)} label={`Copy a link to ${course.title}`} />
+        </div>
         {course.summary.split("\n\n").map((p, i) => (
           <p key={i} className="leading-relaxed break-words">
             {p}
@@ -229,42 +287,193 @@ function CourseRow({ course, dir, section, showSection }: { course: Course; dir:
   );
 }
 
-function RoadmapCard({ roadmap }: { roadmap: Roadmap }) {
+const lane = (i: number) => `var(--lane-${i + 1})`;
+const tint = (i: number, pct: number) => `color-mix(in srgb, var(--lane-${i + 1}) ${pct}%, transparent)`;
+
+const TAG_STYLE: Record<Tag, string> = {
+  mandatory: "border-emerald-500/50 text-emerald-700 dark:text-emerald-400",
+  essential: "border-amber-500/60 text-amber-700 dark:text-amber-400",
+  new: "border-transparent bg-primary/15 text-primary",
+};
+const TAG_LABEL: Record<Tag, string> = { mandatory: "Mandatory", essential: "Essential", new: "New" };
+
+function TagBadges({ tags }: { tags: Tag[] }) {
   return (
-    <section className="space-y-3 rounded-2xl border bg-card p-4 sm:p-5">
-      <div>
-        <h3 className="font-serif text-base font-bold leading-snug">{roadmap.title}</h3>
-        {roadmap.tagline && <p className="text-xs text-muted-foreground">{roadmap.tagline}</p>}
-      </div>
-      <div className={cn("grid gap-3", roadmap.columns.length >= 3 ? "md:grid-cols-3" : "md:grid-cols-2")}>
-        {roadmap.columns.map((col) => (
-          <div key={col.heading} className="space-y-2 rounded-xl bg-muted/40 p-3 text-sm">
-            <div>
-              {col.period && <p className="text-xs font-semibold text-primary">{col.period}</p>}
-              <p className="font-semibold leading-snug">{col.heading}</p>
-              {col.focus && <p className="text-xs italic text-muted-foreground">{col.focus}</p>}
-            </div>
-            {col.groups.map((g, i) => (
-              <div key={g.heading ?? i}>
-                {g.heading && <p className="text-xs font-semibold">{g.heading}</p>}
-                {g.items.length > 0 && (
-                  <ul className="list-disc space-y-0.5 pl-4 text-xs text-muted-foreground">
-                    {g.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-      {roadmap.footnotes?.map((f) => (
-        <p key={f} className="text-xs text-muted-foreground">
-          {f}
-        </p>
+    <>
+      {tags.map((t) => (
+        <span key={t} className={cn("rounded-full border px-1.5 text-xs font-medium leading-5", TAG_STYLE[t])}>
+          {TAG_LABEL[t]}
+        </span>
       ))}
-    </section>
+    </>
+  );
+}
+
+/** One roadmap label as a row; rows that name a catalogue course link straight to it. */
+function RoadmapItem({ label, laneIndex }: { label: string; laneIndex: number }) {
+  const { text, tags } = splitTags(label);
+  const to = roadmapTarget(label);
+  const body = (
+    <>
+      <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: lane(laneIndex) }} />
+      <span className="min-w-0 flex-1">
+        {text}
+        {tags.length > 0 && (
+          <span className="ml-1.5 inline-flex flex-wrap gap-1 align-middle">
+            <TagBadges tags={tags} />
+          </span>
+        )}
+      </span>
+      {to && <ArrowUpRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />}
+    </>
+  );
+  const cls = "flex items-start gap-2 rounded-lg px-2.5 py-1.5 text-[13px] leading-5";
+  return to ? (
+    <Link to={to} className={cn(cls, "group bg-card/80 shadow-[0_1px_0_rgba(0,0,0,0.04)] transition-colors hover:bg-card")}>
+      {body}
+    </Link>
+  ) : (
+    <div className={cls}>{body}</div>
+  );
+}
+
+function RoadmapGroupHeading({ label }: { label: string }) {
+  const { text, tags } = splitTags(label);
+  const to = roadmapTarget(label);
+  const inner = (
+    <span className="inline-flex flex-wrap items-center gap-1.5">
+      <span>{text}</span>
+      <TagBadges tags={tags} />
+      {to && <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground" />}
+    </span>
+  );
+  return (
+    <p className="mb-1.5 text-sm font-semibold">
+      {to ? (
+        <Link to={to} className="underline-offset-2 hover:underline">
+          {inner}
+        </Link>
+      ) : (
+        inner
+      )}
+    </p>
+  );
+}
+
+function RoadmapsView({ dir, selectedId }: { dir: Directory; selectedId?: string }) {
+  const roadmap = dir.roadmaps.find((r) => r.id === selectedId) ?? dir.roadmaps[0];
+  const meta = ROADMAP_META[roadmap.id] ?? { short: roadmap.title, lanes: roadmap.columns.map(() => 0), sequential: false };
+  const n = roadmap.columns.length;
+  const sideArrows = meta.sequential && n <= 3;
+  const grid = n === 3 ? "md:grid-cols-3" : "md:grid-cols-2";
+
+  return (
+    <div className="space-y-4">
+      <nav className="flex flex-wrap gap-1.5" aria-label="Choose a roadmap">
+        {dir.roadmaps.map((r) => {
+          const active = r.id === roadmap.id;
+          const first = ROADMAP_META[r.id]?.lanes[0] ?? 0;
+          return (
+            <Link
+              key={r.id}
+              to={roadmapUrl(r.id)}
+              aria-current={active ? "page" : undefined}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+                active ? "border-foreground/40 bg-foreground/5 text-foreground" : "bg-background text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <span className="h-2 w-2 rounded-full" style={{ background: lane(first) }} />
+              {ROADMAP_META[r.id]?.short ?? r.title}
+            </Link>
+          );
+        })}
+      </nav>
+
+      <section className="space-y-5 rounded-2xl border bg-card p-5 sm:p-6" aria-labelledby="aia-roadmap-title">
+        <div className="flex items-start justify-between gap-3">
+          <div className="space-y-1">
+            <h3 id="aia-roadmap-title" className="font-serif text-lg font-bold leading-snug">
+              {roadmap.title}
+            </h3>
+            {roadmap.tagline && <p className="text-sm text-muted-foreground">{roadmap.tagline}</p>}
+          </div>
+          <CopyLinkButton path={roadmapUrl(roadmap.id)} label={`Copy a link to ${roadmap.title}`} />
+        </div>
+
+        <ol className={cn("grid gap-7 md:gap-4", grid)}>
+          {roadmap.columns.map((col, i) => {
+            const l = meta.lanes[i] ?? 0;
+            const last = i === n - 1;
+            return (
+              <li
+                key={col.heading}
+                className="relative flex flex-col gap-3 rounded-2xl border p-4"
+                style={{ background: tint(l, 6), borderColor: tint(l, 22) }}
+              >
+                <div className="flex items-start gap-3">
+                  <span
+                    aria-hidden
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-[3px] bg-card text-sm font-bold"
+                    style={{ borderColor: lane(l) }}
+                  >
+                    {meta.sequential ? i + 1 : <span className="h-2 w-2 rounded-full" style={{ background: lane(l) }} />}
+                  </span>
+                  <div className="min-w-0">
+                    {col.period && <p className="text-xs font-semibold text-muted-foreground">{col.period}</p>}
+                    {/* AIA numbers some stage headings ("1. Overview..."); the ring already shows the step. */}
+                    <p className="font-semibold leading-snug">{meta.sequential ? col.heading.replace(/^\d+\.\s+/, "") : col.heading}</p>
+                  </div>
+                </div>
+                {col.focus && <p className="text-sm text-muted-foreground">{col.focus}</p>}
+                {col.groups.map((g, gi) => (
+                  <div key={g.heading ?? gi}>
+                    {g.heading && <RoadmapGroupHeading label={g.heading} />}
+                    {g.items.length > 0 && (
+                      <ul className="space-y-1">
+                        {g.items.map((item) => (
+                          <li key={item}>
+                            <RoadmapItem label={item} laneIndex={l} />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+
+                {meta.sequential && !last && (
+                  <>
+                    {sideArrows && (
+                      <span
+                        aria-hidden
+                        className="absolute -right-[22px] top-7 z-10 hidden h-7 w-7 items-center justify-center rounded-full border bg-card shadow-sm md:flex"
+                      >
+                        <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
+                      </span>
+                    )}
+                    <span
+                      aria-hidden
+                      className="absolute -bottom-[25px] left-1/2 z-10 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border bg-card shadow-sm md:hidden"
+                    >
+                      <ArrowDown className="h-3.5 w-3.5 text-muted-foreground" />
+                    </span>
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+
+        {roadmap.footnotes?.map((f) => (
+          <p key={f} className="text-xs text-muted-foreground">
+            {f}
+          </p>
+        ))}
+        <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <ArrowUpRight className="h-3.5 w-3.5" /> Opens the course
+        </p>
+      </section>
+    </div>
   );
 }
 
@@ -272,21 +481,25 @@ function CoursesView({
   dir,
   filters,
   setFilters,
-  jumpTo,
-  onJumped,
+  linkedCourse,
+  linkedSection,
 }: {
   dir: Directory;
   filters: Filters;
   setFilters: Dispatch<SetStateAction<Filters>>;
-  jumpTo: string | null;
-  onJumped: () => void;
+  linkedCourse?: string;
+  linkedSection?: string;
 }) {
-  // A station tapped on the Overview lands here scrolled to its section.
+  // A deep link lands scrolled to its course or section. Keyed on the target,
+  // so typing in search (which rewrites the query string) never re-scrolls.
+  const target = linkedCourse ? `aia-course-${linkedCourse}` : linkedSection ? `aia-sec-${linkedSection}` : null;
   useEffect(() => {
-    if (!jumpTo) return;
-    document.getElementById(`aia-sec-${jumpTo}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    onJumped();
-  }, [jumpTo, onJumped]);
+    if (!target) return;
+    const id = window.requestAnimationFrame(() =>
+      document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" }),
+    );
+    return () => window.cancelAnimationFrame(id);
+  }, [target]);
   const set = (patch: Partial<Filters>) => setFilters((f) => ({ ...f, ...patch }));
   const results = useMemo(() => filterCourses(dir, filters, new Date()), [dir, filters]);
   const sectionById = useMemo(() => new Map(dir.sections.map((s) => [s.id, s])), [dir]);
@@ -390,21 +603,21 @@ function CoursesView({
           .filter((g) => g.items.length > 0)
           .map(({ section, items }) => (
             <section key={section.id} className="scroll-mt-24 space-y-2" aria-labelledby={`aia-sec-${section.id}`}>
-              <h3 id={`aia-sec-${section.id}`} className="flex flex-wrap items-baseline gap-x-2 pt-3">
+              <h3 id={`aia-sec-${section.id}`} className="flex scroll-mt-24 flex-wrap items-baseline gap-x-2 pt-3">
                 <span className="font-serif text-base font-bold">{section.title}</span>
                 <span className="text-xs text-muted-foreground">
                   {section.code}, {items.length} {items.length === 1 ? "course" : "courses"}
                 </span>
               </h3>
               {items.map((c) => (
-                <CourseRow key={c.id} course={c} dir={dir} section={section} showSection={false} />
+                <CourseRow key={c.id} course={c} dir={dir} section={section} showSection={false} linked={c.id === linkedCourse} />
               ))}
             </section>
           ))
       ) : (
         <div className="space-y-2">
           {results.map((c) => (
-            <CourseRow key={c.id} course={c} dir={dir} section={sectionById.get(c.section)} showSection />
+            <CourseRow key={c.id} course={c} dir={dir} section={sectionById.get(c.section)} showSection linked={c.id === linkedCourse} />
           ))}
         </div>
       )}
@@ -414,11 +627,39 @@ function CoursesView({
 
 export default function AiaTrainingDirectory() {
   const { data: dir, isLoading, isError, error, refetch, isFetching } = useDirectory();
-  const [view, setView] = useState<"overview" | "courses" | "roadmaps">("overview");
-  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
-  const [jumpTo, setJumpTo] = useState<string | null>(null);
+  // Everything the reader sees comes from the URL, so any state can be shared:
+  //   /aia-training                       overview
+  //   /aia-training/courses?q=&stage=...  filtered list (section=02c scrolls to a section)
+  //   /aia-training/courses/:courseId     that course, opened
+  //   /aia-training/roadmaps/:roadmapId   one roadmap
+  const { view: viewParam, itemId } = useParams<{ view?: string; itemId?: string }>();
+  const [params, setParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const view = viewParam === "courses" || viewParam === "roadmaps" ? viewParam : "overview";
+  const filters = useMemo(() => filtersFromParams(params), [params]);
+  const setFilters = useCallback<Dispatch<SetStateAction<Filters>>>(
+    (next) =>
+      setParams(
+        (prev) => {
+          const value = typeof next === "function" ? next(filtersFromParams(prev)) : next;
+          return filtersToParams(value, prev);
+        },
+        { replace: true },
+      ),
+    [setParams],
+  );
   const top = useRef<HTMLDivElement>(null);
-  const clearJump = useCallback(() => setJumpTo(null), []);
+
+  // Arriving from a button lower on the page (the overview CTA, a roadmap
+  // chip): bring the tab back into view, unless a deep link will scroll itself.
+  const linkedSection = view === "courses" ? params.get("section") ?? undefined : undefined;
+  const linkedCourse = view === "courses" ? itemId : undefined;
+  useEffect(() => {
+    if (linkedCourse || linkedSection) return;
+    const el = top.current;
+    if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
+  }, [view, itemId, linkedCourse, linkedSection]);
 
   if (isLoading) {
     return (
@@ -450,23 +691,23 @@ export default function AiaTrainingDirectory() {
     );
   }
 
+  const tabHref = { overview: BASE, courses: coursesUrl(view === "courses" ? search.replace(/^\?/, "") : ""), roadmaps: `${BASE}/roadmaps` };
   const viewTab = (value: typeof view, label: string) => (
-    <button
-      type="button"
+    <Link
+      to={tabHref[value]}
       role="tab"
       aria-selected={view === value}
-      onClick={() => setView(value)}
       className={cn(
         "-mb-px border-b-2 pb-2 pt-1 transition-colors",
         view === value ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
       )}
     >
       {label}
-    </button>
+    </Link>
   );
 
   return (
-    <div ref={top} className="mx-auto max-w-3xl scroll-mt-24 space-y-4" data-testid="aia-training-directory">
+    <div ref={top} className="aia-viz mx-auto max-w-3xl scroll-mt-24 space-y-4" data-testid="aia-training-directory">
       <div className="space-y-1">
         <h2 className="font-serif text-xl font-bold">AIA Training Directory {dir.scheduleYear}</h2>
         <p className="text-xs text-muted-foreground">{dir.source}</p>
@@ -485,25 +726,19 @@ export default function AiaTrainingDirectory() {
       {view === "overview" ? (
         <AiaTrainingOverview
           dir={dir}
-          onOpenSection={(id) => {
-            setFilters(EMPTY_FILTERS);
-            setJumpTo(id);
-            setView("courses");
-          }}
-          onSeeUpcoming={() => {
-            setFilters({ ...EMPTY_FILTERS, upcoming: true, sort: "next" });
-            setView("courses");
-            top.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
+          onOpenSection={(id) => navigate(sectionUrl(id))}
+          onSeeUpcoming={() => navigate(UPCOMING_URL)}
         />
       ) : view === "courses" ? (
-        <CoursesView dir={dir} filters={filters} setFilters={setFilters} jumpTo={jumpTo} onJumped={clearJump} />
+        <CoursesView
+          dir={dir}
+          filters={filters}
+          setFilters={setFilters}
+          linkedCourse={linkedCourse}
+          linkedSection={linkedSection}
+        />
       ) : (
-        <div className="space-y-4">
-          {dir.roadmaps.map((r) => (
-            <RoadmapCard key={r.id} roadmap={r} />
-          ))}
-        </div>
+        <RoadmapsView dir={dir} selectedId={itemId} />
       )}
     </div>
   );

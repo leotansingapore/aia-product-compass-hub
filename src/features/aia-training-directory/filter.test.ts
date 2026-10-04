@@ -146,3 +146,61 @@ describe("overview map and heatmap", () => {
     expect(cpdFloor(directory) % 50).toBe(0);
   });
 });
+
+import { BASE, courseUrl, filtersFromParams, filtersToParams, sectionUrl } from "./links";
+import { ROADMAP_LINKS, ROADMAP_META, roadmapTarget, splitTags } from "./roadmaps";
+
+describe("deep links", () => {
+  it("round-trips every filter through the query string and writes nothing for defaults", () => {
+    expect(filtersToParams(EMPTY_FILTERS).toString()).toBe("");
+    const f = { ...EMPTY_FILTERS, query: "mdrt camp", stage: "experienced" as const, essential: true, upcoming: true, sort: "next" as const };
+    const p = filtersToParams(f);
+    expect(filtersFromParams(p)).toEqual(f);
+    expect(p.get("q")).toBe("mdrt camp");
+  });
+
+  it("keeps the section target when filters change, and ignores garbage", () => {
+    const kept = filtersToParams({ ...EMPTY_FILTERS, mandatory: true }, new URLSearchParams("section=03c&q=old"));
+    expect(kept.get("section")).toBe("03c");
+    expect(kept.get("q")).toBeNull();
+    expect(filtersFromParams(new URLSearchParams("stage=boss&sort=random&new=yes"))).toEqual(EMPTY_FILTERS);
+  });
+
+  it("builds course and section addresses under the tab", () => {
+    expect(courseUrl("bts2")).toBe(`${BASE}/courses/bts2`);
+    expect(sectionUrl("03a")).toBe(`${BASE}/courses?section=03a`);
+  });
+});
+
+describe("roadmap presentation", () => {
+  const labels = new Set(
+    directory.roadmaps.flatMap((r) => r.columns.flatMap((c) => c.groups.flatMap((g) => [...(g.heading ? [g.heading] : []), ...g.items]))),
+  );
+
+  it("links only labels that exist, to courses and sections that exist", () => {
+    const courseIds = new Set(directory.courses.map((c) => c.id));
+    const sectionIds = new Set(directory.sections.map((s) => s.id));
+    for (const [label, target] of Object.entries(ROADMAP_LINKS)) {
+      expect(labels.has(label), `label not in any roadmap: ${label}`).toBe(true);
+      const [kind, id] = target.split(":");
+      expect(kind === "course" ? courseIds.has(id) : sectionIds.has(id), `missing target ${target}`).toBe(true);
+    }
+    expect(roadmapTarget("Coaching 101")).toBe(courseUrl("coaching-101"));
+    expect(roadmapTarget("Mindset transformation")).toBeNull();
+  });
+
+  it("gives every roadmap a picker name and one colour per stage", () => {
+    for (const r of directory.roadmaps) {
+      expect(ROADMAP_META[r.id], r.id).toBeDefined();
+      expect(ROADMAP_META[r.id].lanes.length, r.id).toBe(r.columns.length);
+    }
+  });
+
+  it("turns AIA's trailing notes into badges and keeps the rest of the name", () => {
+    expect(splitTags("Client Centricity (new, essential)")).toEqual({ text: "Client Centricity", tags: ["new", "essential"] });
+    expect(splitTags("Selling to the HNW (TBC, new)")).toEqual({ text: "Selling to the HNW (TBC)", tags: ["new"] });
+    expect(splitTags("Selling to the HNW (TBC)# (new)")).toEqual({ text: "Selling to the HNW (TBC)#", tags: ["new"] });
+    expect(splitTags("Foundation to Success (mandatory, IBF Level 1)")).toEqual({ text: "Foundation to Success (IBF Level 1)", tags: ["mandatory"] });
+    expect(splitTags("Pacesetter 2.0 (LIMRA)")).toEqual({ text: "Pacesetter 2.0 (LIMRA)", tags: [] });
+  });
+});
