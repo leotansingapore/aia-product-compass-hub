@@ -358,7 +358,7 @@ export default function AiaTrainingOverview({
     <div className="aia-viz space-y-4 font-sans">
       <section aria-label="At a glance" className="rounded-2xl border bg-card p-4 sm:p-5">
         <div className="flex items-end gap-3">
-          <p className="text-5xl font-semibold leading-none tracking-tight">{dir.courses.length}</p>
+          <p className="shrink-0 text-5xl font-semibold leading-none tracking-tight">{dir.courses.length}</p>
           <p className="pb-1 text-sm leading-snug text-muted-foreground">courses, from licensing to leading an agency</p>
         </div>
         <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-4 sm:grid-cols-4">
