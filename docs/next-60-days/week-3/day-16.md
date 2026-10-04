@@ -41,7 +41,7 @@ Tone, emojis and hahahas are up to you. The three jobs don't change: link back t
 | 7 | Reply within 3 to 4 hours of their reply, which shows you're reliable | (no script needed) |
 | 8 | Keep it casual: no jargon, no "optimisation", no "portfolio reviews" | Use emojis or hahaha if that's how you actually text |
 | 9 | Warm up with 2 or 3 touchpoints first (story replies, post comments, a congrats) | They're more likely to reply to someone familiar |
-| 10 | Don't ask if they're "free", because nobody feels free. Ask for a specific 30 minutes | "Grab a 30-min call, Thu or Fri better?" |
+| 10 | When you ask for the meeting, don't ask an open "are you free?", because nobody feels free. Name a specific 30 minutes and two options | "Grab a 30-min call, Thu or Fri better?" |
 | 11 | Make the call to action (CTA) easy to answer, with 2 options and never an open question | "10 Jan 6pm, or 23 Jan 8pm, which works?" |
 
 Rules 1, 2 and 3 are the non-negotiables, and every text in the pipeline follows all three. The other eight help.
@@ -223,7 +223,7 @@ Use this when the contact knows their finances or already has a financial advise
 - C) It makes you sound cheap
 - D) It's against compliance rules
 
-**Why:** *"Are you free this week?"* is too open. The prospect has to come up with a slot, which takes effort, or say no. A specific 30-minute ask with 2 time options gives them something they can answer in one word. Drop "free" and offer "30 minutes" with 2 options.
+**Why:** *"Are you free this week?"* is too open. The prospect has to come up with a slot, which takes effort, or say no. A specific 30-minute ask with 2 time options gives them something they can answer in one word. Drop the open "free" and offer "30 minutes" with 2 options. "Would you be free Thursday or Saturday for 30 minutes?" is fine, because the slots are named.
 
 **Q6. Repeated follow-ups asking *"can we meet?"* trigger which filter in the prospect's mind?**
 - A) The generous filter
