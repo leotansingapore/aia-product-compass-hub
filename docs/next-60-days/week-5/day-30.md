@@ -96,7 +96,7 @@ This week's gate is easy to game. Anyone can say "anyone you know?" 10 times and
 
 An ask without the structure doesn't count. Six real FACT asks beat 10 throwaways. You're practising the specific, angled ask with a timeline at the end, and padded asks give you no practice at it.
 
-If you reach 6 real asks by Saturday and can't realistically add 4 more by Sunday, stop there. Write down what you'd need to reach 10 next week (more meetings? a closed case?) and bring it to your mentor review.
+If you reach 6 real asks by Saturday and can't realistically add 4 more by Sunday, stop there instead of padding. Write down what you'd need to reach 10 (more meetings? a closed case?) and bring it to your mentor review. Week 6 opens when your 10th real ask is logged, whatever day that is, the same rule as every week.
 
 ## Do this today
 
@@ -137,7 +137,7 @@ Week 6 opens when you have all four:
 - [ ] Ask log submitted: 10 rows, 6 columns
 - [ ] Loom reflection recorded and mentor review booked
 
-If you're short at 6pm on Sunday, say so honestly. Stretching 6 real asks into a padded 10 undoes the practice you've been doing.
+If you're short at 6pm on Sunday, say so honestly and keep going into next week. Stretching 6 real asks into a padded 10 undoes the practice you've been doing.
 
 ## Sources
 
