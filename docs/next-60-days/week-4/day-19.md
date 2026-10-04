@@ -226,9 +226,7 @@ Use this when you're about to start a calling block. Smile, slow down by 10-15%,
 [General Calling Tips & Tonality](/scripts/3d04fd88-cfea-4bb5-8bb6-406098d99d40)
 
 ### FYC formula: calling rate and activity math
-Use this when the math feels abstract. It turns every dial into expected FYC.
-
-FYC Formula - Calling Rate & Activity Math
+Use this when the math feels abstract. [Day 2](/learning-track/next-60-days/day/2) turns every dial into expected FYC.
 
 ## Sources
 
