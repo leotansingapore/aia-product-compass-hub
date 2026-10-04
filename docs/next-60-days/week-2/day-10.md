@@ -21,7 +21,7 @@ tags: [next-60-days, week-2, new-fc, personal-branding, instagram, profile]
 
 1. Almost everyone checks your profile before they reply, so fix its weakest element first.
 2. Write your bio in three lines: why follow you, what they get, how to get it.
-3. Go Authority if you already have a niche, and Social if you don't.
+3. Go Authority if you already have a niche, and Social until you find one.
 4. Keep prospecting, asking for referrals and networking, because the profile is one lever of five.
 
 ## Why the profile compounds
@@ -148,7 +148,7 @@ New FCs often spend Week 2 polishing their profile and ignore levers 1, 2 and 3.
 1. Score each of your 6 profile elements from 1 to 5 against the Do column. Fix the lowest one tonight.
 2. Rewrite your bio as Why / What / How.
 3. Choose Authority or Social.
-4. Then work lever 1: line up the 3 real prospects you'll deliver your v2 intent statement to on Day 12.
+4. Then work lever 1: pick the 3 real prospects you'll deliver your v2 intent statement to on Day 12, and message each to set a time.
 
 ## Sources
 
@@ -203,7 +203,7 @@ New FCs often spend Week 2 polishing their profile and ignore levers 1, 2 and 3.
 - C) Authority is for men, Social is for women
 - D) There's no difference
 
-**Why:** Authority says *"follow me for what I do"*, which gets you a small audience that's ready to talk. Social says *"follow me for who I am"*, which gets you a broad audience that's less ready. Choose based on whether you have a niche yet.
+**Why:** Authority says "follow me for what I do", which gets you a small audience that's ready to talk. Social says "follow me for who I am", which gets you a broad audience that's less ready. Choose based on whether you have a niche yet.
 
 **Q7. A new FC changes their profile picture to a clear headshot with a smile. Why does this one change keep paying off?**
 - A) It makes the profile prettier

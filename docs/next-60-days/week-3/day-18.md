@@ -36,7 +36,7 @@ Each post has to answer a different silent question from [Day 13](/learning-trac
 
 | Post | Silent question | What to ship |
 |---|---|---|
-| Post 1 | Q5: easy to approach | Offer post with a DM keyword CTA |
+| Post 1 | Q5: easy to approach | Offer post with a DM keyword call to action (CTA) |
 | Post 2 | Q1 or Q3: social proof or origin story | Pre-during-post testimonial or 60-sec origin reel |
 | Post 3 | Q2 or Q4: expertise or get along | Educational carousel or PPVV lifestyle post |
 
@@ -57,7 +57,7 @@ A DM counts as "opened" when you sent a message that follows the three non-negot
 - they replied with more than "thanks" or a single emoji, or
 - they blue-ticked you and you sent a CRAB follow-up this week.
 
-So "opened" means a real exchange: at least 3 bubbles back and forth, or a completed CRAB cycle.
+So "opened" means a real exchange: at least 3 bubbles back and forth, or a completed CRAB cycle (a blue tick, then your CRAB follow-up).
 
 These count:
 
@@ -98,7 +98,7 @@ Record one Loom that answers three questions:
 
 1. Which of the 3 posts did best, and why do you think it landed?
 2. Which DM opener worked best for your warm market: hook-based, value-first, offer-post reply or CRAB?
-3. What will your v3 fix in Week 4? (Content type, DM timing or a silent question you keep missing?)
+3. What will you fix in Week 4? (Content type, DM timing or a silent question you keep missing?)
 
 ### Mentor review
 

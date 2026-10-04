@@ -21,7 +21,7 @@ tags: [next-60-days, week-4, new-fc, prospecting, mindset, master-map, taxonomy]
 **What to remember**
 
 1. Your long-term pipeline is the Semi-Warm ring: people you haven't spoken to in 1 to 5 years. Start reactivating them this week.
-2. Spend your effort on the 60% who can be converted, mostly through hybrid outreach.
+2. Spend your effort on the 60% who can be converted, and add hybrid outreach that uses your content to warm them up.
 3. Keep every name in one list with a tag, a last-contact date, a trigger and a script.
 4. Expect about 1 booking per 20 dials, and count the 19 no's as its price.
 
@@ -116,7 +116,7 @@ Have it built by [Day 23](/learning-track/next-60-days/day/23). Without it, what
 
 Day 2 said you need 5 to 7 appointments a week, and [Day 21](/learning-track/next-60-days/day/21) gives you the Market Survey script to get them. If each no along the way lands as a verdict on you ("they don't like me, I'm bad at this"), you'll stop before the numbers can work.
 
-Look at the numbers first. The working assumption on this team is that warm and semi-warm calls book at roughly 1 in 20. Each booking comes with about 19 no's attached: polite no's, ghosts, "let me think about it", "not now" and calls nobody answers. Those 19 are what the booking costs, and each one pays about 5 cents of the dollar.
+Look at the numbers first. The working assumption on this team is that warm and semi-warm calls book at roughly 1 in 20. Each booking comes with about 19 no's attached: polite no's, ghosts, "let me think about it", "not now" and calls nobody answers. Those 19 are what the booking costs. Think of the booking as a dollar: each no pays about 5 cents of it.
 
 In a 20-call block, expect something like this:
 

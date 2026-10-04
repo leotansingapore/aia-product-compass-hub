@@ -68,7 +68,7 @@ You have about 10 seconds, and the answer has to hit what they care about. The f
 
 None of them mentions a product, your company or "holistic financial planning."
 
-Leave out return figures and retirement dates too. You can't guarantee either, and a line like "grow your wealth 10% a year" is the kind of promise MoneySense tells consumers to be wary of.
+Leave out return figures and retirement dates too. You can't guarantee either, and a line like "grow your wealth 10% a year" is the kind of promise MoneySense, the government's financial education programme, tells consumers to be wary of.
 
 ### Writing your own
 
@@ -95,7 +95,7 @@ Second, use a soft lead-in that adds to their story without cutting them off:
 
 The last one works best, because people rarely say no when you ask permission first.
 
-Worked example: the prospect, a D profile in full flow, is venting about a colleague who was passed over for promotion despite being the strongest performer.
+Worked example: the prospect, a D (Dominance) profile in DISC terms and in full flow, is venting about a colleague who was passed over for promotion despite being the strongest performer.
 
 > Clumsy: "Yeah, that sucks. Anyway, what I do is help people plan their finances..."
 >
@@ -115,7 +115,7 @@ The fix is nearly always to get more specific. Narrow the audience, sharpen the 
 
 1. Write v2 of your intent statement, with an adapted archetype as the interrupt and yesterday's trap fixed.
 2. Write a "what do you do?" answer for each of the 5 profiles.
-3. Swap-test all six lines and sharpen any that fail.
+3. Run the "does this sound like anyone else?" test on all six lines and sharpen any that fail.
 4. Time v2 out loud at 30 to 45 seconds. It's what you'll deliver to 3 real people on Day 12.
 
 ## Sources
@@ -180,7 +180,7 @@ The fix is nearly always to get more specific. Narrow the audience, sharpen the 
 - C) Changing the buy-in question
 - D) Translating to a different language
 
-**Why:** A swappable line is a general one. *"I help families with financial planning"* uses categories anyone could claim. *"I help busy dads in their late 30s check if their $300/month in old policies is actually covering them"* names a life stage, a number and a specific worry, so nobody else can borrow it.
+**Why:** A swappable line is a general one. "I help families with financial planning" uses categories anyone could claim. "I help busy dads in their late 30s check if their $300/month in old policies is actually covering them" names a life stage, a number and a specific worry, so nobody else can borrow it.
 
 ## Related
 

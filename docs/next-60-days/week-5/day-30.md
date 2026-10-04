@@ -62,7 +62,7 @@ A referral is warm when you have all three:
 - A way to reach them (phone, IG or email) that the friend has agreed to share with you.
 - A recommendation: the referrer has told the friend about you and the friend has said they're happy to hear from you, or the referrer has committed to ask them within 48 hours.
 
-If the referrer hasn't asked the friend yet, log the name but wait until the friend says yes before you contact them. When you do get in touch, mention who referred you and check they're okay with hearing from you. That's what the PDPC expects when personal data reaches you through someone else.
+If the referrer hasn't asked the friend yet, log the name but wait until the friend says yes before you contact them. When you do get in touch, mention who referred you and check they're okay with hearing from you. That's what the Personal Data Protection Commission (PDPC) expects when personal data reaches you through someone else.
 
 If you're calling or texting a Singapore number without that person's clear consent, check it against the Do Not Call Registry first.
 

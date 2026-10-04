@@ -64,7 +64,7 @@ A structured ask gets a structured answer. Ask for their story in three parts:
 
 You get three paragraphs to stitch into before, during and after. Then ask if you can edit for length and post it. Most clients agree when the questions were specific enough to answer.
 
-Before anything goes up, get the client's clear consent to share their story, in writing if you can. PDPA requires consent to use someone's personal data. Swapping in a different name to skip that step turns a real story into a made-up one.
+Before anything goes up, get the client's clear consent to share their story, in writing if you can. The Personal Data Protection Act (PDPA) requires consent to use someone's personal data. Swapping in a different name to skip that step turns a real story into a made-up one.
 
 Then put the post through your firm's approval process. MAS treats your social media posts as advertising that your firm has to oversee.
 
@@ -133,7 +133,7 @@ One post does three jobs. The testimonial earns trust. The ask is small, a check
 - C) Send them a draft to approve word-for-word
 - D) Record a video interview
 
-**Why:** A generic ask gets a generic answer (*"he's great!"*). Three specific questions get the client to tell the real story in the shape you need, and you stitch their answers into a pre-during-post post. The client finds it easy to answer, and you end up with a quote you can use.
+**Why:** A generic ask gets a generic answer ("he's great!"). Three specific questions get the client to tell the real story in the shape you need, and you stitch their answers into a pre-during-post post. The client finds it easy to answer, and you end up with a quote you can use.
 
 **Q3. A Week 3 FC has not closed any cases yet. Which is NOT a legitimate way to create a Q1 (social proof) post?**
 - A) A live case-in-progress, with anonymised details, honestly framed

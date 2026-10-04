@@ -58,7 +58,7 @@ In your first 60 days, three of them (1, 6 and 7) do most of the work. Today cov
 
 **Framing** means telling the prospect what's going to happen before it happens.
 
-New FCs often jump straight into the CST. The prospect can't see where it's heading, so their guard goes up. Talk them through the meeting first:
+New FCs often jump straight into the Canned Sales Track (CST). The prospect can't see where it's heading, so their guard goes up. Talk them through the meeting first:
 
 > "Just to give you an idea of what to expect today, we're going to focus on the core principles of financial planning for the first 30 minutes. We won't be looking at any specific products today unless you have questions. After today, I'll go away, build a recommendation based on what you share, and we'll meet again to walk through it. If any of it doesn't make sense, we tweak it. Final step is implementation, when the time's right. Does that sound okay?"
 
@@ -149,7 +149,7 @@ If none of the three works, end the meeting politely and keep the door open. Som
 - C) It's too long
 - D) It contradicts your intent statement
 
-**Why:** Prospects have heard the line so often that they link it straight to being sold to. A better approach is to admit the commercial side upfront: *"of course I'd love to work with you if it makes sense."*
+**Why:** Prospects have heard the line so often that they link it straight to being sold to. A better approach is to admit the commercial side upfront: "of course I'd love to work with you if it makes sense."
 
 **Q3. A prospect's resistance is clearly up mid-meeting. The 3-move ladder is:**
 - A) Push harder, switch products, close anyway
@@ -189,7 +189,7 @@ If none of the three works, end the meeting politely and keep the door open. Som
 - C) Desperate, and prospects go with the confident one (correct)
 - D) Focused
 
-**Why:** When you lean in too hard, the prospect thinks: *this person needs this more than I do, so maybe the product isn't as good as they say.* It's an unfair conclusion, but people draw it all the time. Detachment sends the opposite signal: *this person doesn't need me in particular, so what they're offering must be worth something.*
+**Why:** When you lean in too hard, the prospect thinks: this person needs this more than I do, so maybe the product isn't as good as they say. It's an unfair conclusion, but people draw it all the time. Detachment sends the opposite signal: this person doesn't need me in particular, so what they're offering must be worth something.
 
 ## Related
 

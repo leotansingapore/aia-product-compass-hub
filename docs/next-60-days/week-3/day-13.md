@@ -40,7 +40,7 @@ Each question has its own content pillar. Post at least one per pillar each mont
 | Q2: Know stuff? | Educational | Breakdown, carousel, short reel |
 | Q3: Why? | Origin story | 60-sec reel, long-caption post |
 | Q4: Get along? | Lifestyle / PPVV | Personal, stories-heavy |
-| Q5: Easy to approach? | Offer post | Soft CTA with DM keyword |
+| Q5: Easy to approach? | Offer post | Soft call to action (CTA) with DM keyword |
 
 ## Q1: Can I trust that others value your work?
 
@@ -133,7 +133,7 @@ Two more versions:
 - C) Testimonial posts (correct)
 - D) Lifestyle / PPVV posts
 
-**Why:** Pre-during-post lays out a testimonial in three beats: the client's situation before, the work you did during, and where they are after. It's the simplest template for Q1 (social proof), and it's concrete enough that prospects believe it. A vague *"helped a client recently"* gets discounted.
+**Why:** Pre-during-post lays out a testimonial in three beats: the client's situation before, the work you did during, and where they are after. It's the simplest template for Q1 (social proof), and it's concrete enough that prospects believe it. A vague "helped a client recently" gets discounted.
 
 **Q3. An "offer post" answers which silent question?**
 - A) Q1: do others value your work?
@@ -141,7 +141,7 @@ Two more versions:
 - C) Q3: why are you doing this?
 - D) Q5: how do I approach you without feeling awkward? (correct)
 
-**Why:** An offer post ends a testimonial or insight with a soft call to action (*"DM me [keyword]"*). The keyword gives the prospect something specific to send, so they don't have to write an opening line. Q5 is the question most advisors forget to plan for.
+**Why:** An offer post ends a testimonial or insight with a soft call to action ("DM me [keyword]"). The keyword gives the prospect something specific to send, so they don't have to write an opening line. Q5 is the question most advisors forget to plan for.
 
 **Q4. A new FC audits their last 10 posts and finds 8 of them answer Q2 (expertise). What's the most likely diagnosis for "no one DMs me"?**
 - A) The posts aren't useful enough
@@ -173,7 +173,7 @@ Two more versions:
 - C) The friction of booking a call
 - D) The friction of reading the post
 
-**Why:** Plenty of prospects want the resource but don't know how to start the message. *"Hi, I'd like to know about insurance"* feels awkward. A keyword gives them something short and impersonal to send. They type one word, you reply, and the conversation has started. That's the reason an offer post pulls more DMs than a post with no call to action.
+**Why:** Plenty of prospects want the resource but don't know how to start the message. "Hi, I'd like to know about insurance" feels awkward. A keyword gives them something short and impersonal to send. They type one word, you reply, and the conversation has started. That's the reason an offer post pulls more DMs than a post with no call to action.
 
 ## Related
 

@@ -21,7 +21,7 @@ tags: [next-60-days, week-1, new-fc, story, mindset]
 1. Each week opens when you log the last week's KPI. By Saturday you need a signed 90-day scorecard and a recorded 90-second intro.
 2. A prospect's first silent question is "why you and not the other five?" Your story is the answer nobody else can copy.
 3. A listener lowers their guard when they feel your villain. Build your story in 4 parts: life today, villain, guide, growth.
-4. On the night you don't feel like dialling, identity makes the call. Keep a reminder of who you've decided to be on your phone wallpaper.
+4. On the nights motivation runs out, identity makes the call. Keep a reminder of who you've decided to be on your phone wallpaper.
 
 ## What changes today
 
@@ -87,7 +87,7 @@ You don't need a traumatic past. If you grew up comfortable, build the story aro
 
 Some time in the next 60 days, probably on a Wednesday around 10:47pm, you won't feel like making the last three dials. The novelty's gone, the day's first rejection still stings, and your friends' texts look better than your pipeline.
 
-Motivation won't get you through it, because it rises and falls with results, sleep and when you last ate. **Identity** will. That's the version of yourself you've told a story about, the one your pledge sheet names and your vision board pictures. You make the call because that's what this version of you does, whether or not tonight feels inspired.
+Motivation won't get you through it, because it rises and falls with results, sleep and when you last ate. **Identity** will. That's the version of yourself you've told a story about, the one your pledge sheet names and your vision board pictures (you'll make both on Day 4). You make the call because that's what this version of you does, whether or not tonight feels inspired.
 
 Your story is for prospects. The pledge sheet, vision board and scorecard are for you, so put one on your phone wallpaper. You'll unlock your phone dozens of times a day and probably won't open a laptop folder once.
 

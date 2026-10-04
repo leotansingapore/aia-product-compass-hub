@@ -48,7 +48,7 @@ Each tells you something different. The hygiene job is going through all four ev
 
 Posts are how new people find you. Stories are where people who already follow you get used to you.
 
-Instagram ranks stories mainly on viewing history, engagement and closeness, so the people who watch yours keep seeing them near the front of their tray. Psychologist Robert Zajonc showed in 1968 that repeated exposure to something makes people like it more. Stories give you that familiarity, and one brilliant post can't.
+Instagram ranks stories mainly on viewing history, engagement and closeness, so the people who watch yours keep seeing them near the front of their stories tray. Psychologist Robert Zajonc showed in 1968 that repeated exposure to something makes people like it more. Stories give you that familiarity, and one brilliant post can't.
 
 The 3-stories-a-day rhythm from [Day 11](/learning-track/next-60-days/day/11) is what you put out. Hygiene is the other side: whose stories you watch back, reply to and engage with.
 
@@ -121,7 +121,7 @@ Different FCs neglect different surfaces:
 
 | Symptom | Neglected surface | Fix |
 |---|---|---|
-| "My posts get views but no one DMs." | Q5 offer posts (Day 13) | Add a DM keyword CTA to one post this week |
+| "My posts get views but no one DMs." | Q5 offer posts (Day 13) | Add a DM keyword call to action to one post this week |
 | "I don't know who's actually watching my content." | Story-viewer review | Start the 5-minute daily check |
 | "I have 400 followers but engagement is dead." | Clean-up | Unfollow 50 to 100 dead or irrelevant accounts and spend that time commenting in your niche |
 | "I haven't talked to most of my warm market in months." | DM history | Pull 10 names from your DM list and send each one a value-first message this week |

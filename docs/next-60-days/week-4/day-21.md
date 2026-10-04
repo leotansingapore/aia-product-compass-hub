@@ -40,9 +40,9 @@ A Market Survey leads to one of two kinds of meeting:
 | Stage | What it is | What the meeting is for |
 |---|---|---|
 | Warm Up | Conversation only: no iPad, no presentation. You're warming up a distant contact who isn't ready to talk about money yet | Building toward an Educational Fact Find later |
-| Educational Fact Find (FHR) | A financial-planning meeting the prospect has agreed to. You do the Fact-Find, press on the problem and educate | Helping them understand their position, and opening the door to referrals |
+| Educational Fact Find, also called a Financial Health Review (FHR) | A financial-planning meeting the prospect has agreed to. You do the Fact-Find, press on the problem and educate | Helping them understand their position, and opening the door to referrals |
 
-The trap: a new FC gets a yes on the survey, turns up with the CST and goes straight into the presentation. If the contact was Semi-Warm, that meeting was a Warm Up and should never have been an FHR. Presenting at a Warm Up burns the contact.
+The trap: a new FC gets a yes on the survey, turns up with the Canned Sales Track (CST) and goes straight into the presentation. If the contact was Semi-Warm, that meeting was a Warm Up and should never have been an FHR. Presenting at a Warm Up burns the contact.
 
 Let the answers decide. If they already have a plan and are happy to have it reviewed, it's an FHR. If they've never thought about financial planning and mostly said yes because they'd like to see you, it's a Warm Up.
 
@@ -160,7 +160,7 @@ Use this when the contact is semi-warm (you haven't spoken in six months or more
 These are the canonical scripts for the Market Survey, plus the texting tools that get you a yes to the call. Practise them out loud, then make them yours.
 
 ### Market Survey script (the canonical AIA full call)
-Use this when you're running the survey end to end: opening, agenda, 4 questions, the appointment ask in Q4, the binary close, and the 10-objection block at the end.
+Use this when you're running the survey end to end: opening, agenda, 4 questions, the appointment ask in Q4, the binary close (two time slots to choose from), and the 10-objection block at the end.
 
 [Market Survey Script](/scripts/787863f3-914a-4c71-9f07-76b83a9e0741)
 

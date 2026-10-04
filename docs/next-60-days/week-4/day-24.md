@@ -62,7 +62,7 @@ A booked appointment counts if it meets all three conditions:
 
 These count:
 
-- a Fact-Find (Educational FHR) with a Semi-Warm contact, confirmed for Thursday 6pm at her office
+- a Fact-Find (a Financial Health Review, or FHR) with a Semi-Warm contact, confirmed for Thursday 6pm at her office
 - a Warm Up coffee with a Hot contact, confirmed for Saturday 2pm at a cafe in Raffles Place
 - a Zoom call with a lukewarm referral, confirmed for Friday 8pm with a calendar invite sent
 
@@ -94,7 +94,7 @@ Use one spreadsheet or Notion page with one row per outreach: thirty rows, with 
 |---|---|---|---|---|---|
 | Amir | Semi-Warm | 6-step msg | Mon 10am | Yes, keen to meet | Booked Thu 6pm |
 | Kelly | Warm | CRAB | Mon 2pm | Replied B | Booked Fri 6pm |
-| Samantha | Semi-Warm | MS call | Mon 7pm | No, not now | Follow-up Feb |
+| Samantha | Semi-Warm | Market Survey call | Mon 7pm | No, not now | Follow-up Feb |
 | … | … | … | … | … | … |
 
 ### 2. The Friday pipeline review screenshot

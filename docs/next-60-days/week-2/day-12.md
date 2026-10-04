@@ -46,7 +46,7 @@ Your mentor, a classmate or peer, and anyone whose job is to listen to you pract
 Take 5 minutes before each one:
 
 1. Re-read your v2 once, without rehearsing it, which only tenses you up.
-2. Picture this prospect. Which profile are they, and which of your 5 "what do you do?" answers fits them?
+2. Picture this prospect. Which of the Day 8 profiles are they (business owner, young professional and so on), and which of your 5 "what do you do?" answers fits them?
 3. Pick your tonality from the Day 5 Certainty and Reason training. Which key sentence gets Certainty? Which line ends on the Reason tone with "fair?"
 4. Decide the format: phone, WhatsApp voice note or in person. Each comes across differently, so choose before you dial.
 
@@ -75,7 +75,7 @@ Three deliveries at three lines each gives you a nine-line log. That's your subm
 
 ## What you submit
 
-Paste your 3-line log below, or link to a Google Doc or Notion page:
+Paste your nine-line log below, or link to a Google Doc or Notion page:
 
 ```
 DELIVERY 1 - [who + context]

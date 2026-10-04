@@ -124,7 +124,7 @@ When you see either, stay on that topic and go deeper before you move on, becaus
 
 ## Follow-up: give value instead of asking again
 
-The most common warm-market mistake is following up a silence with another "can we meet?", which reads as pushing. Send something useful instead:
+The most common warm-market mistake is following up a silence with another "can we meet?", which reads as pushing. Send something useful instead, the value drop from Day 16:
 
 > You: "Hey, just made this 2-min video on the three things I check first in every Fact-Find. Thought it might be useful even if we don't end up meeting."
 
@@ -167,7 +167,7 @@ Project 1000 is who you send the 6-step message to: your formal warm-database bu
 - Focus on warm and semi-warm over hot. For most people on the team, semi-warm (people you haven't spoken to in years) is the biggest untapped group.
 - Post upcoming friend meetings in the onboarding group chat, so the team can help with portfolio structure and angles.
 
-Don't upload screenshots of group member lists into ChatGPT or other AI tools. Those are other people's phone numbers, and once you collect them for business, PDPA duties apply.
+Don't upload screenshots of group member lists into ChatGPT or other AI tools. Those are other people's phone numbers, and once you collect them for business, Personal Data Protection Act (PDPA) duties apply.
 
 ## Do this today
 
@@ -206,7 +206,7 @@ Use this when the contact is from a shared community like church, a uni group or
 [Warm Outreach - Soft Approach (Warm Market / Community Contacts)](/scripts/9d86a8c5-56c1-4cfb-ad88-52c6b70ced07)
 
 ### Warm outreach: curiosity approach (DIY investors and people with an FA)
-Use this when the contact manages their own money or already has an FA. Offer yourself as a one-time second opinion, with no intention of replacing anyone.
+Use this when the contact manages their own money or already has a financial adviser (FA). Offer yourself as a one-time second opinion, with no intention of replacing anyone.
 
 [Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)](/scripts/8bb51a28-65cc-432f-9f0c-ffec06a3e7e1)
 

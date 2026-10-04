@@ -129,11 +129,11 @@ Every story fits one of five types:
 
 | Day | Story 1 | Story 2 | Story 3 |
 |---|---|---|---|
-| Mon | Gratitude: person | Work life: BTS or teach | Share a story |
+| Mon | Gratitude: person | Work life: behind the scenes or teach | Share a story |
 | Tue | Ask (poll) | You: pain | Gratitude: experience |
-| Wed | Gratitude: compliment | Work life: BTS or teach | Share a story |
+| Wed | Gratitude: compliment | Work life: behind the scenes or teach | Share a story |
 | Thu | Ask (poll) | You: passion | Gratitude: loss or lesson |
-| Fri | Gratitude: win | Work life: BTS or teach | Share a story |
+| Fri | Gratitude: win | Work life: behind the scenes or teach | Share a story |
 | Sat | Ask (poll) | Work life: people | Gratitude: lesson |
 | Sun | Gratitude: self | You: values | You: vision |
 

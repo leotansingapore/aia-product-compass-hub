@@ -91,6 +91,8 @@ Your first 60 days will be mostly tiers 1 and 2. Tier 3 becomes worth your time 
 | B-client | 50% | 60% | $1,000 | ~$300 |
 | C-client | 10% | 50% | $500 | ~$25 |
 
+Each row multiplies the meetup rate (how often the review actually happens) by the close rate and the average case.
+
 These are illustrative Year 2 figures for an FC who already has a book of clients, but learn the ratio now. At $420 against $25, an A-client review is worth about 17 times a C-client touchpoint. Every A-client review slot you let slide costs roughly $420 in expected revenue, and across all your A clients that adds up quickly.
 
 ## The scorecard is signed
@@ -119,16 +121,16 @@ Set up Lark (docs and tasks) and Lark Base (your CRM) this week, so the Friday r
 
 - [Join 100% MDRT Team on Lark](https://nsgukkz32942.sg.larksuite.com/invite/2475o5zzfclg1?join=1&team_name=100%25+MDRT+Team) with invite code `WPMMPELG`. Install Lark on desktop and mobile.
 - Open [the access-checklist doc](https://nsgukkz32942.sg.larksuite.com/wiki/Jqu5wln6eiVL7PklkgplPQc4gIe) and pin it to your left sidebar. Get access to every resource it lists (we walk through each one in coaching calls).
-- Create a Lark task list with sections for ad-hoc and recurring tasks, and spend 15 minutes dumping everything on your mind into it. Then capture things as they come up and process them in one focused session a day. Optional primers: [GTD intro](https://www.youtube.com/watch?v=7M6bIeVbCqA), [Lark task 2-min guide](https://youtu.be/HtBTAnWH3vk).
+- Create a Lark task list with sections for ad-hoc and recurring tasks, and spend 15 minutes dumping everything on your mind into it. Then capture things as they come up and process them in one focused session a day. Optional primers on the Getting Things Done (GTD) method: [GTD intro](https://www.youtube.com/watch?v=7M6bIeVbCqA), [Lark task 2-min guide](https://youtu.be/HtBTAnWH3vk).
 
 Ask Leo to set up your CRM in Lark Base ([access here once it's created](https://nsgukkz32942.sg.larksuite.com/base/AKOwbIgCJajwpdsZxtmluiF7gZd?table=tblK1Q35uvwAe4pU&view=vew7AogXqL)). While you wait, watch the [Lark Base intro (2 min)](https://youtu.be/KH2h4kxc_4c) and [the CRM Loom tutorials](https://nsgukkz32942.sg.larksuite.com/wiki/KwYfw7WRxiH6pskbm2tlHCOXgie). The habit: every lead sorted by stage.
 
-Do the business plan doc this week, not today. Follow the [instructions in Lark](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe) and duplicate the [sample Canva deck](https://www.canva.com/design/DAG1v21ulvQ/) to edit. Upload yours to [the examples folder](https://drive.google.com/drive/folders/CyXsfQiuPlRA1udutA0lpbPxggf) and send it to your onboarding GC for feedback.
+Do the business plan doc this week, not today. Follow the [instructions in Lark](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe) and duplicate the [sample Canva deck](https://www.canva.com/design/DAG1v21ulvQ/) to edit. Upload yours to [the examples folder](https://drive.google.com/drive/folders/CyXsfQiuPlRA1udutA0lpbPxggf) and send it to your onboarding group chat (GC) for feedback.
 
 ## Do this today
 
 1. Write your scorecard on one page: weekly targets for calls, appointments and referrals, and a monthly FYC target. Take the appointment target from yesterday's math.
-2. Copy the commitment line at the bottom and sign it.
+2. Copy the commitment line from "The scorecard is signed" onto the bottom of the page and sign under it.
 3. Show your mentor, then set a photo of it as your wallpaper.
 4. Add a recurring 30-minute Friday review to your calendar.
 

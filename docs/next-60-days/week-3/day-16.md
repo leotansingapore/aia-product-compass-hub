@@ -42,7 +42,7 @@ Tone, emojis and hahahas are up to you. The three jobs don't change: link back t
 | 8 | Keep it casual: no jargon, no "optimisation", no "portfolio reviews" | Use emojis or hahaha if that's how you actually text |
 | 9 | Warm up with 2 or 3 touchpoints first (story replies, post comments, a congrats) | They're more likely to reply to someone familiar |
 | 10 | Don't ask if they're "free", because nobody feels free. Ask for a specific 30 minutes | "Grab a 30-min call, Thu or Fri better?" |
-| 11 | Make the CTA easy to answer, with 2 options and never an open question | "10 Jan 6pm, or 23 Jan 8pm, which works?" |
+| 11 | Make the call to action (CTA) easy to answer, with 2 options and never an open question | "10 Jan 6pm, or 23 Jan 8pm, which works?" |
 
 Rules 1, 2 and 3 are the non-negotiables, and every text in the pipeline follows all three. The other eight help.
 
@@ -156,7 +156,7 @@ Use this before you send any DM or warm-market text, as a last check. Rules 1, 2
 
 ### Texting EQ: 4-step objection handling framework
 
-Use this when an objection lands in your DM (not interested, I have an advisor, not looking right now). The steps are acknowledge, common ground, different perspective and safety valve.
+Use this when an objection lands in your DM (not interested, I have an advisor, not looking right now). The steps are acknowledge, common ground, different perspective and safety valve, which are steps 1 to 4 of the 6-step response above.
 
 [Texting EQ - 4-Step Objection Handling Framework](/scripts/af86c2b2-72ac-4c55-857a-87541d91ff36)
 
@@ -174,7 +174,7 @@ Use this when the contact is from a shared community like church, a uni group or
 
 ### Warm outreach: curiosity approach (DIY investors or existing FA)
 
-Use this when the contact knows their finances or already has an FA. Offer a one-time second opinion and make clear you're not trying to replace anyone.
+Use this when the contact knows their finances or already has a financial adviser (FA). Offer a one-time second opinion and make clear you're not trying to replace anyone.
 
 [Warm Outreach - Curiosity Approach (DIY Investors / Existing FA Contacts)](/scripts/8bb51a28-65cc-432f-9f0c-ffec06a3e7e1)
 

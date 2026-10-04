@@ -43,7 +43,7 @@ The three levers move at different speeds.
 
 ![Why appointments is the only lever you control today: appointments, controllable today; close rate, reps over weeks; case size, experience over months; FYC](/next-60-days/images/n60-day-02-m0.webp)
 
-Close rate depends on skill: the questions you ask, how well you read DISC, how you handle objections and whether you close with conviction. None of that gets much better in a week. The team plans on a new FC closing 20 to 40% of qualified meetings, and maybe 30 to 50% by month 3.
+Close rate depends on skill: the questions you ask, how well you read a prospect's DISC profile, how you handle objections and whether you close with conviction. None of that gets much better in a week. The team plans on a new FC closing 20 to 40% of qualified meetings, and maybe 30 to 50% by month 3.
 
 Case size depends on who's across the table and what you uncover. Bigger cases come from wealthier prospects, better fact-finds and the nerve to recommend a complete plan. Expect your first 10 cases to land at $500 to $1,000 FYC each. That grows with your network, and you can't force the timeline.
 
@@ -106,7 +106,7 @@ The way out is to start prospecting hard again straight away, without dwelling o
 
 AIA sets how commission reaches your account, and you should understand it by the end of this week.
 
-- EPS scheme: watch the walkthrough ([Loom](https://www.loom.com/share/7fda52b3744d47fe8fc57a1ce78ceb63)) and read the [EPS Lark doc](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf). Its last page has your month-by-month target. For your first two months on EPS there's no revenue target, only 80% BTS attendance.
+- EPS (Entrepreneur Partnership Scheme), AIA's monthly allowance matched to your FYC: watch the walkthrough ([Loom](https://www.loom.com/share/7fda52b3744d47fe8fc57a1ce78ceb63)) and read the [EPS Lark doc](https://nsgukkz32942.sg.larksuite.com/wiki/AK2jwgjKgic5vzkcToSlflbQgXf). Its last page has your month-by-month target. For your first two months on EPS there's no revenue target, only 80% attendance at BTS, AIA's training programme for new consultants.
 - How income stacks: watch the walkthrough ([Loom](https://www.loom.com/share/a01cb43f09994861a61ca76a2068eed4)). Commission rates are in the same Lark doc, but don't memorise them. Income builds through renewals, career benefit, Activity Incentive Bonuses and the Agent Provident Fund.
 - New-consultant incentives: aim for the [new-consultant challenges](https://nsgukkz32942.sg.larksuite.com/wiki/D6pHwlmiSimxaikXGKplk1pUgjd) and plan how you'll close your first few cases in your first 3 months.
 

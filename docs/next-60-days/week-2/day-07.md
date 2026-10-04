@@ -36,7 +36,7 @@ Pick one, and make every line point that way.
 
 ### When to use it
 
-Use it early in the first appointment: after the small talk, before you open the CST or the fact-find. Wait any longer and the prospect forms their own read of you. On a phone call to set an appointment, use a shorter version.
+Use it early in the first appointment: after the small talk, before you open the Canned Sales Track (CST) or the fact-find. Wait any longer and the prospect forms their own read of you. On a phone call to set an appointment, use a shorter version.
 
 Skip it on a cold call where nobody has agreed to meet yet. There's nothing to frame, and you'd have to explain who you are first. Skip it mid-meeting too, since by then they've made up their mind about you.
 
@@ -93,7 +93,7 @@ Teasers work on the same rule. Name something surprising, let them get curious, 
 ## Do this today
 
 1. Choose your impression: objective, sincere or competent.
-2. Write down how you open a first meeting now, word for word. Read it out loud and time it.
+2. Write down how you open a first meeting now, word for word. No meetings yet? Use the opening of your Day 6 intro. Read it out loud and time it.
 3. Mark which ingredients it has and which trap it falls into. Tomorrow you fix it in v2, the version you'll deliver to 3 real people on Day 12.
 
 ## Sources
@@ -158,7 +158,7 @@ Teasers work on the same rule. Name something surprising, let them get curious, 
 - C) It uses too much jargon
 - D) It isn't delivered with enough certainty
 
-**Why:** *"I help you review your insurance portfolio and recommend products"* describes what you do to a portfolio. The prospect wants to hear what happens to them: time back, a protected family, a plan that works.
+**Why:** "I help you review your insurance portfolio and recommend products" describes what you do to a portfolio. The prospect wants to hear what happens to them: time back, a protected family, a plan that works.
 
 ## Related
 

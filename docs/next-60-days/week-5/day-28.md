@@ -106,9 +106,9 @@ Keep the consensus line honest. The original version of this script says clients
 
 ### Names only, then the follow-up
 
-Asking for names only is deliberate. Under the PDPA, you should collect a friend's phone number or email from your client only once that friend has agreed to share it with you for this purpose.
+Asking for names only is deliberate. Under the Personal Data Protection Act (PDPA), you should collect a friend's phone number or email from your client only once that friend has agreed to share it with you for this purpose.
 
-The PDPC's own referral example works this way: check with your client that the friend was told and agreed, then confirm it on first contact. The sheet is a list of people to discuss, and contact details come later.
+The Personal Data Protection Commission's own referral example works this way: check with your client that the friend was told and agreed, then confirm it on first contact. The sheet is a list of people to discuss, and contact details come later.
 
 A 10-name sheet often breaks down roughly like this:
 

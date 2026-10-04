@@ -58,7 +58,9 @@ Two of the six matter most in Week 1. Get them to where you can do them in your 
 
 ### Tonality of certainty
 
-Use certainty for your intent statement, for setting the meeting agenda and for the close. It's conviction without volume. You speak steadier, not louder, and each sentence finishes level, with no lift at the end.
+Use certainty for your intent statement, for setting the meeting agenda and for the close. Your intent statement is the planned opening you give a prospect once the small talk ends. Day 7 builds it in full, and for this week it's beats 3 and 4 of tomorrow's 90-second intro.
+
+Certainty is conviction without volume. You speak steadier, not louder, and each sentence finishes level, with no lift at the end.
 
 > Wrong: "So, um, what we can do is maybe go through your cashflow and, you know, talk about insurance? If that works?"
 >
@@ -142,7 +144,7 @@ When a close is weak, most new FCs memorise the script again. What helps is read
 1. Take your intent statement or your close and read it ten times. On the first five, ignore the words and listen to where your voice rises and falls. On the next five, match the tone to each moment.
 2. Read your intent statement three ways: flat, heavy on certainty, and naturally varied. Keep the strongest version.
 3. Run the tritonal close (certainty, sincerity, reason) through a real close you're preparing.
-4. Record a 10-minute roleplay where you only listen. Count how many of your "uh-huh"s were flat and how many matched what was said. If fewer than 70% matched, do it again.
+4. Record a 10-minute roleplay where a friend plays the prospect, you ask fact-finding questions and you only listen. Count how many of your "uh-huh"s were flat and how many matched what was said. If fewer than 70% matched, do it again.
 
 ## Sources
 
@@ -166,7 +168,7 @@ When a close is weak, most new FCs memorise the script again. What helps is read
 - C) Tonality of Doubt / Ridicule
 - D) Tonality of Urgency
 
-**Why:** A genuine concern needs genuine empathy first. Certainty here feels cold, doubt mocks a fair hesitation, and urgency belongs at the start of a call. Acknowledge it first (*"I completely understand, this is a real commitment"*) and then you've earned the right to reframe.
+**Why:** A genuine concern needs genuine empathy first. Certainty here feels cold, doubt mocks a fair hesitation, and urgency belongs at the start of a call. Acknowledge it first ("I completely understand, this is a real commitment") and then you've earned the right to reframe.
 
 **Q3. The Tritonal Closing Pattern strings three tonalities in what order?**
 - A) Empathy → Certainty → Reason
@@ -182,7 +184,7 @@ When a close is weak, most new FCs memorise the script again. What helps is read
 - C) It triggers urgency
 - D) It uses formal language
 
-**Why:** *"Whether you engage my services or not is entirely up to you. Fair?"* is hard to say no to, because saying no means disagreeing with "you get to decide". The way out is real and the framing is kind, so the prospect keeps talking instead of tensing up.
+**Why:** "Whether you engage my services or not is entirely up to you. Fair?" is hard to say no to, because saying no means disagreeing with "you get to decide". The way out is real and the framing is kind, so the prospect keeps talking instead of tensing up.
 
 **Q5. Which tonality specifically fits the start of a phone call, to break the default polite-rejection pattern?**
 - A) Certainty

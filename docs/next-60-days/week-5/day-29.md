@@ -50,7 +50,7 @@ Referrals become next week's calls. If R is zero for 6 weeks running, all your c
 
 ## CAR diagnostic: the 3 bottlenecks
 
-| Bottleneck | What it knocks on | Fix |
+| Bottleneck | Knock-on effect | Fix |
 |---|---|---|
 | Few calls | Fewer appointments, then fewer referrals, then fewer names to call | Volume. Block out calling time and pick up the phone. The script isn't the issue. |
 | Calls fine, appointments low | Fewer referrals, then fewer names | Script or targeting. Review how you deliver Market Survey Q4 and check your opener. |
@@ -96,7 +96,7 @@ After you've met the referred friend, text the referrer:
 
 > "Hey Amir, just met Aaron. Thanks so much for the intro, really appreciate you thinking of me."
 
-Thank them, and say nothing about what you discussed or whether Aaron bought anything. Aaron's finances are his, and passing his details on to Amir without his agreement breaks both client confidentiality and the PDPA.
+Thank them, and say nothing about what you discussed or whether Aaron bought anything. Aaron's finances are his, and passing his details on to Amir without his agreement breaks both client confidentiality and the Personal Data Protection Act (PDPA).
 
 The referrer feels their intro mattered, which makes them far more likely to do it again. Many advisers skip this step, so each client refers once and then stops.
 

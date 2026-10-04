@@ -91,7 +91,7 @@ A common mistake: an FC collects 20 names from every client, calls all 20 cold a
 | Rough rule of thumb | Many book a Fact-Find | Very few book a Fact-Find |
 | Relationship risk | Low, because Amir made the intro openly | High, because it feels to the contact like Amir gave their number away |
 
-Get the recommendation, even if it costs you 15 of the 20 names. There's a legal side too. Under the PDPA, a friend's contact details should reach you with that friend's consent, and the referrer should confirm it when they pass them on.
+Get the recommendation, even if it costs you 15 of the 20 names. There's a legal side too. Under the Personal Data Protection Act (PDPA), a friend's contact details should reach you with that friend's consent, and the referrer should confirm it when they pass them on.
 
 ## What asking actually looks like
 

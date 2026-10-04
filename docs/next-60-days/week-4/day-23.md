@@ -115,7 +115,7 @@ Open the Strategic Target List and:
 Pick three specific things to get done next week, rather than a list of 15. For example:
 
 - "Make 3 Market Survey calls on Monday morning"
-- "Book a Friday FHR with Kelly using [CRAB](/learning-track/next-60-days/day/17)"
+- "Book a Friday Financial Health Review (FHR) with Kelly using [CRAB](/learning-track/next-60-days/day/17)"
 - "Post a client-story post by Wednesday, once compliance has approved it"
 
 Put these in your calendar as time blocks. Research on implementation intentions (Gollwitzer, 1999) found that deciding exactly when and where you'll do something makes you far more likely to follow through. So the Friday plan has to be on Monday's calendar.
@@ -128,7 +128,7 @@ The week you're tempted to skip the review because "next week isn't that busy an
 
 ## Team operations: log your numbers daily
 
-The target list is your input log. The team activity tracker is your output log, and it feeds the Friday review. Log CAR daily at [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard), because the daily habit keeps the numbers honest in a way end-of-week batching can't. If you're on EPS, the tracker numbers feed the monthly BTS attendance and target reviews.
+The target list is your input log. The team activity tracker is your output log, and it feeds the Friday review. Log CAR daily at [track.themoneybees.co/dashboard](https://track.themoneybees.co/dashboard), because the daily habit keeps the numbers honest in a way end-of-week batching can't. If you're on EPS (Entrepreneur Partnership Scheme), the tracker numbers feed your monthly reviews of targets and of attendance at BTS, AIA's training programme.
 
 ## Cold-call KPI ratios: the numbers behind one closed case
 

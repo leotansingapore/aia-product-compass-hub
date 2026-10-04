@@ -60,7 +60,7 @@ Yours will sound different, and it should. Keep the structure.
 
 ## The drill
 
-This is Week 1's writing-heavy day: short reading, and about 30 minutes on the worksheet.
+This is Week 1's writing-heavy day: short reading, and about 30 minutes on the drill below.
 
 ![The drill: write v1, 20 min; read aloud, 5 min; listen back, 5 min; mark flat spots, 5 min](/next-60-days/images/n60-day-04-m0.webp)
 
@@ -72,7 +72,7 @@ When you listen back, mark two spots. One is where your voice flattened, usually
 
 Your story faces outward. Your vision board and pledge sheet are for you, for when the week drags and you need to remember why you signed up. They're two separate deliverables this week:
 
-- Vision board: [walkthrough Loom](https://www.loom.com/share/3dbda27b81f24a089e766702348c3076) and [Canva template](https://www.canva.com/design/DAGomVn0YWE/). Make yours and share it in the onboarding GC. The team reviews them together on a call about 1 to 2 months after you submit.
+- Vision board: [walkthrough Loom](https://www.loom.com/share/3dbda27b81f24a089e766702348c3076) and [Canva template](https://www.canva.com/design/DAGomVn0YWE/). Make yours and share it in the onboarding group chat (GC). The team reviews them together on a call about 1 to 2 months after you submit.
 - Pledge sheet part 1: [walkthrough Loom](https://www.loom.com/share/a3b9933ae2b848c6bbfa9bd98b54624b). Download [the pledge sheet](https://nsgukkz32942.sg.larksuite.com/wiki/JnLewrJCmi6VBSkCJsvlcysYgPe), fill it in and submit it to the onboarding GC.
 - Pledge sheet part 2: [walkthrough Loom](https://www.loom.com/share/227f92a8e6f64fea9715c1e7ae767f0f).
 
@@ -105,7 +105,7 @@ Your story faces outward. Your vision board and pledge sheet are for you, for wh
 - C) Telling the villain as a fact instead of a feeling (correct)
 - D) Skipping the growth section
 
-**Why:** "My parents had no money" is information and doesn't move anyone. *"I used to avoid going home because of the fights about money"* has the same fact inside a feeling, and the feeling is what lowers the prospect's guard. Length, frameworks and a weak growth section are real problems, but smaller ones.
+**Why:** "My parents had no money" is information and doesn't move anyone. "I used to avoid going home because of the fights about money" has the same fact inside a feeling, and the feeling is what lowers the prospect's guard. Length, frameworks and a weak growth section are real problems, but smaller ones.
 
 **Q3. A mentee rehearses her story until it's silky: smooth, well-timed, emotionally paced. The mentor group agrees it was technically flawless and not believable. What's the core issue?**
 - A) The content was wrong

@@ -87,7 +87,7 @@ Week 2 opens when you have all three:
 - [ ] Intent statement v1 recorded (this Loom counts if beats 3 and 4 were clear)
 - [ ] Loom link submitted above and mentor review booked
 
-If any of the three is missing at 9pm on Sunday, use Sunday to finish it. Week 2 opens automatically once all three are logged, whatever day it is.
+If any of the three is still missing at 9pm on Saturday, use Sunday to finish it. Week 2 opens automatically once all three are logged, whatever day it is.
 
 ## Do this today
 
@@ -125,7 +125,7 @@ If any of the three is missing at 9pm on Sunday, use Sunday to finish it. Week 2
 - C) The 90 seconds ran over
 - D) The lighting was bad
 
-**Why:** The close is where pressure sneaks in. *"Would you be open to a meeting?"* without a real way out (a *"fair?"* or *"worst case you get one good idea"*) feels like a push however polished the rest is. When a word-perfect intro still feels like a pitch, the last beat is almost always why.
+**Why:** The close is where pressure sneaks in. "Would you be open to a meeting?" without a real way out (a "fair?" or "worst case you get one good idea") feels like a push however polished the rest is. When a word-perfect intro still feels like a pitch, the last beat is almost always why.
 
 **Q4. Watching Take 1 back, the rule is:**
 - A) Critique every mistake and re-record from scratch

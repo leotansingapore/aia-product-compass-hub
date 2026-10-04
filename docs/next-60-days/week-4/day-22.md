@@ -147,7 +147,7 @@ For full objection handling on cold calls, use the [Cold Calling: Working Adults
 
 ## The ABCD four promises
 
-Whether the appointment came from warm or cold, the first 30 seconds of the Fact-Find set the tone. The [ABCD Four Promises](/scripts/f7947680-ec09-4e60-8e1f-e8fd2b45ed4e) deal with the prospect's scepticism before you ask your first real question. Deliver all four, in order, roughly like this:
+Whether the appointment came from warm or cold, the first 30 seconds of the Fact-Find set the tone. The [ABCD Four Promises](/scripts/f7947680-5850-4d82-8b17-494e4dfc8346) deal with the prospect's scepticism before you ask your first real question. Deliver all four, in order, roughly like this:
 
 | Promise | Script |
 |---|---|
@@ -168,7 +168,7 @@ On this team, the large majority of first-year business comes from warm and semi
 
 ## Team operations: cold-call setup
 
-Before you start any cold volume (cold leads, SMA leads, Facebook lead-gen), get this set up. It's the gate for everything after RNF:
+Before you start any cold volume (cold leads, SMA leads, Facebook lead-gen), get this set up. It's the gate for everything after your RNF (Representative Notification Framework) registration:
 
 - Buy a new number just for business, and set up WhatsApp Business on the same phone. A second phone lets you keep dialling on one line while the other rings out.
 - Get access to [the prospecting doc](https://nsgukkz32942.sg.larksuite.com/wiki/OTW3wipXSi0y8nkU5l3llk3Vgrb) and pin it to your Lark sidebar.
@@ -180,7 +180,7 @@ Before you start any cold volume (cold leads, SMA leads, Facebook lead-gen), get
 
 ### DNC screening before any cold list goes live
 
-Screen every cold list against Singapore's Do Not Call (DNC) Registry before you call or message anyone on it. The rules cover voice calls, SMS and messaging apps like WhatsApp that use a Singapore number. Breaking them can mean a financial penalty of up to $200,000 for an individual under the PDPA, so never skip it.
+Screen every cold list against Singapore's Do Not Call (DNC) Registry before you call or message anyone on it. The rules cover voice calls, SMS and messaging apps like WhatsApp that use a Singapore number. Breaking them can mean a financial penalty of up to $200,000 for an individual under the Personal Data Protection Act (PDPA), so never skip it.
 
 1. Paste the full lead list into a Google Sheet, one column of numbers.
 2. Download it as a CSV. The filename can't have spaces or special characters: `leads.csv` works, `Leo's leads.csv` doesn't.

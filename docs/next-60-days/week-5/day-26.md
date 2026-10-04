@@ -117,7 +117,7 @@ Clients want an adviser who will fight for them like family. Most advisors sit i
 
 Fighting never means shading the truth. Everything the insurer asks about goes on the form, accurately. A non-disclosure can let the insurer void the policy or reject a claim later, which is the worst outcome you could hand a client.
 
-You fight with complete paperwork and supporting medical evidence. If terms come back with a loading or exclusion, the LIA's underwriting guide says fresh medical evidence can be sent in for the insurer to reassess.
+You fight with complete paperwork and supporting medical evidence. If terms come back with a loading or exclusion, the underwriting guide from the Life Insurance Association (LIA) says fresh medical evidence can be sent in for the insurer to reassess.
 
 ## Coaching clients for referrals: give them the words
 

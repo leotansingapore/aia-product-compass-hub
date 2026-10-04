@@ -30,7 +30,7 @@ The words are fine. What decides whether they land is the context: the moment, t
 
 ![Why what to say isn't the bottleneck: Moment (when you ask); Quality of the ask; Tone (how you ask); Specificity (who you ask about)](/next-60-days/images/n60-day-27-m0.webp)
 
-Get all three right and a 5-sentence ask can produce 3 warm names. Miss one and a 50-sentence ask can produce none.
+Get all three levers right (moment, tone and specificity) and a 5-sentence ask can produce 3 warm names. Miss one and a 50-sentence ask can produce none.
 
 ## Lever 1: The moment
 
@@ -110,7 +110,7 @@ That line does three jobs:
 - It names the next step ("check whether they're open to a chat"), which is clearer than "get back to me".
 - It puts the follow-up on you ("I'll text you Saturday"), so the client doesn't have to remember.
 
-Checking with friends first also matters under the PDPA. You should only get a friend's contact details once that friend has agreed to hear from you.
+Checking with friends first also matters under the Personal Data Protection Act (PDPA). You should only get a friend's contact details once that friend has agreed to hear from you.
 
 Without a timeline, most soft commitments fade. Psychologist Peter Gollwitzer's work on implementation intentions found that people who decide exactly when and where they'll act follow through far more often than people who only intend to. The timeline close gives the client that plan.
 
