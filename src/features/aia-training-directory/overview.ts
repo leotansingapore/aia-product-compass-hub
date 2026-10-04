@@ -1,55 +1,33 @@
-// Layout and counts for the directory's Overview: the career-line map
-// (AIA's Tied Distribution roadmap drawn as metro lines) and the 2026 heatmap.
+// Layout and counts for the directory's Overview: the career line (AIA's Tied
+// Distribution roadmap as one Foundation line that forks into four paths) and the 2026 heatmap.
 import type { Course, Directory, ScheduleEntry, Section } from "./filter";
 
-/** One metro line per path in AIA's roadmap. Order is the validated colour order (--lane-1..5). */
+/** One path per line in AIA's roadmap. Order is the validated colour order (--lane-1..5). */
 export const LANES = [
-  { id: "foundation", name: "Foundation", sections: ["02a", "02b", "02c", "02d"] },
-  { id: "selling", name: "Advanced selling", sections: ["03a", "03b", "03c", "03d", "03e"] },
-  { id: "mdrt", name: "MDRT", sections: ["03f"] },
-  { id: "specialist", name: "Specialised markets", sections: ["03g", "03h"] },
-  { id: "leadership", name: "Leadership", sections: ["04a", "04b", "04c"] },
+  { id: "foundation", name: "Foundation", blurb: "Get licensed, then build your habits and skills in year one", sections: ["02a", "02b", "02c", "02d"] },
+  { id: "selling", name: "Advanced selling", blurb: "Find, advise and keep clients with more confidence", sections: ["03a", "03b", "03c", "03d", "03e"] },
+  { id: "mdrt", name: "MDRT", blurb: "Reach MDRT, then requalify year after year", sections: ["03f"] },
+  { id: "specialist", name: "Specialised markets", blurb: "Serve affluent, high net worth, business and group clients", sections: ["03g", "03h"] },
+  { id: "leadership", name: "Leadership", blurb: "Grow from leading yourself to running an agency", sections: ["04a", "04b", "04c"] },
 ] as const;
 
 export const laneOf = (sectionId: string) => LANES.findIndex((l) => (l.sections as readonly string[]).includes(sectionId));
 
-export type MapRow =
-  | { kind: "stage"; label: string; note: string }
-  | { kind: "station"; section: string; lane: number }
-  | { kind: "interchange"; label: string; note: string };
+/** The Foundation line, top to bottom, with AIA's month markers between its stations. */
+export type TrunkRow = { kind: "stage"; label: string; note: string } | { kind: "station"; section: string };
 
-const stations = (lane: number) => LANES[lane].sections.map((section) => ({ kind: "station" as const, section, lane }));
-
-export const MAP_ROWS: MapRow[] = [
-  { kind: "stage", label: "Month 0", note: "Get licensed and build the foundation" },
-  ...stations(0).slice(0, 2),
-  { kind: "stage", label: "Month 1 to 2", note: "Mindset, skillset and toolset of an MDRT aspirant" },
-  stations(0)[2],
-  { kind: "stage", label: "Month 3 to 12", note: "Monthly sessions to stay active and productive" },
-  stations(0)[3],
-  { kind: "interchange", label: "Month 13 onwards", note: "Step into leadership, deepen your sales expertise, or both" },
-  ...stations(1),
-  ...stations(2),
-  ...stations(3),
-  ...stations(4),
+export const TRUNK: TrunkRow[] = [
+  { kind: "stage", label: "Month 0", note: "Get licensed and build your foundation" },
+  { kind: "station", section: "02a" },
+  { kind: "station", section: "02b" },
+  { kind: "stage", label: "Months 1 and 2", note: "The mindset, skills and tools of an MDRT aspirant" },
+  { kind: "station", section: "02c" },
+  { kind: "stage", label: "Months 3 to 12", note: "Monthly sessions that keep you active and productive" },
+  { kind: "station", section: "02d" },
 ];
 
-/**
- * Which half-segments of each lane to draw on each row: `top` runs from the
- * row's top edge to its station level, `bottom` from there to the bottom edge.
- * Foundation runs from its first station into the interchange; every other
- * line leaves the interchange and ends at its last station.
- */
-export function laneSegments(rows: MapRow[]): { top: boolean; bottom: boolean }[][] {
-  const hub = rows.findIndex((r) => r.kind === "interchange");
-  const spans = LANES.map((_, lane) => {
-    const own = rows.flatMap((r, i) => (r.kind === "station" && r.lane === lane ? [i] : []));
-    return lane === 0 ? { start: own[0], end: hub } : { start: hub, end: own[own.length - 1] };
-  });
-  return rows.map((_, r) =>
-    spans.map(({ start, end }) => ({ top: start < r && r <= end, bottom: start <= r && r < end })),
-  );
-}
+/** Where the Foundation line ends and the other four paths begin. */
+export const JUNCTION = { label: "Month 13 onwards", title: "Choose your path", note: "Step into leadership, deepen your sales expertise, or both" };
 
 const runsIn = (s: ScheduleEntry, month: number) => month >= s.month && month <= (s.endMonth ?? s.month);
 

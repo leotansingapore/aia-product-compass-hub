@@ -108,32 +108,21 @@ describe("catalogue stays out of the browser bundle", () => {
   });
 });
 
-import { LANES, MAP_ROWS, cpdFloor, laneSegments, monthMatrix, sessionsInMonth } from "./overview";
+import { LANES, TRUNK, cpdFloor, monthMatrix, sessionsInMonth } from "./overview";
 
 describe("overview map and heatmap", () => {
-  it("puts every catalogue section on exactly one line and one station", () => {
+  it("puts every catalogue section on exactly one path, and the Foundation stations on the trunk in order", () => {
     const onLines = LANES.flatMap((l) => [...l.sections]);
     expect([...onLines].sort()).toEqual(directory.sections.map((s) => s.id).sort());
-    const stationSections = MAP_ROWS.flatMap((r) => (r.kind === "station" ? [r.section] : []));
-    expect(stationSections.sort()).toEqual([...onLines].sort());
+    expect(new Set(onLines).size).toBe(onLines.length);
+    const trunkStations = TRUNK.flatMap((r) => (r.kind === "station" ? [r.section] : []));
+    expect(trunkStations).toEqual([...LANES[0].sections]);
+    // The trunk opens on a month marker so the line starts with a label, not a bare station.
+    expect(TRUNK[0].kind).toBe("stage");
   });
 
-  it("draws unbroken lines: Foundation into the interchange, the rest out of it", () => {
-    const seg = laneSegments(MAP_ROWS);
-    const hub = MAP_ROWS.findIndex((r) => r.kind === "interchange");
-    // Foundation enters the interchange from above and stops there.
-    expect(seg[hub][0]).toEqual({ top: true, bottom: false });
-    // Every other line leaves it downward and nothing draws above it.
-    for (let lane = 1; lane < LANES.length; lane++) {
-      expect(seg[hub][lane]).toEqual({ top: false, bottom: true });
-      expect(seg.slice(0, hub).every((row) => !row[lane].top && !row[lane].bottom)).toBe(true);
-    }
-    // No gaps: wherever a row draws a bottom half, the next row draws a top half.
-    for (let r = 0; r < seg.length - 1; r++) {
-      seg[r].forEach((s, lane) => expect(s.bottom).toBe(seg[r + 1][lane].top));
-    }
-    // Lines end at their last station.
-    expect(seg[seg.length - 1].every((s) => !s.bottom)).toBe(true);
+  it("gives every path a one-line description", () => {
+    for (const l of LANES) expect(l.blurb.length, l.id).toBeGreaterThan(10);
   });
 
   it("counts a self-paced window in every month it is open", () => {
