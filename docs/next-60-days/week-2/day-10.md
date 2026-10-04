@@ -59,7 +59,7 @@ Today is about Known, the profile itself. Tomorrow covers Loved (stories) and Re
 | Category (labelling) | Financial service, Insurance agent or Public figure | Blogshop, or anything unrelated |
 | Bio (who, what, how in 150 characters) | See the next section | Leaving it empty, or using the same line as every other advisor |
 | Link (one call to action) | Telegram channel, YouTube, or a free download | Junk links with nothing useful behind them |
-| Highlights (proof that stays up) | Client wins, behind-the-scenes, FAQs, testimonials | Random old stories with no thought behind them |
+| Highlights (proof that stays up) | Client wins, behind-the-scenes, FAQs, testimonials (with written client consent and your firm's approval) | Random old stories with no thought behind them |
 
 ## The Why / What / How bio
 

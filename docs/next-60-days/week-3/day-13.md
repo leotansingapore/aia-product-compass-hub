@@ -50,7 +50,7 @@ Answer it with a **pre-during-post** testimonial: the client's situation before,
 
 > "Before working with me, Ryan felt lost about his finances. During our consultation, we built a clear strategy tailored to his goals. After implementing the plan, he now has a structured roadmap and knows exactly what every dollar is doing."
 
-A real client screenshot, a short video or a specific outcome makes it stronger. Posts like this count as advertising, so run testimonials through your firm's approval process before they go live.
+A real client screenshot, a short video or a specific change in their situation makes it stronger. Get the client's written consent, leave returns, payouts and past performance out of it, and run it through your firm's approval process before it goes live, because under MAS's digital advertising guidelines your firm answers for any testimonial you share.
 
 No closed cases yet? There are three honest options, and [Day 14](/learning-track/next-60-days/day/14) goes deeper:
 

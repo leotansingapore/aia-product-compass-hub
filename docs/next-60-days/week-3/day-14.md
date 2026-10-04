@@ -66,7 +66,7 @@ You get three paragraphs to stitch into before, during and after. Then ask if yo
 
 Before anything goes up, get the client's clear consent to share their story, in writing if you can. The Personal Data Protection Act (PDPA) requires consent to use someone's personal data. Swapping in a different name to skip that step turns a real story into a made-up one.
 
-Then put the post through your firm's approval process. MAS treats your social media posts as advertising that your firm has to oversee.
+Then put the post through your firm's approval process. MAS treats your social media posts as advertising that your firm has to oversee. Keep returns, payout amounts and past performance out of the story: it's about what changed in the client's situation and how you worked together.
 
 ## The new-FC workaround (no closed cases yet)
 

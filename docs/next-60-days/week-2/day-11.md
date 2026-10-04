@@ -96,7 +96,7 @@ Feed posts fall into four types:
 | Useful | Authority positioning | Carousels (Instagram has allowed up to 20 slides since 2024, but 10 is plenty: slide 9 sums up, slide 10 is the call to action). Short reels that solve one problem. |
 | Funny | Social positioning | Memes and GIFs: insider jokes for Social, and for Authority, jokes about the everyday money pains your clients know too well. |
 | Relatable | Either | Stories with feeling. |
-| Inspiring | Authority | Wins, testimonials, underdog and comeback stories, the kind that show someone getting from a bad spot to a better one. |
+| Inspiring | Authority | Wins, consented and firm-approved testimonials, underdog and comeback stories, the kind that show someone getting from a bad spot to a better one. |
 
 Mix them. A feed of only Useful posts reads like a textbook, and only Funny reads like a teenager's page. Over 4 weeks (not per week), aim for 2 Useful, 1 Relatable or Inspiring, and 1 Funny.
 
@@ -153,7 +153,7 @@ After 4 or more weeks of stories that aren't selling anything, you've earned a s
 
 5. Teach or tease: share one insight and add an "agree? / no?" poll.
 
-6. Social proof: a DM screenshot or a testimonial, shared with permission.
+6. Social proof: a DM screenshot or a testimonial, shared with the client's written permission and your firm's approval, with no returns or payout figures.
 
 7. Call to action: a DM sticker, like "Who wants the full playbook?" or "Who needs help reviewing their coverage? Me / Maybe later."
 
