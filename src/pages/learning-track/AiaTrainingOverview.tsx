@@ -357,24 +357,22 @@ export default function AiaTrainingOverview({
   return (
     <div className="aia-viz space-y-4 font-sans">
       <section aria-label="At a glance" className="rounded-2xl border bg-card p-4 sm:p-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-5xl font-semibold leading-none tracking-tight">{dir.courses.length}</p>
-            <p className="mt-1.5 text-sm text-muted-foreground">courses, from licensing to leading an agency</p>
-          </div>
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="text-xl font-semibold leading-tight">{s.value}</dd>
-                <dd className="flex items-center text-xs text-muted-foreground">
-                  {s.label}
-                  {s.tip && <InfoTip label="How CPD hours are counted">{s.tip}</InfoTip>}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <div className="flex items-end gap-3">
+          <p className="text-5xl font-semibold leading-none tracking-tight">{dir.courses.length}</p>
+          <p className="pb-1 text-sm leading-snug text-muted-foreground">courses, from licensing to leading an agency</p>
         </div>
+        <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-4 sm:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <dt className="sr-only">{s.label}</dt>
+              <dd className="text-xl font-semibold leading-tight">{s.value}</dd>
+              <dd className="flex items-center whitespace-nowrap text-xs text-muted-foreground">
+                {s.label}
+                {s.tip && <InfoTip label="How CPD hours are counted">{s.tip}</InfoTip>}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <CareerLine dir={dir} onOpenSection={onOpenSection} />
