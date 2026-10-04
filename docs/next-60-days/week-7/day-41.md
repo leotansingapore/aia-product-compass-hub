@@ -189,7 +189,7 @@ Before they leave:
 
 For the follow-up itself:
 
-1. Hold it within 3 days. Any longer and the interest fades.
+1. Hold it within 3 days for a D, I or S, before the interest fades. A C gets 7 to 14 days to research and compare ([Day 35](/learning-track/next-60-days/day/35)), with the date fixed before they leave.
 2. Send a reminder 24 hours before: "Looking forward to Thursday. Quick recap of what we talked about..." That reminds them why they were interested.
 3. Open with the decision: "Over the past few days you've had a chance to look through the recommendation. Are we good to go ahead?" Don't open with "Do you have any questions?", which invites a fresh round of objections. If they do have questions, answer every one properly. They can always ask; you just don't open the meeting by inviting it.
 
@@ -238,7 +238,7 @@ For the follow-up itself:
 - C) Procedural + Follow-up: walk through the process and book a specific follow-up meeting to close (correct)
 - D) Urgency, tell them the offer expires Friday
 
-**Why:** C's genuinely need time to research, and pushing breaks their process and loses the deal. The best close for a C supports their analysis (Procedural, with the data) and books a follow-up within 3 days, so they get their time and you have a fixed date. Invented urgency (option D) is the fastest way to lose a C, and it's a pressure tactic you shouldn't use on anyone.
+**Why:** C's genuinely need time to research, and pushing breaks their process and loses the deal. The best close for a C supports their analysis (Procedural, with the data) and books a follow-up 7 to 14 days out (Day 35), so they get their time and you have a fixed date. Invented urgency (option D) is the fastest way to lose a C, and it's a pressure tactic you shouldn't use on anyone.
 
 **Q5. The Assumptive Position differs from the Assumptive Close because:**
 - A) They're the same thing
