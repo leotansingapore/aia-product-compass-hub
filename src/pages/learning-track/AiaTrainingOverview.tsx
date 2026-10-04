@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { ChevronLeft, ChevronRight, Signpost } from "lucide-react";
+import { Link } from "react-router-dom";
+import { CalendarDays, ChevronLeft, ChevronRight, Signpost } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { InfoTip } from "@/components/InfoTip";
@@ -11,6 +12,7 @@ import {
   type Directory,
 } from "@/features/aia-training-directory/filter";
 import { JUNCTION, LANES, TRUNK, cpdFloor, laneOf, monthMatrix, sessionsInMonth } from "@/features/aia-training-directory/overview";
+import { calendarUrl } from "@/features/aia-training-directory/links";
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -415,11 +417,20 @@ function YearHeatmap({ dir, onSeeUpcoming }: { dir: Directory; onSeeUpcoming: ()
             </li>
           ))}
         </ul>
-        {sessions.length > PREVIEW && (
-          <Button variant="link" className="h-auto px-0" onClick={() => setShowAll(!showAll)}>
-            {showAll ? "Show fewer" : `Show all ${sessions.length}`}
-          </Button>
-        )}
+        <div className="flex flex-wrap items-center justify-between gap-x-4">
+          {sessions.length > PREVIEW && (
+            <Button variant="link" className="h-auto px-0" onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show fewer" : `Show all ${sessions.length}`}
+            </Button>
+          )}
+          <Link
+            to={calendarUrl(`${dir.scheduleYear}-${String(month).padStart(2, "0")}`)}
+            className="inline-flex items-center gap-1.5 py-2 text-sm font-medium text-primary underline-offset-2 hover:underline"
+          >
+            <CalendarDays className="h-4 w-4" />
+            See {MONTH_NAMES[month - 1]} on the calendar
+          </Link>
+        </div>
       </div>
 
       {upcoming > 0 && (

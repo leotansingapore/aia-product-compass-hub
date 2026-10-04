@@ -10,6 +10,8 @@ export const courseUrl = (courseId: string) => `${BASE}/courses/${courseId}`;
 export const sectionUrl = (sectionId: string) => coursesUrl(`section=${sectionId}`);
 export const roadmapUrl = (roadmapId: string) => `${BASE}/roadmaps/${roadmapId}`;
 export const UPCOMING_URL = coursesUrl("upcoming=1&sort=next");
+/** `ym` is YYYY-MM; leave it out for the current month. */
+export const calendarUrl = (ym?: string) => `${BASE}/calendar${ym ? `?month=${ym}` : ""}`;
 
 const STAGES: StageFilter[] = ["all", "new", "experienced", "leaders"];
 const SORTS: SortKey[] = ["catalogue", "az", "cpd", "next"];

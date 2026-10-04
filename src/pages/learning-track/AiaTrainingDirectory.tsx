@@ -12,6 +12,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InfoTip } from "@/components/InfoTip";
 import AiaTrainingOverview from "./AiaTrainingOverview";
+import AiaTrainingCalendar from "./AiaTrainingCalendar";
 import {
   EMPTY_FILTERS,
   MONTHS,
@@ -631,12 +632,13 @@ export default function AiaTrainingDirectory() {
   //   /aia-training                       overview
   //   /aia-training/courses?q=&stage=...  filtered list (section=02c scrolls to a section)
   //   /aia-training/courses/:courseId     that course, opened
+  //   /aia-training/calendar?month=YYYY-MM&q=&stage=  the calendar
   //   /aia-training/roadmaps/:roadmapId   one roadmap
   const { view: viewParam, itemId } = useParams<{ view?: string; itemId?: string }>();
   const [params, setParams] = useSearchParams();
   const navigate = useNavigate();
   const { search } = useLocation();
-  const view = viewParam === "courses" || viewParam === "roadmaps" ? viewParam : "overview";
+  const view = viewParam === "courses" || viewParam === "roadmaps" || viewParam === "calendar" ? viewParam : "overview";
   const filters = useMemo(() => filtersFromParams(params), [params]);
   const setFilters = useCallback<Dispatch<SetStateAction<Filters>>>(
     (next) =>
@@ -691,8 +693,31 @@ export default function AiaTrainingDirectory() {
     );
   }
 
-  const tabHref = { overview: BASE, courses: coursesUrl(view === "courses" ? search.replace(/^\?/, "") : ""), roadmaps: `${BASE}/roadmaps` };
-  const viewTab = (value: typeof view, label: string) => (
+  const tabHref = {
+    overview: BASE,
+    courses: coursesUrl(view === "courses" ? search.replace(/^\?/, "") : ""),
+    calendar: `${BASE}/calendar`,
+    roadmaps: `${BASE}/roadmaps`,
+  };
+  // Calendar month: ?month=YYYY-MM inside the schedule year, else this month (or January outside it).
+  const now = new Date();
+  const ym = params.get("month")?.match(/^(\d{4})-(\d{2})$/);
+  const calMonth =
+    ym && Number(ym[1]) === dir.scheduleYear && Number(ym[2]) >= 1 && Number(ym[2]) <= 12
+      ? Number(ym[2])
+      : now.getFullYear() === dir.scheduleYear
+        ? now.getMonth() + 1
+        : 1;
+  const setCalMonth = (m: number) =>
+    setParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set("month", `${dir.scheduleYear}-${String(m).padStart(2, "0")}`);
+        return next;
+      },
+      { replace: true },
+    );
+  const viewTab = (value: typeof view, label: React.ReactNode) => (
     <Link
       to={tabHref[value]}
       role="tab"
@@ -717,10 +742,21 @@ export default function AiaTrainingDirectory() {
         </p>
       </div>
 
-      <div role="tablist" aria-label="Directory views" className="flex gap-6 border-b text-sm font-semibold">
+      <div role="tablist" aria-label="Directory views" className="flex gap-5 border-b text-sm font-semibold sm:gap-6">
         {viewTab("overview", "Overview")}
-        {viewTab("courses", `Courses (${dir.courses.length})`)}
-        {viewTab("roadmaps", `Roadmaps (${dir.roadmaps.length})`)}
+        {viewTab(
+          "courses",
+          <>
+            Courses<span className="hidden sm:inline"> ({dir.courses.length})</span>
+          </>,
+        )}
+        {viewTab("calendar", "Calendar")}
+        {viewTab(
+          "roadmaps",
+          <>
+            Roadmaps<span className="hidden sm:inline"> ({dir.roadmaps.length})</span>
+          </>,
+        )}
       </div>
 
       {view === "overview" ? (
@@ -736,6 +772,16 @@ export default function AiaTrainingDirectory() {
           setFilters={setFilters}
           linkedCourse={linkedCourse}
           linkedSection={linkedSection}
+        />
+      ) : view === "calendar" ? (
+        <AiaTrainingCalendar
+          dir={dir}
+          month={calMonth}
+          query={filters.query}
+          stage={filters.stage}
+          onMonth={setCalMonth}
+          onQuery={(q) => setFilters((f) => ({ ...f, query: q }))}
+          onStage={(st) => setFilters((f) => ({ ...f, stage: st }))}
         />
       ) : (
         <RoadmapsView dir={dir} selectedId={itemId} />

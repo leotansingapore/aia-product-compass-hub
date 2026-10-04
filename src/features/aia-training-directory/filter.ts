@@ -48,7 +48,8 @@ export function nextSession(course: Course, scheduleYear: number, today: Date): 
   return course.schedule.find((s) => (s.endMonth ?? s.month) >= month) ?? null;
 }
 
-function haystack(course: Course, section: Section | undefined): string {
+/** Everything a search can match on a course; the Courses tab and the calendar share it. */
+export function courseSearchText(course: Course, section: Section | undefined): string {
   return [
     course.title,
     course.summary,
@@ -82,7 +83,7 @@ export function filterCourses(dir: Directory, f: Filters, today: Date): Course[]
     if (f.isNew && !c.isNew) return false;
     if (f.upcoming && !nextSession(c, dir.scheduleYear, today)) return false;
     if (terms.length) {
-      const text = haystack(c, section);
+      const text = courseSearchText(c, section);
       if (!terms.every((t) => text.includes(t))) return false;
     }
     return true;
