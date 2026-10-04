@@ -453,8 +453,8 @@ export default function AiaTrainingDirectory() {
       aria-selected={view === value}
       onClick={() => setView(value)}
       className={cn(
-        "rounded-full px-4 py-1.5 transition-colors",
-        view === value ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+        "-mb-px border-b-2 pb-2 pt-1 transition-colors",
+        view === value ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
       )}
     >
       {label}
@@ -472,7 +472,7 @@ export default function AiaTrainingDirectory() {
         </p>
       </div>
 
-      <div role="tablist" aria-label="Directory views" className="inline-flex rounded-full border bg-muted/50 p-1 text-xs font-semibold">
+      <div role="tablist" aria-label="Directory views" className="flex gap-6 border-b text-sm font-semibold">
         {viewTab("overview", "Overview")}
         {viewTab("courses", `Courses (${dir.courses.length})`)}
         {viewTab("roadmaps", `Roadmaps (${dir.roadmaps.length})`)}
