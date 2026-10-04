@@ -72,7 +72,7 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Trace a path on the map">
+      <div className="flex flex-wrap gap-1.5" role="group" aria-label="Trace a path on the map">
         {LANES.map((l, i) => (
           <button
             key={l.id}
@@ -80,7 +80,7 @@ function CareerLine({ dir, onOpenSection }: { dir: Directory; onOpenSection: (id
             aria-pressed={focus === i}
             onClick={() => setFocus(focus === i ? null : i)}
             className={cn(
-              "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+              "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors",
               focus === i ? "border-foreground bg-foreground/5" : "bg-background text-muted-foreground hover:text-foreground",
             )}
           >
