@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowDown, ArrowRight, ArrowUpRight, CalendarDays, ChevronDown, Link2, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, CalendarDays, ChevronDown, Loader2, Lock, RotateCcw, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { InfoTip } from "@/components/InfoTip";
+import { RequirementBadge, TAG } from "@/components/aia-training/RequirementBadge";
+import { CopyLinkButton } from "@/components/aia-training/CopyLinkButton";
 import AiaTrainingOverview from "./AiaTrainingOverview";
 import AiaTrainingCalendar from "./AiaTrainingCalendar";
 import {
@@ -30,7 +31,6 @@ import {
 import {
   BASE,
   UPCOMING_URL,
-  absolute,
   courseUrl,
   coursesUrl,
   filtersFromParams,
@@ -54,8 +54,6 @@ const SORTS: { value: SortKey; label: string }[] = [
   { value: "az", label: "A to Z" },
 ];
 
-const TAG = "px-2 py-0.5 text-xs font-medium";
-
 const FORMAT_LABEL = { classroom: "Classroom", virtual: "Virtual", elearning: "eLearning" } as const;
 
 function useDirectory() {
@@ -71,24 +69,6 @@ function useDirectory() {
   });
 }
 
-async function copyLink(path: string) {
-  try {
-    await navigator.clipboard.writeText(absolute(path));
-    toast.success("Link copied");
-  } catch {
-    toast.error("Couldn't copy the link. Please try again.");
-  }
-}
-
-function CopyLinkButton({ path, label }: { path: string; label: string }) {
-  return (
-    <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-muted-foreground" onClick={() => copyLink(path)} aria-label={label}>
-      <Link2 className="h-4 w-4" />
-      Copy link
-    </Button>
-  );
-}
-
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
@@ -102,24 +82,6 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
     >
       {children}
     </button>
-  );
-}
-
-function RequirementBadge({ course }: { course: Course }) {
-  return (
-    <>
-      {course.requirement === "mandatory" && (
-        <Badge variant="outline" className={cn(TAG, "border-emerald-500/50 text-emerald-700 dark:text-emerald-400")}>
-          Mandatory
-        </Badge>
-      )}
-      {course.requirement === "essential" && (
-        <Badge variant="outline" className={cn(TAG, "border-amber-500/60 text-amber-700 dark:text-amber-400")}>
-          Essential
-        </Badge>
-      )}
-      {course.isNew && <Badge className={cn(TAG, "bg-primary/15 text-primary hover:bg-primary/15")}>New</Badge>}
-    </>
   );
 }
 
@@ -699,11 +661,16 @@ export default function AiaTrainingDirectory() {
     calendar: `${BASE}/calendar`,
     roadmaps: `${BASE}/roadmaps`,
   };
-  // Calendar month: ?month=YYYY-MM inside the schedule year, else this month (or January outside it).
+  // Calendar: ?day=YYYY-MM-DD opens that day's popup and decides the month; otherwise
+  // ?month=YYYY-MM inside the schedule year, else this month (or January outside it).
   const now = new Date();
+  const dayParam = params.get("day");
+  const calDay =
+    dayParam && /^\d{4}-\d{2}-\d{2}$/.test(dayParam) && Number(dayParam.slice(0, 4)) === dir.scheduleYear ? dayParam : undefined;
   const ym = params.get("month")?.match(/^(\d{4})-(\d{2})$/);
-  const calMonth =
-    ym && Number(ym[1]) === dir.scheduleYear && Number(ym[2]) >= 1 && Number(ym[2]) <= 12
+  const calMonth = calDay
+    ? Number(calDay.slice(5, 7))
+    : ym && Number(ym[1]) === dir.scheduleYear && Number(ym[2]) >= 1 && Number(ym[2]) <= 12
       ? Number(ym[2])
       : now.getFullYear() === dir.scheduleYear
         ? now.getMonth() + 1
@@ -713,6 +680,19 @@ export default function AiaTrainingDirectory() {
       (prev) => {
         const next = new URLSearchParams(prev);
         next.set("month", `${dir.scheduleYear}-${String(m).padStart(2, "0")}`);
+        next.delete("day");
+        return next;
+      },
+      { replace: true },
+    );
+  const setCalDay = (iso: string | null) =>
+    setParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (iso) {
+          next.set("day", iso);
+          next.set("month", iso.slice(0, 7));
+        } else next.delete("day");
         return next;
       },
       { replace: true },
@@ -777,6 +757,8 @@ export default function AiaTrainingDirectory() {
         <AiaTrainingCalendar
           dir={dir}
           month={calMonth}
+          day={calDay}
+          onDay={setCalDay}
           query={filters.query}
           stage={filters.stage}
           onMonth={setCalMonth}
